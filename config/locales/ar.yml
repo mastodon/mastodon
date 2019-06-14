@@ -91,6 +91,8 @@ ar:
       delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح!
     accounts:
+      approve: صادِق عليه
+      approve_all: الموافقة على الكل
       are_you_sure: متأكد ؟
       avatar: الصورة الرمزية
       by_domain: النطاق
@@ -333,6 +335,7 @@ ar:
         zero: "%{count} حسابات معروفة"
       moderation:
         all: كافتها
+        limited: محدود
         title: الإشراف
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
@@ -536,6 +539,9 @@ ar:
     migrate_account: الانتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
+    providers:
+      cas: CAS
+      saml: SAML
     register: إنشاء حساب
     registration_closed: لا يقبل %{instance} استقبال أعضاء جدد
     resend_confirmation: إعادة إرسال تعليمات التأكيد
@@ -609,6 +615,7 @@ ar:
       request: طلب نسخة لحسابك
       size: الحجم
     blocks: قمت بحظر
+    csv: CSV
     domain_blocks: النطاقات المحظورة
     follows: أنت تتبع
     lists: القوائم
@@ -651,10 +658,13 @@ ar:
       zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   identity_proofs:
     active: نشط
+    authorize: نعم ، قم بترخيصه
+    authorize_connection_prompt: هل تريد ترخيص هذا الاتصال المشفّر؟
     i_am_html: أنا %{username} على %{service}.
     identity: الهوية
     inactive: ليس نشطا
     publicize_checkbox: 'وقم بتبويق هذا:'
+    publicize_toot: 'متحقق منه! أنا %{username} على %{service}: %{url}'
     status: حالة التحقق
     view_proof: عرض الدليل
   imports:
@@ -759,8 +769,11 @@ ar:
       decimal_units:
         format: "%n%u"
         units:
+          billion: بل
+          million: ملي
           quadrillion: كواد
           thousand: ألف
+          trillion: ترل
   pagination:
     newer: الأحدَث
     next: التالي
@@ -769,6 +782,9 @@ ar:
     truncate: و
   polls:
     errors:
+      already_voted: لقد قمت بالتصويت على استطلاع الرأي هذا مِن قبل
+      duplicate_options: يحتوي على عناصر مكررة
+      duration_too_short: مبكّر جدا
       expired: لقد انتهى استطلاع الرأي
   preferences:
     other: إعدادات أخرى
@@ -776,11 +792,14 @@ ar:
     public_timelines: الخيوط الزمنية العامة
   relationships:
     activity: نشاط الحساب
+    dormant: في سبات
     last_active: آخر نشاط
     most_recent: الأحدث
     moved: هاجر
     primary: رئيسي
     relationship: العلاقة
+    remove_selected_domains: احذف كافة المتابِعين القادمين مِن النطاقات المختارة
+    remove_selected_followers: احذف المتابِعين الذين قمت باختيارهم
     remove_selected_follows: الغي متابعة المستخدمين الذين اخترتهم
     status: حالة الحساب
   remote_follow:
@@ -854,6 +873,7 @@ ar:
     development: التطوير
     edit_profile: تعديل الملف الشخصي
     export: تصدير البيانات
+    featured_tags: الوسوم الشائعة
     identity_proofs: دلائل الهوية
     import: استيراد
     import_and_export: استيراد وتصدير

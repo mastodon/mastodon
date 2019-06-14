@@ -337,14 +337,12 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 1;
   }
 
   .template-picker-dropdown {
     position: absolute;
     right: 5px;
     top: 32px;
-    z-index: 1;
   }
 
   .compose-form__autosuggest-wrapper {
@@ -418,24 +416,6 @@
   .autosuggest-textarea__suggestions-wrapper {
     position: relative;
     height: 0;
-  }
-
-  .emoji-picker-wrapper {
-    position: relative;
-    height: 0;
-
-    &.emoji-picker-wrapper--hidden {
-      display: none;
-    }
-  }
-
-  .template-picker-wrapper {
-    position: relative;
-    height: 0;
-
-    &.template-picker-wrapper--hidden {
-      display: none;
-    }
   }
 
   .autosuggest-textarea__suggestions {

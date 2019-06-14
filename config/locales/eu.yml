@@ -270,6 +270,7 @@ eu:
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
+      existing_domain_block_html: '%{name} domeinuan muga zorrotzagoak ezarri dituzu jada, aurretik <a href="%{unblock_url}">desblokeatu</a> beharko duzu.'
       new:
         create: Sortu blokeoa
         hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean, baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko mezuetan ere.
@@ -506,6 +507,7 @@ eu:
     sensitive_content: Eduki hunkigarria
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
+    salutation: "%{name},"
     settings: 'Aldatu e-mail hobespenak: %{link}'
     view: 'Ikusi:'
     view_profile: Ikusi profila
@@ -519,7 +521,9 @@ eu:
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
+    apply_for_account: Eskatu gonbidapen bat
     change_password: Pasahitza
+    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Zerbitzariaren arauak</a> eta <a href="%{terms_path}" target="_blank">erabilera baldintzak</a> onartzen ditut
     confirm_email: Berretsi e-mail helbidea
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
@@ -531,11 +535,16 @@ eu:
     migrate_account: Lekualdatu beste kontu batera
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
     or_log_in_with: Edo hasi saioa honekin
+    providers:
+      cas: CAS
+      saml: SAML
     register: Eman izena
+    registration_closed: "%{instance} instantziak ez ditu kide berriak onartzen"
     resend_confirmation: Birbidali berresteko argibideak
     reset_password: Berrezarri pasahitza
     security: Segurtasuna
     set_new_password: Ezarri pasahitza berria
+    trouble_logging_in: Arazoak saioa hasteko?
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
     error: Zoritxarrez, urruneko kontua bilatzean errore bat gertatu da
@@ -549,14 +558,18 @@ eu:
     title: Jarraitu %{acct}
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}o"
       about_x_months: "%{count} hilabete"
       about_x_years: "%{count} urte"
       almost_x_years: "%{count} urte"
       half_a_minute: Oraintxe
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Oraintxe
       over_x_years: "%{count} urte"
       x_days: "%{count} egun"
+      x_minutes: "%{count}m"
       x_months: "%{count} hilabete"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Saiakera ona hacker! Pasahitz okerra
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
@@ -587,6 +600,9 @@ eu:
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
     noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
+  existing_username_validator:
+    not_found: ezin izan da izen hori duen kide lokalik aurkitu
+    not_found_multiple: ezin izan dira aurkitu %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -596,6 +612,7 @@ eu:
       request: Eskatu zure artxiboa
       size: Tamaina
     blocks: Zuk blokeatutakoak
+    csv: CSV
     domain_blocks: Domeinuen blokeoak
     follows: Zuk jarraitutakoak
     lists: Zerrendak
@@ -626,12 +643,34 @@ eu:
     more: Gehiago…
     resources: Baliabideak
   generic:
+    all: Denak
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
+    order_by: Ordenatze-irizpidea
     save_changes: Gorde aldaketak
     validation_errors:
       one: Zerbait ez dabil ongi! Egiaztatu beheko errorea mesedez
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
+  html_validator:
+    invalid_markup: 'HTML markaketa baliogabea du: %{error}'
+  identity_proofs:
+    active: Aktiboa
+    authorize: Bai, baimendu
+    authorize_connection_prompt: Baimendu zifratutako konexio hau?
+    errors:
+      failed: Zifratutako konexioak huts egin du. Saiatu berriro %{provider} hornitzailetik.
+      keybase:
+        invalid_token: Keybase-ko token-ak sinaduren hash-ak dira eta 66 hex karakterekoak izan beha dira
+        verification_failed: Keybase-k ez du token hau Keybase-ko %{kb_username} erabiltzailearen sinaduratzat onartzen. Saiatu berriro Keybase-tik.
+      wrong_user: Ezin izan da %{proving} erabiltzailearentzat froga sortu %{current} gisa saioa hasita. Hasi saioa %{proving} erabilita eta saiatu berriro.
+    explanation_html: Hemen modu zifratuan konektatu ditzakezu zure beste identitateak, esaterako Keybase profila. Honek beste jendeak zuri zifratutako mezuak bidaltzea ahalbidetzen du, eta zuk beraiei bidalitako edukia fidagarritzat jotzea.
+    i_am_html: "%{username} erabiltzailea naiz %{service} zerbitzuan."
+    identity: Identitatea
+    inactive: Ez aktiboa
+    publicize_checkbox: 'Eta bidali toot hau:'
+    publicize_toot: 'Frogatua dago! %{username} erabiltzailea naiz %{service} zerbitzuan: %{url}'
+    status: Egiaztatze egoera
+    view_proof: Ikusi froga
   imports:
     modes:
       merge: Bateratu
@@ -717,13 +756,36 @@ eu:
       body: "%{name}(e)k bultzada eman dio zure mezuari:"
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: Berriagoa
     next: Hurrengoa
     older: Zaharragoa
     prev: Aurrekoa
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Inkesta honetan dagoeneko bozkatu duzu
+      duplicate_options: bikoiztutako elementuak ditu
+      duration_too_long: etorkizunean urrunegi dago
+      duration_too_short: goizegi da
+      expired: Inkesta amaitu da jada
+      over_character_limit: bakoitzak gehienez %{max} karaktere izan ditzake
+      too_few_options: elementu bat baino gehiago izan behar du
+      too_many_options: ezin ditu %{max} elementu baino gehiago izan
   preferences:
     other: Beste bat
+    posting_defaults: Bidalketarako lehenetsitakoak
+    public_timelines: Denbora-lerro publikoak
   relationships:
     activity: Kontuaren aktibitatea
     dormant: Ez aktiboa
@@ -954,6 +1016,7 @@ eu:
   time:
     formats:
       default: "%Y(e)ko %b %d, %H:%M"
+      month: "%Y(e)ko %b"
   two_factor_authentication:
     code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
     description_html: "<strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako."

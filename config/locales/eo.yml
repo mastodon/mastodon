@@ -1,7 +1,7 @@
 ---
 eo:
   about:
-    about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
+    about_hashtag_html: Ĉi tiuj estas la publikaj fajfoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
     about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
     about_this: Pri
     active_count_after: aktiva
@@ -497,6 +497,7 @@ eo:
       subject: Nova signalo por %{instance} (#%{id})
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
+    confirmation_dialogs: Konfirmaj dialogoj
     sensitive_content: Tikla enhavo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
@@ -662,6 +663,8 @@ eo:
     i_am_html: Mi estas %{username} en %{service}.
     identity: Identeco
     inactive: Malaktiva
+    publicize_checkbox: 'Kaj fajfi ĉi tio:'
+    publicize_toot: 'I estas pruvita! Mi estas %{username} sur %{service}: %{url}'
     status: Confirmo statuso
     view_proof: Vidi pruvo
   imports:
@@ -779,9 +782,12 @@ eo:
     other: Aliaj aferoj
   relationships:
     dormant: Dormanta
+    last_active: Lasta aktiva
+    most_recent: Plej lasta
     moved: Moviĝita
     mutual: Reciproka
     primary: Primara
+    relationship: Rilato
     status: Statuso de la konto
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
@@ -860,6 +866,7 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
+    identity_proofs: Pruvo de identeco
     import: Importi
     import_and_export: Alporto kaj elporto
     migrate: Konta migrado
