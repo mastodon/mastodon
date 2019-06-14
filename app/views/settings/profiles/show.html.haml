@@ -7,7 +7,7 @@
   .fields-row
     .fields-row__column.fields-group.fields-row__column-6
       = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30 }, hint: false
-      = f.input :note, wrapper: :with_label, input_html: { maxlength: 160 }, hint: false
+      = f.input :note, wrapper: :with_label, input_html: { maxlength: 500 }, hint: false
 
   .fields-row
     .fields-row__column.fields-row__column-6
@@ -28,7 +28,7 @@
 
   - if Setting.profile_directory
     .fields-group
-      = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable_html', min_followers: Account::MIN_FOLLOWERS_DISCOVERY, path: explore_path)
+      = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable_html', min_followers: Account::MIN_FOLLOWERS_DISCOVERY, path: explore_path), recommended: true
 
   %hr.spacer/
 

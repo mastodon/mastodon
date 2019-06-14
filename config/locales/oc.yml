@@ -7,7 +7,6 @@ oc:
     active_count_after: actius
     active_footnote: Utilizaire actius per mes (UAM)
     administered_by: 'Administrat per :'
-    api: API
     apps: Aplicacions per mobil
     apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
     browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
@@ -63,7 +62,6 @@ oc:
     posts_with_replies: Tuts e responsas
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
-      admin: Admin
       bot: Robòt
       moderator: Moderador
     unfollow: Quitar de sègre
@@ -79,7 +77,6 @@ oc:
     accounts:
       approve: Aprovar
       are_you_sure: Sètz segur ?
-      avatar: Avatar
       by_domain: Domeni
       change_email:
         changed_msg: Adreça corrèctament cambiada !
@@ -110,7 +107,6 @@ oc:
       header: Bandièra
       inbox_url: URL de recepcion
       invited_by: Convidat per
-      ip: IP
       joined: Venguèt
       location:
         all: Totes
@@ -138,7 +134,6 @@ oc:
       profile_url: URL del perfil
       promote: Promòure
       protocol: Protocòl
-      public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar lo perfil
       remove_avatar: Supriir l’avatar
@@ -150,9 +145,7 @@ oc:
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
-      role: Permissions
       roles:
-        admin: Administrator
         moderator: Moderador
         staff: Personnal
         user: Uitlizaire
@@ -174,7 +167,6 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       warn: Avisar
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
@@ -219,7 +211,6 @@ oc:
       destroyed_msg: Emoji ben suprimit !
       disable: Desactivar
       disabled_msg: Aqueste emoji es ben desactivat
-      emoji: Emoji
       enable: Activar
       enabled_msg: Aqueste emoji es ben activat
       image_hint: PNG cap a 50Ko
@@ -460,7 +451,6 @@ oc:
       confirmed: Confirmat
       expires_in: S’acaba dins
       last_delivery: Darrièra distribucion
-      title: WebSub
       topic: Subjècte
     tags:
       accounts: Comptes
@@ -469,7 +459,6 @@ oc:
       name: Etiqueta
       title: Etiquetas
       unhide: Aparéisser dins l’annuari
-      visible: Visible
     title: Administracion
     warning_presets:
       add_new: N’ajustar un nòu
@@ -484,7 +473,6 @@ oc:
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
-    salutation: "%{name},"
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
     view_profile: Veire lo perfil
@@ -512,9 +500,6 @@ oc:
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
     or_log_in_with: O autentificatz-vos amb
-    providers:
-      cas: CAS
-      saml: SAML
     register: Se marcar
     registration_closed: "%{instance} accepta pas de nòus membres"
     resend_confirmation: Tornar mandar las instruccions de confirmacion
@@ -533,59 +518,6 @@ oc:
       return: Veire lo perfil a la persona
       web: Tornar a l’interfàcia Web
     title: Sègre %{acct}
-  date:
-    abbr_day_names:
-    - dg
-    - dl
-    - dm
-    - dc
-    - dj
-    - dv
-    - ds
-    abbr_month_names:
-    - None
-    - gen
-    - feb
-    - mar
-    - abr
-    - mai
-    - jun
-    - jul
-    - ago
-    - set
-    - oct
-    - nov
-    - dec
-    day_names:
-    - dimenge
-    - diluns
-    - dimars
-    - dimècres
-    - dijòus
-    - divendres
-    - dissabte
-    formats:
-      default: "%e/%m/%Y"
-      long: Lo %e %B de %Y
-      short: "%e %B de %Y"
-    month_names:
-    - None
-    - de genièr
-    - de febrièr
-    - de març
-    - d’abrial
-    - de mai
-    - de junh
-    - de julhet
-    - d’agost
-    - de setembre
-    - d’octòbre
-    - de novembre
-    - de decembre
-    order:
-    - :day
-    - :month
-    - :year
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -599,10 +531,6 @@ oc:
       x_days: "%{count} jorns"
       x_minutes: "%{count} min"
       x_months: "%{count} meses"
-      x_seconds: "%{count}s"
-      x_years:
-        one: Fa un an
-        other: Fa %{count} ans
   deletes:
     bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
@@ -642,7 +570,6 @@ oc:
       request: Demandar vòstre archiu
       size: Talha
     blocks: Personas que blocatz
-    csv: CSV
     domain_blocks: Blocatge de domenis
     follows: Personas que seguètz
     lists: Listas
@@ -771,23 +698,11 @@ oc:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Mai recents
     next: Seguent
     older: Mai ancians
     prev: Precedent
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avètz ja votat per aqueste sondatge
@@ -799,10 +714,7 @@ oc:
       too_few_options: deu contenir mai d’una opcion
       too_many_options: pòt pas contenir mai de %{max} opcions
   preferences:
-    languages: Lengas
     other: Autre
-    publishing: Publicar
-    web: Interfàcia Web
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
@@ -829,7 +741,6 @@ oc:
       proceed: Contunhar per respondre
       prompt: 'Volètz respondre a aqueste tut :'
   remote_unfollow:
-    error: Error
     title: Títol
     unfollowed: Pas mai seguit
   scheduled_statuses:
@@ -840,43 +751,14 @@ oc:
     activity: Darrièra activitat
     browser: Navigator
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navigator desconegut
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Session en cors
     description: "%{browser} sus %{platform}"
     explanation: Aquí los navigators connectats a vòstre compte Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: plataforma desconeguda
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: Session ben revocada
-    title: Sessions
   settings:
     authorized_apps: Aplicacions autorizadas
     back: Tornar a Mastodon
@@ -924,7 +806,6 @@ oc:
     visibilities:
       private: Seguidors solament
       private_long: Mostrar pas qu’als seguidors
-      public: Public
       public_long: Tot lo monde pòt veire
       unlisted: Pas listat
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
@@ -938,10 +819,10 @@ oc:
       <h3 id="collect">Quinas informacions reculhèm ?</h3>
 
       <ul>
-        <li><em>Inforacions de basa del compte</em> :  se vos marcatz sus aqueste servidor, vos podèm demandar de picar un escais-nom, una adreça de corrièl e un senhal. Podètz tanben ajustar d’informacions de perfil addicionalas coma un nom de far veire, una biografia, un imatge de perfil e una banièra. L’escais-nom, lo nom d’afichatge, la biografia, l’imatge de perfil e la banièra son totjorn indicats per èsser vistes publicament.</li>
-        <li><em>Publicacions, abonaments e autras informacions publicas</em> : La lista del monde que seguètz es visibla publicament, tot parièr per vòstres seguidors. Quand enviatz un messatge, la data e l’ora son gardats, l’aplicacion qu’avètz utilizada tanben. Los messatges pòdon conténer de mèdias juntats coma d’imatge e vidèos. Las publicacions publicas e pas listadas son disponiblas publicament. Quand penjatz una publicacion per vòstre perfil, aquò tanben es visible per tot lo monde. Vòstras publicacions son mandadas a vòstre seguidors, dins qualques cases aquò significa que passaràn per diferents servidors e seràn copiadas e gardadas sus aqueles servidors. Quand escafatz de publicacions, aquò es tanben mandat a vòstre seguidors. L’accion de partejar o d’ajustar als favorits una publicacion es totjorn quicòm de public.</li>
-       <li><em>Publicacions dirèctas e solament pels seguidors</em> :</li> totas las publicacions son gardadas e tractadas pel servidor. Las publicacions pas que per vòstres seguidors son enviadas a vòstres seguidors e las personas mencionadas dedins, las publicacions dirèctas son pas qu’enviadas a las personas mencionadas. Dins qualques cases aquò significa que passaràn per diferents servidors, copiadas e gardadas sus eles. Ensagem de limitar l’accès a aquelas publicacions a monde autorizat, mas los demai servidors pòdon fracar a far parièr. A causa d’aquò es fòrça important de repassar los servidors d’apertenéncia de vòstres seguidors. Podètz activar una opcion per autorizar o regetar una demanda de seguiment dins los paramètres. <em>Vos cal pas oblidar que’ls administrators dels servidors e dels servidors de recepcion pòdon veire aqueles messatges</em>, e que’ls destinataris pòdon realizar de captura d’ecran, copiar e tornar partejar los messatges.<em>Partegetz pas cap informacion perilhosa sus Mastodon</em><li>.
-        <li><em>Adreças IP e autras metadonadas</em> : quand vos connectatz, enregistrem l’adreça IP qu’utilizatz per establir la connexion, e tanben lo nom de vòstre navigador. Totas las sessions de connexion son disponiblas per que las repassetz e tiretz dins los paramètres. Las darrièras adreças IP son salvagardas fins a 12 meses. Podèm tanben gardar de jornals d’audit del servidor que pòdon conténer las adreças IP de cada requèstas mandadas a nòstre servidor.</li>
+      <li><em>Inforacions de basa del compte</em> :  se vos marcatz sus aqueste servidor, vos podèm demandar de picar un escais-nom, una adreça de corrièl e un senhal. Podètz tanben ajustar d’informacions de perfil addicionalas coma un nom de far veire, una biografia, un imatge de perfil e una banièra. L’escais-nom, lo nom d’afichatge, la biografia, l’imatge de perfil e la banièra son totjorn indicats per èsser vistes publicament.</li>
+      <li><em>Publicacions, abonaments e autras informacions publicas</em> : La lista del monde que seguètz es visibla publicament, tot parièr per vòstres seguidors. Quand enviatz un messatge, la data e l’ora son gardats, l’aplicacion qu’avètz utilizada tanben. Los messatges pòdon conténer de mèdias juntats coma d’imatge e vidèos. Las publicacions publicas e pas listadas son disponiblas publicament. Quand penjatz una publicacion per vòstre perfil, aquò tanben es visible per tot lo monde. Vòstras publicacions son mandadas a vòstre seguidors, dins qualques cases aquò significa que passaràn per diferents servidors e seràn copiadas e gardadas sus aqueles servidors. Quand escafatz de publicacions, aquò es tanben mandat a vòstre seguidors. L’accion de partejar o d’ajustar als favorits una publicacion es totjorn quicòm de public.</li>
+      <li><em>Publicacions dirèctas e solament pels seguidors</em> :</li> totas las publicacions son gardadas e tractadas pel servidor. Las publicacions pas que per vòstres seguidors son enviadas a vòstres seguidors e las personas mencionadas dedins, las publicacions dirèctas son pas qu’enviadas a las personas mencionadas. Dins qualques cases aquò significa que passaràn per diferents servidors, copiadas e gardadas sus eles. Ensagem de limitar l’accès a aquelas publicacions a monde autorizat, mas los demai servidors pòdon fracar a far parièr. A causa d’aquò es fòrça important de repassar los servidors d’apertenéncia de vòstres seguidors. Podètz activar una opcion per autorizar o regetar una demanda de seguiment dins los paramètres. <em>Vos cal pas oblidar que’ls administrators dels servidors e dels servidors de recepcion pòdon veire aqueles messatges</em>, e que’ls destinataris pòdon realizar de captura d’ecran, copiar e tornar partejar los messatges.<em>Partegetz pas cap informacion perilhosa sus Mastodon</em><li>.
+      <li><em>Adreças IP e autras metadonadas</em> : quand vos connectatz, enregistrem l’adreça IP qu’utilizatz per establir la connexion, e tanben lo nom de vòstre navigador. Totas las sessions de connexion son disponiblas per que las repassetz e tiretz dins los paramètres. Las darrièras adreças IP son salvagardas fins a 12 meses. Podèm tanben gardar de jornals d’audit del servidor que pòdon conténer las adreças IP de cada requèstas mandadas a nòstre servidor.</li>
 
       </ul>
 
@@ -952,9 +833,9 @@ oc:
       <p>Totas las informacions que collectem de vos pòdon servir dins los cases seguents :</p>
 
       <ul>
-        <li>Per provesir la foncionament màger de Mastodon. Podètz pas qu’interagir amb lo contengut del monde e de vòstras publicacions quand sètz connectat. Per exemple, avètz la possibilitat de sègre de monde per veire lors publicacions amassadas dins vòstre flux d’actualitat personalizat.</li>
-        <li>Per ajudar la moderacion de la comunitat, per exemple en comparant vòstra adreça IP amb d’autras per determinar d’ensages de contornament de bandiment e d’autras violéncias.</li>
-        <li>Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
+      <li>Per provesir la foncionament màger de Mastodon. Podètz pas qu’interagir amb lo contengut del monde e de vòstras publicacions quand sètz connectat. Per exemple, avètz la possibilitat de sègre de monde per veire lors publicacions amassadas dins vòstre flux d’actualitat personalizat.</li>
+      <li>Per ajudar la moderacion de la comunitat, per exemple en comparant vòstra adreça IP amb d’autras per determinar d’ensages de contornament de bandiment e d’autras violéncias.</li>
+      <li>Podèm utilizar l’adreça qu’avètz donada per vos enviar d’informacions e de notificacions que demandatz tocant de cambiaments dins los subjèctes del forum o en responsa a vòstre nom d’utilizaire, en responsa a una demanda, e/o tota autra question.</li>
       </ul>
 
       <hr class="spacer" />
@@ -969,8 +850,8 @@ oc:
       <p>Farem esfòrces per :</p>
 
       <ul>
-       <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
-       <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 12 messes.</li>
+      <li>Gardar los jornals del servidor que contenon las adreças IP de totas las demandas al servidor pas mai de 90 jorns.</li>
+      <li>Gardar las adreças IP ligadas als utilizaires e lors publicacions pas mai de 12 messes.</li>
       </ul>
 
       <p>Podètz demandar e telecargar vòstre archiu de contengut, amb vòstras publicacions, los mèdias enviats, l’imatge de perfil e l’imatge de bandièra.</p>
@@ -1024,7 +905,6 @@ oc:
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
     description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.

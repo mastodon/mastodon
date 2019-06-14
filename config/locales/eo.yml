@@ -1,7 +1,7 @@
 ---
 eo:
   about:
-    about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
+    about_hashtag_html: Ĉi tiuj estas la publikaj fajfoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
     about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
     about_this: Pri
     active_count_after: aktiva
@@ -68,6 +68,7 @@ eo:
       admin: Administranto
       bot: Roboto
       moderator: Kontrolanto
+    unavailable: Profilo ne disponebla
     unfollow: Ne plu sekvi
   admin:
     account_actions:
@@ -80,6 +81,7 @@ eo:
       destroyed_msg: Kontrola noto sukcese detruita!
     accounts:
       approve: Aprobi
+      approve_all: Aprobi ĉiujn
       are_you_sure: Ĉu vi certas?
       avatar: Profilbildo
       by_domain: Domajno
@@ -132,6 +134,7 @@ eo:
       moderation_notes: Kontrolaj notoj
       most_recent_activity: Lasta ago
       most_recent_ip: Lasta IP
+      no_account_selected: Neniu konto estis ŝanĝita ĉar neniu estis selektita
       no_limits_imposed: Neniu limito trudita
       not_subscribed: Ne abonita
       outbox_url: Elira URL
@@ -144,6 +147,7 @@ eo:
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilon
       reject: Malakcepti
+      reject_all: Malaprobi ĉiujn
       remove_avatar: Forigi profilbildon
       remove_header: Forigi kapan bildon
       resend_confirmation:
@@ -491,6 +495,10 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Altnivela retpaĝa interfaco
+    confirmation_dialogs: Konfirmaj dialogoj
+    sensitive_content: Tikla enhavo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
     salutation: "%{name},"
@@ -655,8 +663,8 @@ eo:
     i_am_html: Mi estas %{username} en %{service}.
     identity: Identeco
     inactive: Malaktiva
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    publicize_checkbox: 'Kaj fajfi ĉi tio:'
+    publicize_toot: 'I estas pruvita! Mi estas %{username} sur %{service}: %{url}'
     status: Confirmo statuso
     view_proof: Vidi pruvo
   imports:
@@ -754,7 +762,6 @@ eo:
           quadrillion: Dd
           thousand: m
           trillion: Dn
-          unit: " "
   pagination:
     newer: Pli nova
     next: Sekva
@@ -772,23 +779,16 @@ eo:
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
-    languages: Lingvoj
     other: Aliaj aferoj
-    publishing: Publikado
-    web: Reto
   relationships:
-    activity: Account activity
-    dormant: Dormant
-    last_active: Last active
-    most_recent: Most recent
-    moved: Moved
-    mutual: Mutual
-    primary: Primary
-    relationship: Relationship
-    remove_selected_domains: Remove all followers from the selected domains
-    remove_selected_followers: Remove selected followers
-    remove_selected_follows: Unfollow selected users
-    status: Account status
+    dormant: Dormanta
+    last_active: Lasta aktiva
+    most_recent: Plej lasta
+    moved: Moviĝita
+    mutual: Reciproka
+    primary: Primara
+    relationship: Rilato
+    status: Statuso de la konto
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
     missing_resource: La URL de plusendado ne estis trovita
@@ -856,6 +856,9 @@ eo:
     revoke_success: Seanco sukcese malvalidigita
     title: Seancoj
   settings:
+    account: Konto
+    account_settings: Agordoj de konto
+    appearance: Apero
     authorized_apps: Rajtigitaj aplikaĵoj
     back: Reveni al Mastodon
     delete: Konta forigo
@@ -863,12 +866,14 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
-    identity_proofs: Identity proofs
+    identity_proofs: Pruvo de identeco
     import: Importi
+    import_and_export: Alporto kaj elporto
     migrate: Konta migrado
     notifications: Sciigoj
     preferences: Preferoj
-    relationships: Follows and followers
+    profile: Profilo
+    relationships: Sekvatoj kaj sekvantoj
     two_factor_authentication: Dufaktora aŭtentigo
   statuses:
     attached:
@@ -899,7 +904,7 @@ eo:
       vote: Voĉdoni
     show_more: Montri pli
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
-    title: '%{name}: "%{quote}"'
+    title: "%{name}: “%{quote}”"
     visibilities:
       private: Montri nur al sekvantoj
       private_long: Montri nur al sekvantoj

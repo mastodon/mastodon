@@ -4,9 +4,11 @@ it:
     about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
     about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
     about_this: A proposito di questo server
+    active_count_after: attivo
+    active_footnote: Utenti Attivi Mensili (MAU)
     administered_by: 'Amministrato da:'
-    api: API
     apps: Applicazioni Mobile
+    apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
@@ -15,14 +17,13 @@ it:
       <h3>Un buon posto per le regole</h3>
       <p>La descrizione estesa non è ancora stata preparata.</p>
     generic_description: "%{domain} è un server nella rete"
+    get_apps: Prova l'app per smartphone
     hosted_on: Mastodon ospitato su %{domain}
     learn_more: Scopri altro
     privacy_policy: Politica della privacy
     source_code: Codice sorgente
-    status_count_after:
-      one: status
-      other: status
     status_count_before: Che hanno pubblicato
+    tagline: Segui vecchi amici e trovane nuovi
     terms: Termini di Servizio
     user_count_after:
       one: utente
@@ -39,7 +40,6 @@ it:
     joined: Dal %{date}
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
-    media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
     nothing_here: Qui non c'è nulla!
@@ -47,15 +47,11 @@ it:
     people_who_follow: Persone che seguono %{name}
     pin_errors:
       following: Devi gia seguire la persona che vuoi promuovere
-    posts:
-      one: Toot
-      other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
     reserved_username: Il nome utente è gia stato preso
     roles:
       admin: Amministratore
-      bot: Bot
       moderator: Moderatore
     unfollow: Non seguire più
   admin:
@@ -69,7 +65,6 @@ it:
       destroyed_msg: Nota di moderazione distrutta con successo!
     accounts:
       are_you_sure: Sei sicuro?
-      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: Account email cambiato con successo!
@@ -89,7 +84,6 @@ it:
       display_name: Nome visualizzato
       domain: Dominio
       edit: Modifica
-      email: Email
       email_status: Stato email
       enable: Abilita
       enabled: Abilitato
@@ -100,7 +94,6 @@ it:
       header: Intestazione
       inbox_url: URL inbox
       invited_by: Invitato da
-      ip: IP
       joined: Unito
       location:
         all: Tutto
@@ -162,7 +155,6 @@ it:
       unsubscribe: Annulla l'iscrizione
       username: Nome utente
       warn: Avverti
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
@@ -196,7 +188,6 @@ it:
         update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
         update_status: "%{name} stato aggiornato da %{target}"
       deleted_status: "(stato cancellato)"
-      title: Audit log
     custom_emojis:
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
@@ -207,7 +198,6 @@ it:
       destroyed_msg: Emoji distrutto con successo!
       disable: Disabilita
       disabled_msg: Questa emoji è stata disabilitata con successo
-      emoji: Emoji
       enable: Abilita
       enabled_msg: Questa emoji è stata abilitata con successo
       image_hint: PNG fino a 50 KB
@@ -215,7 +205,6 @@ it:
       new:
         title: Aggiungi nuovo emoji personalizzato
       overwrite: Sovrascrivi
-      shortcode: Shortcode
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
       title: Emoji personalizzate
       unlisted: Non elencato
@@ -223,7 +212,6 @@ it:
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
     dashboard:
-      backlog: backlogged jobs
       config: Configurazione
       feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
@@ -236,9 +224,7 @@ it:
       recent_users: Utenti Recenti
       search: Ricerca testo intero
       single_user_mode: Modalita utente singolo
-      software: Software
       space: Utilizzo dello spazio
-      title: Dashboard
       total_users: utenti totali
       trends: Tendenze
       week_interactions: interazioni per questa settimana
@@ -322,14 +308,12 @@ it:
       pending: In attesa dell'approvazione del ripetitore
       save_and_enable: Salva e attiva
       setup: Crea una connessione con un ripetitore
-      status: Status
       title: Ripetitori
     report_notes:
       created_msg: Nota rapporto creata!
       destroyed_msg: Nota rapporto cancellata!
     reports:
       account:
-        note: note
         report: rapporto
       action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
@@ -383,7 +367,7 @@ it:
         title: Mostra media sensibili nella anteprime OpenGraph
       profile_directory:
         desc_html: Permetti agli utenti di essere trovati
-        title: Attiva directory del profilo
+        title: Attiva directory dei profili
       registrations:
         closed_message:
           desc_html: Mostrato nella pagina iniziale quando le registrazioni sono chiuse. Puoi usare tag HTML
@@ -426,8 +410,6 @@ it:
         nsfw_off: Segna come non sensibile
         nsfw_on: Segna come sensibile
       failed_to_execute: Impossibile eseguire
-      media:
-        title: Media
       no_media: Nessun media
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
@@ -440,8 +422,7 @@ it:
     tags:
       accounts: Account
       hidden: Nascosto
-      hide: Nascondi nella directory
-      name: Hashtag
+      hide: Non mostrare nella directory
       title: Hashtag
       unhide: Mostra nella directory
       visible: Visibile
@@ -454,7 +435,6 @@ it:
       title: Gestisci avvisi predefiniti
   application_mailer:
     notification_preferences: Cambia preferenze email
-    salutation: "%{name},"
     settings: 'Cambia le impostazioni per le email: %{link}'
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -467,7 +447,6 @@ it:
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
   auth:
-    change_password: Password
     confirm_email: Conferma email
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
@@ -532,6 +511,7 @@ it:
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
       title: Verifica di sicurezza non riuscita
+    '429': Throttled
     '500':
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
@@ -545,7 +525,6 @@ it:
       request: Richiedi il tuo archivio
       size: Dimensioni
     blocks: Stai bloccando
-    csv: CSV
     domain_blocks: Blocchi di dominio
     follows: Stai seguendo
     lists: Liste
@@ -594,7 +573,6 @@ it:
       following: Lista dei seguaci
       muting: Lista dei silenziati
     upload: Carica
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Disattiva
     expired: Scaduto
@@ -665,23 +643,11 @@ it:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Più recente
     next: Avanti
     older: Più vecchio
     prev: Indietro
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Hai già votato in questo sondaggio
@@ -692,10 +658,7 @@ it:
       too_few_options: deve avere più di un elemento
       too_many_options: non può contenere più di %{max} elementi
   preferences:
-    languages: Lingue
     other: Altro
-    publishing: Pubblicazione
-    web: Web
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
@@ -722,33 +685,13 @@ it:
     too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
-    browser: Browser
     browsers:
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      firefox: Firefox
       generic: Browser sconosciuto
-      ie: Internet Explorer
-      opera: Opera
-      safari: Safari
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: piattaforma sconosciuta
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     title: Sessioni
   settings:
     authorized_apps: Applicazioni autorizzate
@@ -769,9 +712,6 @@ it:
       image:
         one: "%{count} immagine"
         other: "%{count} immagini"
-      video:
-        one: "%{count} video"
-        other: "%{count} video"
     boosted_from_html: Condiviso da %{acct_link}
     disallowed_hashtags:
       one: 'contiene un hashtag non permesso: %{tags}'
@@ -808,9 +748,6 @@ it:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
     mastodon-light: Mastodon (chiaro)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Inserisci il codice generato dalla tua app di autenticazione
     description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>, entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale ti genererà un codice per eseguire l'accesso.

@@ -131,13 +131,15 @@ function removeMedia(state, mediaId) {
   });
 };
 
-const insertSuggestion = (state, position, token, completion) => {
+const insertSuggestion = (state, position, token, completion, path) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
+    map.updateIn(path, oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
-    map.update('suggestions', ImmutableList(), list => list.clear());
-    map.set('focusDate', new Date());
-    map.set('caretPosition', position + completion.length + 1);
+    map.set('suggestions', ImmutableList());
+    if (path.length === 1 && path[0] === 'text') {
+      map.set('focusDate', new Date());
+      map.set('caretPosition', position + completion.length + 1);
+    }
     map.set('idempotencyKey', uuid());
   });
 };
@@ -304,7 +306,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SUGGESTIONS_READY:
     return state.set('suggestions', ImmutableList(action.accounts ? action.accounts.map(item => item.id) : action.emojis)).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
-    return insertSuggestion(state, action.position, action.token, action.completion);
+    return insertSuggestion(state, action.position, action.token, action.completion, action.path);
   case COMPOSE_SUGGESTION_TAGS_UPDATE:
     return updateSuggestionTags(state, action.token);
   case COMPOSE_TAG_HISTORY_UPDATE:
@@ -329,13 +331,14 @@ export default function compose(state = initialState, action) {
       }));
   case REDRAFT:
     return state.withMutations(map => {
-      map.set('text', unescapeHTML(expandMentions(action.status)));
+      map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
       map.set('media_attachments', action.status.get('media_attachments'));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
+      map.set('sensitive', action.status.get('sensitive'));
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
