@@ -5,7 +5,6 @@ tr:
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     about_this: Bu sunucu hakkında
     administered_by: 'Tarafından yönetildi:'
-    api: API
     apps: Mobil uygulamalar
     contact: İletişim
     contact_missing: Ayarlanmadı
@@ -46,15 +45,11 @@ tr:
     people_who_follow: Kullanıcı %{name}'i takip edenler
     pin_errors:
       following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
-    posts:
-      one: Toot
-      other: Tootlar
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
     reserved_username: Kullanıcı adı saklıdır
     roles:
       admin: Yönetici
-      bot: Bot
       moderator: Denetleyici
     unfollow: Takibi bırak
   admin:
@@ -96,7 +91,6 @@ tr:
       header: Üstbilgi
       inbox_url: Gelen kutusu bağlantısı
       invited_by: Tarafından davet edildi
-      ip: IP
       joined: Katıldı
       location:
         all: Hepsi
@@ -155,7 +149,6 @@ tr:
       unsubscribe: Abonelikten çık
       username: Kullanıcı adı
       warn: Uyar
-      web: Web
     action_logs:
       actions:
         confirm_user: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
@@ -165,7 +158,6 @@ tr:
       add_new: Yeni ekle
       created_msg: Domain bloğu şu an işleniyor
       destroyed_msg: Domain bloğu silindi
-      domain: Domain
       new:
         create: Yeni blok oluştur
         hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
@@ -220,7 +212,6 @@ tr:
       confirmed: Onaylandı
       expires_in: Bitiş Tarihi
       last_delivery: Son gönderim
-      title: WebSub
       topic: Konu
     tags:
       accounts: Hesaplar
@@ -271,9 +262,10 @@ tr:
     '422':
       content: Güvenlik doğrulaması başarısız oldu. Site cookie'lerini engellemiş olabilirsiniz.
       title: Güvenlik doğrulamasu başarısız
+    '429': Throttled
+    '500': 
   exports:
     blocks: Blokladıklarınız
-    csv: CSV
     follows: Takip ettikleriniz
     mutes: Susturduklarınız
     storage: Ortam deposu
@@ -291,6 +283,14 @@ tr:
       following: Takip edilenler listesi
       muting: Susturulanlar listesi
     upload: Yükle
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
@@ -320,21 +320,9 @@ tr:
     reblog:
       body: "%{name} durumunuzu boost etti:"
       subject: "%{name} durumunuzu boost etti"
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: Sonraki
     prev: Önceki
-    truncate: "&hellip;"
   remote_follow:
     acct: Takip edeceğiniz kişiyi kullaniciadi@sunuculinki şeklinde giriniz
     missing_resource: Hesabınız için yönlendirme linki bulunamadı
@@ -362,9 +350,6 @@ tr:
   stream_entries:
     reblogged: boost edildi
     sensitive_content: Hassas içerik
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Onaylamak için kimlik doğrulama uygulamanızın oluşturduğu kodu giriniz
     description_html: Eğer <strong>iki-faktörlü kimlik doğrulamayı</strong> aktif ederseniz, giriş yaparken sizin için giriş kodu üreten telefonunuza ihtiyaç duyacaksınız.

@@ -2,11 +2,6 @@
 ro:
   about:
     hosted_on: Mastodon găzduit de %{domain}
-  accounts:
-    posts:
-      few: Toots
-      one: Toot
-      other: Toots
   auth:
     change_password: Parolă
     confirm_email: Confirmă email
@@ -20,9 +15,6 @@ ro:
     migrate_account: Transfer către un alt cont
     migrate_account_html: Dacă dorești să redirecționezi acest cont către un altul, poți <a href="%{path}">configura asta aici</a>.
     or_log_in_with: Sau conectează-te cu
-    providers:
-      cas: CAS
-      saml: SAML
     register: Înregistrare
     resend_confirmation: Retrimite instrucțiunile de confirmare
     reset_password: Resetare parolă
@@ -50,9 +42,7 @@ ro:
       less_than_x_seconds: Chiar acum
       over_x_years: "%{count}ani"
       x_days: "%{count}z"
-      x_minutes: "%{count}m"
       x_months: "%{count}l"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Bună încercare, hackere! Parolă incorectă
     confirm_password: Introdu parola curentă pentru a-ți verifica identitatea
@@ -88,7 +78,6 @@ ro:
       request: Cere arhiva ta
       size: Dimensiune
     blocks: Blocați
-    csv: CSV
     follows: Tu urmărești
     mutes: Opriți
     storage: Depozitare media
@@ -108,3 +97,11 @@ ro:
       title: Filtre
     new:
       title: Adaugă un filtru nou
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day

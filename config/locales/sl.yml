@@ -5,7 +5,6 @@ sl:
     about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
     about_this: O Mastodonu
     administered_by: 'Upravlja:'
-    api: API
     apps: Mobilne aplikacije
     contact: Kontakt
     contact_missing: Ni nastavljeno
@@ -64,7 +63,6 @@ sl:
     roles:
       admin: Skrbnik
       bot: Robot
-      moderator: Mod
     unfollow: Prenehaj slediti
   admin:
     account_actions:
@@ -77,7 +75,6 @@ sl:
       destroyed_msg: Moderirana opomba je uspešno uničena!
     accounts:
       are_you_sure: Ali si prepričan?
-      avatar: Avatar
       by_domain: Domena
       change_email:
         changed_msg: E-pošta računa je uspešno spremenjena!
@@ -108,7 +105,6 @@ sl:
       header: Glava
       inbox_url: URl v mapi "Prejeto"
       invited_by: Povabljen od
-      ip: IP
       joined: Pridružil
       location:
         all: Vse
@@ -149,10 +145,8 @@ sl:
       role: Dovoljenja
       roles:
         admin: Skrbnik
-        moderator: Moderator
         staff: Osebje
         user: Uporabnik
-      salmon_url: Salmon URL
       search: Poišči
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
@@ -323,7 +317,6 @@ sl:
         all: Vse
         available: Razpoložljivo
         expired: Potekel
-        title: Filter
       title: Povabila
     relays:
       add_new: Dodaj nov rele
@@ -386,6 +379,21 @@ sl:
       custom_css:
         desc_html: Spremeni videz z naloženim CSS na vsaki strani
         title: CSS po meri
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Throttled
+    '500': 
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
