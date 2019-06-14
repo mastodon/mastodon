@@ -169,6 +169,7 @@ zh-CN:
       statuses: 嘟文
       subscribe: 订阅
       suspended: 已封禁
+      time_in_queue: 已经等待了 %{time}
       title: 用户
       unconfirmed_email: 待验证的电子邮件地址
       undo_silenced: 解除隐藏
@@ -466,6 +467,7 @@ zh-CN:
       confirmed: 已确认
       expires_in: 失效时间
       last_delivery: 最后一次接收数据的时间
+      title: WebSub
       topic: 话题
     tags:
       accounts: 帐户
@@ -493,7 +495,7 @@ zh-CN:
   appearance:
     advanced_web_interface: 高级 web 界面
     advanced_web_interface_hint: '如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间线、任意数量的列表和话题标签。'
-    animations_and_accessibility: 动画和访问助手
+    animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
     sensitive_content: 敏感内容
   application_mailer:
@@ -526,6 +528,9 @@ zh-CN:
     migrate_account: 迁移到另一个帐户
     migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过其他方式登录
+    providers:
+      cas: CAS
+      saml: SAML
     register: 注册
     registration_closed: "%{instance} 目前不接收新成员"
     resend_confirmation: 重新发送确认邮件
@@ -637,11 +642,17 @@ zh-CN:
     save_changes: 保存更改
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
+  html_validator:
+    invalid_markup: '包含无效的 HTML 标记: %{error}'
   identity_proofs:
     active: 有效
     authorize: 是，授权
+    authorize_connection_prompt: 授权这一密码学连接？
     errors:
       failed: 密码关联失败。请在 %{provider} 上重新尝试。
+      keybase:
+        invalid_token: Keybase 令牌是签名的哈希并且必须是 66 个十六进制字符
+        verification_failed: Keybase 无法将此令牌识别为 Keybase 用户 %{kb_username} 的签名。请在 Keybase 再试一次。
       wrong_user: 无法以 %{current} 的身份创建 %{proving} 的证明。请以 %{proving} 的身份登录并再次尝试。
     explanation_html: 在这里，你可以和你的其他身份建立密码学关联，例如 Keybase 个人资料。这可以让别人向你发送加密信息，并信任你发给他们的内容。
     i_am_html: 我是 %{service} 上的 %{username} 。
@@ -759,13 +770,16 @@ zh-CN:
       too_many_options: 不能超过 %{max} 项
   preferences:
     other: 其他
+    posting_defaults: 发布默认值
     public_timelines: 公共时间轴
   relationships:
     activity: 账户活动
+    dormant: 休眠
     last_active: 最近活动
     most_recent: 最近的
     moved: 已迁移
     mutual: 互相关注
+    primary: 主要
     relationship: 关系
     remove_selected_domains: 从选定的域名中删除所有关注者
     remove_selected_followers: 移除选中的关注者
