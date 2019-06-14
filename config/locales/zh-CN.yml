@@ -317,7 +317,9 @@ zh-CN:
       title: 邀请用户
     relays:
       add_new: 添加新的中继
+      delete: 删除
       description_html: <strong>同步中继</strong>是一种中间服务器，各实例可以通过订阅中继和向中继推送信息的方式来大量交换公开嘟文。<strong>它可以帮助中小型实例发现网络中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。
+      disable: 禁用
       enable_hint: 启用此功能后，你的实例会订阅此中继的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
       inbox_url: 中继 URL
       pending: 等待中继确认
@@ -432,10 +434,15 @@ zh-CN:
       last_delivery: 最后一次接收数据的时间
     title: 管理
   admin_mailer:
+    new_pending_account:
+      body: 新帐户的详细信息如下。您可以批准或拒绝此申请。
+      subject: 在 %{instance} 上有新账户 ( %{username}) 需要审核
     new_report:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
+  appearance:
+    advanced_web_interface: 高级 web 界面
   application_mailer:
     notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
@@ -467,6 +474,7 @@ zh-CN:
     migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过其他方式登录
     register: 注册
+    registration_closed: "%{instance} 目前不接收新成员"
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
     security: 帐户安全
@@ -504,6 +512,12 @@ zh-CN:
     success_msg: 你的帐户已经成功删除
     warning_html: 我们只能保证本实例上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本实例以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器所存储的数据亦无法删除。
     warning_title: 关于已传播的内容的警告
+  directories:
+    directory: 用户资料目录
+    enabled: 您目前已被列入目录中。
+    enabled_but_waiting: 您已选择列入目录，但是您没有达到关注者数量下限 (%{min_followers} 名) 。
+    explanation: 根据兴趣发现用户
+    explore_mastodon: 探索 %{title}
   errors:
     '403': 你没有访问这个页面的权限。
     '404': 无法找到你所要访问的页面。
@@ -549,6 +563,7 @@ zh-CN:
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   identity_proofs:
+    i_am_html: 我是 %{service} 上的 %{username} 。
     view_proof: 查看证明
   imports:
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
@@ -629,6 +644,10 @@ zh-CN:
     next: 下一页
     older: 更早
     prev: 上一页
+  polls:
+    errors:
+      expired: 投票已经结束
+      over_character_limit: 每条不能超过 %{max} 个字符
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
@@ -645,19 +664,34 @@ zh-CN:
     browsers:
       alipay: 支付宝
       generic: 未知浏览器
+      ie: IE 浏览器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
+      opera: 欧朋浏览器
       qq: QQ浏览器
+      safari: Safari
       uc_browser: UC浏览器
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
     explanation: 你的 Mastodon 帐户目前已在这些浏览器上登录。
     ip: IP 地址
+    platforms:
+      android: Android
+      blackberry: 黑莓
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: 未知平台
+      windows: Windows
+      windows_mobile: Windows Mobile
     revoke: 注销
     revoke_success: 会话注销成功
     title: 会话
   settings:
+    appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
     delete: 删除帐户
@@ -665,9 +699,12 @@ zh-CN:
     edit_profile: 更改个人资料
     export: 导出
     import: 导入
+    import_and_export: 导入和导出
     migrate: 帐户迁移
     notifications: 通知
     preferences: 首选项
+    profile: 个人资料
+    relationships: 正在关注以及关注者
     two_factor_authentication: 双重认证
   statuses:
     attached:
@@ -688,7 +725,12 @@ zh-CN:
       ownership: 不能置顶他人的嘟文
       private: 不能置顶非公开的嘟文
       reblog: 不能置顶转嘟
+    poll:
+      total_votes:
+        other: "%{count} 票"
+      vote: 投票
     show_more: 显示更多
+    sign_in_to_participate: 登录以加入对话
     title: '%{name}：“%{quote}”'
     visibilities:
       private: 仅关注者
@@ -710,6 +752,7 @@ zh-CN:
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
+      month: "%Y 年 %B"
   two_factor_authentication:
     code_hint: 输入认证器生成的代码以确认操作
     description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录.
@@ -731,6 +774,17 @@ zh-CN:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
+    warning:
+      subject:
+        disable: 您的帐户 %{acct} 已被冻结
+        none: 对 %{acct} 的警告
+        silence: 您的帐户 %{acct} 已经受限
+        suspend: 您的帐户 %{acct} 已被封禁。
+      title:
+        disable: 账户已冻结
+        none: 警示
+        silence: 帐户受限
+        suspend: 账户被封禁
     welcome:
       edit_profile_action: 设置个人资料
       edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。
@@ -749,6 +803,7 @@ zh-CN:
       tips: 小贴士
       title: '%{name}，欢迎你的加入！'
   users:
+    follow_limit_reached: 您不能关注超过 %{limit} 个人
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
