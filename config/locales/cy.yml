@@ -842,36 +842,83 @@ cy:
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
     reason_html: "<strong>Pam yw'r cam hyn yn angenrheidiol? </strong>\nEfallai nid yw <code>%{instance}</code> yn gweinydd ble wnaethoch gofrestru, felly mae'n rhaid i ni ailarweinio chi at eich gweinydd catref yn gyntaf."
+  remote_interaction:
+    favourite:
+      proceed: Ymlaen i hoffi
+      prompt: 'Hoffech hoffi''r tŵt hon:'
+    reblog:
+      proceed: Ymlaen i fŵstio
+      prompt: 'Hoffech fŵstio''r tŵt hon:'
+    reply:
+      proceed: Ymlaen i ateb
+      prompt: 'Hoffech ateb y tŵt hon:'
   remote_unfollow:
     error: Gwall
     title: Teitl
     unfollowed: Dad-ddilynwyd
+  scheduled_statuses:
+    over_daily_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig ar y dydd hynny
+    over_total_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig
+    too_soon: Mae rhaid i'r dydd rhestredig fod yn y dyfodol
   sessions:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Porwr anhysbys
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: Porwr QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesiwn cyfredol
     description: "%{browser} ar %{platform}"
     explanation: Dyma'r porwyr gwê sydd wedi mewngofnodi i'ch cyfrif Mastododon ar hyn o bryd.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: OS Chrome
+      firefox_os: OS Firefox
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: platfform anhysbys
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Ffôn Windows
     revoke: Diddymu
     revoke_success: Sesiwn wedi ei ddiddymu yn llwyddiannus
     title: Sesiynau
   settings:
+    account: Cyfrif
+    account_settings: Gosodiadau'r cyfrif
+    appearance: Arddangosiad
     authorized_apps: Apiau awdurdodedig
     back: Yn ôl i Mastodon
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
     export: Allforio data
+    featured_tags: Hashnodau Nodedig
+    identity_proofs: Profiadau Hunaniaeth
     import: Mewnforio
+    import_and_export: Mewnfori ac allfori
     migrate: Mudo cyfrif
     notifications: Hysbysiadau
     preferences: Dewisiadau
+    profile: Proffil
     two_factor_authentication: Awdurdodi dau-gam
   statuses:
     attached:
