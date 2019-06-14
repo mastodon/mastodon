@@ -417,6 +417,7 @@ zh-CN:
           approved: 注册时需要批准
           none: 关闭注册
           open: 开放注册
+        title: 注册模式
       show_known_fediverse_at_about_page:
         desc_html: 启用此选项将会在预览中显示来自已知实例的嘟文，否则只会显示本站时间轴的内容.
         title: 在时间轴预览中显示已知实例
@@ -429,6 +430,8 @@ zh-CN:
       site_description_extended:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
         title: 本站详细介绍
+      site_short_description:
+        title: 服务器短简介
       site_terms:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
         title: 自定义使用条款
@@ -450,6 +453,7 @@ zh-CN:
       media:
         title: 媒体文件
       no_media: 不含媒体文件
+      no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
     subscriptions:
@@ -691,6 +695,15 @@ zh-CN:
       body: '你的嘟文被 %{name} 转嘟了：'
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: 更新
     next: 下一页
@@ -698,6 +711,8 @@ zh-CN:
     prev: 上一页
   polls:
     errors:
+      already_voted: 你已经在这里投过票了
+      duplicate_options: 包含重复的项目
       duration_too_long: 持续时间过长
       duration_too_short: 持续时间过短
       expired: 投票已经结束
@@ -708,6 +723,10 @@ zh-CN:
     other: 其他
   relationships:
     last_active: 最近活动
+    most_recent: 最近的
+    moved: 已迁移
+    mutual: 互相关注
+    relationship: 关系
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
@@ -723,11 +742,16 @@ zh-CN:
     browser: 浏览器
     browsers:
       alipay: 支付宝
+      chrome: Chrome
+      edge: 微软 Edge
+      electron: Electron
+      firefox: 火狐
       generic: 未知浏览器
       ie: IE 浏览器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
       opera: 欧朋浏览器
+      phantom_js: PhantomJS
       qq: QQ浏览器
       safari: Safari
       uc_browser: UC浏览器
@@ -737,6 +761,7 @@ zh-CN:
     explanation: 你的 Mastodon 帐户目前已在这些浏览器上登录。
     ip: IP 地址
     platforms:
+      adobe_air: Adobe Air
       android: Android
       blackberry: 黑莓
       chrome_os: ChromeOS
@@ -747,10 +772,13 @@ zh-CN:
       other: 未知平台
       windows: Windows
       windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 注销
     revoke_success: 会话注销成功
     title: 会话
   settings:
+    account: 账户
+    account_settings: 帐户设置
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
@@ -758,6 +786,8 @@ zh-CN:
     development: 开发
     edit_profile: 更改个人资料
     export: 导出
+    featured_tags: 推荐的话题标签
+    identity_proofs: 身份证明
     import: 导入
     import_and_export: 导入和导出
     migrate: 帐户迁移
