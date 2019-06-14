@@ -133,6 +133,7 @@ zh-CN:
       no_limits_imposed: 无限制
       not_subscribed: 未订阅
       outbox_url: 发件箱（Outbox）URL
+      pending: 待审核
       perform_full_suspension: 封禁
       profile_url: 个人资料页面 URL
       promote: 升任
@@ -186,6 +187,7 @@ zh-CN:
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
         demote_user: "%{name} 对用户 %{target} 进行了降任操作"
+        destroy_custom_emoji: "%{name} 销毁了自定义表情 %{target}"
         destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
         destroy_status: "%{name} 删除了 %{target} 的嘟文"
@@ -306,7 +308,16 @@ zh-CN:
     instances:
       by_domain: 域名
       delivery_available: 无法投递
+      moderation:
+        all: 全部
+        limited: 受限的
+        title: 运营
       title: 已知实例
+      total_blocked_by_us: 被我方屏蔽的
+      total_followed_by_them: 被对方关注的
+      total_followed_by_us: 被我方关注的
+      total_reported: 关于对方的举报
+      total_storage: 媒体文件
     invites:
       deactivate_all: 撤销所有邀请链接
       filter:
@@ -389,6 +400,7 @@ zh-CN:
         desc_html: 始终在站外链接预览中展示缩略图，无论媒体内容是否标记为敏感
         title: 在 OpenGraph 预览中显示敏感媒体内容
       profile_directory:
+        desc_html: 允许用户可被发现
         title: 启用用户资料目录
       registrations:
         closed_message:
@@ -400,6 +412,11 @@ zh-CN:
         min_invite_role:
           disabled: 没有人
           title: 允许发送邀请的用户组
+      registrations_mode:
+        modes:
+          approved: 注册时需要批准
+          none: 关闭注册
+          open: 开放注册
       show_known_fediverse_at_about_page:
         desc_html: 启用此选项将会在预览中显示来自已知实例的嘟文，否则只会显示本站时间轴的内容.
         title: 在时间轴预览中显示已知实例
@@ -440,7 +457,22 @@ zh-CN:
       confirmed: 已确认
       expires_in: 失效时间
       last_delivery: 最后一次接收数据的时间
+      topic: 话题
+    tags:
+      accounts: 帐户
+      hidden: 隐藏
+      hide: 从目录隐藏
+      name: 话题标签
+      title: 话题标签
+      unhide: 在目录中显示
+      visible: 可见
     title: 管理
+    warning_presets:
+      add_new: 添加新条目
+      delete: 删除
+      edit: 编辑
+      edit_preset: 编辑预置警告
+      title: 管理预设警告
   admin_mailer:
     new_pending_account:
       body: 新帐户的详细信息如下。您可以批准或拒绝此申请。
@@ -451,6 +483,9 @@ zh-CN:
       subject: '来自 %{instance} 的用户举报（#%{id}）'
   appearance:
     advanced_web_interface: 高级 web 界面
+    animations_and_accessibility: 动画和访问助手
+    confirmation_dialogs: 确认对话框
+    sensitive_content: 敏感内容
   application_mailer:
     notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
@@ -487,6 +522,7 @@ zh-CN:
     reset_password: 重置密码
     security: 帐户安全
     set_new_password: 设置新密码
+    trouble_logging_in: 登录有问题？
   authorize_follow:
     already_following: 你已经在关注此用户了
     error: 对不起，寻找这个跨站用户时出错
@@ -547,9 +583,14 @@ zh-CN:
       request: 请求你的存档
       size: 大小
     blocks: 屏蔽的用户
+    csv: CSV
+    domain_blocks: 域名屏蔽
     follows: 关注的用户
+    lists: 列表
     mutes: 隐藏的用户
     storage: 媒体文件存储
+  featured_tags:
+    add_new: 添加新条目
   filters:
     contexts:
       home: 主页时间轴
@@ -657,8 +698,16 @@ zh-CN:
     prev: 上一页
   polls:
     errors:
+      duration_too_long: 持续时间过长
+      duration_too_short: 持续时间过短
       expired: 投票已经结束
       over_character_limit: 每条不能超过 %{max} 个字符
+      too_few_options: 至少需要两个选项
+      too_many_options: 不能超过 %{max} 项
+  preferences:
+    other: 其他
+  relationships:
+    last_active: 最近活动
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
