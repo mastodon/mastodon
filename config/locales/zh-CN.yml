@@ -566,6 +566,9 @@ zh-CN:
     enabled_but_waiting: 您已选择列入目录，但是您没有达到关注者数量下限 (%{min_followers} 名) 。
     explanation: 根据兴趣发现用户
     explore_mastodon: 探索 %{title}
+    how_to_enable: 您目前没有选择选择列入到目录中。您可以在下面选择列入。可以在个人简介中加上话题标签，话题标签也会显示在用户资料目录里！
+    people:
+      other: "%{count} 人"
   errors:
     '403': 你没有访问这个页面的权限。
     '404': 无法找到你所要访问的页面。
@@ -578,6 +581,9 @@ zh-CN:
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
+  existing_username_validator:
+    not_found: 在本站找不到此用户
+    not_found_multiple: 找不到 %{usernames}
   exports:
     archive_takeout:
       date: 日期
@@ -595,6 +601,8 @@ zh-CN:
     storage: 媒体文件存储
   featured_tags:
     add_new: 添加新条目
+    errors:
+      limit: 你所推荐的话题标签数已达上限
   filters:
     contexts:
       home: 主页时间轴
@@ -604,6 +612,7 @@ zh-CN:
     edit:
       title: 编辑过滤器
     errors:
+      invalid_context: 过滤器场景没有或无效
       invalid_irreversible: 此功能只适用于主页时间轴或通知
     index:
       delete: 删除
@@ -620,12 +629,21 @@ zh-CN:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   identity_proofs:
     i_am_html: 我是 %{service} 上的 %{username} 。
+    publicize_checkbox: '并发一条这样的嘟文：'
+    publicize_toot: '证明完毕！我是 %{service} 上的 %{username}: %{url}'
+    status: 验证状态
     view_proof: 查看证明
   imports:
+    modes:
+      merge: 合并
+      merge_long: 保留现有记录并添加新的记录
+      overwrite: 覆盖
+      overwrite_long: 将当前记录替换为新记录
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
     success: 数据上传成功，正在处理中
     types:
       blocking: 屏蔽列表
+      domain_blocking: 域名屏蔽列表
       following: 关注列表
       muting: 隐藏列表
     upload: 上传
@@ -721,12 +739,14 @@ zh-CN:
       too_many_options: 不能超过 %{max} 项
   preferences:
     other: 其他
+    public_timelines: 公共时间轴
   relationships:
     last_active: 最近活动
     most_recent: 最近的
     moved: 已迁移
     mutual: 互相关注
     relationship: 关系
+    remove_selected_domains: 从选定的域名中删除所有关注者
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
