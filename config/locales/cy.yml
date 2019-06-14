@@ -919,6 +919,7 @@ cy:
     notifications: Hysbysiadau
     preferences: Dewisiadau
     profile: Proffil
+    relationships: Dilynion a dilynwyr
     two_factor_authentication: Awdurdodi dau-gam
   statuses:
     attached:
@@ -954,8 +955,18 @@ cy:
       ownership: Ni ellir pinio tŵt rhywun arall
       private: Ni ellir pinio tŵt nad yw'n gyhoeddus
       reblog: Ni ellir pinio bŵstiau
+    poll:
+      total_votes:
+        zero: "%{count} pleidlais"
+        one: "%{count} bleidlais"
+        two: "%{count} o bleidleisiau"
+        few: "%{count} o bleidleisiau"
+        many: "%{count} o bleidleisiau"
+        other: "%{count} o bleidleisiau"
+      vote: Pleidleisio
     show_more: Dangos mwy
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Dilynwyr yn unig
       private_long: Dangos i ddilynwyr yn unig
@@ -1054,6 +1065,10 @@ cy:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)
     mastodon-light: Mastodon (golau)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Mewnbynwch y côd a grewyd gan eich ap dilysu i gadarnhau
     description_html: Os ydych yn galluogi <strong>awdurdodi dau-gam</strong>, bydd mewngofnodi yn gofyn i chi fod a'ch ffôn gerllaw er mwyn cynhyrchu tocyn i chi gael mewnbynnu.
