@@ -1,31 +1,31 @@
 import { connect } from 'react-redux';
 import ColumnSettings from '../components/column_settings';
-import { changeSetting, saveSettings } from '../../../actions/settings';
-import { addFavouriteTags, removeFavouriteTags } from '../../../actions/favourite_tags';
+import { changeColumnParams } from '../../../actions/columns';
+import api from '../../../api';
 
-const mapStateToProps = (state, { tag }) => ({
-  settings: state.getIn(['settings', 'tag']),
-  isRegistered: state.getIn(['favourite_tags', 'tags']).some(t => t.get('name') === tag),
-});
+const mapStateToProps = (state, { columnId }) => {
+  const columns = state.getIn(['settings', 'columns']);
+  const index   = columns.findIndex(c => c.get('uuid') === columnId);
 
-const mapDispatchToProps = dispatch => ({
+  if (!(columnId && index >= 0)) {
+    return {};
+  }
 
-  onChange (tag, key, checked) {
-    dispatch(changeSetting(['tag', `${tag}`, ...key], checked));
+  return { settings: columns.get(index).get('params') };
+};
+
+const mapDispatchToProps = (dispatch, { columnId }) => ({
+  onChange (key, value) {
+    dispatch(changeColumnParams(columnId, key, value));
   },
 
-  onSave () {
-    dispatch(saveSettings());
+  onLoad (value) {
+    return api().get('/api/v2/search', { params: { q: value } }).then(response => {
+      return (response.data.hashtags || []).map((tag) => {
+        return { value: tag.name, label: `#${tag.name}` };
+      });
+    });
   },
-
-  addFavouriteTags (tag, visibility) {
-    dispatch(addFavouriteTags(tag, visibility));
-  },
-
-  removeFavouriteTags (tag) {
-    dispatch(removeFavouriteTags(tag));
-  },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColumnSettings);

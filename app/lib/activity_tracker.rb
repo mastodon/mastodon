@@ -4,6 +4,8 @@ class ActivityTracker
   EXPIRE_AFTER = 90.days.seconds
 
   class << self
+    include Redisable
+
     def increment(prefix)
       key = [prefix, current_week].join(':')
 
@@ -19,10 +21,6 @@ class ActivityTracker
     end
 
     private
-
-    def redis
-      Redis.current
-    end
 
     def current_week
       Time.zone.today.cweek

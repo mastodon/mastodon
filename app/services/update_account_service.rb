@@ -10,7 +10,11 @@ class UpdateAccountService < BaseService
 
       authorize_all_follow_requests(account) if was_locked && !account.locked
       check_links(account)
+      process_hashtags(account)
     end
+  rescue Mastodon::DimensionsValidationError => de
+    account.errors.add(:avatar, de.message)
+    false
   end
 
   private
@@ -23,5 +27,9 @@ class UpdateAccountService < BaseService
 
   def check_links(account)
     VerifyAccountLinksWorker.perform_async(account.id)
+  end
+
+  def process_hashtags(account)
+    account.tags_as_strings = Extractor.extract_hashtags(account.note)
   end
 end

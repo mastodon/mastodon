@@ -18,6 +18,7 @@ gl:
     mailer:
       confirmation_instructions:
         action: Validar enderezo de correo-e
+        action_with_app: Confirmar e voltar a %{app}
         explanation: Creou unha conta en %{host} con este enderezo de correo. Está a punto de activalo, si non foi vostede quen fixo a petición, por favor ignore este correo.
         extra_html: Por favor, lea tamén <a href="%{terms_path}">as normas da instancia</a> e <a href="%{policy_path}">os termos do servizo</a>.
         subject: 'Mastodon: Instruccións de confirmación para %{instance}'

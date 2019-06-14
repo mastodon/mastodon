@@ -99,7 +99,7 @@ class Formatter
   end
 
   def encode_and_link_urls(html, accounts = nil, options = {})
-    entities = Extractor.extract_entities_with_indices(html, extract_url_without_protocol: false)
+    entities = utf8_friendly_extractor(html, extract_url_without_protocol: false)
 
     if accounts.is_a?(Hash)
       options  = accounts
@@ -197,6 +197,53 @@ class Formatter
     result << encode(chars[last_index..-1].join)
 
     result.flatten.join
+  end
+
+  UNICODE_ESCAPE_BLACKLIST_RE = /\p{Z}|\p{P}/
+
+  def utf8_friendly_extractor(text, options = {})
+    old_to_new_index = [0]
+
+    escaped = text.chars.map do |c|
+      output = begin
+        if c.ord.to_s(16).length > 2 && UNICODE_ESCAPE_BLACKLIST_RE.match(c).nil?
+          CGI.escape(c)
+        else
+          c
+        end
+      end
+
+      old_to_new_index << old_to_new_index.last + output.length
+
+      output
+    end.join
+
+    # Note: I couldn't obtain list_slug with @user/list-name format
+    # for mention so this requires additional check
+    special = Extractor.extract_urls_with_indices(escaped, options).map do |extract|
+      # exactly one of :url, :hashtag, :screen_name, :cashtag keys is present
+      key = (extract.keys & [:url, :hashtag, :screen_name, :cashtag]).first
+
+      new_indices = [
+        old_to_new_index.find_index(extract[:indices].first),
+        old_to_new_index.find_index(extract[:indices].last),
+      ]
+
+      has_prefix_char = [:hashtag, :screen_name, :cashtag].include?(key)
+      value_indices = [
+        new_indices.first + (has_prefix_char ? 1 : 0), # account for #, @ or $
+        new_indices.last - 1,
+      ]
+
+      next extract.merge(
+        :indices => new_indices,
+        key => text[value_indices.first..value_indices.last]
+      )
+    end
+
+    standard = Extractor.extract_entities_with_indices(text, options)
+
+    Extractor.remove_overlapping_entities(special + standard)
   end
 
   def link_to_url(entity, options = {})

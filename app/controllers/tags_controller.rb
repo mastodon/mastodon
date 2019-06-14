@@ -3,6 +3,8 @@
 class TagsController < ApplicationController
   PAGE_SIZE = 20
 
+  layout 'public'
+
   before_action :set_body_classes
   before_action :set_instance_presenter
 
@@ -16,14 +18,15 @@ class TagsController < ApplicationController
       end
 
       format.rss do
-        @statuses = Status.as_tag_timeline(@tag).limit(PAGE_SIZE)
+        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none)).limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
 
         render xml: RSS::TagSerializer.render(@tag, @statuses)
       end
 
       format.json do
-        @statuses = Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
+        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local])
+                                       .paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
         render json: collection_presenter,
@@ -46,7 +49,7 @@ class TagsController < ApplicationController
 
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: tag_url(@tag),
+      id: tag_url(@tag, params.slice(:any, :all, :none)),
       type: :ordered,
       size: @tag.statuses.count,
       items: @statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }

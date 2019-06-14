@@ -18,6 +18,7 @@ eu:
     mailer:
       confirmation_instructions:
         action: Baieztatu e-mail helbidea
+        action_with_app: Berretsi eta itzuli %{app} aplikaziora
         explanation: Kontu bat sortu duzu %{host} ostalarian e-mail helbide honekin. Aktibatzeko klik bat falta zaizu. Ez baduzu zuk sortu, ez egin ezer e-mail honekin.
         extra_html: Egiaztatu <a href="%{terms_path}">instantziaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
         subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'

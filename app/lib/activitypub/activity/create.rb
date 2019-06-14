@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
-  SUPPORTED_TYPES = %w(Note).freeze
-  CONVERTED_TYPES = %w(Image Video Article Page).freeze
-
   def perform
-    return if delete_arrived_first?(object_uri) || unsupported_object_type? || invalid_origin?(@object['id'])
+    return reject_payload! if unsupported_object_type? || invalid_origin?(@object['id']) || Tombstone.exists?(uri: @object['id']) || !related_to_local_activity?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
+        return if delete_arrived_first?(object_uri)
+
         @status = find_existing_status
 
         if @status.nil?
@@ -59,7 +58,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         account: @account,
         text: text_from_content || '',
         language: detected_language,
-        spoiler_text: text_from_summary || '',
+        spoiler_text: converted_object_type? ? '' : (text_from_summary || ''),
         created_at: @object['published'],
         override_timestamps: @options[:override_timestamps],
         reply: @object['inReplyTo'].present?,
@@ -160,7 +159,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['href'].blank?
 
     account = account_from_uri(tag['href'])
-    account = ::FetchRemoteAccountService.new.call(tag['href'], id: false) if account.nil?
+    account = ::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
 
     return if account.nil?
 
@@ -210,7 +209,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def resolve_thread(status)
-    return unless status.reply? && status.thread.nil?
+    return unless status.reply? && status.thread.nil? && Request.valid_url?(in_reply_to_uri)
     ThreadResolveWorker.perform_async(status.id, in_reply_to_uri)
   end
 
@@ -254,7 +253,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
-    return Formatter.instance.linkify([text_from_name, object_url || @object['id']].join(' ')) if converted_object_type?
+    return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || @object['id']].join(' ')) if converted_object_type?
 
     if @object['content'].present?
       @object['content']
@@ -315,20 +314,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @object['nameMap'].is_a?(Hash) && !@object['nameMap'].empty?
   end
 
-  def unsupported_object_type?
-    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
-  end
-
   def unsupported_media_type?(mime_type)
     mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
-  end
-
-  def supported_object_type?
-    equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
-  end
-
-  def converted_object_type?
-    equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
   end
 
   def skip_download?
@@ -347,6 +334,25 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def reply_to_local?
     !replied_to_status.nil? && replied_to_status.account.local?
+  end
+
+  def related_to_local_activity?
+    fetch? || followed_by_local_accounts? || requested_through_relay? ||
+      responds_to_followed_account? || addresses_local_accounts?
+  end
+
+  def responds_to_followed_account?
+    !replied_to_status.nil? && (replied_to_status.account.local? || replied_to_status.account.passive_relationships.exists?)
+  end
+
+  def addresses_local_accounts?
+    return true if @options[:delivered_to_account_id]
+
+    local_usernames = (as_array(@object['to']) + as_array(@object['cc'])).uniq.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }.map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
+
+    return false if local_usernames.empty?
+
+    Account.local.where(username: local_usernames).exists?
   end
 
   def forward_for_reply

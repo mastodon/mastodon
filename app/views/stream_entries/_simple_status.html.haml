@@ -26,24 +26,31 @@
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
 
-  - unless status.media_attachments.empty?
+  - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description do
+        = render partial: 'stream_entries/attachment_list', locals: { attachments: status.media_attachments }
     - else
-      = react_component :media_gallery, height: 343, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
+      = react_component :media_gallery, height: 343, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
+        = render partial: 'stream_entries/attachment_list', locals: { attachments: status.media_attachments }
+  - elsif status.preview_card
+    = react_component :card, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
 
   .status__action-bar
     .status__action-bar__counter
-      = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
-        = fa_icon 'reply fw'
+      = link_to remote_interaction_path(status, type: :reply), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
+        - if status.in_reply_to_id.nil?
+          = fa_icon 'reply fw'
+        - else
+          = fa_icon 'reply-all fw'
       .status__action-bar__counter__label= obscured_counter status.replies_count
-    = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
+    = link_to remote_interaction_path(status, type: :reblog), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
       - if status.public_visibility? || status.unlisted_visibility?
         = fa_icon 'retweet fw'
       - elsif status.private_visibility?
         = fa_icon 'lock fw'
       - else
         = fa_icon 'envelope fw'
-    = link_to remote_interaction_path(status), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
+    = link_to remote_interaction_path(status, type: :favourite), class: 'status__action-bar-button icon-button modal-button', style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;' do
       = fa_icon 'star fw'

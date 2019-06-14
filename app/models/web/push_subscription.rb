@@ -68,6 +68,9 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       ttl: ttl,
+      ssl_timeout: 10,
+      open_timeout: 10,
+      read_timeout: 10,
       vapid: {
         subject: "mailto:#{::Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,

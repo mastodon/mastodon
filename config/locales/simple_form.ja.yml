@@ -2,12 +2,20 @@
 ja:
   simple_form:
     hints:
+      account_warning_preset:
+        text: URL、ハッシュタグ、メンションなど、投稿に用いる構文が使用できます
+      admin_account_action:
+        send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
+        text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
+        type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
+        warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
+        discoverable_html: <a href="%{path}" target="_blank">ディレクトリ</a> は興味や活動をもとにアカウントを見つけることを可能にします。 掲載には %{min_followers} 人以上のフォロワーが必要です
         email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
@@ -18,6 +26,7 @@ ja:
         password: 少なくとも8文字は入力してください
         phrase: トゥートの大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
+        setting_aggregate_reblogs: 最近ブーストされたトゥートが新たにブーストされても表示しません (設定後受信したものにのみ影響)
         setting_default_language: トゥートの言語は自動的に検出されますが、必ずしも正確とは限りません
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: 全てのメディアを常に隠す
@@ -38,6 +47,18 @@ ja:
         fields:
           name: ラベル
           value: 内容
+      account_warning_preset:
+        text: プリセット警告文
+      admin_account_action:
+        send_email_notification: メールでユーザーに通知
+        text: カスタム警告文
+        type: アクション
+        types:
+          disable: 無効化
+          none: 何もしない
+          silence: サイレンス
+          suspend: 停止しアカウントのデータを恒久的に削除する
+        warning_preset_id: プリセット警告文を使用
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
         avatar: アイコン
@@ -48,6 +69,7 @@ ja:
         context: 除外対象
         current_password: 現在のパスワード
         data: データ
+        discoverable: ディレクトリに掲載する
         display_name: 表示名
         email: メールアドレス
         expires_in: 有効期限
@@ -63,6 +85,7 @@ ja:
         otp_attempt: 二段階認証コード
         password: パスワード
         phrase: キーワードまたはフレーズ
+        setting_aggregate_reblogs: ブーストをまとめる
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
         setting_default_language: 投稿する言語

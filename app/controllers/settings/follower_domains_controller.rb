@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-class Settings::FollowerDomainsController < ApplicationController
+class Settings::FollowerDomainsController < Settings::BaseController
   layout 'admin'
 
   before_action :authenticate_user!
-  before_action :set_body_classes
 
   def show
     @account = current_account
@@ -25,9 +24,5 @@ class Settings::FollowerDomainsController < ApplicationController
 
   def bulk_params
     params.permit(select: [])
-  end
-
-  def set_body_classes
-    @body_classes = 'admin'
   end
 end

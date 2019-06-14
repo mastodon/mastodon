@@ -2,6 +2,12 @@
 ar:
   simple_form:
     hints:
+      account_warning_preset:
+        text: بإمكانك استخدام نفس القواعد التي نجدها في التبويقات كعناوين الروابط والوسوم والإشارات
+      admin_account_action:
+        send_email_notification: سوف يتلقى المستخدم رسالة تُفسِّر ما حدث على حسابه
+        type_html: اختر ما تود إجراؤه على <strong>%{acct}</strong>
+        warning_preset_id: اختياري. يمكنك إضافة نص مخصص إلى نهاية النموذج
       defaults:
         autofollow: سوف يتابعك تلقائيًا الأشخاص الذين يقومون بالتسجيل من خلال الدعوة
         avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير %{size}. سيتم تصغيره إلى %{dimensions}px
@@ -18,6 +24,7 @@ ar:
         password: يُنصح باستخدام 8 أحرف على الأقل
         phrase: سوف يتم العثور عليه مهما كان نوع النص أو حتى و إن كان داخل الويب فيه تحذير عن المحتوى
         scopes: ما هي المجالات المسموح بها في التطبيق ؟ إن قمت باختيار أعلى المجالات فيمكنك الإستغناء عن الخَيار اليدوي.
+        setting_aggregate_reblogs: لا تقم بعرض المشارَكات الجديدة لتبويقات قد قُمتَ بمشاركتها سابقا (هذا الإجراء يعني المشاركات الجديدة فقط التي تلقيتَها)
         setting_default_language: يمكن الكشف التلقائي للّغة اللتي استخدمتها في تحرير تبويقاتك ، غيرَ أنّ العملية ليست دائما دقيقة
         setting_display_media_default: إخفاء الوسائط المُعيَّنة كحساسة
         setting_display_media_hide_all: إخفاء كافة الوسائط دائمًا
@@ -37,6 +44,18 @@ ar:
         fields:
           name: التسمية
           value: المحتوى
+      account_warning_preset:
+        text: نموذج نصي
+      admin_account_action:
+        send_email_notification: إشعار المستخدِم عبر البريد الإلكتروني
+        text: تحذير مخصص
+        type: الإجراء
+        types:
+          disable: تعطيل
+          none: لا تفعل شيئا
+          silence: كتم
+          suspend: تعليق و حذف كافة بيانات الحساب
+        warning_preset_id: استخدم نموذج تنبيه
       defaults:
         autofollow: إرسال دعوة لمتابعة حسابك
         avatar: الصورة الرمزية
@@ -47,6 +66,7 @@ ar:
         context: تصفية السياقات
         current_password: كلمة السر الحالية
         data: البيانات
+        discoverable: القيام بإدراج هذا الحساب في قائمة دليل الحسابات
         display_name: الإسم المعروض
         email: عنوان البريد الإلكتروني
         expires_in: تنتهي مدة صلاحيته بعد
@@ -62,6 +82,7 @@ ar:
         otp_attempt: رمز المصادقة بخطوتين
         password: كلمة السر
         phrase: كلمة مفتاح أو عبارة
+        setting_aggregate_reblogs: جمع الترقيات في خيوط زمنية
         setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
         setting_boost_modal: إظهار مربع حوار للتأكيد قبل ترقية أي تبويق
         setting_default_language: لغة النشر

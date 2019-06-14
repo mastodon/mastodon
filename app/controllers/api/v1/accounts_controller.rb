@@ -1,19 +1,31 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
-  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
+  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, only: [:follow, :unfollow]
   before_action -> { doorkeeper_authorize! :follow, :'write:mutes' }, only: [:mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, only: [:block, :unblock]
+  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
 
-  before_action :require_user!, except: [:show]
-  before_action :set_account
+  before_action :require_user!, except: [:show, :create]
+  before_action :set_account, except: [:create]
   before_action :check_account_suspension, only: [:show]
+  before_action :check_enabled_registrations, only: [:create]
 
   respond_to :json
 
   def show
     render json: @account, serializer: REST::AccountSerializer
+  end
+
+  def create
+    token    = AppSignUpService.new.call(doorkeeper_token.application, account_params)
+    response = Doorkeeper::OAuth::TokenResponse.new(token)
+
+    headers.merge!(response.headers)
+
+    self.response_body = Oj.dump(response.body)
+    self.status        = response.status
   end
 
   def follow
@@ -61,5 +73,13 @@ class Api::V1::AccountsController < Api::BaseController
 
   def check_account_suspension
     gone if @account.suspended?
+  end
+
+  def account_params
+    params.permit(:username, :email, :password, :agreement, :locale)
+  end
+
+  def check_enabled_registrations
+    forbidden if single_user_mode? || !Setting.open_registrations
   end
 end

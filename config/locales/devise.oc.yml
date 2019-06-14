@@ -18,6 +18,7 @@ oc:
     mailer:
       confirmation_instructions:
         action: Verificar l’adreça de corrièl
+        action_with_app: Confirmar e tornar a %{app}
         explanation: Venètz de crear un compte sus %{host} amb aquesta adreça de corrièl. Vos manca pas qu’un clic per l’activar. S’èra pas vosautre mercés de far pas cas a aqueste messatge.
         extra_html: Pensatz tanben de gaitar <a href="%{terms_path}">las règlas de l’instància</a> e <a href="%{policy_path}">nòstres tèrmes e condicions d’utilizacion</a>.
         subject: 'Mastodon : consignas de confirmacion per %{instance}'
@@ -50,8 +51,8 @@ oc:
       success: Sètz ben autentificat dempuèi lo compte %{kind}.
     passwords:
       no_token: Podètz pas accedir a aquesta pagina sens venir d’un corriel de reïnicializacion de senhal. S’es lo cas, mercés de verificar qu’avètz ben utilizat l’URL donada de manièra complèta.
-      send_instructions: Recebretz un corrièl amb las consignas per reĩnicializar vòstre senhal dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
-      send_paranoid_instructions: Se vòstra adreça de corrièl existís dins nòstra basa de donadas, recebretz un ligam per reĩnicializar vòstre senhal dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
+      send_instructions: Recebretz un corrièl amb las consignas per reïnicializar vòstre senhal dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
+      send_paranoid_instructions: Se vòstra adreça de corrièl existís dins nòstra basa de donadas, recebretz un ligam per reïnicializar vòstre senhal dins una estona. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
       updated: Vòstre senhal es ben estat cambiat. Sètz ara connectat.
       updated_not_active: Vòstre senhal es ben estat cambiat.
     registrations:

@@ -3,6 +3,7 @@ import {
   NOTIFICATIONS_EXPAND_SUCCESS,
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_EXPAND_FAIL,
+  NOTIFICATIONS_FILTER_SET,
   NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
 } from '../actions/notifications';
@@ -98,6 +99,8 @@ export default function notifications(state = initialState, action) {
     return state.set('isLoading', true);
   case NOTIFICATIONS_EXPAND_FAIL:
     return state.set('isLoading', false);
+  case NOTIFICATIONS_FILTER_SET:
+    return state.set('items', ImmutableList()).set('hasMore', true);
   case NOTIFICATIONS_SCROLL_TOP:
     return updateTop(state, action.top);
   case NOTIFICATIONS_UPDATE:
@@ -105,6 +108,7 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_EXPAND_SUCCESS:
     return expandNormalizedNotifications(state, action.notifications, action.next);
   case ACCOUNT_BLOCK_SUCCESS:
+    return filterNotifications(state, action.relationship);
   case ACCOUNT_MUTE_SUCCESS:
     return action.relationship.muting_notifications ? filterNotifications(state, action.relationship) : state;
   case NOTIFICATIONS_CLEAR:

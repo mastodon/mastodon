@@ -19,6 +19,7 @@ class ResolveAccountService < BaseService
       @account  = uri
       @username = @account.username
       @domain   = @account.domain
+      uri       = "#{@username}@#{@domain}"
 
       return @account if @account.local? || !webfinger_update_due?
     else

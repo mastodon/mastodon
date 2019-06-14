@@ -103,10 +103,6 @@ sv:
       most_recent_activity: Senaste aktivitet
       most_recent_ip: Senaste IP
       not_subscribed: Inte prenumererat
-      order:
-        alphabetic: Alfabetiskt
-        most_recent: Senaste
-        title: Ordning
       outbox_url: Utkorg URL
       perform_full_suspension: Utför full avstängning
       profile_url: Profil URL
@@ -134,7 +130,6 @@ sv:
       shared_inbox_url: Delad inkorg URL
       show:
         created_reports: Anmälningar som skapats av det här kontot
-        report: anmäla
         targeted_reports: Anmälningar gjorda om detta konto
       silence: Tystnad
       statuses: Status
@@ -218,11 +213,6 @@ sv:
         title: Nytt domänblock
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
-      severities:
-        noop: Ingen
-        silence: Tysta ner
-        suspend: Suspendera
-      severity: Svårighet
       show:
         affected_accounts:
           one: Ett konto i databasen drabbades
@@ -232,7 +222,6 @@ sv:
           suspend: Ta bort suspendering från alla befintliga konton på den här domänen
         title: Ångra domänblockering för %{domain}
         undo: Ångra
-      title: Domänblockering
       undo: Ångra
     email_domain_blocks:
       add_new: Lägg till ny
@@ -245,10 +234,6 @@ sv:
         title: Ny E-postdomänblocklistningsinmatning
       title: E-postdomänblock
     instances:
-      account_count: Kända konton
-      domain_name: Domän
-      reset: Återställa
-      search: Sök
       title: Kända instanser
     invites:
       filter:
@@ -805,7 +790,6 @@ sv:
       review_preferences_action: Ändra inställningar
       review_preferences_step: Se till att du ställer in dina inställningar, t.ex. vilka e-postmeddelanden du vill ta emot eller vilken integritetsnivå du vill att dina inlägg ska vara. Om du inte har åksjuka, kan du välja att aktivera automatisk uppspelning av GIF-bilder.
       subject: Välkommen till Mastodon
-      tip_bridge_html: Om du kommer från Twitter kan du hitta dina vänner på Mastodon genom att använda <a href="%{bridge_url}">bridge-appen</a>. Det fungerar dock bara om de också har använt bridge-appen!
       tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket. Men det inkluderar bara människor som dina grannar följer, så det är inte komplett.
       tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
       tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!

@@ -83,18 +83,28 @@ class Status < ApplicationRecord
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
+  scope :tagged_with_all, ->(tags) {
+    Array(tags).map(&:id).map(&:to_i).reduce(self) do |result, id|
+      result.joins("INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
+    end
+  }
+  scope :tagged_with_none, ->(tags) {
+    Array(tags).map(&:id).map(&:to_i).reduce(self) do |result, id|
+      result.joins("LEFT OUTER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
+            .where("t#{id}.tag_id IS NULL")
+    end
+  }
 
-  cache_associated :account,
-                   :application,
+  cache_associated :application,
                    :media_attachments,
                    :conversation,
                    :status_stat,
                    :tags,
                    :preview_cards,
                    :stream_entry,
-                   active_mentions: :account,
+                   account: :account_stat,
+                   active_mentions: { account: :account_stat },
                    reblog: [
-                     :account,
                      :application,
                      :stream_entry,
                      :tags,
@@ -102,9 +112,10 @@ class Status < ApplicationRecord
                      :media_attachments,
                      :conversation,
                      :status_stat,
-                     active_mentions: :account,
+                     account: :account_stat,
+                     active_mentions: { account: :account_stat },
                    ],
-                   thread: :account
+                   thread: { account: :account_stat }
 
   delegate :domain, to: :account, prefix: true
 
@@ -226,8 +237,8 @@ class Status < ApplicationRecord
     update_status_stat!(key => [public_send(key) - 1, 0].max)
   end
 
-  after_create  :increment_counter_caches
-  after_destroy :decrement_counter_caches
+  after_create_commit  :increment_counter_caches
+  after_destroy_commit :decrement_counter_caches
 
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
@@ -341,7 +352,7 @@ class Status < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).each_with_object({}) { |a, h| h[a.id] = a }
+      accounts = Account.where(id: account_ids).includes(:account_stat).each_with_object({}) { |a, h| h[a.id] = a }
 
       cached_items.each do |item|
         item.account = accounts[item.account_id]
@@ -423,7 +434,7 @@ class Status < ApplicationRecord
   end
 
   def store_uri
-    update_attribute(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
+    update_column(:uri, ActivityPub::TagManager.instance.uri_for(self)) if uri.nil?
   end
 
   def prepare_contents
@@ -442,6 +453,8 @@ class Status < ApplicationRecord
   end
 
   def set_conversation
+    self.thread = thread.reblog if thread&.reblog?
+
     self.reply = !(in_reply_to_id.nil? && thread.nil?) unless reply
 
     if reply? && !thread.nil?
@@ -472,26 +485,16 @@ class Status < ApplicationRecord
   def increment_counter_caches
     return if direct_visibility?
 
-    if association(:account).loaded?
-      account.update_attribute(:statuses_count, account.statuses_count + 1)
-    else
-      Account.where(id: account_id).update_all('statuses_count = COALESCE(statuses_count, 0) + 1')
-    end
-
-    reblog&.increment_count!(:reblogs_count) if reblog?
+    account&.increment_count!(:statuses_count)
+    reblog&.increment_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 
   def decrement_counter_caches
     return if direct_visibility? || marked_for_mass_destruction?
 
-    if association(:account).loaded?
-      account.update_attribute(:statuses_count, [account.statuses_count - 1, 0].max)
-    else
-      Account.where(id: account_id).update_all('statuses_count = GREATEST(COALESCE(statuses_count, 0) - 1, 0)')
-    end
-
-    reblog&.decrement_count!(:reblogs_count) if reblog?
+    account&.decrement_count!(:statuses_count)
+    reblog&.decrement_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
   end
 

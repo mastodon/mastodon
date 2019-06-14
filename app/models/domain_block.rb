@@ -13,6 +13,8 @@
 #
 
 class DomainBlock < ApplicationRecord
+  include DomainNormalizable
+
   enum severity: [:silence, :suspend, :noop]
 
   attr_accessor :retroactive
@@ -22,15 +24,9 @@ class DomainBlock < ApplicationRecord
   has_many :accounts, foreign_key: :domain, primary_key: :domain
   delegate :count, to: :accounts, prefix: true
 
+  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+
   def self.blocked?(domain)
     where(domain: domain, severity: :suspend).exists?
-  end
-
-  before_validation :normalize_domain
-
-  private
-
-  def normalize_domain
-    self.domain = TagManager.instance.normalize_domain(domain)
   end
 end

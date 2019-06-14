@@ -2,6 +2,7 @@
 
 class BatchedRemoveStatusService < BaseService
   include StreamEntryRenderer
+  include Redisable
 
   # Delete given statuses and reblogs of them
   # Dispatch PuSH updates of the deleted statuses, but only local ones
@@ -9,7 +10,9 @@ class BatchedRemoveStatusService < BaseService
   # Remove statuses from home feeds
   # Push delete events to streaming API for home feeds and public feeds
   # @param [Status] statuses A preferably batched array of statuses
-  def call(statuses)
+  # @param [Hash] options
+  # @option [Boolean] :skip_side_effects
+  def call(statuses, **options)
     statuses = Status.where(id: statuses.map(&:id)).includes(:account, :stream_entry).flat_map { |status| [status] + status.reblogs.includes(:account, :stream_entry).to_a }
 
     @mentions = statuses.each_with_object({}) { |s, h| h[s.id] = s.active_mentions.includes(:account).to_a }
@@ -25,6 +28,8 @@ class BatchedRemoveStatusService < BaseService
       status.mark_for_mass_destruction!
       status.destroy
     end
+
+    return if options[:skip_side_effects]
 
     # Batch by source account
     statuses.group_by(&:account_id).each_value do |account_statuses|
@@ -103,10 +108,6 @@ class BatchedRemoveStatusService < BaseService
     recipients.each do |recipient_id|
       @salmon_batches << [build_xml(status.stream_entry), status.account_id, recipient_id]
     end
-  end
-
-  def redis
-    Redis.current
   end
 
   def build_xml(stream_entry)

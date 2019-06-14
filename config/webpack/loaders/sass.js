@@ -1,22 +1,23 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { env } = require('../configuration.js');
 
 module.exports = {
   test: /\.s?css$/i,
   use: [
     MiniCssExtractPlugin.loader,
-    {
-      loader: 'css-loader',
-      options: {
-        minimize: env.NODE_ENV === 'production',
-      },
-    },
+    'css-loader',
     {
       loader: 'postcss-loader',
       options: {
         sourceMap: true,
       },
     },
-    'sass-loader',
+    {
+      loader: 'sass-loader',
+      options: {
+        fiber: require('fibers'),
+        implementation: require('sass'),
+        sourceMap: true,
+      },
+    },
   ],
 };

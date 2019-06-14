@@ -7,6 +7,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
 import Compose from '../features/standalone/compose';
 import initialState from '../initial_state';
+import { fetchCustomEmojis } from '../actions/custom_emojis';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
@@ -16,6 +17,8 @@ const store = configureStore();
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
 }
+
+store.dispatch(fetchCustomEmojis());
 
 export default class TimelineContainer extends React.PureComponent {
 

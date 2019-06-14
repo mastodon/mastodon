@@ -92,10 +92,6 @@
       most_recent_activity: Nyligste aktivitet
       most_recent_ip: Nyligste IP
       not_subscribed: Ikke abonnért
-      order:
-        alphabetic: Alfabetisk
-        most_recent: Nyligst
-        title: Rekkefølge
       outbox_url: Utboks URL
       perform_full_suspension: Utfør full utvisning
       profile_url: Profil-URL
@@ -122,7 +118,6 @@
       shared_inbox_url: Delt Innboks URL
       show:
         created_reports: Rapporter laget av denne kontoen
-        report: rapport
         targeted_reports: Rapporter laget om denne kontoen
       silence: Målbind
       statuses: Statuser
@@ -200,11 +195,6 @@
         title: Ny domeneblokkering
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
-      severities:
-        noop: Ingen
-        silence: Målbind
-        suspend: Utvis
-      severity: Alvorlighet
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -214,7 +204,6 @@
           suspend: Avutvis alle eksisterende kontoer fra dette domenet
         title: Angre domeneblokkering for %{domain}
         undo: Angre
-      title: Domeneblokkeringer
       undo: Angre
     email_domain_blocks:
       add_new: Lag ny
@@ -227,10 +216,6 @@
         title: Ny blokkeringsoppføring av e-postdomene
       title: Blokkering av e-postdomene
     instances:
-      account_count: Kjente kontoer
-      domain_name: Domene
-      reset: Tilbakestill
-      search: Søk
       title: Kjente instanser
     invites:
       filter:
@@ -635,7 +620,6 @@
       review_preferences_action: Endre innstillinger
       review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkommen til Mastodon
-      tip_bridge_html: Hvis du kommer fra Twitter kan du finne dine venner på Mastodon ved å bruke en <a href="%{bridge_url}">bro app</a>. Men det fungerer kun dersom de også bruker bro-appen!
       tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer på, så den er ikke komplett.
       tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!

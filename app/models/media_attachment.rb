@@ -3,20 +3,21 @@
 #
 # Table name: media_attachments
 #
-#  id                :bigint(8)        not null, primary key
-#  status_id         :bigint(8)
-#  file_file_name    :string
-#  file_content_type :string
-#  file_file_size    :integer
-#  file_updated_at   :datetime
-#  remote_url        :string           default(""), not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  shortcode         :string
-#  type              :integer          default("image"), not null
-#  file_meta         :json
-#  account_id        :bigint(8)
-#  description       :text
+#  id                  :bigint(8)        not null, primary key
+#  status_id           :bigint(8)
+#  file_file_name      :string
+#  file_content_type   :string
+#  file_file_size      :integer
+#  file_updated_at     :datetime
+#  remote_url          :string           default(""), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  shortcode           :string
+#  type                :integer          default("image"), not null
+#  file_meta           :json
+#  account_id          :bigint(8)
+#  description         :text
+#  scheduled_status_id :bigint(8)
 #
 
 class MediaAttachment < ApplicationRecord
@@ -76,8 +77,9 @@ class MediaAttachment < ApplicationRecord
   IMAGE_LIMIT = 8.megabytes
   VIDEO_LIMIT = 40.megabytes
 
-  belongs_to :account, inverse_of: :media_attachments, optional: true
-  belongs_to :status,  inverse_of: :media_attachments, optional: true
+  belongs_to :account,          inverse_of: :media_attachments, optional: true
+  belongs_to :status,           inverse_of: :media_attachments, optional: true
+  belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true
 
   has_attached_file :file,
                     styles: ->(f) { file_styles f },
@@ -94,8 +96,8 @@ class MediaAttachment < ApplicationRecord
   validates :account, presence: true
   validates :description, length: { maximum: 420 }, if: :local?
 
-  scope :attached,   -> { where.not(status_id: nil) }
-  scope :unattached, -> { where(status_id: nil) }
+  scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
   scope :local,      -> { where(remote_url: '') }
   scope :remote,     -> { where.not(remote_url: '') }
 
@@ -135,7 +137,7 @@ class MediaAttachment < ApplicationRecord
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
   before_post_process :set_type_and_extension
-  after_post_process :set_extension
+  after_post_process :set_file_extensions
   before_save :set_meta
 
   class << self
@@ -163,7 +165,7 @@ class MediaAttachment < ApplicationRecord
       if f.file_content_type == 'image/gif'
         [:gif_transcoder]
       elsif f.file_content_type == 'image/png'
-        [:img_converter, :thumbnail]
+        [:png_converter, :thumbnail]
       elsif VIDEO_MIME_TYPES.include? f.file_content_type
         [:video_transcoder]
       else
@@ -191,12 +193,6 @@ class MediaAttachment < ApplicationRecord
 
   def set_type_and_extension
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
-  end
-
-  def set_extension
-    extension = appropriate_extension(file)
-    basename  = Paperclip::Interpolations.basename(file, :original)
-    file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
   end
 
   def set_meta

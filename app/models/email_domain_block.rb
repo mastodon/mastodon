@@ -10,7 +10,7 @@
 #
 
 class EmailDomainBlock < ApplicationRecord
-  before_validation :normalize_domain
+  include DomainNormalizable
 
   validates :domain, presence: true, uniqueness: true
 
@@ -26,11 +26,5 @@ class EmailDomainBlock < ApplicationRecord
     end
 
     where(domain: domain).exists?
-  end
-
-  private
-
-  def normalize_domain
-    self.domain = TagManager.instance.normalize_domain(domain)
   end
 end

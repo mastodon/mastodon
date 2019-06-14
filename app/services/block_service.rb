@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class BlockService < BaseService
-  include StreamEntryRenderer
-
   def call(account, target_account)
     return if account.id == target_account.id
 
@@ -27,11 +25,11 @@ class BlockService < BaseService
   end
 
   def build_json(block)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
+    ActiveModelSerializers::SerializableResource.new(
       block,
       serializer: ActivityPub::BlockSerializer,
       adapter: ActivityPub::Adapter
-    ).as_json).sign!(block.account))
+    ).to_json
   end
 
   def build_xml(block)

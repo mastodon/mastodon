@@ -2,92 +2,110 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Button from '../../../components/button';
-import SettingToggle from '../components/setting_toggle';
-import SettingText from '../components/setting_text';
-import { Map as ImmutableMap } from 'immutable';
+import Toggle from 'react-toggle';
+import AsyncSelect from 'react-select/lib/Async';
 
 const messages = defineMessages({
-  filter_regex: { id: 'tag.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
-  show_local_only: { id: 'tag.column_settings.show_local_only', defaultMessage: 'Show local only' },
-  settings: { id: 'tag.settings', defaultMessage: 'Column settings' },
-  add_favourite_tags_public: { id: 'tag.add_favourite.public', defaultMessage: 'add in the favourite tags (Public)' },
-  add_favourite_tags_unlisted: { id: 'tag.add_favourite.unlisted', defaultMessage: 'add in the favourite tags (Unlisted)' },
-  remove_favourite_tags: { id: 'tag.remove_favourite', defaultMessage: 'Remove from the favourite tags' },
+  placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },
+  noOptions: { id: 'hashtag.column_settings.select.no_options_message', defaultMessage: 'No suggestions found' },
 });
 
-@injectIntl
-export default class ColumnSettings extends React.PureComponent {
+export default @injectIntl
+class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
-    tag: PropTypes.string.isRequired,
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
-    addFavouriteTags: PropTypes.func.isRequired,
-    removeFavouriteTags: PropTypes.func.isRequired,
-    isRegistered: PropTypes.bool.isRequired,
+    onLoad: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
-  addFavouriteTags = (visibility) => {
-    this.props.addFavouriteTags(this.props.tag, visibility);
+  state = {
+    open: this.hasTags(),
   };
 
-  addPublic = () => {
-    this.addFavouriteTags('public');
+  hasTags () {
+    return ['all', 'any', 'none'].map(mode => this.tags(mode).length > 0).includes(true);
+  }
+
+  tags (mode) {
+    let tags = this.props.settings.getIn(['tags', mode]) || [];
+
+    if (tags.toJSON) {
+      return tags.toJSON();
+    } else {
+      return tags;
+    }
   };
 
-  addUnlisted = () => {
-    this.addFavouriteTags('unlisted');
+  onSelect = mode => value => this.props.onChange(['tags', mode], value);
+
+  onToggle = () => {
+    if (this.state.open && this.hasTags()) {
+      this.props.onChange('tags', {});
+    }
+
+    this.setState({ open: !this.state.open });
   };
 
-  removeFavouriteTags = () => {
-    this.props.removeFavouriteTags(this.props.tag);
+  noOptionsMessage = () => this.props.intl.formatMessage(messages.noOptions);
+
+  modeSelect (mode) {
+    return (
+      <div className='column-settings__row'>
+        <span className='column-settings__section'>
+          {this.modeLabel(mode)}
+        </span>
+
+        <AsyncSelect
+          isMulti
+          autoFocus
+          value={this.tags(mode)}
+          onChange={this.onSelect(mode)}
+          loadOptions={this.props.onLoad}
+          className='column-select__container'
+          classNamePrefix='column-select'
+          name='tags'
+          placeholder={this.props.intl.formatMessage(messages.placeholder)}
+          noOptionsMessage={this.noOptionsMessage}
+        />
+      </div>
+    );
+  }
+
+  modeLabel (mode) {
+    switch(mode) {
+    case 'any':
+      return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
+    case 'all':
+      return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
+    case 'none':
+      return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
+    default:
+      return '';
+    }
   };
 
   render () {
-    const { tag, settings, onChange, intl, isRegistered } = this.props;
-    const initialSettings = ImmutableMap({
-      shows: ImmutableMap({
-        local: false,
-      }),
-
-      regex: ImmutableMap({
-        body: '',
-      }),
-    });
-
-    const favouriteTagButton = (isRegistered) => {
-      if(isRegistered) {
-        return (
-          <div className='column-settings__row'>
-            <Button className='favourite-tags__remove-button-in-column' text={intl.formatMessage(messages.remove_favourite_tags)} onClick={this.removeFavouriteTags} block />
-          </div>
-        );
-      } else {
-        return (
-          <div className='column-settings__row'>
-            <Button className='favourite-tags__add-button-in-column' text={intl.formatMessage(messages.add_favourite_tags_public)} onClick={this.addPublic} block />
-            <Button className='favourite-tags__add-button-in-column' text={intl.formatMessage(messages.add_favourite_tags_unlisted)} onClick={this.addUnlisted} block />
-          </div>
-        );
-      }
-    };
-
     return (
       <div>
-        {favouriteTagButton(isRegistered)}
-        <span className='column-settings__section'><FormattedMessage id='tag.column_settings.basic' defaultMessage='Basic' /></span>
-
         <div className='column-settings__row'>
-          <SettingToggle tag={tag} prefix='hashtag_timeline' settings={settings.get(`${tag}`, initialSettings)} settingKey={['shows', 'local']} onChange={onChange} label={intl.formatMessage(messages.show_local_only)} />
+          <div className='setting-toggle'>
+            <Toggle id='hashtag.column_settings.tag_toggle' onChange={this.onToggle} checked={this.state.open} />
+
+            <span className='setting-toggle__label'>
+              <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
+            </span>
+          </div>
         </div>
 
-        <span className='column-settings__section'><FormattedMessage id='tag.column_settings.advanced' defaultMessage='Advanced' /></span>
-
-        <div className='column-settings__row'>
-          <SettingText tag={tag} prefix='hashtag_timeline' settings={settings.get(`${tag}`, initialSettings)} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
-        </div>
+        {this.state.open && (
+          <div className='column-settings__hashtags'>
+            {this.modeSelect('any')}
+            {this.modeSelect('all')}
+            {this.modeSelect('none')}
+          </div>
+        )}
       </div>
     );
   }

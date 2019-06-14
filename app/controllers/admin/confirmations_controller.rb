@@ -25,10 +25,6 @@ module Admin
 
     private
 
-    def set_user
-      @user = Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
-    end
-
     def check_confirmation
       if @user.confirmed?
         flash[:error] = I18n.t('admin.accounts.resend_confirmation.already_confirmed')

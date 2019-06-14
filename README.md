@@ -15,6 +15,19 @@ About what is Mastodon, see [tootsuite/mastodon](https://github.com/tootsuite/ma
 - 未収載タグ付き投稿のタグTLへの表示
 - お気に入りタグ機能
 
+## 開発用docker-composeファイル
+開発に必要なpostgresqlとredisはdocker-composeを用いて1コマンドで起動できるようになっています。
+```
+docker-compose -f docker-compose-dev.yml up -d
+```
+
+また、docker-composeで起動したそれらに接続するために下記の内容を`.env`という名前のファイルとして保存してください。
+```
+DB_HOST=localhost
+DB_USER=mastodon
+DB_PASS=mastodon
+```
+
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
@@ -38,7 +51,7 @@ Click below to **learn more** in a video:
 
 [youtube_demo]: https://www.youtube.com/watch?v=IPSbNdBmWKE
 
-## Navigation 
+## Navigation
 
 - [Project homepage 🐘](https://joinmastodon.org)
 - [Support the development via Patreon][patreon]
@@ -97,13 +110,13 @@ A **Vagrant** configuration is included for development purposes.
 
 Mastodon is **free, open source software** licensed under **AGPLv3**.
 
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md)
+You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
 **IRC channel**: #mastodon on irc.freenode.net
 
 ## License
 
-Copyright (C) 2016-2018 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2019 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

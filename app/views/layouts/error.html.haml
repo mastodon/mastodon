@@ -7,8 +7,11 @@
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
+    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag 'error', integrity: true, crossorigin: 'anonymous'
   %body.error
     .dialog
-      %img{ alt: 'Chihiro Senkawa', src: '/chihiro_san.png' }/
-      %div
+      .dialog__illustration
+        %img{ alt: 'Chihiro Senkawa', src: '/chihiro_san.png' }/
+      .dialog__message
         %h1= yield :content
