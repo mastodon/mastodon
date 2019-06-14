@@ -91,7 +91,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_invite
-    @invite = invite_code.present? ? Invite.find_by(code: invite_code) : nil
+    invite = invite_code.present? ? Invite.find_by(code: invite_code) : nil
+    @invite = invite&.valid_for_use? ? invite : nil
   end
 
   def determine_layout

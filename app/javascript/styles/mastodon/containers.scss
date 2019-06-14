@@ -139,7 +139,7 @@ $small-breakpoint: 960px;
   grid-auto-rows: max-content;
 
   .column-0 {
-    grid-column: 1/3;
+    grid-column: 1 / 3;
     grid-row: 1;
   }
 
@@ -154,7 +154,7 @@ $small-breakpoint: 960px;
   }
 
   .column-3 {
-    grid-column: 1/3;
+    grid-column: 1 / 3;
     grid-row: 3;
   }
 
@@ -274,12 +274,13 @@ $small-breakpoint: 960px;
       display: block;
       padding: 15px;
 
-      img {
+      svg {
         display: block;
         height: 18px;
         width: auto;
         position: relative;
         bottom: -2px;
+        fill: $primary-text-color;
 
         @media screen and (max-width: $no-gap-breakpoint) {
           height: 20px;
@@ -377,10 +378,6 @@ $small-breakpoint: 960px;
 
       .logo-button {
         background-color: $secondary-text-color;
-
-        svg path:last-child {
-          fill: $secondary-text-color;
-        }
       }
     }
 

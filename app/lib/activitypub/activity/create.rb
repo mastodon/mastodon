@@ -194,7 +194,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       next if attachment['url'].blank?
 
       href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'])
+      media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
       media_attachments << media_attachment
 
       next if unsupported_media_type?(attachment['mediaType']) || skip_download?
@@ -234,7 +234,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @account.polls.new(
       multiple: multiple,
       expires_at: expires_at,
-      options: items.map { |item| item['name'].presence || item['content'] },
+      options: items.map { |item| item['name'].presence || item['content'] }.compact,
       cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 }
     )
   end
@@ -267,7 +267,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def conversation_from_uri(uri)
     return nil if uri.nil?
     return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
-    Conversation.find_by(uri: uri) || Conversation.create(uri: uri)
+    begin
+      Conversation.find_or_create_by!(uri: uri)
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+      retry
+    end
   end
 
   def visibility_from_audience
@@ -367,6 +371,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def unsupported_media_type?(mime_type)
     mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
+  end
+
+  def supported_blurhash?(blurhash)
+    components = blurhash.blank? ? nil : Blurhash.components(blurhash)
+    components.present? && components.none? { |comp| comp > 5 }
   end
 
   def skip_download?

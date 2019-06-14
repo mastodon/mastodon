@@ -12,24 +12,27 @@ zh-CN:
       last_attempt: 你还有最后一次尝试机会，再次失败你的帐户将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
+      pending: 你的账户仍在审核中。
       timeout: 你已登录超时，请重新登录。
       unauthenticated: 继续操作前请注册或者登录。
       unconfirmed: 继续操作前请先确认你的帐户。
     mailer:
       confirmation_instructions:
         action: 验证电子邮件地址
+        action_with_app: 确认并返回%{app}
         explanation: 你在 %{host} 上使用这个电子邮件地址创建了一个帐户。只需点击下面的链接，即可完成激活。如果你并没有创建过帐户，请忽略此邮件。
-        extra_html: 请记得阅读<a href="%{terms_path}">本实例的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
+        explanation_when_pending: 你用这个电子邮件申请了在 %{host} 注册。在确认电子邮件地址之后，我们会审核你的申请。在此之前，你不能登录。如果你的申请被驳回，你的数据会被移除，因此你无需再采取任何行动。如果申请人不是你，请忽略这封邮件。
+        extra_html: 请记得阅读<a href="%{terms_path}">本服务器的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
         subject: Mastodon：确认 %{instance} 帐户信息
         title: 验证电子邮件地址
       email_changed:
         explanation: 你的帐户的电子邮件地址即将变更为：
-        extra: 如果你并没有请求更改你的电子邮件地址，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系实例的管理员请求协助。
+        extra: 如果你并没有请求更改你的电子邮件地址，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器管理员请求协助。
         subject: Mastodon：电子邮件地址已被更改
         title: 新电子邮件地址
       password_change:
         explanation: 你的帐户的密码已被更改。
-        extra: 如果你并没有请求更改你的密码，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系实例的管理员请求协助。
+        extra: 如果你并没有请求更改你的密码，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器的管理员请求协助。
         subject: Mastodon：密码已被更改
         title: 密码已被重置
       reconfirmation_instructions:
@@ -59,6 +62,7 @@ zh-CN:
       signed_up: 欢迎！你已注册成功。
       signed_up_but_inactive: 你已注册，但尚未激活帐户。
       signed_up_but_locked: 你已注册，但帐户被锁定了。
+      signed_up_but_pending: 一封带有确认链接的邮件已经发送到了您的邮箱。 在您点击确认链接后，我们将会审核您的申请。审核通过后，我们将会通知您。
       signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的帐户。如果没有，请检查你的垃圾邮件。
       update_needs_confirmation: 信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
       updated: 帐户资料更新成功。

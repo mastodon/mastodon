@@ -58,21 +58,6 @@ RSpec.describe ActivityPub::Activity::Announce do
         end
       end
 
-      context 'self-boost of a previously unknown status with missing attributedTo' do
-        let(:object_json) do
-          {
-            id: 'https://example.com/actor#bar',
-            type: 'Note',
-            content: 'Lorem ipsum',
-            to: 'http://example.com/followers',
-          }
-        end
-
-        it 'creates a reblog by sender of status' do
-          expect(sender.reblogged?(sender.statuses.first)).to be true
-        end
-      end
-
       context 'self-boost of a previously unknown status with correct attributedTo' do
         let(:object_json) do
           {
@@ -122,6 +107,7 @@ RSpec.describe ActivityPub::Activity::Announce do
             type: 'Note',
             content: 'Lorem ipsum',
             to: 'http://example.com/followers',
+            attributedTo: 'https://example.com/actor',
           }
         end
 
@@ -141,6 +127,7 @@ RSpec.describe ActivityPub::Activity::Announce do
             type: 'Note',
             content: 'Lorem ipsum',
             to: 'http://example.com/followers',
+            attributedTo: 'https://example.com/actor',
           }
         end
 
@@ -161,6 +148,7 @@ RSpec.describe ActivityPub::Activity::Announce do
           type: 'Note',
           content: 'Lorem ipsum',
           to: 'http://example.com/followers',
+          attributedTo: 'https://example.com/actor',
         }
       end
 

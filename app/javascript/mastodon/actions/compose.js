@@ -63,6 +63,14 @@ const messages = defineMessages({
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
 });
 
+const COMPOSE_PANEL_BREAKPOINT = 600 + (285 * 1) + (10 * 1);
+
+export const ensureComposeIsVisible = (getState, routerHistory) => {
+  if (!getState().getIn(['compose', 'mounted']) && window.innerWidth < COMPOSE_PANEL_BREAKPOINT) {
+    routerHistory.push('/statuses/new');
+  }
+};
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -77,9 +85,7 @@ export function replyCompose(status, routerHistory) {
       status: status,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
-      routerHistory.push('/statuses/new');
-    }
+    ensureComposeIsVisible(getState, routerHistory);
   };
 };
 
@@ -102,9 +108,7 @@ export function mentionCompose(account, routerHistory) {
       account: account,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
-      routerHistory.push('/statuses/new');
-    }
+    ensureComposeIsVisible(getState, routerHistory);
   };
 };
 
@@ -115,9 +119,7 @@ export function directCompose(account, routerHistory) {
       account: account,
     });
 
-    if (!getState().getIn(['compose', 'mounted'])) {
-      routerHistory.push('/statuses/new');
-    }
+    ensureComposeIsVisible(getState, routerHistory);
   };
 };
 
@@ -203,8 +205,8 @@ export function uploadCompose(files) {
   return function (dispatch, getState) {
     const uploadLimit = 4;
     const media  = getState().getIn(['compose', 'media_attachments']);
-    const total = Array.from(files).reduce((a, v) => a + v.size, 0);
     const progress = new Array(files.length).fill(0);
+    let total = Array.from(files).reduce((a, v) => a + v.size, 0);
 
     if (files.length + media.size > uploadLimit) {
       dispatch(showAlert(undefined, messages.uploadErrorLimit));
@@ -224,6 +226,8 @@ export function uploadCompose(files) {
       resizeImage(f).then(file => {
         const data = new FormData();
         data.append('file', file);
+        // Account for disparity in size of original image and resized data
+        total += file.size - f.size;
 
         return api(getState).post('/api/v1/media', data, {
           onUploadProgress: function({ loaded }){
@@ -381,7 +385,7 @@ export function readyComposeSuggestionsAccounts(token, accounts) {
   };
 };
 
-export function selectComposeSuggestion(position, token, suggestion) {
+export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
     let completion, startPosition;
 
@@ -403,6 +407,7 @@ export function selectComposeSuggestion(position, token, suggestion) {
       position: startPosition,
       token,
       completion,
+      path,
     });
   };
 };

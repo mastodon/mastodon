@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      8
+      9
     end
 
     def patch
@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def repository
-      'tootsuite/mastodon'
+      ENV.fetch('GITHUB_REPOSITORY') { 'tootsuite/mastodon' }
     end
 
     def source_base_url

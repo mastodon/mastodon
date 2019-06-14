@@ -7,6 +7,8 @@
       - unless media.file.meta.nil?
         = opengraph 'og:image:width', media.file.meta.dig('original', 'width')
         = opengraph 'og:image:height', media.file.meta.dig('original', 'height')
+      - if media.description.present?
+        = opengraph 'og:image:alt', media.description
     - elsif media.video? || media.gifv?
       - player_card = true
       = opengraph 'og:image', full_asset_url(media.file.url(:small))
