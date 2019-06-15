@@ -4,7 +4,6 @@ fi:
     hints:
       admin_account_action:
         send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
-        type_html: Valitse mitä teet <strong>1%{acct}</strong>2
       defaults:
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
@@ -12,7 +11,6 @@ fi:
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
         setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
-        setting_theme: Vaikuttaa Mastodonin ulkoasuun millä tahansa laitteella kirjauduttaessa.
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
       sessions:
@@ -66,6 +64,5 @@ fi:
         reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
     'no': Ei
     required:
-      mark: "*"
       text: pakollinen tieto
     'yes': Kyllä

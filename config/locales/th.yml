@@ -6,7 +6,6 @@ th:
     active_count_after: ที่ใช้งาน
     active_footnote: ผู้ใช้งานรายเดือน (MAU)
     administered_by: 'ดูแลโดย:'
-    api: API
     apps: แอปสำหรับมือถือ
     apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
     browse_directory: เรียกดูไดเรกทอรีโปรไฟล์และกรองตามความสนใจ
@@ -26,18 +25,15 @@ th:
     server_stats: 'สถิติเซิร์ฟเวอร์:'
     source_code: โค้ดต้นฉบับ
     status_count_after:
-      one: สถานะ
       other: สถานะ
     status_count_before: ผู้สร้าง
     user_count_after:
-      one: ผู้ใช้
       other: ผู้ใช้
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
     follow: ติดตาม
     followers:
-      one: ผู้ติดตาม
       other: ผู้ติดตาม
     following: กำลังติดตาม
     joined: เข้าร่วมเมื่อ %{date}
@@ -49,7 +45,6 @@ th:
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
     posts:
-      one: โพสต์
       other: โพสต์
     posts_tab_heading: โพสต์
     posts_with_replies: โพสต์และการตอบกลับ
@@ -97,7 +92,6 @@ th:
       header: ส่วนหัว
       inbox_url: URL กล่องขาเข้า
       invited_by: เชิญโดย
-      ip: IP
       joined: เข้าร่วมเมื่อ
       location:
         all: ทั้งหมด
@@ -135,7 +129,6 @@ th:
         moderator: ผู้ควบคุม
         staff: พนักงาน
         user: ผู้ใช้
-      salmon_url: Salmon URL
       search: ค้นหา
       show:
         created_reports: รายงานที่สร้าง
@@ -213,7 +206,6 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          one: มีผลต่อหนึ่งบัญชีในฐานข้อมูล
           other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
         retroactive:
           silence: เลิกเงียบบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -332,7 +324,6 @@ th:
       confirmed: ยืนยันแล้ว
       expires_in: หมดอายุภายใน
       last_delivery: ส่งล่าสุด
-      title: WebSub
       topic: หัวข้อ
     tags:
       accounts: บัญชี
@@ -362,15 +353,11 @@ th:
     change_password: รหัสผ่าน
     confirm_email: ยืนยันอีเมล
     delete_account: ลบบัญชี
-    didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: ลืมรหัสผ่านของคุณ?
     login: เข้าสู่ระบบ
     logout: ออกจากระบบ
     migrate_account: ย้ายไปยังบัญชีอื่น
     or_log_in_with: หรือเข้าสู่ระบบด้วย
-    providers:
-      cas: CAS
-      saml: SAML
     register: ลงทะเบียน
     resend_confirmation: ส่งขั้นตอนวิธีการยืนยันใหม่อีกครั้ง
     reset_password: ตั้งรหัสผ่านใหม่
@@ -379,7 +366,6 @@ th:
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
-    error: Unfortunately, there was an error looking up the remote account
     follow: ติดตาม
     following: 'สำเร็จ! คุณกำลังติดตาม:'
     post_follow:
@@ -424,7 +410,6 @@ th:
       request: ขอการเก็บถาวรของคุณ
       size: ขนาด
     blocks: คุณปิดกั้น
-    csv: CSV
     domain_blocks: การปิดกั้นโดเมน
     follows: คุณติดตาม
     lists: รายการ
@@ -454,15 +439,11 @@ th:
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
     save_changes: บันทึกการเปลี่ยนแปลง
-    validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      other: Something isn't quite right yet! Please review %{count} errors below
   imports:
     modes:
       merge: ผสาน
       overwrite: เขียนทับ
     preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
-    success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: รายการปิดกั้น
       following: รายการติดตาม
@@ -495,14 +476,9 @@ th:
   notification_mailer:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
-      body: Here is a brief summary of the messages you missed since your last visit on %{since}
       mention: "%{name} ได้กล่าวถึงคุณใน:"
       new_followers_summary:
-        one: นอกจากนี้คุณยังมีหนึ่งผู้ติดตามใหม่ขณะที่ไม่อยู่! เย่!
         other: You have gotten %{count} new followers! Amazing!
-      subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
       subject: "%{name} ได้ชื่นชอบสถานะของคุณ"
@@ -525,28 +501,11 @@ th:
       body: 'สถานะของคุณได้รับการดันโดย %{name}:'
       subject: "%{name} ได้ดันสถานะของคุณ"
       title: การดันใหม่
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: ใหม่กว่า
     next: ถัดไป
     older: เก่ากว่า
     prev: ก่อนหน้า
-    truncate: "&hellip;"
-  preferences:
-    languages: ภาษา
-    other: อื่น ๆ
-    publishing: การเผยแพร่
-    web: เว็บ
   relationships:
     activity: กิจกรรมบัญชี
     relationship: ความสัมพันธ์
@@ -556,7 +515,6 @@ th:
     status: สถานะบัญชี
   remote_follow:
     acct: ป้อน username@domain ของคุณที่คุณต้องการกระทำจาก
-    missing_resource: Could not find the required redirect URL for your account
     no_account_html: ไม่มีบัญชี? คุณสามารถ <a href='%{sign_up_path}' target='_blank'>ลงทะเบียนที่นี่</a>
     proceed: ดำเนินการต่อเพื่อติดตาม
     prompt: 'คุณกำลังจะติดตาม:'
@@ -577,7 +535,6 @@ th:
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
-    ip: IP
     revoke: เพิกถอน
   settings:
     authorized_apps: แอปที่ได้รับอนุญาต
@@ -595,33 +552,26 @@ th:
     attached:
       description: 'แนบ: %{attached}'
       image:
-        one: "%{count} ภาพ"
         other: "%{count} ภาพ"
       video:
-        one: "%{count} วิดีโอ"
         other: "%{count} วิดีโอ"
     content_warning: 'คำเตือนเนื้อหา: %{warning}'
     open_in_web: เปิดในเว็บ
-    over_character_limit: character limit of %{max} exceeded
     pin_errors:
       reblog: ไม่สามารถปักหมุดการดัน
     poll:
       total_votes:
-        one: "%{count} การลงคะแนน"
         other: "%{count} การลงคะแนน"
     show_more: แสดงเพิ่มเติม
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: ผู้ติดตามเท่านั้น
       private_long: แสดงต่อผู้ติดตามเท่านั้น
       public: สาธารณะ
       public_long: ทุกคนสามารถเห็น
       unlisted: ไม่อยู่ในรายการ
-      unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     pinned: โพสต์ที่ปักหมุด
-    reblogged: boosted
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   themes:
     contrast: Mastodon (ความคมชัดสูง)
@@ -630,19 +580,12 @@ th:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
-    code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: ปิดใช้งาน
     enable: เปิดใช้งาน
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
     enabled_success: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     generate_recovery_codes: สร้างรหัสกู้คืน
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
-    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
-    recovery_codes_regenerated: Recovery codes successfully regenerated
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?

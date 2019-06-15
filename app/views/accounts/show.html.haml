@@ -38,7 +38,7 @@
       - elsif @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'
       - else
-        .activity-stream
+        .activity-stream.activity-stream--under-tabs
           - if params[:page].to_i.zero?
             = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
 

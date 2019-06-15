@@ -14,25 +14,19 @@
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
     source_code: Kildekode
-    status_count_after: statuser
     status_count_before: Som skrev
-    user_count_after: brukere
     user_count_before: Her bor
     what_is_mastodon: Hva er Mastodon?
   accounts:
     follow: Følg
-    followers: Følgere
     following: Følger
-    media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
-    posts: Poster
     posts_with_replies: Tuter med svar
     reserved_username: Brukernavnet er reservert
     roles:
-      admin: Admin
       moderator: Moderere
     unfollow: Slutte følge
   admin:
@@ -98,8 +92,6 @@
       resubscribe: Abonner på nytt
       role: Rettigheter
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Personale
         user: Bruker
       salmon_url: Salmon-URL
@@ -116,7 +108,6 @@
       undo_suspension: Angre utvisning
       unsubscribe: Avslutte abonnementet
       username: Brukernavn
-      web: Web
     action_logs:
       actions:
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
@@ -153,7 +144,6 @@
       destroyed_msg: Emojo slettet uten problem!
       disable: Deaktivere
       disabled_msg: Deaktiverte emoji uten problem
-      emoji: Emoji
       enable: Aktivere
       enabled_msg: Aktiverte emojien uten problem
       image_hint: PNG opp til 50KB
@@ -211,7 +201,6 @@
         all: Alle
         available: Tilgjengelig
         expired: Utløpt
-        title: Filter
       title: Invitasjoner
     reports:
       action_taken_by: Handling utført av
@@ -223,7 +212,6 @@
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
-      status: Status
       title: Rapporter
       unresolved: Uløst
     settings:
@@ -276,8 +264,6 @@
         nsfw_off: NSFW AV
         nsfw_on: NSFW PÅ
       failed_to_execute: Utføring mislyktes
-      media:
-        title: Media
       no_media: Ingen media
       title: Kontostatuser
       with_media: Med media
@@ -286,7 +272,6 @@
       confirmed: Bekreftet
       expires_in: Utløper om
       last_delivery: Siste levering
-      title: WebSub
       topic: Emne
     title: Administrasjon
   admin_mailer:
@@ -295,7 +280,6 @@
       subject: Ny rapport for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Endre e-post innstillingene
-    salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     view: 'Se:'
     view_profile: Vis Profil
@@ -369,7 +353,6 @@
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   exports:
     blocks: Du blokkerer
-    csv: CSV
     follows: Du følger
     mutes: Du demper
     storage: Medialagring
@@ -396,6 +379,7 @@
       '21600': 6 timer
       '3600': 1 time
       '43200': 12 timer
+      '604800': 1 week
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Generer
@@ -456,26 +440,11 @@
       body: 'Din status ble fremhevd av %{name}:'
       subject: "%{name} fremhevde din status"
       title: Ny fremheving
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: " "
   pagination:
     next: Neste
     prev: Forrige
-    truncate: "&hellip;"
   preferences:
-    languages: Språk
     other: Annet
-    publishing: Publisering
-    web: Web
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
@@ -485,40 +454,13 @@
     activity: Siste aktivitet
     browser: Nettleser
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Ukjent nettleser
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere innlogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: ukjent plattform
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
@@ -543,7 +485,6 @@
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
     show_more: Vis mer
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Privat
       private_long: Synlig kun for følgere
@@ -594,7 +535,6 @@
       tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
       tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
-      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
     invalid_email: E-postaddressen er ugyldig

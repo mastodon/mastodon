@@ -234,7 +234,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @account.polls.new(
       multiple: multiple,
       expires_at: expires_at,
-      options: items.map { |item| item['name'].presence || item['content'] },
+      options: items.map { |item| item['name'].presence || item['content'] }.compact,
       cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 }
     )
   end
