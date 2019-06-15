@@ -1,7 +1,10 @@
----
 cy:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Gallwch defnyddio cystrawen tŵt, fel URLs, hashnodau a sôniadau
+      admin_account_action:
+        send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
       defaults:
         autofollow: Bydd pobl sy'n cofrestru drwy'r gwahoddiad yn eich dilyn yn awtomatig
         avatar: PNG, GIF neu JPG. %{size} ar y mwyaf. Caiff ei israddio i %{dimensions}px
@@ -107,7 +110,7 @@ cy:
         mention: Anfon e-bost pan mae rhywun yn eich crybwyll
         reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
         report: Anfon e-bost pan y cyflwynir adroddiad newydd
-    'no': Na
+    'no': 'Na'
     required:
       text: gofynnol
-    'yes': Ie
+    'yes': 'Ie'
