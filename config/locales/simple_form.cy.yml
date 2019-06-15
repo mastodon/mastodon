@@ -5,12 +5,16 @@ cy:
         text: Gallwch defnyddio cystrawen tŵt, fel URLs, hashnodau a sôniadau
       admin_account_action:
         send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
+        text_html: Yn ddewisol. Gallwch defnyddio cystrawen tŵt. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
+        type_html: Dewis beth i wneud gyda <strong>%{acct}</strong>
+        warning_preset_id: Yn ddewisol. Gallwch dal ychwanegu testun addasiol I ddiwedd y rhagosodiad
       defaults:
         autofollow: Bydd pobl sy'n cofrestru drwy'r gwahoddiad yn eich dilyn yn awtomatig
         avatar: PNG, GIF neu JPG. %{size} ar y mwyaf. Caiff ei israddio i %{dimensions}px
         bot: Mae'r cyfrif hwn yn perfformio gweithredoedd awtomatig yn bennaf ac mae'n bosib nad yw'n cael ei fonitro
         context: Un neu fwy cyd-destun lle dylai'r hidlydd weithio
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
+        discoverable_html: Mae'r <a href="%{path}" target="_blank">cyfeiriadur</a> yn gadael i bobl ddarganfod cyfrifau wedi'i seilio ar ddiddordebau a gweithgareddau.. Mae hyn angen o leiaf %{min_followers} o ddilynwyr
         email: Byddwch yn derbyn e-bost i gadarnhau
         fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
         header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
@@ -21,13 +25,18 @@ cy:
         password: Defnyddiwch oleiaf 8 nodyn
         phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys tŵt
         scopes: Pa APIau y bydd gan y rhaglen ganiatad i gael mynediad iddynt. Os dewiswch maes lefel uchaf, yna nid oes angen dewis rhai unigol.
+        setting_aggregate_reblogs: Paid dangos bŵstiau newydd ar gyfer tŵtiau sydd wedi'i fŵstio yn ddiweddar (dim ond yn effeithio bŵstiau newydd ei dderbyn)
+        setting_default_sensitive: Mae cyfryngau sensitif yn cael ei gyddio'n rhagosodiedig, a gall cael eu dangos â chlic
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
         setting_display_media_show_all: Dangos cyfryngau wedi eu marcio'n sensitif bob tro
         setting_hide_network: Ni fydd y rheini yr ydych yn eu dilyn a phwy sy'n eich dilyn chi yn cael ei ddangos ar eich proffil
         setting_noindex: Mae hyn yn effeithio ar eich proffil cyhoeddus a'ch tudalennau statws
+        setting_show_application: Bydd y offer frydych yn defnyddio i dŵtio yn cael ei arddangos yn golwg manwl eich tŵtiau
         username: Bydd eich enw defnyddiwr yn unigryw ar %{domain}
         whole_word: Os yw'r allweddair neu'r ymadrodd yn alffaniwmerig yn unig, mi fydd ond yn cael ei osod os yw'n cyfateb a'r gair cyfan
+      featured_tag:
+        name: 'Efallai hoffech defnyddio un o''r rhain:'
       imports:
         data: Allforiwyd dogfen CSV o achos Mastodon arall
       sessions:
