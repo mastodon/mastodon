@@ -152,11 +152,6 @@ class ApplicationController < ActionController::Base
   end
 
   def mark_cacheable!
-    skip_session!
     expires_in 0, public: true
-  end
-
-  def skip_session!
-    request.session_options[:skip] = true
   end
 end

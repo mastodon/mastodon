@@ -2,6 +2,7 @@
 
 class FollowService < BaseService
   include Redisable
+  include Payloadable
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
@@ -78,10 +79,6 @@ class FollowService < BaseService
   end
 
   def build_json(follow_request)
-    ActiveModelSerializers::SerializableResource.new(
-      follow_request,
-      serializer: ActivityPub::FollowSerializer,
-      adapter: ActivityPub::Adapter
-    ).to_json
+    Oj.dump(serialize_payload(follow_request, ActivityPub::FollowSerializer))
   end
 end

@@ -27,14 +27,13 @@ ko:
         phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 내가 부스트 했던 툿은 새로 부스트 되어도 보여주지 않습니다
-        setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
+        setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
         setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_show_application: 당신이 툿을 작성하는데에 사용한 앱이 툿의 상세정보에 표시 됩니다
-        setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
       featured_tag:
@@ -90,6 +89,7 @@ ko:
         otp_attempt: 2단계 인증 코드
         password: 암호
         phrase: 키워드 또는 문장
+        setting_advanced_layout: 고급 웹 UI 활성화
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
@@ -132,7 +132,7 @@ ko:
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
         report: 새 신고 등록시 이메일로 알리기
     'no': 아니오
+    recommended: 추천함
     required:
-      mark: "*"
       text: 필수 항목
     'yes': 네

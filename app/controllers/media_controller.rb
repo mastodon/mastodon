@@ -3,6 +3,8 @@
 class MediaController < ApplicationController
   include Authorization
 
+  skip_before_action :store_current_location
+
   before_action :set_media_attachment
   before_action :verify_permitted_status!
 

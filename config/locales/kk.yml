@@ -5,7 +5,6 @@ kk:
     about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
     about_this: Туралы
     administered_by: 'Админ:'
-    api: API
     apps: Мобиль қосымшалар
     contact: Байланыс
     contact_missing: Бапталмаған
@@ -89,7 +88,6 @@ kk:
       display_name: Атын көрсет
       domain: Домен
       edit: Түзету
-      email: Email
       email_status: Email статусы
       enable: Қосу
       enabled: Қосылды
@@ -100,7 +98,6 @@ kk:
       header: Басы
       inbox_url: Келген хаттар URL
       invited_by: Шақырған
-      ip: IP
       joined: Қосылды
       location:
         all: Барлығы
@@ -468,7 +465,6 @@ kk:
       subject: New rеport for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Change e-mail prеferences
-    salutation: "%{name},"
     settings: 'Change e-mail preferеnces: %{link}'
     view: 'Viеw:'
     view_profile: Viеw Profile
@@ -691,11 +687,9 @@ kk:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: В
           million: М
-          quadrillion: Q
           thousand: К
           trillion: Т
   pagination:
@@ -703,7 +697,6 @@ kk:
     next: Келесі
     older: Ерте
     prev: Алдыңғы
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Бұл сауалнамаға қатысқансыз
@@ -715,10 +708,7 @@ kk:
       too_few_options: бір жауаптан көп болуы керек
       too_many_options: "%{max} жауаптан көп болмайды"
   preferences:
-    languages: Тілдер
     other: Басқа
-    publishing: Жариялау
-    web: Веб
   remote_follow:
     acct: Өзіңіздің username@domain теріңіз
     missing_resource: Аккаунтыңызға байланған URL табылмады
@@ -827,7 +817,6 @@ kk:
       vote: Дауыс беру
     show_more: Тағы әкел
     sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді
@@ -845,10 +834,10 @@ kk:
       <h3 id="collect">What information do we collect?</h3>
 
       <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
       <hr class="spacer" />
@@ -858,9 +847,9 @@ kk:
       <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
       <hr class="spacer" />
@@ -876,8 +865,8 @@ kk:
       <p>We will make a good faith effort to:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
       </ul>
 
       <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
@@ -926,10 +915,6 @@ kk:
     contrast: Mastodon (Жоғары контраст)
     default: Mastodon (Қою)
     mastodon-light: Mastodon (Ашық)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Растау үшін түпнұсқалықты растау бағдарламасы арқылы жасалған кодты енгізіңіз
     description_html: "<strong>екі факторлы түпнұсқалықты растауды</strong> қоссаңыз, кіру үшін сізге телефонға кіруіңізді талап етеді, сізге арнайы токен беріледі."
