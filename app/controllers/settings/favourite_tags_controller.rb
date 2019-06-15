@@ -4,6 +4,7 @@ class Settings::FavouriteTagsController < ApplicationController
   before_action :set_account
   before_action :set_favourite_tags, only: [:index, :create]
   before_action :set_favourite_tag, only: [:edit, :update, :destroy]
+  before_action :set_body_classes
 
   def index
     @favourite_tag = FavouriteTag.new(tag: Tag.new, visibility: FavouriteTag.visibilities[:public])
@@ -59,5 +60,9 @@ class Settings::FavouriteTagsController < ApplicationController
 
   def set_favourite_tags
     @favourite_tags = @account.favourite_tags.with_order.includes(:tag)
+  end
+
+  def set_body_classes
+    @body_classes = 'admin'
   end
 end

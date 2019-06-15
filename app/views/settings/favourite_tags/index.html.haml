@@ -4,25 +4,26 @@
 = render 'form', submit: t('favourite_tags.submit')
 %hr
 
-%table.table
-  %thead
-    %tr
-      %th= t('favourite_tags.name_of_tag')
-      %th= t('simple_form.labels.defaults.setting_default_privacy')
-      %th= t('favourite_tags.order')
-      %th= t('favourite_tags.edit_it')
-      %th= t('favourite_tags.delete_it')
-  %tbody
-    - @favourite_tags.each do |fav_tag|
+.table-wrapper
+  %table.table
+    %thead
       %tr
-        %td
-          = fa_icon 'tag'
-          = fav_tag.tag.name
-        %td
-          = I18n.t("statuses.visibilities.#{fav_tag.visibility}")
-        %td
-          = fav_tag.order
-        %td
-          = table_link_to 'edit', '', edit_settings_favourite_tag_path(fav_tag)
-        %td
-          = table_link_to 'trash', '', settings_favourite_tag_path(fav_tag), method: :delete
+        %th= t('favourite_tags.name_of_tag')
+        %th= t('simple_form.labels.defaults.setting_default_privacy')
+        %th= t('favourite_tags.order')
+        %th= t('favourite_tags.edit_it')
+        %th= t('favourite_tags.delete_it')
+    %tbody
+      - @favourite_tags.each do |fav_tag|
+        %tr
+          %td
+            = fa_icon 'tag'
+            = fav_tag.tag.name
+          %td
+            = I18n.t("statuses.visibilities.#{fav_tag.visibility}")
+          %td
+            = fav_tag.order
+          %td
+            = table_link_to 'edit', '', edit_settings_favourite_tag_path(fav_tag)
+          %td
+            = table_link_to 'trash', '', settings_favourite_tag_path(fav_tag), method: :delete
