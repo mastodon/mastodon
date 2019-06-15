@@ -332,6 +332,7 @@ th:
       confirmed: ยืนยันแล้ว
       expires_in: หมดอายุภายใน
       last_delivery: ส่งล่าสุด
+      title: WebSub
       topic: หัวข้อ
     tags:
       accounts: บัญชี
@@ -421,6 +422,7 @@ th:
       request: ขอการเก็บถาวรของคุณ
       size: ขนาด
     blocks: คุณปิดกั้น
+    csv: CSV
     domain_blocks: การปิดกั้นโดเมน
     follows: คุณติดตาม
     lists: รายการ
@@ -450,6 +452,8 @@ th:
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
     save_changes: บันทึกการเปลี่ยนแปลง
+  identity_proofs:
+    authorize: ใช่ อนุญาต
   imports:
     modes:
       merge: ผสาน
@@ -517,6 +521,8 @@ th:
     next: ถัดไป
     older: เก่ากว่า
     prev: ก่อนหน้า
+  preferences:
+    public_timelines: เส้นเวลาสาธารณะ
   relationships:
     activity: กิจกรรมบัญชี
     relationship: ความสัมพันธ์
@@ -546,8 +552,12 @@ th:
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
+    ip: IP
     revoke: เพิกถอน
   settings:
+    account: บัญชี
+    account_settings: การตั้งค่าบัญชี
+    appearance: ลักษณะที่ปรากฏ
     authorized_apps: แอปที่ได้รับอนุญาต
     back: กลับไปที่ Mastodon
     delete: การลบบัญชี
@@ -557,6 +567,7 @@ th:
     import: นำเข้า
     notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
+    profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
   statuses:
@@ -575,6 +586,7 @@ th:
         other: "%{count} การลงคะแนน"
     show_more: แสดงเพิ่มเติม
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: ผู้ติดตามเท่านั้น
       private_long: แสดงต่อผู้ติดตามเท่านั้น
