@@ -77,7 +77,7 @@ de:
     errors:
       messages:
         access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
-        credential_flow_not_configured: Die Prozedur »Resource Owner Password Credentials« schlug fehl, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
+        credential_flow_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
         invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
@@ -88,7 +88,7 @@ de:
           expired: Der Zugriffs-Token ist abgelaufen
           revoked: Der Zugriffs-Token wurde widerrufen
           unknown: Der Zugriffs-Token ist ungültig
-        resource_owner_authenticator_not_configured: Die Prozedur »Resource Owner find« ist fehlgeschlagen, da Doorkeeper.configure.resource_owner_authenticator nicht konfiguriert ist.
+        resource_owner_authenticator_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_authenticator nicht konfiguriert ist.
         server_error: Der Autorisierungs-Server hat ein unerwartetes Problem festgestellt und konnte die Anfrage nicht bearbeiten.
         temporarily_unavailable: Der Autorisierungs-Server ist aufgrund von zwischenzeitlicher Überlastung oder Wartungsarbeiten derzeit nicht in der Lage, die Anfrage zu bearbeiten.
         unauthorized_client: Der Client ist nicht dazu autorisiert, diese Anfrage mit dieser Methode auszuführen.
