@@ -6,6 +6,7 @@ sk:
     active_count_after: aktívni
     active_footnote: Mesačne aktívnych užívateľov (MAU)
     administered_by: 'Správcom je:'
+    api: API
     apps: Aplikácie
     apps_platforms: Uživaj Mastodon z iOSu, Androidu a iných platforiem
     browse_directory: Prehľadávaj databázu profilov, filtruj podľa záujmov
@@ -57,6 +58,11 @@ sk:
     people_who_follow: Ľudia sledujúci %{name}
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
+    posts:
+      one: Príspevok
+      few: Príspevkov
+      many: Príspevkov
+      other: Príspevky
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
     reserved_username: Prihlasovacie meno je vyhradené
@@ -464,6 +470,7 @@ sk:
       confirmed: Potvrdené
       expires_in: Vyprší do
       last_delivery: Posledné doručenie
+      title: WebSub
       topic: Téma
     tags:
       accounts: Účty
@@ -629,8 +636,16 @@ sk:
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
   identity_proofs:
+    active: Aktívne
     authorize: Áno, povoľ
-    authorize_connection_prompt: Povoliť toto kryptografické spojenie?
+    authorize_connection_prompt: Povoliť toto kryptografické prepojenie?
+    errors:
+      failed: Kryptografické prepojenie sa nepodarilo. Prosím skús to znova z %{provider}.
+    i_am_html: Na %{service} som %{username}.
+    identity: Identita
+    inactive: Neaktívne
+    publicize_checkbox: 'A poslať toto:'
+    publicize_toot: 'Je to dokázané! Na %{service} som %{username}: %{url}'
   imports:
     modes:
       merge: Spoj dohromady
