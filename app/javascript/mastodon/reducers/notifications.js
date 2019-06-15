@@ -18,7 +18,7 @@ import compareId from '../compare_id';
 const initialState = ImmutableMap({
   items: ImmutableList(),
   hasMore: true,
-  top: true,
+  top: false,
   unread: 0,
   isLoading: false,
 });

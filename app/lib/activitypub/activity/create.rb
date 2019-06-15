@@ -234,7 +234,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @account.polls.new(
       multiple: multiple,
       expires_at: expires_at,
-      options: items.map { |item| item['name'].presence || item['content'] },
+      options: items.map { |item| item['name'].presence || item['content'] }.compact,
       cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 }
     )
   end
@@ -267,7 +267,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def conversation_from_uri(uri)
     return nil if uri.nil?
     return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
-    Conversation.find_by(uri: uri) || Conversation.create(uri: uri)
+    begin
+      Conversation.find_or_create_by!(uri: uri)
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+      retry
+    end
   end
 
   def visibility_from_audience

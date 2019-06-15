@@ -5,7 +5,6 @@ da:
     about_mastodon_html: Mastodon er et socialt netværk der er baseret på åbne web protokoller og frit, open-source source software. Der er decentraliseret ligesom e-mail tjenester.
     about_this: Om
     administered_by: 'Administreret af:'
-    api: API
     apps: Apps til mobilen
     apps_platforms: Brug Mastodon på iOS, Android og andre platformer
     contact: Kontakt
@@ -20,9 +19,6 @@ da:
     learn_more: Lær mere
     privacy_policy: Privatlivspolitik
     source_code: Kildekode
-    status_count_after:
-      one: status
-      other: statusser
     status_count_before: Som har skrevet
     terms: Vilkår for service
     user_count_after:
@@ -87,8 +83,6 @@ da:
       display_name: Visningsnavn
       domain: Domæne
       edit: Rediger
-      email: Email
-      email_status: Email status
       enable: Aktiver
       enabled: Aktiveret
       feed_url: Link til feed
@@ -153,7 +147,6 @@ da:
       undo_suspension: Fortryd udelukkelse
       unsubscribe: Abonner ikke længere
       username: Brugernavn
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
@@ -224,7 +217,6 @@ da:
       recent_users: Seneste brugere
       search: Søg på fuld tekst
       single_user_mode: Enkelt bruger mode
-      software: Software
       space: Brugt lagerplads
       title: Betjeningspanel
       total_users: samlede antal brugere
@@ -294,7 +286,6 @@ da:
       pending: Venter på godkendelse fra relæet
       save_and_enable: Gem og aktiver
       setup: Opsæt en videresendelses forbindelse
-      status: Status
       title: Videresendelser
     report_notes:
       created_msg: Anmeldelse note blev oprettet!
@@ -324,7 +315,6 @@ da:
       reported_by: Anmeldt af
       resolved: Løst
       resolved_msg: Anmeldelse er sat til at være løst!
-      status: Status
       title: Anmeldelser
       unassign: Utildel
       unresolved: Uløst
@@ -410,7 +400,6 @@ da:
     tags:
       accounts: Kontoer
       hidden: Skjult
-    title: Administration
   admin_mailer:
     new_report:
       body: "%{reporter} har anmeldt %{target}"
@@ -418,7 +407,6 @@ da:
       subject: Ny anmeldelse for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ændre email præferencer
-    salutation: "%{name},"
     settings: 'Ændre email præferencer: %{link}'
     view: 'Se:'
     view_profile: Se profil
@@ -444,9 +432,6 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
     or_log_in_with: Eller log in med
-    providers:
-      cas: CAS
-      saml: SAML
     register: Opret dig
     resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
@@ -470,13 +455,9 @@ da:
       about_x_years: "%{count}år"
       almost_x_years: "%{count}år"
       half_a_minute: Lige nu
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Lige nu
       over_x_years: "%{count}år"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}md"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Godt forsøg, hackere! Forkert kodeord
     confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
@@ -506,7 +487,6 @@ da:
       request: Anmod om dit arkiv
       size: Størrelse
     blocks: Du blokerer
-    csv: CSV
     follows: Du følger
     mutes: Du dæmper
     storage: Medie lager
@@ -619,14 +599,9 @@ da:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: mia.
           million: mio.
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: "\n"
   pagination:
     newer: Nyere
     next: Næste
@@ -634,10 +609,7 @@ da:
     prev: Forrige
     truncate: "...&hellip;"
   preferences:
-    languages: Sprog
     other: Andet
-    publishing: Offentligører
-    web: Web
   remote_follow:
     acct: Indtast dit brugernavn@domæne du vil handle fra
     missing_resource: Kunne ikke finde det påkrævede omdirigerings link for din konto
@@ -650,7 +622,6 @@ da:
     unfollowed: Følger ikke længere
   sessions:
     activity: Sidste aktivitet
-    browser: Browser
     browsers:
       alipay: Ali-pay
       blackberry: Blackberry OS
@@ -672,15 +643,11 @@ da:
     current_session: Nuværrende session
     description: "%{browser} på %{platform}"
     explanation: Disse er de web browsere der på nuværende tidspunkt er logget ind på din Mastodon konto.
-    ip: IP
     platforms:
       adobe_air: Adobe air
-      android: Android
       blackberry: Blackberry OS
       chrome_os: Chromeos
       firefox_os: Firefox Os
-      ios: iOS
-      linux: Linux
       mac: Mac.
       other: ukendt platform
       windows: Microsoft windows
@@ -707,9 +674,6 @@ da:
       image:
         one: "%{count} billede"
         other: "%{count} billeder"
-      video:
-        one: "%{count} video"
-        other: "%{count} videoer"
     boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Advarsel om indhold: %{warning}'
     disallowed_hashtags:
@@ -725,7 +689,6 @@ da:
       reblog: Fremhævede trut kan ikke fastgøres
     show_more: Vis mere
     sign_in_to_participate: Log ind for at deltage i samtalen
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Kun-følgere
       private_long: Vis kun til følgere
@@ -744,10 +707,6 @@ da:
     contrast: Mastodon (Høj kontrast)
     default: Mastodont (Mørk)
     mastodon-light: Mastodon (Lys)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Indtast koden der er genereret af din app for at bekræfte
     description_html: Hvis du aktiverer <strong>to-faktor godkendelse</strong>, vil du være nødt til at være i besiddelse af din telefon, der genererer tokens som du skal indtaste, når du logger ind.

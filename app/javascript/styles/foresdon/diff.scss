@@ -24,9 +24,18 @@ body {
 
 .tabs-bar {
   background: none;
+//  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+//  border-radius: $foresdon-primary-border-radius;
 
   &__link {
     border: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    }
   }
 }
 
@@ -317,8 +326,15 @@ body {
   border-radius: $foresdon-primary-border-radius;
 }
 
-.column > .scrollable {
-  background: none;
+.column {
+  & > .scrollable {
+    background: none;
+  }
+
+  & > .keyboard-shortcuts.scrollable {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
 }
 
 .empty-column-indicator,
@@ -594,5 +610,36 @@ body.admin .sidebar-wrapper {
   & > tbody > tr:nth-child(2n+1) > td,
   & > tbody > tr:nth-child(2n+1) > th {
     background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
+
+// compose-panel
+.compose-panel {
+  & .navigation-bar {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+    margin-bottom: $foresdon-margin-bottom;
+  }
+
+  & .compose-form {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+    padding-bottom: 10px;
+    margin-bottom: $foresdon-margin-bottom;
+  }
+
+  & .getting-started__footer {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+    margin-bottom: 10px;
+  }
+}
+
+.navigation-panel {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & hr {
+    border-color: lighten($ui-base-color, 10%);
   }
 }
