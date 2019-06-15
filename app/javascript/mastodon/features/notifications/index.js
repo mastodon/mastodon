@@ -113,18 +113,24 @@ class Notifications extends React.PureComponent {
 
   handleMoveUp = id => {
     const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) - 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, true);
   }
 
   handleMoveDown = id => {
     const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) + 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, false);
   }
 
-  _selectChild (index) {
-    const element = this.column.node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+  _selectChild (index, align_top) {
+    const container = this.column.node;
+    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
 
     if (element) {
+      if (align_top && container.scrollTop > element.offsetTop) {
+        element.scrollIntoView(true);
+      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+        element.scrollIntoView(false);
+      }
       element.focus();
     }
   }

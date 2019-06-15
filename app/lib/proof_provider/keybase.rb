@@ -2,7 +2,7 @@
 
 class ProofProvider::Keybase
   BASE_URL = ENV.fetch('KEYBASE_BASE_URL', 'https://keybase.io')
-  DOMAIN   = ENV.fetch('KEYBASE_DOMAIN', Rails.configuration.x.local_domain)
+  DOMAIN   = ENV.fetch('KEYBASE_DOMAIN', Rails.configuration.x.web_domain)
 
   class Error < StandardError; end
 

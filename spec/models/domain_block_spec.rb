@@ -36,4 +36,35 @@ RSpec.describe DomainBlock, type: :model do
       expect(DomainBlock.blocked?('domain')).to eq false
     end
   end
+
+  describe 'stricter_than?' do
+    it 'returns true if the new block has suspend severity while the old has lower severity' do
+      suspend = DomainBlock.new(domain: 'domain', severity: :suspend)
+      silence = DomainBlock.new(domain: 'domain', severity: :silence)
+      noop = DomainBlock.new(domain: 'domain', severity: :noop)
+      expect(suspend.stricter_than?(silence)).to be true
+      expect(suspend.stricter_than?(noop)).to be true
+    end
+
+    it 'returns false if the new block has lower severity than the old one' do
+      suspend = DomainBlock.new(domain: 'domain', severity: :suspend)
+      silence = DomainBlock.new(domain: 'domain', severity: :silence)
+      noop = DomainBlock.new(domain: 'domain', severity: :noop)
+      expect(silence.stricter_than?(suspend)).to be false
+      expect(noop.stricter_than?(suspend)).to be false
+      expect(noop.stricter_than?(silence)).to be false
+    end
+
+    it 'returns false if the new block does is less strict regarding reports' do
+      older = DomainBlock.new(domain: 'domain', severity: :silence, reject_reports: true)
+      newer = DomainBlock.new(domain: 'domain', severity: :silence, reject_reports: false)
+      expect(newer.stricter_than?(older)).to be false
+    end
+
+    it 'returns false if the new block does is less strict regarding media' do
+      older = DomainBlock.new(domain: 'domain', severity: :silence, reject_media: true)
+      newer = DomainBlock.new(domain: 'domain', severity: :silence, reject_media: false)
+      expect(newer.stricter_than?(older)).to be false
+    end
+  end
 end

@@ -18,7 +18,9 @@ class ReblogService < BaseService
 
     return reblog unless reblog.nil?
 
-    reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: options[:visibility] || account.user&.setting_default_privacy)
+    visibility = options[:visibility] || account.user&.setting_default_privacy
+    visibility = reblogged_status.visibility if reblogged_status.hidden?
+    reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: visibility)
 
     DistributionWorker.perform_async(reblog.id)
     Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)

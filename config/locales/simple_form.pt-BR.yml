@@ -41,6 +41,8 @@ pt-BR:
         name: 'Você pode querer usar um destes:'
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
+      invite_request:
+        text: Isso vai nos ajudar a revisar sua aplicação
       sessions:
         otp: 'Insira o código de autenticação gerado pelo app no seu celular ou use um dos códigos de recuperação:'
       user:
@@ -118,12 +120,15 @@ pt-BR:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que você não segue
         must_be_following_dm: Bloquear mensagens diretas de pessoas que você não segue
+      invite_request:
+        text: Por que você quer se cadastrar?
       notification_emails:
         digest: Mandar e-mails com relatórios
         favourite: Mandar um e-mail quando alguém favoritar suas postagens
         follow: Mandar um e-mail quando alguém te seguir
         follow_request: Mandar um e-maill quando alguém solicitar ser seu seguidor
         mention: Mandar um e-mail quando alguém te mencionar
+        pending_account: Mandar um -mail quando uma nova conta precisar ser revisada
         reblog: Mandar um e-mail quando alguém compartilhar suas postagens
         report: Mandar um e-mail quando uma nova denúncia é submetida
     'no': Não
