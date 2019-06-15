@@ -53,7 +53,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          visibility: status_params[:visibility],
                                          scheduled_at: status_params[:scheduled_at],
                                          application: doorkeeper_token.application,
-                                         poll: status_params[:poll],
+                                         poll: nil, # Just ignore poll params.
                                          idempotency: request.headers['Idempotency-Key'])
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
