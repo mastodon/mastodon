@@ -1,4 +1,3 @@
----
 th:
   about:
     about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ กระจายศูนย์เหมือนอีเมล
@@ -6,6 +5,7 @@ th:
     active_count_after: ที่ใช้งาน
     active_footnote: ผู้ใช้งานรายเดือน (MAU)
     administered_by: 'ดูแลโดย:'
+    api: API
     apps: แอปสำหรับมือถือ
     apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
     browse_directory: เรียกดูไดเรกทอรีโปรไฟล์และกรองตามความสนใจ
@@ -22,11 +22,13 @@ th:
     get_apps: ลองแอปสำหรับมือถือ
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
+    see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
     server_stats: 'สถิติเซิร์ฟเวอร์:'
     source_code: โค้ดต้นฉบับ
     status_count_after:
       other: สถานะ
     status_count_before: ผู้สร้าง
+    terms: เงื่อนไขการให้บริการ
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
@@ -78,7 +80,7 @@ th:
       disable: ปิดใช้งาน
       disable_two_factor_authentication: ปิดใช้งาน 2FA
       disabled: ปิดใช้งานอยู่
-      display_name: ชื่อที่แสดงผล
+      display_name: ชื่อที่แสดง
       domain: โดเมน
       edit: แก้ไข
       email: อีเมล
@@ -92,6 +94,7 @@ th:
       header: ส่วนหัว
       inbox_url: URL กล่องขาเข้า
       invited_by: เชิญโดย
+      ip: IP
       joined: เข้าร่วมเมื่อ
       location:
         all: ทั้งหมด
@@ -206,7 +209,7 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกเงียบบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -221,7 +224,7 @@ th:
         create: เพิ่มโดเมน
     followers:
       back_to_account: กลับไปที่บัญชี
-      title: ผู้ติดตามของ %{acct}
+      title: "ผู้ติดตามของ %{acct}"
     instances:
       by_domain: โดเมน
       moderation:
@@ -280,7 +283,7 @@ th:
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
       registrations:
         closed_message:
-          desc_html: แสดงผลในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
+          desc_html: แสดงในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
           title: ข้อความการปิดการลงทะเบียน
         deletion:
           desc_html: อนุญาตให้ใครก็ตามลบบัญชีของเขา
