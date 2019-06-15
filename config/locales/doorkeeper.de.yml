@@ -31,7 +31,7 @@ de:
         error: Hoppla! Bitte überprüfe das Formular auf mögliche Fehler
       help:
         native_redirect_uri: Benutze %{native_redirect_uri} für lokale Tests
-        redirect_uri: Bitte benutze eine Zeile pro URI
+        redirect_uri: Benutze eine Zeile pro URI
         scopes: Bitte die Befugnisse mit Leerzeichen trennen. Zur Verwendung der Standardwerte freilassen.
       index:
         application: Anwendung
@@ -76,13 +76,13 @@ de:
         title: Deine autorisierten Anwendungen
     errors:
       messages:
-        access_denied: Der »resource owner« oder der Autorisierungs-Server hat die Anfrage verweigert.
+        access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
         credential_flow_not_configured: Die Prozedur »Resource Owner Password Credentials« schlug fehl, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
         invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request: Die Anfrage enthält ein nicht-unterstütztes Argument, ein Parameter fehlt, oder sie ist anderweitig fehlerhaft.
-        invalid_resource_owner: Die angegebenen Zugangsdaten für den Ressourcenbesitzer sind ungültig oder der Ressourcenbesitzer kann nicht gefunden werden
+        invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
           expired: Der Zugriffs-Token ist abgelaufen
