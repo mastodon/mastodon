@@ -34,6 +34,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
+    choices_html: "ทางเลือกของ %{name}:"
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -131,6 +132,7 @@ th:
         success: ส่งอีเมลยืนยันสำเร็จ!
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
+      role: สิทธิอนุญาต
       roles:
         admin: ผู้ดูแล
         moderator: ผู้ควบคุม
@@ -163,6 +165,7 @@ th:
       disable: ปิดใช้งาน
       emoji: อีโมจิ
       enable: เปิดใช้งาน
+      image_hint: PNG สูงสุด 50KB
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
       overwrite: เขียนทับ
@@ -178,6 +181,7 @@ th:
       feature_invites: ลิงก์เชิญ
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
       feature_registrations: การลงทะเบียน
+      feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
       open_reports: รายงานที่เปิด
       recent_users: ผู้ใช้ล่าสุด
@@ -406,7 +410,7 @@ th:
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
   errors:
-    '403': คุณไม่มีสิทธิดูหน้านี้
+    '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
     '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
     '422':
