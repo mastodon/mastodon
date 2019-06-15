@@ -30,6 +30,11 @@ const emojify = (str, customEmojis = {}) => {
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
           replacement = `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${filename}" />`;
+          if (shortname[1] === '@') {
+            const matches = shortname.match(/:(@.+?)(@(.+))?:/);
+            const account_url = matches[3] ? `https://${matches[3]}/${matches[1]}` : `/${matches[1]}`;
+            replacement = `<a href="${account_url}">${replacement}</a>`;
+          }
           return true;
         }
         return false;
