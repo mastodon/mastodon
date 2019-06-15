@@ -1,4 +1,3 @@
----
 cy:
   devise:
     confirmations:
@@ -8,10 +7,11 @@ cy:
     failure:
       already_authenticated: Yr ydych wedi mewngofnodi yn barod.
       inactive: Nid yw eich cyfrif yn weithredol eto.
-      invalid: "%{authentication_keys} neu gyfrinair annilys."
+      invalid: '%{authentication_keys} neu gyfrinair annilys.'
       last_attempt: Mae gennych un cyfle arall cyn i'ch cyfrif gael ei gloi.
       locked: Mae eich cyfrif wedi ei gloi.
-      not_found_in_database: "%{authentication_keys} neu gyfrinair annilys."
+      not_found_in_database: '%{authentication_keys} neu gyfrinair annilys.'
+      pending: Mae eich cyfrif dal o dan adolygiad.
       timeout: Mae eich sesiwn wedi dod i ben. Mewngofnodwch eto i barhau.
       unauthenticated: Mae angen i chi fewngofnodi neu gofrestru cyn parhau.
       unconfirmed: Mae rhaid i chi gadarnhau eich cyfeiriad e-bost cyn parhau.
@@ -20,6 +20,7 @@ cy:
         action: Gwiriwch eich cyfeiriad e-bost
         action_with_app: Cadarnhau a dychwelyd i %{app}
         explanation: Yr ydych wedi creu cyfrif ar %{host} gyda'r cyfrif e-bost hwn. Dim ond un clic sydd angen i'w wneud yn weithredol. Os nad chi oedd hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda.
+        explanation_when_pending: Rydych wedi gwneud cais am wahoddiad i %{host} gyda'r ebost hyn. Unwaith rydych wedi cadarnhau eich ebost, byddem yn adolygu eich cais. Ni fyddwch yn gallu mewngofnodi tan yr amser hono. Os caiff eich cais ei wrthod, felly nid oes angen unrhyw gweithred pellach o chi. Os nad oeddech wedi gwneud y cais hyn, anwybyddu'r ebost hon, os gwelwch yn dda.
         extra_html: Gwnewch yn siŵr i edrych ar <a href="%{terms_path}">reolau'r achos</a> a <a href="%{policy_path}">ein telerau gwasanaeth</a>.
         subject: 'Mastodon: Canllawiau cadarnhau i %{instance}'
         title: Gwirio cyfeiriad e-bost
@@ -79,9 +80,9 @@ cy:
       not_found: heb ei ganfod
       not_locked: heb ei gloi
       not_saved:
-        few: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        many: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        zero: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
         one: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd 1 gwall:'
-        other: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        two: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        zero: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        two: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
+        few: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
+        many: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
+        other: "Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:"
