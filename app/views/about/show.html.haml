@@ -8,8 +8,8 @@
 .landing
   .landing__brand
     = link_to root_url, class: 'brand' do
-      = image_pack_tag 'logo_full.svg', alt: 'iMastodon'
-      %span.brand__tagline=t 'about.tagline'
+      = image_pack_tag 'logo_full.svg', alt: 'iMastodon', height: 52
+      // %span.brand__tagline=t 'about.tagline'
 
   .landing__grid
     .landing__grid__column.landing__grid__column-registration
