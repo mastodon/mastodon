@@ -2,6 +2,12 @@
   margin-top: 16px;
   font-size: 14px;
 
+  ul,
+  .e-content & ul {
+    margin: 0;
+    list-style: none;
+  }
+
   li {
     margin-bottom: 10px;
     position: relative;
