@@ -383,6 +383,7 @@ th:
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
     follow: ติดตาม
+    follow_request: 'คุณได้ส่งคำขอติดตามไปยัง:'
     following: 'สำเร็จ! คุณกำลังติดตาม:'
     post_follow:
       return: แสดงโปรไฟล์ของผู้ใช้
@@ -525,6 +526,7 @@ th:
     next: ถัดไป
     older: เก่ากว่า
     prev: ก่อนหน้า
+    truncate: "&hellip;"
   preferences:
     public_timelines: เส้นเวลาสาธารณะ
   relationships:
@@ -556,6 +558,9 @@ th:
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
     ip: IP
     revoke: เพิกถอน
   settings:
