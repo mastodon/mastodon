@@ -1,6 +1,17 @@
----
 sl:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Ime programa
+        redirect_uri: Preusmeritev URI
+        scopes: Obsegi
+        website: Spletišče programa
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ne more vsebovati fragmenta.
+              invalid_uri: mora biti veljaven URI.
+              relative_uri: mora biti absolutni URI.
+              secured_uri: mora biti HTTPS/SSL URI.
