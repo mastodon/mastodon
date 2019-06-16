@@ -297,6 +297,11 @@ sk:
         silence: stíšené
         suspend: vylúčené
       show:
+        affected_accounts:
+          one: '%{count} účet v databázi ovplyvnený'
+          few: "%{count} účtov v databázi ovplyvnených"
+          many: "%{count} účtov v databázi ovplyvnených"
+          other: "%{count} účty v databázi ovplyvnené"
         retroactive:
           silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
           suspend: Zruš suspendáciu všetkých momentálne ovplyvnených účtov z tejto domény
@@ -319,6 +324,11 @@ sk:
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
+      known_accounts:
+        one: "%{count} známy účet"
+        few: "%{count} známych účtov"
+        many: "%{count} známych účtov"
+        other: "%{count} známe účty"
       moderation:
         all: Všetky
         limited: Obmedzené
@@ -580,6 +590,11 @@ sk:
     explanation: Pátraj po užívateľoch podľa ich záujmov
     explore_mastodon: Prebádaj %{title}
     how_to_enable: Momentálne niesi zaradený/á do verejnej profilovej databázy. Prihlásiť sa môžeš nižšie. Použi haštagy vo svojom biografickom popise na profile, ak chceš byť uvedený/á aj pod konkrétnými haštagmi!
+    people:
+      one: "%{count} človek"
+      few: "%{count} ľudí"
+      many: "%{count} ľudí"
+      other: "%{count} ľudia"
   errors:
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
     '404': Stránka ktorú hľadáš nieje tu.
