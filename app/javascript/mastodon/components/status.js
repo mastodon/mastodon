@@ -23,7 +23,7 @@ import Bundle from '../features/ui/components/bundle';
 
 const iconList = [
   { key: 'public', value: 'globe' },
-  { key: 'unlisted', value: 'unlock-alt' },
+  { key: 'unlisted', value: 'unlock' },
   { key: 'private', value: 'lock' },
   { key: 'direct', value: 'envelope' },
 ];

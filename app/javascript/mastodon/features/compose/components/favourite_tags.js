@@ -14,7 +14,7 @@ const messages = defineMessages({
 
 const icons = [
   { key: 'public', icon: 'globe' },
-  { key: 'unlisted', icon: 'unlock-alt' },
+  { key: 'unlisted', icon: 'unlock' },
   { key: 'private', icon: 'lock' },
 ];
 
