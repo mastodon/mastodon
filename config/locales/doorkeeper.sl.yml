@@ -15,3 +15,60 @@ sl:
               invalid_uri: mora biti veljaven URI.
               relative_uri: mora biti absolutni URI.
               secured_uri: mora biti HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Overi
+        cancel: Prekliči
+        destroy: Uniči
+        edit: Uredi
+        submit: Pošlji
+      confirmations:
+        destroy: Ali ste prepričani?
+      edit:
+        title: Uredi aplikacijo
+      form:
+        error: Ups! Preverite obrazec za morebitne napake
+      help:
+        native_redirect_uri: Uporabite %{native_redirect_uri} za krajevne preizkuse
+        redirect_uri: Uporabite eno vrstico na URI
+        scopes: Ločite obsege s presledki. Pustite prazno, da uporabite privzete obsege.
+      index:
+        application: Program
+        callback_url: Povratni URL
+        delete: Izbriši
+        name: Ime
+        new: Nov program
+        scopes: Obsegi
+        show: Pokaži
+        title: Vaši programi
+      new:
+        title: Nov program
+      show:
+        actions: Dejanja
+        application_id: Ključ odjemalca
+        callback_urls: Povratni URL-ji
+        scopes: Obsegi
+        secret: Skrivnost odjemalca
+        title: 'Program: %{name}'
+    authorizations:
+      buttons:
+        authorize: Overi
+        deny: Zavrni
+      error:
+        title: Prišlo je do napake
+      new:
+        able_to: To bo lahko
+        prompt: Program %{client_name} zahteva dostop do vašega računa
+        title: Potrebna je pooblastitev
+      show:
+        title: Kopirajte to pooblastilno kodo in jo prilepite v program.
+    authorized_applications:
+      buttons:
+        revoke: Prekliči
+      confirmations:
+        revoke: Ali ste prepričani?
+      index:
+        application: Program
+        created_at: Odobreno
+        date_format: "%Y-%m-%d %H:%M:%S"
