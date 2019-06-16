@@ -36,6 +36,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
+
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/catgram
     restart: always
     env_file: .env.production
@@ -50,6 +54,7 @@ services:
     depends_on:
       - db
       - redis
+      - prometheus_exporter
 #      - es
     volumes:
       - ./public/system:/mastodon/public/system
@@ -89,6 +94,15 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+
+
+  prometheus_exporter:
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/prometheus_exporter:latest
+    ports:
+      - "9394:9394"
+    networks:
+      - external_network
+
 ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true

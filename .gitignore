@@ -25,6 +25,7 @@ public/google*
 public/sitemap.xml
 .env
 .env.production
+.env.development
 node_modules/
 build/
 
@@ -38,6 +39,7 @@ config/deploy/*
 .vscode/
 .idea/
 *.code-workspace
+.vscode-server/
 
 # Ignore postgres + redis + elasticsearch volume optionally created by docker-compose
 postgres

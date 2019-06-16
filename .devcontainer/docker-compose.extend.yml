@@ -1,0 +1,15 @@
+version: "3"
+services:
+  web:
+    image: catgram-dev
+    build:
+      args:
+        BUNDLE_WITHOUT: ""
+        RAILS_ENV: development
+        NODE_ENV: development
+
+    env_file: .env.development
+    environment:
+      HOME: "/mastodon"
+      RAILS_ENV: development
+      NODE_ENV: development
