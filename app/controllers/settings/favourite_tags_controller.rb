@@ -1,4 +1,4 @@
-class Settings::FavouriteTagsController < ApplicationController
+class Settings::FavouriteTagsController < Settings::BaseController
   layout 'admin'
   before_action :authenticate_user!
   before_action :set_account
