@@ -162,9 +162,12 @@ th:
       copy: คัดลอก
       created_msg: สร้างอีโมจิสำเร็จ!
       delete: ลบ
+      destroyed_msg: ทำลายอีโมโจสำเร็จ!
       disable: ปิดใช้งาน
+      disabled_msg: ปิดใช้งานอีโมจินั้นสำเร็จ
       emoji: อีโมจิ
       enable: เปิดใช้งาน
+      enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
       image_hint: PNG สูงสุด 50KB
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
@@ -354,6 +357,7 @@ th:
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
   appearance:
+    animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
@@ -501,6 +505,7 @@ th:
       mention: "%{name} ได้กล่าวถึงคุณใน:"
       new_followers_summary:
         other: You have gotten %{count} new followers! Amazing!
+      title: เมื่อคุณไม่อยู่...
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
       subject: "%{name} ได้ชื่นชอบสถานะของคุณ"
@@ -530,9 +535,11 @@ th:
     prev: ก่อนหน้า
     truncate: "&hellip;"
   preferences:
+    posting_defaults: ค่าเริ่มต้นการโพสต์
     public_timelines: เส้นเวลาสาธารณะ
   relationships:
     activity: กิจกรรมบัญชี
+    last_active: ใช้งานล่าสุด
     relationship: ความสัมพันธ์
     remove_selected_domains: เอาผู้ติดตามทั้งหมดออกจากโดเมนที่เลือก
     remove_selected_followers: เอาผู้ติดตามที่เลือกออก
@@ -577,6 +584,7 @@ th:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+    current_session: เซสชันปัจจุบัน
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -591,6 +599,8 @@ th:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: เพิกถอน
+    revoke_success: เพิกถอนเซสชันสำเร็จ
+    title: เซสชัน
   settings:
     account: บัญชี
     account_settings: การตั้งค่าบัญชี
