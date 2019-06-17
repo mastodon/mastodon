@@ -7734,6 +7734,11 @@ prelude-ls@~1.1.2:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
   integrity sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
 
+prettier@^1.17.0:
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
+  integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
+
 pretty-format@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-24.8.0.tgz#8dae7044f58db7cb8be245383b565a963e3c27f2"
@@ -10010,10 +10015,10 @@ webpack-bundle-analyzer@^3.3.2:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-cli@^3.3.2:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.2.tgz#aed2437b0db0a7faa2ad28484e166a5360014a91"
-  integrity sha512-FLkobnaJJ+03j5eplxlI0TUxhGCOdfewspIGuvDVtpOlrAuKMFC57K42Ukxqs1tn8947/PM6tP95gQc0DCzRYA==
+webpack-cli@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.4.tgz#de27e281c48a897b8c219cb093e261d5f6afe44a"
+  integrity sha512-ubJGQEKMtBSpT+LiL5hXvn2GIOWiRWItR1DGUqJRhwRBeGhpRXjvF5f0erqdRJLErkfqS5/Ldkkedh4AL5Q1ZQ==
   dependencies:
     chalk "^2.4.1"
     cross-spawn "^6.0.5"
@@ -10023,6 +10028,7 @@ webpack-cli@^3.3.2:
     import-local "^2.0.0"
     interpret "^1.1.0"
     loader-utils "^1.1.0"
+    prettier "^1.17.0"
     supports-color "^5.5.0"
     v8-compile-cache "^2.0.2"
     yargs "^12.0.5"
