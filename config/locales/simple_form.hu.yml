@@ -1,9 +1,18 @@
----
 hu:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Használhatod a tülkökben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
+      admin_account_action:
+        send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
+        text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
+        type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
+        warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
       defaults:
-        avatar: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
+        autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
+        avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        bot: Ez a fiók automatikus műveleteket végez és valószínűleg nem figyeljük
+        context: Kontextusok, ahol a szűrőnek működnie kell
         digest: Csak hosszú távollét esetén küldve és csak ha személyes üzenetet kaptál távollétedben
         header: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
         locked: Egyenként engedélyezned kell a követőidet
@@ -11,7 +20,7 @@ hu:
       imports:
         data: Egy másik Mastodon szerverről exportált CSV fájl
       sessions:
-        otp: Add meg a Második-faktor kódodat a telefonodról vagy használd az egyik tartalék bejelentkező kódodat.
+        otp: 'Add meg a Második-faktor kódodat a telefonodról vagy használd az egyik tartalék bejelentkező kódodat.'
     labels:
       defaults:
         avatar: Profilkép
@@ -54,7 +63,7 @@ hu:
         follow_request: E-mail küldése amikor valaki követni szeretne téged
         mention: E-mail küldése amikor valaki megemlít téged
         reblog: E-mail küldése amikor valaki reblogolja az állapotod
-    'no': Nem
+    'no': 'Nem'
     required:
       text: kötelező
-    'yes': Igen
+    'yes': 'Igen'
