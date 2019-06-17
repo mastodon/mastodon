@@ -13,10 +13,27 @@ hu:
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
         bot: Ez a fiók automatikus műveleteket végez és valószínűleg nem figyeljük
         context: Kontextusok, ahol a szűrőnek működnie kell
-        digest: Csak hosszú távollét esetén küldve és csak ha személyes üzenetet kaptál távollétedben
-        header: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
+        digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
+        discoverable_html: A <a href="%{path}" target="_blank">profilok</a> adatbázisa lehetővé teszi, hogy embereket közös érdeklődés vagy tevékenység alapján találj meg. Legalább %{min_followers} követőre van szükség az adatbázisba való bekerüléshez
+        email: Kapsz egy megerősítő e-mailt
+        fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
+        header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
+        irreversible: A kiszűrt tülkök visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
+        locale: A felhasználói felület, e-mailek, push üzenetek nyelve
         locked: Egyenként engedélyezned kell a követőidet
-        setting_noindex: A publikus profilodra és státusz oldalra vonatkozik
+        password: Legalább 8 karakter
+        phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalom-figyelmeztetések mögött is
+        scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
+        setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan tülkökhöz, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
+        setting_default_sensitive: A szenzitív médiát alapesetben elrejtjük, de egyetlen kattintással előhozható
+        setting_display_media_default: Szenzitív tartalomként jelölt média elrejtése
+        setting_display_media_hide_all: Mindig minden média elrejtése
+        setting_display_media_show_all: Mindig mutasd a szenzitív tartalomként jelölt médiát
+        setting_hide_network: Nem látszik majd a profilodon, kik követnek és te kiket követsz
+        setting_noindex: A nyilvános profilodra és a tülkjeidre vonatkozik
+        setting_show_application: A tülkök részletes nézetében látszani fog, milyen alkalmazást használtál a tülköléshez
+        username: A felhasználói neved egyedi lesz a %{domain} domainen
       imports:
         data: Egy másik Mastodon szerverről exportált CSV fájl
       sessions:
