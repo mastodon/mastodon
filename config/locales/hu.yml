@@ -405,8 +405,14 @@ hu:
         desc_html: Több oldalon is látszik. Legalább 293×205px méret javasolt. Ha nincs beállítva, az alapértelmezett kabalát használjuk
         title: Kabala kép
       peers_api_enabled:
-        desc_html: Domainek, amelyekkel ez az instancia kapcsolatban áll
-        title: Instanciák listájának közzététele, melyekkel ez a szerver kapcsolatban áll
+        desc_html: Domainek, amelyekkel ez a szerver kapcsolatban áll
+        title: Szerverek listájának közzététele, melyekkel ez a szerver kapcsolatban áll
+      preview_sensitive_media:
+        desc_html: Más weboldalakon linkelt tartalmaink előnézetében mindenképp benne lesz egy bélyegkép még akkor is, ha a médiát szenzitívnek jelölték meg
+        title: Szenzitív média mutatása OpenGraph előnézetben
+      profile_directory:
+        desc_html: Lehetővé teszi, hogy a felhasználóinkat megtalálják
+        title: Profil adatbázis engedélyezése
       registrations:
         closed_message:
           desc_html: Ez az üzenet jelenik meg a főoldalon, ha a regisztráció nem engedélyezett. HTML-tageket is használhatsz
@@ -415,34 +421,46 @@ hu:
           desc_html: Engedélyezed a felhasználóknak, hogy töröljék fiókjukat
           title: Fiók törlésének engedélyezése
         min_invite_role:
-          disabled: Senkinek
+          disabled: Senki
           title: Meghívások engedélyezése
+      registrations_mode:
+        modes:
+          approved: A regisztráció engedélyhez kötött
+          none: Senki sem regisztrálhat
+          open: Bárki regisztrálhat
+        title: Regisztrációs mód
+      show_known_fediverse_at_about_page:
+        desc_html: Ha aktív, az előnézetben minden tülk megjelenik a velünk kapcsolatban álló szerverekről, egyébként csak helyi tülköket mutatunk.
+        title: Mutassuk az általunk ismert föderációt az idővonal előnézetben
       show_staff_badge:
         desc_html: Stáb-jelvény megjelenítése a felhasználó oldalán
         title: Stáb-jelvény megjelenítése
       site_description:
-        desc_html: 'Rövid bemutatkozás a főoldalon és a meta fejlécekben. Az alábbi HTML-tageket használhatod: <code>&lt;a&gt;</code> és <code>&lt;em&gt;</code>.'
-        title: Az instancia bemutatása
+        desc_html: Rövid bemutatkozás a főoldalon és a meta fejlécekben. Írd le, mi teszi ezt a szervert különlegessé! Használhatod a <code>&lt;a&gt;</code> és <code>&lt;em&gt;</code> HTML tageket.
+        title: A szerver bemutatása
       site_description_extended:
-        desc_html: Ide teheted például a közösségi és egyéb szabályzatot, útmutatókat és mindent, ami egyedivé teszi instanciádat. HTML-tageket is használhatsz
+        desc_html: Ide teheted például a közösségi és egyéb szabályzatot, útmutatókat és mindent, ami egyedivé teszi szerveredet. HTML-tageket is használhatsz
         title: További egyedi információ
+      site_short_description:
+        desc_html: Oldalsávban és meta tag-ekben jelenik meg. Írd le, mi teszi ezt a szervert különlegessé egyetlen bekezdésben.
+        title: Rövid leírás
       site_terms:
         desc_html: Megírhatod saját adatkezelési szabályzatodat, felhasználási feltételeidet vagy más hasonló jellegű dokumentumodat. HTML-tageket is használhatsz
         title: Egyedi felhasználási feltételek
-      site_title: Az instancia neve
+      site_title: A szerver neve
       thumbnail:
-        desc_html: Az OpenGraph és API előnézetekhez használjuk. Ajánlott mérete 1200x560 pixel
-        title: Az instancia bélyegképe
+        desc_html: OpenGraph-os és API-s előnézetekben használjuk. Ajánlott mérete 1200x630 pixel
+        title: A szerver bélyegképe
       timeline_preview:
-        desc_html: Publikus időfolyam megjelenítése a főoldalon
-        title: Időfolyam előnézete
-      title: Oldal beállításai
+        desc_html: Nyilvános idővonal megjelenítése a főoldalon
+        title: Idővonal előnézete
+      title: Webhely beállításai
     statuses:
       back_to_account: Vissza a fiók oldalára
       batch:
         delete: Törlés
-        nsfw_off: Szenzitív tartalom kikapcsolva
-        nsfw_on: Szenzitív tartalom bekapcsolva
+        nsfw_off: Szenzitív megjelölés törlése
+        nsfw_on: Megjelölés szenzitív tartalomként
       failed_to_execute: Végrehajtás sikertelen
       media:
         title: Média
