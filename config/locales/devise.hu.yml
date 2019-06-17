@@ -51,17 +51,18 @@ hu:
       failure: Sikertelen hitelesítés %{kind} fiókról, mert "%{reason}".
       success: Sikeres hitelesítés %{kind} fiókról.
     passwords:
-      no_token: Nem férhetsz hozzá az oldalhoz jelszó visszaállító e-mail nélkül. Ha egy jelszó visszaállító e-mail hozott ide, ellenőrizd, hogy a megadott teljes URL-t használd.
-      send_instructions: Pár percen belül kapni fogsz egy e-mailt arról, hogy hogyan tudod visszaállítani a jelszavadat.
-      send_paranoid_instructions: Ha létezik az e-mail cím, pár percen belül kapni fogsz egy e-mailt arról, hogy hogyan tudod visszaállítani a jelszavadat.
+      no_token: Nem férhetsz hozzá ehhez az oldalhoz jelszó visszaállító e-mail nélkül. Ha egy jelszó visszaállító e-mail hozott ide, ellenőrizd, hogy a megadott teljes URL-t használd.
+      send_instructions: Pár percen belül kapni fogsz egy e-mailt arról, hogy hogyan tudod visszaállítani a jelszavadat. Kérlek ellenőrizd a levélszemét mappádat, ha nem kaptál ilyen e-mailt.
+      send_paranoid_instructions: Ha létezik az e-mail cím, pár percen belül kapni fogsz egy e-mailt arról, hogy hogyan tudod visszaállítani a jelszavadat. Kérlek ellenőrizd a levélszemét mappádat, ha nem kaptál ilyen e-mailt.
       updated: Jelszavad sikeresen frissült. Bejelentkeztél.
-      updated_not_active: Jelszavad sikeresen meg lett változtatva.
+      updated_not_active: Jelszavad sikeresen megváltoztattuk.
     registrations:
-      destroyed: Viszlát! A fiókod sikeresen törölve. Reméljük hamarosan viszontláthatunk.
+      destroyed: Viszlát! A fiókodat sikeresen töröltük. Reméljük hamarosan viszontláthatunk.
       signed_up: Üdvözlünk! Sikeresen regisztráltál.
-      signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod még nem lett aktiválva.
-      signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le lett zárva.
-      signed_up_but_unconfirmed: Egy üzenet a megerősítési linkkel kiküldésre került az e-mail címedre. Kérjük használd a linket a fiókod aktiválásához.
+      signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókodat még nem aktiválták.
+      signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le van zárva.
+      signed_up_but_pending: Egy üzenetet a megerősítési linkkel kiküldtünk az e-mail címedre. Ha kattintasz a linkre, átnézzük a kérelmedet. Értesítünk, ha jóváhagytuk.
+      signed_up_but_unconfirmed: Egy üzenetet a megerősítési linkkel kiküldtünk az e-mail címedre. Kérjük használd a linket a fiókod aktiválásához.
       update_needs_confirmation: Sikeresen frissítetted a fiókodat, de szükségünk van az e-mail címed megerősítésére. Kérlek ellenőrizd az e-mailedet és kövesd a levélben szereplő megerősítési linket az e-mail címed megerősítéséhez.
       updated: Fiókod frissítése sikeres.
     sessions:
