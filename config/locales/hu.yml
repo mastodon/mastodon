@@ -278,9 +278,16 @@ hu:
           noop: Egyik sem
           silence: Némítás
           suspend: Felfüggesztés
-        title: Új domain-tiltás
+        title: Új domain tiltása
       reject_media: Médiafájlok elutasítása
       reject_media_hint: Eltávolítja a helyben tárolt médiafájlokat és a továbbiakban letiltja az új médiafájlok letöltését. Felfüggesztett fiókok esetében irreleváns opció
+      reject_reports: Bejelentések elutasítása
+      reject_reports_hint: Erről a domainről származó minden bejelentés elutasítása. Felfüggesztett fiókok esetén irreleváns opció
+      rejecting_media: médiafájlok elutasítása
+      rejecting_reports: bejelentések elutasítása
+      severity:
+        silence: némítva
+        suspend: felfüggesztve
       show:
         affected_accounts:
           one: Összesen egy fiók érintett az adatbázisban
@@ -290,48 +297,113 @@ hu:
           suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
         title: '%{domain} domain tiltásának feloldása'
         undo: Visszavonás
-      undo: Visszavonás
+      undo: Domain tiltásának visszavonása
     email_domain_blocks:
       add_new: Új hozzáadása
       created_msg: E-mail domain sikeresen hozzáadva a feketelistához
       delete: Törlés
       destroyed_msg: E-mail domain sikeresen eltávolítva a feketelistáról
+      domain: Domain
       new:
         create: Domain hozzáadása
         title: Új e-mail feketelista bejegyzés
       title: E-mail feketelista
+    followers:
+      back_to_account: Vissza a fiókhoz
+      title: "%{acct} követői"
     instances:
-      title: Nyilvántartott instanciák
+      by_domain: Domain
+      delivery_available: Kézbesítés elérhető
+      known_accounts:
+        one: "%{count} ismert fiók"
+        other: "%{count} ismert fiók"
+      moderation:
+        all: Mind
+        limited: Korlátozott
+        title: Moderáció
+      title: Föderáció
+      total_blocked_by_us: Általunk letiltott
+      total_followed_by_them: Általuk követett
+      total_followed_by_us: Általunk követett
+      total_reported: Bejelentés róluk
+      total_storage: Média csatolmány
     invites:
+      deactivate_all: Összes deaktiválása
       filter:
         all: Összes
         available: Elérhető
         expired: Elévült
         title: Szűrő
       title: Meghívások
+    pending_accounts:
+      title: Függőben lévő fiókok (%{count})
+    relays:
+      add_new: Új relé hozzáadása
+      delete: Törlés
+      description_html: A <strong>föderációs relé</strong> egy olyan köztes szerver, mely nagy mennyiségű publikus tülköt cserél az erre feliratkozó vagy publikáló szerverek között. <strong>Ezzel segíthet kis és közepes szervereknek tartalmat megtalálni a föderációban</strong>, mely egyébként csak akkor válna lehetővé, ha a saját felhasználóink más szervereken lévő fiókokat követnének.
+      disable: Kikapcsolás
+      disabled: Kikapcsolva
+      enable: Bekapcsolás
+      enable_hint: Ha bekapcsolod, a szerver minden nyilvános tülkre feliratkozik ezen a relén, valamint az összes nyilvános tülköt elküldi ennek.
+      enabled: Bekapcsolva
+      inbox_url: Relé URL
+      pending: Várakozás a relé jóváhagyására
+      save_and_enable: Mentés és engedélyezés
+      setup: Relé kapcsolat felállítása
+      status: Állapot
+      title: Relék
+    report_notes:
+      created_msg: Bejelentési feljegyzés létrehozva!
+      destroyed_msg: Bejelentési feljegyzés törölve!
     reports:
+      account:
+        note: feljegyzés
+        report: bejelentés
       action_taken_by: 'Kezelte:'
       are_you_sure: Biztos vagy benne?
+      assign_to_self: Magamhoz rendelés
+      assigned: Hozzárendelt moderátor
       comment:
         none: Egyik sem
+      created_at: Jelentve
       mark_as_resolved: Megjelölés megoldottként
+      mark_as_unresolved: Megjelölés megoldatlanként
+      notes:
+        create: Feljegyzés hozzáadása
+        create_and_resolve: Megoldás feljegyzéssel
+        create_and_unresolve: Újranyitás feljegyzéssel
+        delete: Törlés
+        placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
+      reopen: Bejelentés újranyitása
       report: '#%{id} számú jelentés'
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
       resolved: Megoldott
+      resolved_msg: A bejelentést sikeresen megoldottuk!
       status: Állapot
-      title: Jelentések
+      title: Bejelentések
+      unassign: Hozzárendelés törlése
       unresolved: Megoldatlan
+      updated_at: Frissítve
     settings:
       activity_api_enabled:
         desc_html: Helyi tülkök, aktív felhasználók és új regisztrációk száma heti bontásban
         title: Felhasználói aktivitás összesített statisztikájának publikussá tétele
       bootstrap_timeline_accounts:
-        desc_html: Az egyes felhasználónevek vesszővel elválasztva. Csak helyi és aktivált fiókok esetében működik. Üresen (alapértelmezettként) minden helyi adminisztrátorra érvényes.
+        desc_html: Az egyes felhasználóneveket vesszővel válaszd el! Csak helyi és aktivált fiókok esetében működik. Üresen (alapértelmezettként) minden helyi adminisztrátorra érvényes.
         title: Alapértelmezett követések új felhasználók esetében
       contact_information:
         email: Kapcsolattartói e-mail cím
         username: Kapcsolattartó felhasználóneve
+      custom_css:
+        desc_html: Változtasd meg a kinézetet ebben a CSS-ben, mely minden oldalon be fog töltődni
+        title: Egyedi CSS
+      hero:
+        desc_html: A kezdőoldalon látszik. Legalább 600x100px méret javasolt. Ha nincs beállítva, a szerver bélyegképet használjuk
+        title: Hősi kép
+      mascot:
+        desc_html: Több oldalon is látszik. Legalább 293×205px méret javasolt. Ha nincs beállítva, az alapértelmezett kabalát használjuk
+        title: Kabala kép
       peers_api_enabled:
         desc_html: Domainek, amelyekkel ez az instancia kapcsolatban áll
         title: Instanciák listájának közzététele, melyekkel ez a szerver kapcsolatban áll
