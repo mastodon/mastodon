@@ -61,33 +61,51 @@ hu:
       one: Tülk
       other: Tülk
     posts_tab_heading: Tülkölés
-    posts_with_replies: Tülkök és válaszok
-    reserved_username: Ez egy már lefoglalt felhasználónév
+    posts_with_replies: Tülkölés válaszokkal
+    reserved_username: Ez már foglalt felhasználónév
     roles:
       admin: Adminisztrátor
+      bot: Bot
       moderator: Moderátor
-    unfollow: Követés abbahagyása
+    unavailable: Nincs ilyen profil
+    unfollow: Követés vége
   admin:
+    account_actions:
+      action: Művelet végrehajtása
+      title: '%{acct} moderálása'
     account_moderation_notes:
-      create: Új bejegyzés
+      create: Új moderációs bejegyzés
       created_msg: Moderációs bejegyzés létrehozva!
       delete: Törlés
       destroyed_msg: Moderációs bejegyzés törölve!
     accounts:
+      approve: Jóváhagyás
+      approve_all: Mindet jóváhagy
       are_you_sure: Biztos vagy benne?
+      avatar: Profilkép
+      by_domain: Domain
+      change_email:
+        changed_msg: A fiókhoz tartozó e-mailt megváltoztattuk!
+        current_email: Jelenlegi e-mail
+        label: E-mail megváltoztatása
+        new_email: Új e-mail
+        submit: E-mail megváltoztatása
+        title: '%{username} felhasználó e-mail változás'
       confirm: Megerősítés
       confirmed: Megerősítve
-      confirming: Megerősítve
+      confirming: Megerősítés alatt
+      deleted: Törölve
       demote: Lefokozás
       disable: Kikapcsolás
       disable_two_factor_authentication: Kétlépcsős azonosítás kikapcsolása
       disabled: Kikapcsolva
       display_name: Megjelenített név
+      domain: Domain
       edit: Szerkesztés
       email: E-mail
       email_status: E-mail állapot
-      enable: Engedélyezés
-      enabled: Engedélyezve
+      enable: Bekapcsolás
+      enabled: Bekapcsolva
       feed_url: Hírcsatorna URL
       followers: Követők
       followers_url: Követők URL
