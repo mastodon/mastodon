@@ -119,14 +119,20 @@ hu:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
         must_be_following_dm: Nem követettjeidtől érkező üzenetek tiltása
+      invite_request:
+        text: Miért akarsz csatlakozni?
       notification_emails:
         digest: Összevont e-mailek küldése
-        favourite: E-mail küldése amikor valaki kedvencnek jelöli az állapotod
-        follow: E-mail küldése amikor valaki követni kezd téged
-        follow_request: E-mail küldése amikor valaki követni szeretne téged
-        mention: E-mail küldése amikor valaki megemlít téged
-        reblog: E-mail küldése amikor valaki reblogolja az állapotod
+        favourite: E-mail küldése, amikor valaki kedvencnek jelöli a tülködet
+        follow: E-mail küldése, amikor valaki követni kezd téged
+        follow_request: E-mail küldése, amikor valaki követni szeretne téged
+        mention: E-mail küldése, amikor valaki megemlít téged
+        pending_account: E-mail küldése, ha új fiókot kell engedélyezni
+        reblog: E-mail küldése, amikor valaki megtolja a tülködet
+        report: E-mail küldése, ha új bejelentés érkezett
     'no': 'Nem'
+    recommended: Ajánlott
     required:
+      mark: "*"
       text: kötelező
     'yes': 'Igen'
