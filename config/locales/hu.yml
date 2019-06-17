@@ -162,76 +162,117 @@ hu:
         moderator: Moderátor
         staff: Stáb
         user: Felhasználó
+      salmon_url: Salmon URL
       search: Keresés
-      shared_inbox_url: Bejövő üzenetek URL keresése
+      shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
-        created_reports: Ezen fiók által létrehozott jelentések
-        targeted_reports: Jelentések ezzel a fiókkal kapcsolatban
+        created_reports: Létrehozott jelentések
+        targeted_reports: Jelentések ezzel kapcsolatban
       silence: Némítás
+      silenced: Némított
       statuses: Tülkök
       subscribe: Feliratkozás
+      suspended: Felfüggesztett
+      time_in_queue: Várakozás a sorban %{time}
       title: Fiókok
+      unconfirmed_email: Nem megerősített e-mail
       undo_silenced: Némítás visszavonása
       undo_suspension: Felfüggesztés visszavonása
       unsubscribe: Leiratkozás
       username: Felhasználónév
-      web: Weboldal
+      warn: Figyelmeztetés
+      web: Web
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
+        change_email_user: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
         confirm_user: "%{name} megerősítette e-mail címét: %{target}"
-        create_custom_emoji: "%{name} új hangulatjelet töltött fel: %{target}"
+        create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
+        create_custom_emoji: "%{name} új emojit töltött fel: %{target}"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
+        destroy_custom_emoji: "%{name} törölte az emojit: %{target}"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
         destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
         disable_2fa_user: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
-        disable_custom_emoji: "%{name} letiltotta az alábbi hangulatjelet: %{target}"
+        disable_custom_emoji: "%{name} letiltotta az alábbi emojit: %{target}"
         disable_user: "%{name} letiltotta az alábbi felhasználó bejelentkezését: %{target}"
-        enable_custom_emoji: "%{name} engedélyezte az alábbi hangulatjelet: %{target}"
+        enable_custom_emoji: "%{name} engedélyezte az alábbi emojit: %{target}"
         enable_user: "%{name} engedélyezte az alábbi felhasználó bejelentkezését: %{target}"
         memorialize_account: "%{name} emléket állított az alábbi felhasználónak: %{target}"
         promote_user: "%{name} előléptette az alábbi felhasználót: %{target}"
+        remove_avatar_user: "%{name} törölte %{target} profilképét"
+        reopen_report: "%{name} újranyitotta a bejelentést: %{target}"
         reset_password_user: "%{name} visszaállította az alábbi felhasználó jelszavát: %{target}"
-        resolve_report: "%{name} mellőzte az alábbi jelentést: %{target}"
+        resolve_report: "%{name} megoldotta alábbi bejelentést: %{target}"
         silence_account: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account: "%{name} felfüggesztette %{target} felhasználói fiókját"
+        unassigned_report: "%{name} törölte a %{target} bejelentés hozzárendelését"
         unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
-        update_custom_emoji: "%{name} frissítette az alábbi hangulatjelet: %{target}"
+        update_custom_emoji: "%{name} frissítette az alábbi emojit: %{target}"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
+      deleted_status: "(törölt tülk)"
       title: Audit napló
     custom_emojis:
-      copied_msg: Sikeresen létrehoztuk a hangulatjel helyi másolatát
+      by_domain: Domain
+      copied_msg: Sikeresen létrehoztuk az emoji helyi másolatát
       copy: Másolás
-      copy_failed_msg: Hangulatjel helyi másolatának létrehozása sikertelen
-      created_msg: Hangulatjel létrehozva!
+      copy_failed_msg: Emoji helyi másolatának létrehozása sikertelen
+      created_msg: Emoji létrehozva!
       delete: Törlés
-      destroyed_msg: A hangulatjel törlése sikeres!
+      destroyed_msg: Emoji törlése sikeres!
       disable: Letiltás
-      disabled_msg: Hangulatjel letiltva
-      emoji: Hangulatjel
+      disabled_msg: Emoji letiltva
+      emoji: Emoji
       enable: Engedélyezés
-      enabled_msg: Hangulatjel engedélyezve
+      enabled_msg: Emoji engedélyezve
       image_hint: PNG (maximális méret 50KB)
       listed: Listázva
       new:
-        title: Új egyedi hangulatjel hozzáadása
+        title: Új egyedi emoji hozzáadása
       overwrite: Felülírás
+      shortcode: Rövidítés
       shortcode_hint: Legalább két karakter, csak betűk, számok és alsóvonás
-      title: Egyedi hangulatjelek
+      title: Egyedi emojik
       unlisted: Nincs listázva
-      update_failed_msg: Nem sikerült frissíteni a hangulatjelet
-      updated_msg: Hangulatjel sikeresen frissítve!
+      update_failed_msg: Nem sikerült frissíteni az emojit
+      updated_msg: Emoji sikeresen frissítve!
       upload: Feltöltés
+    dashboard:
+      backlog: hátralévő feladatok
+      config: Beállítások
+      feature_deletions: Fióktörlések
+      feature_invites: Meghívó linkek
+      feature_profile_directory: Profil adatbázis
+      feature_registrations: Regisztráció
+      feature_relay: Föderációs relé
+      feature_timeline_preview: Idővonal betekintő
+      features: Funkciók
+      hidden_service: Föderáció rejtett szolgáltatásokkal
+      open_reports: nyitott bejelentések
+      recent_users: Legutóbbi felhasználók
+      search: Keresés teljes szövegben
+      single_user_mode: Egyfelhasználós mód
+      software: Szoftver
+      space: Tárhely használat
+      title: Műszerfal
+      total_users: felhasználó összesen
+      trends: Trendek
+      week_interactions: interakció ezen a héten
+      week_users_active: aktív ezen a héten
+      week_users_new: felhasználó ezen a héten
     domain_blocks:
-      add_new: Új hozzáadása
+      add_new: Új tiltott domain hozzáadása
       created_msg: A domain-tiltás feldolgozása folyamatban
       destroyed_msg: A domain tiltása feloldva
+      domain: Domain
+      existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
       new:
         create: Tiltás létrehozása
-        hint: A domain-tiltás nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
+        hint: A domain tiltása nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
           desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
           noop: Egyik sem
