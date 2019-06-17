@@ -34,24 +34,55 @@ hu:
         setting_noindex: A nyilvános profilodra és a tülkjeidre vonatkozik
         setting_show_application: A tülkök részletes nézetében látszani fog, milyen alkalmazást használtál a tülköléshez
         username: A felhasználói neved egyedi lesz a %{domain} domainen
+        whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
+      featured_tag:
+        name: 'Ezeket esetleg használhatod:'
       imports:
         data: Egy másik Mastodon szerverről exportált CSV fájl
+      invite_request:
+        text: Ez segít nekünk átnézni a jelentkezésedet
       sessions:
-        otp: 'Add meg a Második-faktor kódodat a telefonodról vagy használd az egyik tartalék bejelentkező kódodat.'
+        otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
+      user:
+        chosen_languages: Ha aktív, csak a kiválasztott nyelvű tülkök jelennek majd meg a nyilvános idővonalon
     labels:
+      account:
+        fields:
+          name: Címke
+          value: Tartalom
+      account_warning_preset:
+        text: Figyelmeztető szöveg
+      admin_account_action:
+        send_email_notification: Figyelmeztessük a felhasználót e-mailben
+        text: Egyedi figyelmeztetés
+        type: Művelet
+        types:
+          disable: Letiltás
+          none: Ne csinálj semmit
+          silence: Elnémítás
+          suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
+        warning_preset_id: Figyelmeztetés használata
       defaults:
+        autofollow: Meghívás a fiókod követésére
         avatar: Profilkép
+        bot: Ez a fiók egy bot
+        chosen_languages: Nyelvek szűrése
         confirm_new_password: Új jelszó megerősítése
         confirm_password: Jelszó megerősítése
+        context: Szűrés kontextusai
         current_password: Jelenlegi jelszó
         data: Adatok
+        discoverable: Fiók listázása a profilok adatbázisában
         display_name: Megjelenített név
         email: E-mail cím
         expires_in: Elévül
+        fields: Profil metaadatok
         header: Fejléc
-        locale: Nyelv
-        locked: Zárt felhasználói fiók
-        max_uses: Felhasználhatóság
+        inbox_url: Relé inbox-hoz tartozó URL
+        irreversible: Eldobás elrejtés helyett
+        locale: Felhasználói felület nyelve
+        locked: Felhasználói fiók lezárása
+        max_uses: Hányszor használható
         new_password: Új jelszó
         note: Önéletrajz
         otp_attempt: Második-faktor kód
