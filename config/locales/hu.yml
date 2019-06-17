@@ -40,13 +40,27 @@ hu:
     user_count_before: Összesen
     what_is_mastodon: Mi a Mastodon?
   accounts:
+    choices_html: "%{name} választásai:"
     follow: Követés
-    following: Követed őket
+    followers:
+      one: Követő
+      other: Követő
+    following: Követett
+    joined: Csatlakozott %{date}
+    last_active: utoljára aktív
+    link_verified_on: A link tulajdonosát %{date} -n ellenőriztük
     media: Média
     moved_html: "%{name} ide költözött: %{new_profile_link}"
+    network_hidden: Ez az információ nem elérhető
     nothing_here: Nincs itt semmi!
-    people_followed_by: '%{name} követett személyei'
+    people_followed_by: '%{name} követettjei'
     people_who_follow: '%{name} követői'
+    pin_errors:
+      following: Ehhez szükséges, hogy kövesd már a felhasználót
+    posts:
+      one: Tülk
+      other: Tülk
+    posts_tab_heading: Tülkölés
     posts_with_replies: Tülkök és válaszok
     reserved_username: Ez egy már lefoglalt felhasználónév
     roles:
