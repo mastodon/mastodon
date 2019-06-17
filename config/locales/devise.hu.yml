@@ -6,35 +6,38 @@ hu:
       send_paranoid_instructions: Ha az e-mail címed létezik az adatbázisunkban, pár percen belül kapni fogsz egy e-mailt az e-mail címed megerősítéséhez szükséges lépésekről.
     failure:
       already_authenticated: Már bejelentkeztél.
-      inactive: Fiókod még nem lett aktiválva.
+      inactive: Fiókodat még nem aktiválták.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
-      last_attempt: Már csak egy próbálkozásod maradt mielőtt a fiókod lezárásra kerül.
+      last_attempt: Már csak egy próbálkozásod maradt mielőtt a fiókodat lezárjuk.
       locked: Fiókod le van zárva.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
+      pending: Fiókod még engedélyezés alatt áll.
       timeout: A munkamenet lejárt. Jelentkezz be újra a folytatáshoz.
       unauthenticated: A folytatás előtt be kell jelentkezned.
       unconfirmed: A folytatás előtt meg kell erősítened az e-mail címed.
     mailer:
       confirmation_instructions:
         action: Erősítsd meg az e-mail címedet
-        explanation: Ezzel az e-mail címmel kezdeményeztek regisztrációt a(z) %{host} oldalon. Csak egy kattintás, és a felhasználói fiókdat aktiváljuk. Ha a regisztrációt nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
-        extra_html: Kérjük tekintsd át a <a href="%{terms_path}">az instancia szabályzatát</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
+        action_with_app: Megerősítés majd vissza ide %{app}
+        explanation: Ezzel az e-mail címmel kezdeményeztek regisztrációt a(z) %{host} oldalon. Csak egy kattintás, és a felhasználói fiókodat aktiváljuk. Ha a regisztrációt nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
+        explanation_when_pending: Ezzel az e-mail címmel meghívást kértél a(z) %{host} oldalon. Ahogy megerősíted az e-mail címed, átnézzük a jelentkezésedet. Ennek ideje alatt nem tudsz belépni. Ha a jelentkezésed elutasítjuk, az adataidat töröljük, más teendőd nincs. Ha a kérelmet nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
+        extra_html: Kérjük tekintsd át a <a href="%{terms_path}">a szerver szabályzatát</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
         subject: 'Mastodon: Megerősítési lépések %{instance}'
         title: E-mail cím megerősítése
       email_changed:
         explanation: 'A fiókodhoz tartozó e-mail címet az alábbira módosítod:'
-        extra: Ha nem te kezdeményezted a fiókodhoz tartozó e-mail cím módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot az instanciád adminisztrátorával.
+        extra: Ha nem te kezdeményezted a fiókodhoz tartozó e-mail cím módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a szervered adminisztrátorával.
         subject: 'Mastodon: a fiókodhoz tartozó e-mail címet megváltoztattuk'
         title: Új e-mail cím
       password_change:
         explanation: A fiókodhoz tartozó jelszót megváltoztattuk.
-        extra: Ha nem te kezdeményezted a fiókodhoz tartozó jelszó módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot az instanciád adminisztrátorával.
-        subject: 'Mastodon: Jelszó megváltoztatva'
-        title: Sikeres jelszó-módosítás
+        extra: Ha nem te kezdeményezted a fiókodhoz tartozó jelszó módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a szervered adminisztrátorával.
+        subject: 'Mastodon: Jelszavad megváltoztattuk'
+        title: Sikeres jelszómódosítás
       reconfirmation_instructions:
         explanation: Az e-mail cím megváltoztatásához meg kell erősítened az új címet.
         extra: Amennyiben nem te kezdeményezted a módosítást, kérjük tekintsd ezt az e-mailt tárgytalannak. A Mastodon fiókodhoz tartozó e-mail címed változatlan marad mindaddig, amíg rá nem kattintasz a fenti linkre.
-        subject: 'Mastodon: erősítsd meg a(z) %{instance} instanciához tartozó e-mail címed'
+        subject: 'Mastodon: erősítsd meg a(z) %{instance} szerverhez tartozó e-mail címed'
         title: E-mail cím megerősítése
       reset_password_instructions:
         action: Jelszó módosítása
