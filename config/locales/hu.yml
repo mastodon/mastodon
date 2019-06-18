@@ -962,24 +962,40 @@ hu:
         silence: A fiókod korlátozott állapotában csak a követőid láthatják a tülkjeidet, valamint nem kerülsz rá nyilvános idővonalakra. Ugyanakkor mások manuálisan még követhetnek.
         suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
       review_server_policies: Szerver szabályzat átnézése
+      subject:
+        disable: A fiókodat %{acct} befagyasztották
+        none: Figyelmeztetés a %{acct} fióknak
+        silence: A fiókodat %{acct} korlátozták
+        suspend: A fiókodat %{acct} felfüggesztették
+      title:
+        disable: Befagyasztott fiók
+        none: Figyelem
+        silence: Lekorlátozott fiók
+        suspend: Felfüggesztett fiók
     welcome:
       edit_profile_action: Készítsd el profilod
       edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod a fiókodat zárttá tenni.'
       explanation: Néhány tipp a kezdeti lépésekhez
       final_action: Kezdj tülkölni
-      final_step: 'Kezdj tülkölni! Publikus üzeneteid még követők híján is megjelennek másoknak, például a helyi időfolyamban és a címkéknél. Kezdd például azzal, hogy bemutatkozol: használd a #bemutatkozas és az #introductions címkét a tülködben.'
+      final_step: 'Kezdj tülkölni! Publikus üzeneteid még követők híján is megjelennek másoknak, például a helyi idővonalon és a hashtageknél. Kezdd például azzal, hogy bemutatkozol: használd a #bemutatkozas vagy az #introductions hashtaget a tülködben.'
       full_handle: Teljes felhasználóneved
-      full_handle_hint: Ez az, amit megadhatsz másoknak, hogy üzenhessenek neked vagy követhessenek téged más instanciákról.
+      full_handle_hint: Ez az, amit megadhatsz másoknak, hogy üzenhessenek neked vagy követhessenek téged más szerverekről.
       review_preferences_action: Beállítások módosítása
-      review_preferences_step: Tekintsd át beállításaidat, például hogy milyen értesítéseket kérsz emailben vagy hogy alapértelmezettként mi legyen a tülkjeid adatvédelmi beállítása. Ha nem vagy szédülős alkat, azt is engedélyezheted, hogy automatikusan lejátsszuk a GIF-eket.
+      review_preferences_step: Tekintsd át beállításaidat, például hogy milyen értesítéseket kérsz e-mailben vagy hogy alapértelmezettként mi legyen a tülkjeid láthatósága. Ha nem vagy szédülős alkat, azt is engedélyezheted, hogy automatikusan lejátsszuk a GIF-eket.
       subject: Üdvözöl a Mastodon
-      tip_federated_timeline: A nyilvános időfolyam a Mastodon ütőere, ahol minden tülk összefolyik. Nem teljes ugyan, mert csak azokat az emberek fogod látni, akiket instanciád többi felhasználója követ.
-      tip_following: Alapértelmezettként instanciád adminisztrátorait követed. Látogasd meg a helyi és a nyilvános időfolyamot, hogy más érdekes emberekre is rátalálj.
-      tip_local_timeline: A helyi időfolyam a saját instanciád (%{instance}) ütőere. Ezek a kedves emberek itt mind a szomszédaid!
-      tip_mobile_webapp: Ha a böngésződ lehetővé teszi, hogy kezdőképernyődhöz add a Mastodont, még értesítéseket is fogsz kapni &ndash; akárcsak egy igazi alkalmazás esetében!
+      tip_federated_timeline: A nyilvános idővonal a Mastodon ütőere, ahol minden tülkölés összefolyik. Nem teljes ugyan, mert csak azokat az embereket fogod látni, akiket a szervered többi felhasználója közül valaki követ.
+      tip_following: Alapértelmezettként szervered adminisztrátorait követed. Látogasd meg a helyi és a nyilvános idővonalat, hogy más érdekes emberekre is rátalálj.
+      tip_local_timeline: A helyi idővonal a saját szervered (%{instance}) ütőere. Ezek a kedves emberek itt mind a szomszédaid!
+      tip_mobile_webapp: Ha a böngésződ lehetővé teszi, hogy a kezdőképernyődhöz add a Mastodont, még értesítéseket is fogsz kapni, akárcsak egy igazi alkalmazás esetében!
       tips: Tippek
       title: Üdv a fedélzeten, %{name}!
   users:
+    follow_limit_reached: Nem követhetsz több, mint %{limit} embert
     invalid_email: A megadott e-mail cím helytelen
     invalid_otp_token: Érvénytelen ellenőrző kód
+    otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
+    seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
     signed_in_as: 'Bejelentkezve mint'
+  verification:
+    explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
+    verification: Hitelesítés
