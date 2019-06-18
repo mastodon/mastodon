@@ -66,7 +66,7 @@
           = account_link_to account
 
     - @account.featured_tags.order(statuses_count: :desc).each do |featured_tag|
-      .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
+      .featuredhashtags-widget.directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
         = link_to short_account_tag_path(@account, featured_tag.tag) do
           %h4
             = fa_icon 'hashtag'

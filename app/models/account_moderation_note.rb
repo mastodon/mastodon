@@ -17,5 +17,5 @@ class AccountModerationNote < ApplicationRecord
 
   scope :latest, -> { reorder('created_at DESC') }
 
-  validates :content, presence: true, length: { maximum: 500 }
+  validates :content, presence: true, length: { maximum: 2000 }
 end

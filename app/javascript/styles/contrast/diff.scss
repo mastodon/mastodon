@@ -75,3 +75,19 @@
 .public-layout .public-account-header__tabs__tabs .counter.active::after {
   border-bottom: 4px solid $ui-highlight-color;
 }
+
+// Todon.nl specific
+ 
+@media (min-width: 701px) {
+ 
+div.column {
+        flex-grow: 1;
+}
+ 
+.box-widget, 
+div.landing__grid__column.landing__grid__column-login div.hero-widget div.hero-widget__text, 
+.directory__tag a, .landing .hero-widget__footer, .landing-page__call-to-action, .landing-page__information.contact-widget, .page-header, .directory, .detailed-status {
+background: #282c37 !important; 
+}
+
+}

@@ -700,3 +700,23 @@ html {
 .compose-form .compose-form__warning {
   box-shadow: none;
 }
+
+// Todon.nl specific
+
+@media (min-width: 701px) {
+
+div.column {
+       flex-grow: 1;
+}
+
+.box-widget, 
+div.landing__grid__column.landing__grid__column-login div.hero-widget div.hero-widget__text, 
+.directory__tag a, .landing .hero-widget__footer, .landing-page__call-to-action, .landing-page__information.contact-widget, .page-header, .directory, .detailed-status {
+       background: rgba(217, 225, 232, 0.65) !important;
+}
+
+.endorsements-widget, .featuredhashtags-widget {
+       background: #D9E1E8 !important;
+}
+ 
+}

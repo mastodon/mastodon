@@ -9,12 +9,17 @@ const LinkFooter = ({ withHotkeys }) => (
     <ul>
       {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
       {withHotkeys && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
-      <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
+      <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a></li>
+    </ul>
+    <ul>
       <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this server' /></a> · </li>
-      <li><a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a> · </li>
-      <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
-      <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
+      <li><a href='https://wiki.todon.nl/todon/terms_en' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
+      <li><a href='https://wiki.todon.nl' target='_blank'>Wiki</a> · </li>
       <li><a href='https://docs.joinmastodon.org' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
+      <li><a href='https://wiki.todon.nl/mastodon/apps' target='_blank'>Apps</a> (<a href='https://pina.todon.nl' target='_blank' title="Alternative lightweight webclient">Pinafore</a>, <a href='https://halcy.todon.nl' target='_blank' title="Alternative webclient with a Twitter UI">Halcyon</a>) · </li>
+      <li><a href='https://wiki.todon.nl/todon/donations' target='_blank'><FormattedMessage id='getting_started.donate' defaultMessage='Donate' /></a></li>
+    </ul>
+    <ul>
       <li><a href='/auth/sign_out' data-method='delete'><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
     </ul>
 

@@ -139,7 +139,7 @@ RSpec.describe MediaAttachment, type: :model do
     it 'are cut off at 140 characters' do
       media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
 
-      expect(media.description.size).to be <= 420
+      expect(media.description.size).to be <= 1111 
     end
   end
 end

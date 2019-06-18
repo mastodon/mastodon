@@ -8,7 +8,7 @@
 .landing
   .landing__brand
     = link_to root_url, class: 'brand' do
-      = svg_logo_full
+      = image_pack_tag 'logo_full.svg', alt: 'Mastodon'
       %span.brand__tagline=t 'about.tagline'
 
   .landing__grid
@@ -78,3 +78,6 @@
                 %span
                   = t 'about.active_count_after'
                   %abbr{ title: t('about.active_footnote') } *
+
+  .landingpage-video
+    %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "315", :src => "https://peertube.social/videos/embed/d7fabc85-f110-4699-beb0-7edf6d4082ba", :title => "What is Mastodon?", :width => "560"}
