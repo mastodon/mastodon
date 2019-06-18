@@ -232,7 +232,7 @@ class ComposerOptions extends ImmutablePureComponent {
 
     const contentTypeItems = {
       plain: {
-        icon: 'align-left',
+        icon: 'file-text',
         name: 'text/plain',
         text: <FormattedMessage {...messages.plain} />,
       },
