@@ -934,23 +934,34 @@ hu:
   time:
     formats:
       default: "%Y %b %d, %H:%M"
+      month: "%Y %b"
   two_factor_authentication:
     code_hint: Megerősítéshez írd be az alkalmazás által generált kódot
-    description_html: He engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a teefonodre és egy alkalmazásra, amely hozzáférési kódot generál számodra.
+    description_html: He engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódot generál számodra.
     disable: Kikapcsolás
     enable: Engedélyezés
     enabled: Kétlépcsős azonosítás engedélyezve
     enabled_success: A kétlépcsős azonosítást sikeresen engedélyezted
     generate_recovery_codes: Visszaállítási kódok generálása
-    instructions_html: "<strong>Olvasd be ez a QR-kódot a telefonodon futó Google Authenticator (vagy egyéb TOTP) alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
+    instructions_html: "<strong>Olvasd be ezt a QR-kódot a telefonodon futó Google Authenticator vagy egyéb TOTP alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
     lost_recovery_codes: A visszaállítási kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a visszaállítási kódjaidat hagytad el, itt generálhatsz újakat. A régi kódokat ebben az esetben érvénytelenítjük.
     manual_instructions: 'Ha nem sikerült a QR-kód beolvasása, itt a szöveges kulcs, amelyet manuálisan kell begépelned:'
     recovery_codes: Visszaállítási kódok biztonsági mentése
-    recovery_codes_regenerated: Visszaállítási kódok sikeresen újragenerálva
+    recovery_codes_regenerated: A visszaállítási kódokat sikeresen újrageneráltuk
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
     setup: Beállítás
     wrong_code: A beírt kód nem érvényes! A szerver órája és az eszközöd órája szinkronban jár?
   user_mailer:
+    backup_ready:
+      explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
+      subject: Az adataidról készült archív letöltésre kész
+      title: Archiválás
+    warning:
+      explanation:
+        disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
+        silence: A fiókod korlátozott állapotában csak a követőid láthatják a tülkjeidet, valamint nem kerülsz rá nyilvános idővonalakra. Ugyanakkor mások manuálisan még követhetnek.
+        suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
+      review_server_policies: Szerver szabályzat átnézése
     welcome:
       edit_profile_action: Készítsd el profilod
       edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod a fiókodat zárttá tenni.'
