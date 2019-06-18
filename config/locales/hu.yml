@@ -666,14 +666,25 @@ hu:
     i_am_html: '%{username} vagyok %{service} szerveren.'
     identity: Személyazonosság
     inactive: Inaktív
+    publicize_checkbox: 'És ezt tülköld ki:'
+    publicize_toot: 'Tanúsítva! %{username} vagyok %{service}: %{url} szerveren'
+    status: Ellenőrzés állapota
+    view_proof: Tanúsítás megtekintése
   imports:
-    preface: Itt importálhatod egy másik instanciáról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
+    modes:
+      merge: Összefésülés
+      merge_long: Megtartjuk a meglévő bejegyzéseket és hozzávesszük az újakat
+      overwrite: Felülírás
+      overwrite_long: Lecseréljük újakkal a jelenlegi bejegyzéseket
+    preface: Itt importálhatod egy másik szerverről lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
     success: Adataidat sikeresen feltöltöttük és feldolgozásukat megkezdtük
     types:
       blocking: Letiltottak listája
+      domain_blocking: Letiltott domainek listája
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
+  in_memoriam_html: In Memoriam.
   invites:
     delete: Visszavonás
     expired: Lejárt
@@ -682,15 +693,16 @@ hu:
       '21600': 6 óra
       '3600': 1 óra
       '43200': 12 óra
-      '604800': 1 week
+      '604800': 1 hét
       '86400': 1 nap
     expires_in_prompt: Soha
     generate: Generálás
+    invited_by: 'Téged meghívott:'
     max_uses:
       one: 1 felhasználás
       other: "%{count} felhasználás"
     max_uses_prompt: Nincs korlát
-    prompt: Az itt generált linkek megosztásával hívhatod meg ismerőseidet az instanciára
+    prompt: Az itt generált linkek megosztásával hívhatod meg ismerőseidet erre a szerverre
     table:
       expires_at: Lejárat
       uses: Használat
@@ -706,7 +718,7 @@ hu:
     acct: Az új fiók felhasznalonev@domain formátumban
     currently_redirecting: 'A profilod az alábbi fiókra van átirányítva:'
     proceed: Mentés
-    updated_msg: Fiókod átirányítási beállítasait sikeresen mentettük!
+    updated_msg: Fiókod átirányítási beállításait sikeresen mentettük!
   moderation:
     title: Moderáció
   notification_mailer:
@@ -722,37 +734,94 @@ hu:
         other: "%{count} új értesítésed érkezett legutóbbi látogatásod óta \U0001F418"
       title: Amíg távol voltál…
     favourite:
-      body: 'Az állapotodat kedvencnek jelölte %{name}:'
-      subject: "%{name} kedvencnek jelölte az állapotod"
+      body: 'A tülködet kedvencnek jelölte %{name}:'
+      subject: "%{name} kedvencnek jelölte a tülködet"
       title: Új kedvencnek jelölés
     follow:
       body: "%{name} mostantól követ téged!"
       subject: "%{name} mostantól követ téged"
       title: Új követő
     follow_request:
-      action: Követési kérések kezelése
+      action: Követési kérelmek kezelése
       body: "%{name} követni szeretne téged"
       subject: 'Jóváhagyásra vár: %{name}'
-      title: Új követési kérés
+      title: Új követési kérelem
     mention:
       action: Válasz
       body: '%{name} megemlített téged:'
       subject: '%{name} megemlített téged'
       title: Új említés
     reblog:
-      body: 'Az állapotod reblogolta %{name}:'
-      subject: "%{name} reblogolta az állapotod"
-      title: Új reblog
+      body: 'A tülködet %{name} megtolta:'
+      subject: "%{name} megtolta a tülködet"
+      title: Új megtolás
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: Mrd
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
+    newer: Újabb
     next: Következő
+    older: Régebbi
     prev: Előző
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ezen a szavazáson már voksoltál
+      duplicate_options: duplázott elemeket tartalmaz
+      duration_too_long: túl távoli időpont
+      duration_too_short: túl közeli időpont
+      expired: A szavazásnak már vége
+      over_character_limit: egyik sem lehet %{max} karakternél hosszabb
+      too_few_options: több, mint egy opciónak kell lennie
+      too_many_options: nem lehet több, mint %{max} opció
   preferences:
     other: Egyéb
+    posting_defaults: Tülkölés alapértelmezései
+    public_timelines: Nyilvános idővonalak
+  relationships:
+    activity: Fiók aktivitás
+    dormant: Elhagyott
+    last_active: Utoljára aktív
+    most_recent: Legutóbbi
+    moved: Átköltöztetve
+    mutual: Kölcsönös
+    primary: Elsődleges
+    relationship: Kapcsolat
+    remove_selected_domains: A választott domainekről minden követő eltávolítása
+    remove_selected_followers: Kiválasztott követők eltávolítása
+    remove_selected_follows: Kiválasztottak követésének abbahagyása
+    status: Fiók állapota
   remote_follow:
     acct: Írd be a felhasználódat, amelyről követni szeretnéd felhasznalonev@domain formátumban
     missing_resource: A fiókodnál nem található a szükséges átirányítási URL
+    no_account_html: Nincs fiókod? <a href='%{sign_up_path}' target='_blank'>Regisztrálj itt</a>
     proceed: Tovább a követéshez
     prompt: 'Őt tervezed követni:'
+    reason_html: "<strong>Miért van erre szükség?</strong> <code>%{instance}</code> nem feltétlenül az a szerver, ahol regisztrálva vagy, ezért először a saját szerveredre irányítunk."
+  remote_interaction:
+    favourite:
+      proceed: Jelöljük kedvencnek
+      prompt: 'Ezt a tülköt szeretnéd kedvencnek jelölni:'
+    reblog:
+      proceed: Megtolás
+      prompt: 'Ezt a tülköt szeretnéd megtolni:'
+    reply:
+      proceed: Válaszadás
+      prompt: 'Erre a tülkre szeretnél válaszolni:'
+  remote_unfollow:
+    error: Hiba
+    title: Cím
+    unfollowed: Nem követett
+  scheduled_statuses:
+    over_daily_limit: Túllépted az időzített tülkökre vonatkozó napi limitet (%{limit})
+    over_total_limit: Túllépted az időzített tülkökre vonatkozó limitet (%{limit})
   sessions:
     activity: Legutóbbi tevékenység
     browser: Böngésző
