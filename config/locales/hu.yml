@@ -493,11 +493,20 @@ hu:
   admin_mailer:
     new_pending_account:
       body: Az új fiók részletesen alább látható. Ezt a jelentkezést engedélyezheted vagy elutasíthatod.
+      subject: Új fiók (%{username}) engedélyezésre vár a %{instance} szerveren
     new_report:
       body: "%{reporter} jelentette: %{target}"
-      subject: 'Új jelentés az alábbi instancián: %{instance} (#%{id})'
+      body_remote: Valaki a %{domain} domainről jelentette %{target}
+      subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Haladó webes felület
+    advanced_web_interface_hint: 'Ha szeretnéd, a teljes képernyőszélességet felhasználhatod. A haladó webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi infót láthass, amennyit csak akarsz: Saját idővonal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
+    animations_and_accessibility: Animáció és akadálymentesítés
+    confirmation_dialogs: Megerősítő párbeszédablakok
+    sensitive_content: Szenzitív tartalom
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
+    salutation: "%{name}!"
     settings: 'E-mail beállítások módosítása: %{link}'
     view: 'Megtekintés:'
     view_profile: Profil megtekintése
