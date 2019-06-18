@@ -666,6 +666,7 @@ sk:
     inactive: Neaktívne
     publicize_checkbox: 'A poslať toto:'
     publicize_toot: 'Je to dokázané! Na %{service} som %{username}: %{url}'
+    status: Stav overenia
   imports:
     modes:
       merge: Spoj dohromady
@@ -694,6 +695,11 @@ sk:
     expires_in_prompt: Nikdy
     generate: Vygeneruj
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
+    max_uses:
+      one: 1 použitie
+      few: "%{count} použití"
+      many: "%{count} použití"
+      other: "%{count} použitia"
     max_uses_prompt: Bez obmedzení
     prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
     table:
@@ -833,7 +839,7 @@ sk:
   statuses:
     attached:
       description: 'Priložené: %{attached}'
-    boosted_from_html: Povýšené od %{acct_link}
+    boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     language_detection: Zisti automaticky
     open_in_web: Otvor v okne na webe
