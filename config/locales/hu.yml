@@ -520,6 +520,10 @@ hu:
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
     your_token: Hozzáférési kulcsod
   auth:
+    apply_for_account: Meghívó kérése
+    change_password: Jelszó
+    checkbox_agreement_html: Egyetértek a <a href="%{rules_path}" target="_blank">szerver szabályaival</a> és a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
+    confirm_email: E-mail megerősítése
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
@@ -529,12 +533,19 @@ hu:
     logout: Kijelentkezés
     migrate_account: Felhasználói fiók költöztetése
     migrate_account_html: Ha szeretnéd átirányítani ezt a fiókodat egy másikra, a beállításokat <a href="%{path}">itt találod meg</a>.
+    or_log_in_with: Vagy jelentkezz be ezzel
+    providers:
+      cas: CAS
+      saml: SAML
     register: Regisztráció
+    registration_closed: "%{instance} nem fogad új tagokat"
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
     security: Biztonság
     set_new_password: Új jelszó beállítása
+    trouble_logging_in: Problémád van a bejelentkezéssel?
   authorize_follow:
+    already_following: Már követed ezt a felhasználót
     error: Hiba történt a távoli felhasználó keresésekor
     follow: Követés
     follow_request: 'Engedélyt kértél az alábbi felhasználó követésére:'
