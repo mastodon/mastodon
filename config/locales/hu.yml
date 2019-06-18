@@ -598,12 +598,33 @@ hu:
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
-    noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálod az egyik, a platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
+    noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
+  existing_username_validator:
+    not_found: ezzel a névvel nem találtunk helyi felhasználót
+    not_found_multiple: nem találtuk %{usernames} felhasználó(ka)t
   exports:
+    archive_takeout:
+      date: Dátum
+      download: Archív letöltése
+      hint_html: Itt kérhető egy archív az összes <strong>feltöltött tülködről és médiádról</strong>. Az exportált adatok ActivityPub formátumban lesznek, melyet bármilyen szabványos program tud olvasni. 7 naponként kérhetsz ilyen archívot.
+      in_progress: Archív összeállítása...
+      request: Archív kérése
+      size: Méret
     blocks: Tiltólistádon
+    csv: CSV
+    domain_blocks: Tiltott domainjeid
     follows: Követettjeid
+    lists: Listáid
     mutes: Némításaid
     storage: Médiatároló
+  featured_tags:
+    add_new: Új hozzáadása
+    errors:
+      limit: Már kiemelted a maximálisan engedélyezett számú hashtaget
+  filters:
+    contexts:
+      home: Saját idővonal
+      notifications: Értesítések
   generic:
     changes_saved_msg: Változások sikeresen elmentve!
     save_changes: Változások mentése
