@@ -376,7 +376,7 @@ const startWorker = (workerId) => {
       }
 
       // Only send local-only statuses to logged-in users
-      if (payload.local_only && !req.accountId) {
+      if (event === 'update' && payload.local_only && !req.accountId) {
         log.silly(req.requestId, `Message ${payload.id} filtered because it was local-only`);
         return;
       }
