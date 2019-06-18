@@ -59,11 +59,10 @@ class Formatter
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = format_markdown(html) if status.content_type == 'text/markdown'
     html = encode_and_link_urls(html, linkable_accounts, keep_html: %w(text/markdown text/html).include?(status.content_type))
+    html = reformat(html) if %w(text/markdown text/html).include?(status.content_type)
     html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
 
-    if %w(text/markdown text/html).include?(status.content_type)
-      html = reformat(html)
-    else
+    unless %w(text/markdown text/html).include?(status.content_type)
       html = simple_format(html, {}, sanitize: false)
       html = html.delete("\n")
     end
