@@ -465,15 +465,34 @@ hu:
       media:
         title: Média
       no_media: Nem található médiafájl
+      no_status_selected: Nem változtattunk meg semmit, mert semmi sem volt kiválasztva
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
     subscriptions:
+      callback_url: Callback URL
       confirmed: Megerősítve
       expires_in: Elévül
       last_delivery: Utolsó kézbesítés
+      title: WebSub
       topic: Téma
+    tags:
+      accounts: Fiókok
+      hidden: Rejtett
+      hide: Ne jelenjen meg a profilok adatbázisában
+      name: Hashtag
+      title: Hashtagek
+      unhide: Jelenjen meg a profilok adatbázisában
+      visible: Látható
     title: Karbantartás
+    warning_presets:
+      add_new: Új hozzáadása
+      delete: Törlés
+      edit: Szerkesztés
+      edit_preset: Figyelmeztetés szerkesztése
+      title: Figyelmeztetések
   admin_mailer:
+    new_pending_account:
+      body: Az új fiók részletesen alább látható. Ezt a jelentkezést engedélyezheted vagy elutasíthatod.
     new_report:
       body: "%{reporter} jelentette: %{target}"
       subject: 'Új jelentés az alábbi instancián: %{instance} (#%{id})'
