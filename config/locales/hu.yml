@@ -577,6 +577,16 @@ hu:
     success_msg: Felhasználói fiókod sikeresen töröltük
     warning_html: Csak azt tudjuk garantálni, hogy az általad létrehozott tartalmat erről a szerverről töröljük. Ha egyes tartalmaidat sokan megosztották, valószínűleg marad nyomuk a megosztások miatt. Nem fogjuk tudni frissíteni azon szerverek adatbázisát, amelyek nem kapcsolódnak a föderációhoz vagy amelyek leiratkoztak a tülkjeidről.
     warning_title: Szórt tartalmak elérése
+  directories:
+    directory: Profilok
+    enabled: Szerepelsz a profil adatbázisban.
+    enabled_but_waiting: Engedélyezted, hogy szerepelj a profil adatbázisban, de még nincs elegendő követőd (%{min_followers}) ehhez.
+    explanation: Találj másokra érdeklődésük alapján
+    explore_mastodon: '%{title} felfedezése'
+    how_to_enable: Nem engedélyezted a profil adatbázisban való megjelenésed. Engedélyezheted alább. Használj hashtageket az életrajzodban, hogy az ezekhez tartozó listákba bekerülj!
+    people:
+      one: "%{count} ember"
+      other: "%{count} ember"
   errors:
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
@@ -584,7 +594,7 @@ hu:
     '422':
       content: Megerősítés sikertelen. Nem tiltottad le esetleg a sütiket?
       title: Megerősítés sikertelen
-    '429': Kampec
+    '429': Korlátozva
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
