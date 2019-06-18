@@ -640,12 +640,32 @@ hu:
   footer:
     developers: Fejlesztőknek
     more: Többet…
+    resources: Segédanyagok
   generic:
-    changes_saved_msg: Változások sikeresen elmentve!
+    all: Mind
+    changes_saved_msg: A változásokat elmentettük!
+    copy: Másolás
+    order_by: Rendezés
     save_changes: Változások mentése
     validation_errors:
       one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
       other: Valami nincs rendjén! Kérlek tekintsd meg a %{count} darab hibát alant
+  html_validator:
+    invalid_markup: 'hibás HTML leíró: %{error}'
+  identity_proofs:
+    active: Aktív
+    authorize: Igen, engedélyezés
+    authorize_connection_prompt: Engedélyezed ezt a kriptografikus kapcsolatot?
+    errors:
+      failed: A kriptografikus kapcsolat sikertelen. Próbáld inkább innen %{provider}.
+      keybase:
+        invalid_token: A Keybase tokenek hashelt aláírások és pont 66 hexa karakterből állnak
+        verification_failed: A Keybase ezt a tokent nem ismerte fel a %{kb_username} Keybase felhasználó aláírásaként. Próbáld újra Keybase-ből.
+      wrong_user: Nem tudjuk tanúsítani %{proving} felhasználót amíg %{current} felhasználóként vagy bejelentkezve. Jelentkezz be %{proving} felhasználóként és próbáld újra.
+    explanation_html: Itt más személyazonosságaiddal tudsz kriptografikus kapcsolatot létesíteni, pl. Keybase profillal. Így mások titkosított üzenetet küldhetnek neked, valamint megbízhatnak az általad küldött tartalomban is.
+    i_am_html: '%{username} vagyok %{service} szerveren.'
+    identity: Személyazonosság
+    inactive: Inaktív
   imports:
     preface: Itt importálhatod egy másik instanciáról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
     success: Adataidat sikeresen feltöltöttük és feldolgozásukat megkezdtük
