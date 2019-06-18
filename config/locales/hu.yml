@@ -822,21 +822,52 @@ hu:
   scheduled_statuses:
     over_daily_limit: Túllépted az időzített tülkökre vonatkozó napi limitet (%{limit})
     over_total_limit: Túllépted az időzített tülkökre vonatkozó limitet (%{limit})
+    too_soon: Az időzítéshez jövőbeni időpont kell
   sessions:
     activity: Legutóbbi tevékenység
     browser: Böngésző
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Ismeretlen böngésző
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Böngésző
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
     explanation: Jelenleg az alábbi böngészőkkel vagy bejelentkezve a fiókodba.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: ismeretlen platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Visszavonás
     revoke_success: Munkamenet sikeresen visszavonva
     title: Munkamenetek
   settings:
+    account: Fiók
+    account_settings: Fiók beállítások
+    appearance: Megjelenés
     authorized_apps: Jóváhagyott alkalmazások
     back: Vissza a Mastodonhoz
     delete: Fiók törlése
