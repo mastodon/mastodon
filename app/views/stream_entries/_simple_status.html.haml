@@ -31,7 +31,7 @@
           = render partial: 'stream_entries/poll', locals: { status: status, poll: status.preloadable_poll, autoplay: autoplay }
 
   - if !status.media_attachments.empty?
-    - if status.media_attachments.first.video?
+    - if status.media_attachments.first.audio_or_video?
       - video = status.media_attachments.first
       = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), blurhash: video.blurhash, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description do
         = render partial: 'stream_entries/attachment_list', locals: { attachments: status.media_attachments }

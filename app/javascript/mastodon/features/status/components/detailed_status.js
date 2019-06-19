@@ -107,15 +107,15 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('media_attachments').size > 0) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        const video = status.getIn(['media_attachments', 0]);
+      if (['video', 'audio'].includes(status.getIn(['media_attachments', 0, 'type']))) {
+        const attachment = status.getIn(['media_attachments', 0]);
 
         media = (
           <Video
-            preview={video.get('preview_url')}
-            blurhash={video.get('blurhash')}
-            src={video.get('url')}
-            alt={video.get('description')}
+            preview={attachment.get('preview_url')}
+            blurhash={attachment.get('blurhash')}
+            src={attachment.get('url')}
+            alt={attachment.get('description')}
             width={300}
             height={150}
             inline
