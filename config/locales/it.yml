@@ -696,6 +696,7 @@ it:
     other: Altro
   relationships:
     dormant: Dormiente
+    relationship: Relazione
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
@@ -722,15 +723,37 @@ it:
     too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
+    browser: Browser
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Browser sconosciuto
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
       other: piattaforma sconosciuta
     title: Sessioni
   settings:
+    appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
     back: Torna a Mastodon
     delete: Cancellazione account
@@ -738,10 +761,13 @@ it:
     edit_profile: Modifica profilo
     export: Esporta impostazioni
     featured_tags: Hashtag in evidenza
+    identity_proofs: Prove di identità
     import: Importa
+    import_and_export: Importa ed esporta
     migrate: Migrazione dell'account
     notifications: Notifiche
     preferences: Preferenze
+    profile: Profilo
     two_factor_authentication: Autenticazione a due fattori
   statuses:
     attached:
@@ -753,6 +779,7 @@ it:
         one: "%{count} video"
         other: "%{count} video"
     boosted_from_html: Condiviso da %{acct_link}
+    content_warning: 'Avviso di contenuto: %{warning}'
     disallowed_hashtags:
       one: 'contiene un hashtag non permesso: %{tags}'
       other: 'contiene gli hashtags non permessi: %{tags}'
@@ -771,6 +798,7 @@ it:
       vote: Vota
     show_more: Mostra di più
     sign_in_to_participate: Accedi per partecipare alla conversazione
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
@@ -788,6 +816,10 @@ it:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
     mastodon-light: Mastodon (chiaro)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Inserisci il codice generato dalla tua app di autenticazione
     description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>, entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale ti genererà un codice per eseguire l'accesso.
@@ -809,7 +841,20 @@ it:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
+    warning:
+      review_server_policies: Rivedi regole del server
+      subject:
+        disable: Il tuo account %{acct} è stato congelato
+        none: Avviso per %{acct}
+        silence: Il tuo account %{acct} è stato limitato
+        suspend: Il tuo account %{acct} è stato sospeso
+      title:
+        disable: Account congelato
+        none: Avviso
+        silence: Account limitato
+        suspend: Account sospeso
     welcome:
+      edit_profile_action: Imposta profilo
       edit_profile_step: Puoi personalizzare il tuo profilo caricando un avatar, un'intestazione, modificando il tuo nome visualizzato e così via. Se vuoi controllare i tuoi nuovi seguaci prima di autorizzarli a seguirti, puoi bloccare il tuo account.
       explanation: Ecco alcuni suggerimenti per iniziare
       final_action: Inizia a postare
@@ -829,6 +874,7 @@ it:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
     invalid_email: L'indirizzo email inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
+    otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi le impostazioni di email e password non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
