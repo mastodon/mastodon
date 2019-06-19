@@ -334,16 +334,16 @@ class Status extends ImmutablePureComponent {
           />
         );
       } else if (['video', 'audio'].includes(status.getIn(['media_attachments', 0, 'type']))) {
-        const video = status.getIn(['media_attachments', 0]);
+        const attachment = status.getIn(['media_attachments', 0]);
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
             {Component => (
               <Component
-                preview={video.get('preview_url')}
-                blurhash={video.get('blurhash')}
-                src={video.get('url')}
-                alt={video.get('description')}
+                preview={attachment.get('preview_url')}
+                blurhash={attachment.get('blurhash')}
+                src={attachment.get('url')}
+                alt={attachment.get('description')}
                 width={this.props.cachedMediaWidth}
                 height={110}
                 inline

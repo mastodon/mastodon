@@ -138,6 +138,10 @@ class MediaAttachment < ApplicationRecord
     video? || gifv? || audio?
   end
 
+  def audio_or_video?
+    audio? || video?
+  end
+
   def to_param
     shortcode
   end
