@@ -19,6 +19,7 @@ it:
     extended_description_html: |
       <h3>Un buon posto per le regole</h3>
       <p>La descrizione estesa non è ancora stata preparata.</p>
+    federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
     generic_description: "%{domain} è un server nella rete"
     get_apps: Prova un'app per smartphone
     hosted_on: Mastodon ospitato su %{domain}
@@ -273,6 +274,8 @@ it:
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
       reject_reports_hint: Ignora tutti i rapporti provenienti da questo dominio. Irrilevante per sospensioni
+      rejecting_media: rigetta file media
+      rejecting_reports: rigetta segnalazioni
       severity:
         silence: silenziato
         suspend: sospeso
@@ -377,6 +380,7 @@ it:
         desc_html: Separa i nomi utente con virgola. Funziona solo con account locali e non bloccati. Quando vuoto, valido per tutti gli amministratori locali.
         title: Seguiti predefiniti per i nuovi utenti
       contact_information:
+        email: E-mail di lavoro
         username: Nome utente del contatto
       custom_css:
         desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
@@ -406,10 +410,17 @@ it:
         min_invite_role:
           disabled: Nessuno
           title: Permetti inviti da
+      registrations_mode:
+        modes:
+          approved: Approvazione richiesta per le iscrizioni
+          none: Nessuno può iscriversi
+          open: Chiunque può iscriversi
+        title: Modalità di registrazione
       show_known_fediverse_at_about_page:
         desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze conosciute. Altrimenti mostra solo i toot locali.
         title: Mostra la fediverse conosciuta nell'anteprima della timeline
       show_staff_badge:
+        desc_html: Mostra un distintivo dello staff sulla pagina dell'utente
         title: Mostra badge staff
       site_description:
         desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
@@ -448,12 +459,14 @@ it:
       callback_url: URL Callback
       confirmed: Confermato
       expires_in: Scade in
+      last_delivery: Ultimo invio
       title: WebSub
       topic: Argomento
     tags:
       accounts: Account
       hidden: Nascosto
       hide: Nascondi dalla directory
+      name: Etichetta
       title: Hashtag
       unhide: Mostra nella directory
       visible: Visibile
@@ -464,8 +477,16 @@ it:
       edit: Modifica
       edit_preset: Modifica avviso predefinito
       title: Gestisci avvisi predefiniti
+  admin_mailer:
+    new_pending_account:
+      body: I dettagli del nuovo account sono qui sotto. Puoi approvare o rifiutare questa richiesta.
+  appearance:
+    animations_and_accessibility: Animazioni e accessibiiltà
+    confirmation_dialogs: Dialoghi di conferma
+    sensitive_content: Contenuto sensibile
   application_mailer:
     notification_preferences: Cambia preferenze email
+    salutation: "%{name},"
     settings: 'Cambia le impostazioni per le email: %{link}'
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -477,22 +498,32 @@ it:
     regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
+    your_token: Il tuo token di accesso
   auth:
+    apply_for_account: Richiedi un invito
+    change_password: Password
+    checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     confirm_email: Conferma email
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
+    invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
     login: Entra
     logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Iscriviti
+    registration_closed: "%{instance} non accetta nuovi membri"
     resend_confirmation: Invia di nuovo le istruzioni di conferma
     reset_password: Resetta la password
     security: Credenziali
     set_new_password: Imposta una nuova password
+    trouble_logging_in: Problemi di accesso?
   authorize_follow:
     already_following: Stai già seguendo questo account
     error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
@@ -596,6 +627,9 @@ it:
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
   identity_proofs:
     authorize: Si, autorizza
+    authorize_connection_prompt: Autorizzare questa connessione crittografata?
+    errors:
+      failed: La connessione crittografata non è riuscita. Per favore riprova da %{provider}.
     i_am_html: Io sono %{username} su %{service}.
     identity: Identità
     inactive: Inattiva
