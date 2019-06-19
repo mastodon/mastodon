@@ -6,11 +6,13 @@ it:
     active_count_after: attivo
     active_footnote: Utenti Attivi Mensili (MAU)
     administered_by: 'Amministrato da:'
+    api: API
     apps: Applicazioni Mobile
     apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
+    discover_users: Scopri utenti
     documentation: Documentazione
     extended_description_html: |
       <h3>Un buon posto per le regole</h3>
@@ -42,6 +44,7 @@ it:
     joined: Dal %{date}
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
+    media: Media
     moved_html: "%{name} è stato spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
     nothing_here: Qui non c'è nulla!
@@ -57,6 +60,7 @@ it:
     reserved_username: Il nome utente è gia stato preso
     roles:
       admin: Amministratore
+      bot: Bot
       moderator: Moderatore
     unfollow: Non seguire più
   admin:
@@ -69,7 +73,10 @@ it:
       delete: Elimina
       destroyed_msg: Nota di moderazione distrutta con successo!
     accounts:
+      approve: Approva
+      approve_all: Approva tutto
       are_you_sure: Sei sicuro?
+      avatar: Immagine di profilo
       by_domain: Dominio
       change_email:
         changed_msg: Account email cambiato con successo!
@@ -89,6 +96,7 @@ it:
       display_name: Nome visualizzato
       domain: Dominio
       edit: Modifica
+      email: Email
       email_status: Stato email
       enable: Abilita
       enabled: Abilitato
@@ -99,6 +107,7 @@ it:
       header: Intestazione
       inbox_url: URL inbox
       invited_by: Invitato da
+      ip: IP
       joined: Unito
       location:
         all: Tutto
@@ -127,6 +136,8 @@ it:
       public: Pubblico
       push_subscription_expires: Sottoscrizione PuSH scaduta
       redownload: Aggiorna avatar
+      reject: Rifiuta
+      reject_all: Rifiuta tutto
       remove_avatar: Rimuovi avatar
       remove_header: Rimuovi intestazione
       resend_confirmation:
@@ -160,6 +171,7 @@ it:
       unsubscribe: Annulla l'iscrizione
       username: Nome utente
       warn: Avverti
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
@@ -203,6 +215,7 @@ it:
       destroyed_msg: Emoji distrutto con successo!
       disable: Disabilita
       disabled_msg: Questa emoji è stata disabilitata con successo
+      emoji: Emoji
       enable: Abilita
       enabled_msg: Questa emoji è stata abilitata con successo
       image_hint: PNG fino a 50 KB
@@ -210,6 +223,7 @@ it:
       new:
         title: Aggiungi nuovo emoji personalizzato
       overwrite: Sovrascrivi
+      shortcode: Scorciatoia
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
       title: Emoji personalizzate
       unlisted: Non elencato
@@ -229,6 +243,7 @@ it:
       recent_users: Utenti Recenti
       search: Ricerca testo intero
       single_user_mode: Modalita utente singolo
+      software: Software
       space: Utilizzo dello spazio
       total_users: utenti totali
       trends: Tendenze
@@ -285,6 +300,7 @@ it:
         one: "%{count} account noto"
         other: "%{count} account noti"
       moderation:
+        all: Tutto
         limited: Limitato
         title: Moderazione
       title: Istanze conosciute
@@ -313,12 +329,14 @@ it:
       pending: In attesa dell'approvazione del ripetitore
       save_and_enable: Salva e attiva
       setup: Crea una connessione con un ripetitore
+      status: Stato
       title: Ripetitori
     report_notes:
       created_msg: Nota rapporto creata!
       destroyed_msg: Nota rapporto cancellata!
     reports:
       account:
+        note: note
         report: rapporto
       action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
@@ -415,6 +433,8 @@ it:
         nsfw_off: Segna come non sensibile
         nsfw_on: Segna come sensibile
       failed_to_execute: Impossibile eseguire
+      media:
+        title: Media
       no_media: Nessun media
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
@@ -423,6 +443,7 @@ it:
       callback_url: URL Callback
       confirmed: Confermato
       expires_in: Scade in
+      title: WebSub
       topic: Argomento
     tags:
       accounts: Account
@@ -530,6 +551,7 @@ it:
       request: Richiedi il tuo archivio
       size: Dimensioni
     blocks: Stai bloccando
+    csv: CSV
     domain_blocks: Blocchi di dominio
     follows: Stai seguendo
     lists: Liste
@@ -557,13 +579,19 @@ it:
   footer:
     developers: Sviluppatori
     more: Altro…
+    resources: Risorse
   generic:
+    all: Tutto
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
+    order_by: Ordina per
     save_changes: Salva modifiche
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
+  identity_proofs:
+    authorize: Si, autorizza
+    identity: Identità
   imports:
     modes:
       merge: Fondi
@@ -653,9 +681,11 @@ it:
     next: Avanti
     older: Più vecchio
     prev: Indietro
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Hai già votato in questo sondaggio
+      duplicate_options: contiene oggetti duplicati
       duration_too_long: è troppo lontano nel futuro
       duration_too_short: è troppo presto
       expired: Il sondaggio si è già concluso
@@ -664,6 +694,8 @@ it:
       too_many_options: non può contenere più di %{max} elementi
   preferences:
     other: Altro
+  relationships:
+    dormant: Dormiente
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
