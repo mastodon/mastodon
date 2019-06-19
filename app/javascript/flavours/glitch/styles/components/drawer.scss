@@ -163,18 +163,15 @@
 .drawer--account {
   padding: 10px;
   color: $darker-text-color;
+  display: flex;
+  align-items: center;
 
-  & > a {
+  a {
     color: inherit;
     text-decoration: none;
   }
 
-  & > .avatar {
-    float: left;
-    margin-right: 10px;
-  }
-
-  & > .acct {
+  .acct {
     display: block;
     color: $secondary-text-color;
     font-weight: 500;
@@ -182,6 +179,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+
+.navigation-bar__profile {
+  flex: 1 1 auto;
+  margin-left: 8px;
+  overflow: hidden;
 }
 
 .drawer--results {
