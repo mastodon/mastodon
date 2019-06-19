@@ -9,6 +9,8 @@ it:
     api: API
     apps: Applicazioni Mobile
     apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
+    browse_directory: Sfoglia la directory dei profili e filtra per interessi
+    browse_public_posts: Sfoglia il flusso in tempo reale di post pubblici su Mastodon
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
@@ -594,7 +596,13 @@ it:
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
   identity_proofs:
     authorize: Si, autorizza
+    i_am_html: Io sono %{username} su %{service}.
     identity: Identità
+    inactive: Inattiva
+    publicize_checkbox: 'E posta questo:'
+    publicize_toot: 'É provato! Io sono %{username} su %{service}: %{url}'
+    status: Stato della verifica
+    view_proof: Vedi prova
   imports:
     modes:
       merge: Fondi
@@ -609,6 +617,7 @@ it:
       following: Lista dei seguaci
       muting: Lista dei silenziati
     upload: Carica
+  in_memoriam_html: In Memoriam.
   invites:
     delete: Disattiva
     expired: Scaduto
@@ -679,6 +688,10 @@ it:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
   pagination:
     newer: Più recente
     next: Avanti
@@ -697,15 +710,28 @@ it:
       too_many_options: non può contenere più di %{max} elementi
   preferences:
     other: Altro
+    posting_defaults: Predefinite di pubblicazione
+    public_timelines: Timeline pubbliche
   relationships:
+    activity: Attività dell'account
     dormant: Dormiente
+    last_active: Ultima volta attivo
+    most_recent: Più recente
+    moved: Trasferito
+    mutual: Reciproco
+    primary: Principale
     relationship: Relazione
+    remove_selected_domains: Rimuovi tutti i seguaci dai domini selezionati
+    remove_selected_followers: Rimuovi i seguaci selezionati
+    remove_selected_follows: Smetti di seguire gli utenti selezionati
+    status: Stato dell'account
   remote_follow:
     acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
     no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
     proceed: Conferma
     prompt: 'Stai per seguire:'
+    reason_html: "<strong>Perchè questo passo è necessario?</strong> <code>%{instance}</code> potrebbe non essere il server nel quale tu sei registrato, quindi dobbiamo reindirizzarti prima al tuo server."
   remote_interaction:
     favourite:
       proceed: Continua per segnare come apprezzato
@@ -857,6 +883,10 @@ it:
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
     warning:
+      explanation:
+        disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
+        silence: Mentre il tuo account è limitato, solo le persone che già ti seguono possono vedere i tuoi toot su questo server, e potresti essere escluso da vari elenchi pubblici. Comunque, altri possono manualmente seguirti.
+        suspend: Il tuo account è stato sospeso, e tutti i tuoi toot ed i tuoi file media caricati sono stati irreversibilmente rimossi da questo server, e dai server dove avevi dei seguaci.
       review_server_policies: Rivedi regole del server
       subject:
         disable: Il tuo account %{acct} è stato congelato
