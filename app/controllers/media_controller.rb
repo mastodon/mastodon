@@ -19,7 +19,7 @@ class MediaController < ApplicationController
   def player
     @body_classes = 'player'
     response.headers['X-Frame-Options'] = 'ALLOWALL'
-    raise ActiveRecord::RecordNotFound unless @media_attachment.video? || @media_attachment.gifv?
+    raise ActiveRecord::RecordNotFound unless @media_attachment.video? || @media_attachment.gifv? || @media_attachment.audio?
   end
 
   private
