@@ -1,7 +1,6 @@
----
 oc:
   about:
-    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
+    about_hashtag_html: 'Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.'
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
     active_count_after: actius
@@ -38,7 +37,7 @@ oc:
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
-    choices_html: 'Recomandacions de %{name} :'
+    choices_html: "Recomandacions de %{name} :"
     follow: Sègre
     followers:
       one: Seguidor
@@ -292,7 +291,7 @@ oc:
       title: Blocatge de domeni de corrièl
     followers:
       back_to_account: Tornar al compte
-      title: Seguidors de %{acct}
+      title: "Seguidors de %{acct}"
     instances:
       by_domain: Domeni
       delivery_available: Liurason disponibla
@@ -470,7 +469,7 @@ oc:
     new_report:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
-      subject: Novèl senhalament per %{instance} (#%{id})
+      subject: 'Novèl senhalament per %{instance} (#%{id})'
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
@@ -677,7 +676,7 @@ oc:
         other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
       title: Pendent vòstra abséncia…
     favourite:
-      body: "%{name} a mes vòstre estatut en favorit :"
+      body: '%{name} a mes vòstre estatut en favorit :'
       subject: "%{name} a mes vòstre estatut en favorit"
       title: Novèl apondut als favorits
     follow:
@@ -691,11 +690,11 @@ oc:
       title: Novèla demanda d’abonament
     mention:
       action: Respondre
-      body: "%{name} vos a mencionat dins :"
-      subject: "%{name} vos a mencionat"
+      body: '%{name} vos a mencionat dins :'
+      subject: '%{name} vos a mencionat'
       title: Novèla mencion
     reblog:
-      body: "%{name} a tornat partejar vòstre estatut :"
+      body: '%{name} a tornat partejar vòstre estatut :'
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
   pagination:
@@ -897,14 +896,14 @@ oc:
       <p>Aqueste document es jos licéncia CC-BY-SA. Darrièra mesa a jorn lo 4 de març de 2018</p>
 
       <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
-    title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
+    title: "Condicions d’utilizacion e politica de confidencialitat de %{instance}"
   themes:
     contrast: Mastodon (Fòrt contrast)
     default: Mastodon (Escur)
     mastodon-light: Mastodon (Clar)
   time:
     formats:
-      default: Lo %d %b de %Y a %Ho%M
+      default: "Lo %d %b de %Y a %Ho%M"
   two_factor_authentication:
     code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
     description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.
