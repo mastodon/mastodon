@@ -14,6 +14,7 @@ import { List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import { preferencesLink, signOutLink } from 'flavours/glitch/util/backend_links';
+import NavigationBar from '../compose/components/navigation_bar';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 
 const messages = defineMessages({
@@ -165,7 +166,8 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
       <Column name='getting-started' icon='asterisk' heading={intl.formatMessage(messages.heading)} label={intl.formatMessage(messages.menu)} hideHeadingOnMobile>
         <div className='scrollable optionally-scrollable'>
           <div className='getting-started__wrapper'>
-            <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
+            {!multiColumn && <NavigationBar account={myAccount} />}
+            {multiColumn && <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />}
             {navItems}
             <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
             {listItems}
