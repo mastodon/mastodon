@@ -6,6 +6,7 @@ th:
     active_count_after: ที่ใช้งาน
     active_footnote: ผู้ใช้งานรายเดือน (MAU)
     administered_by: 'ดูแลโดย:'
+    api: API
     apps: แอปสำหรับมือถือ
     apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
     browse_directory: เรียกดูไดเรกทอรีโปรไฟล์และกรองตามความสนใจ
@@ -22,16 +23,19 @@ th:
     get_apps: ลองแอปสำหรับมือถือ
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
+    see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
     server_stats: 'สถิติเซิร์ฟเวอร์:'
     source_code: โค้ดต้นฉบับ
     status_count_after:
       other: สถานะ
     status_count_before: ผู้สร้าง
+    terms: เงื่อนไขการให้บริการ
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
+    choices_html: 'ทางเลือกของ %{name}:'
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -52,6 +56,7 @@ th:
       admin: ผู้ดูแล
       bot: บอต
       moderator: ผู้ควบคุม
+    unavailable: ไม่มีโปรไฟล์
     unfollow: เลิกติดตาม
   admin:
     account_moderation_notes:
@@ -60,6 +65,7 @@ th:
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     accounts:
       approve: อนุมัติ
+      approve_all: อนุมัติทั้งหมด
       are_you_sure: คุณแน่ใจหรือไม่?
       avatar: ภาพประจำตัว
       by_domain: โดเมน
@@ -78,7 +84,7 @@ th:
       disable: ปิดใช้งาน
       disable_two_factor_authentication: ปิดใช้งาน 2FA
       disabled: ปิดใช้งานอยู่
-      display_name: ชื่อที่แสดงผล
+      display_name: ชื่อที่แสดง
       domain: โดเมน
       edit: แก้ไข
       email: อีเมล
@@ -88,10 +94,11 @@ th:
       feed_url: URL ฟีด
       followers: ผู้ติดตาม
       followers_url: URL ผู้ติดตาม
-      follows: ติดตาม
+      follows: การติดตาม
       header: ส่วนหัว
       inbox_url: URL กล่องขาเข้า
       invited_by: เชิญโดย
+      ip: IP
       joined: เข้าร่วมเมื่อ
       location:
         all: ทั้งหมด
@@ -115,7 +122,9 @@ th:
       protocol: โปรโตคอล
       public: สาธารณะ
       push_subscription_expires: การบอกรับ PuSH หมดอายุเมื่อ
+      redownload: รีเฟรชโปรไฟล์
       reject: ปฏิเสธ
+      reject_all: ปฏิเสธทั้งหมด
       remove_avatar: เอาภาพประจำตัวออก
       remove_header: เอาส่วนหัวออก
       resend_confirmation:
@@ -124,6 +133,7 @@ th:
         success: ส่งอีเมลยืนยันสำเร็จ!
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
+      role: สิทธิอนุญาต
       roles:
         admin: ผู้ดูแล
         moderator: ผู้ควบคุม
@@ -153,9 +163,13 @@ th:
       copy: คัดลอก
       created_msg: สร้างอีโมจิสำเร็จ!
       delete: ลบ
+      destroyed_msg: ทำลายอีโมโจสำเร็จ!
       disable: ปิดใช้งาน
+      disabled_msg: ปิดใช้งานอีโมจินั้นสำเร็จ
       emoji: อีโมจิ
       enable: เปิดใช้งาน
+      enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
+      image_hint: PNG สูงสุด 50KB
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
       overwrite: เขียนทับ
@@ -171,6 +185,7 @@ th:
       feature_invites: ลิงก์เชิญ
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
       feature_registrations: การลงทะเบียน
+      feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
       open_reports: รายงานที่เปิด
       recent_users: ผู้ใช้ล่าสุด
@@ -241,6 +256,7 @@ th:
       enable: เปิดใช้งาน
       enabled: เปิดใช้งานอยู่
       inbox_url: URL รีเลย์
+      save_and_enable: บันทึกแล้วเปิดใช้งาน
       status: สถานะ
       title: รีเลย์
     report_notes:
@@ -280,7 +296,7 @@ th:
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
       registrations:
         closed_message:
-          desc_html: แสดงผลในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
+          desc_html: แสดงในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
           title: ข้อความการปิดการลงทะเบียน
         deletion:
           desc_html: อนุญาตให้ใครก็ตามลบบัญชีของเขา
@@ -297,7 +313,7 @@ th:
         desc_html: แสดงป้ายพนักงานในหน้าผู้ใช้
         title: แสดงป้ายพนักงาน
       site_description:
-        desc_html: ย่อหน้าเกริ่นนำในหน้าแรก อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>
+        desc_html: ย่อหน้าเกริ่นนำใน API อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>
         title: คำอธิบายเซิร์ฟเวอร์
       site_description_extended:
         desc_html: สถานที่ที่ดีสำหรับแนวทางปฏิบัติ, กฎ, หลักเกณฑ์ และสิ่งอื่น ๆ ของคุณที่ทำให้เซิร์ฟเวอร์ของคุณแตกต่าง คุณสามารถใช้แท็ก HTML
@@ -324,6 +340,7 @@ th:
       confirmed: ยืนยันแล้ว
       expires_in: หมดอายุภายใน
       last_delivery: ส่งล่าสุด
+      title: WebSub
       topic: หัวข้อ
     tags:
       accounts: บัญชี
@@ -340,6 +357,10 @@ th:
       edit: แก้ไข
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
+  appearance:
+    advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
+    animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
+    sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
@@ -358,6 +379,9 @@ th:
     logout: ออกจากระบบ
     migrate_account: ย้ายไปยังบัญชีอื่น
     or_log_in_with: หรือเข้าสู่ระบบด้วย
+    providers:
+      cas: CAS
+      saml: SAML
     register: ลงทะเบียน
     resend_confirmation: ส่งขั้นตอนวิธีการยืนยันใหม่อีกครั้ง
     reset_password: ตั้งรหัสผ่านใหม่
@@ -367,6 +391,7 @@ th:
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
     follow: ติดตาม
+    follow_request: 'คุณได้ส่งคำขอติดตามไปยัง:'
     following: 'สำเร็จ! คุณกำลังติดตาม:'
     post_follow:
       return: แสดงโปรไฟล์ของผู้ใช้
@@ -394,7 +419,7 @@ th:
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
   errors:
-    '403': คุณไม่มีสิทธิดูหน้านี้
+    '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
     '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
     '422':
@@ -410,6 +435,7 @@ th:
       request: ขอการเก็บถาวรของคุณ
       size: ขนาด
     blocks: คุณปิดกั้น
+    csv: CSV
     domain_blocks: การปิดกั้นโดเมน
     follows: คุณติดตาม
     lists: รายการ
@@ -439,6 +465,8 @@ th:
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
     save_changes: บันทึกการเปลี่ยนแปลง
+  identity_proofs:
+    authorize: ใช่ อนุญาต
   imports:
     modes:
       merge: ผสาน
@@ -479,6 +507,7 @@ th:
       mention: "%{name} ได้กล่าวถึงคุณใน:"
       new_followers_summary:
         other: You have gotten %{count} new followers! Amazing!
+      title: เมื่อคุณไม่อยู่...
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
       subject: "%{name} ได้ชื่นชอบสถานะของคุณ"
@@ -506,8 +535,13 @@ th:
     next: ถัดไป
     older: เก่ากว่า
     prev: ก่อนหน้า
+    truncate: "&hellip;"
+  preferences:
+    posting_defaults: ค่าเริ่มต้นการโพสต์
+    public_timelines: เส้นเวลาสาธารณะ
   relationships:
     activity: กิจกรรมบัญชี
+    last_active: ใช้งานล่าสุด
     relationship: ความสัมพันธ์
     remove_selected_domains: เอาผู้ติดตามทั้งหมดออกจากโดเมนที่เลือก
     remove_selected_followers: เอาผู้ติดตามที่เลือกออก
@@ -535,8 +569,44 @@ th:
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: เซสชันปัจจุบัน
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: เพิกถอน
+    revoke_success: เพิกถอนเซสชันสำเร็จ
+    title: เซสชัน
   settings:
+    account: บัญชี
+    account_settings: การตั้งค่าบัญชี
+    appearance: ลักษณะที่ปรากฏ
     authorized_apps: แอปที่ได้รับอนุญาต
     back: กลับไปที่ Mastodon
     delete: การลบบัญชี
@@ -544,8 +614,10 @@ th:
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
     import: นำเข้า
+    import_and_export: การนำเข้าและการส่งออก
     notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
+    profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
   statuses:
@@ -564,6 +636,7 @@ th:
         other: "%{count} การลงคะแนน"
     show_more: แสดงเพิ่มเติม
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: ผู้ติดตามเท่านั้น
       private_long: แสดงต่อผู้ติดตามเท่านั้น

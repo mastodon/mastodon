@@ -78,6 +78,12 @@ export const makeGetStatus = () => {
         return null;
       }
 
+      const dropRegex = (accountReblog || accountBase).get('id') !== me && regexFromFilters(filters.filter(filter => filter.get('irreversible')));
+
+      if (dropRegex && dropRegex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'))) {
+        return null;
+      }
+
       const regex  = (accountReblog || accountBase).get('id') !== me && regexFromFilters(filters);
       let filtered = false;
 

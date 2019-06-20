@@ -160,7 +160,7 @@ cy:
       promote: Hyrwyddo
       protocol: Protocol
       public: Cyhoeddus
-      push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
+      push_subscription_expires: Tanysgrifiad gwthiadwy yn dod i ben
       redownload: Adnewyddu proffil
       reject: Gwrthod
       reject_all: Gwrthod pob un
@@ -609,6 +609,13 @@ cy:
     explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
     explore_mastodon: Archwilio %{title}
     how_to_enable: Ar hyn o bryd nid ydych chi wedi dewis y cyfeiriadur. Gallwch ddewis i mewn isod. Defnyddiwch hashnodau yn eich bio-destun i'w restru dan hashnodau penodol!
+    people:
+      few: "%{count} o bobl"
+      many: "%{count} o bobl"
+      one: "%{count} berson"
+      other: "%{count} o bobl"
+      two: "%{count} o bobl"
+      zero: "%{count} person"
   errors:
     '403': Nid oes gennych ganiatad i weld y dudalen hon.
     '404': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli.
@@ -842,36 +849,87 @@ cy:
     no_account_html: Heb gyfrif? Mae modd i chi <a href='%{sign_up_path}' target='_blank'>gofrestru yma</a>
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
+    reason_html: |-
+      <strong>Pam yw'r cam hyn yn angenrheidiol? </strong>
+      Efallai nid yw <code>%{instance}</code> yn gweinydd ble wnaethoch gofrestru, felly mae'n rhaid i ni ailarweinio chi at eich gweinydd catref yn gyntaf.
+  remote_interaction:
+    favourite:
+      proceed: Ymlaen i hoffi
+      prompt: 'Hoffech hoffi''r tŵt hon:'
+    reblog:
+      proceed: Ymlaen i fŵstio
+      prompt: 'Hoffech fŵstio''r tŵt hon:'
+    reply:
+      proceed: Ymlaen i ateb
+      prompt: 'Hoffech ateb y tŵt hon:'
   remote_unfollow:
     error: Gwall
     title: Teitl
     unfollowed: Dad-ddilynwyd
+  scheduled_statuses:
+    over_daily_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig ar y dydd hynny
+    over_total_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig
+    too_soon: Mae rhaid i'r dydd rhestredig fod yn y dyfodol
   sessions:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Porwr anhysbys
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: Porwr QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesiwn cyfredol
     description: "%{browser} ar %{platform}"
     explanation: Dyma'r porwyr gwê sydd wedi mewngofnodi i'ch cyfrif Mastododon ar hyn o bryd.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: OS Chrome
+      firefox_os: OS Firefox
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: platfform anhysbys
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Ffôn Windows
     revoke: Diddymu
     revoke_success: Sesiwn wedi ei ddiddymu yn llwyddiannus
     title: Sesiynau
   settings:
+    account: Cyfrif
+    account_settings: Gosodiadau'r cyfrif
+    appearance: Arddangosiad
     authorized_apps: Apiau awdurdodedig
     back: Yn ôl i Mastodon
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
     export: Allforio data
+    featured_tags: Hashnodau Nodedig
+    identity_proofs: Profiadau Hunaniaeth
     import: Mewnforio
+    import_and_export: Mewnfori ac allfori
     migrate: Mudo cyfrif
     notifications: Hysbysiadau
     preferences: Dewisiadau
+    profile: Proffil
+    relationships: Dilynion a dilynwyr
     two_factor_authentication: Awdurdodi dau-gam
   statuses:
     attached:
@@ -907,8 +965,18 @@ cy:
       ownership: Ni ellir pinio tŵt rhywun arall
       private: Ni ellir pinio tŵt nad yw'n gyhoeddus
       reblog: Ni ellir pinio bŵstiau
+    poll:
+      total_votes:
+        few: "%{count} o bleidleisiau"
+        many: "%{count} o bleidleisiau"
+        one: "%{count} bleidlais"
+        other: "%{count} o bleidleisiau"
+        two: "%{count} o bleidleisiau"
+        zero: "%{count} pleidlais"
+      vote: Pleidleisio
     show_more: Dangos mwy
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Dilynwyr yn unig
       private_long: Dangos i ddilynwyr yn unig
@@ -1007,6 +1075,10 @@ cy:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)
     mastodon-light: Mastodon (golau)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Mewnbynwch y côd a grewyd gan eich ap dilysu i gadarnhau
     description_html: Os ydych yn galluogi <strong>awdurdodi dau-gam</strong>, bydd mewngofnodi yn gofyn i chi fod a'ch ffôn gerllaw er mwyn cynhyrchu tocyn i chi gael mewnbynnu.
@@ -1031,6 +1103,8 @@ cy:
     warning:
       explanation:
         disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
+        silence: Pan mae eich cyfrif yn gyfyngiedig, dim ond pobl sydd yn barod yn eich dilyn yn gweld eich tŵtiau ar y gweinydd hon, a efallai byddwch yn cael eich tynnu o restrau cyhoeddus. Er hyn, gall eraill eich dilyn chi wrth law.
+        suspend: Mae eich cyfrif wedi cael ei wahardd, a mae gyd o'ch tŵtiau a'ch ffeiliau cyfrwng uwchlwythadwy wedi cael eu tynnu or gweinydd yn barhaol, ac o weinyddau ble yr oedd eich dilynwyr.
       review_server_policies: Adolygu polisïau'r gweinydd
       subject:
         disable: Mae'ch cyfrif %{acct} wedi'i rewi
@@ -1056,7 +1130,7 @@ cy:
       tip_federated_timeline: Mae'r ffrwd ffederasiwn yn olwg firehose o'r rhwydwaith Mastodon. Ond mae ond yn cynnwys y bobl mae eich cymdogion wedi ymrestru iddynt, felly nid yw'n gyflawn.
       tip_following: Rydych yn dilyn goruwchwyliwr eich gweinydd yn ddiofyn. I ganfod pobl mwy diddorol, edrychwch ar y ffrydiau lleol a'r rhai wedi ei ffedereiddio.
       tip_local_timeline: Mae'r ffrwd leol yn olwg firehose o bobl ar %{instance}. Dyma eich cymdogion agosaf!
-      tip_mobile_webapp: Os yw eich porwr gwe yn cynnig i ch ychwanegu Mastodon i'ch sgrîn gartref, mae modd i chi dderbyn hysbysiadau push. Mewn sawl modd mae'n gweithio fel ap cynhenid!
+      tip_mobile_webapp: Os yw eich porwr gwe yn cynnig i chi ychwanegu Mastodon i'ch sgrîn gartref, mae modd i chi dderbyn hysbysiadau gwthiadwy. Mewn sawl modd mae'n gweithio fel ap cynhenid!
       tips: Awgrymiadau
       title: Croeso, %{name}!
   users:
