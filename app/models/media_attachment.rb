@@ -70,12 +70,14 @@ class MediaAttachment < ApplicationRecord
   AUDIO_STYLES = {
     original: {
       format: 'ogg',
+      content_type: 'audio/ogg',
       convert_options: {},
     },
   }.freeze
 
   VIDEO_FORMAT = {
     format: 'mp4',
+    content_type: 'video/mp4',
     convert_options: {
       output: {
         'loglevel' => 'fatal',
@@ -189,11 +191,11 @@ class MediaAttachment < ApplicationRecord
       if f.file_content_type == 'image/gif'
         [:gif_transcoder, :blurhash_transcoder]
       elsif VIDEO_MIME_TYPES.include?(f.file_content_type)
-        [:video_transcoder, :blurhash_transcoder]
+        [:video_transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(f.file_content_type)
-        [:transcoder]
+        [:transcoder, :type_corrector]
       else
-        [:lazy_thumbnail, :blurhash_transcoder]
+        [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       end
     end
   end
