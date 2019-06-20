@@ -261,6 +261,7 @@ it:
       created_msg: Il blocco del dominio sta venendo processato
       destroyed_msg: Il blocco del dominio è stato rimosso
       domain: Dominio
+      existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccare</a> prima.
       new:
         create: Crea blocco
         hint: Il blocco dominio non previene la creazione di utenti nel database, ma applicherà automaticamente e retroattivamente metodi di moderazione specifici su quegli account.
@@ -315,6 +316,7 @@ it:
       total_blocked_by_us: Bloccato da noi
       total_followed_by_them: Seguito da loro
       total_followed_by_us: Seguito da noi
+      total_reported: Segnalazioni su di loro
       total_storage: Media allegati
     invites:
       deactivate_all: Disattiva tutto
@@ -480,7 +482,12 @@ it:
   admin_mailer:
     new_pending_account:
       body: I dettagli del nuovo account sono qui sotto. Puoi approvare o rifiutare questa richiesta.
+    new_report:
+      body: "%{reporter} ha segnalato %{target}"
+      body_remote: Qualcuno da %{domain} ha segnalato %{target}
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
   appearance:
+    advanced_web_interface: Interfaccia web avanzata
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     sensitive_content: Contenuto sensibile
@@ -578,6 +585,9 @@ it:
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
+  existing_username_validator:
+    not_found: impossibile trovare un utente locale con quel nome utente
+    not_found_multiple: impossibile trovare %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -625,6 +635,8 @@ it:
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
+  html_validator:
+    invalid_markup: 'contiene markup HTML non valido: %{error}'
   identity_proofs:
     authorize: Si, autorizza
     authorize_connection_prompt: Autorizzare questa connessione crittografata?
