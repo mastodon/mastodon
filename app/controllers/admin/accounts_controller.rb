@@ -127,6 +127,7 @@ module Admin
         :by_domain,
         :active,
         :pending,
+        :disabled,
         :silenced,
         :suspended,
         :username,
