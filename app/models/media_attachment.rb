@@ -69,9 +69,13 @@ class MediaAttachment < ApplicationRecord
 
   AUDIO_STYLES = {
     original: {
-      format: 'ogg',
-      content_type: 'audio/ogg',
-      convert_options: {},
+      format: 'mp3',
+      content_type: 'audio/mpeg',
+      convert_options: {
+        output: {
+          'q:a' => 2,
+        },
+      },
     },
   }.freeze
 
