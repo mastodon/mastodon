@@ -1,3 +1,4 @@
+---
 bg:
   devise:
     confirmations:
@@ -20,9 +21,9 @@ bg:
       password_change:
         subject: 'Mastodon: Паролата е променена'
       reset_password_instructions:
-        subject: 'Инструкции за смяна на паролата'
+        subject: Инструкции за смяна на паролата
       unlock_instructions:
-        subject: 'Инструкции за отключване'
+        subject: Инструкции за отключване
     omniauth_callbacks:
       failure: Не успяхме да те упълномощим чрез %{kind}, защото "%{reason}".
       success: Успешно упълномощаване чрез %{kind} профил.
