@@ -11,12 +11,8 @@ class Instance
     @domain_block   = resource.is_a?(DomainBlock) ? resource : DomainBlock.rule_for(domain)
   end
 
-  def cached_sample_accounts
-    Rails.cache.fetch("#{cache_key}/sample_accounts", expires_in: 12.hours) { Account.where(domain: domain).searchable.joins(:account_stat).popular.limit(3) }
-  end
-
-  def cached_accounts_count
-    @accounts_count || Rails.cache.fetch("#{cache_key}/count", expires_in: 12.hours) { Account.where(domain: domain).count }
+  def countable?
+    @accounts_count.present?
   end
 
   def to_param
