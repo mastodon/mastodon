@@ -47,14 +47,10 @@ class DomainBlock < ApplicationRecord
       return if domain.blank?
 
       uri      = Addressable::URI.new.tap { |u| u.host = domain.gsub(/[\/]/, '') }
-      variants = []
       segments = uri.normalized_host.split('.')
+      variants = segments.map.with_index { |_, i| segments[i..-1].join('.') }
 
-      segments.size.times do |i|
-        variants << segments[i..-1].join('.') unless i == segments.size - 1
-      end
-
-      where(domain: variants).order(Arel.sql('char_length(domain) desc')).first
+      where(domain: variants[0..-2]).order(Arel.sql('char_length(domain) desc')).first
     end
   end
 
