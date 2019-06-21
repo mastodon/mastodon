@@ -126,15 +126,18 @@ it:
       moderation:
         active: Attivo
         all: Tutto
+        pending: In attesa
         silenced: Silenziati
         suspended: Sospesi
         title: Moderazione
       moderation_notes: Note di moderazione
       most_recent_activity: Attività più recenti
       most_recent_ip: IP più recenti
+      no_account_selected: Nessun account è stato modificato visto che non ne è stato selezionato nessuno
       no_limits_imposed: Nessun limite imposto
       not_subscribed: Non sottoscritto
       outbox_url: URL outbox
+      pending: Revisioni in attesa
       perform_full_suspension: Sospendi
       profile_url: URL profilo
       promote: Promuovi
@@ -170,6 +173,7 @@ it:
       statuses: Stati
       subscribe: Sottoscrivi
       suspended: Sospeso
+      time_in_queue: Attesa in coda %{time}
       title: Account
       unconfirmed_email: Email non confermata
       undo_silenced: Rimuovi silenzia
@@ -211,6 +215,7 @@ it:
         update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
         update_status: "%{name} stato aggiornato da %{target}"
       deleted_status: "(stato cancellato)"
+      title: Registro di controllo
     custom_emojis:
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
@@ -237,12 +242,14 @@ it:
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
     dashboard:
+      backlog: lavori arretrati
       config: Configurazione
       feature_deletions: Cancellazioni di account
       feature_invites: Link di invito
       feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
+      feature_timeline_preview: Anteprima timeline
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
       open_reports: apri report
@@ -251,6 +258,7 @@ it:
       single_user_mode: Modalita utente singolo
       software: Software
       space: Utilizzo dello spazio
+      title: Cruscotto
       total_users: utenti totali
       trends: Tendenze
       week_interactions: interazioni per questa settimana
@@ -305,6 +313,7 @@ it:
       title: "Seguaci di %{acct}"
     instances:
       by_domain: Dominio
+      delivery_available: Distribuzione disponibile
       known_accounts:
         one: "%{count} account noto"
         other: "%{count} account noti"
@@ -326,6 +335,8 @@ it:
         expired: Scaduto
         title: Filtro
       title: Inviti
+    pending_accounts:
+      title: Account in attesa (%{count})
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -461,7 +472,7 @@ it:
       callback_url: URL Callback
       confirmed: Confermato
       expires_in: Scade in
-      last_delivery: Ultimo invio
+      last_delivery: Ultima distribuzione
       title: WebSub
       topic: Argomento
     tags:
@@ -482,12 +493,14 @@ it:
   admin_mailer:
     new_pending_account:
       body: I dettagli del nuovo account sono qui sotto. Puoi approvare o rifiutare questa richiesta.
+      subject: Nuovo account pronto per la revisione su %{instance} (%{username})
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: 'Nuova segnalazione per %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Interfaccia web avanzata
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     sensitive_content: Contenuto sensibile
@@ -563,6 +576,7 @@ it:
     proceed: Cancella l'account
     success_msg: Il tuo account è stato cancellato
     warning_html: È garantita la cancellazione del contenuto solo da questo server. I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti non aggiorneranno i loro database.
+    warning_title: Disponibilità di contenuto diffuso
   directories:
     directory: Directory dei profili
     enabled: Attualmente sei elencato nella directory.
@@ -580,7 +594,7 @@ it:
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
       title: Verifica di sicurezza non riuscita
-    '429': Throttled
+    '429': Limitato
     '500':
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
@@ -617,6 +631,7 @@ it:
       title: Modifica filtro
     errors:
       invalid_context: Contesto mancante o non valido
+      invalid_irreversible: Il filtraggio irreversibile funziona solo nei contesti di home o notifiche
     index:
       delete: Cancella
       title: Filtri
@@ -646,6 +661,8 @@ it:
       keybase:
         invalid_token: I toked di Keybase sono hash di firme e devono essere lunghi 66 caratteri esadecimali
         verification_failed: Keybase non riconosce questo token come firma dell'utente Keybase %{kb_username}. Per favore riprova da Keybase.
+      wrong_user: Impossibile creare una prova per %{proving} mentre si è effettuato l'accesso come %{current}. Accedi come %{proving} e riprova.
+    explanation_html: Qui puoi connettere crittograficamente le tue altre identità, come il profilo Keybase. Questo consente ad altre persone di inviarti messaggi criptati e fidarsi dei contenuto che tu invii a loro.
     i_am_html: Io sono %{username} su %{service}.
     identity: Identità
     inactive: Inattiva
@@ -742,6 +759,12 @@ it:
     human:
       decimal_units:
         format: "%n%u"
+        units:
+          billion: G
+          million: M
+          quadrillion: P
+          thousand: k
+          trillion: T
   pagination:
     newer: Più recente
     next: Avanti
@@ -859,6 +882,7 @@ it:
     notifications: Notifiche
     preferences: Preferenze
     profile: Profilo
+    relationships: Follows and followers
     two_factor_authentication: Autenticazione a due fattori
   statuses:
     attached:
