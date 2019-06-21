@@ -8,7 +8,7 @@ class Instance
   def initialize(resource)
     @domain         = resource.domain
     @accounts_count = resource.is_a?(DomainBlock) ? nil : resource.accounts_count
-    @domain_block   = resource.is_a?(DomainBlock) ? resource : DomainBlock.find_by(domain: domain)
+    @domain_block   = resource.is_a?(DomainBlock) ? resource : DomainBlock.rule_for(domain)
   end
 
   def cached_sample_accounts
