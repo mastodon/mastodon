@@ -40,7 +40,7 @@ module JsonLdHelper
   end
 
   def supported_context?(json)
-    !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
+    !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT) && !(json['@context'].is_a?(Array) ? (json['@context'].any? {|c| !c['gab'].nil? && c['gab'].include? 'gab.com' }) : false)
   end
 
   def unsupported_uri_scheme?(uri)
