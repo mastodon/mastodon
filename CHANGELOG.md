@@ -3,6 +3,20 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.2] - 2019-06-22
+### Added
+
+- Add `short_description` and `approval_required` to `GET /api/v1/instance` (#11146)
+
+### Changed
+
+- Change camera icon to paperclip icon in upload form (#11149)
+
+### Fixed
+
+- Fix audio-only OGG and WebM files not being processed as such (#11151)
+- Fix audio not being downloaded from remote servers (#11145)
+
 ## [2.9.1] - 2019-06-22
 ### Added
 
