@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.41', require: false
+gem 'aws-sdk-s3', '~> 1.42', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -62,7 +62,7 @@ gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.7'
 gem 'ostatus2', '~> 2.0'
-gem 'ox', '~> 2.10'
+gem 'ox', '~> 2.11'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
 gem 'pundit', '~> 2.0'
 gem 'premailer-rails'
@@ -108,14 +108,14 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.22'
+  gem 'capybara', '~> 3.24'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.16', require: false
-  gem 'webmock', '~> 3.5'
+  gem 'webmock', '~> 3.6'
   gem 'parallel_tests', '~> 2.29'
 end
 

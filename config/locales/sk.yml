@@ -7,6 +7,7 @@ sk:
     active_count_after: aktívni
     active_footnote: Mesačne aktívnych užívateľov (MAU)
     administered_by: 'Správcom je:'
+    api: API
     apps: Aplikácie
     apps_platforms: Uživaj Mastodon z iOSu, Androidu a iných platforiem
     browse_directory: Prehľadávaj databázu profilov, filtruj podľa záujmov
@@ -28,14 +29,29 @@ sk:
     see_whats_happening: Pozoruj, čo sa deje
     server_stats: 'Serverové štatistiky:'
     source_code: Zdrojový kód
+    status_count_after:
+      few: príspevkov
+      many: príspevkov
+      one: príspevok
+      other: príspevky
     status_count_before: Ktorí napísali
     tagline: Následuj kamarátov, a objavuj nových
     terms: Podmienky užívania
+    user_count_after:
+      few: užívateľov
+      many: užívateľov
+      one: užívateľ
+      other: uživatelia
     user_count_before: Domov pre
     what_is_mastodon: Čo je Mastodon?
   accounts:
     choices_html: "%{name}vé voľby:"
     follow: Následuj
+    followers:
+      few: Sledovateľov
+      many: Sledovateľov
+      one: Sledujúci
+      other: Sledovatelia
     following: Následujem
     joined: Pridal/a sa v %{date}
     last_active: naposledy aktívny
@@ -48,11 +64,17 @@ sk:
     people_who_follow: Ľudia sledujúci %{name}
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
+    posts:
+      few: Príspevkov
+      many: Príspevkov
+      one: Príspevok
+      other: Príspevky
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
     reserved_username: Prihlasovacie meno je vyhradené
     roles:
       admin: Správca
+      bot: Bot
       moderator: Moderátor
     unavailable: Profil nieje dostupný
     unfollow: Prestaň sledovať
@@ -89,6 +111,7 @@ sk:
       display_name: Ukáž meno
       domain: Doména
       edit: Uprav
+      email: Email
       email_status: Stav emailu
       enable: Povoľ
       enabled: Povolený
@@ -159,6 +182,7 @@ sk:
       statuses: Príspevky
       subscribe: Odoberaj
       suspended: Vylúčený/á
+      time_in_queue: Čakajúci %{time} v poradí
       title: Účty
       unconfirmed_email: Nepotvrdený email
       undo_silenced: Zruš stíšenie
@@ -166,6 +190,7 @@ sk:
       unsubscribe: Prestaň odoberať
       username: Prezývka
       warn: Varuj
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name}pridelil/a hlásenie užívateľa %{target}sebe"
@@ -273,6 +298,11 @@ sk:
         silence: stíšené
         suspend: vylúčené
       show:
+        affected_accounts:
+          few: "%{count} účtov v databázi ovplyvnených"
+          many: "%{count} účtov v databázi ovplyvnených"
+          one: Jeden účet v databázi ovplyvnený
+          other: "%{count} účty v databázi ovplyvnené"
         retroactive:
           silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
           suspend: Zruš suspendáciu všetkých momentálne ovplyvnených účtov z tejto domény
@@ -295,6 +325,11 @@ sk:
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
+      known_accounts:
+        few: "%{count} známych účtov"
+        many: "%{count} známych účtov"
+        one: "%{count} známy účet"
+        other: "%{count} známe účty"
       moderation:
         all: Všetky
         limited: Obmedzené
@@ -451,6 +486,7 @@ sk:
       confirmed: Potvrdené
       expires_in: Vyprší do
       last_delivery: Posledné doručenie
+      title: WebSub
       topic: Téma
     tags:
       accounts: Účty
@@ -470,6 +506,7 @@ sk:
   admin_mailer:
     new_pending_account:
       body: Podrobnosti o novom účte sú uvedené nižšie. Môžeš túto registračnú požiadavku buď prijať, alebo zamietnúť.
+      subject: Nový účet očakáva preverenie na %{instance} (%{username})
     new_report:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
@@ -509,6 +546,7 @@ sk:
     migrate_account_html: Ak si želáš presmerovať tento účet na nejaký iný, môžeš si to <a href="%{path}">nastaviť tu</a>.
     or_log_in_with: Alebo prihlás s
     register: Zaregistruj sa
+    registration_closed: "%{instance} neprijíma nových členov"
     resend_confirmation: Zašli potvrdzujúce pokyny znovu
     reset_password: Obnov heslo
     security: Zabezpečenie
@@ -554,6 +592,11 @@ sk:
     explanation: Pátraj po užívateľoch podľa ich záujmov
     explore_mastodon: Prebádaj %{title}
     how_to_enable: Momentálne niesi zaradený/á do verejnej profilovej databázy. Prihlásiť sa môžeš nižšie. Použi haštagy vo svojom biografickom popise na profile, ak chceš byť uvedený/á aj pod konkrétnými haštagmi!
+    people:
+      few: "%{count} ľudí"
+      many: "%{count} ľudí"
+      one: "%{count} človek"
+      other: "%{count} ľudia"
   errors:
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
     '404': Stránka ktorú hľadáš nieje tu.
@@ -566,6 +609,9 @@ sk:
       content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
     noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
+  existing_username_validator:
+    not_found: nepodarilo sa nájsť miestného užívateľa s takouto prezývkou
+    not_found_multiple: nepodarilo sa nájsť %{usernames}
   exports:
     archive_takeout:
       date: Dátum
@@ -575,6 +621,7 @@ sk:
       request: Vyžiadaj si tvoj archív
       size: Veľkosť
     blocks: Blokujete
+    csv: CSV
     domain_blocks: Blokované domény
     follows: Následujete
     lists: Zoznamy
@@ -605,9 +652,24 @@ sk:
     more: Viac…
     resources: Podklady
   generic:
+    all: Všetko
     changes_saved_msg: Zmeny boli úspešne uložené!
     copy: Kopíruj
+    order_by: Zoraď podľa
     save_changes: Ulož zmeny
+  identity_proofs:
+    active: Aktívne
+    authorize: Áno, povoľ
+    authorize_connection_prompt: Povoliť toto kryptografické prepojenie?
+    errors:
+      failed: Kryptografické prepojenie sa nepodarilo. Prosím skús to znova z %{provider}.
+    i_am_html: Na %{service} som %{username}.
+    identity: Identita
+    inactive: Neaktívne
+    publicize_checkbox: 'A poslať toto:'
+    publicize_toot: 'Je to dokázané! Na %{service} som %{username}: %{url}'
+    status: Stav overenia
+    view_proof: Ukáž overenie
   imports:
     modes:
       merge: Spoj dohromady
@@ -636,6 +698,11 @@ sk:
     expires_in_prompt: Nikdy
     generate: Vygeneruj
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
+    max_uses:
+      few: "%{count} využití"
+      many: "%{count} využití"
+      one: 1 využitie
+      other: "%{count} využitia"
     max_uses_prompt: Bez obmedzení
     prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
     table:
@@ -701,6 +768,19 @@ sk:
       too_many_options: nemôže zahŕňať viac ako %{max} položiek
   preferences:
     other: Ostatné
+    public_timelines: Verejné časové osi
+  relationships:
+    activity: Aktivita účtu
+    dormant: Spiace
+    last_active: Naposledy aktívny
+    most_recent: Najnovšie
+    moved: Presunuli sa
+    mutual: Spoločné
+    primary: Hlavné
+    relationship: Vzťah
+    remove_selected_followers: Odstráň vybraných následovatrľov
+    remove_selected_follows: Prestaň sledovať vybraných užívateľov
+    status: Stav účtu
   remote_follow:
     acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
     missing_resource: Nemožno nájsť potrebnú presmerovaciu adresu k tvojmu účtu
@@ -764,6 +844,7 @@ sk:
     edit_profile: Uprav profil
     export: Exportuj dáta
     featured_tags: Zvýraznené haštagy
+    identity_proofs: Overenia identity
     import: Importuj
     import_and_export: Import a export
     migrate: Presuň účet
@@ -775,7 +856,7 @@ sk:
   statuses:
     attached:
       description: 'Priložené: %{attached}'
-    boosted_from_html: Povýšené od %{acct_link}
+    boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     language_detection: Zisti automaticky
     open_in_web: Otvor v okne na webe

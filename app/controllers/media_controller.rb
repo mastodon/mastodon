@@ -7,6 +7,8 @@ class MediaController < ApplicationController
 
   before_action :set_media_attachment
   before_action :verify_permitted_status!
+  before_action :check_playable, only: :player
+  before_action :allow_iframing, only: :player
 
   content_security_policy only: :player do |p|
     p.frame_ancestors(false)
@@ -18,8 +20,6 @@ class MediaController < ApplicationController
 
   def player
     @body_classes = 'player'
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
-    raise ActiveRecord::RecordNotFound unless @media_attachment.video? || @media_attachment.gifv?
   end
 
   private
@@ -33,5 +33,13 @@ class MediaController < ApplicationController
   rescue Mastodon::NotPermittedError
     # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
+  end
+
+  def check_playable
+    not_found unless @media_attachment.larger_media_format?
+  end
+
+  def allow_iframing
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 end
