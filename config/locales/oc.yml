@@ -143,6 +143,7 @@ oc:
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar lo perfil
       reject: Regetar
+      reject_all: O regetar tot
       remove_avatar: Supriir l’avatar
       remove_header: Levar la bandièra
       resend_confirmation:
@@ -152,6 +153,7 @@ oc:
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
+      role: Autorizacions
       roles:
         moderator: Moderador
         staff: Personnal
@@ -480,6 +482,9 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
       subject: 'Novèl senhalament per %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Interfàcia web avançada
+    sensitive_content: Contengut sensible
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
@@ -621,10 +626,12 @@ oc:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
   identity_proofs:
+    active: Actiu
     authorize: Òc, autorizar
     authorize_connection_prompt: Autorizar aquesta connexion criptografica ?
     i_am_html: Soi %{username} a %{service}.
     identity: Identitat
+    inactive: Inactiu
     status: Estatut de verificacion
     view_proof: Veire la pròva
   imports:
@@ -732,6 +739,8 @@ oc:
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
+    last_active: Darrièra activitat
+    most_recent: Mai recenta
     moved: Mudat
     mutual: Mutuala
     primary: Pirmària
