@@ -62,7 +62,7 @@ class UploadButton extends ImmutablePureComponent {
 
     return (
       <div className='compose-form__upload-button'>
-        <IconButton icon='camera' title={intl.formatMessage(messages.upload, { formats: SUPPORTED_FORMATS })} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
+        <IconButton icon='paperclip' title={intl.formatMessage(messages.upload, { formats: SUPPORTED_FORMATS })} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
         <label>
           <span style={{ display: 'none' }}>{intl.formatMessage(messages.upload, { formats: SUPPORTED_FORMATS })}</span>
           <input
