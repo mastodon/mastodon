@@ -174,8 +174,7 @@ jobs:
     steps:
       - *attach_workspace
       - run: bundle exec i18n-tasks check-normalized
-      - run: bundle exec i18n-tasks unused
-      - run: bundle exec i18n-tasks missing -t plural
+      - run: bundle exec i18n-tasks unused -l en
       - run: bundle exec i18n-tasks check-consistent-interpolations
 
 workflows:

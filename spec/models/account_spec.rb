@@ -687,6 +687,23 @@ RSpec.describe Account, type: :model do
       end
     end
 
+    describe 'by_domain_and_subdomains' do
+      it 'returns exact domain matches' do
+        account = Fabricate(:account, domain: 'example.com')
+        expect(Account.by_domain_and_subdomains('example.com')).to eq [account]
+      end
+
+      it 'returns subdomains' do
+        account = Fabricate(:account, domain: 'foo.example.com')
+        expect(Account.by_domain_and_subdomains('example.com')).to eq [account]
+      end
+
+      it 'does not return partially matching domains' do
+        account = Fabricate(:account, domain: 'grexample.com')
+        expect(Account.by_domain_and_subdomains('example.com')).to_not eq [account]
+      end
+    end
+
     describe 'expiring' do
       it 'returns remote accounts with followers whose subscription expiration date is past or not given' do
         local = Fabricate(:account, domain: nil)

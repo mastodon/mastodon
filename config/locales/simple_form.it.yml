@@ -27,6 +27,7 @@ it:
         phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
         scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
         setting_aggregate_reblogs: Non mostrare nuove condivisioni per toot che sono stati condivisi di recente (ha effetto solo sulle nuove condivisioni)
+        setting_default_sensitive: Media con contenuti sensibili sono nascosti in modo predefinito e possono essere rivelati con un click
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
         setting_display_media_show_all: Nascondi sempre i media segnati come sensibili
@@ -39,6 +40,8 @@ it:
         name: 'Eccone alcuni che potresti usare:'
       imports:
         data: File CSV esportato da un altro server Mastodon
+      invite_request:
+        text: Questo ci aiuterà ad esaminare la tua richiesta
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
@@ -62,12 +65,14 @@ it:
         warning_preset_id: Usa un avviso preimpostato
       defaults:
         autofollow: Invita a seguire il tuo account
+        avatar: Immagine di profilo
         bot: Questo account è un bot
         chosen_languages: Filtra lingue
         confirm_new_password: Conferma nuova password
         confirm_password: Conferma password
         context: Contesti del filtro
         current_password: Password corrente
+        data: Data
         discoverable: Inserisci questo account nella directory
         display_name: Nome visualizzato
         email: Indirizzo email
@@ -82,7 +87,9 @@ it:
         new_password: Nuova password
         note: Biografia
         otp_attempt: Codice due-fattori
+        password: Password
         phrase: Parola chiave o frase
+        setting_advanced_layout: Abilita interfaccia web avanzata
         setting_aggregate_reblogs: Raggruppa condivisioni in timeline
         setting_auto_play_gif: Play automatico GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
@@ -107,18 +114,26 @@ it:
         username: Nome utente
         username_or_email: Nome utente o email
         whole_word: Parola intera
+      featured_tag:
+        name: Etichetta
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui
         must_be_following_dm: Blocca i messaggi diretti dalle persone che non segui
+      invite_request:
+        text: Perchè vuoi unirti?
       notification_emails:
         digest: Invia email riassuntive
         favourite: Invia email quando segna come preferito al tuo stato
         follow: Invia email quando qualcuno ti segue
         follow_request: Invia email quando qualcuno richiede di seguirti
         mention: Invia email quando qualcuno ti menziona
+        pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
         reblog: Invia email quando qualcuno da un boost al tuo stato
         report: Manda una mail quando viene inviato un nuovo rapporto
+    'no': 'No'
+    recommended: Consigliato
     required:
+      mark: "*"
       text: richiesto
     'yes': Si
