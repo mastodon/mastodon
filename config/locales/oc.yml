@@ -329,6 +329,8 @@ oc:
         expired: Expirats
         title: Filtre
       title: Convits
+    pending_accounts:
+      title: Comptes en espèra (%{count})
     relays:
       add_new: Ajustar un nòu relai
       delete: Suprimir
@@ -417,7 +419,9 @@ oc:
           title: Autorizat amb invitacions
       registrations_mode:
         modes:
+          approved: Validacion necessària per s’inscriure
           none: Degun pòt pas se marcar
+          open: Tot lo monde se pòt marcar
         title: Mòdes d’inscripcion
       show_known_fediverse_at_about_page:
         desc_html: Un còp activat mostrarà los tuts de totes los fediverse dins l’apercebut. Autrament mostrarà pas que los tuts locals.
@@ -494,6 +498,7 @@ oc:
     sensitive_content: Contengut sensible
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
+    salutation: "%{name},"
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
     view_profile: Veire lo perfil
@@ -555,6 +560,7 @@ oc:
       x_days: "%{count} jorns"
       x_minutes: "%{count} min"
       x_months: "%{count} meses"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
