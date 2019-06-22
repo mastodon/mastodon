@@ -370,7 +370,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def unsupported_media_type?(mime_type)
-    mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
+    mime_type.present? && !MediaAttachment.supported_mime_types.include?(mime_type)
   end
 
   def supported_blurhash?(blurhash)
