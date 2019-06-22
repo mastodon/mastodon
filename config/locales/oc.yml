@@ -244,6 +244,7 @@ oc:
       feature_profile_directory: Annuari de perfils
       feature_registrations: Inscripcions
       feature_relay: Relai de federacion
+      feature_timeline_preview: Apercebut del flux d’actualitats
       features: Foncionalitats
       hidden_service: Federacion amb servicis amagats
       open_reports: Senhalaments dobèrts
@@ -462,6 +463,7 @@ oc:
       confirmed: Confirmat
       expires_in: S’acaba dins
       last_delivery: Darrièra distribucion
+      title: WebSub
       topic: Subjècte
     tags:
       accounts: Comptes
@@ -470,6 +472,7 @@ oc:
       name: Etiqueta
       title: Etiquetas
       unhide: Aparéisser dins l’annuari
+      visible: Visible
     title: Administracion
     warning_presets:
       add_new: N’ajustar un nòu
@@ -478,12 +481,16 @@ oc:
       edit_preset: Modificar lo tèxt predefinit d’avertiment
       title: Gerir los tèxtes predefinits
   admin_mailer:
+    new_pending_account:
+      body: Los detalhs del nòu compte son çai-jos. Podètz validar o regetar aquesta demanda.
     new_report:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
       subject: 'Novèl senhalament per %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Interfàcia web avançada
+    animations_and_accessibility: Animacion e accessibilitat
+    confirmation_dialogs: Fenèstras de confirmacion
     sensitive_content: Contengut sensible
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
@@ -621,6 +628,7 @@ oc:
     all: Tot
     changes_saved_msg: Cambiaments ben realizats !
     copy: Copiar
+    order_by: Triar per
     save_changes: Salvar los cambiaments
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
@@ -736,6 +744,7 @@ oc:
       too_many_options: pòt pas contenir mai de %{max} opcions
   preferences:
     other: Autre
+    public_timelines: Fluxes d’actualitats publics
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
