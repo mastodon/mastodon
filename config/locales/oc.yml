@@ -585,6 +585,9 @@ oc:
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es pas corrècta
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="%{apps_path}">una aplicacion</a> per vòstra plataforma coma alernativa.
+  existing_username_validator:
+    not_found: impossible de trobar un utilizaire local amb aqueste nom d’utilizaire
+    not_found_multiple: impossible de trobar %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -640,6 +643,8 @@ oc:
     i_am_html: Soi %{username} a %{service}.
     identity: Identitat
     inactive: Inactiu
+    publicize_checkbox: 'E enviatz lo tut seguent :'
+    publicize_toot: 'Es provat ! Soi %{username} de %{service} : %{url}'
     status: Estatut de verificacion
     view_proof: Veire la pròva
   imports:
