@@ -1,12 +1,12 @@
----
 oc:
   about:
-    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
+    about_hashtag_html: 'Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.'
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
     active_count_after: actius
     active_footnote: Utilizaire actius per mes (UAM)
     administered_by: 'Administrat per :'
+    api: API
     apps: Aplicacions per mobil
     apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
     browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
@@ -38,7 +38,7 @@ oc:
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
-    choices_html: 'Recomandacions de %{name} :'
+    choices_html: "Recomandacions de %{name} :"
     follow: Sègre
     followers:
       one: Seguidor
@@ -62,8 +62,10 @@ oc:
     posts_with_replies: Tuts e responsas
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
+      admin: Admin
       bot: Robòt
       moderator: Moderador
+    unavailable: Perfil indisponible
     unfollow: Quitar de sègre
   admin:
     account_actions:
@@ -76,7 +78,9 @@ oc:
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       approve: Aprovar
+      approve_all: O validar tot
       are_you_sure: Sètz segur ?
+      avatar: Avatar
       by_domain: Domeni
       change_email:
         changed_msg: Adreça corrèctament cambiada !
@@ -107,6 +111,7 @@ oc:
       header: Bandièra
       inbox_url: URL de recepcion
       invited_by: Convidat per
+      ip: IP
       joined: Venguèt
       location:
         all: Totes
@@ -134,8 +139,10 @@ oc:
       profile_url: URL del perfil
       promote: Promòure
       protocol: Protocòl
+      public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar lo perfil
+      reject: Regetar
       remove_avatar: Supriir l’avatar
       remove_header: Levar la bandièra
       resend_confirmation:
@@ -167,6 +174,7 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       warn: Avisar
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
@@ -211,6 +219,7 @@ oc:
       destroyed_msg: Emoji ben suprimit !
       disable: Desactivar
       disabled_msg: Aqueste emoji es ben desactivat
+      emoji: Emoji
       enable: Activar
       enabled_msg: Aqueste emoji es ben activat
       image_hint: PNG cap a 50Ko
@@ -292,7 +301,7 @@ oc:
       title: Blocatge de domeni de corrièl
     followers:
       back_to_account: Tornar al compte
-      title: Seguidors de %{acct}
+      title: "Seguidors de %{acct}"
     instances:
       by_domain: Domeni
       delivery_available: Liurason disponibla
@@ -470,7 +479,7 @@ oc:
     new_report:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
-      subject: Novèl senhalament per %{instance} (#%{id})
+      subject: 'Novèl senhalament per %{instance} (#%{id})'
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
@@ -500,6 +509,9 @@ oc:
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
     or_log_in_with: O autentificatz-vos amb
+    providers:
+      cas: CAS
+      saml: SAML
     register: Se marcar
     registration_closed: "%{instance} accepta pas de nòus membres"
     resend_confirmation: Tornar mandar las instruccions de confirmacion
@@ -570,6 +582,7 @@ oc:
       request: Demandar vòstre archiu
       size: Talha
     blocks: Personas que blocatz
+    csv: CSV
     domain_blocks: Blocatge de domenis
     follows: Personas que seguètz
     lists: Listas
@@ -613,6 +626,7 @@ oc:
     i_am_html: Soi %{username} a %{service}.
     identity: Identitat
     status: Estatut de verificacion
+    view_proof: Veire la pròva
   imports:
     modes:
       merge: Fondre
@@ -677,7 +691,7 @@ oc:
         other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
       title: Pendent vòstra abséncia…
     favourite:
-      body: "%{name} a mes vòstre estatut en favorit :"
+      body: '%{name} a mes vòstre estatut en favorit :'
       subject: "%{name} a mes vòstre estatut en favorit"
       title: Novèl apondut als favorits
     follow:
@@ -691,11 +705,11 @@ oc:
       title: Novèla demanda d’abonament
     mention:
       action: Respondre
-      body: "%{name} vos a mencionat dins :"
-      subject: "%{name} vos a mencionat"
+      body: '%{name} vos a mencionat dins :'
+      subject: '%{name} vos a mencionat'
       title: Novèla mencion
     reblog:
-      body: "%{name} a tornat partejar vòstre estatut :"
+      body: '%{name} a tornat partejar vòstre estatut :'
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
   pagination:
@@ -741,6 +755,7 @@ oc:
       proceed: Contunhar per respondre
       prompt: 'Volètz respondre a aqueste tut :'
   remote_unfollow:
+    error: Error
     title: Títol
     unfollowed: Pas mai seguit
   scheduled_statuses:
@@ -751,15 +766,47 @@ oc:
     activity: Darrièra activitat
     browser: Navigator
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navigator desconegut
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Session en cors
     description: "%{browser} sus %{platform}"
     explanation: Aquí los navigators connectats a vòstre compte Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: plataforma desconeguda
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: Session ben revocada
+    title: Sessions
   settings:
+    account: Compte
+    account_settings: Paramètres de compte
+    appearance: Aparéncia
     authorized_apps: Aplicacions autorizadas
     back: Tornar a Mastodon
     delete: Supression de compte
@@ -771,6 +818,7 @@ oc:
     migrate: Migracion de compte
     notifications: Notificacions
     preferences: Preferéncias
+    profile: Perfil
     relationships: Abonaments e seguidors
     two_factor_authentication: Autentificacion en dos temps
   statuses:
@@ -806,6 +854,7 @@ oc:
     visibilities:
       private: Seguidors solament
       private_long: Mostrar pas qu’als seguidors
+      public: Public
       public_long: Tot lo monde pòt veire
       unlisted: Pas listat
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
@@ -897,14 +946,15 @@ oc:
       <p>Aqueste document es jos licéncia CC-BY-SA. Darrièra mesa a jorn lo 4 de març de 2018</p>
 
       <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
-    title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
+    title: "Condicions d’utilizacion e politica de confidencialitat de %{instance}"
   themes:
     contrast: Mastodon (Fòrt contrast)
     default: Mastodon (Escur)
     mastodon-light: Mastodon (Clar)
   time:
     formats:
-      default: Lo %d %b de %Y a %Ho%M
+      default: "Lo %d %b de %Y a %Ho%M"
+      month: "%b de %Y"
   two_factor_authentication:
     code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
     description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.
