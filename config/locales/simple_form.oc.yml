@@ -1,4 +1,3 @@
----
 oc:
   simple_form:
     hints:
@@ -64,6 +63,7 @@ oc:
         warning_preset_id: Utilizar un avertiment predefinit
       defaults:
         autofollow: Convidar a sègre vòstre compte
+        avatar: Avatar
         bot: Aquò es lo compte a un robòt
         chosen_languages: Filtrar las lengas
         confirm_new_password: Confirmacion del nòu senhal
@@ -83,9 +83,11 @@ oc:
         locked: Far venir lo compte privat
         max_uses: Limit d’utilizacions
         new_password: Nòu senhal
+        note: Bio
         otp_attempt: Còdi Two-factor
         password: Senhal
         phrase: Senhal o frasa
+        setting_advanced_layout: Activar l’interfàcia web avançada
         setting_aggregate_reblogs: Agropar los partatges dins lo flux d’actualitat
         setting_auto_play_gif: Lectura automatica dels GIFS animats
         setting_boost_modal: Mostrar una fenèstra de confirmacion abans de partejar un estatut
@@ -127,7 +129,9 @@ oc:
         pending_account: Enviar un corrièl quand cal validar un compte novèl
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
         report: Enviar un corrièl pels nòus senhalaments
-    'no': Non
+    'no': 'Non'
+    recommended: Recomandat
     required:
+      mark: "*"
       text: requesit
-    'yes': Òc
+    'yes': 'Òc'
