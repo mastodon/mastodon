@@ -36,9 +36,11 @@ it:
         scopes: Dividi gli scopes con spazi. Lascia vuoto per utilizzare gli scopes di default.
       index:
         application: Applicazione
+        callback_url: URL di callback
         delete: Elimina
         name: Nome
         new: Nuova applicazione
+        scopes: Visibilità
         show: Mostra
         title: Le tue applicazioni
       new:
@@ -112,6 +114,12 @@ it:
       application:
         title: Autorizzazione OAuth richiesta
     scopes:
+      admin:read: leggere tutti i dati dal server
+      admin:read:accounts: leggere dati sensibili di tutti gli account
+      admin:read:reports: leggere dati sensibili di tutte le segnalazioni e gli account segnalati
+      admin:write: modificare tutti i dati sul server
+      admin:write:accounts: eseguire azioni di moderazione sugli account
+      admin:write:reports: eseguire azioni di moderazione sulle segnalazioni
       follow: modificare relazioni tra account
       push: ricevere le tue notifiche push
       read: leggere tutte le informazioni del tuo account

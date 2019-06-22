@@ -14,7 +14,8 @@ class UnblockDomainService < BaseService
   end
 
   def blocked_accounts
-    scope = Account.where(domain: domain_block.domain)
+    scope = Account.by_domain_and_subdomains(domain_block.domain)
+
     if domain_block.silence?
       scope.where(silenced_at: @domain_block.created_at)
     else
