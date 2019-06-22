@@ -82,7 +82,13 @@ Doorkeeper.configure do
                   :'read:search',
                   :'read:statuses',
                   :follow,
-                  :push
+                  :push,
+                  :'admin:read',
+                  :'admin:read:accounts',
+                  :'admin:read:reports',
+                  :'admin:write',
+                  :'admin:write:accounts',
+                  :'admin:write:reports'
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
