@@ -410,6 +410,39 @@ sl:
       custom_css:
         desc_html: Spremeni videz z naloženim CSS na vsaki strani
         title: CSS po meri
+      hero:
+        desc_html: Prikazano na sprednji strani. Priporoča se vsaj 600x100px. Ko ni nastavljen, se vrne na sličico strežnika
+        title: Slika junaka
+      mascot:
+        desc_html: Prikazano na več straneh. Priporočena je najmanj 293 × 205 px. Ko ni nastavljen, se vrne na privzeto maskoto
+        title: Slika maskote
+      peers_api_enabled:
+        desc_html: Domene, na katere je ta strežnik naletel na fediverse-u
+        title: Objavi seznam odkritih strežnikov
+      preview_sensitive_media:
+        desc_html: Predogledi povezav na drugih spletiščih bodo prikazali sličico, tudi če je medij označen kot občutljiv
+        title: Prikaži občutljive medije v predogledih OpenGraph
+      profile_directory:
+        desc_html: Dovoli uporabnikom, da jih lahko odkrijejo
+        title: Omogoči imenik profilov
+      registrations:
+        closed_message:
+          desc_html: Prikazano na prvi strani, ko so registracije zaprte. Lahko uporabite oznake HTML
+          title: Sporočilo o zaprti registraciji
+        deletion:
+          desc_html: Dovoli vsakomur, da izbriše svoj račun
+          title: Odpri brisanje računa
+        min_invite_role:
+          disabled: Nihče
+          title: Dovoli vabila od
+      registrations_mode:
+        modes:
+          approved: Potrebna je odobritev za prijavo
+          none: Nihče se ne more prijaviti
+          open: Vsakdo se lahko prijavi
+        title: Način registracije
+      show_known_fediverse_at_about_page:
+        desc_html: Ko preklopite, bo prikazal tute vseh znanih fediverse-ov v predogledu. V nasprotnem primeru bodo prikazani samo lokalni tuti.
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
