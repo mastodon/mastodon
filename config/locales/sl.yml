@@ -74,31 +74,36 @@ sl:
     roles:
       admin: Skrbnik
       bot: Robot
+      moderator: Mod
+    unavailable: Profil ni na voljo
     unfollow: Prenehaj slediti
   admin:
     account_actions:
       action: Izvedi dejanje
-      title: Izvedi moderirano dejanje %{acct}
+      title: Izvedi moderirano dejanje za %{acct}
     account_moderation_notes:
       create: Pusti opombo
-      created_msg: Uspešno ustvarjena opomba moderiranja!
+      created_msg: Moderirana opomba je uspešno ustvarjena!
       delete: Izbriši
       destroyed_msg: Moderirana opomba je uspešno uničena!
     accounts:
-      are_you_sure: Ali si prepričan?
+      approve: Odobri
+      approve_all: Odobri vse
+      are_you_sure: Ali ste prepričani?
+      avatar: Podoba
       by_domain: Domena
       change_email:
         changed_msg: E-pošta računa je uspešno spremenjena!
-        current_email: Trenutna E-pošta
-        label: Spremeni E-pošto
-        new_email: Nova E-pošta
-        submit: Spremeni E-pošto
-        title: Spremeni E-pošto za %{username}
+        current_email: Trenutna e-pošta
+        label: Spremeni e-pošto
+        new_email: Nova e-pošta
+        submit: Spremeni e-pošto
+        title: Spremeni e-pošto za %{username}
       confirm: Potrdi
       confirmed: Potrjeno
       confirming: Potrjujem
       deleted: Izbrisano
-      demote: Ponižaj
+      demote: Znižaj
       disable: Onemogoči
       disable_two_factor_authentication: Onemogoči 2FA
       disabled: Onemogočeno
@@ -106,10 +111,10 @@ sl:
       domain: Domena
       edit: Uredi
       email: E-pošta
-      email_status: Stanje E-pošte
+      email_status: Stanje e-pošte
       enable: Omogoči
       enabled: Omogočeno
-      feed_url: URL vir
+      feed_url: URL naslov vira
       followers: Sledilci
       followers_url: URL sledilci
       follows: Sledi
