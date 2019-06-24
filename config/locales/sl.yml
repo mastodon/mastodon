@@ -626,6 +626,54 @@ sl:
       size: Velikost
     blocks: Blokirate
     csv: CSV
+    domain_blocks: Bloki domene
+    follows: Sledite
+    lists: Seznami
+    mutes: Utišate
+    storage: Shranjeni mediji
+  featured_tags:
+    add_new: Dodaj novo
+    errors:
+      limit: Ste že dodali največje število ključnikov
+  filters:
+    contexts:
+      home: Domača časovnica
+      notifications: Obvestila
+      public: Javne časovnice
+      thread: Pogovori
+    edit:
+      title: Uredite filter
+    errors:
+      invalid_context: Ne vsebuje nobenega ali vsebuje neveljaven kontekst
+      invalid_irreversible: Nepovratno filtriranje deluje le v kontekstu doma ali obvestil
+    index:
+      delete: Izbriši
+      title: Filtri
+    new:
+      title: Dodaj nov filter
+  footer:
+    developers: Razvijalci
+    more: Več…
+    resources: Viri
+  generic:
+    all: Vse
+    changes_saved_msg: Spremembe so uspešno shranjene!
+    copy: Kopiraj
+    order_by: Razvrsti po
+    save_changes: Shrani spremembe
+    validation_errors:
+      one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
+      two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
+      few: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napake
+      other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
+  html_validator:
+    invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
+  identity_proofs:
+    active: Dejaven
+    authorize: Da, odobri
+    authorize_connection_prompt: Odobrite to kriptografsko povezavo?
+    errors:
+      failed: Kriptografska povezava ni uspela. Poskusite znova od %{provider}.
   invites:
     expires_in:
       '1800': 30 minutes
