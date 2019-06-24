@@ -544,7 +544,7 @@ export default class Status extends ImmutablePureComponent {
             />)}
           </Bundle>
         );
-        mediaIcon = 'video-camera';
+        mediaIcon = attachment.get('type') === 'video' ? 'video-camera' : 'music';
       } else {  //  Media type is 'image' or 'gifv'
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
