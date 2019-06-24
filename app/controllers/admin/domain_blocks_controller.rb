@@ -13,7 +13,7 @@ module Admin
       authorize :domain_block, :create?
 
       @domain_block = DomainBlock.new(resource_params)
-      existing_domain_block = resource_params[:domain].present? ? DomainBlock.find_by(domain: resource_params[:domain]) : nil
+      existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
 
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
         @domain_block.save

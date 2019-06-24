@@ -24,14 +24,41 @@ class DomainBlock < ApplicationRecord
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
-  def self.blocked?(domain)
-    where(domain: domain, severity: :suspend).exists?
+  class << self
+    def suspend?(domain)
+      !!rule_for(domain)&.suspend?
+    end
+
+    def silence?(domain)
+      !!rule_for(domain)&.silence?
+    end
+
+    def reject_media?(domain)
+      !!rule_for(domain)&.reject_media?
+    end
+
+    def reject_reports?(domain)
+      !!rule_for(domain)&.reject_reports?
+    end
+
+    alias blocked? suspend?
+
+    def rule_for(domain)
+      return if domain.blank?
+
+      uri      = Addressable::URI.new.tap { |u| u.host = domain.gsub(/[\/]/, '') }
+      segments = uri.normalized_host.split('.')
+      variants = segments.map.with_index { |_, i| segments[i..-1].join('.') }
+
+      where(domain: variants[0..-2]).order(Arel.sql('char_length(domain) desc')).first
+    end
   end
 
   def stricter_than?(other_block)
-    return true if suspend?
+    return true  if suspend?
     return false if other_block.suspend? && (silence? || noop?)
     return false if other_block.silence? && noop?
+
     (reject_media || !other_block.reject_media) && (reject_reports || !other_block.reject_reports)
   end
 

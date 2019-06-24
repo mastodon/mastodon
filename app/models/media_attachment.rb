@@ -24,16 +24,16 @@
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
-  enum type: [:image, :gifv, :video, :audio, :unknown]
+  enum type: [:image, :gifv, :video, :unknown, :audio]
 
   IMAGE_FILE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp'].freeze
   VIDEO_FILE_EXTENSIONS = ['.webm', '.mp4', '.m4v', '.mov'].freeze
-  AUDIO_FILE_EXTENSIONS = ['.mp3', '.m4a', '.wav', '.ogg'].freeze
+  AUDIO_FILE_EXTENSIONS = ['.ogg', '.oga', '.mp3', '.m4a', '.wav', '.flac', '.opus'].freeze
 
   IMAGE_MIME_TYPES             = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/quicktime'].freeze
+  VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/quicktime', 'video/ogg'].freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = ['video/webm', 'video/quicktime'].freeze
-  AUDIO_MIME_TYPES             = ['audio/mpeg', 'audio/mp4', 'audio/vnd.wav', 'audio/wav', 'audio/x-wav', 'audio/x-wave', 'audio/ogg',].freeze
+  AUDIO_MIME_TYPES             = ['audio/wave', 'audio/wav', 'audio/x-wav', 'audio/x-wave', 'audio/vdn.wav', 'audio/x-pn-wave', 'audio/ogg', 'audio/mpeg', 'audio/mp3', 'audio/mp4', 'audio/webm', 'audio/flac'].freeze
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -53,22 +53,6 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  AUDIO_STYLES = {
-    original: {
-      format: 'mp4',
-      convert_options: {
-        output: {
-          filter_complex: '"[0:a]compand,showwaves=s=640x360:mode=line,format=yuv420p[v]"',
-          map: '"[v]" -map 0:a', 
-          threads: 2,
-          vcodec: 'libx264',
-          acodec: 'aac',
-          movflags: '+faststart',
-        },
-      },
-    },
-  }.freeze
-
   VIDEO_STYLES = {
     small: {
       convert_options: {
@@ -83,8 +67,21 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
+  AUDIO_STYLES = {
+    original: {
+      format: 'mp3',
+      content_type: 'audio/mpeg',
+      convert_options: {
+        output: {
+          'q:a' => 2,
+        },
+      },
+    },
+  }.freeze
+
   VIDEO_FORMAT = {
     format: 'mp4',
+    content_type: 'video/mp4',
     convert_options: {
       output: {
         'loglevel' => 'fatal',
@@ -101,6 +98,11 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
+  VIDEO_CONVERTED_STYLES = {
+    small: VIDEO_STYLES[:small],
+    original: VIDEO_FORMAT,
+  }.freeze
+
   IMAGE_LIMIT = (ENV['MAX_IMAGE_SIZE'] || 8.megabytes).to_i
   VIDEO_LIMIT = (ENV['MAX_VIDEO_SIZE'] || 40.megabytes).to_i
 
@@ -114,8 +116,8 @@ class MediaAttachment < ApplicationRecord
                     convert_options: { all: '-quality 90 -strip' }
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
-  validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :video_or_gifv?
-  validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :video_or_gifv?
+  validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
+  validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
   remotable_attachment :file, VIDEO_LIMIT
 
   include Attachmentable
@@ -138,8 +140,12 @@ class MediaAttachment < ApplicationRecord
     file.blank? && remote_url.present?
   end
 
-  def video_or_gifv?
-    video? || gifv?
+  def larger_media_format?
+    video? || gifv? || audio?
+  end
+
+  def audio_or_video?
+    audio? || video?
   end
 
   def to_param
@@ -171,37 +177,37 @@ class MediaAttachment < ApplicationRecord
   before_save :set_meta
 
   class << self
+    def supported_mime_types
+      IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
+    end
+
+    def supported_file_extensions
+      IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + AUDIO_FILE_EXTENSIONS
+    end
+
     private
 
     def file_styles(f)
-      if f.instance.file_content_type == 'image/gif'
-        {
-          small: IMAGE_STYLES[:small],
-          original: VIDEO_FORMAT,
-        }
-      elsif IMAGE_MIME_TYPES.include? f.instance.file_content_type
+      if f.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(f.instance.file_content_type)
+        VIDEO_CONVERTED_STYLES
+      elsif IMAGE_MIME_TYPES.include?(f.instance.file_content_type)
         IMAGE_STYLES
-      elsif AUDIO_MIME_TYPES.include? f.instance.file_content_type
-        AUDIO_STYLES
-      elsif VIDEO_CONVERTIBLE_MIME_TYPES.include?(f.instance.file_content_type)
-        {
-          small: VIDEO_STYLES[:small],
-          original: VIDEO_FORMAT,
-        }
-      else
+      elsif VIDEO_MIME_TYPES.include?(f.instance.file_content_type)
         VIDEO_STYLES
+      else
+        AUDIO_STYLES
       end
     end
 
     def file_processors(f)
       if f.file_content_type == 'image/gif'
         [:gif_transcoder, :blurhash_transcoder]
-      elsif VIDEO_MIME_TYPES.include? f.file_content_type
-        [:video_transcoder, :blurhash_transcoder]
-      elsif AUDIO_MIME_TYPES.include? f.file_content_type
-        [:audio_transcoder]
+      elsif VIDEO_MIME_TYPES.include?(f.file_content_type)
+        [:video_transcoder, :blurhash_transcoder, :type_corrector]
+      elsif AUDIO_MIME_TYPES.include?(f.file_content_type)
+        [:transcoder, :type_corrector]
       else
-        [:lazy_thumbnail, :blurhash_transcoder]
+        [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       end
     end
   end
@@ -224,7 +230,15 @@ class MediaAttachment < ApplicationRecord
   end
 
   def set_type_and_extension
-    self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : AUDIO_MIME_TYPES.include?(file_content_type) ? :audio : :image
+    self.type = begin
+      if VIDEO_MIME_TYPES.include?(file_content_type)
+        :video
+      elsif AUDIO_MIME_TYPES.include?(file_content_type)
+        :audio
+      else
+        :image
+      end
+    end
   end
 
   def set_meta
@@ -267,7 +281,7 @@ class MediaAttachment < ApplicationRecord
       frame_rate: movie.frame_rate,
       duration: movie.duration,
       bitrate: movie.bitrate,
-    }
+    }.compact
   end
 
   def reset_parent_cache
