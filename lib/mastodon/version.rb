@@ -20,16 +20,12 @@ module Mastodon
       nil
     end
 
-    def flags
-      ''
-    end
-
     def to_a
       [major, minor, patch, pre].compact
     end
 
     def to_s
-      [to_a.join('.'), flags].join
+      [[major, minor, patch].join('.'), pre].join
     end
 
     def repository
