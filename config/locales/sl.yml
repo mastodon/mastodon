@@ -253,10 +253,11 @@ sl:
       backlog: zaostala opravila
       config: Nastavitve
       feature_deletions: Brisanje računov
-      feature_invites: Poveza povabil
-      feature_profile_directory: Mapa profila
+      feature_invites: Povezave povabil
+      feature_profile_directory: Imenik profilov
       feature_registrations: Registracije
       feature_relay: Rele federacije
+      feature_timeline_preview: Predogled časovnice
       features: Zmožnosti
       hidden_service: Federacija s skritimi storitvami
       open_reports: odprte prijave
@@ -266,7 +267,7 @@ sl:
       software: Programska oprema
       space: Uporaba prostora
       title: Nadzorna plošča
-      total_users: Skupaj uporabnikov
+      total_users: skupaj uporabnikov
       trends: Trendi
       week_interactions: interakcije ta teden
       week_users_active: aktivni ta teden
@@ -276,12 +277,13 @@ sl:
       created_msg: Domenski blok se sedaj obdeluje
       destroyed_msg: Domenski blok je bil razveljavljen
       domain: Domena
+      existing_domain_block_html: Uvedli ste strožje omejitve za %{name}, sedaj ga morate najprej <a href="%{unblock_url}">odblokirati</a>.
       new:
         create: Ustvari blok
         hint: Domenski blok ne bo preprečil ustvarjanja vnosov računov v zbirko podatkov, ampak bo retroaktivno in samodejno uporabil posebne metode moderiranja na teh računih.
         severity:
           desc_html: "<strong>Utišaj</strong> bo vse objave računa naredil nevidne vsem, ki jih ne sledijo. <strong>Suspendiraj</strong> bo odstranil vso vsebino, medije in podatke profila računa. Uporabi <strong>nič</strong>, če želite le zavrniti predstavnostne datoteke."
-          noop: Nič
+          noop: Brez
           silence: Utišaj
           suspend: Suspendiraj
         title: Nov domenski blok
@@ -297,12 +299,12 @@ sl:
       show:
         affected_accounts:
           one: En račun v bazi podatkov je prizadet
-          two: "%{count} računov v bazi podatkov so prizadeti"
-          few: "%{count} računov v bazi podatkov so prizadeti"
-          other: "%{count} računov v bazi podatkov so prizadeti"
+          two: "%{count} računa v bazi podatkov so prizadeta"
+          few: "%{count} računi v bazi podatkov so prizadeti"
+          other: "%{count} računov v bazi podatkov je prizadetih"
         retroactive:
           silence: Prekliči utišanje za vse obstoječe račune iz te domene
-          suspend: Odsuspendiraj vse obstoječe račune iz te domene
+          suspend: Aktiviraj vse obstoječe račune iz te domene
         title: Razveljavi domenski blok za %{domain}
         undo: Razveljavi
       undo: Razveljavi domenski blok
@@ -315,16 +317,17 @@ sl:
       new:
         create: Dodaj domeno
         title: Nov vnos e-pošte na črni seznam
-      title: Črni seznam e-pošte
+      title: Črni seznam e-pošt
     followers:
       back_to_account: Nazaj na račun
       title: "Sledilci od %{acct}"
     instances:
+      by_domain: Domena
       delivery_available: Na voljo je dostava
       known_accounts:
         one: "%{count} znan račun"
-        two: "%{count} znanih računov"
-        few: "%{count} znanih računov"
+        two: "%{count} znana računa"
+        few: "%{count} znani računi"
         other: "%{count} znanih računov"
       moderation:
         all: Vse
@@ -342,15 +345,18 @@ sl:
         all: Vse
         available: Razpoložljivo
         expired: Potekel
+        title: Filter
       title: Povabila
+    pending_accounts:
+      title: (%{count}) računov na čakanju
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
-      description_html: <strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih trobov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
+      description_html: <strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih tutov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
       disable: Onemogoči
       disabled: Onemogočeno
       enable: Omogoči
-      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne trobe iz tega releja in začel pošiljati javne trobe tega strežnika.
+      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne tute iz tega releja in začel pošiljati javne tute tega strežnika.
       enabled: Omogočeno
       inbox_url: URL releja
       pending: Čakanje na odobritev releja
@@ -370,7 +376,7 @@ sl:
       assign_to_self: Dodeli meni
       assigned: Dodeljen moderator
       comment:
-        none: Nič
+        none: Brez
       created_at: Prijavljeno
       mark_as_resolved: Označi kot rešeno
       mark_as_unresolved: Označi kot nerešeno
@@ -384,19 +390,19 @@ sl:
       report: 'Prijavi #%{id}'
       reported_account: Prijavljeni račun
       reported_by: Prijavljen od
-      resolved: Razrešeno
+      resolved: Razrešeni
       resolved_msg: Prijava je uspešno razrešena!
       status: Stanje
       title: Prijave
-      unassign: Odstopi
-      unresolved: Nerešeno
-      updated_at: Posodobljen
+      unassign: Odstopljeni
+      unresolved: Nerešeni
+      updated_at: Posodobljeni
     settings:
       activity_api_enabled:
         desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih registracij na tedenskih seznamih
         title: Objavi združeno statistiko o dejavnosti uporabnikov
       bootstrap_timeline_accounts:
-        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih in odklenjenih računih. Privzeto, ko je prazno, pri vseh lokalnih skrbnikih.
+        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih in odklenjenih računih. Privzeto, ko je prazno, je pri vseh lokalnih skrbnikih.
         title: Privzeta sledenja za nove uporabnike
       contact_information:
         email: Poslovna e-pošta
