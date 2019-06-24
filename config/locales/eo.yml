@@ -173,6 +173,7 @@ eo:
       statuses: Mesaĝoj
       subscribe: Aboni
       suspended: Haltigita
+      time_in_queue: Atendado en atendovico %{time}
       title: Kontoj
       unconfirmed_email: Nekonfirmita retadreso
       undo_silenced: Malfari kaŝon
@@ -333,6 +334,8 @@ eo:
         expired: Eksvalida
         title: Filtri
       title: Invitoj
+    pending_accounts:
+      title: Pritraktataj kontoj (%{count})
     relays:
       add_new: Aldoni novan ripetilon
       delete: Forigi
@@ -777,8 +780,10 @@ eo:
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
     other: Aliaj aferoj
+    posting_defaults: Afiŝadoj defaŭltoj
     public_timelines: Publikaj templinioj
   relationships:
+    activity: Konto aktiveco
     dormant: Dormanta
     last_active: Lasta aktiva
     most_recent: Plej lasta
@@ -786,6 +791,9 @@ eo:
     mutual: Reciproka
     primary: Primara
     relationship: Rilato
+    remove_selected_domains: Forigi ĉiuj sekvantojn el la selektitajn domajnojn
+    remove_selected_followers: Forigi selektitajn sekvantojn
+    remove_selected_follows: Malsekvi selektitajn uzantojn
     status: Statuso de la konto
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
