@@ -527,9 +527,39 @@ sl:
     created: Aplikacija je bila uspešno ustvarjena
     destroyed: Aplikacija je bila uspešno izbrisana
     invalid_url: Navedeni URL je neveljaven
-    regenerate_token: Obnovite žeton za dostop
-    token_regenerated: Žeton za dostop je bil uspešno regeneriran
+    regenerate_token: Obnovite dostopni žeton
+    token_regenerated: Dostopni žeton je bil uspešno regeneriran
     warning: Bodite zelo previdni s temi podatki. Nikoli jih ne delite z nikomer!
+    your_token: Vaš dostopni žeton
+  auth:
+    apply_for_account: Zahtevajte povabilo
+    change_password: Geslo
+    checkbox_agreement_html: Strinjam se s <a href="%{rules_path}" target="_blank">pravili strežnika</a> in <a href="%{terms_path}" target="_blank">pogoji storitve</a>
+    confirm_email: Potrdi e-pošto
+    delete_account: Izbriši račun
+    delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
+    didnt_get_confirmation: Niste prejeli navodil za potrditev?
+    forgot_password: Ste pozabili svoje geslo?
+    invalid_reset_password_token: Žeton za ponastavitev gesla je neveljaven ali je potekel. Zahtevajte novo.
+    login: Prijava
+    logout: Odjava
+    migrate_account: Premakni se na drug račun
+    migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
+    or_log_in_with: Ali se prijavite z
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Vpis
+    registration_closed: "%{instance} ne sprejema novih članov"
+    resend_confirmation: Ponovno pošlji navodila za potrditev
+    reset_password: Ponastavi geslo
+    security: Varnost
+    set_new_password: Nastavi novo geslo
+    trouble_logging_in: Težave pri prijavi?
+  authorize_follow:
+    already_following: Temu računu že sledite
+    error: Na žalost je prišlo do napake pri iskanju oddaljenega računa
+    follow: Sledi
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
