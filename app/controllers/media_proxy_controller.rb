@@ -39,6 +39,6 @@ class MediaProxyController < ApplicationController
   end
 
   def reject_media?
-    DomainBlock.find_by(domain: @media_attachment.account.domain)&.reject_media?
+    DomainBlock.reject_media?(@media_attachment.account.domain)
   end
 end

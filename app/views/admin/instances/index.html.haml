@@ -33,21 +33,22 @@
       %h4
         = instance.domain
         %small
-          = t('admin.instances.known_accounts', count: instance.cached_accounts_count)
-
           - if instance.domain_block
+            - first_item = true
             - if !instance.domain_block.noop?
-              &bull;
               = t("admin.domain_blocks.severity.#{instance.domain_block.severity}")
+              - first_item = false
             - if instance.domain_block.reject_media?
-              &bull;
+              - unless first_item
+                &bull;
               = t('admin.domain_blocks.rejecting_media')
+              - first_item = false
             - if instance.domain_block.reject_reports?
-              &bull;
+              - unless first_item
+                &bull;
               = t('admin.domain_blocks.rejecting_reports')
-
-      .avatar-stack
-        - instance.cached_sample_accounts.each do |account|
-          = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
-
+          - else
+            = t('admin.accounts.no_limits_imposed')
+      - if instance.countable?
+        .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= number_to_human instance.accounts_count, strip_insignificant_zeros: true
 = paginate paginated_instances
