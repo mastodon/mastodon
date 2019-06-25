@@ -107,9 +107,9 @@ class BatchedRemoveStatusService < BaseService
     payload = @json_payloads[status.id]
     redis.pipelined do
       @mentions[status.id].each do |mention|
-        redis.publish("timeline:direct:#{mention.account.id}", payload) if mention.account.local?
+        FeedManager.instance.unpush_from_direct(mention.account, status) if mention.account.local?
       end
-      redis.publish("timeline:direct:#{status.account.id}", payload) if status.account.local?
+      FeedManager.instance.unpush_from_direct(status.account, status) if status.account.local?
     end
   end
 

@@ -9,6 +9,7 @@ class Scheduler::FeedCleanupScheduler
   def perform
     clean_home_feeds!
     clean_list_feeds!
+    clean_direct_feeds!
   end
 
   private
@@ -19,6 +20,10 @@ class Scheduler::FeedCleanupScheduler
 
   def clean_list_feeds!
     clean_feeds!(inactive_list_ids, :list)
+  end
+
+  def clean_direct_feeds!
+    clean_feeds!(inactive_account_ids, :direct)
   end
 
   def clean_feeds!(ids, type)

@@ -22,6 +22,8 @@ class FeedManager
       filter_from_home?(status, receiver_id)
     elsif timeline_type == :mentions
       filter_from_mentions?(status, receiver_id)
+    elsif timeline_type == :direct
+      filter_from_direct?(status, receiver_id)
     else
       false
     end
@@ -57,6 +59,18 @@ class FeedManager
     return false unless remove_from_feed(:list, list.id, status)
     redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
+  end
+
+  def push_to_direct(account, status)
+    return false unless add_to_feed(:direct, account.id, status)
+    trim(:direct, account.id)
+    PushUpdateWorker.perform_async(account.id, status.id, "timeline:direct:#{account.id}")
+    true
+  end
+
+  def unpush_from_direct(account, status)
+    return false unless remove_from_feed(:direct, account.id, status)
+    redis.publish("timeline:direct:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
   end
 
   def trim(type, account_id)
@@ -142,6 +156,27 @@ class FeedManager
     end
   end
 
+  def populate_direct_feed(account)
+    added  = 0
+    limit  = FeedManager::MAX_ITEMS / 2
+    max_id = nil
+
+    loop do
+      statuses = Status.as_direct_timeline(account, limit, max_id)
+
+      break if statuses.empty?
+
+      statuses.each do |status|
+        next if filter_from_direct?(status, account)
+        added += 1 if add_to_feed(:direct, account.id, status)
+      end
+
+      break unless added.zero?
+
+      max_id = statuses.last.id
+    end
+  end
+
   private
 
   def push_update_required?(timeline_id)
@@ -197,6 +232,11 @@ class FeedManager
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
 
     should_filter
+  end
+
+  def filter_from_direct?(status, receiver_id)
+    return false if receiver_id == status.account_id
+    filter_from_mentions?(status, receiver_id)
   end
 
   def phrase_filtered?(status, receiver_id, context)

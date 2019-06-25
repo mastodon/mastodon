@@ -48,6 +48,7 @@ class RemoveStatusService < BaseService
 
   def remove_from_self
     FeedManager.instance.unpush_from_home(@account, @status)
+    FeedManager.instance.unpush_from_direct(@account, @status) if @status.direct_visibility?
   end
 
   def remove_from_followers
@@ -159,9 +160,8 @@ class RemoveStatusService < BaseService
 
   def remove_from_direct
     @mentions.each do |mention|
-      Redis.current.publish("timeline:direct:#{mention.account.id}", @payload) if mention.account.local?
+      FeedManager.instance.unpush_from_direct(mention.account, @status) if mention.account.local?
     end
-    Redis.current.publish("timeline:direct:#{@account.id}", @payload) if @account.local?
   end
 
   def lock_options
