@@ -296,12 +296,12 @@ class ComposeForm extends ImmutablePureComponent {
     let disabledButton = isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia);
 
     return (
-      <div className='composer' ref={this.setRef}>
+      <div className='composer'>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
 
-        <div className={`composer--spoiler ${spoiler ? 'composer--spoiler--visible' : ''}`}>
+        <div className={`composer--spoiler ${spoiler ? 'composer--spoiler--visible' : ''}`} ref={this.setRef}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={spoilerText}
