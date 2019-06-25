@@ -220,7 +220,8 @@ class FeedManager
     status         = status.reblog if status.reblog?
 
     !combined_regex.match(Formatter.instance.plaintext(status)).nil? ||
-      (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?)
+      (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?) ||
+      (status.preloadable_poll && !combined_regex.match(status.preloadable_poll.options.join("\n\n")).nil?)
   end
 
   # Adds a status to an account's feed, returning true if a status was
