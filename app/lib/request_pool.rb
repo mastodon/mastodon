@@ -1,52 +1,5 @@
 # frozen_string_literal: true
 
-require 'connection_pool'
-
-class ConnectionPool::ManagedTimedStack < ConnectionPool::TimedStack
-  def each_connection(&block)
-    @mutex.synchronize do
-      @que.each(&block)
-    end
-  end
-
-  def delete(connection)
-    @mutex.synchronize do
-      @que.delete(connection)
-      @created -= 1
-    end
-  end
-
-  def size
-    @mutex.synchronize do
-      @que.size
-    end
-  end
-end
-
-class ManagedConnectionPool < ConnectionPool
-  def initialize(options = {}, &block)
-    super
-
-    @available = ConnectionPool::ManagedTimedStack.new(@size, &block)
-  end
-
-  def each_connection(&block)
-    @available.each_connection(&block)
-  end
-
-  def delete(connection)
-    @available.delete(connection)
-  end
-
-  def size
-    @available.size
-  end
-
-  def empty?
-    size.zero?
-  end
-end
-
 class RequestPool
   def self.current
     @current ||= RequestPool.new
@@ -74,7 +27,7 @@ class RequestPool
 
   MAX_IDLE_TIME = 90
   WAIT_TIMEOUT  = 5
-  MAX_POOL_SIZE = ENV.fetch('MAX_REQUEST_POOL_SIZE', -1).to_i
+  MAX_POOL_SIZE = ENV.fetch('MAX_REQUEST_POOL_SIZE', 512).to_i
 
   class Connection
     attr_reader :last_used_at, :created_at, :in_use, :dead, :fresh
@@ -142,8 +95,9 @@ class RequestPool
   end
 
   def initialize
-    @pools  = Concurrent::Map.new
-    @reaper = Reaper.new(self, 60)
+    @shared_size = Concurrent::AtomicFixnum.new
+    @pools       = Concurrent::Map.new
+    @reaper      = Reaper.new(self, 60)
     @reaper.run
   end
 
@@ -179,14 +133,14 @@ class RequestPool
   end
 
   def size
-    @pools.values.sum(&:size)
+    @shared_size.value
   end
 
   private
 
   def connection_pool_for(site)
     @pools.fetch_or_store(site) do
-      ManagedConnectionPool.new(size: MAX_POOL_SIZE, timeout: WAIT_TIMEOUT) { Connection.new(site) }
+      ConnectionPool::SharedConnectionPool.new(@shared_size, size: MAX_POOL_SIZE, timeout: WAIT_TIMEOUT) { Connection.new(site) }
     end
   end
 end
