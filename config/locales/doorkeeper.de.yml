@@ -114,6 +114,12 @@ de:
       application:
         title: OAuth-Autorisierung nötig
     scopes:
+      admin:read: alle Daten auf dem Server lesen
+      admin:read:accounts: sensible Daten aller Konten lesen
+      admin:read:reports: sensible Daten aller Meldungen und gemeldeten Konten lesen
+      admin:write: alle Daten auf dem Server ändern
+      admin:write:accounts: Moderationsaktionen auf Konten ausführen
+      admin:write:reports: Moderationsaktionen auf Meldungen ausführen
       follow: Kontenbeziehungen verändern
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen

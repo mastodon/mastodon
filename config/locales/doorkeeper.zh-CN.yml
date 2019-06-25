@@ -113,6 +113,12 @@ zh-CN:
       application:
         title: 需要 OAuth 认证
     scopes:
+      admin:read: 读取服务器上的所有数据
+      admin:read:accounts: 读取所有账户的敏感信息
+      admin:read:reports: 读取所有举报和被举报账户的敏感信息
+      admin:write: 修改服务器上的所有数据
+      admin:write:accounts: 对账户执行管理操作
+      admin:write:reports: 对举报执行管理操作
       follow: 关注或屏蔽用户
       push: 接收你的帐户的推送通知
       read: 读取你的帐户数据

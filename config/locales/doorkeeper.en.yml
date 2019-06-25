@@ -114,6 +114,12 @@ en:
       application:
         title: OAuth authorization required
     scopes:
+      admin:read: read all data on the server
+      admin:read:accounts: read sensitive information of all accounts
+      admin:read:reports: read sensitive information of all reports and reported accounts
+      admin:write: modify all data on the server
+      admin:write:accounts: perform moderation actions on accounts
+      admin:write:reports: perform moderation actions on reports
       follow: modify account relationships
       push: receive your push notifications
       read: read all your account's data

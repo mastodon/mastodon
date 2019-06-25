@@ -114,6 +114,12 @@ sl:
       application:
         title: Potrebna je OAuth pooblastitev
     scopes:
+      admin:read: preberi vse podatke na strežniku
+      admin:read:accounts: preberi občutljive informacije vseh računov
+      admin:read:reports: preberi občutljive informacije vseh prijav in prijavljenih računov
+      admin:write: spremeni vse podatke na strežniku
+      admin:write:accounts: izvedi moderirana dejanja na računih
+      admin:write:reports: izvedi moderirana dejanja na prijavah
       follow: spremeni razmerja med računi
       push: prejmi potisna obvestila
       read: preberi vse podatke svojega računa

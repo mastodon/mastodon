@@ -521,16 +521,16 @@ export default class Status extends ImmutablePureComponent {
             media={status.get('media_attachments')}
           />
         );
-      } else if (attachments.getIn([0, 'type']) === 'video') {  //  Media type is 'video'
-        const video = status.getIn(['media_attachments', 0]);
+      } else if (['video', 'audio'].includes(attachments.getIn([0, 'type']))) {
+        const attachment = status.getIn(['media_attachments', 0]);
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
             {Component => (<Component
-              preview={video.get('preview_url')}
-              blurhash={video.get('blurhash')}
-              src={video.get('url')}
-              alt={video.get('description')}
+              preview={attachment.get('preview_url')}
+              blurhash={attachment.get('blurhash')}
+              src={attachment.get('url')}
+              alt={attachment.get('description')}
               inline
               sensitive={status.get('sensitive')}
               letterbox={settings.getIn(['media', 'letterbox'])}
@@ -544,7 +544,7 @@ export default class Status extends ImmutablePureComponent {
             />)}
           </Bundle>
         );
-        mediaIcon = 'video-camera';
+        mediaIcon = attachment.get('type') === 'video' ? 'video-camera' : 'music';
       } else {  //  Media type is 'image' or 'gifv'
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
