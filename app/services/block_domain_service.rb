@@ -76,7 +76,7 @@ class BlockDomainService < BaseService
   end
 
   def blocked_domain_accounts
-    Account.where(domain: blocked_domain)
+    Account.by_domain_and_subdomains(blocked_domain)
   end
 
   def media_from_blocked_domain
@@ -84,6 +84,6 @@ class BlockDomainService < BaseService
   end
 
   def emojis_from_blocked_domains
-    CustomEmoji.where(domain: blocked_domain)
+    CustomEmoji.by_domain_and_subdomains(blocked_domain)
   end
 end
