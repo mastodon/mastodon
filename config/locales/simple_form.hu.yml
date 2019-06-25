@@ -2,60 +2,137 @@
 hu:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Használhatod a tülkökben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
+      admin_account_action:
+        send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
+        text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
+        type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
+        warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
       defaults:
-        avatar: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
-        digest: Csak hosszú távollét esetén küldve és csak ha személyes üzenetet kaptál távollétedben
-        header: PNG, GIF vagy JPG. Maximum %{size}. Át lesz méretezve %{dimensions} pixelre
+        autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
+        avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        bot: Ez a fiók automatikus műveleteket végez és valószínűleg nem figyeljük
+        context: Kontextusok, ahol a szűrőnek működnie kell
+        digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
+        discoverable_html: A <a href="%{path}" target="_blank">profilok</a> adatbázisa lehetővé teszi, hogy embereket közös érdeklődés vagy tevékenység alapján találj meg. Legalább %{min_followers} követőre van szükség az adatbázisba való bekerüléshez
+        email: Kapsz egy megerősítő e-mailt
+        fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
+        header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
+        inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
+        irreversible: A kiszűrt tülkök visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
+        locale: A felhasználói felület, e-mailek, push üzenetek nyelve
         locked: Egyenként engedélyezned kell a követőidet
-        setting_noindex: A publikus profilodra és státusz oldalra vonatkozik
-        setting_theme: A bármely eszközről bejelentkezett felület kinézetére vonatkozik.
+        password: Legalább 8 karakter
+        phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalom-figyelmeztetések mögött is
+        scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
+        setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan tülkökhöz, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
+        setting_default_sensitive: A szenzitív médiát alapesetben elrejtjük, de egyetlen kattintással előhozható
+        setting_display_media_default: Szenzitív tartalomként jelölt média elrejtése
+        setting_display_media_hide_all: Mindig minden média elrejtése
+        setting_display_media_show_all: Mindig mutasd a szenzitív tartalomként jelölt médiát
+        setting_hide_network: Nem látszik majd a profilodon, kik követnek és te kiket követsz
+        setting_noindex: A nyilvános profilodra és a tülkjeidre vonatkozik
+        setting_show_application: A tülkök részletes nézetében látszani fog, milyen alkalmazást használtál a tülköléshez
+        username: A felhasználói neved egyedi lesz a %{domain} domainen
+        whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
+      featured_tag:
+        name: 'Ezeket esetleg használhatod:'
       imports:
         data: Egy másik Mastodon szerverről exportált CSV fájl
+      invite_request:
+        text: Ez segít nekünk átnézni a jelentkezésedet
       sessions:
-        otp: Add meg a Második-faktor kódodat a telefonodról vagy használd az egyik tartalék bejelentkező kódodat.
+        otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
+      user:
+        chosen_languages: Ha aktív, csak a kiválasztott nyelvű tülkök jelennek majd meg a nyilvános idővonalon
     labels:
+      account:
+        fields:
+          name: Címke
+          value: Tartalom
+      account_warning_preset:
+        text: Figyelmeztető szöveg
+      admin_account_action:
+        send_email_notification: Figyelmeztessük a felhasználót e-mailben
+        text: Egyedi figyelmeztetés
+        type: Művelet
+        types:
+          disable: Letiltás
+          none: Ne csinálj semmit
+          silence: Elnémítás
+          suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
+        warning_preset_id: Figyelmeztetés használata
       defaults:
+        autofollow: Meghívás a fiókod követésére
         avatar: Profilkép
+        bot: Ez a fiók egy bot
+        chosen_languages: Nyelvek szűrése
         confirm_new_password: Új jelszó megerősítése
         confirm_password: Jelszó megerősítése
+        context: Szűrés kontextusai
         current_password: Jelenlegi jelszó
         data: Adatok
+        discoverable: Fiók listázása a profilok adatbázisában
         display_name: Megjelenített név
         email: E-mail cím
         expires_in: Elévül
+        fields: Profil metaadatok
         header: Fejléc
-        locale: Nyelv
-        locked: Zárt felhasználói fiók
-        max_uses: Felhasználhatóság
+        inbox_url: Relé inbox-hoz tartozó URL
+        irreversible: Eldobás elrejtés helyett
+        locale: Felhasználói felület nyelve
+        locked: Felhasználói fiók lezárása
+        max_uses: Hányszor használható
         new_password: Új jelszó
-        note: Önéletrajz
-        otp_attempt: Második-faktor kód
+        note: Bemutatkozás
+        otp_attempt: Kétlépcsős azonosító kód
         password: Jelszó
+        phrase: Kulcsszó vagy kifejezés
+        setting_advanced_layout: Haladó webes felület engedélyezése
+        setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
         setting_auto_play_gif: GIF-ek automatikus lejátszása
-        setting_boost_modal: Megerősítés kérése reblogolás előtt
-        setting_default_privacy: Tülkök alapártelmezett adatvédelmi szintje
+        setting_boost_modal: Megerősítés kérése megtolás előtt
+        setting_default_language: Tülkölés nyelve
+        setting_default_privacy: Tülkök alapértelmezett láthatósága
         setting_default_sensitive: Minden médiafájl megjelölése szenzitívként
         setting_delete_modal: Megerősítés kérése tülk törlése előtt
+        setting_display_media: Média megjelenítése
+        setting_display_media_default: Alapértelmezés
+        setting_display_media_hide_all: Mindent elrejt
+        setting_display_media_show_all: Mindent mutat
+        setting_expand_spoilers: Tartalom figyelmeztetéssel ellátott tülkök automatikus kinyitása
+        setting_hide_network: Hálózatod elrejtése
         setting_noindex: Megtiltom a keresőmotoroknak, hogy indexeljék a tülkjeimet
         setting_reduce_motion: Animációk mozgásának csökkentése
+        setting_show_application: A tülkölésre használt alkalmazás feltüntetése
         setting_system_font_ui: Rendszer betűtípusának használata
-        setting_theme: Oldalsablon
+        setting_theme: Megjelenítési sablon
         setting_unfollow_modal: Megerősítés kérése mielőtt abbahagyod valaki követését
         severity: Súlyosság
         type: Importálás típusa
         username: Felhasználónév
+        username_or_email: Felhasználónév vagy E-mail
+        whole_word: Teljes szó
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
         must_be_following_dm: Nem követettjeidtől érkező üzenetek tiltása
+      invite_request:
+        text: Miért akarsz csatlakozni?
       notification_emails:
         digest: Összevont e-mailek küldése
-        favourite: E-mail küldése amikor valaki kedvencnek jelöli az állapotod
-        follow: E-mail küldése amikor valaki követni kezd téged
-        follow_request: E-mail küldése amikor valaki követni szeretne téged
-        mention: E-mail küldése amikor valaki megemlít téged
-        reblog: E-mail küldése amikor valaki reblogolja az állapotod
+        favourite: E-mail küldése, amikor valaki kedvencnek jelöli a tülködet
+        follow: E-mail küldése, amikor valaki követni kezd téged
+        follow_request: E-mail küldése, amikor valaki követni szeretne téged
+        mention: E-mail küldése, amikor valaki megemlít téged
+        pending_account: E-mail küldése, ha új fiókot kell engedélyezni
+        reblog: E-mail küldése, amikor valaki megtolja a tülködet
+        report: E-mail küldése, ha új bejelentés érkezett
     'no': Nem
+    recommended: Ajánlott
     required:
       mark: "*"
       text: kötelező

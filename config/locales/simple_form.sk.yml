@@ -27,24 +27,25 @@ sk:
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
         setting_aggregate_reblogs: Nezobrazuj nové vyzdvihnutia pre príspevky, ktoré už boli len nedávno povýšené (týka sa iba nanovo získaných povýšení)
-        setting_default_language: Jazyk tvojích príspevkov môže byť zistený automaticky, ale nieje to vždy presné
-        setting_display_media_default: Skryť médiá označené ako citlivé
-        setting_display_media_hide_all: Vždy ukryť všetky médiá
-        setting_display_media_show_all: Stále ukazuj médiá označené ako citlivé
-        setting_hide_network: Koho následuješ, a kto následuje teba nebude zobrazené na tvojom profile
+        setting_default_sensitive: Chúlostivé médiá sú štandardne ukryté, a môžu byť zobrazené kliknutím
+        setting_display_media_default: Ukry médiá označené ako citlivé
+        setting_display_media_hide_all: Vždy ukry všetky médiá
+        setting_display_media_show_all: Stále zobrazuj médiá označené ako citlivé
+        setting_hide_network: Koho následuješ, a kto následuje teba, nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
-        setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v detailnom náhľade jednotlivých tvojích príspevkov
-        setting_theme: Ovplyvňuje ako Mastodon vyzerá pri prihlásení z hociakého zariadenia.
+        setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v podrobnom náhľade jednotlivých tvojích príspevkov
         username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       featured_tag:
         name: 'Možno by si chcel/a použiť niektoré z týchto:'
       imports:
         data: CSV súbor vyexportovaný z iného Mastodon serveru
+      invite_request:
+        text: Toto pomôže s vyhodnocovaním tvojej žiadosti
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       user:
-        chosen_languages: Keď je zaškrtnuté, tak iba príspevky vo vybraných jazykoch budú zobrazené vo verejnej osi
+        chosen_languages: Keď je zaškrtnuté, vo verejnej osi budú zobrazené iba príspevky vo vybraných jazykoch
     labels:
       account:
         fields:
@@ -53,18 +54,18 @@ sk:
       account_warning_preset:
         text: Text predlohy
       admin_account_action:
-        send_email_notification: Oznám užívateľovi cez email
+        send_email_notification: Oznam užívateľovi cez email
         text: Špecifické varovanie
         type: Úkon
         types:
           disable: Deaktivuj
           none: Neurob nič
-          silence: Utíšenie
+          silence: Utíš
           suspend: Vylúč a nenávratne vymaž dáta na účte
         warning_preset_id: Použi varovnú predlohu
       defaults:
         autofollow: Pozvi k následovaniu tvojho profilu
-        avatar: Avatar
+        avatar: Maskot
         bot: Toto je automatizovaný bot účet
         chosen_languages: Filtruj jazyky
         confirm_new_password: Znovu tvoje nové heslo, pre potvrdenie
@@ -75,19 +76,20 @@ sk:
         discoverable: Zaraď tento účet do databázy profilov
         display_name: Zobrazované meno
         email: Emailová adresa
-        expires_in: Expirovať po
+        expires_in: Expiruj po
         fields: Metadáta profilu
         header: Obrázok v hlavičke
         inbox_url: URL adresa prechodnej schránky
-        irreversible: Zahoď, namiesto skritia
+        irreversible: Zahoď, namiesto ukrytia
         locale: Jazyk rozhrania
         locked: Zamknúť účet
-        max_uses: Maximálne možno použiť
+        max_uses: Najviac možno použiť
         new_password: Nové heslo
         note: O tebe
         otp_attempt: Dvoj-faktorový overovací (2FA) kód
         password: Heslo
         phrase: Kľúčové slovo, alebo fráza
+        setting_advanced_layout: Zapni pokročilé užívateľské rozhranie
         setting_aggregate_reblogs: Zoskupuj vyzdvihnutia v časovej osi
         setting_auto_play_gif: Automaticky prehrávaj animované GIFy
         setting_boost_modal: Zobrazuj potvrdzovacie okno pred povýšením
@@ -97,10 +99,10 @@ sk:
         setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
         setting_display_media: Zobrazovanie médií
         setting_display_media_default: Štandard
-        setting_display_media_hide_all: Skryť všetky
+        setting_display_media_hide_all: Ukry všetky
         setting_display_media_show_all: Ukáž všetky
         setting_expand_spoilers: Stále rozbaľ príspevky označené varovaním o obsahu
-        setting_hide_network: Ukri svoju sieť kontaktov
+        setting_hide_network: Ukry svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Mierni pohyb pri animáciách
         setting_show_application: Zverejni akú aplikáciu používaš na posielanie príspevkov
@@ -110,7 +112,7 @@ sk:
         severity: Závažnosť
         type: Typ importu
         username: Prezývka
-        username_or_email: Prezívka, alebo email
+        username_or_email: Prezývka, alebo email
         whole_word: Celé slovo
       featured_tag:
         name: Haštag
@@ -118,16 +120,19 @@ sk:
         must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenásledujú
         must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
         must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesledujem
+      invite_request:
+        text: Prečo sa k nám chceš pridať?
       notification_emails:
-        digest: Posielaj súhrnné emaily
-        favourite: Poslať email ak si niekto obľúbi tvoj príspevok
-        follow: Poslať email, ak ťa niekto začne následovať
-        follow_request: Zaslať email ak ti niekto pošle žiadosť o sledovanie
-        mention: Poslať email ak ťa niekto spomenie v svojom príspevku
-        reblog: Poslať email ak niekto re-tootne tvoj príspevok
-        report: Poslať e-mail ak niekto dodá nové hlásenie
+        digest: Zasielať súhrnné emaily
+        favourite: Zaslať email, ak si niekto obľúbi tvoj príspevok
+        follow: Zaslať email, ak ťa niekto začne následovať
+        follow_request: Zaslať email, ak ti niekto pošle žiadosť o sledovanie
+        mention: Zaslať email, ak ťa niekto spomenie vo svojom príspevku
+        pending_account: Zaslať email, ak treba prehodnotiť nový účet
+        reblog: Zaslať email, ak niekto re-tootne tvoj príspevok
+        report: Zaslať email, ak niekto podá nové nahlásenie
     'no': Nie
+    recommended: Odporúčané
     required:
-      mark: "*"
       text: povinné
     'yes': Áno

@@ -2,7 +2,7 @@
 es:
   devise:
     confirmations:
-      confirmed: Su dirección de correo ha sido confirmada con éxito.
+      confirmed: Su direccion de email ha sido confirmada con exito.
       send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo en pocos minutos.
       send_paranoid_instructions: Si su dirección de correo electrónico existe en nuestra base de datos, recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo en pocos minutos.
     failure:
@@ -12,19 +12,22 @@ es:
       last_attempt: Tiene un intento más antes de que su cuenta sea bloqueada.
       locked: Su cuenta está bloqueada.
       not_found_in_database: Inválido %{authentication_keys} o contraseña.
+      pending: Su cuenta aun se encuentra bajo revisión.
       timeout: Su sesión ha expirado. Por favor inicie sesión de nuevo para continuar.
       unauthenticated: Necesita iniciar sesión o registrarse antes de continuar.
       unconfirmed: Tiene que confirmar su dirección de correo electrónico antes de continuar.
     mailer:
       confirmation_instructions:
         action: Verificar dirección de correo electrónico
+        action_with_app: Confirmar y regresar a %{app}
         explanation: Has creado una cuenta en %{host} con esta dirección de correo electrónico. Estas a un clic de activarla. Si no fue usted, por favor ignore este correo electrónico.
+        explanation_when_pending: Usted ha solicitado una invitación a %{host} con esta dirección de correo electrónico. Una vez que confirme su dirección de correo electrónico, revisaremos su aplicación. No puede iniciar sesión hasta que su aplicación sea revisada. Si su solicitud está rechazada, sus datos serán eliminados, así que no será necesaria ninguna acción adicional por ti. Si no fuera usted, por favor ignore este correo electrónico.
         extra_html: Por favor revise <a href="%{terms_path}">las reglas de la instancia</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
         subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
         title: Verificar dirección de correo electrónico
       email_changed:
         explanation: 'El correo electrónico para su cuenta esta siendo cambiada a:'
-        extra: Si usted no a cambiado su correo electrónico. es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte a el administrador de la instancia si usted esta bloqueado de su cuenta.
+        extra: Si usted no ha cambiado su correo electrónico, es probable que alguien haya conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte al administrador de la instancia si usted no puede iniciar sesión.
         subject: 'Mastodon: Correo electrónico cambiado'
         title: Nueva dirección de correo electrónico
       password_change:
@@ -59,6 +62,7 @@ es:
       signed_up: "¡Bienvenido! Se ha registrado con éxito."
       signed_up_but_inactive: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta no ha sido activada todavía.
       signed_up_but_locked: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta está bloqueada.
+      signed_up_but_pending: Un mensaje con un enlace de confirmacion ha sido enviado a su direccion de email. Luego de clickear el link revisaremos su aplicacion. Seras notificado si es aprovada.
       signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a su correo electrónico. Por favor siga el enlace para activar su cuenta.
       update_needs_confirmation: Ha actualizado su cuenta con éxito, pero necesitamos verificar su nueva dirección de correo. Por favor compruebe su correo y siga el enlace para confirmar su nueva dirección de correo.
       updated: su cuenta ha sido actualizada con éxito.

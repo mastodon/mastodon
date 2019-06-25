@@ -72,7 +72,6 @@ zh-CN:
       index:
         application: 应用
         created_at: 授权时间
-        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: 权限范围
         title: 已授权的应用列表
     errors:
@@ -114,7 +113,35 @@ zh-CN:
       application:
         title: 需要 OAuth 认证
     scopes:
+      admin:read: 读取服务器上的所有数据
+      admin:read:accounts: 读取所有账户的敏感信息
+      admin:read:reports: 读取所有举报和被举报账户的敏感信息
+      admin:write: 修改服务器上的所有数据
+      admin:write:accounts: 对账户执行管理操作
+      admin:write:reports: 对举报执行管理操作
       follow: 关注或屏蔽用户
       push: 接收你的帐户的推送通知
       read: 读取你的帐户数据
-      write: 为你发表嘟文
+      read:accounts: 查看账户信息
+      read:blocks: 查看你的屏蔽列表
+      read:favourites: 查看你的收藏
+      read:filters: 查看你的过滤器
+      read:follows: 查看你的关注
+      read:lists: 查看你的列表
+      read:mutes: 查看你的隐藏列表
+      read:notifications: 查看你的通知
+      read:reports: 查看你的举报
+      read:search: 以你的身份搜索
+      read:statuses: 查看所有嘟文
+      write: 修改你的账户数据
+      write:accounts: 修改你的个人资料
+      write:blocks: 屏蔽账户和域名
+      write:favourites: 收藏嘟文
+      write:filters: 创建过滤器
+      write:follows: 关注其他人
+      write:lists: 创建列表
+      write:media: 上传媒体文件
+      write:mutes: 隐藏用户和对话
+      write:notifications: 清除你的通知
+      write:reports: 举报他人
+      write:statuses: 发表嘟文

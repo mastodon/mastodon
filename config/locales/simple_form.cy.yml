@@ -2,33 +2,46 @@
 cy:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Gallwch defnyddio cystrawen tŵt, fel URLs, hashnodau a sôniadau
+      admin_account_action:
+        send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
+        text_html: Yn ddewisol. Gallwch defnyddio cystrawen tŵt. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
+        type_html: Dewis beth i wneud gyda <strong>%{acct}</strong>
+        warning_preset_id: Yn ddewisol. Gallwch dal ychwanegu testun addasiol I ddiwedd y rhagosodiad
       defaults:
         autofollow: Bydd pobl sy'n cofrestru drwy'r gwahoddiad yn eich dilyn yn awtomatig
         avatar: PNG, GIF neu JPG. %{size} ar y mwyaf. Caiff ei israddio i %{dimensions}px
         bot: Mae'r cyfrif hwn yn perfformio gweithredoedd awtomatig yn bennaf ac mae'n bosib nad yw'n cael ei fonitro
         context: Un neu fwy cyd-destun lle dylai'r hidlydd weithio
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
+        discoverable_html: Mae'r <a href="%{path}" target="_blank">cyfeiriadur</a> yn gadael i bobl ddarganfod cyfrifau wedi'i seilio ar ddiddordebau a gweithgareddau.. Mae hyn angen o leiaf %{min_followers} o ddilynwyr
         email: Byddwch yn derbyn e-bost i gadarnhau
         fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
         header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
         inbox_url: Copïwch yr URL o dudalen flaen y relái yr ydych am ei ddefnyddio
         irreversible: Bydd tŵtiau wedi eu hidlo yn diflannu am byth, hyd yn oed os ceith yr hidlydd ei ddileu'n hwyrach
-        locale: Iaith y rhyngwyneb, e-byst a hysbysiadau push
+        locale: Iaith y rhyngwyneb, e-byst a hysbysiadau gwthiadwy
         locked: Ei wneud yn ofynnol i chi i ganiatau dilynwyr a llaw
         password: Defnyddiwch oleiaf 8 nodyn
         phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys tŵt
         scopes: Pa APIau y bydd gan y rhaglen ganiatad i gael mynediad iddynt. Os dewiswch maes lefel uchaf, yna nid oes angen dewis rhai unigol.
-        setting_default_language: Mae modd adnabod iaith eich tŵtiau yn awtomatig, ond nid yw bob tro'n gywir
+        setting_aggregate_reblogs: Paid dangos bŵstiau newydd ar gyfer tŵtiau sydd wedi'i fŵstio yn ddiweddar (dim ond yn effeithio bŵstiau newydd ei dderbyn)
+        setting_default_sensitive: Mae cyfryngau sensitif yn cael ei gyddio'n rhagosodiedig, a gall cael eu dangos â chlic
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
         setting_display_media_show_all: Dangos cyfryngau wedi eu marcio'n sensitif bob tro
         setting_hide_network: Ni fydd y rheini yr ydych yn eu dilyn a phwy sy'n eich dilyn chi yn cael ei ddangos ar eich proffil
         setting_noindex: Mae hyn yn effeithio ar eich proffil cyhoeddus a'ch tudalennau statws
-        setting_theme: Mae hyn yn effeithio ar sut olwg sydd ar Matododon pan yr ydych wedi mewngofnodi o unrhyw ddyfais.
+        setting_show_application: Bydd y offer frydych yn defnyddio i dŵtio yn cael ei arddangos yn golwg manwl eich tŵtiau
         username: Bydd eich enw defnyddiwr yn unigryw ar %{domain}
         whole_word: Os yw'r allweddair neu'r ymadrodd yn alffaniwmerig yn unig, mi fydd ond yn cael ei osod os yw'n cyfateb a'r gair cyfan
+      featured_tag:
+        name: 'Efallai hoffech defnyddio un o''r rhain:'
       imports:
         data: Allforiwyd dogfen CSV o achos Mastodon arall
+      invite_request:
+        text: Bydd hyn yn helpu ni adolygu eich cais
       sessions:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
       user:
@@ -76,7 +89,8 @@ cy:
         otp_attempt: Côd dau gam
         password: Cyfrinair
         phrase: Allweddair neu ymadrodd
-        setting_aggregate_reblogs: Grŵp hybiau mewn llinellau amser
+        setting_advanced_layout: Alluogi rhyngwyneb wê uwch
+        setting_aggregate_reblogs: Grŵp hybiau mewn ffrydiau
         setting_auto_play_gif: Chwarae GIFs wedi'u hanimeiddio yn awtomatig
         setting_boost_modal: Dangos deialog cadarnhad cyn bŵstio
         setting_default_language: Cyhoeddi iaith
@@ -91,6 +105,7 @@ cy:
         setting_hide_network: Cuddio eich rhwydwaith
         setting_noindex: Dewis peidio mynegeio peiriant chwilota
         setting_reduce_motion: Lleihau mudiant mewn animeiddiadau
+        setting_show_application: Datguddio'r offer defnyddwyd i anfon tŵtiau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_theme: Thema'r wefan
         setting_unfollow_modal: Dangos deialog cadarnhau cyn dad-ddilyn rhywun
@@ -99,19 +114,25 @@ cy:
         username: Enw defnyddiwr
         username_or_email: Enw defnyddiwr neu e-bost
         whole_word: Gair cyfan
+      featured_tag:
+        name: Hashnod
       interactions:
         must_be_follower: Blocio hysbysiadau o bobl nad ydynt yn eich dilyn
         must_be_following: Blocio hysbysiadau o bobl nad ydych yn eu dilyn
         must_be_following_dm: Blocio negeseuon uniongyrchol o bobl nad ydych yn eu dilyn
+      invite_request:
+        text: Pam hoffech ymuno?
       notification_emails:
         digest: Anfonwch e-byst crynhoi
         favourite: Anfon e-bost pan mae rhywun yn ffefrynnu eich statws
         follow: Anfon e-bost pan mae rhywun yn eich dilyn chi
         follow_request: Anfon e-bost pan mae rhywun yn gofyn i chi i'w dilyn
         mention: Anfon e-bost pan mae rhywun yn eich crybwyll
+        pending_account: Anfon ebost pan mae cyfrif newydd angen adolygiad
         reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
         report: Anfon e-bost pan y cyflwynir adroddiad newydd
     'no': Na
+    recommended: Argymhellwyd
     required:
       mark: "*"
       text: gofynnol
