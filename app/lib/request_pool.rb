@@ -27,7 +27,7 @@ class RequestPool
     end
   end
 
-  MAX_IDLE_TIME = 90
+  MAX_IDLE_TIME = 30
   WAIT_TIMEOUT  = 5
   MAX_POOL_SIZE = ENV.fetch('MAX_REQUEST_POOL_SIZE', 512).to_i
 
@@ -99,7 +99,7 @@ class RequestPool
   def initialize
     @shared_size = Concurrent::AtomicFixnum.new
     @pools       = Concurrent::Map.new
-    @reaper      = Reaper.new(self, 60)
+    @reaper      = Reaper.new(self, 30)
     @reaper.run
   end
 
