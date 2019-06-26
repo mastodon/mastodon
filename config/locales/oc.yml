@@ -31,6 +31,7 @@ oc:
       one: estatut
       other: estatuts
     status_count_before: qu’an escrich
+    tagline: Seguètz d’amics e trobatz-ne de nòus
     terms: Condicions d’utilizacion
     user_count_after:
       one: utilizaire
@@ -131,6 +132,7 @@ oc:
       moderation_notes: Nòtas de moderacion
       most_recent_activity: Activitat mai recenta
       most_recent_ip: IP mai recenta
+      no_account_selected: Cap de compte pas cambiat estant que cap èra pas seleccionat
       no_limits_imposed: Cap de limit impausat
       not_subscribed: Pas seguidor
       outbox_url: URL Outbox
@@ -155,6 +157,7 @@ oc:
       resubscribe: Se tornar abonar
       role: Autorizacions
       roles:
+        admin: Administrator
         moderator: Moderador
         staff: Personnal
         user: Uitlizaire
@@ -642,6 +645,8 @@ oc:
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
+  html_validator:
+    invalid_markup: 'conten un balisatge HTML invalid : %{error}'
   identity_proofs:
     active: Actiu
     authorize: Òc, autorizar
@@ -743,6 +748,7 @@ oc:
     next: Seguent
     older: Mai ancians
     prev: Precedent
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avètz ja votat per aqueste sondatge
@@ -765,6 +771,9 @@ oc:
     mutual: Mutuala
     primary: Pirmària
     relationship: Relacion
+    remove_selected_domains: Levar totes los seguidors dels domenis seleccionats
+    remove_selected_followers: Levar los seguidors seleccionats
+    remove_selected_follows: Quitar de sègre las personas seleccionadas
     status: Estat del compte
   remote_follow:
     acct: Picatz vòstre utilizaire@domeni que que volètz utilizar per sègre aqueste utilizaire
@@ -843,7 +852,9 @@ oc:
     edit_profile: Modificar lo perfil
     export: Exportar de donadas
     featured_tags: Etiquetas en avant
+    identity_proofs: Pròvas d’identitat
     import: Importar de donadas
+    import_and_export: Import e export
     migrate: Migracion de compte
     notifications: Notificacions
     preferences: Preferéncias
