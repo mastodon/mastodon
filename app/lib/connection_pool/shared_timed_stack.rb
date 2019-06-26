@@ -1,32 +1,33 @@
 # frozen_string_literal: true
 
 class ConnectionPool::SharedTimedStack
-  def initialize(shared_size, max = 0, &block)
+  def initialize(max = 0, &block)
     @create_block = block
-    @shared_size  = shared_size
     @max          = max
-    @que          = []
+    @created      = 0
+    @queue        = []
+    @tagged_queue = Hash.new { |hash, key| hash[key] = [] }
     @mutex        = Mutex.new
     @resource     = ConditionVariable.new
   end
 
   def push(connection)
     @mutex.synchronize do
-      @que.push(connection)
+      store_connection(connection)
       @resource.broadcast
     end
   end
 
   alias << push
 
-  def pop(timeout = 5.0)
+  def pop(preferred_tag, timeout = 5.0)
     deadline = current_time + timeout
 
     @mutex.synchronize do
       loop do
-        return @que.pop unless @que.empty?
+        return fetch_preferred_connection(preferred_tag) unless @tagged_queue[preferred_tag].empty?
 
-        connection = try_create
+        connection = try_create(preferred_tag)
         return connection if connection
 
         to_wait = deadline - current_time
@@ -43,34 +44,54 @@ class ConnectionPool::SharedTimedStack
 
   def delete(connection)
     @mutex.synchronize do
-      @que.delete(connection)
-      @shared_size.decrement
+      remove_connection(connection)
+      @created -= 1
     end
   end
 
   def size
     @mutex.synchronize do
-      @que.size
+      @queue.size
     end
   end
 
   def each_connection(&block)
     @mutex.synchronize do
-      @que.each(&block)
+      @queue.each(&block)
     end
   end
 
   private
 
-  def try_create
-    unless @shared_size.value == @max
-      object = @create_block.call
-      @shared_size.increment
-      object
+  def try_create(preferred_tag)
+    if @created == @max && !@queue.empty?
+      throw_away_connection = @queue.pop
+      @tagged_queue[throw_away_connection.site].delete(throw_away_connection)
+      @create_block.call(preferred_tag)
+    elsif @created != @max
+      connection = @create_block.call(preferred_tag)
+      @created += 1
+      connection
     end
+  end
+
+  def fetch_preferred_connection(preferred_tag)
+    connection = @tagged_queue[preferred_tag].pop
+    @queue.delete(connection)
+    connection
   end
 
   def current_time
     Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  end
+
+  def store_connection(connection)
+    @tagged_queue[connection.site].push(connection)
+    @queue.push(connection)
+  end
+
+  def remove_connection(connection)
+    @tagged_queue[connection.site].delete(connection)
+    @queue.delete(connection)
   end
 end

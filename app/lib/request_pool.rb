@@ -32,7 +32,7 @@ class RequestPool
   MAX_POOL_SIZE = ENV.fetch('MAX_REQUEST_POOL_SIZE', 512).to_i
 
   class Connection
-    attr_reader :last_used_at, :created_at, :in_use, :dead, :fresh
+    attr_reader :site, :last_used_at, :created_at, :in_use, :dead, :fresh
 
     def initialize(site)
       @site         = site
@@ -97,52 +97,33 @@ class RequestPool
   end
 
   def initialize
-    @shared_size = Concurrent::AtomicFixnum.new
-    @pools       = Concurrent::Map.new
-    @reaper      = Reaper.new(self, 30)
+    @pool   = ConnectionPool::SharedConnectionPool.new(size: MAX_POOL_SIZE, timeout: WAIT_TIMEOUT) { |site| Connection.new(site) }
+    @reaper = Reaper.new(self, 30)
     @reaper.run
   end
 
   def with(site, &block)
-    connection_pool_for(site).with do |connection|
+    @pool.with(site) do |connection|
       connection.use(&block)
     end
   end
 
   def flush
-    idle_pools = []
+    idle_connections = []
 
-    @pools.each_pair do |site, pool|
-      idle_connections = []
+    @pool.each_connection do |connection|
+      next unless !connection.in_use && (connection.dead || connection.seconds_idle >= MAX_IDLE_TIME)
 
-      pool.each_connection do |connection|
-        next unless !connection.in_use && (connection.dead || connection.seconds_idle >= MAX_IDLE_TIME)
-
-        connection.close
-        idle_connections << connection
-      end
-
-      idle_connections.each do |connection|
-        pool.delete(connection)
-      end
-
-      idle_pools << site if pool.empty?
+      connection.close
+      idle_connections << connection
     end
 
-    idle_pools.each do |site|
-      @pools.delete(site)
+    idle_connections.each do |connection|
+      @pool.delete(connection)
     end
   end
 
   def size
-    @shared_size.value
-  end
-
-  private
-
-  def connection_pool_for(site)
-    @pools.fetch_or_store(site) do
-      ConnectionPool::SharedConnectionPool.new(@shared_size, size: MAX_POOL_SIZE, timeout: WAIT_TIMEOUT) { Connection.new(site) }
-    end
+    @pool.size
   end
 end
