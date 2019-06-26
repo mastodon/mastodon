@@ -15,23 +15,49 @@ class ConnectionPool::SharedConnectionPool < ConnectionPool
   def with(preferred_tag, options = {})
     Thread.handle_interrupt(Exception => :never) do
       conn = checkout(preferred_tag, options)
+
       begin
         Thread.handle_interrupt(Exception => :immediate) do
           yield conn
         end
       ensure
-        checkin
+        checkin(preferred_tag)
       end
     end
   end
 
   def checkout(preferred_tag, options = {})
-    if ::Thread.current[@key]
-      ::Thread.current[@key_count] += 1
-      ::Thread.current[@key]
+    if ::Thread.current[key(preferred_tag)]
+      ::Thread.current[key_count(preferred_tag)] += 1
+      ::Thread.current[key(preferred_tag)]
     else
-      ::Thread.current[@key_count] = 1
-      ::Thread.current[@key] = @available.pop(preferred_tag, options[:timeout] || @timeout)
+      ::Thread.current[key_count(preferred_tag)] = 1
+      ::Thread.current[key(preferred_tag)] = @available.pop(preferred_tag, options[:timeout] || @timeout)
     end
+  end
+
+  def checkin(preferred_tag)
+    if ::Thread.current[key(preferred_tag)]
+      if ::Thread.current[key_count(preferred_tag)] == 1
+        @available.push(::Thread.current[key(preferred_tag)])
+        ::Thread.current[key(preferred_tag)] = nil
+      else
+        ::Thread.current[key_count(preferred_tag)] -= 1
+      end
+    else
+      raise ConnectionPool::Error, 'no connections are checked out'
+    end
+
+    nil
+  end
+
+  private
+
+  def key(tag)
+    :"#{@key}-#{tag}"
+  end
+
+  def key_count(tag)
+    :"#{@key_count}-#{tag}"
   end
 end
