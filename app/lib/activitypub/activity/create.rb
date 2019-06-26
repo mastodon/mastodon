@@ -67,7 +67,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         visibility: visibility_from_audience,
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),
-        media_attachment_ids: process_attachments.take(4).map(&:id),
+        media_attachment_ids: converted_object_type? ? process_converted_media.map(&:id) : process_attachments.take(4).map(&:id),
         poll: process_poll,
       }
     end
@@ -183,6 +183,43 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
     emoji.save
+  end
+
+  def process_converted_media
+    as_array(@object['url']).each do |attachment|
+      if attachment.is_a?(String)
+        media_type = nil
+        size       = nil
+        href       = attachment
+        blurhash   = nil
+        focus      = nil
+      else
+        media_type = attachment['mimeType'] || attachment['mediaType']
+        size       = attachment['size']&.to_i
+        href       = attachment['href']
+        blurhash   = supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil
+        focus      = attachment['focalPoint']
+      end
+
+      next if href.nil? || unsupported_media_type?(media_type) || (size && size >= MediaAttachment::VIDEO_LIMIT) || skip_download?
+
+      media_attachment = MediaAttachment.create(account: @account, remote_url: href, focus: focus, blurhash: blurhash)
+
+      begin
+        media_attachment.file_remote_url = href
+        media_attachment.save!
+        if media_attachment.file_file_name.blank?
+          media_attachment.destroy!
+          next
+        end
+      rescue Addressable::URI::InvalidURIError
+        next
+      end
+
+      return [media_attachment]
+    end
+
+    []
   end
 
   def process_attachments
