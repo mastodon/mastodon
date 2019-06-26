@@ -308,7 +308,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
-    return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || @object['id']].join(' ')) if converted_object_type?
+    return Formatter.instance.linkify([text_from_name, text_from_summary.presence, object_url || @object['id'], @object['type'] == 'Article' ? nil : @object['content'].presence].compact.join("\n\n")) if converted_object_type?
 
     if @object['content'].present?
       @object['content']
