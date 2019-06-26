@@ -31,7 +31,7 @@ class MediaAttachment < ApplicationRecord
   AUDIO_FILE_EXTENSIONS = ['.ogg', '.oga', '.mp3', '.wav', '.flac', '.opus'].freeze
 
   IMAGE_MIME_TYPES             = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/quicktime', 'video/ogg'].freeze
+  VIDEO_MIME_TYPES             = ['video/webm', 'video/mp4', 'video/x-m4v', 'video/quicktime', 'video/ogg'].freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = ['video/webm', 'video/quicktime'].freeze
   AUDIO_MIME_TYPES             = ['audio/wave', 'audio/wav', 'audio/x-wav', 'audio/x-pn-wave', 'audio/ogg', 'audio/mpeg', 'audio/mp3', 'audio/webm', 'audio/flac'].freeze
 
