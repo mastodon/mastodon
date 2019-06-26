@@ -18,9 +18,9 @@ class ResolveURLService < BaseService
   private
 
   def process_url
-    if equals_or_includes_any?(type, %w(Application Group Organization Person Service))
+    if equals_or_includes_any?(type, ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES)
       FetchRemoteAccountService.new.call(atom_url, body, protocol)
-    elsif equals_or_includes_any?(type, %w(Note Article Image Video Page Question))
+    elsif equals_or_includes_any?(type, ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
       FetchRemoteStatusService.new.call(atom_url, body, protocol)
     end
   end
