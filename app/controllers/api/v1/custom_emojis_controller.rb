@@ -7,7 +7,7 @@ class Api::V1::CustomEmojisController < Api::BaseController
 
   def index
     render_cached_json('api:v1:custom_emojis', expires_in: 1.minute) do
-      ActiveModelSerializers::SerializableResource.new(CustomEmoji.local.where(disabled: false), each_serializer: REST::CustomEmojiSerializer)
+      ActiveModelSerializers::SerializableResource.new(CustomEmoji.local.where(disabled: false).includes(:category), each_serializer: REST::CustomEmojiSerializer)
     end
   end
 end
