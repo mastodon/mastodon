@@ -84,8 +84,7 @@ class SearchResults extends ImmutablePureComponent {
           <h5><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
 
           <div className='search-results__info'>
-            <Icon id='info' fixedWidth />
-            <FormattedMessage id='search_results.statuses_fts_disabled' defaultMessage='Textual search in toots content is not available on your instance.' />
+            <FormattedMessage id='search_results.statuses_fts_disabled' defaultMessage='Searching toots by their content is not enabled on this Mastodon server.' />
           </div>
         </div>
       );
