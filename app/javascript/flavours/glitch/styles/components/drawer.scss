@@ -73,90 +73,16 @@
   }
 }
 
-.drawer--search {
+.search {
   position: relative;
   margin-bottom: 10px;
   flex: none;
 
   @include limited-single-column('screen and (max-width: 360px)') { margin-bottom: 0 }
   @include single-column('screen and (max-width: 630px)') { font-size: 16px }
-
-  input {
-    display: block;
-    box-sizing: border-box;
-    margin: 0;
-    border: none;
-    padding: 15px 30px 15px 15px;
-    width: 100%;
-    outline: 0;
-    color: $darker-text-color;
-    background: $ui-base-color;
-    font-size: 14px;
-    font-family: inherit;
-    line-height: 16px;
-
-    &:focus {
-      outline: 0;
-      background: lighten($ui-base-color, 4%);
-    }
-  }
-
-  & > .icon {
-    display: block;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 18px;
-    height: 18px;
-    color: $secondary-text-color;
-    font-size: 18px;
-    line-height: 18px;
-    z-index: 2;
-
-    .fa {
-      display: inline-block;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      opacity: 0;
-      cursor: default;
-      pointer-events: none;
-      transition: all 100ms linear;
-      transition-property: color, transform, opacity;
-    }
-
-    .fa-search {
-      opacity: 0.3;
-      transform: rotate(0deg);
-    }
-
-    .fa-times-circle {
-      transform: rotate(-90deg);
-      cursor: pointer;
-
-      &:hover { color: $primary-text-color }
-    }
-  }
-
-  &.active {
-    & > .icon {
-      .fa-search {
-        opacity: 0;
-        transform: rotate(90deg);
-      }
-
-      .fa-times-circle {
-        opacity: 0.3;
-        pointer-events: auto;
-        transform: rotate(0deg);
-      }
-    }
-  }
 }
 
-.drawer--search--popout {
+.search-popout {
   @include search-popout();
 }
 

@@ -36,7 +36,7 @@ class SearchPopout extends React.PureComponent {
       <div style={{ ...style, position: 'absolute', width: 285, zIndex: 2 }}>
         <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
           {({ opacity, scaleX, scaleY }) => (
-            <div className='drawer--search--popout' style={{ opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }}>
+            <div className='search-popout' style={{ opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }}>
               <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
 
               <ul>
@@ -128,14 +128,14 @@ class Search extends React.PureComponent {
   render () {
     const { intl, value, submitted } = this.props;
     const { expanded } = this.state;
-    const active = value.length > 0 || submitted;
-    const computedClass = classNames('drawer--search', { active });
+    const hasValue = value.length > 0 || submitted;
 
     return (
-      <div className={computedClass}>
+      <div className='search'>
         <label>
           <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
           <input
+            className='search__input'
             type='text'
             placeholder={intl.formatMessage(messages.placeholder)}
             value={value || ''}
@@ -145,17 +145,19 @@ class Search extends React.PureComponent {
             onBlur={this.handleBlur}
           />
         </label>
+
         <div
           aria-label={intl.formatMessage(messages.placeholder)}
-          className='icon'
+          className='search__icon'
           onClick={this.handleClear}
           role='button'
           tabIndex='0'
         >
-          <Icon icon='search' />
-          <Icon icon='times-circle' />
+          <Icon icon='search' className={hasValue ? '' : 'active'} />
+          <Icon icon='times-circle' className={hasValue ? 'active' : ''} />
         </div>
-        <Overlay show={expanded && !active} placement='bottom' target={this}>
+
+        <Overlay show={expanded && !hasValue} placement='bottom' target={this}>
           <SearchPopout />
         </Overlay>
       </div>

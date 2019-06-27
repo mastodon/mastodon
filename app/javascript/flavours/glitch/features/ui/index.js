@@ -317,7 +317,7 @@ export default class UI extends React.Component {
   handleHotkeySearch = e => {
     e.preventDefault();
 
-    const element = this.node.querySelector('.drawer--search input');
+    const element = this.node.querySelector('.search__input');
 
     if (element) {
       element.focus();

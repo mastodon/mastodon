@@ -3,13 +3,25 @@
 }
 
 .search__input {
-  display: block;
-  padding: 10px;
-  padding-right: 30px;
   @include search-input();
+
+  display: block;
+  padding: 15px;
+  padding-right: 30px;
+  line-height: 18px;
+  font-size: 16px;
 }
 
 .search__icon {
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus {
+    outline: 0 !important;
+  }
+
   .fa {
     position: absolute;
     top: 16px;
@@ -18,7 +30,7 @@
     display: inline-block;
     opacity: 0;
     transition: all 100ms linear;
-    transition-property: transform, opacity;
+    transition-property: color, transform, opacity;
     font-size: 18px;
     width: 18px;
     height: 18px;
@@ -33,17 +45,18 @@
   }
 
   .fa-search {
-    transform: rotate(90deg);
+    transform: rotate(0deg);
 
     &.active {
-      pointer-events: none;
-      transform: rotate(0deg);
+      pointer-events: auto;
+      opacity: 0.3;
     }
   }
 
   .fa-times-circle {
     top: 17px;
     transform: rotate(0deg);
+    color: $action-button-color;
     cursor: pointer;
 
     &.active {
@@ -51,7 +64,7 @@
     }
 
     &:hover {
-      color: $primary-text-color;
+      color: lighten($action-button-color, 7%);
     }
   }
 }
