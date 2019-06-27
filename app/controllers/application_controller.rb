@@ -161,11 +161,15 @@ class ApplicationController < ActionController::Base
   end
 
   def current_account
-    @current_account ||= current_user.try(:account)
+    return @current_account if defined?(@current_account)
+
+    @current_account = current_user&.account
   end
 
   def current_session
-    @current_session ||= SessionActivation.find_by(session_id: cookies.signed['_session_id'])
+    return @current_session if defined?(@current_session)
+
+    @current_session = SessionActivation.find_by(session_id: cookies.signed['_session_id']) if cookies.signed['_session_id'].present?
   end
 
   def current_flavour

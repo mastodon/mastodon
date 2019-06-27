@@ -33,6 +33,9 @@
     = f.input :setting_display_media, collection: ['default', 'show_all', 'hide_all'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
 
   .fields-group
+    = f.input :setting_use_blurhash, as: :boolean, wrapper: :with_label
+
+  .fields-group
     = f.input :setting_expand_spoilers, as: :boolean, wrapper: :with_label
 
   .actions

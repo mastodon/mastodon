@@ -6,7 +6,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from 'flavours/glitch/util/is_mobile';
 import classNames from 'classnames';
-import { autoPlayGif, displayMedia } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/util/initial_state';
 import { decode } from 'blurhash';
 
 const messages = defineMessages({
@@ -101,6 +101,8 @@ class Item extends React.PureComponent {
   }
 
   _decode () {
+    if (!useBlurhash) return;
+
     const hash   = this.props.attachment.get('blurhash');
     const pixels = decode(hash, 32, 32);
 
