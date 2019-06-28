@@ -112,6 +112,11 @@ export default class ColumnsArea extends ImmutablePureComponent {
     // React-router does this for us, but too late, feeling laggy.
     document.querySelector(currentLinkSelector).classList.remove('active');
     document.querySelector(nextLinkSelector).classList.add('active');
+
+    if (!this.state.shouldAnimate && typeof this.pendingIndex === 'number') {
+      this.context.router.history.push(getLink(this.pendingIndex));
+      this.pendingIndex = null;
+    }
   }
 
   handleAnimationEnd = () => {
@@ -162,7 +167,6 @@ export default class ColumnsArea extends ImmutablePureComponent {
     const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
-    this.pendingIndex = null;
 
     if (singleColumn) {
       const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/statuses/new' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><i className='fa fa-pencil' /></Link>;
