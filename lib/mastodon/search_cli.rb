@@ -15,7 +15,7 @@ module Mastodon
       changed since the last run.
     LONG_DESC
     def deploy
-      processed = Chewy::RakeHelper.upgrade
+      processed = Chewy::RakeHelper.upgrade parallel: true
       Chewy::RakeHelper.sync(except: processed)
     end
   end
