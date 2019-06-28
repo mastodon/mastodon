@@ -53,8 +53,6 @@ class OStatus::AtomSerializer
     append_element(feed, 'link', nil, rel: :alternate, type: 'text/html', href: ::TagManager.instance.url_for(account))
     append_element(feed, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_url(account, format: 'atom'))
     append_element(feed, 'link', nil, rel: :next, type: 'application/atom+xml', href: account_url(account, format: 'atom', max_id: stream_entries.last.id)) if stream_entries.size == 20
-    append_element(feed, 'link', nil, rel: :hub, href: api_push_url)
-    append_element(feed, 'link', nil, rel: :salmon, href: api_salmon_url(account.id))
 
     stream_entries.each do |stream_entry|
       feed << entry(stream_entry)

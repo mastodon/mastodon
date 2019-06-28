@@ -30,13 +30,6 @@ RSpec.describe FavouriteService, type: :service do
     it 'creates a favourite' do
       expect(status.favourites.first).to_not be_nil
     end
-
-    it 'sends a salmon slap' do
-      expect(a_request(:post, "http://salmon.example.com/").with { |req|
-        xml = OStatus2::Salmon.new.unpack(req.body)
-        xml.match(OStatus::TagManager::VERBS[:favorite])
-      }).to have_been_made.once
-    end
   end
 
   describe 'remote ActivityPub' do

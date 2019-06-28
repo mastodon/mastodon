@@ -14,18 +14,12 @@ class UnblockService < BaseService
   private
 
   def create_notification(unblock)
-    if unblock.target_account.ostatus?
-      NotificationWorker.perform_async(build_xml(unblock), unblock.account_id, unblock.target_account_id)
-    elsif unblock.target_account.activitypub?
+    if unblock.target_account.activitypub?
       ActivityPub::DeliveryWorker.perform_async(build_json(unblock), unblock.account_id, unblock.target_account.inbox_url)
     end
   end
 
   def build_json(unblock)
     Oj.dump(serialize_payload(unblock, ActivityPub::UndoBlockSerializer))
-  end
-
-  def build_xml(block)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unblock_salmon(block))
   end
 end

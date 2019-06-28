@@ -49,19 +49,6 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     expect(Redis.current).to have_received(:publish).with('timeline:public', any_args).at_least(:once)
   end
 
-  it 'sends PuSH update to PuSH subscribers' do
-    expect(a_request(:post, 'http://example.com/push').with { |req|
-      matches = req.body.match(OStatus::TagManager::VERBS[:delete])
-    }).to have_been_made.at_least_once
-  end
-
-  it 'sends Salmon slap to previously mentioned users' do
-    expect(a_request(:post, "http://example.com/salmon").with { |req|
-      xml = OStatus2::Salmon.new.unpack(req.body)
-      xml.match(OStatus::TagManager::VERBS[:delete])
-    }).to have_been_made.once
-  end
-
   it 'sends delete activity to followers' do
     expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.at_least_once
   end
