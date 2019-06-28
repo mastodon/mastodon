@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_143559) do
+ActiveRecord::Schema.define(version: 2019_06_27_222826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,6 +218,13 @@ ActiveRecord::Schema.define(version: 2019_05_29_143559) do
     t.index ["uri"], name: "index_conversations_on_uri", unique: true
   end
 
+  create_table "custom_emoji_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_custom_emoji_categories_on_name", unique: true
+  end
+
   create_table "custom_emojis", force: :cascade do |t|
     t.string "shortcode", default: "", null: false
     t.string "domain"
@@ -231,6 +238,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_143559) do
     t.string "uri"
     t.string "image_remote_url"
     t.boolean "visible_in_picker", default: true, null: false
+    t.bigint "category_id"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
