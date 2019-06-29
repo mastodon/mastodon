@@ -48,13 +48,13 @@ module Admin
     def approve
       authorize @account.user, :approve?
       @account.user.approve!
-      redirect_to admin_accounts_path(pending: '1')
+      redirect_to admin_pending_accounts_path
     end
 
     def reject
       authorize @account.user, :reject?
       SuspendAccountService.new.call(@account, including_user: true, destroy: true, skip_distribution: true)
-      redirect_to admin_accounts_path(pending: '1')
+      redirect_to admin_pending_accounts_path
     end
 
     def unsilence
@@ -127,6 +127,7 @@ module Admin
         :by_domain,
         :active,
         :pending,
+        :disabled,
         :silenced,
         :suspended,
         :username,

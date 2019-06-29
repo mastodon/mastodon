@@ -4,7 +4,6 @@ ast:
     about_mastodon_html: Mastodon ye una rede social basada en protocolos abiertos y software de códigu llibre. Ye descentralizada, como'l corréu electrónicu.
     about_this: Tocante a
     administered_by: 'Alministráu por:'
-    api: API
     contact: Contautu
     contact_missing: Nun s'afitó
     contact_unavailable: N/D
@@ -15,7 +14,6 @@ ast:
     hosted_on: Mastodon ta agospiáu en %{domain}
     learn_more: Deprendi más
     source_code: Códigu fonte
-    status_count_after: estaos
     status_count_before: Que crearon
     terms: Términos del serviciu
     user_count_after:
@@ -33,10 +31,6 @@ ast:
     nothing_here: "¡Equí nun hai nada!"
     people_followed_by: Persones a les que sigue %{name}
     people_who_follow: Persones que siguen a %{name}
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots y rempuestes
     reserved_username: El nome d'usuariu ta acutáu
     roles:
@@ -44,12 +38,10 @@ ast:
   admin:
     accounts:
       are_you_sure: "¿De xuru?"
-      avatar: Avatar
       by_domain: Dominiu
       domain: Dominiu
       email: Corréu
       followers: Siguidores
-      ip: IP
       location:
         local: Llocal
         title: Allugamientu
@@ -64,7 +56,6 @@ ast:
       statuses: Estaos
       title: Cuentes
       username: Nome d'usuariu
-      web: Web
     action_logs:
       actions:
         create_domain_block: "%{name} bloquió'l dominiu %{target}"
@@ -81,7 +72,6 @@ ast:
       features: Carauterístiques
       hidden_service: Federación con servicios anubríos
       recent_users: Usuarios recientes
-      software: Software
       total_users: usuarios en total
       week_interactions: interaiciones d'esta selmana
       week_users_new: usuarios d'esta selmana
@@ -111,14 +101,10 @@ ast:
       title: Axustes del sitiu
     statuses:
       failed_to_execute: Fallu al executar
-    subscriptions:
-      title: WebSub
     title: Alministración
   admin_mailer:
     new_report:
       body_remote: Daquién dende %{domain} informó de %{target}
-  application_mailer:
-    salutation: "%{name},"
   applications:
     invalid_url: La URL apurrida nun ye válida
     warning: Ten curiáu con estos datos, ¡enxamás nun los compartas con naide!
@@ -130,9 +116,6 @@ ast:
     login: Aniciar sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}"> configuralo equí</a>.
-    providers:
-      cas: CAS
-      saml: SAML
     register: Rexistrase
     security: Seguranza
   authorize_follow:
@@ -162,6 +145,7 @@ ast:
       content: Falló la verificación de seguranza. ¿Tas bloquiando les cookies?
       title: Falló la verificación de seguranza
     '429': Ficiéronse milenta solicitúes
+    '500': 
   exports:
     archive_takeout:
       date: Data
@@ -169,7 +153,6 @@ ast:
       request: Solicitar l'archivu
       size: Tamañu
     blocks: Xente que bloquiesti
-    csv: CSV
     follows: Xente que sigues
     mutes: Xente que silenciesti
   filters:
@@ -223,8 +206,6 @@ ast:
     digest:
       body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l %{since}
       mention: "%{name} mentóte en:"
-      subject:
-        other: "%{count} avisos nuevos dende la última visita \U0001F418"
     follow:
       body: "¡Agora %{name} ta siguiéndote!"
       title: Siguidor nuevu
@@ -239,16 +220,8 @@ ast:
       body: "%{name} compartió'l to estáu:"
       subject: "%{name} compartió'l to estáu"
       title: Compartición nueva de toot
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
   pagination:
     next: Siguiente
-  preferences:
-    languages: Llingües
-    publishing: Espublización
-    web: Web
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer
     no_account_html: "¿Nun tienes una cuenta? Pues <a href='%{sign_up_path}' target='_blank'>rexistrate equí</a>"
@@ -259,38 +232,11 @@ ast:
   sessions:
     browser: Restolador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Restolador desconocíu
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: plataforma desconocida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     title: Sesiones
   settings:
     authorized_apps: Aplicaciones autorizaes

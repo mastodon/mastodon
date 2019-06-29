@@ -81,6 +81,7 @@ sk:
       not_found: nenájdený
       not_locked: nebol zamknutý
       not_saved:
-        few: "%{resource} nebol uložený kvôli %{count} chybám:"
-        one: "%{resource} nebol uložený kvôli chybe:"
-        other: "%{resource} nebol uložený kvôli %{count} chybám:"
+        few: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
+        many: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
+        one: '1 chyba zabránila uloženiu tohto %{resource}:'
+        other: "%{count} chyby zabránili uloženiu tohto %{resource}:"

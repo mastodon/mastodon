@@ -46,8 +46,6 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        mark_cacheable!
-
         render_cached_json(['activitypub', 'actor', @account], content_type: 'application/activity+json') do
           ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
         end

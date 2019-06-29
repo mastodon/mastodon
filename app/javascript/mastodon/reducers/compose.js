@@ -224,6 +224,7 @@ export default function compose(state = initialState, action) {
       }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
+    if (!state.get('spoiler')) return state;
     return state
       .set('spoiler_text', action.text)
       .set('idempotencyKey', uuid());
@@ -338,6 +339,7 @@ export default function compose(state = initialState, action) {
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
+      map.set('sensitive', action.status.get('sensitive'));
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);

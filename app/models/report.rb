@@ -17,6 +17,8 @@
 #
 
 class Report < ApplicationRecord
+  include Paginable
+
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
   belongs_to :action_taken_by_account, class_name: 'Account', optional: true
@@ -26,6 +28,7 @@ class Report < ApplicationRecord
 
   scope :unresolved, -> { where(action_taken: false) }
   scope :resolved,   -> { where(action_taken: true) }
+  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].each_with_object({}) { |k, h| h[k] = { user: [:invite_request, :invite] } }) }
 
   validates :comment, length: { maximum: 1000 }
 

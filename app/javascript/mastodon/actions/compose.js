@@ -63,7 +63,7 @@ const messages = defineMessages({
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
 });
 
-const COMPOSE_PANEL_BREAKPOINT = 600 + (285 * 1) + (10 * 3);
+const COMPOSE_PANEL_BREAKPOINT = 600 + (285 * 1) + (10 * 1);
 
 export const ensureComposeIsVisible = (getState, routerHistory) => {
   if (!getState().getIn(['compose', 'mounted']) && window.innerWidth < COMPOSE_PANEL_BREAKPOINT) {
@@ -139,7 +139,7 @@ export function submitCompose(routerHistory) {
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
-      spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
+      spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
     }, {

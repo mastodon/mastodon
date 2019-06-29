@@ -16,6 +16,7 @@
 #  uri                :string
 #  image_remote_url   :string
 #  visible_in_picker  :boolean          default(TRUE), not null
+#  category_id        :bigint(8)
 #
 
 class CustomEmoji < ApplicationRecord
@@ -27,6 +28,7 @@ class CustomEmoji < ApplicationRecord
     :(#{SHORTCODE_RE_FRAGMENT}):
     (?=[^[:alnum:]:]|$)/x
 
+  belongs_to :category, class_name: 'CustomEmojiCategory', optional: true
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
   has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }
@@ -39,6 +41,7 @@ class CustomEmoji < ApplicationRecord
   scope :local,      -> { where(domain: nil) }
   scope :remote,     -> { where.not(domain: nil) }
   scope :alphabetic, -> { order(domain: :asc, shortcode: :asc) }
+  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
 
   remotable_attachment :image, LIMIT
 

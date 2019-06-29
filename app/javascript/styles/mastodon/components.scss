@@ -128,7 +128,7 @@
   display: inline-block;
   padding: 0;
   color: $action-button-color;
-  border: none;
+  border: 0;
   background: transparent;
   cursor: pointer;
   transition: color 100ms ease-in;
@@ -196,7 +196,7 @@
 
 .text-icon-button {
   color: $lighter-text-color;
-  border: none;
+  border: 0;
   background: transparent;
   cursor: pointer;
   font-weight: 600;
@@ -333,14 +333,14 @@
     }
   }
 
+  .emoji-picker-dropdown {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
   .compose-form__autosuggest-wrapper {
     position: relative;
-
-    .emoji-picker-dropdown {
-      position: absolute;
-      right: 5px;
-      top: 5px;
-    }
   }
 
   .autosuggest-textarea,
@@ -352,11 +352,12 @@
   .spoiler-input {
     height: 0;
     transform-origin: bottom;
-    opacity: 0.0;
+    opacity: 0;
 
     &.spoiler-input--visible {
-      height: 47px;
-      opacity: 1.0;
+      height: 36px;
+      margin-bottom: 11px;
+      opacity: 1;
     }
   }
 
@@ -404,6 +405,11 @@
       height: 100px !important; // prevent auto-resize textarea
       resize: vertical;
     }
+  }
+
+  .autosuggest-textarea__suggestions-wrapper {
+    position: relative;
+    height: 0;
   }
 
   .autosuggest-textarea__suggestions {
@@ -551,6 +557,7 @@
 
     .compose-form__upload-thumbnail {
       border-radius: 4px;
+      background-color: $base-shadow-color;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -566,6 +573,7 @@
     border-radius: 0 0 4px 4px;
     display: flex;
     justify-content: space-between;
+    flex: 0 0 auto;
 
     .compose-form__buttons {
       display: flex;
@@ -614,6 +622,7 @@
     display: flex;
     justify-content: flex-end;
     min-width: 0;
+    flex: 0 0 auto;
 
     .compose-form__publish-button-wrapper {
       overflow: hidden;
@@ -644,6 +653,9 @@
   margin-bottom: 10px;
   background: $ui-primary-color;
   padding: 10px;
+  min-height: 23px;
+  overflow-y: auto;
+  flex: 0 2 auto;
 }
 
 .reply-indicator__header {
@@ -710,7 +722,7 @@
     white-space: pre-wrap;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 2px;
     }
   }
 
@@ -1172,7 +1184,7 @@
 }
 
 .account__avatar {
-  @include avatar-radius();
+  @include avatar-radius;
   position: relative;
 
   &-inline {
@@ -1182,11 +1194,11 @@
   }
 
   &-composite {
-    @include avatar-radius();
+    @include avatar-radius;
     overflow: hidden;
 
     & > div {
-      @include avatar-radius();
+      @include avatar-radius;
       float: left;
       position: relative;
       box-sizing: border-box;
@@ -1202,12 +1214,12 @@ a .account__avatar {
   @include avatar-size(48px);
 
   &-base {
-    @include avatar-radius();
+    @include avatar-radius;
     @include avatar-size(36px);
   }
 
   &-overlay {
-    @include avatar-radius();
+    @include avatar-radius;
     @include avatar-size(24px);
 
     position: absolute;
@@ -1585,13 +1597,13 @@ a.account__display-name {
     .icon-button.close {
       position: absolute;
       pointer-events: none;
-      transform: scale(0.0, 1.0) translate(-100%, 0);
+      transform: scale(0, 1) translate(-100%, 0);
       opacity: 0;
     }
 
     .compose__action-bar .icon-button {
       pointer-events: auto;
-      transform: scale(1.0, 1.0) translate(0, 0);
+      transform: scale(1, 1) translate(0, 0);
       opacity: 1;
     }
   }
@@ -1794,7 +1806,6 @@ a.account__display-name {
     height: 100%;
 
     &__pane {
-      flex: 1 1 auto;
       height: 100%;
       overflow: hidden;
       pointer-events: none;
@@ -1819,7 +1830,7 @@ a.account__display-name {
       display: flex;
       flex-direction: column;
 
-      @media screen and (min-width: 360px) {
+      @media screen and (min-width: $no-gap-breakpoint) {
         padding: 0 10px;
       }
     }
@@ -1945,11 +1956,6 @@ a.account__display-name {
     font-size: 16px;
   }
 
-  &.active {
-    border-bottom: 2px solid $highlight-text-color;
-    color: $highlight-text-color;
-  }
-
   &:hover,
   &:focus,
   &:active {
@@ -1957,6 +1963,11 @@ a.account__display-name {
       background: lighten($ui-base-color, 14%);
       border-bottom-color: lighten($ui-base-color, 14%);
     }
+  }
+
+  &.active {
+    border-bottom: 2px solid $highlight-text-color;
+    color: $highlight-text-color;
   }
 
   span {
@@ -1976,6 +1987,7 @@ a.account__display-name {
 .columns-area--mobile {
   flex-direction: column;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
 
   .column,
@@ -2000,7 +2012,7 @@ a.account__display-name {
     top: 15px;
   }
 
-  @media screen and (min-width: 360px) {
+  @media screen and (min-width: $no-gap-breakpoint) {
     padding: 10px 0;
   }
 
@@ -2058,6 +2070,10 @@ a.account__display-name {
 
     .account {
       padding: 15px 10px;
+
+      &__header__bio {
+        margin: 0 -10px;
+      }
     }
 
     .notification {
@@ -2110,7 +2126,7 @@ a.account__display-name {
   }
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: $no-gap-breakpoint) {
   .tabs-bar {
     margin: 10px auto;
     margin-bottom: 0;
@@ -2184,30 +2200,39 @@ a.account__display-name {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  height: 100%;
-
-  .search__input {
-    line-height: 18px;
-    font-size: 16px;
-    padding: 15px;
-    padding-right: 30px;
-  }
-
-  .search__icon .fa {
-    top: 15px;
-  }
+  height: calc(100% - 10px);
+  overflow-y: hidden;
 
   .navigation-bar {
     padding-top: 20px;
     padding-bottom: 20px;
+    flex: 0 1 48px;
+    min-height: 20px;
   }
 
   .flex-spacer {
     background: transparent;
   }
 
+  .compose-form {
+    flex: 1;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+    padding-bottom: 71px;
+    margin-bottom: -71px;
+  }
+
+  .compose-form__autosuggest-wrapper {
+    overflow-y: auto;
+    background-color: $white;
+    border-radius: 4px 4px 0 0;
+    flex: 0 1 auto;
+  }
+
   .autosuggest-textarea__textarea {
-    max-height: 200px;
+    overflow-y: hidden;
   }
 
   .compose-form__upload-thumbnail {
@@ -2217,6 +2242,9 @@ a.account__display-name {
 
 .navigation-panel {
   margin-top: 10px;
+  margin-bottom: 10px;
+  height: calc(100% - 20px);
+  overflow-y: auto;
 
   hr {
     border: 0;
@@ -2661,21 +2689,22 @@ a.account__display-name {
 }
 
 .setting-text {
-  color: $darker-text-color;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid $ui-primary-color;
-  box-sizing: border-box;
   display: block;
-  font-family: inherit;
-  margin-bottom: 10px;
-  padding: 7px 0;
+  box-sizing: border-box;
   width: 100%;
+  margin: 0;
+  color: $inverted-text-color;
+  background: $simple-background-color;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
 
-  &:focus,
-  &:active {
-    color: $primary-text-color;
-    border-bottom-color: $highlight-text-color;
+  &:focus {
+    outline: 0;
   }
 
   @media screen and (max-width: 600px) {
@@ -3001,7 +3030,7 @@ a.status-card.compact:hover {
 
   & > button {
     margin: 0;
-    border: none;
+    border: 0;
     padding: 15px 0 15px 15px;
     color: inherit;
     background: transparent;
@@ -3035,6 +3064,10 @@ a.status-card.compact:hover {
 .column-header__buttons {
   height: 48px;
   display: flex;
+}
+
+.column-header__links {
+  margin-bottom: 14px;
 }
 
 .column-header__links .text-btn {
@@ -3166,11 +3199,11 @@ a.status-card.compact:hover {
 }
 
 .no-reduce-motion .loading-indicator span {
-  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .no-reduce-motion .loading-indicator__figure {
-  animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 @keyframes loader-figure {
@@ -3337,7 +3370,7 @@ a.status-card.compact:hover {
 
   .column-select {
     &__control {
-      @include search-input();
+      @include search-input;
     }
 
     &__placeholder {
@@ -3388,7 +3421,7 @@ a.status-card.compact:hover {
     }
 
     &__menu {
-      @include search-popout();
+      @include search-popout;
       padding: 0;
       background: $ui-secondary-color;
     }
@@ -3549,7 +3582,7 @@ a.status-card.compact:hover {
 
 .no-reduce-motion .shake-bottom {
   transform-origin: 50% 100%;
-  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2s 2 both;
+  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) 2s 2 both;
 }
 
 .emoji-picker-dropdown__menu {
@@ -3844,10 +3877,13 @@ a.status-card.compact:hover {
 }
 
 .search__input {
+  @include search-input;
+
   display: block;
-  padding: 10px;
+  padding: 15px;
   padding-right: 30px;
-  @include search-input();
+  line-height: 18px;
+  font-size: 16px;
 }
 
 .search__icon {
@@ -3862,7 +3898,7 @@ a.status-card.compact:hover {
 
   .fa {
     position: absolute;
-    top: 10px;
+    top: 16px;
     right: 10px;
     z-index: 2;
     display: inline-block;
@@ -3892,7 +3928,7 @@ a.status-card.compact:hover {
   }
 
   .fa-times-circle {
-    top: 11px;
+    top: 17px;
     transform: rotate(0deg);
     color: $action-button-color;
     cursor: pointer;
@@ -3958,6 +3994,11 @@ a.status-card.compact:hover {
     color: lighten($secondary-text-color, 4%);
     text-decoration: underline;
   }
+}
+
+.search-results__info {
+  padding: 10px;
+  color: $secondary-text-color;
 }
 
 .modal-root {
@@ -4455,13 +4496,13 @@ a.status-card.compact:hover {
 }
 
 .actions-modal {
+  max-height: 80vh;
+  max-width: 80vw;
+
   .status {
     overflow-y: auto;
     max-height: 300px;
   }
-
-  max-height: 80vh;
-  max-width: 80vw;
 
   .actions-modal__item-label {
     font-weight: 500;
@@ -4677,7 +4718,7 @@ a.status-card.compact:hover {
 }
 
 .media-gallery__item {
-  border: none;
+  border: 0;
   box-sizing: border-box;
   display: block;
   float: left;
@@ -4698,7 +4739,6 @@ a.status-card.compact:hover {
   display: block;
   text-decoration: none;
   color: $secondary-text-color;
-  line-height: 0;
   position: relative;
   z-index: 1;
 
@@ -5137,7 +5177,7 @@ a.status-card.compact:hover {
 }
 
 .account-gallery__item {
-  border: none;
+  border: 0;
   box-sizing: border-box;
   display: block;
   position: relative;
@@ -5211,7 +5251,7 @@ a.status-card.compact:hover {
 }
 
 .search-popout {
-  @include search-popout();
+  @include search-popout;
 }
 
 noscript {
@@ -5313,14 +5353,14 @@ noscript {
         .icon-button.close {
           pointer-events: auto;
           opacity: 1;
-          transform: scale(1.0, 1.0) translate(0, 0);
+          transform: scale(1, 1) translate(0, 0);
           bottom: 5px;
         }
 
         .compose__action-bar .icon-button {
           pointer-events: none;
           opacity: 0;
-          transform: scale(0.0, 1.0) translate(100%, 0);
+          transform: scale(0, 1) translate(100%, 0);
         }
       }
     }
@@ -5350,7 +5390,7 @@ noscript {
       box-sizing: border-box;
       display: block;
       width: 100%;
-      border: none;
+      border: 0;
       padding: 10px;
       font-family: $font-monospace, monospace;
       background: $ui-base-color;
@@ -5425,8 +5465,8 @@ noscript {
 }
 
 .column-inline-form {
-  padding: 7px 15px;
-  padding-right: 5px;
+  padding: 15px;
+  padding-right: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -5437,7 +5477,6 @@ noscript {
 
     input {
       width: 100%;
-      margin-bottom: 6px;
 
       &:focus {
         outline: 0;
@@ -5447,7 +5486,7 @@ noscript {
 
   .icon-button {
     flex: 0 0 auto;
-    margin: 0 5px;
+    margin: 0 10px;
   }
 }
 
