@@ -6,19 +6,26 @@ import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 import { me } from 'flavours/glitch/util/initial_state';
 
+const getRegex = createSelector([
+  (state, { type }) => state.getIn(['settings', type, 'regex', 'body']),
+], (rawRegex) => {
+  let regex = null;
+
+  try {
+    regex = rawRegex && new RegExp(rawRegex.trim(), 'i');
+  } catch (e) {
+    // Bad regex, don't affect filters
+  }
+  return regex;
+});
+
 const makeGetStatusIds = () => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
   (state, { type }) => state.getIn(['timelines', type, 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
-], (columnSettings, statusIds, statuses) => {
+  getRegex,
+], (columnSettings, statusIds, statuses, regex) => {
   const rawRegex = columnSettings.getIn(['regex', 'body'], '').trim();
-  let regex      = null;
-
-  try {
-    regex = rawRegex && new RegExp(rawRegex, 'i');
-  } catch (e) {
-    // Bad regex, don't affect filters
-  }
 
   return statusIds.filter(id => {
     if (id === null) return true;
