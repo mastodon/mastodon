@@ -119,7 +119,7 @@ export default class IntersectionObserverArticle extends ImmutablePureComponent 
         data-id={id}
         tabIndex='0'
         style={style}>
-          {children && React.cloneElement(children, { hidden: !isIntersecting && (isHidden || cachedHeight) })}
+          {children && React.cloneElement(children, { hidden: !isIntersecting && (isHidden || !!cachedHeight) })}
       </article>
     );
   }
