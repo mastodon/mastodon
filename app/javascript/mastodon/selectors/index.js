@@ -36,12 +36,10 @@ const toServerSideType = columnType => {
   }
 };
 
-export const getFilters = (state, { contextType }) => state.get('filters', ImmutableList()).filter(filter => contextType && filter.get('context').includes(toServerSideType(contextType)) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
-
 const escapeRegExp = string =>
   string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 
-export const regexFromFilters = filters => {
+const regexFromFilters = filters => {
   if (filters.size === 0) {
     return null;
   }
