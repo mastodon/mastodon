@@ -65,24 +65,20 @@ export const regexFromFilters = filters => {
 
 // Memoize the filter regexps for each valid server contextType
 const makeGetFiltersRegex = () => {
-  let lastResults = {};
-  let lastFilters = null;
+  let memo = {};
 
   return (state, { contextType }) => {
     if (!contextType) return ImmutableList();
 
     const serverSideType = toServerSideType(contextType);
     const filters = state.get('filters', ImmutableList()).filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
-    if (!is(lastFilters, filters)) {
-      lastResults = {};
-      lastFilters = filters;
-    }
-    if (lastResults[serverSideType] === undefined) {
+
+    if (!memo[serverSideType] || !is(memo[serverSideType].filters, filters)) {
       const dropRegex = regexFromFilters(filters.filter(filter => filter.get('irreversible')));
       const regex = regexFromFilters(filters);
-      lastResults[serverSideType] = [dropRegex, regex];
+      memo[serverSideType] = { filters: filters, results: [dropRegex, regex] };
     }
-    return lastResults[serverSideType];
+    return memo[serverSideType].results;
   };
 };
 
