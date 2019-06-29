@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { List as ImmutableList } from 'immutable';
+import { List as ImmutableList, is } from 'immutable';
 import { me } from '../initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
@@ -63,6 +63,31 @@ export const regexFromFilters = filters => {
   }).join('|'), 'i');
 };
 
+// Memoize the filter regexps for each valid server contextType
+const makeGetFiltersRegex = () => {
+  let lastResults = {};
+  let lastFilters = null;
+
+  return (state, { contextType }) => {
+    if (!contextType) return ImmutableList();
+
+    const serverSideType = toServerSideType(contextType);
+    const filters = state.get('filters', ImmutableList()).filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
+    if (!is(lastFilters, filters)) {
+      lastResults = {};
+      lastFilters = filters;
+    }
+    if (lastResults[serverSideType] === undefined) {
+      const dropRegex = regexFromFilters(filters.filter(filter => filter.get('irreversible')));
+      const regex = regexFromFilters(filters);
+      lastResults[serverSideType] = [dropRegex, regex];
+    }
+    return lastResults[serverSideType];
+  };
+};
+
+export const getFiltersRegex = makeGetFiltersRegex();
+
 export const makeGetStatus = () => {
   return createSelector(
     [
@@ -70,10 +95,10 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
-      getFilters,
+      getFiltersRegex,
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog, filters) => {
+    (statusBase, statusReblog, accountBase, accountReblog, filtersRegex) => {
       if (!statusBase) {
         return null;
       }
@@ -84,12 +109,12 @@ export const makeGetStatus = () => {
         statusReblog = null;
       }
 
-      const dropRegex = (accountReblog || accountBase).get('id') !== me && regexFromFilters(filters.filter(filter => filter.get('irreversible')));
+      const dropRegex = (accountReblog || accountBase).get('id') !== me && filtersRegex[0];
       if (dropRegex && dropRegex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'))) {
         return null;
       }
 
-      const regex     = (accountReblog || accountBase).get('id') !== me && regexFromFilters(filters);
+      const regex     = (accountReblog || accountBase).get('id') !== me && filtersRegex[1];
       const filtered  = regex && regex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'));
 
       return statusBase.withMutations(map => {
