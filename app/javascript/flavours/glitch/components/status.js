@@ -55,8 +55,8 @@ export const defaultMediaVisibility = (status, settings) => {
   return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
 }
 
-@injectIntl
-export default class Status extends ImmutablePureComponent {
+export default @injectIntl
+class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -105,6 +105,7 @@ export default class Status extends ImmutablePureComponent {
     showMedia: undefined,
     statusId: undefined,
     revealBehindCW: undefined,
+    showCard: false,
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -255,28 +256,32 @@ export default class Status extends ImmutablePureComponent {
       this.setState({ autoCollapsed: true });
     }
 
-    this.didShowCard  = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card') && this.props.settings.get('inline_preview_cards');
+    // Hack to fix timeline jumps when a preview card is fetched
+    this.setState({
+      showCard: !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card') && this.props.settings.get('inline_preview_cards'),
+    });
   }
 
+  //  Hack to fix timeline jumps on second rendering when auto-collapsing
+  //  or on subsequent rendering when a preview card has been fetched
   getSnapshotBeforeUpdate (prevProps, prevState) {
-    if (this.props.getScrollPosition) {
+    if (!this.props.getScrollPosition) return null;
+
+    const { muted, hidden, status, settings } = this.props;
+
+    const doShowCard = !muted && !hidden && status && status.get('card') && settings.get('inline_preview_cards');
+    if (this.state.autoCollapsed || (doShowCard && !this.state.showCard)) {
+      if (doShowCard) this.setState({ showCard: true });
+      if (this.state.autoCollapsed) this.setState({ autoCollapsed: false });
       return this.props.getScrollPosition();
     } else {
       return null;
     }
   }
 
-  //  Hack to fix timeline jumps on second rendering when auto-collapsing
   componentDidUpdate (prevProps, prevState, snapshot) {
-    const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card') && this.props.settings.get('inline_preview_cards');
-    if (this.state.autoCollapsed || (doShowCard && !this.didShowCard)) {
-      if (doShowCard) this.didShowCard = true;
-      if (this.state.autoCollapsed) this.setState({ autoCollapsed: false });
-      if (snapshot !== null && this.props.updateScrollBottom) {
-        if (this.node.offsetTop < snapshot.top) {
-          this.props.updateScrollBottom(snapshot.height - snapshot.top);
-        }
-      }
+    if (snapshot !== null && this.props.updateScrollBottom && this.node.offsetTop < snapshot.top) {
+      this.props.updateScrollBottom(snapshot.height - snapshot.top);
     }
   }
 
