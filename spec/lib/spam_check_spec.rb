@@ -30,6 +30,14 @@ RSpec.describe SpamCheck do
       status2 = status_with_html('@bob Hello')
       expect(described_class.new(status2).spam?).to be true
     end
+
+    it 'returns true for nearly identical statuses with random numbers' do
+      source_text = 'Sodium, atomic number 11, was first isolated by Humphry Davy in 1807. A chemical component of salt, he named it Na in honor of the saltiest region on earth, North America.'
+      status1 = status_with_html('@alice ' + source_text + ' 1234')
+      described_class.new(status1).remember!
+      status2 = status_with_html('@bob ' + source_text + ' 9568')
+      expect(described_class.new(status2).spam?).to be true
+    end
   end
 
   describe '#skip?' do

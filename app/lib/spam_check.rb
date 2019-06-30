@@ -4,6 +4,8 @@ class SpamCheck
   include Redisable
   include ActionView::Helpers::TextHelper
 
+  LEVENSHTEIN_THRESHOLD = 10
+
   def initialize(status)
     @account = status.account
     @status  = status
@@ -14,7 +16,8 @@ class SpamCheck
   end
 
   def spam?
-    !redis.zrank("spam_check:#{@account.id}", digest).nil?
+    other_digests = redis.zrange("spam_check:#{@account.id}", '0', '-1')
+    other_digests.any? { |other_digest| levenshtein(digest, other_digest) < LEVENSHTEIN_THRESHOLD }
   end
 
   def flag!
@@ -40,7 +43,7 @@ class SpamCheck
   end
 
   def digest
-    @digest ||= Digest::MD5.hexdigest(hashable_text)
+    @digest ||= Nilsimsa.new(hashable_text).hexdigest
   end
 
   def remove_mentions(text)
@@ -75,5 +78,26 @@ class SpamCheck
 
   def no_unsolicited_mentions?
     @status.mentions.all? { |mention| mention.silent? || !mention.account.local? || mention.account.following?(@account) }
+  end
+
+  def levenshtein(first, second)
+    m = first.length
+    n = second.length
+
+    return m if n.zero?
+    return n if m.zero?
+
+    d = Array.new(m + 1) { Array.new(n + 1) }
+
+    0.upto(m) { |i| d[i][0] = i }
+    0.upto(n) { |j| d[0][j] = j }
+
+    1.upto(n) do |j|
+      1.upto(m) do |i|
+        d[i][j] = first[i - 1] == second[j - 1] ? d[i - 1][j - 1] : [d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + 1].min
+      end
+    end
+
+    d[m][n]
   end
 end
