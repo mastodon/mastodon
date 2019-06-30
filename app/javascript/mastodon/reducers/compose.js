@@ -224,6 +224,7 @@ export default function compose(state = initialState, action) {
       }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
+    if (!state.get('spoiler')) return state;
     return state
       .set('spoiler_text', action.text)
       .set('idempotencyKey', uuid());
