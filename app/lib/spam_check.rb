@@ -12,7 +12,7 @@ class SpamCheck
   end
 
   def skip?
-    already_flagged? || no_unsolicited_mentions?
+    already_flagged? || no_unsolicited_mentions? || solicited_reply?
   end
 
   def spam?
@@ -78,6 +78,10 @@ class SpamCheck
 
   def no_unsolicited_mentions?
     @status.mentions.all? { |mention| mention.silent? || !mention.account.local? || mention.account.following?(@account) }
+  end
+
+  def solicited_reply?
+    !@status.thread.nil? && @status.thread.mentions.where(account: @account).exists?
   end
 
   def levenshtein(first, second)

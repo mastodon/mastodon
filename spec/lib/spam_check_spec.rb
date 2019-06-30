@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe SpamCheck do
-  let(:sender) { Fabricate(:account) }
+  let!(:sender) { Fabricate(:account) }
   let!(:alice) { Fabricate(:account, username: 'alice') }
   let!(:bob) { Fabricate(:account, username: 'bob') }
 
-  def status_with_html(text)
-    status = PostStatusService.new.call(sender, text: text)
+  def status_with_html(text, options = {})
+    status = PostStatusService.new.call(sender, { text: text }.merge(options))
     status.update(text: Formatter.instance.format(status))
     status
   end
@@ -71,6 +71,12 @@ RSpec.describe SpamCheck do
       status = status_with_html('@alice @bob Hello')
       alice.follow!(sender)
       expect(described_class.new(status).skip?).to be false
+    end
+
+    it 'returns true when the sender is replying to a status that mentions the sender' do
+      parent = PostStatusService.new.call(alice, text: "Hey @#{sender.username}, how are you?")
+      status = status_with_html('@alice @bob Hello', thread: parent)
+      expect(described_class.new(status).skip?).to be true
     end
   end
 
