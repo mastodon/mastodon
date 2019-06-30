@@ -4,7 +4,7 @@ class SpamCheck
   include Redisable
   include ActionView::Helpers::TextHelper
 
-  LEVENSHTEIN_THRESHOLD = 10
+  NILSIMSA_COMPARE_THRESHOLD = 54
 
   def initialize(status)
     @account = status.account
@@ -17,7 +17,7 @@ class SpamCheck
 
   def spam?
     other_digests = redis.zrange("spam_check:#{@account.id}", '0', '-1')
-    other_digests.any? { |other_digest| levenshtein(digest, other_digest) < LEVENSHTEIN_THRESHOLD }
+    other_digests.any? { |other_digest| nilsimsa_compare_value(digest, other_digest) >= NILSIMSA_COMPARE_THRESHOLD }
   end
 
   def flag!
@@ -84,24 +84,15 @@ class SpamCheck
     !@status.thread.nil? && @status.thread.mentions.where(account: @account).exists?
   end
 
-  def levenshtein(first, second)
-    m = first.length
-    n = second.length
+  def nilsimsa_compare_value(first, second)
+    first  = [first].pack('H*')
+    second = [second].pack('H*')
+    bits   = 0
 
-    return m if n.zero?
-    return n if m.zero?
-
-    d = Array.new(m + 1) { Array.new(n + 1) }
-
-    0.upto(m) { |i| d[i][0] = i }
-    0.upto(n) { |j| d[0][j] = j }
-
-    1.upto(n) do |j|
-      1.upto(m) do |i|
-        d[i][j] = first[i - 1] == second[j - 1] ? d[i - 1][j - 1] : [d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + 1].min
-      end
+    0.upto(31) do |i|
+      bits += Nilsimsa::POPC[255 & (first[i].ord ^ second[i].ord)].ord
     end
 
-    d[m][n]
+    128 - bits # -128 <= Nilsimsa Compare Value <= 128
   end
 end
