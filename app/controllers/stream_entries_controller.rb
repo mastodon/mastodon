@@ -21,7 +21,7 @@ class StreamEntriesController < ApplicationController
       end
 
       format.atom do
-        expires_in 3.minutes, public: true unless @stream_entry.hidden?
+        expires_in 3.minutes, public: true unless @stream_entry.hidden? || @stream_entry.local_only?
 
         render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.entry(@stream_entry, true))
       end
