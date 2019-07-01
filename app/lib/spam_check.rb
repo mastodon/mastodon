@@ -5,7 +5,8 @@ class SpamCheck
   include ActionView::Helpers::TextHelper
 
   NILSIMSA_COMPARE_THRESHOLD = 54
-  NILSIMSA_MIN_SIZE = 10
+  NILSIMSA_MIN_SIZE          = 10
+  EXPIRE_SET_AFTER           = 3.months.seconds
 
   def initialize(status)
     @account = status.account
@@ -18,10 +19,10 @@ class SpamCheck
 
   def spam?
     if nilsimsa?
-      other_digests = redis.zrange("spam_check:#{@account.id}", '0', '-1')
+      other_digests = redis.zrange(redis_key, '0', '-1')
       other_digests.select { |other_digest| other_digest.start_with?('nilsimsa') }.any? { |other_digest| nilsimsa_compare_value(digest, other_digest.split(':').last) >= NILSIMSA_COMPARE_THRESHOLD }
     else
-      !redis.zrank("spam_check:#{@account.id}", digest_with_algorithm).nil?
+      !redis.zrank(redis_key, digest_with_algorithm).nil?
     end
   end
 
@@ -31,8 +32,9 @@ class SpamCheck
   end
 
   def remember!
-    redis.zadd("spam_check:#{@account.id}", @status.id, digest_with_algorithm)
-    redis.zremrangebyrank("spam_check:#{@account.id}", '0', '-10')
+    redis.zadd(redis_key, @status.id, digest_with_algorithm)
+    redis.zremrangebyrank(redis_key, '0', '-10')
+    redis.expire(redis_key, EXPIRE_SET_AFTER)
   end
 
   private
@@ -121,5 +123,9 @@ class SpamCheck
 
   def nilsimsa?
     hashable_text.size > NILSIMSA_MIN_SIZE
+  end
+
+  def redis_key
+    @redis_key ||= "spam_check:#{@account.id}"
   end
 end
