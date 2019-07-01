@@ -17,15 +17,21 @@ end
 class Request
   REQUEST_TARGET = '(request-target)'
 
+  # We enforce a 5s timeout on DNS resolving, 5s timeout on socket opening
+  # and 5s timeout on the TLS handshake, meaning the worst case should take
+  # about 15s in total
+  TIMEOUT = { connect: 5, read: 10, write: 10 }.freeze
+
   include RoutingHelper
 
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
 
-    @verb    = verb
-    @url     = Addressable::URI.parse(url).normalize
-    @options = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
-    @headers = {}
+    @verb        = verb
+    @url         = Addressable::URI.parse(url).normalize
+    @http_client = options.delete(:http_client)
+    @options     = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
+    @headers     = {}
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
@@ -50,15 +56,24 @@ class Request
 
   def perform
     begin
-      response = http_client.headers(headers).public_send(@verb, @url.to_s, @options)
+      response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
       raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
 
     begin
-      yield response.extend(ClientLimit) if block_given?
+      response = response.extend(ClientLimit)
+
+      # If we are using a persistent connection, we have to
+      # read every response to be able to move forward at all.
+      # However, simply calling #to_s or #flush may not be safe,
+      # as the response body, if malicious, could be too big
+      # for our memory. So we use the #body_with_limit method
+      response.body_with_limit if http_client.persistent?
+
+      yield response if block_given?
     ensure
-      http_client.close
+      http_client.close unless http_client.persistent?
     end
   end
 
@@ -75,6 +90,10 @@ class Request
       end
 
       %w(http https).include?(parsed_url.scheme) && parsed_url.host.present?
+    end
+
+    def http_client
+      HTTP.use(:auto_inflate).timeout(:per_operation, TIMEOUT.dup).follow(max_hops: 2)
     end
   end
 
@@ -116,16 +135,8 @@ class Request
     end
   end
 
-  def timeout
-    # We enforce a 1s timeout on DNS resolving, 10s timeout on socket opening
-    # and 5s timeout on the TLS handshake, meaning the worst case should take
-    # about 16s in total
-
-    { connect: 5, read: 10, write: 10 }
-  end
-
   def http_client
-    @http_client ||= HTTP.use(:auto_inflate).timeout(:per_operation, timeout).follow(max_hops: 2)
+    @http_client ||= Request.http_client
   end
 
   def use_proxy?
@@ -169,20 +180,41 @@ class Request
         return super(host, *args) if thru_hidden_service?(host)
 
         outer_e = nil
+        port    = args.first
 
         Resolv::DNS.open do |dns|
           dns.timeouts = 5
 
           addresses = dns.getaddresses(host).take(2)
-          time_slot = 10.0 / addresses.size
 
           addresses.each do |address|
             begin
               raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
 
-              ::Timeout.timeout(time_slot, HTTP::TimeoutError) do
-                return super(address.to_s, *args)
+              sock     = ::Socket.new(::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
+              sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
+
+              sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
+
+              begin
+                sock.connect_nonblock(sockaddr)
+              rescue IO::WaitWritable
+                if IO.select(nil, [sock], nil, Request::TIMEOUT[:connect])
+                  begin
+                    sock.connect_nonblock(sockaddr)
+                  rescue Errno::EISCONN
+                    # Yippee!
+                  rescue
+                    sock.close
+                    raise
+                  end
+                else
+                  sock.close
+                  raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
+                end
               end
+
+              return sock
             rescue => e
               outer_e = e
             end
