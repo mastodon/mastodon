@@ -55,6 +55,8 @@ But it's also open to abuse with people quote-tweeting things they disagree with
 
 What does this have to do with content types? Well, if we support an `Article` content type and a `Note` content type, we can support quoting for an `Article` but not for a `Note`. In practice this means that you can quote blog posts and news articles, but you can't quote a quick personal microblog note.
 
+> Hometown doesn't support quoting articles yet... but it will.
+
 ## Better list management
 
 If Hometown is going to be a universal reader, you're going to need better control over organizing your feeds than mainline Mastodon provides.
