@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from 'flavours/glitch/util/schedule_idle_task';
 import getRectFromEntry from 'flavours/glitch/util/get_rect_from_entry';
-import { is } from 'immutable';
 
 // Diff these props in the "unrendered" state
 const updateOnPropsForUnrendered = ['id', 'index', 'listLength', 'cachedHeight'];
@@ -34,7 +32,7 @@ export default class IntersectionObserverArticle extends React.Component {
     }
     // If we are and remain hidden, diff based on props
     if (isUnrendered) {
-      return !updateOnPropsForUnrendered.every(prop => is(nextProps[prop], this.props[prop]));
+      return !updateOnPropsForUnrendered.every(prop => nextProps[prop] === this.props[prop]);
     }
     // Else, assume the children have changed
     return true;
