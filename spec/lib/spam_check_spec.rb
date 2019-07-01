@@ -31,6 +31,13 @@ RSpec.describe SpamCheck do
       expect(described_class.new(status2).spam?).to be false
     end
 
+    it 'returns false for very short different statuses to different recipients' do
+      status1 = status_with_html('@alice 🙄')
+      described_class.new(status1).remember!
+      status2 = status_with_html('@bob Huh?')
+      expect(described_class.new(status2).spam?).to be false
+    end
+
     it 'returns true for duplicate statuses to the same recipient' do
       status1 = status_with_html('@alice Hello')
       described_class.new(status1).remember!

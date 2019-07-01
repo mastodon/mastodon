@@ -5,6 +5,7 @@ class SpamCheck
   include ActionView::Helpers::TextHelper
 
   NILSIMSA_COMPARE_THRESHOLD = 54
+  NILSIMSA_MIN_SIZE = 10
 
   def initialize(status)
     @account = status.account
@@ -16,8 +17,12 @@ class SpamCheck
   end
 
   def spam?
-    other_digests = redis.zrange("spam_check:#{@account.id}", '0', '-1')
-    other_digests.any? { |other_digest| nilsimsa_compare_value(digest, other_digest) >= NILSIMSA_COMPARE_THRESHOLD }
+    if nilsimsa?
+      other_digests = redis.zrange("spam_check:#{@account.id}", '0', '-1')
+      other_digests.select { |other_digest| other_digest.start_with?('nilsimsa') }.any? { |other_digest| nilsimsa_compare_value(digest, other_digest.split(':').last) >= NILSIMSA_COMPARE_THRESHOLD }
+    else
+      !redis.zrank("spam_check:#{@account.id}", digest_with_algorithm).nil?
+    end
   end
 
   def flag!
@@ -26,7 +31,7 @@ class SpamCheck
   end
 
   def remember!
-    redis.zadd("spam_check:#{@account.id}", @status.id, digest)
+    redis.zadd("spam_check:#{@account.id}", @status.id, digest_with_algorithm)
     redis.zremrangebyrank("spam_check:#{@account.id}", '0', '-10')
   end
 
@@ -43,7 +48,21 @@ class SpamCheck
   end
 
   def digest
-    @digest ||= Nilsimsa.new(hashable_text).hexdigest
+    @digest ||= begin
+      if nilsimsa?
+        Nilsimsa.new(hashable_text).hexdigest
+      else
+        Digest::MD5.hexdigest(hashable_text)
+      end
+    end
+  end
+
+  def digest_with_algorithm
+    if nilsimsa?
+      ['nilsimsa', digest].join(':')
+    else
+      ['md5', digest].join(':')
+    end
   end
 
   def remove_mentions(text)
@@ -94,5 +113,9 @@ class SpamCheck
     end
 
     128 - bits # -128 <= Nilsimsa Compare Value <= 128
+  end
+
+  def nilsimsa?
+    hashable_text.size > NILSIMSA_MIN_SIZE
   end
 end
