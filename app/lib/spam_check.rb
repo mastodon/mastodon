@@ -13,7 +13,7 @@ class SpamCheck
   end
 
   def skip?
-    already_flagged? || no_unsolicited_mentions? || solicited_reply?
+    already_flagged? || trusted? || no_unsolicited_mentions? || solicited_reply?
   end
 
   def spam?
@@ -88,11 +88,15 @@ class SpamCheck
   end
 
   def auto_report_status!
-    ReportService.new.call(Account.representative, @account, status_ids: [@status.id]) unless @account.targeted_reports.unresolved.exists?
+    ReportService.new.call(Account.representative, @account, status_ids: @status.distributable? ? [@status.id] : nil, comment: I18n.t('spam_check.spam_detected_and_silenced')) unless @account.targeted_reports.unresolved.exists?
   end
 
   def already_flagged?
     @account.silenced?
+  end
+
+  def trusted?
+    @account.trust_level > Account::TRUST_LEVELS[:untrusted]
   end
 
   def no_unsolicited_mentions?
