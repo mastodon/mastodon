@@ -54,7 +54,7 @@ class ActivityPub::DeliveryWorker
   end
 
   def response_error_unsalvageable?(response)
-    (400...500).cover?(response.code) && ![401, 408, 429].include?(response.code)
+    response.code == 501 || ((400...500).cover?(response.code) && ![401, 408, 429].include?(response.code))
   end
 
   def failure_tracker
