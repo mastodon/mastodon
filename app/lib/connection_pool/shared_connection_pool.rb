@@ -10,7 +10,7 @@ class ConnectionPool::SharedConnectionPool < ConnectionPool
     @available = ConnectionPool::SharedTimedStack.new(@size, &block)
   end
 
-  delegate :each_connection, :delete, :size, :empty?, to: :@available
+  delegate :size, :flush, to: :@available
 
   def with(preferred_tag, options = {})
     Thread.handle_interrupt(Exception => :never) do

@@ -42,22 +42,25 @@ class ConnectionPool::SharedTimedStack
     size.zero?
   end
 
-  def delete(connection)
-    @mutex.synchronize do
-      remove_connection(connection)
-      @created -= 1
-    end
-  end
-
   def size
     @mutex.synchronize do
       @queue.size
     end
   end
 
-  def each_connection(&block)
+  def flush
     @mutex.synchronize do
-      @queue.each(&block)
+      @queue.delete_if do |connection|
+        delete = !connection.in_use && (connection.dead || connection.seconds_idle >= RequestPool::MAX_IDLE_TIME)
+
+        if delete
+          @tagged_queue[connection.site].delete(connection)
+          connection.close
+          @created -= 1
+        end
+
+        delete
+      end
     end
   end
 
@@ -88,10 +91,5 @@ class ConnectionPool::SharedTimedStack
   def store_connection(connection)
     @tagged_queue[connection.site].push(connection)
     @queue.push(connection)
-  end
-
-  def remove_connection(connection)
-    @tagged_queue[connection.site].delete(connection)
-    @queue.delete(connection)
   end
 end

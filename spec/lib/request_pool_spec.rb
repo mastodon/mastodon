@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe RequestPool do
-  subject { described_class.current }
+  subject { described_class.new }
 
   describe '#with' do
     it 'returns a HTTP client for a host' do
@@ -31,10 +31,12 @@ describe RequestPool do
     it 'grows to the number of threads accessing it' do
       stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
 
+      subject
+
       threads = 20.times.map do |i|
         Thread.new do
           20.times do
-            RequestPool.current.with('http://example.com') do |http_client|
+            subject.with('http://example.com') do |http_client|
               http_client.get('/').flush
             end
           end
@@ -43,7 +45,19 @@ describe RequestPool do
 
       threads.map(&:join)
 
-      expect(RequestPool.current.size).to be > 1
+      expect(subject.size).to be > 1
+    end
+
+    it 'closes idle connections' do
+      stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
+
+      subject.with('http://example.com') do |http_client|
+        http_client.get('/').flush
+      end
+
+      expect(subject.size).to eq 1
+      sleep RequestPool::MAX_IDLE_TIME + 30 + 1
+      expect(subject.size).to eq 0
     end
   end
 end

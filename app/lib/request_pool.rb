@@ -104,26 +104,11 @@ class RequestPool
 
   def with(site, &block)
     @pool.with(site) do |connection|
-      connection.use(&block)
+      ActiveSupport::Notifications.instrument('with.request_pool', miss: connection.fresh, host: connection.site) do
+        connection.use(&block)
+      end
     end
   end
 
-  def flush
-    idle_connections = []
-
-    @pool.each_connection do |connection|
-      next unless !connection.in_use && (connection.dead || connection.seconds_idle >= MAX_IDLE_TIME)
-
-      connection.close
-      idle_connections << connection
-    end
-
-    idle_connections.each do |connection|
-      @pool.delete(connection)
-    end
-  end
-
-  def size
-    @pool.size
-  end
+  delegate :size, :flush, to: :@pool
 end
