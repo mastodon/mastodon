@@ -12,7 +12,7 @@ Hometown is launching with a few key differences from Mastodon.
 
 * Local only posting (aka posts that never federate)
 * Accepting more content types "natively", like in-line reading of full articles (behind a cut for length)
-* Better list management
+* Better list management (not implemented yet but will come in the first release)
 * Some accessibility features set to default
 
 Those are the only changes! They are pretty minor in terms of the source code involved, but they drastically change the experience of being on Mastodon. I'll explain each of these in more detail now.
@@ -66,6 +66,8 @@ If Hometown is going to be a universal reader, you're going to need better contr
 My first plan is to introduce a new kind of _exclusive list_. Right now if you add an account to your "friends I like" list in Mastodon, posts from people on that list appear on that list. But they also appear on your home timeline, and maybe you don't want that! You'd rather treat your "friends I like" list as your "real" home timeline, and then check your home timeline when you're bored.
 
 Or another case: I might have all the blogs I read in one list, but I only check it on Saturdays when I have time to read things. In that case I don't want updates from those blogs clogging up my home timeline.
+
+> This is not yet implemented but will be available in the first release.
 
 ## Better accessibility defaults
 
