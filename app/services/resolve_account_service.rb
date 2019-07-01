@@ -48,7 +48,7 @@ class ResolveAccountService < BaseService
       return
     end
 
-    return if links_missing?
+    return if links_missing? || auto_suspend?
     return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
 
     RedisLock.acquire(lock_options) do |lock|
