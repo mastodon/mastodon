@@ -138,7 +138,8 @@ export function submitCompose(routerHistory) {
   return function (dispatch, getState) {
     let status = getState().getIn(['compose', 'text'], '');
     let media  = getState().getIn(['compose', 'media_attachments']);
-    let spoilerText = getState().getIn(['compose', 'spoiler_text'], '');
+    const spoilers = getState().getIn(['compose', 'spoiler']) || getState().getIn(['local_settings', 'always_show_spoilers_field']);
+    let spoilerText = spoilers ? getState().getIn(['compose', 'spoiler_text'], '') : '';
 
     if ((!status || !status.length) && media.size === 0) {
       return;
