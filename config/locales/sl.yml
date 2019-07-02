@@ -782,8 +782,17 @@ sl:
       decimal_units:
         format: "%n%u"
         units:
-          billion: mrd
-          million: mio
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  pagination:
+    newer: Novejše
+    next: Naprej
+    older: Starejše
+    prev: Nazaj
+    truncate: "&hellip;"
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
