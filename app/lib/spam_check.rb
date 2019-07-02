@@ -6,7 +6,7 @@ class SpamCheck
 
   NILSIMSA_COMPARE_THRESHOLD = 54
   NILSIMSA_MIN_SIZE          = 10
-  EXPIRE_SET_AFTER           = 3.months.seconds
+  EXPIRE_SET_AFTER           = 1.week.seconds
 
   def initialize(status)
     @account = status.account
@@ -44,7 +44,7 @@ class SpamCheck
 
     @hashable_text = @status.text
     @hashable_text = remove_mentions(@hashable_text)
-    @hashable_text = strip_tags(@hashable_text)
+    @hashable_text = strip_tags(@hashable_text) unless @status.local?
     @hashable_text = normalize_unicode(@hashable_text)
     @hashable_text = remove_whitespace(@hashable_text)
   end
@@ -68,6 +68,8 @@ class SpamCheck
   end
 
   def remove_mentions(text)
+    return text.gsub(Account::MENTION_RE, '') if @status.local?
+
     Nokogiri::HTML.fragment(text).tap do |html|
       mentions = @status.mentions.map { |mention| TagManager.instance.url_for(mention.account) }
 
@@ -82,7 +84,7 @@ class SpamCheck
   end
 
   def remove_whitespace(text)
-    text.gsub(/\s+/, '')
+    text.gsub(/\s+/, ' ')
   end
 
   def auto_silence_account!
@@ -90,7 +92,7 @@ class SpamCheck
   end
 
   def auto_report_status!
-    ReportService.new.call(Account.representative, @account, status_ids: @status.distributable? ? [@status.id] : nil, comment: I18n.t('spam_check.spam_detected_and_silenced')) unless @account.targeted_reports.unresolved.exists?
+    ReportService.new.call(Account.representative, @account, status_ids: @status.distributable? ? [@status.id] : nil, comment: I18n.t('spam_check.spam_detected_and_silenced'))
   end
 
   def already_flagged?
@@ -102,7 +104,7 @@ class SpamCheck
   end
 
   def no_unsolicited_mentions?
-    @status.mentions.all? { |mention| mention.silent? || !mention.account.local? || mention.account.following?(@account) }
+    @status.mentions.all? { |mention| mention.silent? || (!@account.local? && !mention.account.local?) || mention.account.following?(@account) }
   end
 
   def solicited_reply?

@@ -7,7 +7,7 @@ RSpec.describe SpamCheck do
 
   def status_with_html(text, options = {})
     status = PostStatusService.new.call(sender, { text: text }.merge(options))
-    status.update(text: Formatter.instance.format(status))
+    status.update_columns(text: Formatter.instance.format(status), local: false)
     status
   end
 
