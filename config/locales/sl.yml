@@ -737,6 +737,27 @@ sl:
     currently_redirecting: 'Vaš profil je preusmerjen na:'
     proceed: Shrani
     updated_msg: Nastavitev selitve računa je bila uspešno posodobljena!
+  moderation:
+    title: Moderiranje
+  notification_mailer:
+    digest:
+      action: Prikaži vsa obvestila
+      body: Tukaj je kratek povzetek sporočil, ki ste jih zamudili od vašega zadnjega obiska v %{since}
+      mention: "%{name} vas je omenil/a v:"
+      new_followers_summary:
+        one: Prav tako ste pridobili enega novega sledilca, ko ste bili odsotni! Juhu!
+        two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
+        few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
+        other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
+      subject:
+        one: "1 novo obvestilo od vašega zadnjega obiska \U0001F418"
+        two: "%{count} novi obvestili od vašega zadnjega obiska \U0001F418"
+        few: "%{count} nova obvestila od vašega zadnjega obiska \U0001F418"
+        other: "%{count} novih obvestil od vašega zadnjega obiska \U0001F418"
+      title: V vaši odsotnosti...
+    favourite:
+      body: '%{name} je vzljubil/a status:'
+      subject: "%{name} je vzljubil/a vaš status"
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
