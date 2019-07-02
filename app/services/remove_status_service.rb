@@ -23,6 +23,7 @@ class RemoveStatusService < BaseService
         remove_from_hashtags
         remove_from_public
         remove_from_media if status.media_attachments.any?
+        remove_from_spam_check
 
         @status.destroy!
       else
@@ -140,6 +141,10 @@ class RemoveStatusService < BaseService
 
     redis.publish('timeline:public:media', @payload)
     redis.publish('timeline:public:local:media', @payload) if @status.local?
+  end
+
+  def remove_from_spam_check
+    redis.zremrangebyscore("spam_check:#{@status.account_id}", @status.id, @status.id)
   end
 
   def lock_options

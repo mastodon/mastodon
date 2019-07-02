@@ -4,7 +4,7 @@ class SpamCheck
   include Redisable
   include ActionView::Helpers::TextHelper
 
-  NILSIMSA_COMPARE_THRESHOLD = 54
+  NILSIMSA_COMPARE_THRESHOLD = 95
   NILSIMSA_MIN_SIZE          = 10
   EXPIRE_SET_AFTER           = 1.week.seconds
 
