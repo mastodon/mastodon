@@ -692,14 +692,51 @@ sl:
       merge_long: Ohrani obstoječe zapise in dodaj nove
       overwrite: Prepiši
       overwrite_long: Zamenjaj trenutne zapise z novimi
+    preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
+    success: Vaši podatki so bili uspešno naloženi in bodo zdaj pravočasno obdelani
+    types:
+      blocking: Seznam blokiranih
+      domain_blocking: Seznam blokiranih domen
+      following: Seznam uporabnikov, katerim sledite
+      muting: Seznam utišanih
+    upload: Pošlji
+  in_memoriam_html: V spomin.
   invites:
+    delete: Onemogoči
+    expired: Poteklo
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '1800': 30 minut
+      '21600': 6 ur
+      '3600': 1 ura
+      '43200': 12 ur
+      '604800': 1 teden
+      '86400': 1 dan
+    expires_in_prompt: Nikoli
+    generate: Ustvari
+    invited_by: 'Povabil/a vas je:'
+    max_uses:
+      one: 1 uporaba
+      two: "%{count} uporabi"
+      few: "%{count} uporabe"
+      other: "%{count} uporab"
+    max_uses_prompt: Brez omejitve
+    prompt: Ustvarite in delite povezave z drugimi, da omogočite dostop do tega strežnika
+    table:
+      expires_at: Poteče
+      uses: Uporabe
+    title: Povabite ljudi
+  lists:
+    errors:
+      limit: Dosegli ste največje število seznamov
+  media_attachments:
+    validations:
+      images_and_video: Videoposnetka ni mogoče priložiti stanju, ki že vsebuje slike
+      too_many: Ni možno priložiti več kot 4 datoteke
+  migrations:
+    acct: username@domain novega računa
+    currently_redirecting: 'Vaš profil je preusmerjen na:'
+    proceed: Shrani
+    updated_msg: Nastavitev selitve računa je bila uspešno posodobljena!
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
