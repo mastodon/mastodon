@@ -244,7 +244,7 @@ zh-CN:
       feature_invites: 邀请链接
       feature_profile_directory: 用户资料目录
       feature_registrations: 公开注册
-      feature_relay: 同步中继
+      feature_relay: 中继服务器
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
@@ -332,9 +332,9 @@ zh-CN:
     pending_accounts:
       title: 待处理的帐户 (%{count})
     relays:
-      add_new: 添加新的中继
+      add_new: 订阅新的中继
       delete: 删除
-      description_html: <strong>同步中继</strong>是一种中间服务器，各实例可以通过订阅中继和向中继推送信息的方式来大量交换公开嘟文。<strong>它可以帮助中小型实例发现网络中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。
+      description_html: <strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来交换大量公开嘟文。<strong>它可以帮助中小型服务器发现长毛象宇宙中的内容</strong>，而无需本地用户手动关注其他远程服务器上的用户。
       disable: 禁用
       disabled: 已禁用
       enable: 启用
@@ -345,7 +345,7 @@ zh-CN:
       save_and_enable: 保存并启用
       setup: 设置中继连接
       status: 状态
-      title: 中继
+      title: 中继服务器
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
@@ -399,7 +399,7 @@ zh-CN:
         desc_html: 用于在首页展示。推荐分辨率 293×205px 以上。未指定的情况下将使用默认吉祥物。
         title: 吉祥物图像
       peers_api_enabled:
-        desc_html: 截至目前本实例在网络中已发现的域名
+        desc_html: 截至目前本服务器在长毛象宇宙中已知的域名
         title: 公开已知实例的列表
       preview_sensitive_media:
         desc_html: 始终在站外链接预览中展示缩略图，无论媒体内容是否标记为敏感
