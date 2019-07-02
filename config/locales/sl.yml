@@ -756,8 +756,34 @@ sl:
         other: "%{count} novih obvestil od vašega zadnjega obiska \U0001F418"
       title: V vaši odsotnosti...
     favourite:
-      body: '%{name} je vzljubil/a status:'
-      subject: "%{name} je vzljubil/a vaš status"
+      body: '%{name} je vzljubil/a vaše stanje:'
+      subject: "%{name} je vzljubil/a vaše stanje"
+      title: Novo priljubljeno
+    follow:
+      body: "%{name} vam sedaj sledi!"
+      subject: "%{name} vam sedaj sledi"
+      title: Novi sledilec
+    follow_request:
+      action: Upravljajte s prošnjami za sledenje
+      body: "%{name} vas je prosil/a za sledenje"
+      subject: 'Čakajoči sledilec/ka: %{name}'
+      title: Nova prošnja za sledenje
+    mention:
+      action: Odgovori
+      body: '%{name} vas je omenil/a v:'
+      subject: '%{name} vas je omenil/a'
+      title: Nova omemba
+    reblog:
+      body: '%{name} je spodbudil/a vaše stanje:'
+      subject: "%{name} je spodbudil/a vaše stanje"
+      title: Nova spodbuda
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: mrd
+          million: mio
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
