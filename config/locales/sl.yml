@@ -674,6 +674,8 @@ sl:
     authorize_connection_prompt: Odobrite to kriptografsko povezavo?
     errors:
       failed: Kriptografska povezava ni uspela. Poskusite znova od %{provider}.
+      keybase:
+        invalid_token: Ključi Keybase so algoritem podpisov in morajo biti sestavljeni iz 66 heksadecimalnih znakov
   invites:
     expires_in:
       '1800': 30 minutes
