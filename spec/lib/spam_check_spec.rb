@@ -24,6 +24,13 @@ RSpec.describe SpamCheck do
       expect(described_class.new(status2).spam?).to be false
     end
 
+    it 'returns false for statuses with different content warnings' do
+      status1 = status_with_html('@alice Are you available to talk?')
+      described_class.new(status1).remember!
+      status2 = status_with_html('@alice Are you available to talk?', spoiler_text: 'This is a completely different matter than what I was talking about previously, I swear!')
+      expect(described_class.new(status2).spam?).to be false
+    end
+
     it 'returns false for different statuses to different recipients' do
       status1 = status_with_html('@alice How is it going?')
       described_class.new(status1).remember!
@@ -35,6 +42,13 @@ RSpec.describe SpamCheck do
       status1 = status_with_html('@alice 🙄')
       described_class.new(status1).remember!
       status2 = status_with_html('@bob Huh?')
+      expect(described_class.new(status2).spam?).to be false
+    end
+
+    it 'returns false for statuses with no text' do
+      status1 = status_with_html('@alice')
+      described_class.new(status1).remember!
+      status2 = status_with_html('@bob')
       expect(described_class.new(status2).spam?).to be false
     end
 

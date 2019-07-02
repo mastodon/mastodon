@@ -18,7 +18,9 @@ class SpamCheck
   end
 
   def spam?
-    if nilsimsa?
+    if insufficient_data?
+      false
+    elsif nilsimsa?
       other_digests = redis.zrange(redis_key, '0', '-1')
       other_digests.select { |other_digest| other_digest.start_with?('nilsimsa') }.any? { |other_digest| nilsimsa_compare_value(digest, other_digest.split(':').last) >= NILSIMSA_COMPARE_THRESHOLD }
     else
@@ -45,8 +47,12 @@ class SpamCheck
     @hashable_text = @status.text
     @hashable_text = remove_mentions(@hashable_text)
     @hashable_text = strip_tags(@hashable_text) unless @status.local?
-    @hashable_text = normalize_unicode(@hashable_text)
+    @hashable_text = normalize_unicode(@status.spoiler_text + ' ' + @hashable_text)
     @hashable_text = remove_whitespace(@hashable_text)
+  end
+
+  def insufficient_data?
+    hashable_text.blank?
   end
 
   def digest
