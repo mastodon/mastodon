@@ -744,6 +744,14 @@ oc:
       body: '%{name} a tornat partejar vòstre estatut :'
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
   pagination:
     newer: Mai recents
     next: Seguent
@@ -762,6 +770,7 @@ oc:
       too_many_options: pòt pas contenir mai de %{max} opcions
   preferences:
     other: Autre
+    posting_defaults: Valors per defaut de las publicacions
     public_timelines: Fluxes d’actualitats publics
   relationships:
     activity: Activitat del compte
