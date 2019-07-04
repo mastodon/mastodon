@@ -17,6 +17,7 @@ class ActivityPub::DeliveryWorker
     @json           = json
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url
+    @host           = Addressable::URI.parse(inbox_url).normalized_site
 
     perform_request
 
@@ -28,16 +29,18 @@ class ActivityPub::DeliveryWorker
 
   private
 
-  def build_request
-    request = Request.new(:post, @inbox_url, body: @json)
+  def build_request(http_client)
+    request = Request.new(:post, @inbox_url, body: @json, http_client: http_client)
     request.on_behalf_of(@source_account, :uri, sign_with: @options[:sign_with])
     request.add_headers(HEADERS)
   end
 
   def perform_request
     light = Stoplight(@inbox_url) do
-      build_request.perform do |response|
-        raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
+      request_pool.with(@host) do |http_client|
+        build_request(http_client).perform do |response|
+          raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
+        end
       end
     end
 
@@ -51,10 +54,14 @@ class ActivityPub::DeliveryWorker
   end
 
   def response_error_unsalvageable?(response)
-    (400...500).cover?(response.code) && ![401, 408, 429].include?(response.code)
+    response.code == 501 || ((400...500).cover?(response.code) && ![401, 408, 429].include?(response.code))
   end
 
   def failure_tracker
     @failure_tracker ||= DeliveryFailureTracker.new(@inbox_url)
+  end
+
+  def request_pool
+    RequestPool.current
   end
 end
