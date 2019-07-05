@@ -173,6 +173,7 @@ oc:
       statuses: Estatuts
       subscribe: S’abonar
       suspended: Suspendut
+      time_in_queue: En espèra a la fila %{time}
       title: Comptes
       unconfirmed_email: Adreça pas confirmada
       undo_silenced: Levar lo silenci
@@ -268,6 +269,7 @@ oc:
       created_msg: Domeni blocat es a èsser tractat
       destroyed_msg: Lo blocatge del domeni es estat levat
       domain: Domeni
+      existing_domain_block_html: Impausèretz ja de limitas mai estrictas per %{name}, vos cal lo <a href="%{unblock_url}">desblocar</a>d’en primièr.
       new:
         create: Crear blocatge
         hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
@@ -491,6 +493,7 @@ oc:
   admin_mailer:
     new_pending_account:
       body: Los detalhs del nòu compte son çai-jos. Podètz validar o regetar aquesta demanda.
+      subject: Nòu compte per repassar sus %{instance} (%{username})
     new_report:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
@@ -652,6 +655,8 @@ oc:
     active: Actiu
     authorize: Òc, autorizar
     authorize_connection_prompt: Autorizar aquesta connexion criptografica ?
+    errors:
+      wrong_user: Creacion impossibla de la pròva per %{proving} en estant connectat coma %{current}. Connectatz-vos coma %{proving} e ensajatz tornamai.
     i_am_html: Soi %{username} a %{service}.
     identity: Identitat
     inactive: Inactiu
