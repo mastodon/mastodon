@@ -143,6 +143,6 @@ class BackupService < BaseService
       end
     end
   rescue Errno::ENOENT
-    Rails.logger.warn "Error making a backup for attachment #{attachment}"
+    Rails.logger.warn "Could not backup file #{filename}: file not found"
   end
 end
