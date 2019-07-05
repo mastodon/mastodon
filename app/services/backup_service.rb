@@ -142,5 +142,7 @@ class BackupService < BaseService
         io.write(buffer)
       end
     end
+  rescue Errno::ENOENT
+    Rails.logger.warn "Error making a backup for attachment #{attachment}"
   end
 end
