@@ -11,12 +11,14 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
   include SessionTrackingConcern
   include CacheConcern
+  include DomainControlHelper
 
   helper_method :current_account
   helper_method :current_session
   helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
+  helper_method :whitelist_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -38,7 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized_fetch_mode?
-    ENV['AUTHORIZED_FETCH'] == 'true'
+    ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.whitelist_mode
   end
 
   def public_fetch_mode?
