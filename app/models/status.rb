@@ -280,47 +280,6 @@ class Status < ApplicationRecord
       where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
     end
 
-    def as_direct_timeline(account, limit = 20, max_id = nil, since_id = nil, cache_ids = false)
-      # direct timeline is mix of direct message from_me and to_me.
-      # 2 queries are executed with pagination.
-      # constant expression using arel_table is required for partial index
-
-      # _from_me part does not require any timeline filters
-      query_from_me = where(account_id: account.id)
-                      .where(Status.arel_table[:visibility].eq(3))
-                      .limit(limit)
-                      .order('statuses.id DESC')
-
-      # _to_me part requires mute and block filter.
-      # FIXME: may we check mutes.hide_notifications?
-      query_to_me = Status
-                    .joins(:mentions)
-                    .merge(Mention.where(account_id: account.id))
-                    .where(Status.arel_table[:visibility].eq(3))
-                    .limit(limit)
-                    .order('mentions.status_id DESC')
-                    .not_excluded_by_account(account)
-
-      if max_id.present?
-        query_from_me = query_from_me.where('statuses.id < ?', max_id)
-        query_to_me = query_to_me.where('mentions.status_id < ?', max_id)
-      end
-
-      if since_id.present?
-        query_from_me = query_from_me.where('statuses.id > ?', since_id)
-        query_to_me = query_to_me.where('mentions.status_id > ?', since_id)
-      end
-
-      if cache_ids
-        # returns array of cache_ids object that have id and updated_at
-        (query_from_me.cache_ids.to_a + query_to_me.cache_ids.to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
-      else
-        # returns ActiveRecord.Relation
-        items = (query_from_me.select(:id).to_a + query_to_me.select(:id).to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
-        Status.where(id: items.map(&:id))
-      end
-    end
-
     def as_public_timeline(account = nil, local_only = false)
       query = timeline_scope(local_only).without_replies
 
