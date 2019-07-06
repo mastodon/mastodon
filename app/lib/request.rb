@@ -30,7 +30,8 @@ class Request
     @verb        = verb
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
-    @options     = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
+    @options     = options.merge(socket_class: use_proxy? ? ProxySocket : Socket)
+    @options     = @options.merge(Rails.configuration.x.http_client_proxy) if use_proxy?
     @headers     = {}
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
@@ -187,7 +188,7 @@ class Request
 
           addresses.each do |address|
             begin
-              raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
+              check_private_address(address)
 
               sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
               sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
@@ -227,8 +228,22 @@ class Request
       end
 
       alias new open
+
+      def check_private_address(address)
+        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
+      end
     end
   end
 
-  private_constant :ClientLimit, :Socket
+  class ProxySocket < Socket
+    class << self
+      def check_private_address(_address)
+        # Accept connections to private addresses as HTTP proxies will usually
+        # be on local addresses
+        nil
+      end
+    end
+  end
+
+  private_constant :ClientLimit, :Socket, :ProxySocket
 end
