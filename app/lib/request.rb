@@ -177,8 +177,6 @@ class Request
   class Socket < TCPSocket
     class << self
       def open(host, *args)
-        return super(host, *args) if thru_hidden_service?(host)
-
         outer_e = nil
         port    = args.first
 
@@ -229,10 +227,6 @@ class Request
       end
 
       alias new open
-
-      def thru_hidden_service?(host)
-        Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(host)
-      end
     end
   end
 
