@@ -512,6 +512,7 @@ sk:
       subject: 'Nové hlásenie pre %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
+    advanced_web_interface_hint: 'Ak chceš využiť celkovú šírku tvojej obrazovky, pokročilé webové rozhranie ti umožňuje nastaviť mnoho rôznych stĺpcov, aby si videl/a toľko informácií naraz, koľko chceš: Domov, oboznámenia, federovanú časovú os, a ľubovolný počet zoznamov, či haštagov.'
     animations_and_accessibility: Animácie a prístupnosť
     confirmation_dialogs: Potvrdzovacie dialógy
     sensitive_content: Chúlostivý obsah
@@ -662,6 +663,8 @@ sk:
     authorize_connection_prompt: Povoliť toto kryptografické prepojenie?
     errors:
       failed: Kryptografické prepojenie sa nepodarilo. Prosím skús to znova z %{provider}.
+      keybase:
+        verification_failed: Keybase nerozpoznáva tento token ako podpis od Keybase užívateľa menom %{kb_username}. Prosím skús to znova cez Keybase.
     i_am_html: Na %{service} som %{username}.
     identity: Identita
     inactive: Neaktívne
