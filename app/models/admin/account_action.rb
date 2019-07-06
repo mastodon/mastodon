@@ -17,10 +17,13 @@ class Admin::AccountAction
                 :type,
                 :text,
                 :report_id,
-                :warning_preset_id,
-                :send_email_notification
+                :warning_preset_id
 
-  attr_reader :warning
+  attr_reader :warning, :send_email_notification
+
+  def send_email_notification=(value)
+    @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
+  end
 
   def save!
     ApplicationRecord.transaction do
