@@ -51,11 +51,12 @@ RSpec.describe ResolveAccountService, type: :service do
   it 'processes one remote account at a time using locks' do
     wait_for_start = true
     fail_occurred  = false
-    return_values  = []
+    return_values  = Concurrent::Array.new
 
     threads = Array.new(5) do
       Thread.new do
         true while wait_for_start
+
         begin
           return_values << described_class.new.call('foo@ap.example.com')
         rescue ActiveRecord::RecordNotUnique

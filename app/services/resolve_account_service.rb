@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../models/account'
+
 class ResolveAccountService < BaseService
   include JsonLdHelper
 
@@ -52,7 +54,7 @@ class ResolveAccountService < BaseService
       if lock.acquired?
         @account = Account.find_remote(@username, @domain)
 
-        next unless @account&.activitypub?
+        next unless @account.nil? || @account.activitypub?
 
         handle_activitypub
       else

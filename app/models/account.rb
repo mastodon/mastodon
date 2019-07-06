@@ -164,8 +164,7 @@ class Account < ApplicationRecord
   end
 
   def refresh!
-    return if local?
-    ResolveAccountService.new.call(acct)
+    ResolveAccountService.new.call(acct) unless local?
   end
 
   def silenced?
