@@ -197,7 +197,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleFocus = () => {
     if (this.composeForm && !this.props.singleColumn) {
-      this.composeForm.scrollIntoView();
+      const { left, right } = this.composeForm.getBoundingClientRect();
+      if (left < 0 || right > (window.innerWidth || document.documentElement.clientWidth)) {
+        this.composeForm.scrollIntoView();
+      }
     }
   }
 
