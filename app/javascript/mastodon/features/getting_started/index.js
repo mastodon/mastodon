@@ -115,6 +115,12 @@ class GettingStarted extends ImmutablePureComponent {
     }
 
     navItems.push(
+      <ColumnLink key={i++} icon='money' text='Invest' href='https://liberapay.com/xvilo' />
+    );
+
+    height += 48;
+
+    navItems.push(
       <ColumnLink key={i++} icon='envelope' text={intl.formatMessage(messages.direct)} to='/timelines/direct' />,
       <ColumnLink key={i++} icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
       <ColumnLink key={i++} icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />
