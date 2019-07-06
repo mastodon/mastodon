@@ -32,21 +32,8 @@ RSpec.describe RemoveStatusService, type: :service do
     expect(HomeFeed.new(jeff).get(10)).to_not include(@status.id)
   end
 
-  it 'sends PuSH update to PuSH subscribers' do
-    expect(a_request(:post, 'http://example.com/push').with { |req|
-      req.body.match(OStatus::TagManager::VERBS[:delete])
-    }).to have_been_made
-  end
-
   it 'sends delete activity to followers' do
     expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.twice
-  end
-
-  it 'sends Salmon slap to previously mentioned users' do
-    expect(a_request(:post, "http://example.com/salmon").with { |req|
-      xml = OStatus2::Salmon.new.unpack(req.body)
-      xml.match(OStatus::TagManager::VERBS[:delete])
-    }).to have_been_made.once
   end
 
   it 'sends delete activity to rebloggers' do

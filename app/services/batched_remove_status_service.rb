@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class BatchedRemoveStatusService < BaseService
-  include StreamEntryRenderer
   include Redisable
 
   # Delete given statuses and reblogs of them
@@ -18,10 +17,7 @@ class BatchedRemoveStatusService < BaseService
     @mentions = statuses.each_with_object({}) { |s, h| h[s.id] = s.active_mentions.includes(:account).to_a }
     @tags     = statuses.each_with_object({}) { |s, h| h[s.id] = s.tags.pluck(:name) }
 
-    @stream_entry_batches  = []
-    @salmon_batches        = []
-    @json_payloads         = statuses.each_with_object({}) { |s, h| h[s.id] = Oj.dump(event: :delete, payload: s.id.to_s) }
-    @activity_xml          = {}
+    @json_payloads = statuses.each_with_object({}) { |s, h| h[s.id] = Oj.dump(event: :delete, payload: s.id.to_s) }
 
     # Ensure that rendered XML reflects destroyed state
     statuses.each do |status|
@@ -39,27 +35,15 @@ class BatchedRemoveStatusService < BaseService
 
       unpush_from_home_timelines(account, account_statuses)
       unpush_from_list_timelines(account, account_statuses)
-
-      batch_stream_entries(account, account_statuses) if account.local?
     end
 
     # Cannot be batched
     statuses.each do |status|
       unpush_from_public_timelines(status)
-      batch_salmon_slaps(status) if status.local?
     end
-
-    Pubsubhubbub::RawDistributionWorker.push_bulk(@stream_entry_batches) { |batch| batch }
-    NotificationWorker.push_bulk(@salmon_batches) { |batch| batch }
   end
 
   private
-
-  def batch_stream_entries(account, statuses)
-    statuses.each do |status|
-      @stream_entry_batches << [build_xml(status.stream_entry), account.id]
-    end
-  end
 
   def unpush_from_home_timelines(account, statuses)
     recipients = account.followers_for_local_distribution.to_a
@@ -100,21 +84,5 @@ class BatchedRemoveStatusService < BaseService
         redis.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
       end
     end
-  end
-
-  def batch_salmon_slaps(status)
-    return if @mentions[status.id].empty?
-
-    recipients = @mentions[status.id].map(&:account).reject(&:local?).select(&:ostatus?).uniq(&:domain).map(&:id)
-
-    recipients.each do |recipient_id|
-      @salmon_batches << [build_xml(status.stream_entry), status.account_id, recipient_id]
-    end
-  end
-
-  def build_xml(stream_entry)
-    return @activity_xml[stream_entry.id] if @activity_xml.key?(stream_entry.id)
-
-    @activity_xml[stream_entry.id] = stream_entry_to_xml(stream_entry)
   end
 end

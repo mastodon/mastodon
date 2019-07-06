@@ -406,28 +406,6 @@ RSpec.describe OStatus::AtomSerializer do
         scope = entry.nodes.find { |node| node.name == 'mastodon:scope' }
         expect(scope.text).to eq 'public'
       end
-
-      it 'returns element whose rendered view triggers creation when processed' do
-        remote_account = Account.create!(username: 'username')
-        remote_status = Fabricate(:status, account: remote_account, created_at: '2000-01-01T00:00:00Z')
-
-        entry = OStatus::AtomSerializer.new.entry(remote_status.stream_entry, true)
-        entry.nodes.delete_if { |node| node[:type] == 'application/activity+json' } # Remove ActivityPub link to simplify test
-        xml = OStatus::AtomSerializer.render(entry).gsub('cb6e6126.ngrok.io', 'remote.test')
-
-        remote_status.destroy!
-        remote_account.destroy!
-
-        account = Account.create!(
-          domain: 'remote.test',
-          username: 'username',
-          last_webfingered_at: Time.now.utc
-        )
-
-        ProcessFeedService.new.call(xml, account)
-
-        expect(Status.find_by(uri: "https://remote.test/users/#{remote_status.account.to_param}/statuses/#{remote_status.id}")).to be_instance_of Status
-      end
     end
 
     context 'if status is not present' do
@@ -683,24 +661,6 @@ RSpec.describe OStatus::AtomSerializer do
       end
     end
 
-    it 'appends link element for hub' do
-      account = Fabricate(:account, username: 'username')
-
-      feed = OStatus::AtomSerializer.new.feed(account, [])
-
-      link = feed.nodes.find { |node| node.name == 'link' && node[:rel] == 'hub' }
-      expect(link[:href]).to eq 'https://cb6e6126.ngrok.io/api/push'
-    end
-
-    it 'appends link element for Salmon' do
-      account = Fabricate(:account, username: 'username')
-
-      feed = OStatus::AtomSerializer.new.feed(account, [])
-
-      link = feed.nodes.find { |node| node.name == 'link' && node[:rel] == 'salmon' }
-      expect(link[:href]).to start_with 'https://cb6e6126.ngrok.io/api/salmon/'
-    end
-
     it 'appends stream entries' do
       account = Fabricate(:account, username: 'username')
       status = Fabricate(:status, account: account)
@@ -784,18 +744,6 @@ RSpec.describe OStatus::AtomSerializer do
       object = block_salmon.nodes.find { |node| node.name == 'activity:object' }
       expect(object.id.text).to eq 'https://domain.test/id'
     end
-
-    it 'returns element whose rendered view triggers block when processed' do
-      block = Fabricate(:block)
-      block_salmon = OStatus::AtomSerializer.new.block_salmon(block)
-      xml = OStatus::AtomSerializer.render(block_salmon)
-      envelope = OStatus2::Salmon.new.pack(xml, block.account.keypair)
-      block.destroy!
-
-      ProcessInteractionService.new.call(envelope, block.target_account)
-
-      expect(block.account.blocking?(block.target_account)).to be true
-    end
   end
 
   describe '#unblock_salmon' do
@@ -870,17 +818,6 @@ RSpec.describe OStatus::AtomSerializer do
 
       object = unblock_salmon.nodes.find { |node| node.name == 'activity:object' }
       expect(object.id.text).to eq 'https://domain.test/id'
-    end
-
-    it 'returns element whose rendered view triggers block when processed' do
-      block = Fabricate(:block)
-      unblock_salmon = OStatus::AtomSerializer.new.unblock_salmon(block)
-      xml = OStatus::AtomSerializer.render(unblock_salmon)
-      envelope = OStatus2::Salmon.new.pack(xml, block.account.keypair)
-
-      ProcessInteractionService.new.call(envelope, block.target_account)
-
-      expect { block.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
@@ -963,17 +900,6 @@ RSpec.describe OStatus::AtomSerializer do
 
       expect(favourite_salmon.title.text).to eq 'account favourited a status by status_account@remote'
       expect(favourite_salmon.content.text).to eq 'account favourited a status by status_account@remote'
-    end
-
-    it 'returns element whose rendered view triggers favourite when processed' do
-      favourite = Fabricate(:favourite)
-      favourite_salmon = OStatus::AtomSerializer.new.favourite_salmon(favourite)
-      xml = OStatus::AtomSerializer.render(favourite_salmon)
-      envelope = OStatus2::Salmon.new.pack(xml, favourite.account.keypair)
-      favourite.destroy!
-
-      ProcessInteractionService.new.call(envelope, favourite.status.account)
-      expect(favourite.account.favourited?(favourite.status)).to be true
     end
   end
 
@@ -1064,16 +990,6 @@ RSpec.describe OStatus::AtomSerializer do
       expect(unfavourite_salmon.title.text).to eq 'account no longer favourites a status by status_account@remote'
       expect(unfavourite_salmon.content.text).to eq 'account no longer favourites a status by status_account@remote'
     end
-
-    it 'returns element whose rendered view triggers unfavourite when processed' do
-      favourite = Fabricate(:favourite)
-      unfavourite_salmon = OStatus::AtomSerializer.new.unfavourite_salmon(favourite)
-      xml = OStatus::AtomSerializer.render(unfavourite_salmon)
-      envelope = OStatus2::Salmon.new.pack(xml, favourite.account.keypair)
-
-      ProcessInteractionService.new.call(envelope, favourite.status.account)
-      expect { favourite.reload }.to raise_error ActiveRecord::RecordNotFound
-    end
   end
 
   describe '#follow_salmon' do
@@ -1142,18 +1058,6 @@ RSpec.describe OStatus::AtomSerializer do
 
       expect(follow_salmon.title.text).to eq 'account started following target_account@remote'
       expect(follow_salmon.content.text).to eq 'account started following target_account@remote'
-    end
-
-    it 'returns element whose rendered view triggers follow when processed' do
-      follow = Fabricate(:follow)
-      follow_salmon = OStatus::AtomSerializer.new.follow_salmon(follow)
-      xml = OStatus::AtomSerializer.render(follow_salmon)
-      follow.destroy!
-      envelope = OStatus2::Salmon.new.pack(xml, follow.account.keypair)
-
-      ProcessInteractionService.new.call(envelope, follow.target_account)
-
-      expect(follow.account.following?(follow.target_account)).to be true
     end
   end
 
@@ -1251,19 +1155,6 @@ RSpec.describe OStatus::AtomSerializer do
       object = unfollow_salmon.nodes.find { |node| node.name == 'activity:object' }
       expect(object.id.text).to eq 'https://domain.test/id'
     end
-
-    it 'returns element whose rendered view triggers unfollow when processed' do
-      follow = Fabricate(:follow)
-      follow.destroy!
-      unfollow_salmon = OStatus::AtomSerializer.new.unfollow_salmon(follow)
-      xml = OStatus::AtomSerializer.render(unfollow_salmon)
-      follow.account.follow!(follow.target_account)
-      envelope = OStatus2::Salmon.new.pack(xml, follow.account.keypair)
-
-      ProcessInteractionService.new.call(envelope, follow.target_account)
-
-      expect(follow.account.following?(follow.target_account)).to be false
-    end
   end
 
   describe '#follow_request_salmon' do
@@ -1293,18 +1184,6 @@ RSpec.describe OStatus::AtomSerializer do
         follow_request = Fabricate(:follow_request, account: account, target_account: target_account)
         follow_request_salmon = serialize(follow_request)
         expect(follow_request_salmon.title.text).to eq 'account requested to follow target_account@remote'
-      end
-
-      it 'returns element whose rendered view triggers follow request when processed' do
-        follow_request = Fabricate(:follow_request)
-        follow_request_salmon = serialize(follow_request)
-        xml = OStatus::AtomSerializer.render(follow_request_salmon)
-        envelope = OStatus2::Salmon.new.pack(xml, follow_request.account.keypair)
-        follow_request.destroy!
-
-        ProcessInteractionService.new.call(envelope, follow_request.target_account)
-
-        expect(follow_request.account.requested?(follow_request.target_account)).to eq true
       end
     end
   end
@@ -1364,18 +1243,6 @@ RSpec.describe OStatus::AtomSerializer do
       verb = authorize_follow_request_salmon.nodes.find { |node| node.name == 'activity:verb' }
       expect(verb.text).to eq OStatus::TagManager::VERBS[:authorize]
     end
-
-    it 'returns element whose rendered view creates follow from follow request when processed' do
-      follow_request = Fabricate(:follow_request)
-      authorize_follow_request_salmon = OStatus::AtomSerializer.new.authorize_follow_request_salmon(follow_request)
-      xml = OStatus::AtomSerializer.render(authorize_follow_request_salmon)
-      envelope = OStatus2::Salmon.new.pack(xml, follow_request.target_account.keypair)
-
-      ProcessInteractionService.new.call(envelope, follow_request.account)
-
-      expect(follow_request.account.following?(follow_request.target_account)).to eq true
-      expect { follow_request.reload }.to raise_error ActiveRecord::RecordNotFound
-    end
   end
 
   describe '#reject_follow_request_salmon' do
@@ -1426,18 +1293,6 @@ RSpec.describe OStatus::AtomSerializer do
       reject_follow_request_salmon = OStatus::AtomSerializer.new.reject_follow_request_salmon(follow_request)
       verb = reject_follow_request_salmon.nodes.find { |node| node.name == 'activity:verb' }
       expect(verb.text).to eq OStatus::TagManager::VERBS[:reject]
-    end
-
-    it 'returns element whose rendered view deletes follow request when processed' do
-      follow_request = Fabricate(:follow_request)
-      reject_follow_request_salmon = OStatus::AtomSerializer.new.reject_follow_request_salmon(follow_request)
-      xml = OStatus::AtomSerializer.render(reject_follow_request_salmon)
-      envelope = OStatus2::Salmon.new.pack(xml, follow_request.target_account.keypair)
-
-      ProcessInteractionService.new.call(envelope, follow_request.account)
-
-      expect(follow_request.account.following?(follow_request.target_account)).to eq false
-      expect { follow_request.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
