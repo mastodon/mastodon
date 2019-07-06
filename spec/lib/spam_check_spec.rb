@@ -11,6 +11,37 @@ RSpec.describe SpamCheck do
     status
   end
 
+  describe '#hashable_text' do
+    it 'removes mentions from HTML for remote statuses' do
+      status = status_with_html('@alice Hello')
+      expect(described_class.new(status).hashable_text).to eq 'hello'
+    end
+
+    it 'removes mentions from text for local statuses' do
+      status = PostStatusService.new.call(alice, text: "Hey @#{sender.username}, how are you?")
+      expect(described_class.new(status).hashable_text).to eq 'hey , how are you?'
+    end
+  end
+
+  describe '#insufficient_data?' do
+    it 'returns true when there is no text' do
+      status = status_with_html('@alice')
+      expect(described_class.new(status).insufficient_data?).to be true
+    end
+
+    it 'returns false when there is text' do
+      status = status_with_html('@alice h')
+      expect(described_class.new(status).insufficient_data?).to be false
+    end
+  end
+
+  describe '#digest' do
+    it 'returns a string' do
+      status = status_with_html('@alice Hello world')
+      expect(described_class.new(status).digest).to be_a String
+    end
+  end
+
   describe '#spam?' do
     it 'returns false for a unique status' do
       status = status_with_html('@alice Hello')
@@ -106,9 +137,12 @@ RSpec.describe SpamCheck do
   end
 
   describe '#flag!' do
+    let!(:status1) { status_with_html('@alice General Kenobi you are a bold one') }
+    let!(:status2) { status_with_html('@alice @bob General Kenobi, you are a bold one') }
+
     before do
-      status = status_with_html('@alice @bob Hello')
-      described_class.new(status).flag!
+      described_class.new(status1).remember!
+      described_class.new(status2).flag!
     end
 
     it 'silences the account' do
@@ -117,6 +151,10 @@ RSpec.describe SpamCheck do
 
     it 'creates a report about the account' do
       expect(sender.targeted_reports.unresolved.count).to eq 1
+    end
+
+    it 'attaches both matching statuses to the report' do
+      expect(sender.targeted_reports.first.status_ids).to include(status1.id, status2.id)
     end
   end
 end
