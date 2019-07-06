@@ -55,18 +55,6 @@ describe StatusesController do
         expect(assigns(:status)).to eq status
       end
 
-      it 'assigns @stream_entry' do
-        status = Fabricate(:status)
-        get :show, params: { account_username: status.account.username, id: status.id }
-        expect(assigns(:stream_entry)).to eq status.stream_entry
-      end
-
-      it 'assigns @type' do
-        status = Fabricate(:status)
-        get :show, params: { account_username: status.account.username, id: status.id }
-        expect(assigns(:type)).to eq 'status'
-      end
-
       it 'assigns @ancestors for ancestors of the status if it is a reply' do
         ancestor = Fabricate(:status)
         status = Fabricate(:status, in_reply_to_id: ancestor.id)
@@ -135,10 +123,10 @@ describe StatusesController do
         expect(response).to have_http_status(200)
       end
 
-      it 'renders stream_entries/show' do
+      it 'renders statuses/show' do
         status = Fabricate(:status)
         get :show, params: { account_username: status.account.username, id: status.id }
-        expect(response).to render_template 'stream_entries/show'
+        expect(response).to render_template 'statuses/show'
       end
     end
   end

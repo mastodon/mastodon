@@ -12,7 +12,7 @@ class BatchedRemoveStatusService < BaseService
   # @param [Hash] options
   # @option [Boolean] :skip_side_effects
   def call(statuses, **options)
-    statuses = Status.where(id: statuses.map(&:id)).includes(:account, :stream_entry).flat_map { |status| [status] + status.reblogs.includes(:account, :stream_entry).to_a }
+    statuses = Status.where(id: statuses.map(&:id)).includes(:account).flat_map { |status| [status] + status.reblogs.includes(:account).to_a }
 
     @mentions = statuses.each_with_object({}) { |s, h| h[s.id] = s.active_mentions.includes(:account).to_a }
     @tags     = statuses.each_with_object({}) { |s, h| h[s.id] = s.tags.pluck(:name) }

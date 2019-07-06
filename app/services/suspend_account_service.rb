@@ -24,7 +24,6 @@ class SuspendAccountService < BaseService
     report_notes
     scheduled_statuses
     status_pins
-    stream_entries
     subscriptions
   ).freeze
 

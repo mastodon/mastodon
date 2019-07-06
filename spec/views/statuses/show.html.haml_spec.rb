@@ -2,10 +2,9 @@
 
 require 'rails_helper'
 
-describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true do
+describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   before do
     double(:api_oembed_url => '')
-    double(:account_stream_entry_url => '')
     allow(view).to receive(:show_landing_strip?).and_return(true)
     allow(view).to receive(:site_title).and_return('example site')
     allow(view).to receive(:site_hostname).and_return('example.com')
@@ -23,9 +22,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     reply  =  Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
 
     assign(:status, status)
-    assign(:stream_entry, status.stream_entry)
     assign(:account, alice)
-    assign(:type, status.stream_entry.activity_type.downcase)
     assign(:descendant_threads, [])
 
     render
@@ -46,11 +43,9 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     comment =  Fabricate(:status, account: carl, thread: reply, text: 'Hello Bob')
 
     assign(:status, reply)
-    assign(:stream_entry, reply.stream_entry)
     assign(:account, alice)
-    assign(:type, reply.stream_entry.activity_type.downcase)
-    assign(:ancestors, reply.stream_entry.activity.ancestors(1, bob))
-    assign(:descendant_threads, [{ statuses: reply.stream_entry.activity.descendants(1) }])
+    assign(:ancestors, reply.ancestors(1, bob))
+    assign(:descendant_threads, [{ statuses: reply.descendants(1) }])
 
     render
 
@@ -71,9 +66,7 @@ describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true d
     status  =  Fabricate(:status, account: alice, text: 'Hello World')
 
     assign(:status, status)
-    assign(:stream_entry, status.stream_entry)
     assign(:account, alice)
-    assign(:type, status.stream_entry.activity_type.downcase)
     assign(:descendant_threads, [])
 
     render

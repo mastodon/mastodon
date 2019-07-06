@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StreamEntriesHelper
+module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
@@ -109,11 +109,13 @@ module StreamEntriesHelper
 
   def status_text_summary(status)
     return if status.spoiler_text.blank?
+
     I18n.t('statuses.content_warning', warning: status.spoiler_text)
   end
 
   def poll_summary(status)
     return unless status.preloadable_poll
+
     status.preloadable_poll.options.map { |o| "[ ] #{o}" }.join("\n")
   end
 

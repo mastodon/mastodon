@@ -360,9 +360,5 @@ describe ApplicationController, type: :controller do
     context 'Status' do
       include_examples 'cacheable', :status, Status
     end
-
-    context 'StreamEntry' do
-      include_examples 'receives :with_includes', :stream_entry, StreamEntry
-    end
   end
 end

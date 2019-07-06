@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StreamEntriesHelper, type: :helper do
+RSpec.describe StatusesHelper, type: :helper do
   describe '#display_name' do
     it 'uses the display name when it exists' do
       account = Account.new(display_name: "Display", username: "Username")
@@ -70,13 +70,13 @@ RSpec.describe StreamEntriesHelper, type: :helper do
   end
 
   def set_not_embedded_view
-    params[:controller] = "not_#{StreamEntriesHelper::EMBEDDED_CONTROLLER}"
-    params[:action] = "not_#{StreamEntriesHelper::EMBEDDED_ACTION}"
+    params[:controller] = "not_#{StatusesHelper::EMBEDDED_CONTROLLER}"
+    params[:action] = "not_#{StatusesHelper::EMBEDDED_ACTION}"
   end
 
   def set_embedded_view
-    params[:controller] = StreamEntriesHelper::EMBEDDED_CONTROLLER
-    params[:action] = StreamEntriesHelper::EMBEDDED_ACTION
+    params[:controller] = StatusesHelper::EMBEDDED_CONTROLLER
+    params[:action] = StatusesHelper::EMBEDDED_ACTION
   end
 
   describe '#style_classes' do

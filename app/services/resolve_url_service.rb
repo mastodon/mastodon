@@ -73,10 +73,7 @@ class ResolveURLService < BaseService
 
     return unless recognized_params[:action] == 'show'
 
-    if recognized_params[:controller] == 'stream_entries'
-      status = StreamEntry.find_by(id: recognized_params[:id])&.status
-      check_local_status(status)
-    elsif recognized_params[:controller] == 'statuses'
+    if recognized_params[:controller] == 'statuses'
       status = Status.find_by(id: recognized_params[:id])
       check_local_status(status)
     elsif recognized_params[:controller] == 'accounts'
