@@ -500,6 +500,7 @@ oc:
       subject: 'Novèl senhalament per %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Interfàcia web avançada
+    advanced_web_interface_hint: 'Se volètz utilizar la nautor complèta de l’ecran, l’interfàcia web avançada vos permet de configurar diferentas colomnas per mostrar tan d’informacions que volètz : Acuèlh, notificacions, flux d’actualitat, e d’autras listas e etiquetas.'
     animations_and_accessibility: Animacion e accessibilitat
     confirmation_dialogs: Fenèstras de confirmacion
     sensitive_content: Contengut sensible
@@ -656,6 +657,7 @@ oc:
     authorize: Òc, autorizar
     authorize_connection_prompt: Autorizar aquesta connexion criptografica ?
     errors:
+      failed: La connexion criptografica a fracassat. Ensajatz tornamai de %{provider} estant.
       wrong_user: Creacion impossibla de la pròva per %{proving} en estant connectat coma %{current}. Connectatz-vos coma %{proving} e ensajatz tornamai.
     i_am_html: Soi %{username} a %{service}.
     identity: Identitat
@@ -757,6 +759,8 @@ oc:
           billion: B
           million: M
           quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: Mai recents
     next: Seguent
