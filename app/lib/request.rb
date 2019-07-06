@@ -184,7 +184,12 @@ class Request
         Resolv::DNS.open do |dns|
           dns.timeouts = 5
 
-          addresses = dns.getaddresses(host).take(2)
+          addresses = []
+          begin
+            addresses = [IPAddr.new(host)]
+          rescue IPAddr::InvalidAddressError
+            addresses = dns.getaddresses(host).take(2)
+          end
 
           addresses.each do |address|
             begin
