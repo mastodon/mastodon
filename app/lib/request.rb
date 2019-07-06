@@ -181,47 +181,46 @@ class Request
         outer_e = nil
         port    = args.first
 
-        Resolv::DNS.open do |dns|
-          dns.timeouts = 5
-
-          addresses = []
-          begin
-            addresses = [IPAddr.new(host)]
-          rescue IPAddr::InvalidAddressError
+        addresses = []
+        begin
+          addresses = [IPAddr.new(host)]
+        rescue IPAddr::InvalidAddressError
+          Resolv::DNS.open do |dns|
+            dns.timeouts = 5
             addresses = dns.getaddresses(host).take(2)
           end
+        end
 
-          addresses.each do |address|
+        addresses.each do |address|
+          begin
+            check_private_address(address)
+
+            sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
+            sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
+
+            sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
+
             begin
-              check_private_address(address)
-
-              sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
-              sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
-
-              sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
-
-              begin
-                sock.connect_nonblock(sockaddr)
-              rescue IO::WaitWritable
-                if IO.select(nil, [sock], nil, Request::TIMEOUT[:connect])
-                  begin
-                    sock.connect_nonblock(sockaddr)
-                  rescue Errno::EISCONN
-                    # Yippee!
-                  rescue
-                    sock.close
-                    raise
-                  end
-                else
+              sock.connect_nonblock(sockaddr)
+            rescue IO::WaitWritable
+              if IO.select(nil, [sock], nil, Request::TIMEOUT[:connect])
+                begin
+                  sock.connect_nonblock(sockaddr)
+                rescue Errno::EISCONN
+                  # Yippee!
+                rescue
                   sock.close
-                  raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
+                  raise
                 end
+              else
+                sock.close
+                raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
               end
-
-              return sock
-            rescue => e
-              outer_e = e
             end
+
+            return sock
+          rescue => e
+            outer_e = e
           end
         end
 
