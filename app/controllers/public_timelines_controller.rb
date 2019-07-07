@@ -8,20 +8,16 @@ class PublicTimelinesController < ApplicationController
   before_action :set_instance_presenter
 
   def show
-    respond_to do |format|
-      format.html do
-        @initial_state_json = ActiveModelSerializers::SerializableResource.new(
-          InitialStatePresenter.new(settings: { known_fediverse: Setting.show_known_fediverse_at_about_page }, token: current_session&.token),
-          serializer: InitialStateSerializer
-        ).to_json
-      end
-    end
+    @initial_state_json = ActiveModelSerializers::SerializableResource.new(
+      InitialStatePresenter.new(settings: { known_fediverse: Setting.show_known_fediverse_at_about_page }, token: current_session&.token),
+      serializer: InitialStateSerializer
+    ).to_json
   end
 
   private
 
   def check_enabled
-    raise ActiveRecord::RecordNotFound unless Setting.timeline_preview
+    not_found unless Setting.timeline_preview
   end
 
   def set_body_classes

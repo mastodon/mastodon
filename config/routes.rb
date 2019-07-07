@@ -52,8 +52,9 @@ Rails.application.routes.draw do
       member do
         get :activity
         get :embed
-        get :replies
       end
+
+      resources :replies, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts

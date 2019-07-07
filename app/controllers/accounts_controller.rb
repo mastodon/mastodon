@@ -6,13 +6,13 @@ class AccountsController < ApplicationController
   include AccountControllerConcern
 
   before_action :set_cache_headers
+  before_action :set_body_classes
 
   def show
     respond_to do |format|
       format.html do
-        mark_cacheable! unless user_signed_in?
+        expires_in 0, public: true unless user_signed_in?
 
-        @body_classes      = 'with-modals'
         @pinned_statuses   = []
         @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
 
@@ -32,21 +32,24 @@ class AccountsController < ApplicationController
       end
 
       format.rss do
-        mark_cacheable!
+        expires_in 0, public: true
 
         @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses)
       end
 
       format.json do
-        render_cached_json(['activitypub', 'actor', @account], content_type: 'application/activity+json') do
-          ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
-        end
+        expires_in 3.minutes, public: true
+        render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
 
   private
+
+  def set_body_classes
+    @body_classes = 'with-modals'
+  end
 
   def show_pinned_statuses?
     [replies_requested?, media_requested?, tag_requested?, params[:max_id].present?, params[:min_id].present?].none?

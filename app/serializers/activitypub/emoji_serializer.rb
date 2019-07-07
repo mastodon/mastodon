@@ -3,6 +3,8 @@
 class ActivityPub::EmojiSerializer < ActivityPub::Serializer
   include RoutingHelper
 
+  cache key: 'emoji', expires_in: 3.minutes
+
   context_extensions :emoji
 
   attributes :id, :type, :name, :updated
