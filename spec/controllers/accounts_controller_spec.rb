@@ -48,37 +48,6 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
-    context 'atom' do
-      let(:format) { 'atom' }
-      let(:content_type) { 'application/atom+xml' }
-
-      shared_examples 'responsed streams' do
-        it 'assigns @entries' do
-          entries = assigns(:entries).to_a
-          expect(entries.size).to eq expected_statuses.size
-          entries.each.zip(expected_statuses.each) do |entry, expected_status|
-            expect(entry.status).to eq expected_status
-          end
-        end
-      end
-
-      include_examples 'responses'
-
-      context 'without max_id nor since_id' do
-        let(:expected_statuses) { [status7, status6, status5, status4, status3, status2, status1] }
-
-        include_examples 'responsed streams'
-      end
-
-      context 'with max_id and since_id' do
-        let(:max_id) { status4.stream_entry.id }
-        let(:since_id) { status1.stream_entry.id }
-        let(:expected_statuses) { [status3, status2] }
-
-        include_examples 'responsed streams'
-      end
-    end
-
     context 'activitystreams2' do
       let(:format) { 'json' }
       let(:content_type) { 'application/activity+json' }

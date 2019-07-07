@@ -84,7 +84,7 @@ class FetchLinkCardService < BaseService
 
   def mention_link?(a)
     @status.mentions.any? do |mention|
-      a['href'] == TagManager.instance.url_for(mention.account)
+      a['href'] == ActivityPub::TagManager.instance.url_for(mention.account)
     end
   end
 

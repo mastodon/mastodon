@@ -89,7 +89,7 @@ module Admin::ActionLogsHelper
     when 'DomainBlock', 'EmailDomainBlock'
       link_to record.domain, "https://#{record.domain}"
     when 'Status'
-      link_to record.account.acct, TagManager.instance.url_for(record)
+      link_to record.account.acct, ActivityPub::TagManager.instance.url_for(record)
     when 'AccountWarning'
       link_to record.target_account.acct, admin_account_path(record.target_account_id)
     end

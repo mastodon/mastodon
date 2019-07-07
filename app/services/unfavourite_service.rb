@@ -6,7 +6,7 @@ class UnfavouriteService < BaseService
   def call(account, status)
     favourite = Favourite.find_by!(account: account, status: status)
     favourite.destroy!
-    create_notification(favourite) unless status.local?
+    create_notification(favourite) if !status.account.local? && status.account.activitypub?
     favourite
   end
 
@@ -14,19 +14,10 @@ class UnfavouriteService < BaseService
 
   def create_notification(favourite)
     status = favourite.status
-
-    if status.account.ostatus?
-      NotificationWorker.perform_async(build_xml(favourite), favourite.account_id, status.account_id)
-    elsif status.account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(build_json(favourite), favourite.account_id, status.account.inbox_url)
-    end
+    ActivityPub::DeliveryWorker.perform_async(build_json(favourite), favourite.account_id, status.account.inbox_url)
   end
 
   def build_json(favourite)
     Oj.dump(serialize_payload(favourite, ActivityPub::UndoLikeSerializer))
-  end
-
-  def build_xml(favourite)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unfavourite_salmon(favourite))
   end
 end

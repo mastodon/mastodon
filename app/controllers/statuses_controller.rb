@@ -33,12 +33,10 @@ class StatusesController < ApplicationController
 
         set_ancestors
         set_descendants
-
-        render 'stream_entries/show'
       end
 
       format.json do
-        render_cached_json(['activitypub', 'note', @status], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
+        render_cached_json(['activitypub', 'note', @status], content_type: 'application/activity+json', public: @status.distributable?) do
           ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
         end
       end
@@ -46,7 +44,7 @@ class StatusesController < ApplicationController
   end
 
   def activity
-    render_cached_json(['activitypub', 'activity', @status], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
+    render_cached_json(['activitypub', 'activity', @status], content_type: 'application/activity+json', public: @status.distributable?) do
       ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter)
     end
   end
@@ -58,7 +56,7 @@ class StatusesController < ApplicationController
     response.headers['X-Frame-Options'] = 'ALLOWALL'
     @autoplay = ActiveModel::Type::Boolean.new.cast(params[:autoplay])
 
-    render 'stream_entries/embed', layout: 'embedded'
+    render layout: 'embedded'
   end
 
   def replies
@@ -92,11 +90,20 @@ class StatusesController < ApplicationController
 
   def create_descendant_thread(starting_depth, statuses)
     depth = starting_depth + statuses.size
+
     if depth < DESCENDANTS_DEPTH_LIMIT
-      { statuses: statuses, starting_depth: starting_depth }
+      {
+        statuses: statuses,
+        starting_depth: starting_depth,
+      }
     else
       next_status = statuses.pop
-      { statuses: statuses, starting_depth: starting_depth, next_status: next_status }
+
+      {
+        statuses: statuses,
+        starting_depth: starting_depth,
+        next_status: next_status,
+      }
     end
   end
 
@@ -164,22 +171,13 @@ class StatusesController < ApplicationController
   end
 
   def set_link_headers
-    response.headers['Link'] = LinkHeader.new(
-      [
-        [account_stream_entry_url(@account, @status.stream_entry, format: 'atom'), [%w(rel alternate), %w(type application/atom+xml)]],
-        [ActivityPub::TagManager.instance.uri_for(@status), [%w(rel alternate), %w(type application/activity+json)]],
-      ]
-    )
+    response.headers['Link'] = LinkHeader.new([[ActivityPub::TagManager.instance.uri_for(@status), [%w(rel alternate), %w(type application/activity+json)]]])
   end
 
   def set_status
-    @status       = @account.statuses.find(params[:id])
-    @stream_entry = @status.stream_entry
-    @type         = @stream_entry.activity_type.downcase
-
+    @status = @account.statuses.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404
     raise ActiveRecord::RecordNotFound
   end
 
@@ -192,7 +190,7 @@ class StatusesController < ApplicationController
   end
 
   def redirect_to_original
-    redirect_to ::TagManager.instance.url_for(@status.reblog) if @status.reblog?
+    redirect_to ActivityPub::TagManager.instance.url_for(@status.reblog) if @status.reblog?
   end
 
   def set_referrer_policy_header

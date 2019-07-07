@@ -44,7 +44,6 @@ class BlockDomainService < BaseService
 
   def suspend_accounts!
     blocked_domain_accounts.without_suspended.reorder(nil).find_each do |account|
-      UnsubscribeService.new.call(account) if account.subscribed?
       SuspendAccountService.new.call(account, suspended_at: @domain_block.created_at)
     end
   end

@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 class RemoveStatusService < BaseService
-  include StreamEntryRenderer
   include Redisable
   include Payloadable
 
   def call(status, **options)
-    @payload      = Oj.dump(event: :delete, payload: status.id.to_s)
-    @status       = status
-    @account      = status.account
-    @tags         = status.tags.pluck(:name).to_a
-    @mentions     = status.active_mentions.includes(:account).to_a
-    @reblogs      = status.reblogs.includes(:account).to_a
-    @stream_entry = status.stream_entry
-    @options      = options
+    @payload  = Oj.dump(event: :delete, payload: status.id.to_s)
+    @status   = status
+    @account  = status.account
+    @tags     = status.tags.pluck(:name).to_a
+    @mentions = status.active_mentions.includes(:account).to_a
+    @reblogs  = status.reblogs.includes(:account).to_a
+    @options  = options
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -78,11 +76,6 @@ class RemoveStatusService < BaseService
     target_accounts << @status.reblog.account if @status.reblog? && !@status.reblog.account.local?
     target_accounts.uniq!(&:id)
 
-    # Ostatus
-    NotificationWorker.push_bulk(target_accounts.select(&:ostatus?).uniq(&:domain)) do |target_account|
-      [salmon_xml, @account.id, target_account.id]
-    end
-
     # ActivityPub
     ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:preferred_inbox_url)) do |target_account|
       [signed_activity_json, @account.id, target_account.preferred_inbox_url]
@@ -90,9 +83,6 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_remote_followers
-    # OStatus
-    Pubsubhubbub::RawDistributionWorker.perform_async(salmon_xml, @account.id)
-
     # ActivityPub
     ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
@@ -109,10 +99,6 @@ class RemoveStatusService < BaseService
     ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
-  end
-
-  def salmon_xml
-    @salmon_xml ||= stream_entry_to_xml(@stream_entry)
   end
 
   def signed_activity_json
