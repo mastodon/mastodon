@@ -17,9 +17,9 @@
 - if status.reply? && include_threads
   - if @next_ancestor
     .entry{ class: entry_classes }
-      = link_to_more TagManager.instance.url_for(@next_ancestor)
+      = link_to_more ActivityPub::TagManager.instance.url_for(@next_ancestor)
 
-  = render partial: 'stream_entries/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }, autoplay: autoplay
+  = render partial: 'statuses/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }, autoplay: autoplay
 
 .entry{ class: entry_classes }
 
@@ -28,7 +28,7 @@
       .status__prepend-icon-wrapper
         %i.status__prepend-icon.fa.fa-fw.fa-retweet
       %span
-        = link_to TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
+        = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
           %bdi
             %strong.emojify= display_name(status.account, custom_emojify: true)
         = t('stream_entries.reblogged')
@@ -39,18 +39,18 @@
       %span
         = t('stream_entries.pinned')
 
-  = render (centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status'), status: status.proper, autoplay: autoplay
+  = render (centered ? 'statuses/detailed_status' : 'statuses/simple_status'), status: status.proper, autoplay: autoplay
 
 - if include_threads
   - if @since_descendant_thread_id
     .entry{ class: entry_classes }
       = link_to_more short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
   - @descendant_threads.each do |thread|
-    = render partial: 'stream_entries/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id }, autoplay: autoplay
+    = render partial: 'statuses/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id }, autoplay: autoplay
 
     - if thread[:next_status]
       .entry{ class: entry_classes }
-        = link_to_more TagManager.instance.url_for(thread[:next_status])
+        = link_to_more ActivityPub::TagManager.instance.url_for(thread[:next_status])
   - if @next_descendant_thread
     .entry{ class: entry_classes }
       = link_to_more short_account_status_url(status.account.username, status, since_descendant_thread_id: @max_descendant_thread_id - 1)

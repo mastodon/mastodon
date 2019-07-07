@@ -28,7 +28,6 @@ class Status < ApplicationRecord
   before_destroy :unlink_from_conversations
 
   include Paginable
-  include Streamable
   include Cacheable
   include StatusThreadingConcern
 
@@ -61,7 +60,6 @@ class Status < ApplicationRecord
   has_and_belongs_to_many :preview_cards
 
   has_one :notification, as: :activity, dependent: :destroy
-  has_one :stream_entry, as: :activity, inverse_of: :status
   has_one :status_stat, inverse_of: :status
   has_one :poll, inverse_of: :status, dependent: :destroy
 
@@ -106,13 +104,11 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :preview_cards,
-                   :stream_entry,
                    :preloadable_poll,
                    account: :account_stat,
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
-                     :stream_entry,
                      :tags,
                      :preview_cards,
                      :media_attachments,

@@ -33,15 +33,4 @@ class TagManager
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
     TagManager.instance.web_domain?(domain)
   end
-
-  def url_for(target)
-    return target.url if target.respond_to?(:local?) && !target.local?
-
-    case target.object_type
-    when :person
-      short_account_url(target)
-    when :note, :comment, :activity
-      short_account_status_url(target.account, target)
-    end
-  end
 end

@@ -27,14 +27,13 @@ RSpec.describe SuspendAccountService, type: :service do
         [
           account.statuses,
           account.media_attachments,
-          account.stream_entries,
           account.notifications,
           account.favourites,
           account.active_relationships,
           account.passive_relationships,
           account.subscriptions
         ].map(&:count)
-      }.from([1, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
+      }.from([1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0])
     end
 
     it 'sends a delete actor activity to all known inboxes' do
@@ -70,14 +69,13 @@ RSpec.describe SuspendAccountService, type: :service do
         [
           remote_bob.statuses,
           remote_bob.media_attachments,
-          remote_bob.stream_entries,
           remote_bob.notifications,
           remote_bob.favourites,
           remote_bob.active_relationships,
           remote_bob.passive_relationships,
           remote_bob.subscriptions
         ].map(&:count)
-      }.from([1, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
+      }.from([1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0])
     end
 
     it 'sends a reject follow to follwer inboxes' do

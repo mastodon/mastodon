@@ -29,7 +29,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def url
-    TagManager.instance.url_for(object)
+    ActivityPub::TagManager.instance.url_for(object)
   end
 
   def avatar

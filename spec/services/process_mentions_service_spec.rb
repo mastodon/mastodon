@@ -15,8 +15,8 @@ RSpec.describe ProcessMentionsService, type: :service do
       subject.call(status)
     end
 
-    it 'creates a mention' do
-      expect(remote_user.mentions.where(status: status).count).to eq 1
+    it 'does not create a mention' do
+      expect(remote_user.mentions.where(status: status).count).to eq 0
     end
   end
 

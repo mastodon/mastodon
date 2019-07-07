@@ -45,12 +45,6 @@ Rails.application.routes.draw do
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
-    resources :stream_entries, path: 'updates', only: [:show] do
-      member do
-        get :embed
-      end
-    end
-
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
