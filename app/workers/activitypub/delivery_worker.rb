@@ -18,13 +18,15 @@ class ActivityPub::DeliveryWorker
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url
     @host           = Addressable::URI.parse(inbox_url).normalized_site
+    @performed      = false
 
     perform_request
-
-    failure_tracker.track_success!
-  rescue => e
-    failure_tracker.track_failure!
-    raise e.class, "Delivery failed for #{inbox_url}: #{e.message}", e.backtrace[0]
+  ensure
+    if @performed
+      failure_tracker.track_success!
+    else
+      failure_tracker.track_failure!
+    end
   end
 
   private
@@ -40,6 +42,8 @@ class ActivityPub::DeliveryWorker
       request_pool.with(@host) do |http_client|
         build_request(http_client).perform do |response|
           raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
+
+          @performed = true
         end
       end
     end

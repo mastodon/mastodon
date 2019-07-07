@@ -59,7 +59,7 @@ class Request
     begin
       response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
-      raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
+      raise e.class, "#{e.message} on #{@url}", e.backtrace
     end
 
     begin
