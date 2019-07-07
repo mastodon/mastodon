@@ -299,12 +299,10 @@ Rails.application.routes.draw do
 
         member do
           get :context
-          get :card
         end
       end
 
       namespace :timelines do
-        resource :direct, only: :show, controller: :direct
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
@@ -362,7 +360,6 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show, :destroy] do
         collection do
           post :clear
-          post :dismiss # Deprecated
           delete :destroy_multiple
         end
 
