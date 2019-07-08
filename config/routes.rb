@@ -141,8 +141,6 @@ Rails.application.routes.draw do
   get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
-  # Remote follow
-  resource :remote_unfollow, only: [:create]
   resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
 
