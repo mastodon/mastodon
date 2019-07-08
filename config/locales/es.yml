@@ -4,9 +4,13 @@ es:
     about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
     about_this: Acerca de esta instancia
     active_count_after: activo
+    active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
+    apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
+    browse_directory: Navega por el directorio de perfiles y filtra por intereses
+    browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
     contact_unavailable: N/A
@@ -110,6 +114,7 @@ es:
       inbox_url: URL de la bandeja de entrada
       invited_by: Invitado por
       ip: IP
+      joined: Unido
       location:
         all: Todos
         local: Local
@@ -244,6 +249,7 @@ es:
       feature_profile_directory: Directorio de perfil
       feature_registrations: Registros
       feature_relay: Relés de federación
+      feature_timeline_preview: Vista previa de la línea de tiempo
       features: Características
       hidden_service: Federación con servicios ocultos
       open_reports: informes abiertos
@@ -278,6 +284,7 @@ es:
       reject_reports: Rechazar informes
       reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
       rejecting_media: rechazar archivos multimedia
+      rejecting_reports: rechazando informes
       severity:
         silence: silenciado
         suspend: susependido
@@ -303,8 +310,10 @@ es:
       title: Lista negra de correo
     followers:
       back_to_account: Volver a la cuenta
+      title: "Seguidores de %{acct}"
     instances:
       by_domain: Dominio
+      delivery_available: Entrega disponible
       moderation:
         all: Todos
         limited: Limitado
@@ -313,6 +322,7 @@ es:
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
       total_followed_by_us: Seguido por nosotros
+      total_reported: Informes sobre ellas
       total_storage: Archivos multimedia
     invites:
       deactivate_all: Desactivar todos
