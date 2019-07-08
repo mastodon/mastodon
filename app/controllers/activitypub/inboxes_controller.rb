@@ -3,8 +3,7 @@
 class ActivityPub::InboxesController < Api::BaseController
   include SignatureVerification
   include JsonLdHelper
-
-  before_action :set_account
+  include AccountOwnedConcern
 
   def create
     if unknown_deleted_account?
@@ -27,8 +26,8 @@ class ActivityPub::InboxesController < Api::BaseController
     false
   end
 
-  def set_account
-    @account = Account.find_local!(params[:account_username]) if params[:account_username]
+  def account_required?
+    params[:account_username].present?
   end
 
   def body

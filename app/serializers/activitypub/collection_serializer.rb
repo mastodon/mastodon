@@ -7,6 +7,8 @@ class ActivityPub::CollectionSerializer < ActivityPub::Serializer
     super
   end
 
+  cache key: 'collection', expires_in: 3.minutes
+
   attribute :id, if: -> { object.id.present? }
   attribute :type
   attribute :total_items, if: -> { object.size.present? }

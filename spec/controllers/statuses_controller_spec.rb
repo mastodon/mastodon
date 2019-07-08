@@ -92,7 +92,7 @@ describe StatusesController do
       end
 
       it 'assigns @max_descendant_thread_id for the last thread if it is hitting the status limit' do
-        stub_const 'StatusesController::DESCENDANTS_LIMIT', 1
+        stub_const 'StatusControllerConcern::DESCENDANTS_LIMIT', 1
         status = Fabricate(:status)
         child = Fabricate(:status, in_reply_to_id: status.id)
 
@@ -103,7 +103,7 @@ describe StatusesController do
       end
 
       it 'assigns @descendant_threads for threads with :next_status key if they are hitting the depth limit' do
-        stub_const 'StatusesController::DESCENDANTS_DEPTH_LIMIT', 2
+        stub_const 'StatusControllerConcern::DESCENDANTS_DEPTH_LIMIT', 2
         status = Fabricate(:status)
         child0 = Fabricate(:status, in_reply_to_id: status.id)
         child1 = Fabricate(:status, in_reply_to_id: child0.id)

@@ -3,11 +3,11 @@
 class AboutController < ApplicationController
   layout 'public'
 
-  before_action :set_instance_presenter, only: [:show, :more, :terms]
+  before_action :set_body_classes, only: :show
+  before_action :set_instance_presenter
+  before_action :set_expires_in
 
-  def show
-    @hide_navbar = true
-  end
+  def show; end
 
   def more; end
 
@@ -26,5 +26,13 @@ class AboutController < ApplicationController
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
+  end
+
+  def set_body_classes
+    @hide_navbar = true
+  end
+
+  def set_expires_in
+    expires_in 0, public: true
   end
 end

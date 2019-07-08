@@ -2,28 +2,18 @@
 
 class ActivityPub::CollectionsController < Api::BaseController
   include SignatureVerification
+  include AccountOwnedConcern
 
-  before_action :set_account
   before_action :set_size
   before_action :set_statuses
   before_action :set_cache_headers
 
   def show
-    render_cached_json(['activitypub', 'collection', @account, params[:id]], content_type: 'application/activity+json') do
-      ActiveModelSerializers::SerializableResource.new(
-        collection_presenter,
-        serializer: ActivityPub::CollectionSerializer,
-        adapter: ActivityPub::Adapter,
-        skip_activities: true
-      )
-    end
+    expires_in 3.minutes, public: true
+    render json: collection_presenter, content_type: 'application/activity+json', serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, skip_activities: true
   end
 
   private
-
-  def set_account
-    @account = Account.find_local!(params[:account_username])
-  end
 
   def set_statuses
     @statuses = scope_for_collection
