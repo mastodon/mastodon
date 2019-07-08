@@ -40,7 +40,7 @@ module Mastodon
             .where('id NOT IN (SELECT status_pins.status_id FROM status_pins WHERE statuses.id = status_id)') # Skip statuses that are pinned on profiles
             .where('id NOT IN (SELECT mentions.status_id FROM mentions WHERE statuses.id = mentions.status_id AND mentions.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))') # Skip statuses that mention local accounts
             .where('id NOT IN (SELECT statuses1.in_reply_to_id FROM statuses AS statuses1 WHERE statuses.id = statuses1.in_reply_to_id)') # Skip statuses which have replies
-            .where('id NOT IN (SELECT statuses1.reblog_of_id FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))') # Skip statuses reblogged by local accounts
+            .where('id NOT IN (SELECT statuses1.reblog_of_id FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local OR statuses1.id >= ?))', max_id) # Skip statuses reblogged by local accounts or with recent boosts
             .where('id NOT IN (SELECT favourites.status_id FROM favourites WHERE statuses.id = favourites.status_id AND favourites.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))') # Skip statuses favourited by local users
             .where('account_id NOT IN (SELECT follows.target_account_id FROM follows WHERE statuses.account_id = follows.target_account_id)') # Skip accounts followed by local accounts
             .in_batches
