@@ -41,7 +41,7 @@ class Request
   end
 
   def on_behalf_of(account, key_id_format = :acct, sign_with: nil)
-    raise ArgumentError unless account.local?
+    raise ArgumentError, 'account must be local' unless account&.local?
 
     @account       = account
     @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @account.keypair
