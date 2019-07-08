@@ -2,11 +2,12 @@
 
 class ActivityPub::ProcessAccountService < BaseService
   include JsonLdHelper
+  include DomainControlHelper
 
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json, options = {})
-    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id'])
+    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id']) || domain_not_allowed?(domain)
 
     @options     = options
     @json        = json
@@ -14,8 +15,6 @@ class ActivityPub::ProcessAccountService < BaseService
     @username    = username
     @domain      = domain
     @collections = {}
-
-    return if auto_suspend?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
