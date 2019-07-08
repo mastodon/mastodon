@@ -314,6 +314,9 @@ es:
     instances:
       by_domain: Dominio
       delivery_available: Entrega disponible
+      known_accounts:
+        one: "%{count} cuenta conocida"
+        other: "%{count} cuentas conocidas"
       moderation:
         all: Todos
         limited: Limitado
@@ -332,6 +335,8 @@ es:
         expired: Expiradas
         title: Filtrar
       title: Invitaciones
+    pending_accounts:
+      title: Cuentas pendientes (%{count})
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
@@ -405,6 +410,9 @@ es:
       preview_sensitive_media:
         desc_html: Los enlaces de vistas previas en otras web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
         title: Mostrar contenido sensible en previews de OpenGraph
+      profile_directory:
+        desc_html: Permitir que los usuarios puedan ser descubiertos
+        title: Habilitar directorio de perfiles
       registrations:
         closed_message:
           desc_html: Se muestra en la portada cuando los registros están cerrados. Puedes usar tags HTML
@@ -417,8 +425,10 @@ es:
           title: Permitir invitaciones de
       registrations_mode:
         modes:
+          approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
+        title: Modo de registros
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
         title: Mostrar fediverso conocido en la vista previa de la historia
@@ -458,20 +468,38 @@ es:
       no_status_selected: No se cambió ningún estado al no seleccionar ninguno
       title: Estado de las cuentas
       with_media: Con multimedia
+    tags:
+      accounts: Cuentas
+      hidden: Oculto
+      hide: Ocultar del directorio
+      name: Etiqueta
+      title: Etiquetas
+      unhide: Mostrar en el directorio
+      visible: Visible
     title: Administración
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
       edit: Editar
+      edit_preset: Editar aviso predeterminado
+      title: Editar configuración predeterminada de avisos
   admin_mailer:
     new_pending_account:
       body: Los detalles de la nueva cuenta están abajos. Puedes aprobar o rechazar esta aplicación.
+      subject: Nueva cuenta para revisión en %{instance} (%{username})
     new_report:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Interfaz web avanzada
+    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
+    animations_and_accessibility: Animaciones y accesibilidad
+    confirmation_dialogs: Diálogos de confirmación
+    sensitive_content: Contenido sensible
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
+    salutation: "%{name},"
     settings: 'Cambiar preferencias de correo: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -485,6 +513,7 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
+    apply_for_account: Solicitar una invitación
     change_password: Contraseña
     checkbox_agreement_html: Acepto <a href="%{rules_path}" target="_blank">las reglas del servidor</a> y <a href="%{terms_path}" target="_blank">términos de servicio</a>
     confirm_email: Confirmar email
@@ -498,12 +527,16 @@ es:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     or_log_in_with: O inicia sesión con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrarse
     registration_closed: "%{instance} no está aceptando nuevos miembros"
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
+    trouble_logging_in: '¿Problemas para iniciar sesión?'
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
@@ -517,10 +550,18 @@ es:
     title: Seguir a %{acct}
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count}m"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
       half_a_minute: Justo ahora
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Justo ahora
+      over_x_years: "%{count}a"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}m"
+      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: '¡Buen intento, hackers! Contraseña incorrecta'
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
@@ -530,6 +571,10 @@ es:
     warning_html: Se garantiza únicamente la eliminación del contenido de esta instancia. El contenido que se haya compartido extensamente dejará sus huellas. Los servidores fuera de línea y los que se hayan desuscrito de tus actualizaciones ya no actualizarán sus bases de datos.
     warning_title: Disponibilidad diseminada del contenido
   directories:
+    directory: Directorio de perfiles
+    enabled: Actualmente está listado en el directorio.
+    enabled_but_waiting: Ha optado por ser listado en el directorio, pero aún no cumple con el número mínimo de seguidores (%{min_followers}) para ser listado.
+    explanation: Descubre usuarios según sus intereses
     explore_mastodon: Explorar %{title}
     how_to_enable: Usted no está registrado por el directorio. Puede registrar por abajo. ¡Utilice hashtags en su bio para aparecer bajo hashtags específicos!
     people:
@@ -560,6 +605,7 @@ es:
       size: Tamaño
     blocks: Personas que has bloqueado
     csv: CSV
+    domain_blocks: Bloqueos de dominios
     follows: Personas que sigues
     lists: Listas
     mutes: Tienes en silencio
@@ -787,8 +833,14 @@ es:
       ownership: El toot de alguien más no puede fijarse
       private: Los toots no-públicos no pueden fijarse
       reblog: Un boost no puede fijarse
+    poll:
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
+      vote: Vota
     show_more: Mostrar más
     sign_in_to_participate: Regístrate para participar en la conversación
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
