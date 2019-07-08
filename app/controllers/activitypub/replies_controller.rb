@@ -7,11 +7,13 @@ class ActivityPub::RepliesController < Api::BaseController
 
   DESCENDANTS_LIMIT = 60
 
+  before_action :require_signature!, if: :secure_mode_enabled?
   before_action :set_status
   before_action :set_cache_headers
   before_action :set_replies
 
   def index
+    expires_in 0, public: true unless secure_mode_enabled?
     render json: replies_collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json', skip_activities: true
   end
 

@@ -2,7 +2,9 @@
 
 class FollowingAccountsController < ApplicationController
   include AccountControllerConcern
+  include SignatureVerification
 
+  before_action :require_signature!, if: -> { request.format == :json && secure_mode_enabled? }
   before_action :set_cache_headers
 
   def index

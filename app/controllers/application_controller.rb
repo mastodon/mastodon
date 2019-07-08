@@ -36,6 +36,10 @@ class ApplicationController < ActionController::Base
     Rails.env.production?
   end
 
+  def secure_mode_enabled?
+    ENV['SECURE_MODE'] == 'true'
+  end
+
   def store_current_location
     store_location_for(:user, request.url) unless request.format == :json
   end
