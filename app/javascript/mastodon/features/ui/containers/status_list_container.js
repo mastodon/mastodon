@@ -19,8 +19,8 @@ const makeGetStatusIds = () => createSelector([
 
     if (columnSettings.getIn(['shows', 'bots']) === false) {
       showStatus = showStatus && statusForId.get('bot') === false;
-
     }
+
     if (columnSettings.getIn(['shows', 'reblog']) === false) {
       showStatus = showStatus && statusForId.get('reblog') === null;
     }
