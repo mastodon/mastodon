@@ -798,6 +798,20 @@ es:
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
     reason_html: "¿<strong>¿Por qué es necesario este paso?</strong> <code>%{instance}</code> puede que no sea el servidor donde estás registrado, así que necesitamos redirigirte primero a tu servidor de origen."
+  remote_interaction:
+    favourite:
+      proceed: Proceder a marcar como favorito
+      prompt: 'Quieres marcar como favorito este toot:'
+    reblog:
+      proceed: Proceder a retootear
+      prompt: 'Quieres retootear este toot:'
+    reply:
+      proceed: Proceder a responder
+      prompt: 'Quieres responder a este toot:'
+  scheduled_statuses:
+    over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
+    over_total_limit: Ha superado el límite de %{limit} toots programados
+    too_soon: La fecha programada debe estar en el futuro
   sessions:
     activity: Última actividad
     browser: Navegador
@@ -850,10 +864,14 @@ es:
     edit_profile: Editar perfil
     export: Exportar información
     featured_tags: Hashtags destacados
+    identity_proofs: Pruebas de identidad
     import: Importar
+    import_and_export: Importar y exportar
     migrate: Migración de cuenta
     notifications: Notificaciones
     preferences: Preferencias
+    profile: Perfil
+    relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
   statuses:
     attached:
