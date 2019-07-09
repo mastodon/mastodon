@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
-  cache key: 'note', expires_in: 3.minutes
-
   context_extensions :atom_uri, :conversation, :sensitive,
                      :hashtag, :emoji, :focal_point, :blurhash
 
