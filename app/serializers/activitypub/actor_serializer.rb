@@ -3,8 +3,6 @@
 class ActivityPub::ActorSerializer < ActivityPub::Serializer
   include RoutingHelper
 
-  cache key: 'actor', expires_in: 3.minutes
-
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::ActivitySerializer < ActivityPub::Serializer
-  cache key: 'activity', expires_in: 3.minutes
-
   attributes :id, :type, :actor, :published, :to, :cc
 
   has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, if: :serialize_object?
