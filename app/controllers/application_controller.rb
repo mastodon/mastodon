@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
     Rails.env.production?
   end
 
-  def secure_mode_enabled?
-    ENV['SECURE_MODE'] == 'true'
+  def authorized_fetch_mode?
+    ENV['AUTHORIZED_FETCH'] == 'true'
   end
 
   def store_current_location

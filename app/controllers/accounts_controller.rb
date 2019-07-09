@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: true unless secure_mode_enabled? && signed_request_account.present?
+        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
         render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: fields_selection
       end
     end
@@ -135,7 +135,7 @@ class AccountsController < ApplicationController
   end
 
   def fields_selection
-    if signed_request_account.present? || !secure_mode_enabled?
+    if signed_request_account.present? || !authorized_fetch_mode?
       # Return all fields
     else
       %i(id type preferred_username inbox public_key endpoints)

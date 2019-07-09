@@ -8,7 +8,7 @@ class StatusesController < ApplicationController
 
   layout 'public'
 
-  before_action :require_signature!, only: :show, if: -> { request.format == :json && secure_mode_enabled? }
+  before_action :require_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
   before_action :set_link_headers
@@ -31,14 +31,14 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: @status.distributable? unless secure_mode_enabled?
+        expires_in 3.minutes, public: @status.distributable? && !authorized_fetch_mode?
         render json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
 
   def activity
-    expires_in 3.minutes, public: @status.distributable? unless secure_mode_enabled?
+    expires_in 3.minutes, public: @status.distributable? && !authorized_fetch_mode?
     render json: @status, content_type: 'application/activity+json', serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter
   end
 
