@@ -5,12 +5,16 @@ es:
         text: Puede usar sintaxis de toots, como URLs, hashtags y menciones
       admin_account_action:
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con respecto a su cuenta
+        text_html: Opcional. Puede usar sintaxis de toots. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
+        type_html: Elige qué hacer con <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
+        discoverable_html: El <a href="%{path}" target="_blank">directorio</a> permite a la gente encontrar cuentas basadas en intereses y actividad. Requiere al menos %{min_followers} seguidores
         email: Se le enviará un correo de confirmación
         fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -21,6 +25,7 @@ es:
         password: Utilice al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de un toot
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        setting_aggregate_reblogs: No mostrar nuevos retoots para los toots que han sido recientemente retooteados (sólo afecta a los retoots recibidos recientemente)
         setting_hide_network: A quién sigues y quién te sigue no será mostrado en tu perfil
         setting_noindex: Afecta a tu perfil público y páginas de estado
         setting_show_application: La aplicación que utiliza usted para publicar toots se mostrará en la vista detallada de sus toots
