@@ -113,7 +113,14 @@ es:
       application:
         title: OAuth autorización requerida
     scopes:
+      "admin:read": leer todos los datos en el servidor
+      "admin:read:accounts": leer información sensible de todas las cuentas
+      "admin:read:reports": leer información sensible de todos los informes y cuentas reportadas
+      "admin:write": modificar todos los datos en el servidor
+      "admin:write:accounts": realizar acciones de moderación en cuentas
+      "admin:write:reports": realizar acciones de moderación en informes
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
+      push: recibir tus notificaciones push
       read: leer los datos de tu cuenta
       "read:accounts": ver información de cuentas
       "read:blocks": ver a quién has bloqueado
