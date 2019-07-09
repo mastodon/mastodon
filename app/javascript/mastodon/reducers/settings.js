@@ -18,6 +18,7 @@ const initialState = ImmutableMap({
 
   home: ImmutableMap({
     shows: ImmutableMap({
+      bots: true,
       reblog: true,
       reply: true,
     }),
