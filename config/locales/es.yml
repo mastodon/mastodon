@@ -659,16 +659,21 @@ es:
     i_am_html: Soy %{username} en %{service}.
     identity: Identidad
     inactive: Inactivo
+    publicize_checkbox: 'Y tootee esto:'
+    publicize_toot: '¡Comprobado! Soy %{username} en %{service}: %{url}'
     status: Estado de la verificación
     view_proof: Ver prueba
   imports:
     modes:
       merge: Unir
+      merge_long: Mantener registros existentes y añadir nuevos
       overwrite: Sobrescribir
+      overwrite_long: Reemplazar registros actuales con los nuevos
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
     types:
       blocking: Lista de bloqueados
+      domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Cargar
@@ -743,22 +748,56 @@ es:
       body: '%{name} ha retooteado tu estado:'
       subject: "%{name} ha retooteado tu estado"
       title: Nueva difusión
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: m
+          trillion: T
   pagination:
     newer: Más nuevo
     next: Próximo
     older: Más antiguo
     prev: Anterior
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ya has votado en esta encuesta
+      duplicate_options: contiene elementos duplicados
+      duration_too_long: está demasiado lejos en el futuro
+      duration_too_short: es demasiado pronto
+      expired: La encuesta ya ha terminado
+      over_character_limit: no puede exceder %{max} caracteres cada uno
+      too_few_options: debe tener más de un elemento
+      too_many_options: no puede contener más de %{max} elementos
   preferences:
     other: Otros
+    posting_defaults: Configuración por defecto de publicaciones
+    public_timelines: Líneas de tiempo públicas
   relationships:
+    activity: Actividad de la cuenta
+    dormant: Inactivo
     last_active: Última actividad
     most_recent: Más reciente
+    moved: Movido
+    mutual: Mutuo
+    primary: Principal
+    relationship: Relación
+    remove_selected_domains: Eliminar todos los seguidores de los dominios seleccionados
+    remove_selected_followers: Eliminar los seguidores seleccionados
+    remove_selected_follows: Dejar de seguir a los usuarios seleccionados
+    status: Estado de la cuenta
   remote_follow:
     acct: Ingesa tu usuario@dominio desde el que quieres seguir
     missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     no_account_html: '¿No tienes una cuenta? Puedes <a href=''%{sign_up_path}'' target=''_blank''>registrarte aqui</a>'
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
+    reason_html: "¿<strong>¿Por qué es necesario este paso?</strong> <code>%{instance}</code> puede que no sea el servidor donde estás registrado, así que necesitamos redirigirte primero a tu servidor de origen."
   sessions:
     activity: Última actividad
     browser: Navegador
