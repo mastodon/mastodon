@@ -1004,6 +1004,7 @@ es:
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
     description_html: Si habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
@@ -1025,6 +1026,22 @@ es:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
       title: Descargar archivo
+    warning:
+      explanation:
+        disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
+        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
+        suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
+      review_server_policies: Revisar las políticas del servidor
+      subject:
+        disable: Su cuenta %{acct} ha sido congelada
+        none: Advertencia para %{acct}
+        silence: Su cuenta %{acct} ha sido limitada
+        suspend: Su cuenta %{acct} ha sido suspendida
+      title:
+        disable: Cuenta congelada
+        none: Advertencia
+        silence: Cuenta limitada
+        suspend: Cuenta suspendida
     welcome:
       edit_profile_action: Configurar el perfil
       edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
@@ -1040,6 +1057,7 @@ es:
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
+      tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
