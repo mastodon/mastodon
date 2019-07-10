@@ -40,8 +40,8 @@ class Request
     set_digest! if options.key?(:body)
   end
 
-  def on_behalf_of(account, key_id_format = :acct, sign_with: nil)
-    raise ArgumentError, 'account must be local' unless account&.local?
+  def on_behalf_of(account, key_id_format = :uri, sign_with: nil)
+    raise ArgumentError, 'account must not be nil' if account.nil?
 
     @account       = account
     @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @account.keypair
