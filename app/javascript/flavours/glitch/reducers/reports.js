@@ -8,6 +8,9 @@ import {
   REPORT_COMMENT_CHANGE,
   REPORT_FORWARD_CHANGE,
 } from 'flavours/glitch/actions/reports';
+import {
+  TIMELINE_DELETE,
+} from 'flavours/glitch/actions/timelines';
 import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 const initialState = ImmutableMap({
@@ -19,6 +22,14 @@ const initialState = ImmutableMap({
     forward: false,
   }),
 });
+
+const deleteStatus = (state, id, references) => {
+  references.forEach(ref => {
+    state = deleteStatus(state, ref[0], []);
+  });
+
+  return state.updateIn(['new', 'status_ids'], ImmutableSet(), set => set.remove(id));
+};
 
 export default function reports(state = initialState, action) {
   switch(action.type) {
@@ -58,6 +69,8 @@ export default function reports(state = initialState, action) {
       map.setIn(['new', 'comment'], '');
       map.setIn(['new', 'isSubmitting'], false);
     });
+  case TIMELINE_DELETE:
+    return deleteStatus(state, action.id, action.references);
   default:
     return state;
   }
