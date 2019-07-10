@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe FetchAtomService, type: :service do
+RSpec.describe FetchResourceService, type: :service do
+  let!(:representative) { Fabricate(:account) }
+
   describe '#call' do
     let(:url) { 'http://example.com' }
-    subject { FetchAtomService.new.call(url) }
+    subject { described_class.new.call(url) }
 
     context 'url is blank' do
       let(:url) { '' }
@@ -23,8 +25,7 @@ RSpec.describe FetchAtomService, type: :service do
         allow(Request).to receive_message_chain(:new, :add_headers, :perform).and_raise(OpenSSL::SSL::SSLError)
       end
 
-      it 'output log and return nil' do
-        expect_any_instance_of(ActiveSupport::Logger).to receive(:debug).with('SSL error: OpenSSL::SSL::SSLError')
+      it 'return nil' do
         is_expected.to be_nil
       end
     end
@@ -34,8 +35,7 @@ RSpec.describe FetchAtomService, type: :service do
         allow(Request).to receive_message_chain(:new, :add_headers, :perform).and_raise(HTTP::ConnectionError)
       end
 
-      it 'output log and return nil' do
-        expect_any_instance_of(ActiveSupport::Logger).to receive(:debug).with('HTTP ConnectionError: HTTP::ConnectionError')
+      it 'return nil' do
         is_expected.to be_nil
       end
     end
@@ -57,7 +57,7 @@ RSpec.describe FetchAtomService, type: :service do
       context 'content type is application/atom+xml' do
         let(:content_type) { 'application/atom+xml' }
 
-        it { is_expected.to eq [url, { :prefetched_body => "" }, :ostatus] }
+        it { is_expected.to eq nil }
       end
 
       context 'content_type is activity+json' do

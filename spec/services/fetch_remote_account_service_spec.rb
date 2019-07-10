@@ -4,6 +4,7 @@ RSpec.describe FetchRemoteAccountService, type: :service do
   let(:url) { 'https://example.com/alice' }
   let(:prefetched_body) { nil }
   let(:protocol) { :ostatus }
+
   subject { FetchRemoteAccountService.new.call(url, prefetched_body, protocol) }
 
   let(:actor) do
