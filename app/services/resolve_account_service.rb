@@ -30,7 +30,7 @@ class ResolveAccountService < BaseService
     # At this point we are in need of a Webfinger query, which may
     # yield us a different username/domain through a redirect
 
-    process_webfinger!
+    process_webfinger!(@uri)
 
     # Because the username/domain pair may be different than what
     # we already checked, we need to check if we've already got
@@ -69,15 +69,16 @@ class ResolveAccountService < BaseService
     @domain = nil if TagManager.instance.local_domain?(@domain)
   end
 
-  def process_webfinger!
+  def process_webfinger!(uri, redirected = false)
     @webfinger                           = Goldfinger.finger("acct:#{@uri}")
     confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
       @username = confirmed_username
       @domain   = confirmed_domain
-    elsif @options[:redirected].nil?
-      @account = ResolveAccountService.new.call("#{confirmed_username}@#{confirmed_domain}", @options.merge(redirected: true))
+      @uri      = uri
+    elsif !redirected
+      return process_webfinger!("#{confirmed_username}@#{confirmed_domain}", true)
     else
       raise WebfingerRedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
     end
