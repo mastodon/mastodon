@@ -14,7 +14,9 @@
     "test:lint": "${npm_execpath} run test:lint:js && ${npm_execpath} run test:lint:sass",
     "test:lint:js": "eslint --ext=js .",
     "test:lint:sass": "sass-lint -v",
-    "test:jest": "cross-env NODE_ENV=test jest --coverage"
+    "test:jest": "cross-env NODE_ENV=test jest --coverage",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -106,7 +108,7 @@
     "intl-relativeformat": "^6.4.2",
     "is-nan": "^1.2.1",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.7.11",
+    "lodash": "^4.17.12",
     "mark-loader": "^0.1.6",
     "marky": "^1.2.1",
     "mini-css-extract-plugin": "^0.7.0",
@@ -163,7 +165,8 @@
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.5",
     "webpack-merge": "^4.2.1",
-    "websocket.js": "^0.1.12"
+    "websocket.js": "^0.1.12",
+    "snyk": "^1.192.5"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -182,5 +185,6 @@
     "sass-lint": "^1.13.1",
     "webpack-dev-server": "^3.7.2",
     "yargs": "^12.0.5"
-  }
+  },
+  "snyk": true
 }
