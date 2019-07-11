@@ -36,6 +36,14 @@ class ApplicationController < ActionController::Base
     Rails.env.production?
   end
 
+  def authorized_fetch_mode?
+    ENV['AUTHORIZED_FETCH'] == 'true'
+  end
+
+  def public_fetch_mode?
+    !authorized_fetch_mode?
+  end
+
   def store_current_location
     store_location_for(:user, request.url) unless request.format == :json
   end
@@ -152,6 +160,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cache_headers
-    response.headers['Vary'] = 'Accept'
+    response.headers['Vary'] = 'Accept, Signature'
   end
 end

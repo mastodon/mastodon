@@ -4,12 +4,13 @@ class ActivityPub::CollectionsController < Api::BaseController
   include SignatureVerification
   include AccountOwnedConcern
 
+  before_action :require_signature!, if: :authorized_fetch_mode?
   before_action :set_size
   before_action :set_statuses
   before_action :set_cache_headers
 
   def show
-    expires_in 3.minutes, public: true
+    expires_in 3.minutes, public: public_fetch_mode?
     render json: collection_presenter, content_type: 'application/activity+json', serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, skip_activities: true
   end
 

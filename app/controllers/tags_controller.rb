@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
+  include SignatureVerification
+
   PAGE_SIZE = 20
 
   layout 'public'
 
+  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_tag
   before_action :set_body_classes
   before_action :set_instance_presenter
@@ -30,7 +33,7 @@ class TagsController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: true
+        expires_in 3.minutes, public: public_fetch_mode?
 
         @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)

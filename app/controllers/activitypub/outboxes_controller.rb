@@ -6,12 +6,12 @@ class ActivityPub::OutboxesController < Api::BaseController
   include SignatureVerification
   include AccountOwnedConcern
 
+  before_action :require_signature!, if: :authorized_fetch_mode?
   before_action :set_statuses
   before_action :set_cache_headers
 
   def show
-    expires_in 1.minute, public: true unless page_requested?
-
+    expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode?)
     render json: outbox_presenter, serializer: ActivityPub::OutboxSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 

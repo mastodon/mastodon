@@ -4,6 +4,7 @@ class AccountsController < ApplicationController
   PAGE_SIZE = 20
 
   include AccountControllerConcern
+  include SignatureAuthentication
 
   before_action :set_cache_headers
   before_action :set_body_classes
@@ -39,8 +40,8 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: true
-        render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
+        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
+        render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
       end
     end
   end
@@ -130,6 +131,14 @@ class AccountsController < ApplicationController
       filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
     else
       filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
+    end
+  end
+
+  def restrict_fields_to
+    if signed_request_account.present? || public_fetch_mode?
+      # Return all fields
+    else
+      %i(id type preferred_username inbox public_key endpoints)
     end
   end
 end
