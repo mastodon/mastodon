@@ -156,6 +156,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cache_headers
-    response.headers['Vary'] = 'Accept'
+    response.headers['Vary'] = 'Accept, Signature'
   end
 end

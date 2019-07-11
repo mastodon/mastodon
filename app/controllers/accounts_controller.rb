@@ -41,7 +41,7 @@ class AccountsController < ApplicationController
 
       format.json do
         expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
-        render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: fields_selection
+        render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
       end
     end
   end
@@ -134,7 +134,7 @@ class AccountsController < ApplicationController
     end
   end
 
-  def fields_selection
+  def restrict_fields_to
     if signed_request_account.present? || !authorized_fetch_mode?
       # Return all fields
     else

@@ -11,7 +11,7 @@ class ActivityPub::OutboxesController < Api::BaseController
   before_action :set_cache_headers
 
   def show
-    expires_in page_requested? ? 0 : 3.minutes, public: !authorized_fetch_mode?
+    expires_in(page_requested? ? 0 : 3.minutes, public: !authorized_fetch_mode?)
     render json: outbox_presenter, serializer: ActivityPub::OutboxSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 

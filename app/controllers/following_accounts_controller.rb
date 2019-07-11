@@ -21,7 +21,7 @@ class FollowingAccountsController < ApplicationController
       format.json do
         raise Mastodon::NotPermittedError if page_requested? && @account.user_hides_network?
 
-        expires_in page_requested? ? 0 : 3.minutes, public: !authorized_fetch_mode? unless page_requested?
+        expires_in(page_requested? ? 0 : 3.minutes, public: !authorized_fetch_mode?)
 
         render json: collection_presenter,
                serializer: ActivityPub::CollectionSerializer,
