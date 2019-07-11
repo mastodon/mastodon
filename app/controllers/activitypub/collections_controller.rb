@@ -10,7 +10,7 @@ class ActivityPub::CollectionsController < Api::BaseController
   before_action :set_cache_headers
 
   def show
-    expires_in 3.minutes, public: !authorized_fetch_mode?
+    expires_in 3.minutes, public: public_fetch_mode?
     render json: collection_presenter, content_type: 'application/activity+json', serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, skip_activities: true
   end
 

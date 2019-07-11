@@ -13,7 +13,7 @@ class ActivityPub::RepliesController < Api::BaseController
   before_action :set_replies
 
   def index
-    expires_in 0, public: !authorized_fetch_mode?
+    expires_in 0, public: public_fetch_mode?
     render json: replies_collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json', skip_activities: true
   end
 

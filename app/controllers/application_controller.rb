@@ -40,6 +40,10 @@ class ApplicationController < ActionController::Base
     ENV['AUTHORIZED_FETCH'] == 'true'
   end
 
+  def public_fetch_mode?
+    !authorized_fetch_mode?
+  end
+
   def store_current_location
     store_location_for(:user, request.url) unless request.format == :json
   end

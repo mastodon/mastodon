@@ -135,7 +135,7 @@ class AccountsController < ApplicationController
   end
 
   def restrict_fields_to
-    if signed_request_account.present? || !authorized_fetch_mode?
+    if signed_request_account.present? || public_fetch_mode?
       # Return all fields
     else
       %i(id type preferred_username inbox public_key endpoints)

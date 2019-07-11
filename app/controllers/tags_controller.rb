@@ -33,7 +33,7 @@ class TagsController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: !authorized_fetch_mode?
+        expires_in 3.minutes, public: public_fetch_mode?
 
         @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
