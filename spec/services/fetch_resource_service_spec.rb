@@ -5,69 +5,78 @@ RSpec.describe FetchResourceService, type: :service do
 
   describe '#call' do
     let(:url) { 'http://example.com' }
+
     subject { described_class.new.call(url) }
 
-    context 'url is blank' do
+    context 'with blank url' do
       let(:url) { '' }
       it { is_expected.to be_nil }
     end
 
-    context 'request failed' do
+    context 'when request fails' do
       before do
-        WebMock.stub_request(:get, url).to_return(status: 500, body: '', headers: {})
+        stub_request(:get, url).to_return(status: 500, body: '', headers: {})
       end
 
       it { is_expected.to be_nil }
     end
 
-    context 'raise OpenSSL::SSL::SSLError' do
+    context 'when OpenSSL::SSL::SSLError is raised' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :perform).and_raise(OpenSSL::SSL::SSLError)
+        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(OpenSSL::SSL::SSLError)
       end
 
-      it 'return nil' do
-        is_expected.to be_nil
-      end
+      it { is_expected.to be_nil }
     end
 
-    context 'raise HTTP::ConnectionError' do
+    context 'when HTTP::ConnectionError is raised' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :perform).and_raise(HTTP::ConnectionError)
+        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(HTTP::ConnectionError)
       end
 
-      it 'return nil' do
-        is_expected.to be_nil
-      end
+      it { is_expected.to be_nil }
     end
 
-    context 'response success' do
+    context 'when request succeeds' do
       let(:body) { '' }
-      let(:headers) { { 'Content-Type' => content_type } }
-      let(:json) {
-        { id: 1,
+
+      let(:content_type) { 'application/json' }
+
+      let(:headers) do
+        { 'Content-Type' => content_type }
+      end
+
+      let(:json) do
+        {
+          id: 1,
           '@context': ActivityPub::TagManager::CONTEXT,
           type: 'Note',
         }.to_json
-      }
-
-      before do
-        WebMock.stub_request(:get, url).to_return(status: 200, body: body, headers: headers)
       end
 
-      context 'content type is application/atom+xml' do
+      before do
+        stub_request(:get, url).to_return(status: 200, body: body, headers: headers)
+      end
+
+      it 'signs request' do
+        subject
+        expect(a_request(:get, url).with(headers: { 'Signature' => /keyId="#{Regexp.escape(ActivityPub::TagManager.instance.uri_for(representative) + '#main-key')}"/ })).to have_been_made
+      end
+
+      context 'when content type is application/atom+xml' do
         let(:content_type) { 'application/atom+xml' }
 
         it { is_expected.to eq nil }
       end
 
-      context 'content_type is activity+json' do
+      context 'when content type is activity+json' do
         let(:content_type) { 'application/activity+json; charset=utf-8' }
         let(:body) { json }
 
         it { is_expected.to eq [1, { prefetched_body: body, id: true }, :activitypub] }
       end
 
-      context 'content_type is ld+json with profile' do
+      context 'when content type is ld+json with profile' do
         let(:content_type) { 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' }
         let(:body) { json }
 
@@ -75,17 +84,17 @@ RSpec.describe FetchResourceService, type: :service do
       end
 
       before do
-        WebMock.stub_request(:get, url).to_return(status: 200, body: body, headers: headers)
-        WebMock.stub_request(:get, 'http://example.com/foo').to_return(status: 200, body: json, headers: { 'Content-Type' => 'application/activity+json' })
+        stub_request(:get, url).to_return(status: 200, body: body, headers: headers)
+        stub_request(:get, 'http://example.com/foo').to_return(status: 200, body: json, headers: { 'Content-Type' => 'application/activity+json' })
       end
 
-      context 'has link header' do
+      context 'when link header is present' do
         let(:headers) { { 'Link' => '<http://example.com/foo>; rel="alternate"; type="application/activity+json"', } }
 
         it { is_expected.to eq [1, { prefetched_body: json, id: true }, :activitypub] }
       end
 
-      context 'content type is text/html' do
+      context 'when content type is text/html' do
         let(:content_type) { 'text/html' }
         let(:body) { '<html><head><link rel="alternate" href="http://example.com/foo" type="application/activity+json"/></head></html>' }
 

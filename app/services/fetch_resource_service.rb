@@ -23,7 +23,7 @@ class FetchResourceService < BaseService
   end
 
   def perform_request(&block)
-    Request.new(:get, @url).add_headers('Accept' => ACCEPT_HEADER).perform(&block)
+    Request.new(:get, @url).add_headers('Accept' => ACCEPT_HEADER).on_behalf_of(Account.representative).perform(&block)
   end
 
   def process_response(response, terminal = false)

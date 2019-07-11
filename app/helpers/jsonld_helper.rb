@@ -77,19 +77,12 @@ module JsonLdHelper
   end
 
   def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_temporary_error = false)
+    on_behalf_of ||= Account.representative
+
     build_request(uri, on_behalf_of).perform do |response|
       raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
 
-      return body_to_json(response.body_with_limit) if response.code == 200
-    end
-
-    # If request failed, retry without doing it on behalf of a user
-    return if on_behalf_of.nil?
-
-    build_request(uri).perform do |response|
-      raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
-
-      response.code == 200 ? body_to_json(response.body_with_limit) : nil
+      body_to_json(response.body_with_limit) if response.code == 200
     end
   end
 
