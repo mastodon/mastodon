@@ -20,6 +20,10 @@ Some changes are to come in the future:
 
 * Better list management
 
+## Migrating from Mastodon to Hometown
+
+Please see [this article in the wiki](https://github.com/hometown-fork/hometown/wiki/Initial-migration) for directions on migration from Mastodon to Hometown.
+
 ## Local only posting
 
 Mastodon right now is designed to get your messages out to the entire fediverse. This is great, but there is a huge need for more private communities. And in a federated network I think it makes the most sense for your home server to be that community (hence "Hometown").
