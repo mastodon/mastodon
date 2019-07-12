@@ -106,7 +106,7 @@ class Status extends ImmutablePureComponent {
     statusId: undefined,
     revealBehindCW: undefined,
     showCard: false,
-    bypassFilter: false,
+    forceFilter: undefined,
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -127,7 +127,7 @@ class Status extends ImmutablePureComponent {
     'isExpanded',
     'isCollapsed',
     'showMedia',
-    'bypassFilter',
+    'forceFilter',
   ]
 
   //  If our settings have changed to disable collapsed statuses, then we
@@ -431,11 +431,11 @@ class Status extends ImmutablePureComponent {
 
   handleUnfilterClick = e => {
     const { onUnfilter, status } = this.props;
-    onUnfilter(status.get('reblog') ? status.get('reblog') : status, () => this.setState({ bypassFilter: true }));
+    onUnfilter(status.get('reblog') ? status.get('reblog') : status, () => this.setState({ forceFilter: false }));
   }
 
   handleFilterClick = () => {
-    this.setState({ bypassFilter: false });
+    this.setState({ forceFilter: true });
   }
 
   handleRef = c => {
@@ -496,7 +496,7 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if ((status.get('filtered') || status.getIn(['reblog', 'filtered'])) && !this.state.bypassFilter) {
+    if ((status.get('filtered') || status.getIn(['reblog', 'filtered'])) && (this.state.forceFilter === true || settings.get('filtering_behavior') !== 'content_warning')) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
@@ -506,7 +506,7 @@ class Status extends ImmutablePureComponent {
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
-            {settings.get('filtering_behavior') === 'hide' && (
+            {settings.get('filtering_behavior') !== 'upstream' && (
               <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
                 <FormattedMessage id='status.show_filter_reason' defaultMessage='Show why' />
               </button>
