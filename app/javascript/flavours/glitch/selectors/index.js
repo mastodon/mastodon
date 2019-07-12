@@ -89,10 +89,11 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+      (state, _) => state.getIn(['local_settings', 'filtering_behavior']),
       getFiltersRegex,
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog, filtersRegex) => {
+    (statusBase, statusReblog, accountBase, accountReblog, filteringBehavior, filtersRegex) => {
       if (!statusBase) {
         return null;
       }
@@ -115,6 +116,10 @@ export const makeGetStatus = () => {
       }
 
       filtered = filtered || regex && regex.test(statusBase.get('search_index'));
+
+      if (filtered && filteringBehavior === 'drop') {
+        return null;
+      }
 
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);
