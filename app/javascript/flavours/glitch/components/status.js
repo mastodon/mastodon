@@ -106,6 +106,7 @@ class Status extends ImmutablePureComponent {
     statusId: undefined,
     revealBehindCW: undefined,
     showCard: false,
+    bypassFilter: false,
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -126,6 +127,7 @@ class Status extends ImmutablePureComponent {
     'isExpanded',
     'isCollapsed',
     'showMedia',
+    'bypassFilter',
   ]
 
   //  If our settings have changed to disable collapsed statuses, then we
@@ -427,6 +429,15 @@ class Status extends ImmutablePureComponent {
     this.handleToggleMediaVisibility();
   }
 
+  handleUnfilterClick = e => {
+    const { onUnfilter, status } = this.props;
+    onUnfilter(status.get('reblog') ? status.get('reblog') : status, () => this.setState({ bypassFilter: true }));
+  }
+
+  handleFilterClick = () => {
+    this.setState({ bypassFilter: false });
+  }
+
   handleRef = c => {
     this.node = c;
   }
@@ -485,7 +496,7 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (status.get('filtered') || status.getIn(['reblog', 'filtered'])) {
+    if ((status.get('filtered') || status.getIn(['reblog', 'filtered'])) && !this.state.bypassFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
@@ -495,6 +506,9 @@ class Status extends ImmutablePureComponent {
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
+            <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
+              <FormattedMessage id='status.show_filter_reason' defaultMessage='Show why' />
+            </button>
           </div>
         </HotKeys>
       );
@@ -689,6 +703,7 @@ class Status extends ImmutablePureComponent {
               account={status.get('account')}
               showReplyCount={settings.get('show_reply_count')}
               directMessage={!!otherAccounts}
+              onFilter={this.handleFilterClick}
             />
           ) : null}
           {notification ? (

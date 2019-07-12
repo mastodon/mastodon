@@ -35,6 +35,7 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
+  hide: { id: 'status.hide', defaultMessage: 'Hide toot' },
 });
 
 const obfuscatedCount = count => {
@@ -69,6 +70,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
+    onFilter: PropTypes.func,
     withDismiss: PropTypes.bool,
     showReplyCount: PropTypes.bool,
     directMessage: PropTypes.bool,
@@ -191,6 +193,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
     }
   }
 
+  handleFilterClick = () => {
+    this.props.onFilter();
+  }
+
   render () {
     const { status, intl, withDismiss, showReplyCount, directMessage } = this.props;
 
@@ -263,6 +269,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
       <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
     );
 
+    const filterButton = status.get('filtered') && (
+      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleFilterClick} />
+    );
+
     let replyButton = (
       <IconButton
         className='status__action-bar-button'
@@ -288,6 +298,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
           <IconButton key='favourite-button' className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />,
           shareButton,
           <IconButton key='bookmark-button' className='status__action-bar-button bookmark-icon' disabled={anonymousAccess} active={status.get('bookmarked')} pressed={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />,
+          filterButton,
           <div key='dropdown-button' className='status__action-bar-dropdown'>
             <DropdownMenuContainer disabled={anonymousAccess} status={status} items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel={intl.formatMessage(messages.more)} />
           </div>,

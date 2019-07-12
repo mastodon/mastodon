@@ -820,3 +820,33 @@
     left: 0;
   }
 }
+
+.filtered-status-info {
+  text-align: start;
+
+  .spoiler__text {
+    margin-top: 20px;
+  }
+
+  .account {
+    border-bottom: 0;
+  }
+
+  .account__display-name strong {
+    color: $inverted-text-color;
+  }
+
+  .status__content__spoiler {
+    display: none;
+
+    &--visible {
+      display: flex;
+    }
+  }
+
+  ul {
+    padding: 10px;
+    margin-left: 12px;
+    list-style: disc inside;
+  }
+}

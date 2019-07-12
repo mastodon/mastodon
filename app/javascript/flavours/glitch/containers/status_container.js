@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Status from 'flavours/glitch/components/status';
-import { makeGetStatus } from 'flavours/glitch/selectors';
+import { List as ImmutableList } from 'immutable';
+import { makeGetStatus, regexFromFilters, toServerSideType } from 'flavours/glitch/selectors';
 import {
   replyCompose,
   mentionCompose,
@@ -26,6 +27,7 @@ import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
 import { showAlertForError } from '../actions/alerts';
+import AccountContainer from 'flavours/glitch/containers/account_container';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -36,7 +38,48 @@ const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
+  unfilterConfirm: { id: 'confirmations.unfilter.confirm', defaultMessage: 'Show' },
 });
+
+class SpoilerMachin extends React.PureComponent {
+  state = {
+    hidden: true,
+  }
+
+  handleSpoilerClick = () => {
+    this.setState({ hidden: !this.state.hidden });
+  }
+
+  render () {
+    const { spoilerText, children } = this.props;
+    const { hidden } = this.state;
+
+      const toggleText = hidden ?
+        <FormattedMessage
+          id='status.show_more'
+          defaultMessage='Show more'
+          key='0'
+        /> :
+        <FormattedMessage
+          id='status.show_less'
+          defaultMessage='Show less'
+          key='0'
+        />;
+
+    return ([
+      <p className='spoiler__text'>
+        {spoilerText}
+        {' '}
+        <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
+          {toggleText}
+        </button>
+      </p>,
+      <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
+        {children}
+      </div>
+    ]);
+  }
+}
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -69,7 +112,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onReply (status, router) {
     dispatch((_, getState) => {
@@ -187,6 +230,33 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         dispatch(initReport(account, status));
       },
     }));
+  },
+
+  onUnfilter (status, onConfirm) {
+    dispatch((_, getState) => {
+      let state = getState();
+      const serverSideType = toServerSideType(contextType);
+      const enabledFilters = state.get('filters', ImmutableList()).filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date()))).toArray();
+      const searchIndex = status.get('search_index');
+      const matchingFilters = enabledFilters.filter(filter => regexFromFilters([filter]).test(searchIndex));
+      dispatch(openModal('CONFIRM', {
+        message: [
+          <FormattedMessage id='confirmations.unfilter' defaultMessage='Information about this filtered toot' />,
+          <div className='filtered-status-info'>
+            <SpoilerMachin spoilerText='Author'>
+              <AccountContainer id={status.getIn(['account', 'id'])} />
+            </SpoilerMachin>
+            <SpoilerMachin spoilerText='Matching filters'>
+              <ul>
+                {matchingFilters.map(filter => <li>{filter.get('phrase')}</li>)}
+              </ul>
+            </SpoilerMachin>
+          </div>
+        ],
+        confirm: intl.formatMessage(messages.unfilterConfirm),
+        onConfirm: onConfirm,
+      }));
+    });
   },
 
   onReport (status) {

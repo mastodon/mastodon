@@ -20,7 +20,7 @@ export const makeGetAccount = () => {
   });
 };
 
-const toServerSideType = columnType => {
+export const toServerSideType = columnType => {
   switch (columnType) {
   case 'home':
   case 'notifications':
@@ -39,7 +39,7 @@ const toServerSideType = columnType => {
 const escapeRegExp = string =>
   string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 
-const regexFromFilters = filters => {
+export const regexFromFilters = filters => {
   if (filters.size === 0) {
     return null;
   }
