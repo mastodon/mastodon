@@ -34,7 +34,7 @@ describe WellKnown::NodeInfoController, type: :controller do
       expect(json_response.keys.include?('protocols')).to be true
       expect(json_response.keys.include?('openRegistrations')).to be true
       expect(json_response.keys.include?('usage')).to be true
-      expect(json_response.keys.include?('metaData')).to be true
+      expect(json_response.keys.include?('metadata')).to be true
     end
   end
 end
