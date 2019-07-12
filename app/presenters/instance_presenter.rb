@@ -12,10 +12,6 @@ class InstancePresenter
     to: Setting
   )
 
-  def active_count(timespan: Time.zone.now - 1.month..Time.zone.now)
-    Status.select('distinct (account_id)').where(local: true, created_at: timespan).count
-  end
-
   def contact_account
     Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
   end
@@ -26,6 +22,10 @@ class InstancePresenter
 
   def active_user_count
     Rails.cache.fetch('active_user_count') { Redis.current.pfcount(*(0..3).map { |i| "activity:logins:#{i.weeks.ago.utc.to_date.cweek}" }) }
+  end
+
+  def active_user_count_month(months: 6)
+    Rails.cache.fetch("active_user_count_month_#{months}") { Redis.current.pfcount(*(0..months).map { |i| "activity:logins_month:#{i.months.ago.utc.to_date.cweek}" }) }
   end
 
   def status_count

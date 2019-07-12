@@ -14,8 +14,8 @@ class NodeInfoSerializer < ActiveModel::Serializer
     {
       users: {
         total: instance_presenter.user_count,
-        activeHalfyear: instance_presenter.active_count(timespan: Time.zone.now - 6.months..Time.zone.now),
-        activeMonth: instance_presenter.active_count,
+        activeHalfyear: instance_presenter.active_user_count_month,
+        activeMonth: instance_presenter.active_user_count,
       },
       localPosts: instance_presenter.status_count,
     }
