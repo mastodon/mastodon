@@ -9,7 +9,13 @@ bn:
       inactive: আনার নিবন্ধনটি এখনো চালু করা হয়নি। 
       invalid: ভুল %{authentication_keys} বা পাসওয়ার্ড ।
     mailer:
+      reconfirmation_instructions:
+        title: আপনার ইমেইলটি নিশ্চিত করুন
       reset_password_instructions:
-        title: পাসওয়ার্ড বদলাতে
+        action: পাসওয়ার্ড বদলান
+        explanation: আপনি আপনার নিবন্ধনের জন্য নতুন পাসওয়ার্ড চেয়েছেন।
+        extra: আপনি যদি এটা না চেয়ে থাকেন, এই ইমেইলটি উপেক্ষা করুন। উপরের লিংকটিতে না গেলে আপনার পাসওয়ার্ড বদলাবে না।
+        subject: 'মাস্টাডন: পাসওয়ার্ড বদলানোর নির্দেশনা'
+        title: পাসওয়ার্ড বদলানো
     registrations:
       signed_up: স্বাগতম! আপনার নিবন্ধনটি সঠিকভাবে হয়েছে।
