@@ -41,8 +41,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def stats
     {
-      user_count: instance_presenter.user_count,
-      status_count: instance_presenter.status_count,
+      user_count: 0,
+      status_count: 0,
       domain_count: instance_presenter.domain_count,
     }
   end

@@ -129,13 +129,11 @@ module Mastodon
       stats.compact!
 
       total_domains = stats.size
-      total_users   = stats.reduce(0) { |sum, (_key, val)| val.is_a?(Hash) && val['stats'].is_a?(Hash) ? sum + val['stats']['user_count'].to_i : sum }
       total_active  = stats.reduce(0) { |sum, (_key, val)| val.is_a?(Hash) && val['activity'].is_a?(Array) && val['activity'].size > 2 && val['activity'][1].is_a?(Hash) ? sum + val['activity'][1]['logins'].to_i : sum }
       total_joined  = stats.reduce(0) { |sum, (_key, val)| val.is_a?(Hash) && val['activity'].is_a?(Array) && val['activity'].size > 2 && val['activity'][1].is_a?(Hash) ? sum + val['activity'][1]['registrations'].to_i : sum }
 
       say("Visited #{processed.value} domains, #{failed.value} failed (#{(Time.now.to_f - start_at).round}s elapsed)", :green)
       say("Total servers: #{total_domains}", :green)
-      say("Total registered: #{total_users}", :green)
       say("Total active last week: #{total_active}", :green)
       say("Total joined last week: #{total_joined}", :green)
     end

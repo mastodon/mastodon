@@ -60,22 +60,6 @@ describe InstancePresenter do
     end
   end
 
-  describe "user_count" do
-    it "returns the number of site users" do
-      Rails.cache.write 'user_count', 123
-
-      expect(instance_presenter.user_count).to eq(123)
-    end
-  end
-
-  describe "status_count" do
-    it "returns the number of local statuses" do
-      Rails.cache.write 'local_status_count', 234
-
-      expect(instance_presenter.status_count).to eq(234)
-    end
-  end
-
   describe "domain_count" do
     it "returns the number of known domains" do
       Rails.cache.write 'distinct_domain_count', 345

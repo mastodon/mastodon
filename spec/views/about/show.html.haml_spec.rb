@@ -22,8 +22,6 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
       thumbnail: nil,
       hero: nil,
       mascot: nil,
-      user_count: 420,
-      status_count: 69,
       active_user_count: 420,
       contact_account: nil,
       sample_accounts: []
