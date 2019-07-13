@@ -45,6 +45,7 @@
 #  also_known_as           :string           is an Array
 #  silenced_at             :datetime
 #  suspended_at            :datetime
+#  trust_level             :integer
 #
 
 class Account < ApplicationRecord
@@ -61,6 +62,11 @@ class Account < ApplicationRecord
   include Paginable
   include AccountCounters
   include DomainNormalizable
+
+  TRUST_LEVELS = {
+    untrusted: 0,
+    trusted: 1,
+  }.freeze
 
   enum protocol: [:ostatus, :activitypub]
 
@@ -163,6 +169,10 @@ class Account < ApplicationRecord
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
   end
 
+  def trust_level
+    self[:trust_level] || 0
+  end
+
   def refresh!
     ResolveAccountService.new.call(acct) unless local?
   end
@@ -171,21 +181,19 @@ class Account < ApplicationRecord
     silenced_at.present?
   end
 
-  def silence!(date = nil)
-    date ||= Time.now.utc
+  def silence!(date = Time.now.utc)
     update!(silenced_at: date)
   end
 
   def unsilence!
-    update!(silenced_at: nil)
+    update!(silenced_at: nil, trust_level: trust_level == TRUST_LEVELS[:untrusted] ? TRUST_LEVELS[:trusted] : trust_level)
   end
 
   def suspended?
     suspended_at.present?
   end
 
-  def suspend!(date = nil)
-    date ||= Time.now.utc
+  def suspend!(date = Time.now.utc)
     transaction do
       user&.disable! if local?
       update!(suspended_at: date)
