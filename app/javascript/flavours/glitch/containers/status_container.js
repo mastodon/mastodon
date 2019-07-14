@@ -28,6 +28,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
 import { showAlertForError } from '../actions/alerts';
 import AccountContainer from 'flavours/glitch/containers/account_container';
+import Spoilers from '../components/spoilers';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -40,46 +41,6 @@ const messages = defineMessages({
   blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
   unfilterConfirm: { id: 'confirmations.unfilter.confirm', defaultMessage: 'Show' },
 });
-
-class SpoilerMachin extends React.PureComponent {
-  state = {
-    hidden: true,
-  }
-
-  handleSpoilerClick = () => {
-    this.setState({ hidden: !this.state.hidden });
-  }
-
-  render () {
-    const { spoilerText, children } = this.props;
-    const { hidden } = this.state;
-
-      const toggleText = hidden ?
-        <FormattedMessage
-          id='status.show_more'
-          defaultMessage='Show more'
-          key='0'
-        /> :
-        <FormattedMessage
-          id='status.show_less'
-          defaultMessage='Show less'
-          key='0'
-        />;
-
-    return ([
-      <p className='spoiler__text'>
-        {spoilerText}
-        {' '}
-        <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
-          {toggleText}
-        </button>
-      </p>,
-      <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
-        {children}
-      </div>
-    ]);
-  }
-}
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -243,14 +204,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
         message: [
           <FormattedMessage id='confirmations.unfilter' defaultMessage='Information about this filtered toot' />,
           <div className='filtered-status-info'>
-            <SpoilerMachin spoilerText='Author'>
+            <Spoilers spoilerText='Author'>
               <AccountContainer id={status.getIn(['account', 'id'])} />
-            </SpoilerMachin>
-            <SpoilerMachin spoilerText='Matching filters'>
+            </Spoilers>
+            <Spoilers spoilerText='Matching filters'>
               <ul>
                 {matchingFilters.map(filter => <li>{filter.get('phrase')}</li>)}
               </ul>
-            </SpoilerMachin>
+            </Spoilers>
           </div>
         ],
         confirm: intl.formatMessage(messages.unfilterConfirm),
