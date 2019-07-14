@@ -1,0 +1,32 @@
+- content_for :page_title do
+  = t('domain_blocks.title', instance: site_hostname)
+
+.grid
+  .column-0
+    .box-widget.rich-formatting
+      %h2= t('domain_blocks.blocked_domains')
+      %p= t('domain_blocks.description', instance: site_hostname)
+      .table-wrapper
+        %table.table
+          %thead
+            %tr
+              %th= t('domain_blocks.domain')
+              %th= t('domain_blocks.severity')
+          %tbody
+            - if @blocks.empty?
+              %tr
+                %td{ colspan: 2 }= t('domain_blocks.no_domain_blocks')
+            - else
+              - @blocks.each do |block|
+                %tr
+                  %td= block.domain
+                  %td= block_severity_text(block)
+      %h2= t('domain_blocks.severity_legend.title')
+      %h3= t('domain_blocks.media_block')
+      %p= t('domain_blocks.severity_legend.media_block')
+      %h3= t('domain_blocks.silence')
+      %p= t('domain_blocks.severity_legend.silence')
+      %h3= t('domain_blocks.suspension')
+      %p= t('domain_blocks.severity_legend.suspension')
+  .column-1
+    = render 'application/sidebar'

@@ -628,6 +628,21 @@ en:
     people:
       one: "%{count} person"
       other: "%{count} people"
+  domain_blocks:
+    blocked_domains: Blocked domains
+    description: "This is a list of servers that %{instance} inhibits federation with in various ways. There are different levels of inhibition based on severity."
+    domain: Domain
+    media_block: Media block
+    no_domain_blocks: (No domain blocks)
+    severity: Severity
+    severity_legend:
+      media_block: Media files from the server are not stored and therefore not displayed. Can be coupled with the sandbox severity.
+      silence: Accounts from the server can still be found, followed and interacted with, however, toots from the server do not appear in the public timelines, and notifications don't reach local users unless that user follows the author.
+      suspension: No content from the server is stored or displayed, no communication with the server is possible.
+      title: Severity legend
+    silence: Sandbox
+    suspension: Suspension
+    title: "%{instance} List of blocked instances"
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:
