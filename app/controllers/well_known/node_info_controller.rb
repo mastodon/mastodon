@@ -4,8 +4,6 @@ module WellKnown
   class NodeInfoController < ActionController::Base
     include RoutingHelper
 
-    before_action { response.headers['Vary'] = 'Accept' }
-
     def index
       render json: ActiveModelSerializers::SerializableResource.new({}, serializer: NodeDiscoverySerializer)
     end
