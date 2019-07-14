@@ -40,6 +40,8 @@ const messages = defineMessages({
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
   unfilterConfirm: { id: 'confirmations.unfilter.confirm', defaultMessage: 'Show' },
+  author: { id: 'confirmations.unfilter.author', defaultMessage: 'Author' },
+  matchingFilters: { id: 'confirmations.unfilter.filters', defaultMessage: 'Matching {count, plural, one {filter} other {filters}}' },
 });
 
 const makeMapStateToProps = () => {
@@ -204,10 +206,10 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
         message: [
           <FormattedMessage id='confirmations.unfilter' defaultMessage='Information about this filtered toot' />,
           <div className='filtered-status-info'>
-            <Spoilers spoilerText='Author'>
+            <Spoilers spoilerText={intl.formatMessage(messages.author)}>
               <AccountContainer id={status.getIn(['account', 'id'])} />
             </Spoilers>
-            <Spoilers spoilerText='Matching filters'>
+            <Spoilers spoilerText={intl.formatMessage(messages.matchingFilters, {count: matchingFilters.size})}>
               <ul>
                 {matchingFilters.map(filter => <li>{filter.get('phrase')}</li>)}
               </ul>
