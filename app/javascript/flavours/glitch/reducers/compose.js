@@ -182,6 +182,7 @@ function continueThread (state, status) {
     map.set('privacy', status.visibility);
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
+    map.set('poll', null);
     map.set('idempotencyKey', uuid());
     map.set('focusDate', new Date());
     map.set('caretPosition', null);
