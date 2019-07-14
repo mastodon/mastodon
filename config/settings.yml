@@ -64,6 +64,7 @@ defaults: &defaults
   peers_api_enabled: true
   show_known_fediverse_at_about_page: true
   spam_check_enabled: true
+  show_domain_blocks: 'disabled'
 
 development:
   <<: *defaults

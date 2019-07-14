@@ -30,6 +30,7 @@ class Form::AdminSettings
     mascot
     spam_check_enabled
     trends
+    show_domain_blocks
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -60,6 +61,7 @@ class Form::AdminSettings
   validates :site_contact_email, :site_contact_username, presence: true
   validates :site_contact_username, existing_username: true
   validates :bootstrap_timeline_accounts, existing_username: { multiple: true }
+  validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }
 
   def initialize(_attributes = {})
     super
