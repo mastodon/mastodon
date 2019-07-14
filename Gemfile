@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.2'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.43', require: false
+gem 'aws-sdk-s3', '~> 1.45', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -117,7 +117,7 @@ group :test do
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
-  gem 'simplecov', '~> 0.16', require: false
+  gem 'simplecov', '~> 0.17', require: false
   gem 'webmock', '~> 3.6'
   gem 'parallel_tests', '~> 2.29'
 end
@@ -132,7 +132,7 @@ group :development do
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.72', require: false
-  gem 'rubocop-rails', '~> 2.0', require: false
+  gem 'rubocop-rails', '~> 2.2', require: false
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
