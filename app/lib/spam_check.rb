@@ -81,7 +81,7 @@ class SpamCheck
   private
 
   def disabled?
-    ENV['DISABLE_SPAM_CHECK'] == 'true'
+    !Setting.antispam_enabled
   end
 
   def remove_mentions(text)
