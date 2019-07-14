@@ -849,4 +849,13 @@
     margin-left: 12px;
     list-style: disc inside;
   }
+
+  .filtered-status-edit-link {
+    color: $action-button-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline
+    }
+  }
 }

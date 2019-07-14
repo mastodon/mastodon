@@ -26,9 +26,11 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
+import { filterEditLink } from 'flavours/glitch/util/backend_links';
 import { showAlertForError } from '../actions/alerts';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Spoilers from '../components/spoilers';
+import Icon from 'flavours/glitch/components/icon';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -42,6 +44,7 @@ const messages = defineMessages({
   unfilterConfirm: { id: 'confirmations.unfilter.confirm', defaultMessage: 'Show' },
   author: { id: 'confirmations.unfilter.author', defaultMessage: 'Author' },
   matchingFilters: { id: 'confirmations.unfilter.filters', defaultMessage: 'Matching {count, plural, one {filter} other {filters}}' },
+  editFilter: { id: 'confirmations.unfilter.edit_filter', defaultMessage: 'Edit filter' },
 });
 
 const makeMapStateToProps = () => {
@@ -211,7 +214,22 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
             </Spoilers>
             <Spoilers spoilerText={intl.formatMessage(messages.matchingFilters, {count: matchingFilters.size})}>
               <ul>
-                {matchingFilters.map(filter => <li>{filter.get('phrase')}</li>)}
+                {matchingFilters.map(filter => (
+                  <li>
+                    {filter.get('phrase')}
+                    {!!filterEditLink && ' '}
+                    {!!filterEditLink && (
+                      <a
+                        target='_blank'
+                        className='filtered-status-edit-link'
+                        title={intl.formatMessage(messages.editFilter)}
+                        href={filterEditLink(filter.get('id'))}
+                      >
+                        <Icon icon='pencil' />
+                      </a>
+                    )}
+                  </li>
+                ))}
               </ul>
             </Spoilers>
           </div>
