@@ -506,9 +506,10 @@ class Status extends ImmutablePureComponent {
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
+            {settings.get('filtering_behavior') !== 'upstream' && ' '}
             {settings.get('filtering_behavior') !== 'upstream' && (
               <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
-                <FormattedMessage id='status.show_filter_reason' defaultMessage='Show why' />
+                <FormattedMessage id='status.show_filter_reason' defaultMessage='(show why)' />
               </button>
             )}
           </div>

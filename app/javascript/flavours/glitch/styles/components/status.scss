@@ -998,14 +998,13 @@ a.status-card.compact:hover {
 }
 
 .status__wrapper--filtered__button {
-  display: block;
-  font-size: 15px;
-  line-height: 20px;
+  display: inline;
   color: lighten($ui-highlight-color, 8%);
   border: 0;
   background: transparent;
   padding: 0;
-  padding-top: 8px;
+  font-size: inherit;
+  line-height: inherit;
 
   &:hover,
   &:active {
