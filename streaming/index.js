@@ -672,7 +672,7 @@ const attachServerWithConfig = (server, onSuccess) => {
       }
     });
   } else {
-    server.listen(+process.env.PORT || 4000, process.env.BIND || '0.0.0.0', () => {
+    server.listen(+process.env.PORT || 4000, process.env.BIND || '127.0.0.1', () => {
       if (onSuccess) {
         onSuccess(`${server.address().address}:${server.address().port}`);
       }
