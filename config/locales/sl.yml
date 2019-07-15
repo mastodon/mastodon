@@ -1,6 +1,7 @@
+---
 sl:
   about:
-    about_hashtag_html: 'To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediverse-u.'
+    about_hashtag_html: To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediverse-u.
     about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
     about_this: O Mastodonu
     active_count_after: dejaven
@@ -29,28 +30,28 @@ sl:
     server_stats: 'Statistika strežnika:'
     source_code: Izvorna koda
     status_count_after:
-      one: stanje
-      two: stanja
       few: stanja
+      one: stanje
       other: stanj
+      two: stanja
     status_count_before: Ki so avtorji
     tagline: Sledite prijateljem in odkrijte nove
     terms: Pogoji storitve
     user_count_after:
-      one: uporabnik
-      two: uporabnika
       few: uporabniki
+      one: uporabnik
       other: uporabnikov
+      two: uporabnika
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
   accounts:
     choices_html: "%{name} izbire:"
     follow: Sledi
     followers:
-      one: Sledilec
-      two: Sledilca
       few: Sledilci
+      one: Sledilec
       other: Sledilcev
+      two: Sledilca
     following: Sledim
     joined: Se je pridružil na %{date}
     last_active: zadnja dejavnost
@@ -64,10 +65,10 @@ sl:
     pin_errors:
       following: Verjetno že sledite osebi, ki jo želite potrditi
     posts:
-      one: Tut
-      two: Tuta
       few: Tuti
+      one: Tut
       other: Tutov
+      two: Tuta
     posts_tab_heading: Tuti
     posts_with_replies: Tuti in odgovori
     reserved_username: Uporabniško ime je zasedeno
@@ -298,10 +299,10 @@ sl:
         suspend: suspendirani
       show:
         affected_accounts:
-          one: En račun v bazi podatkov je prizadet
-          two: "%{count} računa v bazi podatkov so prizadeta"
           few: "%{count} računi v bazi podatkov so prizadeti"
+          one: En račun v bazi podatkov je prizadet
           other: "%{count} računov v bazi podatkov je prizadetih"
+          two: "%{count} računa v bazi podatkov so prizadeta"
         retroactive:
           silence: Prekliči utišanje za vse obstoječe račune iz te domene
           suspend: Aktiviraj vse obstoječe račune iz te domene
@@ -320,15 +321,15 @@ sl:
       title: Črni seznam e-pošt
     followers:
       back_to_account: Nazaj na račun
-      title: "Sledilci od %{acct}"
+      title: Sledilci od %{acct}
     instances:
       by_domain: Domena
       delivery_available: Na voljo je dostava
       known_accounts:
-        one: "%{count} znan račun"
-        two: "%{count} znana računa"
         few: "%{count} znani računi"
+        one: "%{count} znan račun"
         other: "%{count} znanih računov"
+        two: "%{count} znana računa"
       moderation:
         all: Vse
         limited: Omejeno
@@ -348,11 +349,11 @@ sl:
         title: Filter
       title: Povabila
     pending_accounts:
-      title: (%{count}) računov na čakanju
+      title: "(%{count}) računov na čakanju"
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
-      description_html: <strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih tutov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
+      description_html: "<strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih tutov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih."
       disable: Onemogoči
       disabled: Onemogočeno
       enable: Omogoči
@@ -502,7 +503,7 @@ sl:
     new_report:
       body: "%{reporter} je prijavil %{target}"
       body_remote: Nekdo iz %{domain} je prijavil %{target}
-      subject: 'Nove prijave za %{instance} (#%{id})'
+      subject: Nove prijave za %{instance} (#%{id})
   appearance:
     advanced_web_interface: Napredni spletni vmesnik
     advanced_web_interface_hint: 'Če želite uporabiti celotno širino zaslona, vam napredni spletni vmesnik omogoča, da si nastavite več različnih stolpcev in da si hkrati ogledate toliko informacij, kot želite: domačo stran, obvestila, združeno časovnico, poljubno število seznamov in ključnikov.'
@@ -590,10 +591,10 @@ sl:
     explore_mastodon: Razišči %{title}
     how_to_enable: Trenutno niste vključeni v imenik. Spodaj se lahko vključite. Uporabite ključnike v vaši biografiji, da boste navedeni pod specifične ključnike!
     people:
-      one: "%{count} oseba"
-      two: "%{count} osebi"
       few: "%{count} osebe"
+      one: "%{count} oseba"
       other: "%{count} oseb"
+      two: "%{count} osebi"
   errors:
     '403': Nimate dovoljenja za ogled te strani.
     '404': Iskana stran ne obstaja.
@@ -655,10 +656,10 @@ sl:
     order_by: Razvrsti po
     save_changes: Shrani spremembe
     validation_errors:
-      one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
-      two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
       few: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napake
+      one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
       other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
+      two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
   html_validator:
     invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
   identity_proofs:
@@ -708,10 +709,10 @@ sl:
     generate: Ustvari
     invited_by: 'Povabil/a vas je:'
     max_uses:
-      one: 1 uporaba
-      two: "%{count} uporabi"
       few: "%{count} uporabe"
+      one: 1 uporaba
       other: "%{count} uporab"
+      two: "%{count} uporabi"
     max_uses_prompt: Brez omejitve
     prompt: Ustvarite in delite povezave z drugimi, da omogočite dostop do tega strežnika
     table:
@@ -738,18 +739,18 @@ sl:
       body: Tukaj je kratek povzetek sporočil, ki ste jih zamudili od vašega zadnjega obiska v %{since}
       mention: "%{name} vas je omenil/a v:"
       new_followers_summary:
-        one: Prav tako ste pridobili enega novega sledilca, ko ste bili odsotni! Juhu!
-        two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
         few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
+        one: Prav tako ste pridobili enega novega sledilca, ko ste bili odsotni! Juhu!
         other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
+        two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
       subject:
-        one: "1 novo obvestilo od vašega zadnjega obiska \U0001F418"
-        two: "%{count} novi obvestili od vašega zadnjega obiska \U0001F418"
         few: "%{count} nova obvestila od vašega zadnjega obiska \U0001F418"
+        one: "1 novo obvestilo od vašega zadnjega obiska \U0001F418"
         other: "%{count} novih obvestil od vašega zadnjega obiska \U0001F418"
+        two: "%{count} novi obvestili od vašega zadnjega obiska \U0001F418"
       title: V vaši odsotnosti...
     favourite:
-      body: '%{name} je vzljubil/a vaše stanje:'
+      body: "%{name} je vzljubil/a vaše stanje:"
       subject: "%{name} je vzljubil/a vaše stanje"
       title: Novo priljubljeno
     follow:
@@ -763,11 +764,11 @@ sl:
       title: Nova prošnja za sledenje
     mention:
       action: Odgovori
-      body: '%{name} vas je omenil/a v:'
-      subject: '%{name} vas je omenil/a'
+      body: "%{name} vas je omenil/a v:"
+      subject: "%{name} vas je omenil/a"
       title: Nova omemba
     reblog:
-      body: '%{name} je spodbudil/a vaše stanje:'
+      body: "%{name} je spodbudil/a vaše stanje:"
       subject: "%{name} je spodbudil/a vaše stanje"
       title: Nova spodbuda
   number:

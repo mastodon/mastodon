@@ -1,6 +1,7 @@
+---
 cs:
   about:
-    about_hashtag_html: 'Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.'
+    about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentralizovaná jako e-mail.
     about_this: O tomto serveru
     active_count_after: aktivních
@@ -29,27 +30,27 @@ cs:
     server_stats: 'Statistika serveru:'
     source_code: Zdrojový kód
     status_count_after:
-      one: toot
       few: tooty
       many: tootů
+      one: toot
       other: tootů
     status_count_before: Kteří napsali
     tagline: Sledujte své přátele a objevujte nové
     terms: Podmínky používání
     user_count_after:
-      one: uživatel
       few: uživatelé
       many: uživatelů
+      one: uživatel
       other: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
-    choices_html: "Volby uživatele %{name}:"
+    choices_html: 'Volby uživatele %{name}:'
     follow: Sledovat
     followers:
-      one: Sledující
       few: Sledující
       many: Sledujících
+      one: Sledující
       other: Sledujících
     following: Sledovaných
     joined: Připojil/a se v %{date}
@@ -64,9 +65,9 @@ cs:
     pin_errors:
       following: Musíte již sledovat osobu, kterou chcete podpořit
     posts:
-      one: Toot
       few: Tooty
       many: Tootů
+      one: Toot
       other: Tootů
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
@@ -282,7 +283,7 @@ cs:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
-          desc_html: "Funkce <strong>Utišit</strong> zneviditelní příspěvky z účtu komukoliv, kdo jej nesleduje. Funkce <strong>Pozastavit</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>."
+          desc_html: Funkce <strong>Utišit</strong> zneviditelní příspěvky z účtu komukoliv, kdo jej nesleduje. Funkce <strong>Pozastavit</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>.
           noop: Žádné
           silence: Utišit
           suspend: Pozastavit
@@ -298,9 +299,9 @@ cs:
         suspend: pozastaveno
       show:
         affected_accounts:
-          one: Jeden účet v databázi byl ovlivněn
           few: "%{count} účty v databázi byly ovlivněny"
           many: "%{count} účtů v databázi bylo ovlivněno"
+          one: Jeden účet v databázi byl ovlivněn
           other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
           silence: Odtišit existující ovlivněné účty z této domény
@@ -320,14 +321,14 @@ cs:
       title: Černá listina e-mailů
     followers:
       back_to_account: Zpět na účet
-      title: "Sledující uživatele %{acct}"
+      title: Sledující uživatele %{acct}
     instances:
       by_domain: Doména
       delivery_available: Doručení je k dispozici
       known_accounts:
-        one: "%{count} známý účet"
         few: "%{count} známé účty"
         many: "%{count} známých účtů"
+        one: "%{count} známý účet"
         other: "%{count} známých účtů"
       moderation:
         all: Všechny
@@ -352,7 +353,7 @@ cs:
     relays:
       add_new: Přidat nový most
       delete: Smazat
-      description_html: <strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech.
+      description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
       disable: Zakázat
       disabled: Zakázáno
       enable: Povolit
@@ -502,7 +503,7 @@ cs:
     new_report:
       body: "%{reporter} nahlásil/a uživatele %{target}"
       body_remote: Někdo z %{domain} nahlásil uživatele %{target}
-      subject: 'Nové nahlášení pro %{instance} (#%{id})'
+      subject: Nové nahlášení pro %{instance} (#%{id})
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
@@ -590,9 +591,9 @@ cs:
     explore_mastodon: Prozkoumejte %{title}
     how_to_enable: Aktuálně nejste přihlášen/a do adresáře. Přihlásit se můžete níže. Použijte ve svém popisu profilu hashtagy, abyste mohl/a být uveden/a pod konkrétními hashtagy!
     people:
-      one: "%{count} člověk"
       few: "%{count} lidé"
       many: "%{count} lidí"
+      one: "%{count} člověk"
       other: "%{count} lidí"
   errors:
     '403': Nemáte povolení zobrazit tuto stránku.
@@ -655,9 +656,9 @@ cs:
     order_by: Seřadit od
     save_changes: Uložit změny
     validation_errors:
-      one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       few: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyby níže
       many: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
+      one: Něco ještě není úplně v pořádku! Prosím zkontrolujte chybu níže
       other: Něco ještě není úplně v pořádku! Prosím zkontrolujte %{count} chyb níže
   html_validator:
     invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
@@ -708,9 +709,9 @@ cs:
     generate: Vygenerovat
     invited_by: 'Byl/a jste pozván/a uživatelem:'
     max_uses:
-      one: 1 použití
       few: "%{count} použití"
       many: "%{count} použití"
+      one: 1 použití
       other: "%{count} použití"
     max_uses_prompt: Bez limitu
     prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tento server
@@ -738,14 +739,14 @@ cs:
       body: Zde najdete stručný souhrn zpráv, které jste zmeškal/a od vaší poslední návštěvy %{since}
       mention: "%{name} vás zmínil/a v:"
       new_followers_summary:
-        one: Navíc jste získal/a jednoho nového sledujícího, zatímco jste byl/a pryč! Hurá!
         few: Navíc jste získal/a %{count} nové sledující, zatímco jste byl/a pryč! Skvělé!
         many: Navíc jste získal/a %{count} nových sledujících, zatímco jste byl/a pryč! Úžasné!
+        one: Navíc jste získal/a jednoho nového sledujícího, zatímco jste byl/a pryč! Hurá!
         other: Navíc jste získal/a %{count} nových sledujících, zatímco jste byl/a pryč! Úžasné!
       subject:
-        one: "1 nové oznámení od vaší poslední návštěvy \U0001F418"
         few: "%{count} nová oznámení od vaší poslední návštěvy \U0001F418"
         many: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+        one: "1 nové oznámení od vaší poslední návštěvy \U0001F418"
         other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší nepřítomnosti…
     favourite:
@@ -899,21 +900,21 @@ cs:
     attached:
       description: 'Přiloženo: %{attached}'
       image:
-        one: "%{count} obrázek"
         few: "%{count} obrázky"
         many: "%{count} obrázků"
+        one: "%{count} obrázek"
         other: "%{count} obrázků"
       video:
-        one: "%{count} video"
         few: "%{count} videa"
         many: "%{count} videí"
+        one: "%{count} video"
         other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
     disallowed_hashtags:
-      one: 'obsahoval nepovolený hashtag: %{tags}'
       few: 'obsahoval nepovolené hashtagy: %{tags}'
       many: 'obsahoval nepovolené hashtagy: %{tags}'
+      one: 'obsahoval nepovolený hashtag: %{tags}'
       other: 'obsahoval nepovolené hashtagy: %{tags}'
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
@@ -925,14 +926,14 @@ cs:
       reblog: Nelze připnout boost
     poll:
       total_votes:
-        one: "%{count} hlas"
         few: "%{count} hlasy"
         many: "%{count} hlasů"
+        one: "%{count} hlas"
         other: "%{count} hlasů"
       vote: Hlasovat
     show_more: Zobrazit více
     sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
-    title: '%{name}: „%{quote}“'
+    title: "%{name}: „%{quote}“"
     visibilities:
       private: Pouze pro sledující
       private_long: Zobrazit pouze sledujícím
@@ -1026,7 +1027,7 @@ cs:
       <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 7. března 2018.</p>
 
       <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad soukromí Discourse</a>.</p>
-    title: "Podmínky používání a zásady soukromí %{instance}"
+    title: Podmínky používání a zásady soukromí %{instance}
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)
