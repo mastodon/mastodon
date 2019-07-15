@@ -1,7 +1,6 @@
----
 kk:
   about:
-    about_hashtag_html: Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.
+    about_hashtag_html: 'Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.'
     about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
     about_this: Туралы
     administered_by: 'Админ:'
@@ -42,8 +41,8 @@ kk:
     moved_html: "%{name} мына жерге көшті %{new_profile_link}:"
     network_hidden: Бұл ақпарат қолжетімді емес
     nothing_here: Бұл жерде ештеңе жоқ!
-    people_followed_by: "%{name} жазылған адамдар"
-    people_who_follow: "%{name} атты қолданушының оқырмандары"
+    people_followed_by: '%{name} жазылған адамдар'
+    people_who_follow: '%{name} атты қолданушының оқырмандары'
     pin_errors:
       following: Оқығыңыз келген адамға жазылуыңыз керек
     posts:
@@ -267,11 +266,11 @@ kk:
       show:
         affected_accounts:
           one: Дерекқорда бір тіркелгі қозғалды
-          other: дерекқордағы %{count} аккаунт қозғалған
+          other: "дерекқордағы %{count} аккаунт қозғалған"
         retroactive:
           silence: Осы домендегі бар тіркелгілерді жою
           suspend: Осы домендегі бар барлық тіркелгілерді тоқтатыңыз
-        title: "%{domain} доменіндегі блокты алып таста"
+        title: '%{domain} доменіндегі блокты алып таста'
         undo: Қайтару
       undo: Домен блокын қайтып алу
     email_domain_blocks:
@@ -455,7 +454,7 @@ kk:
     new_report:
       body: "%{reporter} has rеported %{target}"
       body_remote: Someone from %{domain} has rеported %{target}
-      subject: New rеport for %{instance} (#%{id})
+      subject: 'New rеport for %{instance} (#%{id})'
   application_mailer:
     notification_preferences: Change e-mail prеferences
     settings: 'Change e-mail preferеnces: %{link}'
@@ -529,7 +528,7 @@ kk:
     enabled: Каталогтағы тізімге ендіңіз.
     enabled_but_waiting: Каталогта көрінгіңіз келетінін түсінеміз, бірақ ол үшін кем дегенде (%{min_followers}) оқырманыңыз болуы қажет.
     explanation: Қолданушыларды қызығушылықтарына қарай реттеу
-    explore_mastodon: "%{title} шарлау"
+    explore_mastodon: '%{title} шарлау'
     how_to_enable: Сіз қазіргі уақытта каталогқа қосылмағансыз. Төменде қосылуға болады. Арнайы био мәтініндегі хэштегтерді қолданыңыз!
     people:
       one: "%{count} адам"
@@ -697,9 +696,9 @@ kk:
       duration_too_long: тым ұзақ екен
       duration_too_short: тым аз екен
       expired: Сауалнама уақыты аяқталған
-      over_character_limit: "%{max} таңбадан артық болмайды"
+      over_character_limit: '%{max} таңбадан артық болмайды'
       too_few_options: бір жауаптан көп болуы керек
-      too_many_options: "%{max} жауаптан көп болмайды"
+      too_many_options: '%{max} жауаптан көп болмайды'
   preferences:
     other: Басқа
   remote_follow:
@@ -793,7 +792,7 @@ kk:
       other: 'рұқсат етілмеген хэштегтер: %{tags}'
     language_detection: Тілді өздігінен таңда
     open_in_web: Вебте ашу
-    over_character_limit: "%{max} максимум таңбадан асып кетті"
+    over_character_limit: '%{max} максимум таңбадан асып кетті'
     pin_errors:
       limit: Жабыстырылатын жазба саны максимумынан асты
       ownership: Біреудің жазбасы жабыстырылмайды
@@ -906,7 +905,7 @@ kk:
     mastodon-light: Mastodon (Ашық)
   two_factor_authentication:
     code_hint: Растау үшін түпнұсқалықты растау бағдарламасы арқылы жасалған кодты енгізіңіз
-    description_html: "<strong>екі факторлы түпнұсқалықты растауды</strong> қоссаңыз, кіру үшін сізге телефонға кіруіңізді талап етеді, сізге арнайы токен беріледі."
+    description_html: <strong>екі факторлы түпнұсқалықты растауды</strong> қоссаңыз, кіру үшін сізге телефонға кіруіңізді талап етеді, сізге арнайы токен беріледі.
     disable: Ажырату
     enable: Қосу
     enabled: Екі-факторлы авторизация қосылған
@@ -933,9 +932,9 @@ kk:
       review_server_policies: Сервер саясатын қарап шығыңыз
       subject:
         disable: Аккаунтыңыз %{acct} уақытша тоқтатылды
-        none: "%{acct} ескертуі"
-        silence: "%{acct} аккаунтыңыз шектеулі"
-        suspend: "%{acct} аккаунт тоқтатылды"
+        none: '%{acct} ескертуі'
+        silence: '%{acct} аккаунтыңыз шектеулі'
+        suspend: '%{acct} аккаунт тоқтатылды'
       title:
         disable: Аккаунт қатырылды
         none: Ескерту
