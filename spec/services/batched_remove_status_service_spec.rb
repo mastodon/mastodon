@@ -14,11 +14,8 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   before do
     allow(Redis.current).to receive_messages(publish: nil)
 
-    stub_request(:post, 'http://example.com/push').to_return(status: 200, body: '', headers: {})
-    stub_request(:post, 'http://example.com/salmon').to_return(status: 200, body: '', headers: {})
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
 
-    Fabricate(:subscription, account: alice, callback_url: 'http://example.com/push', confirmed: true, expires_at: 30.days.from_now)
     jeff.user.update(current_sign_in_at: Time.zone.now)
     jeff.follow!(alice)
     hank.follow!(alice)

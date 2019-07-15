@@ -30,9 +30,6 @@ module AccountAssociations
     has_many :media_attachments, dependent: :destroy
     has_many :polls, dependent: :destroy
 
-    # PuSH subscriptions
-    has_many :subscriptions, dependent: :destroy
-
     # Report relationships
     has_many :reports, dependent: :destroy, inverse_of: :account
     has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
