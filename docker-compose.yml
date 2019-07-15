@@ -58,7 +58,7 @@ services:
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: yarn start
+    command: BIND=0.0.0.0 node ./streaming
     networks:
       - external_network
       - internal_network
