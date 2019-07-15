@@ -21,7 +21,9 @@ class ResolveURLService < BaseService
     if equals_or_includes_any?(type, ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES)
       FetchRemoteAccountService.new.call(resource_url, body, protocol)
     elsif equals_or_includes_any?(type, ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
-      FetchRemoteStatusService.new.call(resource_url, body, protocol)
+      status = FetchRemoteStatusService.new.call(resource_url, body, protocol)
+      authorize_with @on_behalf_of, status, :show? unless status.nil?
+      status
     end
   end
 
