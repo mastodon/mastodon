@@ -28,18 +28,29 @@ class ActivityPub::DistributionWorker
   end
 
   def relayable?
-    @status.public_visibility?
+    @status.public_visibility? && signing_enabled?
+  end
+
+  def reply_forwardable?
+    @status.reply? && replied_to_account.local? && @status.distributable? && signing_enabled?
   end
 
   def inboxes
     # Deliver the status to all followers.
     # If the status is a reply to another local status, also forward it to that
     # status' authors' followers.
-    @inboxes ||= if @status.reply? && @status.thread.account.local? && @status.distributable?
-                   @account.followers.or(@status.thread.account.followers).inboxes
-                 else
-                   @account.followers.inboxes
-                 end
+
+    @inboxes ||= begin
+      if reply_forwardable?
+        @account.followers.or(replied_to_account.followers).inboxes
+      else
+        @account.followers.inboxes
+      end
+    end
+  end
+
+  def replied_to_account
+    @replied_to_account ||= @status.thread.account
   end
 
   def payload
