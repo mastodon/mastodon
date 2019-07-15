@@ -140,7 +140,7 @@ class Account < ApplicationRecord
   end
 
   def instance_actor?
-    id.zero?
+    id == -99
   end
 
   alias bot bot?
