@@ -139,6 +139,10 @@ class Account < ApplicationRecord
     %w(Application Service).include? actor_type
   end
 
+  def instance_actor?
+    id == 0
+  end
+
   alias bot bot?
 
   def bot=(val)
