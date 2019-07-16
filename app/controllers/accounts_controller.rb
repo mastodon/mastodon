@@ -40,8 +40,9 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
-        render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
+        render_cached_json(['activitypub', 'actor', (signed_request_account.present? || public_fetch_mode?) ? 'full' : 'minimal', @account], content_type: 'application/activity+json', public: public_fetch_mode?, fields: restrict_fields_to) do
+          ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
+        end
       end
     end
   end

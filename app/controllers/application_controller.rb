@@ -148,11 +148,12 @@ class ApplicationController < ActionController::Base
 
   def render_cached_json(cache_key, **options)
     options[:expires_in] ||= 3.minutes
+    fields                 = options.delete(:fields)
     cache_public           = options.key?(:public) ? options.delete(:public) : true
     content_type           = options.delete(:content_type) || 'application/json'
 
     data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
-      yield.to_json
+      yield.to_json fields: fields
     end
 
     expires_in options[:expires_in], public: cache_public
