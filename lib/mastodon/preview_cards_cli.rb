@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'tty-prompt'
 require_relative '../../config/boot'
 require_relative '../../config/environment'
 require_relative 'cli_helper'
@@ -38,6 +39,7 @@ module Mastodon
       With the --link option, delete only link-type preview cards.
     DESC
     def remove
+      prompt    = TTY::Prompt.new
       time_ago  = options[:days].days.ago
       queued    = 0
       processed = 0
@@ -48,6 +50,19 @@ module Mastodon
       scope     = scope.where.not(image_file_name: '')
       scope     = scope.where(type: :link) if options[:link]
       scope     = scope.where('updated_at < ?', time_ago)
+
+      if time_ago > 2.weeks.ago
+        prompt.say "\n"
+        prompt.say('The preview cards less than the past two weeks will not be re-acquired even when needed.')
+        prompt.say "\n"
+
+        unless prompt.yes?('Are you sure you want to delete the preview cards?', default: false)
+          prompt.say "\n"
+          prompt.warn 'Nothing execute. Bye!'
+          prompt.say "\n"
+          exit(1)
+        end
+      end
 
       if options[:background]
         scope.select(:id, :image_file_size).reorder(nil).find_in_batches do |preview_cards|
