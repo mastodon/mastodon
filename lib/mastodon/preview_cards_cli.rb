@@ -43,33 +43,21 @@ module Mastodon
       processed = 0
       size      = 0
       dry_run   = options[:dry_run] ? '(DRY RUN)' : ''
+      link      = options[:link] ? 'link-type ' : ''
+      scope     = PreviewCard.where.not(image_file_name: nil)
+      scope     = scope.where.not(image_file_name: '')
+      scope     = scope.where(type: :link) if options[:link]
+      scope     = scope.where('updated_at < ?', time_ago)
 
-      if options[:link] && options[:background]
-        PreviewCard.where.not(image_file_name: nil).where(type: :link).where('updated_at < ?', time_ago).select(:id, :image_file_size).reorder(nil).find_in_batches do |preview_cards|
-          queued += preview_cards.size
-          size   += preview_cards.reduce(0) { |sum, p| sum + (p.image_file_size || 0) }
-          Maintenance::UncachePreviewWorker.push_bulk(preview_cards.map(&:id)) unless options[:dry_run]
-        end
-
-      elsif options[:link] && !options[:background]
-        PreviewCard.where.not(image_file_name: nil).where(type: :link).where('updated_at < ?', time_ago).select(:id, :image_file_size).reorder(nil).find_in_batches do |preview_cards|
-          preview_cards.each do |p|
-            size += p.image_file_size || 0
-            Maintenance::UncachePreviewWorker.new.perform(p.id) unless options[:dry_run]
-            options[:verbose] ? say(p.id) : say('.', :green, false)
-            processed += 1
-          end
-        end
-
-      elsif !options[:link] && options[:background]
-        PreviewCard.where.not(image_file_name: nil).where('updated_at < ?', time_ago).select(:id, :image_file_size).reorder(nil).find_in_batches do |preview_cards|
+      if options[:background]
+        scope.select(:id, :image_file_size).reorder(nil).find_in_batches do |preview_cards|
           queued += preview_cards.size
           size   += preview_cards.reduce(0) { |sum, p| sum + (p.image_file_size || 0) }
           Maintenance::UncachePreviewWorker.push_bulk(preview_cards.map(&:id)) unless options[:dry_run]
         end
 
       else
-        PreviewCard.where.not(image_file_name: nil).where('updated_at < ?', time_ago).select(:id, :image_file_size).reorder(nil).find_in_batches do |preview_cards|
+        scope.select(:id, :image_file_size).reorder(nil).find_in_batches do |preview_cards|
           preview_cards.each do |p|
             size += p.image_file_size || 0
             Maintenance::UncachePreviewWorker.new.perform(p.id) unless options[:dry_run]
@@ -82,9 +70,9 @@ module Mastodon
       say
 
       if options[:background]
-        say("Scheduled the deletion of #{queued} preview cards (approx. #{number_to_human_size(size)}) #{dry_run}", :green, true)
+        say("Scheduled the deletion of #{queued} #{link}preview cards (approx. #{number_to_human_size(size)}) #{dry_run}", :green, true)
       else
-        say("Removed #{processed} preview cards (approx. #{number_to_human_size(size)}) #{dry_run}", :green, true)
+        say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(size)}) #{dry_run}", :green, true)
       end
     end
   end
