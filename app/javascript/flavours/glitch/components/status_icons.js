@@ -18,6 +18,7 @@ const messages = defineMessages({
   poll: { id: 'status.is_poll', defaultMessage: 'This toot is a poll' },
   video: { id: 'status.has_video', defaultMessage: 'This toot features attached videos' },
   audio: { id: 'status.has_audio', defaultMessage: 'This toot features attached audio files' },
+  localOnly: { id: 'status.local_only', defaultMessage: 'This toot is only visible from youre instance' },
 });
 
 @injectIntl
@@ -79,6 +80,12 @@ export default class StatusIcons extends React.PureComponent {
             title={intl.formatMessage(messages.inReplyTo)}
           />
         ) : null}
+        {status.get('local_only') &&
+          <i
+            className={`fa fa-fw fa-home`}
+            aria-hidden='true'
+            title={intl.formatMessage(messages.localOnly)}
+          />}
         {mediaIcon ? (
           <i
             className={`fa fa-fw fa-${mediaIcon} status__media-icon`}
