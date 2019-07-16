@@ -64,7 +64,6 @@ class StatusesController < ApplicationController
   def set_status
     @status = @account.statuses.find(params[:id])
     authorize @status, :show?
-    raise Mastodon::NotPermittedError if current_account&.domain&.present? && @account.domain_blocking?(current_account.domain)
   rescue Mastodon::NotPermittedError
     raise ActiveRecord::RecordNotFound
   end
