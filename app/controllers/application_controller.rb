@@ -160,6 +160,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cache_headers
-    response.headers['Vary'] = 'Accept, Signature'
+    response.headers['Vary'] = public_fetch_mode? ? 'Accept' : 'Accept, Signature'
   end
 end
