@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
 
-  resource :instance_actor, path: 'instance-actor', only: [:show] do
+  resource :instance_actor, path: 'actor', only: [:show] do
     resource :inbox, only: [:create], module: :activitypub
   end
 
