@@ -13,12 +13,12 @@ const messages = defineMessages({
   collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
   inReplyTo: { id: 'status.in_reply_to', defaultMessage: 'This toot is a reply' },
-  previewCard: { id: 'status.has_preview_card', defaultMessage: 'This toot features an attached preview card' },
-  pictures: { id: 'status.has_pictures', defaultMessage: 'This toot features attached pictures' },
+  previewCard: { id: 'status.has_preview_card', defaultMessage: 'Features an attached preview card' },
+  pictures: { id: 'status.has_pictures', defaultMessage: 'Features attached pictures' },
   poll: { id: 'status.is_poll', defaultMessage: 'This toot is a poll' },
-  video: { id: 'status.has_video', defaultMessage: 'This toot features attached videos' },
-  audio: { id: 'status.has_audio', defaultMessage: 'This toot features attached audio files' },
-  localOnly: { id: 'status.local_only', defaultMessage: 'This toot is only visible from youre instance' },
+  video: { id: 'status.has_video', defaultMessage: 'Features attached videos' },
+  audio: { id: 'status.has_audio', defaultMessage: 'Features attached audio files' },
+  localOnly: { id: 'status.local_only', defaultMessage: 'Only visible from your instance' },
 });
 
 @injectIntl
