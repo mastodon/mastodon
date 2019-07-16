@@ -30,7 +30,7 @@ module Admin
       @trending_hashtags     = TrendingTags.get(7)
       @profile_directory     = Setting.profile_directory
       @timeline_preview      = Setting.timeline_preview
-      @antispam_enabled      = Setting.antispam_enabled
+      @spam_check_enabled    = Setting.spam_check_enabled
     end
 
     private

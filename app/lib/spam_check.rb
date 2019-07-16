@@ -81,7 +81,7 @@ class SpamCheck
   private
 
   def disabled?
-    !Setting.antispam_enabled
+    !Setting.spam_check_enabled
   end
 
   def remove_mentions(text)
