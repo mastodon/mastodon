@@ -40,7 +40,9 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        render_cached_json(['activitypub', 'actor', (signed_request_account.present? || public_fetch_mode?) ? 'full' : 'minimal', @account], content_type: 'application/activity+json', public: public_fetch_mode?, fields: restrict_fields_to) do
+        is_minimal = signed_request_account.present? || public_fetch_mode?
+        is_public  = !(authorized_fetch_mode? && signed_request_account.present?)
+        render_cached_json(['activitypub', 'actor', is_minimal ? 'full' : 'minimal', @account], content_type: 'application/activity+json', public: is_public, fields: restrict_fields_to) do
           ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
         end
       end

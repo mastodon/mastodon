@@ -31,9 +31,7 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        render_cached_json(['activitypub', 'note', @status], content_type: 'application/activity+json', public: @status.distributable? && public_fetch_mode?) do
-          ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
-        end
+        activity
       end
     end
   end
