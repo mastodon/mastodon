@@ -3,6 +3,7 @@ import { ScrollContainer } from 'react-router-scroll-4';
 import PropTypes from 'prop-types';
 import IntersectionObserverArticleContainer from 'flavours/glitch/containers/intersection_observer_article_container';
 import LoadMore from './load_more';
+import LoadPending from './load_pending';
 import IntersectionObserverWrapper from 'flavours/glitch/util/intersection_observer_wrapper';
 import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
@@ -21,6 +22,7 @@ export default class ScrollableList extends PureComponent {
   static propTypes = {
     scrollKey: PropTypes.string.isRequired,
     onLoadMore: PropTypes.func,
+    onLoadPending: PropTypes.func,
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
     trackScroll: PropTypes.bool,
@@ -28,6 +30,7 @@ export default class ScrollableList extends PureComponent {
     isLoading: PropTypes.bool,
     showLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    numPending: PropTypes.number,
     prepend: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
@@ -222,12 +225,18 @@ export default class ScrollableList extends PureComponent {
     return !(location.state && location.state.mastodonModalOpen);
   }
 
+  handleLoadPending = e => {
+    e.preventDefault();
+    this.props.onLoadPending();
+  }
+
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, prepend, alwaysPrepend, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
     const loadMore     = (hasMore && onLoadMore) ? <LoadMore visible={!isLoading} onClick={this.handleLoadMore} /> : null;
+    const loadPending  = (numPending > 0) ? <LoadPending count={numPending} onClick={this.handleLoadPending} /> : null;
     let scrollableArea = null;
 
     if (showLoading) {
@@ -247,6 +256,8 @@ export default class ScrollableList extends PureComponent {
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
             {prepend}
+
+            {loadPending}
 
             {React.Children.map(this.props.children, (child, index) => (
               <IntersectionObserverArticleContainer
