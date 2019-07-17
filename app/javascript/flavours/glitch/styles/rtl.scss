@@ -91,11 +91,14 @@ body.rtl {
   }
 
   .status__avatar {
+    margin-left: 10px;
+    margin-right: 0;
+
+    // Those are used for public pages
     left: auto;
     right: 10px;
   }
 
-  .status,
   .activity-stream .status.light {
     padding-left: 10px;
     padding-right: 68px;
