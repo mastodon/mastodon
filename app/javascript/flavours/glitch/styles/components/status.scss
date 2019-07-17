@@ -370,9 +370,7 @@
 
 .status__relative-time {
   display: inline-block;
-  margin-left: auto;
-  padding-left: 18px;
-  width: 120px;
+  flex-grow: 1;
   color: $dark-text-color;
   font-size: 14px;
   text-align: right;
@@ -382,7 +380,6 @@
 }
 
 .status__display-name {
-  margin: 0 auto 0 0;
   color: $dark-text-color;
   overflow: hidden;
 }
@@ -394,6 +391,7 @@
 
 .status__info {
   display: flex;
+  justify-content: space-between;
   font-size: 15px;
 
   > span {
@@ -407,25 +405,23 @@
 }
 
 .status__info__icons {
-  margin-left: auto;
   display: flex;
   align-items: center;
   height: 1em;
   color: $action-button-color;
 
-  .status__media-icon {
-    padding-left: 6px;
-    padding-right: 1px;
-  }
-
-  .status__visibility-icon {
-    padding-left: 4px;
+  .status__media-icon,
+  .status__visibility-icon,
+  .status__reply-icon {
+    padding-left: 2px;
+    padding-right: 2px;
   }
 }
 
 .status__info__account {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .status-check-box {
