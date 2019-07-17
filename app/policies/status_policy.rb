@@ -66,7 +66,7 @@ class StatusPolicy < ApplicationPolicy
   def author_blocking_domain?
     return false if current_account.nil? || current_account.domain.nil?
 
-    author.blocking_domain?(current_account.domain)
+    author.domain_blocking?(current_account.domain)
   end
 
   def blocking_author?
