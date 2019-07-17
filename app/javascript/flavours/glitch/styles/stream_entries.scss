@@ -205,9 +205,17 @@
 }
 
 .rtl {
-  .embed, .public-layout {
-    .status .status__relative-time {
-      float: left;
+  .embed,
+  .public-layout {
+    .status {
+      .status__info .status__display-name {
+        padding-left: 25px;
+        padding-right: 0;
+      }
+
+      .status__relative-time {
+        float: left;
+      }
     }
   }
 }
