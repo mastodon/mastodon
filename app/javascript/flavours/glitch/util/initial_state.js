@@ -30,5 +30,6 @@ export const isStaff = getMeta('is_staff');
 export const defaultContentType = getMeta('default_content_type');
 export const forceSingleColumn = getMeta('advanced_layout') === false;
 export const useBlurhash = getMeta('use_blurhash');
+export const usePendingItems = getMeta('use_pending_items');
 
 export default initialState;

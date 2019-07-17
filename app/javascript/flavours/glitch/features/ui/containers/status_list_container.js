@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StatusList from 'flavours/glitch/components/status_list';
-import { scrollTopTimeline } from 'flavours/glitch/actions/timelines';
+import { scrollTopTimeline, loadPending } from 'flavours/glitch/actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
@@ -62,6 +62,7 @@ const makeMapStateToProps = () => {
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
+    numPending: state.getIn(['timelines', timelineId, 'pendingItems'], ImmutableList()).size,
   });
 
   return mapStateToProps;
@@ -76,6 +77,8 @@ const mapDispatchToProps = (dispatch, { timelineId }) => ({
   onScroll: debounce(() => {
     dispatch(scrollTopTimeline(timelineId, false));
   }, 100),
+
+  onLoadPending: () => dispatch(loadPending(timelineId)),
 
 });
 
