@@ -14,7 +14,7 @@ class SpamCheck
   end
 
   def skip?
-    already_flagged? || trusted? || no_unsolicited_mentions? || solicited_reply?
+    disabled? || already_flagged? || trusted? || no_unsolicited_mentions? || solicited_reply?
   end
 
   def spam?
@@ -79,6 +79,10 @@ class SpamCheck
   end
 
   private
+
+  def disabled?
+    !Setting.spam_check_enabled
+  end
 
   def remove_mentions(text)
     return text.gsub(Account::MENTION_RE, '') if @status.local?
