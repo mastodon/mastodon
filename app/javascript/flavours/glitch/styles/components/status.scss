@@ -193,10 +193,8 @@
 }
 
 .status__prepend-icon-wrapper {
-  float: left;
-  margin: 0 10px 0 -58px;
-  width: 48px;
-  text-align: right;
+  left: -26px;
+  position: absolute;
 }
 
 .notification-follow {
@@ -461,9 +459,10 @@
 }
 
 .status__prepend {
-  margin: -10px -10px 10px;
+  margin-left: 68px;
   color: $dark-text-color;
-  padding: 8px 10px 0 68px;
+  padding: 8px 0;
+  padding-bottom: 2px;
   font-size: 14px;
   position: relative;
 
