@@ -39,11 +39,17 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   delegate :moved?, to: :object
 
   def id
-    account_url(object)
+    object.instance_actor? ? instance_actor_url : account_url(object)
   end
 
   def type
-    object.bot? ? 'Service' : 'Person'
+    if object.instance_actor?
+      'Application'
+    elsif object.bot?
+      'Service'
+    else
+      'Person'
+    end
   end
 
   def following
@@ -55,7 +61,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def inbox
-    account_inbox_url(object)
+    object.instance_actor? ? instance_actor_inbox_url : account_inbox_url(object)
   end
 
   def outbox
@@ -95,7 +101,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def url
-    short_account_url(object)
+    object.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(object)
   end
 
   def avatar_exists?

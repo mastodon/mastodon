@@ -17,7 +17,7 @@ class ActivityPub::TagManager
 
     case target.object_type
     when :person
-      short_account_url(target)
+      target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       short_account_status_url(target.account, target)
@@ -29,7 +29,7 @@ class ActivityPub::TagManager
 
     case target.object_type
     when :person
-      account_url(target)
+      target.instance_actor? ? instance_actor_url : account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       account_status_url(target.account, target)
@@ -119,6 +119,7 @@ class ActivityPub::TagManager
 
   def uri_to_local_id(uri, param = :id)
     path_params = Rails.application.routes.recognize_path(uri)
+    path_params[:username] = Rails.configuration.x.local_domain if path_params[:controller] == 'instance_actors'
     path_params[param]
   end
 
