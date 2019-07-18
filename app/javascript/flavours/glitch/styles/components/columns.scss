@@ -43,7 +43,7 @@
       display: flex;
       flex-direction: column;
 
-      @media screen and (min-width: 360px) {
+      @media screen and (min-width: $no-gap-breakpoint) {
         padding: 0 10px;
       }
     }
@@ -466,14 +466,14 @@
 }
 
 .auto-columns.navbar-under {
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: $no-gap-breakpoint) {
     @include fix-margins-for-navbar-under;
   }
 }
 
 .auto-columns.navbar-under .react-swipeable-view-container .columns-area,
 .single-column.navbar-under .react-swipeable-view-container .columns-area {
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: $no-gap-breakpoint) {
     height: 100% !important;
   }
 }

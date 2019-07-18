@@ -98,7 +98,7 @@
     top: 15px;
   }
 
-  @media screen and (min-width: 360px) {
+  @media screen and (min-width: $no-gap-breakpoint) {
     padding: 10px 0;
   }
 
@@ -184,7 +184,7 @@
   }
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: $no-gap-breakpoint) {
   .tabs-bar {
     margin: 10px auto;
     margin-bottom: 0;
