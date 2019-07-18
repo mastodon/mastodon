@@ -44,7 +44,7 @@ class ActionBar extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
     menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.logout), href: '/auth/sign_out' });
+    menu.push({ text: intl.formatMessage(messages.logout), href: '/auth/sign_out', target: '', method: 'delete' });
 
     return (
       <div className='compose__action-bar'>

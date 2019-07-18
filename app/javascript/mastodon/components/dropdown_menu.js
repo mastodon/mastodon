@@ -122,14 +122,7 @@ class DropdownMenu extends React.PureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, href = '#' } = option;
-
-    var target = '_blank';
-    var method = '';
-    if (href === '/auth/sign_out') {
-      target = '';
-      method = 'delete';
-    }
+    const { text, href = '#', target = '_blank', method = '' } = option;
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
