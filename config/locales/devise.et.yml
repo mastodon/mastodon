@@ -6,3 +6,16 @@ et:
       send_paranoid_instructions: Kui Teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui Te ei saanud seda e-kirja.
     failure:
       already_authenticated: Te olete juba sisse loginud.
+      inactive: Teie konto pole veel aktiveeritud.
+      invalid: Valed %{authentication_keys} või parool.
+      last_attempt: Teil on veel üks katse kuni teie konto on lukustatud.
+      locked: Sinu konto on lukustatud.
+      not_found_in_database: Valed %{authentication_keys} või parool.
+      pending: Teie konto on siiani läbivaatlusel.
+      timeout: Teie sessioon on aegunud. Jätkamiseks palun sisenege uuesti.
+      unauthenticated: Te peate sisenema või looma konto enne jätkamist.
+      unconfirmed: Te peate kinnitama oma e-postiaadressi enne jätkamist.
+    mailer:
+      confirmation_instructions:
+        action: Kinnita e-postiaadress
+        action_with_app: Kinnita ja naase %{app}
