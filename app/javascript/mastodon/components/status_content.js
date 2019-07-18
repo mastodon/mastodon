@@ -7,6 +7,7 @@ import Permalink from './permalink';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
+import { autoPlayGif } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -71,12 +72,35 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  _updateStatusEmojis () {
+    const node = this.node;
+
+    if (!node || autoPlayGif) {
+      return;
+    }
+
+    const emojis = node.querySelectorAll('.custom-emoji');
+
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      if (emoji.classList.contains('status-emoji')) {
+        continue;
+      }
+      emoji.classList.add('status-emoji');
+
+      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
+      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+    }
+  }
+
   componentDidMount () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
   }
 
   componentDidUpdate () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
   }
 
   onMentionClick = (mention, e) => {
@@ -93,6 +117,14 @@ export default class StatusContent extends React.PureComponent {
       e.preventDefault();
       this.context.router.history.push(`/timelines/tag/${hashtag}`);
     }
+  }
+
+  handleEmojiMouseEnter = ({ target }) => {
+    target.src = target.getAttribute('data-original');
+  }
+
+  handleEmojiMouseLeave = ({ target }) => {
+    target.src = target.getAttribute('data-static');
   }
 
   handleMouseDown = (e) => {
