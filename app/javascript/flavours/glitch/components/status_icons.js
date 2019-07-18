@@ -48,7 +48,7 @@ export default class StatusIcons extends React.PureComponent {
 
     switch (mediaIcon) {
       case 'link':
-        return intl.formatMessages(messages.previewCard);
+        return intl.formatMessage(messages.previewCard);
       case 'picture-o':
         return intl.formatMessage(messages.pictures);
       case 'tasks':
