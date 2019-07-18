@@ -14,6 +14,8 @@
     %link{ rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }/
     %link{ rel: 'mask-icon', href: '/mask-icon.svg', color: '#2B90D9' }/
     %link{ rel: 'manifest', href: '/manifest.json' }/
+  
+    
     %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
     %meta{ name: 'theme-color', content: '#282c37' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
@@ -22,10 +24,9 @@
 
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag current_theme, media: 'all'
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'    
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
-
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
 
@@ -35,5 +36,6 @@
     = content_for?(:content) ? yield(:content) : yield
 
     %div{ style: 'display: none'}
+    
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')

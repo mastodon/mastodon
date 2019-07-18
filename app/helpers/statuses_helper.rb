@@ -34,6 +34,14 @@ module StatusesHelper
     end
   end
 
+  def svg_logo_dd
+    tag(:img, { :src => "../assets/logoBTJ.png", :class => "smallerLogo"}, false)
+  end
+
+  def svg_logo_full_dd
+    tag(:img, { :src => "../assets/logoBTJ.png", :class => "largeLogo"}, false)
+  end
+
   def svg_logo
     content_tag(:svg, tag(:use, 'xlink:href' => '#mastodon-svg-logo'), 'viewBox' => '0 0 216.4144 232.00976')
   end

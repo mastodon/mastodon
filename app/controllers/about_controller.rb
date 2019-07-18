@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AboutController < ApplicationController
-  layout 'public'
+  # layout 'public'
 
   before_action :set_instance_presenter, only: [:show, :more, :terms]
 
