@@ -257,6 +257,7 @@ sk:
       feature_profile_directory: Katalóg profilov
       feature_registrations: Registrácie
       feature_relay: Federovací mostík
+      feature_spam_check: Proti spamu
       feature_timeline_preview: Náhľad časovej osi
       features: Vymoženosti
       hidden_service: Federácia so skrytými službami
@@ -460,6 +461,8 @@ sk:
         desc_html: Môžeš si napísať svoje vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžeš tu používať HTML kód
         title: Vlastné pravidlá prevádzky
       site_title: Názov servera
+      spam_check_enabled:
+        title: Proti spamu
       thumbnail:
         desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie 1200x630px
         title: Miniatúra servera
@@ -511,6 +514,7 @@ sk:
     sensitive_content: Chúlostivý obsah
   application_mailer:
     notification_preferences: Zmeň emailové voľby
+    salutation: "%{name},"
     settings: 'Zmeň emailové voľby: %{link}'
     view: 'Zobraziť:'
     view_profile: Zobraz profil
@@ -655,6 +659,8 @@ sk:
       few: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
       many: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
+  html_validator:
+    invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
   identity_proofs:
     active: Aktívne
     authorize: Áno, povoľ
