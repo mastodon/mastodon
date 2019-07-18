@@ -26,14 +26,14 @@ et:
         title: Kinnita e-postiaadress
       email_changed:
         explanation: 'Teie konto e-postiaadress muudetakse:'
-        extra: Kui Te ei muutnud oma e-posti, on tõenäoline, et kellelgi on ligipääs Teie kontole. Palun muutke oma parool koheselt või võtke ǘhendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
+        extra: Kui Te ei muutnud oma e-posti, on tõenäoline, et kellelgi on ligipääs Teie kontole. Palun muutke oma salasõna koheselt või võtke ühendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
         subject: 'Mastodon: E-post muudetud'
         title: Uus e-postiaadress
       password_change:
         explanation: Teie konto parool on muudetud.
-        extra: Kui Te ei muutnud oma parooli, on tõenäoline, et kellelgi on ligipääs Teie kontole. Palun muutke oma parool koheselt või võtke ǘhendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
-        subject: 'Mastodon: Parool muudetud'
-        title: Parool muudetud
+        extra: Kui Te ei muutnud oma salasõna, on tõenäoline, et kellelgi on ligipääs Teie kontole. Palun muutke oma salasõna koheselt või võtke ühendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
+        subject: 'Mastodon: Salasõna muudetud'
+        title: Salasõna muudetud
       reconfirmation_instructions:
         explanation: Kinnita oma uus aadress, et muuta oma e-posti.
         extra: Kui see muudatus pole Teie poolt alustatud, palun eirake seda kirja. E-postiaadress sellele Mastodoni kontole ei muutu, kuni Te vajutate üleval asuvale lingile.
@@ -41,3 +41,16 @@ et:
         title: Kinnita e-postiaadress
       reset_password_instructions:
         action: Muuda salasõna
+        explanation: Te taotlesite oma kontole uut salasõna.
+        extra: Kui Te ei soovinud seda, palun eirake seda kirja. Teie salasõna ei muutu, kuni Te vajutate üleval olevale lingile ning loote uue.
+        subject: 'Mastodon: Salasõna lähtestamisjuhendid'
+        title: Salasõna lähtestamine
+      unlock_instructions:
+        subject: 'Mastodon: Lahti lukustamis juhendid'
+    omniauth_callbacks:
+      failure: Ei saanud Teid tuvastada %{kind} kaudu, kuna "%{reason}".
+      success: Tuvastamine %{kind} konto järgi õnnestus.
+    passwords:
+      no_token: Te ei saa sellele leheküljele ligi ilma tulemata salasõna lähtestamis e-kirjast. Kui Te tulete salasõna lähtestamis e-kirjast, palun olge kindel, et kasutasite tervet Teile antud URL-i.
+      send_instructions: Kui Teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma salasõna taastada. Palun kontrollige oma rämpsposti kausta juhul, kui Te ei saanud seda e-kirja.
+      send_paranoid_instructions: Kui Teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma salasõna taastada. Palun kontrollige oma rämpsposti kausta juhul, kui Te ei saanud seda e-kirja.
