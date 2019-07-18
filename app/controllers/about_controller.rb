@@ -7,6 +7,7 @@ class AboutController < ApplicationController
 
   def show
     @hide_navbar = true
+    render "show_dingdash"
   end
 
   def more; end
