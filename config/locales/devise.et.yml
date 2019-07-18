@@ -20,3 +20,24 @@ et:
         action: Kinnita e-postiaadress
         action_with_app: Kinnita ja naase %{app}
         explanation: Te olete loonud konto %{host}'il selle e-postiaadressiga. Te olete ühe kliki kaugusel selle aktiveerimisest. Kui see polnud Teie, palun eirake seda kirja.
+        explanation_when_pending: Te esitasite soovi liituda %{host}-iga selle e-postiaadressiga. Siis, kui Te kinnitate oma e-posti aadressi, vaatame me Teie soovi üle. Te ei saa siseneda kuni selleni. Kui teie soov on tagasi lükatud, Teie andmed kustutatakse ning Te ei pea rohkem midagi tegema. Kui see ei olnud Teie, palun eirake seda kirja.
+        extra_html: Palun tutvu <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
+        subject: 'Mastodon: %{instance} Kinnitamisjuhised'
+        title: Kinnita e-postiaadress
+      email_changed:
+        explanation: 'Teie konto e-postiaadress muudetakse:'
+        extra: Kui Te ei muutnud oma e-posti, on tõenäoline, et kellelgi on ligipääs Teie kontole. Palun muutke oma parool koheselt või võtke ǘhendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
+        subject: 'Mastodon: E-post muudetud'
+        title: Uus e-postiaadress
+      password_change:
+        explanation: Teie konto parool on muudetud.
+        extra: Kui Te ei muutnud oma parooli, on tõenäoline, et kellelgi on ligipääs Teie kontole. Palun muutke oma parool koheselt või võtke ǘhendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
+        subject: 'Mastodon: Parool muudetud'
+        title: Parool muudetud
+      reconfirmation_instructions:
+        explanation: Kinnita oma uus aadress, et muuta oma e-posti.
+        extra: Kui see muudatus pole Teie poolt alustatud, palun eirake seda kirja. E-postiaadress sellele Mastodoni kontole ei muutu, kuni Te vajutate üleval asuvale lingile.
+        subject: 'Mastodon: Kinnitake e-post - %{instance}'
+        title: Kinnita e-postiaadress
+      reset_password_instructions:
+        action: Muuda salasõna
