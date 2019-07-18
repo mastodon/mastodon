@@ -20,7 +20,7 @@ class WebfingerSerializer < ActiveModel::Serializer
   def links
     if object.instance_actor?
       [
-        { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: instance_actor_url },
+        { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: about_more_url(instance_actor: true) },
         { rel: 'self', type: 'application/activity+json', href: instance_actor_url },
       ]
     else

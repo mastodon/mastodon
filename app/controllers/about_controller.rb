@@ -9,7 +9,9 @@ class AboutController < ApplicationController
 
   def show; end
 
-  def more; end
+  def more
+    flash.now[:notice] = I18n.t('about.instance_actor_flash') if params[:instance_actor]
+  end
 
   def terms; end
 

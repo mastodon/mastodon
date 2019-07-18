@@ -17,7 +17,7 @@ class ActivityPub::TagManager
 
     case target.object_type
     when :person
-      target.instance_actor? ? instance_actor_url : short_account_url(target)
+      target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       short_account_status_url(target.account, target)

@@ -11,7 +11,7 @@ doc << Ox::Element.new('XRD').tap do |xrd|
     xrd << Ox::Element.new('Link').tap do |link|
       link['rel']      = 'http://webfinger.net/rel/profile-page'
       link['type']     = 'text/html'
-      link['href']     = instance_actor_url
+      link['href']     = about_more_url(instance_actor: true)
     end
 
     xrd << Ox::Element.new('Link').tap do |link|

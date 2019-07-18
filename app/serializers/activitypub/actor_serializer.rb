@@ -101,7 +101,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def url
-    object.instance_actor? ? instance_actor_url : short_account_url(object)
+    object.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(object)
   end
 
   def avatar_exists?
