@@ -124,9 +124,16 @@ class DropdownMenu extends React.PureComponent {
 
     const { text, href = '#' } = option;
 
+    var target = '_blank';
+    var method = '';
+    if (href === '/auth/sign_out') {
+      target = '';
+      method = 'delete';
+    }
+
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleItemKeyDown} data-index={i}>
+        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleItemKeyDown} data-index={i}>
           {text}
         </a>
       </li>

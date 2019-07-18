@@ -15,7 +15,7 @@ const messages = defineMessages({
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
-  filters: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
 });
 
 export default @injectIntl
