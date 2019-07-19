@@ -596,3 +596,54 @@ et:
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
     acct: uue konto kasutajanimi@domeen
+  notification_mailer:
+    digest:
+      subject:
+        one: "1 uus teavitus peale Teie eelmist külastust \U0001F418"
+        other: "%{count} uut teavitust peale Teie eelmist külastust \U0001F418"
+      title: Teie puudumisel...
+    favourite:
+      body: '%{name} lisas Teie staatuse lemmikutesse:'
+      subject: "%{name} märkis su staatuse lemmikuks"
+      title: Uus lemmik
+    follow:
+      body: "%{name} nüüd jälgib teid!"
+      subject: "%{name} nüüd jälgib teid"
+      title: Uus jälgija
+    follow_request:
+      action: Halda jälgimistaotlusi
+      body: "%{name} soovib Teid jälgida"
+      subject: 'Ootav jälgija: %{name}'
+      title: Uus jälgimistaotlus
+    mention:
+      action: Vasta
+      body: '%{name} mainis Teid:'
+      subject: '%{name} mainis Teid'
+      title: Uus mainimine
+    reblog:
+      body: '%{name} upitas Teie staatust:'
+      subject: "%{name} upitas su staatust"
+      title: Uus upitus
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: T
+          trillion: Tr
+  pagination:
+    newer: Uuemad
+    next: Järgmine
+    older: Vanemad
+    prev: Eelm
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Olete siin juba hääletanud
+      duplicate_options: sisaldab samu asju mitu korda
+      duration_too_long: kestab liiga kaua
+      duration_too_short: on liiga vara
+      expired: See küsitlus on juba lõppenud
