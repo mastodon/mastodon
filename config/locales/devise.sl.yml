@@ -6,7 +6,7 @@ sl:
       send_instructions: V nekaj minutah boste prejeli e-poštno sporočilo z navodili za potrditev vašega e-poštnega naslova. Če niste prejeli e-poštnega sporočila, preverite mapo neželena pošta.
       send_paranoid_instructions: Če vaš e-poštni naslov obstaja v naši podatkovni bazi, boste v nekaj minutah prejeli e-poštno sporočilo z navodili za potrditev vašega e-poštnega naslova. Če niste prejeli e-poštnega sporočila, preverite mapo neželena pošta.
     failure:
-      already_authenticated: Prijavljeni ste že.
+      already_authenticated: Ste že prijavljeni.
       inactive: Vaš račun še ni aktiviran.
       invalid: Neveljavno %{authentication_keys} ali geslo.
       last_attempt: Pred zaklepom računa imate še en poskus.
@@ -45,9 +45,44 @@ sl:
         explanation: Zahtevali ste novo geslo za svoj račun.
         extra: Če tega niste zahtevali, prezrite to e-poštno sporočilo. Vaše geslo se ne bo spremenilo, dokler ne kliknete na zgornjo povezavo in ustvarite novega.
         subject: 'Mastodon: Navodila za ponastavitev gesla'
-        title: Ponastavitev gesla
+        title: Ponastavi geslo
       unlock_instructions:
         subject: 'Mastodon: Odkleni navodila'
     omniauth_callbacks:
       failure: Overitev iz %{kind} ni možna zaradi "%{reason}".
       success: Overitev iz računa %{kind} je bila uspešna.
+    passwords:
+      no_token: Do te strani ne morete dostopati, ne da bi prišli iz e-poštne za ponastavitev gesla. Če prihajate iz e-poštne za ponastavitev gesla, se prepričajte, da ste uporabili celoten navedeni URL.
+      send_instructions: Če vaš e-poštni naslov obstaja v naši bazi podatkov, boste v nekaj minutah na vaš e-poštni naslov prejeli povezavo za obnovitev gesla. Če niste prejeli e-pošte, preverite mapo z neželeno pošto.
+      send_paranoid_instructions: Če vaš e-poštni naslov obstaja v naši bazi podatkov, boste v nekaj minutah na vaš e-poštni naslov prejeli povezavo za obnovitev gesla. Če niste prejeli e-pošte, preverite mapo z neželeno pošto.
+      updated: Vaše geslo je bilo uspešno spremenjeno. Zdaj ste prijavljeni.
+      updated_not_active: Vaše geslo je bilo uspešno spremenjeno.
+    registrations:
+      destroyed: Adijo! Vaš račun je bil uspešno preklican. Upamo, da vas bomo kmalu spet videli.
+      signed_up: Dobrodošli! Uspešno ste se vpisali.
+      signed_up_but_inactive: Uspešno ste se vpisali. Vendar vas nismo mogli prijaviti, ker vaš račun še ni aktiviran.
+      signed_up_but_locked: Uspešno ste se vpisali. Vendar vas nismo mogli prijaviti, ker je vaš račun zaklenjen.
+      signed_up_but_pending: Na vaš e-poštni naslov je bilo poslano sporočilo s povezavo za potrditev. Ko kliknete na povezavo, bomo pregledali vašo prijavo. Obveščeni boste, če bo odobren.
+      signed_up_but_unconfirmed: Na vaš e-poštni naslov je bilo poslano sporočilo s povezavo za potrditev. Sledite povezavi, da aktivirate svoj račun. Če niste prejeli te e-pošte, preverite mapo z neželeno pošto.
+      update_needs_confirmation: Uspešno ste posodobili račun, vendar moramo potrditi vaš novi e-poštni naslov. Preverite svojo e-pošto in sledite povezavi za potrditev, da potrdite nov e-poštni naslov. Če niste prejeli te e-poše, preverite mapo z neželeno pošto.
+      updated: Vaš račun je bil uspešno posodobljen.
+    sessions:
+      already_signed_out: Uspešno ste se odjavili.
+      signed_in: Uspešno ste se prijavili.
+      signed_out: Uspešno ste se odjavili.
+    unlocks:
+      send_instructions: Prejeli boste e-pošto z navodili o tem, kako v nekaj minutah odklenete svoj račun. Če niste prejeli te e-pošte, preverite mapo z neželeno pošto.
+      send_paranoid_instructions: Če vaš račun obstaja, boste prejeli e-pošto z navodili za njegovo odklepanje v nekaj minutah. Če niste prejeli te e-pošte, preverite mapo z neželeno pošto.
+      unlocked: Vaš račun je bil uspešno odklenjen. Če želite nadaljevati, se prijavite.
+  errors:
+    messages:
+      already_confirmed: je bil potrjen, poskusite se prijaviti
+      confirmation_period_expired: mora biti potrjena v %{period}, zahtevajte novo
+      expired: je potekla, zahtevajte novo
+      not_found: ni najdeno
+      not_locked: ni bil zaklenjen
+      not_saved:
+        few: "%{count} napake so preprečile shranjevanje %{resource}:"
+        one: '1 napaka je preprečila shranjevanje %{resource}:'
+        other: "%{count} napak je preprečilo shranjevanje %{resource}:"
+        two: "%{count} napaki sta preprečili shranjevanje %{resource}:"

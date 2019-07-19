@@ -9,9 +9,6 @@
   scheduled_statuses_scheduler:
     every: '5m'
     class: Scheduler::ScheduledStatusesScheduler
-  subscriptions_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
-    class: Scheduler::SubscriptionsScheduler
   media_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::MediaCleanupScheduler
@@ -30,6 +27,9 @@
   ip_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::IpCleanupScheduler
+  preview_cards_cleanup_scheduler:
+    cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
+    class: Scheduler::PreviewCardsCleanupScheduler
   email_scheduler:
     cron: '0 10 * * 2'
     class: Scheduler::EmailScheduler

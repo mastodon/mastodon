@@ -68,6 +68,7 @@ defaults: &defaults
   show_reblogs_in_public_timelines: false
   show_replies_in_public_timelines: false
   default_content_type: 'text/plain'
+  spam_check_enabled: true
 
 development:
   <<: *defaults

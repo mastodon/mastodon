@@ -114,6 +114,12 @@ oc:
       application:
         title: Cal una autorizacion OAuth
     scopes:
+      admin:read: lectura de totas las donadas del servidor
+      admin:read:accounts: lectura de las informacions sensiblas dels comptes
+      admin:read:reports: lectura de las informacions sensiblas dels senhalaments e dels comptes senhalats
+      admin:write: modificacion de las donadas del servidor
+      admin:write:accounts: realizacion d’accions de moderacion suls comptes
+      admin:write:reports: realizacion d’accions suls senhalaments
       follow: modificar las relacions del compte
       push: recebre vòstras notificacions push
       read: legir totas las donadas de vòstre compte

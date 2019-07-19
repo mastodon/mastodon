@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
+  include SignatureVerification
+
   PAGE_SIZE = 20
 
   layout 'public'
 
+  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :set_tag
   before_action :set_body_classes
   before_action :set_instance_presenter
 
   def show
-    @tag = Tag.find_normalized!(params[:id])
-
     respond_to do |format|
       format.html do
         use_pack 'about'
+        expires_in 0, public: true
+
         @initial_state_json = ActiveModelSerializers::SerializableResource.new(
           InitialStatePresenter.new(settings: {}, token: current_session&.token),
           serializer: InitialStateSerializer
@@ -21,6 +25,8 @@ class TagsController < ApplicationController
       end
 
       format.rss do
+        expires_in 0, public: true
+
         @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none)).limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
 
@@ -28,18 +34,21 @@ class TagsController < ApplicationController
       end
 
       format.json do
+        expires_in 3.minutes, public: public_fetch_mode?
+
         @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
-        render json: collection_presenter,
-               serializer: ActivityPub::CollectionSerializer,
-               adapter: ActivityPub::Adapter,
-               content_type: 'application/activity+json'
+        render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
       end
     end
   end
 
   private
+
+  def set_tag
+    @tag = Tag.find_normalized!(params[:id])
+  end
 
   def set_body_classes
     @body_classes = 'with-modals'

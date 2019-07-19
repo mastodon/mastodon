@@ -42,5 +42,7 @@
           = mail_to @instance_presenter.site_contact_email, nil, title: @instance_presenter.site_contact_email
 
   .column-3
+    = render 'application/flashes'
+
     .box-widget
       .rich-formatting= @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')

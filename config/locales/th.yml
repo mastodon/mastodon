@@ -335,13 +335,6 @@ th:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
-    subscriptions:
-      callback_url: URL เรียกกลับ
-      confirmed: ยืนยันแล้ว
-      expires_in: หมดอายุภายใน
-      last_delivery: ส่งล่าสุด
-      title: WebSub
-      topic: หัวข้อ
     tags:
       accounts: บัญชี
       hidden: ซ่อนอยู่
@@ -360,6 +353,7 @@ th:
   appearance:
     advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
     animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
+    confirmation_dialogs: กล่องโต้ตอบการยืนยัน
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
@@ -537,6 +531,7 @@ th:
     prev: ก่อนหน้า
     truncate: "&hellip;"
   preferences:
+    other: อื่น ๆ
     posting_defaults: ค่าเริ่มต้นการโพสต์
     public_timelines: เส้นเวลาสาธารณะ
   relationships:
@@ -562,10 +557,6 @@ th:
     reply:
       proceed: ดำเนินการต่อเพื่อตอบกลับ
       prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
-  remote_unfollow:
-    error: ข้อผิดพลาด
-    title: ชื่อเรื่อง
-    unfollowed: เลิกติดตามแล้ว
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์

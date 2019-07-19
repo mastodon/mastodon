@@ -47,7 +47,7 @@ const getProfileAvatarAnimationHandler = (swapTo) => {
   return ({ target }) => {
     const swapSrc = target.getAttribute(swapTo);
     //only change the img source if autoplay is off and the image src is actually different
-    if(target.getAttribute('data-autoplay') === 'false' && target.src !== swapSrc) {
+    if(target.getAttribute('data-autoplay') !== 'true' && target.src !== swapSrc) {
       target.src = swapSrc;
     }
   };

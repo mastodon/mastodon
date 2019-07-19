@@ -61,7 +61,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def uri
-    OStatus::TagManager.instance.uri_for(object)
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 
   def content
@@ -69,7 +69,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def url
-    TagManager.instance.url_for(object)
+    ActivityPub::TagManager.instance.url_for(object)
   end
 
   def favourited
@@ -143,7 +143,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
 
     def url
-      TagManager.instance.url_for(object.account)
+      ActivityPub::TagManager.instance.url_for(object.account)
     end
 
     def acct

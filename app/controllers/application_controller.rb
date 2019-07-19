@@ -37,6 +37,14 @@ class ApplicationController < ActionController::Base
     Rails.env.production?
   end
 
+  def authorized_fetch_mode?
+    ENV['AUTHORIZED_FETCH'] == 'true'
+  end
+
+  def public_fetch_mode?
+    !authorized_fetch_mode?
+  end
+
   def store_current_location
     store_location_for(:user, request.url) unless request.format == :json
   end
@@ -153,7 +161,7 @@ class ApplicationController < ActionController::Base
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.exists?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.where('id > 0').exists?
   end
 
   def use_seamless_external_login?
@@ -228,10 +236,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cache_headers
-    response.headers['Vary'] = 'Accept'
-  end
-
-  def mark_cacheable!
-    expires_in 0, public: true
+    response.headers['Vary'] = public_fetch_mode? ? 'Accept' : 'Accept, Signature'
   end
 end

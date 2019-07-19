@@ -23,7 +23,7 @@ class HomeController < ApplicationController
       when 'statuses'
         status = Status.find_by(id: matches[2])
 
-        if status && (status.public_visibility? || status.unlisted_visibility?)
+        if status&.distributable?
           redirect_to(ActivityPub::TagManager.instance.url_for(status))
           return
         end
@@ -64,7 +64,7 @@ class HomeController < ApplicationController
     if request.path.start_with?('/web')
       new_user_session_path
     elsif single_user_mode?
-      short_account_path(Account.local.without_suspended.first)
+      short_account_path(Account.local.without_suspended.where('id > 0').first)
     else
       about_path
     end
