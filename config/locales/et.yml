@@ -637,6 +637,31 @@ et:
       title: Filterid
     new:
       title: Lisa uus filter
+  footer:
+    developers: Arendajad
+    more: Rohkem…
+    resources: Materjalid
+  generic:
+    all: Kõik
+    changes_saved_msg: Muudatuste salvestamine õnnestus!
+    copy: Kopeeri
+    order_by: Järjesta
+    save_changes: Salvesta muudatused
+    validation_errors:
+      one: Midagi pole ikka õigesti! Palun vaadake allolev veateade üle
+      other: Midagi pole ikka õigesti! Palun vaadake all olevad %{count} veateadet üle
+  html_validator:
+    invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
+  identity_proofs:
+    active: Aktiivne
+    authorize: Jah, luba
+    authorize_connection_prompt: Luba see krüptograafiline ühendus?
+    errors:
+      failed: Krüptograafiline ühendus ebaõnnestus. Palun proovi uuesti %{provider}-ist.
+      keybase:
+        invalid_token: Keybase võtmed on allkirjade hashid ja peavad olema 66 hex tähemärki
+        verification_failed: Keybase ei tunnista seda võtit kui kasutaja %{kb_username} omand. Palun proovige uuesti Keybasest.
+      wrong_user: Ei saa luua tõendit kontole %{proving} kui olete sisseloginud kui %{current}. Logige sisse kui %{proving} ja proovige uuesti.
   imports:
     upload: Lae üles
   in_memoriam_html: Mälestamaks.
