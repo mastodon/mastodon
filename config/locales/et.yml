@@ -276,6 +276,18 @@ et:
       existing_domain_block_html: Te olete juba lisanud domeenile %{name} piiranguid, palun <a href="%{unblock_url}">eemaldage blokeering</a> enne jätkamist.
       new:
         create: Loo blokeering
+        hint: Domeeniblokeering ei takista kontode lisamist andmebaasi, aga lisab nendele kontodele tagasiulatuvalt ja automaatselt erinevaid moderatsioonimeetodeid.
+        severity:
+          desc_html: "<strong>Vaigista</strong> teeb konto postitused nähtamatuks kõigile, kes teda ei jälgi.\n<strong>Peata</strong> eemaldab kogu konto sisu, meedia ja profiiliandmed.\n<strong>Ei midagi</strong> kui Te soovite lihtsalt keelata meediafailid."
+          noop: Ei midagi
+          silence: Vaigista
+          suspend: Peata
+        title: Uus domeeniblokeering
+      reject_media: Keela meediafailid
+      reject_media_hint: Kustutab kohalikult salvestatud meediafailid ja keeldub tulevikus rohkem allalaadimast. Ei puuduta peatamisi
+      reject_reports: Lükka teavitused tagasi
+      reject_reports_hint: Eira kõik teavitused sellelt domeenilt. Ei puuduta peatamisi
+      rejecting_media: keelan meediafaile
       show:
         affected_accounts:
           one: Üks kasutaja andmebaasis mõjutatud
