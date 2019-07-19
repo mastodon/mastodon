@@ -594,7 +594,7 @@ uk:
       generic: Невідомий браузер
     current_session: Активна сесія
     description: "%{browser} на %{platform}"
-    explanation: Це веб-браузери, нині авторизовані до вашого аккаунту Mastodon.
+    explanation: Це веб-браузери, авторизовані у вашому обліковому записі Mastodon.
     platforms:
       other: невідома платформа
     revoke: Закінчити
@@ -605,15 +605,17 @@ uk:
     account_settings: Налаштування облікового запису
     authorized_apps: Авторизовані застосунки
     back: Назад у Mastodon
-    delete: Видалення аккаунту
+    delete: Видалення облікового запису
     development: Розробка
     edit_profile: Редагувати профіль
     export: Експорт даних
     import: Імпорт
-    migrate: Міграція акаунту
+    migrate: Міграція облікового запису
     notifications: Сповіщення
     preferences: Налаштування
     two_factor_authentication: Двофакторна авторизація
+  spam_check:
+    spam_detected_and_silenced: Це автоматично згенерований звіт. Було виявлено розсилку спаму, відправник був автоматично заглушений. Якщо це помилка, зніміть заглушування з облікового запису.
   statuses:
     attached:
       description: 'Прикріплено: %{attached}'
