@@ -13,7 +13,7 @@ uk:
     extended_description_html: |
       <h3>Гарне місце для правил</h3>
       <p>Детальний опис ще не налаштований.</p>
-    federation_hint_html: Маючи обліковий на %{instance}, ви зможете слідкувати за людьми на будь-якому сервері Mastodon і поза ним.
+    federation_hint_html: Маючи обліковий запис на %{instance}, ви зможете слідкувати за людьми на будь-якому сервері Mastodon і поза ним.
     generic_description: "%{domain} є одним сервером у мережі"
     get_apps: Спробуйте мобільний додаток
     hosted_on: Mastodon розміщено на %{domain}
@@ -147,17 +147,17 @@ uk:
         disable_user: "%{name} заборонив(-ла) авторизацію користувачу %{target}"
         enable_custom_emoji: "%{name} увімкнув(-ла) емодзі %{target}"
         enable_user: "%{name} увімкнув(-ла) авторизацію користувачу %{target}"
-        memorialize_account: "%{name} перетворив(-ла) сторінку %{target} у пам'ятник"
+        memorialize_account: "%{name} перетворив(-ла) обліковий запис %{target} на сторінку пам'яті"
         promote_user: "%{name} підвищив(-ла) користувача %{target}"
         remove_avatar_user: "%{name} прибрав(-ла) аватар користувача %{target}"
         reopen_report: "%{name} перевідкрив(-ла) скаргу %{target}"
         reset_password_user: "%{name} скинув(-ла) пароль користувача %{target}"
         resolve_report: "%{name} розв'язав(-ла) скаргу %{target}"
-        silence_account: "%{name} заглушив(-ла) аккаунт %{target}"
-        suspend_account: "%{name} заблокував аккаунт користувача %{target}"
+        silence_account: "%{name} заглушив(-ла) обліковий запис %{target}"
+        suspend_account: "%{name} заморозив обліковий запис користувача %{target}"
         unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
-        unsilence_account: "%{name} розглушив(-ла) аккаунт %{target}"
-        unsuspend_account: "%{name} розблокував аккаунт користувача %{target}"
+        unsilence_account: "%{name} розглушив(-ла) обліковий запис %{target}"
+        unsuspend_account: "%{name} розморозив обліковий запис користувача %{target}"
         update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
         update_status: "%{name} змінив(-ла) статус користуача %{target}"
       title: Журнал подій
@@ -226,7 +226,7 @@ uk:
           one: Впливає на один акаунт у базі даних
           few: "Впливає на %{count} акаунти у базі даних"
           many: "Впливає на %{count} акаунтів у базі даних"
-          other: "Впливає на %{count} акаунтів у базі даних"
+          other: "Впливає на %{count} облікових записів у базі даних"
         retroactive:
           silence: Зняти глушення з усіх існуючих акаунтів цього домену
           suspend: Зняти блокування з усіх існуючих акаунтів цього домену
@@ -243,7 +243,14 @@ uk:
         create: Додати домен
         title: Нове доменне блокування домену email
       title: Чорний список поштових доменів
+    followers:
+      back_to_account: Повернутися до Облікового запису
     instances:
+      known_accounts:
+        one: "%{count} відомий обліковий запис"
+        few: "%{count} відомих облікових записів"
+        many: "%{count} відомих облікових записів"
+        other: "%{count} відомих облікових записів"
       title: Відомі інстанції
     invites:
       filter:
@@ -252,6 +259,8 @@ uk:
         expired: Просрочено
         title: Фільтр
       title: Запрошення
+    pending_accounts:
+      title: Облікові записи у черзі (%{count})
     relays:
       status: Статус
     report_notes:
@@ -278,7 +287,7 @@ uk:
         placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
       reopen: Перевідкрити скаргу
       report: 'Скарга #%{id}'
-      reported_account: Акаунт порушника
+      reported_account: Обліковий запис порушника
       reported_by: Відправник скарги
       resolved: Вирішено
       resolved_msg: Скаргу успішно вирішено!
@@ -292,6 +301,7 @@ uk:
         desc_html: Кількість локальних постів, активних та нових користувачів у тижневих розрізах
         title: Публікація агрегованої статистики про активність користувачів
       bootstrap_timeline_accounts:
+        desc_html: Розділяйте імена користувачів комами. Працюватимуть тільки локальні і розблоковані облікові записи. Якщо порожньо, то типово це всі локальні адміністратори.
         title: Підписки за замовчуванням для нових користувачів
       contact_information:
         email: Введіть публічний email
@@ -339,7 +349,7 @@ uk:
         title: Передпоказ фіду
       title: Налаштування сайту
     statuses:
-      back_to_account: Назад на сторінку профілю
+      back_to_account: Назад на сторінку облікового запису
       batch:
         delete: Видалити
         nsfw_off: Відмітити сприйнятливим
@@ -350,8 +360,13 @@ uk:
       no_media: Немає медіа
       title: Статуси аккаунтів
       with_media: З медіа
+    tags:
+      accounts: Облікові записи
     title: Адміністрування
   admin_mailer:
+    new_pending_account:
+      body: Деталі нового облікового запису наведено нижче. Ви можете схвалити або відхилити цей додаток.
+      subject: Новий обліковий запис надіслано на розгляд на %{instance} (%{username})
     new_report:
       body: "%{reporter} поскаржився(-лася) %{target}"
       body_remote: Хтось з домену %{domain} поскаржився(-лася) %{target}
@@ -373,15 +388,15 @@ uk:
   auth:
     change_password: Пароль
     confirm_email: Підтвердьте e-mail адресу
-    delete_account: Видалити аккаунт
-    delete_account_html: Якщо ви хочете видалити аккаунт, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
+    delete_account: Видалити обліковий запис
+    delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
     didnt_get_confirmation: Ви не отримали інструкції з підтвердження?
     forgot_password: Забули свій пароль?
     invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
     login: Увійти
     logout: Вийти
-    migrate_account: Переїхати до іншого аккаунту
-    migrate_account_html: Якщо ви бажаєте, щоб відвідувачі цього акканту були перенаправлені до іншого, ви можете <a href="%{path}">налаштувати це тут</a>.
+    migrate_account: Переїхати на інший обліковий запис
+    migrate_account_html: Якщо ви бажаєте перенаправити цей обліковий запис на інший, ви можете <a href="%{path}">налаштувати це тут</a>.
     or_log_in_with: Або увійдіть з
     register: Зареєструватися
     resend_confirmation: Повторно відправити інструкції з підтвердження
@@ -562,7 +577,7 @@ uk:
   remote_follow:
     acct: Введіть username@domain, яким ви хочете підписатися
     missing_resource: Пошук потрібного перенаправлення URL для Вашого аккаунта закінчився невдачею
-    no_account_html: Не маєте аккаунту? Не біда, ви можете <a href='%{sign_up_path}' target='_blank'>зареєструватися</a>
+    no_account_html: Не маєте облікового запису? Ви можете <a href='%{sign_up_path}' target='_blank'>зареєструватися тут</a>
     proceed: Перейти до підписки
     prompt: 'Ви хочете підписатися на:'
   sessions:
@@ -579,6 +594,8 @@ uk:
     revoke_success: Сесія успішно закінчена
     title: Сесії
   settings:
+    account: Обліковий запис
+    account_settings: Налаштування облікового запису
     authorized_apps: Авторизовані застосунки
     back: Назад у Mastodon
     delete: Видалення аккаунту
