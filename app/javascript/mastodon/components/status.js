@@ -343,6 +343,7 @@ class Status extends ImmutablePureComponent {
                 preview={attachment.get('preview_url')}
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
+                type={attachment.get('type')}
                 alt={attachment.get('description')}
                 width={this.props.cachedMediaWidth}
                 height={110}

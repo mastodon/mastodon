@@ -92,6 +92,7 @@ class Video extends React.PureComponent {
   static propTypes = {
     preview: PropTypes.string,
     src: PropTypes.string.isRequired,
+    type: PropTypes.string,
     alt: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
@@ -320,7 +321,11 @@ class Video extends React.PureComponent {
   }
 
   handleMouseLeave = () => {
-    this.setState({ hovered: false });
+    if (this.props.type === 'audio') {
+      this.setState({ hovered: true });
+    } else {
+      this.setState({ hovered: false });
+    }
   }
 
   toggleMute = () => {
@@ -375,7 +380,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link } = this.props;
+    const { preview, src, type, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
 
@@ -387,7 +392,13 @@ class Video extends React.PureComponent {
 
     if (inline && containerWidth) {
       width  = containerWidth;
-      height = containerWidth / (16/9);
+      if (type === 'audio' && !detailed) {
+        height = containerWidth / 7.8;
+      } else if (type === 'audio' && detailed) {
+        height = containerWidth / 7;
+      } else {
+        height = containerWidth / (16/9);
+      }
 
       playerStyle.height = height;
     }
@@ -490,9 +501,9 @@ class Video extends React.PureComponent {
 
             <div className='video-player__buttons right'>
               {!onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
-              {(!fullscreen && onOpenVideo) && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
+              {(!fullscreen && onOpenVideo && type === 'video') && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
               {onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
-              <button type='button' aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
+              {(type === 'video') && <button type='button' aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>}
             </div>
           </div>
         </div>
