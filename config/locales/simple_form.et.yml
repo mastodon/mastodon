@@ -33,6 +33,10 @@ et:
         data: CSV fail eksporditi teisest Mastodoni serverist
       invite_request:
         text: See aitab meil üle vaadata Teie taotlust
+      sessions:
+        otp: 'Sisesta kahesammulise autentimise kood loodud Teie mobiilirakenduse poolt või sisesta mõni taastuskood:'
+      user:
+        chosen_languages: Kui valitud, ainult valitud keeltes tuututused näidatakse avalikes ajajoontes
     labels:
       account:
         fields:
@@ -48,7 +52,33 @@ et:
           disable: Keela
           none: Ära tee midagi
           silence: Vaigista
+          suspend: Peata ja taastamatult kustuta konto andmed
+        warning_preset_id: Kasuta hoiatuse eelseadistust
       defaults:
+        autofollow: Kutsu oma kontot jälgima
+        avatar: Profiilipilt
+        bot: See konto on robot
+        chosen_languages: Filtreeri keeli
+        confirm_new_password: Kinnita uus salasõna
+        confirm_password: Kinnita salasõna
+        context: Filtreeri kontekste
+        current_password: Kehtiv salasõna
+        data: Andmed
+        discoverable: Lisage see konto kataloogi
+        display_name: Kuvanimi
+        email: E-posti aadress
+        expires_in: Aegu pärast
+        fields: Profiili metaandmed
+        header: Päis
+        inbox_url: Relee sisendkausta URL
+        irreversible: Kustuta selle asemel, et peita
+        locale: Kasutajaliidese keel
+        locked: Lukusta konto
+        max_uses: Maksimum kasutajate arv
+        new_password: Uus salasõna
+        note: Elulugu
+        otp_attempt: Kahesammulise autentimise kood
+        password: Salasõna
         phrase: Võtmesõna või fraas
         setting_advanced_layout: Aktiveeri arenenud veebiliides
         setting_aggregate_reblogs: Grupita upitused ajajoontes
