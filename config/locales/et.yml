@@ -137,6 +137,68 @@ et:
         assigned_to_self_report: "%{name} määras teabe %{target} iseendale"
         change_email_user: "%{name} muutis kasutaja %{target} e-postiaadressit"
         confirm_user: "%{name} kinnitas kasutaja %{target} e-postiaadressi"
+        create_account_warning: "%{name} saatis kasutajale %{target} hoiatuse"
+        create_custom_emoji: "%{name} laadis üles uue emotikooni %{target}"
+        create_domain_block: "%{name} blokeeris domeeni %{target}"
+        create_email_domain_block: "%{name} lisas e-posti domeeni %{target} musta nimekirja"
+        demote_user: "%{name} alandas kasutaja %{target}"
+        destroy_custom_emoji: "%{name} kustutas emotikooni %{target}"
+        destroy_domain_block: "%{name} eemaldas blokeeringu domeenilt %{target}"
+        destroy_email_domain_block: "%{name} lisas e-posti domeeni %{target} lubatute nimekirja"
+        destroy_status: "%{name} eemaldas %{target} staatuse"
+        disable_2fa_user: "%{name} eemaldas kaheastmelise autentimise kohustuse kasutajalt %{target}"
+        disable_custom_emoji: "%{name} keelas emotikooni %{target}"
+        disable_user: "%{name} keelas sisselogimise kasutajal %{target}"
+        enable_custom_emoji: "%{name} lubas emotikooni %{target}"
+        enable_user: "%{name} lubas sisselogimise kasutajal %{target}"
+        memorialize_account: "%{name} muutis %{target}-i kasutaja memoriaaliks"
+        promote_user: "%{name} edendas kasutajat %{target}"
+        remove_avatar_user: "%{name} kustutas kasutaja %{target} profiilipildi"
+        reopen_report: "%{name} taasavas teate %{target}"
+        reset_password_user: "%{name} lähtestas parooli kasutajal %{target}"
+        resolve_report: "%{name} lahendas teate %{target}"
+        silence_account: "%{name} vaigistas %{target}-i kasutaja"
+        suspend_account: "%{name} peatas %{target}-i kasutaja"
+        unassigned_report: "%{name} eemaldas määratluse teatelt %{target}"
+        unsilence_account: "%{name} eemaldas vaigistuse %{target}-i kontolt"
+        unsuspend_account: "%{name} eemaldas peatamise %{target}-i kontolt"
+        update_custom_emoji: "%{name} uuendas emotikooni %{target}"
+        update_status: "%{name} uuendas kasutaja %{target} staatust"
+      deleted_status: "(kustutatud staatus)"
+      title: Auditilogi
+    custom_emojis:
+      by_domain: Domeen
+      copied_msg: Kohaliku koopia loomine emotikonist õnnestus
+      copy: Kopeeri
+      copy_failed_msg: Kohaliku koopia loomine sellest emotikonist ebaõnnestus
+      created_msg: Emotikoni loomine õnnestus!
+      delete: Kustuta
+      destroyed_msg: Emotikoni kustutamine õnnestus!
+      disable: Keela
+      disabled_msg: Selle emotikoni keelamine õnnestus
+      emoji: Emotikonid
+      enable: Luba
+      enabled_msg: Selle emotikoni lubamine õnnestus
+      image_hint: PNG kuni 50KB
+      listed: Nimekirjastatud
+      new:
+        title: Lisa uus emotikon
+      overwrite: Kirjuta üle
+    domain_blocks:
+      show:
+        affected_accounts:
+          one: Üks kasutaja andmebaasis mõjutatud
+          other: "%{count} kasutajat andmebaasis mõjutatud"
+        retroactive:
+          silence: Eemalda vaigistus mõjutatud kasutajatelt sellel domeenil
+          suspend: Lõpeta mõjutatud kasutajate peatamine sellel domeenil
+        title: Eemalda domeeniblokeering %{domain}
+        undo: Võta tagasi
+      undo: Võta tagasi domeeniblokeering
+    email_domain_blocks:
+      add_new: Lisa uus
+      created_msg: E-posti aadressi keelunimekirja lisamine õnnestus
+      delete: Kustuta
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
