@@ -804,8 +804,40 @@ et:
     no_account_html: Teil pole veel kontot? Saate <a href='%{sign_up_path}' target='_blank'>luua ühe siit</a>
     proceed: Jätka jälgimiseks
     prompt: 'Te hakkate jälgima:'
+    reason_html: "<strong>Miks on see samm vajalik?</strong>\n<code>%{instance}</code> ei pruugi olla server, kus asub Teie konto, nii et me peame Teid suunama oma kodu serverile."
+  remote_interaction:
+    favourite:
+      proceed: Jätka lemmikuks lisamiseks
+      prompt: 'Te soovite lisada seda tuututust lemmikutesse:'
+    reblog:
+      proceed: Jätka upitamiseks
+      prompt: 'Te soovite seda tuututust upitada:'
+    reply:
+      proceed: Jätka vastamiseks
+      prompt: 'Te soovite vastata sellele tuututusele:'
+  scheduled_statuses:
+    over_daily_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit} selle päeva kohta
+    over_total_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit}
+    too_soon: Ajastatud tuututuse kuupäev peab olema tukevikus
   sessions:
+    activity: Viimane aktiivsus
+    browser: Veebilehitseja
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Tundmatu veebilehitseja
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Praegune seanss
