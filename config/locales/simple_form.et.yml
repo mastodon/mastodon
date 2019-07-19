@@ -1,1 +1,16 @@
 et:
+  simple_form:
+    hints:
+      account_warning_preset:
+        text: Te saate kasutada tuututuse süntaksi, näiteks URLe, silte ja mainimisi
+      admin_account_action:
+        send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
+        text_html: Valikuline. Te saate kasutada tuututuse süntaksi. Te saate <a href="%{path}">lisada hoiatuste eelseadistusi</a> aega säästmiseks
+        type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
+        warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
+      defaults:
+        autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad Teid
+        avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
+        bot: See konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
+        context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
+        digest: Saadetakse ainult pärast pikka perioodi tegevusetust ja ainult siis, kui Teile on saadetud privaatseid sõnumeid
