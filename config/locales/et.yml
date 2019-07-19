@@ -677,6 +677,12 @@ et:
       overwrite: Kirjuta üle
       overwrite_long: Vaheta praegused andmed uute vastu
     preface: Te saate importida mis tahes andmeid, mis on eksporditud teisest serverist. Näiteks nimekiri inimestest, keda jälgid ja keda blokeerid.
+    success: Teie andmete üleslaadimine õnnestus ning neid töödeldakse
+    types:
+      blocking: Blokeeringute nimekiri
+      domain_blocking: Domeeniblokeeringute nimekiri
+      following: Jälgimiste nimekiri
+      muting: Vaigistuse nimekiri
     upload: Lae üles
   in_memoriam_html: Mälestamaks.
   invites:
@@ -710,8 +716,19 @@ et:
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
     acct: uue konto kasutajanimi@domeen
+    currently_redirecting: 'Teie profiil on sätestatud suunama ümber:'
+    proceed: Salvesta
+    updated_msg: Teie konto migreerumissätete uuendamine õnnestus!
+  moderation:
+    title: Moderatsioon
   notification_mailer:
     digest:
+      action: Vaata kõiki teateid
+      body: Siin on kiire ülevaade sellest, mis sõnumeid Te ei näinud pärast Teie viimast külastust %{since}
+      mention: "%{name} mainis sind postituses:"
+      new_followers_summary:
+        one: Ja veel, Te saite ühe uue jälgija kui Te olite eemal! Jee!
+        other: Ja veel, Te saite %{count} uut jälgijat kui Te olite eemal! Hämmastav!
       subject:
         one: "1 uus teavitus peale Teie eelmist külastust \U0001F418"
         other: "%{count} uut teavitust peale Teie eelmist külastust \U0001F418"
@@ -778,6 +795,15 @@ et:
     primary: Peamine
     relationship: Seos
     remove_selected_domains: Eemalda kõik jälgijad valitud domeenidelt
+    remove_selected_followers: Eemalda valitud jälgijad
+    remove_selected_follows: Lõpeta valitud kasutajate jälgimine
+    status: Konto olek
+  remote_follow:
+    acct: Sisestage oma kasutajanimi@domeen, kust te soovite jälgida
+    missing_resource: Ei suutnud leida vajalikku suunamise URLi Teie konto jaoks
+    no_account_html: Teil pole veel kontot? Saate <a href='%{sign_up_path}' target='_blank'>luua ühe siit</a>
+    proceed: Jätka jälgimiseks
+    prompt: 'Te hakkate jälgima:'
   sessions:
     browsers:
       uc_browser: UCBrowser
