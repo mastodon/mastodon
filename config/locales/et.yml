@@ -469,8 +469,25 @@ et:
     logout: Logi välja
     migrate_account: Koli teisele kasutajale
     migrate_account_html: Kui Te soovite seda kontot ümber viia teisele, <a href="%{path}">saate teha seda siit</a>.
+    or_log_in_with: Või logi sisse koos
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Loo konto
+    registration_closed: "%{instance} ei võta vastu uusi liikmeid"
+    resend_confirmation: Saada kinnitusjuhendid uuesti
+    reset_password: Lähtesta salasõna
+    security: Turvalisus
+    set_new_password: Määra uus salasõna
+    trouble_logging_in: Probleeme sisselogimisega?
   authorize_follow:
+    already_following: Te juba jälgite seda kontot
+    error: Kahjuks ilmus viga kasutaja kaugserverist otsimisel
+    follow: Jälgi
+    follow_request: 'Te olete saatnud jälgimistaotluse kasutajale:'
+    following: 'Õnnestus! Te nüüd jälgite kasutajat:'
     post_follow:
+      close: Või Te saate lihtsalt sulgeda seda akent.
       return: Näita kasutaja profiili
       web: Mine veebi
     title: Jälgi %{acct}
@@ -533,6 +550,18 @@ et:
     csv: CSV
     domain_blocks: Domeeni blokeeringud
     follows: Teie jälgite
+    lists: Nimistud
+    mutes: Teie vaigistate
+    storage: Meedia hoidla
+  featured_tags:
+    add_new: Lisa uus
+    errors:
+      limit: Olete jõudnud maksimum lubatud siltide arvuni
+  filters:
+    contexts:
+      home: Kodu ajajoon
+      notifications: Teated
+      public: Avalikud ajajooned
   imports:
     upload: Lae üles
   in_memoriam_html: Mälestamaks.
