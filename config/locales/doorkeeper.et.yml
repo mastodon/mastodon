@@ -81,7 +81,43 @@ et:
         invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
         invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
         invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
+        invalid_request: Taotlusel puudub kohustuslik parameeter, sisaldab mitte toetatud parameetri väärtust või on kuidagi teisiti vale.
+        invalid_resource_owner: Antud ressursi omaniku andmed on valed või ressursi omanikku ei leitud
+        invalid_scope: Soovitud ulatus on vale, tundmatu või vigane.
+        invalid_token:
+          expired: Ligipääsuvõti on aegunud
+          revoked: Ligipääsuvõti on tagasi võetud
+          unknown: Ligipääsuvõti on vale
+        resource_owner_authenticator_not_configured: Ressursi omaniku leidmine ebaõnnestus, kuna Doorkeeper.configure.resource_owner_authenticator pole seadistatud.
+        server_error: Autoriseerimisserveril toimus ootamatu viga ning selle tulemusena ei läinud taotlus läbi.
+        temporarily_unavailable: Autoriseerimisserver ei ole hetkel võimeline taotlust vastu võtma, mis võib olla tingitud serveri ülekoormusest või hooldustöödest.
+        unauthorized_client: Klient ei ole lubatud seda taotlust vastu võtma kasutades seda meetodit.
+        unsupported_grant_type: Autoriseerimisloa tüüp ei ole toetatud antud serveri poolt.
+        unsupported_response_type: Autoriseerimisserver ei toeta seda vastuse tüüpi.
+    flash:
+      applications:
+        create:
+          notice: Rakendus loodud.
+        destroy:
+          notice: Rakendus kustutatud.
+        update:
+          notice: Rakendus uuendatud.
+      authorized_applications:
+        destroy:
+          notice: Rakendus tagasi lükatud.
+    layouts:
+      admin:
+        nav:
+          applications: Rakendused
+          oauth2_provider: OAuth2 pakkuja
+      application:
+        title: OAuth autoriseerimine vajalik
     scopes:
+      "admin:read": lugeda kõiki andmeid serveril
+      "admin:read:accounts": lugeda privaatset informatsiooni kõikidel kontodel
+      "admin:read:reports": lugeda privaatset informatsiooni kõikide teavituste ja teavitatud kasutajate kohta
+      "admin:write": muuta kõiki andmeid serveril
+      "admin:write:accounts": teostada moderaatori tegevusi kontodel
       "write:mutes": vaigista inimesi ja vestluseid
       "write:notifications": puhasta Teie teateid
       "write:reports": teavitada teistest inimestest
