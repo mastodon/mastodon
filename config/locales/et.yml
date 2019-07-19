@@ -288,6 +288,10 @@ et:
       reject_reports: Lükka teavitused tagasi
       reject_reports_hint: Eira kõik teavitused sellelt domeenilt. Ei puuduta peatamisi
       rejecting_media: keelan meediafaile
+      rejecting_reports: keelan teavitusi
+      severity:
+        silence: vaigistatud
+        suspend: peatatud
       show:
         affected_accounts:
           one: Üks kasutaja andmebaasis mõjutatud
@@ -436,6 +440,19 @@ et:
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Te saate vastu võtta või tagasi lükata seda taotlust.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
+  application_mailer:
+    notification_preferences: Muuda e-kirjade eelistusi
+    salutation: "%{name},"
+    settings: 'Muuda e-kirjade eelistusi: %{link}'
+    view: 'Vaade:'
+    view_profile: Vaata profiili
+    view_status: Vaata staatust
+  applications:
+    created: Rakenduse loomine õnnestus
+    destroyed: Rakenduse kustutamine õnnestus
+    invalid_url: Antud URL on vale
+    regenerate_token: Loo uus access token
+    token_regenerated: Access tokeni loomine õnnestus
   authorize_follow:
     post_follow:
       return: Näita kasutaja profiili
