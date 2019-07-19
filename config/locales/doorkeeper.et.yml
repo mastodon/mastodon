@@ -1,1 +1,88 @@
 et:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Rakenduse nimi
+        redirect_uri: Suunamise URL
+        scopes: Ulatused
+        website: Rakenduse veebileht
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ei tohi sisaldada fragmenti.
+              invalid_uri: peab olema õige URI.
+              relative_uri: peab olema absoluutne URI.
+              secured_uri: peab olema HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autoriseeri
+        cancel: Katkesta
+        destroy: Hävita
+        edit: Redigeeri
+        submit: Saada
+      confirmations:
+        destroy: Olete kindel?
+      edit:
+        title: Redigeeri rakendust
+      form:
+        error: Oih! Kontrollige oma vormi võimalikest vigadest
+      help:
+        native_redirect_uri: Kasutage %{native_redirect_uri} kohalikeks testideks
+        redirect_uri: Kasuta ühte rida iga URI jaoks
+        scopes: Eralda ulatused tühikutega. Jäta tühjaks, et kasutada vaikimisi ulatusi.
+      index:
+        application: Rakendus
+        callback_url: Ümbersuunamise URL
+        delete: Kustuta
+        name: Nimi
+        new: Uus rakendus
+        scopes: Ulatused
+        show: Kuva
+        title: Teie rakendused
+      new:
+        title: Uus rakendus
+      show:
+        actions: Tegevused
+        application_id: Kliendi võti
+        callback_urls: Ümbersuunamise URLid
+        scopes: Ulatused
+        secret: Kliendi salasõna
+        title: 'Rakendus: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autoriseeri
+        deny: Keeldu
+      error:
+        title: Ilmnes viga
+      new:
+        able_to: Sellel on võimalik
+        prompt: Rakendus %{client_name} soovib ligipääsu Teie kontole
+        title: Autoriseerimine vajalik
+      show:
+        title: Kopeeri see autoriseerimisvõti ja kleebi see rakendusse.
+    authorized_applications:
+      buttons:
+        revoke: Tühista
+      confirmations:
+        revoke: Olete kindel?
+      index:
+        application: Rakendus
+        created_at: Autoriseeritud
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Ulatused
+        title: Autoriseeritud rakendused
+    errors:
+      messages:
+        access_denied: Ressursi omanik või autoriseerimisserver lükkas taotluse tagasi.
+        credential_flow_not_configured: Resource Owner Password Credentials vool ebaõnnestus, kuna Doorkeeper.configure.resource_owner_from_credentials ei ole seadistatud.
+        invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
+        invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
+        invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
+    scopes:
+      "write:mutes": vaigista inimesi ja vestluseid
+      "write:notifications": puhasta Teie teateid
+      "write:reports": teavitada teistest inimestest
+      "write:statuses": avaldada staatuseid
