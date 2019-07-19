@@ -23,6 +23,58 @@ et:
     generic_description: "%{domain} on ainult üks server terves võrgus"
     get_apps: Proovi mobiilirakendusi
     hosted_on: Mastodon majutatud %{domain}-is
+    instance_actor_flash: |
+      See konto on virtuaalne näitleja, mis esindab tervet serverit ning mitte ühtegi kindlat isikut.
+      Seda kasutatakse föderatiivsetel põhjustel ning seda ei tohiks blokeerida, välja arvatud juhul, kui soovite blokeerida tervet serverit, kuid sellel juhul soovitame hoopis kasutada domeeni blokeerimist.
+    learn_more: Lisateave
+    privacy_policy: Privaatsuspoliitika
+    see_whats_happening: Vaata, mis toimub
+    server_stats: 'Serveri statistika:'
+    source_code: Lähtekood
+    status_count_after:
+      one: staatust
+      other: staatuseid
+    status_count_before: Kes omavad
+    tagline: Jälgi sõpru ja leia uusi
+    terms: Kasutustingimused
+    user_count_after:
+      one: kasutajale
+      other: kasutajale
+    user_count_before: Koduks
+    what_is_mastodon: Mis on Mastodon?
+  accounts:
+    choices_html: "%{name}-i valikud:"
+    follow: Jälgi
+    followers:
+      one: Jälgija
+      other: Jälgijaid
+    following: Jälgib
+    joined: Liitus %{date}
+    last_active: viimati aktiivne
+    link_verified_on: Selle lingi autorsust kontrolliti %{date}
+    media: Meedia
+    moved_html: "%{name} kolis %{new_profile_link}:"
+    network_hidden: Neid andmeid pole saadaval
+    nothing_here: Siin pole midagi!
+    people_followed_by: Inimesed, keda %{name} jälgib
+    people_who_follow: Inimesed, kes jälgivad kasutajat %{name}
+    pin_errors:
+      following: Te peate juba olema selle kasutaja jälgija, keda te heaks kiidate
+    posts:
+      one: Tuut
+      other: Tuututused
+    posts_tab_heading: Tuututused
+    posts_with_replies: Tuututused ja vastused
+    reserved_username: Kasutajanimi on reserveeritud
+    roles:
+      admin: Administraator
+      bot: Robot
+      moderator: Moderaator
+    unavailable: Profiil pole saadaval
+    unfollow: Lõpeta jälgimine
+  admin:
+    account_actions:
+      action: Täida tegevus
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
