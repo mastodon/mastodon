@@ -199,6 +199,90 @@ et:
       add_new: Lisa uus
       created_msg: E-posti aadressi keelunimekirja lisamine õnnestus
       delete: Kustuta
+      destroyed_msg: E-posti aadressi keelunimekirjast kustutamine õnnestus
+      domain: Domeen
+      new:
+        create: Lisa domeen
+        title: Uus e-posti keelunimekirja sisend
+      title: E-posti keelunimekiri
+    followers:
+      back_to_account: Tagasi minu kontole
+      title: "%{acct}-i jälgijad"
+    instances:
+      by_domain: Domeen
+      delivery_available: Üleandmine on saadaval
+      known_accounts:
+        one: "%{count} teadaolev kasutaja"
+        other: "%{count} teadaolevat kasutajat"
+      moderation:
+        all: Kõik
+        limited: Piiratud
+        title: Moderatsioon
+      title: Föderatsioon
+      total_blocked_by_us: Meie poolt blokeeritud
+      total_followed_by_them: Nende poolt jälgitud
+      total_followed_by_us: Meie poolt jälgitud
+      total_reported: Nende kohta teateid
+      total_storage: Lisatud meedia
+    invites:
+      deactivate_all: Peata kõik
+      filter:
+        all: Kõik
+        available: Saadaval
+        expired: Aegunud
+        title: Filter
+      title: Kutsed
+    pending_accounts:
+      title: Ootel olevad kasutajad (%{count})
+    relays:
+      add_new: Lisa uus relee
+      delete: Kustuta
+      description_html: <strong>Föderatsiooni relee</strong> on vahepealne server, mis vahetab suures koguses tuututusi serverite vahel, mis on selle tellijad ning mis sellele saadavad. <strong>See aitab väikestel ja keskmistel serveritel avastada sisu fediversumist</strong>, mis tavaliselt nõuab teisel serveril olevate inimeste jälgimist.
+      disable: Keela
+      disabled: Keelatud
+      enable: Luba
+      enable_hint: Kui lubatud, siis sinu server tellib kõik avalikud tuututused sellelt releelt, ning hakkab ka enda avalikke tuututusi sellele saatma.
+      enabled: Lubatud
+      inbox_url: Relee URL
+      pending: Ootab relee nõusolekut
+      save_and_enable: Salvesta ja luba
+      setup: Sea üles releeühendus
+      status: Staatus
+      title: Releed
+    report_notes:
+      created_msg: Teade edukalt koostatud!
+    settings:
+      registrations:
+        min_invite_role:
+          title: Luba kutseid
+      registrations_mode:
+        modes:
+          approved: Kinnitus vajalik konto loomisel
+          none: Keegi ei saa kontoid luua
+          open: Kõik võivad kontoid luua
+        title: Registreerimisrežiim
+      show_known_fediverse_at_about_page:
+        desc_html: Kui lubatud, näitab kõiki teatud fediversumi tuututusi. Vastasel juhul näidatakse ainult kohalike tuututusi.
+        title: Näita teatud fediversumit ajajoone eelvaates
+      show_staff_badge:
+        desc_html: Näita personalimärki kasutaja profiilil
+        title: Näita personalimärki
+      site_description:
+        desc_html: Sissejuhatuslik lõik API kohta. Kirjelda, mis teeb selle Mastodoni serveri eriliseks ja ka muud tähtsat. Te saate kasutada HTMLi silte, peamiselt <code>&lt;a&gt;</code> ja <code>&lt;em&gt;</code>.
+        title: Serveri kirjeldus
+      site_description_extended:
+        desc_html: Hea koht käitumisreegliteks, reegliteks, suunisteks ja muuks, mis teevad Teie serveri eriliseks. Te saate kasutada HTML silte
+        title: Lisa informatsioon
+      site_short_description:
+        desc_html: Kuvatud küljeribal ja metasiltides. Kirjelda, mis on Mastodon ja mis on selles serveris erilist ühes lõigus.
+        title: Serveri lühikirjeldus
+      site_terms:
+        desc_html: Te saate kirjutada oma privaatsuspoliitika, kasutustingimused jm seaduslikku infot. Te saate kasutada HTMLi silte
+        title: Kasutustingimused
+      site_title: Serveri nimi
+      spam_check_enabled:
+        desc_html: Mastodon suudab automaatselt vaigistada ja teatada kasutajatest, kasutades erinevaid meetmeid, näiteks kui kasutaja saadab korduvalt ebasobivaid sõnumeid. Võib esineda ka valehäireid.
+        title: Rämpsposti filter
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
