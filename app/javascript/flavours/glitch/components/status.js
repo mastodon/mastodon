@@ -476,7 +476,7 @@ class Status extends ImmutablePureComponent {
       featured,
       ...other
     } = this.props;
-    const { isExpanded, isCollapsed } = this.state;
+    const { isExpanded, isCollapsed, forceFilter } = this.state;
     let background = null;
     let attachments = null;
     let media = null;
@@ -496,7 +496,8 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if ((status.get('filtered') || status.getIn(['reblog', 'filtered'])) && (this.state.forceFilter === true || settings.get('filtering_behavior') !== 'content_warning')) {
+    const filtered = (status.get('filtered') || status.getIn(['reblog', 'filtered'])) && settings.get('filtering_behavior') !== 'content_warning';
+    if (forceFilter === undefined ? filtered : forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
