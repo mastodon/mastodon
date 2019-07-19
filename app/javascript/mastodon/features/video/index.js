@@ -321,9 +321,7 @@ class Video extends React.PureComponent {
   }
 
   handleMouseLeave = () => {
-    if (this.props.type === 'audio') {
-      this.setState({ hovered: true });
-    } else {
+    if (this.props.type === 'video') {
       this.setState({ hovered: false });
     }
   }
@@ -392,10 +390,10 @@ class Video extends React.PureComponent {
 
     if (inline && containerWidth) {
       width  = containerWidth;
-      if (type === 'audio' && !detailed) {
-        height = containerWidth / 7.8;
-      } else if (type === 'audio' && detailed) {
+      if (type === 'audio' && detailed) {
         height = containerWidth / 7;
+      } else if (type === 'audio' && !detailed) {
+        height = containerWidth / 7.8;
       } else {
         height = containerWidth / (16/9);
       }
