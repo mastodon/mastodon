@@ -411,8 +411,21 @@ et:
       peers_api_enabled:
         desc_html: Domeenid, mida see server on kohanud fediversumis
         title: Avalda nimekiri avastatud serveritest
+      preview_sensitive_media:
+        desc_html: Lingi eelvaated teistel veebisaitidel kuvab pisipilti, isegi kui meedia on märgitud tundlikuks
+        title: Kuva tundlikku meediat OpenGraphi eelvaadetes
+      profile_directory:
+        desc_html: Luba kasutajate avastamine
+        title: Luba profiilikataloog
       registrations:
+        closed_message:
+          desc_html: Kuvatud esilehel kui registreerimised on suletud. Te võite kasutada HTMLi silte
+          title: Suletud registreerimiste sõnum
+        deletion:
+          desc_html: Luba kasutajatel oma konto kustutada
+          title: Ava kontode kustutamine
         min_invite_role:
+          disabled: Mitte keegi
           title: Luba kutseid
       registrations_mode:
         modes:
@@ -481,6 +494,16 @@ et:
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Te saate vastu võtta või tagasi lükata seda taotlust.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
+    new_report:
+      body: "%{reporter} teavitas kasutajast %{target}"
+      body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
+      subject: 'Uus teavitus %{instance}-ile (#%{id})'
+  appearance:
+    advanced_web_interface: Arenenud veebiliides
+    advanced_web_interface_hint: 'Kui soovite kasutada terve ekraani laiust, lubab arenenud veebiliides seadistada mitut erinevat veergu, et näha nii palju informatsiooni samal ajal kui võimalik: Kodu, teavitused, föderatsiooni ajajoon ning mis iganes arv nimekirju ja silte.'
+    animations_and_accessibility: Animatsioonid ja ligipääs
+    confirmation_dialogs: Kinnitusdialoogid
+    sensitive_content: Tundlik sisu
   application_mailer:
     notification_preferences: Muuda e-kirjade eelistusi
     salutation: "%{name},"
@@ -603,6 +626,17 @@ et:
       home: Kodu ajajoon
       notifications: Teated
       public: Avalikud ajajooned
+      thread: Vestlused
+    edit:
+      title: Muuda filtrit
+    errors:
+      invalid_context: Puudulik või vale kontekst
+      invalid_irreversible: Taastamatu filter töötab ainult kodu või teavituste kontekstis
+    index:
+      delete: Kustuta
+      title: Filterid
+    new:
+      title: Lisa uus filter
   imports:
     upload: Lae üles
   in_memoriam_html: Mälestamaks.
