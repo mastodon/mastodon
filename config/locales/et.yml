@@ -283,6 +283,70 @@ et:
       spam_check_enabled:
         desc_html: Mastodon suudab automaatselt vaigistada ja teatada kasutajatest, kasutades erinevaid meetmeid, näiteks kui kasutaja saadab korduvalt ebasobivaid sõnumeid. Võib esineda ka valehäireid.
         title: Rämpsposti filter
+      thumbnail:
+        desc_html: Kasutatud OpenGraph ja API eelvaadeteks. 1200x630px soovitatud
+        title: Serveri pisipilt
+      timeline_preview:
+        desc_html: Kuva avalikku ajajoont esilehel
+        title: Ajajoone eelvaade
+      title: Lehe seaded
+    statuses:
+      back_to_account: Tagasi konto lehele
+      batch:
+        delete: Kustuta
+        nsfw_off: Märgi kui mitte tundlik
+        nsfw_on: Märgi kui tundlik
+      failed_to_execute: Täitmine ebaõnnestus
+      media:
+        title: Meedia
+      no_media: Meedia puudub
+      no_status_selected: Mitte ühtegi staatust muudeti sest midagi polnud valitud
+      title: Konto staatused
+      with_media: Meediaga
+    tags:
+      accounts: Kontod
+      hidden: Peidetud
+      hide: Peida kataloogist
+      name: Silt
+      title: Sildid
+      unhide: Näita kataloogis
+      visible: Nähtav
+    title: Administreerimine
+    warning_presets:
+      add_new: Lisa uus
+      delete: Kustuta
+      edit: Redigeeri
+      edit_preset: Redigeeri hoiatuse eelseadistust
+      title: Halda hoiatuste eelseadistusi
+  admin_mailer:
+    new_pending_account:
+      body: Uue konto üksikasjad on allpool. Te saate vastu võtta või tagasi lükata seda taotlust.
+      subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
+  authorize_follow:
+    post_follow:
+      return: Näita kasutaja profiili
+      web: Mine veebi
+    title: Jälgi %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}t"
+      about_x_months: "%{count}k"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
+      half_a_minute: Just praegu
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Just praegu
+      over_x_years: "%{count}a"
+      x_days: "%{count}p"
+      x_minutes: "%{count}m"
+      x_months: "%{count}k"
+      x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Hea proov, häkkerid! Vale salasõna
+    confirm_password: Sisesta oma praegune salasõna, et kinnitada oma identiteet
+    description_html: Seda tehes kustutatakse <strong>igaveseks ja taastamatult</strong> kogu konto andmed ja sisselogimine keelatakse. Sinu kasutajanimi jääb reserveerituks, et vältida tulevikus kehastamist.
+    proceed: Kustuta konto
+    success_msg: Konto kustutamine õnnestus
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
