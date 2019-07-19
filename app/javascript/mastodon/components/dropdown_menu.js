@@ -122,11 +122,11 @@ class DropdownMenu extends React.PureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, href = '#' } = option;
+    const { text, href = '#', target = '_blank', method } = option;
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleItemKeyDown} data-index={i}>
+        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleItemKeyDown} data-index={i}>
           {text}
         </a>
       </li>
