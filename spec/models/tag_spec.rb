@@ -69,6 +69,10 @@ RSpec.describe Tag, type: :model do
     it 'does not match middle dots at the end' do
       expect(subject.match('hello #one·two·three·').to_s).to eq ' #one·two·three'
     end
+
+    it 'does not match purely-numeric hashtags' do
+      expect(subject.match('hello #0123456')).to be_nil
+    end
   end
 
   describe '#to_param' do
