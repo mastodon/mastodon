@@ -314,7 +314,7 @@ class Formatter
     gaps = []
     total_offset = 0
 
-    escaped = html.gsub(/<[^>]*>/) do |match|
+    escaped = html.gsub(/<[^>]*>|&#[0-9]+;/) do |match|
       total_offset += match.length - 1
       end_offset = Regexp.last_match.end(0)
       gaps << [end_offset - total_offset, total_offset]
