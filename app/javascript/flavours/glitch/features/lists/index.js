@@ -40,6 +40,7 @@ class Lists extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
     lists: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -47,7 +48,7 @@ class Lists extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, lists } = this.props;
+    const { intl, lists, multiColumn } = this.props;
 
     if (!lists) {
       return (
@@ -69,6 +70,7 @@ class Lists extends ImmutablePureComponent {
         <ScrollableList
           scrollKey='lists'
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {lists.map(list =>
             <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />

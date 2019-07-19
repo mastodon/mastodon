@@ -32,6 +32,7 @@ class Blocks extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     domains: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -43,7 +44,7 @@ class Blocks extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, domains, hasMore } = this.props;
+    const { intl, domains, hasMore, multiColumn } = this.props;
 
     if (!domains) {
       return (
@@ -63,6 +64,7 @@ class Blocks extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {domains.map(domain =>
             <DomainContainer key={domain} domain={domain} />

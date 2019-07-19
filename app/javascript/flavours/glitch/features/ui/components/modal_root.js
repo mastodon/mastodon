@@ -46,6 +46,28 @@ const MODAL_COMPONENTS = {
   'PINNED_ACCOUNTS_EDITOR': PinnedAccountsEditor,
 };
 
+let cachedScrollbarWidth = null;
+
+export const getScrollbarWidth = () => {
+  if (cachedScrollbarWidth !== null) {
+    return cachedScrollbarWidth;
+  }
+
+  const outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.overflow = 'scroll';
+  document.body.appendChild(outer);
+
+  const inner = document.createElement('div');
+  outer.appendChild(inner);
+
+  const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+  cachedScrollbarWidth = scrollbarWidth;
+  outer.parentNode.removeChild(outer);
+
+  return scrollbarWidth;
+};
+
 export default class ModalRoot extends React.PureComponent {
 
   static propTypes = {
@@ -61,8 +83,10 @@ export default class ModalRoot extends React.PureComponent {
   componentDidUpdate (prevProps, prevState, { visible }) {
     if (visible) {
       document.body.classList.add('with-modals--active');
+      document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
     } else {
       document.body.classList.remove('with-modals--active');
+      document.documentElement.style.marginRight = 0;
     }
   }
 

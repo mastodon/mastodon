@@ -10,6 +10,7 @@ import Poll from 'flavours/glitch/components/poll';
 import Hashtag from 'flavours/glitch/components/hashtag';
 import Audio from 'flavours/glitch/features/audio';
 import ModalRoot from 'flavours/glitch/components/modal_root';
+import { getScrollbarWidth } from 'flavours/glitch/features/ui/components/modal_root';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
 import { List as ImmutableList, fromJS } from 'immutable';
 
@@ -33,6 +34,8 @@ export default class MediaContainer extends PureComponent {
 
   handleOpenMedia = (media, index) => {
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, index });
   }
 
@@ -40,11 +43,15 @@ export default class MediaContainer extends PureComponent {
     const media = ImmutableList([video]);
 
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, time });
   }
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
+    document.documentElement.style.marginRight = 0;
+
     this.setState({ media: null, index: null, time: null });
   }
 

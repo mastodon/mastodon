@@ -27,6 +27,7 @@ class Favourites extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -51,7 +52,7 @@ class Favourites extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, accountIds } = this.props;
+    const { intl, accountIds, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -74,6 +75,7 @@ class Favourites extends ImmutablePureComponent {
         <ScrollableList
           scrollKey='favourites'
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />

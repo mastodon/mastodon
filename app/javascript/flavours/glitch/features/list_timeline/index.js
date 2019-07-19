@@ -212,6 +212,7 @@ class ListTimeline extends React.PureComponent {
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet.' />}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

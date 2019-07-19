@@ -226,6 +226,7 @@ class Notifications extends React.PureComponent {
         onScrollToTop={this.handleScrollToTop}
         onScroll={this.handleScroll}
         shouldUpdateScroll={shouldUpdateScroll}
+        bindToDocument={!multiColumn}
       >
         {scrollableContent}
       </ScrollableList>

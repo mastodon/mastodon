@@ -93,6 +93,7 @@ class Favourites extends ImmutablePureComponent {
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

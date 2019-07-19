@@ -39,6 +39,7 @@ class AccountTimeline extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -76,7 +77,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, featuredStatusIds, isLoading, hasMore, isAccount } = this.props;
+    const { statusIds, featuredStatusIds, isLoading, hasMore, isAccount, multiColumn } = this.props;
 
     if (!isAccount) {
       return (
@@ -108,6 +109,7 @@ class AccountTimeline extends ImmutablePureComponent {
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

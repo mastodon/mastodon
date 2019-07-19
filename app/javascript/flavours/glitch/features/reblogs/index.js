@@ -27,6 +27,7 @@ class Reblogs extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -51,7 +52,7 @@ class Reblogs extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, accountIds } = this.props;
+    const { intl, accountIds, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -75,6 +76,7 @@ class Reblogs extends ImmutablePureComponent {
         <ScrollableList
           scrollKey='reblogs'
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />
