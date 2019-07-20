@@ -5,12 +5,22 @@
 module SignatureVerification
   extend ActiveSupport::Concern
 
+  include DomainControlHelper
+
+  def require_signature!
+    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
+  end
+
   def signed_request?
     request.headers['Signature'].present?
   end
 
   def signature_verification_failure_reason
-    return @signature_verification_failure_reason if defined?(@signature_verification_failure_reason)
+    @signature_verification_failure_reason
+  end
+
+  def signature_verification_failure_code
+    @signature_verification_failure_code || 401
   end
 
   def signed_request_account
@@ -123,6 +133,13 @@ module SignatureVerification
   end
 
   def account_from_key_id(key_id)
+    domain = key_id.start_with?('acct:') ? key_id.split('@').last : key_id
+
+    if domain_not_allowed?(domain)
+      @signature_verification_failure_code = 403
+      return
+    end
+
     if key_id.start_with?('acct:')
       stoplight_wrap_request { ResolveAccountService.new.call(key_id.gsub(/\Aacct:/, '')) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)

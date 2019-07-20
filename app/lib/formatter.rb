@@ -314,7 +314,7 @@ class Formatter
     gaps = []
     total_offset = 0
 
-    escaped = html.gsub(/<[^>]*>/) do |match|
+    escaped = html.gsub(/<[^>]*>|&#[0-9]+;/) do |match|
       total_offset += match.length - 1
       end_offset = Regexp.last_match.end(0)
       gaps << [end_offset - total_offset, total_offset]
@@ -381,6 +381,6 @@ class Formatter
   end
 
   def mention_html(account)
-    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
+    "<span class=\"h-card\"><a href=\"#{encode(ActivityPub::TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
   end
 end

@@ -14,7 +14,7 @@ class ProcessHashtagsService < BaseService
       TrendingTags.record_use!(tag, status.account, status.created_at) if status.public_visibility?
     end
 
-    return unless status.public_visibility? || status.unlisted_visibility?
+    return unless status.distributable?
 
     status.account.featured_tags.where(tag_id: records.map(&:id)).each do |featured_tag|
       featured_tag.increment(status.created_at)

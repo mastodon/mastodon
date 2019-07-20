@@ -41,8 +41,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     resolve_thread(@status)
     fetch_replies(@status)
+    check_for_spam
     distribute(@status)
-    forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
+    forward_for_reply if @status.distributable?
   end
 
   def find_existing_status
@@ -404,6 +405,18 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return false if local_usernames.empty?
 
     Account.local.where(username: local_usernames).exists?
+  end
+
+  def check_for_spam
+    spam_check = SpamCheck.new(@status)
+
+    return if spam_check.skip?
+
+    if spam_check.spam?
+      spam_check.flag!
+    else
+      spam_check.remember!
+    end
   end
 
   def forward_for_reply

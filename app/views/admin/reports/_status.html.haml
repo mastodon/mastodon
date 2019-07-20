@@ -19,7 +19,7 @@
         = react_component :media_gallery, height: 343, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.proper.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
 
     .detailed-status__meta
-      = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener' do
+      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       ·
       - if status.reblog?

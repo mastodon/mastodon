@@ -30,13 +30,6 @@ RSpec.describe UnblockService, type: :service do
     it 'destroys the blocking relation' do
       expect(sender.blocking?(bob)).to be false
     end
-
-    it 'sends an unblock salmon slap' do
-      expect(a_request(:post, "http://salmon.example.com/").with { |req|
-        xml = OStatus2::Salmon.new.unpack(req.body)
-        xml.match(OStatus::TagManager::VERBS[:unblock])
-      }).to have_been_made.once
-    end
   end
 
   describe 'remote ActivityPub' do
