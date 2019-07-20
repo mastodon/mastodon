@@ -97,7 +97,6 @@ export default class Following extends ImmutablePureComponent {
           scrollKey='following'
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           emptyMessage={emptyMessage}

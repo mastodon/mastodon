@@ -40,11 +40,6 @@ export default class Favourites extends ImmutablePureComponent {
     }
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
-    return !(location.state && location.state.mastodonModalOpen);
-  }
-
   handleHeaderClick = () => {
     this.column.scrollTop();
   }
@@ -76,7 +71,6 @@ export default class Favourites extends ImmutablePureComponent {
         />
         <ScrollableList
           scrollKey='favourites'
-          shouldUpdateScroll={this.shouldUpdateScroll}
           emptyMessage={emptyMessage}
         >
           {accountIds.map(id =>

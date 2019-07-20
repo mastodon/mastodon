@@ -41,11 +41,6 @@ export default class Blocks extends ImmutablePureComponent {
     this.props.dispatch(expandBlocks());
   }, 300, { leading: true });
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
-    return !(location.state && location.state.mastodonModalOpen);
-  }
-
   render () {
     const { intl, accountIds, hasMore } = this.props;
 
@@ -66,7 +61,6 @@ export default class Blocks extends ImmutablePureComponent {
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           emptyMessage={emptyMessage}
         >
           {accountIds.map(id =>

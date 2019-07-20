@@ -64,11 +64,6 @@ export default class Followers extends ImmutablePureComponent {
     this.props.dispatch(expandFollowers(this.props.params.accountId));
   }, 300, { leading: true });
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
-    return !(location.state && location.state.mastodonModalOpen);
-  }
-
   setRef = c => {
     this.column = c;
   }
@@ -102,7 +97,6 @@ export default class Followers extends ImmutablePureComponent {
           scrollKey='followers'
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           emptyMessage={emptyMessage}

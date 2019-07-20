@@ -99,10 +99,6 @@ export default class CommunityTimeline extends React.PureComponent {
     dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
@@ -125,7 +121,6 @@ export default class CommunityTimeline extends React.PureComponent {
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
-          shouldUpdateScroll={this.shouldUpdateScroll}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}

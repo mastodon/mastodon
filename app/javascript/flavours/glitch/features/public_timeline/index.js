@@ -99,10 +99,6 @@ export default class PublicTimeline extends React.PureComponent {
     dispatch(expandPublicTimeline({ maxId, onlyMedia }));
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    return !(location.state && location.state.mastodonModalOpen)
-  }
-
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
