@@ -23,6 +23,9 @@ sk:
     generic_description: "%{domain} je jeden server v sieti"
     get_apps: Vyskúšaj aplikácie
     hosted_on: Mastodon hostovaný na %{domain}
+    instance_actor_flash: |
+      Tento účet je virtuálnym aktérom, ktorý predstavuje samotný server a nie žiadného jedného užívateľa.
+      Je využívaný pre potreby federovania a nemal by byť blokovaný, pokiaľ nechceš zablokovať celý server, čo ide lepšie dosiahnúť cez blokovanie domény.
     learn_more: Zisti viac
     privacy_policy: Ustanovenia o súkromí
     see_whats_happening: Pozoruj, čo sa deje
@@ -671,6 +674,7 @@ sk:
         invalid_token: Keybase tokeny sú hašovaniami podpisov a musia mať 66 znakov
         verification_failed: Keybase nerozpoznáva tento token ako podpis od Keybase užívateľa menom %{kb_username}. Prosím skús to znova cez Keybase.
       wrong_user: Nemožno vytvoriť overenie pre %{proving}, pokiaľ si prihlásený/á ako %{current}. Prihlás sa za %{proving} a skús to znova.
+    explanation_html: "Tu si môžeš kryptograficky prepojiť svoje iné identity, ako napríklad tvoj profil na Keybase.\nUmožňuje to ostatním ľudom posielať ti enkryptované správy a veriť obsahu ktorý im pošleš ty."
     i_am_html: Na %{service} som %{username}.
     identity: Identita
     inactive: Neaktívne
