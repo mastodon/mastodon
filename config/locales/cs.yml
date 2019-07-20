@@ -23,6 +23,9 @@ cs:
     generic_description: "%{domain} je jedním ze serverů v síti"
     get_apps: Vyzkoušejte mobilní aplikaci
     hosted_on: Mastodon na adrese %{domain}
+    instance_actor_flash: |
+      Tento účet je virtuální aktér, který představuje server samotný a ne jedotlivého uživatele.
+      Používá se pro účely federace a nesmí být blokován, pokud nechcete blokovat celý server. V tomto případě použijte doménovou blokaci.
     learn_more: Zjistit více
     privacy_policy: Zásady soukromí
     see_whats_happening: Podívejte se, co se děje
@@ -257,6 +260,7 @@ cs:
       feature_profile_directory: Adresář profilů
       feature_registrations: Registrace
       feature_relay: Federovací most
+      feature_spam_check: Antispam
       feature_timeline_preview: Náhled časové osy
       features: Vlastnosti
       hidden_service: Federace se skrytými službami
@@ -460,6 +464,9 @@ cs:
         desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či jiné legality. Můžete použít HTML značky
         title: Vlastní podmínky používání
       site_title: Název serveru
+      spam_check_enabled:
+        desc_html: Mastodon může automaticky utišovat a nahlašovat účty podle opatření, jako například detekování účtů, které odesílají opakované nevyžadované zprávy. Mohou se najít špatné shody.
+        title: Antispam
       thumbnail:
         desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučuje se rozlišení 1200x630px
         title: Miniatura serveru
@@ -895,6 +902,8 @@ cs:
     profile: Profil
     relationships: Sledovaní a sledující
     two_factor_authentication: Dvoufázové ověřování
+  spam_check:
+    spam_detected_and_silenced: Tohle je automtické nahlášení. Byl detekován spam a jeho odesílatel byl automaticky utišen. Pokud je tohle chyba, prosím odtište tento účet.
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
