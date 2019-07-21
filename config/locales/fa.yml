@@ -249,6 +249,7 @@ fa:
       feature_profile_directory: فهرست گزیدهٔ کاربران
       feature_registrations: ثبت‌نام‌ها
       feature_relay: رله
+      feature_spam_check: ضدهرزنامه
       feature_timeline_preview: پیش‌نمایش نوشته‌ها
       features: ویژگی‌ها
       hidden_service: ارتباط میان‌سروری با سرویس‌های نهفته
@@ -448,6 +449,8 @@ fa:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
       site_title: نام سرور
+      spam_check_enabled:
+        title: ضدهرزنامه
       thumbnail:
         desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
         title: تصویر کوچک سرور
@@ -873,6 +876,8 @@ fa:
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
     two_factor_authentication: ورود دومرحله‌ای
+  spam_check:
+    spam_detected_and_silenced: این یک گزارش خودکار است. هرزنامه به طور خودکار تشخیص داده شده و کاربر بی‌صدا شده است. اگر اشتباهی رخ داده لطفاً حساب را باصدا کنید.
   statuses:
     attached:
       description: 'پیوست‌شده: %{attached}'
