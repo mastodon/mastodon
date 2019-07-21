@@ -44,6 +44,12 @@ function main() {
     }
   };
 
+  const getEmojiAnimationHandler = (swapTo) => {
+    return ({ target }) => {
+      target.src = target.getAttribute(swapTo);
+    };
+  };
+
   ready(() => {
     const locale = document.documentElement.lang;
 
@@ -108,6 +114,9 @@ function main() {
     if (parallaxComponents.length > 0 ) {
       new Rellax('.parallax', { speed: -1 });
     }
+
+    delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
+    delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
