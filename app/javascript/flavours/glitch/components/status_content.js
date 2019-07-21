@@ -5,6 +5,7 @@ import { isRtl } from 'flavours/glitch/util/rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
+import { autoPlayGif } from 'flavours/glitch/util/initial_state';
 
 export default class StatusContent extends React.PureComponent {
 
@@ -57,12 +58,35 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  _updateStatusEmojis () {
+    const node = this.node;
+
+    if (!node || autoPlayGif) {
+      return;
+    }
+
+    const emojis = node.querySelectorAll('.custom-emoji');
+
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      if (emoji.classList.contains('status-emoji')) {
+        continue;
+      }
+      emoji.classList.add('status-emoji');
+
+      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
+      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+    }
+  }
+
   componentDidMount () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
   }
 
   componentDidUpdate () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
     if (this.props.onUpdate) this.props.onUpdate();
   }
 
@@ -84,6 +108,14 @@ export default class StatusContent extends React.PureComponent {
     if (this.props.parseClick) {
       this.props.parseClick(e, `/timelines/tag/${hashtag}`);
     }
+  }
+
+  handleEmojiMouseEnter = ({ target }) => {
+    target.src = target.getAttribute('data-original');
+  }
+
+  handleEmojiMouseLeave = ({ target }) => {
+    target.src = target.getAttribute('data-static');
   }
 
   handleMouseDown = (e) => {
