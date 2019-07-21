@@ -7,7 +7,8 @@ class Api::V1::Instances::ActivityController < Api::BaseController
   respond_to :json
 
   def show
-    render_cached_json('api:v1:instances:activity:show', expires_in: 1.day) { activity }
+    expires_in 1.day, public: true
+    render_with_cache json: :activity, expires_in: 1.day
   end
 
   private
