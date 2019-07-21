@@ -231,9 +231,8 @@ namespace :mastodon do
       prompt.say "\n"
 
       loop do
-        break unless prompt.yes?('Do you want your instance to send e-mails?', default:true)
         
-        if prompt.yes?('Do you want to send e-mails from localhost?', default: false)
+        if prompt.no?('Do you want e-mails to be sent from an external e-mail server?', default: false)
           env['SMTP_SERVER'] = 'localhost'
           env['SMTP_PORT'] = 25
           env['SMTP_AUTH_METHOD'] = 'none'
