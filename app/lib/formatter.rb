@@ -154,11 +154,13 @@ class Formatter
 
         if emoji
           original_url, static_url = emoji
-          replacement = if animate
-                          "<img draggable=\"false\" class=\"emojione\" alt=\":#{encode(shortcode)}:\" title=\":#{encode(shortcode)}:\" src=\"#{encode(original_url)}\" />"
-                        else
-                          "<img draggable=\"false\" class=\"emojione custom-emoji\" alt=\":#{encode(shortcode)}:\" title=\":#{encode(shortcode)}:\" src=\"#{encode(static_url)}\" data-original=\"#{original_url}\" data-static=\"#{static_url}\" />"
-                        end
+          replacement = begin
+            if animate
+              "<img draggable=\"false\" class=\"emojione\" alt=\":#{encode(shortcode)}:\" title=\":#{encode(shortcode)}:\" src=\"#{encode(original_url)}\" />"
+            else
+              "<img draggable=\"false\" class=\"emojione custom-emoji\" alt=\":#{encode(shortcode)}:\" title=\":#{encode(shortcode)}:\" src=\"#{encode(static_url)}\" data-original=\"#{original_url}\" data-static=\"#{static_url}\" />"
+            end
+          end
           before_html = shortname_start_index.positive? ? html[0..shortname_start_index - 1] : ''
           html        = before_html + replacement + html[i + 1..-1]
           i          += replacement.size - (shortcode.size + 2) - 1
