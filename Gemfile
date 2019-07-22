@@ -129,7 +129,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.72', require: false
+  gem 'rubocop', '~> 0.73', require: false
   gem 'rubocop-rails', '~> 2.2', require: false
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false
