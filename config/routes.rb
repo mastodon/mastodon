@@ -34,7 +34,10 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
-    match '/auth/finish_signup' => 'auth/confirmations#finish_signup', via: [:get, :patch], as: :finish_signup
+
+    namespace :auth do
+      resource :setup, only: [:show, :update], controller: :setup
+    end
   end
 
   devise_for :users, path: 'auth', controllers: {
