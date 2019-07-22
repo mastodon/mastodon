@@ -319,6 +319,8 @@ th:
         title: ข้อมูลแบบขยายที่กำหนดเอง
       site_short_description:
         title: คำอธิบายเซิร์ฟเวอร์แบบสั้น
+      site_terms:
+        title: เงื่อนไขการให้บริการที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
       timeline_preview:
         desc_html: แสดงเส้นเวลาสาธารณะในหน้าเริ่มต้น
@@ -381,6 +383,8 @@ th:
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
+    status:
+      account_status: สถานะบัญชี
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
@@ -412,6 +416,8 @@ th:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
+    people:
+      other: "%{count} คน"
   errors:
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
@@ -625,6 +631,7 @@ th:
     poll:
       total_votes:
         other: "%{count} การลงคะแนน"
+      vote: ลงคะแนน
     show_more: แสดงเพิ่มเติม
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'
