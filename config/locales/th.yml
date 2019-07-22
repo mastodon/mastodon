@@ -155,6 +155,12 @@ th:
       warn: เตือน
       web: เว็บ
     action_logs:
+      actions:
+        change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
+        confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
+        create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
+        disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        enable_custom_emoji: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
       title: รายการบันทึกการตรวจสอบ
     custom_emojis:
@@ -488,9 +494,12 @@ th:
       '86400': 1 วัน
     expires_in_prompt: ไม่เลย
     generate: สร้าง
+    max_uses:
+      other: "%{count} การใช้"
     max_uses_prompt: ไม่มีขีดจำกัด
     table:
       expires_at: หมดอายุเมื่อ
+      uses: การใช้
     title: เชิญผู้คน
   media_attachments:
     validations:
@@ -536,6 +545,9 @@ th:
     older: เก่ากว่า
     prev: ก่อนหน้า
     truncate: "&hellip;"
+  polls:
+    errors:
+      duplicate_options: มีรายการที่ซ้ำกัน
   preferences:
     other: อื่น ๆ
     posting_defaults: ค่าเริ่มต้นการโพสต์
