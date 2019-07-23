@@ -2015,6 +2015,10 @@ a.account__display-name {
 
   .scrollable {
     overflow: visible;
+
+    @supports(display: grid) {
+      contain: content;
+    }
   }
 
   @media screen and (min-width: $no-gap-breakpoint) {
