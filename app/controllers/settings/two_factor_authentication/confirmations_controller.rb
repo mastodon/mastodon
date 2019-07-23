@@ -5,6 +5,8 @@ module Settings
     class ConfirmationsController < BaseController
       before_action :ensure_otp_secret
 
+      skip_before_action :require_functional!
+
       def new
         prepare_two_factor_form
       end

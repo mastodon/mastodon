@@ -1,0 +1,16 @@
+%h3= t('auth.status.account_status')
+
+- if @user.account.suspended?
+  %span.negative-hint= t('user_mailer.warning.explanation.suspend')
+- elsif @user.disabled?
+  %span.negative-hint= t('user_mailer.warning.explanation.disable')
+- elsif @user.account.silenced?
+  %span.warning-hint= t('user_mailer.warning.explanation.silence')
+- elsif !@user.confirmed?
+  %span.warning-hint= t('auth.status.confirming')
+- elsif !@user.approved?
+  %span.warning-hint= t('auth.status.pending')
+- else
+  %span.positive-hint= t('auth.status.functional')
+
+%hr.spacer/

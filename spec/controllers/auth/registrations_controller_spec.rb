@@ -46,6 +46,15 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       post :update
       expect(response).to have_http_status(200)
     end
+
+    context 'when suspended' do
+      it 'returns http forbidden' do
+        request.env["devise.mapping"] = Devise.mappings[:user]
+        sign_in(Fabricate(:user, account_attributes: { username: 'test', suspended_at: Time.now.utc }), scope: :user)
+        post :update
+        expect(response).to have_http_status(403)
+      end
+    end
   end
 
   describe 'GET #new' do
@@ -94,9 +103,9 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
       end
 
-      it 'redirects to login page' do
+      it 'redirects to setup' do
         subject
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to auth_setup_path
       end
 
       it 'creates user' do
@@ -120,9 +129,9 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
       end
 
-      it 'redirects to login page' do
+      it 'redirects to setup' do
         subject
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to auth_setup_path
       end
 
       it 'creates user' do
@@ -148,9 +157,9 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
       end
 
-      it 'redirects to login page' do
+      it 'redirects to setup' do
         subject
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to auth_setup_path
       end
 
       it 'creates user' do
@@ -176,9 +185,9 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
       end
 
-      it 'redirects to login page' do
+      it 'redirects to setup' do
         subject
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to auth_setup_path
       end
 
       it 'creates user' do

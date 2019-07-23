@@ -1,6 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { autoPlayGif } from 'mastodon/initial_state';
 
 export default class DisplayName extends React.PureComponent {
 
@@ -9,6 +10,47 @@ export default class DisplayName extends React.PureComponent {
     others: ImmutablePropTypes.list,
     localDomain: PropTypes.string,
   };
+
+  _updateEmojis () {
+    const node = this.node;
+
+    if (!node || autoPlayGif) {
+      return;
+    }
+
+    const emojis = node.querySelectorAll('.custom-emoji');
+
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      if (emoji.classList.contains('status-emoji')) {
+        continue;
+      }
+      emoji.classList.add('status-emoji');
+
+      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
+      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+    }
+  }
+
+  componentDidMount () {
+    this._updateEmojis();
+  }
+
+  componentDidUpdate () {
+    this._updateEmojis();
+  }
+
+  handleEmojiMouseEnter = ({ target }) => {
+    target.src = target.getAttribute('data-original');
+  }
+
+  handleEmojiMouseLeave = ({ target }) => {
+    target.src = target.getAttribute('data-static');
+  }
+
+  setRef = (c) => {
+    this.node = c;
+  }
 
   render () {
     const { others, localDomain } = this.props;
@@ -39,7 +81,7 @@ export default class DisplayName extends React.PureComponent {
     }
 
     return (
-      <span className='display-name'>
+      <span className='display-name' ref={this.setRef}>
         {displayName} {suffix}
       </span>
     );
