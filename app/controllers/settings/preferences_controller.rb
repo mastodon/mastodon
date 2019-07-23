@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Settings::PreferencesController < Settings::BaseController
+  layout 'admin'
+
+  before_action :authenticate_user!
+
   def show; end
 
   def update

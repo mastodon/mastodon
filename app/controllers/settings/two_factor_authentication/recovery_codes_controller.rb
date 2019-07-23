@@ -3,6 +3,10 @@
 module Settings
   module TwoFactorAuthentication
     class RecoveryCodesController < BaseController
+      layout 'admin'
+
+      before_action :authenticate_user!
+
       skip_before_action :require_functional!
 
       def create
