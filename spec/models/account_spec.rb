@@ -584,6 +584,11 @@ RSpec.describe Account, type: :model do
       end
 
       it 'is valid if we are creating an instance actor account with a period' do
+        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account.valid?).to be true
+      end
+
+      it 'is valid if we are creating a possibly-conflicting instance actor account' do
         account_1 = Fabricate(:account, username: 'examplecom')
         account_2 = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
         expect(account_2.valid?).to be true
