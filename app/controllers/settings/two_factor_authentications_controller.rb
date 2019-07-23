@@ -2,7 +2,12 @@
 
 module Settings
   class TwoFactorAuthenticationsController < BaseController
+    layout 'admin'
+
+    before_action :authenticate_user!
     before_action :verify_otp_required, only: [:create]
+
+    skip_before_action :require_functional!
 
     def show
       @confirmation = Form::TwoFactorConfirmation.new

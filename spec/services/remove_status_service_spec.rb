@@ -10,12 +10,9 @@ RSpec.describe RemoveStatusService, type: :service do
   let!(:bill)   { Fabricate(:account, username: 'bill', protocol: :activitypub, domain: 'example2.com', inbox_url: 'http://example2.com/inbox') }
 
   before do
-    stub_request(:post, 'http://example.com/push').to_return(status: 200, body: '', headers: {})
-    stub_request(:post, 'http://example.com/salmon').to_return(status: 200, body: '', headers: {})
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     stub_request(:post, 'http://example2.com/inbox').to_return(status: 200)
 
-    Fabricate(:subscription, account: alice, callback_url: 'http://example.com/push', confirmed: true, expires_at: 30.days.from_now)
     jeff.follow!(alice)
     hank.follow!(alice)
 

@@ -3,7 +3,12 @@
 module Settings
   module TwoFactorAuthentication
     class ConfirmationsController < BaseController
+      layout 'admin'
+
+      before_action :authenticate_user!
       before_action :ensure_otp_secret
+
+      skip_before_action :require_functional!
 
       def new
         prepare_two_factor_form

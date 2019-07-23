@@ -62,7 +62,7 @@ gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
 gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.7'
+gem 'oj', '~> 3.8'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.11'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
@@ -112,7 +112,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.25'
+  gem 'capybara', '~> 3.26'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.9'
   gem 'microformats', '~> 4.1'
@@ -132,7 +132,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.72', require: false
+  gem 'rubocop', '~> 0.73', require: false
   gem 'rubocop-rails', '~> 2.2', require: false
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6', require: false

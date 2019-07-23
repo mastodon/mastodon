@@ -5,6 +5,7 @@ import { isRtl } from 'flavours/glitch/util/rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
+import { autoPlayGif } from 'flavours/glitch/util/initial_state';
 
 export default class StatusContent extends React.PureComponent {
 
@@ -57,12 +58,35 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  _updateStatusEmojis () {
+    const node = this.node;
+
+    if (!node || autoPlayGif) {
+      return;
+    }
+
+    const emojis = node.querySelectorAll('.custom-emoji');
+
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      if (emoji.classList.contains('status-emoji')) {
+        continue;
+      }
+      emoji.classList.add('status-emoji');
+
+      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
+      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+    }
+  }
+
   componentDidMount () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
   }
 
   componentDidUpdate () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
     if (this.props.onUpdate) this.props.onUpdate();
   }
 
@@ -84,6 +108,14 @@ export default class StatusContent extends React.PureComponent {
     if (this.props.parseClick) {
       this.props.parseClick(e, `/timelines/tag/${hashtag}`);
     }
+  }
+
+  handleEmojiMouseEnter = ({ target }) => {
+    target.src = target.getAttribute('data-original');
+  }
+
+  handleEmojiMouseLeave = ({ target }) => {
+    target.src = target.getAttribute('data-static');
   }
 
   handleMouseDown = (e) => {
@@ -194,7 +226,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} ref={this.setRef}>
           <p
             style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
           >
@@ -209,7 +241,6 @@ export default class StatusContent extends React.PureComponent {
 
           <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
             <div
-              ref={this.setRef}
               style={directionStyle}
               tabIndex={!hidden ? 0 : null}
               dangerouslySetInnerHTML={content}
@@ -229,9 +260,9 @@ export default class StatusContent extends React.PureComponent {
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           tabIndex='0'
+          ref={this.setRef}
         >
           <div
-            ref={this.setRef}
             dangerouslySetInnerHTML={content}
             lang={status.get('language')}
             className='status__content__text'
@@ -246,8 +277,9 @@ export default class StatusContent extends React.PureComponent {
           className='status__content'
           style={directionStyle}
           tabIndex='0'
+          ref={this.setRef}
         >
-          <div ref={this.setRef} className='status__content__text' dangerouslySetInnerHTML={content} lang={status.get('language')} tabIndex='0' />
+          <div className='status__content__text' dangerouslySetInnerHTML={content} lang={status.get('language')} tabIndex='0' />
           {media}
         </div>
       );

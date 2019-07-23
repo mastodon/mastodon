@@ -204,29 +204,6 @@ $content-width: 840px;
         border: 0;
       }
     }
-
-    .muted-hint {
-      color: $darker-text-color;
-
-      a {
-        color: $highlight-text-color;
-      }
-    }
-
-    .positive-hint {
-      color: $valid-value-color;
-      font-weight: 500;
-    }
-
-    .negative-hint {
-      color: $error-value-color;
-      font-weight: 500;
-    }
-
-    .neutral-hint {
-      color: $dark-text-color;
-      font-weight: 500;
-    }
   }
 
   @media screen and (max-width: $no-columns-breakpoint) {
@@ -247,6 +224,41 @@ $content-width: 840px;
       height: auto;
     }
   }
+}
+
+hr.spacer {
+  width: 100%;
+  border: 0;
+  margin: 20px 0;
+  height: 1px;
+}
+
+.muted-hint {
+  color: $darker-text-color;
+
+  a {
+    color: $highlight-text-color;
+  }
+}
+
+.positive-hint {
+  color: $valid-value-color;
+  font-weight: 500;
+}
+
+.negative-hint {
+  color: $error-value-color;
+  font-weight: 500;
+}
+
+.neutral-hint {
+  color: $dark-text-color;
+  font-weight: 500;
+}
+
+.warning-hint {
+  color: $gold-star;
+  font-weight: 500;
 }
 
 .filters {

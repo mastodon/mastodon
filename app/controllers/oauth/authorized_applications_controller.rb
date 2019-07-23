@@ -8,6 +8,8 @@ class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicatio
   before_action :set_pack
   before_action :set_body_classes
 
+  skip_before_action :require_functional!
+
   include Localized
 
   def destroy

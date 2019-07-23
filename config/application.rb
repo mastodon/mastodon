@@ -114,6 +114,9 @@ module Mastodon
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
+      Devise::FailureApp.send :include, AbstractController::Callbacks
+      Devise::FailureApp.send :include, HttpAcceptLanguage::EasyAccess
+      Devise::FailureApp.send :include, Localized
     end
   end
 end

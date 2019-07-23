@@ -161,7 +161,11 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && approved?
+    true
+  end
+
+  def functional?
+    confirmed? && approved? && !disabled? && !account.suspended?
   end
 
   def inactive_message
