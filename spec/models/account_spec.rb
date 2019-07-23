@@ -583,6 +583,12 @@ RSpec.describe Account, type: :model do
         expect(account.valid?).to be true
       end
 
+      it 'is valid if we are creating an instance actor account with a period' do
+        account_1 = Fabricate(:account, username: 'examplecom')
+        account_2 = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account_2.valid?).to be true
+      end
+
       it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
         account = Fabricate.build(:account, username: 'the-doctor')
         account.valid?
