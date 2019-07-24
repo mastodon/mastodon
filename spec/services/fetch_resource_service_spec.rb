@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe FetchResourceService, type: :service do
-  let!(:representative) { Fabricate(:account) }
-
   describe '#call' do
     let(:url) { 'http://example.com' }
 
@@ -60,7 +58,7 @@ RSpec.describe FetchResourceService, type: :service do
 
       it 'signs request' do
         subject
-        expect(a_request(:get, url).with(headers: { 'Signature' => /keyId="#{Regexp.escape(ActivityPub::TagManager.instance.uri_for(representative) + '#main-key')}"/ })).to have_been_made
+        expect(a_request(:get, url).with(headers: { 'Signature' => /keyId="#{Regexp.escape(ActivityPub::TagManager.instance.uri_for(Account.representative) + '#main-key')}"/ })).to have_been_made
       end
 
       context 'when content type is application/atom+xml' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::OutboxesController < Api::BaseController
+class ActivityPub::OutboxesController < ActivityPub::BaseController
   LIMIT = 20
 
   include SignatureVerification

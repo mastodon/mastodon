@@ -77,7 +77,7 @@ class Account < ApplicationRecord
   validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
-  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
@@ -137,6 +137,10 @@ class Account < ApplicationRecord
 
   def bot?
     %w(Application Service).include? actor_type
+  end
+
+  def instance_actor?
+    id == -99
   end
 
   alias bot bot?
@@ -299,21 +303,6 @@ class Account < ApplicationRecord
     end
 
     self.fields = tmp
-  end
-
-  def magic_key
-    modulus, exponent = [keypair.public_key.n, keypair.public_key.e].map do |component|
-      result = []
-
-      until component.zero?
-        result << [component % 256].pack('C')
-        component >>= 8
-      end
-
-      result.reverse.join
-    end
-
-    (['RSA'] + [modulus, exponent].map { |n| Base64.urlsafe_encode64(n) }).join('.')
   end
 
   def subscription(webhook_url)
@@ -513,7 +502,7 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local? && !Rails.env.test?
+    return unless local? && private_key.blank? && public_key.blank?
 
     keypair = OpenSSL::PKey::RSA.new(2048)
     self.private_key = keypair.to_pem

@@ -7,9 +7,13 @@ class AboutController < ApplicationController
   before_action :set_instance_presenter
   before_action :set_expires_in
 
+  skip_before_action :require_functional!, only: [:more, :terms]
+
   def show; end
 
-  def more; end
+  def more
+    flash.now[:notice] = I18n.t('about.instance_actor_flash') if params[:instance_actor]
+  end
 
   def terms; end
 

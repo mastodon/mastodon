@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::RepliesController < Api::BaseController
+class ActivityPub::RepliesController < ActivityPub::BaseController
   include SignatureAuthentication
   include Authorization
   include AccountOwnedConcern

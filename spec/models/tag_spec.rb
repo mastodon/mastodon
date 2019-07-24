@@ -31,7 +31,47 @@ RSpec.describe Tag, type: :model do
     end
 
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
-      expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ')).to_not be_nil
+      expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq ' #ａｅｓｔｈｅｔｉｃ'
+    end
+
+    it 'matches digits at the start' do
+      expect(subject.match('hello #3d').to_s).to eq ' #3d'
+    end
+
+    it 'matches digits in the middle' do
+      expect(subject.match('hello #l33ts35k').to_s).to eq ' #l33ts35k'
+    end
+
+    it 'matches digits at the end' do
+      expect(subject.match('hello #world2016').to_s).to eq ' #world2016'
+    end
+
+    it 'matches underscores at the beginning' do
+      expect(subject.match('hello #_test').to_s).to eq ' #_test'
+    end
+
+    it 'matches underscores at the end' do
+      expect(subject.match('hello #test_').to_s).to eq ' #test_'
+    end
+
+    it 'matches underscores in the middle' do
+      expect(subject.match('hello #one_two_three').to_s).to eq ' #one_two_three'
+    end
+
+    it 'matches middle dots' do
+      expect(subject.match('hello #one·two·three').to_s).to eq ' #one·two·three'
+    end
+
+    it 'does not match middle dots at the start' do
+      expect(subject.match('hello #·one·two·three')).to be_nil
+    end
+
+    it 'does not match middle dots at the end' do
+      expect(subject.match('hello #one·two·three·').to_s).to eq ' #one·two·three'
+    end
+
+    it 'does not match purely-numeric hashtags' do
+      expect(subject.match('hello #0123456')).to be_nil
     end
   end
 

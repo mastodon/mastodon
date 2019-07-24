@@ -1804,6 +1804,7 @@ a.account__display-name {
     justify-content: center;
     width: 100%;
     height: 100%;
+    min-height: 100vh;
 
     &__pane {
       height: 100%;
@@ -1817,6 +1818,7 @@ a.account__display-name {
       }
 
       &__inner {
+        position: fixed;
         width: 285px;
         pointer-events: auto;
         height: 100%;
@@ -1871,7 +1873,6 @@ a.account__display-name {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: darken($ui-base-color, 7%);
 }
 
 .drawer {
@@ -2010,6 +2011,14 @@ a.account__display-name {
 
   .search__icon .fa {
     top: 15px;
+  }
+
+  .scrollable {
+    overflow: visible;
+
+    @supports(display: grid) {
+      contain: content;
+    }
   }
 
   @media screen and (min-width: $no-gap-breakpoint) {
