@@ -136,13 +136,16 @@ uk:
       public: Публічний
       push_subscription_expires: Підписка PuSH спливає
       redownload: Оновити аватар
+      reject: Відхилити
+      reject_all: Відхилити усе
       remove_avatar: Видалити аватар
+      remove_header: Видалити заголовок
       resend_confirmation:
         already_confirmed: Цей користувач уже підтверджений
-        send: Надіслати підтвердження ще раз
-        success: Повідомлення з підтвердженням успішно надіслано!
+        send: Надіслати електронний лист-підтвердження ще раз
+        success: Електронний лист-підтвердження успішно надіслано!
       reset: Скинути
-      reset_password: Зкинути пароль
+      reset_password: Скинути пароль
       resubscribe: Перепідписатися
       role: Дозволи
       roles:
@@ -156,20 +159,25 @@ uk:
         created_reports: Скарги створені цим аккаунтом
         targeted_reports: Скарги щодо цього аккаунту
       silence: Глушення
+      silenced: Заглушені
       statuses: Статуси
       subscribe: Підписатися
+      suspended: Призупинені
+      time_in_queue: Очікує в черзі %{time}
       title: Облікові записи
-      unconfirmed_email: Непідтверджений e-mail
+      unconfirmed_email: Непідтверджена адреса електронної пошти
       undo_silenced: Зняти глушення
-      undo_suspension: Зняти блокування
+      undo_suspension: Зняти призупинення
       unsubscribe: Відписатися
       username: Ім'я користувача
-      web: WWW
+      warn: Попередження
+      web: Веб
     action_logs:
       actions:
         assigned_to_self_report: "%{name} призначив(-ла) скаргу %{target} на себе"
         change_email_user: "%{name} змінив(-ла) поштову адресу користувача %{target}"
         confirm_user: "%{name} підтвердив(-ла) статус поштової адреси користувача %{target}"
+        create_account_warning: "%{name} надіслав попередження до %{target}"
         create_custom_emoji: "%{name} вивантажив(-ла) нове емодзі %{target}"
         create_domain_block: "%{name} заблокував(-ла) домен %{target}"
         create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
@@ -303,7 +311,7 @@ uk:
       destroyed_msg: Скарга успішно видалена!
     reports:
       account:
-        note: примітка
+        note: нотатка
         report: скарга
       action_taken_by: Дія виконана
       are_you_sure: Ви впевнені?
@@ -337,7 +345,7 @@ uk:
         title: Публікація агрегованої статистики про активність користувачів
       bootstrap_timeline_accounts:
         desc_html: Розділяйте імена користувачів комами. Працюватимуть тільки локальні і розблоковані облікові записи. Якщо порожньо, то типово це всі локальні адміністратори.
-        title: Підписки за замовчуванням для нових користувачів
+        title: Типові підписки для нових користувачів
       contact_information:
         email: Введіть публічний email
         username: Введіть ім'я користувача
@@ -423,6 +431,7 @@ uk:
     warning: Будьте дуже обережні з цими даними. Ніколи не діліться ними ні з ким!
     your_token: Ваш токен доступу
   auth:
+    apply_for_account: Запитати запрошення
     change_password: Пароль
     delete_account: Видалити обліковий запис
     delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
