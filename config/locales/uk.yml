@@ -46,33 +46,46 @@ uk:
     people_who_follow: Підписники %{name}
     pin_errors:
       following: Ви повинні бути підписаним на людину, яку бажаєте схвалити
-    posts_with_replies: Пости і відповіді
+    posts:
+      one: Дмух
+      few: Дмухів
+      many: Дмухів
+      other: Дмухів
+    posts_tab_heading: Дмухи
+    posts_with_replies: Дмухи і відповіді
     reserved_username: Це ім'я користувача зарезервоване
     roles:
       admin: Адміністратор
       bot: Бот
       moderator: Мод
+    unavailable: Профіль недоступний
     unfollow: Відписатися
   admin:
+    account_actions:
+      action: Виконати дію
+      title: Здійснити модераційну дію над %{acct}
     account_moderation_notes:
-      create: Залишити примітки
-      created_msg: Примітку модератора успішно створено!
+      create: Залишити нотатку
+      created_msg: Нотатку модератора успішно створено!
       delete: Видалити
-      destroyed_msg: Примітку модератора успішно видалено!
+      destroyed_msg: Нотатку модератора успішно видалено!
     accounts:
+      approve: Схвалити
+      approve_all: Схвалити всіх
       are_you_sure: Ви впевнені?
       avatar: Аватар
       by_domain: Домен
       change_email:
         changed_msg: Адресу електронної пошти облікового запису успішно змінено!
-        current_email: Поточна поштова адреса
-        label: Змінити поштову адресу
-        new_email: Новий e-mail
-        submit: Змінити поштову адресу
-        title: Змінити поштову адресу для %{username}
+        current_email: Поточна адреса електронної пошти
+        label: Змінити адресу електронної пошти
+        new_email: Нова адреса електронної пошти
+        submit: Змінити адресу електронної пошти
+        title: Змінити адресу електронної пошти для %{username}
       confirm: Зберегти
       confirmed: Збережено
       confirming: Зберігається
+      deleted: Видалено
       demote: Усунути
       disable: Вимкнути
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
@@ -80,14 +93,19 @@ uk:
       display_name: Відображуване ім'я
       domain: Домен
       edit: Змінити
-      email_status: Статус e-mail
+      email: Електронна пошта
+      email_status: Статус електронної пошти
       enable: Увімкнути
       enabled: Увімкнено
       feed_url: URL фіду
       followers: Підписники
       followers_url: URL підписників
       follows: Підписки
-      inbox_url: Вхідний URL
+      header: Заголовок
+      inbox_url: URL вхідних повідомлень
+      invited_by: 'Запросив:'
+      ip: IP
+      joined: Приєднався
       location:
         all: Усі
         local: Локальні
@@ -97,17 +115,21 @@ uk:
       media_attachments: Мультимедійні вкладення
       memorialize: Зробити пам'ятником
       moderation:
+        active: Активний
         all: Усі
+        pending: Очікують
         silenced: Заглушені
-        suspended: Заблоковані
+        suspended: Призупинені
         title: Модерація
-      moderation_notes: Примітки модераторів
+      moderation_notes: Нотатки модераторів
       most_recent_activity: Остання активність
       most_recent_ip: Останній IP
       no_account_selected: Жоден обліковий запис не було змінено, оскільки жоден не було вибрано
+      no_limits_imposed: Жодних обмежень не накладено
       not_subscribed: Не підписані
-      outbox_url: Вихідний URL
-      perform_full_suspension: Повне блокування
+      outbox_url: URL вихідних повідомлень
+      pending: Відгук в очікуванні
+      perform_full_suspension: Призупинити
       profile_url: URL профілю
       promote: Просунути
       protocol: Протокол
