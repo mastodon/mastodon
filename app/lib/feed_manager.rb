@@ -277,6 +277,7 @@ class FeedManager
   # do so if appropriate.
   def remove_from_feed(timeline_type, account_id, status)
     timeline_key = key(timeline_type, account_id)
+    reblog_key   = key(timeline_type, account_id, 'reblogs')
 
     if status.reblog?
       # 1. If the reblogging status is not in the feed, stop.
@@ -287,6 +288,7 @@ class FeedManager
       reblog_set_key = key(timeline_type, account_id, "reblogs:#{status.reblog_of_id}")
 
       redis.srem(reblog_set_key, status.id)
+      redis.zrem(reblog_key, status.reblog_of_id)
       # 3. Re-insert another reblog or original into the feed if one
       # remains in the set. We could pick a random element, but this
       # set should generally be small, and it seems ideal to show the
@@ -294,12 +296,14 @@ class FeedManager
       other_reblog = redis.smembers(reblog_set_key).map(&:to_i).min
 
       redis.zadd(timeline_key, other_reblog, other_reblog) if other_reblog
+      redis.zadd(reblog_key, other_reblog, status.reblog_of_id) if other_reblog
 
       # 4. Remove the reblogging status from the feed (as normal)
       # (outside conditional)
     else
       # If the original is getting deleted, no use for reblog references
       redis.del(key(timeline_type, account_id, "reblogs:#{status.id}"))
+      redis.srem(reblog_key, status.id)
     end
 
     redis.zrem(timeline_key, status.id)
