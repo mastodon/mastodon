@@ -35,7 +35,7 @@ class FeedManager
   end
 
   def unpush_from_home(account, status)
-    return false unless remove_from_feed(:home, account.id, status)
+    return false unless remove_from_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
     redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
@@ -53,7 +53,7 @@ class FeedManager
   end
 
   def unpush_from_list(list, status)
-    return false unless remove_from_feed(:list, list.id, status)
+    return false unless remove_from_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
     redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
@@ -105,7 +105,7 @@ class FeedManager
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
     from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
-      remove_from_feed(:home, into_account.id, status)
+      remove_from_feed(:home, into_account.id, status, into_account.user&.aggregates_reblogs?)
     end
   end
 
@@ -275,11 +275,11 @@ class FeedManager
   # with reblogs, and returning true if a status was removed. As with
   # `add_to_feed`, this does not trigger push updates, so callers must
   # do so if appropriate.
-  def remove_from_feed(timeline_type, account_id, status)
+  def remove_from_feed(timeline_type, account_id, status, aggregate_reblogs = true)
     timeline_key = key(timeline_type, account_id)
     reblog_key   = key(timeline_type, account_id, 'reblogs')
 
-    if status.reblog?
+    if status.reblog? && (aggregate_reblogs.nil? || aggregate_reblogs)
       # 1. If the reblogging status is not in the feed, stop.
       status_rank = redis.zrevrank(timeline_key, status.id)
       return false if status_rank.nil?
