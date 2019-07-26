@@ -452,6 +452,9 @@ de:
         desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags nutzen
         title: Benutzerdefinierte Geschäftsbedingungen
       site_title: Name des Servers
+      spam_check_enabled:
+        desc_html: Mastodon kann automatisch Server stummschalten und automatisch Konten melden basierend auf Maßnahmen wie die Erkennung von Konten, die wiederholt unerwünschte Nachrichten senden. Es können hierbei mögliche Probleme auftreten.
+        title: Anti-Spam
       thumbnail:
         desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
         title: Vorschaubild des Servers
@@ -539,6 +542,13 @@ de:
     reset_password: Passwort zurücksetzen
     security: Sicherheit
     set_new_password: Neues Passwort setzen
+    setup:
+      email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
+      email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
+      title: Konfiguration
+    status:
+      account_status: Kontostatus
+      confirming: Warte auf die Bestätigung der E-Mail.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
