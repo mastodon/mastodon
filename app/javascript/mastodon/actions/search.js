@@ -92,7 +92,7 @@ export const expandSearch = type => (dispatch, getState) => {
       q: value,
       type,
       offset,
-    }
+    },
   }).then(({ data }) => {
     if (data.accounts) {
       dispatch(importFetchedAccounts(data.accounts));
