@@ -113,7 +113,7 @@ class MediaAttachment < ApplicationRecord
   has_attached_file :file,
                     styles: ->(f) { file_styles f },
                     processors: ->(f) { file_processors f },
-                    convert_options: { all: '-quality 90 -strip' }
+                    convert_options: { all: '-quality 90 -strip +set modify-date +set create-date' }
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
