@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe SpamCheck do
@@ -133,7 +135,31 @@ RSpec.describe SpamCheck do
   end
 
   describe '#remember!' do
-    pending
+    let(:status) { status_with_html('@alice') }
+    let(:spam_check) { described_class.new(status) }
+    let(:redis_key) { spam_check.send(:redis_key) }
+
+    it 'remembers' do
+      expect do
+        spam_check.remember!
+      end.to change { Redis.current.exists(redis_key) }.from(false).to(true)
+    end
+  end
+
+  describe '#reset!' do
+    let(:status) { status_with_html('@alice') }
+    let(:spam_check) { described_class.new(status) }
+    let(:redis_key) { spam_check.send(:redis_key) }
+
+    before do
+      spam_check.remember!
+    end
+
+    it 'resets' do
+      expect do
+        spam_check.reset!
+      end.to change { Redis.current.exists(redis_key) }.from(true).to(false)
+    end
   end
 
   describe '#flag!' do
