@@ -1936,6 +1936,9 @@ a.account__display-name {
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
+  position: sticky;
+  top: 0;
+  z-index: 3;
 }
 
 .tabs-bar__link {
