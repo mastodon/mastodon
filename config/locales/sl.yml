@@ -561,6 +561,7 @@ sl:
     status:
       account_status: Stanje računa
       confirming: Čakanje na potrditev e-pošte.
+      pending: Naše osebje preverja vašo prijavo. To lahko traja nekaj časa. Če bo vaša prijava odobrena, boste prejeli e-pošto.
     trouble_logging_in: Težave pri prijavi?
   authorize_follow:
     already_following: Temu računu že sledite
@@ -832,6 +833,17 @@ sl:
     no_account_html: Še nimate računa? Tukaj se lahko <a href='%{sign_up_path}' target='_blank'>prijavite</a>
     proceed: Nadaljujte
     prompt: 'Sledili boste:'
+    reason_html: "<strong>Zakaj je ta korak potreben?</strong> <code>%{instance}</code> morda ni strežnik, kjer ste registrirani, zato vas moramo najprej preusmeriti na domači strežnik."
+  remote_interaction:
+    favourite:
+      proceed: Nadaljuj s priljubljenim
+      prompt: 'Ali želite vzljubiti ta tut:'
+    reblog:
+      proceed: Nadaljuj s spodbudo
+      prompt: 'Ali želite spodbuditi ta tut:'
+    reply:
+      proceed: Nadaljuj z odgovorom
+      prompt: 'Ali želite odgovoriti na ta tut:'
   sessions:
     browser: Brskalnik
     browsers:
