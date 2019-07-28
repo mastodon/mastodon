@@ -51,6 +51,7 @@ export default class StatusContent extends React.PureComponent {
       } else {
         link.addEventListener('click', this.onLinkClick.bind(this), false);
         link.setAttribute('title', link.href);
+        link.classList.add('unhandled-link');
       }
 
       link.setAttribute('target', '_blank');
