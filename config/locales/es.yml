@@ -23,6 +23,9 @@ es:
     generic_description: "%{domain} es un servidor en la red"
     get_apps: Probar una aplicación móvil
     hosted_on: Mastodon hosteado en %{domain}
+    instance_actor_flash: |
+      Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
+      Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
     learn_more: Aprende más
     privacy_policy: Política de privacidad
     see_whats_happening: Ver lo que está pasando
@@ -448,6 +451,8 @@ es:
         desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
         title: Términos de servicio personalizados
       site_title: Nombre de instancia
+      spam_check_enabled:
+        desc_html: Mastodon puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
       thumbnail:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
         title: Portada de instancia
@@ -535,6 +540,14 @@ es:
     reset_password: Restablecer contraseña
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
+    setup:
+      email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, se puede cambiarla aquí y recibir un nuevo correo electrónico de confirmación.
+      email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
+      title: Configuración
+    status:
+      account_status: Estado de la cuenta
+      confirming: Esperando confirmación de correo electrónico.
+      pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
     trouble_logging_in: '¿Problemas para iniciar sesión?'
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
