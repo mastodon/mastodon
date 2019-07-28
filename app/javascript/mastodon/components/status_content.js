@@ -38,7 +38,7 @@ const isLinkMisleading = (link) => {
   const linkText = linkTextParts.join('');
   const targetURL = new URL(link.href);
 
-  return !(linkText.startsWith(targetURL.origin) || linkText.startsWith(targetURL.host));
+  return !(linkText === targetURL.origin || linkText === targetURL.host || linkText.startsWith(targetURL.origin + '/') || linkText.startsWith(targetURL.host + '/'));
 };
 
 export default class StatusContent extends React.PureComponent {
