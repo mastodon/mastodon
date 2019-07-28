@@ -11,6 +11,36 @@ import { autoPlayGif } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
+const isLinkMisleading = (link) => {
+  let linkTextParts = [];
+
+  // Reconstruct visible text, as we do not have much control over how links
+  // from remote software look, and we can't rely on `innerText` because the
+  // `invisible` class does not set `display` to `none`.
+
+  const walk = (node) => {
+    switch (node.nodeType) {
+    case Node.TEXT_NODE:
+      linkTextParts.push(node.textContent);
+      break;
+    case Node.ELEMENT_NODE:
+      if (node.classList.contains('invisible')) return;
+      const children = node.childNodes;
+      for (let i = 0; i < children.length; i++) {
+        walk(children[i]);
+      }
+      break;
+    }
+  };
+
+  walk(link);
+
+  const linkText = linkTextParts.join('');
+  const targetURL = new URL(link.href);
+
+  return !(linkText.startsWith(targetURL.origin) || linkText.startsWith(targetURL.host));
+};
+
 export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
@@ -56,6 +86,14 @@ export default class StatusContent extends React.PureComponent {
       } else {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
+
+        if (isLinkMisleading(link)) {
+          const tag = document.createElement('span');
+          tag.classList.add('link-origin-tag');
+          tag.textContent = `(${new URL(link.href).host})`;
+          link.insertAdjacentText('beforeend', ' ');
+          link.insertAdjacentElement('beforeend', tag);
+        }
       }
 
       link.setAttribute('target', '_blank');
