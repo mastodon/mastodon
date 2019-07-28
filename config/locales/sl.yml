@@ -844,7 +844,12 @@ sl:
     reply:
       proceed: Nadaljuj z odgovorom
       prompt: 'Ali želite odgovoriti na ta tut:'
+  scheduled_statuses:
+    over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih tutov
+    over_total_limit: Presegli ste omejitev %{limit} načrtovanih tutov
+    too_soon: Načrtovani datum mora biti v prihodnosti
   sessions:
+    activity: Zadnja dejavnost
     browser: Brskalnik
     browsers:
       alipay: Alipay
@@ -864,6 +869,9 @@ sl:
       safari: Safari
       uc_browser: UC Browser
       weibo: Weibo
+    current_session: Trenutna seja
+    description: "%{browser} na %{platform}"
+    explanation: To so spletni brskalniki, ki so trenutno prijavljeni v vaš Mastodon račun.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -876,6 +884,31 @@ sl:
       mac: Mac
       other: neznana platforma
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Prekliči
+    revoke_success: Seja je bila uspešno preklicana
+    title: Seje
+  settings:
+    account: Račun
+    account_settings: Nastavitve računa
+    appearance: Videz
+    authorized_apps: Pooblaščene aplikacije
+    back: Nazaj na Mastodon
+    delete: Brisanje računa
+    development: Razvoj
+    edit_profile: Uredi profil
+    export: Izvoz podatkov
+    featured_tags: Vključeni ključniki
+    identity_proofs: Dokazi o identiteti
+    import: Uvozi
+    import_and_export: Uvoz in izvoz
+    migrate: Selitev računa
+    notifications: Obvestila
+    preferences: Nastavitve
+    profile: Profil
+    relationships: Sledenja in sledilci
+    two_factor_authentication: Dvofaktorsko overjanje
   statuses:
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
