@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
-  context_extensions :atom_uri, :conversation, :sensitive,
+  context_extensions :atom_uri, :sensitive,
                      :hashtag, :emoji, :focal_point, :blurhash
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
-             :atom_uri, :in_reply_to_atom_uri,
-             :conversation
+             :atom_uri, :in_reply_to_atom_uri
 
   attribute :content
   attribute :content_map, if: :language?
@@ -108,16 +107,6 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     return unless object.reply? && !object.thread.nil?
 
     OStatus::TagManager.instance.uri_for(object.thread)
-  end
-
-  def conversation
-    return if object.conversation.nil?
-
-    if object.conversation.uri?
-      object.conversation.uri
-    else
-      OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
-    end
   end
 
   def local?
