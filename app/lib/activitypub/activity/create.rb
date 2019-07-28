@@ -67,6 +67,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         sensitive: @object['sensitive'] || false,
         visibility: visibility_from_audience,
         thread: replied_to_status,
+        conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         poll: process_poll,
       }
@@ -259,6 +260,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless replies.nil?
     uri = value_or_id(collection)
     ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
+  end
+
+  def conversation_from_uri(uri)
+    return nil if uri.nil?
+    return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
+    begin
+      Conversation.find_or_create_by!(uri: uri)
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+      retry
+    end
   end
 
   def visibility_from_audience
