@@ -33,8 +33,7 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = StatusesIndex.filter(term: { searchable_by: @account.id })
-                              .query(multi_match: { type: 'most_fields', query: @query, operator: 'and', fields: %w(text text.stemmed) })
+    definition = parsed_query.apply(StatusesIndex.filter(term: { searchable_by: @account.id }))
 
     if @options[:account_id].present?
       definition = definition.filter(term: { account_id: @options[:account_id] })
@@ -70,7 +69,7 @@ class SearchService < BaseService
   end
 
   def url_query?
-    @options[:type].blank? && @query =~ /\Ahttps?:\/\//
+    @resolve && @options[:type].blank? && @query =~ /\Ahttps?:\/\//
   end
 
   def url_resource_results
@@ -119,5 +118,9 @@ class SearchService < BaseService
       following: Account.following_map(account_ids, account.id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, account.id),
     }
+  end
+
+  def parsed_query
+    SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query))
   end
 end

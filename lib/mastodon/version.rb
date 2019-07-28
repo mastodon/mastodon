@@ -16,20 +16,16 @@ module Mastodon
       2
     end
 
-    def pre
-      nil
-    end
-
     def flags
       ''
     end
 
-    def to_a
-      [major, minor, patch, pre].compact
-    end
-
     def suffix
       '+glitch'
+    end
+
+    def to_a
+      [major, minor, patch].compact
     end
 
     def to_s

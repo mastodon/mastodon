@@ -20,7 +20,7 @@ class Tag < ApplicationRecord
   HASHTAG_NAME_RE = '([[:word:]_][[:word:]_·]*[[:alpha:]_·][[:word:]_·]*[[:word:]_])|([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
-  validates :name, presence: true, uniqueness: true, format: { with: /\A(#{HASHTAG_NAME_RE})\z/i }
+  validates :name, presence: true, format: { with: /\A(#{HASHTAG_NAME_RE})\z/i }
 
   scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :hidden, -> { where(account_tag_stats: { hidden: true }) }
@@ -64,21 +64,47 @@ class Tag < ApplicationRecord
   end
 
   class << self
-    def search_for(term, limit = 5, offset = 0)
-      pattern = sanitize_sql_like(term.strip) + '%'
+    def find_or_create_by_names(name_or_names)
+      Array(name_or_names).map(&method(:normalize)).uniq.map do |normalized_name|
+        tag = matching_name(normalized_name).first || create(name: normalized_name)
 
-      Tag.where('lower(name) like lower(?)', pattern)
+        yield tag if block_given?
+
+        tag
+      end
+    end
+
+    def search_for(term, limit = 5, offset = 0)
+      pattern = sanitize_sql_like(normalize(term.strip)) + '%'
+
+      Tag.where(arel_table[:name].lower.matches(pattern.downcase))
          .order(:name)
          .limit(limit)
          .offset(offset)
     end
 
     def find_normalized(name)
-      find_by(name: name.mb_chars.downcase.to_s)
+      matching_name(name).first
     end
 
     def find_normalized!(name)
       find_normalized(name) || raise(ActiveRecord::RecordNotFound)
+    end
+
+    def matching_name(name_or_names)
+      names = Array(name_or_names).map { |name| normalize(name).downcase }
+
+      if names.size == 1
+        where(arel_table[:name].lower.eq(names.first))
+      else
+        where(arel_table[:name].lower.in(names))
+      end
+    end
+
+    private
+
+    def normalize(str)
+      str.gsub(/\A#/, '').mb_chars.to_s
     end
   end
 

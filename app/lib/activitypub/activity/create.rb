@@ -148,12 +148,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_hashtag(tag)
     return if tag['name'].blank?
 
-    hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
-    hashtag = Tag.where(name: hashtag).first_or_create!(name: hashtag)
-
-    return if @tags.include?(hashtag)
-
-    @tags << hashtag
+    Tag.find_or_create_by_names(tag['name']) do |hashtag|
+      @tags << hashtag unless @tags.include?(hashtag)
+    end
   rescue ActiveRecord::RecordInvalid
     nil
   end

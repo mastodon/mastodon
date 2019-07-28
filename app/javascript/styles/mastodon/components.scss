@@ -445,13 +445,22 @@
   }
 
   .autosuggest-account,
-  .autosuggest-emoji {
+  .autosuggest-emoji,
+  .autosuggest-hashtag {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     line-height: 18px;
     font-size: 14px;
+  }
+
+  .autosuggest-hashtag {
+    justify-content: space-between;
+
+    strong {
+      font-weight: 500;
+    }
   }
 
   .autosuggest-account-icon,
@@ -751,6 +760,10 @@
     .fa {
       color: $dark-text-color;
     }
+  }
+
+  a.unhandled-link {
+    color: lighten($ui-highlight-color, 8%);
   }
 
   .status__content__spoiler-link {
@@ -1936,6 +1949,9 @@ a.account__display-name {
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
+  position: sticky;
+  top: 0;
+  z-index: 3;
 }
 
 .tabs-bar__link {
@@ -4006,8 +4022,9 @@ a.status-card.compact:hover {
 }
 
 .search-results__info {
-  padding: 10px;
-  color: $secondary-text-color;
+  padding: 20px;
+  color: $darker-text-color;
+  text-align: center;
 }
 
 .modal-root {

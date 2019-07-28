@@ -14,7 +14,7 @@ class HashtagQueryService < BaseService
 
   private
 
-  def tags_for(tags)
-    Tag.where(name: tags.map(&:downcase)) if tags.presence
+  def tags_for(names)
+    Tag.matching_name(names) if names.presence
   end
 end

@@ -55,6 +55,7 @@ export default class StatusContent extends React.PureComponent {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
         link.setAttribute('title', link.href);
+        link.classList.add('unhandled-link');
       }
 
       link.setAttribute('target', '_blank');
@@ -233,46 +234,23 @@ export default class StatusContent extends React.PureComponent {
         </div>
       );
     } else if (this.props.onClick) {
-      const output = [
-        <div
-          ref={this.setRef}
-          tabIndex='0'
-          key='content'
-          className={classNames}
-          style={directionStyle}
-          dangerouslySetInnerHTML={content}
-          lang={status.get('language')}
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
-        />,
-      ];
+      return (
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
 
-      if (this.state.collapsed) {
-        output.push(readMoreButton);
-      }
+          {!!this.state.collapsed && readMoreButton}
 
-      if (status.get('poll')) {
-        output.push(<PollContainer pollId={status.get('poll')} />);
-      }
-
-      return output;
+          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+        </div>
+      );
     } else {
-      const output = [
-        <div
-          tabIndex='0'
-          ref={this.setRef}
-          className='status__content'
-          style={directionStyle}
-          dangerouslySetInnerHTML={content}
-          lang={status.get('language')}
-        />,
-      ];
+      return (
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle}>
+          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
 
-      if (status.get('poll')) {
-        output.push(<PollContainer pollId={status.get('poll')} />);
-      }
-
-      return output;
+          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+        </div>
+      );
     }
   }
 
