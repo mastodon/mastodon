@@ -909,7 +909,23 @@ sl:
     profile: Profil
     relationships: Sledenja in sledilci
     two_factor_authentication: Dvofaktorsko overjanje
+  spam_check:
+    spam_detected_and_silenced: To je samodejno poročilo. Zaznana je bila neželena pošta in pošiljatelj je bil samodejno utišan. Če je prišlo do napake, prekličite utišanje računa.
   statuses:
+    attached:
+      description: 'Priloženo: %{attached}'
+      image:
+        one: "%{count} slika"
+        two: "%{count} sliki"
+        few: "%{count} slike"
+        other: "%{count} slik"
+      video:
+        one: "%{count} video posnetek"
+        two: "%{count} video posnetka"
+        few: "%{count} video posnetki"
+        other: "%{count} video posnetkov"
+    boosted_from_html: Spodbujeno iz %{acct_link}
+    content_warning: 'Opozorilo o vsebini: %{warning}'
     pin_errors:
       ownership: Trob nekoga drugega ne more biti pripet
       private: Nejavnega troba ni mogoče pripeti
