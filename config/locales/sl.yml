@@ -23,6 +23,9 @@ sl:
     generic_description: "%{domain} je en strežnik v omrežju"
     get_apps: Poskusite mobilno aplikacijo
     hosted_on: Mastodon gostuje na %{domain}
+    instance_actor_flash: |
+      Ta račun je navidezni igralec, ki predstavlja strežnik in ne posameznega uporabnika.
+      Uporablja se za namene federacije in se ne blokira, če ne želite blokirati celotne instance. V tem primeru blokirajte domeno.
     learn_more: Nauči se več
     privacy_policy: Pravilnik o zasebnosti
     see_whats_happening: Poglejte, kaj se dogaja
@@ -257,6 +260,7 @@ sl:
       feature_profile_directory: Imenik profilov
       feature_registrations: Registracije
       feature_relay: Rele federacije
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Predogled časovnice
       features: Zmožnosti
       hidden_service: Federacija s skritimi storitvami
@@ -460,6 +464,9 @@ sl:
         desc_html: Lahko napišete svojo pravilnik o zasebnosti, pogoje storitve ali druge pravne dokumente. Lahko uporabite oznake HTML
         title: Pogoji storitve po meri
       site_title: Ime strežnika
+      spam_check_enabled:
+        desc_html: Mastodon lahko samodejno utiša in samodejno prijavi račune, ki temeljijo na ukrepih, kot je odkrivanje računov, ki pošiljajo ponavljajoča se neželena sporočila. Lahko pride do zmot.
+        title: Anti-spam
       thumbnail:
         desc_html: Uporablja se za predogled prek OpenGrapha in API-ja. Priporočamo 1200x630px
         title: Sličica strežnika
@@ -547,6 +554,13 @@ sl:
     reset_password: Ponastavi geslo
     security: Varnost
     set_new_password: Nastavi novo geslo
+    setup:
+      email_below_hint_html: Če spodnji e-poštni naslov ni pravilen, ga lahko spremenite tukaj in prejmete novo potrditveno e-pošto.
+      email_settings_hint_html: Potrditvena e-pošta je bila poslana na %{email}. Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
+      title: Nastavitev
+    status:
+      account_status: Stanje računa
+      confirming: Čakanje na potrditev e-pošte.
     trouble_logging_in: Težave pri prijavi?
   authorize_follow:
     already_following: Temu računu že sledite
