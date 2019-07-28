@@ -302,7 +302,7 @@ sk:
         suspend: vylúčené
       show:
         affected_accounts:
-          one: 1 účet v databázi ovplyvnený
+          one: '%{count} účet v databázi ovplyvnený'
           few: "%{count} účtov v databázi ovplyvnených"
           many: "%{count} účtov v databázi ovplyvnených"
           other: "%{count} účty v databázi ovplyvnené"
@@ -465,6 +465,7 @@ sk:
         title: Vlastné pravidlá prevádzky
       site_title: Názov servera
       spam_check_enabled:
+        desc_html: Mastodon môže sám stíšiť, a nahlásiť účty v závislosti od rozpoznania parametrov ako napríklad opakované rozosielanie nevyžiadanej komunikácie. Môže dôjsť aj k nesprávnej identifikácii.
         title: Proti spamu
       thumbnail:
         desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie 1200x630px
@@ -557,6 +558,7 @@ sk:
     status:
       account_status: Stav účtu
       confirming: Čaká sa na dokončenie potvrdenia emailom.
+      pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
     trouble_logging_in: Problém s prihlásením?
   authorize_follow:
     already_following: Tento účet už následuješ
