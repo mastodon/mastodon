@@ -926,8 +926,33 @@ sl:
         other: "%{count} video posnetkov"
     boosted_from_html: Spodbujeno iz %{acct_link}
     content_warning: 'Opozorilo o vsebini: %{warning}'
+    disallowed_hashtags:
+      one: 'vsebuje nedovoljeni ključnik: %{tags}'
+      two: 'vsebuje nedovoljena ključnika: %{tags}'
+      few: 'vsebuje nedovoljene ključnike: %{tags}'
+      other: 'vsebuje nedovoljenih ključnikov: %{tags}'
+    language_detection: Samodejno zaznaj jezik
+    open_in_web: Odpri na spletu
+    over_character_limit: omejitev %{max} znakov je presežena
     pin_errors:
+      limit: Pripeli ste največje število tutov
       ownership: Trob nekoga drugega ne more biti pripet
       private: Nejavnega troba ni mogoče pripeti
+      reblog: Spodbuda ne more biti pripeta
+    poll:
+      total_votes:
+        one: "%{count} glas"
+        two: "%{count} glasova"
+        few: "%{count} glasovi"
+        other: "%{count} glasov"
+      vote: Glasuj
+    show_more: Pokaži več
+    sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Samo sledilci
+      private_long: Prikaži samo sledilcem
+      public: Javno
+      public_long: Vsi lahko vidijo
   stream_entries:
     pinned: Pripet trob
