@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
 import { autoPlayGif } from 'mastodon/initial_state';
+import { decode as decodeIDNA } from 'mastodon/utils/idna';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -38,7 +39,16 @@ const isLinkMisleading = (link) => {
   const linkText = linkTextParts.join('');
   const targetURL = new URL(link.href);
 
-  return !(linkText === targetURL.origin || linkText === targetURL.host || linkText.startsWith(targetURL.origin + '/') || linkText.startsWith(targetURL.host + '/'));
+  // The following may not work with international domain names
+  if (linkText === targetURL.origin || linkText === targetURL.host || linkText.startsWith(targetURL.origin + '/') || linkText.startsWith(targetURL.host + '/')) {
+    return false;
+  }
+
+  // The link hasn't been recognized, maybe it features an international domain name
+  const hostname = decodeIDNA(targetURL.hostname);
+  const host = targetURL.host.replace(targetURL.hostname, hostname);
+  const origin = targetURL.origin.replace(targetURL.host, host);
+  return !(linkText === origin || linkText === host || linkText.startsWith(origin + '/') || linkText.startsWith(host + '/'));
 };
 
 export default class StatusContent extends React.PureComponent {
