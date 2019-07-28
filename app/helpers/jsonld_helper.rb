@@ -130,7 +130,7 @@ module JsonLdHelper
       end
     end
 
-    doc = JSON::LD::API::RemoteDocument.new(url, json)
+    doc = JSON::LD::API::RemoteDocument.new(json, documentUrl: url)
 
     block_given? ? yield(doc) : doc
   end
