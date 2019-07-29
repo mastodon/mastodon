@@ -144,8 +144,9 @@ export const makeGetNotification = () => {
   return createSelector([
     (_, base)             => base,
     (state, _, accountId) => state.getIn(['accounts', accountId]),
-  ], (base, account) => {
-    return base.set('account', account);
+    (state, base)         => base.get('collapsed_account_ids') && base.get('collapsed_account_ids').map(id => state.getIn(['accounts', id])),
+  ], (base, account, collapsedAccounts) => {
+    return base.set('account', account).set('collapsed_accounts', collapsedAccounts);
   });
 };
 

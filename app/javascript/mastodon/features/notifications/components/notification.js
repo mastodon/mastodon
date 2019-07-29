@@ -17,6 +17,8 @@ const notificationForScreenReader = (intl, message, timestamp) => {
   return output.join(', ');
 };
 
+const appendDisplayNames = (base, accounts) => <span>{base} <abbr title={accounts.map(a => `@${a.get('acct')}`).join(', ')}><FormattedMessage id='notification.and_n_others' defaultMessage='and {count, plural, one {# other} other {# others}}' values={{ count: accounts.size }} /></abbr></span>;
+
 export default @injectIntl
 class Notification extends ImmutablePureComponent {
 
@@ -144,6 +146,10 @@ class Notification extends ImmutablePureComponent {
   renderFavourite (notification, link) {
     const { intl } = this.props;
 
+    if (notification.get('collapsed_accounts')) {
+      link = appendDisplayNames(link, notification.get('collapsed_accounts'));
+    }
+
     return (
       <HotKeys handlers={this.getHandlers()}>
         <div className='notification notification-favourite focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.favourite', defaultMessage: '{name} favourited your status' }, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
@@ -175,6 +181,10 @@ class Notification extends ImmutablePureComponent {
 
   renderReblog (notification, link) {
     const { intl } = this.props;
+
+    if (notification.get('collapsed_accounts')) {
+      link = appendDisplayNames(link, notification.get('collapsed_accounts'));
+    }
 
     return (
       <HotKeys handlers={this.getHandlers()}>

@@ -20,6 +20,22 @@ const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
 });
 
+const collapsibleNotifications = (a, b) => {
+  if (!['reblog', 'favourite'].includes(a.get('type'))) {
+    return false;
+  }
+
+  return a.get('type') === b.get('type') && a.get('status') === b.get('status');
+};
+
+const reduceNotifications = (list, notification) => {
+  if (!list.isEmpty() && collapsibleNotifications(list.last(), notification)) {
+    return list.update(list.size - 1, item => item.update('collapsed_account_ids', ImmutableList(), collapsed_account_ids => collapsed_account_ids.push(notification.get('account'))));
+  } else {
+    return list.push(notification);
+  }
+};
+
 const getNotifications = createSelector([
   state => state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
   state => state.getIn(['settings', 'notifications', 'quickFilter', 'active']),
@@ -27,12 +43,13 @@ const getNotifications = createSelector([
   state => state.getIn(['notifications', 'items']),
 ], (showFilterBar, allowedType, excludedTypes, notifications) => {
   if (!showFilterBar || allowedType === 'all') {
-    // used if user changed the notification settings after loading the notifications from the server
+    // Used if user changed the notification settings after loading the notifications from the server
     // otherwise a list of notifications will come pre-filtered from the backend
     // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
-    return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
+    return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type'))).reduce(reduceNotifications, ImmutableList());
   }
-  return notifications.filter(item => item !== null && allowedType === item.get('type'));
+
+  return notifications.filter(item => item !== null && allowedType === item.get('type')).reduce(reduceNotifications, ImmutableList());
 });
 
 const mapStateToProps = state => ({
