@@ -82,6 +82,40 @@ RSpec.describe Tag, type: :model do
     end
   end
 
+  describe '.find_normalized' do
+    it 'returns tag for a multibyte case-insensitive name' do
+      upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
+      downcase_string = 'abcabcａｂｃａｂｃやゆよ';
+
+      tag = Fabricate(:tag, name: downcase_string)
+      expect(Tag.find_normalized(upcase_string)).to eq tag
+    end
+  end
+
+  describe '.matching_name' do
+    it 'returns tags for multibyte case-insensitive names' do
+      upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
+      downcase_string = 'abcabcａｂｃａｂｃやゆよ';
+
+      tag = Fabricate(:tag, name: downcase_string)
+      expect(Tag.matching_name(upcase_string)).to eq [tag]
+    end
+  end
+
+  describe '.find_or_create_by_names' do
+    it 'runs a passed block once per tag regardless of duplicates' do
+      upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
+      downcase_string = 'abcabcａｂｃａｂｃやゆよ';
+      count           = 0
+
+      Tag.find_or_create_by_names([upcase_string, downcase_string]) do |tag|
+        count += 1
+      end
+
+      expect(count).to eq 1
+    end
+  end
+
   describe '.search_for' do
     it 'finds tag records with matching names' do
       tag = Fabricate(:tag, name: "match")
