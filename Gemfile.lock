@@ -6,6 +6,19 @@ GIT
     posix-spawn (0.3.13)
 
 GIT
+  remote: https://github.com/ruby-rdf/json-ld.git
+  revision: 345b7a5733308af827e8491d284dbafa9128d7a2
+  ref: 345b7a5733308af827e8491d284dbafa9128d7a2
+  specs:
+    json-ld (3.0.2)
+      htmlentities (~> 4.3)
+      json-canonicalization (~> 0.1)
+      link_header (~> 0.0, >= 0.0.8)
+      multi_json (~> 1.13)
+      rack (>= 1.6, < 3.0)
+      rdf (~> 3.0, >= 3.0.8)
+
+GIT
   remote: https://github.com/tmm1/http_parser.rb
   revision: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
   ref: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
@@ -299,10 +312,8 @@ GEM
     jaro_winkler (1.5.3)
     jmespath (1.4.0)
     json (2.2.0)
-    json-ld (3.0.2)
-      multi_json (~> 1.12)
-      rdf (>= 2.2.8, < 4.0)
-    json-ld-preloaded (3.0.2)
+    json-canonicalization (0.1.0)
+    json-ld-preloaded (3.0.3)
       json-ld (~> 3.0)
       multi_json (~> 1.12)
       rdf (~> 3.0)
@@ -406,6 +417,7 @@ GEM
       parallel
     parser (2.6.3.0)
       ast (~> 2.4.0)
+    parslet (1.8.2)
     pastel (0.7.2)
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
@@ -480,7 +492,7 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (12.3.2)
-    rdf (3.0.9)
+    rdf (3.0.12)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.3.3)
@@ -703,7 +715,7 @@ DEPENDENCIES
   i18n-tasks (~> 0.9)
   idn-ruby
   iso-639
-  json-ld (~> 3.0)
+  json-ld!
   json-ld-preloaded (~> 3.0)
   kaminari (~> 1.1)
   letter_opener (~> 1.7)
@@ -728,6 +740,7 @@ DEPENDENCIES
   paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
   parallel_tests (~> 2.29)
+  parslet
   pg (~> 1.1)
   pghero (~> 2.2)
   pkg-config (~> 1.3)

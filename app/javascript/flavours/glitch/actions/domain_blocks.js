@@ -23,6 +23,7 @@ export function blockDomain(domain) {
     api(getState).post('/api/v1/domain_blocks', { domain }).then(() => {
       const at_domain = '@' + domain;
       const accounts = getState().get('accounts').filter(item => item.get('acct').endsWith(at_domain)).valueSeq().map(item => item.get('id'));
+
       dispatch(blockDomainSuccess(domain, accounts));
     }).catch(err => {
       dispatch(blockDomainFail(domain, err));
