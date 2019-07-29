@@ -444,13 +444,13 @@ export const readyComposeSuggestionsTags = (token, tags) => ({
 export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
     let completion;
-    if (typeof suggestion === 'object' && suggestion.id) {
+    if (suggestion.type === 'emoji') {
       dispatch(useEmoji(suggestion));
       completion = suggestion.native || suggestion.colons;
-    } else if (typeof suggestion === 'object' && suggestion.name) {
+    } else if (suggestion.type === 'hashtag') {
       completion = `#${suggestion.name}`;
-    } else {
-      completion = '@' + getState().getIn(['accounts', suggestion, 'acct']);
+    } else if (suggestion.type === 'account') {
+      completion = '@' + getState().getIn(['accounts', suggestion.id, 'acct']);
     }
 
     dispatch({
