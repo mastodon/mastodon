@@ -418,16 +418,16 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
     let completion, startPosition;
 
-    if (typeof suggestion === 'object' && suggestion.id) {
+    if (suggestion.type === 'emoji') {
       completion    = suggestion.native || suggestion.colons;
       startPosition = position - 1;
 
       dispatch(useEmoji(suggestion));
-    } else if (typeof suggestion === 'object' && suggestion.name) {
+    } else if (suggestion.type === 'hashtag') {
       completion    = `#${suggestion.name}`;
       startPosition = position - 1;
-    } else {
-      completion    = getState().getIn(['accounts', suggestion, 'acct']);
+    } else if (suggestion.type === 'account') {
+      completion    = getState().getIn(['accounts', suggestion.id, 'acct']);
       startPosition = position;
     }
 
