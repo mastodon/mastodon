@@ -79,7 +79,7 @@ class Tag < ApplicationRecord
       pattern = sanitize_sql_like(normalize(term.strip)) + '%'
 
       Tag.where(arel_table[:name].lower.matches(pattern.mb_chars.downcase.to_s))
-         .order(Arel.sql('length(name) ASC, score DESC, name USING ~<~'))
+         .order(Arel.sql('length(name) ASC, score DESC, name ASC'))
          .limit(limit)
          .offset(offset)
     end
