@@ -185,6 +185,7 @@ et:
       username: Kasutajanimi
       warn: Hoiata
       web: Veeb
+      whitelisted: Lubatud
     action_logs:
       actions:
         assigned_to_self_report: "%{name} määras teabe %{target} iseendale"
@@ -268,6 +269,11 @@ et:
       week_interactions: interaktsioone see nädal
       week_users_active: aktiivne see nädal
       week_users_new: kasutajaid see nädal
+    domain_allows:
+      add_new: Luba domeen
+      created_msg: Domeeni lubamine õnnestus
+      destroyed_msg: Domeen eemaldati lubatute nimekirjast
+      undo: Eemalda lubatute nimekirjast
     domain_blocks:
       add_new: Lisa uus domeeniblokeering
       created_msg: Domeeni blokeeringut töödeldakse
@@ -523,6 +529,7 @@ et:
     apply_for_account: Taotle kutse
     change_password: Salasõna
     checkbox_agreement_html: Ma nõustun <a href="%{rules_path}" target="_blank">serveri reeglitega</a> ja <a href="%{terms_path}" target="_blank">kasutustingimustega</a>
+    checkbox_agreement_without_rules_html: Ma nõustun <a href="%{terms_path}" target="_blank">kasutustingimustega</a>
     delete_account: Kustuta konto
     delete_account_html: Kui Te soovite oma kontot kustutada, võite <a href="%{path}">jätkata siit</a>. Teilt küsitakse kinnitust.
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
