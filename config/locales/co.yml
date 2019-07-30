@@ -185,6 +185,7 @@ co:
       username: Cugnome
       warn: Averte
       web: Web
+      whitelisted: In a lista bianca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’hè assignatu u signalamentu %{target}"
@@ -268,6 +269,11 @@ co:
       week_interactions: interazzione sta settimana
       week_users_active: attivi sta settimana
       week_users_new: utilizatori sta settimana
+    domain_allows:
+      add_new: Aghjustà à a lista bianca
+      created_msg: U duminiu hè statu aghjuntu à a lista bianca
+      destroyed_msg: U duminiu hè statu sguassatu da a lista bianca
+      undo: Toglie di a lista bianca
     domain_blocks:
       add_new: Aghjustà novu blucchime di duminiu
       created_msg: U blucchime di u duminiu hè attivu
@@ -523,6 +529,7 @@ co:
     apply_for_account: Dumandà un'invitazione
     change_password: Chjave d’accessu
     checkbox_agreement_html: Sò d'accunsentu cù e <a href="%{rules_path}" target="_blank">regule di u servore</a> è i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
+    checkbox_agreement_without_rules_html: Accettu i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
     didnt_get_confirmation: Ùn avete micca ricevutu l’istruzione di cunfirmazione?
