@@ -278,9 +278,10 @@ sl:
       week_users_active: aktivni ta teden
       week_users_new: uporabniki ta teden
     domain_allows:
-      add_new: Dovoljena domena
-      created_msg: Domena je bila uspešno dodana na seznam dovoljenih
-      destroyed_msg: Domena je bila odstranjena s seznama dovoljenih
+      add_new: Dodaj domeno na beli seznam
+      created_msg: Domena je bila uspešno dodana na beli seznam
+      destroyed_msg: Domena je bila odstranjena iz belega seznama
+      undo: Odstrani iz belega seznama
     domain_blocks:
       add_new: Dodaj nov domenski blok
       created_msg: Domenski blok se sedaj obdeluje
@@ -540,6 +541,7 @@ sl:
     apply_for_account: Zahtevajte povabilo
     change_password: Geslo
     checkbox_agreement_html: Strinjam se s <a href="%{rules_path}" target="_blank">pravili strežnika</a> in <a href="%{terms_path}" target="_blank">pogoji storitve</a>
+    checkbox_agreement_without_rules_html: Strinjam se s <a href="%{terms_path}" target="_blank">pogoji storitve</a>
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
     didnt_get_confirmation: Niste prejeli navodil za potrditev?
@@ -1058,8 +1060,16 @@ sl:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Za potrditev vnesite kodo, ki jo je ustvarila aplikacija za preverjanje pristnosti
+    description_html: Če omogočite <strong>dvofaktorsko preverjanje pristnosti</strong>, boste za prijavo morali imeti svoj telefon, s katerim boste ustvarili žetone za vstop.
     disable: Onemogoči
     enable: Omogoči
     enabled: Dvofaktorsko preverjanje pristnosti je omogočeno
     enabled_success: Dvofaktorsko preverjanje pristnosti je uspešno omogočeno
     generate_recovery_codes: Ustvari kode za obnovitev
+    instructions_html: "<strong>Skenirajte QR kodo z Google Authenticator ali s podobno aplikacijo TOTP</strong>. Od zdaj naprej bo ta aplikacija ustvarjala žetone, ki jih boste morali vnesti ob prijavi."
+    lost_recovery_codes: Obnovitvene kode vam omogočajo, da ponovno pridobite dostop do svojega računa, če izgubite telefon. Če ste izgubili obnovitvene kode, jih lahko obnovite tukaj. Vaše stare obnovitvene kode bodo neveljavne.
+    manual_instructions: 'Če ne morete skenirati QR kode in jo morate vnesti ročno, je tu skrivnost v tekstovni obliki:'
+    recovery_codes: Varnostna kopija obnovitvenih kod
+    recovery_codes_regenerated: Obnovitvene kode so bile uspešno regenerirane
+    recovery_instructions_html: Če kdaj izgubite dostop do telefona, lahko uporabite eno od spodnjih obnovitvenih kod, da ponovno pridobite dostop do svojega računa. <strong>Shranite obnovitvene kode</strong>. Lahko jih natisnete in shranite z drugimi pomembnimi dokumenti.
+    setup: Nastavi
