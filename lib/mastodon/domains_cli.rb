@@ -12,17 +12,33 @@ module Mastodon
     end
 
     option :dry_run, type: :boolean
-    desc 'purge DOMAIN', 'Remove accounts from a DOMAIN without a trace'
+    option :whitelist_mode, type: :boolean
+    desc 'purge [DOMAIN]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
       records. Unlike a suspension, if the DOMAIN still exists in the wild,
       it means the accounts could return if they are resolved again.
+
+      When the --whitelist-mode option is given, instead of purging accounts
+      from a single domain, all accounts from domains that are not whitelisted
+      are removed from the database.
     LONG_DESC
-    def purge(domain)
+    def purge(domain = nil)
       removed = 0
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
-      Account.where(domain: domain).find_each do |account|
+      scope = begin
+        if options[:whitelist_mode]
+          Account.remote.where.not(domain: DomainAllow.pluck(:domain))
+        elsif domain.present?
+          Account.remote.where(domain: domain)
+        else
+          say('No domain given', :red)
+          exit(1)
+        end
+      end
+
+      scope.find_each do |account|
         SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
         removed += 1
         say('.', :green, false)
