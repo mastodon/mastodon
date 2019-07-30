@@ -184,6 +184,7 @@ gl:
       username: Nome de usuaria
       warn: Aviso
       web: Web
+      whitelisted: Lista branca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} asignou o informe %{target} a ela misma"
@@ -251,6 +252,7 @@ gl:
       feature_profile_directory: Directorio do perfil
       feature_registrations: Rexistros
       feature_relay: Repetidores de federación
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista previa da TL
       features: Características
       hidden_service: Federación con servizos ocultos
@@ -266,6 +268,11 @@ gl:
       week_interactions: interaccións en esta semana
       week_users_active: activas estas semana
       week_users_new: usuarias esta semana
+    domain_allows:
+      add_new: Dominio en lista branca
+      created_msg: Engadeu o dominio a lista branca
+      destroyed_msg: Quitou o dominio da lista branca
+      undo: Eliminar da lista branca
     domain_blocks:
       add_new: Engadir novo bloqueo de dominio
       created_msg: Estase a procesar o bloqueo do dominio
@@ -450,6 +457,9 @@ gl:
         desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
         title: Termos de servizo persoalizados
       site_title: Nome do servidor
+      spam_check_enabled:
+        desc_html: Mastodon pode silenciar e informar automáticamente sobre contas baseándose en medidas como detectar contas que envían mensaxes non solicitadas de xeito repetido. Podería haber falsos positivos.
+        title: Anti-spam
       thumbnail:
         desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
         title: Icona do servidor
@@ -518,6 +528,7 @@ gl:
     apply_for_account: Solicite un convite
     change_password: Contrasinal
     checkbox_agreement_html: Acepto as <a href="%{rules_path}" target="_blank">regras do servidor</a> e os <a href="%{terms_path}" target="_blank">termos do servizo</a>
+    checkbox_agreement_without_rules_html: Acepto os <a href="%{terms_path}" target="_blank">termos do servizo</a>
     delete_account: Eliminar conta
     delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
     didnt_get_confirmation: Non recibeu as instruccións de confirmación?
@@ -537,6 +548,14 @@ gl:
     reset_password: Restablecer contrasinal
     security: Seguridade
     set_new_password: Establecer novo contrasinal
+    setup:
+      email_below_hint_html: Se o enderezo inferior non é correcto, pode cambialo aquí e recibir un correo de confirmación.
+      email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto pode cambialo nos axustes da conta.
+      title: Axustes
+    status:
+      account_status: Estado da conta
+      confirming: Agardando a confirmación do correo enviado.
+      pending: A súa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirá un correo se a aplicación está aprobada.
     trouble_logging_in: Problemas para conectar?
   authorize_follow:
     already_following: Xa está a seguir esta conta
