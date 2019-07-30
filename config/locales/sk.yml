@@ -193,6 +193,7 @@ sk:
       username: Prezývka
       warn: Varuj
       web: Web
+      whitelisted: Na bielej listine
     action_logs:
       actions:
         assigned_to_self_report: "%{name}pridelil/a hlásenie užívateľa %{target}sebe"
@@ -276,6 +277,11 @@ sk:
       week_interactions: Tohto-týždňové interakcie
       week_users_active: aktívni tento týždeň
       week_users_new: užívateľov počas tohto týždňa
+    domain_allows:
+      add_new: Povolená doména
+      created_msg: Doména bola úspešne povolená
+      destroyed_msg: Doména bola odstránená zo zoznamu povolených
+      undo: Odober zo zoznamu povolených
     domain_blocks:
       add_new: Blokuj novú doménu
       created_msg: Doména je v štádiu blokovania
@@ -535,6 +541,7 @@ sk:
     apply_for_account: Vyžiadaj si pozvánku
     change_password: Heslo
     checkbox_agreement_html: Súhlasím s <a href="%{rules_path}" target="_blank">pravidlami servera</a>, aj s <a href="%{terms_path}" target="_blank">prevoznými podmienkami</a>
+    checkbox_agreement_without_rules_html: Súhlasím s <a href="%{terms_path}" target="_blank">podmienkami užívania</a>
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
     didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
