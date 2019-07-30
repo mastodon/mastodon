@@ -7,6 +7,7 @@
 #  name       :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  score      :integer
 #
 
 class Tag < ApplicationRecord
@@ -78,7 +79,7 @@ class Tag < ApplicationRecord
       pattern = sanitize_sql_like(normalize(term.strip)) + '%'
 
       Tag.where(arel_table[:name].lower.matches(pattern.mb_chars.downcase.to_s))
-         .order(:name)
+         .order(Arel.sql('length(name) ASC, score DESC, name ASC'))
          .limit(limit)
          .offset(offset)
     end
