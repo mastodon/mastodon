@@ -168,15 +168,15 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     const { selectedSuggestion } = this.state;
     let inner, key;
 
-    if (typeof suggestion === 'object' && suggestion.shortcode) {
+    if (suggestion.type === 'emoji') {
       inner = <AutosuggestEmoji emoji={suggestion} />;
       key   = suggestion.id;
-    } else if (typeof suggestion === 'object' && suggestion.name) {
+    } else if (suggestion.type ==='hashtag') {
       inner = <AutosuggestHashtag tag={suggestion} />;
       key   = suggestion.name;
-    } else {
-      inner = <AutosuggestAccountContainer id={suggestion} />;
-      key   = suggestion;
+    } else if (suggestion.type === 'account') {
+      inner = <AutosuggestAccountContainer id={suggestion.id} />;
+      key   = suggestion.id;
     }
 
     return (

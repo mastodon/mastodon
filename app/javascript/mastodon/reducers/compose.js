@@ -207,11 +207,11 @@ const expiresInFromExpiresAt = expires_at => {
 
 const normalizeSuggestions = (state, { accounts, emojis, tags }) => {
   if (accounts) {
-    return accounts.map(item => item.id);
+    return accounts.map(item => ({ id: item.id, type: 'account' }));
   } else if (emojis) {
-    return emojis;
+    return emojis.map(item => ({ ...item, type: 'emoji' }));
   } else {
-    return sortHashtagsByUse(state, tags);
+    return sortHashtagsByUse(state, tags.map(item => ({ ...item, type: 'hashtag' })));
   }
 };
 

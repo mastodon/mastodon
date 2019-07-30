@@ -2,6 +2,7 @@
 
 class Api::V1::Instances::ActivityController < Api::BaseController
   before_action :require_enabled_api!
+
   skip_before_action :set_cache_headers
 
   respond_to :json
@@ -33,6 +34,6 @@ class Api::V1::Instances::ActivityController < Api::BaseController
   end
 
   def require_enabled_api!
-    head 404 unless Setting.activity_api_enabled
+    head 404 unless Setting.activity_api_enabled && !whitelist_mode?
   end
 end

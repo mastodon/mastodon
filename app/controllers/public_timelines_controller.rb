@@ -4,7 +4,8 @@ class PublicTimelinesController < ApplicationController
   before_action :set_pack
   layout 'public'
 
-  before_action :check_enabled
+  before_action :authenticate_user!, if: :whitelist_mode?
+  before_action :require_enabled!
   before_action :set_body_classes
   before_action :set_instance_presenter
 
@@ -17,7 +18,7 @@ class PublicTimelinesController < ApplicationController
 
   private
 
-  def check_enabled
+  def require_enabled!
     not_found unless Setting.timeline_preview
   end
 

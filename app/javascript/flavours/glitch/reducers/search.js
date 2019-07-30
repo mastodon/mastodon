@@ -44,7 +44,8 @@ export default function search(state = initialState, action) {
       hashtags: fromJS(action.results.hashtags),
     })).set('submitted', true).set('searchTerm', action.searchTerm);
   case SEARCH_EXPAND_SUCCESS:
-    return state.updateIn(['results', action.searchType], list => list.concat(action.results[action.searchType].map(item => item.id)));
+    const results = action.searchType === 'hashtags' ? fromJS(action.results.hashtags) : action.results[action.searchType].map(item => item.id);
+    return state.updateIn(['results', action.searchType], list => list.concat(results));
   default:
     return state;
   }
