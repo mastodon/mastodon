@@ -2,7 +2,7 @@ gl:
   simple_form:
     hints:
       account_warning_preset:
-        text: Vostede pode utilizar dar formato ao toot, como URLs, etiquetas e mencións
+        text: Vostede pode darlle formato ao toot, como URLs, etiquetas e mencións
       admin_account_action:
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
         text_html: Optativo. Pode utilizar formato no toot. Pode <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
@@ -37,6 +37,8 @@ gl:
         setting_use_pending_items: Ocultar as actualizacións da liña temporal tras un click no lugar de desprazar automáticamente os comentarios
         username: O seu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
+      domain_allow:
+        domain: Este dominio estará en disposición de obter datos desde este servidor e datos de entrada a el poderán ser procesados e gardados
       featured_tag:
         name: 'Podería utilizar algunha de estas:'
       imports:
