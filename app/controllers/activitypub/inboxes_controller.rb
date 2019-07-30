@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::InboxesController < Api::BaseController
+class ActivityPub::InboxesController < ActivityPub::BaseController
   include SignatureVerification
   include JsonLdHelper
   include AccountOwnedConcern

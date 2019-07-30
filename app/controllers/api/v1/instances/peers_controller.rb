@@ -2,6 +2,7 @@
 
 class Api::V1::Instances::PeersController < Api::BaseController
   before_action :require_enabled_api!
+
   skip_before_action :set_cache_headers
 
   respond_to :json
@@ -14,6 +15,6 @@ class Api::V1::Instances::PeersController < Api::BaseController
   private
 
   def require_enabled_api!
-    head 404 unless Setting.peers_api_enabled
+    head 404 unless Setting.peers_api_enabled && !whitelist_mode?
   end
 end

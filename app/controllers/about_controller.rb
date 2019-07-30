@@ -4,6 +4,7 @@ class AboutController < ApplicationController
   before_action :set_pack
   layout 'public'
 
+  before_action :require_open_federation!, only: [:show, :more]
   before_action :set_body_classes, only: :show
   before_action :set_instance_presenter
   before_action :set_expires_in
@@ -19,6 +20,10 @@ class AboutController < ApplicationController
   def terms; end
 
   private
+
+  def require_open_federation!
+    not_found if whitelist_mode?
+  end
 
   def new_user
     User.new.tap do |user|

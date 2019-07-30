@@ -8,6 +8,7 @@ class TagsController < ApplicationController
   layout 'public'
 
   before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :authenticate_user!, if: :whitelist_mode?
   before_action :set_tag
   before_action :set_body_classes
   before_action :set_instance_presenter
