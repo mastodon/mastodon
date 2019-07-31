@@ -92,7 +92,8 @@ module Mastodon
 
       work_unit = ->(domain) do
         next if stats.key?(domain)
-        next if blocked_domains.any?{ |blocked| domain.match(Regexp.new("\\.?"+blocked+"$")) }
+        next if blocked_domains.any? { |blocked| domain.match(Regexp.new('\\.?' + blocked + '$')) }
+
         stats[domain] = nil
         processed.increment
 
