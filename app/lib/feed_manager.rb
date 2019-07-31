@@ -303,7 +303,7 @@ class FeedManager
     else
       # If the original is getting deleted, no use for reblog references
       redis.del(key(timeline_type, account_id, "reblogs:#{status.id}"))
-      redis.srem(reblog_key, status.id)
+      redis.zrem(reblog_key, status.id)
     end
 
     redis.zrem(timeline_key, status.id)
