@@ -96,6 +96,7 @@ class User < ApplicationRecord
 
   before_validation :sanitize_languages
   before_create :set_approved
+  before_create :lock_down
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -286,6 +287,10 @@ class User < ApplicationRecord
 
   def set_approved
     self.approved = open_registrations? || valid_invitation? || external?
+  end
+
+  def lock_down 
+    account.locked = true
   end
 
   def open_registrations?
