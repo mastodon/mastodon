@@ -185,6 +185,7 @@ el:
       username: Όνομα χρήστη
       warn: Προειδοποίηση
       web: Διαδίκτυο
+      whitelisted: Εγκεκριμένοι
     action_logs:
       actions:
         assigned_to_self_report: "Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της"
@@ -268,6 +269,11 @@ el:
       week_interactions: αλληλεπιδράσεις αυτή την εβδομάδα
       week_users_active: ενεργοί αυτή την εβδομάδα
       week_users_new: χρήστες αυτή την εβδομάδα
+    domain_allows:
+      add_new: Έγκριση τομέα
+      created_msg: Ο τομέας εγκρίθηκε με επιτυχία
+      destroyed_msg: Ο τομέας δεν είναι πια εγκεκριμένος
+      undo: Αφαίρεση έγκρισης
     domain_blocks:
       add_new: Προσθήκη νέου
       created_msg: Ο αποκλεισμός τομέα είναι υπό επεξεργασία
@@ -523,6 +529,7 @@ el:
     apply_for_account: Αίτηση πρόσκλησης
     change_password: Συνθηματικό
     checkbox_agreement_html: Συμφωνώ με τους <a href="%{rules_path}" target="_blank">κανονισμούς του κόμβου</a> και <a href="%{terms_path}" target="_blank">τους όρους χρήσης</a>
+    checkbox_agreement_without_rules_html: Συμφωνώ με τους <a href="%{terms_path}" target="_blank">όρους χρήσης</a>
     delete_account: Διαγραφή email
     delete_account_html: Αν θέλεις να διαγράψεις το λογαριασμό σου, μπορείς <a href="%{path}">να συνεχίσεις εδώ</a>. Θα σου ζητηθεί επιβεβαίωση.
     didnt_get_confirmation: Δεν έλαβες τις οδηγίες επιβεβαίωσης;
