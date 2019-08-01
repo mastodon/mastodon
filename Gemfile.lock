@@ -213,6 +213,11 @@ GEM
     dotenv-rails (2.7.4)
       dotenv (= 2.7.4)
       railties (>= 3.2, < 6.1)
+    dry-configurable (0.8.3)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.4, >= 0.4.7)
+    dry-core (0.4.8)
+      concurrent-ruby (~> 1.0)
     elasticsearch (6.0.2)
       elasticsearch-api (= 6.0.2)
       elasticsearch-transport (= 6.0.2)
@@ -445,6 +450,10 @@ GEM
       nio4r (~> 2.0)
     pundit (2.0.1)
       activesupport (>= 3.0.0)
+    query_track (0.0.7)
+      activesupport
+      dry-configurable
+      slack_hook
     raabro (1.1.6)
     rack (2.0.7)
     rack-attack (6.1.0)
@@ -591,6 +600,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    slack_hook (0.1.2)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -748,6 +758,7 @@ DEPENDENCIES
   pry-rails (~> 0.3)
   puma (~> 4.0)
   pundit (~> 2.0)
+  query_track (~> 0.0.7)
   rack-attack (~> 6.1)
   rack-cors (~> 1.0)
   rails (~> 5.2.3)
