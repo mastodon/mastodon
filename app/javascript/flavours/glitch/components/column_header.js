@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -36,6 +37,7 @@ class ColumnHeader extends React.PureComponent {
     onEnterCleaningMode: PropTypes.func,
     children: PropTypes.node,
     pinned: PropTypes.bool,
+    placeholder: PropTypes.bool,
     onPin: PropTypes.func,
     onMove: PropTypes.func,
     onClick: PropTypes.func,
@@ -104,7 +106,7 @@ class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { intl, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive } = this.props;
+    const { intl, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive, placeholder } = this.props;
     const { collapsed, animating, animatingNCD } = this.state;
 
     let title = this.props.title;
@@ -185,7 +187,7 @@ class ColumnHeader extends React.PureComponent {
 
     const hasTitle = icon && title;
 
-    return (
+    const component = (
       <div className={wrapperClassName}>
         <h1 className={buttonClassName}>
           {hasTitle && (
@@ -229,6 +231,12 @@ class ColumnHeader extends React.PureComponent {
         </div>
       </div>
     );
+
+    if (multiColumn || placeholder) {
+      return component;
+    } else {
+      return createPortal(component, document.getElementById('tabs-bar__portal'));
+    }
   }
 
 }
