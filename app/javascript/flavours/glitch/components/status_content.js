@@ -25,6 +25,12 @@ const dot_confusables = '.\u002e\u0660\u06f0\u0701\u0702\u2024\ua4f8\ua60e\u10a5
 
 const linkRegex = new RegExp(`^\\s*(([${h_confusables}][${t_confusables}][${t_confusables}][${p_confusables}][${s_confusables}]?[${column_confusables}][${slash_confusables}][${slash_confusables}]))?[^:/\\n ]+([${dot_confusables}][^:/\\n ]+)+`);
 
+const textMatchesTarget = (text, origin, host) => {
+  return (text === origin || text === host
+          || text.startsWith(origin + '/') || text.startsWith(host + '/')
+          || 'www.' + text === host || ('www.' + text).startsWith(host + '/'));
+}
+
 // If `checkUrlLike` is true, consider only URL-like link texts to be misleading
 const isLinkMisleading = (link, checkUrlLike = true) => {
   let linkTextParts = [];
@@ -54,7 +60,7 @@ const isLinkMisleading = (link, checkUrlLike = true) => {
   const targetURL = new URL(link.href);
 
   // The following may not work with international domain names
-  if (linkText === targetURL.origin || linkText === targetURL.host || 'www.' + linkText === targetURL.host || linkText.startsWith(targetURL.origin + '/') || linkText.startsWith(targetURL.host + '/') || ('www.' + linkText).startsWith(targetURL.host + '/')) {
+  if (textMatchesTarget(linkText, targetURL.origin, targetURL.host) || textMatchesTarget(linkText.toLowerCase(), targetURL.origin, targetURL.host)) {
     return false;
   }
 
@@ -62,7 +68,7 @@ const isLinkMisleading = (link, checkUrlLike = true) => {
   const hostname = decodeIDNA(targetURL.hostname);
   const host = targetURL.host.replace(targetURL.hostname, hostname);
   const origin = targetURL.origin.replace(targetURL.host, host);
-  if (linkText === origin || linkText === host || 'www.' + linkText === host || linkText.startsWith(origin + '/') || linkText.startsWith(host + '/') || ('www.' + linkText).startsWith(host + '/')) {
+  if (textMatchesTarget(linkText, origin, host)) {
     return false;
   }
 
