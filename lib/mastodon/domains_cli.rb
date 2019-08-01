@@ -86,7 +86,7 @@ module Mastodon
       failed          = Concurrent::AtomicFixnum.new(0)
       start_at        = Time.now.to_f
       seed            = start ? [start] : Account.remote.domains
-      blocked_domains = options[:exclude_suspended] ? Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$') : ''
+      blocked_domains = Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$')
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
