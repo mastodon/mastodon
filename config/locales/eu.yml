@@ -23,6 +23,8 @@ eu:
     generic_description: "%{domain} sareko zerbitzari bat da"
     get_apps: Probatu mugikorrerako aplikazio bat
     hosted_on: Mastodon %{domain} domeinuan ostatatua
+    instance_actor_flash: |
+      Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke.
     learn_more: Ikasi gehiago
     privacy_policy: Pribatutasun politika
     see_whats_happening: Ikusi zer gertatzen ari den
@@ -182,6 +184,7 @@ eu:
       username: Erabiltzaile-izena
       warn: Abisatu
       web: Weba
+      whitelisted: Zerrenda zurian
     action_logs:
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
@@ -249,6 +252,7 @@ eu:
       feature_profile_directory: Profil-direktorioa
       feature_registrations: Izen emateak
       feature_relay: Federazio haria
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Denbora-lerroaren aurrebista
       features: Ezaugarriak
       hidden_service: Federazioa ezkutuko zerbitzuekin
@@ -264,6 +268,11 @@ eu:
       week_interactions: interakzio aste honetan
       week_users_active: aktibo aste honetan
       week_users_new: erabiltzaile aste honetan
+    domain_allows:
+      add_new: Sartu domeinua zerrenda zurian
+      created_msg: Domeinua ongi sartu da zerrenda zurian
+      destroyed_msg: Domeinua zerrenda zuritik kendu da
+      undo: Kendu zerrenda zuritik
     domain_blocks:
       add_new: Gehitu domeinuaren blokeo berria
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
@@ -448,6 +457,9 @@ eu:
         desc_html: Zure pribatutasun politika, erabilera baldintzak eta bestelako testu legalak idatzi ditzakezu. HTML etiketak erabili ditzakezu
         title: Erabilera baldintza pertsonalizatuak
       site_title: Zerbitzariaren izena
+      spam_check_enabled:
+        desc_html: Mastodonek automatikoki isildu eta salatu ditzake kontuak neurriei jarraituz, esaterako eskatu gabeko mezuak behin eta berriro bidaltzen dituzten kontuak antzemanez. Positibo faltsuak gertatu daitezke.
+        title: Anti-spam
       thumbnail:
         desc_html: Aurrebistetarako erabilia OpenGraph eta API bidez. 1200x630px aholkatzen da
         title: Zerbitzariaren iruditxoa
@@ -516,6 +528,7 @@ eu:
     apply_for_account: Eskatu gonbidapen bat
     change_password: Pasahitza
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Zerbitzariaren arauak</a> eta <a href="%{terms_path}" target="_blank">erabilera baldintzak</a> onartzen ditut
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Erabilera baldintzak</a> onartzen ditut
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
     didnt_get_confirmation: Ez dituzu berresteko argibideak jaso?
@@ -535,6 +548,9 @@ eu:
     reset_password: Berrezarri pasahitza
     security: Segurtasuna
     set_new_password: Ezarri pasahitza berria
+    setup:
+      email_below_hint_html: Beheko e-mail helbidea okerra bada, hemen aldatu dezakezu eta baieztapen e-mail berria jaso.
+      email_settings_hint_html: Baieztamen e-maila %{email} helbidera bidali da. E-mail helbide hori zuzena ez bada, kontuaren ezarpenetan aldatu dezakezu.
     trouble_logging_in: Arazoak saioa hasteko?
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
