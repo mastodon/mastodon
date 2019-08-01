@@ -49,7 +49,7 @@ class TrendingTags
       else
         score = ((observed - expected)**2) / expected
         added = redis.zadd(key, score, tag_id.to_s)
-        bump_tag_score!(tag_id) if added == 1
+        bump_tag_score!(tag_id) if added
       end
 
       redis.expire(key, EXPIRE_TRENDS_AFTER)
