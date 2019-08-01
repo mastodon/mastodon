@@ -25,6 +25,9 @@ const messages = defineMessages({
   filters_upstream: { id: 'settings.filtering_behavior.upstream', defaultMessage: 'Show "filtered" like vanilla Mastodon' },
   filters_hide: { id: 'settings.filtering_behavior.hide', defaultMessage: 'Show "filtered" and add a button to display why' },
   filters_cw: { id: 'settings.filtering_behavior.cw', defaultMessage: 'Still display the post, and add filtered words to content warning' },
+  link_rewriting_none: { id: 'settings.link_rewriting.none', defaultMessage: 'Do not rewrite links' },
+  link_rewriting_rewrite: { id: 'settings.link_rewriting.rewrite', defaultMessage: 'Rewrite links that may be misleading' },
+  link_rewriting_tag: { id: 'settings.link_rewriting.tag', defaultMessage: 'Tag links with their target host unless it is already explicit' },
 });
 
 @injectIntl
@@ -65,6 +68,19 @@ export default class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.confirm_boost_missing_media_description' defaultMessage='Show confirmation dialog before boosting toots lacking media descriptions' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['link_rewriting']}
+          id='mastodon-settings--link_rewriting'
+          options={[
+            { value: 'none', message: intl.formatMessage(messages.link_rewriting_none) },
+            { value: 'rewrite', message: intl.formatMessage(messages.link_rewriting_rewrite) },
+            { value: 'tag', message: intl.formatMessage(messages.link_rewriting_tag) },
+          ]}
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.link_rewriting' defaultMessage='Link rewriting' />
         </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>

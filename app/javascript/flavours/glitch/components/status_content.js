@@ -6,6 +6,69 @@ import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 import { autoPlayGif } from 'flavours/glitch/util/initial_state';
+import { decode as decodeIDNA } from 'flavours/glitch/util/idna';
+
+// Regex matching what "looks like a link", that is, something that starts with
+// an optional "http://" or "https://" scheme and then what could look like a
+// domain main, that is, at least two sequences of characters not including spaces
+// and separated by "." or an homoglyph. The idea is not to match valid URLs or
+// domain names, but what could be confused for a valid URL or domain name,
+// especially to the untrained eye.
+
+const h_confusables = 'h\u13c2\u1d58d\u1d4f1\u1d691\u0068\uff48\u1d525\u210e\u1d489\u1d629\u0570\u1d4bd\u1d65d\u1d421\u1d5c1\u1d5f5\u04bb\u1d559';
+const t_confusables = 't\u1d42d\u1d5cd\u1d531\u1d565\u1d4c9\u1d669\u1d4fd\u1d69d\u0074\u1d461\u1d601\u1d495\u1d635\u1d599';
+const p_confusables = 'p\u0440\u03c1\u1d52d\u1d631\u1d665\u1d429\uff50\u1d6e0\u1d45d\u1d561\u1d595\u1d71a\u1d699\u1d78e\u2ca3\u1d754\u1d6d2\u1d491\u1d7c8\u1d746\u1d4c5\u1d70c\u1d5c9\u0070\u1d780\u03f1\u1d5fd\u2374\u1d7ba\u1d4f9';
+const s_confusables = 's\u1d530\u118c1\u1d494\u1d634\u1d4c8\u1d668\uabaa\u1d42c\u1d5cc\u1d460\u1d600\ua731\u0073\uff53\u1d564\u0455\u1d598\u1d4fc\u1d69c\u10448\u01bd';
+const column_confusables = ':\u0903\u0a83\u0703\u1803\u05c3\u0704\u0589\u1809\ua789\u16ec\ufe30\u02d0\u2236\u02f8\u003a\uff1a\u205a\ua4fd';
+const slash_confusables = '/\u2041\u2f03\u2044\u2cc6\u27cb\u30ce\u002f\u2571\u31d3\u3033\u1735\u2215\u29f8\u1d23a\u4e3f';
+const dot_confusables = '.\u002e\u0660\u06f0\u0701\u0702\u2024\ua4f8\ua60e\u10a50\u1d16d';
+
+const linkRegex = new RegExp(`^\\s*(([${h_confusables}][${t_confusables}][${t_confusables}][${p_confusables}][${s_confusables}]?[${column_confusables}][${slash_confusables}][${slash_confusables}]))?[^:/\\n ]+([${dot_confusables}][^:/\\n ]+)+`);
+
+// If `checkUrlLike` is true, consider only URL-like link texts to be misleading
+const isLinkMisleading = (link, checkUrlLike = true) => {
+  let linkTextParts = [];
+
+  // Reconstruct visible text, as we do not have much control over how links
+  // from remote software look, and we can't rely on `innerText` because the
+  // `invisible` class does not set `display` to `none`.
+
+  const walk = (node) => {
+    switch (node.nodeType) {
+    case Node.TEXT_NODE:
+      linkTextParts.push(node.textContent);
+      break;
+    case Node.ELEMENT_NODE:
+      if (node.classList.contains('invisible')) return;
+      const children = node.childNodes;
+      for (let i = 0; i < children.length; i++) {
+        walk(children[i]);
+      }
+      break;
+    }
+  };
+
+  walk(link);
+
+  const linkText = linkTextParts.join('');
+  const targetURL = new URL(link.href);
+
+  // The following may not work with international domain names
+  if (linkText === targetURL.origin || linkText === targetURL.host || 'www.' + linkText === targetURL.host || linkText.startsWith(targetURL.origin + '/') || linkText.startsWith(targetURL.host + '/')) {
+    return false;
+  }
+
+  // The link hasn't been recognized, maybe it features an international domain name
+  const hostname = decodeIDNA(targetURL.hostname);
+  const host = targetURL.host.replace(targetURL.hostname, hostname);
+  const origin = targetURL.origin.replace(targetURL.host, host);
+  if (linkText === origin || linkText === host || linkText.startsWith(origin + '/') || linkText.startsWith(host + '/')) {
+    return false;
+  }
+
+  // If the link text looks like an URL or auto-generated link, it is misleading
+  return !checkUrlLike || linkRegex.test(linkText);
+};
 
 export default class StatusContent extends React.PureComponent {
 
@@ -19,6 +82,11 @@ export default class StatusContent extends React.PureComponent {
     parseClick: PropTypes.func,
     disabled: PropTypes.bool,
     onUpdate: PropTypes.func,
+    linkRewriting: PropTypes.string,
+  };
+
+  static defaultProps = {
+    linkRewriting: 'tag',
   };
 
   state = {
@@ -27,6 +95,7 @@ export default class StatusContent extends React.PureComponent {
 
   _updateStatusLinks () {
     const node = this.contentsNode;
+    const { linkRewriting } = this.props;
 
     if (!node) {
       return;
@@ -52,6 +121,44 @@ export default class StatusContent extends React.PureComponent {
         link.addEventListener('click', this.onLinkClick.bind(this), false);
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
+
+        if (linkRewriting === 'rewrite' && isLinkMisleading(link)) {
+          // Rewrite misleading links entirely
+
+          while (link.firstChild) {
+            link.removeChild(link.firstChild);
+          }
+
+          const prefix = (link.href.match(/https?:\/\/(www\.)?/) || [''])[0];
+          const text   = link.href.substr(prefix.length, 30);
+          const suffix = link.href.substr(prefix.length + 30);
+          const cutoff = !!suffix;
+
+          const prefixTag = document.createElement('span');
+          prefixTag.classList.add('invisible');
+          prefixTag.textContent = prefix;
+          link.appendChild(prefixTag);
+
+          const textTag = document.createElement('span');
+          if (cutoff) {
+            textTag.classList.add('ellipsis');
+          }
+          textTag.textContent = text;
+          link.appendChild(textTag);
+
+          const suffixTag = document.createElement('span');
+          suffixTag.classList.add('invisible');
+          suffixTag.textContent = suffix;
+          link.appendChild(suffixTag);
+        } else if (linkRewriting === 'tag' && isLinkMisleading(link, false)) {
+          // Add a tag besides the link to display its origin
+
+          const tag = document.createElement('span');
+          tag.classList.add('link-origin-tag');
+          tag.textContent = `[${new URL(link.href).host}]`;
+          link.insertAdjacentText('beforeend', ' ');
+          link.insertAdjacentElement('beforeend', tag);
+        }
       }
 
       link.setAttribute('target', '_blank');

@@ -699,6 +699,7 @@ class Status extends ImmutablePureComponent {
             onExpandedToggle={this.handleExpandedToggle}
             parseClick={parseClick}
             disabled={!router}
+            linkRewriting={settings.get('link_rewriting')}
           />
           {!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar'])) ? (
             <StatusActionBar
