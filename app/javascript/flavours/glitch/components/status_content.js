@@ -65,10 +65,11 @@ const isLinkMisleading = (link, checkUrlLike = true) => {
   }
 
   // The link hasn't been recognized, maybe it features an international domain name
-  const hostname = decodeIDNA(targetURL.hostname);
+  const hostname = decodeIDNA(targetURL.hostname).normalize('NFKC');
   const host = targetURL.host.replace(targetURL.hostname, hostname);
   const origin = targetURL.origin.replace(targetURL.host, host);
-  if (textMatchesTarget(linkText, origin, host)) {
+  const text = linkText.normalize('NFKC');
+  if (textMatchesTarget(text, origin, host) || textMatchesTarget(text.toLowerCase(), origin, host)) {
     return false;
   }
 
