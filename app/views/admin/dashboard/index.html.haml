@@ -81,6 +81,9 @@
         %li
           Redis
           %span.pull-right= number_to_human_size @redis_size
+        %li
+          = t('admin.dashboard.uploads_size')
+          %span.pull-right= number_to_human_size @uploads_size
 
   .dashboard__widgets__config
     %div
@@ -90,6 +93,10 @@
           = feature_hint(t('admin.dashboard.search'), @search_enabled)
         %li
           = feature_hint(t('admin.dashboard.single_user_mode'), @single_user_mode)
+        %li
+          = feature_hint(t('admin.dashboard.authorized_fetch_mode'), @authorized_fetch)
+        %li
+          = feature_hint(t('admin.dashboard.whitelist_mode'), @whitelist_mode)
         %li
           = feature_hint('LDAP', @ldap_enabled)
         %li

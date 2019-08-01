@@ -22,11 +22,14 @@ module Admin
       @recent_users          = User.confirmed.recent.includes(:account).limit(4)
       @database_size         = ActiveRecord::Base.connection.execute('SELECT pg_database_size(current_database())').first['pg_database_size']
       @redis_size            = redis_info['used_memory']
+      @uploads_size          = calculate_uploads_size
       @ldap_enabled          = ENV['LDAP_ENABLED'] == 'true'
       @cas_enabled           = ENV['CAS_ENABLED'] == 'true'
       @saml_enabled          = ENV['SAML_ENABLED'] == 'true'
       @pam_enabled           = ENV['PAM_ENABLED'] == 'true'
       @hidden_service        = ENV['ALLOW_ACCESS_TO_HIDDEN_SERVICE'] == 'true'
+      @authorized_fetch      = authorized_fetch_mode?
+      @whitelist_enabled     = whitelist_mode?
       @trending_hashtags     = TrendingTags.get(7)
       @profile_directory     = Setting.profile_directory
       @timeline_preview      = Setting.timeline_preview
@@ -40,7 +43,17 @@ module Admin
     end
 
     def redis_info
-      @redis_info ||= Redis.current.info
+      @redis_info ||= begin
+        if Redis.current.is_a?(Redis::Namespace)
+          Redis.current.redis.info
+        else
+          Redis.current.info
+        end
+      end
+    end
+
+    def calculate_uploads_size
+      MediaAttachment.sum(:file_file_size) + PreviewCard.sum(:image_file_size) + Account.sum(Arel.sql('avatar_file_size + header_file_size'))
     end
   end
 end
