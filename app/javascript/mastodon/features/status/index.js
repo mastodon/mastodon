@@ -471,7 +471,7 @@ class Status extends ImmutablePureComponent {
     };
 
     return (
-      <Column label={intl.formatMessage(messages.detailedStatus)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           showBackButton
           multiColumn={multiColumn}
