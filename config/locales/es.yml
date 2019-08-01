@@ -185,6 +185,7 @@ es:
       username: Nombre de usuario
       warn: Adevertir
       web: Web
+      whitelisted: Añadido a la lista blanca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
@@ -252,6 +253,7 @@ es:
       feature_profile_directory: Directorio de perfil
       feature_registrations: Registros
       feature_relay: Relés de federación
+      feature_spam_check: Contra-spam
       feature_timeline_preview: Vista previa de la línea de tiempo
       features: Características
       hidden_service: Federación con servicios ocultos
@@ -267,6 +269,11 @@ es:
       week_interactions: interacciones esta semana
       week_users_active: activo esta semana
       week_users_new: usuarios esta semana
+    domain_allows:
+      add_new: Añadir dominio a la lista blanca
+      created_msg: Dominio añadido a la lista blanca con éxito
+      destroyed_msg: Dominio quitado de la lista blanca con éxito
+      undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
       created_msg: El bloque de dominio está siendo procesado
@@ -453,6 +460,7 @@ es:
       site_title: Nombre de instancia
       spam_check_enabled:
         desc_html: Mastodon puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
+        title: Contra-spam
       thumbnail:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
         title: Portada de instancia
@@ -521,6 +529,7 @@ es:
     apply_for_account: Solicitar una invitación
     change_password: Contraseña
     checkbox_agreement_html: Acepto <a href="%{rules_path}" target="_blank">las reglas del servidor</a> y <a href="%{terms_path}" target="_blank">términos de servicio</a>
+    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank">términos de servicio</a>
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     didnt_get_confirmation: '¿No recibió el correo de confirmación?'
