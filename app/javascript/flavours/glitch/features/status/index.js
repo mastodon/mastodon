@@ -532,7 +532,7 @@ class Status extends ImmutablePureComponent {
     };
 
     return (
-      <Column ref={this.setColumnRef} label={intl.formatMessage(messages.detailedStatus)}>
+      <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           icon='comment'
           title={intl.formatMessage(messages.tootHeading)}

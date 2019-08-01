@@ -105,7 +105,7 @@ class CommunityTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='local' label={intl.formatMessage(messages.title)}>
+      <Column ref={this.setRef} name='local' bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='users'
           active={hasUnread}

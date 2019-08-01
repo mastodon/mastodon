@@ -97,7 +97,7 @@ class HomeTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='home' label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} name='home' label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='home'
           active={hasUnread}

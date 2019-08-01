@@ -104,7 +104,7 @@ class PublicTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='globe'
           active={hasUnread}

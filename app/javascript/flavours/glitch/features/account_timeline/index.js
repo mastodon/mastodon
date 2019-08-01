@@ -97,7 +97,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setRef} name='account'>
-        <ProfileColumnHeader onClick={this.handleHeaderClick} />
+        <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}

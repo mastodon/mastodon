@@ -10,10 +10,11 @@ export default class Column extends React.PureComponent {
     extraClasses: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
+    bindToDocument: PropTypes.bool,
   };
 
   scrollTop () {
-    const scrollable = this.node.querySelector('.scrollable');
+    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
 
     if (!scrollable) {
       return;
@@ -35,11 +36,19 @@ export default class Column extends React.PureComponent {
   }
 
   componentDidMount () {
-    this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+    if (this.props.bindToDocument) {
+      document.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+    } else {
+      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+    }
   }
 
   componentWillUnmount () {
-    this.node.removeEventListener('wheel', this.handleWheel);
+    if (this.props.bindToDocument) {
+      document.removeEventListener('wheel', this.handleWheel);
+    } else {
+      this.node.removeEventListener('wheel', this.handleWheel);
+    }
   }
 
   render () {

@@ -145,6 +145,7 @@ class HashtagTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           showBackButton
+          bindToDocument={!multiColumn}
         >
           {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>

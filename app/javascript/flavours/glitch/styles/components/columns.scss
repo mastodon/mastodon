@@ -112,6 +112,8 @@
 }
 
 .column-back-button {
+  box-sizing: border-box;
+  width: 100%;
   background: lighten($ui-base-color, 4%);
   color: $highlight-text-color;
   cursor: pointer;

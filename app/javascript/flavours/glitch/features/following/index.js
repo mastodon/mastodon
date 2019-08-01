@@ -93,7 +93,7 @@ class Following extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setRef}>
-        <ProfileColumnHeader onClick={this.handleHeaderClick} />
+        <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <ScrollableList
           scrollKey='following'

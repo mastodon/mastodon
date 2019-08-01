@@ -71,6 +71,7 @@ class Favourites extends ImmutablePureComponent {
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton
+          multiColumn={multiColumn}
         />
         <ScrollableList
           scrollKey='favourites'

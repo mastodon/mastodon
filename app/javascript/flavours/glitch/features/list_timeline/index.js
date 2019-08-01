@@ -174,6 +174,7 @@ class ListTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          bindToDocument={!multiColumn}
         >
           <div className='column-header__links'>
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
