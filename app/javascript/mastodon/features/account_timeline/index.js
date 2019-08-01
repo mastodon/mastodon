@@ -100,7 +100,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
