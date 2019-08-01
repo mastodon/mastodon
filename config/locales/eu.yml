@@ -551,6 +551,11 @@ eu:
     setup:
       email_below_hint_html: Beheko e-mail helbidea okerra bada, hemen aldatu dezakezu eta baieztapen e-mail berria jaso.
       email_settings_hint_html: Baieztamen e-maila %{email} helbidera bidali da. E-mail helbide hori zuzena ez bada, kontuaren ezarpenetan aldatu dezakezu.
+      title: Ezarpena
+    status:
+      account_status: Kontuaren egoera
+      confirming: E-mail baieztapena osatu bitartean zain.
+      pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
     trouble_logging_in: Arazoak saioa hasteko?
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
@@ -888,6 +893,8 @@ eu:
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
     two_factor_authentication: Bi faktoreetako autentifikazioa
+  spam_check:
+    spam_detected_and_silenced: Hau salaketa automatiko bat da. Spam-a antzeman da eta igorlea automatikoki isilarazi da. Hau akats bat bada, utzi kontua isilarazteari.
   statuses:
     attached:
       description: 'Erantsita: %{attached}'
