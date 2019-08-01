@@ -280,6 +280,7 @@ export default class StatusContent extends React.PureComponent {
       mediaIcon,
       parseClick,
       disabled,
+      linkRewriting,
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
@@ -354,6 +355,7 @@ export default class StatusContent extends React.PureComponent {
           <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
             <div
               ref={this.setContentsRef}
+              key={`contents-${linkRewriting}`}
               style={directionStyle}
               tabIndex={!hidden ? 0 : null}
               dangerouslySetInnerHTML={content}
@@ -377,6 +379,7 @@ export default class StatusContent extends React.PureComponent {
         >
           <div
             ref={this.setContentsRef}
+            key={`contents-${linkRewriting}`}
             dangerouslySetInnerHTML={content}
             lang={status.get('language')}
             className='status__content__text'
@@ -393,7 +396,7 @@ export default class StatusContent extends React.PureComponent {
           tabIndex='0'
           ref={this.setRef}
         >
-          <div ref={this.setContentsRef} className='status__content__text' dangerouslySetInnerHTML={content} lang={status.get('language')} tabIndex='0' />
+          <div ref={this.setContentsRef} key={`contents-${linkRewriting}`} className='status__content__text' dangerouslySetInnerHTML={content} lang={status.get('language')} tabIndex='0' />
           {media}
         </div>
       );
