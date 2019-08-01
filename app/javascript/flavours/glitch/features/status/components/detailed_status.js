@@ -241,7 +241,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             onExpandedToggle={onToggleHidden}
             parseClick={this.parseClick}
             onUpdate={this.handleChildUpdate}
-            linkRewriting={settings.get('link_rewriting')}
+            tagLinks={settings.get('tag_misleading_links')}
             disabled
           />
 
