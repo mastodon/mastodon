@@ -185,6 +185,7 @@ de:
       username: Profilname
       warn: Warnen
       web: Web
+      whitelisted: Auf der Whitelist
     action_logs:
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
@@ -268,6 +269,11 @@ de:
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
       week_users_new: Benutzer_innen diese Woche
+    domain_allows:
+      add_new: Whitelist-Domain
+      created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
+      destroyed_msg: Domain wurde von der Whitelist entfernt
+      undo: Von der Whitelist entfernen
     domain_blocks:
       add_new: Neue Domainblockade hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
@@ -523,6 +529,7 @@ de:
     apply_for_account: Eine Einladung anfragen
     change_password: Passwort
     checkbox_agreement_html: Ich akzeptiere die <a href="%{rules_path}" target="_blank">Server-Regeln</a> und die <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a>
+    checkbox_agreement_without_rules_html: Ich stimme den <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a> zu
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
