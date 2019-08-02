@@ -764,6 +764,11 @@
 
   a.unhandled-link {
     color: lighten($ui-highlight-color, 8%);
+
+    .link-origin-tag {
+      color: $gold-star;
+      font-size: 0.8em;
+    }
   }
 
   .status__content__spoiler-link {
