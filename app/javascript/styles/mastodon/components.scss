@@ -139,13 +139,13 @@
   &:active,
   &:focus {
     color: lighten($action-button-color, 7%);
-    background-color: rgba($base-overlay-background, 0.1);
+    background-color: rgba($action-button-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
   &:focus {
-    background-color: rgba($base-overlay-background, 0.2);
+    background-color: rgba($action-button-color, 0.3);
   }
 
   &.disabled {
@@ -175,10 +175,16 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
+      background-color: rgba($lighter-text-color, 0.15);
+    }
+
+    &:focus {
+      background-color: rgba($lighter-text-color, 0.3);
     }
 
     &.disabled {
       color: lighten($lighter-text-color, 7%);
+      background-color: transparent;
     }
 
     &.active {
@@ -221,13 +227,13 @@
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: rgba($base-overlay-background, 0.1);
+    background-color: rgba($lighter-text-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
   &:focus {
-    background-color: rgba($base-overlay-background, 0.2);
+    background-color: rgba($lighter-text-color, 0.3);
   }
 
   &.disabled {
