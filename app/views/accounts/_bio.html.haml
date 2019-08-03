@@ -1,3 +1,4 @@
+- admin_view ||= false
 - proofs = account.identity_proofs.active
 - fields = account.fields
 
@@ -20,10 +21,11 @@
                 = fa_icon 'check'
             = Formatter.instance.format_field(account, field.value, custom_emojify: true)
 
-  = account_badge(account)
+  = account_badge(account) unless admin_view
 
   - if account.note.present?
     .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
 
-  .public-account-bio__extra
-    = t 'accounts.joined', date: l(account.created_at, format: :month)
+  - unless admin_view
+    .public-account-bio__extra
+      = t 'accounts.joined', date: l(account.created_at, format: :month)

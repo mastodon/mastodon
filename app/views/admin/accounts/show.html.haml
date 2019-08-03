@@ -3,6 +3,9 @@
 
 = render 'application/card', account: @account
 
+.admin-account-info
+  = render 'accounts/bio', account: @account, admin_view: true
+
 .dashboard__counters{ style: 'margin-top: 10px' }
   %div
     = link_to admin_account_statuses_path(@account.id) do
