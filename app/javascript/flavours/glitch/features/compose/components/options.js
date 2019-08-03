@@ -7,7 +7,7 @@ import spring from 'react-motion/lib/spring';
 
 //  Components.
 import IconButton from 'flavours/glitch/components/icon_button';
-import TextIconButton from 'flavours/glitch/components/text_icon_button';
+import TextIconButton from './text_icon_button';
 import Dropdown from './dropdown';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 

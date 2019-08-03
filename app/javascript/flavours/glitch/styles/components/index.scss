@@ -118,20 +118,29 @@
   display: inline-block;
   padding: 0;
   color: $action-button-color;
-  border: none;
+  border: 0;
+  border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: color 100ms ease-in;
+  transition: all 100ms ease-in;
+  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: lighten($action-button-color, 7%);
-    transition: color 200ms ease-out;
+    background-color: rgba($action-button-color, 0.15);
+    transition: all 200ms ease-out;
+    transition-property: background-color, color;
+  }
+
+  &:focus {
+    background-color: rgba($action-button-color, 0.3);
   }
 
   &.disabled {
     color: darken($action-button-color, 13%);
+    background-color: transparent;
     cursor: default;
   }
 
@@ -156,10 +165,16 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
+      background-color: rgba($lighter-text-color, 0.15);
+    }
+
+    &:focus {
+      background-color: rgba($lighter-text-color, 0.3);
     }
 
     &.disabled {
       color: lighten($lighter-text-color, 7%);
+      background-color: transparent;
     }
 
     &.active {
@@ -186,7 +201,8 @@
 
 .text-icon-button {
   color: $lighter-text-color;
-  border: none;
+  border: 0;
+  border-radius: 4px;
   background: transparent;
   cursor: pointer;
   font-weight: 600;
@@ -194,17 +210,25 @@
   padding: 0 3px;
   line-height: 27px;
   outline: 0;
-  transition: color 100ms ease-in;
+  transition: all 100ms ease-in;
+  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    transition: color 200ms ease-out;
+    background-color: rgba($lighter-text-color, 0.15);
+    transition: all 200ms ease-out;
+    transition-property: background-color, color;
+  }
+
+  &:focus {
+    background-color: rgba($lighter-text-color, 0.3);
   }
 
   &.disabled {
     color: lighten($lighter-text-color, 20%);
+    background-color: transparent;
     cursor: default;
   }
 
