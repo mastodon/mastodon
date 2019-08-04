@@ -452,6 +452,9 @@ ko:
         desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. HTML태그를 사용할 수 있습니다
         title: 커스텀 서비스 이용 약관
       site_title: 서버 이름
+      spam_check_enabled:
+        desc_html: 마스토돈은 반복된 메시지 등의 측정값에 따라 자동으로 계정을 침묵, 신고할 수 있습니다. 위양성(False-positive)이 존재할 수 있습니다.
+        title: 안티 스팸
       thumbnail:
         desc_html: OpenGraph와 API의 미리보기로 사용 됩니다. 1200x630px을 권장합니다
         title: 서버 썸네일
@@ -520,6 +523,7 @@ ko:
     apply_for_account: 가입 요청하기
     change_password: 패스워드
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">서버 규칙</a>과 <a href="%{terms_path}" target="_blank">이용약관</a>에 동의합니다
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">이용 약관</a>에 동의합니다
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
@@ -539,6 +543,14 @@ ko:
     reset_password: 암호 재설정
     security: 보안
     set_new_password: 새 암호
+    setup:
+      email_below_hint_html: 아래의 이메일 계정이 올바르지 않을 경우, 여기서 변경하고 새 확인 메일을 받을 수 있습니다.
+      email_settings_hint_html: 확인 메일이 %{email}로 보내졌습니다. 이메일 주소가 올바르지 않은 경우, 계정 설정에서 변경하세요.
+      title: 설정
+    status:
+      account_status: 계정 상태
+      confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
+      pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
