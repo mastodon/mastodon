@@ -444,6 +444,7 @@ ja:
         title: カスタム利用規約
       site_title: サーバーの名前
       spam_check_enabled:
+        desc_html: 求められていないメッセージを繰り返し送るアカウントを検出するなどの方法に基づき、自動でサイレンスにし通報することができます。誤検知を含む可能性もあります。
         title: スパム対策
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
@@ -513,6 +514,7 @@ ja:
     apply_for_account: 登録を申請する
     change_password: パスワード
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a> と <a href="%{terms_path}" target="_blank">プライバシーポリシー</a> に同意します
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">利用規約</a> に同意します
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
@@ -532,6 +534,12 @@ ja:
     reset_password: パスワードを再発行
     security: セキュリティ
     set_new_password: 新しいパスワード
+    setup:
+      email_below_hint_html: 下記のメールアドレスが間違っている場合、ここで変更することで新たに確認メールを受信できます。
+      email_settings_hint_html: 確認用のメールを %{email} に送信しました。メールアドレスが正しくない場合、以下より変更することができます。
+    status:
+      account_status: アカウントの状態
+      confirming: メールアドレスの確認が完了するのを待っています。
     trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
