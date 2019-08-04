@@ -91,6 +91,9 @@ ko:
         resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator가 설정되지 않아 리소스 소유자 찾기가 실패하였습니다.
         server_error: 권한 부여 서버에 예기치 않은 상태가 발생하여, 요청을 수행할 수 없습니다.
         temporarily_unavailable: 권한 부여 서버가 일시적인 과부하 또는 유지 관리로 인해 요청을 현재 처리할 수 없습니다.
+        unauthorized_client: 클라이언트가 이 방법을 사용하여 해당 요청을 실행하도록 허용되지 않았습니다.
+        unsupported_grant_type: 권한 부여 유형이 권한 부여 서버에 의해 지원되지 않습니다.
+        unsupported_response_type: 권한 부여 서버가 이 응답 유형을 지원하지 않습니다.
     flash:
       applications:
         create:
@@ -110,6 +113,12 @@ ko:
       application:
         title: OAuth 인증이 필요합니다
     scopes:
+      "admin:read": 서버의 모든 데이터 읽기
+      "admin:read:accounts": 모든 계정의 민감한 정보 읽기
+      "admin:read:reports": 신고와 신고 된 계정의 민감한 정보 읽기
+      "admin:write": 서버의 모든 데이터 수정
+      "admin:write:accounts": 계정에 모더레이션 조치 취하기
+      "admin:write:reports": 신고에 모더레이션 조치 취하기
       follow: 계정의 관계를 수정
       push: 푸시 알림을 받기
       read: 계정의 모든 데이터를 읽기
