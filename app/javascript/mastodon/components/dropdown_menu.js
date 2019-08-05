@@ -96,7 +96,7 @@ class DropdownMenu extends React.PureComponent {
     }
   }
 
-  handleItemKeyDown = e => {
+  handleItemKeyUp = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick(e);
     }
@@ -126,7 +126,7 @@ class DropdownMenu extends React.PureComponent {
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyDown={this.handleItemKeyDown} data-index={i}>
+        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyUp={this.handleItemKeyUp} data-index={i}>
           {text}
         </a>
       </li>
@@ -202,7 +202,7 @@ export default class Dropdown extends React.PureComponent {
     this.props.onClose(this.state.id);
   }
 
-  handleKeyDown = e => {
+  handleKeyUp = e => {
     switch(e.key) {
     case ' ':
     case 'Enter':
@@ -249,7 +249,7 @@ export default class Dropdown extends React.PureComponent {
     const open = this.state.id === openDropdownId;
 
     return (
-      <div onKeyDown={this.handleKeyDown}>
+      <div onKeyUp={this.handleKeyUp}>
         <IconButton
           icon={icon}
           title={title}
