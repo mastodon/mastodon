@@ -5132,6 +5132,11 @@ intl-format-cache@^2.0.5:
   resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-2.1.0.tgz#04a369fecbfad6da6005bae1f14333332dcf9316"
   integrity sha1-BKNp/sv61tpgBbrh8UMzMy3PkxY=
 
+intl-format-cache@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-4.1.4.tgz#cd959e4ac5c7f5494a53880d8c856d636bd3e5b8"
+  integrity sha512-lT1EiDa0ISNhfwmCTAKTGC62yN6onDZQECJqGi1ekbOFlJzoaP3Vv2ZAtnt3Ar1kNWZB6MiElJ8mQrG4fsBB8Q==
+
 intl-messageformat-parser@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.4.0.tgz#b43d45a97468cadbe44331d74bb1e8dea44fc075"
@@ -5142,12 +5147,25 @@ intl-messageformat-parser@^1.6.5:
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.6.5.tgz#40f5fc19855f203389a3fc926cc3c88d7a573496"
   integrity sha512-hngOkdq6FZxT6iEpEqOzGO/8rshM/v+sShGBl6yv8SQmU6lCc4vtfBHNqpSC0Dxuq4tedMkYFQGnKy5b1Tx5GA==
 
-intl-messageformat@^2.0.0, intl-messageformat@^2.1.0, intl-messageformat@^2.2.0:
+intl-messageformat-parser@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-3.0.1.tgz#3d46d108708c0dda3abed73d768be598e057fd24"
+  integrity sha512-3qVo8VvONtNu3Ky8nH8avuLyC0te5bx4oZCIUmFwArhJ3xBhcikfZBWcSB1WU6y+BdEMLEuwgRVQyoueVe0GpA==
+
+intl-messageformat@^2.0.0, intl-messageformat@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-2.2.0.tgz#345bcd46de630b7683330c2e52177ff5eab484fc"
   integrity sha1-NFvNRt5jC3aDMwwuUhd/9eq0hPw=
   dependencies:
     intl-messageformat-parser "1.4.0"
+
+intl-messageformat@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-6.0.1.tgz#e36394c1ec7c1ce7d5621196557e36040882f57d"
+  integrity sha512-3fGFmClwoHM1pyKxNRGZyM3F1y4s4jTLAS0erbJhgJzMvkKb5NMFRXLwbfO3LAPWdP+lNOy/pqjFNkvhZSkpfQ==
+  dependencies:
+    intl-format-cache "^4.1.4"
+    intl-messageformat-parser "^3.0.1"
 
 intl-relativeformat@^2.1.0:
   version "2.2.0"
