@@ -81,6 +81,18 @@ class DropdownMenu extends React.PureComponent {
         element.focus();
       }
       break;
+    case 'Tab':
+      if (e.shiftKey) {
+        element = items[index-1] || items[items.length-1];
+      } else {
+        element = items[index+1] || items[0];
+      }
+      if (element) {
+        element.focus();
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      break;
     case 'Home':
       element = items[0];
       if (element) {
