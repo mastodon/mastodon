@@ -115,7 +115,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    this.activeElement = document.activeElement;
     if (this.focusedItem) this.focusedItem.focus();
     this.setState({ mounted: true });
   }
@@ -123,9 +122,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentWillUnmount () {
     document.removeEventListener('click', this.handleDocumentClick, false);
     document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.activeElement) {
-      this.activeElement.focus();
-    }
   }
 
   setRef = c => {
@@ -197,6 +193,9 @@ class PrivacyDropdown extends React.PureComponent {
       }
     } else {
       const { top } = target.getBoundingClientRect();
+      if (this.state.open && this.activeElement) {
+        this.activeElement.focus();
+      }
       this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
       this.setState({ open: !this.state.open });
     }
@@ -219,7 +218,25 @@ class PrivacyDropdown extends React.PureComponent {
     }
   }
 
+  handleMouseDown = () => {
+    if (!this.state.open) {
+      this.activeElement = document.activeElement;
+    }
+  }
+
+  handleButtonKeyDown = (e) => {
+    switch(e.key) {
+    case ' ':
+    case 'Enter':
+      this.handleMouseDown();
+      break;
+    }
+  }
+
   handleClose = () => {
+    if (this.state.open && this.activeElement) {
+      this.activeElement.focus();
+    }
     this.setState({ open: false });
   }
 
@@ -256,6 +273,8 @@ class PrivacyDropdown extends React.PureComponent {
             active={open}
             inverted
             onClick={this.handleToggle}
+            onMouseDown={this.handleMouseDown}
+            onKeyDown={this.handleButtonKeyDown}
             style={{ height: null, lineHeight: '27px' }}
           />
         </div>
