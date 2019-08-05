@@ -115,6 +115,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    this.activeElement = document.activeElement;
     if (this.focusedItem) this.focusedItem.focus();
     this.setState({ mounted: true });
   }
@@ -122,6 +123,9 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentWillUnmount () {
     document.removeEventListener('click', this.handleDocumentClick, false);
     document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    if (this.activeElement) {
+      this.activeElement.focus();
+    }
   }
 
   setRef = c => {
