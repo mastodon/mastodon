@@ -196,7 +196,6 @@ sk:
       whitelisted: Na bielej listine
     action_logs:
       actions:
-        assigned_to_self_report: "%{name}pridelil/a hlásenie užívateľa %{target}sebe"
         change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user: "%{name} potvrdil e-mailovú adresu používateľa %{target}"
         create_account_warning: "%{name} poslal/a varovanie užívateľovi %{target}"
@@ -213,7 +212,7 @@ sk:
         disable_user: "%{name} zakázal prihlásenie pre používateľa %{target}"
         enable_custom_emoji: "%{name} povolil emoji %{target}"
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
-        memorialize_account: "%{name} zmenil účet %{target} na stránku \"Navždy budeme spomínať\""
+        memorialize_account: "%{name} zmenil účet %{target} na pamätnú stránku"
         promote_user: "%{name} povýšil/a používateľa %{target}"
         remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
         reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
@@ -494,6 +493,7 @@ sk:
       title: Príspevky na účte
       with_media: S médiami
     tags:
+      context: Súvis
       directory: V zozname
       in_directory: "%{count} v zozname"
       review: Prehodnoť stav
@@ -516,6 +516,8 @@ sk:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
       subject: 'Nové hlásenie pre %{instance} (#%{id})'
+    new_trending_tag:
+      subject: 'Nový haštag očakáva preverenie na %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
     advanced_web_interface_hint: 'Ak chceš využiť celkovú šírku tvojej obrazovky, pokročilé webové rozhranie ti umožňuje nastaviť mnoho rôznych stĺpcov, aby si videl/a toľko informácií naraz, koľko chceš: Domov, oboznámenia, federovanú časovú os, a ľubovolný počet zoznamov, či haštagov.'
@@ -893,6 +895,11 @@ sk:
       description: 'Priložené: %{attached}'
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
+    disallowed_hashtags:
+      one: 'obsahoval nepovolený haštag: %{tags}'
+      few: 'obsah nepovolených haštagov: %{tags}'
+      many: 'obsah nepovolených haštagov: %{tags}'
+      other: 'obsahoval nepovolené haštagy: %{tags}'
     language_detection: Zisti automaticky
     open_in_web: Otvor v okne na webe
     over_character_limit: limit %{max} znakov bol presiahnutý
@@ -902,6 +909,11 @@ sk:
       private: Neverejný príspevok nemôže byť pripnutý
       reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
+      total_votes:
+        one: "%{count} hlas"
+        few: "%{count} hlasov"
+        many: "%{count} hlasov"
+        other: "%{count} hlasy"
       vote: Hlasuj
     show_more: Ukáž viac
     sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
