@@ -56,17 +56,6 @@ PEM
       expect(json[:aliases]).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
     end
 
-    it 'returns JSON when account can be found' do
-      get :show, params: { resource: alice.to_webfinger_s }, format: :xml
-
-      xml = Nokogiri::XML(response.body)
-
-      expect(response).to have_http_status(200)
-      expect(response.content_type).to eq 'application/xrd+xml'
-      expect(xml.at_xpath('//xmlns:Subject').content).to eq 'acct:alice@cb6e6126.ngrok.io'
-      expect(xml.xpath('//xmlns:Alias').map(&:content)).to include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
-    end
-
     it 'returns http not found when account cannot be found' do
       get :show, params: { resource: 'acct:not@existing.com' }, format: :json
 

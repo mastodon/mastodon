@@ -48,10 +48,15 @@ class TrendingTags
         redis.zrem(key, tag_id.to_s)
       else
         score = ((observed - expected)**2) / expected
-        redis.zadd(key, score, tag_id.to_s)
+        added = redis.zadd(key, score, tag_id.to_s)
+        bump_tag_score!(tag_id) if added
       end
 
       redis.expire(key, EXPIRE_TRENDS_AFTER)
+    end
+
+    def bump_tag_score!(tag_id)
+      Tag.where(id: tag_id).update_all('score = COALESCE(score, 0) + 1')
     end
 
     def disallowed_hashtags

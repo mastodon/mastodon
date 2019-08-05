@@ -78,7 +78,7 @@ class Following extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <ScrollableList
           scrollKey='following'

@@ -198,7 +198,7 @@ class Notifications extends React.PureComponent {
     );
 
     return (
-      <Column ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='bell'
           active={isUnread}

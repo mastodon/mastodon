@@ -182,6 +182,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           className='value'
           disabled={disabled}
           icon={icon}
+          inverted
           onClick={handleToggle}
           size={18}
           style={{
