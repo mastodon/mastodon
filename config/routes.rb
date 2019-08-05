@@ -243,13 +243,7 @@ Rails.application.routes.draw do
     end
 
     resources :account_moderation_notes, only: [:create, :destroy]
-
-    resources :tags, only: [:index] do
-      member do
-        post :hide
-        post :unhide
-      end
-    end
+    resources :tags, only: [:index, :show, :update]
   end
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)
@@ -311,6 +305,7 @@ Rails.application.routes.draw do
       resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
       resources :reports,      only: [:create]
+      resources :trends,       only: [:index]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
 

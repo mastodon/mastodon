@@ -4,41 +4,49 @@ module Admin
   class TagsController < BaseController
     before_action :set_tags, only: :index
     before_action :set_tag, except: :index
-    before_action :set_filter_params
 
     def index
       authorize :tag, :index?
     end
 
-    def hide
-      authorize @tag, :hide?
-      @tag.account_tag_stat.update!(hidden: true)
-      redirect_to admin_tags_path(@filter_params)
+    def show
+      authorize @tag, :show?
     end
 
-    def unhide
-      authorize @tag, :unhide?
-      @tag.account_tag_stat.update!(hidden: false)
-      redirect_to admin_tags_path(@filter_params)
+    def update
+      authorize @tag, :update?
+
+      if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
+        redirect_to admin_tag_path(@tag.id)
+      else
+        render :show
+      end
     end
 
     private
 
     def set_tags
-      @tags = Tag.discoverable
-      @tags.merge!(Tag.hidden) if filter_params[:hidden]
+      @tags = filtered_tags.page(params[:page])
     end
 
     def set_tag
       @tag = Tag.find(params[:id])
     end
 
-    def set_filter_params
-      @filter_params = filter_params.to_hash.symbolize_keys
+    def filtered_tags
+      scope = Tag
+      scope = scope.discoverable if filter_params[:context] == 'directory'
+      scope = scope.reviewed if filter_params[:review] == 'reviewed'
+      scope = scope.pending_review if filter_params[:review] == 'pending_review'
+      scope.reorder(score: :desc)
     end
 
     def filter_params
-      params.permit(:hidden)
+      params.slice(:context, :review).permit(:context, :review)
+    end
+
+    def tag_params
+      params.require(:tag).permit(:name, :trendable, :usable, :listable)
     end
   end
 end

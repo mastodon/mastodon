@@ -483,13 +483,14 @@ en:
       title: Account statuses
       with_media: With media
     tags:
-      accounts: Accounts
-      hidden: Hidden
-      hide: Hide from directory
-      name: Hashtag
+      context: Context
+      directory: In directory
+      in_directory: "%{count} in directory"
+      review: Review status
+      reviewed: Reviewed
       title: Hashtags
-      unhide: Show in directory
-      visible: Visible
+      trending_right_now: Trending right now
+      unique_uses_today: "%{count} posting today"
     title: Administration
     warning_presets:
       add_new: Add new
@@ -505,6 +506,9 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+    new_trending_tag:
+      body: 'The hashtag #%{name} is trending today, but has not been previously reviewed. It will not be displayed publicly unless you allow it to, or just save the form as it is to never hear about it again.'
+      subject: New hashtag up for review on %{instance} (#%{name})
   appearance:
     advanced_web_interface: Advanced web interface
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
@@ -939,6 +943,8 @@ en:
     pinned: Pinned toot
     reblogged: boosted
     sensitive_content: Sensitive content
+  tags:
+    does_not_match_previous_name: does not match the previous name
   terms:
     body_html: |
       <h2>Privacy Policy</h2>
