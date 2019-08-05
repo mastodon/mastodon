@@ -229,7 +229,7 @@ class PrivacyDropdown extends React.PureComponent {
 
     return (
       <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
-        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === 0 })}>
+        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (this.options.length - 1)) })}>
           <IconButton
             className='privacy-dropdown__value-icon'
             icon={valueOption.icon}
