@@ -196,8 +196,9 @@ sk:
       whitelisted: Na bielej listine
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
         change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
-        confirm_user: "%{name} potvrdil e-mailovú adresu používateľa %{target}"
+        confirm_user: "%{name} potvrdil emailovú adresu používateľa %{target}"
         create_account_warning: "%{name} poslal/a varovanie užívateľovi %{target}"
         create_custom_emoji: "%{name} nahral nový emoji %{target}"
         create_domain_block: "%{name} zablokoval doménu %{target}"
@@ -893,6 +894,16 @@ sk:
   statuses:
     attached:
       description: 'Priložené: %{attached}'
+      image:
+        one: "%{count} obrázok"
+        few: "%{count} obrázkov"
+        many: "%{count} obrázkov"
+        other: "%{count} obrázky"
+      video:
+        one: "%{count} video"
+        few: "%{count} videí"
+        many: "%{count} videí"
+        other: "%{count} videá"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
