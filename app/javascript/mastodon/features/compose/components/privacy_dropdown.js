@@ -73,6 +73,19 @@ class PrivacyDropdownMenu extends React.PureComponent {
         this.props.onChange(element.getAttribute('data-index'));
       }
       break;
+    case 'Tab':
+      if (e.shiftKey) {
+        element = this.node.childNodes[index - 1] || this.node.lastChild;
+      } else {
+        element = this.node.childNodes[index + 1] || this.node.firstChild;
+      }
+      if (element) {
+        element.focus();
+        this.props.onChange(element.getAttribute('data-index'));
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      break;
     case 'Home':
       element = this.node.firstChild;
       if (element) {
