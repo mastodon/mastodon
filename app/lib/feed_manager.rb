@@ -37,7 +37,7 @@ class FeedManager
   end
 
   def unpush_from_home(account, status)
-    return false unless remove_from_feed(:home, account.id, status)
+    return false unless remove_from_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
     redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
@@ -56,7 +56,7 @@ class FeedManager
   end
 
   def unpush_from_list(list, status)
-    return false unless remove_from_feed(:list, list.id, status)
+    return false unless remove_from_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
     redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
     true
   end
@@ -120,7 +120,7 @@ class FeedManager
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
     from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
-      remove_from_feed(:home, into_account.id, status)
+      remove_from_feed(:home, into_account.id, status, into_account.user&.aggregates_reblogs?)
     end
   end
 
@@ -316,10 +316,11 @@ class FeedManager
   # with reblogs, and returning true if a status was removed. As with
   # `add_to_feed`, this does not trigger push updates, so callers must
   # do so if appropriate.
-  def remove_from_feed(timeline_type, account_id, status)
+  def remove_from_feed(timeline_type, account_id, status, aggregate_reblogs = true)
     timeline_key = key(timeline_type, account_id)
+    reblog_key   = key(timeline_type, account_id, 'reblogs')
 
-    if status.reblog?
+    if status.reblog? && (aggregate_reblogs.nil? || aggregate_reblogs)
       # 1. If the reblogging status is not in the feed, stop.
       status_rank = redis.zrevrank(timeline_key, status.id)
       return false if status_rank.nil?
@@ -328,6 +329,7 @@ class FeedManager
       reblog_set_key = key(timeline_type, account_id, "reblogs:#{status.reblog_of_id}")
 
       redis.srem(reblog_set_key, status.id)
+      redis.zrem(reblog_key, status.reblog_of_id)
       # 3. Re-insert another reblog or original into the feed if one
       # remains in the set. We could pick a random element, but this
       # set should generally be small, and it seems ideal to show the
@@ -335,12 +337,14 @@ class FeedManager
       other_reblog = redis.smembers(reblog_set_key).map(&:to_i).min
 
       redis.zadd(timeline_key, other_reblog, other_reblog) if other_reblog
+      redis.zadd(reblog_key, other_reblog, status.reblog_of_id) if other_reblog
 
       # 4. Remove the reblogging status from the feed (as normal)
       # (outside conditional)
     else
       # If the original is getting deleted, no use for reblog references
       redis.del(key(timeline_type, account_id, "reblogs:#{status.id}"))
+      redis.zrem(reblog_key, status.id)
     end
 
     redis.zrem(timeline_key, status.id)

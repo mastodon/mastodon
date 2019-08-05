@@ -58,6 +58,7 @@ module Mastodon
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
     option :silent, type: :boolean, default: false, aliases: [:s]
     option :format, type: :string, default: 'summary', aliases: [:f]
+    option :exclude_suspended, type: :boolean, default: false, aliases: [:x]
     desc 'crawl [START]', 'Crawl all known peers, optionally beginning at START'
     long_desc <<-LONG_DESC
       Crawl the fediverse by using the Mastodon REST API endpoints that expose
@@ -74,18 +75,25 @@ module Mastodon
       default (`summary`), a summary of the statistics is returned. The other options
       are `domains`, which returns a newline-delimited list of all discovered peers,
       and `json`, which dumps all the aggregated data raw.
+
+      The --exclude-suspended (-x) option means that domains that are suspended
+      instance-wide do not appear in the output and are not included in summaries.
+      This also excludes subdomains of any of those domains.
     LONG_DESC
     def crawl(start = nil)
-      stats     = Concurrent::Hash.new
-      processed = Concurrent::AtomicFixnum.new(0)
-      failed    = Concurrent::AtomicFixnum.new(0)
-      start_at  = Time.now.to_f
-      seed      = start ? [start] : Account.remote.domains
+      stats           = Concurrent::Hash.new
+      processed       = Concurrent::AtomicFixnum.new(0)
+      failed          = Concurrent::AtomicFixnum.new(0)
+      start_at        = Time.now.to_f
+      seed            = start ? [start] : Account.remote.domains
+      blocked_domains = Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$')
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
       work_unit = ->(domain) do
         next if stats.key?(domain)
+        next if options[:exclude_suspended] && domain.match(blocked_domains)
+
         stats[domain] = nil
         processed.increment
 

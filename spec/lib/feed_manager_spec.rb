@@ -254,6 +254,23 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be false
       end
 
+      it 'saves a new reblog of a recently-reblogged status when previous reblog has been deleted' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        old_reblog = Fabricate(:status, reblog: reblogged)
+
+        # The first reblog should be accepted
+        expect(FeedManager.instance.push_to_home(account, old_reblog)).to be true
+
+        # The first reblog should be successfully removed
+        expect(FeedManager.instance.unpush_from_home(account, old_reblog)).to be true
+
+        reblog = Fabricate(:status, reblog: reblogged)
+
+        # The second reblog should be accepted
+        expect(FeedManager.instance.push_to_home(account, reblog)).to be true
+      end
+
       it 'does not save a new reblog of a multiply-reblogged-then-unreblogged status' do
         account   = Fabricate(:account)
         reblogged = Fabricate(:status)
