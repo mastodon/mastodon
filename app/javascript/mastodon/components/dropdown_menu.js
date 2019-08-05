@@ -97,7 +97,7 @@ class DropdownMenu extends React.PureComponent {
   }
 
   handleItemKeyDown = e => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick(e);
     }
   }
