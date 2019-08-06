@@ -50,6 +50,8 @@
         %li
           = feature_hint(link_to(t('admin.dashboard.feature_timeline_preview'), edit_admin_settings_path), @timeline_preview)
         %li
+          = feature_hint(link_to(t('admin.dashboard.trends'), edit_admin_settings_path), @trends_enabled)
+        %li
           = feature_hint(link_to(t('admin.dashboard.feature_relay'), admin_relays_path), @relay_enabled)
         %li
           = feature_hint(link_to(t('admin.dashboard.feature_spam_check'), edit_admin_settings_path), @spam_check_enabled)
@@ -90,6 +92,10 @@
           = feature_hint(t('admin.dashboard.search'), @search_enabled)
         %li
           = feature_hint(t('admin.dashboard.single_user_mode'), @single_user_mode)
+        %li
+          = feature_hint(t('admin.dashboard.authorized_fetch_mode'), @authorized_fetch)
+        %li
+          = feature_hint(t('admin.dashboard.whitelist_mode'), @whitelist_mode)
         %li
           = feature_hint('LDAP', @ldap_enabled)
         %li
