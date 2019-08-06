@@ -31,7 +31,7 @@
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::BackupCleanupScheduler
   counting_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
+    cron: '<%= Random.rand(0..59) %> <%= Random.rand(20..0) %> * * *'
     class: Scheduler::CountingScheduler
   pghero_scheduler:
     cron: '0 0 * * *'

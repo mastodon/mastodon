@@ -6,6 +6,8 @@ class Scheduler::CountingScheduler
   sidekiq_options unique: :until_executed, retry: 0
 
   def perform
+    @at_time = Time.now.utc
+
     recount_tag_scores!
     recount_account_counters!
   end
@@ -14,7 +16,7 @@ class Scheduler::CountingScheduler
 
   def recount_tag_scores!
     Tag.active.find_each do |tag|
-      tag.score = Redis.current.pfcount(*(0..7).map { |i| "activity:tags:#{tag.id}:#{i.days.ago.beginning_of_day.to_i}:accounts" })
+      tag.score = Redis.current.pfcount(*(0..7).map { |i| "activity:tags:#{tag.id}:#{(@at_time - i.days).beginning_of_day.to_i}:accounts" })
       tag.save if tag.changed?
     end
   end
