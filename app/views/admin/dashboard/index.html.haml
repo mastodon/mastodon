@@ -109,5 +109,5 @@
       %ul
         - @trending_hashtags.each do |tag|
           %li
-            = link_to "##{tag.name}", web_url("timelines/tag/#{tag.name}")
+            = link_to content_tag(:span, "##{tag.name}", class: !tag.trendable? && !tag.reviewed? ? 'warning-hint' : (!tag.trendable? ? 'negative-hint' : nil)), admin_tag_path(tag.id)
             %span.pull-right= number_with_delimiter(tag.history[0][:accounts].to_i)

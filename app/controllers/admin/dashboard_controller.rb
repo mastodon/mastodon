@@ -27,7 +27,7 @@ module Admin
       @saml_enabled          = ENV['SAML_ENABLED'] == 'true'
       @pam_enabled           = ENV['PAM_ENABLED'] == 'true'
       @hidden_service        = ENV['ALLOW_ACCESS_TO_HIDDEN_SERVICE'] == 'true'
-      @trending_hashtags     = TrendingTags.get(7)
+      @trending_hashtags     = TrendingTags.get(10, filtered: false)
       @profile_directory     = Setting.profile_directory
       @timeline_preview      = Setting.timeline_preview
       @keybase_integration   = Setting.enable_keybase
