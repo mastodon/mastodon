@@ -66,6 +66,10 @@ class TrendingTags
     end
 
     def request_review!(tag)
+      return unless Setting.trends
+
+      tag.touch(:requested_review_at)
+
       User.staff.includes(:account).find_each { |u| AdminMailer.new_trending_tag(u.account, tag).deliver_later! if u.allows_trending_tag_emails? }
     end
   end
