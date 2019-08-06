@@ -36,11 +36,12 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
   state = {
     needsModalUpdate: false,
     open: false,
+    openedViaKeyboard: undefined,
     placement: 'bottom',
   };
 
   //  Toggles opening and closing the dropdown.
-  handleToggle = ({ target }) => {
+  handleToggle = ({ target, type }) => {
     const { onModalOpen } = this.props;
     const { open } = this.state;
 
@@ -55,23 +56,52 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       }
     } else {
       const { top } = target.getBoundingClientRect();
+      if (this.state.open && this.activeElement) {
+        this.activeElement.focus();
+      }
       this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
-      this.setState({ open: !this.state.open });
+      this.setState({ open: !this.state.open, openedViaKeyboard: type !== 'click' });
     }
   }
 
   handleKeyDown = (e) => {
     switch (e.key) {
-    case 'Enter':
-      this.handleToggle(key);
-      break;
     case 'Escape':
       this.handleClose();
       break;
     }
   }
 
+  handleMouseDown = () => {
+    if (!this.state.open) {
+      this.activeElement = document.activeElement;
+    }
+  }
+
+  handleButtonKeyDown = (e) => {
+    switch(e.key) {
+    case ' ':
+    case 'Enter':
+      this.handleMouseDown();
+      break;
+    }
+  }
+
+  handleKeyPress = (e) => {
+    switch(e.key) {
+    case ' ':
+    case 'Enter':
+      this.handleToggle(e);
+      e.stopPropagation();
+      e.preventDefault();
+      break;
+    }
+  }
+
   handleClose = () => {
+    if (this.state.open && this.activeElement) {
+      this.activeElement.focus();
+    }
     this.setState({ open: false });
   }
 
@@ -174,6 +204,9 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           icon={icon}
           inverted
           onClick={this.handleToggle}
+          onMouseDown={this.handleMouseDown}
+          onKeyDown={this.handleButtonKeyDown}
+          onKeyPress={this.handleKeyPress}
           size={18}
           style={{
             height: null,
@@ -192,6 +225,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
             onChange={onChange}
             onClose={this.handleClose}
             value={value}
+            openedViaKeyboard={this.state.openedViaKeyboard}
           />
         </Overlay>
       </div>
