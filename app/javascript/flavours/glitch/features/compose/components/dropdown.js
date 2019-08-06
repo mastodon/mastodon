@@ -12,33 +12,71 @@ import DropdownMenu from './dropdown_menu';
 import { isUserTouching } from 'flavours/glitch/util/is_mobile';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 
-//  Handlers.
-const handlers = {
+//  The component.
+export default class ComposerOptionsDropdown extends React.PureComponent {
 
-  //  Closes the dropdown.
-  handleClose () {
-    this.setState({ open: false });
-  },
+  static propTypes = {
+    active: PropTypes.bool,
+    disabled: PropTypes.bool,
+    icon: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      icon: PropTypes.string,
+      meta: PropTypes.node,
+      name: PropTypes.string.isRequired,
+      on: PropTypes.bool,
+      text: PropTypes.node,
+    })).isRequired,
+    onModalOpen: PropTypes.func,
+    onModalClose: PropTypes.func,
+    title: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+  };
 
-  //  The enter key toggles the dropdown's open state, and the escape
-  //  key closes it.
-  handleKeyDown ({ key }) {
-    const {
-      handleClose,
-      handleToggle,
-    } = this.handlers;
-    switch (key) {
+  state = {
+    needsModalUpdate: false,
+    open: false,
+    placement: 'bottom',
+  };
+
+  //  Toggles opening and closing the dropdown.
+  handleToggle = ({ target }) => {
+    const { onModalOpen } = this.props;
+    const { open } = this.state;
+
+    if (isUserTouching()) {
+      if (this.state.open) {
+        this.props.onModalClose();
+      } else {
+        const modal = this.handleMakeModal();
+        if (modal && onModalOpen) {
+          onModalOpen(modal);
+        }
+      }
+    } else {
+      const { top } = target.getBoundingClientRect();
+      this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
+      this.setState({ open: !this.state.open });
+    }
+  }
+
+  handleKeyDown = (e) => {
+    switch (e.key) {
     case 'Enter':
-      handleToggle(key);
+      this.handleToggle(key);
       break;
     case 'Escape':
-      handleClose();
+      this.handleClose();
       break;
     }
-  },
+  }
+
+  handleClose = () => {
+    this.setState({ open: false });
+  }
 
   //  Creates an action modal object.
-  handleMakeModal () {
+  handleMakeModal = () => {
     const component = this;
     const {
       items,
@@ -76,85 +114,37 @@ const handlers = {
         })
       ),
     };
-  },
-
-  //  Toggles opening and closing the dropdown.
-  handleToggle ({ target }) {
-    const { handleMakeModal } = this.handlers;
-    const { onModalOpen } = this.props;
-    const { open } = this.state;
-
-    //  If this is a touch device, we open a modal instead of the
-    //  dropdown.
-    if (isUserTouching()) {
-
-      //  This gets the modal to open.
-      const modal = handleMakeModal();
-
-      //  If we can, we then open the modal.
-      if (modal && onModalOpen) {
-        onModalOpen(modal);
-        return;
-      }
-    }
-
-    const { top } = target.getBoundingClientRect();
-    this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
-    //  Otherwise, we just set our state to open.
-    this.setState({ open: !open });
-  },
+  }
 
   //  If our modal is open and our props update, we need to also update
   //  the modal.
-  handleUpdate () {
-    const { handleMakeModal } = this.handlers;
+  handleUpdate = () => {
     const { onModalOpen } = this.props;
     const { needsModalUpdate } = this.state;
 
     //  Gets our modal object.
-    const modal = handleMakeModal();
+    const modal = this.handleMakeModal();
 
     //  Reopens the modal with the new object.
     if (needsModalUpdate && modal && onModalOpen) {
       onModalOpen(modal);
     }
-  },
-};
-
-//  The component.
-export default class ComposerOptionsDropdown extends React.PureComponent {
-
-  //  Constructor.
-  constructor (props) {
-    super(props);
-    assignHandlers(this, handlers);
-    this.state = {
-      needsModalUpdate: false,
-      open: false,
-      placement: 'bottom',
-    };
   }
 
   //  Updates our modal as necessary.
   componentDidUpdate (prevProps) {
-    const { handleUpdate } = this.handlers;
     const { items } = this.props;
     const { needsModalUpdate } = this.state;
     if (needsModalUpdate && items.find(
       (item, i) => item.on !== prevProps.items[i].on
     )) {
-      handleUpdate();
+      this.handleUpdate();
       this.setState({ needsModalUpdate: false });
     }
   }
 
   //  Rendering.
   render () {
-    const {
-      handleClose,
-      handleKeyDown,
-      handleToggle,
-    } = this.handlers;
     const {
       active,
       disabled,
@@ -175,7 +165,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     return (
       <div
         className={computedClass}
-        onKeyDown={handleKeyDown}
+        onKeyDown={this.handleKeyDown}
       >
         <IconButton
           active={open || active}
@@ -183,7 +173,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           disabled={disabled}
           icon={icon}
           inverted
-          onClick={handleToggle}
+          onClick={this.handleToggle}
           size={18}
           style={{
             height: null,
@@ -200,7 +190,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           <DropdownMenu
             items={items}
             onChange={onChange}
-            onClose={handleClose}
+            onClose={this.handleClose}
             value={value}
           />
         </Overlay>
@@ -209,22 +199,3 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
   }
 
 }
-
-//  Props.
-ComposerOptionsDropdown.propTypes = {
-  active: PropTypes.bool,
-  disabled: PropTypes.bool,
-  icon: PropTypes.string,
-  items: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.string,
-    meta: PropTypes.node,
-    name: PropTypes.string.isRequired,
-    on: PropTypes.bool,
-    text: PropTypes.node,
-  })).isRequired,
-  onChange: PropTypes.func,
-  onModalClose: PropTypes.func,
-  onModalOpen: PropTypes.func,
-  title: PropTypes.string,
-  value: PropTypes.string,
-};
