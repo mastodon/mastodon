@@ -3,11 +3,16 @@
 #
 # Table name: tags
 #
-#  id         :bigint(8)        not null, primary key
-#  name       :string           default(""), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  score      :integer
+#  id                  :bigint(8)        not null, primary key
+#  name                :string           default(""), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  score               :integer
+#  usable              :boolean
+#  trendable           :boolean
+#  listable            :boolean
+#  reviewed_at         :datetime
+#  requested_review_at :datetime
 #
 
 class Tag < ApplicationRecord
@@ -22,16 +27,17 @@ class Tag < ApplicationRecord
   HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
   validates :name, presence: true, format: { with: /\A(#{HASHTAG_NAME_RE})\z/i }
+  validate :validate_name_change, if: -> { !new_record? && name_changed? }
 
-  scope :discoverable, -> { joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).where(account_tag_stats: { hidden: false }).order(Arel.sql('account_tag_stats.accounts_count desc')) }
-  scope :hidden, -> { where(account_tag_stats: { hidden: true }) }
+  scope :reviewed, -> { where.not(reviewed_at: nil) }
+  scope :pending_review, -> { where(reviewed_at: nil).where.not(requested_review_at: nil) }
+  scope :discoverable, -> { where.not(listable: false).joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :most_used, ->(account) { joins(:statuses).where(statuses: { account: account }).group(:id).order(Arel.sql('count(*) desc')) }
 
   delegate :accounts_count,
            :accounts_count=,
            :increment_count!,
            :decrement_count!,
-           :hidden?,
            to: :account_tag_stat
 
   after_save :save_account_tag_stat
@@ -46,6 +52,40 @@ class Tag < ApplicationRecord
 
   def to_param
     name
+  end
+
+  def usable
+    boolean_with_default('usable', true)
+  end
+
+  alias usable? usable
+
+  def listable
+    boolean_with_default('listable', true)
+  end
+
+  alias listable? listable
+
+  def trendable
+    boolean_with_default('trendable', false)
+  end
+
+  alias trendable? trendable
+
+  def requires_review?
+    reviewed_at.nil?
+  end
+
+  def reviewed?
+    reviewed_at.present?
+  end
+
+  def requested_review?
+    requested_review_at.present?
+  end
+
+  def trending?
+    TrendingTags.trending?(self)
   end
 
   def history
@@ -116,5 +156,9 @@ class Tag < ApplicationRecord
   def save_account_tag_stat
     return unless account_tag_stat&.changed?
     account_tag_stat.save
+  end
+
+  def validate_name_change
+    errors.add(:name, I18n.t('tags.does_not_match_previous_name')) unless name_was.mb_chars.casecmp(name.mb_chars).zero?
   end
 end

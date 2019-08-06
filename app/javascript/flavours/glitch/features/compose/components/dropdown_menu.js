@@ -14,91 +14,6 @@ import { withPassive } from 'flavours/glitch/util/dom_helpers';
 import Motion from 'flavours/glitch/util/optional_motion';
 import { assignHandlers } from 'flavours/glitch/util/react_helpers';
 
-class ComposerOptionsDropdownContentItem extends ImmutablePureComponent {
-
-  static propTypes = {
-    active: PropTypes.bool,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    onClose: PropTypes.func,
-    options: PropTypes.shape({
-      icon: PropTypes.string,
-      meta: PropTypes.node,
-      on: PropTypes.bool,
-      text: PropTypes.node,
-    }),
-  };
-
-  handleActivate = (e) => {
-    const {
-      name,
-      onChange,
-      onClose,
-      options: { on },
-    } = this.props;
-
-    //  If the escape key was pressed, we close the dropdown.
-    if (e.key === 'Escape' && onClose) {
-      onClose();
-
-    //  Otherwise, we both close the dropdown and change the value.
-    } else if (onChange && (!e.key || e.key === 'Enter')) {
-      e.preventDefault();  //  Prevents change in focus on click
-      if ((on === null || typeof on === 'undefined') && onClose) {
-        onClose();
-      }
-      onChange(name);
-    }
-  }
-
-  //  Rendering.
-  render () {
-    const {
-      active,
-      options: {
-        icon,
-        meta,
-        on,
-        text,
-      },
-    } = this.props;
-    const computedClass = classNames('composer--options--dropdown--content--item', {
-      active,
-      lengthy: meta,
-      'toggled-off': !on && on !== null && typeof on !== 'undefined',
-      'toggled-on': on,
-      'with-icon': icon,
-    });
-
-    let prefix = null;
-
-    if (on !== null && typeof on !== 'undefined') {
-      prefix = <Toggle checked={on} onChange={this.handleActivate} />;
-    } else if (icon) {
-      prefix = <Icon className='icon' fullwidth icon={icon} />
-    }
-
-    //  The result.
-    return (
-      <div
-        className={computedClass}
-        onClick={this.handleActivate}
-        onKeyDown={this.handleActivate}
-        role='button'
-        tabIndex='0'
-      >
-        {prefix}
-
-        <div className='content'>
-          <strong>{text}</strong>
-          {meta}
-        </div>
-      </div>
-    );
-  }
-
-};
-
 //  The spring to use with our motion.
 const springMotion = spring(1, {
   damping: 35,
@@ -116,10 +31,11 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       on: PropTypes.bool,
       text: PropTypes.node,
     })),
-    onChange: PropTypes.func,
-    onClose: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
     style: PropTypes.object,
     value: PropTypes.string,
+    openedViaKeyboard: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -128,14 +44,13 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
   state = {
     mounted: false,
+    value: this.props.openedViaKeyboard ? this.props.items[0].name : undefined,
   };
 
   //  When the document is clicked elsewhere, we close the dropdown.
-  handleDocumentClick = ({ target }) => {
-    const { node } = this;
-    const { onClose } = this.props;
-    if (onClose && node && !node.contains(target)) {
-      onClose();
+  handleDocumentClick = (e) => {
+    if (this.node && !this.node.contains(e.target)) {
+      this.props.onClose();
     }
   }
 
@@ -148,6 +63,11 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, withPassive);
+    if (this.focusedItem) {
+      this.focusedItem.focus();
+    } else {
+      this.node.firstChild.focus();
+    }
     this.setState({ mounted: true });
   }
 
@@ -155,6 +75,138 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
   componentWillUnmount () {
     document.removeEventListener('click', this.handleDocumentClick, false);
     document.removeEventListener('touchend', this.handleDocumentClick, withPassive);
+  }
+
+  handleClick = (e) => {
+    const name = e.currentTarget.getAttribute('data-index');
+
+    const {
+      onChange,
+      onClose,
+      items,
+    } = this.props;
+
+    const { on } = this.props.items.find(item => item.name === name);
+    e.preventDefault();  //  Prevents change in focus on click
+    if ((on === null || typeof on === 'undefined')) {
+      onClose();
+    }
+    onChange(name);
+  }
+
+  // Handle changes differently whether the dropdown is a list of options or actions
+  handleChange = (name) => {
+    if (this.props.value) {
+      this.props.onChange(name);
+    } else {
+      this.setState({ value: name });
+    }
+  }
+
+  handleKeyDown = e => {
+    const { items } = this.props;
+    const name = e.currentTarget.getAttribute('data-index');
+    const index = items.findIndex(item => {
+      return (item.name === name);
+    });
+    let element;
+
+    switch(e.key) {
+    case 'Escape':
+      this.props.onClose();
+      break;
+    case 'Enter':
+    case ' ':
+      this.handleClick(e);
+      break;
+    case 'ArrowDown':
+      element = this.node.childNodes[index + 1];
+      if (element) {
+        element.focus();
+        this.handleChange(element.getAttribute('data-index'));
+      }
+      break;
+    case 'ArrowUp':
+      element = this.node.childNodes[index - 1];
+      if (element) {
+        element.focus();
+        this.handleChange(element.getAttribute('data-index'));
+      }
+      break;
+    case 'Tab':
+      if (e.shiftKey) {
+        element = this.node.childNodes[index - 1] || this.node.lastChild;
+      } else {
+        element = this.node.childNodes[index + 1] || this.node.firstChild;
+      }
+      if (element) {
+        element.focus();
+        this.handleChange(element.getAttribute('data-index'));
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      break;
+    case 'Home':
+      element = this.node.firstChild;
+      if (element) {
+        element.focus();
+        this.handleChange(element.getAttribute('data-index'));
+      }
+      break;
+    case 'End':
+      element = this.node.lastChild;
+      if (element) {
+        element.focus();
+        this.handleChange(element.getAttribute('data-index'));
+      }
+      break;
+    }
+  }
+
+  setFocusRef = c => {
+    this.focusedItem = c;
+  }
+
+  renderItem = (item) => {
+    const { name, icon, meta, on, text } = item;
+
+    const active = (name === (this.props.value || this.state.value));
+
+    const computedClass = classNames('composer--options--dropdown--content--item', {
+      active,
+      lengthy: meta,
+      'toggled-off': !on && on !== null && typeof on !== 'undefined',
+      'toggled-on': on,
+      'with-icon': icon,
+    });
+
+    let prefix = null;
+
+    if (on !== null && typeof on !== 'undefined') {
+      prefix = <Toggle checked={on} onChange={this.handleClick} />;
+    } else if (icon) {
+      prefix = <Icon className='icon' fullwidth icon={icon} />
+    }
+
+    return (
+      <div
+        className={computedClass}
+        onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}
+        role='option'
+        tabIndex='0'
+        key={name}
+        data-index={name}
+        ref={active ? this.setFocusRef : null}
+      >
+        {prefix}
+
+        <div className='content'>
+          <strong>{text}</strong>
+          {meta}
+        </div>
+      </div>
+    );
   }
 
   //  Rendering.
@@ -165,7 +217,6 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       onChange,
       onClose,
       style,
-      value,
     } = this.props;
 
     //  The result.
@@ -189,27 +240,14 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
           <div
             className='composer--options--dropdown--content'
             ref={this.handleRef}
+            role='listbox'
             style={{
               ...style,
               opacity: opacity,
               transform: mounted ? `scale(${scaleX}, ${scaleY})` : null,
             }}
           >
-            {items ? items.map(
-              ({
-                name,
-                ...rest
-              }) => (
-                <ComposerOptionsDropdownContentItem
-                  active={name === value}
-                  key={name}
-                  name={name}
-                  onChange={onChange}
-                  onClose={onClose}
-                  options={rest}
-                />
-              )
-            ) : null}
+            {!!items && items.map(item => this.renderItem(item))}
           </div>
         )}
       </Motion>

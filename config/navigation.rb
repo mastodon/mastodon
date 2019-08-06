@@ -44,7 +44,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :reports, safe_join([fa_icon('flag fw'), t('admin.reports.title')]), admin_reports_url, highlights_on: %r{/admin/reports}
       s.item :accounts, safe_join([fa_icon('users fw'), t('admin.accounts.title')]), admin_accounts_url, highlights_on: %r{/admin/accounts|/admin/pending_accounts}
       s.item :invites, safe_join([fa_icon('user-plus fw'), t('admin.invites.title')]), admin_invites_path
-      s.item :tags, safe_join([fa_icon('tag fw'), t('admin.tags.title')]), admin_tags_path
+      s.item :tags, safe_join([fa_icon('hashtag fw'), t('admin.tags.title')]), admin_tags_path, highlights_on: %r{/admin/tags}
       s.item :instances, safe_join([fa_icon('cloud fw'), t('admin.instances.title')]), admin_instances_url(limited: whitelist_mode? ? nil : '1'), highlights_on: %r{/admin/instances|/admin/domain_blocks|/admin/domain_allows}, if: -> { current_user.admin? }
       s.item :email_domain_blocks, safe_join([fa_icon('envelope fw'), t('admin.email_domain_blocks.title')]), admin_email_domain_blocks_url, highlights_on: %r{/admin/email_domain_blocks}, if: -> { current_user.admin? }
     end
