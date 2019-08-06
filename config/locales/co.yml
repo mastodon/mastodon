@@ -246,6 +246,7 @@ co:
       updated_msg: L’emoji hè stata messa à ghjornu!
       upload: Caricà
     dashboard:
+      authorized_fetch_mode: Modu ricuperazione auturizata
       backlog: travagli in attesa
       config: Cunfigurazione
       feature_deletions: Sguassamenti di conti
@@ -269,6 +270,7 @@ co:
       week_interactions: interazzione sta settimana
       week_users_active: attivi sta settimana
       week_users_new: utilizatori sta settimana
+      whitelist_mode: Modu lista bianca
     domain_allows:
       add_new: Aghjunghje à a lista bianca
       created_msg: U duminiu hè statu aghjuntu à a lista bianca
@@ -468,6 +470,9 @@ co:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
       title: Parametri di u situ
+      trends:
+        desc_html: Mustrà à u pubblicu i hashtag chì sò stati digià verificati è chì sò in e tendenze avà
+        title: Tendenze di hashtag
     statuses:
       back_to_account: Ritornu à a pagina di u contu
       batch:
@@ -482,7 +487,14 @@ co:
       title: Statuti di u contu
       with_media: Cù media
     tags:
+      context: Cuntestu
+      directory: In l'annuariu
+      in_directory: "%{count} in l'annuariu"
+      review: Statutu di verificazione
+      reviewed: Verificatu
       title: Hashtag
+      trending_right_now: Tendenze avà
+      unique_uses_today: "%{count} pustendu oghji"
     title: Amministrazione
     warning_presets:
       add_new: Aghjunghje
@@ -498,11 +510,15 @@ co:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
       subject: 'Novu signalamentu nant’à %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'U hashtag #%{name} hè in e tendenze oghji, mà ùn hè micca verificatu. Ùn sarà micca mustratu à u pubblicu eccettu s''ellu hè auturizatu, o pudete ancu salvà u furmulariu cusì per ùn mai più avè à ne sente parlà.'
+      subject: 'Novu hashtag in attesa di rivista nant''à %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: 'S''è voi vulete fà usu di a larghezza sana di u vostru screnu, l''interfaccia web avanzata vi permette di cunfigurà parechje culonne sfarente per vede tutta l''infurmazione chì vulete vede in listessu tempu: Accolta, nutificazione, linea pubblica, è tutti l''hashtag è liste chì vulete.'
     animations_and_accessibility: Animazione è accessibilità
     confirmation_dialogs: Pop-up di cunfirmazione
+    discovery: Scuperta
     sensitive_content: Cuntinutu sensibile
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
@@ -550,6 +566,7 @@ co:
     status:
       account_status: Statutu di u contu
       confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
+      functional: U vostru contu hè uperaziunale.
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
     trouble_logging_in: Difficultà per cunnettavi?
   authorize_follow:
@@ -931,6 +948,8 @@ co:
     pinned: Statutu puntarulatu
     reblogged: hà spartutu
     sensitive_content: Cuntenutu sensibile
+  tags:
+    does_not_match_previous_name: ùn currisponde micca à l'anzianu nome
   terms:
     body_html: |
       <h2>Politique de confidentialité</h2>
