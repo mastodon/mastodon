@@ -33,6 +33,7 @@ import suggestions from './suggestions';
 import pinnedAccountsEditor from './pinned_accounts_editor';
 import polls from './polls';
 import identity_proofs from './identity_proofs';
+import trends from './trends';
 
 const reducers = {
   dropdown_menu,
@@ -69,6 +70,7 @@ const reducers = {
   suggestions,
   pinnedAccountsEditor,
   polls,
+  trends,
 };
 
 export default combineReducers(reducers);

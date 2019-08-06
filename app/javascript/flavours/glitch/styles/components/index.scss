@@ -903,6 +903,38 @@
       }
     }
   }
+
+  &__trends {
+    flex: 0 1 auto;
+    opacity: 1;
+    animation: fade 150ms linear;
+    margin-top: 10px;
+
+    @media screen and (max-height: 810px) {
+      .trends__item:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-height: 720px) {
+      .trends__item:nth-child(2) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-height: 670px) {
+      display: none;
+    }
+
+    .trends__item {
+      border-bottom: 0;
+      padding: 10px;
+
+      &__current {
+        color: $darker-text-color;
+      }
+    }
+  }
 }
 
 .column-link__badge {

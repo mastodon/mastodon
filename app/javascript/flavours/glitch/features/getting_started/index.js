@@ -8,7 +8,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, profile_directory } from 'flavours/glitch/util/initial_state';
+import { me, profile_directory, showTrends } from 'flavours/glitch/util/initial_state';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
@@ -16,6 +16,7 @@ import { fetchLists } from 'flavours/glitch/actions/lists';
 import { preferencesLink } from 'flavours/glitch/util/backend_links';
 import NavigationBar from '../compose/components/navigation_bar';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
+import TrendsContainer from './containers/trends_container';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -182,6 +183,8 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
           <LinkFooter />
         </div>
+
+        {multiColumn && showTrends && <TrendsContainer />}
       </Column>
     );
   }
