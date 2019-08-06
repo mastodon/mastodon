@@ -116,9 +116,9 @@ export default class StatusContent extends React.PureComponent {
             link.insertAdjacentText('beforeend', ' ');
             link.insertAdjacentElement('beforeend', tag);
           }
-        } catch (TypeError) {
-          // Just to be safe
-          if (tagLinks) link.removeAttribute('href');
+        } catch (e) {
+          // The URL is invalid, remove the href just to be safe
+          if (tagLinks && e instanceof TypeError) link.removeAttribute('href');
         }
       }
 
