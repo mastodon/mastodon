@@ -104,14 +104,23 @@ export default class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
 
-        if (isLinkMisleading(link)) {
-          // Add a tag besides the link to display its origin
+        try {
+          if (isLinkMisleading(link)) {
+            // Add a tag besides the link to display its origin
 
-          const tag = document.createElement('span');
-          tag.classList.add('link-origin-tag');
-          tag.textContent = `[${new URL(link.href).host}]`;
-          link.insertAdjacentText('beforeend', ' ');
-          link.insertAdjacentElement('beforeend', tag);
+            const tag = document.createElement('span');
+            tag.classList.add('link-origin-tag');
+            tag.textContent = `[${new URL(link.href).host}]`;
+            link.insertAdjacentText('beforeend', ' ');
+            link.insertAdjacentElement('beforeend', tag);
+          }
+        } catch (e) {
+          // The URL is invalid, remove the href just to be safe
+          if (e instanceof TypeError) {
+            link.removeAttribute('href');
+          } else {
+            throw e;
+          }
         }
       }
 
