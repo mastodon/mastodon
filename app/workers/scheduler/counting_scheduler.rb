@@ -13,7 +13,7 @@ class Scheduler::CountingScheduler
   private
 
   def recount_tag_scores!
-    Tag.find_each do |tag|
+    Tag.active.find_each do |tag|
       tag.score = Redis.current.pfcount(*(0..7).map { |i| "activity:tags:#{tag.id}:#{i.days.ago.beginning_of_day.to_i}:accounts" })
       tag.save if tag.changed?
     end

@@ -15,6 +15,8 @@ class TrendingTags
       increment_historical_use!(tag.id, at_time)
       increment_unique_use!(tag.id, account.id, at_time)
       increment_vote!(tag, at_time)
+
+      tag.touch(:last_status_at) if tag.last_status_at.nil? || tag.last_status_at < 24.hours.ago
     end
 
     def get(limit, filtered: true)

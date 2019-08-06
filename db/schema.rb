@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_123746) do
+ActiveRecord::Schema.define(version: 2019_08_06_113401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -665,6 +665,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_123746) do
     t.boolean "listable"
     t.datetime "reviewed_at"
     t.datetime "requested_review_at"
+    t.datetime "last_status_at"
     t.index "lower((name)::text)", name: "index_tags_on_name_lower", unique: true
   end
 

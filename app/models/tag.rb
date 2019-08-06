@@ -13,6 +13,7 @@
 #  listable            :boolean
 #  reviewed_at         :datetime
 #  requested_review_at :datetime
+#  last_status_at      :datetime
 #
 
 class Tag < ApplicationRecord
@@ -25,10 +26,12 @@ class Tag < ApplicationRecord
 
   HASHTAG_NAME_RE = '([[:word:]_][[:word:]_·]*[[:alpha:]_·][[:word:]_·]*[[:word:]_])|([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
+  ACTIVE_DURATION = 7.days.freeze
 
   validates :name, presence: true, format: { with: /\A(#{HASHTAG_NAME_RE})\z/i }
   validate :validate_name_change, if: -> { !new_record? && name_changed? }
 
+  scope :active, -> { where(arel_table[:last_status_at].gteq(ACTIVE_DURATION.ago)) }
   scope :reviewed, -> { where.not(reviewed_at: nil) }
   scope :pending_review, -> { where(reviewed_at: nil).where.not(requested_review_at: nil) }
   scope :discoverable, -> { where.not(listable: false).joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
