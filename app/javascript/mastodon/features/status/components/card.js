@@ -2,9 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import punycode from 'punycode';
 import classnames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import { decode as decodeIDNA } from 'mastodon/utils/idna';
+
+const IDNA_PREFIX = 'xn--';
+
+const decodeIDNA = domain => {
+  return domain
+    .split('.')
+    .map(part => part.indexOf(IDNA_PREFIX) === 0 ? punycode.decode(part.slice(IDNA_PREFIX.length)) : part)
+    .join('.');
+};
 
 const getHostname = url => {
   const parser = document.createElement('a');
