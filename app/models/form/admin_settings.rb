@@ -35,6 +35,7 @@ class Form::AdminSettings
     show_reblogs_in_public_timelines
     show_replies_in_public_timelines
     spam_check_enabled
+    trends
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -51,6 +52,7 @@ class Form::AdminSettings
     show_reblogs_in_public_timelines
     show_replies_in_public_timelines
     spam_check_enabled
+    trends
   ).freeze
 
   UPLOAD_KEYS = %i(

@@ -48,7 +48,7 @@ class TagsController < ApplicationController
   private
 
   def set_tag
-    @tag = Tag.find_normalized!(params[:id])
+    @tag = Tag.usable.find_normalized!(params[:id])
   end
 
   def set_body_classes
