@@ -30,7 +30,7 @@ class DirectoriesController < ApplicationController
   end
 
   def set_tag
-    @tag = Tag.discoverable.find_by!(name: params[:id].downcase)
+    @tag = Tag.discoverable.find_normalized!(params[:id])
   end
 
   def set_tags

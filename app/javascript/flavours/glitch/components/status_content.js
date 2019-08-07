@@ -172,7 +172,7 @@ export default class StatusContent extends React.PureComponent {
   }
 
   onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '').toLowerCase();
+    hashtag = hashtag.replace(/^#/, '');
 
     if (this.props.parseClick) {
       this.props.parseClick(e, `/timelines/tag/${hashtag}`);

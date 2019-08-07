@@ -31,7 +31,8 @@ class Tag < ApplicationRecord
 
   scope :reviewed, -> { where.not(reviewed_at: nil) }
   scope :pending_review, -> { where(reviewed_at: nil).where.not(requested_review_at: nil) }
-  scope :discoverable, -> { where.not(listable: false).joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
+  scope :usable, -> { where(usable: [true, nil]) }
+  scope :discoverable, -> { where(listable: [true, nil]).joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :most_used, ->(account) { joins(:statuses).where(statuses: { account: account }).group(:id).order(Arel.sql('count(*) desc')) }
 
   delegate :accounts_count,

@@ -2212,7 +2212,6 @@ a.account__display-name {
   }
 
   .getting-started__wrapper,
-  .getting-started__trends,
   .search {
     margin-bottom: 10px;
   }
@@ -2319,12 +2318,23 @@ a.account__display-name {
   margin-bottom: 10px;
   height: calc(100% - 20px);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  & > a {
+    flex: 0 0 auto;
+  }
 
   hr {
+    flex: 0 0 auto;
     border: 0;
     background: transparent;
     border-top: 1px solid lighten($ui-base-color, 4%);
     margin: 10px 0;
+  }
+
+  .flex-spacer {
+    background: transparent;
   }
 }
 
@@ -2717,8 +2727,10 @@ a.account__display-name {
   }
 
   &__trends {
-    background: $ui-base-color;
     flex: 0 1 auto;
+    opacity: 1;
+    animation: fade 150ms linear;
+    margin-top: 10px;
 
     @media screen and (max-height: 810px) {
       .trends__item:nth-child(3) {
@@ -2735,11 +2747,15 @@ a.account__display-name {
     @media screen and (max-height: 670px) {
       display: none;
     }
-  }
 
-  &__scrollable {
-    max-height: 100%;
-    overflow-y: auto;
+    .trends__item {
+      border-bottom: 0;
+      padding: 10px;
+
+      &__current {
+        color: $darker-text-color;
+      }
+    }
   }
 }
 
@@ -5968,7 +5984,8 @@ noscript {
       font-size: 24px;
       line-height: 36px;
       font-weight: 500;
-      text-align: center;
+      text-align: right;
+      padding-right: 15px;
       color: $secondary-text-color;
     }
 
@@ -5976,7 +5993,12 @@ noscript {
       flex: 0 0 auto;
       width: 50px;
 
-      path {
+      path:first-child {
+        fill: rgba($highlight-text-color, 0.25) !important;
+        fill-opacity: 1 !important;
+      }
+
+      path:last-child {
         stroke: lighten($highlight-text-color, 6%) !important;
       }
     }

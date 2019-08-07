@@ -28,10 +28,13 @@ module Admin
       @pam_enabled           = ENV['PAM_ENABLED'] == 'true'
       @hidden_service        = ENV['ALLOW_ACCESS_TO_HIDDEN_SERVICE'] == 'true'
       @trending_hashtags     = TrendingTags.get(10, filtered: false)
+      @authorized_fetch      = authorized_fetch_mode?
+      @whitelist_enabled     = whitelist_mode?
       @profile_directory     = Setting.profile_directory
       @timeline_preview      = Setting.timeline_preview
       @keybase_integration   = Setting.enable_keybase
       @spam_check_enabled    = Setting.spam_check_enabled
+      @trends_enabled        = Setting.trends
     end
 
     private
@@ -41,7 +44,13 @@ module Admin
     end
 
     def redis_info
-      @redis_info ||= Redis.current.info
+      @redis_info ||= begin
+        if Redis.current.is_a?(Redis::Namespace)
+          Redis.current.redis.info
+        else
+          Redis.current.info
+        end
+      end
     end
   end
 end

@@ -247,6 +247,7 @@ en:
       updated_msg: Emoji successfully updated!
       upload: Upload
     dashboard:
+      authorized_fetch_mode: Authorized fetch mode
       backlog: backlogged jobs
       config: Configuration
       feature_deletions: Account deletions
@@ -271,6 +272,7 @@ en:
       week_interactions: interactions this week
       week_users_active: active this week
       week_users_new: users this week
+      whitelist_mode: Whitelist mode
     domain_allows:
       add_new: Whitelist domain
       created_msg: Domain has been successfully whitelisted
@@ -473,8 +475,8 @@ en:
         title: Custom terms of service
       site_title: Server name
       spam_check_enabled:
-        desc_html: Mastodon can auto-silence and auto-report accounts based on measures such as detecting accounts who send repeated unsolicited messages. There may be false positives.
-        title: Anti-spam
+        desc_html: Mastodon can auto-silence and auto-report accounts that send repeated unsolicited messages. There may be false positives.
+        title: Anti-spam automation
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
         title: Server thumbnail
@@ -482,6 +484,9 @@ en:
         desc_html: Display public timeline on landing page
         title: Timeline preview
       title: Site settings
+      trends:
+        desc_html: Publicly display previously reviewed hashtags that are currently trending
+        title: Trending hashtags
     statuses:
       back_to_account: Back to account page
       batch:
@@ -504,6 +509,7 @@ en:
       title: Hashtags
       trending_right_now: Trending right now
       unique_uses_today: "%{count} posting today"
+      updated_msg: Hashtag settings updated successfully
     title: Administration
     warning_presets:
       add_new: Add new
@@ -527,6 +533,7 @@ en:
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
     animations_and_accessibility: Animations and accessibility
     confirmation_dialogs: Confirmation dialogs
+    discovery: Discovery
     sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Change e-mail preferences
@@ -574,6 +581,7 @@ en:
     status:
       account_status: Account status
       confirming: Waiting for e-mail confirmation to be completed.
+      functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
     trouble_logging_in: Trouble logging in?
   authorize_follow:

@@ -17,7 +17,7 @@ module Admin
       authorize @tag, :update?
 
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
-        redirect_to admin_tag_path(@tag.id)
+        redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
         render :show
       end
