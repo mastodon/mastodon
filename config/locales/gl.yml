@@ -245,6 +245,7 @@ gl:
       updated_msg: Actualizouse correctamente o emoji!
       upload: Subir
     dashboard:
+      authorized_fetch_mode: Modo de obtención autorizado
       backlog: traballos respaldados
       config: Axustes
       feature_deletions: Borrado de contas
@@ -509,11 +510,15 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: 'Novo informe sobre %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'A etiqueta #%{name} é tendencia hoxe, pero non foi previamente revisada. Non se mostrará publicamente a menos que vostede o permita, ou garde o formulario para facer que non se lle consulte de novo.'
+      subject: 'Unha nova etiqueta que revisar en %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Interface web avanzada
     advanced_web_interface_hint: 'Se quere utilizar todo o ancho da súa pantalla, a interface web avanzada permítelle configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, liña temporal federada, calquera número de listas e etiquetas.'
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
+    discovery: Descubrir
     sensitive_content: Contido sensible
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
@@ -561,6 +566,7 @@ gl:
     status:
       account_status: Estado da conta
       confirming: Agardando a confirmación do correo enviado.
+      functional: A súa conta está totalmente operativa.
       pending: A súa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirá un correo se a aplicación está aprobada.
     trouble_logging_in: Problemas para conectar?
   authorize_follow:
@@ -942,6 +948,8 @@ gl:
     pinned: Mensaxe fixada
     reblogged: promovida
     sensitive_content: Contido sensible
+  tags:
+    does_not_match_previous_name: non concorda co nome anterior
   terms:
     body_html: |
       <h2>Intimidade</h2>
@@ -1035,10 +1043,10 @@ gl:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
-    description_html: Si habilita a <strong>autenticación de dobre factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
+    description_html: Se activa a <strong>autenticación de dobre factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que creará testemuños para poder entrar.
     disable: Deshabilitar
     enable: Habilitar
-    enabled: A autenticación de doble-factor está habilitada
+    enabled: A autenticación de dobre-factor está activada
     enabled_success: Activouse con éxito a autenticación de dobre-factor
     generate_recovery_codes: Xerar códigos de recuperación
     instructions_html: "<strong>Escanee este código QR en Google Authenticator ou aplicativo TOTP similar no seu teléfono</strong>. Desde agora, este aplicativo xerará testemuños que vostede deberá introducir ao conectarse."
