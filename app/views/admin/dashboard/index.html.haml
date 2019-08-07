@@ -15,13 +15,21 @@
       .dashboard__counters__num= number_with_delimiter @logins_week
       .dashboard__counters__label= t 'admin.dashboard.week_users_active'
   %div
-    %div
-      .dashboard__counters__num= number_with_delimiter @interactions_week
-      .dashboard__counters__label= t 'admin.dashboard.week_interactions'
+    = link_to admin_pending_accounts_path do
+      .dashboard__counters__num= number_with_delimiter @pending_users_count
+      .dashboard__counters__label= t 'admin.dashboard.pending_users'
   %div
     = link_to admin_reports_url do
       .dashboard__counters__num= number_with_delimiter @reports_count
       .dashboard__counters__label= t 'admin.dashboard.open_reports'
+  %div
+    = link_to admin_tags_path(review: 'pending_review') do
+      .dashboard__counters__num= number_with_delimiter @pending_tags_count
+      .dashboard__counters__label= t 'admin.dashboard.pending_tags'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @interactions_week
+      .dashboard__counters__label= t 'admin.dashboard.week_interactions'
   %div
     = link_to sidekiq_url do
       .dashboard__counters__num= number_with_delimiter @queue_backlog
