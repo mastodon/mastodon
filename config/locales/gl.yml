@@ -268,6 +268,7 @@ gl:
       week_interactions: interaccións en esta semana
       week_users_active: activas estas semana
       week_users_new: usuarias esta semana
+      whitelist_mode: Modo de lista branca
     domain_allows:
       add_new: Dominio en lista branca
       created_msg: Engadeu o dominio a lista branca
@@ -467,6 +468,9 @@ gl:
         desc_html: Mostrar liña de tempo pública na páxina de inicio
         title: vista previa da liña temporal
       title: Axustes do sitio
+      trends:
+        desc_html: Mostrar públicamente etiquetas previamente revisadas que actualmente son tendencia
+        title: Etiquetas Tendencia
     statuses:
       back_to_account: Voltar a páxina da conta
       batch:
@@ -481,7 +485,15 @@ gl:
       title: Estados da conta
       with_media: con medios
     tags:
+      context: Contexto
+      directory: No directorio
+      in_directory: "%{count} no directorio"
+      review: Estado de revisión
+      reviewed: Revisado
       title: Etiquetas
+      trending_right_now: Agora como Tendencia
+      unique_uses_today: "%{count} publicando hoxe"
+      updated_msg: Actualizaronse os axustes das etiquetas
     title: Administración
     warning_presets:
       add_new: Engadir novo
@@ -886,7 +898,7 @@ gl:
     preferences: Preferencias
     profile: Perfil
     relationships: Seguindo e seguidoras
-    two_factor_authentication: Validar Doble Factor
+    two_factor_authentication: Validar Dobre Factor
   spam_check:
     spam_detected_and_silenced: Esto é un informe automático. Detectouse spam e o remitente foi bloqueado automáticamente. Se o considera un fallo, por favor desbloquee a conta.
   statuses:
@@ -1023,11 +1035,11 @@ gl:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
-    description_html: Si habilita a <strong>autenticación de doble factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
+    description_html: Si habilita a <strong>autenticación de dobre factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
     disable: Deshabilitar
     enable: Habilitar
     enabled: A autenticación de doble-factor está habilitada
-    enabled_success: Habilitouse con éxito a autenticación de doble-factor
+    enabled_success: Activouse con éxito a autenticación de dobre-factor
     generate_recovery_codes: Xerar códigos de recuperación
     instructions_html: "<strong>Escanee este código QR en Google Authenticator ou aplicativo TOTP similar no seu teléfono</strong>. Desde agora, este aplicativo xerará testemuños que vostede deberá introducir ao conectarse."
     lost_recovery_codes: Os códigos de recuperación permítenlle recuperar o acceso a súa conta si perde o teléfono. Si perde os códigos de recuperación, pode restauralos aquí. Os seus códigos de recuperación anteriores serán invalidados.
@@ -1078,7 +1090,7 @@ gl:
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
     invalid_email: O enderezo de correo non é válido
-    invalid_otp_token: Código de doble-factor non válido
+    invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
