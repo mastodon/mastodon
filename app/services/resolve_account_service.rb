@@ -60,17 +60,23 @@ class ResolveAccountService < BaseService
       @account  = uri
       @username = @account.username
       @domain   = @account.domain
-      @uri      = [@username, @domain].compact.join('@')
     else
-      @uri               = uri
       @username, @domain = uri.split('@')
     end
 
-    @domain = nil if TagManager.instance.local_domain?(@domain)
+    @domain = begin
+      if TagManager.instance.local_domain?(@domain)
+        nil
+      else
+        TagManager.instance.normalize_domain(@domain)
+      end
+    end
+
+    @uri = [@username, @domain].compact.join('@')
   end
 
   def process_webfinger!(uri, redirected = false)
-    @webfinger                           = Goldfinger.finger("acct:#{@uri}")
+    @webfinger                           = Goldfinger.finger("acct:#{uri}")
     confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
