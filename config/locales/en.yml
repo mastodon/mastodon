@@ -284,6 +284,7 @@ en:
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
+      edit: Edit domain block
       existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Create block
@@ -294,6 +295,10 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      private_comment: Private comment
+      private_comment_hint: Comment about this domain limitation for internal use by the moderators.
+      public_comment: Public comment
+      public_comment_hint: Comment about this domain limitation for the general public, if advertising the list of domain limitations is enabled.
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       reject_reports: Reject reports
@@ -313,6 +318,7 @@ en:
         title: Undo domain block for %{domain}
         undo: Undo
       undo: Undo domain block
+      view: View domain block
     email_domain_blocks:
       add_new: Add new
       created_msg: Successfully added e-mail domain to blacklist
@@ -336,6 +342,8 @@ en:
         all: All
         limited: Limited
         title: Moderation
+      private_comment: Private comment
+      public_comment: Public comment
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
