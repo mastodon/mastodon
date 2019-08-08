@@ -40,7 +40,6 @@ class RemoteInteractionController < ApplicationController
     @status = Status.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404
     raise ActiveRecord::RecordNotFound
   end
 
