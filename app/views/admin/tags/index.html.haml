@@ -12,6 +12,7 @@
     %strong= t('admin.tags.review')
     %ul
       %li= filter_link_to t('generic.all'), review: nil
+      %li= filter_link_to t('admin.tags.unreviewed'), review: 'unreviewed'
       %li= filter_link_to t('admin.tags.reviewed'), review: 'reviewed'
       %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{Tag.pending_review.count})"], ' '), review: 'pending_review'
 

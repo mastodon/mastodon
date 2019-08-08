@@ -21,6 +21,8 @@ module Admin
       @blocks_count    = Block.where(target_account: Account.where(domain: params[:id])).count
       @available       = DeliveryFailureTracker.available?(Account.select(:shared_inbox_url).where(domain: params[:id]).first&.shared_inbox_url)
       @media_storage   = MediaAttachment.where(account: Account.where(domain: params[:id])).sum(:file_file_size)
+      @private_comment = @domain_block&.private_comment
+      @public_comment  = @domain_block&.public_comment
     end
 
     private
