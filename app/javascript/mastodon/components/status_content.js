@@ -234,15 +234,19 @@ export default class StatusContent extends React.PureComponent {
         </div>
       );
     } else if (this.props.onClick) {
-      return (
+      const output = [
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
 
-          {!!this.state.collapsed && readMoreButton}
-
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-        </div>
-      );
+        </div>,
+      ];
+
+      if (this.state.collapsed) {
+        output.push(readMoreButton);
+      }
+
+      return output;
     } else {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle}>
