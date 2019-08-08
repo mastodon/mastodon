@@ -166,11 +166,6 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
-  handleCollapsedClick = (e) => {
-    e.preventDefault();
-    this.setState({ collapsed: !this.state.collapsed });
-  }
-
   setRef = (c) => {
     this.node = c;
   }
