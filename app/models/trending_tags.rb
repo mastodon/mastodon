@@ -6,6 +6,7 @@ class TrendingTags
   EXPIRE_TRENDS_AFTER  = 1.day.seconds
   THRESHOLD            = 5
   LIMIT                = 10
+  REVIEW_THRESHOLD     = 3
 
   class << self
     include Redisable
@@ -60,7 +61,7 @@ class TrendingTags
         old_rank = redis.zrevrank(key, tag.id)
 
         redis.zadd(key, score, tag.id)
-        request_review!(tag) if (old_rank.nil? || old_rank > LIMIT) && redis.zrevrank(key, tag.id) <= LIMIT && !tag.trendable? && tag.requires_review? && !tag.requested_review?
+        request_review!(tag) if (old_rank.nil? || old_rank > REVIEW_THRESHOLD) && redis.zrevrank(key, tag.id) <= REVIEW_THRESHOLD && !tag.trendable? && tag.requires_review? && !tag.requested_review?
       end
 
       redis.expire(key, EXPIRE_TRENDS_AFTER)
