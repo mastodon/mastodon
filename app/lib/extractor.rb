@@ -13,10 +13,12 @@ module Extractor
 
     text.to_s.scan(Account::MENTION_RE) do |screen_name, _|
       match_data = $LAST_MATCH_INFO
-      after = $'
+      after      = $'
+
       unless after =~ Twitter::Regex[:end_mention_match]
         start_position = match_data.char_begin(1) - 1
-        end_position = match_data.char_end(1)
+        end_position   = match_data.char_end(1)
+
         possible_entries << {
           screen_name: screen_name,
           indices: [start_position, end_position],
@@ -24,26 +26,25 @@ module Extractor
       end
     end
 
-    if block_given?
-      possible_entries.each do |mention|
-        yield mention[:screen_name], mention[:indices].first, mention[:indices].last
-      end
-    end
+    possible_entries.each { |mention| yield mention[:screen_name], mention[:indices].first, mention[:indices].last } if block_given?
     possible_entries
   end
 
+  # :yields: hashtag, start, end
   def extract_hashtags_with_indices(text, **)
     return [] unless text =~ /#/
 
     tags = []
+
     text.scan(Tag::HASHTAG_RE) do |hash_text, _|
-      match_data = $LAST_MATCH_INFO
+      match_data     = $LAST_MATCH_INFO
       start_position = match_data.char_begin(1) - 1
-      end_position = match_data.char_end(1)
-      after = $'
+      end_position   = match_data.char_end(1)
+      after          = $'
+
       if after =~ %r{\A://}
         hash_text.match(/(.+)(https?\Z)/) do |matched|
-          hash_text = matched[1]
+          hash_text     = matched[1]
           end_position -= matched[2].char_length
         end
       end
@@ -58,7 +59,34 @@ module Extractor
     tags
   end
 
-  def extract_cashtags_with_indices(_text)
-    [] # always returns empty array
+  # :yields: cashtag, start, end
+  def extract_cashtags_with_indices(text)
+    return [] unless text =~ /\$/
+
+    tags = []
+
+    text.scan(Tag::CASHTAG_RE) do |cash_text, _|
+      match_data     = $LAST_MATCH_INFO
+      start_position = match_data.char_begin(1) - 1
+      end_position   = match_data.char_end(1)
+      after          = $'
+
+      next if cash_text.size > 3
+
+      if after =~ %r{\A://}
+        cash_text.match(/(.+)(https?\Z)/) do |matched|
+          cash_text     = matched[1]
+          end_position -= matched[2].char_length
+        end
+      end
+
+      tags << {
+        cashtag: cash_text,
+        indices: [start_position, end_position],
+      }
+    end
+
+    tags.each { |tag| yield tag[:cashtag], tag[:indices].first, tag[:indices].last } if block_given?
+    tags
   end
 end

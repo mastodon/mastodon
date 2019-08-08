@@ -121,6 +121,8 @@ class Formatter
         link_to_url(entity, options)
       elsif entity[:hashtag]
         link_to_hashtag(entity)
+      elsif entity[:cashtag]
+        link_to_cashtag(entity)
       elsif entity[:screen_name]
         link_to_mention(entity, accounts)
       end
@@ -283,6 +285,10 @@ class Formatter
     hashtag_html(entity[:hashtag])
   end
 
+  def link_to_cashtag(entity)
+    cashtag_html(entity[:cashtag])
+  end
+
   def link_html(url)
     url    = Addressable::URI.parse(url).to_s
     prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
@@ -295,6 +301,10 @@ class Formatter
 
   def hashtag_html(tag)
     "<a href=\"#{encode(tag_url(tag))}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
+  end
+
+  def cashtag_html(tag)
+    "<a href=\"#{encode(tag_url(tag))}\" class=\"mention hashtag\" rel=\"tag\">$<span>#{encode(tag)}</span></a>"
   end
 
   def mention_html(account)

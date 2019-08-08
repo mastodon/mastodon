@@ -2,7 +2,7 @@
 
 class ProcessHashtagsService < BaseService
   def call(status, tags = [])
-    tags    = Extractor.extract_hashtags(status.text) if status.local?
+    tags    = Extractor.extract_hashtags(status.text) + Extractor.extract_cashtags(status.text) if status.local?
     records = []
 
     Tag.find_or_create_by_names(tags) do |tag|
