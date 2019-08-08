@@ -71,7 +71,7 @@ module Admin
       now = Time.now.utc.beginning_of_day.to_date
 
       (Date.commercial(now.cwyear, now.cweek)..now).map do |date|
-        date.to_time.utc.beginning_of_day.to_i
+        date.to_time(:utc).beginning_of_day.to_i
       end
     end
   end

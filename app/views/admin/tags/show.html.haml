@@ -41,5 +41,5 @@
       - @usage_by_domain.each do |(domain, count)|
         %tr
           %th= domain || site_hostname
-          %td= "#{number_with_delimiter((count.to_f / @tag.history[0][:uses].to_f) * 100)}%"
+          %td= number_to_percentage((count / @tag.history[0][:uses].to_f) * 100)
           %td= number_with_delimiter count
