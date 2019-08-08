@@ -12,6 +12,8 @@
             %tr
               %th= t('domain_blocks.domain')
               %th= t('domain_blocks.severity')
+              - if @show_rationale
+                %th= t('domain_blocks.rationale')
           %tbody
             - if @blocks.empty?
               %tr
@@ -21,6 +23,8 @@
                 %tr
                   %td= block.domain
                   %td= block_severity_text(block)
+                  - if @show_rationale
+                    %td= block.public_comment.presence
       %h2= t('domain_blocks.severity_legend.title')
       %h3= t('domain_blocks.media_block')
       %p= t('domain_blocks.severity_legend.media_block')

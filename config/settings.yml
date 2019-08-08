@@ -65,6 +65,7 @@ defaults: &defaults
   show_known_fediverse_at_about_page: true
   spam_check_enabled: true
   show_domain_blocks: 'disabled'
+  show_domain_blocks_rationale: 'disabled'
 
 development:
   <<: *defaults

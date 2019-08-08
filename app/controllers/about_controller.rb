@@ -22,6 +22,8 @@ class AboutController < ApplicationController
 
   def blocks
     @blocks = DomainBlock.all
+    @show_rationale = Setting.show_domain_blocks_rationale == 'all'
+    @show_rationale |= Setting.show_domain_blocks_rationale == 'users' && !current_user.nil? && current_user.functional?
   end
 
   private
