@@ -23,6 +23,8 @@ ja:
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
+    instance_actor_flash: |
+      このアカウントはサーバーそのものを示す仮想的なもので、個人のアカウントではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックする以外の目的でブロックしないでください。サーバー全体をブロックする場合、ドメインブロックを使用してください。
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     see_whats_happening: やりとりを見てみる
@@ -266,6 +268,7 @@ ja:
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
       domain: ドメイン
+      edit: ドメインブロックを編集
       existing_domain_block_html: 既に%{name}に対して、より厳しい制限を課しています。先に<a href="%{unblock_url}">その制限を解除</a>する必要があります。
       new:
         create: ブロックを作成
