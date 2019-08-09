@@ -462,7 +462,7 @@ ja:
         title: カスタム利用規約
       site_title: サーバーの名前
       spam_check_enabled:
-        desc_html: 求められていないメッセージを繰り返し送るアカウントを検出するなどの方法に基づき、自動でサイレンスにし通報することができます。誤検知を含む可能性もあります。
+        desc_html: 求められていないメッセージを繰り返し送信するアカウントを自動でサイレンスにし通報することができます。誤検知を含む可能性もあります。
         title: スパム対策
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
@@ -494,7 +494,13 @@ ja:
       context: 表示先
       directory: ディレクトリに使用
       in_directory: "%{count} 人がディレクトリに使用"
+      review: 審査状況
+      reviewed: 承認済み
       title: ハッシュタグ
+      trending_right_now: 現在のトレンド
+      unique_uses_today: "本日 %{count} 人がトゥートに使用"
+      unreviewed: 未承認
+      updated_msg: ハッシュタグ設定の更新に成功しました
     title: 管理
     warning_presets:
       add_new: 追加
@@ -510,11 +516,15 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: '%{domain} の誰かが %{target} を通報しました'
       subject: '%{instance} の新しい通報 (#%{id})'
+    new_trending_tag:
+      body: 'ハッシュタグ #%{name} が本日のトレンドになっていますが、審査がまだ行われていないためトレンドタグには表示されていません。一度許可すれば次回からこの操作は不要です。'
+      subject: '%{instance} で新しいハッシュタグ (#%{name}) が承認待ちです'
   appearance:
     advanced_web_interface: 上級者向け UI
     advanced_web_interface_hint: 'ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。'
     animations_and_accessibility: アニメーションとアクセシビリティー
     confirmation_dialogs: 確認ダイアログ
+    discovery: 見つける
     sensitive_content: 閲覧注意コンテンツ
   application_mailer:
     notification_preferences: メール設定の変更
@@ -561,6 +571,7 @@ ja:
     status:
       account_status: アカウントの状態
       confirming: メールアドレスの確認が完了するのを待っています。
+      functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
     trouble_logging_in: ログインできませんか？
   authorize_follow:
@@ -605,6 +616,8 @@ ja:
     how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
     people:
       other: "%{count} 人"
+  domain_validator:
+    invalid_domain: は無効なドメイン名です
   errors:
     '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。
@@ -894,6 +907,8 @@ ja:
     profile: プロフィール
     relationships: フォロー・フォロワー
     two_factor_authentication: 二段階認証
+  spam_check:
+    spam_detected_and_silenced: これは自動通報です。スパムが検出されたため、当該送信者は自動的にサイレンスに設定されました。もしこれが誤りである場合、アカウントのサイレンスを解除してください。
   statuses:
     attached:
       description: '添付: %{attached}'
