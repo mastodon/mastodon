@@ -129,19 +129,28 @@
   padding: 0;
   color: $action-button-color;
   border: 0;
+  border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: color 100ms ease-in;
+  transition: all 100ms ease-in;
+  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: lighten($action-button-color, 7%);
-    transition: color 200ms ease-out;
+    background-color: rgba($action-button-color, 0.15);
+    transition: all 200ms ease-out;
+    transition-property: background-color, color;
+  }
+
+  &:focus {
+    background-color: rgba($action-button-color, 0.3);
   }
 
   &.disabled {
     color: darken($action-button-color, 13%);
+    background-color: transparent;
     cursor: default;
   }
 
@@ -166,10 +175,16 @@
     &:active,
     &:focus {
       color: darken($lighter-text-color, 7%);
+      background-color: rgba($lighter-text-color, 0.15);
+    }
+
+    &:focus {
+      background-color: rgba($lighter-text-color, 0.3);
     }
 
     &.disabled {
       color: lighten($lighter-text-color, 7%);
+      background-color: transparent;
     }
 
     &.active {
@@ -197,6 +212,7 @@
 .text-icon-button {
   color: $lighter-text-color;
   border: 0;
+  border-radius: 4px;
   background: transparent;
   cursor: pointer;
   font-weight: 600;
@@ -204,17 +220,25 @@
   padding: 0 3px;
   line-height: 27px;
   outline: 0;
-  transition: color 100ms ease-in;
+  transition: all 100ms ease-in;
+  transition-property: background-color, color;
 
   &:hover,
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    transition: color 200ms ease-out;
+    background-color: rgba($lighter-text-color, 0.15);
+    transition: all 200ms ease-out;
+    transition-property: background-color, color;
+  }
+
+  &:focus {
+    background-color: rgba($lighter-text-color, 0.3);
   }
 
   &.disabled {
     color: lighten($lighter-text-color, 20%);
+    background-color: transparent;
     cursor: default;
   }
 
@@ -445,13 +469,22 @@
   }
 
   .autosuggest-account,
-  .autosuggest-emoji {
+  .autosuggest-emoji,
+  .autosuggest-hashtag {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     line-height: 18px;
     font-size: 14px;
+  }
+
+  .autosuggest-hashtag {
+    justify-content: space-between;
+
+    strong {
+      font-weight: 500;
+    }
   }
 
   .autosuggest-account-icon,
@@ -595,7 +628,8 @@
       }
     }
 
-    .icon-button {
+    .icon-button,
+    .text-icon-button {
       box-sizing: content-box;
       padding: 0 3px;
     }
@@ -722,7 +756,7 @@
     white-space: pre-wrap;
 
     &:last-child {
-      margin-bottom: 2px;
+      margin-bottom: 0;
     }
   }
 
@@ -751,6 +785,10 @@
     .fa {
       color: $dark-text-color;
     }
+  }
+
+  a.unhandled-link {
+    color: lighten($ui-highlight-color, 8%);
   }
 
   .status__content__spoiler-link {
@@ -1804,6 +1842,7 @@ a.account__display-name {
     justify-content: center;
     width: 100%;
     height: 100%;
+    min-height: 100vh;
 
     &__pane {
       height: 100%;
@@ -1817,6 +1856,7 @@ a.account__display-name {
       }
 
       &__inner {
+        position: fixed;
         width: 285px;
         pointer-events: auto;
         height: 100%;
@@ -1833,6 +1873,26 @@ a.account__display-name {
       @media screen and (min-width: $no-gap-breakpoint) {
         padding: 0 10px;
       }
+    }
+  }
+}
+
+.tabs-bar__wrapper {
+  background: darken($ui-base-color, 8%);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding-top: 0;
+
+  @media screen and (min-width: $no-gap-breakpoint) {
+    padding-top: 10px;
+  }
+
+  .tabs-bar {
+    margin-bottom: 0;
+
+    @media screen and (min-width: $no-gap-breakpoint) {
+      margin-bottom: 10px;
     }
   }
 }
@@ -1871,7 +1931,6 @@ a.account__display-name {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: darken($ui-base-color, 7%);
 }
 
 .drawer {
@@ -1997,6 +2056,14 @@ a.account__display-name {
     padding: 0;
   }
 
+  //.column {
+  //  margin-top: 0;
+
+  //  @media screen and (min-width: $no-gap-breakpoint) {
+  //    margin-top: 10px;
+  //  }
+  //}
+
   .autosuggest-textarea__textarea {
     font-size: 16px;
   }
@@ -2012,8 +2079,17 @@ a.account__display-name {
     top: 15px;
   }
 
+  .scrollable {
+    overflow: visible;
+
+    @supports(display: grid) {
+      contain: content;
+    }
+  }
+
   @media screen and (min-width: $no-gap-breakpoint) {
     padding: 10px 0;
+    padding-top: 0;
   }
 
   @media screen and (min-width: 630px) {
@@ -2128,17 +2204,14 @@ a.account__display-name {
 
 @media screen and (min-width: $no-gap-breakpoint) {
   .tabs-bar {
-    margin: 10px auto;
-    margin-bottom: 0;
     width: 100%;
   }
 
   .react-swipeable-view-container .columns-area--mobile {
-    height: calc(100% - 20px) !important;
+    height: calc(100% - 10px) !important;
   }
 
   .getting-started__wrapper,
-  .getting-started__trends,
   .search {
     margin-bottom: 10px;
   }
@@ -2245,12 +2318,23 @@ a.account__display-name {
   margin-bottom: 10px;
   height: calc(100% - 20px);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  & > a {
+    flex: 0 0 auto;
+  }
 
   hr {
+    flex: 0 0 auto;
     border: 0;
     background: transparent;
     border-top: 1px solid lighten($ui-base-color, 4%);
     margin: 10px 0;
+  }
+
+  .flex-spacer {
+    background: transparent;
   }
 }
 
@@ -2362,6 +2446,8 @@ a.account__display-name {
 }
 
 .column-back-button {
+  box-sizing: border-box;
+  width: 100%;
   background: lighten($ui-base-color, 4%);
   color: $highlight-text-color;
   cursor: pointer;
@@ -2641,8 +2727,10 @@ a.account__display-name {
   }
 
   &__trends {
-    background: $ui-base-color;
     flex: 0 1 auto;
+    opacity: 1;
+    animation: fade 150ms linear;
+    margin-top: 10px;
 
     @media screen and (max-height: 810px) {
       .trends__item:nth-child(3) {
@@ -2659,11 +2747,15 @@ a.account__display-name {
     @media screen and (max-height: 670px) {
       display: none;
     }
-  }
 
-  &__scrollable {
-    max-height: 100%;
-    overflow-y: auto;
+    .trends__item {
+      border-bottom: 0;
+      padding: 10px;
+
+      &__current {
+        color: $darker-text-color;
+      }
+    }
   }
 }
 
@@ -3994,6 +4086,12 @@ a.status-card.compact:hover {
     color: lighten($secondary-text-color, 4%);
     text-decoration: underline;
   }
+}
+
+.search-results__info {
+  padding: 20px;
+  color: $darker-text-color;
+  text-align: center;
 }
 
 .modal-root {
@@ -5886,7 +5984,8 @@ noscript {
       font-size: 24px;
       line-height: 36px;
       font-weight: 500;
-      text-align: center;
+      text-align: right;
+      padding-right: 15px;
       color: $secondary-text-color;
     }
 
@@ -5894,7 +5993,12 @@ noscript {
       flex: 0 0 auto;
       width: 50px;
 
-      path {
+      path:first-child {
+        fill: rgba($highlight-text-color, 0.25) !important;
+        fill-opacity: 1 !important;
+      }
+
+      path:last-child {
         stroke: lighten($highlight-text-color, 6%) !important;
       }
     }

@@ -11,7 +11,7 @@ import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
 import { defineMessages } from 'react-intl';
 
-let cancelFetchComposeSuggestionsAccounts;
+let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -139,7 +139,7 @@ export function submitCompose(routerHistory) {
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
-      spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
+      spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
     }, {
@@ -325,10 +325,12 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
   if (cancelFetchComposeSuggestionsAccounts) {
     cancelFetchComposeSuggestionsAccounts();
   }
+
   api(getState).get('/api/v1/accounts/search', {
     cancelToken: new CancelToken(cancel => {
       cancelFetchComposeSuggestionsAccounts = cancel;
     }),
+
     params: {
       q: token.slice(1),
       resolve: false,
@@ -349,9 +351,30 @@ const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
 
-const fetchComposeSuggestionsTags = (dispatch, getState, token) => {
-  dispatch(updateSuggestionTags(token));
-};
+const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
+  if (cancelFetchComposeSuggestionsTags) {
+    cancelFetchComposeSuggestionsTags();
+  }
+
+  api(getState).get('/api/v2/search', {
+    cancelToken: new CancelToken(cancel => {
+      cancelFetchComposeSuggestionsTags = cancel;
+    }),
+
+    params: {
+      type: 'hashtags',
+      q: token.slice(1),
+      resolve: false,
+      limit: 4,
+    },
+  }).then(({ data }) => {
+    dispatch(readyComposeSuggestionsTags(token, data.hashtags));
+  }).catch(error => {
+    if (!isCancel(error)) {
+      dispatch(showAlertForError(error));
+    }
+  });
+}, 200, { leading: true, trailing: true });
 
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
@@ -385,20 +408,26 @@ export function readyComposeSuggestionsAccounts(token, accounts) {
   };
 };
 
+export const readyComposeSuggestionsTags = (token, tags) => ({
+  type: COMPOSE_SUGGESTIONS_READY,
+  token,
+  tags,
+});
+
 export function selectComposeSuggestion(position, token, suggestion, path) {
   return (dispatch, getState) => {
     let completion, startPosition;
 
-    if (typeof suggestion === 'object' && suggestion.id) {
+    if (suggestion.type === 'emoji') {
       completion    = suggestion.native || suggestion.colons;
       startPosition = position - 1;
 
       dispatch(useEmoji(suggestion));
-    } else if (suggestion[0] === '#') {
-      completion    = suggestion;
+    } else if (suggestion.type === 'hashtag') {
+      completion    = `#${suggestion.name}`;
       startPosition = position - 1;
-    } else {
-      completion    = getState().getIn(['accounts', suggestion, 'acct']);
+    } else if (suggestion.type === 'account') {
+      completion    = getState().getIn(['accounts', suggestion.id, 'acct']);
       startPosition = position;
     }
 

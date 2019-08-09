@@ -15,13 +15,21 @@
       .dashboard__counters__num= number_with_delimiter @logins_week
       .dashboard__counters__label= t 'admin.dashboard.week_users_active'
   %div
-    %div
-      .dashboard__counters__num= number_with_delimiter @interactions_week
-      .dashboard__counters__label= t 'admin.dashboard.week_interactions'
+    = link_to admin_pending_accounts_path do
+      .dashboard__counters__num= number_with_delimiter @pending_users_count
+      .dashboard__counters__label= t 'admin.dashboard.pending_users'
   %div
     = link_to admin_reports_url do
       .dashboard__counters__num= number_with_delimiter @reports_count
       .dashboard__counters__label= t 'admin.dashboard.open_reports'
+  %div
+    = link_to admin_tags_path(review: 'pending_review') do
+      .dashboard__counters__num= number_with_delimiter @pending_tags_count
+      .dashboard__counters__label= t 'admin.dashboard.pending_tags'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @interactions_week
+      .dashboard__counters__label= t 'admin.dashboard.week_interactions'
   %div
     = link_to sidekiq_url do
       .dashboard__counters__num= number_with_delimiter @queue_backlog
@@ -50,7 +58,11 @@
         %li
           = feature_hint(link_to(t('admin.dashboard.feature_timeline_preview'), edit_admin_settings_path), @timeline_preview)
         %li
+          = feature_hint(link_to(t('admin.dashboard.trends'), edit_admin_settings_path), @trends_enabled)
+        %li
           = feature_hint(link_to(t('admin.dashboard.feature_relay'), admin_relays_path), @relay_enabled)
+        %li
+          = feature_hint(link_to(t('admin.dashboard.feature_spam_check'), edit_admin_settings_path), @spam_check_enabled)
 
   .dashboard__widgets__versions
     %div
@@ -89,6 +101,10 @@
         %li
           = feature_hint(t('admin.dashboard.single_user_mode'), @single_user_mode)
         %li
+          = feature_hint(t('admin.dashboard.authorized_fetch_mode'), @authorized_fetch)
+        %li
+          = feature_hint(t('admin.dashboard.whitelist_mode'), @whitelist_mode)
+        %li
           = feature_hint('LDAP', @ldap_enabled)
         %li
           = feature_hint('CAS', @cas_enabled)
@@ -105,5 +121,5 @@
       %ul
         - @trending_hashtags.each do |tag|
           %li
-            = link_to "##{tag.name}", web_url("timelines/tag/#{tag.name}")
+            = link_to content_tag(:span, "##{tag.name}", class: !tag.trendable? && !tag.reviewed? ? 'warning-hint' : (!tag.trendable? ? 'negative-hint' : nil)), admin_tag_path(tag.id)
             %span.pull-right= number_with_delimiter(tag.history[0][:accounts].to_i)

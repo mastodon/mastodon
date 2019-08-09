@@ -44,6 +44,7 @@ class AccountTimeline extends ImmutablePureComponent {
     withReplies: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -77,7 +78,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, isAccount } = this.props;
+    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, isAccount, multiColumn } = this.props;
 
     if (!isAccount) {
       return (
@@ -99,7 +100,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
@@ -112,6 +113,7 @@ class AccountTimeline extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

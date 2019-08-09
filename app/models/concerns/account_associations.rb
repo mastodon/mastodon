@@ -11,7 +11,6 @@ module AccountAssociations
     has_many :identity_proofs, class_name: 'AccountIdentityProof', dependent: :destroy, inverse_of: :account
 
     # Timelines
-    has_many :stream_entries, inverse_of: :account, dependent: :destroy
     has_many :statuses, inverse_of: :account, dependent: :destroy
     has_many :favourites, inverse_of: :account, dependent: :destroy
     has_many :mentions, inverse_of: :account, dependent: :destroy
@@ -30,9 +29,6 @@ module AccountAssociations
     # Media
     has_many :media_attachments, dependent: :destroy
     has_many :polls, dependent: :destroy
-
-    # PuSH subscriptions
-    has_many :subscriptions, dependent: :destroy
 
     # Report relationships
     has_many :reports, dependent: :destroy, inverse_of: :account

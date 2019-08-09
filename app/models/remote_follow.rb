@@ -2,19 +2,21 @@
 
 class RemoteFollow
   include ActiveModel::Validations
+  include RoutingHelper
 
   attr_accessor :acct, :addressable_template
 
   validates :acct, presence: true
 
-  def initialize(attrs = nil)
-    @acct = attrs[:acct].gsub(/\A@/, '').strip if !attrs.nil? && !attrs[:acct].nil?
+  def initialize(attrs = {})
+    @acct = normalize_acct(attrs[:acct])
   end
 
   def valid?
     return false unless super
 
-    populate_template
+    fetch_template!
+
     errors.empty?
   end
 
@@ -28,8 +30,30 @@ class RemoteFollow
 
   private
 
-  def populate_template
-    if acct.blank? || redirect_url_link.nil? || redirect_url_link.template.nil?
+  def normalize_acct(value)
+    return if value.blank?
+
+    username, domain = value.strip.gsub(/\A@/, '').split('@')
+
+    domain = begin
+      if TagManager.instance.local_domain?(domain)
+        nil
+      else
+        TagManager.instance.normalize_domain(domain)
+      end
+    end
+
+    [username, domain].compact.join('@')
+  end
+
+  def fetch_template!
+    return missing_resource if acct.blank?
+
+    _, domain = acct.split('@')
+
+    if domain.nil?
+      @addressable_template = Addressable::Template.new("#{authorize_interaction_url}?uri={uri}")
+    elsif redirect_url_link.nil? || redirect_url_link.template.nil?
       missing_resource_error
     else
       @addressable_template = Addressable::Template.new(redirect_uri_template)
@@ -45,7 +69,7 @@ class RemoteFollow
   end
 
   def acct_resource
-    @_acct_resource ||= Goldfinger.finger("acct:#{acct}")
+    @acct_resource ||= Goldfinger.finger("acct:#{acct}")
   rescue Goldfinger::Error, HTTP::ConnectionError
     nil
   end

@@ -8,6 +8,7 @@ import Video from '../features/video';
 import Card from '../features/status/components/card';
 import Poll from 'mastodon/components/poll';
 import ModalRoot from '../components/modal_root';
+import { getScrollbarWidth } from '../features/ui/components/modal_root';
 import MediaModal from '../features/ui/components/media_modal';
 import { List as ImmutableList, fromJS } from 'immutable';
 
@@ -31,6 +32,8 @@ export default class MediaContainer extends PureComponent {
 
   handleOpenMedia = (media, index) => {
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, index });
   }
 
@@ -38,11 +41,15 @@ export default class MediaContainer extends PureComponent {
     const media = ImmutableList([video]);
 
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, time });
   }
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
+    document.documentElement.style.marginRight = 0;
+
     this.setState({ media: null, index: null, time: null });
   }
 

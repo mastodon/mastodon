@@ -8,13 +8,15 @@ module Settings
       before_action :authenticate_user!
       before_action :ensure_otp_secret
 
+      skip_before_action :require_functional!
+
       def new
         prepare_two_factor_form
       end
 
       def create
         if current_user.validate_and_consume_otp!(confirmation_params[:code])
-          flash[:notice] = I18n.t('two_factor_authentication.enabled_success')
+          flash.now[:notice] = I18n.t('two_factor_authentication.enabled_success')
 
           current_user.otp_required_for_login = true
           @recovery_codes = current_user.generate_otp_backup_codes!

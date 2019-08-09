@@ -5,7 +5,7 @@ eu:
       doorkeeper/application:
         name: Aplikazioaren izena
         redirect_uri: Birbideratu URIa
-        scopes: Esparruak
+        scopes: Irismena
         website: Aplikazioaren webgunea
     errors:
       models:
@@ -33,14 +33,14 @@ eu:
       help:
         native_redirect_uri: Erabili %{native_redirect_uri} proba lokaletarako
         redirect_uri: Erabili lerro bat URI bakoitzeko
-        scopes: Banandu esparruak espazioekin. Laga hutsik lehenetsitako esparruak erabiltzeko.
+        scopes: Banandu irismenak espazioekin. Laga hutsik lehenetsitako irismenak erabiltzeko.
       index:
         application: Aplikazioa
         callback_url: Itzulera URLa
         delete: Ezabatu
         name: Izena
         new: Aplikazio berria
-        scopes: Esparruak
+        scopes: Irismena
         show: Erakutsi
         title: Zure aplikazioak
       new:
@@ -49,7 +49,7 @@ eu:
         actions: Ekintzak
         application_id: Bezeroaren gakoa
         callback_urls: Itzulera URL-ak
-        scopes: Esparruak
+        scopes: Irismena
         secret: Bezeroaren sekretua
         title: 'Aplikazioa: %{name}'
     authorizations:
@@ -73,7 +73,7 @@ eu:
         application: Aplikazioa
         created_at: Baimenduta
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Esparruak
+        scopes: Irismena
         title: Zuk baimendutako aplikazioak
     errors:
       messages:
@@ -114,6 +114,12 @@ eu:
       application:
         title: OAuth autorizazioa behar da
     scopes:
+      admin:read: zerbitzariko datu guztiak irakurri
+      admin:read:accounts: kontu guztien informazio sentsiblea irakurri
+      admin:read:reports: salaketa guztietako eta salatutako kontu guztietako informazio sentsiblea irakurri
+      admin:write: zerbitzariko datu guztiak aldatu
+      admin:write:accounts: kontuetan moderazio ekintzak burutu
+      admin:write:reports: salaketetan moderazio ekintzak burutu
       follow: aldatu kontuaren erlazioak
       push: jaso push jakinarazpenak
       read: irakurri zure kontuko datu guztiak

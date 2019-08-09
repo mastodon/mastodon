@@ -114,6 +114,12 @@ cy:
       application:
         title: Mae awdurdodiad OAuth yn ofynnol
     scopes:
+      admin:read: darllenwch yr holl ddata ar y serfiwr
+      admin:read:accounts: darllen gwybodaeth sensitif o'r holl gyfrifon
+      admin:read:reports: darllen gwybodaeth sensitif am bob adroddiad a chyfrifon yr adroddir amdanynt
+      admin:write: addasu pob data ar y serfiwr
+      admin:write:accounts: cyflawni camau cymedroli ar gyfrifon
+      admin:write:reports: cyflawni camau cymedroli ar adroddiadau
       follow: addasu perthnasau cyfrif
       push: derbyn eich hysbysiadau gwthiadwy
       read: darllen holl ddata eich cyfrif

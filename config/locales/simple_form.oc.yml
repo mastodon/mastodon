@@ -27,12 +27,14 @@ oc:
         phrase: Serà pres en compte que siá en majuscula o minuscula o dins un avertiment de contengut sensible
         scopes: A quinas APIs poiràn accedir las aplicacions. Se seleccionatz un encastre de naut nivèl, fa pas mestièr de seleccionar los nivèls mai basses.
         setting_aggregate_reblogs: Mostrar pas los nòus partatges que son estats partejats recentament (afecta pas que los nòus partatges recebuts)
+        setting_default_sensitive: Los mèdias sensibles son resconduts per defaut e se revelhan amb un clic
         setting_display_media_default: Rescondre los mèdias marcats coma sensibles
         setting_display_media_hide_all: Totjorn rescondre los mèdias
         setting_display_media_show_all: Totjorn mostrar los mèdias marcats coma sensibles
         setting_hide_network: Vòstre perfil mostrarà pas los que vos sègon e lo monde que seguètz
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
         setting_show_application: Lo nom de l’aplicacion qu’utilizatz per publicar serà mostrat dins la vista detalhada de vòstres tuts
+        setting_use_blurhash: Los degradats venon de las colors de l’imatge rescondut en enfoscar los detalhs
         username: Vòstre nom d’utilizaire serà unic sus %{domain}
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
       featured_tag:
@@ -64,6 +66,7 @@ oc:
         warning_preset_id: Utilizar un avertiment predefinit
       defaults:
         autofollow: Convidar a sègre vòstre compte
+        avatar: Avatar
         bot: Aquò es lo compte a un robòt
         chosen_languages: Filtrar las lengas
         confirm_new_password: Confirmacion del nòu senhal
@@ -83,9 +86,11 @@ oc:
         locked: Far venir lo compte privat
         max_uses: Limit d’utilizacions
         new_password: Nòu senhal
+        note: Bio
         otp_attempt: Còdi Two-factor
         password: Senhal
         phrase: Senhal o frasa
+        setting_advanced_layout: Activar l’interfàcia web avançada
         setting_aggregate_reblogs: Agropar los partatges dins lo flux d’actualitat
         setting_auto_play_gif: Lectura automatica dels GIFS animats
         setting_boost_modal: Mostrar una fenèstra de confirmacion abans de partejar un estatut
@@ -105,6 +110,7 @@ oc:
         setting_system_font_ui: Utilizar la polissa del sistèma
         setting_theme: Tèma del site
         setting_unfollow_modal: Mostrar una confirmacion abans de quitar de sègre qualqu’un
+        setting_use_blurhash: Mostrar los degradats colorats pels mèdias resconduts
         severity: Severitat
         type: Tipe d’impòrt
         username: Nom d’utilizaire
@@ -128,6 +134,8 @@ oc:
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
         report: Enviar un corrièl pels nòus senhalaments
     'no': Non
+    recommended: Recomandat
     required:
+      mark: "*"
       text: requesit
     'yes': Òc

@@ -33,6 +33,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
   def serializable_hash(options = nil)
     options         = serialization_options(options)
     serialized_hash = serializer.serializable_hash(options)
+    serialized_hash = serialized_hash.select { |k, _| options[:fields].include?(k) } if options[:fields]
     serialized_hash = self.class.transform_key_casing!(serialized_hash, instance_options)
 
     { '@context' => serialized_context }.merge(serialized_hash)

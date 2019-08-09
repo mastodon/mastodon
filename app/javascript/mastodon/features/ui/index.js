@@ -110,11 +110,24 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
+
+    if (this.state.mobile || forceSingleColumn) {
+      document.body.classList.toggle('layout-single-column', true);
+      document.body.classList.toggle('layout-multiple-columns', false);
+    } else {
+      document.body.classList.toggle('layout-single-column', false);
+      document.body.classList.toggle('layout-multiple-columns', true);
+    }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps, prevState) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
       this.node.handleChildrenContentChange();
+    }
+
+    if (prevState.mobile !== this.state.mobile && !forceSingleColumn) {
+      document.body.classList.toggle('layout-single-column', this.state.mobile);
+      document.body.classList.toggle('layout-multiple-columns', !this.state.mobile);
     }
   }
 

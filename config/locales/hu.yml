@@ -10,7 +10,7 @@ hu:
     api: API
     apps: Mobil appok
     apps_platforms: Használd a Mastodont iOS-ről, Androidról vagy más platformról
-    browse_directory: Böngészd a profil adatbázist és szűrj érdeklődési kör szerint
+    browse_directory: Böngészd a profilokat és szűrj érdeklődési körre
     browse_public_posts: Nézz bele a Mastodon élő adatfolyamába
     contact: Kapcsolat
     contact_missing: Nincs megadva
@@ -469,13 +469,6 @@ hu:
       no_status_selected: Nem változtattunk meg semmit, mert semmi sem volt kiválasztva
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Megerősítve
-      expires_in: Elévül
-      last_delivery: Utolsó kézbesítés
-      title: WebSub
-      topic: Téma
     tags:
       accounts: Fiókok
       hidden: Rejtett
@@ -816,10 +809,6 @@ hu:
     reply:
       proceed: Válaszadás
       prompt: 'Erre a tülkre szeretnél válaszolni:'
-  remote_unfollow:
-    error: Hiba
-    title: Cím
-    unfollowed: Nem követett
   scheduled_statuses:
     over_daily_limit: Túllépted az időzített tülkökre vonatkozó napi limitet (%{limit})
     over_total_limit: Túllépted az időzített tülkökre vonatkozó limitet (%{limit})
@@ -924,7 +913,7 @@ hu:
       unlisted_long: Mindenki látja, de a nyilvános idővonalakon nem jelenik meg
   stream_entries:
     pinned: Kitűzött tülk
-    reblogged: megtolt
+    reblogged: megtolta
     sensitive_content: Szenzitív tartalom
   terms:
     body_html: |
@@ -932,17 +921,17 @@ hu:
       <h3 id="collect">Milyen adatokat gyűjtünk?</h3>
 
       <ul>
-      <li><em>Alapvető fiókadatok</em>: Ha regisztrálsz ezen a szerveren, kérhetünk tőled felhasználói nevet, e-mail címet és jelszót is. Megadhatsz magadról egyéb profil információt, mint megjelenítendő név, bemutatkozás, feltölthetsz profilképet, háttérképet. A felhasználói neved, megjelenítendő neved, bemutatkozásod, profil képed és háttér képed mindig nyilvánosak mindenki számára.</li>
-      <li><em>Tülkök (posztok), követések, más nyilvános adatok</em>: Az általad követett emberek listája nyilvános. Ugyanez igaz a te követőidre is. Ha küldesz egy üzenetet, ennek az idejét eltároljuk azzal az alkalmazással együtt, melyből az üzenetet küldted. Az üzenetek tartalmazhatnak média csatolmányt, képeket, videókat. A nyilvános tülkök (posztok) bárki számára elérhetőek. Ha egy tülköt kiemelsz a profilodon, az is nyilvánossá válik. Amikor a tülkjeidet a követőidnek továbbítjuk, a poszt más szerverekre is kerülhet, melyeken így másolatok képződhetnek. Ha törölsz tülköket, ez is továbbítódik a követőid felé. A megtolás (reblog) és kedvencnek jelölés művelete is mindig nyilvános.</li>
-      <li><em>Közvetlen üzenetek és csak követőknek szánt tülkök</em>: Minden tülk a szerveren tárolódik. A csak követőknek szánt tülköket a követőidnek és az ezekben megemlítetteknek továbbítjuk, míg a közvetlen üzeneteket kizárólag az ebben megemlítettek kapják. Néhány esetben ez azt jelenti, hogy ezek más szerverekre is továbbítódnak, így ott másolatok keletkezhetnek. Jóhiszeműen feltételezzük, hogy más szerverek is hasonlóan járnak el, mikor ezeket az üzeneteket csak az arra jogosultaknak mutatják meg. Ugyanakkor ez nem feltétlenül igaz. Ezért érdemes megnézni azokat a szervereket, melyeken követőid vannak. Be tudod állítani, hogy minden követési kérelmet jóvá kelljen hagynod. <em>Tartsd észben, hogy a szerver üzemeltetői láthatják az üzeneteket</em>, illetve a fogadók képernyőképet, másolatot készíthetnek belőlük, vagy újraoszthatják őket.<em>Ne ossz meg veszélyes információt a Mastodon hálózaton!</em></li>
-      <li><em>IP címek és egyéb metaadatok</em>: Bejelentkezéskor letároljuk a használt böngésződet és IP címedet. Mindent rögzített munkamenet elérhető és visszavonható a beállítások között. A legutolsó IP címet maximum 12 hónapig tárolunk. Egyéb szerver logokat is megtarthatunk, melyek HTTP kérésenként is tárolhatják az IP címedet.</li>
+      <li><em>Alapvető fiókadatok</em>: Ha regisztrálsz ezen a szerveren, kérhetünk tőled felhasználói nevet, e-mail címet és jelszót is. Megadhatsz magadról egyéb profil információt, megjelenítendő nevet, bemutatkozást, feltölthetsz profilképet, háttérképet. A felhasználói neved, megjelenítendő neved, bemutatkozásod, profil képed és háttér képed mindig nyilvánosak mindenki számára.</li>
+      <li><em>Tülkök (posztok), követések, más nyilvános adatok</em>: Az általad követett emberek listája nyilvános. Ugyanez igaz a te követőidre is. Ha küldesz egy üzenetet, ennek az idejét eltároljuk azzal az alkalmazással együtt, melyből az üzenetet küldted. Az üzenetek tartalmazhatnak média csatolmányt, képeket, videókat. A nyilvános tülkök (posztok) bárki számára elérhetőek. Ha egy tülköt kiemelsz a profilodon, az is nyilvánossá válik. Amikor a tülkjeidet a követőidnek továbbítjuk, a poszt más szerverekre is átkerülhet, melyeken így másolatok képződhetnek. Ha törölsz tülköket, ez is továbbítódik a követőid felé. A megtolás (reblog) és kedvencnek jelölés művelete is mindig nyilvános.</li>
+      <li><em>Közvetlen üzenetek és csak követőknek szánt tülkök</em>: Minden tülk a szerveren tárolódik. A csak követőknek szánt tülköket a követőidnek és az ezekben megemlítetteknek továbbítjuk, míg a közvetlen üzeneteket kizárólag az ebben megemlítettek kapják. Néhány esetben ez azt jelenti, hogy ezek más szerverekre is továbbítódnak, így ott másolatok keletkezhetnek. Jóhiszeműen feltételezzük, hogy más szerverek is hasonlóan járnak el, mikor ezeket az üzeneteket csak az arra jogosultaknak mutatják meg. Ugyanakkor ez nem feltétlenül igaz. Érdemes ezért megvizsgálni azokat a szervereket, melyeken követőid vannak. Be tudod állítani, hogy minden követési kérelmet jóvá kelljen hagynod. <em>Tartsd észben, hogy a szerver üzemeltetői láthatják az üzeneteket</em>, illetve a fogadók képernyőképet, másolatot készíthetnek belőlük, vagy újraoszthatják őket. <em>Ne ossz meg veszélyes információt a Mastodon hálózaton!</em></li>
+      <li><em>IP címek és egyéb metaadatok</em>: Bejelentkezéskor letároljuk a használt böngésződet és IP címedet. Minden rögzített munkamenet elérhető és visszavonható a beállítások között. Az utoljára rögzített IP címet maximum 12 hónapig tároljuk. Egyéb szerver logokat is megtarthatunk, melyek HTTP kérésenként is tárolhatják az IP címedet.</li>
       </ul>
 
       <hr class="spacer" />
 
       <h3 id="use">Mire használjuk az adataidat?</h3>
 
-      <p>Bármely tőled begyűjtött adatot a következő célokra használhatjuk:</p>
+      <p>Bármely tőled begyűjtött adatot a következő célokra használhatjuk fel:</p>
 
       <ul>
       <li>Mastodon alapfunkcióinak biztosítása: Csak akkor léphetsz kapcsolatba másokkal, ha be vagy jelentkezve. Pl. követhetsz másokat a saját, személyre szabott idővonaladon.</li>
@@ -960,14 +949,14 @@ hu:
 
       <h3 id="data-retention">Mik az adatmegőrzési szabályaink?</h3>
 
-      <p>Jóhiszeműen járunk el, hogy:</p>
+      <p>Mindent megteszünk, hogy:</p>
 
       <ul>
-      <li>A szerver logokat, melyek kérésenként tartalmazzák a felhasználó IP címét maximum 90 napig tartjuk meg.</li>
-      <li>A regisztrált felhasználók IP címeikkel összekötő adatokat maximum 12 hónapig tartjuk meg.</li>
+      <li>A szerver logokat, melyek kérésenként tartalmazzák a felhasználó IP címét maximum 90 napig tartsuk meg.</li>
+      <li>A regisztrált felhasználókat IP címeikkel összekötő adatokat maximum 12 hónapig tartsuk meg.</li>
       </ul>
 
-      <p>Kérhetsz archívot minden tárolt adatodról, tülkjeidről, média fájljaidról, profil- és háttér képedről.</p>
+      <p>Kérhetsz mentést minden tárolt adatodról, tülködről, média fájlodról, profil- és háttér képedről.</p>
 
       <p>Bármikor visszaállíthatatlanul le is törölheted a fiókodat.</p>
 
@@ -983,7 +972,7 @@ hu:
 
       <h3 id="disclose">Átadunk bármilyen adatot harmadik személynek?</h3>
 
-      <p>Az azonosításodra alkalmazható adatokat nem adjuk el, nem kereskedünk vele, nem adjuk át külső szereplőnek. Ez nem foglalja magába azon harmadik személyeket, aki az üzemeltetésben, felhasználók kiszolgálásban és a tevékenységünkben segítenek, de csak addig, amíg ők is elfogadják, hogy ezeket az adatokat bizalmasan kezelik. Akkor is átadhatjuk ezeket az adatokat, ha erre hitünk szerint törvény kötelez minket, ha betartatjuk az oldalunk szabályzatát vagy megvédjük a saját vagy mások személyiségi jogait, tulajdonát, biztonságát.</p>
+      <p>Az azonosításodra alkalmazható adatokat nem adjuk el, nem kereskedünk vele, nem adjuk át külső szereplőnek. Ez nem foglalja magában azon harmadik személyeket, aki az üzemeltetésben, felhasználók kiszolgálásban és a tevékenységünkben segítenek, de csak addig, amíg ők is elfogadják, hogy ezeket az adatokat bizalmasan kezelik. Akkor is átadhatjuk ezeket az adatokat, ha erre hitünk szerint törvény kötelez minket, ha betartatjuk az oldalunk szabályzatát vagy megvédjük a saját vagy mások személyiségi jogait, tulajdonát, biztonságát.</p>
 
       <p>A nyilvános tartalmaidat más hálózatban lévő szerverek letölthetik. A nyilvános és csak követőknek szánt tülkjeid olyan szerverekre is elküldődnek, melyeken követőid vannak. A közvetlen üzenetek is átkerülnek a címzettek szervereire, ha ők más szerveren regisztráltak.</p>
 
@@ -993,9 +982,9 @@ hu:
 
       <h3 id="children">Az oldal gyerekek általi használata</h3>
 
-      <p>Ha ez a szerver az EU-ban vagy EEA-ban van: Az oldalunk, szolgáltatásaink és termékeink mind 16 éven felülieket céloznak. Ha 16 évnél fiatalabb vagy, a GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) értelmében kérlek ne használd ezt az oldalt!</p>
+      <p>Ha ez a szerver az EU-ban vagy EEA-ban található: Az oldalunk, szolgáltatásaink és termékeink mind 16 éven felülieket céloznak. Ha 16 évnél fiatalabb vagy, a GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) értelmében kérlek ne használd ezt az oldalt!</p>
 
-      <p>Ha ez a szerver az USA-ban van: Az oldalunk, szolgáltatásaink és termékeink mind 13 éven felülieket céloznak. Ha 13 évnél fiatalabb vagy, a COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) értelmében kérlek ne használd ezt az oldalt!</p>
+      <p>Ha ez a szerver az USA-ban található: Az oldalunk, szolgáltatásaink és termékeink mind 13 éven felülieket céloznak. Ha 13 évnél fiatalabb vagy, a COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) értelmében kérlek ne használd ezt az oldalt!</p>
 
       <p>A jogi előírások különbözhetnek ettől a világ egyéb tájain.</p>
 

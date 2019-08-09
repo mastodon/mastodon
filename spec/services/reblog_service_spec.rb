@@ -46,10 +46,6 @@ RSpec.describe ReblogService, type: :service do
     it 'creates a reblog' do
       expect(status.reblogs.count).to eq 1
     end
-
-    it 'sends a Salmon slap for a remote reblog' do
-      expect(a_request(:post, 'http://salmon.example.com')).to have_been_made
-    end
   end
 
   context 'ActivityPub' do

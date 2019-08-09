@@ -4,6 +4,7 @@ class ManifestsController < ApplicationController
   skip_before_action :store_current_location
 
   def show
-    render json: InstancePresenter.new, serializer: ManifestSerializer
+    expires_in 3.minutes, public: true
+    render json: InstancePresenter.new, serializer: ManifestSerializer, root: 'instance'
   end
 end

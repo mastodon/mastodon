@@ -478,13 +478,6 @@ ru:
       no_status_selected: Не выбран ни один статус, ничего не изменено
       title: Статусы аккаунта
       with_media: С медиаконтентом
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Подтверждено
-      expires_in: Истекает через
-      last_delivery: Последняя доставка
-      title: WebSub
-      topic: Тема
     tags:
       accounts: Аккаунты
       hidden: Скрыты
@@ -714,8 +707,8 @@ ru:
       many: "%{count} исп."
       one: 1 исп
       other: "%{count} исп"
-    max_uses_prompt: Без лимита
-    prompt: Генерируйте и делитесь ссылками с другими, чтобы предоставить им доступ к этому узлу
+    max_uses_prompt: Без ограничения
+    prompt: Создавайте и делитесь ссылками с другими, чтобы предоставить им доступом к этому узлу
     table:
       expires_at: Истекает
       uses: Исп.
@@ -831,10 +824,6 @@ ru:
     reply:
       proceed: Ответить
       prompt: 'Вы собираетесь ответить на этот статус:'
-  remote_unfollow:
-    error: Ошибка
-    title: Заголовок
-    unfollowed: Отписаны
   scheduled_statuses:
     over_daily_limit: Вы превысили лимит в %{limit} запланированных постов на указанный день
     over_total_limit: Вы превысили лимит на %{limit} запланированных постов
