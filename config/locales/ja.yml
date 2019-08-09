@@ -290,6 +290,7 @@ ja:
       private_comment: コメント (非公開)
       private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
       public_comment: コメント (公開)
+      public_comment_hint: ドメインブロックの公開を有効にしている場合、このコメントも一般に公開されます。
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: 通報を拒否
@@ -308,6 +309,7 @@ ja:
         title: '%{domain}のドメインブロックを戻す'
         undo: 元に戻す
       undo: ドメインブロックを戻す
+      view: ドメインブロックを表示
     email_domain_blocks:
       add_new: 新規追加
       created_msg: ブラックリストに追加しました
@@ -330,6 +332,8 @@ ja:
         all: すべて
         limited: 制限あり
         title: モデレーション
+      private_comment: コメント (非公開)
+      public_comment: コメント (公開)
       title: 既知のサーバー
       total_blocked_by_us: ブロック合計
       total_followed_by_them: 被フォロー合計
@@ -467,6 +471,9 @@ ja:
         desc_html: ランディングページに公開タイムラインを表示します
         title: タイムラインプレビュー
       title: サイト設定
+      trends:
+        desc_html: 現在トレンドになっている承認済みのハッシュタグを公開します
+        title: トレンドタグ
     statuses:
       back_to_account: アカウントページに戻る
       batch:
@@ -481,6 +488,10 @@ ja:
       title: トゥート一覧
       with_media: メディアあり
     tags:
+      accounts_today: 本日使用した人数
+      accounts_week: 今週使用した人数
+      breakdown: サーバー毎の本日の使用状況の内訳
+      context: 表示先
       title: ハッシュタグ
     title: 管理
     warning_presets:
