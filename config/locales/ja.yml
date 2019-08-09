@@ -240,6 +240,7 @@ ja:
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
     dashboard:
+      authorized_fetch_mode: セキュアモード
       backlog: 未処理のジョブ
       config: 構成
       feature_deletions: アカウント削除
@@ -252,6 +253,8 @@ ja:
       features: 機能
       hidden_service: 秘匿サービスとの連合
       open_reports: 未解決の通報
+      pending_tags: 承認待ちのハッシュタグ
+      pending_users: 承認待ちの人数
       recent_users: 最近登録したユーザー
       search: 全文検索
       single_user_mode: シングルユーザーモード
@@ -263,6 +266,11 @@ ja:
       week_interactions: 今週交流のあった回数
       week_users_active: 今週活動した人数
       week_users_new: 今週登録した人数
+      whitelist_mode: ホワイトリストモード
+    domain_allows:
+      created_msg: ドメインのホワイトリストへの登録が正常に完了しました
+      destroyed_msg: ドメインがホワイトリストから削除されました
+      undo: ホワイトリストから削除
     domain_blocks:
       add_new: ドメインブロックを追加
       created_msg: ドメインブロック処理を完了しました
@@ -279,6 +287,9 @@ ja:
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
+      private_comment: コメント (非公開)
+      private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
+      public_comment: コメント (公開)
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: 通報を拒否
