@@ -266,6 +266,8 @@ sk:
       features: Vymoženosti
       hidden_service: Federácia so skrytými službami
       open_reports: otvorené hlásenia
+      pending_tags: haštagy čakajúce na posúdenie
+      pending_users: užívatelia čakajúci na posúdenie
       recent_users: Nedávni užívatelia
       search: Celofrázové vyhľadávanie
       single_user_mode: Jednouživateľské rozhranie
@@ -287,6 +289,7 @@ sk:
       created_msg: Doména je v štádiu blokovania
       destroyed_msg: Blokovanie domény bolo zrušené
       domain: Doména
+      edit: Uprav blokovanie domény
       existing_domain_block_html: Pre účet %{name} si už nahodil/a přísnejšie obmedzenie, najskôr ho teda musíš <a href="%{unblock_url}">odblokovať</a>.
       new:
         create: Vytvor blokovanie domény
@@ -297,6 +300,8 @@ sk:
           silence: Stíš
           suspend: Vylúč
         title: Nové blokovanie domény
+      private_comment: Súkromný komentár
+      public_comment: Verejný komentár
       reject_media: Odmietaj súbory s obrázkami, alebo videami
       reject_media_hint: Vymaže miestne uložené súbory médií a odmietne ich sťahovanie v budúcnosti. Nepodstatné pri vylúčení
       reject_reports: Zamietni hlásenia
@@ -343,6 +348,8 @@ sk:
         all: Všetky
         limited: Obmedzené
         title: Moderácia
+      private_comment: Súkromný komentár
+      public_comment: Verejný komentár
       title: Federácia
       total_blocked_by_us: Nami blokované
       total_followed_by_them: Nimi sledované
@@ -480,6 +487,8 @@ sk:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
       title: Nastavenia stránky
+      trends:
+        title: Populárne haštagy
     statuses:
       back_to_account: Späť na účet
       batch:
@@ -502,6 +511,7 @@ sk:
       title: Haštagy
       trending_right_now: Práve populárne
       unique_uses_today: "%{count} dnes prispievajú"
+      unreviewed: Neposúdené
     title: Spravovanie
     warning_presets:
       add_new: Pridaj nové
@@ -568,6 +578,7 @@ sk:
     status:
       account_status: Stav účtu
       confirming: Čaká sa na dokončenie potvrdenia emailom.
+      functional: Tvoj účet je plne funkčný.
       pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
     trouble_logging_in: Problém s prihlásením?
   authorize_follow:
@@ -615,6 +626,8 @@ sk:
       few: "%{count} ľudí"
       many: "%{count} ľudí"
       other: "%{count} ľudia"
+  domain_validator:
+    invalid_domain: nieje správny tvar domény
   errors:
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
     '404': Stránka ktorú hľadáš nieje tu.
