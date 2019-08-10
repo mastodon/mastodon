@@ -242,6 +242,7 @@ ko:
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
       upload: 업로드
     dashboard:
+      authorized_fetch_mode: 인증 된 페치 모드
       backlog: 미처리 된 작업
       config: 설정
       feature_deletions: 계정 삭제
@@ -254,6 +255,8 @@ ko:
       features: 기능
       hidden_service: 히든 서비스와의 연합
       open_reports: 미해결 신고
+      pending_tags: 심사를 기다리는 해시태그
+      pending_users: 심사를 기다리는 유저
       recent_users: 최근 가입 한 유저
       search: 전문 검색
       single_user_mode: 싱글 유저 모드
@@ -265,6 +268,7 @@ ko:
       week_interactions: 이번 주의 상호작용
       week_users_active: 이번 주의 활성 사용자
       week_users_new: 이번 주의 신규 유저
+      whitelist_mode: 화이트리스트 모드
     domain_allows:
       add_new: 허용 된 도메인
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
@@ -275,6 +279,7 @@ ko:
       created_msg: 도메인 차단 처리를 완료했습니다
       destroyed_msg: 도메인 차단이 해제되었습니다
       domain: 도메인
+      edit: 도메인 차단 수정
       existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
       new:
         create: 차단 추가
@@ -285,6 +290,10 @@ ko:
           silence: 침묵
           suspend: 정지
         title: 새로운 도메인 차단
+      private_comment: 비공개 주석
+      private_comment_hint: 이 도메인 제한에 대한 주석은 모더레이터를 위해 내부적으로 사용 됩니다.
+      public_comment: 공개 주석
+      public_comment_hint: 이 도메인 제한에 대한 공개적인 주석, 도메인 제한 공개를 활성화 한 경우 보여집니다.
       reject_media: 미디어 파일 거부하기
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
@@ -303,6 +312,7 @@ ko:
         title: '%{domain}의 도메인 차단을 해제'
         undo: 실행 취소
       undo: 도메인 차단 취소
+      view: 도메인 차단 보기
     email_domain_blocks:
       add_new: 새로 추가
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
@@ -325,6 +335,8 @@ ko:
         all: 모두
         limited: 제한됨
         title: 모더레이션
+      private_comment: 비공개 주석
+      public_comment: 공개 주석
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
@@ -462,6 +474,9 @@ ko:
         desc_html: 랜딩 페이지에 공개 타임라인을 표시합니다
         title: 타임라인 프리뷰
       title: 사이트 설정
+      trends:
+        desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
+        title: 유행하는 해시태그
     statuses:
       back_to_account: 계정으로 돌아가기
       batch:
@@ -476,7 +491,18 @@ ko:
       title: 계정 툿
       with_media: 미디어 있음
     tags:
+      accounts_today: 오늘의 순 사용자
+      accounts_week: 금주의 순 사용자
+      context: 문맥
+      directory: 디렉토리에 있음
+      in_directory: "디렉토리에 %{count}개 있음"
+      review: 심사 상태
+      reviewed: 심사 됨
       title: 해시태그
+      trending_right_now: 지금 유행 중
+      unique_uses_today: "오늘 %{count}개의 포스팅"
+      unreviewed: 심사 되지 않음
+      updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
     warning_presets:
       add_new: 새로 추가
@@ -492,11 +518,15 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: '%{domain}의 누군가가 %{target}을 신고했습니다'
       subject: '%{instance} 에 새 신고 등록됨 (#%{id})'
+    new_trending_tag:
+      body: '#%{name}가 오늘 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다.'
+      subject: '새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})'
   appearance:
     advanced_web_interface: 고급 웹 인터페이스
     advanced_web_interface_hint: '화면의 가로폭을 가득 채우고 싶다면, 고급 웹 인터페이스는 한 번에 여러 정보를 볼 수 있도록 여러 컬럼을 설정할 수 있도록 합니다: 홈, 알림, 연합타임라인, 리스트, 해시태그 등'
     animations_and_accessibility: 애니메이션과 접근성
     confirmation_dialogs: 확인 대화상자
+    discovery: 발견하기
     sensitive_content: 민감한 내용
   application_mailer:
     notification_preferences: 메일 설정 변경
@@ -544,6 +574,7 @@ ko:
     status:
       account_status: 계정 상태
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
+      functional: 계정이 완벽이 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
   authorize_follow:
@@ -588,6 +619,8 @@ ko:
     how_to_enable: 아직 디렉터리에 참여하지 않았습니다. 아래에서 참여할 수 있습니다. 바이오 텍스트에 해시태그를 사용해 특정 해시태그 디렉터리에 표시 될 수 있습니다!
     people:
       other: "%{count}명"
+  domain_validator:
+    invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
@@ -916,6 +949,8 @@ ko:
     pinned: 고정된 툿
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
+  tags:
+    does_not_match_previous_name: 이전 이름과 맞지 않습니다
   terms:
     body_html: |
       <h2>개인정보 정책</h2>
