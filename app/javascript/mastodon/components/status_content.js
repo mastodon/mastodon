@@ -7,6 +7,7 @@ import Permalink from './permalink';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
+import { autoPlayGif } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -54,6 +55,7 @@ export default class StatusContent extends React.PureComponent {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
         link.setAttribute('title', link.href);
+        link.classList.add('unhandled-link');
       }
 
       link.setAttribute('target', '_blank');
@@ -71,12 +73,35 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  _updateStatusEmojis () {
+    const node = this.node;
+
+    if (!node || autoPlayGif) {
+      return;
+    }
+
+    const emojis = node.querySelectorAll('.custom-emoji');
+
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      if (emoji.classList.contains('status-emoji')) {
+        continue;
+      }
+      emoji.classList.add('status-emoji');
+
+      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
+      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+    }
+  }
+
   componentDidMount () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
   }
 
   componentDidUpdate () {
     this._updateStatusLinks();
+    this._updateStatusEmojis();
   }
 
   onMentionClick = (mention, e) => {
@@ -87,12 +112,20 @@ export default class StatusContent extends React.PureComponent {
   }
 
   onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '').toLowerCase();
+    hashtag = hashtag.replace(/^#/, '');
 
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/timelines/tag/${hashtag}`);
     }
+  }
+
+  handleEmojiMouseEnter = ({ target }) => {
+    target.src = target.getAttribute('data-original');
+  }
+
+  handleEmojiMouseLeave = ({ target }) => {
+    target.src = target.getAttribute('data-static');
   }
 
   handleMouseDown = (e) => {
@@ -131,11 +164,6 @@ export default class StatusContent extends React.PureComponent {
     } else {
       this.setState({ hidden: !this.state.hidden });
     }
-  }
-
-  handleCollapsedClick = (e) => {
-    e.preventDefault();
-    this.setState({ collapsed: !this.state.collapsed });
   }
 
   setRef = (c) => {
@@ -202,45 +230,26 @@ export default class StatusContent extends React.PureComponent {
       );
     } else if (this.props.onClick) {
       const output = [
-        <div
-          ref={this.setRef}
-          tabIndex='0'
-          key='content'
-          className={classNames}
-          style={directionStyle}
-          dangerouslySetInnerHTML={content}
-          lang={status.get('language')}
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
-        />,
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+
+          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+        </div>,
       ];
 
       if (this.state.collapsed) {
         output.push(readMoreButton);
       }
 
-      if (status.get('poll')) {
-        output.push(<PollContainer pollId={status.get('poll')} />);
-      }
-
       return output;
     } else {
-      const output = [
-        <div
-          tabIndex='0'
-          ref={this.setRef}
-          className='status__content'
-          style={directionStyle}
-          dangerouslySetInnerHTML={content}
-          lang={status.get('language')}
-        />,
-      ];
+      return (
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle}>
+          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
 
-      if (status.get('poll')) {
-        output.push(<PollContainer pollId={status.get('poll')} />);
-      }
-
-      return output;
+          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+        </div>
+      );
     }
   }
 

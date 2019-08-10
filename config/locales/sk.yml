@@ -301,7 +301,7 @@ sk:
         affected_accounts:
           few: "%{count} účtov v databázi ovplyvnených"
           many: "%{count} účtov v databázi ovplyvnených"
-          one: Jeden účet v databázi ovplyvnený
+          one: 1 účet v databázi ovplyvnený
           other: "%{count} účty v databázi ovplyvnené"
         retroactive:
           silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
@@ -481,13 +481,6 @@ sk:
       no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
       title: Príspevky na účte
       with_media: S médiami
-    subscriptions:
-      callback_url: Zdrojová adresa URL
-      confirmed: Potvrdené
-      expires_in: Vyprší do
-      last_delivery: Posledné doručenie
-      title: WebSub
-      topic: Téma
     tags:
       accounts: Účty
       hidden: Skryté
@@ -513,6 +506,7 @@ sk:
       subject: Nové hlásenie pre %{instance} (#%{id})
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
+    advanced_web_interface_hint: 'Ak chceš využiť celkovú šírku tvojej obrazovky, pokročilé webové rozhranie ti umožňuje nastaviť mnoho rôznych stĺpcov, aby si videl/a toľko informácií naraz, koľko chceš: Domov, oboznámenia, federovanú časovú os, a ľubovolný počet zoznamov, či haštagov.'
     animations_and_accessibility: Animácie a prístupnosť
     confirmation_dialogs: Potvrdzovacie dialógy
     sensitive_content: Chúlostivý obsah
@@ -657,12 +651,19 @@ sk:
     copy: Kopíruj
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
+    validation_errors:
+      few: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
+      many: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
+      one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
+      other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
   identity_proofs:
     active: Aktívne
     authorize: Áno, povoľ
     authorize_connection_prompt: Povoliť toto kryptografické prepojenie?
     errors:
       failed: Kryptografické prepojenie sa nepodarilo. Prosím skús to znova z %{provider}.
+      keybase:
+        verification_failed: Keybase nerozpoznáva tento token ako podpis od Keybase užívateľa menom %{kb_username}. Prosím skús to znova cez Keybase.
     i_am_html: Na %{service} som %{username}.
     identity: Identita
     inactive: Neaktívne
@@ -768,6 +769,7 @@ sk:
       too_many_options: nemôže zahŕňať viac ako %{max} položiek
   preferences:
     other: Ostatné
+    posting_defaults: Východiskové nastavenia príspevkov
     public_timelines: Verejné časové osi
   relationships:
     activity: Aktivita účtu
@@ -778,6 +780,7 @@ sk:
     mutual: Spoločné
     primary: Hlavné
     relationship: Vzťah
+    remove_selected_domains: Vymaž všetkých následovateľov z vybraných domén
     remove_selected_followers: Odstráň vybraných následovatrľov
     remove_selected_follows: Prestaň sledovať vybraných užívateľov
     status: Stav účtu
@@ -798,10 +801,6 @@ sk:
     reply:
       proceed: Pokračuj odpovedaním
       prompt: 'Chceš odpovedať na tento príspevok:'
-  remote_unfollow:
-    error: Chyba
-    title: Názov
-    unfollowed: Už nesleduješ
   scheduled_statuses:
     over_daily_limit: Prekročil/a si denný limit %{limit} predplánovaných príspevkov
     over_total_limit: Prekročil/a si limit %{limit} predplánovaných príspevkov

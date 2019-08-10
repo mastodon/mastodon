@@ -5,10 +5,8 @@
   %meta{ name: 'description', content: account_description(@account) }/
 
   - if @account.user&.setting_noindex
-    %meta{ name: 'robots', content: 'noindex' }/
+    %meta{ name: 'robots', content: 'noindex, noarchive' }/
 
-  %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
-  %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
   %link{ rel: 'alternate', type: 'application/rss+xml', href: account_url(@account, format: 'rss') }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
@@ -40,12 +38,12 @@
       - else
         .activity-stream.activity-stream--under-tabs
           - if params[:page].to_i.zero?
-            = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
+            = render partial: 'statuses/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
 
           - if @newer_url
             .entry= link_to_more @newer_url
 
-          = render partial: 'stream_entries/status', collection: @statuses, as: :status
+          = render partial: 'statuses/status', collection: @statuses, as: :status
 
           - if @older_url
             .entry= link_to_more @older_url
@@ -75,7 +73,7 @@
               - if featured_tag.last_status_at.nil?
                 = t('accounts.nothing_here')
               - else
-                %time{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
+                %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
           .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true
 
     = render 'application/sidebar'

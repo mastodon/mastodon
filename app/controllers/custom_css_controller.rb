@@ -6,6 +6,7 @@ class CustomCssController < ApplicationController
   before_action :set_cache_headers
 
   def show
+    expires_in 3.minutes, public: true
     render plain: Setting.custom_css || '', content_type: 'text/css'
   end
 end

@@ -31,7 +31,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
     return if @status.nil?
 
-    if @status.public_visibility? || @status.unlisted_visibility?
+    if @status.distributable?
       forward_for_reply
       forward_for_reblogs
     end

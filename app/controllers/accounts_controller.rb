@@ -4,15 +4,16 @@ class AccountsController < ApplicationController
   PAGE_SIZE = 20
 
   include AccountControllerConcern
+  include SignatureAuthentication
 
   before_action :set_cache_headers
+  before_action :set_body_classes
 
   def show
     respond_to do |format|
       format.html do
-        mark_cacheable! unless user_signed_in?
+        expires_in 0, public: true unless user_signed_in?
 
-        @body_classes      = 'with-modals'
         @pinned_statuses   = []
         @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
 
@@ -31,29 +32,25 @@ class AccountsController < ApplicationController
         end
       end
 
-      format.atom do
-        mark_cacheable!
-
-        @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
-        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? }))
-      end
-
       format.rss do
-        mark_cacheable!
+        expires_in 0, public: true
 
         @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses)
       end
 
       format.json do
-        render_cached_json(['activitypub', 'actor', @account], content_type: 'application/activity+json') do
-          ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
-        end
+        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
+        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
       end
     end
   end
 
   private
+
+  def set_body_classes
+    @body_classes = 'with-modals'
+  end
 
   def show_pinned_statuses?
     [replies_requested?, media_requested?, tag_requested?, params[:max_id].present?, params[:min_id].present?].none?
@@ -134,6 +131,14 @@ class AccountsController < ApplicationController
       filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
     else
       filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
+    end
+  end
+
+  def restrict_fields_to
+    if signed_request_account.present? || public_fetch_mode?
+      # Return all fields
+    else
+      %i(id type preferred_username inbox public_key endpoints)
     end
   end
 end

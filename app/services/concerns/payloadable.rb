@@ -14,6 +14,6 @@ module Payloadable
   end
 
   def signing_enabled?
-    true
+    ENV['AUTHORIZED_FETCH'] != 'true' && !Rails.configuration.x.whitelist_mode
   end
 end

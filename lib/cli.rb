@@ -9,6 +9,7 @@ require_relative 'mastodon/search_cli'
 require_relative 'mastodon/settings_cli'
 require_relative 'mastodon/statuses_cli'
 require_relative 'mastodon/domains_cli'
+require_relative 'mastodon/preview_cards_cli'
 require_relative 'mastodon/cache_cli'
 require_relative 'mastodon/version'
 
@@ -41,6 +42,9 @@ module Mastodon
 
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
     subcommand 'domains', Mastodon::DomainsCLI
+
+    desc 'preview_cards SUBCOMMAND ...ARGS', 'Manage preview cards'
+    subcommand 'preview_cards', Mastodon::PreviewCardsCLI
 
     desc 'cache SUBCOMMAND ...ARGS', 'Manage cache'
     subcommand 'cache', Mastodon::CacheCLI

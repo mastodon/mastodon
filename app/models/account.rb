@@ -45,6 +45,7 @@
 #  also_known_as           :string           is an Array
 #  silenced_at             :datetime
 #  suspended_at            :datetime
+#  trust_level             :integer
 #
 
 class Account < ApplicationRecord
@@ -62,6 +63,11 @@ class Account < ApplicationRecord
   include AccountCounters
   include DomainNormalizable
 
+  TRUST_LEVELS = {
+    untrusted: 0,
+    trusted: 1,
+  }.freeze
+
   enum protocol: [:ostatus, :activitypub]
 
   validates :username, presence: true
@@ -71,7 +77,7 @@ class Account < ApplicationRecord
   validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
-  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 32 }, if: -> { local? && will_save_change_to_username? }
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 32 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 32 }, if: -> { local? && will_save_change_to_display_name? }
@@ -133,6 +139,10 @@ class Account < ApplicationRecord
     %w(Application Service).include? actor_type
   end
 
+  def instance_actor?
+    id == -99
+  end
+
   alias bot bot?
 
   def bot=(val)
@@ -163,30 +173,31 @@ class Account < ApplicationRecord
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
   end
 
+  def trust_level
+    self[:trust_level] || 0
+  end
+
   def refresh!
-    return if local?
-    ResolveAccountService.new.call(acct)
+    ResolveAccountService.new.call(acct) unless local?
   end
 
   def silenced?
     silenced_at.present?
   end
 
-  def silence!(date = nil)
-    date ||= Time.now.utc
+  def silence!(date = Time.now.utc)
     update!(silenced_at: date)
   end
 
   def unsilence!
-    update!(silenced_at: nil)
+    update!(silenced_at: nil, trust_level: trust_level == TRUST_LEVELS[:untrusted] ? TRUST_LEVELS[:trusted] : trust_level)
   end
 
   def suspended?
     suspended_at.present?
   end
 
-  def suspend!(date = nil)
-    date ||= Time.now.utc
+  def suspend!(date = Time.now.utc)
     transaction do
       user&.disable! if local?
       update!(suspended_at: date)
@@ -216,17 +227,7 @@ class Account < ApplicationRecord
   end
 
   def tags_as_strings=(tag_names)
-    tag_names.map! { |name| name.mb_chars.downcase.to_s }
-    tag_names.uniq!
-
-    # Existing hashtags
-    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
-
-    # Initialize not yet existing hashtags
-    tag_names.each do |name|
-      next if hashtags_map.key?(name)
-      hashtags_map[name] = Tag.new(name: name)
-    end
+    hashtags_map = Tag.find_or_create_by_names(tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
 
     # Remove hashtags that are to be deleted
     tags.each do |tag|
@@ -292,21 +293,6 @@ class Account < ApplicationRecord
     end
 
     self.fields = tmp
-  end
-
-  def magic_key
-    modulus, exponent = [keypair.public_key.n, keypair.public_key.e].map do |component|
-      result = []
-
-      until component.zero?
-        result << [component % 256].pack('C')
-        component >>= 8
-      end
-
-      result.reverse.join
-    end
-
-    (['RSA'] + [modulus, exponent].map { |n| Base64.urlsafe_encode64(n) }).join('.')
   end
 
   def subscription(webhook_url)
@@ -506,7 +492,7 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local? && !Rails.env.test?
+    return unless local? && private_key.blank? && public_key.blank?
 
     keypair = OpenSSL::PKey::RSA.new(2048)
     self.private_key = keypair.to_pem

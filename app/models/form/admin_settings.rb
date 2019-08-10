@@ -28,6 +28,8 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
+    spam_check_enabled
+    trends
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -39,6 +41,8 @@ class Form::AdminSettings
     show_known_fediverse_at_about_page
     preview_sensitive_media
     profile_directory
+    spam_check_enabled
+    trends
   ).freeze
 
   UPLOAD_KEYS = %i(
