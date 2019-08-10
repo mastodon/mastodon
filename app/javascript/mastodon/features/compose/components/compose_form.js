@@ -119,7 +119,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleFocus = () => {
     if (this.composeForm && !this.props.singleColumn) {
-      this.composeForm.scrollIntoView();
+      const { left, right } = this.composeForm.getBoundingClientRect();
+      if (left < 0 || right > (window.innerWidth || document.documentElement.clientWidth)) {
+        this.composeForm.scrollIntoView();
+      }
     }
   }
 
@@ -190,12 +193,12 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     return (
-      <div className='compose-form' ref={this.setRef}>
+      <div className='compose-form'>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
 
-        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`}>
+        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={this.props.spoilerText}
