@@ -6,6 +6,7 @@ module Attachmentable
   extend ActiveSupport::Concern
 
   MAX_MATRIX_LIMIT = 16_777_216 # 4096x4096px or approx. 16MB
+  GIF_MATRIX_LIMIT = 921_600 # 1280x720px
 
   included do
     before_post_process :set_file_extensions
@@ -43,7 +44,9 @@ module Attachmentable
 
       width, height = FastImage.size(attachment.queued_for_write[:original].path)
 
-      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported, must be below #{MAX_MATRIX_LIMIT} sqpx" if width.present? && height.present? && (width * height >= MAX_MATRIX_LIMIT)
+      matrix_limit = attachment.content_type == 'image/gif' ? GIF_MATRIX_LIMIT : MAX_MATRIX_LIMIT
+
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported" if width.present? && height.present? && (width * height > matrix_limit)
     end
   end
 
