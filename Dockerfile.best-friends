@@ -23,6 +23,7 @@ COPY --chown=mastodon:mastodon . /opt/mastodon
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
 ENV PATH=/opt/mastodon/bin:$PATH
+ENV BIND="0.0.0.0"
 
 RUN cd ~ && \
 	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
