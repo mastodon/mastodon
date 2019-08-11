@@ -17,7 +17,7 @@ class DomainBlock < ApplicationRecord
 
   enum severity: [:silence, :suspend, :noop]
 
-  validates :domain, presence: true, uniqueness: true
+  validates :domain, presence: true, uniqueness: true, domain: true
 
   has_many :accounts, foreign_key: :domain, primary_key: :domain
   delegate :count, to: :accounts, prefix: true
