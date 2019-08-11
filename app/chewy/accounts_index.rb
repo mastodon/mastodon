@@ -23,7 +23,7 @@ class AccountsIndex < Chewy::Index
     },
   }
 
-  define_type ::Account.searchable.includes(:account_stat) do
+  define_type ::Account.searchable.includes(:account_stat), delete_if: ->(account) { !account.searchable? } do
     root date_detection: false do
       field :id, type: 'long'
       field :display_name, type: 'text', analyzer: 'edge_ngram', search_analyzer: 'content'
