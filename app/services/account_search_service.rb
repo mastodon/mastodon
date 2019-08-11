@@ -22,15 +22,23 @@ class AccountSearchService < BaseService
   end
 
   def exact_match
-    return unless offset.zero? && options[:resolve] && username_complete?
+    return unless offset.zero? && username_complete?
 
     return @exact_match if defined?(@exact_match)
 
-    @exact_match = ResolveAccountService.new.call(query)
+    @exact_match = begin
+      if options[:resolve]
+        ResolveAccountService.new.call(query)
+      elsif domain_is_local?
+        Account.find_local(query_username)
+      else
+        Account.find_remote(query_username, query_domain)
+      end
+    end
   end
 
   def search_results
-    return if limit_for_non_exact_results.zero?
+    return [] if limit_for_non_exact_results.zero?
 
     @search_results ||= begin
       if Chewy.enabled?
