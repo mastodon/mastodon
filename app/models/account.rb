@@ -169,6 +169,10 @@ class Account < ApplicationRecord
     subscription_expires_at.present?
   end
 
+  def searchable?
+    !(suspended? || moved?)
+  end
+
   def possibly_stale?
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
   end
