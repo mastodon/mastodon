@@ -69,8 +69,15 @@ class AccountSearchService < BaseService
     must_clauses   = [{ multi_match: { query: terms_for_query, fields: %w(acct display_name), type: 'best_fields' } }]
     should_clauses = []
 
-    must_clauses   << { terms: { id: following_ids } } if account && options[:following]
-    should_clauses << { terms: { id: following_ids, boost: 2 } } if account
+    if account
+      return [] if options[:following] && following_ids.empty?
+
+      if options[:following]
+        must_clauses << { terms: { id: following_ids } }
+      elsif following_ids.any?
+        should_clauses << { terms: { id: following_ids, boost: 2 } }
+      end
+    end
 
     query     = { bool: { must: must_clauses, should: should_clauses } }
     functions = [reputation_score_function, followers_score_function, time_distance_function]
@@ -93,6 +100,8 @@ class AccountSearchService < BaseService
           source: "doc['followers_count'].value / (doc['followers_count'].value + doc['following_count'].value + 1)",
         },
       },
+
+      weight: 0.5,
     }
   end
 
@@ -100,9 +109,11 @@ class AccountSearchService < BaseService
     {
       script_score: {
         script: {
-          source: "Math.log(2 + doc['followers_count'].value)",
+          source: "Math.log(2 + doc['followers_count'].value) / (Math.log(2 + doc['followers_count'].value) + 1)",
         },
       },
+
+      weight: 0.5,
     }
   end
 
@@ -115,11 +126,13 @@ class AccountSearchService < BaseService
           decay: 0.3,
         },
       },
+
+      weight: 2,
     }
   end
 
   def following_ids
-    account.active_relationships.pluck(:target_account_id)
+    @following_ids ||= account.active_relationships.pluck(:target_account_id)
   end
 
   def limit_for_non_exact_results
