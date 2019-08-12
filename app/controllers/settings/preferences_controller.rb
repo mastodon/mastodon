@@ -48,6 +48,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_expand_spoilers,
       :setting_reduce_motion,
       :setting_system_font_ui,
+      :setting_system_emoji_font,
       :setting_noindex,
       :setting_theme,
       :setting_hide_network,

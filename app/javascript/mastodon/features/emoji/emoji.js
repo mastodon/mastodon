@@ -1,4 +1,4 @@
-import { autoPlayGif } from '../../initial_state';
+import { autoPlayGif, useSystemEmojiFont } from '../..//initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import Trie from 'substring-trie';
 
@@ -12,7 +12,7 @@ const emojify = (str, customEmojis = {}) => {
   let rtn = '', tagChars = tagCharsWithEmojis, invisible = 0;
   for (;;) {
     let match, i = 0, tag;
-    while (i < str.length && (tag = tagChars.indexOf(str[i])) === -1 && (invisible || !(match = trie.search(str.slice(i))))) {
+    while (i < str.length && (tag = tagChars.indexOf(str[i])) === -1 && (invisible || useSystemEmojiFont || !(match = trie.search(str.slice(i))))) {
       i += str.codePointAt(i) < 65536 ? 1 : 2;
     }
     let rend, replacement = '';
@@ -57,7 +57,7 @@ const emojify = (str, customEmojis = {}) => {
         }
       }
       i = rend;
-    } else { // matched to unicode emoji
+    } else if (!useSystemEmojiFont) { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
       replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${filename}.svg" />`;
