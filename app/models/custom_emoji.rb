@@ -28,6 +28,8 @@ class CustomEmoji < ApplicationRecord
     :(#{SHORTCODE_RE_FRAGMENT}):
     (?=[^[:alnum:]:]|$)/x
 
+  IMAGE_MIME_TYPES = %w(image/png image/gif image/webp).freeze
+
   belongs_to :category, class_name: 'CustomEmojiCategory', optional: true
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
@@ -35,7 +37,7 @@ class CustomEmoji < ApplicationRecord
 
   before_validation :downcase_domain
 
-  validates_attachment :image, content_type: { content_type: 'image/png' }, presence: true, size: { less_than: LIMIT }
+  validates_attachment :image, content_type: { content_type: IMAGE_MIME_TYPES }, presence: true, size: { less_than: LIMIT }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
 
   scope :local,      -> { where(domain: nil) }

@@ -5,7 +5,7 @@ ruby '>= 2.4.0', '< 2.7.0'
 
 gem 'pkg-config', '~> 1.3'
 
-gem 'puma', '~> 4.0'
+gem 'puma', '~> 4.1'
 gem 'rails', '~> 5.2.3'
 gem 'thor', '~> 0.20'
 
@@ -32,7 +32,7 @@ gem 'iso-639'
 gem 'chewy', '~> 5.0'
 gem 'cld3', '~> 3.2.4'
 gem 'devise', '~> 4.6'
-gem 'devise-two-factor', '~> 3.0'
+gem 'devise-two-factor', '~> 3.1'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
