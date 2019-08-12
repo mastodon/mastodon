@@ -4,6 +4,7 @@ uk:
     about_mastodon_html: Mastodon - це соціальна мережа, основана на відкритих веб-протоколах та вільному програмному забезпеченні з відкритим кодом. Вона є децентралізованою на кшталт електронної пошти.
     about_this: Про цю інстанцію
     administered_by: 'Адміністратор:'
+    api: API
     apps: Мобільні додатки
     apps_platforms: Користуйтесь Mastodon на iOS, Android та інших платформах
     contact: Зв'язатися
@@ -22,8 +23,18 @@ uk:
     learn_more: Дізнатися більше
     privacy_policy: Політика приватності
     source_code: Вихідний код
+    status_count_after:
+      one: статус
+      few: статусів
+      many: статусів
+      other: статуси
     status_count_before: Опубліковано
     terms: Правила використання
+    user_count_after:
+      one: користувач
+      few: користувачів
+      many: користувачів
+      other: користувачі
     user_count_before: Тут живе
     what_is_mastodon: Що таке Mastodon?
   accounts:
@@ -203,6 +214,7 @@ uk:
         unsuspend_account: "%{name} розморозив обліковий запис користувача %{target}"
         update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
         update_status: "%{name} змінив(-ла) статус користуача %{target}"
+      deleted_status: "(видалений статус)"
       title: Журнал подій
     custom_emojis:
       by_domain: Домен
@@ -290,6 +302,7 @@ uk:
     followers:
       back_to_account: Повернутися до Облікового запису
     instances:
+      by_domain: Домен
       known_accounts:
         one: "%{count} відомий обліковий запис"
         few: "%{count} відомих облікових записів"
