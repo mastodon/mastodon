@@ -245,6 +245,7 @@ hu:
       updated_msg: Emoji sikeresen frissítve!
       upload: Feltöltés
     dashboard:
+      authorized_fetch_mode: Áttöltő üzemmód engedélyezve
       backlog: hátralévő feladatok
       config: Beállítások
       feature_deletions: Fióktörlések
@@ -502,7 +503,12 @@ hu:
       directory: Katalógusban
       in_directory: "%{count} a katalógusban"
       review: Engedélyezés állapota
+      reviewed: Engedélyezett
       title: Hashtagek
+      trending_right_now: Most trendi
+      unique_uses_today: "%{count} mai tülkölés"
+      unreviewed: Még nem engedélyezett
+      updated_msg: A hashtag beállításokat sikeresen frissítettük
     title: Karbantartás
     warning_presets:
       add_new: Új hozzáadása
@@ -518,11 +524,15 @@ hu:
       body: "%{reporter} jelentette: %{target}"
       body_remote: Valaki a %{domain} domainről jelentette %{target}
       subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'A #%{name} hashtag trendi a mai napon, de még nem engedélyeztük eddig. Nem mutatjuk meg nyilvánosan, hacsak nem engedélyezed. Csak simán mentsd az űrlapot, ha soha többé nem akarsz erről a hashtagről hallani.'
+      subject: 'Új hashtag (#%{name}) engedélyezésre vár a %{instance} szerveren'
   appearance:
     advanced_web_interface: Haladó webes felület
     advanced_web_interface_hint: 'Ha szeretnéd, a teljes képernyőszélességet felhasználhatod. A haladó webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi infót láthass, amennyit csak akarsz: Saját idővonal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
     animations_and_accessibility: Animáció és akadálymentesítés
     confirmation_dialogs: Megerősítő párbeszédablakok
+    discovery: Felfedezés
     sensitive_content: Szenzitív tartalom
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
@@ -543,6 +553,7 @@ hu:
     apply_for_account: Meghívó kérése
     change_password: Jelszó
     checkbox_agreement_html: Egyetértek a <a href="%{rules_path}" target="_blank">szerver szabályaival</a> és a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
+    checkbox_agreement_without_rules_html: Egyetértek a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
@@ -562,6 +573,15 @@ hu:
     reset_password: Jelszó visszaállítása
     security: Biztonság
     set_new_password: Új jelszó beállítása
+    setup:
+      email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
+      email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
+      title: Beállítás
+    status:
+      account_status: Fiók állapota
+      confirming: Várakozás a visszaigazolásra.
+      functional: A fiókod teljesen működőképes.
+      pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
     trouble_logging_in: Problémád van a bejelentkezéssel?
   authorize_follow:
     already_following: Már követed ezt a felhasználót
@@ -606,6 +626,8 @@ hu:
     people:
       one: "%{count} ember"
       other: "%{count} ember"
+  domain_validator:
+    invalid_domain: nem egy valódi domain név
   errors:
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
@@ -899,6 +921,8 @@ hu:
     profile: Profil
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős azonosítás
+  spam_check:
+    spam_detected_and_silenced: Ez egy automatikus bejelentés. Spamet érzékeltünk, így a küldőt automatikusan elnémítottuk. Ha ez hiba, oldd fel a némítást.
   statuses:
     attached:
       description: 'Csatolva: %{attached}'
@@ -940,6 +964,8 @@ hu:
     pinned: Kitűzött tülk
     reblogged: megtolta
     sensitive_content: Szenzitív tartalom
+  tags:
+    does_not_match_previous_name: nem illeszkedik az előző névvel
   terms:
     body_html: |
       <h2>Adatvédelmi nyilatkozat</h2>
