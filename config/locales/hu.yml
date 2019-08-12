@@ -23,6 +23,8 @@ hu:
     generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
     get_apps: Próbálj ki egy mobil appot
     hosted_on: '%{domain} Mastodon szerver'
+    instance_actor_flash: |
+      Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
     see_whats_happening: Nézd, mi történik
@@ -182,6 +184,7 @@ hu:
       username: Felhasználónév
       warn: Figyelmeztetés
       web: Web
+      whitelisted: Engedélyezett
     action_logs:
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
@@ -249,6 +252,7 @@ hu:
       feature_profile_directory: Profil adatbázis
       feature_registrations: Regisztráció
       feature_relay: Föderációs relé
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Idővonal betekintő
       features: Funkciók
       hidden_service: Föderáció rejtett szolgáltatásokkal
