@@ -32,6 +32,7 @@ import suggestions from './suggestions';
 import polls from './polls';
 import identity_proofs from './identity_proofs';
 import trends from './trends';
+import missed_updates from './missed_updates';
 
 const reducers = {
   dropdown_menu,
@@ -67,6 +68,7 @@ const reducers = {
   suggestions,
   polls,
   trends,
+  missed_updates,
 };
 
 export default combineReducers(reducers);
