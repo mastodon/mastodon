@@ -53,6 +53,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:is_staff]          = object.current_account.user.staff?
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:default_content_type] = object.current_account.user.setting_default_content_type
+      store[:system_emoji_font] = object.current_account.user.setting_system_emoji_font
     end
 
     store
