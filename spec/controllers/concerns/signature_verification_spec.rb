@@ -39,6 +39,7 @@ describe ApplicationController, type: :controller do
 
   context 'with signature header' do
     let!(:author) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/actor') }
+    let!(:follows_local_user) { Fabricate(:follow, account: author) }
 
     context 'without body' do
       before do
