@@ -61,6 +61,12 @@ module SignatureVerification
       return
     end
 
+    unless Follow.where(account: Account.where(domain: account.domain)).exists?
+      @signature_verification_failure_reason = "No trusted users found from the domain of key ID #{signature_params['keyId']}"
+      @signed_request_account = nil
+      return
+    end
+
     signature             = Base64.decode64(signature_params['signature'])
     compare_signed_string = build_signed_string(signature_params['headers'])
 
