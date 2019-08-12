@@ -184,7 +184,7 @@ hu:
       username: Felhasználónév
       warn: Figyelmeztetés
       web: Web
-      whitelisted: Engedélyezett
+      whitelisted: Engedélyező-listán
     action_logs:
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
@@ -257,6 +257,8 @@ hu:
       features: Funkciók
       hidden_service: Föderáció rejtett szolgáltatásokkal
       open_reports: nyitott bejelentések
+      pending_tags: hashtag engedélyezésre vár
+      pending_users: felhasználó engedélyezésre vár
       recent_users: Legutóbbi felhasználók
       search: Keresés teljes szövegben
       single_user_mode: Egyfelhasználós mód
@@ -268,11 +270,18 @@ hu:
       week_interactions: interakció ezen a héten
       week_users_active: aktív ezen a héten
       week_users_new: felhasználó ezen a héten
+      whitelist_mode: Engedélyező-lista mód
+    domain_allows:
+      add_new: Domain engedélyezése
+      created_msg: A domain rákerült az engedélyező-listára
+      destroyed_msg: A domain lekerült az engedélyező-listáról
+      undo: Eltávolítás az engedélyező-listáról
     domain_blocks:
       add_new: Új tiltott domain hozzáadása
       created_msg: A domain-tiltás feldolgozása folyamatban
       destroyed_msg: A domain tiltása feloldva
       domain: Domain
+      edit: Domain tiltás szerkesztése
       existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
       new:
         create: Tiltás létrehozása
@@ -283,6 +292,8 @@ hu:
           silence: Némítás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      private_comment: Privát megjegyzés
+      private_comment_hint: Megjegyzés a domain tiltásával kapcsolatban belső használatra a többi moderátor részére.
       reject_media: Médiafájlok elutasítása
       reject_media_hint: Eltávolítja a helyben tárolt médiafájlokat és a továbbiakban letiltja az új médiafájlok letöltését. Felfüggesztett fiókok esetében irreleváns opció
       reject_reports: Bejelentések elutasítása
