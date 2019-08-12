@@ -293,7 +293,9 @@ hu:
           suspend: Felfüggesztés
         title: Új domain tiltása
       private_comment: Privát megjegyzés
-      private_comment_hint: Megjegyzés a domain tiltásával kapcsolatban belső használatra a többi moderátor részére.
+      private_comment_hint: Megjegyzés domain tiltásával kapcsolatban belső használatra, a többi moderátor részére.
+      public_comment: Nyilvános megjegyzés
+      public_comment_hint: Megjegyzés domain tiltásával kapcsolatban a nyilvánosság számára, ha a domainek tiltólistája egyébként látható.
       reject_media: Médiafájlok elutasítása
       reject_media_hint: Eltávolítja a helyben tárolt médiafájlokat és a továbbiakban letiltja az új médiafájlok letöltését. Felfüggesztett fiókok esetében irreleváns opció
       reject_reports: Bejelentések elutasítása
@@ -313,6 +315,7 @@ hu:
         title: '%{domain} domain tiltásának feloldása'
         undo: Visszavonás
       undo: Domain tiltásának visszavonása
+      view: Domain tiltásának megtekintése
     email_domain_blocks:
       add_new: Új hozzáadása
       created_msg: E-mail domain sikeresen hozzáadva a feketelistához
@@ -336,6 +339,8 @@ hu:
         all: Mind
         limited: Korlátozott
         title: Moderáció
+      private_comment: Privát megjegyzés
+      public_comment: Nyilvános megjegyzés
       title: Föderáció
       total_blocked_by_us: Általunk letiltott
       total_followed_by_them: Általuk követett
@@ -463,6 +468,9 @@ hu:
         desc_html: Megírhatod saját adatkezelési szabályzatodat, felhasználási feltételeidet vagy más hasonló jellegű dokumentumodat. HTML-tageket is használhatsz
         title: Egyedi felhasználási feltételek
       site_title: A szerver neve
+      spam_check_enabled:
+        desc_html: A Mastodon automatikusan elnémíthatja és bejelentheti azokat a fiókokat, akik rendszeresen kéretlen üzeneteket küldenek. Persze lehetnek tévedések is.
+        title: Automatikus anti-spam
       thumbnail:
         desc_html: OpenGraph-os és API-s előnézetekben használjuk. Ajánlott mérete 1200x630 pixel
         title: A szerver bélyegképe
@@ -470,6 +478,9 @@ hu:
         desc_html: Nyilvános idővonal megjelenítése a főoldalon
         title: Idővonal előnézete
       title: Webhely beállításai
+      trends:
+        desc_html: Előzetesen engedélyezett és most trendi hashtagek nyilvános mutatása
+        title: Trendi hashtagek
     statuses:
       back_to_account: Vissza a fiók oldalára
       batch:
@@ -484,6 +495,13 @@ hu:
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
     tags:
+      accounts_today: Egyedi használat a mai napon
+      accounts_week: Egyedi használat ezen a héten
+      breakdown: Mai használat bontása forrás szerint
+      context: Környezet
+      directory: Katalógusban
+      in_directory: "%{count} a katalógusban"
+      review: Engedélyezés állapota
       title: Hashtagek
     title: Karbantartás
     warning_presets:
