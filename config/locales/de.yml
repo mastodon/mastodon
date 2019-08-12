@@ -525,11 +525,15 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: 'Neue Meldung auf %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Der Hashtag #%{name} ist heute angesagt, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
+      subject: 'Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})'
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
     advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.'
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
+    discovery: Erkennung
     sensitive_content: Heikle Inhalte
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -577,6 +581,7 @@ de:
     status:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
+      functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch nicht überprüft. Dies kann einige Zeit dauern. Du erhälst eine E-Mail, wenn deine Bewerbung genehmigt ist.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
@@ -622,6 +627,8 @@ de:
     people:
       one: "%{count} Person"
       other: "%{count} Leute"
+  domain_validator:
+    invalid_domain: ist kein gültiger Domain-Name
   errors:
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Die Seite nach der du gesucht hast wurde nicht gefunden.
@@ -948,8 +955,8 @@ de:
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Nur Folgende
-      private_long: Nur für Folgende sichtbar
+      private: Nur für Folger_innen
+      private_long: Nur für Folger_innen sichtbar
       public: Öffentlich
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
@@ -958,6 +965,8 @@ de:
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: Heikle Inhalte
+  tags:
+    does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms:
     body_html: |
       <h2>Datenschutzerklärung</h2>
