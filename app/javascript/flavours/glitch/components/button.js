@@ -12,9 +12,9 @@ export default class Button extends React.PureComponent {
     secondary: PropTypes.bool,
     size: PropTypes.number,
     className: PropTypes.string,
+    title: PropTypes.string,
     style: PropTypes.object,
     children: PropTypes.node,
-    title: PropTypes.string,
   };
 
   static defaultProps = {

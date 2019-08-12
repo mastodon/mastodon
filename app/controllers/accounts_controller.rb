@@ -9,6 +9,8 @@ class AccountsController < ApplicationController
   before_action :set_cache_headers
   before_action :set_body_classes
 
+  skip_around_action :set_locale, if: -> { request.format == :json }
+
   def show
     respond_to do |format|
       format.html do
