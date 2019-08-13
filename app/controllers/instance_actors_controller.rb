@@ -3,6 +3,8 @@
 class InstanceActorsController < ApplicationController
   include AccountControllerConcern
 
+  skip_around_action :set_locale
+
   def show
     expires_in 10.minutes, public: true
     render json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
