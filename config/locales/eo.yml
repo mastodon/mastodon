@@ -182,6 +182,7 @@ eo:
       username: Uzantnomo
       warn: Averti
       web: Reto
+      whitelisted: En la blanka listo
     action_logs:
       actions:
         assigned_to_self_report: "%{name} asignis signalon %{target} al si mem"
@@ -249,6 +250,7 @@ eo:
       feature_profile_directory: Profilujo
       feature_registrations: Registriĝoj
       feature_relay: Federacia ripetilo
+      feature_spam_check: Kontraŭ-spamo
       feature_timeline_preview: Templinio antaŭvidi
       features: Funkcioj
       hidden_service: Federacio kun kaŝitaj servoj
@@ -264,6 +266,9 @@ eo:
       week_interactions: interagoj tiusemajne
       week_users_active: aktivaj tiusemajne
       week_users_new: uzantoj tiusemajne
+      whitelist_mode: En la blanka listo
+    domain_allows:
+      add_new: En la blanka listo domajno
     domain_blocks:
       add_new: Aldoni novan
       created_msg: Domajna blokado en traktado
@@ -279,6 +284,8 @@ eo:
           silence: Kaŝi
           suspend: Haltigi
         title: Nova domajna blokado
+      private_comment: Privata komento
+      public_comment: Publika komento
       reject_media: Malakcepti aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Senzorge pri haltigoj
       reject_reports: Malakcepti raportojn
@@ -321,6 +328,8 @@ eo:
         all: Ĉiuj
         limited: Limigita
         title: Kontrolo
+      private_comment: Privata komento
+      public_comment: Publika komento
       title: Federacio
       total_blocked_by_us: Blokitaj de ni
       total_followed_by_them: Sekvataj de ili
@@ -448,6 +457,8 @@ eo:
         desc_html: Vi povas skribi vian propran privatecan politikon, viajn uzkondiĉojn aŭ aliajn leĝaĵojn. Vi povas uzi HTML-etikedojn
         title: Propraj uzkondiĉoj
       site_title: Nomo de la servilo
+      spam_check_enabled:
+        title: Kontraŭ-spamo aŭtomatige
       thumbnail:
         desc_html: Uzata por antaŭvidoj per OpenGraph kaj per API. 1200x630px rekomendita
         title: Bildeto de la servilo
@@ -469,6 +480,7 @@ eo:
       title: Mesaĝoj de la konto
       with_media: Kun aŭdovidaĵoj
     tags:
+      context: Kunteksto
       title: Kradvortoj
     title: Administrado
     warning_presets:
@@ -528,6 +540,8 @@ eo:
     reset_password: Ŝanĝi pasvorton
     security: Sekureco
     set_new_password: Elekti novan pasvorton
+    setup:
+      title: Agordi
     trouble_logging_in: Ĝeni ensaluti?
   authorize_follow:
     already_following: Vi jam sekvas tiun konton
