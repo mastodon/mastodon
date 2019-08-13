@@ -83,7 +83,7 @@ class AccountSearchService < BaseService
     query     = { bool: { must: must_clauses, should: should_clauses } }
     functions = [reputation_score_function, followers_score_function, time_distance_function]
 
-    records = AccountsIndex.query(function_score: { query: query, functions: functions, score_mode: 'avg' })
+    records = AccountsIndex.query(function_score: { query: query, functions: functions, boost_mode: 'multiply', score_mode: 'avg' })
                            .limit(limit_for_non_exact_results)
                            .offset(offset)
                            .objects
@@ -98,7 +98,7 @@ class AccountSearchService < BaseService
     {
       script_score: {
         script: {
-          source: "doc['followers_count'].value / (doc['followers_count'].value + doc['following_count'].value + 1)",
+          source: "(doc['followers_count'].value + 0.0) / (doc['followers_count'].value + doc['following_count'].value + 1)",
         },
       },
     }
