@@ -323,9 +323,15 @@ uk:
         few: "%{count} відомих облікових записів"
         many: "%{count} відомих облікових записів"
         other: "%{count} відомих облікових записів"
+      moderation:
+        all: Усі
+        title: Модерація
+      private_comment: Приватний коментар
+      public_comment: Публічний коментар
       title: Відомі інстанції
       total_storage: Мультимедійні вкладення
     invites:
+      deactivate_all: Деактивувати всі
       filter:
         all: Все
         available: Доступно
@@ -459,6 +465,7 @@ uk:
       review: Переглянути статус
       reviewed: Переглянуто
       title: Хештеги
+      unique_uses_today: "%{count} постять сьогодні"
       unreviewed: Не переглянуто
     title: Адміністрування
     warning_presets:
@@ -475,6 +482,8 @@ uk:
       subject: 'Нова скарга до %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Розширений web-інтерфейс
+    animations_and_accessibility: Анімація та доступність
+    confirmation_dialogs: Діалоги підтвердження
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
     settings: 'Змінити налаштування e-mail: %{link}'
@@ -510,6 +519,10 @@ uk:
     set_new_password: Встановити новий пароль
     setup:
       email_settings_hint_html: Електронний лист-підтвердження було вислано на %{email}. Якщо ця адреса електронної пошти невірна, ви можете змінити її в налаштуваннях облікового запису.
+    status:
+      account_status: Статус облікового запису
+      confirming: Очікуємо на завершення підтвердження за допомогою e-mail.
+      functional: Ваш обліковий запис повністю робочій.
     trouble_logging_in: Проблема під час входу?
   authorize_follow:
     already_following: Ви вже слідкуєте за цим обліковим записом
