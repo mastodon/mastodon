@@ -23,7 +23,7 @@ class AboutController < ApplicationController
   def blocks
     @show_rationale = Setting.show_domain_blocks_rationale == 'all'
     @show_rationale |= Setting.show_domain_blocks_rationale == 'users' && !current_user.nil? && current_user.functional?
-    @blocks = DomainBlock.with_user_facing_limitations.order('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), reject_media, domain')
+    @blocks = DomainBlock.with_user_facing_limitations.order('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), reject_media, domain').to_a
   end
 
   private

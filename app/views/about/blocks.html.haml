@@ -33,11 +33,14 @@
                     %tr.rationale.hidden
                       %td{ colspan: 3 }= block.public_comment.presence
       %h2= t('domain_blocks.severity_legend.title')
-      %h3= t('domain_blocks.media_block')
-      %p= t('domain_blocks.severity_legend.media_block')
-      %h3= t('domain_blocks.silence')
-      %p= t('domain_blocks.severity_legend.silence')
-      %h3= t('domain_blocks.suspension')
-      %p= t('domain_blocks.severity_legend.suspension')
+      - if @blocks.any? { |block| block.reject_media? }
+        %h3= t('domain_blocks.media_block')
+        %p= t('domain_blocks.severity_legend.media_block')
+      - if @blocks.any? { |block| block.severity == 'silence' }
+        %h3= t('domain_blocks.silence')
+        %p= t('domain_blocks.severity_legend.silence')
+      - if @blocks.any? { |block| block.severity == 'suspend' }
+        %h3= t('domain_blocks.suspension')
+        %p= t('domain_blocks.severity_legend.suspension')
   .column-1
     = render 'application/sidebar'
