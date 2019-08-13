@@ -7,24 +7,31 @@
       %h2= t('domain_blocks.blocked_domains')
       %p= t('domain_blocks.description', instance: site_hostname)
       .table-wrapper
-        %table.table
+        %table.blocks-table
           %thead
             %tr
               %th= t('domain_blocks.domain')
-              %th= t('domain_blocks.severity')
+              %th.severity-column= t('domain_blocks.severity')
               - if @show_rationale
-                %th= t('domain_blocks.rationale')
+                %th.button-column
           %tbody
             - if @blocks.empty?
               %tr
-                %td{ colspan: 2 }= t('domain_blocks.no_domain_blocks')
+                %td{ colspan: @show_rationale ? 3 : 2 }= t('domain_blocks.no_domain_blocks')
             - else
-              - @blocks.each do |block|
-                %tr
-                  %td= block.domain
+              - @blocks.each_with_index do |block, i|
+                %tr{ class: i % 2 == 0 ? 'even': nil }
+                  %td{ title: block.domain }= block.domain
                   %td= block_severity_text(block)
                   - if @show_rationale
-                    %td= block.public_comment.presence
+                    %td
+                      - if block.public_comment.present?
+                        %button.icon-button{ title: t('domain_blocks.show_rationale'), 'aria-label' => t('domain_blocks.show_rationale') }
+                          = fa_icon 'chevron-down fw', 'aria-hidden' => true
+                - if @show_rationale
+                  - if block.public_comment.present?
+                    %tr.rationale.hidden
+                      %td{ colspan: 3 }= block.public_comment.presence
       %h2= t('domain_blocks.severity_legend.title')
       %h3= t('domain_blocks.media_block')
       %p= t('domain_blocks.severity_legend.media_block')
