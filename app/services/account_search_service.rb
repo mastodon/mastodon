@@ -4,11 +4,12 @@ class AccountSearchService < BaseService
   attr_reader :query, :limit, :offset, :options, :account
 
   def call(query, account = nil, options = {})
-    @query   = query.strip.gsub(/\A@/, '')
-    @limit   = options[:limit].to_i
-    @offset  = options[:offset].to_i
-    @options = options
-    @account = account
+    @acct_hint = query.start_with?('@')
+    @query     = query.strip.gsub(/\A@/, '')
+    @limit     = options[:limit].to_i
+    @offset    = options[:offset].to_i
+    @options   = options
+    @account   = account
 
     search_service_results.compact.uniq
   end
@@ -66,7 +67,7 @@ class AccountSearchService < BaseService
   end
 
   def from_elasticsearch
-    must_clauses   = [{ multi_match: { query: terms_for_query, fields: %w(acct display_name), type: 'best_fields' } }]
+    must_clauses   = [{ multi_match: { query: terms_for_query, fields: likely_acct? ? %w(acct) : %w(acct^2 display_name), type: 'best_fields' } }]
     should_clauses = []
 
     if account
@@ -75,7 +76,7 @@ class AccountSearchService < BaseService
       if options[:following]
         must_clauses << { terms: { id: following_ids } }
       elsif following_ids.any?
-        should_clauses << { terms: { id: following_ids, boost: 2 } }
+        should_clauses << { terms: { id: following_ids, boost: 100 } }
       end
     end
 
@@ -100,20 +101,16 @@ class AccountSearchService < BaseService
           source: "doc['followers_count'].value / (doc['followers_count'].value + doc['following_count'].value + 1)",
         },
       },
-
-      weight: 0.5,
     }
   end
 
   def followers_score_function
     {
-      script_score: {
-        script: {
-          source: "Math.log(2 + doc['followers_count'].value) / (Math.log(2 + doc['followers_count'].value) + 1)",
-        },
+      field_value_factor: {
+        field: 'followers_count',
+        modifier: 'log2p',
+        missing: 1,
       },
-
-      weight: 0.5,
     }
   end
 
@@ -121,13 +118,11 @@ class AccountSearchService < BaseService
     {
       gauss: {
         last_status_at: {
-          scale: '3d',
-          offset: '1d',
+          scale: '30d',
+          offset: '30d',
           decay: 0.3,
         },
       },
-
-      weight: 2,
     }
   end
 
@@ -177,5 +172,9 @@ class AccountSearchService < BaseService
 
   def username_complete?
     query.include?('@') && "@#{query}" =~ Account::MENTION_RE
+  end
+
+  def likely_acct?
+    @acct_hint || username_complete?
   end
 end
