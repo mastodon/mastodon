@@ -273,6 +273,7 @@ uk:
       week_users_new: користувачів цього тижня
     domain_allows:
       destroyed_msg: Домен було видалено з білого списку
+      undo: Видалити з білого списку
     domain_blocks:
       add_new: Додати нове
       created_msg: Блокування домену оброблюється
@@ -287,6 +288,8 @@ uk:
           silence: Глушення
           suspend: Блокування
         title: Нове блокування домену
+      private_comment: Приватний коментар
+      public_comment: Публічний коментар
       reject_media: Заборонити медіаконтент
       reject_media_hint: Видаляє медіаконтент, збережений локально, і забороняє його завантаження у майбутньому. Не має значення у випадку блокування
       show:
@@ -333,6 +336,11 @@ uk:
       title: Облікові записи у черзі (%{count})
     relays:
       delete: Видалити
+      disable: Вимкнути
+      disabled: Вимкнено
+      enable: Увімкнути
+      enabled: Увімкнено
+      save_and_enable: Зберегти та увімкніти
       status: Статус
     report_notes:
       created_msg: Скарга успішно створена!
@@ -377,6 +385,8 @@ uk:
       contact_information:
         email: Введіть публічний email
         username: Введіть ім'я користувача
+      custom_css:
+        title: Користувацький CSS
       hero:
         desc_html: Відображається на головній сторінці. Рекомендована як мінімум 600x100 пікселів. Якщо не вказано, буде використано передпоказ інстанції
         title: Банер інстанції
@@ -396,6 +406,11 @@ uk:
         min_invite_role:
           disabled: Ніхто
           title: Дозволити запрошення від
+      registrations_mode:
+        modes:
+          approved: Для входу потрібне схвалення
+          none: Ніхто не може увійти
+          open: Будь-хто може увійти
       show_known_fediverse_at_about_page:
         desc_html: Коли увімкнено, будуть показані пости з усього відомого федисвіту у передпоказі. Інакше будуть показані локальні пости.
         title: Показувати доступний федисвіт у передпоказі фіду
@@ -408,6 +423,8 @@ uk:
       site_description_extended:
         desc_html: Відображається на сторінці додаткової информації<br>Можна використовувати HTML-теги
         title: Розширений опис сайту
+      site_short_description:
+        title: Короткий опис сервера
       site_terms:
         desc_html: "Ви можене написати власну політику приватності, умови використанні та інші законні штуки<br>\nМожете використовувати HTML теги"
         title: Особливі умови використання
@@ -433,7 +450,21 @@ uk:
       no_media: Немає медіа
       title: Статуси облікових записів
       with_media: З медіа
+    tags:
+      accounts_today: Унікальних використань за сьогодні
+      accounts_week: Унікальних використань за тиждень
+      context: Контекст
+      directory: У каталозі
+      in_directory: "%{count} у каталозі"
+      review: Переглянути статус
+      reviewed: Переглянуто
+      title: Хештеги
+      unreviewed: Не переглянуто
     title: Адміністрування
+    warning_presets:
+      add_new: Додати новий
+      delete: Видалити
+      edit: Редагувати
   admin_mailer:
     new_pending_account:
       body: Деталі нового облікового запису наведено нижче. Ви можете схвалити або відхилити цей додаток.
@@ -442,6 +473,8 @@ uk:
       body: "%{reporter} поскаржився(-лася) %{target}"
       body_remote: Хтось з домену %{domain} поскаржився(-лася) %{target}
       subject: 'Нова скарга до %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Розширений web-інтерфейс
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
     settings: 'Змінити налаштування e-mail: %{link}'
