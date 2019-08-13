@@ -258,6 +258,8 @@ es:
       features: Características
       hidden_service: Federación con servicios ocultos
       open_reports: informes abiertos
+      pending_tags: hashtags esperando revisión
+      pending_users: usuarios esperando por revisión
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
       single_user_mode: Modo único usuario
@@ -269,6 +271,7 @@ es:
       week_interactions: interacciones esta semana
       week_users_active: activo esta semana
       week_users_new: usuarios esta semana
+      whitelist_mode: En la lista blanca
     domain_allows:
       add_new: Añadir dominio a la lista blanca
       created_msg: Dominio añadido a la lista blanca con éxito
@@ -279,6 +282,7 @@ es:
       created_msg: El bloque de dominio está siendo procesado
       destroyed_msg: El bloque de dominio se deshizo
       domain: Dominio
+      edit: Editar nuevo dominio bloqueado
       existing_domain_block_html: Ya ha impuesto límites más estrictos a %{name}, necesita <a href="%{unblock_url}">desbloquearlo primero</a>.
       new:
         create: Crear bloque
@@ -290,7 +294,9 @@ es:
           suspend: Suspender
         title: Nuevo bloque de dominio
       private_comment: Comentario privado
+      private_comment_hint: Comentario sobre esta limitación de dominio para el uso interno por parte de los moderadores.
       public_comment: Comentario público
+      public_comment_hint: Comentario sobre esta limitación de dominio para el público en general, si la publicidad de la lista de limitaciones de dominio está habilitada.
       reject_media: Rechazar archivos multimedia
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar informes
@@ -310,6 +316,7 @@ es:
         title: Deshacer bloque de dominio para %{domain}
         undo: Deshacer
       undo: Deshacer
+      view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
       created_msg: Dominio de correo añadido a la lista negra con éxito
@@ -473,6 +480,7 @@ es:
         title: Previsualización
       title: Ajustes del sitio
       trends:
+        desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
         title: Hashtags de tendencia
     statuses:
       back_to_account: Volver a la cuenta
