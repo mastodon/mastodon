@@ -1,8 +1,8 @@
 es:
   about:
-    about_hashtag_html: 'Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.'
-    about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
-    about_this: Acerca de esta instancia
+    about_hashtag_html: 'Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en el fediverso.'
+    about_mastodon_html: Mastodon es una red social basada en protocolos web abiertos y software libre y de código abierto. Está descentralizado como correo electrónico.
+    about_this: Información
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
@@ -499,11 +499,15 @@ es:
       accounts_today: Usos únicos de hoy
       accounts_week: Usos únicos esta semana
       context: Contexto
+      directory: En el directorio
+      in_directory: "%{count} en el directorio"
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
       trending_right_now: En tendencia ahora mismo
+      unique_uses_today: "%{count} publicando hoy"
       unreviewed: No revisado
+      updated_msg: Hashtags actualizados exitosamente
     title: Administración
     warning_presets:
       add_new: Añadir nuevo
@@ -519,11 +523,15 @@ es:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'El hashtag #%{name} está en tendencia hoy, pero no ha sido revisado previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario como para no volver a ver esto.'
+      subject: 'Nuevo hashtag para revisión en %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Interfaz web avanzada
     advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
+    discovery: Descubrir
     sensitive_content: Contenido sensible
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
@@ -571,6 +579,7 @@ es:
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
+      functional: Su cuenta está totalmente operativa.
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
     trouble_logging_in: '¿Problemas para iniciar sesión?'
   authorize_follow:
@@ -616,6 +625,8 @@ es:
     people:
       one: "%{count} persona"
       other: "%{count} personas"
+  domain_validator:
+    invalid_domain: no es un nombre de dominio válido
   errors:
     '403': No tienes permiso para acceder a esta página.
     '404': La página que estabas buscando no existe.
@@ -952,6 +963,8 @@ es:
     pinned: Toot fijado
     reblogged: retooteado
     sensitive_content: Contenido sensible
+  tags:
+    does_not_match_previous_name: no coincide con el nombre anterior
   terms:
     body_html: |
       <h2>Política de Privacidad</h2>
