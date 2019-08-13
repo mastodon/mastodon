@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsIndex < Chewy::Index
-  settings index: { refresh_interval: '15m' }, analysis: {
+  settings index: { refresh_interval: '5m' }, analysis: {
     analyzer: {
       content: {
         tokenizer: 'whitespace',
@@ -30,7 +30,7 @@ class AccountsIndex < Chewy::Index
       field :acct, type: 'text', analyzer: 'edge_ngram', search_analyzer: 'content', value: ->(account) { [account.username, account.domain].compact.join('@') }
       field :following_count, type: 'long', value: ->(account) { account.active_relationships.count }
       field :followers_count, type: 'long', value: ->(account) { account.passive_relationships.count }
-      field :last_status_at, type: 'date', value: ->(account) { account.last_status_at || account.updated_at }
+      field :last_status_at, type: 'date', value: ->(account) { account.last_status_at || account.created_at }
     end
   end
 end
