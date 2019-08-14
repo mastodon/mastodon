@@ -354,6 +354,7 @@ uk:
       save_and_enable: Зберегти та увімкніти
       setup: Налаштування з'єднання з ретранслятором
       status: Статус
+      title: Ретранслятори
     report_notes:
       created_msg: Скарга успішно створена!
       destroyed_msg: Скарга успішно видалена!
@@ -482,6 +483,7 @@ uk:
       add_new: Додати новий
       delete: Видалити
       edit: Редагувати
+      title: Управління шаблонами попереджень
   admin_mailer:
     new_pending_account:
       body: Деталі нового облікового запису наведено нижче. Ви можете схвалити або відхилити цей додаток.
@@ -639,6 +641,7 @@ uk:
     order_by: Сортувати за
     save_changes: Зберегти зміни
   identity_proofs:
+    authorize: Так, авторізувати
     i_am_html: Я %{username} з %{service}.
     inactive: Неактивний
     publicize_checkbox: 'Та дмухнути це:'
@@ -791,9 +794,13 @@ uk:
       alipay: Alipay
       blackberry: Blackberry
       edge: Microsoft Edge
+      firefox: Firefox
       generic: Невідомий браузер
       ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
       opera: Опера
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Сафарі
@@ -822,6 +829,7 @@ uk:
   settings:
     account: Обліковий запис
     account_settings: Налаштування облікового запису
+    appearance: Вигляд
     authorized_apps: Авторизовані застосунки
     back: Назад до Mastodon
     delete: Видалення облікового запису
@@ -887,6 +895,10 @@ uk:
     contrast: Висока контрасність
     default: Mastodon
     mastodon-light: Mastodon (світла)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Для підтверждення введіть код, згенерований застосунком аутентифікатора
     description_html: При увімкненні <strong>двофакторної аутентифікації</strong>, вхід буде вимагати від Вас використовування Вашого телефона, який згенерує вхідний код.
@@ -919,6 +931,7 @@ uk:
         suspend: Ваш обліковий запис %{acct} було призупинено
       title:
         disable: Обліковий запис заморожено
+        none: Попередження
         silence: Ообліковий запис обмежено
         suspend: Обліковий запис призупинено
     welcome:
@@ -939,6 +952,11 @@ uk:
       tips: Поради
       title: Ласкаво просимо, %{name}!
   users:
+    follow_limit_reached: Не можна слідкувати більш ніж за %{limit} людей
     invalid_email: Введена адреса e-mail неправильна
     invalid_otp_token: Введено неправильний код
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
+    seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
+    signed_in_as: 'Ви увійшли як:'
+  verification:
+    verification: Підтвердження
