@@ -81,6 +81,12 @@ class MuteModal extends React.PureComponent {
               values={{ name: <strong>@{account.get('acct')}</strong> }}
             />
           </p>
+          <p>
+            <FormattedMessage
+              id='confirmations.mute.explanation'
+              defaultMessage='This will hide content from or mentioning them, but it will still let them follow you.'
+            />
+          </p>
           <div>
             <label htmlFor='mute-modal__hide-notifications-checkbox'>
               <FormattedMessage id='mute_modal.hide_notifications' defaultMessage='Hide notifications from this user?' />
