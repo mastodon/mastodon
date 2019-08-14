@@ -4567,6 +4567,14 @@ a.status-card.compact:hover {
     }
   }
 
+  .setting-text-label {
+    display: block;
+    color: $inverted-text-color;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
   .setting-toggle {
     margin-top: 20px;
     margin-bottom: 24px;
@@ -4959,6 +4967,10 @@ a.status-card.compact:hover {
   background: $base-shadow-color;
   max-width: 100%;
   border-radius: 4px;
+
+  &.editable {
+    border-radius: 0;
+  }
 
   &:focus {
     outline: 0;
@@ -5688,27 +5700,20 @@ noscript {
   }
 }
 
-.focal-point-modal {
-  max-width: 80vw;
-  max-height: 80vh;
-  position: relative;
-}
-
 .focal-point {
   position: relative;
-  cursor: pointer;
+  cursor: move;
   overflow: hidden;
 
-  &.dragging {
-    cursor: move;
-  }
-
-  img {
-    max-width: 80vw;
+  img,
+  video {
+    display: block;
     max-height: 80vh;
-    width: auto;
+    width: 100%;
     height: auto;
-    margin: auto;
+    margin: 0;
+    object-fit: contain;
+    background: $base-shadow-color;
   }
 
   &__reticle {
@@ -5727,6 +5732,27 @@ noscript {
     height: 100%;
     top: 0;
     left: 0;
+  }
+
+  &__preview {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    cursor: default;
+
+    strong {
+      color: $primary-text-color;
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    div {
+      border-radius: 4px;
+      box-shadow: 0 0 14px rgba($base-shadow-color, 0.2);
+    }
   }
 }
 
