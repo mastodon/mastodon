@@ -11,7 +11,6 @@ import { toggleHideNotifications } from '../../../actions/mutes';
 
 const mapStateToProps = state => {
   return {
-    isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
     account: state.getIn(['mutes', 'new', 'account']),
     notifications: state.getIn(['mutes', 'new', 'notifications']),
   };
@@ -38,7 +37,6 @@ export default @connect(mapStateToProps, mapDispatchToProps)
 class MuteModal extends React.PureComponent {
 
   static propTypes = {
-    isSubmitting: PropTypes.bool.isRequired,
     account: PropTypes.object.isRequired,
     notifications: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
