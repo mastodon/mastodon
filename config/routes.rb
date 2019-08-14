@@ -502,6 +502,8 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
+
+      resources :blocks,       only: [:index]
     end
 
     namespace :web do
