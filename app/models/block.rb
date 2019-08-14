@@ -9,6 +9,7 @@
 #  account_id        :bigint(8)        not null
 #  target_account_id :bigint(8)        not null
 #  uri               :string
+#  stealth           :boolean
 #
 
 class Block < ApplicationRecord

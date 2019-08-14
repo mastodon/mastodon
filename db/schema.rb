@@ -268,6 +268,7 @@ ActiveRecord::Schema.define(version: 2020_12_18_054746) do
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
     t.string "uri"
+    t.boolean "stealth"
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_blocks_on_target_account_id"
   end
