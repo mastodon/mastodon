@@ -322,7 +322,7 @@ class Status < ApplicationRecord
 
       if account.nil?
         where(visibility: visibility)
-      elsif target_account.blocking?(account) || (account.domain.present? && target_account.domain_blocking?(account.domain)) # get rid of blocked peeps
+      elsif target_account.hard_blocking?(account) || (account.domain.present? && target_account.domain_blocking?(account.domain)) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
         all

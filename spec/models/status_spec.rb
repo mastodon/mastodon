@@ -302,6 +302,16 @@ RSpec.describe Status, type: :model do
       it { is_expected.to be_empty }
     end
 
+    context 'given stealth-blocked account' do
+      let(:direct_status) { nil }
+
+      before do
+        target_account.block!(account, stealth: true)
+      end
+
+      it { is_expected.to eq(%w(unlisted public)) }
+    end
+
     context 'given same account' do
       let(:account) { target_account }
       it { is_expected.to eq(%w(direct direct private unlisted public)) }
