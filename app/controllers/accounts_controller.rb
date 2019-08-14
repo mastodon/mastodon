@@ -23,7 +23,7 @@ class AccountsController < ApplicationController
         @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
         @featured_hashtags = @account.featured_tags.order(statuses_count: :desc)
 
-        if current_account && @account.blocking?(current_account)
+        if current_account && @account.hard_blocking?(current_account)
           @statuses = []
           return
         end

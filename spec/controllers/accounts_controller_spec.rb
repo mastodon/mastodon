@@ -150,6 +150,47 @@ RSpec.describe AccountsController, type: :controller do
           end
         end
 
+        context 'when user is stealthily blocked' do
+          before do
+            account.block!(user.account, stealth: true)
+            get :show, params: { username: account.username, format: format }
+          end
+
+          it_behaves_like 'common response characteristics'
+
+          it 'renders public status' do
+            expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status))
+          end
+
+          it 'renders self-reply' do
+            expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_self_reply))
+          end
+
+          it 'renders status with media' do
+            expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_media))
+          end
+
+          it 'renders reblog' do
+            expect(response.body).to include(ActivityPub::TagManager.instance.url_for(status_reblog.reblog))
+          end
+
+          it 'renders pinned status' do
+            expect(response.body).to include(I18n.t('stream_entries.pinned'))
+          end
+
+          it 'does not render private status' do
+            expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_private))
+          end
+
+          it 'does not render direct status' do
+            expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_direct))
+          end
+
+          it 'does not render reply to someone else' do
+            expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_reply))
+          end
+        end
+
         context 'when user is blocked' do
           before do
             account.block!(user.account)
