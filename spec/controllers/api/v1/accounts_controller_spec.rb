@@ -212,22 +212,49 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     before do
       user.account.follow!(other_account)
-      post :block, params: { id: other_account.id }
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
+    context 'stealth block' do
+      before do
+        user.account.follow!(other_account)
+        post :block, params: { id: other_account.id, stealth_block: true }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'removes the following relation between user and target user' do
+        expect(user.account.following?(other_account)).to be false
+      end
+
+      it 'creates a blocking relation' do
+        expect(user.account.stealth_blocking?(other_account)).to be true
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:accounts'
     end
 
-    it 'removes the following relation between user and target user' do
-      expect(user.account.following?(other_account)).to be false
-    end
+    context 'regular block' do
+      before do
+        user.account.follow!(other_account)
+        post :block, params: { id: other_account.id }
+      end
 
-    it 'creates a blocking relation' do
-      expect(user.account.blocking?(other_account)).to be true
-    end
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
 
-    it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+      it 'removes the following relation between user and target user' do
+        expect(user.account.following?(other_account)).to be false
+      end
+
+      it 'creates a blocking relation' do
+        expect(user.account.blocking?(other_account)).to be true
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+    end
   end
 
   describe 'POST #unblock' do
