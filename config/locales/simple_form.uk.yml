@@ -11,6 +11,17 @@ uk:
       sessions:
         otp: 'Введите код двухфакторной аутентификации или используйте один из Ваших кодов восстановления.'
     labels:
+      account:
+        fields:
+          name: Позначка
+          value: Вміст
+      admin_account_action:
+        send_email_notification: Сповістити користувача електронною поштою
+        text: Користувацьке попередження
+        type: Дія
+        types:
+          disable: Вимкнути
+          none: Нічого не робити
       defaults:
         avatar: Аватар
         confirm_new_password: Підтвердіть новий пароль
