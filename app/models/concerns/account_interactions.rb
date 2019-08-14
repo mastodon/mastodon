@@ -125,9 +125,9 @@ module AccountInteractions
     rel
   end
 
-  def block!(other_account, uri: nil)
+  def block!(other_account, uri: nil, stealth: false)
     remove_potential_friendship(other_account)
-    block_relationships.create_with(uri: uri)
+    block_relationships.create_with(uri: uri, stealth: stealth)
                        .find_or_create_by!(target_account: other_account)
   end
 
@@ -186,6 +186,10 @@ module AccountInteractions
 
   def blocking?(other_account)
     block_relationships.where(target_account: other_account).exists?
+  end
+
+  def stealth_blocking?(other_account)
+    block_relationships.where(target_account: other_account, stealth: true).exists?
   end
 
   def domain_blocking?(other_domain)

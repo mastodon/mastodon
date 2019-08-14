@@ -75,5 +75,41 @@ RSpec.describe ActivityPub::Activity::Follow do
         expect(sender.requested?(recipient)).to be true
       end
     end
+
+    context 'unlocked account receiving request from blocked account' do
+      before do
+        allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
+        recipient.block!(sender)
+        subject.perform
+      end
+
+      it 'does not create a follow from sender to recipient' do
+        expect(sender.following?(recipient)).to be false
+      end
+
+      it 'does not create a follow request' do
+        expect(sender.requested?(recipient)).to be false
+      end
+    end
+
+    context 'unlocked account receiving request from stealthily-blocked account' do
+      before do
+        allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
+        recipient.block!(sender, stealth: true)
+        subject.perform
+      end
+
+      it 'does not create a follow from sender to recipient' do
+        expect(sender.following?(recipient)).to be false
+      end
+
+      it 'does not create a follow request' do
+        expect(sender.requested?(recipient)).to be false
+      end
+
+      it 'does not send a reject' do
+        expect(ActivityPub::DeliveryWorker).to_not have_received(:perform_async)
+      end
+    end
   end
 end

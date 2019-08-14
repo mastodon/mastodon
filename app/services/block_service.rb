@@ -3,17 +3,17 @@
 class BlockService < BaseService
   include Payloadable
 
-  def call(account, target_account)
+  def call(account, target_account, stealth = false)
     return if account.id == target_account.id
 
     UnfollowService.new.call(account, target_account) if account.following?(target_account)
     UnfollowService.new.call(target_account, account) if target_account.following?(account)
     RejectFollowService.new.call(target_account, account) if target_account.requested?(account)
 
-    block = account.block!(target_account)
+    block = account.block!(target_account, stealth: stealth)
 
     BlockWorker.perform_async(account.id, target_account.id)
-    create_notification(block) if !target_account.local? && target_account.activitypub?
+    create_notification(block) if !target_account.local? && target_account.activitypub? && !stealth
     block
   end
 
