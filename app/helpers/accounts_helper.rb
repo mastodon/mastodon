@@ -28,7 +28,7 @@ module AccountsHelper
           safe_join([svg_logo, t('accounts.unfollow')])
         end
       elsif !(account.memorial? || account.moved?)
-        link_to account_follow_path(account), class: "button logo-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post } do
+        link_to account_follow_path(account), class: "button logo-button#{account.hard_blocking?(current_account) ? ' disabled' : ''}", data: { method: :post } do
           safe_join([svg_logo, t('accounts.follow')])
         end
       end
@@ -48,7 +48,7 @@ module AccountsHelper
           fa_icon('user-times fw')
         end
       elsif !(account.memorial? || account.moved?)
-        link_to account_follow_path(account), class: "icon-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post }, title: t('accounts.follow') do
+        link_to account_follow_path(account), class: "icon-button#{account.hard_blocking?(current_account) ? ' disabled' : ''}", data: { method: :post }, title: t('accounts.follow') do
           fa_icon('user-plus fw')
         end
       end
