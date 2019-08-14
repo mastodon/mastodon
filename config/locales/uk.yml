@@ -639,6 +639,7 @@ uk:
     order_by: Сортувати за
     save_changes: Зберегти зміни
   identity_proofs:
+    i_am_html: Я %{username} з %{service}.
     inactive: Неактивний
     publicize_checkbox: 'Та дмухнути це:'
     publicize_toot: 'Це доведено! Я таки %{username} з %{service}: %{url}'
@@ -730,6 +731,7 @@ uk:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: млрд
           million: млн
@@ -741,6 +743,7 @@ uk:
     next: Далі
     older: Старіші
     prev: Назад
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ви вже голосували в цьому опитуванні
@@ -756,6 +759,7 @@ uk:
   relationships:
     activity: Діяльність облікового запису
     last_active: Крайня активність
+    most_recent: За часом створення
     moved: Переміщено
     mutual: Взаємні уподобання
     primary: Первинні
@@ -784,23 +788,34 @@ uk:
     activity: Остання активність
     browser: Браузер
     browsers:
+      alipay: Alipay
       blackberry: Blackberry
       edge: Microsoft Edge
       generic: Невідомий браузер
       ie: Internet Explorer
       opera: Опера
+      phantom_js: PhantomJS
+      qq: QQ Browser
       safari: Сафарі
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Активна сесія
     description: "%{browser} на %{platform}"
     explanation: Це веб-браузери, авторизовані у вашому обліковому записі Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Android
       blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
       linux: Linux
+      mac: Mac
       other: невідома платформа
       windows: Windows
       windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Закінчити
     revoke_success: Сесія успішно закінчена
     title: Сесії
@@ -814,6 +829,7 @@ uk:
     edit_profile: Редагувати профіль
     export: Експорт даних
     import: Імпорт
+    import_and_export: Імпорт та експорт
     migrate: Міграція облікового запису
     notifications: Сповіщення
     preferences: Налаштування
@@ -824,6 +840,16 @@ uk:
   statuses:
     attached:
       description: 'Прикріплено: %{attached}'
+      image:
+        one: "%{count} зображення"
+        few: "%{count} зображень"
+        many: "%{count} зображень"
+        other: "%{count} зображення"
+      video:
+        one: "%{count} відео"
+        few: "%{count} відео"
+        many: "%{count} відео"
+        other: "%{count} відео"
     boosted_from_html: Просунуто від %{acct_link}
     content_warning: 'Попередження про контент: %{warning}'
     language_detection: Автоматично визначати мову
@@ -835,6 +861,11 @@ uk:
       private: Не можна закріпити непублічний пост
       reblog: Не можна закріпити просунутий пост
     poll:
+      total_votes:
+        one: "%{count} голос"
+        few: "%{count} голоса"
+        many: "%{count} голосів"
+        other: "%{count} голоси"
       vote: Проголосувати
     show_more: Детальніше
     visibilities:
@@ -848,6 +879,8 @@ uk:
     pinned: Закріплений пост
     reblogged: передмухнув(-ла)
     sensitive_content: Несприйнятливий контент
+  tags:
+    does_not_match_previous_name: не збігається з попереднім ім'ям
   terms:
     title: "Умови використання та Політика приватності %{instance}"
   themes:
