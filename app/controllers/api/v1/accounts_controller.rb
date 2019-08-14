@@ -31,7 +31,15 @@ class Api::V1::AccountsController < Api::BaseController
 
   def follow
     follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, with_rate_limit: true)
-    options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify? } }, requested_map: { @account.id => false } }
+    options = begin
+      if @account.locked? || current_user.account.silenced?
+        {}
+      elsif follow.nil?
+        { following_map: { @account.id => { reblogs: truthy_param?(:reblogs), notify: truthy_param?(:notify) } }, requested_map: { @account.id => false } }
+      else
+        { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify? } }, requested_map: { @account.id => false } }
+      end
+    end
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(options)
   end

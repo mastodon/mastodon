@@ -70,9 +70,45 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
   describe 'POST #follow' do
     let(:scopes) { 'write:follows' }
     let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: locked)).account }
+    let(:blocking_options) { nil }
+
+    shared_examples 'with a blocked user' do
+      context 'not stealth' do
+        let(:blocking_options) { {} }
+
+        it 'does not create a following relation between user and target user' do
+          expect(user.account.following?(other_account)).to be false
+        end
+
+        it 'does not create a follow request relation between user and target user' do
+          expect(user.account.requested?(other_account)).to be false
+        end
+
+        it 'returns http forbidden' do
+          expect(response).to have_http_status(403)
+        end
+      end
+
+      context 'stealth' do
+        let(:blocking_options) { {stealth: true} }
+
+        it 'does not create a following relation between user and target user' do
+          expect(user.account.following?(other_account)).to be false
+        end
+
+        it 'does not create a follow request relation between user and target user' do
+          expect(user.account.requested?(other_account)).to be false
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+      end
+    end
 
     context do
       before do
+        other_account.block!(user.account, blocking_options) if blocking_options.present?
         post :follow, params: { id: other_account.id }
       end
 
@@ -95,6 +131,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         end
 
         it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+        it_behaves_like 'with a blocked user'
       end
 
       context 'with locked account' do
@@ -116,6 +153,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         end
 
         it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+        it_behaves_like 'with a blocked user'
       end
     end
 
