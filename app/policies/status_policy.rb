@@ -80,7 +80,7 @@ class StatusPolicy < ApplicationPolicy
   def author_blocking?
     return false if current_account.nil?
 
-    @preloaded_relations[:blocked_by] ? @preloaded_relations[:blocked_by][author.id] : author.blocking?(current_account)
+    @preloaded_relations[:blocked_by] ? @preloaded_relations[:blocked_by][author.id] : author.hard_blocking?(current_account)
   end
 
   def following_author?

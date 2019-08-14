@@ -18,10 +18,16 @@ RSpec.describe StatusPolicy, type: :model do
 
     it 'denies access when viewer is blocked' do
       block = Fabricate(:block)
-      status.visibility = :private
       status.account = block.target_account
 
       expect(subject).to_not permit(block.account, status)
+    end
+
+    it 'grants access when viewer is stealth-blocked' do
+      block = Fabricate(:block, stealth: true)
+      status.account = block.target_account
+
+      expect(subject).to permit(block.account, status)
     end
   end
 
