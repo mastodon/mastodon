@@ -22,7 +22,7 @@ module AccountInteractions
     end
 
     def blocked_by_map(target_account_ids, account_id)
-      follow_mapping(Block.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
+      follow_mapping(Block.where(account_id: target_account_ids, target_account_id: account_id).where(stealth: [nil, false]), :account_id)
     end
 
     def muting_map(target_account_ids, account_id)
@@ -84,7 +84,7 @@ module AccountInteractions
     # Block relationships
     has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
     has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
-    has_many :blocked_by_relationships, class_name: 'Block', foreign_key: :target_account_id, dependent: :destroy
+    has_many :blocked_by_relationships, -> { where(stealth: [nil, false]) }, class_name: 'Block', foreign_key: :target_account_id, dependent: :destroy
     has_many :blocked_by, -> { order('blocks.id desc') }, through: :blocked_by_relationships, source: :account
 
     # Mute relationships
@@ -190,6 +190,10 @@ module AccountInteractions
 
   def stealth_blocking?(other_account)
     block_relationships.where(target_account: other_account, stealth: true).exists?
+  end
+
+  def hard_blocking?(other_account)
+    block_relationships.where(target_account: other_account).where(stealth: [nil, false]).exists?
   end
 
   def domain_blocking?(other_domain)

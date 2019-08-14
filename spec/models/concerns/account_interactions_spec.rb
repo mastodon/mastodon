@@ -59,6 +59,30 @@ describe AccountInteractions do
     end
   end
 
+  describe '.blocked_by_map' do
+    subject { Account.blocked_by_map(target_account_ids, account_id) }
+
+    context 'account with non-stealth Block' do
+      it 'returns { target_account_id => true }' do
+        Fabricate(:block, account: target_account, target_account: account, stealth: false)
+        is_expected.to eq(target_account_id => true)
+      end
+    end
+
+    context 'account without Block' do
+      it 'returns {}' do
+        is_expected.to eq({})
+      end
+    end
+
+    context 'account with stealth Block' do
+      it 'returns {}' do
+        Fabricate(:block, account: target_account, target_account: account, stealth: true)
+        is_expected.to eq({})
+      end
+    end
+  end
+
   describe '.muting_map' do
     subject { Account.muting_map(target_account_ids, account_id) }
 
@@ -104,6 +128,18 @@ describe AccountInteractions do
       expect do
         expect(account.block!(target_account)).to be_kind_of Block
       end.to change { account.block_relationships.count }.by 1
+    end
+
+    it 'affects blocked_by_relationships' do
+      expect do
+        account.block!(target_account)
+      end.to change { target_account.blocked_by_relationships.count }.by 1
+    end
+
+    it 'does not affect blocked_by_relationships when stealth' do
+      expect do
+        account.block!(target_account, stealth: true)
+      end.to_not change { target_account.blocked_by_relationships.count }
     end
   end
 
