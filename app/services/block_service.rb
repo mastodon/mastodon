@@ -3,7 +3,7 @@
 class BlockService < BaseService
   include Payloadable
 
-  def call(account, target_account, stealth = false)
+  def call(account, target_account, stealth: false)
     return if account.id == target_account.id
 
     UnfollowService.new.call(account, target_account) if account.following?(target_account)

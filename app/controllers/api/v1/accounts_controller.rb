@@ -45,7 +45,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def block
-    BlockService.new.call(current_user.account, @account, truthy_param?(:stealth_block))
+    BlockService.new.call(current_user.account, @account, stealth: truthy_param?(:stealth_block))
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 

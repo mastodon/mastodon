@@ -54,7 +54,7 @@ RSpec.describe BlockService, type: :service do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
       before do
-        subject.call(sender, bob, true)
+        subject.call(sender, bob, stealth: true)
       end
 
       it 'creates a blocking relation' do
@@ -67,7 +67,7 @@ RSpec.describe BlockService, type: :service do
 
       before do
         stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
-        subject.call(sender, bob, true)
+        subject.call(sender, bob, stealth: true)
       end
 
       it 'creates a blocking relation' do
