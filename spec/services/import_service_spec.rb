@@ -88,6 +88,37 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
+  context 'import old-style list of blocked users' do
+    subject { ImportService.new }
+
+    let(:csv) { attachment_fixture('block-imports.txt') }
+
+    describe 'when no accounts are blocked' do
+      let(:import) { Import.create(account: account, type: 'blocking', data: csv) }
+      it 'blocks the listed accounts, not stealthily' do
+        subject.call(import)
+        expect(account.blocking.count).to eq 2
+        expect(Block.find_by(account: account, target_account: bob).stealth).to be false
+      end
+    end
+  end
+
+  context 'import new-style list of blocked users' do
+    subject { ImportService.new }
+
+    let(:csv) { attachment_fixture('new-block-imports.txt') }
+
+    describe 'when no accounts are muted' do
+      let(:import) { Import.create(account: account, type: 'blocking', data: csv) }
+      it 'blocks the listed accounts, respecting notifications' do
+        subject.call(import)
+        expect(account.blocking.count).to eq 2
+        expect(Block.find_by(account: account, target_account: bob).stealth).to be true
+        expect(Block.find_by(account: account, target_account: eve).stealth).to be false
+      end
+    end
+  end
+
   context 'import old-style list of followed users' do
     subject { ImportService.new }
 

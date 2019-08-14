@@ -15,7 +15,7 @@ RSpec.describe Api::V2::BlocksController, type: :controller do
       stealth_block = Fabricate(:block, account: user.account, stealth: true)
       get :index
       result = body_as_json.each_with_object({}) { |v, h| h[v[:target_account][:id]] = v[:stealth] }
-      expect(result[block.target_account_id.to_s]).to eq false
+      expect(result[block.target_account_id.to_s]).to_not eq true
       expect(result[stealth_block.target_account_id.to_s]).to eq true
     end
 

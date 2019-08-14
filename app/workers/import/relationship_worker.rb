@@ -19,7 +19,7 @@ class Import::RelationshipWorker
     when 'unfollow'
       UnfollowService.new.call(from_account, target_account)
     when 'block'
-      BlockService.new.call(from_account, target_account)
+      BlockService.new.call(from_account, target_account, options)
     when 'unblock'
       UnblockService.new.call(from_account, target_account)
     when 'mute'

@@ -18,7 +18,11 @@ class Export
   end
 
   def to_blocked_accounts_csv
-    to_csv account.blocking.select(:username, :domain)
+    CSV.generate(headers: ['Account address', 'Stealth'], write_headers: true) do |csv|
+      account.block_relationships.includes(:target_account).reorder(id: :desc).each do |block|
+        csv << [acct(block.target_account), block.stealth]
+      end
+    end
   end
 
   def to_muted_accounts_csv

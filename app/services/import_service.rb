@@ -32,7 +32,7 @@ class ImportService < BaseService
 
   def import_blocks!
     parse_import_data!(['Account address'])
-    import_relationships!('block', 'unblock', @account.blocking, ROWS_PROCESSING_LIMIT)
+    import_relationships!('block', 'unblock', @account.blocking, ROWS_PROCESSING_LIMIT, stealth: { header: 'Stealth', default: false })
   end
 
   def import_mutes!

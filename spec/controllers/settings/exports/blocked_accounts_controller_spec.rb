@@ -11,7 +11,7 @@ describe Settings::Exports::BlockedAccountsController do
       sign_in user, scope: :user
       get :index, format: :csv
 
-      expect(response.body).to eq "username@domain\n"
+      expect(response.body).to eq "Account address,Stealth\nusername@domain,false\n"
     end
   end
 end

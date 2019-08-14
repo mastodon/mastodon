@@ -11,10 +11,11 @@ describe Export do
       target_accounts.each(&account.method(:block!))
 
       export = Export.new(account).to_blocked_accounts_csv
-      results = export.strip.split
+      results = export.strip.split("\n")
 
-      expect(results.size).to eq 2
-      expect(results.first).to eq 'one@local.host'
+      expect(results.size).to eq 3
+      expect(results.first).to eq 'Account address,Stealth'
+      expect(results.second).to eq 'one@local.host,false'
     end
 
     it 'returns a csv of the muted accounts' do
