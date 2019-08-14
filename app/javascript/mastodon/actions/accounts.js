@@ -188,11 +188,11 @@ export function unfollowAccountFail(error) {
   };
 };
 
-export function blockAccount(id) {
+export function blockAccount(id, hard_block = false) {
   return (dispatch, getState) => {
     dispatch(blockAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/block`).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/block`, { stealth_block: !hard_block }).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
       dispatch(blockAccountSuccess(response.data, getState().get('statuses')));
     }).catch(error => {

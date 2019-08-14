@@ -4958,6 +4958,18 @@ a.status-card.compact:hover {
   margin-bottom: 29px;
 }
 
+.block-modal {
+  .setting-toggle {
+    margin-top: 20px;
+    margin-bottom: 24px;
+
+    &__label {
+      color: $inverted-text-color;
+      font-size: 14px;
+    }
+  }
+}
+
 .report-modal__comment {
   padding: 20px;
   border-right: 1px solid $ui-secondary-color;

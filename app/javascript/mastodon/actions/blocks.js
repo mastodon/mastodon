@@ -11,7 +11,8 @@ export const BLOCKS_EXPAND_REQUEST = 'BLOCKS_EXPAND_REQUEST';
 export const BLOCKS_EXPAND_SUCCESS = 'BLOCKS_EXPAND_SUCCESS';
 export const BLOCKS_EXPAND_FAIL    = 'BLOCKS_EXPAND_FAIL';
 
-export const BLOCKS_INIT_MODAL = 'BLOCKS_INIT_MODAL';
+export const BLOCKS_INIT_MODAL        = 'BLOCKS_INIT_MODAL';
+export const BLOCKS_TOGGLE_HARD_BLOCK = 'BLOCKS_TOGGLE_HARD_BLOCK';
 
 export function fetchBlocks() {
   return (dispatch, getState) => {
@@ -95,5 +96,11 @@ export function initBlockModal(account) {
     });
 
     dispatch(openModal('BLOCK'));
+  };
+}
+
+export function toggleHardBlock() {
+  return dispatch => {
+    dispatch({ type: BLOCKS_TOGGLE_HARD_BLOCK });
   };
 }
