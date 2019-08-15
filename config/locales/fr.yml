@@ -182,6 +182,7 @@ fr:
       username: Nom d’utilisateur⋅ice
       warn: Avertissement
       web: Web
+      whitelisted: Sur liste blanche
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
@@ -249,10 +250,12 @@ fr:
       feature_profile_directory: Annuaire des profils
       feature_registrations: Inscriptions
       feature_relay: Relais de fédération
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Aperçu du fil public
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
       open_reports: signalements non résolus
+      pending_tags: hashtags en attente de validation
       recent_users: Utilisateur·rice·s récent·e·s
       search: Recherche plein texte
       single_user_mode: Mode utilisateur·ice unique
@@ -264,6 +267,8 @@ fr:
       week_interactions: interactions cette semaine
       week_users_active: actif·ve·s cette semaine
       week_users_new: utilisateur·rice·s cette semaine
+    domain_allows:
+      created_msg: Ce domaine a été ajouté à la liste blanche avec succès
     domain_blocks:
       add_new: Ajouter un nouveau bloqueur de domaine
       created_msg: Le blocage de domaine est désormais activé
@@ -321,6 +326,8 @@ fr:
         all: Tout
         limited: Limité
         title: Modération
+      private_comment: Commentaire privé
+      public_comment: Commentaire public
       title: Fédération
       total_blocked_by_us: Bloqués par nous
       total_followed_by_them: Suivi par eux
