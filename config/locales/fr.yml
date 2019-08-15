@@ -255,7 +255,8 @@ fr:
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
       open_reports: signalements non résolus
-      pending_tags: hashtags en attente de validation
+      pending_tags: hashtags en attente d’approbation
+      pending_users: utilisateur·rice·s en attente d’approbation
       recent_users: Utilisateur·rice·s récent·e·s
       search: Recherche plein texte
       single_user_mode: Mode utilisateur·ice unique
@@ -267,7 +268,9 @@ fr:
       week_interactions: interactions cette semaine
       week_users_active: actif·ve·s cette semaine
       week_users_new: utilisateur·rice·s cette semaine
+      whitelist_mode: Mode liste blanche
     domain_allows:
+      add_new: Mettre le domaine sur liste sur blanche
       created_msg: Ce domaine a été ajouté à la liste blanche avec succès
     domain_blocks:
       add_new: Ajouter un nouveau bloqueur de domaine
@@ -462,6 +465,8 @@ fr:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
       title: Paramètres du serveur
+      trends:
+        title: Hashtags populaires
     statuses:
       back_to_account: Retour à la page du compte
       batch:
@@ -477,6 +482,7 @@ fr:
       with_media: avec médias
     tags:
       title: Hashtags
+      trending_right_now: Populaire en ce moment
     title: Administration
     warning_presets:
       add_new: Ajouter un nouveau
@@ -517,6 +523,7 @@ fr:
     apply_for_account: Demander une invitation
     change_password: Mot de passe
     checkbox_agreement_html: J’accepte les <a href="%{rules_path}" target="_blank">règles du serveur</a> et les <a href="%{terms_path}" target="_blank">conditions de service</a>
+    checkbox_agreement_without_rules_html: J’accepte les <a href="%{terms_path}" target="_blank">conditions d’utilisation</a>
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
@@ -536,6 +543,8 @@ fr:
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    status:
+      functional: Votre compte est entièrement opérationnel.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
   authorize_follow:
     already_following: Vous suivez déjà ce compte
@@ -580,6 +589,8 @@ fr:
     people:
       one: "%{count} personne"
       other: "%{count} personne"
+  domain_validator:
+    invalid_domain: n’est pas un nom de domaine valide
   errors:
     '403': Vous n’avez pas accès à cette page.
     '404': La page que vous recherchez n’existe pas.
@@ -914,6 +925,8 @@ fr:
     pinned: Pouet épinglé
     reblogged: a partagé
     sensitive_content: Contenu sensible
+  tags:
+    does_not_match_previous_name: ne correspond pas au nom précédent
   terms:
     body_html: |
       <h2>Politique de confidentialité</h2>
