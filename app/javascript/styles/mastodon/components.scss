@@ -5757,6 +5757,11 @@ noscript {
   position: relative;
   cursor: move;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $base-shadow-color;
 
   img,
   video {
@@ -5805,6 +5810,17 @@ noscript {
     div {
       border-radius: 4px;
       box-shadow: 0 0 14px rgba($base-shadow-color, 0.2);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    img,
+    video {
+      max-height: 100%;
+    }
+
+    &__preview {
+      display: none;
     }
   }
 }
