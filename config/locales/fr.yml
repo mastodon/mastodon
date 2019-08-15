@@ -502,6 +502,9 @@ fr:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: 'Nouveau signalement sur %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Le hashtag #%{name} est populaire aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que l’autorisiez, ou sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
+      subject: 'Nouveau hashtag en attente de traitement sur %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Interface web avancée
     advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil public fédéré, un nombre illimité de listes et hashtags.'
