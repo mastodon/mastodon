@@ -228,7 +228,7 @@ class FocalPointModal extends ImmutablePureComponent {
             <Button disabled={!dirty || detecting || length(description) > 420} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
           </div>
 
-          <div className='report-modal__statuses'>
+          <div className='focal-point-modal__content'>
             {focals && (
               <div className={classNames('focal-point', { dragging })} ref={this.setRef} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart}>
                 {media.get('type') === 'image' && <img src={media.get('url')} width={width} height={height} alt='' />}

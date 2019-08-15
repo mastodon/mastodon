@@ -528,7 +528,8 @@
   }
 }
 
-.report-modal__statuses {
+.report-modal__statuses,
+.focal-point-modal__content {
   flex: 1 1 auto;
   min-height: 20vh;
   max-height: 80vh;
@@ -541,6 +542,12 @@
 
   @media screen and (max-width: 480px) {
     max-height: 10vh;
+  }
+}
+
+.focal-point-modal__content {
+  @media screen and (max-width: 480px) {
+    max-height: 40vh;
   }
 }
 
@@ -635,15 +642,6 @@
     .setting-toggle {
       margin-bottom: 4px;
     }
-  }
-}
-
-.report-modal__target {
-  padding: 20px;
-
-  .media-modal__close {
-    top: 19px;
-    right: 15px;
   }
 }
 
@@ -762,6 +760,15 @@
         font-weight: 700;
       }
     }
+  }
+}
+
+.report-modal__target {
+  padding: 15px;
+
+  .media-modal__close {
+    top: 14px;
+    right: 15px;
   }
 }
 
