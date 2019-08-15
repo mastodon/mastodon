@@ -1,6 +1,5 @@
 import { Map as ImmutableMap } from 'immutable';
 import { NOTIFICATIONS_UPDATE } from 'mastodon/actions/notifications';
-import { TIMELINE_UPDATE } from 'mastodon/actions/timelines';
 import { APP_FOCUS, APP_UNFOCUS } from 'mastodon/actions/app';
 
 const initialState = ImmutableMap({
@@ -15,7 +14,6 @@ export default function missed_updates(state = initialState, action) {
   case APP_UNFOCUS:
     return state.set('focused', false);
   case NOTIFICATIONS_UPDATE:
-  case TIMELINE_UPDATE:
     return state.get('focused') ? state : state.update('unread', x => x + 1);
   default:
     return state;
