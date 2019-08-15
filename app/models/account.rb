@@ -127,6 +127,8 @@ class Account < ApplicationRecord
 
   delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
 
+  update_index('accounts#account', :self) if Chewy.enabled?
+
   def local?
     domain.nil?
   end
@@ -167,6 +169,10 @@ class Account < ApplicationRecord
 
   def subscribed?
     subscription_expires_at.present?
+  end
+
+  def searchable?
+    !(suspended? || moved?)
   end
 
   def possibly_stale?
