@@ -4534,7 +4534,8 @@ a.status-card.compact:hover {
   }
 }
 
-.report-modal__statuses {
+.report-modal__statuses,
+.focal-point-modal__content {
   flex: 1 1 auto;
   min-height: 20vh;
   max-height: 80vh;
@@ -4552,6 +4553,12 @@ a.status-card.compact:hover {
 
   @media screen and (max-width: 480px) {
     max-height: 10vh;
+  }
+}
+
+.focal-point-modal__content {
+  @media screen and (max-width: 480px) {
+    max-height: 40vh;
   }
 }
 
@@ -4749,10 +4756,10 @@ a.status-card.compact:hover {
 }
 
 .report-modal__target {
-  padding: 20px;
+  padding: 15px;
 
   .media-modal__close {
-    top: 19px;
+    top: 14px;
     right: 15px;
   }
 }
