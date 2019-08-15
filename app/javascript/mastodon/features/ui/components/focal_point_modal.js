@@ -162,7 +162,7 @@ class FocalPointModal extends ImmutablePureComponent {
         .finally(() => worker.terminate())
         .then(({ text }) => this.setState({ description: removeExtraLineBreaks(text), dirty: true, detecting: false }))
         .catch(() => this.setState({ detecting: false }));
-    });
+    }).catch(() => this.setState({ detecting: false }));
   }
 
   render () {
