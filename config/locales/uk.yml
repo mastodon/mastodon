@@ -4,6 +4,7 @@ uk:
     about_mastodon_html: Mastodon - це соціальна мережа, основана на відкритих веб-протоколах та вільному програмному забезпеченні з відкритим кодом. Вона є децентралізованою на кшталт електронної пошти.
     about_this: Про цю інстанцію
     active_count_after: активних
+    active_footnote: Активні користувачі місяця (MAU)
     administered_by: 'Адміністратор:'
     api: API
     apps: Мобільні додатки
@@ -251,6 +252,7 @@ uk:
       updated_msg: Емодзі успішно оновлене!
       upload: Вивантажити
     dashboard:
+      backlog: відкладені завдання
       config: Налаштування
       feature_deletions: Видалення облікових записів
       feature_invites: Посилання-запрошення
@@ -284,6 +286,7 @@ uk:
       created_msg: Блокування домену оброблюється
       destroyed_msg: Блокування домену знято
       domain: Домен
+      edit: Редагувати блокування доменів
       new:
         create: Створити блокування
         hint: Блокування домену не завадить створенню нових облікових записів у базі даних, але ретроактивно та автоматично застосує до них конкретні методи модерації.
@@ -494,6 +497,7 @@ uk:
       trending_right_now: Популярні саме зараз
       unique_uses_today: "%{count} постять сьогодні"
       unreviewed: Не переглянуто
+      updated_msg: Параметри хештегів успішно оновлені
     title: Адміністрування
     warning_presets:
       add_new: Додати новий
@@ -509,6 +513,8 @@ uk:
       body: "%{reporter} поскаржився(-лася) %{target}"
       body_remote: Хтось з домену %{domain} поскаржився(-лася) %{target}
       subject: 'Нова скарга до %{instance} (#%{id})'
+    new_trending_tag:
+      subject: 'Новий хештег надіслано на розгляд на %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Розширений web-інтерфейс
     animations_and_accessibility: Анімація та доступність
