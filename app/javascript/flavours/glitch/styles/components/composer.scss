@@ -2,6 +2,18 @@
   padding: 10px;
 }
 
+.character-counter {
+  cursor: default;
+  font-family: $font-sans-serif, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: $lighter-text-color;
+
+  &.character-counter--over {
+    color: $warning-red;
+  }
+}
+
 .no-reduce-motion .composer--spoiler {
   transition: height 0.4s ease, opacity 0.4s ease;
 }
@@ -588,13 +600,6 @@
   overflow: hidden;
   justify-content: flex-end;
   flex: 0 0 auto;
-
-  & > .character-counter {
-    display: inline-block;
-    margin: 0 16px 0 8px;
-    font-size: 16px;
-    line-height: 36px;
-  }
 
   & > .primary {
     display: inline-block;
