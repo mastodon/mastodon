@@ -84,6 +84,14 @@ class FocalPointModal extends ImmutablePureComponent {
     this.setState({ dragging: true });
   }
 
+  handleTouchStart = e => {
+    document.addEventListener('touchmove', this.handleMouseMove);
+    document.addEventListener('touchend', this.handleTouchEnd);
+
+    this.updatePosition(e);
+    this.setState({ dragging: true });
+  }
+
   handleMouseMove = e => {
     this.updatePosition(e);
   }
@@ -91,6 +99,13 @@ class FocalPointModal extends ImmutablePureComponent {
   handleMouseUp = () => {
     document.removeEventListener('mousemove', this.handleMouseMove);
     document.removeEventListener('mouseup', this.handleMouseUp);
+
+    this.setState({ dragging: false });
+  }
+
+  handleTouchEnd = () => {
+    document.removeEventListener('touchmove', this.handleMouseMove);
+    document.removeEventListener('touchend', this.handleTouchEnd);
 
     this.setState({ dragging: false });
   }
@@ -225,7 +240,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 </div>
 
                 <div className='focal-point__reticle' style={{ top: `${y * 100}%`, left: `${x * 100}%` }} />
-                <div className='focal-point__overlay' onMouseDown={this.handleMouseDown} />
+                <div className='focal-point__overlay' onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart} />
               </div>
             )}
 
