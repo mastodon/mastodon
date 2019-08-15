@@ -10,11 +10,11 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import IconButton from 'mastodon/components/icon_button';
 import Button from 'mastodon/components/button';
 import Video from 'mastodon/features/video';
-import { TesseractWorker } from 'tesseract.js';
 import Textarea from 'react-textarea-autosize';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import CharacterCounter from 'mastodon/features/compose/components/character_counter';
 import { length } from 'stringz';
+import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -148,19 +148,21 @@ class FocalPointModal extends ImmutablePureComponent {
   handleTextDetection = () => {
     const { media } = this.props;
 
-    const worker = new TesseractWorker({
-      workerPath: `${assetHost}/packs/ocr/worker.min.js`,
-      corePath: `${assetHost}/packs/ocr/tesseract-core.wasm.js`,
-      langPath: `${assetHost}/ocr/lang-data`,
-    });
-
     this.setState({ detecting: true });
 
-    worker.recognize(media.get('url'))
-      .progress(({ progress }) => this.setState({ progress }))
-      .finally(() => worker.terminate())
-      .then(({ text }) => this.setState({ description: removeExtraLineBreaks(text), dirty: true, detecting: false }))
-      .catch(() => this.setState({ detecting: false }));
+    fetchTesseract().then(({ TesseractWorker }) => {
+      const worker = new TesseractWorker({
+        workerPath: `${assetHost}/packs/ocr/worker.min.js`,
+        corePath: `${assetHost}/packs/ocr/tesseract-core.wasm.js`,
+        langPath: `${assetHost}/ocr/lang-data`,
+      });
+
+      worker.recognize(media.get('url'))
+        .progress(({ progress }) => this.setState({ progress }))
+        .finally(() => worker.terminate())
+        .then(({ text }) => this.setState({ description: removeExtraLineBreaks(text), dirty: true, detecting: false }))
+        .catch(() => this.setState({ detecting: false }));
+    }).catch(() => this.setState({ detecting: false }));
   }
 
   render () {
