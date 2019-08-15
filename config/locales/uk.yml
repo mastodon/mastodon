@@ -342,6 +342,9 @@ uk:
       public_comment: Публічний коментар
       title: Відомі інстанції
       total_blocked_by_us: Заблокованих нами
+      total_followed_by_them: Вони стежать за
+      total_followed_by_us: Ми стежимо за
+      total_reported: Звітів про них
       total_storage: Мультимедійні вкладення
     invites:
       deactivate_all: Деактивувати всі
@@ -420,6 +423,8 @@ uk:
       preview_sensitive_media:
         desc_html: Передпоказ посилання на інших сайтах буде відображати мініатюру навіть якщо медіа відмічене як вразливе
         title: Показувати вразливе медія у перепоказі OpenGraph
+      profile_directory:
+        title: Увімкнути каталог профілів
       registrations:
         closed_message:
           desc_html: Відображається на титульній сторінці, коли реєстрація закрита <br>Можна використовувати HTML-теги
@@ -619,12 +624,15 @@ uk:
       size: Розмір
     blocks: Список блокувань
     csv: CSV
+    domain_blocks: Блокування доменів
     follows: Підписки
     lists: Списки
     mutes: Список глушення
     storage: Ваш медіаконтент
   featured_tags:
     add_new: Додати новий
+    errors:
+      limit: Ви досягли максимальної кількості хештегів
   filters:
     contexts:
       home: Ваш фід
@@ -651,8 +659,17 @@ uk:
     copy: Копіювати
     order_by: Сортувати за
     save_changes: Зберегти зміни
+    validation_errors:
+      one: Щось досі не гаразд! Перегляньте повідомлення про помилку
+      few: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
+      many: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
+      other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
+  html_validator:
+    invalid_markup: 'містить неприпустиму HTML розмітку: %{error}'
   identity_proofs:
+    active: Активне
     authorize: Так, авторізувати
+    authorize_connection_prompt: Авторизувати це шифрувальне з'єднання?
     i_am_html: Я %{username} з %{service}.
     inactive: Неактивний
     publicize_checkbox: 'Та дмухнути це:'
