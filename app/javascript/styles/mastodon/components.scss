@@ -5797,7 +5797,12 @@ noscript {
     bottom: 10px;
     right: 10px;
     z-index: 2;
-    cursor: default;
+    cursor: move;
+    transition: opacity 0.1s ease;
+
+    &:hover {
+      opacity: 0.5;
+    }
 
     strong {
       color: $primary-text-color;

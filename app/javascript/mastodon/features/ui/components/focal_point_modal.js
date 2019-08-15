@@ -230,7 +230,7 @@ class FocalPointModal extends ImmutablePureComponent {
 
           <div className='report-modal__statuses'>
             {focals && (
-              <div className={classNames('focal-point', { dragging })} ref={this.setRef}>
+              <div className={classNames('focal-point', { dragging })} ref={this.setRef} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart}>
                 {media.get('type') === 'image' && <img src={media.get('url')} width={width} height={height} alt='' />}
                 {media.get('type') === 'gifv' && <video src={media.get('url')} width={width} height={height} loop muted autoPlay />}
 
@@ -240,7 +240,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 </div>
 
                 <div className='focal-point__reticle' style={{ top: `${y * 100}%`, left: `${x * 100}%` }} />
-                <div className='focal-point__overlay' onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart} />
+                <div className='focal-point__overlay' />
               </div>
             )}
 
