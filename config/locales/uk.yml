@@ -669,7 +669,9 @@ uk:
   identity_proofs:
     active: Активне
     authorize: Так, авторізувати
-    authorize_connection_prompt: Авторизувати це шифрувальне з'єднання?
+    authorize_connection_prompt: Авторизувати це зашифроване з'єднання?
+    errors:
+      failed: Не вдалося встановити це зашифроване з'єднання. Спробуйте ще раз за допомогою %{provider}.
     i_am_html: Я %{username} з %{service}.
     inactive: Неактивний
     publicize_checkbox: 'Та дмухнути це:'
@@ -815,13 +817,19 @@ uk:
     reply:
       proceed: Перейти до відповіді
       prompt: 'Ви збираєтесь відповісти на цей дмух:'
+  scheduled_statuses:
+    over_daily_limit: Ви перевищили ліміт в %{limit} запланованих дмухів на сьогодні
+    over_total_limit: Ви перевищили ліміт в %{limit} запланованих дмухів
+    too_soon: Запланована дата має бути в майбутньому
   sessions:
     activity: Остання активність
     browser: Браузер
     browsers:
       alipay: Alipay
       blackberry: Blackberry
+      chrome: Хром
       edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Невідомий браузер
       ie: Internet Explorer
