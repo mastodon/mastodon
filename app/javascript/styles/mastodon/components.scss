@@ -3,6 +3,27 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.link-button {
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+  color: $ui-highlight-color;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    color: $ui-primary-color;
+    cursor: default;
+  }
+}
+
 .button {
   background-color: $ui-highlight-color;
   border: 10px none;
@@ -637,18 +658,6 @@
     .character-counter__wrapper {
       align-self: center;
       margin-right: 4px;
-
-      .character-counter {
-        cursor: default;
-        font-family: $font-sans-serif, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        color: $lighter-text-color;
-
-        &.character-counter--over {
-          color: $warning-red;
-        }
-      }
     }
   }
 
@@ -662,6 +671,18 @@
       overflow: hidden;
       padding-top: 10px;
     }
+  }
+}
+
+.character-counter {
+  cursor: default;
+  font-family: $font-sans-serif, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: $lighter-text-color;
+
+  &.character-counter--over {
+    color: $warning-red;
   }
 }
 
@@ -4555,15 +4576,47 @@ a.status-card.compact:hover {
     padding: 10px;
     font-family: inherit;
     font-size: 14px;
-    resize: vertical;
+    resize: none;
     border: 0;
     outline: 0;
     border-radius: 4px;
     border: 1px solid $ui-secondary-color;
-    margin-bottom: 20px;
+    min-height: 100px;
+    max-height: 50vh;
+    margin-bottom: 10px;
 
     &:focus {
       border: 1px solid darken($ui-secondary-color, 8%);
+    }
+
+    &__wrapper {
+      background: $white;
+      border: 1px solid $ui-secondary-color;
+      margin-bottom: 10px;
+      border-radius: 4px;
+
+      .setting-text {
+        border: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+
+        &:focus {
+          border: 0;
+        }
+      }
+
+      &__modifiers {
+        color: $inverted-text-color;
+        font-family: inherit;
+        font-size: 14px;
+        background: $white;
+      }
+    }
+
+    &__toolbar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
     }
   }
 
