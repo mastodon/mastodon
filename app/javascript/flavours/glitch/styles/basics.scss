@@ -133,3 +133,17 @@ button {
     outline: 0 !important;
   }
 }
+
+.layout-single-column .app-holder {
+  &,
+  & > div {
+    min-height: 100vh;
+  }
+}
+
+.layout-multiple-columns .app-holder {
+  &,
+  & > div {
+    height: 100%;
+  }
+}
