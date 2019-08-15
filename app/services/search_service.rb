@@ -57,10 +57,10 @@ class SearchService < BaseService
   end
 
   def perform_hashtags_search!
-    Tag.search_for(
-      @query.gsub(/\A#/, ''),
-      @limit,
-      @offset
+    TagSearchService.new.call(
+      @query,
+      limit: @limit,
+      offset: @offset
     )
   end
 

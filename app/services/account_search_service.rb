@@ -109,7 +109,7 @@ class AccountSearchService < BaseService
       field_value_factor: {
         field: 'followers_count',
         modifier: 'log2p',
-        missing: 1,
+        missing: 0,
       },
     }
   end
