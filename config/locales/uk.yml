@@ -190,6 +190,7 @@ uk:
       username: Ім'я користувача
       warn: Попередження
       web: Веб
+      whitelisted: У білому списку
     action_logs:
       actions:
         assigned_to_self_report: "%{name} призначив(-ла) скаргу %{target} на себе"
@@ -200,6 +201,7 @@ uk:
         create_domain_block: "%{name} заблокував(-ла) домен %{target}"
         create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
         demote_user: "%{name} понизив(-ла) %{target}"
+        destroy_custom_emoji: "%{name} знищив(ла) емодзі %{target}"
         destroy_domain_block: "%{name} розблокував(-ла) домен %{target}"
         destroy_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до білого списку"
         destroy_status: "%{name} видалив(-ла) статус користувача %{target}"
@@ -255,6 +257,7 @@ uk:
       feature_profile_directory: Каталог профілів
       feature_registrations: Реєстрації
       feature_spam_check: Анти-спам
+      feature_timeline_preview: Передпоказ стрічки
       features: Можливості
       hidden_service: Федерація з прихованими сервісами
       open_reports: відкриті скарги
@@ -272,6 +275,8 @@ uk:
       week_users_active: активно протягом тижня
       week_users_new: користувачів цього тижня
     domain_allows:
+      add_new: Додати домен до білого списку
+      created_msg: Домен було успішно додано до білого списку
       destroyed_msg: Домен було видалено з білого списку
       undo: Видалити з білого списку
     domain_blocks:
@@ -292,6 +297,9 @@ uk:
       public_comment: Публічний коментар
       reject_media: Заборонити медіаконтент
       reject_media_hint: Видаляє медіаконтент, збережений локально, і забороняє його завантаження у майбутньому. Не має значення у випадку блокування
+      severity:
+        silence: заглушені
+        suspend: призупинені
       show:
         affected_accounts:
           one: Впливає на один акаунт у базі даних
@@ -304,6 +312,7 @@ uk:
         title: Зняти блокування з домена %{domain}
         undo: Відмінити
       undo: Відмінити
+      view: Переглянути заблоковані домени
     email_domain_blocks:
       add_new: Додати
       created_msg: Успішно додано поштовий домен до чорного списку
@@ -327,10 +336,12 @@ uk:
         other: "%{count} відомих облікових записів"
       moderation:
         all: Усі
+        limited: Обмежені
         title: Модерація
       private_comment: Приватний коментар
       public_comment: Публічний коментар
       title: Відомі інстанції
+      total_blocked_by_us: Заблокованих нами
       total_storage: Мультимедійні вкладення
     invites:
       deactivate_all: Деактивувати всі
