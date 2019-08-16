@@ -55,12 +55,13 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
   end
 
   def next_page
+    other_accounts = !(@replies&.last&.account_id == @account.id && @replies.size == DESCENDANTS_LIMIT)
     account_status_replies_url(
       @account,
       @status,
       page: true,
-      min_id: @replies&.last&.id,
-      other_accounts: !(@replies&.last&.account_id == @account.id && @replies.size == DESCENDANTS_LIMIT)
+      min_id: other_accounts && !page_params[:other_accounts] ? nil : @replies&.last&.id,
+      other_accounts: other_accounts
     )
   end
 
