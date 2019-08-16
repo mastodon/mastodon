@@ -38,7 +38,7 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
       type: :unordered,
       part_of: account_status_replies_url(@account, @status),
       next: next_page,
-      items: @replies.map { |status| status.local ? status : status.id }
+      items: @replies.map { |status| status.local ? status : status.uri }
     )
 
     return page if page_requested?
