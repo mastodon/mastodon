@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
 
+  skip_before_action :verify_authenticity_token, only: :raise_not_found
+
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
   end
