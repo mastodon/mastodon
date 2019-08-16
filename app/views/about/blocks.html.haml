@@ -42,5 +42,7 @@
       - if @blocks.any? { |block| block.severity == 'suspend' }
         %h3= t('domain_blocks.suspension')
         %p= t('domain_blocks.severity_legend.suspension')
+        - if public_fetch_mode?
+          %p= t('domain_blocks.severity_legend.suspension_disclaimer')
   .column-1
     = render 'application/sidebar'

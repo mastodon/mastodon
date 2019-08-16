@@ -52,6 +52,7 @@ class AboutController < ApplicationController
   end
 
   helper_method :block_severity_text
+  helper_method :public_fetch_mode?
 
   def new_user
     User.new.tap do |user|
