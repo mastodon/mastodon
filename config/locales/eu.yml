@@ -479,6 +479,8 @@ eu:
         desc_html: Bistaratu denbora-lerro publikoa hasiera orrian
         title: Denbora-lerroaren aurrebista
       title: Gunearen ezarpenak
+      trends:
+        title: Traolak joeran
     statuses:
       back_to_account: Atzera kontuaren orrira
       batch:
@@ -493,11 +495,18 @@ eu:
       title: Kontuaren mezuak
       with_media: Multimediarekin
     tags:
+      accounts_today: Erabilera bakanak gaur
+      accounts_week: Erabilera bakanak aste honetan
       context: Testuingurua
+      directory: Direktorioan
+      in_directory: "%{count} direktorioan"
       review: Berrikusketaren egoera
       reviewed: Berrikusita
       title: Traolak
+      trending_right_now: Joera orain
+      unique_uses_today: "%{count} idazten gaur"
       unreviewed: Berrikusi gabe
+      updated_msg: Traola-ezarpenak ongi eguneratu dira
     title: Administrazioa
     warning_presets:
       add_new: Gehitu berria
@@ -612,6 +621,8 @@ eu:
     people:
       one: "pertsona %{count}"
       other: "%{count} pertsona"
+  domain_validator:
+    invalid_domain: ez da domeinu izen baliogarria
   errors:
     '403': Ez duzu orri hau ikusteko baimenik.
     '404': Bilatu duzun orria ez dago hemen.
@@ -948,6 +959,8 @@ eu:
     pinned: Finkatutako toot-a
     reblogged: (r)en bultzada
     sensitive_content: 'Kontuz: Eduki hunkigarria'
+  tags:
+    does_not_match_previous_name: ez dator aurreko izenarekin bat
   terms:
     body_html: |
       <h2>Pribatutasun politika</h2>
