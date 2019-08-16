@@ -513,11 +513,11 @@ uk:
       in_directory: "%{count} у каталозі"
       review: Переглянути статус
       reviewed: Переглянуто
-      title: Хештеги
+      title: Хештеґи
       trending_right_now: Популярні саме зараз
       unique_uses_today: "%{count} постять сьогодні"
       unreviewed: Не переглянуто
-      updated_msg: Параметри хештегів успішно оновлені
+      updated_msg: Параметри хештеґів успішно оновлені
     title: Адміністрування
     warning_presets:
       add_new: Додати новий
@@ -527,7 +527,7 @@ uk:
       title: Управління шаблонами попереджень
   admin_mailer:
     new_pending_account:
-      body: Деталі нового облікового запису наведено нижче. Ви можете схвалити або відхилити цей додаток.
+      body: Деталі нового облікового запису наведено нижче. Ви можете схвалити або відхилити цю заяву.
       subject: Новий обліковий запис надіслано на розгляд на %{instance} (%{username})
     new_report:
       body: "%{reporter} поскаржився(-лася) %{target}"
@@ -539,6 +539,7 @@ uk:
     advanced_web_interface: Розширений web-інтерфейс
     animations_and_accessibility: Анімація та доступність
     confirmation_dialogs: Діалоги підтвердження
+    discovery: Виявлення
     sensitive_content: Дражливий вміст
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
@@ -587,6 +588,7 @@ uk:
       account_status: Статус облікового запису
       confirming: Очікуємо на завершення підтвердження за допомогою e-mail.
       functional: Ваш обліковий запис повністю робочій.
+      pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
     trouble_logging_in: Проблема під час входу?
   authorize_follow:
     already_following: Ви вже слідкуєте за цим обліковим записом
@@ -713,6 +715,7 @@ uk:
     status: Стан перевірки
   imports:
     modes:
+      merge: Злиття
       merge_long: Зберегти існуючі записи та додати нові
       overwrite: Перезаписувати
       overwrite_long: Замінити поточні записи новими
