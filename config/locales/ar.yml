@@ -295,6 +295,7 @@ ar:
           silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
+      private_comment: تعليق خاص
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
@@ -342,6 +343,7 @@ ar:
         all: كافتها
         limited: محدود
         title: الإشراف
+      private_comment: تعليق خاص
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
@@ -484,6 +486,7 @@ ar:
       title: منشورات الحساب
       with_media: تحتوي على وسائط
     tags:
+      context: السياق
       title: الوسوم
     title: الإدارة
     warning_presets:
@@ -502,6 +505,7 @@ ar:
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
     confirmation_dialogs: نوافذ التأكيد
+    discovery: استكشاف
     sensitive_content: محتوى حساس
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
@@ -521,6 +525,7 @@ ar:
     apply_for_account: اطلب دعوة
     change_password: الكلمة السرية
     checkbox_agreement_html: أوافق على <a href="%{rules_path}" target="_blank">قواعد الخادم</a> و <a href="%{terms_path}" target="_blank">شروط الخدمة</a>
+    checkbox_agreement_without_rules_html: أوافق على <a href="%{terms_path}" target="_blank">شروط الخدمة</a>
     delete_account: حذف حساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
@@ -542,6 +547,7 @@ ar:
     set_new_password: إدخال كلمة مرور جديدة
     status:
       account_status: حالة الحساب
+      functional: حسابك جاهز.
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
@@ -960,6 +966,7 @@ ar:
       title:
         disable: الحساب مُجمَّد
         none: تحذير
+        silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:
       edit_profile_action: تهيئة الملف الشخصي
