@@ -182,6 +182,7 @@ oc:
       username: Nom d’utilizaire
       warn: Avisar
       web: Web
+      whitelisted: Mes en lista blanca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
@@ -265,6 +266,7 @@ oc:
       week_interactions: interaccions aquesta setmana
       week_users_active: actius aquesta setmana
       week_users_new: utilizaires aquesta setmana
+      whitelist_mode: Mòde lista blanca
     domain_allows:
       add_new: Plaçar en lista blanca
       created_msg: Lo domeni es corrèctament estat plaçat en lista blanca
@@ -275,6 +277,7 @@ oc:
       created_msg: Domeni blocat es a èsser tractat
       destroyed_msg: Lo blocatge del domeni es estat levat
       domain: Domeni
+      edit: Modificar lo blocatge de domeni
       existing_domain_block_html: Impausèretz ja de limitas mai estrictas per %{name}, vos cal lo <a href="%{unblock_url}">desblocar</a>d’en primièr.
       new:
         create: Crear blocatge
@@ -285,6 +288,8 @@ oc:
           silence: Silenci
           suspend: Suspendre
         title: Nòu blocatge domeni
+      private_comment: Comentari privat
+      public_comment: Comentari public
       reject_media: Regetar los fichièrs mèdias
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
       reject_reports: Regetar los senhalaments
@@ -304,6 +309,7 @@ oc:
         title: Restablir lo blocatge de domeni de %{domain}
         undo: Restablir
       undo: Restablir
+      view: Veire lo blocatge de domeni
     email_domain_blocks:
       add_new: Ajustar
       created_msg: Blocatge del domeni de corrièl ben plaçat
@@ -327,6 +333,8 @@ oc:
         all: Totas
         limited: Limitat
         title: Moderacion
+      private_comment: Comentari privat
+      public_comment: Comentari public
       title: Federacion
       total_blocked_by_us: Avèm blocat
       total_followed_by_them: Sègon
@@ -477,6 +485,9 @@ oc:
       title: Estatuts del compte
       with_media: Amb mèdia
     tags:
+      context: Contèxt
+      directory: A l’annuari
+      in_directory: "%{count} a l’annuari"
       title: Etiquetas
     title: Administracion
     warning_presets:
