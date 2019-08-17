@@ -470,13 +470,7 @@ it:
       title: Gli status dell'account
       with_media: con media
     tags:
-      accounts: Account
-      hidden: Nascosto
-      hide: Nascondi dalla directory
-      name: Etichetta
       title: Hashtag
-      unhide: Mostra nella directory
-      visible: Visibile
     title: Amministrazione
     warning_presets:
       add_new: Aggiungi nuovo
@@ -519,7 +513,6 @@ it:
     apply_for_account: Richiedi un invito
     change_password: Password
     checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
-    confirm_email: Conferma email
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
@@ -876,6 +869,8 @@ it:
     profile: Profilo
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
+  spam_check:
+    spam_detected_and_silenced: Questa è una segnalazione automatica. É stato rilevato dello spam e il mittente è stato automaticamente silenziato. Se fosse un errore, per favore annulla questa operazione sull'account.
   statuses:
     attached:
       description: 'Allegato: %{attached}'
