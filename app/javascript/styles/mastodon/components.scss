@@ -503,8 +503,20 @@
   .autosuggest-hashtag {
     justify-content: space-between;
 
+    &__name {
+      flex: 1 1 auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     strong {
       font-weight: 500;
+    }
+
+    &__uses {
+      flex: 0 0 auto;
+      width: 80px;
+      text-align: right;
     }
   }
 
