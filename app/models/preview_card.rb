@@ -25,7 +25,7 @@
 #
 
 class PreviewCard < ApplicationRecord
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
+  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   LIMIT = 1.megabytes
 
   self.inheritance_column = false
