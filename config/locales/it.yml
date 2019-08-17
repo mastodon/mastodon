@@ -494,7 +494,9 @@ it:
       accounts_week: Usi unici questa settimana
       breakdown: Suddivisione dell'utilizzo di oggi per fonte
       context: Contesto
+      directory: Nella directory
       title: Hashtag
+      updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
     warning_presets:
       add_new: Aggiungi nuovo
@@ -535,6 +537,7 @@ it:
     apply_for_account: Richiedi un invito
     change_password: Password
     checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
+    checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
@@ -554,6 +557,14 @@ it:
     reset_password: Resetta la password
     security: Credenziali
     set_new_password: Imposta una nuova password
+    setup:
+      email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
+      email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
+    status:
+      account_status: Stato dell'account
+      confirming: In attesa che la conferma e-mail sia completata.
+      functional: Il tuo account è pienamente operativo.
+      pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
     trouble_logging_in: Problemi di accesso?
   authorize_follow:
     already_following: Stai già seguendo questo account
@@ -598,6 +609,8 @@ it:
     people:
       one: "%{count} persona"
       other: "%{count} persone"
+  domain_validator:
+    invalid_domain: non è un nome di dominio valido
   errors:
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
@@ -632,6 +645,7 @@ it:
     add_new: Aggiungi nuovo
     errors:
       limit: Hai già messo in evidenza il numero massimo di hashtag
+    hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
       home: Timeline home
@@ -934,6 +948,8 @@ it:
     pinned: Toot fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+  tags:
+    does_not_match_previous_name: non corrisponde al nome precedente
   terms:
     title: "%{instance} Termini di servizio e politica della privacy"
   themes:
