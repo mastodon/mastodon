@@ -18,10 +18,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl } = this.props;
+    const { intl, multiColumn } = this.props;
 
     return (
-      <Column icon='question' heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='question' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <div className='keyboard-shortcuts scrollable optionally-scrollable'>
           <table>
@@ -59,6 +59,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               <tr>
                 <td><kbd>x</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_hidden' defaultMessage='to show/hide text behind CW' /></td>
+              </tr>
+              <tr>
+                <td><kbd>h</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.toggle_sensitivity' defaultMessage='to show/hide media' /></td>
               </tr>
               <tr>
                 <td><kbd>up</kbd>, <kbd>k</kbd></td>

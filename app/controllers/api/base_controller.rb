@@ -7,9 +7,14 @@ class Api::BaseController < ApplicationController
   include RateLimitHeaders
 
   skip_before_action :store_current_location
-  skip_before_action :check_user_permissions
+  skip_before_action :require_functional!
+
+  before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
+  before_action :set_cache_headers
 
   protect_from_forgery with: :null_session
+
+  skip_around_action :set_locale
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
@@ -67,6 +72,10 @@ class Api::BaseController < ApplicationController
     nil
   end
 
+  def require_authenticated_user!
+    render json: { error: 'This API requires an authenticated user' }, status: 401 unless current_user
+  end
+
   def require_user!
     if !current_user
       render json: { error: 'This method requires an authenticated user' }, status: 422
@@ -87,5 +96,13 @@ class Api::BaseController < ApplicationController
 
   def authorize_if_got_token!(*scopes)
     doorkeeper_authorize!(*scopes) if doorkeeper_token
+  end
+
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+  end
+
+  def disallow_unauthenticated_api_access?
+    authorized_fetch_mode?
   end
 end

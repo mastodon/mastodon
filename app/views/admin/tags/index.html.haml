@@ -3,17 +3,20 @@
 
 .filters
   .filter-subset
-    %strong= t('admin.reports.status')
+    %strong= t('admin.tags.context')
     %ul
-      %li= filter_link_to t('admin.tags.visible'), hidden: nil
-      %li= filter_link_to t('admin.tags.hidden'), hidden: '1'
+      %li= filter_link_to t('generic.all'), context: nil
+      %li= filter_link_to t('admin.tags.directory'), context: 'directory'
 
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th= t('admin.tags.name')
-        %th= t('admin.tags.accounts')
-        %th
-    %tbody
-      = render @tags
+  .filter-subset
+    %strong= t('admin.tags.review')
+    %ul
+      %li= filter_link_to t('generic.all'), review: nil
+      %li= filter_link_to t('admin.tags.unreviewed'), review: 'unreviewed'
+      %li= filter_link_to t('admin.tags.reviewed'), review: 'reviewed'
+      %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{Tag.pending_review.count})"], ' '), review: 'pending_review'
+
+%hr.spacer/
+
+= render @tags
+= paginate @tags

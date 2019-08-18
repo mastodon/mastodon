@@ -506,7 +506,7 @@ RSpec.describe User, type: :model do
       context 'when user is not confirmed' do
         let(:confirmed_at) { nil }
 
-        it { is_expected.to be false }
+        it { is_expected.to be true }
       end
     end
 
@@ -522,7 +522,7 @@ RSpec.describe User, type: :model do
       context 'when user is not confirmed' do
         let(:confirmed_at) { nil }
 
-        it { is_expected.to be false }
+        it { is_expected.to be true }
       end
     end
   end

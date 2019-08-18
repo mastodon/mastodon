@@ -75,6 +75,23 @@ class ListTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectListStream(id));
   }
 
+  componentWillReceiveProps (nextProps) {
+    const { dispatch } = this.props;
+    const { id } = nextProps.params;
+
+    if (id !== this.props.params.id) {
+      if (this.disconnect) {
+        this.disconnect();
+        this.disconnect = null;
+      }
+
+      dispatch(fetchList(id));
+      dispatch(expandListTimeline(id));
+
+      this.disconnect = dispatch(connectListStream(id));
+    }
+  }
+
   componentWillUnmount () {
     if (this.disconnect) {
       this.disconnect();
@@ -131,14 +148,14 @@ class ListTimeline extends React.PureComponent {
     } else if (list === false) {
       return (
         <Column>
-          <ColumnBackButton />
+          <ColumnBackButton multiColumn={multiColumn} />
           <MissingIndicator />
         </Column>
       );
     }
 
     return (
-      <Column ref={this.setRef} label={title}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
           icon='list-ul'
           active={hasUnread}
@@ -158,8 +175,6 @@ class ListTimeline extends React.PureComponent {
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
-
-          <hr />
         </ColumnHeader>
 
         <StatusListContainer
@@ -169,6 +184,7 @@ class ListTimeline extends React.PureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
           shouldUpdateScroll={shouldUpdateScroll}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

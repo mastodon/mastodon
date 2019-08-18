@@ -5,7 +5,6 @@ ms:
     about_mastodon_html: Mastodon ialah rangkaian sosial berasaskan protokol web terbuka dan perisian percuma bersumber terbuka. Ianya tak terpusat seperti emel.
     about_this: Mengenai Kami
     administered_by: 'Ditadbir oleh:'
-    api: API
     apps: Aplikasi mudah alih
     contact: Hubungi kami
     contact_missing: Tidak ditetapkan
@@ -20,12 +19,10 @@ ms:
     privacy_policy: Polisi privasi
     source_code: Kod sumber
     status_count_after:
-      one: status
       other: status
     status_count_before: Telah menulis
     terms: Terma perkhidmatan
     user_count_after:
-      one: pengguna
       other: pengguna
     user_count_before: Rumah kepada
     what_is_mastodon: Apakah itu Mastodon?
@@ -33,12 +30,10 @@ ms:
     choices_html: 'Pilihan %{name}:'
     follow: Ikut
     followers:
-      one: Pengikut
       other: Pengikut
     following: Mengikuti
     joined: Sertai pada %{date}
     link_verified_on: Pemilikan pautan ini diperiksa pada %{date}
-    media: Media
     moved_html: "%{name} telah berpindah ke %{new_profile_link}:"
     network_hidden: Maklumat ini tidak tersedia
     nothing_here: Tiada apa-apa di sini!
@@ -47,14 +42,11 @@ ms:
     pin_errors:
       following: Anda mestilah sudah mengikuti orang yang anda ingin syorkan
     posts:
-      one: Toot
       other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot dan maklum balas
     reserved_username: Nama pengguna ini terpelihara
     roles:
-      admin: Admin
-      bot: Bot
       moderator: Pengawal
     unfollow: Nyahikut
   admin:
@@ -65,8 +57,6 @@ ms:
       destroyed_msg: Nota kawalan telah berjaya dipadam!
     accounts:
       are_you_sure: Anda pasti?
-      avatar: Avatar
-      by_domain: Domain
       change_email:
         changed_msg: Emel akaun telah berjaya ditukar!
         current_email: Emel Semasa
@@ -82,7 +72,6 @@ ms:
       disable_two_factor_authentication: Lumpuhkan 2FA
       disabled: Dilumpuhkan
       display_name: Nama paparan
-      domain: Domain
       edit: Tukar
       email: Emel
       email_status: Status Emel
@@ -151,7 +140,6 @@ ms:
       undo_suspension: Buang penggantungan
       unsubscribe: Buang langganan
       username: Nama pengguna
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} memberikan laporan %{target} kepada diri mereka sendiri"
@@ -186,7 +174,6 @@ ms:
       deleted_status: "(status telah dipadam)"
       title: Log audit
     custom_emojis:
-      by_domain: Domain
       copied_msg: Telah berjaya mencipta salinan tempatan emoji
       copy: Salin
       copy_failed_msg: Tidak dapat membuat salinan tempatan emoji tersebut
@@ -195,7 +182,6 @@ ms:
       destroyed_msg: Emoji berjaya dipadam!
       disable: Lumpuhkan
       disabled_msg: Emoji tersebut berjaya dilumpuhkan
-      emoji: Emoji
       enable: Bolehkan
       enabled_msg: Emoji tersebut berjaya dibolehkan
       image_hint: PNG, maksimum 50KB
@@ -235,7 +221,6 @@ ms:
       add_new: Tambah
       created_msg: Sekatan domain sedang diproses
       destroyed_msg: Sekatan domain telah dibatalkan
-      domain: Domain
       new:
         create: Cipta sekatan
         hint: Sekatan domain tidak akan menghindarkan penciptaan entri akaun dalam pangkalan data, tetapi akan diberikan kaedah kawalan khusus tertentu pada akaun-akaun tersebut secara retroaktif dan automatik.
@@ -251,7 +236,6 @@ ms:
       reject_reports_hint: Abaikan semua laporan daripada domain ini. Tidak dikira untuk penggantungan
       show:
         affected_accounts:
-          one: Satu akaun dalam pangkalan data menerima kesan
           other: "%{count} akaun dalam pangkalan data menerima kesan"
         retroactive:
           silence: Buang penyenyapan semua akaun sedia ada daripada domain ini
@@ -264,7 +248,6 @@ ms:
       created_msg: Berjaya menambah domain emel ke dalam senarai hitam
       delete: Padam
       destroyed_msg: Berjaya memadam domain emel daripada senarai hitam
-      domain: Domain
       new:
         create: Tambah domain
         title: Entri senarai hitam emel baru
@@ -292,7 +275,6 @@ ms:
       pending: Menunggu persetujuan geganti
       save_and_enable: Simpan dan bolehkan
       setup: Tetapkan sambungan geganti
-      status: Status
       title: Geganti
     report_notes:
       created_msg: Nota laporan berjaya dicipta!
@@ -314,9 +296,24 @@ ms:
         create: Tambah nota
         create_and_resolve: Selesaikan dengan nota
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Throttled
+    '500': 
   exports:
     archive_takeout:
       in_progress: Mengkompil arkib anda...
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   notification_mailer:
     digest:
       title: Ketika anda tiada di sini...

@@ -114,6 +114,12 @@ cs:
       application:
         title: Je požadována autorizace OAuth
     scopes:
+      admin:read: číst všechna data na serveru
+      admin:read:accounts: číst citlivé informace všech účtů
+      admin:read:reports: číst citlivé informace všech nahlášení a nahlášených účtů
+      admin:write: měnit všechna data na serveru
+      admin:write:accounts: provádět moderátorské akce s účty
+      admin:write:reports: provádět moderátorské akce s nahlášeními
       follow: upravovat vztahy mezi profily
       push: přijímat vaše push oznámení
       read: vidět všechna data vašeho účtu

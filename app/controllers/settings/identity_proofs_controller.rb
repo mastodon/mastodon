@@ -18,7 +18,7 @@ class Settings::IdentityProofsController < Settings::BaseController
       provider_username: params[:provider_username]
     )
 
-    if current_account.username == params[:username]
+    if current_account.username.casecmp(params[:username]).zero?
       render layout: 'auth'
     else
       flash[:alert] = I18n.t('identity_proofs.errors.wrong_user', proving: params[:username], current: current_account.username)
@@ -55,9 +55,5 @@ class Settings::IdentityProofsController < Settings::BaseController
 
   def post_params
     params.require(:account_identity_proof).permit(:post_status, :status_text)
-  end
-
-  def set_body_classes
-    @body_classes = ''
   end
 end

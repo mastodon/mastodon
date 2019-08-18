@@ -13,6 +13,7 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
+import MissingIndicator from 'mastodon/components/missing_indicator';
 
 const emptyList = ImmutableList();
 
@@ -20,6 +21,7 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
   return {
+    isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
@@ -41,6 +43,8 @@ class AccountTimeline extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
     blockedBy: PropTypes.bool,
+    isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -74,7 +78,15 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy } = this.props;
+    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, isAccount, multiColumn } = this.props;
+
+    if (!isAccount) {
+      return (
+        <Column>
+          <MissingIndicator />
+        </Column>
+      );
+    }
 
     if (!statusIds && isLoading) {
       return (
@@ -88,7 +100,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
@@ -101,6 +113,7 @@ class AccountTimeline extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

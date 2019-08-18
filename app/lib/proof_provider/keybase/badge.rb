@@ -3,10 +3,11 @@
 class ProofProvider::Keybase::Badge
   include RoutingHelper
 
-  def initialize(local_username, provider_username, token)
+  def initialize(local_username, provider_username, token, domain)
     @local_username    = local_username
     @provider_username = provider_username
     @token             = token
+    @domain            = domain
   end
 
   def proof_url
@@ -18,7 +19,7 @@ class ProofProvider::Keybase::Badge
   end
 
   def icon_url
-    "#{ProofProvider::Keybase::BASE_URL}/#{@provider_username}/proof_badge/#{@token}?username=#{@local_username}&domain=#{domain}"
+    "#{ProofProvider::Keybase::BASE_URL}/#{@provider_username}/proof_badge/#{@token}?username=#{@local_username}&domain=#{@domain}"
   end
 
   def avatar_url
@@ -40,9 +41,5 @@ class ProofProvider::Keybase::Badge
 
   def default_avatar_url
     asset_pack_path('media/images/proof_providers/keybase.png')
-  end
-
-  def domain
-    Rails.configuration.x.local_domain
   end
 end

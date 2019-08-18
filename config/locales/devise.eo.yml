@@ -12,6 +12,7 @@ eo:
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
       locked: Via konto estas ŝlosita.
       not_found_in_database: Nevalida %{authentication_keys} aŭ pasvorto.
+      pending: Via konto ankoraŭ estas kontrolanta.
       timeout: Via seanco eksvalidiĝis. Bonvolu ensaluti denove por daŭrigi.
       unauthenticated: Vi devas ensaluti aŭ registriĝi antaŭ ol daŭrigi.
       unconfirmed: Vi devas konfirmi vian retadreson antaŭ ol daŭrigi.
@@ -20,6 +21,7 @@ eo:
         action: Konfirmi retadreson
         action_with_app: Konfirmi kaj reveni al %{app}
         explanation: Vi kreis konton en %{host} per ĉi tiu retadreso. Nur klako restas por aktivigi ĝin. Se tio ne estis vi, bonvolu ignori ĉi tiun retmesaĝon.
+        explanation_when_pending: Vi petis inviton al %{host} per ĉi tiu retpoŝta adreso. Kiam vi konfirmas vian retpoŝtan adreson, ni revizios vian kandidatiĝon. Vi ne povas ensaluti ĝis tiam. Se via kandidatiĝo estas rifuzita, viaj datumoj estos forigitaj, do neniu alia ago estos postulita de vi. Se tio ne estis vi, bonvolu ignori ĉi tiun retpoŝton.
         extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la servilo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
         subject: 'Mastodon: Konfirmaj instrukcioj por %{instance}'
         title: Konfirmi retadreson
@@ -60,6 +62,7 @@ eo:
       signed_up: Bonvenon! Vi sukcese registriĝis.
       signed_up_but_inactive: Vi sukcese registriĝis. Tamen, ni ne povis ensalutigi vin, ĉar via konto ankoraŭ ne estas konfirmita.
       signed_up_but_locked: Vi sukcese registriĝis. Tamen, ni ne povis ensalutigi vin, ĉar via konto estas ŝlosita.
+      signed_up_but_pending: Mesaĝo kun konfirma ligilo estis sendita al via retpoŝta adreso. Post kiam vi alklakis la ligilon, ni revizios vian kandidatiĝon. Vi estos sciigita se ĝi estas aprobita.
       signed_up_but_unconfirmed: Retmesaĝo kun konfirma ligilo estis sendita al via retadreso. Bonvolu sekvi la ligilon por aktivigi vian konton. Bonvolu kontroli vian spamujon, se vi ne ricevis ĉi tiun retmesaĝon.
       update_needs_confirmation: Vi sukcese ĝisdatigis vian konton, sed ni bezonas kontroli vian novan retadreson. Bonvolu kontroli viajn retmesaĝojn kaj sekvi la konfirman ligilon por konfirmi vian novan retadreson. Bonvolu kontroli vian spamujon, se vi ne ricevis ĉi tiun retmesaĝon.
       updated: Via konto estis sukcese ĝisdatigita.

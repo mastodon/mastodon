@@ -41,6 +41,22 @@ RSpec.describe ActivityPub::TagManager do
       status.mentions.create(account: mentioned)
       expect(subject.to(status)).to eq [subject.uri_for(mentioned)]
     end
+
+    it "returns URIs of mentions for direct silenced author's status only if they are followers or requesting to be" do
+      bob    = Fabricate(:account, username: 'bob')
+      alice  = Fabricate(:account, username: 'alice')
+      foo    = Fabricate(:account)
+      author = Fabricate(:account, username: 'author', silenced: true)
+      status = Fabricate(:status, visibility: :direct, account: author)
+      bob.follow!(author)
+      FollowRequest.create!(account: foo, target_account: author)
+      status.mentions.create(account: alice)
+      status.mentions.create(account: bob)
+      status.mentions.create(account: foo)
+      expect(subject.to(status)).to include(subject.uri_for(bob))
+      expect(subject.to(status)).to include(subject.uri_for(foo))
+      expect(subject.to(status)).to_not include(subject.uri_for(alice))
+    end
   end
 
   describe '#cc' do
@@ -69,6 +85,22 @@ RSpec.describe ActivityPub::TagManager do
       mentioned = Fabricate(:account)
       status.mentions.create(account: mentioned)
       expect(subject.cc(status)).to include(subject.uri_for(mentioned))
+    end
+
+    it "returns URIs of mentions for silenced author's non-direct status only if they are followers or requesting to be" do
+      bob    = Fabricate(:account, username: 'bob')
+      alice  = Fabricate(:account, username: 'alice')
+      foo    = Fabricate(:account)
+      author = Fabricate(:account, username: 'author', silenced: true)
+      status = Fabricate(:status, visibility: :public, account: author)
+      bob.follow!(author)
+      FollowRequest.create!(account: foo, target_account: author)
+      status.mentions.create(account: alice)
+      status.mentions.create(account: bob)
+      status.mentions.create(account: foo)
+      expect(subject.cc(status)).to include(subject.uri_for(bob))
+      expect(subject.cc(status)).to include(subject.uri_for(foo))
+      expect(subject.cc(status)).to_not include(subject.uri_for(alice))
     end
   end
 
@@ -109,12 +141,6 @@ RSpec.describe ActivityPub::TagManager do
     it 'returns the local status for OStatus tag: URI' do
       status = Fabricate(:status)
       expect(subject.uri_to_resource(OStatus::TagManager.instance.uri_for(status), Status)).to eq status
-    end
-
-    it 'returns the local status for OStatus StreamEntry URL' do
-      status = Fabricate(:status)
-      stream_entry_url = account_stream_entry_url(status.account, status.stream_entry)
-      expect(subject.uri_to_resource(stream_entry_url, Status)).to eq status
     end
 
     it 'returns the remote status by matching URI without fragment part' do

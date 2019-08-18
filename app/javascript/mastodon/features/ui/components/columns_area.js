@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import ReactSwipeableViews from 'react-swipeable-views';
-import { links, getIndex, getLink } from './tabs_bar';
+import TabsBar, { links, getIndex, getLink } from './tabs_bar';
 import { Link } from 'react-router-dom';
 
 import BundleContainer from '../containers/bundle_container';
@@ -14,6 +14,8 @@ import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, ListTimeline } from '../../ui/util/async-components';
 import Icon from 'mastodon/components/icon';
+import ComposePanel from './compose_panel';
+import NavigationPanel from './navigation_panel';
 
 import detectPassiveEvents from 'detect-passive-events';
 import { scrollRight } from '../../../scroll';
@@ -108,6 +110,11 @@ class ColumnsArea extends ImmutablePureComponent {
     // React-router does this for us, but too late, feeling laggy.
     document.querySelector(currentLinkSelector).classList.remove('active');
     document.querySelector(nextLinkSelector).classList.add('active');
+
+    if (!this.state.shouldAnimate && typeof this.pendingIndex === 'number') {
+      this.context.router.history.push(getLink(this.pendingIndex));
+      this.pendingIndex = null;
+    }
   }
 
   handleAnimationEnd = () => {
@@ -139,7 +146,7 @@ class ColumnsArea extends ImmutablePureComponent {
       <ColumnLoading title={title} icon={icon} />;
 
     return (
-      <div className='columns-area' key={index}>
+      <div className='columns-area columns-area--mobile' key={index}>
         {view}
       </div>
     );
@@ -158,22 +165,40 @@ class ColumnsArea extends ImmutablePureComponent {
     const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
-    this.pendingIndex = null;
 
     if (singleColumn) {
       const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/statuses/new' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;
 
-      return columnIndex !== -1 ? [
+      const content = columnIndex !== -1 ? (
         <ReactSwipeableViews key='content' index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
           {links.map(this.renderView)}
-        </ReactSwipeableViews>,
+        </ReactSwipeableViews>
+      ) : (
+        <div key='content' className='columns-area columns-area--mobile'>{children}</div>
+      );
 
-        floatingActionButton,
-      ] : [
-        <div className='columns-area'>{children}</div>,
+      return (
+        <div className='columns-area__panels'>
+          <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
+            <div className='columns-area__panels__pane__inner'>
+              <ComposePanel />
+            </div>
+          </div>
 
-        floatingActionButton,
-      ];
+          <div className='columns-area__panels__main'>
+            <TabsBar key='tabs' />
+            {content}
+          </div>
+
+          <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
+            <div className='columns-area__panels__pane__inner'>
+              <NavigationPanel />
+            </div>
+          </div>
+
+          {floatingActionButton}
+        </div>
+      );
     }
 
     return (

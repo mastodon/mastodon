@@ -28,7 +28,6 @@ class Status < ApplicationRecord
   before_destroy :unlink_from_conversations
 
   include Paginable
-  include Streamable
   include Cacheable
   include StatusThreadingConcern
 
@@ -61,7 +60,6 @@ class Status < ApplicationRecord
   has_and_belongs_to_many :preview_cards
 
   has_one :notification, as: :activity, dependent: :destroy
-  has_one :stream_entry, as: :activity, inverse_of: :status
   has_one :status_stat, inverse_of: :status
   has_one :poll, inverse_of: :status, dependent: :destroy
 
@@ -77,15 +75,15 @@ class Status < ApplicationRecord
   default_scope { recent }
 
   scope :recent, -> { reorder(id: :desc) }
-  scope :remote, -> { where(local: false).or(where.not(uri: nil)) }
+  scope :remote, -> { where(local: false).where.not(uri: nil) }
   scope :local,  -> { where(local: true).or(where(uri: nil)) }
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
-  scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
-  scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
+  scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced_at: nil }) }
+  scope :including_silenced_accounts, -> { left_outer_joins(:account).where.not(accounts: { silenced_at: nil }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
   scope :tagged_with_all, ->(tags) {
@@ -106,13 +104,11 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :preview_cards,
-                   :stream_entry,
                    :preloadable_poll,
                    account: :account_stat,
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
-                     :stream_entry,
                      :tags,
                      :preview_cards,
                      :media_attachments,
@@ -197,12 +193,14 @@ class Status < ApplicationRecord
   end
 
   def hidden?
-    private_visibility? || direct_visibility? || limited_visibility?
+    !distributable?
   end
 
   def distributable?
     public_visibility? || unlisted_visibility?
   end
+
+  alias sign? distributable?
 
   def with_media?
     media_attachments.any?
@@ -276,47 +274,6 @@ class Status < ApplicationRecord
 
     def as_home_timeline(account)
       where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
-    end
-
-    def as_direct_timeline(account, limit = 20, max_id = nil, since_id = nil, cache_ids = false)
-      # direct timeline is mix of direct message from_me and to_me.
-      # 2 queries are executed with pagination.
-      # constant expression using arel_table is required for partial index
-
-      # _from_me part does not require any timeline filters
-      query_from_me = where(account_id: account.id)
-                      .where(Status.arel_table[:visibility].eq(3))
-                      .limit(limit)
-                      .order('statuses.id DESC')
-
-      # _to_me part requires mute and block filter.
-      # FIXME: may we check mutes.hide_notifications?
-      query_to_me = Status
-                    .joins(:mentions)
-                    .merge(Mention.where(account_id: account.id))
-                    .where(Status.arel_table[:visibility].eq(3))
-                    .limit(limit)
-                    .order('mentions.status_id DESC')
-                    .not_excluded_by_account(account)
-
-      if max_id.present?
-        query_from_me = query_from_me.where('statuses.id < ?', max_id)
-        query_to_me = query_to_me.where('mentions.status_id < ?', max_id)
-      end
-
-      if since_id.present?
-        query_from_me = query_from_me.where('statuses.id > ?', since_id)
-        query_to_me = query_to_me.where('mentions.status_id > ?', since_id)
-      end
-
-      if cache_ids
-        # returns array of cache_ids object that have id and updated_at
-        (query_from_me.cache_ids.to_a + query_to_me.cache_ids.to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
-      else
-        # returns ActiveRecord.Relation
-        items = (query_from_me.select(:id).to_a + query_to_me.select(:id).to_a).uniq(&:id).sort_by(&:id).reverse.take(limit)
-        Status.where(id: items.map(&:id))
-      end
     end
 
     def as_public_timeline(account = nil, local_only = false)
@@ -431,13 +388,16 @@ class Status < ApplicationRecord
     end
   end
 
+  def status_stat
+    super || build_status_stat
+  end
+
   private
 
   def update_status_stat!(attrs)
     return if marked_for_destruction? || destroyed?
 
-    record = status_stat || build_status_stat
-    record.update(attrs)
+    status_stat.update(attrs)
   end
 
   def store_uri
@@ -489,7 +449,8 @@ class Status < ApplicationRecord
   end
 
   def update_statistics
-    return unless public_visibility? || unlisted_visibility?
+    return unless distributable?
+
     ActivityTracker.increment('activity:statuses:local')
   end
 
@@ -497,16 +458,16 @@ class Status < ApplicationRecord
     return if direct_visibility?
 
     account&.increment_count!(:statuses_count)
-    reblog&.increment_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
-    thread&.increment_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
+    reblog&.increment_count!(:reblogs_count) if reblog?
+    thread&.increment_count!(:replies_count) if in_reply_to_id.present? && distributable?
   end
 
   def decrement_counter_caches
     return if direct_visibility? || marked_for_mass_destruction?
 
     account&.decrement_count!(:statuses_count)
-    reblog&.decrement_count!(:reblogs_count) if reblog? && (public_visibility? || unlisted_visibility?)
-    thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && (public_visibility? || unlisted_visibility?)
+    reblog&.decrement_count!(:reblogs_count) if reblog?
+    thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?
   end
 
   def unlink_from_conversations

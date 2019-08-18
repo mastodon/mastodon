@@ -12,6 +12,8 @@ class Api::V1::AccountsController < Api::BaseController
   before_action :check_account_suspension, only: [:show]
   before_action :check_enabled_registrations, only: [:create]
 
+  skip_before_action :require_authenticated_user!, only: :create
+
   respond_to :json
 
   def show

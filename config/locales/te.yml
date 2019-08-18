@@ -5,7 +5,6 @@ te:
     about_mastodon_html: మాస్టొడాన్ అనేది ఒక సామాజిక మాధ్యమం. ఇది పూర్తిగా ఉచితం మరియు స్వేచ్ఛా సాఫ్టువేరు. ఈమెయిల్ లాగానే ఇది వికేంద్రీకరించబడినది.
     about_this: గురించి
     administered_by: 'నిర్వహణలో:'
-    api: API
     apps: మొబైల్ యాప్స్
     contact: సంప్రదించండి
     contact_missing: ఇంకా సెట్ చేయలేదు
@@ -96,9 +95,7 @@ te:
       followers: అనుచరులు
       followers_url: అనుచరుల URL
       follows: అనుసరిస్తున్నారు
-      header: Header
       inbox_url: ఇన్ బాక్స్ URL
-      ip: IP
       location:
         all: అన్నీ
         local: లోకల్
@@ -106,7 +103,6 @@ te:
         title: లొకేషన్
       login_status: లాగిన్ స్థితి
       media_attachments: మీడియా అటాచ్మెంట్లు
-      memorialize: Turn into memoriam
       moderation:
         active: యాక్టివ్
         all: అన్నీ
@@ -116,3 +112,18 @@ te:
       moderation_notes: మోడరేషన్ నోట్స్
       most_recent_activity: ఇటీవల యాక్టివిటీ
       most_recent_ip: ఇటీవలి IP
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Throttled
+    '500': 
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day

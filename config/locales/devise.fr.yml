@@ -12,6 +12,7 @@ fr:
       last_attempt: Vous avez droit à une tentative avant que votre compte ne soit verrouillé.
       locked: Votre compte est verrouillé.
       not_found_in_database: "%{authentication_keys} ou mot de passe invalide."
+      pending: Votre compte est toujours en cours d'approbation.
       timeout: Votre session a expiré. Veuillez vous reconnecter pour continuer.
       unauthenticated: Vous devez vous connecter ou vous inscrire pour continuer.
       unconfirmed: Vous devez valider votre compte pour continuer.
@@ -20,6 +21,7 @@ fr:
         action: Vérifier l’adresse courriel
         action_with_app: Confirmer et retourner à %{app}
         explanation: Vous avez créé un compte sur %{host} avec cette adresse courriel. Vous êtes à un clic de l’activer. Si ce n’était pas vous, veuillez ignorer ce courriel.
+        explanation_when_pending: Vous avez demandé à vous inscrire à %{host} avec cette adresse courriel. Une fois que vous aurez confirmé cette adresse, nous étudierons votre demande. Vous ne pourrez pas vous connecté d'ici-là. Si votre demande est refusée, vos données seront supprimées du serveur, aucune action supplémentaire de votre part n'est donc requise. Si vous n'êtes pas à l'origine de cette demande, veuillez ignorer ce courriel.
         extra_html: Merci de consultez également <a href="%{terms_path}">les règles du serveur</a> et <a href="%{policy_path}">nos conditions d’utilisation</a>.
         subject: 'Mastodon : Merci de confirmer votre inscription sur %{instance}'
         title: Vérifier l’adresse courriel
@@ -60,6 +62,7 @@ fr:
       signed_up: Bienvenue ! Vous êtes connecté⋅e.
       signed_up_but_inactive: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
       signed_up_but_locked: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
+      signed_up_but_pending: Un message avec un lien de confirmation a été envoyé à votre adresse courriel. Après avoir cliqué sur le lien, nous étudierons votre demande. Vous serez informé·e si elle a été approuvée.
       signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse courriel. Ouvrez ce lien pour activer votre compte. Veuillez vérifier votre dossier d'indésirables si vous ne recevez pas le courriel.
       update_needs_confirmation: Votre compte a bien été mis à jour, mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse. Si vous n'avez pas reçu le courriel, vérifiez votre dossier d'indésirables.
       updated: Votre compte a été modifié avec succès.

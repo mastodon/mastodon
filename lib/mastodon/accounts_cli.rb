@@ -73,7 +73,7 @@ module Mastodon
     def create(username)
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil)
+      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil)
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -87,8 +87,8 @@ module Mastodon
         end
       end
 
-      account.suspended = false
-      user.account      = account
+      account.suspended_at = nil
+      user.account         = account
 
       if user.save
         if options[:confirmed]
@@ -115,6 +115,7 @@ module Mastodon
     option :enable, type: :boolean
     option :disable, type: :boolean
     option :disable_2fa, type: :boolean
+    option :approve, type: :boolean
     desc 'modify USERNAME', 'Modify a user'
     long_desc <<-LONG_DESC
       Modify a user account.
@@ -127,6 +128,9 @@ module Mastodon
 
       With the --disable option, lock the user out of their account. The
       --enable option is the opposite.
+
+      With the --approve option, the account will be approved, if it was
+      previously not due to not having open registrations.
 
       With the --disable-2fa option, the two-factor authentication
       requirement for the user can be removed.
@@ -147,6 +151,7 @@ module Mastodon
       user.email = options[:email] if options[:email]
       user.disabled = false if options[:enable]
       user.disabled = true if options[:disable]
+      user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
       user.confirm if options[:confirm]
 
@@ -309,11 +314,15 @@ module Mastodon
 
     desc 'follow ACCT', 'Make all local accounts follow account specified by ACCT'
     long_desc <<-LONG_DESC
-      Make all local accounts follow an account specified by ACCT. ACCT can be
-      a simple username, in case of a local user. It can also be in the format
-      username@domain, in case of a remote user.
+      Make all local accounts follow another local account specified by ACCT.
+      ACCT should be the username only.
     LONG_DESC
     def follow(acct)
+      if acct.include? '@'
+        say('Target account name should not contain a target instance, since it has to be a local account.', :red)
+        exit(1)
+      end
+
       target_account = ResolveAccountService.new.call(acct)
       processed      = 0
       failed         = 0

@@ -74,3 +74,12 @@ ko:
       send_instructions: 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       send_paranoid_instructions: 계정이 존재한다면 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       unlocked: 계정이 성공적으로 잠금 해제 되었습니다. 계속 하려면 로그인 하세요.
+  errors:
+    messages:
+      already_confirmed: 이미 확인 되었습니다, 로그인 하세요
+      confirmation_period_expired: "%{period} 안에 확인을 해야 합니다, 새로 요청하세요"
+      expired: 만료되었습니다, 새로 요청하세요
+      not_found: 찾을 수 없습니다
+      not_locked: 잠기지 않았습니다
+      not_saved:
+        other: "%{count}개의 에러로 인해 %{resource}가 저장 될 수 없습니다:"

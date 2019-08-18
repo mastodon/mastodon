@@ -1,0 +1,17 @@
+---
+eo:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Limdato
+        options: Elektoj
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: nur leteroj, ciferoj kaj substrekoj
+        status:
+          attributes:
+            reblog:
+              taken: de statuso jam ekzistas

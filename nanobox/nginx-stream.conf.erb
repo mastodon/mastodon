@@ -10,10 +10,13 @@ http {
     sendfile on;
 
     gzip on;
-    gzip_http_version 1.1;
-    gzip_proxied any;
-    gzip_min_length 500;
     gzip_disable "MSIE [1-6]\.";
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_min_length 500;
+    gzip_http_version 1.1;
     gzip_types text/plain text/xml text/javascript text/css text/comma-separated-values application/xml+rss application/xml application/x-javascript application/json application/javascript application/atom+xml;
 
     # Proxy upstream to the node process
@@ -31,10 +34,12 @@ http {
         # Listen on port 8080
         listen 8080;
 
-        add_header Strict-Transport-Security "max-age=31536000";
-        # add_header Content-Security-Policy "style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'self'; img-src data: https:; media-src data: https:; connect-src 'self' wss://<%= ENV["LOCAL_DOMAIN"] %>; upgrade-insecure-requests";
+        keepalive_timeout    70;
+        client_max_body_size 80M;
 
         root /app/public;
+
+        add_header Strict-Transport-Security "max-age=31536000";
 
         location / {
             try_files $uri @node;
@@ -43,6 +48,10 @@ http {
         # Proxy connections to node
         location @node {
             proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_set_header Proxy "";
 
             proxy_pass http://node;
             proxy_buffering off;

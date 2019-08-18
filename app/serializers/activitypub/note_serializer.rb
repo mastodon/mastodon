@@ -2,7 +2,7 @@
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   context_extensions :atom_uri, :conversation, :sensitive,
-                     :hashtag, :emoji, :focal_point
+                     :hashtag, :emoji, :focal_point, :blurhash
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
@@ -55,7 +55,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
         type: :unordered,
         part_of: ActivityPub::TagManager.instance.replies_uri_for(object),
         items: replies.map(&:second),
-        next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : nil
+        next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : ActivityPub::TagManager.instance.replies_uri_for(object, page: true, only_other_accounts: true)
       )
     )
   end
@@ -153,7 +153,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   class MediaAttachmentSerializer < ActivityPub::Serializer
     include RoutingHelper
 
-    attributes :type, :media_type, :url, :name
+    attributes :type, :media_type, :url, :name, :blurhash
     attribute :focal_point, if: :focal_point?
 
     def type

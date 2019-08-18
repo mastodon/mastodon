@@ -3,15 +3,17 @@ ca:
   devise:
     confirmations:
       confirmed: L'adreça de correu s'ha confirmat correctament.
-      send_instructions: En pocs minuts rebràs un correu electrònic amb instruccions sobre com confirmar l'adreça de correu.
-      send_paranoid_instructions: Si l'adreça de correu electrònic existeix en la nostra base de dades, en pocs minuts rebràs un correu electrònic amb instruccions sobre com confirmar l'adreça de correu.
+      send_instructions: "En pocs minuts rebràs un correu electrònic amb instruccions sobre com confirmar l'adreça de correu. \nSi us plau verifica la carpeta de corrreu brossa si no has rebut aquest correu."
+      send_paranoid_instructions: |-
+        Si l'adreça de correu electrònic existeix en la nostra base de dades, en pocs minuts rebràs un correu electrònic amb instruccions sobre com confirmar l'adreça de correu.
+        Si us plau verifica la carpeta de corrreu brossa si no has rebut aquest correu.
     failure:
       already_authenticated: Ja estàs registrat.
       inactive: El teu compte encara no s'ha activat.
       invalid: "%{authentication_keys} o contrasenya no són vàlids."
-      last_attempt: Tens un intent més, abans que es bloqui el compte.
-      locked: El compte s'ha blocat.
-      not_found_in_database: "%{authentication_keys} o contrasenya no vàlids."
+      last_attempt: Tens un intent més, abans que es bloqueji el compte.
+      locked: El compte s'ha bloquejat.
+      not_found_in_database: "%{authentication_keys} o contrasenya no són vàlids."
       pending: El teu compte encara està en revisió.
       timeout: La sessió ha expirat. Inicia sessió una altra vegada per a continuar.
       unauthenticated: Cal iniciar sessió o registrar-se abans de continuar.
@@ -50,7 +52,7 @@ ca:
         subject: 'Mastodon: Instruccions per a desblocar'
     omniauth_callbacks:
       failure: No podem autentificar-te desde %{kind} degut a "%{reason}".
-      success: Autentificat amb èxit des del compte %{kind} .
+      success: Autentificat amb èxit des del compte %{kind}.
     passwords:
       no_token: No pots accedir a aquesta pàgina sense provenir des del correu de restabliment de la contrasenya. Si vens des del correu de restabliment de contrasenya, assegura't que estàs emprant l'adreça completa proporcionada.
       send_instructions: Rebràs un correu electrònic amb instruccions sobre com reiniciar la contrasenya en pocs minuts.
@@ -65,7 +67,7 @@ ca:
       signed_up_but_pending: S'ha enviat un missatge amb un enllaç de confirmació a la teva adreça de correu electrònic. Després de que hagis fet clic a l'enllaç, revisarem la teva sol·licitud. Se't notificarà si s'aprova.
       signed_up_but_unconfirmed: Un missatge amb un enllaç de confirmació ha estat enviat per correu electrònic. Si us plau segueixi l'enllaç per activar el seu compte.
       update_needs_confirmation: Ha actualitzat el seu compte amb èxit, però necessitem verificar la nova adreça de correu. Si us plau comprovi el correu i segueixi l'enllaç per confirmar la nova adreça de correu.
-      updated: el seu compte ha estat actualitzat amb èxit.
+      updated: El seu compte ha estat actualitzat amb èxit.
     sessions:
       already_signed_out: Has tancat la sessió amb èxit.
       signed_in: T'has registrat amb èxit.

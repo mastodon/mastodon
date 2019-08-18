@@ -27,22 +27,29 @@ ko:
         phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 내가 부스트 했던 툿은 새로 부스트 되어도 보여주지 않습니다
-        setting_default_language: 작성한 툿의 언어는 자동으로 인식할 수 있지만, 언제나 정확한 건 아닙니다
+        setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
         setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_show_application: 당신이 툿을 작성하는데에 사용한 앱이 툿의 상세정보에 표시 됩니다
-        setting_theme: 로그인중인 모든 디바이스에 적용되는 디자인입니다.
+        setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
+        setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
+      domain_allow:
+        domain: 이 도메인은 이 서버에서 데이터를 가져갈 수 있고 이 도메인에서 보내진 데이터는 처리되고 저장 됩니다
       featured_tag:
         name: '이것들을 사용하면 좋을 것 같습니다:'
       imports:
         data: 다른 마스토돈 서버에서 추출된 CSV 파일
+      invite_request:
+        text: 이 정보는 우리가 심사를 하는 데에 참고할 수 있습니다
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
+      tag:
+        name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
         chosen_languages: 체크하면, 선택 된 언어들만 공개 타임라인에 보여집니다
     labels:
@@ -88,6 +95,7 @@ ko:
         otp_attempt: 2단계 인증 코드
         password: 암호
         phrase: 키워드 또는 문장
+        setting_advanced_layout: 고급 웹 UI 활성화
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
@@ -106,7 +114,10 @@ ko:
         setting_show_application: 툿 작성에 사용한 앱을 공개
         setting_system_font_ui: 시스템의 초기 설정 폰트를 사용
         setting_theme: 사이트 테마
+        setting_trends: 오늘의 유행 보이기
         setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
+        setting_use_blurhash: 숨겨진 미디어에 대해 그라디언트 표시
+        setting_use_pending_items: 느린 모드
         severity: 심각도
         type: 불러오기 종류
         username: 유저 이름
@@ -118,15 +129,24 @@ ko:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following_dm: 내가 팔로우 하지 않은 사람에게서 오는 다이렉트메시지를 차단
+      invite_request:
+        text: 가입하려는 이유가 무엇인가요?
       notification_emails:
         digest: 요약 이메일 보내기
         favourite: 누군가 내 상태를 즐겨찾기로 등록했을 때 이메일 보내기
         follow: 누군가 나를 팔로우 했을 때 이메일 보내기
         follow_request: 누군가 나를 팔로우 하길 원할 때 이메일 보내기
         mention: 누군가 나에게 답장했을 때 이메일 보내기
+        pending_account: 새 계정이 심사가 필요할 때 이메일 보내기
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
         report: 새 신고 등록시 이메일로 알리기
+        trending_tag: 리뷰 되지 않은 해시태그가 유행할 때 이메일 보내기
+      tag:
+        listable: 이 해시태그가 프로필 디렉토리에 보여지도록 허용
+        trendable: 이 해시태그가 유행에 보여지도록 허용
+        usable: 이 해시태그를 툿에 사용 가능하도록 허용
     'no': 아니오
+    recommended: 추천함
     required:
       mark: "*"
       text: 필수 항목

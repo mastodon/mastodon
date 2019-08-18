@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProcessMentionsService < BaseService
-  include StreamEntryRenderer
+  include Payloadable
 
   # Scan status for mentions and fetch remote mentioned users, create
   # local mention pointers, send Salmon notifications to mentioned
@@ -25,7 +25,7 @@ class ProcessMentionsService < BaseService
         end
       end
 
-      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended
+      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
       mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
 
@@ -40,7 +40,7 @@ class ProcessMentionsService < BaseService
   private
 
   def mention_undeliverable?(mentioned_account)
-    mentioned_account.nil? || (!mentioned_account.local? && mentioned_account.ostatus? && @status.stream_entry.hidden?)
+    mentioned_account.nil? || (!mentioned_account.local? && mentioned_account.ostatus?)
   end
 
   def create_notification(mention)
@@ -48,25 +48,14 @@ class ProcessMentionsService < BaseService
 
     if mentioned_account.local?
       LocalNotificationWorker.perform_async(mentioned_account.id, mention.id, mention.class.name)
-    elsif mentioned_account.ostatus? && !@status.stream_entry.hidden?
-      NotificationWorker.perform_async(ostatus_xml, @status.account_id, mentioned_account.id)
     elsif mentioned_account.activitypub?
       ActivityPub::DeliveryWorker.perform_async(activitypub_json, mention.status.account_id, mentioned_account.inbox_url)
     end
   end
 
-  def ostatus_xml
-    @ostatus_xml ||= stream_entry_to_xml(@status.stream_entry)
-  end
-
   def activitypub_json
     return @activitypub_json if defined?(@activitypub_json)
-    payload = ActiveModelSerializers::SerializableResource.new(
-      @status,
-      serializer: ActivityPub::ActivitySerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json
-    @activitypub_json = Oj.dump(@status.distributable? ? ActivityPub::LinkedDataSignature.new(payload).sign!(@status.account) : payload)
+    @activitypub_json = Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @status.account))
   end
 
   def resolve_account_service

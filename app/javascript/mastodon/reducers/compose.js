@@ -17,7 +17,6 @@ import {
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
-  COMPOSE_SUGGESTION_TAGS_UPDATE,
   COMPOSE_TAG_HISTORY_UPDATE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
@@ -131,26 +130,33 @@ function removeMedia(state, mediaId) {
   });
 };
 
-const insertSuggestion = (state, position, token, completion) => {
+const insertSuggestion = (state, position, token, completion, path) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
+    map.updateIn(path, oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
-    map.update('suggestions', ImmutableList(), list => list.clear());
-    map.set('focusDate', new Date());
-    map.set('caretPosition', position + completion.length + 1);
+    map.set('suggestions', ImmutableList());
+    if (path.length === 1 && path[0] === 'text') {
+      map.set('focusDate', new Date());
+      map.set('caretPosition', position + completion.length + 1);
+    }
     map.set('idempotencyKey', uuid());
   });
 };
 
-const updateSuggestionTags = (state, token) => {
-  const prefix = token.slice(1);
+const sortHashtagsByUse = (state, tags) => {
+  const personalHistory = state.get('tagHistory');
 
-  return state.merge({
-    suggestions: state.get('tagHistory')
-      .filter(tag => tag.toLowerCase().startsWith(prefix.toLowerCase()))
-      .slice(0, 4)
-      .map(tag => '#' + tag),
-    suggestion_token: token,
+  return tags.sort((a, b) => {
+    const usedA = personalHistory.includes(a.name);
+    const usedB = personalHistory.includes(b.name);
+
+    if (usedA === usedB) {
+      return 0;
+    } else if (usedA && !usedB) {
+      return -1;
+    } else {
+      return 1;
+    }
   });
 };
 
@@ -193,6 +199,22 @@ const expandMentions = status => {
   return fragment.innerHTML;
 };
 
+const expiresInFromExpiresAt = expires_at => {
+  if (!expires_at) return 24 * 3600;
+  const delta = (new Date(expires_at).getTime() - Date.now()) / 1000;
+  return [300, 1800, 3600, 21600, 86400, 259200, 604800].find(expires_in => expires_in >= delta) || 24 * 3600;
+};
+
+const normalizeSuggestions = (state, { accounts, emojis, tags }) => {
+  if (accounts) {
+    return accounts.map(item => ({ id: item.id, type: 'account' }));
+  } else if (emojis) {
+    return emojis.map(item => ({ ...item, type: 'emoji' }));
+  } else {
+    return sortHashtagsByUse(state, tags.map(item => ({ ...item, type: 'hashtag' })));
+  }
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
@@ -222,6 +244,7 @@ export default function compose(state = initialState, action) {
       }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
+    if (!state.get('spoiler')) return state;
     return state
       .set('spoiler_text', action.text)
       .set('idempotencyKey', uuid());
@@ -302,11 +325,9 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
-    return state.set('suggestions', ImmutableList(action.accounts ? action.accounts.map(item => item.id) : action.emojis)).set('suggestion_token', action.token);
+    return state.set('suggestions', ImmutableList(normalizeSuggestions(state, action))).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
-    return insertSuggestion(state, action.position, action.token, action.completion);
-  case COMPOSE_SUGGESTION_TAGS_UPDATE:
-    return updateSuggestionTags(state, action.token);
+    return insertSuggestion(state, action.position, action.token, action.completion, action.path);
   case COMPOSE_TAG_HISTORY_UPDATE:
     return state.set('tagHistory', fromJS(action.tags));
   case TIMELINE_DELETE:
@@ -329,13 +350,14 @@ export default function compose(state = initialState, action) {
       }));
   case REDRAFT:
     return state.withMutations(map => {
-      map.set('text', unescapeHTML(expandMentions(action.status)));
+      map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
       map.set('media_attachments', action.status.get('media_attachments'));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
+      map.set('sensitive', action.status.get('sensitive'));
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
@@ -349,7 +371,7 @@ export default function compose(state = initialState, action) {
         map.set('poll', ImmutableMap({
           options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
           multiple: action.status.getIn(['poll', 'multiple']),
-          expires_in: 24 * 3600,
+          expires_in: expiresInFromExpiresAt(action.status.getIn(['poll', 'expires_at'])),
         }));
       }
     });

@@ -69,7 +69,7 @@ class LanguageDetector
     new_text = remove_html(text)
     new_text.gsub!(FetchLinkCardService::URL_PATTERN, '')
     new_text.gsub!(Account::MENTION_RE, '')
-    new_text.gsub!(Tag::HASHTAG_RE, '')
+    new_text.gsub!(Tag::HASHTAG_RE) { |string| string.gsub(/[#_]/, '#' => '', '_' => ' ').gsub(/[a-z][A-Z]|[a-zA-Z][\d]/) { |s| s.insert(1, ' ') }.downcase }
     new_text.gsub!(/:#{CustomEmoji::SHORTCODE_RE_FRAGMENT}:/, '')
     new_text.gsub!(/\s+/, ' ')
     new_text

@@ -16,8 +16,10 @@ import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import ColumnBackButton from '../../components/column_back_button';
 import ScrollableList from '../../components/scrollable_list';
+import MissingIndicator from 'mastodon/components/missing_indicator';
 
 const mapStateToProps = (state, props) => ({
+  isAccount: !!state.getIn(['accounts', props.params.accountId]),
   accountIds: state.getIn(['user_lists', 'followers', props.params.accountId, 'items']),
   hasMore: !!state.getIn(['user_lists', 'followers', props.params.accountId, 'next']),
   blockedBy: state.getIn(['relationships', props.params.accountId, 'blocked_by'], false),
@@ -33,6 +35,8 @@ class Followers extends ImmutablePureComponent {
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
     blockedBy: PropTypes.bool,
+    isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -52,7 +56,15 @@ class Followers extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { shouldUpdateScroll, accountIds, hasMore, blockedBy } = this.props;
+    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount, multiColumn } = this.props;
+
+    if (!isAccount) {
+      return (
+        <Column>
+          <MissingIndicator />
+        </Column>
+      );
+    }
 
     if (!accountIds) {
       return (
@@ -66,7 +78,7 @@ class Followers extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <ScrollableList
           scrollKey='followers'
@@ -76,6 +88,7 @@ class Followers extends ImmutablePureComponent {
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {blockedBy ? [] : accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />

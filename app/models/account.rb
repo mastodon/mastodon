@@ -28,8 +28,6 @@
 #  header_updated_at       :datetime
 #  avatar_remote_url       :string
 #  subscription_expires_at :datetime
-#  silenced                :boolean          default(FALSE), not null
-#  suspended               :boolean          default(FALSE), not null
 #  locked                  :boolean          default(FALSE), not null
 #  header_remote_url       :string           default(""), not null
 #  last_webfingered_at     :datetime
@@ -45,6 +43,9 @@
 #  actor_type              :string
 #  discoverable            :boolean
 #  also_known_as           :string           is an Array
+#  silenced_at             :datetime
+#  suspended_at            :datetime
+#  trust_level             :integer
 #
 
 class Account < ApplicationRecord
@@ -62,6 +63,11 @@ class Account < ApplicationRecord
   include AccountCounters
   include DomainNormalizable
 
+  TRUST_LEVELS = {
+    untrusted: 0,
+    trusted: 1,
+  }.freeze
+
   enum protocol: [:ostatus, :activitypub]
 
   validates :username, presence: true
@@ -71,21 +77,21 @@ class Account < ApplicationRecord
   validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
-  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, note_length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
+  validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
-  scope :silenced, -> { where(silenced: true) }
-  scope :suspended, -> { where(suspended: true) }
-  scope :without_suspended, -> { where(suspended: false) }
-  scope :without_silenced, -> { where(silenced: false) }
+  scope :silenced, -> { where.not(silenced_at: nil) }
+  scope :suspended, -> { where.not(suspended_at: nil) }
+  scope :without_suspended, -> { where(suspended_at: nil) }
+  scope :without_silenced, -> { where(silenced_at: nil) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
@@ -98,6 +104,7 @@ class Account < ApplicationRecord
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
+  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
 
   delegate :email,
            :unconfirmed_email,
@@ -106,6 +113,8 @@ class Account < ApplicationRecord
            :confirmed?,
            :approved?,
            :pending?,
+           :disabled?,
+           :role,
            :admin?,
            :moderator?,
            :staff?,
@@ -118,6 +127,8 @@ class Account < ApplicationRecord
 
   delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
 
+  update_index('accounts#account', :self) if Chewy.enabled?
+
   def local?
     domain.nil?
   end
@@ -128,6 +139,10 @@ class Account < ApplicationRecord
 
   def bot?
     %w(Application Service).include? actor_type
+  end
+
+  def instance_actor?
+    id == -99
   end
 
   alias bot bot?
@@ -156,34 +171,49 @@ class Account < ApplicationRecord
     subscription_expires_at.present?
   end
 
+  def searchable?
+    !(suspended? || moved?)
+  end
+
   def possibly_stale?
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
   end
 
-  def refresh!
-    return if local?
-    ResolveAccountService.new.call(acct)
+  def trust_level
+    self[:trust_level] || 0
   end
 
-  def silence!
-    update!(silenced: true)
+  def refresh!
+    ResolveAccountService.new.call(acct) unless local?
+  end
+
+  def silenced?
+    silenced_at.present?
+  end
+
+  def silence!(date = Time.now.utc)
+    update!(silenced_at: date)
   end
 
   def unsilence!
-    update!(silenced: false)
+    update!(silenced_at: nil, trust_level: trust_level == TRUST_LEVELS[:untrusted] ? TRUST_LEVELS[:trusted] : trust_level)
   end
 
-  def suspend!
+  def suspended?
+    suspended_at.present?
+  end
+
+  def suspend!(date = Time.now.utc)
     transaction do
       user&.disable! if local?
-      update!(suspended: true)
+      update!(suspended_at: date)
     end
   end
 
   def unsuspend!
     transaction do
       user&.enable! if local?
-      update!(suspended: false)
+      update!(suspended_at: nil)
     end
   end
 
@@ -194,22 +224,16 @@ class Account < ApplicationRecord
     end
   end
 
+  def sign?
+    true
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
   def tags_as_strings=(tag_names)
-    tag_names.map! { |name| name.mb_chars.downcase.to_s }
-    tag_names.uniq!
-
-    # Existing hashtags
-    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
-
-    # Initialize not yet existing hashtags
-    tag_names.each do |name|
-      next if hashtags_map.key?(name)
-      hashtags_map[name] = Tag.new(name: name)
-    end
+    hashtags_map = Tag.find_or_create_by_names(tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
 
     # Remove hashtags that are to be deleted
     tags.each do |tag|
@@ -275,21 +299,6 @@ class Account < ApplicationRecord
     end
 
     self.fields = tmp
-  end
-
-  def magic_key
-    modulus, exponent = [keypair.public_key.n, keypair.public_key.e].map do |component|
-      result = []
-
-      until component.zero?
-        result << [component % 256].pack('C')
-        component >>= 8
-      end
-
-      result.reverse.join
-    end
-
-    (['RSA'] + [modulus, exponent].map { |n| Base64.urlsafe_encode64(n) }).join('.')
   end
 
   def subscription(webhook_url)
@@ -399,7 +408,7 @@ class Account < ApplicationRecord
           ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
         FROM accounts
         WHERE #{query} @@ #{textsearch}
-          AND accounts.suspended = false
+          AND accounts.suspended_at IS NULL
           AND accounts.moved_to_account_id IS NULL
         ORDER BY rank DESC
         LIMIT ? OFFSET ?
@@ -427,7 +436,7 @@ class Account < ApplicationRecord
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND #{query} @@ #{textsearch}
-            AND accounts.suspended = false
+            AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC
@@ -443,7 +452,7 @@ class Account < ApplicationRecord
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
           WHERE #{query} @@ #{textsearch}
-            AND accounts.suspended = false
+            AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC
@@ -489,7 +498,7 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local? && !Rails.env.test?
+    return unless local? && private_key.blank? && public_key.blank?
 
     keypair = OpenSSL::PKey::RSA.new(2048)
     self.private_key = keypair.to_pem
@@ -503,7 +512,7 @@ class Account < ApplicationRecord
   end
 
   def emojifiable_text
-    [note, display_name, fields.map(&:value)].join(' ')
+    [note, display_name, fields.map(&:name), fields.map(&:value)].join(' ')
   end
 
   def clean_feed_manager

@@ -19,9 +19,8 @@ class ProofProvider::Keybase::Worker
   end
 
   def perform(proof_id)
-    proof    = proof_id.is_a?(AccountIdentityProof) ? proof_id : AccountIdentityProof.find(proof_id)
-    verifier = ProofProvider::Keybase::Verifier.new(proof.account.username, proof.provider_username, proof.token)
-    status   = verifier.status
+    proof  = proof_id.is_a?(AccountIdentityProof) ? proof_id : AccountIdentityProof.find(proof_id)
+    status = proof.provider_instance.verifier.status
 
     # If Keybase thinks the proof is valid, and it exists here in Mastodon,
     # then it should be live. Keybase just has to notice that it's here

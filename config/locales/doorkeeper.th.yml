@@ -3,111 +3,120 @@ th:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: ชื่อ
-        redirect_uri: เปลี่ยนเส้นทาง URI
+        name: ชื่อแอปพลิเคชัน
+        redirect_uri: URI การเปลี่ยนเส้นทาง
+        scopes: ขอบเขต
+        website: เว็บไซต์แอปพลิเคชัน
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: cannot contain a fragment.
-              invalid_uri: ต้องใช้ URI ที่ถูกต้อง.
-              relative_uri: ต้องเป็น absolute URI.
-              secured_uri: ต้องใช้ HTTPS/SSL URI.
+              fragment_present: ไม่สามารถมีส่วนย่อย
+              invalid_uri: ต้องเป็น URI ที่ถูกต้อง
+              relative_uri: ต้องเป็น URI แบบเต็ม
+              secured_uri: ต้องเป็น URI แบบ HTTPS/SSL
   doorkeeper:
     applications:
       buttons:
-        authorize: Authorize
+        authorize: อนุญาต
         cancel: ยกเลิก
         destroy: ทำลาย
         edit: แก้ไข
-        submit: Submit
+        submit: ส่ง
       confirmations:
-        destroy: แน่ใจนะ?
+        destroy: คุณแน่ใจหรือไม่?
       edit:
-        title: แก้ไข แอ๊ฟพลิเคชั่น
-      form:
-        error: Whoops! Check your form for possible errors
+        title: แก้ไขแอปพลิเคชัน
       help:
-        native_redirect_uri: ใช้ %{native_redirect_uri} สำหรับการทดสอบ
-        redirect_uri: ใช้บรรทัดละหนึ่ง URI
-        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
+        native_redirect_uri: ใช้ %{native_redirect_uri} สำหรับการทดสอบในเว็บ
+        redirect_uri: ใช้หนึ่งบรรทัดต่อ URI
+        scopes: แยกขอบเขตด้วยช่องว่าง เว้นว่างเพื่อใช้ขอบเขตเริ่มต้น
       index:
-        callback_url: Callback URL
+        application: แอปพลิเคชัน
+        callback_url: URL เรียกกลับ
+        delete: ลบ
         name: ชื่อ
-        new: New Application
-        title: Your applications
+        new: แอปพลิเคชันใหม่
+        scopes: ขอบเขต
+        show: แสดง
+        title: แอปพลิเคชันของคุณ
       new:
-        title: New Application
+        title: แอปพลิเคชันใหม่
       show:
-        actions: Actions
-        application_id: Application Id
-        callback_urls: Callback urls
-        scopes: Scopes
-        secret: Secret
-        title: 'Application: %{name}'
+        actions: การกระทำ
+        application_id: กุญแจไคลเอ็นต์
+        callback_urls: URL เรียกกลับ
+        scopes: ขอบเขต
+        secret: รหัสลับไคลเอ็นต์
+        title: 'แอปพลิเคชัน: %{name}'
     authorizations:
       buttons:
-        authorize: อนุญาติ
-        deny: ไม่อนุญาติ
+        authorize: อนุญาต
+        deny: ปฏิเสธ
       error:
-        title: An error has occurred
+        title: เกิดข้อผิดพลาด
       new:
-        able_to: It will be able to
-        prompt: Application %{client_name} requests access to your account
-        title: Authorization required
+        able_to: แอปจะสามารถ
+        prompt: แอปพลิเคชัน %{client_name} ขอเข้าถึงบัญชีของคุณ
+        title: ต้องมีการอนุญาต
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: คัดลอกรหัสการอนุญาตนี้แล้ววางลงในแอปพลิเคชัน
     authorized_applications:
       buttons:
-        revoke: ยกเลิกการอนุญาติ
+        revoke: เพิกถอน
       confirmations:
-        revoke: Are you sure?
+        revoke: คุณแน่ใจหรือไม่?
       index:
-        application: Application
-        created_at: Authorized
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Scopes
-        title: Your authorized applications
+        application: แอปพลิเคชัน
+        created_at: อนุญาตเมื่อ
+        scopes: ขอบเขต
+        title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
-        access_denied: The resource owner or authorization server denied the request.
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
-        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
-        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
-        invalid_redirect_uri: The redirect uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
-        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
-        invalid_scope: The requested scope is invalid, unknown, or malformed.
-        invalid_token:
-          expired: The access token expired
-          revoked: The access token was revoked
-          unknown: The access token is invalid
-        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
-        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
-        temporarily_unavailable: The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
-        unauthorized_client: The client is not authorized to perform this request using this method.
-        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
-        unsupported_response_type: The authorization server does not support this response type.
+        access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
     flash:
       applications:
         create:
-          notice: Application created.
+          notice: สร้างแอปพลิเคชันแล้ว
         destroy:
-          notice: Application deleted.
+          notice: ลบแอปพลิเคชันแล้ว
         update:
-          notice: Application updated.
+          notice: อัปเดตแอปพลิเคชันแล้ว
       authorized_applications:
         destroy:
-          notice: Application revoked.
+          notice: เพิกถอนแอปพลิเคชันแล้ว
     layouts:
       admin:
         nav:
-          applications: Applications
-          oauth2_provider: OAuth2 Provider
+          applications: แอปพลิเคชัน
+          oauth2_provider: ผู้ให้บริการ OAuth2
       application:
-        title: OAuth authorization required
+        title: ต้องมีการอนุญาต OAuth
     scopes:
-      follow: follow, block, unblock and unfollow accounts
-      read: read your account's data
-      write: post on your behalf
+      follow: ปรับเปลี่ยนความสัมพันธ์ของบัญชี
+      push: รับการแจ้งเตือนแบบผลักของคุณ
+      read: อ่านข้อมูลบัญชีทั้งหมดของคุณ
+      read:accounts: ดูข้อมูลบัญชี
+      read:blocks: ดูการปิดกั้นของคุณ
+      read:favourites: ดูรายการโปรดของคุณ
+      read:filters: ดูตัวกรองของคุณ
+      read:follows: ดูการติดตามของคุณ
+      read:lists: ดูรายการของคุณ
+      read:mutes: ดูการปิดเสียงของคุณ
+      read:notifications: ดูการแจ้งเตือนของคุณ
+      read:reports: ดูรายงานของคุณ
+      read:search: ค้นหาในนามของคุณ
+      read:statuses: ดูสถานะทั้งหมด
+      write: ปรับเปลี่ยนข้อมูลบัญชีทั้งหมดของคุณ
+      write:accounts: ปรับเปลี่ยนโปรไฟล์ของคุณ
+      write:blocks: ปิดกั้นบัญชีและโดเมน
+      write:favourites: ชื่นชอบสถานะ
+      write:filters: สร้างตัวกรอง
+      write:follows: ติดตามผู้คน
+      write:lists: สร้างรายการ
+      write:media: อัปโหลดไฟล์สื่อ
+      write:mutes: ปิดเสียงผู้คนและการสนทนา
+      write:notifications: ล้างการแจ้งเตือนของคุณ
+      write:reports: รายงานผู้คนอื่น ๆ
+      write:statuses: เผยแพร่สถานะ

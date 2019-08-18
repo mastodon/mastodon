@@ -73,9 +73,13 @@ class User < ApplicationRecord
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :backups, inverse_of: :user
+  has_many :invites, inverse_of: :user
+
+  has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? }
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates_with BlacklistedEmailValidator, if: :email_changed?
+  validates_with BlacklistedEmailValidator, on: :create
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
@@ -84,8 +88,9 @@ class User < ApplicationRecord
   scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
+  scope :disabled, -> { where(disabled: true) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
-  scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
+  scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
@@ -101,9 +106,12 @@ class User < ApplicationRecord
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
-           :expand_spoilers, :default_language, :aggregate_reblogs, :show_application, to: :settings, prefix: :setting, allow_nil: false
+           :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
+           :advanced_layout, :use_blurhash, :use_pending_items, :trends,
+           to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
+  attr_writer :external
 
   def confirmed?
     confirmed_at.present?
@@ -111,6 +119,10 @@ class User < ApplicationRecord
 
   def invited?
     invite_id.present?
+  end
+
+  def valid_invitation?
+    invite_id.present? && invite.valid_for_use?
   end
 
   def disable!
@@ -151,7 +163,11 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && approved?
+    true
+  end
+
+  def functional?
+    confirmed? && approved? && !disabled? && !account.suspended?
   end
 
   def inactive_message
@@ -186,6 +202,14 @@ class User < ApplicationRecord
 
   def allows_report_emails?
     settings.notification_emails['report']
+  end
+
+  def allows_pending_account_emails?
+    settings.notification_emails['pending_account']
+  end
+
+  def allows_trending_tag_emails?
+    settings.notification_emails['trending_tag']
   end
 
   def hides_network?
@@ -266,11 +290,15 @@ class User < ApplicationRecord
   private
 
   def set_approved
-    self.approved = open_registrations? || invited?
+    self.approved = open_registrations? || valid_invitation? || external?
   end
 
   def open_registrations?
     Setting.registrations_mode == 'open'
+  end
+
+  def external?
+    !!@external
   end
 
   def sanitize_languages
@@ -292,7 +320,7 @@ class User < ApplicationRecord
 
   def notify_staff_about_pending_account!
     User.staff.includes(:account).each do |u|
-      next unless u.allows_report_emails?
+      next unless u.allows_pending_account_emails?
       AdminMailer.new_pending_account(u.account, self).deliver_later
     end
   end

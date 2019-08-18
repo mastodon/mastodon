@@ -5,6 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from 'mastodon/components/icon_button';
 import Icon from 'mastodon/components/icon';
+import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import classNames from 'classnames';
 
 const messages = defineMessages({
@@ -26,6 +27,11 @@ class Option extends React.PureComponent {
     isPollMultiple: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
+    onToggleMultiple: PropTypes.func.isRequired,
+    suggestions: ImmutablePropTypes.list,
+    onClearSuggestions: PropTypes.func.isRequired,
+    onFetchSuggestions: PropTypes.func.isRequired,
+    onSuggestionSelected: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -37,20 +43,48 @@ class Option extends React.PureComponent {
     this.props.onRemove(this.props.index);
   };
 
+
+  handleToggleMultiple = e => {
+    this.props.onToggleMultiple();
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.props.onClearSuggestions();
+  }
+
+  onSuggestionsFetchRequested = (token) => {
+    this.props.onFetchSuggestions(token);
+  }
+
+  onSuggestionSelected = (tokenStart, token, value) => {
+    this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
+  }
+
   render () {
     const { isPollMultiple, title, index, intl } = this.props;
 
     return (
       <li>
         <label className='poll__text editable'>
-          <span className={classNames('poll__input', { checkbox: isPollMultiple })} />
+          <span
+            className={classNames('poll__input', { checkbox: isPollMultiple })}
+            onClick={this.handleToggleMultiple}
+            role='button'
+            tabIndex='0'
+          />
 
-          <input
-            type='text'
+          <AutosuggestInput
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
             maxLength={25}
             value={title}
             onChange={this.handleOptionTitleChange}
+            suggestions={this.props.suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSuggestionSelected}
+            searchTokens={[':']}
           />
         </label>
 
@@ -75,6 +109,10 @@ class PollForm extends ImmutablePureComponent {
     onAddOption: PropTypes.func.isRequired,
     onRemoveOption: PropTypes.func.isRequired,
     onChangeSettings: PropTypes.func.isRequired,
+    suggestions: ImmutablePropTypes.list,
+    onClearSuggestions: PropTypes.func.isRequired,
+    onFetchSuggestions: PropTypes.func.isRequired,
+    onSuggestionSelected: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -86,8 +124,12 @@ class PollForm extends ImmutablePureComponent {
     this.props.onChangeSettings(e.target.value, this.props.isMultiple);
   };
 
+  handleToggleMultiple = () => {
+    this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
+  };
+
   render () {
-    const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl } = this.props;
+    const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl, ...other } = this.props;
 
     if (!options) {
       return null;
@@ -96,7 +138,7 @@ class PollForm extends ImmutablePureComponent {
     return (
       <div className='compose-form__poll-wrapper'>
         <ul>
-          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} />)}
+          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} {...other} />)}
         </ul>
 
         <div className='poll__footer'>

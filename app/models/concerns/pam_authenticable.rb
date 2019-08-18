@@ -34,6 +34,7 @@ module PamAuthenticable
       self.confirmed_at = Time.now.utc
       self.admin        = false
       self.account      = account
+      self.external     = true
 
       account.destroy! unless save
     end

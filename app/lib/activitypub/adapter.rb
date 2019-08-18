@@ -19,6 +19,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
     conversation: { 'ostatus' => 'http://ostatus.org#', 'inReplyToAtomUri' => 'ostatus:inReplyToAtomUri', 'conversation' => 'ostatus:conversation' },
     focal_point: { 'toot' => 'http://joinmastodon.org/ns#', 'focalPoint' => { '@container' => '@list', '@id' => 'toot:focalPoint' } },
     identity_proof: { 'toot' => 'http://joinmastodon.org/ns#', 'IdentityProof' => 'toot:IdentityProof' },
+    blurhash: { 'toot' => 'http://joinmastodon.org/ns#', 'blurhash' => 'toot:blurhash' },
   }.freeze
 
   def self.default_key_transform
@@ -32,6 +33,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
   def serializable_hash(options = nil)
     options         = serialization_options(options)
     serialized_hash = serializer.serializable_hash(options)
+    serialized_hash = serialized_hash.select { |k, _| options[:fields].include?(k) } if options[:fields]
     serialized_hash = self.class.transform_key_casing!(serialized_hash, instance_options)
 
     { '@context' => serialized_context }.merge(serialized_hash)

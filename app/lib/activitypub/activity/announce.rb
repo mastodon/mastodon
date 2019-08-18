@@ -40,7 +40,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   def announceable?(status)
-    status.account_id == @account.id || status.public_visibility? || status.unlisted_visibility?
+    status.account_id == @account.id || status.distributable?
   end
 
   def related_to_local_activity?

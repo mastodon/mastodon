@@ -1,0 +1,13 @@
+---
+fi:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Määräaika
+        options: Vaihtoehdot
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: Vain kirjaimia, numeroita ja alleviivoja
