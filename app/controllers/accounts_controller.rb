@@ -24,8 +24,8 @@ class AccountsController < ApplicationController
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         @statuses        = filtered_status_page(params)
         @statuses        = cache_collection(@statuses, Status)
+        @rss_url         = rss_url
 
-        @rss_url = rss_url
         unless @statuses.empty?
           @older_url = older_url if @statuses.last.id > filtered_statuses.last.id
           @newer_url = newer_url if @statuses.first.id < filtered_statuses.first.id
@@ -102,7 +102,11 @@ class AccountsController < ApplicationController
   end
 
   def rss_url
-    "#{TagManager.instance.url_for(@account)}#{Addressable::URI.parse("/tagged/#{params[:tag]}").normalize if params[:tag].present?}.rss"
+    if tag_requested?
+      short_account_tag_url(@account, params[:tag], format: 'rss')
+    else
+      short_account_url(@account, format: 'rss')
+    end
   end
 
   def older_url
@@ -134,7 +138,7 @@ class AccountsController < ApplicationController
   end
 
   def tag_requested?
-    request.path.split('.')[0].ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+    request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
   def filtered_status_page(params)
