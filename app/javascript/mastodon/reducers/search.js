@@ -16,6 +16,7 @@ const initialState = ImmutableMap({
   submitted: false,
   hidden: false,
   results: ImmutableMap(),
+  searchTerm: '',
 });
 
 export default function search(state = initialState, action) {
@@ -40,7 +41,7 @@ export default function search(state = initialState, action) {
       accounts: ImmutableList(action.results.accounts.map(item => item.id)),
       statuses: ImmutableList(action.results.statuses.map(item => item.id)),
       hashtags: fromJS(action.results.hashtags),
-    })).set('submitted', true);
+    })).set('submitted', true).set('searchTerm', action.searchTerm);
   default:
     return state;
   }

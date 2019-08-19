@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { createSelector } from 'reselect';
 import { fetchStatus } from '../../actions/statuses';
 import MissingIndicator from '../../components/missing_indicator';
 import DetailedStatus from './components/detailed_status';
@@ -63,39 +64,58 @@ const messages = defineMessages({
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
+  const getAncestorsIds = createSelector([
+    (_, { id }) => id,
+    state => state.getIn(['contexts', 'inReplyTos']),
+  ], (statusId, inReplyTos) => {
+    let ancestorsIds = Immutable.List();
+    ancestorsIds = ancestorsIds.withMutations(mutable => {
+      let id = statusId;
+
+      while (id) {
+        mutable.unshift(id);
+        id = inReplyTos.get(id);
+      }
+    });
+
+    return ancestorsIds;
+  });
+
+  const getDescendantsIds = createSelector([
+    (_, { id }) => id,
+    state => state.getIn(['contexts', 'replies']),
+  ], (statusId, contextReplies) => {
+    let descendantsIds = Immutable.List();
+    descendantsIds = descendantsIds.withMutations(mutable => {
+      const ids = [statusId];
+
+      while (ids.length > 0) {
+        let id        = ids.shift();
+        const replies = contextReplies.get(id);
+
+        if (statusId !== id) {
+          mutable.push(id);
+        }
+
+        if (replies) {
+          replies.reverse().forEach(reply => {
+            ids.unshift(reply);
+          });
+        }
+      }
+    });
+
+    return descendantsIds;
+  });
+
   const mapStateToProps = (state, props) => {
     const status = getStatus(state, { id: props.params.statusId });
     let ancestorsIds = Immutable.List();
     let descendantsIds = Immutable.List();
 
     if (status) {
-      ancestorsIds = ancestorsIds.withMutations(mutable => {
-        let id = status.get('in_reply_to_id');
-
-        while (id) {
-          mutable.unshift(id);
-          id = state.getIn(['contexts', 'inReplyTos', id]);
-        }
-      });
-
-      descendantsIds = descendantsIds.withMutations(mutable => {
-        const ids = [status.get('id')];
-
-        while (ids.length > 0) {
-          let id        = ids.shift();
-          const replies = state.getIn(['contexts', 'replies', id]);
-
-          if (status.get('id') !== id) {
-            mutable.push(id);
-          }
-
-          if (replies) {
-            replies.reverse().forEach(reply => {
-              ids.unshift(reply);
-            });
-          }
-        }
-      });
+      ancestorsIds = getAncestorsIds(state, { id: status.get('in_reply_to_id') });
+      descendantsIds = getDescendantsIds(state, { id: status.get('id') });
     }
 
     return {
