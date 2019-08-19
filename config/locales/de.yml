@@ -44,6 +44,8 @@ de:
     what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
+    endorsements_hint: Du kannst Personen unterstützen, die du von der Web-Schnittstelle folgen kannst, und sie werden hier angezeigt.
+    featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
       one: Folger_innen
@@ -420,6 +422,13 @@ de:
       custom_css:
         desc_html: Verändere das Aussehen mit CSS, dass auf jeder Seite geladen wird
         title: Benutzerdefiniertes CSS
+      domain_blocks:
+        all: An alle
+        disabled: An niemanden
+        title: Zeige Domain-Blockaden
+        users: Für angemeldete lokale Benutzer
+      domain_blocks_rationale:
+        title: Rationale anzeigen
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
         title: Bild für Einstiegsseite
@@ -627,6 +636,15 @@ de:
     people:
       one: "%{count} Person"
       other: "%{count} Leute"
+  domain_blocks:
+    blocked_domains: Liste der begrenzten und blockierten Domains
+    description: Dies ist die Liste der Server, die %{instance} limitiert oder dessen Föderation ablehnt.
+    domain: Domain
+    media_block: Medienblockade
+    no_domain_blocks: "(Keine Domain-Blockaden)"
+    severity: Schweregrad
+    severity_legend:
+      media_block: Mediendateien, die vom Server stammen, werden weder vom Benutzer abgerufen, gespeichert noch angezeigt.
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
