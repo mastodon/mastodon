@@ -15,6 +15,8 @@ import { countableText } from 'flavours/glitch/util/counter';
 import OptionsContainer from '../containers/options_container';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
+import { maxChars } from 'flavours/glitch/util/initial_state';
+import CharacterCounter from './character_counter';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -298,6 +300,8 @@ class ComposeForm extends ImmutablePureComponent {
 
     let disabledButton = isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia);
 
+    const countText = `${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`;
+
     return (
       <div className='composer'>
         <WarningContainer />
@@ -347,19 +351,24 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
         </AutosuggestTextarea>
 
-        <OptionsContainer
-          advancedOptions={advancedOptions}
-          disabled={isSubmitting}
-          onChangeVisibility={onChangeVisibility}
-          onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
-          onUpload={onPaste}
-          privacy={privacy}
-          sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
-          spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
-        />
+        <div className='composer--options-wrapper'>
+          <OptionsContainer
+            advancedOptions={advancedOptions}
+            disabled={isSubmitting}
+            onChangeVisibility={onChangeVisibility}
+            onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
+            onUpload={onPaste}
+            privacy={privacy}
+            sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
+            spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
+          />
+          <div className='compose--counter-wrapper'>
+            <CharacterCounter text={countText} max={maxChars} />
+          </div>
+        </div>
 
         <Publisher
-          countText={`${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`}
+          countText={countText}
           disabled={disabledButton}
           onSecondarySubmit={handleSecondarySubmit}
           onSubmit={handleSubmit}

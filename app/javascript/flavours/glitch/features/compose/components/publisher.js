@@ -9,7 +9,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 //  Components.
 import Button from 'flavours/glitch/components/button';
 import Icon from 'flavours/glitch/components/icon';
-import CharacterCounter from './character_counter';
 
 //  Utils.
 import { maxChars } from 'flavours/glitch/util/initial_state';
@@ -50,7 +49,6 @@ class Publisher extends ImmutablePureComponent {
 
     return (
       <div className={computedClass}>
-        <CharacterCounter text={countText} max={maxChars} />
         {sideArm && sideArm !== 'none' ? (
           <Button
             className='side_arm'

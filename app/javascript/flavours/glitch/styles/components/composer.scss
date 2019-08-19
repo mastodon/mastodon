@@ -501,12 +501,18 @@
   background: $simple-background-color;
 }
 
-.composer--options {
+.composer--options-wrapper {
   padding: 10px;
   background: darken($simple-background-color, 8%);
-  box-shadow: inset 0 5px 5px rgba($base-shadow-color, 0.05);
   border-radius: 0 0 4px 4px;
   height: 27px;
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 auto;
+}
+
+.composer--options {
+  display: flex;
   flex: 0 0 auto;
 
   & > * {
@@ -529,6 +535,11 @@
     height: 27px;
     background: transparent;
   }
+}
+
+.compose--counter-wrapper {
+  align-self: center;
+  margin-right: 4px;
 }
 
 .composer--options--dropdown {
