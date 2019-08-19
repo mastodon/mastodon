@@ -45,6 +45,8 @@ de:
     what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
+    endorsements_hint: Du kannst Personen unterstützen, die du von der Web-Schnittstelle folgen kannst, und sie werden hier angezeigt.
+    featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
       one: Folger_innen
@@ -421,6 +423,13 @@ de:
       custom_css:
         desc_html: Verändere das Aussehen mit CSS, dass auf jeder Seite geladen wird
         title: Benutzerdefiniertes CSS
+      domain_blocks:
+        all: An alle
+        disabled: An niemanden
+        title: Zeige Domain-Blockaden
+        users: Für angemeldete lokale Benutzer
+      domain_blocks_rationale:
+        title: Rationale anzeigen
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
         title: Bild für Einstiegsseite
@@ -507,7 +516,7 @@ de:
       review: Prüfstatus
       reviewed: Überprüft
       title: Hashtags
-      trending_right_now: Gerade angesagt
+      trending_right_now: Aktuell in den Trends
       unique_uses_today: "%{count} Beiträge heute"
       unreviewed: Nicht überprüft
       updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
@@ -527,7 +536,7 @@ de:
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
     new_trending_tag:
-      body: 'Der Hashtag #%{name} ist heute angesagt, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
+      body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
       subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
@@ -628,6 +637,23 @@ de:
     people:
       one: "%{count} Person"
       other: "%{count} Leute"
+  domain_blocks:
+    blocked_domains: Liste der begrenzten und blockierten Domains
+    description: Dies ist die Liste der Server, die %{instance} limitiert oder dessen Föderation ablehnt.
+    domain: Domain
+    media_block: Medienblockade
+    no_domain_blocks: "(Keine Domain-Blockaden)"
+    severity: Schweregrad
+    severity_legend:
+      media_block: Mediendateien, die vom Server stammen, werden weder vom Benutzer abgerufen, gespeichert noch angezeigt.
+      silence: Konten von stummgeschalteten Servern können gefunden und gefolgt werden und man kann mit ihnen interagieren, aber ihre Beiträge werden nicht in der öffentlichen Zeitleiste erscheinen und Benachrichtigungen von ihnen werden nicht zu lokalen Benutzern gesendet, die sie nicht folgen.
+      suspension: Keine Inhalte von gesperrten Servern werden gespeichert oder angezeigt, und es werden auch keine Inhalte an sie gesendet. Die Interaktionen von gesperrten Servern werden ignoriert.
+      suspension_disclaimer: Gesperrte Server können gelegentlich öffentliche Inhalte von diesem Server abrufen.
+      title: Schweregrade
+    show_rationale: Rationale anzeigen
+    silence: Stummschalten
+    suspension: Sperre
+    title: "%{instance} Liste der blockierten Instanzen"
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
@@ -664,6 +690,7 @@ de:
     add_new: Neu hinzufügen
     errors:
       limit: Du hast bereits die maximale Anzahl an empfohlenen Hashtags erreicht
+    hint_html: "<strong>Was sind empfohlene Hashtags?</strong> Sie werden in deinem öffentlichen Profil deutlich angezeigt und ermöglichen es den Menschen, deine öffentlichen Beiträge speziell unter diesen Hashtags zu durchsuchen. Sie sind ein großartiges Werkzeug, um kreative Werke oder langfristige Projekte zu verfolgen."
   filters:
     contexts:
       home: Startseite
@@ -684,6 +711,7 @@ de:
     developers: Entwickler
     more: Mehr…
     resources: Ressourcen
+    trending_now: In den Trends
   generic:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!

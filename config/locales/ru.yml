@@ -119,7 +119,7 @@ ru:
       followers: Подписчики
       followers_url: URL подписчиков
       follows: Подписки
-      header: Заголовок
+      header: Шапка
       inbox_url: URL входящих
       invited_by: Приглашение выдал(а)
       ip: IP
@@ -191,6 +191,7 @@ ru:
       username: Имя пользователя
       warn: Предупредить
       web: Веб
+      whitelisted: В белом списке
     action_logs:
       actions:
         assigned_to_self_report: "%{name} назначил(а) жалобу %{target} на себя"
@@ -263,6 +264,8 @@ ru:
       features: Возможности
       hidden_service: Федерация со скрытыми сервисами
       open_reports: открытых жалоб
+      pending_tags: хэштеги, ожидающие проверки
+      pending_users: пользователи, ожидающие проверки
       recent_users: Недавние пользователи
       search: Полнотекстовый поиск
       single_user_mode: Однопользовательский режим
@@ -274,11 +277,17 @@ ru:
       week_interactions: взаимодействий на этой неделе
       week_users_active: активно на этой неделе
       week_users_new: пользователей на этой неделе
+      whitelist_mode: Белый список
+    domain_allows:
+      created_msg: Домен добавлен в белый список
+      destroyed_msg: Домен убран из белого списка
+      undo: Убрать из белого списка
     domain_blocks:
       add_new: Заблокировать домен
       created_msg: Блокировка домена обрабатывается
       destroyed_msg: Блокировка домена снята
       domain: Домен
+      edit: Редактировать блокировку
       new:
         create: Создать блокировку
         hint: Блокировка домена не предотвратит создание новых аккаунтов в базе данных, но ретроактивно и автоматически применит указанные методы модерации для этих аккаунтов.
@@ -288,6 +297,8 @@ ru:
           silence: Глушение
           suspend: Блокировка
         title: Новая доменная блокировка
+      private_comment: Приватный комментарий
+      public_comment: Публичный комментарий
       reject_media: Запретить медиаконтент
       reject_media_hint: Удаляет локально хранимый медиаконтент и запрещает его загрузку в будущем. Не имеет значения в случае блокировки.
       reject_reports: Отклонять жалобы
@@ -530,7 +541,7 @@ ru:
     login: Войти
     logout: Выйти
     migrate_account: Перенести аккаунт
-    migrate_account_html: Если Вы хотите перенести этот аккаунт на другой, вы можете <a href="%{path}">сделать это здесь</a>.
+    migrate_account_html: Если вы хотите перенаправить подписчиков на другой аккаунт, это можно <a href="%{path}">настроить здесь</a>.
     or_log_in_with: Или войти с помощью
     providers:
       cas: CAS

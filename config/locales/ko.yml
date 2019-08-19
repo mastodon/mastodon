@@ -43,6 +43,8 @@ ko:
     what_is_mastodon: 마스토돈이란?
   accounts:
     choices_html: "%{name}의 추천:"
+    endorsements_hint: 내가 팔로우 하고 있는 사람들을 여기에 추천 할 수 있습니다.
+    featured_tags_hint: 특정한 해시태그들을 여기에 표시되도록 할 수 있습니다.
     follow: 팔로우
     followers:
       other: 팔로워
@@ -417,6 +419,13 @@ ko:
       custom_css:
         desc_html: 모든 페이지에 적용할 CSS
         title: 커스텀 CSS
+      domain_blocks:
+        all: 모두에게
+        disabled: 아무에게도 안 함
+        title: 도메인 차단 보여주기
+        users: 로그인 한 유저에게
+      domain_blocks_rationale:
+        title: 사유 보여주기
       hero:
         desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 서버의 썸네일이 사용 됩니다
         title: 히어로 이미지
@@ -623,6 +632,23 @@ ko:
     how_to_enable: 아직 디렉터리에 참여하지 않았습니다. 아래에서 참여할 수 있습니다. 바이오 텍스트에 해시태그를 사용해 특정 해시태그 디렉터리에 표시 될 수 있습니다!
     people:
       other: "%{count}명"
+  domain_blocks:
+    blocked_domains: 제한 되거나 차단 된 도메인 목록
+    description: 이것은 %{instance}가 제한하거나 연합을 거부한 서버들의 목록입니다.
+    domain: 도메인
+    media_block: 미디어 차단
+    no_domain_blocks: "(도메인 차단 없음)"
+    severity: 심각도
+    severity_legend:
+      media_block: 이 서버의 미디어는 불러오거나, 저장 되거나, 유저에게 보여지지 않습니다.
+      silence: 침묵 된 서버의 계정은 발견 되고, 팔로우 하고, 그들과 상호작용 할 수 있습니다, 그러나 그들의 툿은 툿 공개 타임라인에 나타나지 않으며 그들에게서 오는 알림은 그들을 팔로우 하지 않는 로컬 유저에게는 전달되지 않습니다.
+      suspension: 정지 된 서버의 어떤 콘텐츠도 저장 되거나 보여지거나 하지 않고 어떤 콘텐츠도 그 서버로 전달 되지 않습니다. 정지 된 서버에서의 상호작용은 무시됩니다.
+      suspension_disclaimer: 정지 된 서버는 때때로 이 서버의 공개 콘텐츠를 받아 갈 수도 잇습니다.
+      title: 심각도
+    show_rationale: 사유 보여주기
+    silence: 침묵
+    suspension: 정지
+    title: "%{instance}의 차단한 인스턴스 목록"
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -659,6 +685,7 @@ ko:
     add_new: 추가
     errors:
       limit: 이미 추천 해시태그의 개수가 최대입니다
+    hint_html: "<strong>추천 해시태그가 무엇이죠?</strong> 당신의 공개 프로필 페이지에 눈에 띄게 표현 되며 사람들이 그 해시태그를 포함한 당신의 글을 찾아 볼 수 있도록 합니다. 창작활동이나 긴 기간을 가지는 프로젝트를 쭉 따라가기에 좋은 도구입니다."
   filters:
     contexts:
       home: 홈 타임라인
@@ -679,6 +706,7 @@ ko:
     developers: 개발자
     more: 더 보기…
     resources: 리소스
+    trending_now: 지금 유행중
   generic:
     all: 모두
     changes_saved_msg: 정상적으로 변경되었습니다!

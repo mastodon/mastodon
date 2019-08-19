@@ -45,6 +45,8 @@ co:
     what_is_mastodon: Quale hè Mastodon?
   accounts:
     choices_html: "%{name} ricumanda:"
+    endorsements_hint: Pudete appughjà i conti chì siguitate dapoi l'interfaccia web, è saranu mustrati quì.
+    featured_tags_hint: Pudete mette in mostra qualchì hashtag chì saranu affissatu quì.
     follow: Siguità
     followers:
       one: Abbunatu·a
@@ -421,6 +423,13 @@ co:
       custom_css:
         desc_html: Mudificà l'apparenza cù CSS caricatu nant'à ogni pagina
         title: CSS persunalizatu
+      domain_blocks:
+        all: À tutti
+        disabled: À nimu
+        title: Mustrà blucchime di duminiu
+        users: À l'utilizatori lucali cunnettati
+      domain_blocks_rationale:
+        title: Vede ragiò
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di u servore sarà usata
         title: Ritrattu di cuprendula
@@ -628,6 +637,23 @@ co:
     people:
       one: "%{count} persona"
       other: "%{count} persone"
+  domain_blocks:
+    blocked_domains: Lista di dumini bluccati è limitati
+    description: Quessa ghjè a lista di i servori limitati da o cù quelli %{instance} righjetta a federazione.
+    domain: Duminiu
+    media_block: Blucchime di media
+    no_domain_blocks: "(Nisun blucchime di duminiu)"
+    severity: Severità
+    severity_legend:
+      media_block: I fugliali media chì venenu sa stu servore ùn saranu mai ricuperati, cunservati, o affissati à l'utilizatore.
+      silence: I conti nant'à i servori silenzati ponu esse trovi, siguitati è spartuti/favurizati, mà i statuti ùn saranu micca in e linee pubbliche, è l'utilizatori lucali ch'ùn sò micca abbunati à sti conti ùn anu micca da riceve e so nutificazione.
+      suspension: U cuntinutu da i servori suspesi ùn hè mai cunservatu o affissatu, è u cuntinutu di stu servore ùn li hè micca mandatu. L'interazzione da sti servori suspesi sò ignurate.
+      suspension_disclaimer: I servori suspesi ponu ognitantu ricuperà i cuntinuti pubblichi da stu servore.
+      title: Severità
+    show_rationale: Vede ragiò
+    silence: Silenziu
+    suspension: Suspensione
+    title: Lista di servori bluccati da %{instance}
   domain_validator:
     invalid_domain: ùn hè micca un nome di duminiu currettu
   errors:
@@ -664,6 +690,7 @@ co:
     add_new: Aghjunghje
     errors:
       limit: Avete digià messu in mostra u numeru massimale di hashtag
+    hint_html: "<strong>Quale sò i hashtag in mostra?</strong> Sò messi in vista nant'à u vostru prufile pubblicu è permettenu à a ghjente di vede i vostri statuti ch'annu stu hashtag. Sò una bona manere di mustrà e vostre opere creative o i prughjetti à longu termine."
   filters:
     contexts:
       home: Accolta
@@ -684,6 +711,7 @@ co:
     developers: Sviluppatori
     more: Di più…
     resources: Risorze
+    trending_now: Tindenze d'avà
   generic:
     all: Tuttu
     changes_saved_msg: Cambiamenti salvati!

@@ -1,6 +1,7 @@
 ---
 th:
   about:
+    about_hashtag_html: มีโพสต์สาธารณะที่ถูกแท็กด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบได้หากคุณมีบัญชีที่ไหนก็ได้ในเฟดิเวิร์ส
     about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ กระจายศูนย์เหมือนอีเมล
     about_this: เกี่ยวกับ
     active_count_after: ที่ใช้งาน
@@ -18,9 +19,11 @@ th:
     documentation: เอกสารประกอบ
     extended_description_html: |
       <h3>สถานที่ที่ดีสำหรับกฎ</h3>
-      <p>ยังไม่ได้ตั้งคำอธิบายแบบขยาย</p>
+      <p>ยังไม่ได้ตั้งคำอธิบายเพิ่มเติม</p>
+    federation_hint_html: เมื่อคุณมีบัญชีที่ %{instance} แล้ว คุณสามารถติดตามผู้คนบนเซิร์ฟเวอร์ Mastodon เซิร์ฟเวอร์ใดก็ได้
     generic_description: "%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย"
     get_apps: ลองแอปสำหรับมือถือ
+    hosted_on: Mastodon ให้บริการบน %{domain}
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
     see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
@@ -28,7 +31,7 @@ th:
     source_code: โค้ดต้นฉบับ
     status_count_after:
       other: สถานะ
-    status_count_before: ผู้สร้าง
+    status_count_before: ผู้ใช้เหล่านั้นได้สร้าง
     terms: เงื่อนไขการให้บริการ
     user_count_after:
       other: ผู้ใช้
