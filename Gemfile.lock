@@ -421,8 +421,8 @@ GEM
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
     pg (1.1.4)
-    pghero (2.2.1)
-      activerecord
+    pghero (2.3.0)
+      activerecord (>= 5)
     pkg-config (1.3.7)
     premailer (1.11.1)
       addressable
@@ -739,7 +739,7 @@ DEPENDENCIES
   parallel_tests (~> 2.29)
   parslet
   pg (~> 1.1)
-  pghero (~> 2.2)
+  pghero (~> 2.3)
   pkg-config (~> 1.3)
   posix-spawn!
   premailer-rails
