@@ -141,6 +141,15 @@ function main() {
     return false;
   });
 
+  delegate(document, '.blocks-table button.icon-button', 'click', function(e) {
+    e.preventDefault();
+
+    const classList = this.firstElementChild.classList;
+    classList.toggle('fa-chevron-down');
+    classList.toggle('fa-chevron-up');
+    this.parentElement.parentElement.nextElementSibling.classList.toggle('hidden');
+  });
+
   delegate(document, '.modal-button', 'click', e => {
     e.preventDefault();
 
