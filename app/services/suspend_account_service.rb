@@ -13,7 +13,9 @@ class SuspendAccountService < BaseService
     custom_filters
     domain_blocks
     favourites
+    featured_tags
     follow_requests
+    identity_proofs
     list_accounts
     media_attachments
     mute_relationships
@@ -21,6 +23,7 @@ class SuspendAccountService < BaseService
     notifications
     owned_lists
     passive_relationships
+    polls
     report_notes
     scheduled_statuses
     status_pins
@@ -71,7 +74,8 @@ class SuspendAccountService < BaseService
   def purge_content!
     distribute_delete_actor! if @account.local? && !@options[:skip_distribution]
 
-    @account.statuses.reorder(nil).find_in_batches do |statuses|
+    @account.statuses.with_discarded.reorder(nil).find_in_batches do |statuses|
+      statuses.reject! { |status| reported_statuses.key?(status.id) } unless @options[:destroy]
       BatchedRemoveStatusService.new.call(statuses, skip_side_effects: @options[:destroy])
     end
 
@@ -128,6 +132,10 @@ class SuspendAccountService < BaseService
 
   def delivery_inboxes
     @delivery_inboxes ||= @account.followers.inboxes + Relay.enabled.pluck(:inbox_url)
+  end
+
+  def reported_statuses
+    @reported_statuses ||= Report.where(target_account: @account).unresolved.pluck(:status_ids).flatten.each_with_object({}) { |id, h| h[id] = true }
   end
 
   def low_priority_delivery_inboxes

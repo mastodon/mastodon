@@ -25,7 +25,11 @@ class RemoveStatusService < BaseService
         remove_from_media if status.media_attachments.any?
         remove_from_spam_check
 
-        @status.destroy!
+        if status.reported?
+          @status.discard
+        else
+          @status.destroy
+        end
       else
         raise Mastodon::RaceConditionError
       end
