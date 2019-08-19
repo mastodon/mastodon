@@ -65,7 +65,7 @@ class AboutController < ApplicationController
   helper_method :new_user
 
   def set_pack
-    use_pack 'common'
+    use_pack 'public'
   end
 
   def set_instance_presenter
