@@ -45,6 +45,8 @@ en:
     what_is_mastodon: What is Mastodon?
   accounts:
     choices_html: "%{name}'s choices:"
+    endorsements_hint: You can endorse people you follow from the web interface, and they will show up here.
+    featured_tags_hint: You can feature specific hashtags that will be displayed here.
     follow: Follow
     followers:
       one: Follower
@@ -422,6 +424,13 @@ en:
       custom_css:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
+      domain_blocks:
+        all: To everyone
+        disabled: To no one
+        title: Show domain blocks
+        users: To logged-in local users
+      domain_blocks_rationale:
+        title: Show rationale
       enable_keybase:
         desc_html: Allow your users to prove their identity via keybase
         title: Enable keybase integration
@@ -641,6 +650,23 @@ en:
     people:
       one: "%{count} person"
       other: "%{count} people"
+  domain_blocks:
+    blocked_domains: List of limited and blocked domains
+    description: This is the list of servers that %{instance} limits or reject federation with.
+    domain: Domain
+    media_block: Media block
+    no_domain_blocks: "(No domain blocks)"
+    severity: Severity
+    severity_legend:
+      media_block: Media files coming from the server are neither fetched, stored, or displayed to the user.
+      silence: Accounts from silenced servers can be found, followed and interacted with, but their toots will not appear in the public timelines, and notifications from them will not reach local users who are not following them.
+      suspension: No content from suspended servers is stored or displayed, nor is any content sent to them. Interactions from suspended servers are ignored.
+      suspension_disclaimer: Suspended servers may occasionally retrieve public content from this server.
+      title: Severities
+    show_rationale: Show rationale
+    silence: Silence
+    suspension: Suspension
+    title: "%{instance} List of blocked instances"
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:
@@ -677,6 +703,7 @@ en:
     add_new: Add new
     errors:
       limit: You have already featured the maximum amount of hashtags
+    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
       home: Home timeline
@@ -697,6 +724,7 @@ en:
     developers: Developers
     more: More…
     resources: Resources
+    trending_now: Trending now
   generic:
     all: All
     changes_saved_msg: Changes successfully saved!

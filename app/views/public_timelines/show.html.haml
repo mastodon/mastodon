@@ -3,7 +3,6 @@
 
 - content_for :header_tags do
   %meta{ name: 'robots', content: 'noindex' }/
-  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
 
 .page-header
   %h1= t('about.see_whats_happening')

@@ -56,7 +56,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
         type: :unordered,
         part_of: ActivityPub::TagManager.instance.replies_uri_for(object),
         items: replies.map(&:second),
-        next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : nil
+        next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : ActivityPub::TagManager.instance.replies_uri_for(object, page: true, only_other_accounts: true)
       )
     )
   end

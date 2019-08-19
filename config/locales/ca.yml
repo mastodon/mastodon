@@ -24,6 +24,9 @@ ca:
     generic_description: "%{domain} és un servidor a la xarxa"
     get_apps: Prova una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
+    instance_actor_flash: |
+      Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
+      S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
     learn_more: Més informació
     privacy_policy: Política de privacitat
     see_whats_happening: Mira què està passant
@@ -250,6 +253,7 @@ ca:
       feature_profile_directory: Directori de perfils
       feature_registrations: Registres
       feature_relay: Relay de la Federació
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista previa de línia de temps
       features: Característiques
       hidden_service: Federació amb serveis ocults
@@ -449,6 +453,9 @@ ca:
         desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
         title: Termes del servei personalitzats
       site_title: Nom del servidor
+      spam_check_enabled:
+        desc_html: Mastodon pot auto-silenciar i informar automàticament de comptes basat en mesures com ara la detecció de comptes que envien missatges repetits no sol·licitats. Pot haver-hi falsos positius.
+        title: Anti-spam
       thumbnail:
         desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
         title: Miniatura del servidor
@@ -470,13 +477,7 @@ ca:
       title: Estats del compte
       with_media: Amb contingut multimèdia
     tags:
-      accounts: Comptes
-      hidden: Amagat
-      hide: Ocult del directori
-      name: Etiqueta
       title: Etiquetes
-      unhide: Mostra en el directori
-      visible: Visible
     title: Administració
     warning_presets:
       add_new: Afegir nou
@@ -517,7 +518,6 @@ ca:
     apply_for_account: Demana una invitació
     change_password: Contrasenya
     checkbox_agreement_html: Estic d'acord amb les <a href="%{rules_path}" target="_blank">normes del servidor</a> i <a href="%{terms_path}" target="_blank"> els termes del servei</a>
-    confirm_email: Confirmar correu electrònic
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     didnt_get_confirmation: No has rebut el correu de confirmació?
@@ -537,6 +537,14 @@ ca:
     reset_password: Restableix la contrasenya
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
+    setup:
+      email_below_hint_html: Si l’adreça de correu electrònic següent és incorrecta, podeu canviar-la aquí i rebre un nou correu electrònic de confirmació.
+      email_settings_hint_html: El correu electrònic de confirmació es va enviar a %{email}. Si aquesta adreça de correu electrònic no és correcta, la podeu canviar a la configuració del compte.
+      title: Configuració
+    status:
+      account_status: Estat del compte
+      confirming: Esperant que es completi la confirmació del correu electrònic.
+      pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
     trouble_logging_in: Problemes per iniciar la sessió?
   authorize_follow:
     already_following: Ja estàs seguint aquest compte
@@ -874,6 +882,8 @@ ca:
     profile: Perfil
     relationships: Seguits i seguidors
     two_factor_authentication: Autenticació de dos factors
+  spam_check:
+    spam_detected_and_silenced: Aquest és un informe automatitzat. S'ha detectat correu brossa i el remitent s'ha silenciat automàticament. Si es tracta d’un error, si us plau, trèieu el silenci del compte.
   statuses:
     attached:
       description: 'Adjunt: %{attached}'

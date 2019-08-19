@@ -17,6 +17,9 @@ class TrendingTags
       increment_historical_use!(tag.id, at_time)
       increment_unique_use!(tag.id, account.id, at_time)
       increment_vote!(tag, at_time)
+
+      tag.update(last_status_at: Time.now.utc) if tag.last_status_at.nil? || tag.last_status_at < 12.hours.ago
+      tag.update(last_trend_at: Time.now.utc)  if trending?(tag) && (tag.last_trend_at.nil? || tag.last_trend_at < 12.hours.ago)
     end
 
     def get(limit, filtered: true)

@@ -74,6 +74,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{count} per week",
+        "id": "autosuggest_hashtag.per_week"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/autosuggest_hashtag.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Back",
         "id": "column_back_button.label"
       }
@@ -578,6 +587,10 @@
         "id": "account.follow"
       },
       {
+        "defaultMessage": "Cancel follow request",
+        "id": "account.cancel_follow_request"
+      },
+      {
         "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
@@ -804,6 +817,10 @@
       {
         "defaultMessage": "Muted words",
         "id": "navigation_bar.filters"
+      },
+      {
+        "defaultMessage": "Logout",
+        "id": "navigation_bar.logout"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/action_bar.json"
@@ -1073,6 +1090,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Uploading…",
+        "id": "upload_progress.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/upload_form.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Uploading...",
         "id": "upload_progress.label"
       }
@@ -1082,16 +1108,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Describe for the visually impaired",
-        "id": "upload_form.description"
-      },
-      {
         "defaultMessage": "Delete",
         "id": "upload_form.undo"
       },
       {
-        "defaultMessage": "Crop",
-        "id": "upload_form.focus"
+        "defaultMessage": "Edit",
+        "id": "upload_form.edit"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/upload.json"
@@ -1291,6 +1313,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/following/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Refresh",
+        "id": "trends.refresh"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/getting_started/components/trends.json"
   },
   {
     "descriptors": [
@@ -1873,6 +1904,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "and {count, plural, one {# other} other {# others}}",
+        "id": "notification.and_n_others"
+      },
+      {
         "defaultMessage": "{name} followed you",
         "id": "notification.follow"
       },
@@ -2233,6 +2268,47 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/embed_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Apply",
+        "id": "upload_modal.apply"
+      },
+      {
+        "defaultMessage": "A quick brown fox jumps over the lazy dog",
+        "id": "upload_modal.description_placeholder"
+      },
+      {
+        "defaultMessage": "Edit media",
+        "id": "upload_modal.edit_media"
+      },
+      {
+        "defaultMessage": "Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.",
+        "id": "upload_modal.hint"
+      },
+      {
+        "defaultMessage": "Describe for the visually impaired",
+        "id": "upload_form.description"
+      },
+      {
+        "defaultMessage": "Analyzing picture…",
+        "id": "upload_modal.analyzing_picture"
+      },
+      {
+        "defaultMessage": "Detect text from picture",
+        "id": "upload_modal.detect_text"
+      },
+      {
+        "defaultMessage": "Preview ({ratio})",
+        "id": "upload_modal.preview_label"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/focal_point_modal.json"
   },
   {
     "descriptors": [

@@ -34,8 +34,12 @@ ko:
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
         setting_show_application: 당신이 툿을 작성하는데에 사용한 앱이 툿의 상세정보에 표시 됩니다
+        setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
+        setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
+      domain_allow:
+        domain: 이 도메인은 이 서버에서 데이터를 가져갈 수 있고 이 도메인에서 보내진 데이터는 처리되고 저장 됩니다
       featured_tag:
         name: '이것들을 사용하면 좋을 것 같습니다:'
       imports:
@@ -44,6 +48,8 @@ ko:
         text: 이 정보는 우리가 심사를 하는 데에 참고할 수 있습니다
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
+      tag:
+        name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
         chosen_languages: 체크하면, 선택 된 언어들만 공개 타임라인에 보여집니다
     labels:
@@ -108,7 +114,10 @@ ko:
         setting_show_application: 툿 작성에 사용한 앱을 공개
         setting_system_font_ui: 시스템의 초기 설정 폰트를 사용
         setting_theme: 사이트 테마
+        setting_trends: 오늘의 유행 보이기
         setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
+        setting_use_blurhash: 숨겨진 미디어에 대해 그라디언트 표시
+        setting_use_pending_items: 느린 모드
         severity: 심각도
         type: 불러오기 종류
         username: 유저 이름
@@ -131,8 +140,14 @@ ko:
         pending_account: 새 계정이 심사가 필요할 때 이메일 보내기
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
         report: 새 신고 등록시 이메일로 알리기
+        trending_tag: 리뷰 되지 않은 해시태그가 유행할 때 이메일 보내기
+      tag:
+        listable: 이 해시태그가 프로필 디렉토리에 보여지도록 허용
+        trendable: 이 해시태그가 유행에 보여지도록 허용
+        usable: 이 해시태그를 툿에 사용 가능하도록 허용
     'no': 아니오
     recommended: 추천함
     required:
+      mark: "*"
       text: 필수 항목
     'yes': 네

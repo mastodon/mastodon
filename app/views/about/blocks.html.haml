@@ -1,0 +1,48 @@
+- content_for :page_title do
+  = t('domain_blocks.title', instance: site_hostname)
+
+.grid
+  .column-0
+    .box-widget.rich-formatting
+      %h2= t('domain_blocks.blocked_domains')
+      %p= t('domain_blocks.description', instance: site_hostname)
+      .table-wrapper
+        %table.blocks-table
+          %thead
+            %tr
+              %th= t('domain_blocks.domain')
+              %th.severity-column= t('domain_blocks.severity')
+              - if @show_rationale
+                %th.button-column
+          %tbody
+            - if @blocks.empty?
+              %tr
+                %td{ colspan: @show_rationale ? 3 : 2 }= t('domain_blocks.no_domain_blocks')
+            - else
+              - @blocks.each_with_index do |block, i|
+                %tr{ class: i % 2 == 0 ? 'even': nil }
+                  %td{ title: block.domain }= block.domain
+                  %td= block_severity_text(block)
+                  - if @show_rationale
+                    %td
+                      - if block.public_comment.present?
+                        %button.icon-button{ title: t('domain_blocks.show_rationale'), 'aria-label' => t('domain_blocks.show_rationale') }
+                          = fa_icon 'chevron-down fw', 'aria-hidden' => true
+                - if @show_rationale
+                  - if block.public_comment.present?
+                    %tr.rationale.hidden
+                      %td{ colspan: 3 }= block.public_comment.presence
+      %h2= t('domain_blocks.severity_legend.title')
+      - if @blocks.any? { |block| block.reject_media? }
+        %h3= t('domain_blocks.media_block')
+        %p= t('domain_blocks.severity_legend.media_block')
+      - if @blocks.any? { |block| block.severity == 'silence' }
+        %h3= t('domain_blocks.silence')
+        %p= t('domain_blocks.severity_legend.silence')
+      - if @blocks.any? { |block| block.severity == 'suspend' }
+        %h3= t('domain_blocks.suspension')
+        %p= t('domain_blocks.severity_legend.suspension')
+        - if public_fetch_mode?
+          %p= t('domain_blocks.severity_legend.suspension_disclaimer')
+  .column-1
+    = render 'application/sidebar'

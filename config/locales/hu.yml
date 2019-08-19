@@ -24,6 +24,9 @@ hu:
     generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
     get_apps: Próbálj ki egy mobil appot
     hosted_on: "%{domain} Mastodon szerver"
+    instance_actor_flash: 'Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
+
+'
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
     see_whats_happening: Nézd, mi történik
@@ -183,6 +186,7 @@ hu:
       username: Felhasználónév
       warn: Figyelmeztetés
       web: Web
+      whitelisted: Engedélyező-listán
     action_logs:
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
@@ -243,6 +247,7 @@ hu:
       updated_msg: Emoji sikeresen frissítve!
       upload: Feltöltés
     dashboard:
+      authorized_fetch_mode: Áttöltő üzemmód engedélyezve
       backlog: hátralévő feladatok
       config: Beállítások
       feature_deletions: Fióktörlések
@@ -250,10 +255,13 @@ hu:
       feature_profile_directory: Profil adatbázis
       feature_registrations: Regisztráció
       feature_relay: Föderációs relé
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Idővonal betekintő
       features: Funkciók
       hidden_service: Föderáció rejtett szolgáltatásokkal
       open_reports: nyitott bejelentések
+      pending_tags: hashtag engedélyezésre vár
+      pending_users: felhasználó engedélyezésre vár
       recent_users: Legutóbbi felhasználók
       search: Keresés teljes szövegben
       single_user_mode: Egyfelhasználós mód
@@ -265,11 +273,18 @@ hu:
       week_interactions: interakció ezen a héten
       week_users_active: aktív ezen a héten
       week_users_new: felhasználó ezen a héten
+      whitelist_mode: Engedélyező-lista mód
+    domain_allows:
+      add_new: Domain engedélyezése
+      created_msg: A domain rákerült az engedélyező-listára
+      destroyed_msg: A domain lekerült az engedélyező-listáról
+      undo: Eltávolítás az engedélyező-listáról
     domain_blocks:
       add_new: Új tiltott domain hozzáadása
       created_msg: A domain-tiltás feldolgozása folyamatban
       destroyed_msg: A domain tiltása feloldva
       domain: Domain
+      edit: Domain tiltás szerkesztése
       existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
       new:
         create: Tiltás létrehozása
@@ -280,6 +295,10 @@ hu:
           silence: Némítás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      private_comment: Privát megjegyzés
+      private_comment_hint: Megjegyzés domain tiltásával kapcsolatban belső használatra, a többi moderátor részére.
+      public_comment: Nyilvános megjegyzés
+      public_comment_hint: Megjegyzés domain tiltásával kapcsolatban a nyilvánosság számára, ha a domainek tiltólistája egyébként látható.
       reject_media: Médiafájlok elutasítása
       reject_media_hint: Eltávolítja a helyben tárolt médiafájlokat és a továbbiakban letiltja az új médiafájlok letöltését. Felfüggesztett fiókok esetében irreleváns opció
       reject_reports: Bejelentések elutasítása
@@ -299,6 +318,7 @@ hu:
         title: "%{domain} domain tiltásának feloldása"
         undo: Visszavonás
       undo: Domain tiltásának visszavonása
+      view: Domain tiltásának megtekintése
     email_domain_blocks:
       add_new: Új hozzáadása
       created_msg: E-mail domain sikeresen hozzáadva a feketelistához
@@ -322,6 +342,8 @@ hu:
         all: Mind
         limited: Korlátozott
         title: Moderáció
+      private_comment: Privát megjegyzés
+      public_comment: Nyilvános megjegyzés
       title: Föderáció
       total_blocked_by_us: Általunk letiltott
       total_followed_by_them: Általuk követett
@@ -449,6 +471,9 @@ hu:
         desc_html: Megírhatod saját adatkezelési szabályzatodat, felhasználási feltételeidet vagy más hasonló jellegű dokumentumodat. HTML-tageket is használhatsz
         title: Egyedi felhasználási feltételek
       site_title: A szerver neve
+      spam_check_enabled:
+        desc_html: A Mastodon automatikusan elnémíthatja és bejelentheti azokat a fiókokat, akik rendszeresen kéretlen üzeneteket küldenek. Persze lehetnek tévedések is.
+        title: Automatikus anti-spam
       thumbnail:
         desc_html: OpenGraph-os és API-s előnézetekben használjuk. Ajánlott mérete 1200x630 pixel
         title: A szerver bélyegképe
@@ -456,6 +481,9 @@ hu:
         desc_html: Nyilvános idővonal megjelenítése a főoldalon
         title: Idővonal előnézete
       title: Webhely beállításai
+      trends:
+        desc_html: Előzetesen engedélyezett és most trendi hashtagek nyilvános mutatása
+        title: Trendi hashtagek
     statuses:
       back_to_account: Vissza a fiók oldalára
       batch:
@@ -470,13 +498,19 @@ hu:
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
     tags:
-      accounts: Fiókok
-      hidden: Rejtett
-      hide: Ne jelenjen meg a profilok adatbázisában
-      name: Hashtag
+      accounts_today: Egyedi használat a mai napon
+      accounts_week: Egyedi használat ezen a héten
+      breakdown: Mai használat bontása forrás szerint
+      context: Környezet
+      directory: Katalógusban
+      in_directory: "%{count} a katalógusban"
+      review: Engedélyezés állapota
+      reviewed: Engedélyezett
       title: Hashtagek
-      unhide: Jelenjen meg a profilok adatbázisában
-      visible: Látható
+      trending_right_now: Most trendi
+      unique_uses_today: "%{count} mai tülkölés"
+      unreviewed: Még nem engedélyezett
+      updated_msg: A hashtag beállításokat sikeresen frissítettük
     title: Karbantartás
     warning_presets:
       add_new: Új hozzáadása
@@ -492,11 +526,15 @@ hu:
       body: "%{reporter} jelentette: %{target}"
       body_remote: Valaki a %{domain} domainről jelentette %{target}
       subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'A #%{name} hashtag trendi a mai napon, de még nem engedélyeztük eddig. Nem mutatjuk meg nyilvánosan, hacsak nem engedélyezed. Csak simán mentsd az űrlapot, ha soha többé nem akarsz erről a hashtagről hallani.'
+      subject: Új hashtag (#%{name}) engedélyezésre vár a %{instance} szerveren
   appearance:
     advanced_web_interface: Haladó webes felület
     advanced_web_interface_hint: 'Ha szeretnéd, a teljes képernyőszélességet felhasználhatod. A haladó webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi infót láthass, amennyit csak akarsz: Saját idővonal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
     animations_and_accessibility: Animáció és akadálymentesítés
     confirmation_dialogs: Megerősítő párbeszédablakok
+    discovery: Felfedezés
     sensitive_content: Szenzitív tartalom
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
@@ -517,7 +555,7 @@ hu:
     apply_for_account: Meghívó kérése
     change_password: Jelszó
     checkbox_agreement_html: Egyetértek a <a href="%{rules_path}" target="_blank">szerver szabályaival</a> és a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
-    confirm_email: E-mail megerősítése
+    checkbox_agreement_without_rules_html: Egyetértek a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
@@ -537,6 +575,15 @@ hu:
     reset_password: Jelszó visszaállítása
     security: Biztonság
     set_new_password: Új jelszó beállítása
+    setup:
+      email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
+      email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
+      title: Beállítás
+    status:
+      account_status: Fiók állapota
+      confirming: Várakozás a visszaigazolásra.
+      functional: A fiókod teljesen működőképes.
+      pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
     trouble_logging_in: Problémád van a bejelentkezéssel?
   authorize_follow:
     already_following: Már követed ezt a felhasználót
@@ -581,6 +628,8 @@ hu:
     people:
       one: "%{count} ember"
       other: "%{count} ember"
+  domain_validator:
+    invalid_domain: nem egy valódi domain név
   errors:
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
@@ -874,6 +923,8 @@ hu:
     profile: Profil
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős azonosítás
+  spam_check:
+    spam_detected_and_silenced: Ez egy automatikus bejelentés. Spamet érzékeltünk, így a küldőt automatikusan elnémítottuk. Ha ez hiba, oldd fel a némítást.
   statuses:
     attached:
       description: 'Csatolva: %{attached}'
@@ -915,6 +966,8 @@ hu:
     pinned: Kitűzött tülk
     reblogged: megtolta
     sensitive_content: Szenzitív tartalom
+  tags:
+    does_not_match_previous_name: nem illeszkedik az előző névvel
   terms:
     body_html: |
       <h2>Adatvédelmi nyilatkozat</h2>

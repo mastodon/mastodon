@@ -24,6 +24,9 @@ gl:
     generic_description: "%{domain} é un servidor na rede"
     get_apps: Probe cunha app móbil
     hosted_on: Mastodon aloxado en %{domain}
+    instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queira bloquear a toda a instancia, en tal caso debería utilizar o bloqueo do dominio.
+
+'
     learn_more: Coñeza máis
     privacy_policy: Política de intimidade
     see_whats_happening: Mire o que acontece
@@ -183,6 +186,7 @@ gl:
       username: Nome de usuaria
       warn: Aviso
       web: Web
+      whitelisted: Lista branca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} asignou o informe %{target} a ela misma"
@@ -243,6 +247,7 @@ gl:
       updated_msg: Actualizouse correctamente o emoji!
       upload: Subir
     dashboard:
+      authorized_fetch_mode: Modo de obtención autorizado
       backlog: traballos respaldados
       config: Axustes
       feature_deletions: Borrado de contas
@@ -250,6 +255,7 @@ gl:
       feature_profile_directory: Directorio do perfil
       feature_registrations: Rexistros
       feature_relay: Repetidores de federación
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista previa da TL
       features: Características
       hidden_service: Federación con servizos ocultos
@@ -265,6 +271,12 @@ gl:
       week_interactions: interaccións en esta semana
       week_users_active: activas estas semana
       week_users_new: usuarias esta semana
+      whitelist_mode: Modo de lista branca
+    domain_allows:
+      add_new: Dominio en lista branca
+      created_msg: Engadeu o dominio a lista branca
+      destroyed_msg: Quitou o dominio da lista branca
+      undo: Eliminar da lista branca
     domain_blocks:
       add_new: Engadir novo bloqueo de dominio
       created_msg: Estase a procesar o bloqueo do dominio
@@ -449,6 +461,9 @@ gl:
         desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
         title: Termos de servizo persoalizados
       site_title: Nome do servidor
+      spam_check_enabled:
+        desc_html: Mastodon pode silenciar e informar automáticamente sobre contas baseándose en medidas como detectar contas que envían mensaxes non solicitadas de xeito repetido. Podería haber falsos positivos.
+        title: Anti-spam
       thumbnail:
         desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
         title: Icona do servidor
@@ -456,6 +471,9 @@ gl:
         desc_html: Mostrar liña de tempo pública na páxina de inicio
         title: vista previa da liña temporal
       title: Axustes do sitio
+      trends:
+        desc_html: Mostrar públicamente etiquetas previamente revisadas que actualmente son tendencia
+        title: Etiquetas Tendencia
     statuses:
       back_to_account: Voltar a páxina da conta
       batch:
@@ -470,13 +488,15 @@ gl:
       title: Estados da conta
       with_media: con medios
     tags:
-      accounts: Contas
-      hidden: Ocultas
-      hide: Ocultar do directorio
-      name: Etiqueta
+      context: Contexto
+      directory: No directorio
+      in_directory: "%{count} no directorio"
+      review: Estado de revisión
+      reviewed: Revisado
       title: Etiquetas
-      unhide: Mostrar en directorio
-      visible: Visible
+      trending_right_now: Agora como Tendencia
+      unique_uses_today: "%{count} publicando hoxe"
+      updated_msg: Actualizaronse os axustes das etiquetas
     title: Administración
     warning_presets:
       add_new: Engadir novo
@@ -492,11 +512,15 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: Novo informe sobre %{instance} (#%{id})
+    new_trending_tag:
+      body: 'A etiqueta #%{name} é tendencia hoxe, pero non foi previamente revisada. Non se mostrará publicamente a menos que vostede o permita, ou garde o formulario para facer que non se lle consulte de novo.'
+      subject: Unha nova etiqueta que revisar en %{instance} (#%{name})
   appearance:
     advanced_web_interface: Interface web avanzada
     advanced_web_interface_hint: Se quere utilizar todo o ancho da súa pantalla, a interface web avanzada permítelle configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, liña temporal federada, calquera número de listas e etiquetas.
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
+    discovery: Descubrir
     sensitive_content: Contido sensible
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
@@ -517,7 +541,7 @@ gl:
     apply_for_account: Solicite un convite
     change_password: Contrasinal
     checkbox_agreement_html: Acepto as <a href="%{rules_path}" target="_blank">regras do servidor</a> e os <a href="%{terms_path}" target="_blank">termos do servizo</a>
-    confirm_email: Confirmar correo-e
+    checkbox_agreement_without_rules_html: Acepto os <a href="%{terms_path}" target="_blank">termos do servizo</a>
     delete_account: Eliminar conta
     delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
     didnt_get_confirmation: Non recibeu as instruccións de confirmación?
@@ -537,6 +561,15 @@ gl:
     reset_password: Restablecer contrasinal
     security: Seguridade
     set_new_password: Establecer novo contrasinal
+    setup:
+      email_below_hint_html: Se o enderezo inferior non é correcto, pode cambialo aquí e recibir un correo de confirmación.
+      email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto pode cambialo nos axustes da conta.
+      title: Axustes
+    status:
+      account_status: Estado da conta
+      confirming: Agardando a confirmación do correo enviado.
+      functional: A súa conta está totalmente operativa.
+      pending: A súa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirá un correo se a aplicación está aprobada.
     trouble_logging_in: Problemas para conectar?
   authorize_follow:
     already_following: Xa está a seguir esta conta
@@ -873,7 +906,9 @@ gl:
     preferences: Preferencias
     profile: Perfil
     relationships: Seguindo e seguidoras
-    two_factor_authentication: Validar Doble Factor
+    two_factor_authentication: Validar Dobre Factor
+  spam_check:
+    spam_detected_and_silenced: Esto é un informe automático. Detectouse spam e o remitente foi bloqueado automáticamente. Se o considera un fallo, por favor desbloquee a conta.
   statuses:
     attached:
       description: 'Axenado: %{attached}'
@@ -915,6 +950,8 @@ gl:
     pinned: Mensaxe fixada
     reblogged: promovida
     sensitive_content: Contido sensible
+  tags:
+    does_not_match_previous_name: non concorda co nome anterior
   terms:
     body_html: |
       <h2>Intimidade</h2>
@@ -1008,11 +1045,11 @@ gl:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
-    description_html: Si habilita a <strong>autenticación de doble factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que xerará testemuños para poder entrar.
+    description_html: Se activa a <strong>autenticación de dobre factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que creará testemuños para poder entrar.
     disable: Deshabilitar
     enable: Habilitar
-    enabled: A autenticación de doble-factor está habilitada
-    enabled_success: Habilitouse con éxito a autenticación de doble-factor
+    enabled: A autenticación de dobre-factor está activada
+    enabled_success: Activouse con éxito a autenticación de dobre-factor
     generate_recovery_codes: Xerar códigos de recuperación
     instructions_html: "<strong>Escanee este código QR en Google Authenticator ou aplicativo TOTP similar no seu teléfono</strong>. Desde agora, este aplicativo xerará testemuños que vostede deberá introducir ao conectarse."
     lost_recovery_codes: Os códigos de recuperación permítenlle recuperar o acceso a súa conta si perde o teléfono. Si perde os códigos de recuperación, pode restauralos aquí. Os seus códigos de recuperación anteriores serán invalidados.
@@ -1063,7 +1100,7 @@ gl:
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
     invalid_email: O enderezo de correo non é válido
-    invalid_otp_token: Código de doble-factor non válido
+    invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'

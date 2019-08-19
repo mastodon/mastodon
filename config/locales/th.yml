@@ -1,6 +1,7 @@
 ---
 th:
   about:
+    about_hashtag_html: มีโพสต์สาธารณะที่ถูกแท็กด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบได้หากคุณมีบัญชีที่ไหนก็ได้ในเฟดิเวิร์ส
     about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ กระจายศูนย์เหมือนอีเมล
     about_this: เกี่ยวกับ
     active_count_after: ที่ใช้งาน
@@ -18,9 +19,11 @@ th:
     documentation: เอกสารประกอบ
     extended_description_html: |
       <h3>สถานที่ที่ดีสำหรับกฎ</h3>
-      <p>ยังไม่ได้ตั้งคำอธิบายแบบขยาย</p>
+      <p>ยังไม่ได้ตั้งคำอธิบายเพิ่มเติม</p>
+    federation_hint_html: เมื่อคุณมีบัญชีที่ %{instance} แล้ว คุณสามารถติดตามผู้คนบนเซิร์ฟเวอร์ Mastodon เซิร์ฟเวอร์ใดก็ได้
     generic_description: "%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย"
     get_apps: ลองแอปสำหรับมือถือ
+    hosted_on: Mastodon ให้บริการบน %{domain}
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
     see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
@@ -28,7 +31,7 @@ th:
     source_code: โค้ดต้นฉบับ
     status_count_after:
       other: สถานะ
-    status_count_before: ผู้สร้าง
+    status_count_before: ผู้ใช้เหล่านั้นได้สร้าง
     terms: เงื่อนไขการให้บริการ
     user_count_after:
       other: ผู้ใช้
@@ -156,6 +159,18 @@ th:
       warn: เตือน
       web: เว็บ
     action_logs:
+      actions:
+        change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
+        confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
+        create_account_warning: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
+        create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
+        destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
+        destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
+        destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
+        disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        enable_custom_emoji: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
+        update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
       title: รายการบันทึกการตรวจสอบ
     custom_emojis:
@@ -287,6 +302,8 @@ th:
       unresolved: ยังไม่ได้แก้ปัญหา
       updated_at: อัปเดตเมื่อ
     settings:
+      bootstrap_timeline_accounts:
+        title: การติดตามเริ่มต้นสำหรับผู้ใช้ใหม่
       contact_information:
         email: อีเมลธุรกิจ
         username: ชื่อผู้ใช้ในการติดต่อ
@@ -320,6 +337,8 @@ th:
         title: ข้อมูลแบบขยายที่กำหนดเอง
       site_short_description:
         title: คำอธิบายเซิร์ฟเวอร์แบบสั้น
+      site_terms:
+        title: เงื่อนไขการให้บริการที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
       timeline_preview:
         desc_html: แสดงเส้นเวลาสาธารณะในหน้าเริ่มต้น
@@ -336,13 +355,7 @@ th:
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
     tags:
-      accounts: บัญชี
-      hidden: ซ่อนอยู่
-      hide: ซ่อนจากไดเรกทอรี
-      name: แฮชแท็ก
       title: แฮชแท็ก
-      unhide: แสดงในไดเรกทอรี
-      visible: มองเห็น
     title: การดูแล
     warning_presets:
       add_new: เพิ่มใหม่
@@ -362,11 +375,12 @@ th:
     view_profile: ดูโปรไฟล์
     view_status: ดูสถานะ
   applications:
+    created: สร้างแอปพลิเคชันสำเร็จ
+    destroyed: ลบแอปพลิเคชันสำเร็จ
     invalid_url: URL ที่ระบุไม่ถูกต้อง
   auth:
     apply_for_account: ขอคำเชิญ
     change_password: รหัสผ่าน
-    confirm_email: ยืนยันอีเมล
     delete_account: ลบบัญชี
     forgot_password: ลืมรหัสผ่านของคุณ?
     login: เข้าสู่ระบบ
@@ -381,6 +395,8 @@ th:
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
+    status:
+      account_status: สถานะบัญชี
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
@@ -412,6 +428,8 @@ th:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
+    people:
+      other: "%{count} คน"
   errors:
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
@@ -482,9 +500,12 @@ th:
       '86400': 1 วัน
     expires_in_prompt: ไม่เลย
     generate: สร้าง
+    max_uses:
+      other: "%{count} การใช้"
     max_uses_prompt: ไม่มีขีดจำกัด
     table:
       expires_at: หมดอายุเมื่อ
+      uses: การใช้
     title: เชิญผู้คน
   media_attachments:
     validations:
@@ -530,6 +551,9 @@ th:
     older: เก่ากว่า
     prev: ก่อนหน้า
     truncate: "&hellip;"
+  polls:
+    errors:
+      duplicate_options: มีรายการที่ซ้ำกัน
   preferences:
     other: อื่น ๆ
     posting_defaults: ค่าเริ่มต้นการโพสต์
@@ -604,7 +628,7 @@ th:
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
-    import: นำเข้า
+    import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
@@ -625,6 +649,7 @@ th:
     poll:
       total_votes:
         other: "%{count} การลงคะแนน"
+      vote: ลงคะแนน
     show_more: แสดงเพิ่มเติม
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'

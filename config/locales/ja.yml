@@ -24,6 +24,9 @@ ja:
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
+    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、個人のアカウントではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックする以外の目的でブロックしないでください。サーバー全体をブロックする場合、ドメインブロックを使用してください。
+
+'
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     see_whats_happening: やりとりを見てみる
@@ -239,6 +242,7 @@ ja:
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
     dashboard:
+      authorized_fetch_mode: セキュアモード
       backlog: 未処理のジョブ
       config: 構成
       feature_deletions: アカウント削除
@@ -246,10 +250,13 @@ ja:
       feature_profile_directory: ディレクトリ
       feature_registrations: 新規登録
       feature_relay: 連合リレー
+      feature_spam_check: スパム対策
       feature_timeline_preview: タイムラインプレビュー
       features: 機能
       hidden_service: 秘匿サービスとの連合
       open_reports: 未解決の通報
+      pending_tags: 審査待ちのハッシュタグ
+      pending_users: 承認待ちの人数
       recent_users: 最近登録したユーザー
       search: 全文検索
       single_user_mode: シングルユーザーモード
@@ -261,11 +268,17 @@ ja:
       week_interactions: 今週交流のあった回数
       week_users_active: 今週活動した人数
       week_users_new: 今週登録した人数
+      whitelist_mode: ホワイトリストモード
+    domain_allows:
+      created_msg: ドメインのホワイトリストへの登録が正常に完了しました
+      destroyed_msg: ドメインがホワイトリストから削除されました
+      undo: ホワイトリストから削除
     domain_blocks:
       add_new: ドメインブロックを追加
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
       domain: ドメイン
+      edit: ドメインブロックを編集
       existing_domain_block_html: 既に%{name}に対して、より厳しい制限を課しています。先に<a href="%{unblock_url}">その制限を解除</a>する必要があります。
       new:
         create: ブロックを作成
@@ -276,6 +289,10 @@ ja:
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
+      private_comment: コメント (非公開)
+      private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
+      public_comment: コメント (公開)
+      public_comment_hint: ドメインブロックの公開を有効にしている場合、このコメントも一般に公開されます。
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: 通報を拒否
@@ -294,6 +311,7 @@ ja:
         title: "%{domain}のドメインブロックを戻す"
         undo: 元に戻す
       undo: ドメインブロックを戻す
+      view: ドメインブロックを表示
     email_domain_blocks:
       add_new: 新規追加
       created_msg: ブラックリストに追加しました
@@ -316,6 +334,8 @@ ja:
         all: すべて
         limited: 制限あり
         title: モデレーション
+      private_comment: コメント (非公開)
+      public_comment: コメント (公開)
       title: 既知のサーバー
       total_blocked_by_us: ブロック合計
       total_followed_by_them: 被フォロー合計
@@ -443,6 +463,9 @@ ja:
         desc_html: 独自のプライバシーポリシーや利用規約、その他の法的根拠を記述できます。HTMLタグが使えます
         title: カスタム利用規約
       site_title: サーバーの名前
+      spam_check_enabled:
+        desc_html: 求められていないメッセージを繰り返し送信するアカウントを自動でサイレンスにし通報することができます。誤検知を含む可能性もあります。
+        title: スパム対策を有効にする
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
         title: サーバーのサムネイル
@@ -450,6 +473,9 @@ ja:
         desc_html: ランディングページに公開タイムラインを表示します
         title: タイムラインプレビュー
       title: サイト設定
+      trends:
+        desc_html: 現在トレンドになっている承認済みのハッシュタグを公開します
+        title: トレンドタグを有効にする
     statuses:
       back_to_account: アカウントページに戻る
       batch:
@@ -464,13 +490,19 @@ ja:
       title: トゥート一覧
       with_media: メディアあり
     tags:
-      accounts: アカウント
-      hidden: 非表示
-      hide: ディレクトリから隠す
-      name: ハッシュタグ
+      accounts_today: 本日使用した人数
+      accounts_week: 今週使用した人数
+      breakdown: 直近のサーバー別使用状況
+      context: 表示先
+      directory: ディレクトリに使用
+      in_directory: "%{count} 人がディレクトリに使用"
+      review: 審査状況
+      reviewed: 審査済み
       title: ハッシュタグ
-      unhide: ディレクトリに表示する
-      visible: 表示
+      trending_right_now: 現在のトレンド
+      unique_uses_today: 本日 %{count} 人がトゥートに使用
+      unreviewed: 未審査
+      updated_msg: ハッシュタグ設定の更新に成功しました
     title: 管理
     warning_presets:
       add_new: 追加
@@ -486,11 +518,15 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: "%{domain} の誰かが %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
+    new_trending_tag:
+      body: 'ハッシュタグ #%{name} が本日のトレンドになっていますが、審査がまだ行われていないためトレンドタグには表示されていません。一度許可すれば次回からこの操作は不要です。'
+      subject: "%{instance} で新しいハッシュタグ (#%{name}) が審査待ちです"
   appearance:
     advanced_web_interface: 上級者向け UI
     advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
     animations_and_accessibility: アニメーションとアクセシビリティー
     confirmation_dialogs: 確認ダイアログ
+    discovery: 見つける
     sensitive_content: 閲覧注意コンテンツ
   application_mailer:
     notification_preferences: メール設定の変更
@@ -511,7 +547,7 @@ ja:
     apply_for_account: 登録を申請する
     change_password: パスワード
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a> と <a href="%{terms_path}" target="_blank">プライバシーポリシー</a> に同意します
-    confirm_email: メールアドレスの確認
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">利用規約</a> に同意します
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
@@ -531,6 +567,14 @@ ja:
     reset_password: パスワードを再発行
     security: セキュリティ
     set_new_password: 新しいパスワード
+    setup:
+      email_below_hint_html: 下記のメールアドレスが間違っている場合、ここで変更することで新たに確認メールを受信できます。
+      email_settings_hint_html: 確認用のメールを %{email} に送信しました。メールアドレスが正しくない場合、以下より変更することができます。
+    status:
+      account_status: アカウントの状態
+      confirming: メールアドレスの確認が完了するのを待っています。
+      functional: アカウントは完全に機能しています。
+      pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
     trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
@@ -574,6 +618,8 @@ ja:
     how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
     people:
       other: "%{count} 人"
+  domain_validator:
+    invalid_domain: は無効なドメイン名です
   errors:
     '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。
@@ -628,6 +674,7 @@ ja:
     developers: 開発者向け
     more: さらに…
     resources: リソース
+    trending_now: トレンドタグ
   generic:
     all: すべて
     changes_saved_msg: 正常に変更されました！
@@ -865,6 +912,8 @@ ja:
     profile: プロフィール
     relationships: フォロー・フォロワー
     two_factor_authentication: 二段階認証
+  spam_check:
+    spam_detected_and_silenced: これは自動通報です。スパムが検出されたため、当該送信者は自動的にサイレンスに設定されました。もしこれが誤りである場合、アカウントのサイレンスを解除してください。
   statuses:
     attached:
       description: '添付: %{attached}'

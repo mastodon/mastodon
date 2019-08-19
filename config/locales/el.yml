@@ -10,8 +10,8 @@ el:
     api: API
     apps: Εφαρμογές κινητών
     apps_platforms: Χρησιμοποίησε το Mastodon από το iOS, το Android και αλλού
-    browse_directory: Ξεφύλλισε ένα κατάλογο χρηστών και φίλτραρε ανά ενδιαφέροντα
-    browse_public_posts: Κοίταξε μια ζωντανή ροή δημοσιεύσεων στο Mastodon
+    browse_directory: Ξεφύλλισε τον κατάλογο χρηστών και ψάξε ανά ενδιαφέροντα
+    browse_public_posts: Ξεφύλλισε τη ζωντανή ροή του Mastodon
     contact: Επικοινωνία
     contact_missing: Δεν έχει οριστεί
     contact_unavailable: Μ/Δ
@@ -24,6 +24,9 @@ el:
     generic_description: "%{domain} είναι ένας εξυπηρετητής στο δίκτυο"
     get_apps: Δοκίμασε μια εφαρμογή κινητού
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
+    instance_actor_flash: |
+      Αυτός ο λογαριασμός είναι εικονικός και απεικονίζει τον κόμβο, όχι κάποιο συγκεκριμένο χρήστη.
+      Χρησιμεύει στη λειτουργία της ομοσπονδίας και δε θα πρέπει να αποκλειστεί, εκτός κι αν είναι επιθυμητός ο αποκλεισμός ολόκληρου του κόμβου. Σε αυτή την περίπτωση θα πρέπει να χρησιμοποιηθεί η λειτουργία αποκλεισμού τομέα.
     learn_more: Μάθε περισσότερα
     privacy_policy: Πολιτική απορρήτου
     see_whats_happening: Μάθε τι συμβαίνει
@@ -183,6 +186,7 @@ el:
       username: Όνομα χρήστη
       warn: Προειδοποίηση
       web: Διαδίκτυο
+      whitelisted: Εγκεκριμένοι
     action_logs:
       actions:
         assigned_to_self_report: Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της
@@ -243,6 +247,7 @@ el:
       updated_msg: Επιτυχής ενημέρωση του emoji!
       upload: Ανέβασμα
     dashboard:
+      authorized_fetch_mode: Λειτουργία εγκεκριμένης ανάκτησης
       backlog: χρονοκαθυστερημένες εργασίες
       config: Διαμόρφωση
       feature_deletions: Διαγραφή λογαριασμών
@@ -250,6 +255,7 @@ el:
       feature_profile_directory: Κατάλογος χρηστών
       feature_registrations: Εγγραφές
       feature_relay: Ανταποκριτής ομοσπονδίας
+      feature_spam_check: Καταπολέμηση ανεπιθύμητης επικοινωνίας
       feature_timeline_preview: Προεπισκόπιση ροής
       features: Λειτουργίες
       hidden_service: Ομοσπονδία με κρυμμένες υπηρεσίες
@@ -265,6 +271,12 @@ el:
       week_interactions: αλληλεπιδράσεις αυτή την εβδομάδα
       week_users_active: ενεργοί αυτή την εβδομάδα
       week_users_new: χρήστες αυτή την εβδομάδα
+      whitelist_mode: Λειτουργία εγκρίσεων
+    domain_allows:
+      add_new: Έγκριση τομέα
+      created_msg: Ο τομέας εγκρίθηκε με επιτυχία
+      destroyed_msg: Ο τομέας δεν είναι πια εγκεκριμένος
+      undo: Αφαίρεση έγκρισης
     domain_blocks:
       add_new: Προσθήκη νέου
       created_msg: Ο αποκλεισμός τομέα είναι υπό επεξεργασία
@@ -449,6 +461,9 @@ el:
         desc_html: Μπορείς να γράψεις τη δική σου πολιτική απορρήτου, όρους χρήσης ή άλλους νομικούς όρους. Μπορείς να χρησιμοποιήσεις HTML tags
         title: Προσαρμοσμένοι όροι χρήσης της υπηρεσίας
       site_title: Όνομα κόμβου
+      spam_check_enabled:
+        desc_html: Το Mastodon μπορεί να αποσιωπεί και να καταγγέλει αυτόματα λογαριασμούς βάσει της συμπεριφοράς τους όπως για παράδειγμα επαναλαμβανόμενη αποστολή ανεπιθύμητων μηνυμάτων. Μπορεί να υπάρξουν και λανθασμένες ανιχνεύσεις.
+        title: Καταπολέμηση ανεπιθύμητης επικοινωνίας
       thumbnail:
         desc_html: Χρησιμοποιείται για προεπισκοπήσεις μέσω του OpenGraph και του API. Συστήνεται 1200x630px
         title: Μικρογραφία κόμβου
@@ -456,6 +471,9 @@ el:
         desc_html: Εμφάνισε τη δημόσια ροή στην αρχική σελίδα
         title: Προεπισκόπιση ροής
       title: Ρυθμίσεις ιστότοπου
+      trends:
+        desc_html: Δημόσια εμφάνιση ταμπελών που έχουν ήδη εγκριθεί και είναι δημοφιλείς
+        title: Δημοφιλείς ταμπέλες
     statuses:
       back_to_account: Επιστροφή στη σελίδα λογαριασμού
       batch:
@@ -470,13 +488,15 @@ el:
       title: Καταστάσεις λογαριασμού
       with_media: Με πολυμέσα
     tags:
-      accounts: Λογαριασμοί
-      hidden: Κρυμμένες
-      hide: Απόκρυψη από κατάλογο
-      name: Ταμπέλα
+      context: Συνάφεια
+      directory: Στον κατάλογο
+      in_directory: "%{count} στον κατάλογο"
+      review: Κατάσταση έγκρισης
+      reviewed: Εγκεκριμένες
       title: Ταμπέλες
-      unhide: Εμφάνιση σε κατάλογο
-      visible: Εμφανείς
+      trending_right_now: Δημοφιλείς αυτή τη στιγμή
+      unique_uses_today: "%{count} σημερινές δημοσιεύσεις"
+      updated_msg: Οι ρυθμίσεις των ταμπελών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     warning_presets:
       add_new: Πρόσθεση νέου
@@ -492,11 +512,15 @@ el:
       body: Ο/Η %{reporter} κατήγγειλε τον/την %{target}
       body_remote: Κάποιος/α από τον τομέα %{domain} κατήγγειλε τον/την %{target}
       subject: Νέα καταγγελία για %{instance} (#%{id})
+    new_trending_tag:
+      body: 'Η ταμπέλα #%{name} είναι δημοφιλής σήμερα, αλλά δεν έχει εγκριθεί μέχρι τώρα. Δεν θα εμφανίζεται δημοσίως μέχρι να δοθεί έγκρισή, αλλιώς αποθηκεύστε τη φόρμα ως έχει για να μην την δείτε ξανά.'
+      subject: Νέα ταμπέλα προς έγκριση στο %{instance} (#%{name})
   appearance:
     advanced_web_interface: Προηγμένη λειτουργία χρήσης
     advanced_web_interface_hint: 'Αν θέλεις να χρησιμοποιήσεις ολόκληρο το πλάτος της οθόνης σου, η προηγμένη λειτουργία χρήσης σου επιτρέπει να ορίσεις πολλαπλές κολώνες ώστε να βλέπεις ταυτόχρονα όση πληροφορία θέλεις: Την αρχική ροή, τις ειδοποιήσεις, την ομοσπονδιακή ροή και όσες λίστες και ταμπέλες θέλεις.'
     animations_and_accessibility: Κίνηση και προσβασιμότητα
     confirmation_dialogs: Ερωτήσεις επιβεβαίωσης
+    discovery: Εξερεύνηση
     sensitive_content: Ευαίσθητο περιεχόμενο
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
@@ -517,7 +541,7 @@ el:
     apply_for_account: Αίτηση πρόσκλησης
     change_password: Συνθηματικό
     checkbox_agreement_html: Συμφωνώ με τους <a href="%{rules_path}" target="_blank">κανονισμούς του κόμβου</a> και <a href="%{terms_path}" target="_blank">τους όρους χρήσης</a>
-    confirm_email: Επιβεβαίωση email
+    checkbox_agreement_without_rules_html: Συμφωνώ με τους <a href="%{terms_path}" target="_blank">όρους χρήσης</a>
     delete_account: Διαγραφή email
     delete_account_html: Αν θέλεις να διαγράψεις το λογαριασμό σου, μπορείς <a href="%{path}">να συνεχίσεις εδώ</a>. Θα σου ζητηθεί επιβεβαίωση.
     didnt_get_confirmation: Δεν έλαβες τις οδηγίες επιβεβαίωσης;
@@ -537,6 +561,15 @@ el:
     reset_password: Επαναφορά συνθηματικού
     security: Ασφάλεια
     set_new_password: Ορισμός νέου συνθηματικού
+    setup:
+      email_below_hint_html: Αν η παρακάτω διεύθυνση email είναι λανθασμένη, μπορείτε να την ενημερώσετε και να λάβετε νέο email επιβεβαίωσης.
+      email_settings_hint_html: Το email επιβεβαίωσης στάλθηκε στο %{email}. Αν η διεύθυνση αυτή δεν είναι σωστή, μπορείτε να την ενημερώσετε στις ρυθμίσεις λογαριασμού.
+      title: Ρυθμίσεις
+    status:
+      account_status: Κατάσταση λογαριασμού
+      confirming: Αναμονή για ολοκλήρωση επιβεβαίωσης του email.
+      functional: Ο λογαριασμός σου είναι πανέτοιμος.
+      pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
     trouble_logging_in: Πρόβλημα σύνδεσης;
   authorize_follow:
     already_following: Ήδη ακολουθείς αυτό το λογαριασμό
@@ -874,6 +907,8 @@ el:
     profile: Προφίλ
     relationships: Ακολουθεί και ακολουθείται
     two_factor_authentication: Πιστοποίηση 2 παραγόντων (2FA)
+  spam_check:
+    spam_detected_and_silenced: 'Αυτόματο μήνυμα: Ανιχνεύθηκε ανεπιθύμητο περιεχόμενο (σπαμ) και ο αποστολέας αποσιωπήθηκε αυτόματα. Αν έγινε λάθος, παρακαλώ διακόψτε την αποσιώπηση του λογαριασμού.'
   statuses:
     attached:
       description: 'Συνημμένα: %{attached}'
@@ -915,6 +950,8 @@ el:
     pinned: Καρφιτσωμένο τουτ
     reblogged: προωθημένο
     sensitive_content: Ευαίσθητο περιεχόμενο
+  tags:
+    does_not_match_previous_name: δεν ταιριάζει με το προηγούμενο όνομα
   terms:
     body_html: |
       <h2>Πολιτική Απορρήτου</h2>

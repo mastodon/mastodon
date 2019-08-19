@@ -1,9 +1,9 @@
 ---
 es:
   about:
-    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
-    about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
-    about_this: Acerca de esta instancia
+    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en el fediverso.
+    about_mastodon_html: Mastodon es una red social basada en protocolos web abiertos y software libre y de código abierto. Está descentralizado como correo electrónico.
+    about_this: Información
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
@@ -24,6 +24,9 @@ es:
     generic_description: "%{domain} es un servidor en la red"
     get_apps: Probar una aplicación móvil
     hosted_on: Mastodon hosteado en %{domain}
+    instance_actor_flash: |
+      Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
+      Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
     learn_more: Aprende más
     privacy_policy: Política de privacidad
     see_whats_happening: Ver lo que está pasando
@@ -183,6 +186,7 @@ es:
       username: Nombre de usuario
       warn: Adevertir
       web: Web
+      whitelisted: Añadido a la lista blanca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
@@ -250,10 +254,13 @@ es:
       feature_profile_directory: Directorio de perfil
       feature_registrations: Registros
       feature_relay: Relés de federación
+      feature_spam_check: Contra-spam
       feature_timeline_preview: Vista previa de la línea de tiempo
       features: Características
       hidden_service: Federación con servicios ocultos
       open_reports: informes abiertos
+      pending_tags: hashtags esperando revisión
+      pending_users: usuarios esperando por revisión
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
       single_user_mode: Modo único usuario
@@ -265,11 +272,18 @@ es:
       week_interactions: interacciones esta semana
       week_users_active: activo esta semana
       week_users_new: usuarios esta semana
+      whitelist_mode: En la lista blanca
+    domain_allows:
+      add_new: Añadir dominio a la lista blanca
+      created_msg: Dominio añadido a la lista blanca con éxito
+      destroyed_msg: Dominio quitado de la lista blanca con éxito
+      undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
       created_msg: El bloque de dominio está siendo procesado
       destroyed_msg: El bloque de dominio se deshizo
       domain: Dominio
+      edit: Editar nuevo dominio bloqueado
       existing_domain_block_html: Ya ha impuesto límites más estrictos a %{name}, necesita <a href="%{unblock_url}">desbloquearlo primero</a>.
       new:
         create: Crear bloque
@@ -280,6 +294,10 @@ es:
           silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
+      private_comment: Comentario privado
+      private_comment_hint: Comentario sobre esta limitación de dominio para el uso interno por parte de los moderadores.
+      public_comment: Comentario público
+      public_comment_hint: Comentario sobre esta limitación de dominio para el público en general, si la publicidad de la lista de limitaciones de dominio está habilitada.
       reject_media: Rechazar archivos multimedia
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar informes
@@ -299,6 +317,7 @@ es:
         title: Deshacer bloque de dominio para %{domain}
         undo: Deshacer
       undo: Deshacer
+      view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
       created_msg: Dominio de correo añadido a la lista negra con éxito
@@ -322,6 +341,8 @@ es:
         all: Todos
         limited: Limitado
         title: Moderación
+      private_comment: Comentario privado
+      public_comment: Comentario público
       title: Instancias conocidas
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
@@ -449,6 +470,9 @@ es:
         desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
         title: Términos de servicio personalizados
       site_title: Nombre de instancia
+      spam_check_enabled:
+        desc_html: Mastodon puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
+        title: Contra-spam
       thumbnail:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
         title: Portada de instancia
@@ -456,6 +480,9 @@ es:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
+      trends:
+        desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
+        title: Hashtags de tendencia
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -470,13 +497,18 @@ es:
       title: Estado de las cuentas
       with_media: Con multimedia
     tags:
-      accounts: Cuentas
-      hidden: Oculto
-      hide: Ocultar del directorio
-      name: Etiqueta
+      accounts_today: Usos únicos de hoy
+      accounts_week: Usos únicos esta semana
+      context: Contexto
+      directory: En el directorio
+      in_directory: "%{count} en el directorio"
+      review: Estado de revisión
+      reviewed: Revisado
       title: Etiquetas
-      unhide: Mostrar en el directorio
-      visible: Visible
+      trending_right_now: En tendencia ahora mismo
+      unique_uses_today: "%{count} publicando hoy"
+      unreviewed: No revisado
+      updated_msg: Hashtags actualizados exitosamente
     title: Administración
     warning_presets:
       add_new: Añadir nuevo
@@ -492,11 +524,15 @@ es:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
+    new_trending_tag:
+      body: 'El hashtag #%{name} está en tendencia hoy, pero no ha sido revisado previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario como para no volver a ver esto.'
+      subject: Nuevo hashtag para revisión en %{instance} (#%{name})
   appearance:
     advanced_web_interface: Interfaz web avanzada
     advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
+    discovery: Descubrir
     sensitive_content: Contenido sensible
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
@@ -517,7 +553,7 @@ es:
     apply_for_account: Solicitar una invitación
     change_password: Contraseña
     checkbox_agreement_html: Acepto <a href="%{rules_path}" target="_blank">las reglas del servidor</a> y <a href="%{terms_path}" target="_blank">términos de servicio</a>
-    confirm_email: Confirmar email
+    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank">términos de servicio</a>
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
@@ -537,6 +573,15 @@ es:
     reset_password: Restablecer contraseña
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
+    setup:
+      email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, se puede cambiarla aquí y recibir un nuevo correo electrónico de confirmación.
+      email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
+      title: Configuración
+    status:
+      account_status: Estado de la cuenta
+      confirming: Esperando confirmación de correo electrónico.
+      functional: Su cuenta está totalmente operativa.
+      pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
     trouble_logging_in: "¿Problemas para iniciar sesión?"
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
@@ -581,6 +626,8 @@ es:
     people:
       one: "%{count} persona"
       other: "%{count} personas"
+  domain_validator:
+    invalid_domain: no es un nombre de dominio válido
   errors:
     '403': No tienes permiso para acceder a esta página.
     '404': La página que estabas buscando no existe.
@@ -874,6 +921,8 @@ es:
     profile: Perfil
     relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
+  spam_check:
+    spam_detected_and_silenced: Este es un informe automatizado. Se ha detectado spam y el remitente ha sido silenciado automáticamente. Si esto es un error, por favor, deja de silenciar la cuenta.
   statuses:
     attached:
       description: 'Adjunto: %{attached}'
@@ -915,6 +964,8 @@ es:
     pinned: Toot fijado
     reblogged: retooteado
     sensitive_content: Contenido sensible
+  tags:
+    does_not_match_previous_name: no coincide con el nombre anterior
   terms:
     body_html: |
       <h2>Política de Privacidad</h2>
