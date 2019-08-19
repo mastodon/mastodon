@@ -20,6 +20,12 @@ Some changes are to come in the future:
 
 * Better list management
 
+## Support this project
+
+Please consider [supporting Hometown by pledging to my Patreon](https://www.patreon.com/tinysubversions), which supports all my open source projects including this one!
+
+Of course this project couldn't exist without Mastodon so maybe [support the Mastodon project Patreon](https://www.patreon.com/mastodon) too.
+
 ## Migrating from Mastodon to Hometown
 
 Please see [this article in the wiki](https://github.com/hometown-fork/hometown/wiki/Initial-migration) for directions on migration from Mastodon to Hometown.
