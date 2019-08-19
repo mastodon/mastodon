@@ -26,7 +26,7 @@ const LinkFooter = ({ withHotkeys }) => (
       /> <FormattedMessage
         id='getting_started.hometown_open_source_notice'
         defaultMessage='Hometown is also open source, at {hometown}.'
-        values={{ hometown: <span><a href='https://github.com/hometown-fork/hometown' rel='noopener' target='_blank'>friendcamp/mastodon</a></span> }}
+        values={{ hometown: <span><a href='https://github.com/hometown-fork/hometown' rel='noopener' target='_blank'>hometown-fork/hometown</a></span> }}
       />
     </p>
   </div>
