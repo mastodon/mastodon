@@ -344,6 +344,7 @@ ActiveRecord::Schema.define(version: 2019_08_15_225426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "autofollow", default: false, null: false
+    t.text "comment"
     t.index ["code"], name: "index_invites_on_code", unique: true
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
