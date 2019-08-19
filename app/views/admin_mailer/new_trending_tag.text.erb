@@ -1,0 +1,5 @@
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+
+<%= raw t('admin_mailer.new_trending_tag.body', name: @tag.name) %>
+
+<%= raw t('application_mailer.view')%> <%= admin_tags_url(review: 'pending_review') %>

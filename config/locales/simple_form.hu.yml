@@ -34,8 +34,12 @@ hu:
         setting_hide_network: Nem látszik majd a profilodon, kik követnek és te kiket követsz
         setting_noindex: A nyilvános profilodra és a tülkjeidre vonatkozik
         setting_show_application: A tülkök részletes nézetében látszani fog, milyen alkalmazást használtál a tülköléshez
+        setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
+        setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
         username: A felhasználói neved egyedi lesz a %{domain} domainen
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
+      domain_allow:
+        domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
       featured_tag:
         name: 'Ezeket esetleg használhatod:'
       imports:
@@ -44,6 +48,8 @@ hu:
         text: Ez segít nekünk átnézni a jelentkezésedet
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
+      tag:
+        name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű tülkök jelennek majd meg a nyilvános idővonalon
     labels:
@@ -108,7 +114,10 @@ hu:
         setting_show_application: A tülkölésre használt alkalmazás feltüntetése
         setting_system_font_ui: Rendszer betűtípusának használata
         setting_theme: Megjelenítési sablon
+        setting_trends: Mai trend mutatása
         setting_unfollow_modal: Megerősítés kérése mielőtt abbahagyod valaki követését
+        setting_use_blurhash: Rejtett média helyett homály mutatása
+        setting_use_pending_items: Lassú mód
         severity: Súlyosság
         type: Importálás típusa
         username: Felhasználónév
@@ -131,6 +140,11 @@ hu:
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
         reblog: E-mail küldése, amikor valaki megtolja a tülködet
         report: E-mail küldése, ha új bejelentés érkezett
+        trending_tag: E-mail küldése, ha egy még nem látott hashtag trendi lett
+      tag:
+        listable: A hashtag megjelenhet a profiladatbázisban
+        trendable: A hashtag megjelenhet a trendek között
+        usable: Tülkök használhatják ezt a hashtaget
     'no': Nem
     recommended: Ajánlott
     required:

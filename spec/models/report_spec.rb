@@ -125,7 +125,7 @@ describe Report do
     end
 
     it 'is invalid if comment is longer than 1000 characters' do
-      report = Fabricate.build(:report, comment: Faker::Lorem.characters(1001))
+      report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
       report.valid?
       expect(report).to model_have_error_on_field(:comment)
     end

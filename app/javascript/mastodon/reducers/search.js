@@ -3,6 +3,7 @@ import {
   SEARCH_CLEAR,
   SEARCH_FETCH_SUCCESS,
   SEARCH_SHOW,
+  SEARCH_EXPAND_SUCCESS,
 } from '../actions/search';
 import {
   COMPOSE_MENTION,
@@ -42,6 +43,9 @@ export default function search(state = initialState, action) {
       statuses: ImmutableList(action.results.statuses.map(item => item.id)),
       hashtags: fromJS(action.results.hashtags),
     })).set('submitted', true).set('searchTerm', action.searchTerm);
+  case SEARCH_EXPAND_SUCCESS:
+    const results = action.searchType === 'hashtags' ? fromJS(action.results.hashtags) : action.results[action.searchType].map(item => item.id);
+    return state.updateIn(['results', action.searchType], list => list.concat(results));
   default:
     return state;
   }

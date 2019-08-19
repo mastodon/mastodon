@@ -191,13 +191,14 @@ class Notifications extends React.PureComponent {
         onScrollToTop={this.handleScrollToTop}
         onScroll={this.handleScroll}
         shouldUpdateScroll={shouldUpdateScroll}
+        bindToDocument={!multiColumn}
       >
         {scrollableContent}
       </ScrollableList>
     );
 
     return (
-      <Column ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='bell'
           active={isUnread}

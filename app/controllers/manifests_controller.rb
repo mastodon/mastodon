@@ -5,6 +5,6 @@ class ManifestsController < ApplicationController
 
   def show
     expires_in 3.minutes, public: true
-    render json: InstancePresenter.new, serializer: ManifestSerializer
+    render json: InstancePresenter.new, serializer: ManifestSerializer, root: 'instance'
   end
 end

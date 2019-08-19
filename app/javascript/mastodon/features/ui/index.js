@@ -15,9 +15,11 @@ import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
 import { fetchFilters } from '../../actions/filters';
 import { clearHeight } from '../../actions/height_cache';
+import { focusApp, unfocusApp } from 'mastodon/actions/app';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
+import DocumentTitle from './components/document_title';
 import {
   Compose,
   Status,
@@ -110,11 +112,24 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
+
+    if (this.state.mobile || forceSingleColumn) {
+      document.body.classList.toggle('layout-single-column', true);
+      document.body.classList.toggle('layout-multiple-columns', false);
+    } else {
+      document.body.classList.toggle('layout-single-column', false);
+      document.body.classList.toggle('layout-multiple-columns', true);
+    }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps, prevState) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
       this.node.handleChildrenContentChange();
+    }
+
+    if (prevState.mobile !== this.state.mobile && !forceSingleColumn) {
+      document.body.classList.toggle('layout-single-column', this.state.mobile);
+      document.body.classList.toggle('layout-multiple-columns', !this.state.mobile);
     }
   }
 
@@ -213,7 +228,7 @@ class UI extends React.PureComponent {
     draggingOver: false,
   };
 
-  handleBeforeUnload = (e) => {
+  handleBeforeUnload = e => {
     const { intl, isComposing, hasComposingText, hasMediaAttachments } = this.props;
 
     if (isComposing && (hasComposingText || hasMediaAttachments)) {
@@ -222,6 +237,14 @@ class UI extends React.PureComponent {
       // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
     }
+  }
+
+  handleWindowFocus = () => {
+    this.props.dispatch(focusApp());
+  }
+
+  handleWindowBlur = () => {
+    this.props.dispatch(unfocusApp());
   }
 
   handleLayoutChange = () => {
@@ -301,6 +324,8 @@ class UI extends React.PureComponent {
   }
 
   componentWillMount () {
+    window.addEventListener('focus', this.handleWindowFocus, false);
+    window.addEventListener('blur', this.handleWindowBlur, false);
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
 
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -330,7 +355,10 @@ class UI extends React.PureComponent {
   }
 
   componentWillUnmount () {
+    window.removeEventListener('focus', this.handleWindowFocus);
+    window.removeEventListener('blur', this.handleWindowBlur);
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
+
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
@@ -489,6 +517,7 @@ class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+          <DocumentTitle />
         </div>
       </HotKeys>
     );

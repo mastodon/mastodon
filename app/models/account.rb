@@ -127,6 +127,8 @@ class Account < ApplicationRecord
 
   delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
 
+  update_index('accounts#account', :self) if Chewy.enabled?
+
   def local?
     domain.nil?
   end
@@ -167,6 +169,10 @@ class Account < ApplicationRecord
 
   def subscribed?
     subscription_expires_at.present?
+  end
+
+  def searchable?
+    !(suspended? || moved?)
   end
 
   def possibly_stale?
@@ -227,17 +233,7 @@ class Account < ApplicationRecord
   end
 
   def tags_as_strings=(tag_names)
-    tag_names.map! { |name| name.mb_chars.downcase.to_s }
-    tag_names.uniq!
-
-    # Existing hashtags
-    hashtags_map = Tag.where(name: tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
-
-    # Initialize not yet existing hashtags
-    tag_names.each do |name|
-      next if hashtags_map.key?(name)
-      hashtags_map[name] = Tag.new(name: name)
-    end
+    hashtags_map = Tag.find_or_create_by_names(tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
 
     # Remove hashtags that are to be deleted
     tags.each do |tag|
@@ -516,7 +512,7 @@ class Account < ApplicationRecord
   end
 
   def emojifiable_text
-    [note, display_name, fields.map(&:value)].join(' ')
+    [note, display_name, fields.map(&:name), fields.map(&:value)].join(' ')
   end
 
   def clean_feed_manager

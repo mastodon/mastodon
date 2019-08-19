@@ -23,6 +23,19 @@ module SignatureVerification
     @signature_verification_failure_code || 401
   end
 
+  def signature_key_id
+    raw_signature    = request.headers['Signature']
+    signature_params = {}
+
+    raw_signature.split(',').each do |part|
+      parsed_parts = part.match(/([a-z]+)="([^"]+)"/i)
+      next if parsed_parts.nil? || parsed_parts.size != 3
+      signature_params[parsed_parts[1]] = parsed_parts[2]
+    end
+
+    signature_params['keyId']
+  end
+
   def signed_request_account
     return @signed_request_account if defined?(@signed_request_account)
 
@@ -154,7 +167,7 @@ module SignatureVerification
       .with_fallback { nil }
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
-      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) ? handle.call(error) : raise(error) }
+      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
       .run
   end
 

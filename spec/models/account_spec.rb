@@ -583,26 +583,43 @@ RSpec.describe Account, type: :model do
         expect(account.valid?).to be true
       end
 
+      it 'is valid if we are creating an instance actor account with a period' do
+        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account.valid?).to be true
+      end
+
+      it 'is valid if we are creating a possibly-conflicting instance actor account' do
+        account_1 = Fabricate(:account, username: 'examplecom')
+        account_2 = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account_2.valid?).to be true
+      end
+
       it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
         account = Fabricate.build(:account, username: 'the-doctor')
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
+      it 'is invalid if the username contains a period' do
+        account = Fabricate.build(:account, username: 'the.doctor')
+        account.valid?
+        expect(account).to model_have_error_on_field(:username)
+      end
+
       it 'is invalid if the username is longer then 30 characters' do
-        account = Fabricate.build(:account, username: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, username: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
       it 'is invalid if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, display_name: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, display_name: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).to model_have_error_on_field(:display_name)
       end
 
       it 'is invalid if the note is longer than 500 characters' do
-        account = Fabricate.build(:account, note: Faker::Lorem.characters(501))
+        account = Fabricate.build(:account, note: Faker::Lorem.characters(number: 501))
         account.valid?
         expect(account).to model_have_error_on_field(:note)
       end
@@ -636,19 +653,19 @@ RSpec.describe Account, type: :model do
       end
 
       it 'is valid even if the username is longer then 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).not_to model_have_error_on_field(:username)
       end
 
       it 'is valid even if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).not_to model_have_error_on_field(:display_name)
       end
 
       it 'is valid even if the note is longer than 500 characters' do
-        account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(501))
+        account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(number: 501))
         account.valid?
         expect(account).not_to model_have_error_on_field(:note)
       end
@@ -787,7 +804,7 @@ RSpec.describe Account, type: :model do
   context 'when is local' do
     # Test disabled because test environment omits autogenerating keys for performance
     xit 'generates keys' do
-      account = Account.create!(domain: nil, username: Faker::Internet.user_name(nil, ['_']))
+      account = Account.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
       expect(account.keypair.private?).to eq true
     end
   end
@@ -795,12 +812,12 @@ RSpec.describe Account, type: :model do
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = Account.create!(domain: 'remote', username: Faker::Internet.user_name(nil, ['_']), public_key: key.to_pem)
+      account = Account.create!(domain: 'remote', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = Account.create!(domain: 'にゃん', username: Faker::Internet.user_name(nil, ['_']))
+      account = Account.create!(domain: 'にゃん', username: Faker::Internet.user_name(separators: ['_']))
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end

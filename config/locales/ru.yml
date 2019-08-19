@@ -171,6 +171,7 @@ ru:
         moderator: Модератор
         staff: Персонал
         user: Пользователь
+      salmon_url: Страница Salmon
       search: Поиск
       shared_inbox_url: URL общих входящих
       show:
@@ -181,6 +182,7 @@ ru:
       statuses: Статусы
       subscribe: Подписаться
       suspended: Заморожен
+      time_in_queue: Ожидание в очереди %{time}
       title: Аккаунты
       unconfirmed_email: Неподтверждённый e-mail
       undo_silenced: Снять глушение
@@ -256,6 +258,7 @@ ru:
       feature_profile_directory: Каталог профилей
       feature_registrations: Регистрация
       feature_relay: Ретрансляторы
+      feature_spam_check: Анти-спам
       feature_timeline_preview: Предпросмотр ленты
       features: Возможности
       hidden_service: Федерация со скрытыми сервисами
@@ -458,6 +461,8 @@ ru:
         desc_html: Вы можете добавить сюда собственную политику конфиденциальности, пользовательское соглашение и другие документы. Можно использовать теги HTML
         title: Условия использования
       site_title: Название сайта
+      spam_check_enabled:
+        title: Анти-спам
       thumbnail:
         desc_html: Используется для предпросмотра с помощью OpenGraph и API. Рекомендуется разрешение 1200x630px
         title: Картинка узла
@@ -479,13 +484,7 @@ ru:
       title: Статусы аккаунта
       with_media: С медиаконтентом
     tags:
-      accounts: Аккаунты
-      hidden: Скрыты
-      hide: Скрыть из каталога
-      name: Хэштег
       title: Хэштеги
-      unhide: Показывать в каталоге
-      visible: Видны
     title: Администрирование
     warning_presets:
       add_new: Добавить
@@ -523,7 +522,6 @@ ru:
     apply_for_account: Запросить приглашение
     change_password: Пароль
     checkbox_agreement_html: Я соглашаюсь с <a href="%{rules_path}" target="_blank">правилами сервера</a> и <a href="%{terms_path}" target="_blank">Условиями использования</a>
-    confirm_email: Подтвердите email
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
     didnt_get_confirmation: Не получили инструкцию для подтверждения?

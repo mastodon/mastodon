@@ -24,6 +24,9 @@ fa:
     generic_description: "%{domain} یک سرور روی شبکه است"
     get_apps: یک اپ موبایل را امتحان کنید
     hosted_on: ماستدون، میزبانی‌شده روی %{domain}
+    instance_actor_flash: |
+      این حساب یک بازیگر مجازی برای نمایندگی از این سرور است و متعلق به هیچ کاربری نیست.
+      این حساب برای ارتباط میان‌سروری به کار می‌رود و نباید مسدود شود، مگر این که شما بخواهید کل سرور را مسدود کنید، که در آن صورت باید از راه مسدودسازی دامین پیش بروید.
     learn_more: بیشتر بدانید
     privacy_policy: سیاست رازداری
     see_whats_happening: ببینید چه خبر است
@@ -250,6 +253,7 @@ fa:
       feature_profile_directory: فهرست گزیدهٔ کاربران
       feature_registrations: ثبت‌نام‌ها
       feature_relay: رله
+      feature_spam_check: ضدهرزنامه
       feature_timeline_preview: پیش‌نمایش نوشته‌ها
       features: ویژگی‌ها
       hidden_service: ارتباط میان‌سروری با سرویس‌های نهفته
@@ -449,6 +453,9 @@ fa:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
       site_title: نام سرور
+      spam_check_enabled:
+        desc_html: ماستدون می‌تواند حساب‌ها را به طور خودکار بی‌صدا کند یا گزارش دهد. این کار بر اساس سنجه‌هایی از قبیل شناسایی پیغام‌های ناخواستهٔ تکراری انجام می‌شود و ممکن است گاهی اشتباه باشد.
+        title: ضدهرزنامه
       thumbnail:
         desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
         title: تصویر کوچک سرور
@@ -470,13 +477,7 @@ fa:
       title: نوشته‌های حساب
       with_media: دارای عکس یا ویدیو
     tags:
-      accounts: حساب‌ها
-      hidden: پنهان‌شده
-      hide: در فهرست گزیدهٔ کاربران نشان نده
-      name: برچسب
       title: برچسب‌ها
-      unhide: نمایش در فهرست گزیدهٔ کاربران
-      visible: نمایان
     title: مدیریت سرور
     warning_presets:
       add_new: افزودن تازه
@@ -517,7 +518,6 @@ fa:
     apply_for_account: درخواست دعوت‌نامه
     change_password: رمز
     checkbox_agreement_html: من <a href="%{rules_path}" target="_blank">قانون‌های این سرور</a> و <a href="%{terms_path}" target="_blank">شرایط کاربری</a> را می‌پذیرم
-    confirm_email: تأیید ایمیل
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
@@ -874,6 +874,8 @@ fa:
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
     two_factor_authentication: ورود دومرحله‌ای
+  spam_check:
+    spam_detected_and_silenced: این یک گزارش خودکار است. هرزنامه به طور خودکار تشخیص داده شده و کاربر بی‌صدا شده است. اگر اشتباهی رخ داده لطفاً حساب را باصدا کنید.
   statuses:
     attached:
       description: 'پیوست‌شده: %{attached}'

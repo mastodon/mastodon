@@ -3,7 +3,8 @@
 class Api::V1::Accounts::StatusesController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_account
-  after_action :insert_pagination_headers
+
+  after_action :insert_pagination_headers, unless: -> { truthy_param?(:pinned) }
 
   respond_to :json
 

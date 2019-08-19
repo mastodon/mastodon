@@ -12,6 +12,14 @@ module DomainControlHelper
       end
     end
 
-    DomainBlock.blocked?(domain)
+    if whitelist_mode?
+      !DomainAllow.allowed?(domain)
+    else
+      DomainBlock.blocked?(domain)
+    end
+  end
+
+  def whitelist_mode?
+    Rails.configuration.x.whitelist_mode
   end
 end

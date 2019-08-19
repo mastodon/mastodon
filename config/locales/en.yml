@@ -45,6 +45,8 @@ en:
     what_is_mastodon: What is Mastodon?
   accounts:
     choices_html: "%{name}'s choices:"
+    endorsements_hint: You can endorse people you follow from the web interface, and they will show up here.
+    featured_tags_hint: You can feature specific hashtags that will be displayed here.
     follow: Follow
     followers:
       one: Follower
@@ -186,6 +188,7 @@ en:
       username: Username
       warn: Warn
       web: Web
+      whitelisted: Whitelisted
     action_logs:
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
@@ -246,6 +249,7 @@ en:
       updated_msg: Emoji successfully updated!
       upload: Upload
     dashboard:
+      authorized_fetch_mode: Authorized fetch mode
       backlog: backlogged jobs
       config: Configuration
       feature_deletions: Account deletions
@@ -258,6 +262,8 @@ en:
       features: Features
       hidden_service: Federation with hidden services
       open_reports: open reports
+      pending_tags: hashtags waiting for review
+      pending_users: users waiting for review
       recent_users: Recent users
       search: Full-text search
       single_user_mode: Single user mode
@@ -269,11 +275,18 @@ en:
       week_interactions: interactions this week
       week_users_active: active this week
       week_users_new: users this week
+      whitelist_mode: Whitelist mode
+    domain_allows:
+      add_new: Whitelist domain
+      created_msg: Domain has been successfully whitelisted
+      destroyed_msg: Domain has been removed from the whitelist
+      undo: Remove from whitelist
     domain_blocks:
       add_new: Add new domain block
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
+      edit: Edit domain block
       existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Create block
@@ -284,6 +297,10 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      private_comment: Private comment
+      private_comment_hint: Comment about this domain limitation for internal use by the moderators.
+      public_comment: Public comment
+      public_comment_hint: Comment about this domain limitation for the general public, if advertising the list of domain limitations is enabled.
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       reject_reports: Reject reports
@@ -303,6 +320,7 @@ en:
         title: Undo domain block for %{domain}
         undo: Undo
       undo: Undo domain block
+      view: View domain block
     email_domain_blocks:
       add_new: Add new
       created_msg: Successfully added e-mail domain to blacklist
@@ -326,6 +344,8 @@ en:
         all: All
         limited: Limited
         title: Moderation
+      private_comment: Private comment
+      public_comment: Public comment
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
@@ -403,6 +423,13 @@ en:
       custom_css:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
+      domain_blocks:
+        all: To everyone
+        disabled: To no one
+        title: Show domain blocks
+        users: To logged-in local users
+      domain_blocks_rationale:
+        title: Show rationale
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
@@ -454,8 +481,8 @@ en:
         title: Custom terms of service
       site_title: Server name
       spam_check_enabled:
-        desc_html: Mastodon can auto-silence and auto-report accounts based on measures such as detecting accounts who send repeated unsolicited messages. There may be false positives.
-        title: Anti-spam
+        desc_html: Mastodon can auto-silence and auto-report accounts that send repeated unsolicited messages. There may be false positives.
+        title: Anti-spam automation
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
         title: Server thumbnail
@@ -463,6 +490,9 @@ en:
         desc_html: Display public timeline on landing page
         title: Timeline preview
       title: Site settings
+      trends:
+        desc_html: Publicly display previously reviewed hashtags that are currently trending
+        title: Trending hashtags
     statuses:
       back_to_account: Back to account page
       batch:
@@ -477,13 +507,19 @@ en:
       title: Account statuses
       with_media: With media
     tags:
-      accounts: Accounts
-      hidden: Hidden
-      hide: Hide from directory
-      name: Hashtag
+      accounts_today: Unique uses today
+      accounts_week: Unique uses this week
+      breakdown: Breakdown of today's usage by source
+      context: Context
+      directory: In directory
+      in_directory: "%{count} in directory"
+      review: Review status
+      reviewed: Reviewed
       title: Hashtags
-      unhide: Show in directory
-      visible: Visible
+      trending_right_now: Trending right now
+      unique_uses_today: "%{count} posting today"
+      unreviewed: Not reviewed
+      updated_msg: Hashtag settings updated successfully
     title: Administration
     warning_presets:
       add_new: Add new
@@ -499,11 +535,15 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+    new_trending_tag:
+      body: 'The hashtag #%{name} is trending today, but has not been previously reviewed. It will not be displayed publicly unless you allow it to, or just save the form as it is to never hear about it again.'
+      subject: New hashtag up for review on %{instance} (#%{name})
   appearance:
     advanced_web_interface: Advanced web interface
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
     animations_and_accessibility: Animations and accessibility
     confirmation_dialogs: Confirmation dialogs
+    discovery: Discovery
     sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Change e-mail preferences
@@ -524,7 +564,7 @@ en:
     apply_for_account: Request an invite
     change_password: Password
     checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
-    confirm_email: Confirm email
+    checkbox_agreement_without_rules_html: I agree to the <a href="%{terms_path}" target="_blank">terms of service</a>
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
@@ -544,6 +584,15 @@ en:
     reset_password: Reset password
     security: Security
     set_new_password: Set new password
+    setup:
+      email_below_hint_html: If the below e-mail address is incorrect, you can change it here and receive a new confirmation e-mail.
+      email_settings_hint_html: The confirmation e-mail was sent to %{email}. If that e-mail address is not correct, you can change it in account settings.
+      title: Setup
+    status:
+      account_status: Account status
+      confirming: Waiting for e-mail confirmation to be completed.
+      functional: Your account is fully operational.
+      pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
     trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
@@ -588,6 +637,25 @@ en:
     people:
       one: "%{count} person"
       other: "%{count} people"
+  domain_blocks:
+    blocked_domains: List of limited and blocked domains
+    description: This is the list of servers that %{instance} limits or reject federation with.
+    domain: Domain
+    media_block: Media block
+    no_domain_blocks: "(No domain blocks)"
+    severity: Severity
+    severity_legend:
+      media_block: Media files coming from the server are neither fetched, stored, or displayed to the user.
+      silence: Accounts from silenced servers can be found, followed and interacted with, but their toots will not appear in the public timelines, and notifications from them will not reach local users who are not following them.
+      suspension: No content from suspended servers is stored or displayed, nor is any content sent to them. Interactions from suspended servers are ignored.
+      suspension_disclaimer: Suspended servers may occasionally retrieve public content from this server.
+      title: Severities
+    show_rationale: Show rationale
+    silence: Silence
+    suspension: Suspension
+    title: "%{instance} List of blocked instances"
+  domain_validator:
+    invalid_domain: is not a valid domain name
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
@@ -622,6 +690,7 @@ en:
     add_new: Add new
     errors:
       limit: You have already featured the maximum amount of hashtags
+    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
       home: Home timeline
@@ -642,6 +711,7 @@ en:
     developers: Developers
     more: More…
     resources: Resources
+    trending_now: Trending now
   generic:
     all: All
     changes_saved_msg: Changes successfully saved!
@@ -925,6 +995,8 @@ en:
     pinned: Pinned toot
     reblogged: boosted
     sensitive_content: Sensitive content
+  tags:
+    does_not_match_previous_name: does not match the previous name
   terms:
     body_html: |
       <h2>Privacy Policy</h2>

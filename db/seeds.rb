@@ -1,7 +1,8 @@
-Doorkeeper::Application.create!(name: 'Web', superapp: true, redirect_uri: Doorkeeper.configuration.native_redirect_uri, scopes: 'read write follow')
+Doorkeeper::Application.create!(name: 'Web', superapp: true, redirect_uri: Doorkeeper.configuration.native_redirect_uri, scopes: 'read write follow push')
 
 domain = ENV['LOCAL_DOMAIN'] || Rails.configuration.x.local_domain
-Account.create!(id: -99, actor_type: 'Application', locked: true, username: domain)
+account = Account.find_or_initialize_by(id: -99, actor_type: 'Application', locked: true, username: domain)
+account.save!
 
 if Rails.env.development?
   admin  = Account.where(username: 'admin').first_or_initialize(username: 'admin')

@@ -12,17 +12,33 @@ module Mastodon
     end
 
     option :dry_run, type: :boolean
-    desc 'purge DOMAIN', 'Remove accounts from a DOMAIN without a trace'
+    option :whitelist_mode, type: :boolean
+    desc 'purge [DOMAIN]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
       records. Unlike a suspension, if the DOMAIN still exists in the wild,
       it means the accounts could return if they are resolved again.
+
+      When the --whitelist-mode option is given, instead of purging accounts
+      from a single domain, all accounts from domains that are not whitelisted
+      are removed from the database.
     LONG_DESC
-    def purge(domain)
+    def purge(domain = nil)
       removed = 0
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
-      Account.where(domain: domain).find_each do |account|
+      scope = begin
+        if options[:whitelist_mode]
+          Account.remote.where.not(domain: DomainAllow.pluck(:domain))
+        elsif domain.present?
+          Account.remote.where(domain: domain)
+        else
+          say('No domain given', :red)
+          exit(1)
+        end
+      end
+
+      scope.find_each do |account|
         SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
         removed += 1
         say('.', :green, false)
@@ -42,6 +58,7 @@ module Mastodon
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
     option :silent, type: :boolean, default: false, aliases: [:s]
     option :format, type: :string, default: 'summary', aliases: [:f]
+    option :exclude_suspended, type: :boolean, default: false, aliases: [:x]
     desc 'crawl [START]', 'Crawl all known peers, optionally beginning at START'
     long_desc <<-LONG_DESC
       Crawl the fediverse by using the Mastodon REST API endpoints that expose
@@ -58,18 +75,25 @@ module Mastodon
       default (`summary`), a summary of the statistics is returned. The other options
       are `domains`, which returns a newline-delimited list of all discovered peers,
       and `json`, which dumps all the aggregated data raw.
+
+      The --exclude-suspended (-x) option means that domains that are suspended
+      instance-wide do not appear in the output and are not included in summaries.
+      This also excludes subdomains of any of those domains.
     LONG_DESC
     def crawl(start = nil)
-      stats     = Concurrent::Hash.new
-      processed = Concurrent::AtomicFixnum.new(0)
-      failed    = Concurrent::AtomicFixnum.new(0)
-      start_at  = Time.now.to_f
-      seed      = start ? [start] : Account.remote.domains
+      stats           = Concurrent::Hash.new
+      processed       = Concurrent::AtomicFixnum.new(0)
+      failed          = Concurrent::AtomicFixnum.new(0)
+      start_at        = Time.now.to_f
+      seed            = start ? [start] : Account.remote.domains
+      blocked_domains = Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$')
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
       work_unit = ->(domain) do
         next if stats.key?(domain)
+        next if options[:exclude_suspended] && domain.match(blocked_domains)
+
         stats[domain] = nil
         processed.increment
 

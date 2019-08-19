@@ -3,13 +3,15 @@
 #
 # Table name: domain_blocks
 #
-#  id             :bigint(8)        not null, primary key
-#  domain         :string           default(""), not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  severity       :integer          default("silence")
-#  reject_media   :boolean          default(FALSE), not null
-#  reject_reports :boolean          default(FALSE), not null
+#  id              :bigint(8)        not null, primary key
+#  domain          :string           default(""), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  severity        :integer          default("silence")
+#  reject_media    :boolean          default(FALSE), not null
+#  reject_reports  :boolean          default(FALSE), not null
+#  private_comment :text
+#  public_comment  :text
 #
 
 class DomainBlock < ApplicationRecord
@@ -17,12 +19,13 @@ class DomainBlock < ApplicationRecord
 
   enum severity: [:silence, :suspend, :noop]
 
-  validates :domain, presence: true, uniqueness: true
+  validates :domain, presence: true, uniqueness: true, domain: true
 
   has_many :accounts, foreign_key: :domain, primary_key: :domain
   delegate :count, to: :accounts, prefix: true
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+  scope :with_user_facing_limitations, -> { where(severity: [:silence, :suspend]).or(where(reject_media: true)) }
 
   class << self
     def suspend?(domain)

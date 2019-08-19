@@ -8,8 +8,8 @@ describe Settings::IdentityProofsController do
   let(:valid_token) { '1'*66 }
   let(:kbname) { 'kbuser' }
   let(:provider) { 'keybase' }
-  let(:findable_id) { Faker::Number.number(5) }
-  let(:unfindable_id) { Faker::Number.number(5) }
+  let(:findable_id) { Faker::Number.number(digits: 5) }
+  let(:unfindable_id) { Faker::Number.number(digits: 5) }
   let(:new_proof_params) do
     { provider: provider, provider_username: kbname, token: valid_token, username: user.account.username }
   end

@@ -388,13 +388,16 @@ class Status < ApplicationRecord
     end
   end
 
+  def status_stat
+    super || build_status_stat
+  end
+
   private
 
   def update_status_stat!(attrs)
     return if marked_for_destruction? || destroyed?
 
-    record = status_stat || build_status_stat
-    record.update(attrs)
+    status_stat.update(attrs)
   end
 
   def store_uri

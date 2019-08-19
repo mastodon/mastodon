@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_164535) do
+ActiveRecord::Schema.define(version: 2019_08_15_225426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,6 +245,13 @@ ActiveRecord::Schema.define(version: 2019_07_15_164535) do
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 
+  create_table "domain_allows", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_domain_allows_on_domain", unique: true
+  end
+
   create_table "domain_blocks", force: :cascade do |t|
     t.string "domain", default: "", null: false
     t.datetime "created_at", null: false
@@ -252,6 +259,8 @@ ActiveRecord::Schema.define(version: 2019_07_15_164535) do
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.boolean "reject_reports", default: false, null: false
+    t.text "private_comment"
+    t.text "public_comment"
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
@@ -335,6 +344,7 @@ ActiveRecord::Schema.define(version: 2019_07_15_164535) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "autofollow", default: false, null: false
+    t.text "comment"
     t.index ["code"], name: "index_invites_on_code", unique: true
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
@@ -648,25 +658,19 @@ ActiveRecord::Schema.define(version: 2019_07_15_164535) do
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.string "callback_url", default: "", null: false
-    t.string "secret"
-    t.datetime "expires_at"
-    t.boolean "confirmed", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_successful_delivery_at"
-    t.string "domain"
-    t.bigint "account_id", null: false
-    t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "lower((name)::text) text_pattern_ops", name: "hashtag_search_index"
-    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.integer "score"
+    t.boolean "usable"
+    t.boolean "trendable"
+    t.boolean "listable"
+    t.datetime "reviewed_at"
+    t.datetime "requested_review_at"
+    t.datetime "last_status_at"
+    t.datetime "last_trend_at"
+    t.index "lower((name)::text)", name: "index_tags_on_name_lower", unique: true
   end
 
   create_table "tombstones", force: :cascade do |t|
@@ -821,7 +825,6 @@ ActiveRecord::Schema.define(version: 2019_07_15_164535) do
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
-  add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
   add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "user_invite_requests", "users", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
