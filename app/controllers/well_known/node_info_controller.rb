@@ -5,10 +5,12 @@ module WellKnown
     include RoutingHelper
 
     def index
+      expires_in 3.days, public: true
       render json: ActiveModelSerializers::SerializableResource.new({}, serializer: NodeDiscoverySerializer)
     end
 
     def show
+      expires_in 30.minutes, public: true
       render json: ActiveModelSerializers::SerializableResource.new({}, serializer: NodeInfoSerializer, version: "2.#{ params[:format] }")
     end
   end
