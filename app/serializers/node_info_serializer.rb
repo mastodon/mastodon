@@ -63,16 +63,14 @@ class NodeInfoSerializer < ActiveModel::Serializer
   end
 
   def federation
-    domains = DomainBlock.all
+    domains = DomainBlock.with_user_facing_limitations
     feds = {
       reject_media: [],
-      reject_reports: [],
     }
     domains.each do |domain|
       feds[domain.severity] = [] unless feds.keys.include?(domain.severity)
       feds[domain.severity] << domain.domain
       feds[:reject_media] << domain.domain if domain.reject_media
-      feds[:reject_reports] << domain.domain if domain.reject_reports
     end
     feds
   end
