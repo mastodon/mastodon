@@ -38,7 +38,7 @@ class NodeInfoSerializer < ActiveModel::Serializer
   end
 
   def protocols
-    %w(ostatus activitypub)
+    %w(activitypub)
   end
 
   def openRegistrations
