@@ -24,7 +24,7 @@ class NodeInfoSerializer < ActiveModel::Serializer
   def software
     sw = {
       version: Mastodon::Version.to_s,
-      name: 'mastodon'
+      name: 'mastodon',
     }
     sw[:repository] = Mastodon::Version.source_base_url if version == '2.1'
     sw
@@ -47,6 +47,7 @@ class NodeInfoSerializer < ActiveModel::Serializer
 
   def metadata
     return @_metadata if defined?(@_metadata)
+
     @_metadata = {
       nodeName: instance_presenter.site_title,
       nodeDescription: instance_presenter.site_description,
