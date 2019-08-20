@@ -4,7 +4,9 @@ class NodeInfoSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :version, :usage, :software, :services,
-             :protocols, :openRegistrations, :metadata
+             :protocols, :metadata
+
+  attribute :open_registrations, key: :openRegistrations
 
   def version
     object.adapter.serializer.instance_options[:version]
@@ -41,7 +43,7 @@ class NodeInfoSerializer < ActiveModel::Serializer
     %w(activitypub)
   end
 
-  def openRegistrations
+  def open_registrations
     Setting.registrations_mode == 'open'
   end
 
