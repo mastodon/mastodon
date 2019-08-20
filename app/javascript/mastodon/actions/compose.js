@@ -356,6 +356,8 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
     cancelFetchComposeSuggestionsTags();
   }
 
+  dispatch(updateSuggestionTags(token));
+
   api(getState).get('/api/v2/search', {
     cancelToken: new CancelToken(cancel => {
       cancelFetchComposeSuggestionsTags = cancel;
