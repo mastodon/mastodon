@@ -326,30 +326,24 @@
 }
 
 .autosuggest-textarea__suggestions__item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  border-radius: 4px;
   padding: 10px;
-  font-size: 14px;
-  line-height: 18px;
-  overflow: hidden;
   cursor: pointer;
+  border-radius: 4px;
 
   &:hover,
   &:focus,
   &:active,
   &.selected { background: darken($ui-secondary-color, 10%) }
 
-  & > .emoji {
-    img {
-      display: block;
-      float: left;
-      margin-right: 8px;
-      width: 18px;
-      height: 18px;
-    }
+  > .account,
+  > .emoji,
+  > .autosuggest-hashtag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 18px;
+    font-size: 14px;
   }
 
   .autosuggest-hashtag {
