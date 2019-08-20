@@ -42,7 +42,7 @@ class NodeInfoSerializer < ActiveModel::Serializer
   end
 
   def openRegistrations
-    Setting.open_registrations
+    Setting.registrations_mode == 'open'
   end
 
   def metadata
