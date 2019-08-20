@@ -121,7 +121,8 @@ class ComposeForm extends ImmutablePureComponent {
 
     // Submit unless there are media with missing descriptions
     if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
-      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null);
+      const firstWithoutDescription = media.find(item => !item.get('description'));
+      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get('id'));
     } else if (onSubmit) {
       onSubmit(this.context.router ? this.context.router.history : null);
     }

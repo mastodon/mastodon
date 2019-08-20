@@ -25,6 +25,8 @@ const messages = defineMessages({
                                 defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.' },
   missingDescriptionConfirm: {  id: 'confirmations.missing_media_description.confirm',
                                 defaultMessage: 'Send anyway' },
+  missingDescriptionEdit:    {  id: 'confirmations.missing_media_description.edit',
+                                defaultMessage: 'Edit media' },
 });
 
 //  State mapping.
@@ -112,11 +114,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(changeComposeVisibility(value));
   },
 
-  onMediaDescriptionConfirm(routerHistory) {
+  onMediaDescriptionConfirm(routerHistory, mediaId) {
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.missingDescriptionMessage),
       confirm: intl.formatMessage(messages.missingDescriptionConfirm),
       onConfirm: () => dispatch(submitCompose(routerHistory)),
+      secondary: intl.formatMessage(messages.missingDescriptionEdit),
+      onSecondary: () => dispatch(openModal('FOCAL_POINT', { id: mediaId })),
       onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
     }));
   },
