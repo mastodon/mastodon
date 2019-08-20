@@ -183,6 +183,7 @@ fr:
       username: Nom d’utilisateur⋅ice
       warn: Avertissement
       web: Web
+      whitelisted: Sur liste blanche
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
@@ -250,10 +251,13 @@ fr:
       feature_profile_directory: Annuaire des profils
       feature_registrations: Inscriptions
       feature_relay: Relais de fédération
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Aperçu du fil public
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
       open_reports: signalements non résolus
+      pending_tags: hashtags en attente d’approbation
+      pending_users: utilisateur·rice·s en attente d’approbation
       recent_users: Utilisateur·rice·s récent·e·s
       search: Recherche plein texte
       single_user_mode: Mode utilisateur·ice unique
@@ -265,6 +269,10 @@ fr:
       week_interactions: interactions cette semaine
       week_users_active: actif·ve·s cette semaine
       week_users_new: utilisateur·rice·s cette semaine
+      whitelist_mode: Mode liste blanche
+    domain_allows:
+      add_new: Mettre le domaine sur liste sur blanche
+      created_msg: Ce domaine a été ajouté à la liste blanche avec succès
     domain_blocks:
       add_new: Ajouter un nouveau bloqueur de domaine
       created_msg: Le blocage de domaine est désormais activé
@@ -322,6 +330,8 @@ fr:
         all: Tout
         limited: Limité
         title: Modération
+      private_comment: Commentaire privé
+      public_comment: Commentaire public
       title: Fédération
       total_blocked_by_us: Bloqués par nous
       total_followed_by_them: Suivi par eux
@@ -456,6 +466,9 @@ fr:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
       title: Paramètres du serveur
+      trends:
+        desc_html: Afficher publiquement les hashtags approuvés qui sont populaires en ce moment
+        title: Hashtags populaires
     statuses:
       back_to_account: Retour à la page du compte
       batch:
@@ -470,13 +483,11 @@ fr:
       title: État du compte
       with_media: avec médias
     tags:
-      accounts: Comptes
-      hidden: Masqué
-      hide: Masquer dans l’annuaire
-      name: Hashtag
+      review: État de traitement
+      reviewed: Traité
       title: Hashtags
-      unhide: Afficher dans l’annuaire
-      visible: Visible
+      trending_right_now: Populaire en ce moment
+      unreviewed: Non traité
     title: Administration
     warning_presets:
       add_new: Ajouter un nouveau
@@ -492,6 +503,9 @@ fr:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
+    new_trending_tag:
+      body: 'Le hashtag #%{name} est populaire aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que l’autorisiez, ou sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
+      subject: Nouveau hashtag en attente de traitement sur %{instance} (#%{name})
   appearance:
     advanced_web_interface: Interface web avancée
     advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil public fédéré, un nombre illimité de listes et hashtags.'
@@ -517,7 +531,7 @@ fr:
     apply_for_account: Demander une invitation
     change_password: Mot de passe
     checkbox_agreement_html: J’accepte les <a href="%{rules_path}" target="_blank">règles du serveur</a> et les <a href="%{terms_path}" target="_blank">conditions de service</a>
-    confirm_email: Confirmer mon adresse mail
+    checkbox_agreement_without_rules_html: J’accepte les <a href="%{terms_path}" target="_blank">conditions d’utilisation</a>
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
@@ -537,6 +551,8 @@ fr:
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    status:
+      functional: Votre compte est entièrement opérationnel.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
   authorize_follow:
     already_following: Vous suivez déjà ce compte
@@ -581,6 +597,8 @@ fr:
     people:
       one: "%{count} personne"
       other: "%{count} personne"
+  domain_validator:
+    invalid_domain: n’est pas un nom de domaine valide
   errors:
     '403': Vous n’avez pas accès à cette page.
     '404': La page que vous recherchez n’existe pas.
@@ -915,6 +933,8 @@ fr:
     pinned: Pouet épinglé
     reblogged: a partagé
     sensitive_content: Contenu sensible
+  tags:
+    does_not_match_previous_name: ne correspond pas au nom précédent
   terms:
     body_html: |
       <h2>Politique de confidentialité</h2>

@@ -19,6 +19,7 @@ class AccountsController < ApplicationController
 
         @pinned_statuses   = []
         @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
+        @featured_hashtags = @account.featured_tags.order(statuses_count: :desc)
 
         if current_account && @account.blocking?(current_account)
           @statuses = []
@@ -28,6 +29,7 @@ class AccountsController < ApplicationController
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         @statuses        = filtered_status_page(params)
         @statuses        = cache_collection(@statuses, Status)
+        @rss_url         = rss_url
 
         unless @statuses.empty?
           @older_url = older_url if @statuses.last.id > filtered_statuses.last.id
@@ -38,8 +40,9 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 0, public: true
 
-        @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
-        render xml: RSS::AccountSerializer.render(@account, @statuses)
+        @statuses = filtered_statuses.without_reblogs.without_replies.limit(PAGE_SIZE)
+        @statuses = cache_collection(@statuses, Status)
+        render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end
 
       format.json do
@@ -97,6 +100,14 @@ class AccountsController < ApplicationController
     params[:username]
   end
 
+  def rss_url
+    if tag_requested?
+      short_account_tag_url(@account, params[:tag], format: 'rss')
+    else
+      short_account_url(@account, format: 'rss')
+    end
+  end
+
   def older_url
     pagination_url(max_id: @statuses.last.id)
   end
@@ -126,7 +137,7 @@ class AccountsController < ApplicationController
   end
 
   def tag_requested?
-    request.path.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+    request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
   def filtered_status_page(params)

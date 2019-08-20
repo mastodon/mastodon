@@ -237,3 +237,70 @@ a.table-action-link {
     }
   }
 }
+
+.blocks-table {
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 1px solid darken($ui-base-color, 8%);
+
+  thead {
+    border: 1px solid darken($ui-base-color, 8%);
+    background: darken($ui-base-color, 4%);
+    font-weight: 500;
+
+    th.severity-column {
+      width: 120px;
+    }
+
+    th.button-column {
+      width: 23px;
+    }
+  }
+
+  tbody > tr {
+    border: 1px solid darken($ui-base-color, 8%);
+    border-bottom: 0;
+    background: darken($ui-base-color, 4%);
+
+    &:hover {
+      background: darken($ui-base-color, 2%);
+    }
+
+    &.even {
+      background: $ui-base-color;
+
+      &:hover {
+        background: lighten($ui-base-color, 2%);
+      }
+    }
+
+    &.rationale {
+      background: lighten($ui-base-color, 4%);
+      border-top: 0;
+
+      &:hover {
+        background: lighten($ui-base-color, 6%);
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+
+    td:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  th,
+  td {
+    padding: 8px;
+    line-height: 18px;
+    vertical-align: top;
+    text-align: left;
+  }
+}

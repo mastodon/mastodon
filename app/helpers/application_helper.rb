@@ -123,4 +123,25 @@ module ApplicationHelper
     text = word_wrap(text, line_width: line_width - 2, break_sequence: break_sequence)
     text.split("\n").map { |line| '> ' + line }.join("\n")
   end
+
+  def render_initial_state
+    state_params = {
+      settings: {
+        known_fediverse: Setting.show_known_fediverse_at_about_page,
+      },
+
+      text: [params[:title], params[:text], params[:url]].compact.join(' '),
+    }
+
+    if user_signed_in?
+      state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
+      state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
+      state_params[:current_account]   = current_account
+      state_params[:token]             = current_session.token
+      state_params[:admin]             = Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
+    end
+
+    json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
+    content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
+  end
 end

@@ -15,6 +15,8 @@ import { countableText } from 'flavours/glitch/util/counter';
 import OptionsContainer from '../containers/options_container';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
+import { maxChars } from 'flavours/glitch/util/initial_state';
+import CharacterCounter from './character_counter';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -119,14 +121,8 @@ class ComposeForm extends ImmutablePureComponent {
 
     // Submit unless there are media with missing descriptions
     if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
-      const firstWithoutDescription = media.findIndex(item => !item.get('description'));
-      if (uploadForm) {
-        const inputs = uploadForm.querySelectorAll('.composer--upload_form--item input');
-        if (inputs.length == media.size && firstWithoutDescription !== -1) {
-          inputs[firstWithoutDescription].focus();
-        }
-      }
-      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null);
+      const firstWithoutDescription = media.find(item => !item.get('description'));
+      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get('id'));
     } else if (onSubmit) {
       onSubmit(this.context.router ? this.context.router.history : null);
     }
@@ -298,6 +294,8 @@ class ComposeForm extends ImmutablePureComponent {
 
     let disabledButton = isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia);
 
+    const countText = `${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`;
+
     return (
       <div className='composer'>
         <WarningContainer />
@@ -347,19 +345,24 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
         </AutosuggestTextarea>
 
-        <OptionsContainer
-          advancedOptions={advancedOptions}
-          disabled={isSubmitting}
-          onChangeVisibility={onChangeVisibility}
-          onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
-          onUpload={onPaste}
-          privacy={privacy}
-          sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
-          spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
-        />
+        <div className='composer--options-wrapper'>
+          <OptionsContainer
+            advancedOptions={advancedOptions}
+            disabled={isSubmitting}
+            onChangeVisibility={onChangeVisibility}
+            onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
+            onUpload={onPaste}
+            privacy={privacy}
+            sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
+            spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
+          />
+          <div className='compose--counter-wrapper'>
+            <CharacterCounter text={countText} max={maxChars} />
+          </div>
+        </div>
 
         <Publisher
-          countText={`${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`}
+          countText={countText}
           disabled={disabledButton}
           onSecondarySubmit={handleSecondarySubmit}
           onSubmit={handleSubmit}

@@ -43,7 +43,7 @@ module Attachmentable
 
       width, height = FastImage.size(attachment.queued_for_write[:original].path)
 
-      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported" if width.present? && height.present? && (width * height >= MAX_MATRIX_LIMIT)
+      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported, must be below #{MAX_MATRIX_LIMIT} sqpx" if width.present? && height.present? && (width * height >= MAX_MATRIX_LIMIT)
     end
   end
 

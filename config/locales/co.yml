@@ -24,6 +24,9 @@ co:
     generic_description: "%{domain} hè un servore di a rete"
     get_apps: Pruvà un'applicazione di telefuninu
     hosted_on: Mastodon allughjatu nant’à %{domain}
+    instance_actor_flash: |
+      Stu contu ghjè un'attore virtuale chì ghjove à riprisentà u servore sanu è micca un veru utilizatore.
+      Hè utilizatu da a federazione è ùn deve micca esse bluccatu eccettu s'e voi vulete bluccà tuttu u servore, in quellu casu duvereste utilizà un blucchime di duminiu.
     learn_more: Amparà di più
     privacy_policy: Pulitica di vita privata
     see_whats_happening: Vede cio chì si passa
@@ -42,6 +45,8 @@ co:
     what_is_mastodon: Quale hè Mastodon?
   accounts:
     choices_html: "%{name} ricumanda:"
+    endorsements_hint: Pudete appughjà i conti chì siguitate dapoi l'interfaccia web, è saranu mustrati quì.
+    featured_tags_hint: Pudete mette in mostra qualchì hashtag chì saranu affissatu quì.
     follow: Siguità
     followers:
       one: Abbunatu·a
@@ -183,6 +188,7 @@ co:
       username: Cugnome
       warn: Averte
       web: Web
+      whitelisted: In a lista bianca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’hè assignatu u signalamentu %{target}"
@@ -233,7 +239,7 @@ co:
       image_hint: PNG di 50Ko o menu
       listed: Listata
       new:
-        title: Aghjustà una nov’emoji
+        title: Aghjunghje una nov’emoji
       overwrite: Soprascrive
       shortcode: Accorta
       shortcode_hint: 2 caratteri o più, solu lettere, numeri è liniette basse
@@ -243,6 +249,7 @@ co:
       updated_msg: L’emoji hè stata messa à ghjornu!
       upload: Caricà
     dashboard:
+      authorized_fetch_mode: Modu ricuperazione auturizata
       backlog: travagli in attesa
       config: Cunfigurazione
       feature_deletions: Sguassamenti di conti
@@ -250,10 +257,13 @@ co:
       feature_profile_directory: Annuariu di i prufili
       feature_registrations: Arregistramenti
       feature_relay: Ripetitore di federazione
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista di a linea pubblica
       features: Funziunalità
       hidden_service: Federazione cù servizii piattati
       open_reports: signalamenti aperti
+      pending_tags: hashtag in attesa di verificazione
+      pending_users: utilizatori in attesa di rivista
       recent_users: Utilizatori ricenti
       search: Ricerca di testu sanu
       single_user_mode: Modu utilizatore unicu
@@ -265,11 +275,18 @@ co:
       week_interactions: interazzione sta settimana
       week_users_active: attivi sta settimana
       week_users_new: utilizatori sta settimana
+      whitelist_mode: Modu lista bianca
+    domain_allows:
+      add_new: Aghjunghje à a lista bianca
+      created_msg: U duminiu hè statu aghjuntu à a lista bianca
+      destroyed_msg: U duminiu hè statu sguassatu da a lista bianca
+      undo: Toglie di a lista bianca
     domain_blocks:
-      add_new: Aghjustà novu blucchime di duminiu
+      add_new: Aghjunghje novu blucchime di duminiu
       created_msg: U blucchime di u duminiu hè attivu
       destroyed_msg: U blucchime di u duminiu ùn hè più attivu
       domain: Duminiu
+      edit: Mudificà u blucchime di duminiu
       existing_domain_block_html: Avete digià impostu limite più strette nant'à %{name}, duvete <a href="%{unblock_url}">sbluccallu</a> primu.
       new:
         create: Creà un blucchime
@@ -280,6 +297,10 @@ co:
           silence: Silenzà
           suspend: Suspende
         title: Novu blucchime di duminiu
+      private_comment: Cummentariu privatu
+      private_comment_hint: Cummentariu nant'à a limitazione di stu duminiu per l'usu internu di i muderatori.
+      public_comment: Cummentariu pubblicu
+      public_comment_hint: Cummentariu nant'à a limitazione di stu duminiu per u pubblicu generale, s'ella hè attivata a rivelazione di a lista di limitazione di duminiu.
       reject_media: Righjittà i fugliali media
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
       reject_reports: Righjittà i rapporti
@@ -299,8 +320,9 @@ co:
         title: Ùn bluccà più u duminiu %{domain}
         undo: Annullà
       undo: Annullà u blucchime di duminiu
+      view: Vede blucchime di duminiu
     email_domain_blocks:
-      add_new: Aghjustà
+      add_new: Aghjunghje
       created_msg: U blucchime di u duminiu d’e-mail hè attivu
       delete: Toglie
       destroyed_msg: U blucchime di u duminiu d’e-mail ùn hè più attivu
@@ -322,6 +344,8 @@ co:
         all: Tuttu
         limited: Limitatu
         title: Muderazione
+      private_comment: Cummentariu privatu
+      public_comment: Cummentariu pubblicu
       title: Federazione
       total_blocked_by_us: Bluccati da noi
       total_followed_by_them: Siguitati da elli
@@ -339,7 +363,7 @@ co:
     pending_accounts:
       title: Conti in attesa (%{count})
     relays:
-      add_new: Aghjustà un ripetitore
+      add_new: Aghjunghje un ripetitore
       delete: Sguassà
       description_html: Un <strong>ripetitore di federazione</strong> ghjè un servore intermediariu chì manda statuti pubblichi trà l'istanze abbunate. <strong>Pò aiutà l'istanze chjuche è mezane à scuprì u cuntinutu di u fediverse</strong> senza chì l'utilizatori appianu bisognu di seguità tutti i conti di l'altri servori.
       disable: Disattivà
@@ -399,6 +423,13 @@ co:
       custom_css:
         desc_html: Mudificà l'apparenza cù CSS caricatu nant'à ogni pagina
         title: CSS persunalizatu
+      domain_blocks:
+        all: À tutti
+        disabled: À nimu
+        title: Mustrà blucchime di duminiu
+        users: À l'utilizatori lucali cunnettati
+      domain_blocks_rationale:
+        title: Vede ragiò
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di u servore sarà usata
         title: Ritrattu di cuprendula
@@ -449,6 +480,9 @@ co:
         desc_html: Quì pudete scrive e vostre regule di cunfidenzialità, cundizione d’usu o altre menzione legale. Pudete fà usu di marchi HTML
         title: Termini persunalizati
       site_title: Nome di u servore
+      spam_check_enabled:
+        desc_html: Mastodon pò autosilenzà è autosignalà conti, per esempiu ditettendu quelli chì mandanu missaghji micca sullicitati à ripetizione. Ci ponu esse falzi pusitivi.
+        title: Anti-spam
       thumbnail:
         desc_html: Utilizatu per viste cù OpenGraph è l’API. Ricumandemu 1200x630px
         title: Vignetta di u servore
@@ -456,6 +490,9 @@ co:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
       title: Parametri di u situ
+      trends:
+        desc_html: Mustrà à u pubblicu i hashtag chì sò stati digià verificati è chì sò in e tendenze avà
+        title: Tendenze di hashtag
     statuses:
       back_to_account: Ritornu à a pagina di u contu
       batch:
@@ -467,19 +504,25 @@ co:
         title: Media
       no_media: Nisun media
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
-      title: Statutu di u contu
+      title: Statuti di u contu
       with_media: Cù media
     tags:
-      accounts: Conti
-      hidden: Piattatu
-      hide: Piattà di l'annuariu
-      name: Hashtag
+      accounts_today: Usi unichi oghji
+      accounts_week: Usi unichi sta settimana
+      breakdown: Ditagli di l'usu d'oghji per origine
+      context: Cuntestu
+      directory: In l'annuariu
+      in_directory: "%{count} in l'annuariu"
+      review: Statutu di verificazione
+      reviewed: Verificatu
       title: Hashtag
-      unhide: Mustrà in l'annuariu
-      visible: Visibile
+      trending_right_now: Tendenze avà
+      unique_uses_today: "%{count} pustendu oghji"
+      unreviewed: Micca verificatu
+      updated_msg: Parametri di i hashtag messi à ghjornu
     title: Amministrazione
     warning_presets:
-      add_new: Aghjustà nova
+      add_new: Aghjunghje
       delete: Sguassà
       edit: Cambià
       edit_preset: Cambià a preselezzione d'avertimentu
@@ -492,11 +535,15 @@ co:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
       subject: Novu signalamentu nant’à %{instance} (#%{id})
+    new_trending_tag:
+      body: 'U hashtag #%{name} hè in e tendenze oghji, mà ùn hè micca verificatu. Ùn sarà micca mustratu à u pubblicu eccettu s''ellu hè auturizatu, o pudete ancu salvà u furmulariu cusì per ùn mai più avè à ne sente parlà.'
+      subject: Novu hashtag in attesa di rivista nant'à %{instance} (#%{name})
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: 'S''è voi vulete fà usu di a larghezza sana di u vostru screnu, l''interfaccia web avanzata vi permette di cunfigurà parechje culonne sfarente per vede tutta l''infurmazione chì vulete vede in listessu tempu: Accolta, nutificazione, linea pubblica, è tutti l''hashtag è liste chì vulete.'
     animations_and_accessibility: Animazione è accessibilità
     confirmation_dialogs: Pop-up di cunfirmazione
+    discovery: Scuperta
     sensitive_content: Cuntinutu sensibile
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
@@ -517,7 +564,7 @@ co:
     apply_for_account: Dumandà un'invitazione
     change_password: Chjave d’accessu
     checkbox_agreement_html: Sò d'accunsentu cù e <a href="%{rules_path}" target="_blank">regule di u servore</a> è i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
-    confirm_email: Cunfirmà l’e-mail
+    checkbox_agreement_without_rules_html: Accettu i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
     didnt_get_confirmation: Ùn avete micca ricevutu l’istruzione di cunfirmazione?
@@ -537,6 +584,15 @@ co:
     reset_password: Cambià a chjave d’accessu
     security: Sicurità
     set_new_password: Creà una nova chjave d’accessu
+    setup:
+      email_below_hint_html: S'è l'indirizzu e-mail quì sottu ùn hè micca currettu, pudete cambiallu quì è riceve un novu e-mail di cunfirmazione.
+      email_settings_hint_html: L'e-mail di cunfirmazione hè statu mandatu à l'indirizzu %{email}. S'ellu ùn hè micca currettu, pudete cambiallu in i parametri di u contu.
+      title: Stallazione
+    status:
+      account_status: Statutu di u contu
+      confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
+      functional: U vostru contu hè uperaziunale.
+      pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
     trouble_logging_in: Difficultà per cunnettavi?
   authorize_follow:
     already_following: Site digià abbunatu·a à stu contu
@@ -581,6 +637,25 @@ co:
     people:
       one: "%{count} persona"
       other: "%{count} persone"
+  domain_blocks:
+    blocked_domains: Lista di dumini bluccati è limitati
+    description: Quessa ghjè a lista di i servori limitati da o cù quelli %{instance} righjetta a federazione.
+    domain: Duminiu
+    media_block: Blucchime di media
+    no_domain_blocks: "(Nisun blucchime di duminiu)"
+    severity: Severità
+    severity_legend:
+      media_block: I fugliali media chì venenu sa stu servore ùn saranu mai ricuperati, cunservati, o affissati à l'utilizatore.
+      silence: I conti nant'à i servori silenzati ponu esse trovi, siguitati è spartuti/favurizati, mà i statuti ùn saranu micca in e linee pubbliche, è l'utilizatori lucali ch'ùn sò micca abbunati à sti conti ùn anu micca da riceve e so nutificazione.
+      suspension: U cuntinutu da i servori suspesi ùn hè mai cunservatu o affissatu, è u cuntinutu di stu servore ùn li hè micca mandatu. L'interazzione da sti servori suspesi sò ignurate.
+      suspension_disclaimer: I servori suspesi ponu ognitantu ricuperà i cuntinuti pubblichi da stu servore.
+      title: Severità
+    show_rationale: Vede ragiò
+    silence: Silenziu
+    suspension: Suspensione
+    title: Lista di servori bluccati da %{instance}
+  domain_validator:
+    invalid_domain: ùn hè micca un nome di duminiu currettu
   errors:
     '403': Ùn site micca auturizatu·a à vede sta pagina.
     '404': Sta pagina ùn esiste micca quì.
@@ -612,9 +687,10 @@ co:
     mutes: Piattate
     storage: I vostri media
   featured_tags:
-    add_new: Aghjustà novu
+    add_new: Aghjunghje
     errors:
       limit: Avete digià messu in mostra u numeru massimale di hashtag
+    hint_html: "<strong>Quale sò i hashtag in mostra?</strong> Sò messi in vista nant'à u vostru prufile pubblicu è permettenu à a ghjente di vede i vostri statuti ch'annu stu hashtag. Sò una bona manere di mustrà e vostre opere creative o i prughjetti à longu termine."
   filters:
     contexts:
       home: Accolta
@@ -630,11 +706,12 @@ co:
       delete: Toglie
       title: Filtri
     new:
-      title: Aghjustà un novu filtru
+      title: Aghjunghje un novu filtru
   footer:
     developers: Sviluppatori
     more: Di più…
     resources: Risorze
+    trending_now: Tindenze d'avà
   generic:
     all: Tuttu
     changes_saved_msg: Cambiamenti salvati!
@@ -667,7 +744,7 @@ co:
   imports:
     modes:
       merge: Unisce
-      merge_long: Cunservà i dati esistenti è aghjustà i novi
+      merge_long: Cunservà i dati esistenti è aghjunghje i novi
       overwrite: Soprascrive
       overwrite_long: Rimpiazzà i dati esistenti cù i novi
     preface: Pudete impurtà certi dati, cumu e persone chì seguitate o bluccate nant’à u vostru contu, nant’à stu servore à partesi di fugliali creati nant’à un’altru.
@@ -802,7 +879,7 @@ co:
   remote_interaction:
     favourite:
       proceed: Cuntinuà per favurisce
-      prompt: 'Vulete aghjustà stu statutu à i vostri favuriti:'
+      prompt: 'Vulete aghjunghje stu statutu à i vostri favuriti:'
     reblog:
       proceed: Cuntinuà per sparte
       prompt: 'Vulete sparte stu statutu:'
@@ -874,6 +951,8 @@ co:
     profile: Prufile
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
+  spam_check:
+    spam_detected_and_silenced: Quessu ghjè un signalamente autumaticu. Un spam hè statu ditettatu è u speditore hè statu silenzatu. S'ellu era un sbagliu, pudete annullà l'azzione.
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'
@@ -915,6 +994,8 @@ co:
     pinned: Statutu puntarulatu
     reblogged: hà spartutu
     sensitive_content: Cuntenutu sensibile
+  tags:
+    does_not_match_previous_name: ùn currisponde micca à l'anzianu nome
   terms:
     body_html: |
       <h2>Politique de confidentialité</h2>

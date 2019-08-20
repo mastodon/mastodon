@@ -183,6 +183,7 @@ oc:
       username: Nom d’utilizaire
       warn: Avisar
       web: Web
+      whitelisted: Mes en lista blanca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
@@ -250,6 +251,7 @@ oc:
       feature_profile_directory: Annuari de perfils
       feature_registrations: Inscripcions
       feature_relay: Relai de federacion
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Apercebut del flux d’actualitats
       features: Foncionalitats
       hidden_service: Federacion amb servicis amagats
@@ -265,11 +267,18 @@ oc:
       week_interactions: interaccions aquesta setmana
       week_users_active: actius aquesta setmana
       week_users_new: utilizaires aquesta setmana
+      whitelist_mode: Mòde lista blanca
+    domain_allows:
+      add_new: Plaçar en lista blanca
+      created_msg: Lo domeni es corrèctament estat plaçat en lista blanca
+      destroyed_msg: Lo domeni es corrèctament estat levat de la lista blanca
+      undo: Levar de la lista blanca
     domain_blocks:
       add_new: Ajustar un novèl blocatge de domeni
       created_msg: Domeni blocat es a èsser tractat
       destroyed_msg: Lo blocatge del domeni es estat levat
       domain: Domeni
+      edit: Modificar lo blocatge de domeni
       existing_domain_block_html: Impausèretz ja de limitas mai estrictas per %{name}, vos cal lo <a href="%{unblock_url}">desblocar</a>d’en primièr.
       new:
         create: Crear blocatge
@@ -280,6 +289,8 @@ oc:
           silence: Silenci
           suspend: Suspendre
         title: Nòu blocatge domeni
+      private_comment: Comentari privat
+      public_comment: Comentari public
       reject_media: Regetar los fichièrs mèdias
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
       reject_reports: Regetar los senhalaments
@@ -299,6 +310,7 @@ oc:
         title: Restablir lo blocatge de domeni de %{domain}
         undo: Restablir
       undo: Restablir
+      view: Veire lo blocatge de domeni
     email_domain_blocks:
       add_new: Ajustar
       created_msg: Blocatge del domeni de corrièl ben plaçat
@@ -322,6 +334,8 @@ oc:
         all: Totas
         limited: Limitat
         title: Moderacion
+      private_comment: Comentari privat
+      public_comment: Comentari public
       title: Federacion
       total_blocked_by_us: Avèm blocat
       total_followed_by_them: Sègon
@@ -449,6 +463,8 @@ oc:
         desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
         title: Politica de confidencialitat del site
       site_title: Títol del servidor
+      spam_check_enabled:
+        title: Anti-spam
       thumbnail:
         desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada
         title: Miniatura del servidor
@@ -470,13 +486,10 @@ oc:
       title: Estatuts del compte
       with_media: Amb mèdia
     tags:
-      accounts: Comptes
-      hidden: Amagat
-      hide: Amagar dins l’annuari
-      name: Etiqueta
+      context: Contèxt
+      directory: A l’annuari
+      in_directory: "%{count} a l’annuari"
       title: Etiquetas
-      unhide: Aparéisser dins l’annuari
-      visible: Visible
     title: Administracion
     warning_presets:
       add_new: N’ajustar un nòu
@@ -517,7 +530,6 @@ oc:
     apply_for_account: Demandar una invitacion
     change_password: Senhal
     checkbox_agreement_html: Accepti las <a href="%{rules_path}" target="_blank">règlas del servidor</a> e <a href="%{terms_path}" target="_blank">los tèrmes del servici</a>
-    confirm_email: Confirmar lo corrièl
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
@@ -537,6 +549,10 @@ oc:
     reset_password: Reïnicializar lo senhal
     security: Seguretat
     set_new_password: Picar un nòu senhal
+    setup:
+      title: Configuracion
+    status:
+      account_status: Estat del compte
     trouble_logging_in: Problèmas de connexion ?
   authorize_follow:
     already_following: Seguètz ja aqueste compte
@@ -600,8 +616,8 @@ oc:
     archive_takeout:
       date: Data
       download: Telecargar vòstre archiu
-      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, ligible pels logicials compatibles. Podètz demandar un archiu cada 7 jorns.
-      in_progress: Complilacion de vòstre archiu...
+      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, legible pels logicials compatibles. Podètz demandar un archiu cada 7 jorns.
+      in_progress: Compilacion de vòstre archiu...
       request: Demandar vòstre archiu
       size: Talha
     blocks: Personas que blocatz

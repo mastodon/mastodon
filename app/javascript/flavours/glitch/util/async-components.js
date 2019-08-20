@@ -153,3 +153,7 @@ export function ListAdder () {
 export function Search () {
   return import(/*webpackChunkName: "features/glitch/async/search" */'flavours/glitch/features/search');
 }
+
+export function Tesseract () {
+  return import(/*webpackChunkName: "tesseract" */'tesseract.js');
+}

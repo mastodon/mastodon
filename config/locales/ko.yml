@@ -24,6 +24,9 @@ ko:
     generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     get_apps: 모바일 앱 사용해 보기
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
+    instance_actor_flash: |
+      이 계정은 가상의 actor로서 개인 유저가 아닌 서버 자체를 나타냅니다.
+      이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     learn_more: 자세히
     privacy_policy: 개인정보 정책
     see_whats_happening: 무슨 일이 일어나는 지 보기
@@ -40,6 +43,8 @@ ko:
     what_is_mastodon: 마스토돈이란?
   accounts:
     choices_html: "%{name}의 추천:"
+    endorsements_hint: 내가 팔로우 하고 있는 사람들을 여기에 추천 할 수 있습니다.
+    featured_tags_hint: 특정한 해시태그들을 여기에 표시되도록 할 수 있습니다.
     follow: 팔로우
     followers:
       other: 팔로워
@@ -179,6 +184,7 @@ ko:
       username: 아이디
       warn: 경고
       web: 웹
+      whitelisted: 허용 목록
     action_logs:
       actions:
         assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
@@ -239,6 +245,7 @@ ko:
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
       upload: 업로드
     dashboard:
+      authorized_fetch_mode: 인증 된 페치 모드
       backlog: 미처리 된 작업
       config: 설정
       feature_deletions: 계정 삭제
@@ -246,10 +253,13 @@ ko:
       feature_profile_directory: 프로필 디렉토리
       feature_registrations: 가입
       feature_relay: 연합 릴레이
+      feature_spam_check: 안티 스팸
       feature_timeline_preview: 타임라인 미리보기
       features: 기능
       hidden_service: 히든 서비스와의 연합
       open_reports: 미해결 신고
+      pending_tags: 심사를 기다리는 해시태그
+      pending_users: 심사를 기다리는 유저
       recent_users: 최근 가입 한 유저
       search: 전문 검색
       single_user_mode: 싱글 유저 모드
@@ -261,11 +271,18 @@ ko:
       week_interactions: 이번 주의 상호작용
       week_users_active: 이번 주의 활성 사용자
       week_users_new: 이번 주의 신규 유저
+      whitelist_mode: 화이트리스트 모드
+    domain_allows:
+      add_new: 허용 된 도메인
+      created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
+      destroyed_msg: 도메인이 허용 목록에서 제거되었습니다
+      undo: 허용 목록에서 제외
     domain_blocks:
       add_new: 도메인 차단 추가하기
       created_msg: 도메인 차단 처리를 완료했습니다
       destroyed_msg: 도메인 차단이 해제되었습니다
       domain: 도메인
+      edit: 도메인 차단 수정
       existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
       new:
         create: 차단 추가
@@ -278,6 +295,10 @@ ko:
           silence: 침묵
           suspend: 정지
         title: 새로운 도메인 차단
+      private_comment: 비공개 주석
+      private_comment_hint: 이 도메인 제한에 대한 주석은 모더레이터를 위해 내부적으로 사용 됩니다.
+      public_comment: 공개 주석
+      public_comment_hint: 이 도메인 제한에 대한 공개적인 주석, 도메인 제한 공개를 활성화 한 경우 보여집니다.
       reject_media: 미디어 파일 거부하기
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
@@ -296,6 +317,7 @@ ko:
         title: "%{domain}의 도메인 차단을 해제"
         undo: 실행 취소
       undo: 도메인 차단 취소
+      view: 도메인 차단 보기
     email_domain_blocks:
       add_new: 새로 추가
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
@@ -318,6 +340,8 @@ ko:
         all: 모두
         limited: 제한됨
         title: 모더레이션
+      private_comment: 비공개 주석
+      public_comment: 공개 주석
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
@@ -395,6 +419,13 @@ ko:
       custom_css:
         desc_html: 모든 페이지에 적용할 CSS
         title: 커스텀 CSS
+      domain_blocks:
+        all: 모두에게
+        disabled: 아무에게도 안 함
+        title: 도메인 차단 보여주기
+        users: 로그인 한 유저에게
+      domain_blocks_rationale:
+        title: 사유 보여주기
       hero:
         desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 서버의 썸네일이 사용 됩니다
         title: 히어로 이미지
@@ -445,6 +476,9 @@ ko:
         desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. HTML태그를 사용할 수 있습니다
         title: 커스텀 서비스 이용 약관
       site_title: 서버 이름
+      spam_check_enabled:
+        desc_html: 마스토돈은 반복된 메시지 등의 측정값에 따라 자동으로 계정을 침묵, 신고할 수 있습니다. 위양성(False-positive)이 존재할 수 있습니다.
+        title: 안티 스팸
       thumbnail:
         desc_html: OpenGraph와 API의 미리보기로 사용 됩니다. 1200x630px을 권장합니다
         title: 서버 썸네일
@@ -452,6 +486,9 @@ ko:
         desc_html: 랜딩 페이지에 공개 타임라인을 표시합니다
         title: 타임라인 프리뷰
       title: 사이트 설정
+      trends:
+        desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
+        title: 유행하는 해시태그
     statuses:
       back_to_account: 계정으로 돌아가기
       batch:
@@ -466,13 +503,19 @@ ko:
       title: 계정 툿
       with_media: 미디어 있음
     tags:
-      accounts: 계정들
-      hidden: 숨겨짐
-      hide: 디렉토리에서 숨기기
-      name: 해시태그
+      accounts_today: 오늘의 순 사용자
+      accounts_week: 금주의 순 사용자
+      breakdown: 소스별 오늘의 사용량 분석
+      context: 문맥
+      directory: 디렉토리에 있음
+      in_directory: 디렉토리에 %{count}개 있음
+      review: 심사 상태
+      reviewed: 심사 됨
       title: 해시태그
-      unhide: 디렉토리에 표시
-      visible: 보여짐
+      trending_right_now: 지금 유행 중
+      unique_uses_today: 오늘 %{count}개의 포스팅
+      unreviewed: 심사 되지 않음
+      updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
     warning_presets:
       add_new: 새로 추가
@@ -488,11 +531,15 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+    new_trending_tag:
+      body: "#%{name}가 오늘 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다."
+      subject: 새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})
   appearance:
     advanced_web_interface: 고급 웹 인터페이스
     advanced_web_interface_hint: '화면의 가로폭을 가득 채우고 싶다면, 고급 웹 인터페이스는 한 번에 여러 정보를 볼 수 있도록 여러 컬럼을 설정할 수 있도록 합니다: 홈, 알림, 연합타임라인, 리스트, 해시태그 등'
     animations_and_accessibility: 애니메이션과 접근성
     confirmation_dialogs: 확인 대화상자
+    discovery: 발견하기
     sensitive_content: 민감한 내용
   application_mailer:
     notification_preferences: 메일 설정 변경
@@ -513,7 +560,7 @@ ko:
     apply_for_account: 가입 요청하기
     change_password: 패스워드
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">서버 규칙</a>과 <a href="%{terms_path}" target="_blank">이용약관</a>에 동의합니다
-    confirm_email: 확인 메일 승인
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">이용 약관</a>에 동의합니다
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
@@ -533,6 +580,15 @@ ko:
     reset_password: 암호 재설정
     security: 보안
     set_new_password: 새 암호
+    setup:
+      email_below_hint_html: 아래의 이메일 계정이 올바르지 않을 경우, 여기서 변경하고 새 확인 메일을 받을 수 있습니다.
+      email_settings_hint_html: 확인 메일이 %{email}로 보내졌습니다. 이메일 주소가 올바르지 않은 경우, 계정 설정에서 변경하세요.
+      title: 설정
+    status:
+      account_status: 계정 상태
+      confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
+      functional: 계정이 완벽이 작동합니다.
+      pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
@@ -576,6 +632,25 @@ ko:
     how_to_enable: 아직 디렉터리에 참여하지 않았습니다. 아래에서 참여할 수 있습니다. 바이오 텍스트에 해시태그를 사용해 특정 해시태그 디렉터리에 표시 될 수 있습니다!
     people:
       other: "%{count}명"
+  domain_blocks:
+    blocked_domains: 제한 되거나 차단 된 도메인 목록
+    description: 이것은 %{instance}가 제한하거나 연합을 거부한 서버들의 목록입니다.
+    domain: 도메인
+    media_block: 미디어 차단
+    no_domain_blocks: "(도메인 차단 없음)"
+    severity: 심각도
+    severity_legend:
+      media_block: 이 서버의 미디어는 불러오거나, 저장 되거나, 유저에게 보여지지 않습니다.
+      silence: 침묵 된 서버의 계정은 발견 되고, 팔로우 하고, 그들과 상호작용 할 수 있습니다, 그러나 그들의 툿은 툿 공개 타임라인에 나타나지 않으며 그들에게서 오는 알림은 그들을 팔로우 하지 않는 로컬 유저에게는 전달되지 않습니다.
+      suspension: 정지 된 서버의 어떤 콘텐츠도 저장 되거나 보여지거나 하지 않고 어떤 콘텐츠도 그 서버로 전달 되지 않습니다. 정지 된 서버에서의 상호작용은 무시됩니다.
+      suspension_disclaimer: 정지 된 서버는 때때로 이 서버의 공개 콘텐츠를 받아 갈 수도 잇습니다.
+      title: 심각도
+    show_rationale: 사유 보여주기
+    silence: 침묵
+    suspension: 정지
+    title: "%{instance}의 차단한 인스턴스 목록"
+  domain_validator:
+    invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
@@ -610,6 +685,7 @@ ko:
     add_new: 추가
     errors:
       limit: 이미 추천 해시태그의 개수가 최대입니다
+    hint_html: "<strong>추천 해시태그가 무엇이죠?</strong> 당신의 공개 프로필 페이지에 눈에 띄게 표현 되며 사람들이 그 해시태그를 포함한 당신의 글을 찾아 볼 수 있도록 합니다. 창작활동이나 긴 기간을 가지는 프로젝트를 쭉 따라가기에 좋은 도구입니다."
   filters:
     contexts:
       home: 홈 타임라인
@@ -630,6 +706,7 @@ ko:
     developers: 개발자
     more: 더 보기…
     resources: 리소스
+    trending_now: 지금 유행중
   generic:
     all: 모두
     changes_saved_msg: 정상적으로 변경되었습니다!
@@ -865,6 +942,8 @@ ko:
     profile: 프로필
     relationships: 팔로잉과 팔로워
     two_factor_authentication: 2단계 인증
+  spam_check:
+    spam_detected_and_silenced: 이것은 자동화 된 보고입니다. 스팸이 감지 되어 작성자를 자동으로 침묵 처리하였습니다. 만약 실수였다면 계정을 침묵 해제하세요.
   statuses:
     attached:
       description: '첨부: %{attached}'
@@ -902,6 +981,8 @@ ko:
     pinned: 고정된 툿
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
+  tags:
+    does_not_match_previous_name: 이전 이름과 맞지 않습니다
   terms:
     body_html: |
       <h2>개인정보 정책</h2>

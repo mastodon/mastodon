@@ -1,3 +1,6 @@
+- content_for :header_tags do
+  = render_initial_state
+
 - content_for :content do
   .public-layout
     - unless @hide_navbar

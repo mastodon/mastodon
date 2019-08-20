@@ -24,6 +24,9 @@ eu:
     generic_description: "%{domain} sareko zerbitzari bat da"
     get_apps: Probatu mugikorrerako aplikazio bat
     hosted_on: Mastodon %{domain} domeinuan ostatatua
+    instance_actor_flash: 'Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke.
+
+'
     learn_more: Ikasi gehiago
     privacy_policy: Pribatutasun politika
     see_whats_happening: Ikusi zer gertatzen ari den
@@ -183,6 +186,7 @@ eu:
       username: Erabiltzaile-izena
       warn: Abisatu
       web: Weba
+      whitelisted: Zerrenda zurian
     action_logs:
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
@@ -243,6 +247,7 @@ eu:
       updated_msg: Emoji-a ongi eguneratu da!
       upload: Igo
     dashboard:
+      authorized_fetch_mode: Baimendutako eskuratze modua
       backlog: aurreikusitako lanak
       config: Konfigurazioa
       feature_deletions: Kontu ezabaketak
@@ -250,10 +255,13 @@ eu:
       feature_profile_directory: Profil-direktorioa
       feature_registrations: Izen emateak
       feature_relay: Federazio haria
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Denbora-lerroaren aurrebista
       features: Ezaugarriak
       hidden_service: Federazioa ezkutuko zerbitzuekin
       open_reports: salaketa irekiak
+      pending_tags: berrikusketaren zain dauden etiketak
+      pending_users: berrikusketaren zain dauden erabiltzaileak
       recent_users: Azken erabiltzaileak
       search: Testu osoko bilaketa
       single_user_mode: Erabiltzaile bakarreko modua
@@ -265,11 +273,18 @@ eu:
       week_interactions: interakzio aste honetan
       week_users_active: aktibo aste honetan
       week_users_new: erabiltzaile aste honetan
+      whitelist_mode: Zerrenda zuria modua
+    domain_allows:
+      add_new: Sartu domeinua zerrenda zurian
+      created_msg: Domeinua ongi sartu da zerrenda zurian
+      destroyed_msg: Domeinua zerrenda zuritik kendu da
+      undo: Kendu zerrenda zuritik
     domain_blocks:
       add_new: Gehitu domeinuaren blokeo berria
       created_msg: Domeinuaren blokeoa orain prozesatzen ari da
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
+      edit: Editatu domeinu-blokeoa
       existing_domain_block_html: '%{name} domeinuan muga zorrotzagoak ezarri dituzu jada, aurretik <a href="%{unblock_url}">desblokeatu</a> beharko duzu.'
       new:
         create: Sortu blokeoa
@@ -280,6 +295,10 @@ eu:
           silence: Isilarazi
           suspend: Kanporatu
         title: Domeinuaren blokeo berria
+      private_comment: Iruzkin pribatua
+      private_comment_hint: Domeinu hau mugatzeari buruzko iruzkina moderatzaileen barne erabilerarako.
+      public_comment: Iruzkin publikoa
+      public_comment_hint: Domeinu hau mugatzeari buruzko iruzkina publiko orokorrarentzat, domeinuak mugatzea iragartzea gaituta badago.
       reject_media: Ukatu multimedia fitxategiak
       reject_media_hint: Lokalki gordetako multimedia fitxategiak ezabatzen ditu eta etorkizunean fitxategi berriak deskargatzeari uko egingo dio. Ez du garrantzirik kanporaketetan
       reject_reports: Errefusatu salaketak
@@ -299,6 +318,7 @@ eu:
         title: Desegin %{domain} domeinuko blokeoa
         undo: Desegin
       undo: Desegin domeinuaren blokeoa
+      view: Ikusi domeinuaren blokeoa
     email_domain_blocks:
       add_new: Gehitu berria
       created_msg: Ongi gehitu da e-mail helbidea domeinuen zerrenda beltzera
@@ -322,6 +342,8 @@ eu:
         all: Denak
         limited: Mugatua
         title: Moderazioa
+      private_comment: Iruzkin pribatua
+      public_comment: Iruzkin publikoa
       title: Federazioa
       total_blocked_by_us: Guk blokeatuta
       total_followed_by_them: Haiek jarraitua
@@ -449,6 +471,9 @@ eu:
         desc_html: Zure pribatutasun politika, erabilera baldintzak eta bestelako testu legalak idatzi ditzakezu. HTML etiketak erabili ditzakezu
         title: Erabilera baldintza pertsonalizatuak
       site_title: Zerbitzariaren izena
+      spam_check_enabled:
+        desc_html: Mastodonek automatikoki isildu eta salatu ditzake kontuak neurriei jarraituz, esaterako eskatu gabeko mezuak behin eta berriro bidaltzen dituzten kontuak antzemanez. Positibo faltsuak gertatu daitezke.
+        title: Anti-spam
       thumbnail:
         desc_html: Aurrebistetarako erabilia OpenGraph eta API bidez. 1200x630px aholkatzen da
         title: Zerbitzariaren iruditxoa
@@ -456,6 +481,8 @@ eu:
         desc_html: Bistaratu denbora-lerro publikoa hasiera orrian
         title: Denbora-lerroaren aurrebista
       title: Gunearen ezarpenak
+      trends:
+        title: Traolak joeran
     statuses:
       back_to_account: Atzera kontuaren orrira
       batch:
@@ -470,13 +497,18 @@ eu:
       title: Kontuaren mezuak
       with_media: Multimediarekin
     tags:
-      accounts: Kontuak
-      hidden: Ezkutatuta
-      hide: Ezkutatu direktoriotik
-      name: Traola
+      accounts_today: Erabilera bakanak gaur
+      accounts_week: Erabilera bakanak aste honetan
+      context: Testuingurua
+      directory: Direktorioan
+      in_directory: "%{count} direktorioan"
+      review: Berrikusketaren egoera
+      reviewed: Berrikusita
       title: Traolak
-      unhide: Erakutsi direktorioan
-      visible: Ikusgai
+      trending_right_now: Joera orain
+      unique_uses_today: "%{count} idazten gaur"
+      unreviewed: Berrikusi gabe
+      updated_msg: Traola-ezarpenak ongi eguneratu dira
     title: Administrazioa
     warning_presets:
       add_new: Gehitu berria
@@ -497,6 +529,7 @@ eu:
     advanced_web_interface_hint: 'Pantaila bere zabalera osoan erabili nahi baduzu, web interfaze aurreratuak hainbat zutabe desberdin konfiguratzea ahalbidetzen dizu, aldi berean nahi beste informazio ikusteko: Hasiera, jakinarazpenak, federatutako denbora-lerroa, edo nahi beste zerrenda eta traola.'
     animations_and_accessibility: Animazioak eta irisgarritasuna
     confirmation_dialogs: Berrespen dialogoak
+    discovery: Aurkitzea
     sensitive_content: Eduki hunkigarria
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
@@ -517,7 +550,7 @@ eu:
     apply_for_account: Eskatu gonbidapen bat
     change_password: Pasahitza
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Zerbitzariaren arauak</a> eta <a href="%{terms_path}" target="_blank">erabilera baldintzak</a> onartzen ditut
-    confirm_email: Berretsi e-mail helbidea
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Erabilera baldintzak</a> onartzen ditut
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
     didnt_get_confirmation: Ez dituzu berresteko argibideak jaso?
@@ -537,6 +570,15 @@ eu:
     reset_password: Berrezarri pasahitza
     security: Segurtasuna
     set_new_password: Ezarri pasahitza berria
+    setup:
+      email_below_hint_html: Beheko e-mail helbidea okerra bada, hemen aldatu dezakezu eta baieztapen e-mail berria jaso.
+      email_settings_hint_html: Baieztamen e-maila %{email} helbidera bidali da. E-mail helbide hori zuzena ez bada, kontuaren ezarpenetan aldatu dezakezu.
+      title: Ezarpena
+    status:
+      account_status: Kontuaren egoera
+      confirming: E-mail baieztapena osatu bitartean zain.
+      functional: Zure kontua guztiz erabilgarri dago.
+      pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
     trouble_logging_in: Arazoak saioa hasteko?
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
@@ -581,6 +623,8 @@ eu:
     people:
       one: pertsona %{count}
       other: "%{count} pertsona"
+  domain_validator:
+    invalid_domain: ez da domeinu izen baliogarria
   errors:
     '403': Ez duzu orri hau ikusteko baimenik.
     '404': Bilatu duzun orria ez dago hemen.
@@ -874,6 +918,8 @@ eu:
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
     two_factor_authentication: Bi faktoreetako autentifikazioa
+  spam_check:
+    spam_detected_and_silenced: Hau salaketa automatiko bat da. Spam-a antzeman da eta igorlea automatikoki isilarazi da. Hau akats bat bada, utzi kontua isilarazteari.
   statuses:
     attached:
       description: 'Erantsita: %{attached}'
@@ -915,6 +961,8 @@ eu:
     pinned: Finkatutako toot-a
     reblogged: "(r)en bultzada"
     sensitive_content: 'Kontuz: Eduki hunkigarria'
+  tags:
+    does_not_match_previous_name: ez dator aurreko izenarekin bat
   terms:
     body_html: |
       <h2>Pribatutasun politika</h2>

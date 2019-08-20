@@ -13,6 +13,8 @@
 #  listable            :boolean
 #  reviewed_at         :datetime
 #  requested_review_at :datetime
+#  last_status_at      :datetime
+#  last_trend_at       :datetime
 #
 
 class Tag < ApplicationRecord
@@ -33,7 +35,8 @@ class Tag < ApplicationRecord
   scope :unreviewed, -> { where(reviewed_at: nil) }
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
-  scope :discoverable, -> { where(listable: [true, nil]).joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
+  scope :listable, -> { where(listable: [true, nil]) }
+  scope :discoverable, -> { listable.joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :most_used, ->(account) { joins(:statuses).where(statuses: { account: account }).group(:id).order(Arel.sql('count(*) desc')) }
 
   delegate :accounts_count,
@@ -43,6 +46,8 @@ class Tag < ApplicationRecord
            to: :account_tag_stat
 
   after_save :save_account_tag_stat
+
+  update_index('tags#tag', :self) if Chewy.enabled?
 
   def account_tag_stat
     super || build_account_tag_stat
@@ -109,7 +114,7 @@ class Tag < ApplicationRecord
   class << self
     def find_or_create_by_names(name_or_names)
       Array(name_or_names).map(&method(:normalize)).uniq { |str| str.mb_chars.downcase.to_s }.map do |normalized_name|
-        tag = matching_name(normalized_name).first || create(name: normalized_name)
+        tag = matching_name(normalized_name).first || create!(name: normalized_name)
 
         yield tag if block_given?
 
@@ -121,9 +126,10 @@ class Tag < ApplicationRecord
       normalized_term = normalize(term.strip).mb_chars.downcase.to_s
       pattern         = sanitize_sql_like(normalized_term) + '%'
 
-      Tag.where(arel_table[:name].lower.matches(pattern))
-         .where(arel_table[:score].gt(0).or(arel_table[:name].lower.eq(normalized_term)))
-         .order(Arel.sql('length(name) ASC, score DESC, name ASC'))
+      Tag.listable
+         .where(arel_table[:name].lower.matches(pattern))
+         .where(arel_table[:name].lower.eq(normalized_term).or(arel_table[:reviewed_at].not_eq(nil)))
+         .order(Arel.sql('length(name) ASC, name ASC'))
          .limit(limit)
          .offset(offset)
     end

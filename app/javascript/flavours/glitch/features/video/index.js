@@ -101,6 +101,7 @@ export default class Video extends React.PureComponent {
     fullwidth: PropTypes.bool,
     detailed: PropTypes.bool,
     inline: PropTypes.bool,
+    editable: PropTypes.bool,
     cacheWidth: PropTypes.func,
     intl: PropTypes.object.isRequired,
     visible: PropTypes.bool,
@@ -393,7 +394,7 @@ export default class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, link } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, link, editable } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
     const playerStyle = {};
@@ -401,7 +402,7 @@ export default class Video extends React.PureComponent {
     const volumeWidth = (muted) ? 0 : volume * this.volWidth;
     const volumeHandleLoc = (muted) ? this.volHandleOffset(0) : this.volHandleOffset(volume);
 
-    const computedClass = classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, letterbox, 'full-width': fullwidth });
+    const computedClass = classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, editable, letterbox, 'full-width': fullwidth });
 
     let { width, height } = this.props;
 
@@ -443,7 +444,7 @@ export default class Video extends React.PureComponent {
       >
         <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': revealed })} />
 
-        {revealed && <video
+        {(revealed || editable) && <video
           ref={this.setVideoRef}
           src={src}
           poster={preview}
@@ -465,7 +466,7 @@ export default class Video extends React.PureComponent {
           onVolumeChange={this.handleVolumeChange}
         />}
 
-        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed })}>
+        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
           <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
             <span className='spoiler-button__overlay__label'>{warning}</span>
           </button>
@@ -508,7 +509,7 @@ export default class Video extends React.PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              {!onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><i className='fa fa-fw fa-eye-slash' /></button>}
+              {(!onCloseVideo && !editable) && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><i className='fa fa-fw fa-eye-slash' /></button>}
               {(!fullscreen && onOpenVideo) && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><i className='fa fa-fw fa-expand' /></button>}
               {onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><i className='fa fa-fw fa-compress' /></button>}
               <button type='button' aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><i className={classNames('fa fa-fw', { 'fa-arrows-alt': !fullscreen, 'fa-compress': fullscreen })} /></button>

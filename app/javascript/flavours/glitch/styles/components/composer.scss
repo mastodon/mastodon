@@ -2,6 +2,18 @@
   padding: 10px;
 }
 
+.character-counter {
+  cursor: default;
+  font-family: $font-sans-serif, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: $lighter-text-color;
+
+  &.character-counter--over {
+    color: $warning-red;
+  }
+}
+
 .no-reduce-motion .composer--spoiler {
   transition: height 0.4s ease, opacity 0.4s ease;
 }
@@ -489,12 +501,18 @@
   background: $simple-background-color;
 }
 
-.composer--options {
+.composer--options-wrapper {
   padding: 10px;
   background: darken($simple-background-color, 8%);
-  box-shadow: inset 0 5px 5px rgba($base-shadow-color, 0.05);
   border-radius: 0 0 4px 4px;
   height: 27px;
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 auto;
+}
+
+.composer--options {
+  display: flex;
   flex: 0 0 auto;
 
   & > * {
@@ -517,6 +535,11 @@
     height: 27px;
     background: transparent;
   }
+}
+
+.compose--counter-wrapper {
+  align-self: center;
+  margin-right: 4px;
 }
 
 .composer--options--dropdown {
@@ -588,13 +611,6 @@
   overflow: hidden;
   justify-content: flex-end;
   flex: 0 0 auto;
-
-  & > .count {
-    display: inline-block;
-    margin: 0 16px 0 8px;
-    font-size: 16px;
-    line-height: 36px;
-  }
 
   & > .primary {
     display: inline-block;

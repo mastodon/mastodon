@@ -3,6 +3,27 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.link-button {
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+  color: $ui-highlight-color;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    color: $ui-primary-color;
+    cursor: default;
+  }
+}
+
 .button {
   background-color: $ui-highlight-color;
   border: 10px none;
@@ -482,8 +503,20 @@
   .autosuggest-hashtag {
     justify-content: space-between;
 
+    &__name {
+      flex: 1 1 auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     strong {
       font-weight: 500;
+    }
+
+    &__uses {
+      flex: 0 0 auto;
+      width: 80px;
+      text-align: right;
     }
   }
 
@@ -637,18 +670,6 @@
     .character-counter__wrapper {
       align-self: center;
       margin-right: 4px;
-
-      .character-counter {
-        cursor: default;
-        font-family: $font-sans-serif, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        color: $lighter-text-color;
-
-        &.character-counter--over {
-          color: $warning-red;
-        }
-      }
     }
   }
 
@@ -662,6 +683,18 @@
       overflow: hidden;
       padding-top: 10px;
     }
+  }
+}
+
+.character-counter {
+  cursor: default;
+  font-family: $font-sans-serif, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: $lighter-text-color;
+
+  &.character-counter--over {
+    color: $warning-red;
   }
 }
 
@@ -4513,7 +4546,8 @@ a.status-card.compact:hover {
   }
 }
 
-.report-modal__statuses {
+.report-modal__statuses,
+.focal-point-modal__content {
   flex: 1 1 auto;
   min-height: 20vh;
   max-height: 80vh;
@@ -4531,6 +4565,12 @@ a.status-card.compact:hover {
 
   @media screen and (max-width: 480px) {
     max-height: 10vh;
+  }
+}
+
+.focal-point-modal__content {
+  @media screen and (max-width: 480px) {
+    max-height: 40vh;
   }
 }
 
@@ -4555,16 +4595,56 @@ a.status-card.compact:hover {
     padding: 10px;
     font-family: inherit;
     font-size: 14px;
-    resize: vertical;
+    resize: none;
     border: 0;
     outline: 0;
     border-radius: 4px;
     border: 1px solid $ui-secondary-color;
-    margin-bottom: 20px;
+    min-height: 100px;
+    max-height: 50vh;
+    margin-bottom: 10px;
 
     &:focus {
       border: 1px solid darken($ui-secondary-color, 8%);
     }
+
+    &__wrapper {
+      background: $white;
+      border: 1px solid $ui-secondary-color;
+      margin-bottom: 10px;
+      border-radius: 4px;
+
+      .setting-text {
+        border: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+
+        &:focus {
+          border: 0;
+        }
+      }
+
+      &__modifiers {
+        color: $inverted-text-color;
+        font-family: inherit;
+        font-size: 14px;
+        background: $white;
+      }
+    }
+
+    &__toolbar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+  }
+
+  .setting-text-label {
+    display: block;
+    color: $inverted-text-color;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
   }
 
   .setting-toggle {
@@ -4688,10 +4768,10 @@ a.status-card.compact:hover {
 }
 
 .report-modal__target {
-  padding: 20px;
+  padding: 15px;
 
   .media-modal__close {
-    top: 19px;
+    top: 14px;
     right: 15px;
   }
 }
@@ -4702,6 +4782,7 @@ a.status-card.compact:hover {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 9999;
 }
 
 .media-gallery__gifv__label {
@@ -4959,6 +5040,10 @@ a.status-card.compact:hover {
   background: $base-shadow-color;
   max-width: 100%;
   border-radius: 4px;
+
+  &.editable {
+    border-radius: 0;
+  }
 
   &:focus {
     outline: 0;
@@ -5688,27 +5773,25 @@ noscript {
   }
 }
 
-.focal-point-modal {
-  max-width: 80vw;
-  max-height: 80vh;
-  position: relative;
-}
-
 .focal-point {
   position: relative;
-  cursor: pointer;
+  cursor: move;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $base-shadow-color;
 
-  &.dragging {
-    cursor: move;
-  }
-
-  img {
-    max-width: 80vw;
+  img,
+  video {
+    display: block;
     max-height: 80vh;
-    width: auto;
+    width: 100%;
     height: auto;
-    margin: auto;
+    margin: 0;
+    object-fit: contain;
+    background: $base-shadow-color;
   }
 
   &__reticle {
@@ -5727,6 +5810,43 @@ noscript {
     height: 100%;
     top: 0;
     left: 0;
+  }
+
+  &__preview {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    cursor: move;
+    transition: opacity 0.1s ease;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    strong {
+      color: $primary-text-color;
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    div {
+      border-radius: 4px;
+      box-shadow: 0 0 14px rgba($base-shadow-color, 0.2);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    img,
+    video {
+      max-height: 100%;
+    }
+
+    &__preview {
+      display: none;
+    }
   }
 }
 
@@ -5980,12 +6100,12 @@ noscript {
 
     &__current {
       flex: 0 0 auto;
-      width: 100px;
       font-size: 24px;
       line-height: 36px;
       font-weight: 500;
       text-align: right;
       padding-right: 15px;
+      margin-left: 5px;
       color: $secondary-text-color;
     }
 

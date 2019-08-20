@@ -72,6 +72,8 @@ defaults: &defaults
   show_replies_in_public_timelines: false
   default_content_type: 'text/plain'
   spam_check_enabled: true
+  show_domain_blocks: 'disabled'
+  show_domain_blocks_rationale: 'disabled'
 
 development:
   <<: *defaults

@@ -12,7 +12,7 @@ gem 'thor', '~> 0.20'
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.1'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.2'
+gem 'pghero', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7'
 
 gem 'aws-sdk-s3', '~> 1.46', require: false
@@ -62,12 +62,12 @@ gem 'mime-types', '~> 3.2', require: 'mime/types/columnar'
 gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.8'
+gem 'oj', '~> 3.9'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.11'
 gem 'parslet'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
-gem 'pundit', '~> 2.0'
+gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.1'
 gem 'rack-cors', '~> 1.0', require: 'rack/cors'
@@ -81,7 +81,7 @@ gem 'sidekiq', '~> 5.2'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
-gem 'simple-navigation', '~> 4.0'
+gem 'simple-navigation', '~> 4.1'
 gem 'simple_form', '~> 4.1'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
@@ -134,7 +134,7 @@ group :development do
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.74', require: false
-  gem 'rubocop-rails', '~> 2.2', require: false
+  gem 'rubocop-rails', '~> 2.3', require: false
   gem 'brakeman', '~> 4.6', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 

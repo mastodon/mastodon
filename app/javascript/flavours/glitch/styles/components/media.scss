@@ -338,6 +338,11 @@
   position: relative;
   background: $base-shadow-color;
   max-width: 100%;
+  border-radius: 4px;
+
+  &.editable {
+    border-radius: 0;
+  }
 
   &:focus {
     outline: 0;

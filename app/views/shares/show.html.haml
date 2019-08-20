@@ -1,4 +1,4 @@
 - content_for :header_tags do
-  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
+  = render_initial_state
 
 #mastodon-compose{ data: { props: Oj.dump(default_props) } }

@@ -136,8 +136,8 @@ RSpec.describe Tag, type: :model do
     end
 
     it 'finds the exact matching tag as the first item' do
-      similar_tag = Fabricate(:tag, name: "matchlater", score: 1)
-      tag = Fabricate(:tag, name: "match", score: 1)
+      similar_tag = Fabricate(:tag, name: "matchlater", reviewed_at: Time.now.utc)
+      tag = Fabricate(:tag, name: "match", reviewed_at: Time.now.utc)
 
       results = Tag.search_for("match")
 

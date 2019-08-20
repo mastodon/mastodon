@@ -100,6 +100,16 @@
       background-size: 44px 44px;
     }
   }
+
+  .trends__item {
+    padding: 10px;
+  }
+}
+
+.trends-widget {
+  h4 {
+    color: $darker-text-color;
+  }
 }
 
 .box-widget {
@@ -107,6 +117,15 @@
   border-radius: 4px;
   background: $ui-base-color;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+}
+
+.placeholder-widget {
+  padding: 16px;
+  border-radius: 4px;
+  border: 2px dashed $dark-text-color;
+  text-align: center;
+  color: $darker-text-color;
+  margin-bottom: 10px;
 }
 
 .contact-widget,
@@ -526,6 +545,12 @@ $fluid-breakpoint: $maximum-width + 20px;
   a {
     font-size: 14px;
     line-height: 20px;
+  }
+}
+
+.notice-widget,
+.placeholder-widget {
+  a {
     text-decoration: none;
     font-weight: 500;
     color: $ui-highlight-color;

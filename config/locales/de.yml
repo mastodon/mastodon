@@ -24,6 +24,9 @@ de:
     generic_description: "%{domain} ist ein Server im Fediversum"
     get_apps: Versuche eine mobile App
     hosted_on: Mastodon, gehostet auf %{domain}
+    instance_actor_flash: |
+      Dieses Konto ist ein virtueller Akteur, der den Server selbst und nicht einen einzelnen Benutzer repräsentiert.
+      Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn du möchtest die gesamte Instanz blockieren.
     learn_more: Mehr erfahren
     privacy_policy: Datenschutzerklärung
     see_whats_happening: Finde heraus, was gerade in der Welt los ist
@@ -42,6 +45,8 @@ de:
     what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
+    endorsements_hint: Du kannst Personen unterstützen, die du von der Web-Schnittstelle folgen kannst, und sie werden hier angezeigt.
+    featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
       one: Folger_innen
@@ -183,6 +188,7 @@ de:
       username: Profilname
       warn: Warnen
       web: Web
+      whitelisted: Auf der Whitelist
     action_logs:
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
@@ -243,6 +249,7 @@ de:
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     dashboard:
+      authorized_fetch_mode: Autorisierter Abruf-Modus
       backlog: Rückständige Jobs
       config: Konfiguration
       feature_deletions: Kontolöschung
@@ -250,10 +257,13 @@ de:
       feature_profile_directory: Profilverzeichnis
       feature_registrations: Offene Anmeldung
       feature_relay: Föderationsrelais
+      feature_spam_check: Anti-Spam
       feature_timeline_preview: Zeitleistenvorschau
       features: Funktionen
       hidden_service: Föderation mit versteckten Diensten
       open_reports: Ausstehende Meldungen
+      pending_tags: Hashtags, die auf eine Überprüfung warten
+      pending_users: Benutzer, die auf eine Überprüfung warten
       recent_users: Neueste Nutzer
       search: Volltextsuche
       single_user_mode: Einzelnutzermodus
@@ -265,11 +275,18 @@ de:
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
       week_users_new: Benutzer_innen diese Woche
+      whitelist_mode: Whitelist-Modus
+    domain_allows:
+      add_new: Whitelist-Domain
+      created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
+      destroyed_msg: Domain wurde von der Whitelist entfernt
+      undo: Von der Whitelist entfernen
     domain_blocks:
       add_new: Neue Domainblockade hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
       destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
       domain: Domain
+      edit: Domainblockade bearbeiten
       existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
       new:
         create: Blockade einrichten
@@ -280,6 +297,10 @@ de:
           silence: Stummschaltung
           suspend: Sperre
         title: Neue Domain-Blockade
+      private_comment: Privater Kommentar
+      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderatoren.
+      public_comment: Öffentlicher Kommentar
+      public_comment_hint: Kommentar zu dieser Domain-Beschränkung für die allgemeine Öffentlichkeit, wenn das Veröffentlichen der Blockliste aktiviert ist.
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
@@ -299,6 +320,7 @@ de:
         title: Domain-Blockade für %{domain} zurücknehmen
         undo: Zurücknehmen
       undo: Domainblockade zurücknehmen
+      view: Zeige Domain-Blockade
     email_domain_blocks:
       add_new: Neue hinzufügen
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
@@ -322,6 +344,8 @@ de:
         all: Alle
         limited: Beschränkt
         title: Moderation
+      private_comment: Privater Kommentar
+      public_comment: Öffentlicher Kommentar
       title: Föderation
       total_blocked_by_us: Von uns blockiert
       total_followed_by_them: Gefolgt von denen
@@ -399,6 +423,13 @@ de:
       custom_css:
         desc_html: Verändere das Aussehen mit CSS, dass auf jeder Seite geladen wird
         title: Benutzerdefiniertes CSS
+      domain_blocks:
+        all: An alle
+        disabled: An niemanden
+        title: Zeige Domain-Blockaden
+        users: Für angemeldete lokale Benutzer
+      domain_blocks_rationale:
+        title: Rationale anzeigen
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
         title: Bild für Einstiegsseite
@@ -449,6 +480,9 @@ de:
         desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags nutzen
         title: Benutzerdefinierte Geschäftsbedingungen
       site_title: Name des Servers
+      spam_check_enabled:
+        desc_html: Mastodon kann automatisch Server stummschalten und automatisch Konten melden basierend auf Maßnahmen wie die Erkennung von Konten, die wiederholt unerwünschte Nachrichten senden. Es können hierbei mögliche Probleme auftreten.
+        title: Anti-Spam
       thumbnail:
         desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
         title: Vorschaubild des Servers
@@ -456,6 +490,9 @@ de:
         desc_html: Auf der Einstiegsseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
       title: Server-Einstellungen
+      trends:
+        desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
+        title: Trendende Hashtags
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -470,13 +507,19 @@ de:
       title: Beiträge des Kontos
       with_media: Mit Medien
     tags:
-      accounts: Konten
-      hidden: Versteckt
-      hide: Vom Profilverzeichnis verstecken
-      name: Hashtag
+      accounts_today: Einzigartige Nutzungen heute
+      accounts_week: Einzigartige Nutzung dieser Woche
+      breakdown: Heruntergebrochene Statistiken der heutigen Nutzung nach Quelle
+      context: Kontext
+      directory: Im Verzeichnis
+      in_directory: "%{count} im Verzeichnis"
+      review: Prüfstatus
+      reviewed: Überprüft
       title: Hashtags
-      unhide: Zeige in Verzeichnis
-      visible: Sichtbar
+      trending_right_now: Aktuell in den Trends
+      unique_uses_today: "%{count} Beiträge heute"
+      unreviewed: Nicht überprüft
+      updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
     title: Administration
     warning_presets:
       add_new: Neu hinzufügen
@@ -492,11 +535,15 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
+    new_trending_tag:
+      body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
+      subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
     advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
+    discovery: Erkennung
     sensitive_content: Heikle Inhalte
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -517,7 +564,7 @@ de:
     apply_for_account: Eine Einladung anfragen
     change_password: Passwort
     checkbox_agreement_html: Ich akzeptiere die <a href="%{rules_path}" target="_blank">Server-Regeln</a> und die <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a>
-    confirm_email: E-Mail bestätigen
+    checkbox_agreement_without_rules_html: Ich stimme den <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a> zu
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
@@ -537,6 +584,15 @@ de:
     reset_password: Passwort zurücksetzen
     security: Sicherheit
     set_new_password: Neues Passwort setzen
+    setup:
+      email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
+      email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
+      title: Konfiguration
+    status:
+      account_status: Kontostatus
+      confirming: Warte auf die Bestätigung der E-Mail.
+      functional: Dein Konto ist voll funktionsfähig.
+      pending: Deine Bewerbung wird von unseren Mitarbeitern noch nicht überprüft. Dies kann einige Zeit dauern. Du erhälst eine E-Mail, wenn deine Bewerbung genehmigt ist.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -581,6 +637,25 @@ de:
     people:
       one: "%{count} Person"
       other: "%{count} Leute"
+  domain_blocks:
+    blocked_domains: Liste der begrenzten und blockierten Domains
+    description: Dies ist die Liste der Server, die %{instance} limitiert oder dessen Föderation ablehnt.
+    domain: Domain
+    media_block: Medienblockade
+    no_domain_blocks: "(Keine Domain-Blockaden)"
+    severity: Schweregrad
+    severity_legend:
+      media_block: Mediendateien, die vom Server stammen, werden weder vom Benutzer abgerufen, gespeichert noch angezeigt.
+      silence: Konten von stummgeschalteten Servern können gefunden und gefolgt werden und man kann mit ihnen interagieren, aber ihre Beiträge werden nicht in der öffentlichen Zeitleiste erscheinen und Benachrichtigungen von ihnen werden nicht zu lokalen Benutzern gesendet, die sie nicht folgen.
+      suspension: Keine Inhalte von gesperrten Servern werden gespeichert oder angezeigt, und es werden auch keine Inhalte an sie gesendet. Die Interaktionen von gesperrten Servern werden ignoriert.
+      suspension_disclaimer: Gesperrte Server können gelegentlich öffentliche Inhalte von diesem Server abrufen.
+      title: Schweregrade
+    show_rationale: Rationale anzeigen
+    silence: Stummschalten
+    suspension: Sperre
+    title: "%{instance} Liste der blockierten Instanzen"
+  domain_validator:
+    invalid_domain: ist kein gültiger Domain-Name
   errors:
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Die Seite nach der du gesucht hast wurde nicht gefunden.
@@ -615,6 +690,7 @@ de:
     add_new: Neu hinzufügen
     errors:
       limit: Du hast bereits die maximale Anzahl an empfohlenen Hashtags erreicht
+    hint_html: "<strong>Was sind empfohlene Hashtags?</strong> Sie werden in deinem öffentlichen Profil deutlich angezeigt und ermöglichen es den Menschen, deine öffentlichen Beiträge speziell unter diesen Hashtags zu durchsuchen. Sie sind ein großartiges Werkzeug, um kreative Werke oder langfristige Projekte zu verfolgen."
   filters:
     contexts:
       home: Startseite
@@ -635,6 +711,7 @@ de:
     developers: Entwickler
     more: Mehr…
     resources: Ressourcen
+    trending_now: In den Trends
   generic:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!
@@ -874,6 +951,8 @@ de:
     profile: Profil
     relationships: Folger_innen und Gefolgte
     two_factor_authentication: Zwei-Faktor-Auth
+  spam_check:
+    spam_detected_and_silenced: Dies ist ein automatisierter Bericht. Spam wurde erkannt und der Absender wurde automatisch stummgeschaltet. Wenn dies ein Fehler ist, schalte dieses Konto bitte wieder frei.
   statuses:
     attached:
       description: 'Angehängt: %{attached}'
@@ -905,8 +984,8 @@ de:
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Nur Folgende
-      private_long: Nur für Folgende sichtbar
+      private: Nur für Folger_innen
+      private_long: Nur für Folger_innen sichtbar
       public: Öffentlich
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
@@ -915,6 +994,8 @@ de:
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: Heikle Inhalte
+  tags:
+    does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms:
     body_html: |
       <h2>Datenschutzerklärung</h2>

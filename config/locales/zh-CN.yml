@@ -90,7 +90,7 @@ zh-CN:
         title: 为 %{username} 更改电子邮件地址
       confirm: 确认
       confirmed: 已确认
-      confirming: 确认
+      confirming: 确认中
       deleted: 已删除
       demote: 降任
       disable: 停用
@@ -179,6 +179,7 @@ zh-CN:
       username: 用户名
       warn: 警告
       web: 站内页面
+      whitelisted: 已加入白名单
     action_logs:
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
@@ -246,10 +247,13 @@ zh-CN:
       feature_profile_directory: 用户目录
       feature_registrations: 公开注册
       feature_relay: 中继服务器
+      feature_spam_check: 反垃圾
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
       open_reports: 待处理举报数
+      pending_tags: 等待审核的标签
+      pending_users: 等待审核的用户
       recent_users: 新用户
       search: 全文搜索
       single_user_mode: 单用户模式
@@ -261,6 +265,12 @@ zh-CN:
       week_interactions: 本周互动数
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
+      whitelist_mode: 白名单模式
+    domain_allows:
+      add_new: 白名单域名
+      created_msg: 域名已被列入白名单
+      destroyed_msg: 域名已从白名单中移除
+      undo: 从白名单中移除
     domain_blocks:
       add_new: 添加新屏蔽域名
       created_msg: 正在进行域名屏蔽
@@ -276,6 +286,8 @@ zh-CN:
           silence: 自动隐藏
           suspend: 自动封禁
         title: 添加域名屏蔽
+      private_comment: 私密评论
+      public_comment: 公开评论
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
       reject_reports: 拒绝接收举报
@@ -294,6 +306,7 @@ zh-CN:
         title: 撤销对 %{domain} 的域名屏蔽
         undo: 撤销
       undo: 撤销屏蔽域名
+      view: 查看域名屏蔽
     email_domain_blocks:
       add_new: 添加新条目
       created_msg: 电子邮件域名屏蔽添加成功
@@ -316,6 +329,8 @@ zh-CN:
         all: 全部
         limited: 受限的
         title: 运营
+      private_comment: 私密评论
+      public_comment: 公开评论
       title: 已知实例
       total_blocked_by_us: 被我方屏蔽的
       total_followed_by_them: 被对方关注的
@@ -443,6 +458,9 @@ zh-CN:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
         title: 自定义使用条款
       site_title: 本站名称
+      spam_check_enabled:
+        desc_html: Mastodon可以自动隐藏和举报重复发送垃圾消息的账户。但是本功能有可能误伤无辜。
+        title: 自动反垃圾
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
         title: 本站缩略图
@@ -450,6 +468,8 @@ zh-CN:
         desc_html: 在主页显示公共时间轴
         title: 时间轴预览
       title: 网站设置
+      trends:
+        title: 热门标签
     statuses:
       back_to_account: 返回帐户信息页
       batch:
@@ -464,13 +484,13 @@ zh-CN:
       title: 帐户嘟文
       with_media: 含有媒体文件
     tags:
-      accounts: 帐户
-      hidden: 隐藏
-      hide: 从用户目录中隐藏
-      name: 话题标签
+      accounts_today: 今日活跃用户
+      accounts_week: 本周活跃用户
+      directory: 在目录中
+      reviewed: 已审核
       title: 话题标签
-      unhide: 在用户目录中显示
-      visible: 可见
+      trending_right_now: 当前热门
+      unreviewed: 未审核
     title: 管理
     warning_presets:
       add_new: 添加新条目
@@ -491,6 +511,7 @@ zh-CN:
     advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
+    discovery: 发现
     sensitive_content: 敏感内容
   application_mailer:
     notification_preferences: 更改电子邮件首选项
@@ -511,7 +532,6 @@ zh-CN:
     apply_for_account: 请求邀请
     change_password: 密码
     checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">服务器规则</a> 和 <a href="%{terms_path}" target="_blank">服务条款</a>
-    confirm_email: 确认电子邮件地址
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
     didnt_get_confirmation: 没有收到确认邮件？
@@ -531,6 +551,11 @@ zh-CN:
     reset_password: 重置密码
     security: 帐户安全
     set_new_password: 设置新密码
+    setup:
+      title: 初始设置
+    status:
+      account_status: 帐户状态
+      confirming: 等待电子邮件确认完成。
     trouble_logging_in: 登录有问题？
   authorize_follow:
     already_following: 你已经在关注此用户了

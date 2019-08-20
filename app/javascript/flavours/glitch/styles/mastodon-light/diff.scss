@@ -135,13 +135,12 @@
     }
   }
 
-  .composer--options {
+  .composer--options-wrapper {
     background: lighten($ui-base-color, 10%);
-    box-shadow: unset;
+  }
 
-    & > hr {
-      display: none;
-    }
+  .composer--options > hr {
+    display: none;
   }
 
   .composer--options--dropdown--content--item {
