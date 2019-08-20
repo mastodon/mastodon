@@ -847,13 +847,18 @@
 }
 
 .getting-started__wrapper,
-.getting_started {
+.getting_started,
+.flex-spacer {
   background: $ui-base-color;
 }
 
 .getting-started__wrapper {
   position: relative;
   overflow-y: auto;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
 }
 
 .getting-started {
