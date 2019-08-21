@@ -427,6 +427,8 @@ ca:
         disabled: Per a ningú
         title: Mostra els bloquejos de domini
         users: Per als usuaris locals en línia
+      domain_blocks_rationale:
+        title: Mostra el raonament
       hero:
         desc_html: Es mostra en pàgina frontal. Recomanat al menys 600x100px. Si no es configura es mostrarà el del servidor
         title: Imatge d’heroi
@@ -487,6 +489,9 @@ ca:
         desc_html: Mostra la línia de temps pública a la pàgina inicial
         title: Vista prèvia de la línia de temps
       title: Configuració del lloc
+      trends:
+        desc_html: Mostra públicament les etiquetes revisades anteriorment que actualment estan en tendència
+        title: Etiquetes tendència
     statuses:
       back_to_account: Torna a la pàgina del compte
       batch:
@@ -501,7 +506,19 @@ ca:
       title: Estats del compte
       with_media: Amb contingut multimèdia
     tags:
+      accounts_today: Usos únics actuals
+      accounts_week: Usos únics d'aquesta setmana
+      breakdown: Desglossament de l’ús actual per origen
+      context: Context
+      directory: En el directori
+      in_directory: "%{count} en el directori"
+      review: Revisar l'estat
+      reviewed: Revisades
       title: Etiquetes
+      trending_right_now: Actualment en tendència
+      unique_uses_today: "%{count} publicacions d'avui"
+      unreviewed: Sense revisar
+      updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
     title: Administració
     warning_presets:
       add_new: Afegir nou
