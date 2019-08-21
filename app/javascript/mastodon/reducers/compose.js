@@ -210,7 +210,7 @@ const mergeLocalHashtagResults = (suggestions, prefix, tagHistory) => {
   prefix = prefix.toLowerCase();
   if (suggestions.length < 4) {
     const localTags = tagHistory.filter(tag => tag.toLowerCase().startsWith(prefix) && !suggestions.some(suggestion => suggestion.type === 'hashtag' && suggestion.name.toLowerCase() === tag.toLowerCase()));
-    return suggestions.concat(slice(0, 4 - suggestions.length).toJS().map(tag => ({ type: 'hashtag', name: tag, history: [] })));
+    return suggestions.concat(slice(0, 4 - suggestions.length).toJS().map(tag => ({ type: 'hashtag', name: tag })));
   } else {
     return suggestions;
   }
