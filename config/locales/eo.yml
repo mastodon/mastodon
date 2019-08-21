@@ -414,6 +414,9 @@ eo:
         title: Propra CSS
       domain_blocks:
         all: Al ciuj
+        disabled: Al neniu
+        title: Vidi domajna blokado
+        users: Al ensalutintaj lokaj uzantoj
       hero:
         desc_html: Montrata en la ĉefpaĝo. Almenaŭ 600x100px rekomendita. Kiam ne agordita, la bildeto de la servilo estos uzata
         title: Kapbildo
@@ -489,9 +492,11 @@ eo:
     tags:
       context: Kunteksto
       directory: En la adresaro
+      in_directory: "%{count} en adresaro"
       review: La statuso de la recenzo
       reviewed: Recenzis
       title: Kradvortoj
+      trending_right_now: Tendenco nun
       unreviewed: Ne recenzis
     title: Administrado
     warning_presets:
@@ -601,6 +606,8 @@ eo:
       one: "%{count} persono"
       other: "%{count} personoj"
   domain_blocks:
+    domain: Domajno
+    no_domain_blocks: "(Nenio domajna blokado)"
     silence: Silenta
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
