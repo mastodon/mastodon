@@ -67,16 +67,10 @@ class NodeInfoSerializer < ActiveModel::Serializer
   end
 
   def federation
-    blocks = DomainBlock.with_user_facing_limitations
-    feds = {
-      reject_media: [],
-    }
-    blocks.each do |block|
-      feds[block.severity] = [] if %w(silence suspend).include?(block.severity) && !feds.keys.include?(block.severity)
-      feds[block.severity] << block.domain
+    DomainBlock.with_user_facing_limitations.each_with_object(Hash.new { |h, k| h[k] = [] }) do |block, feds|
+      feds[block.severity] << block.domain if %w(silence suspend).include?(block.severity)
       feds[:reject_media] << block.domain if block.reject_media
     end
-    feds
   end
 
   private
