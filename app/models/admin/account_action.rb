@@ -19,10 +19,14 @@ class Admin::AccountAction
                 :report_id,
                 :warning_preset_id
 
-  attr_reader :warning, :send_email_notification
+  attr_reader :warning, :send_email_notification, :include_statuses
 
   def send_email_notification=(value)
     @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
+  end
+
+  def include_statuses=(value)
+    @include_statuses = ActiveModel::Type::Boolean.new.cast(value)
   end
 
   def save!
@@ -31,8 +35,9 @@ class Admin::AccountAction
       process_warning!
     end
 
-    queue_email!
+    process_email!
     process_reports!
+    process_queue!
   end
 
   def report
@@ -110,7 +115,6 @@ class Admin::AccountAction
     authorize(target_account, :suspend?)
     log_action(:suspend, target_account)
     target_account.suspend!
-    queue_suspension_worker!
   end
 
   def text_for_warning
@@ -121,14 +125,20 @@ class Admin::AccountAction
     Admin::SuspensionWorker.perform_async(target_account.id)
   end
 
-  def queue_email!
-    return unless warnable?
+  def process_queue!
+    queue_suspension_worker! if type == 'suspend'
+  end
 
-    UserMailer.warning(target_account.user, warning).deliver_later!
+  def process_email!
+    UserMailer.warning(target_account.user, warning, status_ids).deliver_now! if warnable?
   end
 
   def warnable?
     send_email_notification && target_account.local?
+  end
+
+  def status_ids
+    @report.status_ids if @report && include_statuses
   end
 
   def warning_preset
