@@ -96,6 +96,10 @@ Part of why I don't want to stray far from mainline Mastodon is that this projec
 
 Hometown uses [semantic versioning](https://semver.org) and follows a versioning convention like `v1.0.0+2.9.3`. The 1.0.0 part is the actual Hometown version number, and then the 2.9.3 after the + sign is what's known in semantic versioning as "build metadata". It just means that a particular release is synchronized with Mastodon version 2.9.3, so for example an upgrade from `v1.0.0+2.9.2` to `v1.0.0+2.9.3` would upgrade _Mastodon_ but not provide any new Hometown features or fixes.
 
+## Contributing to Hometown
+
+Setting up your Hometown development environment is [exactly like setting up your Mastodon development environment](https://docs.joinmastodon.org/development/overview/). Pull requests should be made to the `hometown-dev` branch, which is our default branch in Github.
+
 ## License
 
 Copyright (C) 2016-2019 Eugen Rochko and other Mastodon contributors; see [AUTHORS.md](AUTHORS.md).
