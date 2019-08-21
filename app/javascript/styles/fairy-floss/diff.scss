@@ -513,3 +513,7 @@ a.mention, .notification__message .fa {
 .landing .hero-widget__footer {
   background: $purple3;
 }
+
+.status.status-direct:not(.read), .account {
+  border-bottom: 1px solid lighten($purple2, 8%);
+}
