@@ -297,6 +297,9 @@ ca:
           suspend: Suspensió
         title: Bloqueig de domini nou
       private_comment: Comentari privat
+      private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
+      public_comment: Comentari públic
+      public_comment_hint: Comentari pel públic general sobre aquesta limitació del domini, si la publicació de la llista de limitacions de domini està habilitada.
       reject_media: Rebutja els fitxers multimèdia
       reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
       reject_reports: Rebutja informes
@@ -316,6 +319,7 @@ ca:
         title: Desfés el bloqueig de domini de %{domain}
         undo: Desfés
       undo: Desfés el bloqueig del domini
+      view: Veure el bloqueig del domini
     email_domain_blocks:
       add_new: Afegir nou
       created_msg: S'ha creat el bloc de domini de correu electrònic
@@ -339,6 +343,8 @@ ca:
         all: Totes
         limited: Limitades
         title: Moderació
+      private_comment: Comentari privat
+      public_comment: Comentari públic
       title: Federació
       total_blocked_by_us: Bloquejats per nosaltres
       total_followed_by_them: Seguits per ells
@@ -416,6 +422,11 @@ ca:
       custom_css:
         desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
         title: CSS personalitzat
+      domain_blocks:
+        all: Per a tothom
+        disabled: Per a ningú
+        title: Mostra els bloquejos de domini
+        users: Per als usuaris locals en línia
       hero:
         desc_html: Es mostra en pàgina frontal. Recomanat al menys 600x100px. Si no es configura es mostrarà el del servidor
         title: Imatge d’heroi
