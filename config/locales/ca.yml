@@ -534,11 +534,15 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: 'Informe nou per a %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'La etiqueta #%{name} està actualment en tendència però no s''ha revisat prèviament. No es mostrarà públicament tret que ho permetis o guardis el formulari tal com està per a no tornar a escoltar res al respecte.'
+      subject: 'Nova etiqueta pendent de revisió a %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Interfície web avançada
     advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol número de llistes i etiquetes.'
     animations_and_accessibility: Animacions i accessibilitat
     confirmation_dialogs: Diàlegs de confirmació
+    discovery: Descobriment
     sensitive_content: Contingut sensible
   application_mailer:
     notification_preferences: Canvia les preferències de correu
@@ -559,6 +563,7 @@ ca:
     apply_for_account: Demana una invitació
     change_password: Contrasenya
     checkbox_agreement_html: Estic d'acord amb les <a href="%{rules_path}" target="_blank">normes del servidor</a> i <a href="%{terms_path}" target="_blank"> els termes del servei</a>
+    checkbox_agreement_without_rules_html: Acepto els <a href="%{terms_path}" target="_blank">termes del servei</a>
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     didnt_get_confirmation: No has rebut el correu de confirmació?
@@ -585,6 +590,7 @@ ca:
     status:
       account_status: Estat del compte
       confirming: Esperant que es completi la confirmació del correu electrònic.
+      functional: El teu compte és plenament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
     trouble_logging_in: Problemes per iniciar la sessió?
   authorize_follow:
@@ -630,6 +636,13 @@ ca:
     people:
       one: "%{count} persona"
       other: "%{count} gent"
+  domain_blocks:
+    blocked_domains: Llistat dels dominis limitats i bloquejats
+    description: Aquesta és la llista de servidors que %{instance} limita o en rebutja la federació.
+    domain: Domini
+    media_block: Bloqueig multimèdia
+    no_domain_blocks: "(Sense bloquejos de domini)"
+    severity: Severitat
   errors:
     '403': No tens permís per a veure aquesta pàgina.
     '404': La pàgina que estàs cercant no és aquí.
