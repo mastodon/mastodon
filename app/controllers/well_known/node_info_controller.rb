@@ -11,7 +11,7 @@ module WellKnown
 
     def show
       expires_in 30.minutes, public: true
-      render json: ActiveModelSerializers::SerializableResource.new({}, serializer: NodeInfoSerializer, version: "2.#{params[:format]}"), root: 'nodeinfo'
+      render json: ActiveModelSerializers::SerializableResource.new({}, serializer: NodeInfoSerializer), root: 'nodeinfo'
     end
   end
 end
