@@ -643,6 +643,18 @@ ca:
     media_block: Bloqueig multimèdia
     no_domain_blocks: "(Sense bloquejos de domini)"
     severity: Severitat
+    severity_legend:
+      media_block: Els fitxers multimèdia procedents del servidor no es poden recuperar, emmagatzemar ni mostrar a l'usuari.
+      silence: Es poden trobar comptes de servidors silenciats, seguits i amb interacció, però els seus tuts no apareixeran en les línies de temps públiques i les seves notificacions no arribaran als usuaris locals que no els segueixen.
+      suspension: No s’emmagatzema ni es mostra contingut de servidors en suspens, ni se’ls envia cap contingut. S'ignoren les interaccions dels servidors suspesos.
+      suspension_disclaimer: Els servidors suspesos poden ocasionalment recuperar contingut públic d’aquest servidor.
+      title: Severitats
+    show_rationale: Mostra el raonament
+    silence: Silenci
+    suspension: Suspensió
+    title: "%{instance} Llistat de les instàncies bloquejades"
+  domain_validator:
+    invalid_domain: no es un nom de domini vàlid
   errors:
     '403': No tens permís per a veure aquesta pàgina.
     '404': La pàgina que estàs cercant no és aquí.
@@ -677,6 +689,7 @@ ca:
     add_new: Afegir nova
     errors:
       limit: Ja has mostrat la quantitat màxima d'etiquetes
+    hint_html: "<strong>Què son les etiquetes destacades?</strong> Es mostren de manera destacada en el teu perfil públic i permeten a les persones navegar per les teves publicacions amb aquestes etiquetes. Són una gran eina per fer un seguiment de treballs creatius o de projectes a llarg termini."
   filters:
     contexts:
       home: Línia de temps Inici
@@ -697,6 +710,7 @@ ca:
     developers: Desenvolupadors
     more: Més…
     resources: Recursos
+    trending_now: En tendència
   generic:
     all: Tot
     changes_saved_msg: Els canvis s'han desat correctament!
@@ -979,6 +993,8 @@ ca:
     pinned: Toot fixat
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
+  tags:
+    does_not_match_previous_name: no coincideix amb el nom anterior
   terms:
     body_html: |
       <h2>Política de Privacitat</h2>
