@@ -94,7 +94,7 @@ Part of why I don't want to stray far from mainline Mastodon is that this projec
 
 ## Versioning
 
-Hometown follows Mastodon versioning, so Hometown v2.9.2 is up to date with Mastodon v2.9.2.
+Hometown uses [semantic versioning](https://semver.org) and follows a versioning convention like `v1.0.0+2.9.3`. The 1.0.0 part is the actual Hometown version number, and then the 2.9.3 after the + sign is what's known in semantic versioning as "build metadata". It just means that a particular release is synchronized with Mastodon version 2.9.3, so for example an upgrade from `v1.0.0+2.9.2` to `v1.0.0+2.9.3` would upgrade _Mastodon_ but not provide any new Hometown features or fixes.
 
 ## License
 
