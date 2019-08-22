@@ -34,6 +34,7 @@ class Form::StatusBatch
 
   def delete_statuses
     Status.where(id: status_ids).reorder(nil).find_each do |status|
+      status.discard
       RemovalWorker.perform_async(status.id, redraft: false)
       Tombstone.find_or_create_by(uri: status.uri, account: status.account, by_moderator: true)
       log_action :destroy, status
