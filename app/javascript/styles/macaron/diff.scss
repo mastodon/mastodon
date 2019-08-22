@@ -1036,3 +1036,13 @@ a.status-card.compact:hover {
   border-top: 1px solid lighten($purple, 8%);
   border-bottom: 1px solid lighten($purple, 8%);
 }
+
+@media screen and (max-width: 600px) {
+  .public-layout .public-account-header__bar {
+    background: $blue;
+  }
+
+  .public-layout .public-account-header__extra .public-account-bio .account__header__fields {
+    border-color: lighten($blue, 8%);
+  }
+}
