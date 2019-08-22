@@ -6,6 +6,7 @@ Devise.setup do |config|
   # Devise omniauth strategies
   options = {}
   options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
+  config.omniauth :keycloak_openid, "Keycloak", ENV['KEYCLOAK_SECRET'], client_options: { site: ENV['KEYCLOAK_SERVER'], realm: ENV['KEYCLOAK_REALM'] }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId
 
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'
