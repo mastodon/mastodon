@@ -60,7 +60,7 @@ class User < ApplicationRecord
          otp_number_of_backup_codes: 10
 
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :confirmable, :omniauthable, omniauth_providers: %i[keycloakopenid]
 
   include Omniauthable
   include PamAuthenticable
