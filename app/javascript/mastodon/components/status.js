@@ -317,18 +317,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (status.get('filtered') || status.getIn(['reblog', 'filtered'])) {
-      const minHandlers = this.props.muted ? {} : {
-        moveUp: this.handleHotkeyMoveUp,
-        moveDown: this.handleHotkeyMoveDown,
-      };
-
-      return (
-        <HotKeys handlers={minHandlers}>
-          <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
-          </div>
-        </HotKeys>
-      );
+      return null;
     }
 
     if (featured) {
