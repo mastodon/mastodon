@@ -33,8 +33,12 @@ fr:
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
         setting_show_application: Le nom de l’application que vous utilisez afin d’envoyer des pouets sera affiché dans la vue détaillée de ceux-ci
+        setting_use_blurhash: Les dégradés sont basés sur les couleurs des visuels cachés mais ne divulgent pas les détails
+        setting_use_pending_items: Masquer les mises à jour chronologiques derrière un clic au lieu de les montrer automatiquement en faisant défiler le flux d'actualités
         username: Votre nom d’utilisateur sera unique sur %{domain}
         whole_word: Lorsque le mot-clef ou la phrase-clef est uniquement alphanumérique, ça sera uniquement appliqué s’il correspond au mot entier
+      domain_allow:
+        domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
       featured_tag:
         name: 'Vous pourriez vouloir utiliser l’un d’entre eux :'
       imports:
@@ -43,6 +47,8 @@ fr:
         text: Cela nous aidera à considérer votre demande
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
+      tag:
+        name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
         chosen_languages: Lorsque coché, seuls les pouets dans les langues sélectionnées seront affichés sur les fils publics
     labels:
@@ -107,7 +113,10 @@ fr:
         setting_show_application: Dévoiler le nom de l’application utilisée pour envoyer des pouets
         setting_system_font_ui: Utiliser la police par défaut du système
         setting_theme: Thème du site
+        setting_trends: Afficher les tendances du jour
         setting_unfollow_modal: Afficher une fenêtre de confirmation avant de vous désabonner d’un compte
+        setting_use_blurhash: Afficher les dégradés colorés pour les médias cachés
+        setting_use_pending_items: Mode lent
         severity: Sévérité
         type: Type d’import
         username: Identifiant
@@ -130,6 +139,7 @@ fr:
         pending_account: Envoyer un courriel lorsqu’un nouveau compte est en attente d’approbation
         reblog: Envoyer un courriel lorsque quelqu’un partage mes statuts
         report: Envoyer un courriel lorsqu’un nouveau rapport est soumis
+        trending_tag: Envoyer un e-mail quand un hashtag non contrôlé est en tendance actuelle
     'no': 'Non'
     recommended: Recommandé
     required:
