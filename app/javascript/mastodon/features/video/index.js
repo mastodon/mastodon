@@ -21,7 +21,7 @@ const messages = defineMessages({
   exit_fullscreen: { id: 'video.exit_fullscreen', defaultMessage: 'Exit full screen' },
 });
 
-const formatTime = secondsNum => {
+export const formatTime = secondsNum => {
   let hours   = Math.floor(secondsNum / 3600);
   let minutes = Math.floor((secondsNum - (hours * 3600)) / 60);
   let seconds = secondsNum - (hours * 3600) - (minutes * 60);
