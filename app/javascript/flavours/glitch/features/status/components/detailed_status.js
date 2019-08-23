@@ -11,6 +11,7 @@ import { FormattedDate, FormattedNumber } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from 'flavours/glitch/features/video';
+import Audio from 'flavours/glitch/features/audio';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 import scheduleIdleTask from 'flavours/glitch/util/schedule_idle_task';
 import classNames from 'classnames';
@@ -131,7 +132,20 @@ export default class DetailedStatus extends ImmutablePureComponent {
     } else if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
-      } else if (['video', 'audio'].includes(status.getIn(['media_attachments', 0, 'type']))) {
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+        const attachment = status.getIn(['media_attachments', 0]);
+
+        media = (
+          <Audio
+            src={attachment.get('url')}
+            alt={attachment.get('description')}
+            duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
+            height={150}
+            preload
+          />
+        );
+        mediaIcon = 'music';
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const attachment = status.getIn(['media_attachments', 0]);
         media = (
           <Video
@@ -150,7 +164,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             onToggleVisibility={this.props.onToggleMediaVisibility}
           />
         );
-        mediaIcon = attachment.get('type') === 'video' ? 'video-camera' : 'music';
+        mediaIcon = 'video-camera';
       } else {
         media = (
           <MediaGallery

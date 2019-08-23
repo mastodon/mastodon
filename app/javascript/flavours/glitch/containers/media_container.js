@@ -7,6 +7,7 @@ import MediaGallery from 'flavours/glitch/components/media_gallery';
 import Video from 'flavours/glitch/features/video';
 import Card from 'flavours/glitch/features/status/components/card';
 import Poll from 'flavours/glitch/components/poll';
+import Audio from 'flavours/glitch/features/audio';
 import ModalRoot from 'flavours/glitch/components/modal_root';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
 import { List as ImmutableList, fromJS } from 'immutable';
@@ -14,7 +15,7 @@ import { List as ImmutableList, fromJS } from 'immutable';
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll };
+const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Audio };
 
 export default class MediaContainer extends PureComponent {
 
