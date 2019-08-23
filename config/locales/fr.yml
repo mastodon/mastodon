@@ -408,6 +408,13 @@ fr:
       custom_css:
         desc_html: Modifier l’apparence avec une CSS chargée sur chaque page
         title: CSS personnalisé
+      domain_blocks:
+        all: À tout le monde
+        disabled: À personne
+        title: Afficher les bloqueurs de domaines
+        users: Pour les utilisateurs locaux connectés
+      domain_blocks_rationale:
+        title: Voir le raisonnement
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette du serveur
         title: Image d’en-tête
@@ -458,6 +465,9 @@ fr:
         desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
         title: Politique de confidentialité
       site_title: Nom du serveur
+      spam_check_enabled:
+        desc_html: Mastodon peut auto-silencer et signaler des comptes qui envoient des messages répétés non sollicités. Il peut y avoir de faux positifs.
+        title: Automatisation anti-spam
       thumbnail:
         desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
         title: Vignette du serveur
@@ -474,6 +484,7 @@ fr:
         delete: Supprimer
         nsfw_off: Marquer comme non-sensible
         nsfw_on: Marquer comme sensible
+      deleted: Supprimé
       failed_to_execute: Erreur d’exécution
       media:
         title: Médias
@@ -482,6 +493,9 @@ fr:
       title: État du compte
       with_media: avec médias
     tags:
+      accounts_today: Utilisations uniques aujourd'hui
+      accounts_week: Utilisation unique cette semaine
+      breakdown: Répartition de l'utilisation actuelle par source
       review: État de traitement
       reviewed: Traité
       title: Hashtags
