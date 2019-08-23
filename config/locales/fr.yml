@@ -23,6 +23,9 @@ fr:
     generic_description: "%{domain} est seulement un serveur du réseau"
     get_apps: Essayez une application mobile
     hosted_on: Serveur Mastodon hébergée par %{domain}
+    instance_actor_flash: |
+      Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel.
+      Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l'instance entière, dans ce cas vous devriez utiliser un bloqueur de domaine.
     learn_more: En savoir plus
     privacy_policy: Politique de vie privée
     see_whats_happening: Voir ce qui se passe
@@ -41,6 +44,8 @@ fr:
     what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
     choices_html: "%{name} recommande :"
+    endorsements_hint: Vous pouvez soutenir les personnes que vous suivez depuis l'interface web, et elles apparaîtront ici.
+    featured_tags_hint: Vous pouvez mettre en avant des hashtags spécifiques qui seront affichés ici.
     follow: Suivre
     followers:
       one: Abonné·e
@@ -243,6 +248,7 @@ fr:
       updated_msg: Émoji mis à jour avec succès !
       upload: Téléverser
     dashboard:
+      authorized_fetch_mode: Mode de récupération autorisé
       backlog: tâches en attente
       config: Configuration
       feature_deletions: Suppressions de comptes
@@ -272,11 +278,14 @@ fr:
     domain_allows:
       add_new: Mettre le domaine sur liste sur blanche
       created_msg: Ce domaine a été ajouté à la liste blanche avec succès
+      destroyed_msg: Le domaine a été supprimé de la liste blanche
+      undo: Supprimer de la liste blanche
     domain_blocks:
       add_new: Ajouter un nouveau bloqueur de domaine
       created_msg: Le blocage de domaine est désormais activé
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
+      edit: Modifier le bloqueur de domaine
       existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le <a href="%{unblock_url}">débloquer</a>.
       new:
         create: Créer le blocage
@@ -287,6 +296,10 @@ fr:
           silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
+      private_comment: Commentaire privé
+      private_comment_hint: Commenter sur cette limitation de domaine pour informer les modérateurs internes.
+      public_comment: Commentaire public
+      public_comment_hint: Commentaire sur cette limitation de domaine pour le grand public, si la visibilité publique de la liste des limitations de domaine est activée.
       reject_media: Fichiers média rejetés
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
       reject_reports: Rejeter les signalements
@@ -306,6 +319,7 @@ fr:
         title: Annuler le blocage de domaine pour %{domain}
         undo: Annuler
       undo: Annuler le bloqueur de domaine
+      view: Afficher les bloqueurs de domaines
     email_domain_blocks:
       add_new: Ajouter
       created_msg: Le blocage de domaine de courriel est désormais activé
@@ -496,11 +510,16 @@ fr:
       accounts_today: Utilisations uniques aujourd'hui
       accounts_week: Utilisation unique cette semaine
       breakdown: Répartition de l'utilisation actuelle par source
+      context: Contexte 
+      directory: Dans le répertoire
+      in_directory: "%{count} dans le répertoire"
       review: État de traitement
       reviewed: Traité
       title: Hashtags
       trending_right_now: Populaire en ce moment
+      unique_uses_today: "%{count} posts aujourd'hui"
       unreviewed: Non traité
+      updated_msg: Paramètres Hashtag mis à jour avec succès
     title: Administration
     warning_presets:
       add_new: Ajouter un nouveau
@@ -524,6 +543,7 @@ fr:
     advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil public fédéré, un nombre illimité de listes et hashtags.'
     animations_and_accessibility: Animations et accessibilité
     confirmation_dialogs: Dialogues de confirmation
+    discovery: Découverte
     sensitive_content: Contenu sensible
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
@@ -564,8 +584,15 @@ fr:
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    setup:
+      email_below_hint_html: Si l'adresse e-mail ci-dessous est incorrecte, vous pouvez le modifier ici et recevoir un nouveau courriel de confirmation.
+      email_settings_hint_html: L'e-mail de confirmation a été envoyé à %{email}. Si cette adresse e-mail n'est pas correcte, vous pouvez la modifier dans les paramètres du compte.
+      title: Configuration
     status:
+      account_status: Statut du compte
+      confirming: En attente de la confirmation par e-mail à compléter.
       functional: Votre compte est entièrement opérationnel.
+      pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
   authorize_follow:
     already_following: Vous suivez déjà ce compte
@@ -610,6 +637,16 @@ fr:
     people:
       one: "%{count} personne"
       other: "%{count} personne"
+  domain_blocks:
+    blocked_domains: Liste des domaines limités et bloqués
+    description: Ceci est la liste des serveurs envers qui %{instance} limite ou rejette la fédération.
+    domain: Domaine
+    media_block: Bloqueur de média
+    no_domain_blocks: "(Aucun bloqueur de domaine)"
+    severity: Sévérité
+    severity_legend:
+      media_block: Les fichiers de média provenant du serveur ne sont ni récupérés, ni stockés, ni affichés à l'utilisateur.
+      silence: Les comptes des serveurs masqués peuvent être trouvés, suivis et interagis avec, mais leurs Toots n'apparaîtront pas dans les fil d'actualité publiques, et les notifications de ceux-ci ne parviendront pas aux utilisateurs locaux qui ne les suivent pas.
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
