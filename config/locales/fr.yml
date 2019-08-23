@@ -647,6 +647,13 @@ fr:
     severity_legend:
       media_block: Les fichiers de média provenant du serveur ne sont ni récupérés, ni stockés, ni affichés à l'utilisateur.
       silence: Les comptes des serveurs masqués peuvent être trouvés, suivis et interagis avec, mais leurs Toots n'apparaîtront pas dans les fil d'actualité publiques, et les notifications de ceux-ci ne parviendront pas aux utilisateurs locaux qui ne les suivent pas.
+      suspension: Aucun contenu des serveurs suspendus n'est stocké ou affiché, ni ne leur est communiqué. Les interactions des serveurs suspendus sont ignorées.
+      suspension_disclaimer: Les serveurs suspendus peuvent parfois récupérer du contenu public de ce serveur.
+      title: Séverités
+    show_rationale: Voir le raisonnement
+    silence: Masquer
+    suspension: Suspendre
+    title: "%{instance} Liste des instances bloquées"
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
@@ -683,6 +690,7 @@ fr:
     add_new: Ajouter un nouvel hashtag
     errors:
       limit: Vous avez déjà mis en avant le nombre maximum de hashtags
+    hint_html: "<strong>Que sont les hashtags vedettes ?</strong> Ils sont affichés avec emphase sur votre flux d'actualités publique et permettent aux gens de parcourir vos messages publics spécifiquement sous ces hashtags. Ils sont un excellent outil pour garder trace des œuvres créatives ou des projets à long terme."
   filters:
     contexts:
       home: Accueil
@@ -703,6 +711,7 @@ fr:
     developers: Développeurs
     more: Davantage…
     resources: Ressources
+    trending_now: Tendance en ce moment
   generic:
     all: Tous
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
@@ -942,6 +951,8 @@ fr:
     profile: Profil
     relationships: Abonnements et abonné·e·s
     two_factor_authentication: Identification à deux facteurs
+  spam_check:
+    spam_detected_and_silenced: Ceci est un rapport automatisé. Du spam a été détecté et l'expéditeur a été silencié automatiquement. Si c'est une erreur, veuillez réactiver le compte.
   statuses:
     attached:
       description: 'Attaché : %{attached}'
