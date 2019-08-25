@@ -14,8 +14,6 @@ const messages = defineMessages({
   unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
 });
 
-const arrayOf = (length, fill) => (new Array(length)).fill(fill);
-
 export default @injectIntl
 class Audio extends React.PureComponent {
 
