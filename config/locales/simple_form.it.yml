@@ -4,6 +4,7 @@ it:
       account_warning_preset:
         text: Puoi usare la sintassi dei toot, come URL, hashtag e menzioni
       admin_account_action:
+        include_statuses: L'utente vedrà quali toot hanno causato l'azione di moderazione o l'avviso
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
         text_html: Opzionale. Puoi usare la sintassi dei toot. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
         type_html: Decidi cosa fare con <strong>%{acct}</strong>
@@ -59,6 +60,7 @@ it:
       account_warning_preset:
         text: Testo preimpostato
       admin_account_action:
+        include_statuses: Includi i toots segnalati nell'email
         send_email_notification: Informa l'utente via email
         text: Avviso personalizzato
         type: Azione
@@ -139,8 +141,10 @@ it:
         pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
         reblog: Invia email quando qualcuno da un boost al tuo stato
         report: Manda una mail quando viene inviato un nuovo rapporto
+        trending_tag: Invia e-mail quando un hashtag non controllato è in tendenza
       tag:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
+        name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
         usable: Permetti ai toot di utilizzare questo hashtag
     'no': 'No'
