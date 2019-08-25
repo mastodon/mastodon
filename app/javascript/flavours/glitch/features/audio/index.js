@@ -84,6 +84,7 @@ class Audio extends React.PureComponent {
 
     if (this.wavesurfer) {
       this.wavesurfer.destroy();
+      this.loaded = false;
     }
 
     const wavesurfer = WaveSurfer.create({
@@ -100,8 +101,10 @@ class Audio extends React.PureComponent {
 
     if (preload) {
       wavesurfer.load(src);
+      this.loaded = true;
     } else {
       wavesurfer.load(src, arrayOf(1, 0.5), null, duration);
+      this.loaded = false;
     }
 
     wavesurfer.on('ready', () => this.setState({ duration: Math.floor(wavesurfer.getDuration()) }));
@@ -116,15 +119,18 @@ class Audio extends React.PureComponent {
 
   togglePlay = () => {
     if (this.state.paused) {
-      if (!this.props.preload) {
+      if (!this.props.preload && !this.loaded) {
         this.wavesurfer.createBackend();
         this.wavesurfer.createPeakCache();
         this.wavesurfer.load(this.props.src);
+        this.loaded = true;
       }
 
       this.wavesurfer.play();
+      this.setState({ paused: false });
     } else {
       this.wavesurfer.pause();
+      this.setState({ paused: true });
     }
   }
 
