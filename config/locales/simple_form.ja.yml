@@ -4,6 +4,7 @@ ja:
       account_warning_preset:
         text: URL、ハッシュタグ、メンションなど、投稿に用いる構文が使用できます
       admin_account_action:
+        include_statuses: ユーザーは取られた制限や警告の原因となったトゥートを確認できるようになります
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
         type_html: <strong>%{acct}</strong>さんに対し、何を行うか選択してください
@@ -37,6 +38,8 @@ ja:
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
         username: あなたのユーザー名は %{domain} の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
+      domain_allow:
+        domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
       featured_tag:
         name: 'これらを使うといいかもしれません:'
       imports:
@@ -57,6 +60,7 @@ ja:
       account_warning_preset:
         text: プリセット警告文
       admin_account_action:
+        include_statuses: 通報されたトゥートをメールに含める
         send_email_notification: メールでユーザーに通知
         text: カスタム警告文
         type: アクション
@@ -140,6 +144,7 @@ ja:
         trending_tag: 未審査のハッシュタグが人気の時にメールで通知する
       tag:
         listable: 検索とディレクトリへの使用を許可する
+        name: ハッシュタグ
         trendable: トレンドへの表示を許可する
         usable: トゥートへの使用を許可する
     'no': 'いいえ'
