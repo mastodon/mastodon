@@ -138,14 +138,24 @@ class SwitchingColumnsArea extends React.PureComponent {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  handleResize = debounce(() => {
+  handleLayoutChange = debounce(() => {
     // The cached heights are no longer accurate, invalidate
     this.props.onLayoutChange();
-
-    this.setState({ mobile: isMobile(window.innerWidth, this.props.layout) });
   }, 500, {
     trailing: true,
-  });
+  })
+
+  handleResize = () => {
+    const mobile = isMobile(window.innerWidth, this.props.layout);
+
+    if (mobile !== this.state.mobile) {
+      this.handleLayoutChange.cancel();
+      this.props.onLayoutChange();
+      this.setState({ mobile });
+    } else {
+      this.handleLayoutChange();
+    }
+  }
 
   setRef = c => {
     this.node = c.getWrappedInstance();
