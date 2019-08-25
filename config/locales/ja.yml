@@ -41,6 +41,8 @@ ja:
     what_is_mastodon: Mastodon とは？
   accounts:
     choices_html: "%{name} によるおすすめ:"
+    endorsements_hint: あなたがフォローしている中でおすすめしたい人をここで紹介できます。
+    featured_tags_hint: 特定のハッシュタグをここに表示できます。
     follow: フォロー
     followers:
       other: フォロワー
@@ -413,6 +415,13 @@ ja:
       custom_css:
         desc_html: 全ページに適用されるCSSの編集
         title: カスタムCSS
+      domain_blocks:
+        all: 誰でも許可
+        disabled: 誰も許可しない
+        title: ドメインブロックを表示
+        users: ログイン済みローカルユーザーのみ許可
+      domain_blocks_rationale:
+        title: コメントを表示
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
         title: ヒーローイメージ
@@ -482,6 +491,7 @@ ja:
         delete: 削除
         nsfw_off: 閲覧注意をはずす
         nsfw_on: 閲覧注意にする
+      deleted: 削除済み
       failed_to_execute: 実行に失敗しました
       media:
         title: メディア
@@ -619,6 +629,12 @@ ja:
     how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
     people:
       other: "%{count} 人"
+  domain_blocks:
+    blocked_domains: ドメインブロックリスト
+    description: '%{instance} が連合を制限または拒否しているサーバーのリストです。'
+    domain: ドメイン
+    media_block: メディアを拒否
+    no_domain_blocks: "(ドメインブロックなし)"
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
