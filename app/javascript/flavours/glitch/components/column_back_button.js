@@ -41,7 +41,19 @@ export default class ColumnBackButton extends React.PureComponent {
     if (multiColumn) {
       return component;
     } else {
-      return createPortal(component, document.getElementById('tabs-bar__portal'));
+      // The portal container and the component may be rendered to the DOM in
+      // the same React render pass, so the container might not be available at
+      // the time `render()` is called.
+      const container = document.getElementById('tabs-bar__portal');
+      if (container === null) {
+        // The container wasn't available, force a re-render so that the
+        // component can eventually be inserted in the container and not scroll
+        // with the rest of the area.
+        this.forceUpdate();
+        return component;
+      } else {
+        return createPortal(component, container);
+      }
     }
   }
 
