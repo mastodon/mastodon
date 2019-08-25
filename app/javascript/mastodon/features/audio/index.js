@@ -14,8 +14,6 @@ const messages = defineMessages({
   unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
 });
 
-const arrayOf = (length, fill) => (new Array(length)).fill(fill);
-
 export default @injectIntl
 class Audio extends React.PureComponent {
 
@@ -23,6 +21,7 @@ class Audio extends React.PureComponent {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
     duration: PropTypes.number,
+    peaks: PropTypes.arrayOf(PropTypes.number),
     height: PropTypes.number,
     preload: PropTypes.bool,
     editable: PropTypes.bool,
@@ -77,7 +76,7 @@ class Audio extends React.PureComponent {
   }
 
   _updateWaveform () {
-    const { src, height, duration, preload } = this.props;
+    const { src, height, duration, peaks, preload } = this.props;
 
     const progressColor = window.getComputedStyle(document.querySelector('.audio-player__progress-placeholder')).getPropertyValue('background-color');
     const waveColor     = window.getComputedStyle(document.querySelector('.audio-player__wave-placeholder')).getPropertyValue('background-color');
@@ -94,7 +93,8 @@ class Audio extends React.PureComponent {
       cursorWidth: 0,
       progressColor,
       waveColor,
-      forceDecode: true,
+      backend: 'MediaElement',
+      interact: preload,
     });
 
     wavesurfer.setVolume(this.state.volume);
@@ -103,7 +103,7 @@ class Audio extends React.PureComponent {
       wavesurfer.load(src);
       this.loaded = true;
     } else {
-      wavesurfer.load(src, arrayOf(1, 0.5), null, duration);
+      wavesurfer.load(src, peaks, 'none', duration);
       this.loaded = false;
     }
 
@@ -123,6 +123,7 @@ class Audio extends React.PureComponent {
         this.wavesurfer.createBackend();
         this.wavesurfer.createPeakCache();
         this.wavesurfer.load(this.props.src);
+        this.wavesurfer.toggleInteraction();
         this.loaded = true;
       }
 
