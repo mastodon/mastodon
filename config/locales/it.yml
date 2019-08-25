@@ -23,6 +23,9 @@ it:
     generic_description: "%{domain} è un server nella rete"
     get_apps: Prova un'app per smartphone
     hosted_on: Mastodon ospitato su %{domain}
+    instance_actor_flash: |
+      Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
+      È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     learn_more: Scopri altro
     privacy_policy: Politica della privacy
     see_whats_happening: Guarda cosa succede
@@ -280,6 +283,7 @@ it:
       created_msg: Il blocco del dominio sta venendo processato
       destroyed_msg: Il blocco del dominio è stato rimosso
       domain: Dominio
+      edit: Modifica blocco di dominio
       existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccare</a> prima.
       new:
         create: Crea blocco
@@ -291,7 +295,9 @@ it:
           suspend: Sospendi
         title: Nuovo blocco dominio
       private_comment: Commento privato
+      private_comment_hint: Commento su questa limitazione di dominio per uso interno da parte dei moderatori.
       public_comment: Commento pubblico
+      public_comment_hint: Commento pubblico su questa limitazione di dominio, se l'elenco delle limitazioni di dominio è pubblico.
       reject_media: Rifiuta file media
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
@@ -311,6 +317,7 @@ it:
         title: Annulla il blocco del dominio per %{domain}
         undo: Annulla
       undo: Annulla
+      view: Visualizza blocco di dominio
     email_domain_blocks:
       add_new: Aggiungi nuovo
       created_msg: Dominio email aggiunto con successo alla lista nera
@@ -416,7 +423,10 @@ it:
       domain_blocks:
         all: A tutti
         disabled: A nessuno
+        title: Mostra blocchi di dominio
         users: Agli utenti locali connessi
+      domain_blocks_rationale:
+        title: Mostra motivazione
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
@@ -486,6 +496,7 @@ it:
         delete: Elimina
         nsfw_off: Segna come non sensibile
         nsfw_on: Segna come sensibile
+      deleted: Cancellato
       failed_to_execute: Impossibile eseguire
       media:
         title: Media
@@ -499,7 +510,9 @@ it:
       breakdown: Suddivisione dell'utilizzo di oggi per fonte
       context: Contesto
       directory: Nella directory
+      in_directory: "%{count} nella directory"
       title: Hashtag
+      trending_right_now: Di tendenza ora
       updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
     warning_presets:
