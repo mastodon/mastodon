@@ -413,6 +413,10 @@ it:
       custom_css:
         desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
         title: CSS personalizzato
+      domain_blocks:
+        all: A tutti
+        disabled: A nessuno
+        users: Agli utenti locali connessi
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
@@ -609,6 +613,8 @@ it:
     people:
       one: "%{count} persona"
       other: "%{count} persone"
+  domain_blocks:
+    domain: Dominio
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
