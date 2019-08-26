@@ -1,0 +1,172 @@
+
+
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "DingDash v4.10.4, dingdash.com", :name => "generator"}/
+    %meta{:content => "width=device-width, initial-scale=1, minimum-scale=1", :name => "viewport"}/
+    %link{:href => "/assets/logoBTJ.png", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %meta{:content => "", :name => "description"}/
+    %title Home    
+    :css
+      .mbr-fullscreen video {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          z-index: 0;
+          -ms-transform: translateX(-50%) translateY(-50%);
+          -moz-transform: translateX(-50%) translateY(-50%);
+          -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+      }
+  %body.is-preload
+    %section#menu1-0.menu.btjMenu{:once => "menu"}
+      %nav.navbar.navbar-expand.beta-menu.navbar-dropdown.align-items-center.navbar-fixed-top.navbar-toggleable-sm.bg-color.transparent
+        %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+          .hamburger
+            %span
+            %span
+            %span
+            %span
+        .menu-logo
+          .navbar-brand
+            %span.navbar-logo
+              %a{:href => "http://dingdash.com"}
+                %img{:alt => "BTJ", :src => "assets/logoBTJ.png", :style => "height: 3.8rem;"}/
+            %span.navbar-caption-wrap
+              %a.navbar-caption.text-white.display-4{:href => "http://dingdash.com"}
+        #navbarSupportedContent.collapse.navbar-collapse
+          %ul.navbar-nav.nav-dropdown.nav-right{"data-app-modern-menu" => "true"}
+            %li.nav-item
+              %a.nav-link.link.text-white.display-4{:href => "#top"}
+                Home
+            %li.nav-item
+              %a.nav-link.link.text-white.display-4{:href => "#promise"}
+                Our Promise
+            %li.nav-item           
+              = link_to t('auth.login'), new_user_session_path, class: 'nav-link link text-white display-4 webapp-btn'              
+            
+    / data-bg-video="https://www.youtube.com/watch?v=ynkKL3R0rhc"
+    %section#header2-1.cid-qTkA127IK8.mbr-fullscreen-img
+      #top.w-100
+        -# %video#myVideo{:autoplay => "false", :controls => "controls", :loop => "false", :muted => ""}
+        -#   %source{:src => "assets/Sunset-Couple.mp4", :type => "video/mp4"}
+        -# %img{:alt => "BTJ", :src => "assets/dingdashbg.png", :style => ""}/
+        .mbr-overlay{:style => "opacity: 0.3; background-color: rgb(27, 110, 133);"}
+        .container.align-center
+          .row.justify-content-md-center
+            .mbr-white.col-md-10
+              %h3.mbr-section-subtitle.align-center.mbr-light.pb-3.mbr-fonts-style.display-2
+                A new way to interact.
+              %p.mbr-text.pb-3.mbr-fonts-style.display-5
+                Without the feeling of being watched! Facebook and Twitter are creeps. They abuse your data for monetary gain. We don't. We won't. Ever!
+              .mbr-section-btn
+                %a.btn.btn-md.btn-secondary.display-4{:href => "#promise"} Learn More
+                = link_to t('auth.register'), available_sign_up_path, class: 'btn btn-md btn-white-outline dispay-4'
+                
+        .mbr-arrow.hidden-sm-down{"aria-hidden" => "true"}
+          %a{:href => "#promise"}
+            %i.fa.fa-arrow-down
+    %section#features1-b.features1.cid-rurnFsQuIj
+      #promise.container
+        .media-container-row
+          .card.p-3.col-12.col-md-6.col-lg-4
+            .card-img.pb-3
+              %i.fa.fa-user-secret.fa-5x.text-black
+            .card-box
+              %h4.card-title.py-3.mbr-fonts-style.display-5
+                Privacy
+              %p.mbr-text.mbr-fonts-style.display-7
+                Your data is YOUR data. We will never collect, share, or sell your data! Ever.
+          .card.p-3.col-12.col-md-6.col-lg-4
+            .card-img.pb-3
+              %i.fa.fa-user-times.fa-5x.text-grey
+            .card-box
+              %h4.card-title.py-3.mbr-fonts-style.display-5
+                You have a right to disappear
+              %p.mbr-text.mbr-fonts-style.display-7
+                Netizens have the right to be forgotten if they decided to delete their account.
+          .card.p-3.col-12.col-md-6.col-lg-4
+            .card-img.pb-3
+              %i.fa.fa-chain-broken.fa-5x.text-info
+            .card-box
+              %h4.card-title.py-3.mbr-fonts-style.display-5
+                Live Free or Die Trying
+              %p.mbr-text.mbr-fonts-style.display-7
+                The web should not be a spider web! At Ding Dash, you are truly free!
+    %section#features1-a.features1.cid-rurnF09sXO
+      .container
+        .media-container-row
+          .card.p-3.col-12.col-md-6.col-lg-4
+            .card-img.pb-3
+              %i.fa.fa-bullhorn.fa-5x.text-secondary
+            .card-box
+              %h4.card-title.py-3.mbr-fonts-style.display-5
+                Speak Your Mind
+              %p.mbr-text.mbr-fonts-style.display-7
+                Speak your mind and mind your own business. Everyone deserves the right to freedom of speech, freedom of religion, and freedom of thought.
+          .card.p-3.col-12.col-md-6.col-lg-4
+            .card-img.pb-3
+              %i.fa.fa-globe.fa-5x.text-blue
+            .card-box
+              %h4.card-title.py-3.mbr-fonts-style.display-5
+                Connect with anyone, anywhere.
+              %p.mbr-text.mbr-fonts-style.display-7
+                People from all over the world are connected to Ding Dash. Join in on the conversation!
+          .card.p-3.col-12.col-md-6.col-lg-4
+            .card-img.pb-3
+              %i.fa.fa-rocket.text-warning.fa-5x
+            .card-box
+              %h4.card-title.py-3.mbr-fonts-style.display-5
+                Most of All, Have Fun!
+              %p.mbr-text.mbr-fonts-style.display-7
+                We feel that information is being weaponized and social media is no longer fun. It should be, so we made it that way.
+    %section#footer1-2.cid-qTkAaeaxX5
+      .container
+        .media-container-row.content.text-white
+          .col-12.col-md-4
+            .media-wrap
+              %a{:href => "http://dingdash.com"}
+                %img{:src => "assets/logoBTJ.png"}/
+          .col-12.col-md-2.mbr-fonts-style.display-7
+            %h5.pb-3
+              Address
+            %p.mbr-text
+              7777 The Way Avenue
+              = succeed "Shiloh," do
+                %br/
+          .col-12.col-md-2.mbr-fonts-style.display-7
+            %h5.pb-3
+              Contacts
+            %p.mbr-text
+              Email: support@dingdash.com
+              = succeed "Phone:" do
+                %br/
+              = succeed "Fax:" do
+                %br/
+        .footer-lower
+          .media-container-row
+            .col-sm-12
+              %hr/
+          .media-container-row.mbr-white
+            .col-sm-6.copyright
+              %p.mbr-text.mbr-fonts-style.display-7
+                © Copyright 2019 Ding Dash
+    %script{:src => "../../javascript/styles/btj_landing/assets/web/assets/jquery/jquery.min.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/popper/popper.min.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/tether/tether.min.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/bootstrap/js/bootstrap.min.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/smoothscroll/smooth-scroll.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/touchswipe/jquery.touch-swipe.min.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/ytplayer/jquery.mb.ytplayer.min.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/vimeoplayer/jquery.mb.vimeo_player.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/dropdown/js/nav-dropdown.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/dropdown/js/navbar-dropdown.js", :type => "javascript"}
+    %script{:src => "../../javascript/styles/btj_landing/assets/theme/js/script.js", :type => "javascript"}
+    

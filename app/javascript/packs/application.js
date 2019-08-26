@@ -3,7 +3,7 @@ import { start } from '../mastodon/common';
 
 start();
 
-loadPolyfills().then(() => {
+loadPolyfills().then(() => {  
   require('../mastodon/main').default();
 }).catch(e => {
   console.error(e);

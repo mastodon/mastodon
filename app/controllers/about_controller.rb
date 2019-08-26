@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class AboutController < ApplicationController
-  layout 'public'
+  # layout 'public'
 
   before_action :set_instance_presenter, only: [:show, :more, :terms]
 
   def show
     @hide_navbar = true
+    render "show_dingdash"
   end
 
   def more; end
