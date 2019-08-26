@@ -85,6 +85,7 @@ da:
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
+      deleted: Slettet
       demote: Degrader
       disable: Deaktiver
       disable_two_factor_authentication: Deaktiver 2FA
@@ -285,6 +286,9 @@ da:
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       title: Førderation
+      total_blocked_by_us: Blokeret af os
+      total_followed_by_them: Fulgt af dem
+      total_followed_by_us: Fulgt af os
     invites:
       deactivate_all: Deaktiver alle
       filter:
@@ -406,6 +410,7 @@ da:
         delete: Slet
         nsfw_off: Marker som værende ikke følsomt
         nsfw_on: Marker som værende følsomt
+      deleted: Slettet
       failed_to_execute: Udførelsen kunne ikke lade sig gøre
       media:
         title: Multimedier
@@ -423,6 +428,8 @@ da:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
       subject: 'Ny anmeldelse for %{instance} (#%{id})'
+  appearance:
+    discovery: Opdagelse
   application_mailer:
     notification_preferences: Ændre email præferencer
     settings: 'Ændre email præferencer: %{link}'
@@ -450,6 +457,7 @@ da:
     migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
     or_log_in_with: Eller log in med
     register: Opret dig
+    registration_closed: "%{instance} accepterer ikke nye medlemmer"
     resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
     security: Sikkerhed
@@ -486,6 +494,7 @@ da:
     warning_title: Tilgængelighed af delt indhold
   directories:
     directory: Profilliste
+    explore_mastodon: Uforsk %{title}
   domain_blocks:
     domain: Domæne
   errors:
@@ -533,6 +542,7 @@ da:
     developers: Udviklere
     more: Mere…
     resources: Ressourcer
+    trending_now: Hot lige nu
   generic:
     all: Alle
     changes_saved_msg: Ændringerne blev gemt!
@@ -642,6 +652,7 @@ da:
     other: Andet
     public_timelines: Offentlige tidslinjer
   relationships:
+    last_active: Sidst aktiv
     moved: Flyttet
     mutual: Fælles
     primary: Primær
