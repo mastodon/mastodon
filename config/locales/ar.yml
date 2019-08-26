@@ -420,6 +420,8 @@ ar:
       custom_css:
         desc_html: يقوم بتغيير المظهر بواسطة سي أس أس يُحمَّل على كافة الصفحات
         title: سي أس أس مخصص
+      domain_blocks:
+        all: للجميع
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
@@ -487,6 +489,7 @@ ar:
       with_media: تحتوي على وسائط
     tags:
       context: السياق
+      in_directory: "%{count} في سجل حسابات المستخدمين"
       title: الوسوم
     title: الإدارة
     warning_presets:
@@ -545,6 +548,8 @@ ar:
     reset_password: إعادة تعيين كلمة المرور
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
+    setup:
+      title: الضبط
     status:
       account_status: حالة الحساب
       functional: حسابك جاهز.
@@ -592,6 +597,10 @@ ar:
       few: "%{count} شخص"
       many: "%{count} شخص"
       other: "%{count} شخص"
+  domain_blocks:
+    domain: النطاق
+    severity: القوّة
+    silence: اكتم
   domain_validator:
     invalid_domain: ليس بإسم نطاق صالح
   errors:
