@@ -1,12 +1,12 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   # Vanilla omniauth stategies
+  # provider :developer unless Rails.env.production?
 end
 
 Devise.setup do |config|
   # Devise omniauth strategies
   options = {}
   options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
-  config.omniauth :keycloak_openid, "Keycloak", ENV['KEYCLOAK_SECRET'], client_options: { site: ENV['KEYCLOAK_SERVER'], realm: ENV['KEYCLOAK_REALM'] }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId
 
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'
@@ -32,6 +32,10 @@ Devise.setup do |config|
     cas_options[:image_key] = ENV['CAS_IMAGE_KEY'] || 'image'
     cas_options[:phone_key] = ENV['CAS_PHONE_KEY'] || 'phone'
     config.omniauth :cas, cas_options
+  end
+
+  if ENV['KEYCLOAK_ENABLED'] == 'true'
+    config.omniauth :keycloak_openid, ENV['KEYCLOAK_CLIENT_NAME'], ENV['KEYCLOAK_SECRET_KEY'], client_options: { site:  ENV['KEYCLOAK_SITE'], realm: ENV['KEYCLOAK_REALM'] }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId, callback_url: ENV['KEYCLOAK_CALLBACK']
   end
 
   # SAML strategy
