@@ -38,6 +38,8 @@
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
 #  approved                  :boolean          default(TRUE), not null
+#  provider                  :string
+#  uid                       :string
 #
 
 class User < ApplicationRecord
@@ -130,6 +132,13 @@ class User < ApplicationRecord
 
   def enable!
     update!(disabled: false)
+  end
+
+  def confirm_keycloak 
+    self.approved = true if open_registrations?
+
+    skip_confirmation!
+    BootstrapTimelineWorker.perform_async(account_id)
   end
 
   def confirm
