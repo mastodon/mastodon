@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 export default @injectIntl
 @connect(null, mapDispatchToProps)
 class LinkFooter extends React.PureComponent {
+
   static propTypes = {
     withHotkeys: PropTypes.bool,
     onLogout: PropTypes.func.isRequired,
@@ -41,7 +42,7 @@ class LinkFooter extends React.PureComponent {
   }
 
   render () {
-    const { withHotkeys } = this.props;
+    const { withHotkeys } = this.props;
 
     return (
       <div className='getting-started__footer'>
@@ -57,14 +58,15 @@ class LinkFooter extends React.PureComponent {
           <li><a href='/auth/sign_out' onClick={this.handleLogoutClick}><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
         </ul>
 
-      <p>
-        <FormattedMessage
-          id='getting_started.open_source_notice'
-          defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-          values={{ github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
-        />
-      </p>
-    </div>
+        <p>
+          <FormattedMessage
+            id='getting_started.open_source_notice'
+            defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
+            values={{ github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
+          />
+        </p>
+      </div>
     );
-  };
+  }
+
 };
