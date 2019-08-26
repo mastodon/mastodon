@@ -549,11 +549,13 @@ cs:
       subject: 'Nové nahlášení pro %{instance} (#%{id})'
     new_trending_tag:
       body: 'Hashtag #%{name} je dnes populární, nebyl však dříve schválen. Nebude zobrazen veřejně, pokud to nedovolíte. Můžete také pouze uložit formulář tak, jak je, a nikdy o něm opět neslyšet.'
+      subject: 'Nový hashtag ke schválení na %{instance} (#%{name})'
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
     animations_and_accessibility: Animace a přístupnost
     confirmation_dialogs: Potvrzovací dialogy
+    discovery: Objevování
     sensitive_content: Citlivý obsah
   application_mailer:
     notification_preferences: Změnit volby e-mailu
@@ -601,6 +603,7 @@ cs:
     status:
       account_status: Stav účtu
       confirming: Čekám na dokončení potvrzení e-mailu.
+      functional: Váš účet je zcela funkční.
       pending: Váš požadavek čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
     trouble_logging_in: Problémy s přihlašováním?
   authorize_follow:
@@ -648,6 +651,25 @@ cs:
       few: "%{count} lidé"
       many: "%{count} lidí"
       other: "%{count} lidí"
+  domain_blocks:
+    blocked_domains: Seznam omezených a blokovaných domén
+    description: Tohle je seznam serverů, které server %{instance} omezuje nebo odmítá federaci.
+    domain: Doména
+    media_block: Blokace médií
+    no_domain_blocks: "(Žádné blokované domény)"
+    severity: Přísnost
+    severity_legend:
+      media_block: Mediální soubory přicházející ze serveru nejsou stahovány, ukládány ani zobrazovány uživatelům.
+      silence: Účty z utišených serverů lze nalézt, sledovat a interagovat s nimi, ale jejich tooty nebudou zobrazovány na veřejných časových osách a oznámení od nich se nedostanou k místním uživatelům, kteří je nesledují.
+      suspension: Z pozastavených serverů se neukládá ani nezobrazuje žádný obsah, ani se naně žádný obsah neposílá. Interakce z pozastavených serverů jsou ignorovány.
+      suspension_disclaimer: Pozastavené servery mohou občas stahovat veřejný obsah z tohoto serveru.
+      title: Přísnosti
+    show_rationale: Zobrazit odůvodnění
+    silence: Utišení
+    suspension: Pozastavení
+    title: "%{instance} Seznam blokovaných serverů"
+  domain_validator:
+    invalid_domain: není platné doménové jméno
   errors:
     '403': Nemáte povolení zobrazit tuto stránku.
     '404': Stránka, kterou hledáte, tu není.
@@ -682,6 +704,7 @@ cs:
     add_new: Přidat nový
     errors:
       limit: Již jste zvýraznil/a maximální počet hashtagů
+    hint_html: "<strong>Co jsou zvýrazněné hashtagy?</strong> Zobrazují se prominentně na vašem veřejném profilu a dovolují lidem prohlížet si vaše veřejné příspěvky konkrétně pod těmi hashtagy. Je to skvělý nástroj pro sledování kreativních děl nebo dlouhodobých projektů."
   filters:
     contexts:
       home: Domovská časová osa
@@ -702,6 +725,7 @@ cs:
     developers: Vývojáři
     more: Více…
     resources: Zdroje
+    trending_now: Aktuální trendy
   generic:
     all: Všechny
     changes_saved_msg: Změny byly úspěšně uloženy!
@@ -1000,6 +1024,8 @@ cs:
     pinned: Připnutý toot
     reblogged: boostnul/a
     sensitive_content: Citlivý obsah
+  tags:
+    does_not_match_previous_name: se neshoduje s předchozím názvem
   terms:
     body_html: |
       <h2>Zásady soukromí</h2>
@@ -1117,7 +1143,9 @@ cs:
         disable: Zatímco je váš účet zmražen, zůstávají data vašeho účtu nedotčená, ale nemůžete vykonávat žádné akce, dokud nebude odemčen.
         silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučen/a z různých veřejných výpisů. Ostatní vás však pořád mohou manuálně sledovat.
         suspend: Váš účet byl pozastaven a všechny vaše tooty a vaše nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měl/a sledující.
+      get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
       review_server_policies: Posoudit politiku serveru
+      statuses: 'Konkrétně kvůli:'
       subject:
         disable: Váš účet %{acct} byl zmražen
         none: Varování pro uživatele %{acct}
