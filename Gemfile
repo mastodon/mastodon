@@ -96,6 +96,8 @@ gem 'rdf-normalize', '~> 0.3'
 
 gem 'omniauth-keycloak'
 
+gem 'activerecord-session_store'
+
 group :development, :test do
   gem 'fabrication', '~> 2.20'
   gem 'fuubar', '~> 2.4.1'
