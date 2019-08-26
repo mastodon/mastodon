@@ -266,10 +266,13 @@ ar:
       feature_profile_directory: دليل الحسابات
       feature_registrations: التسجيلات
       feature_relay: المُرحّل الفديرالي
+      feature_spam_check: مكافح البريد المزعج
       feature_timeline_preview: معاينة الخيط الزمني
       features: الميّزات
       hidden_service: الفيديرالية مع الخدمات الخفية
       open_reports: فتح الشكاوى
+      pending_tags: وسوم في انتظار المراجعة
+      pending_users: مستخدمين في انتظار مراجعة
       recent_users: أحدث المستخدِمين
       search: البحث النصي الكامل
       single_user_mode: وضع المستخدِم الأوحد
@@ -446,6 +449,7 @@ ar:
           title: المستخدِمون المصرح لهم لإرسال الدعوات
       registrations_mode:
         modes:
+          approved: طلب الموافقة لازم عند إنشاء حساب
           none: لا أحد يمكنه إنشاء حساب
           open: يمكن للجميع إنشاء حساب
         title: طريقة إنشاء الحسابات
@@ -474,12 +478,15 @@ ar:
         desc_html: عرض الخيط العمومي على صفحة الاستقبال
         title: مُعاينة الخيط العام
       title: إعدادات الموقع
+      trends:
+        title: الوسوم المتداولة
     statuses:
       back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
         nsfw_off: تعيينه كمنشور غير حساس
         nsfw_on: تعيينه كمنشور حساس
+      deleted: محذوف
       failed_to_execute: خطأ في التفعيل
       media:
         title: الوسائط
@@ -491,6 +498,7 @@ ar:
       context: السياق
       in_directory: "%{count} في سجل حسابات المستخدمين"
       title: الوسوم
+      trending_right_now: متداول اللحظة
     title: الإدارة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -601,6 +609,7 @@ ar:
     domain: النطاق
     severity: القوّة
     silence: اكتم
+    suspension: علّقه
   domain_validator:
     invalid_domain: ليس بإسم نطاق صالح
   errors:
@@ -654,6 +663,7 @@ ar:
     developers: المطورون
     more: المزيد…
     resources: الموارد
+    trending_now: المتداولة الآن
   generic:
     all: الكل
     changes_saved_msg: تم حفظ التعديلات بنجاح!
@@ -795,6 +805,7 @@ ar:
     errors:
       already_voted: لقد قمت بالتصويت على استطلاع الرأي هذا مِن قبل
       duplicate_options: يحتوي على عناصر مكررة
+      duration_too_long: بعيد جدا في المستقبَل
       duration_too_short: مبكّر جدا
       expired: لقد انتهى استطلاع الرأي
   preferences:
@@ -968,6 +979,7 @@ ar:
       title: المغادرة بأرشيف الحساب
     warning:
       review_server_policies: مراجعة شروط السيرفر
+      statuses: 'خصيصا لـ:'
       subject:
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
