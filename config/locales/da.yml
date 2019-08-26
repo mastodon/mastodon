@@ -19,6 +19,9 @@ da:
     learn_more: Lær mere
     privacy_policy: Privatlivspolitik
     source_code: Kildekode
+    status_count_after:
+      one: status
+      other: statusser
     status_count_before: Som har skrevet
     terms: Vilkår for service
     user_count_after:
@@ -34,6 +37,7 @@ da:
       other: Følgere
     following: Følger
     joined: Tilmeldt den %{date}
+    last_active: sidst aktiv
     link_verified_on: Ejerskabet af dette link blev tjekket den %{date}
     media: Medier
     moved_html: "%{name} er flyttet til %{new_profile_link}:"
@@ -63,6 +67,8 @@ da:
       delete: Slet
       destroyed_msg: Moderator notat succesfuldt destrueret!
     accounts:
+      approve: Godkend
+      approve_all: Godkend alle
       are_you_sure: Er du sikker?
       avatar: Profilbillede
       by_domain: Domæne
@@ -264,6 +270,8 @@ da:
     followers:
       back_to_account: Tilbage til konto
     instances:
+      moderation:
+        all: Alle
       title: Førderation
     invites:
       deactivate_all: Deaktiver alle
@@ -390,6 +398,11 @@ da:
       no_status_selected: Ingen statusser blev ændret eller ingen blev valgt
       title: Konto statusser
       with_media: Med multimedier
+    tags:
+      context: Kontekst
+    warning_presets:
+      delete: Slet
+      edit: Rediger
   admin_mailer:
     new_report:
       body: "%{reporter} har anmeldt %{target}"
@@ -455,6 +468,8 @@ da:
     success_msg: Din konto er nu blevet slettet
     warning_html: Kun sletning af indhold fra denne specifikke server er garanteret. Indhold der er blevet delt rundt omkring vil sandsynligvis efterlade spor. Offline servere og servere der ikke længere abonnerer på dine opdateringer vil ikke opdatere deres databaser.
     warning_title: Tilgængelighed af delt indhold
+  domain_blocks:
+    domain: Domæne
   errors:
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
@@ -477,6 +492,7 @@ da:
       size: Størrelse
     blocks: Du blokerer
     follows: Du følger
+    lists: Lister
     mutes: Du dæmper
     storage: Medie lager
   filters:
@@ -506,6 +522,8 @@ da:
     validation_errors:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
+  identity_proofs:
+    identity: Identitet
   imports:
     preface: Du kan importere data du har eksporteret fra en anden server, så som en liste over folk du følger eller blokerer.
     success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
@@ -599,6 +617,8 @@ da:
     truncate: "...&hellip;"
   preferences:
     other: Andet
+  relationships:
+    primary: Primær
   remote_follow:
     acct: Indtast dit brugernavn@domæne du vil handle fra
     missing_resource: Kunne ikke finde det påkrævede omdirigerings link for din konto
@@ -642,6 +662,7 @@ da:
     revoke_success: Sessionen blev tilbagekaldt
     title: Sessioner
   settings:
+    account: Konto
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
     delete: Sletning af konto
@@ -652,6 +673,7 @@ da:
     migrate: Konto migrering
     notifications: Notifikationer
     preferences: Præferencer
+    profile: Profil
     two_factor_authentication: To-faktor godkendelse
   statuses:
     attached:
@@ -659,6 +681,9 @@ da:
       image:
         one: "%{count} billede"
         other: "%{count} billeder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoer"
     boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Advarsel om indhold: %{warning}'
     disallowed_hashtags:
@@ -794,6 +819,9 @@ da:
       explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu klar til at blive hentet!
       subject: Dit arkiv er klar til at blive hentet ned
       title: Udpluk af arkiv
+    warning:
+      title:
+        none: Advarsel
     welcome:
       edit_profile_action: Opsæt profil
       edit_profile_step: Du kan skræddersy din profil ved at uploade et profilbillede, overskrift, ændre dit visningsnavn og mere. Hvis du kunne tænke dig at gennemse nye følgere før de må følge dig, kan du låse din konto.
