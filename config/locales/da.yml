@@ -10,6 +10,7 @@ da:
     contact: Kontakt
     contact_missing: Ikke sat
     contact_unavailable: Ikke tilgængeligt
+    discover_users: Opdag brugere
     documentation: Dokumentation
     extended_description_html: |
       <h3>Et godt sted for regler</h3>
@@ -18,6 +19,7 @@ da:
     hosted_on: Mostodon hostet på %{domain}
     learn_more: Lær mere
     privacy_policy: Privatlivspolitik
+    see_whats_happening: Se hvad der sker
     source_code: Kildekode
     status_count_after:
       one: status
@@ -57,6 +59,7 @@ da:
       admin: Administrator
       bot: Robot
       moderator: Moderator
+    unavailable: Profil utilgængelig
     unfollow: Følg ikke længere
   admin:
     account_actions:
@@ -96,6 +99,7 @@ da:
       followers_url: Link til følgere
       follows: Følger
       inbox_url: Link til indbakke
+      invited_by: Inviteret af
       ip: IP-adresse
       location:
         all: Alle
@@ -122,6 +126,8 @@ da:
       public: Offentligt
       push_subscription_expires: PuSH abonnement udløber
       redownload: Opdater profil
+      reject: Afvis
+      reject_all: Afvis alle
       remove_avatar: Fjern profilbillede
       resend_confirmation:
         already_confirmed: Denne bruger er allerede blevet bekræftet
@@ -153,6 +159,7 @@ da:
       undo_suspension: Fortryd udelukkelse
       unsubscribe: Abonner ikke længere
       username: Brugernavn
+      warn: Advar
     action_logs:
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
@@ -244,6 +251,7 @@ da:
           silence: Dæmp
           suspend: Udeluk
         title: Ny domæne blokering
+      private_comment: Privat kommentar
       reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
       reject_reports: Afvis anmeldelser
@@ -270,8 +278,12 @@ da:
     followers:
       back_to_account: Tilbage til konto
     instances:
+      by_domain: Domæne
       moderation:
         all: Alle
+        limited: Begrænset
+      private_comment: Privat kommentar
+      public_comment: Offentlig kommentar
       title: Førderation
     invites:
       deactivate_all: Deaktiver alle
@@ -340,6 +352,9 @@ da:
       custom_css:
         desc_html: Ændre udseendet med CSS indlæst på hver side
         title: Brugerdefineret CSS
+      domain_blocks:
+        all: Til alle
+        disabled: Til ingen
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet fra serveren
         title: Billede af helt
@@ -439,6 +454,7 @@ da:
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
+    trouble_logging_in: Har du problemer med at logge på?
   authorize_follow:
     already_following: Du følger allerede denne konto
     error: Der opstod desværre en fejl under søgningen af denne fjerne konto
@@ -468,6 +484,8 @@ da:
     success_msg: Din konto er nu blevet slettet
     warning_html: Kun sletning af indhold fra denne specifikke server er garanteret. Indhold der er blevet delt rundt omkring vil sandsynligvis efterlade spor. Offline servere og servere der ikke længere abonnerer på dine opdateringer vil ikke opdatere deres databaser.
     warning_title: Tilgængelighed af delt indhold
+  directories:
+    directory: Profilliste
   domain_blocks:
     domain: Domæne
   errors:
@@ -516,15 +534,20 @@ da:
     more: Mere…
     resources: Ressourcer
   generic:
+    all: Alle
     changes_saved_msg: Ændringerne blev gemt!
     copy: Kopier
+    order_by: Sorter efter
     save_changes: Gem ændringer
     validation_errors:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
   identity_proofs:
+    i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
   imports:
+    modes:
+      overwrite: Overskriv
     preface: Du kan importere data du har eksporteret fra en anden server, så som en liste over folk du følger eller blokerer.
     success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
     types:
