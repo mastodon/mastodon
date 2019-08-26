@@ -48,6 +48,8 @@ cs:
     what_is_mastodon: Co je Mastodon?
   accounts:
     choices_html: "Volby uživatele %{name}:"
+    endorsements_hint: Z webového rozhraní můžete podpořit lidi, které sledujete. Ti se poté zobrazí zde.
+    featured_tags_hint: Můžete vybrat konkrétní hashtagy, které se zobrazí zde.
     follow: Sledovat
     followers:
       one: Sledující
@@ -193,6 +195,7 @@ cs:
       username: Uživatelské jméno
       warn: Varovat
       web: Web
+      whitelisted: Na bílé listině
     action_logs:
       actions:
         assigned_to_self_report: "%{name} přidělil/a hlášení %{target} sobě"
@@ -253,6 +256,7 @@ cs:
       updated_msg: Emoji úspěšně aktualizováno!
       upload: Nahrát
     dashboard:
+      authorized_fetch_mode: Autorizovaný režim fetch
       backlog: opožděné úlohy
       config: Konfigurace
       feature_deletions: Smazání účtů
@@ -265,6 +269,8 @@ cs:
       features: Vlastnosti
       hidden_service: Federace se skrytými službami
       open_reports: otevřená hlášení
+      pending_tags: hashtagů čeká na posouzení
+      pending_users: uživatelů
       recent_users: Nedávní uživatelé
       search: Fulltextové vyhledávání
       single_user_mode: Režim jednoho uživatele
@@ -276,11 +282,18 @@ cs:
       week_interactions: interakcí tento týden
       week_users_active: aktivních tento týden
       week_users_new: uživatelů tento týden
+      whitelist_mode: Režim bílé listiny
+    domain_allows:
+      add_new: Přidat doménu na bílou listinu
+      created_msg: Doména byla úspěšně přidána na bílou listinu
+      destroyed_msg: Doména byla odstraněna z bílé listiny
+      undo: Odstranit z bílé listiny
     domain_blocks:
       add_new: Přidat novou blokaci domény
       created_msg: Blokace domény se právě vyřizuje
       destroyed_msg: Blokace domény byla zrušena
       domain: Doména
+      edit: Upravit doménovou blokaci
       existing_domain_block_html: Pro účet %{name} jste již nastavil/a přísnější omezení, musíte jej nejdříve <a href="%{unblock_url}">odblokovat</a>.
       new:
         create: Vytvořit blokaci
@@ -291,6 +304,10 @@ cs:
           silence: Utišit
           suspend: Pozastavit
         title: Nová doménová blokace
+      private_comment: Soukromý komentář
+      private_comment_hint: Komentář o tomto omezení domény pro vnitřní použití moderátory.
+      public_comment: Veřejný komentář
+      public_comment_hint: Komentář o tomto omezení domény pro obecnou veřejnost, pokud je povoleno zobrazování seznamu omezení domén.
       reject_media: Odmítat mediální soubory
       reject_media_hint: Odstraní lokálně uložené mediální soubory a odmítne jejich stahování v budoucnosti. Nepodstatné pro pozastavení
       reject_reports: Odmítat nahlášení
@@ -312,6 +329,7 @@ cs:
         title: Zrušit blokaci domény %{domain}
         undo: Odvolat
       undo: Odvolat blokaci domény
+      view: Zobrazit doménovou blokaci
     email_domain_blocks:
       add_new: Přidat nový
       created_msg: E-mailová doména úspěšně přidána na černou listinu
@@ -337,6 +355,8 @@ cs:
         all: Všechny
         limited: Omezené
         title: Moderování
+      private_comment: Soukromý komentář
+      public_comment: Veřejný komentář
       title: Federace
       total_blocked_by_us: Blokované námi
       total_followed_by_them: Sledované jimi
@@ -414,6 +434,10 @@ cs:
       custom_css:
         desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
         title: Vlastní CSS
+      domain_blocks:
+        all: Všem
+        disabled: Nikomu
+        title: Zobrazit doménové blokace
       hero:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura serveru
         title: Hlavní obrázek
