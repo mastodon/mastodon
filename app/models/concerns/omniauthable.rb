@@ -55,7 +55,7 @@ module Omniauthable
     private
 
     def user_params_from_auth(auth)
-      strategy          = Devise.omniauth_configs[auth.provider.to_sym].strategy
+      strategy          = "keycloak_openid"
       assume_verified   = strategy.try(:security).try(:assume_email_is_verified)
       email_is_verified = auth.info.verified || auth.info.verified_email || assume_verified
       email             = auth.info.verified_email || auth.info.email
@@ -63,12 +63,14 @@ module Omniauthable
       display_name      = auth.info.full_name || [auth.info.first_name, auth.info.last_name].join(' ')
 
       {
+        provider: auth['provider'],
+        uid: auth['uid'],
         email: email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
         password: Devise.friendly_token[0, 20],
         agreement: true,
         external: true,
         account_attributes: {
-          username: ensure_unique_username(auth.uid),
+          username: auth.extra.raw_info.preferred_username,
           display_name: display_name,
         },
       }
