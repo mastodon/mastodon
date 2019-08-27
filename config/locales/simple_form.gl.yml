@@ -4,6 +4,7 @@ gl:
       account_warning_preset:
         text: Vostede pode darlle formato ao toot, como URLs, etiquetas e mencións
       admin_account_action:
+        include_statuses: A usuaria verá que toots causaron a acción da moderación ou aviso
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
         text_html: Optativo. Pode utilizar formato no toot. Pode <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
         type_html: Escolla que facer con <strong>%{acct}</strong>
@@ -47,6 +48,8 @@ gl:
         text: Esto axudaranos a revisar a súa aplicación
       sessions:
         otp: 'Introduza o código de dobre-factor creado pola aplicación do seu móbil ou utilice un dos seus códigos de recuperación:'
+      tag:
+        name: Só pode cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
     labels:
@@ -57,6 +60,7 @@ gl:
       account_warning_preset:
         text: Texto preestablecido
       admin_account_action:
+        include_statuses: Incluír toots reportados no correo
         send_email_notification: Notificar a usuaria por correo-e
         text: Aviso personalizado
         type: Acción
@@ -140,6 +144,7 @@ gl:
         trending_tag: Enviar correo cando unha etiqueta non revisada é tendencia
       tag:
         listable: Permitir a esta etiqueta aparecer no directorio de perfil
+        name: Etiqueta
         trendable: Permitir a esta etiqueta aparecer baixo Tendencias
         usable: Permitir que os toots utilicen esta etiqueta
     'no': 'Non'
