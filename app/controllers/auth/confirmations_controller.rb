@@ -6,6 +6,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   before_action :set_body_classes
   before_action :set_user, only: [:finish_signup]
 
+
   def finish_signup
     return unless request.patch? && params[:user]
 

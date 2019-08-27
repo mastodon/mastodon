@@ -1,5 +1,6 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   # Vanilla omniauth stategies
+  # provider :developer unless Rails.env.production?
 end
 
 Devise.setup do |config|
@@ -31,6 +32,10 @@ Devise.setup do |config|
     cas_options[:image_key] = ENV['CAS_IMAGE_KEY'] || 'image'
     cas_options[:phone_key] = ENV['CAS_PHONE_KEY'] || 'phone'
     config.omniauth :cas, cas_options
+  end
+
+  if ENV['KEYCLOAK_ENABLED'] == 'true'
+    config.omniauth :keycloak_openid, ENV['KEYCLOAK_CLIENT_NAME'], ENV['KEYCLOAK_SECRET_KEY'], client_options: { site:  ENV['KEYCLOAK_SITE'], realm: ENV['KEYCLOAK_REALM'] }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId, callback_url: ENV['KEYCLOAK_CALLBACK']
   end
 
   # SAML strategy
