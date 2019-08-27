@@ -508,6 +508,7 @@ gl:
     tags:
       accounts_today: Usos únicos hoxe
       accounts_week: Usos únicos esta semana
+      breakdown: Consumo do uso diario por fonte
       context: Contexto
       directory: No directorio
       in_directory: "%{count} no directorio"
@@ -688,6 +689,7 @@ gl:
     add_new: Engadir novo
     errors:
       limit: Xa acadou o número máximo de etiquetas
+    hint_html: "<strong>¿Qué son as etiquetas destacadas?</strong> Móstranse destacadas no seu perfil público e permítenlle a outras persoas ver os seus toots públicos nos que as utilizou. Son unha ferramenta moi útil para facer seguimento de traballos creativos e proxectos a longo prazo."
   filters:
     contexts:
       home: Liña temporal inicial
@@ -708,6 +710,7 @@ gl:
     developers: Desenvolvedoras
     more: Máis…
     resources: Recursos
+    trending_now: Tendencia agora
   generic:
     all: Todo
     changes_saved_msg: Cambios gardados correctamente!!
@@ -1109,7 +1112,9 @@ gl:
         disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
         silence: Mentras a conta está limitada, só a xente que actualmente a segue verá os seus toots en este servidor, e vostede podería estar excluída de varias listas públicas. Porén, outras persoas poderíana seguila de xeito manual.
         suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
+      get_in_touch: Pode responder a este correo para contactar coa administración de %{instance}.
       review_server_policies: Revisar políticas do servidor
+      statuses: 'En concreto, para:'
       subject:
         disable: A súa conta %{acct} foi conxelada
         none: Aviso para %{acct}
