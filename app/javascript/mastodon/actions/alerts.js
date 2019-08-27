@@ -25,11 +25,12 @@ export function clearAlert() {
   };
 };
 
-export function showAlert(title = messages.unexpectedTitle, message = messages.unexpectedMessage) {
+export function showAlert(title = messages.unexpectedTitle, message = messages.unexpectedMessage, message_values = undefined) {
   return {
     type: ALERT_SHOW,
     title,
     message,
+    message_values,
   };
 };
 
@@ -44,7 +45,7 @@ export function showAlertForError(error) {
 
     if (status === 429 && headers['x-ratelimit-reset']) {
       const reset_date = new Date(headers['x-ratelimit-reset']);
-      return showAlert(messages.rateLimitedTitle, [messages.rateLimitedMessage, { 'retry_time': reset_date }]);
+      return showAlert(messages.rateLimitedTitle, messages.rateLimitedMessage, { 'retry_time': reset_date });
     }
 
     let message = statusText;
