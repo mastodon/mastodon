@@ -44,6 +44,7 @@ gl:
   accounts:
     choices_html: "Eleccións de %{name}:"
     endorsements_hint: Desde a interface web pode recomendar xente que segue, e aparecerán aquí.
+    featured_tags_hint: Pode destacar determinadas etiquetas que se mostrarán aquí.
     follow: Seguir
     followers:
       one: Seguidora
@@ -259,6 +260,8 @@ gl:
       features: Características
       hidden_service: Federación con servizos ocultos
       open_reports: informes abertos
+      pending_tags: etiquetas agardando revisión
+      pending_users: usuarias agardando revisión
       recent_users: Usuarias recentes
       search: Busca de texto completo
       single_user_mode: Modo de usuario individual
@@ -281,6 +284,7 @@ gl:
       created_msg: Estase a procesar o bloqueo do dominio
       destroyed_msg: Desfixose a acción de bloqueo de dominio
       domain: Dominio
+      edit: Editar bloqueo de dominio
       existing_domain_block_html: Xa estableceu límites estrictos para %{name}, precisa <a href="%{unblock_url}">desbloqueala</a> primeiro.
       new:
         create: Crear bloque
@@ -291,6 +295,10 @@ gl:
           silence: Silenciar
           suspend: Suspender
         title: Novo bloqueo de dominio
+      private_comment: Comentario privado
+      private_comment_hint: Comentar entre moderadores para uso interno as limitacións de este dominio.
+      public_comment: Comentario público
+      public_comment_hint: Comentar sobre as limitacións de este dominio para o interese público, se o aviso da lista de dominios limitados está activado.
       reject_media: Rexeitar ficheiros de medios
       reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita descargalos no futuro. Irrelevante para as suspensións
       reject_reports: Rexeitar informes
@@ -310,6 +318,7 @@ gl:
         title: Desfacer o bloqueo de dominio para %{domain}
         undo: Desfacer
       undo: Desfacer bloqueo de dominio
+      view: Ver dominios bloqueados
     email_domain_blocks:
       add_new: Engadir novo
       created_msg: Engadeuse correctamente o dominio de email a lista negra
@@ -333,6 +342,8 @@ gl:
         all: Todo
         limited: Limitado
         title: Moderación
+      private_comment: Comentario privado
+      public_comment: Comentario público
       title: Federación
       total_blocked_by_us: Bloqueado por nós
       total_followed_by_them: Seguidas por eles
@@ -410,6 +421,13 @@ gl:
       custom_css:
         desc_html: Modificar o aspecto con CSS cargado en cada páxina
         title: CSS persoalizado
+      domain_blocks:
+        all: Para todas
+        disabled: Para ninguén
+        title: Mostrar dominios bloqueados
+        users: Para usuarias locais conectadas
+      domain_blocks_rationale:
+        title: Mostrar razón
       hero:
         desc_html: Mostrado na portada. Recoméndase 600x100px como mínimo. Se non se establece, mostrará a imaxe por omisión do servidor
         title: Imáxe Heróe
@@ -479,6 +497,7 @@ gl:
         delete: Eliminar
         nsfw_off: Marcar como non sensible
         nsfw_on: Marcar como sensible
+      deleted: Eliminado
       failed_to_execute: Fallou a execución
       media:
         title: Medios
@@ -487,6 +506,8 @@ gl:
       title: Estados da conta
       with_media: con medios
     tags:
+      accounts_today: Usos únicos hoxe
+      accounts_week: Usos únicos esta semana
       context: Contexto
       directory: No directorio
       in_directory: "%{count} no directorio"
@@ -495,6 +516,7 @@ gl:
       title: Etiquetas
       trending_right_now: Agora como Tendencia
       unique_uses_today: "%{count} publicando hoxe"
+      unreviewed: Sen revisar
       updated_msg: Actualizaronse os axustes das etiquetas
     title: Administración
     warning_presets:
@@ -613,6 +635,25 @@ gl:
     people:
       one: "%{count} persoa"
       other: "%{count} persoas"
+  domain_blocks:
+    blocked_domains: Lista de dominios limitados e bloqueados
+    description: Esta é a lista dos servidores cos que %{instance} limita ou rexeita federar.
+    domain: Dominio
+    media_block: Bloqueo de medios
+    no_domain_blocks: "(Sen bloqueo de medios)"
+    severity: Rigurosidade
+    severity_legend:
+      media_block: Os ficheiros de medios procedentes do servidor non se obterán, gardarán nin mostrarán as usuarias.
+      silence: As contas de servidores silenciados pódense atopar, seguir e interactuar con elas, pero os seus toots non aparecerán na liña temporal púbica, as notificacións procedentes deles non chegarán as usuarias que non as están a seguir.
+      suspension: Non se mostra nin garda ningún contido de servidores suspendidos, tampouco se lles envía contido. As interaccións con servidores suspendidos son ignoradas.
+      suspension_disclaimer: Os servidores suspendidos poderían obter ocasionalmente contido público de este servidor.
+      title: Rigurosidades
+    show_rationale: Mostrar razón
+    silence: Silenciar
+    suspension: Suspensión
+    title: "%{instance} Lista de instancias bloqueadas"
+  domain_validator:
+    invalid_domain: non é un nome de dominio válido
   errors:
     '403': Non ten permiso para ver esta páxina.
     '404': A páxina que está a buscar non está aquí.
