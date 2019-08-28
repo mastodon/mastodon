@@ -702,6 +702,7 @@ class Status extends ImmutablePureComponent {
             parseClick={parseClick}
             disabled={!router}
             tagLinks={settings.get('tag_misleading_links')}
+            rewriteMentions={settings.get('rewrite_mentions')}
           />
           {!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar'])) ? (
             <StatusActionBar

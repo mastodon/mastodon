@@ -242,6 +242,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             parseClick={this.parseClick}
             onUpdate={this.handleChildUpdate}
             tagLinks={settings.get('tag_misleading_links')}
+            rewriteMentions={settings.get('rewrite_mentions')}
             disabled
           />
 

@@ -67,10 +67,12 @@ export default class StatusContent extends React.PureComponent {
     disabled: PropTypes.bool,
     onUpdate: PropTypes.func,
     tagLinks: PropTypes.bool,
+    rewriteMentions: PropTypes.string,
   };
 
   static defaultProps = {
     tagLinks: true,
+    rewriteMentions: 'no',
   };
 
   state = {
@@ -79,7 +81,7 @@ export default class StatusContent extends React.PureComponent {
 
   _updateStatusLinks () {
     const node = this.contentsNode;
-    const { tagLinks } = this.props;
+    const { tagLinks, rewriteMentions } = this.props;
 
     if (!node) {
       return;
@@ -99,6 +101,13 @@ export default class StatusContent extends React.PureComponent {
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
+        if (rewriteMentions !== 'no') {
+          while (link.firstChild) link.removeChild(link.firstChild);
+          link.appendChild(document.createTextNode('@'));
+          const acctSpan = document.createElement('span');
+          acctSpan.textContent = rewriteMentions === 'acct' ? mention.get('acct') : mention.get('username');
+          link.appendChild(acctSpan);
+        }
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
@@ -242,6 +251,7 @@ export default class StatusContent extends React.PureComponent {
       parseClick,
       disabled,
       tagLinks,
+      rewriteMentions,
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
@@ -340,7 +350,7 @@ export default class StatusContent extends React.PureComponent {
         >
           <div
             ref={this.setContentsRef}
-            key={`contents-${tagLinks}`}
+            key={`contents-${tagLinks}-${rewriteMentions}`}
             dangerouslySetInnerHTML={content}
             lang={status.get('language')}
             className='status__content__text'

@@ -25,6 +25,9 @@ const messages = defineMessages({
   filters_upstream: { id: 'settings.filtering_behavior.upstream', defaultMessage: 'Show "filtered" like vanilla Mastodon' },
   filters_hide: { id: 'settings.filtering_behavior.hide', defaultMessage: 'Show "filtered" and add a button to display why' },
   filters_cw: { id: 'settings.filtering_behavior.cw', defaultMessage: 'Still display the post, and add filtered words to content warning' },
+  rewrite_mentions_no: { id: 'settings.rewrite_mentions_no', defaultMessage: 'Do not rewrite mentions' },
+  rewrite_mentions_acct: { id: 'settings.rewrite_mentions_acct', defaultMessage: 'Rewrite with username and domain (when the account is remote)' },
+  rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage:  'Rewrite with username' },
 });
 
 @injectIntl
@@ -74,6 +77,19 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.tag_misleading_links' defaultMessage='Tag misleading links' />
           <span className='hint'><FormattedMessage id='settings.tag_misleading_links.hint' defaultMessage="Add a visual indication with the link target host to every link not mentioning it explicitly" /></span>
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['rewrite_mentions']}
+          id='mastodon-settings--rewrite_mentions'
+          options={[
+            { value: 'no', message: intl.formatMessage(messages.rewrite_mentions_no) },
+            { value: 'acct', message: intl.formatMessage(messages.rewrite_mentions_acct) },
+            { value: 'username', message: intl.formatMessage(messages.rewrite_mentions_username) },
+          ]}
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.rewrite_mentions' defaultMessage='Rewrite mentions in displayed statuses' />
         </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
