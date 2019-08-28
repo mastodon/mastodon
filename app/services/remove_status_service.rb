@@ -41,6 +41,9 @@ class RemoveStatusService < BaseService
 
     remove_from_remote_followers
     remove_from_remote_affected
+
+    $kafka_producer.produce(build_json(@status), topic: $KAFKA_FLOW_TOPIC)
+    $kafka_producer.deliver_messages
   end
 
   private
@@ -158,5 +161,9 @@ class RemoveStatusService < BaseService
 
   def lock_options
     { redis: Redis.current, key: "distribute:#{@status.id}" }
+  end
+
+  def build_json(status) 
+    Oj.dump(serialize_payload(status, ActivityPub::RemoveSerializer, signer: status.account))
   end
 end
