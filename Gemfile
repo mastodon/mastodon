@@ -98,6 +98,8 @@ gem 'omniauth-keycloak'
 
 gem 'activerecord-session_store'
 
+gem 'ruby-kafka'
+
 group :development, :test do
   gem 'fabrication', '~> 2.20'
   gem 'fuubar', '~> 2.4.1'
