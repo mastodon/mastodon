@@ -30,7 +30,15 @@ class ReblogService < BaseService
     create_notification(reblog)
     bump_potential_friendship(account, reblog)
 
+    $kafka_producer.produce(build_json_create(reblog), topic: $KAFKA_VIBE_TOPIC)
+    $kafka_producer.deliver_messages
+
     reblog
+  end
+
+  def delete(reblogged_status)
+    $kafka_producer.produce(build_json_delete(reblogged_status), topic: $KAFKA_VIBE_TOPIC)
+    $kafka_producer.deliver_messages
   end
 
   private
@@ -53,7 +61,11 @@ class ReblogService < BaseService
     PotentialFriendshipTracker.record(account.id, reblog.reblog.account_id, :reblog)
   end
 
-  def build_json(reblog)
+  def build_json_delete(reblog) 
+    Oj.dump(serialize_payload(reblog, ActivityPub::UndoAnnounceSerializer, signer: reblog.account))
+  end
+
+  def build_json_create(reblog)
     Oj.dump(serialize_payload(reblog, ActivityPub::ActivitySerializer, signer: reblog.account))
   end
 end
