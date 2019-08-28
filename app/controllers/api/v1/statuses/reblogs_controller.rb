@@ -3,6 +3,7 @@
 class Api::V1::Statuses::ReblogsController < Api::BaseController
   include Authorization
 
+
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }
   before_action :require_user!
 
@@ -19,6 +20,8 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
 
     authorize status_for_destroy, :unreblog?
     RemovalWorker.perform_async(status_for_destroy.id)
+
+    ReblogService.new.delete(status_for_destroy)
 
     render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, reblogs_map: @reblogs_map)
   end
