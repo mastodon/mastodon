@@ -2,6 +2,7 @@
 
 class PostStatusService < BaseService
   include Redisable
+  include Payloadable
 
   MIN_SCHEDULE_OFFSET = 5.minutes.freeze
 
@@ -41,7 +42,14 @@ class PostStatusService < BaseService
 
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
 
+    $kafka_producer.produce(build_json(@status), topic: $KAFKA_FLOW_TOPIC)
+    $kafka_producer.deliver_messages
+
     @status
+  end
+
+  def build_json(status)
+    Oj.dump(serialize_payload(status, ActivityPub::NoteSerializer))
   end
 
   private
@@ -59,7 +67,6 @@ class PostStatusService < BaseService
   def process_status!
     # The following transaction block is needed to wrap the UPDATEs to
     # the media attachments when the status is created
-
     ApplicationRecord.transaction do
       @status = @account.statuses.create!(status_attributes)
     end
