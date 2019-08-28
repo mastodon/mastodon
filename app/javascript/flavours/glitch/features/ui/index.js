@@ -104,10 +104,108 @@ const keyMap = {
   toggleSensitive: 'h',
 };
 
-@connect(mapStateToProps)
+class SwitchingColumnsArea extends React.PureComponent {
+
+  static propTypes = {
+    children: PropTypes.node,
+    layout: PropTypes.string,
+    location: PropTypes.object,
+    navbarUnder: PropTypes.bool,
+    onLayoutChange: PropTypes.func.isRequired,
+  };
+
+  state = {
+    mobile: isMobile(window.innerWidth, this.props.layout),
+  };
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.layout !== this.props.layout) {
+      this.setState({ mobile: isMobile(window.innerWidth, nextProps.layout) });
+    }
+  }
+
+  componentWillMount () {
+    window.addEventListener('resize', this.handleResize, { passive: true });
+  }
+
+  componentDidUpdate (prevProps) {
+    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
+      this.node.handleChildrenContentChange();
+    }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = debounce(() => {
+    // The cached heights are no longer accurate, invalidate
+    this.props.onLayoutChange();
+
+    this.setState({ mobile: isMobile(window.innerWidth, this.props.layout) });
+  }, 500, {
+    trailing: true,
+  });
+
+  setRef = c => {
+    this.node = c.getWrappedInstance();
+  }
+
+  render () {
+    const { children, navbarUnder } = this.props;
+    const singleColumn = this.state.mobile;
+    const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
+
+    return (
+      <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn} navbarUnder={navbarUnder}>
+        <WrappedSwitch>
+          {redirect}
+          <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+          <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
+          <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
+          <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
+          <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
+          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
+
+          <WrappedRoute path='/notifications' component={Notifications} content={children} />
+          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+          <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
+          <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
+
+          <WrappedRoute path='/search' component={Search} content={children} />
+
+          <WrappedRoute path='/statuses/new' component={Compose} content={children} />
+          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
+          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
+          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
+
+          <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
+          <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
+          <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
+          <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
+          <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
+
+          <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
+          <WrappedRoute path='/blocks' component={Blocks} content={children} />
+          <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
+          <WrappedRoute path='/mutes' component={Mutes} content={children} />
+          <WrappedRoute path='/lists' component={Lists} content={children} />
+          <WrappedRoute path='/getting-started-misc' component={GettingStartedMisc} content={children} />
+
+          <WrappedRoute component={GenericNotFound} content={children} />
+        </WrappedSwitch>
+      </ColumnsAreaContainer>
+    );
+  };
+
+}
+
+export default @connect(mapStateToProps)
 @injectIntl
 @withRouter
-export default class UI extends React.Component {
+class UI extends React.Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -129,7 +227,6 @@ export default class UI extends React.Component {
   };
 
   state = {
-    width: window.innerWidth,
     draggingOver: false,
   };
 
@@ -144,14 +241,10 @@ export default class UI extends React.Component {
     }
   }
 
-  handleResize = debounce(() => {
+  handleLayoutChange = () => {
     // The cached heights are no longer accurate, invalidate
     this.props.dispatch(clearHeight());
-
-    this.setState({ width: window.innerWidth });
-  }, 500, {
-    trailing: true,
-  });
+  }
 
   handleDragEnter = (e) => {
     e.preventDefault();
@@ -246,7 +339,6 @@ export default class UI extends React.Component {
     }
 
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
-    window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
@@ -271,9 +363,6 @@ export default class UI extends React.Component {
   }
 
   componentDidUpdate (prevProps) {
-    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.columnsAreaNode.handleChildrenContentChange();
-    }
     if (this.props.unreadNotifications != prevProps.unreadNotifications ||
         this.props.showFaviconBadge != prevProps.showFaviconBadge) {
       if (this.favicon) {
@@ -288,7 +377,6 @@ export default class UI extends React.Component {
     }
 
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
-    window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
@@ -298,10 +386,6 @@ export default class UI extends React.Component {
 
   setRef = c => {
     this.node = c;
-  }
-
-  setColumnsAreaRef = c => {
-    this.columnsAreaNode = c.getWrappedInstance();
   }
 
   handleHotkeyNew = e => {
@@ -417,10 +501,8 @@ export default class UI extends React.Component {
   }
 
   render () {
-    const { width, draggingOver } = this.state;
-    const { children, layout, isWide, navbarUnder, dropdownMenuIsOpen } = this.props;
-    const singleColumn = isMobile(width, layout);
-    const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
+    const { draggingOver } = this.state;
+    const { children, layout, isWide, navbarUnder, location, dropdownMenuIsOpen } = this.props;
 
     const columnsClass = layout => {
       switch (layout) {
@@ -464,45 +546,9 @@ export default class UI extends React.Component {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={singleColumn} navbarUnder={navbarUnder}>
-            <WrappedSwitch>
-              {redirect}
-              <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
-              <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
-              <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
-              <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-              <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
-              <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
-              <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
-              <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
-              <WrappedRoute path='/notifications' component={Notifications} content={children} />
-              <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
-              <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
-              <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
-
-              <WrappedRoute path='/search' component={Search} content={children} />
-
-              <WrappedRoute path='/statuses/new' component={Compose} content={children} />
-              <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
-              <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
-              <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
-
-              <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
-              <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-              <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
-              <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
-              <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
-
-              <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
-              <WrappedRoute path='/blocks' component={Blocks} content={children} />
-              <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
-              <WrappedRoute path='/mutes' component={Mutes} content={children} />
-              <WrappedRoute path='/lists' component={Lists} content={children} />
-              <WrappedRoute path='/getting-started-misc' component={GettingStartedMisc} content={children} />
-
-              <WrappedRoute component={GenericNotFound} content={children} />
-            </WrappedSwitch>
-          </ColumnsAreaContainer>
+          <SwitchingColumnsArea location={location} layout={layout} navbarUnder={navbarUnder} onLayoutChange={this.handleLayoutChange}>
+            {children}
+          </SwitchingColumnsArea>
 
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
