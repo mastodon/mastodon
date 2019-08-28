@@ -83,6 +83,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
     @account.actor_type              = actor_type
+    @account.discoverable            = @json['discoverable'] || false
   end
 
   def set_fetchable_attributes!

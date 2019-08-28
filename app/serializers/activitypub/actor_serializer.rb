@@ -6,12 +6,14 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :hashtag, :emoji, :identity_proof
+                     :moved_to, :property_value, :hashtag, :emoji, :identity_proof,
+                     :discoverable
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
-             :url, :manually_approves_followers
+             :url, :manually_approves_followers,
+             :discoverable
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
