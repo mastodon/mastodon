@@ -7,5 +7,5 @@ $kafka_producer = $kafka.async_producer
 # Make sure to shut down the producer when exiting.
 at_exit { $kafka_producer.shutdown }
 
-$KAFKA_VIBE_TOPIC = ENV['KAFKA_VIBE_TOPIC']
-$KAFKA_FLOW_TOPIC = ENV['KAFKA_FLOW_TOPIC']
+$KAFKA_VIBE_TOPIC = 'vibe'
+$KAFKA_FLOW_TOPIC = 'flow'
