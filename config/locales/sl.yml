@@ -602,8 +602,10 @@ sl:
     explanation: Odkrijte uporabnike glede na njihove interese
     explore_mastodon: Razišči %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nimate dovoljenja za ogled te strani.
     '404': Iskana stran ne obstaja.
+    '406': This page is not available in the requested format.
     '410': Iskana stran ne obstaja več.
     '422':
       content: Varnostno preverjanje ni uspelo. Ali blokirate piškotke?
@@ -612,6 +614,7 @@ sl:
     '500':
       content: Žal nam je, toda na našem koncu je prišlo do napake.
       title: Ta stran ni pravilna
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Če želite uporabljati spletno aplikacijo Mastodon, omogočite JavaScript. Druga možnost je, da za svojo platformo poskusite eno od <a href="%{apps_path}">lastnih aplikacij</a> za Mastodon.
   existing_username_validator:
     not_found: s tem uporabniškim imenom ni bilo mogoče najti lokalnega uporabnika
