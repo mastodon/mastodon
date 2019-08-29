@@ -651,8 +651,10 @@ co:
   domain_validator:
     invalid_domain: ùn hè micca un nome di duminiu currettu
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Ùn site micca auturizatu·a à vede sta pagina.
     '404': Sta pagina ùn esiste micca quì.
+    '406': This page is not available in the requested format.
     '410': Sta pagina ùn esiste più quì.
     '422':
       content: C’hè statu un prublemu cù a verificazione di sicurità. Forse bluccate cookies?
@@ -661,6 +663,7 @@ co:
     '500':
       content: Scusate, mà c’hè statu un prublemu cù u nostru servore.
       title: Sta pagina ùn hè curretta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="%{apps_path}">l’applicazione native</a> per a vostra piattaforma.
   existing_username_validator:
     not_found: ùn si pudeva micca truvà un'utilizatore lucale cù stu cugnome
