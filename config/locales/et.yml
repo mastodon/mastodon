@@ -593,8 +593,10 @@ et:
     explanation: Avasta kasutajaid nende huvide põhjal
     explore_mastodon: Avasta %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Sul puudub õigus seda lehte vaadata.
     '404': Soovitud lehte ei leitud.
+    '406': This page is not available in the requested format.
     '410': Soovitud lehekülge pole enam siin.
     '422':
       content: Turvalisuse kontroll ebaõnnestus. Kas Te blokeerite küpsiseid?
@@ -603,6 +605,7 @@ et:
     '500':
       content: Palume vabandust, midagi läks valesti meie pool.
       title: See lehekülg pole õige
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Et kasutada Mastodoni veebirakendust, palun lubage JavaScript. Alternatiivselt, proovige mõnda <a href="%{apps_path}">rakendust</a> Teie platvormile.
   existing_username_validator:
     not_found: ei suutnud leida kohalikku kasutajat selle kasutajanimega
