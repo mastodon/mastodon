@@ -608,8 +608,10 @@ el:
     explanation: Βρες χρήστες βάσει των ενδιαφερόντων τους
     explore_mastodon: Εξερεύνησε το %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Δεν έχεις δικαίωμα πρόσβασης σε αυτή τη σελίδα.
     '404': Η σελίδα που ψάχνεις δεν υπάρχει.
+    '406': This page is not available in the requested format.
     '410': Η σελίδα που έψαχνες δεν υπάρχει πια εδώ.
     '422':
       content: Απέτυχε η επιβεβαίωση ασφαλείας. Μήπως μπλοκάρεις τα cookies;
@@ -618,6 +620,7 @@ el:
     '500':
       content: Λυπούμαστε, κάτι πήγε στραβά από τη δική μας μεριά.
       title: Η σελίδα αυτή δεν είναι σωστή
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Για να χρησιμοποιήσετε τη δικτυακή εφαρμογή του Mastodon, ενεργοποίησε την Javascript. Εναλλακτικά, δοκίμασε μια από τις <a href="%{apps_path}">εφαρμογές</a> για το Mastodon στην πλατφόρμα σου.
   existing_username_validator:
     not_found: δεν βρέθηκε τοπικός χρήστης με αυτό το όνομα
