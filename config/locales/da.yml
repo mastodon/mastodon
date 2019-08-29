@@ -507,8 +507,10 @@ da:
   domain_blocks:
     domain: Domæne
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
+    '406': This page is not available in the requested format.
     '410': Den side du leder efter findes ikke mere.
     '422':
       content: Sikkerhedsbekræftelse mislykkedes. Blokerer du cookies?
@@ -517,6 +519,7 @@ da:
     '500':
       content: Beklager men der gik noget galt i vores ende.
       title: Siden er ikke korrekt
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
   exports:
     archive_takeout:
