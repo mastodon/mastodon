@@ -510,8 +510,10 @@ pt:
     explanation: Descobre utilizadores com base nos seus interesses
     explore_mastodon: Explorar %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Não tens a permissão necessária para ver esta página.
     '404': A página que estás a procurar não existe.
+    '406': This page is not available in the requested format.
     '410': A página que estás a procurar não existe mais.
     '422':
       content: "A verificação de segurança falhou. \nDesativaste o uso de cookies?"
@@ -520,6 +522,7 @@ pt:
     '500':
       content: Desculpe, mas algo correu mal.
       title: Esta página não está correta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript. Alternativamente, experimenta um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon na sua plataforma.
   exports:
     archive_takeout:
