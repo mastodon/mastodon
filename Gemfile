@@ -93,7 +93,7 @@ gem 'tzinfo-data', '~> 1.2019'
 gem 'webpacker', '~> 4.0'
 gem 'webpush'
 
-gem 'json-ld', git: 'https://github.com/ruby-rdf/json-ld.git', ref: '345b7a5733308af827e8491d284dbafa9128d7a2'
+gem 'json-ld', git: 'https://github.com/ruby-rdf/json-ld.git', ref: 'e742697a0906e74e8bb777ef98137bc3955d981d'
 gem 'json-ld-preloaded', '~> 3.0'
 gem 'rdf-normalize', '~> 0.3'
 
