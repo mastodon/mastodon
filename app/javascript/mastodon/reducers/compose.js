@@ -17,6 +17,7 @@ import {
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
+  COMPOSE_SUGGESTION_TAGS_UPDATE,
   COMPOSE_TAG_HISTORY_UPDATE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
@@ -205,14 +206,34 @@ const expiresInFromExpiresAt = expires_at => {
   return [300, 1800, 3600, 21600, 86400, 259200, 604800].find(expires_in => expires_in >= delta) || 24 * 3600;
 };
 
-const normalizeSuggestions = (state, { accounts, emojis, tags }) => {
+const mergeLocalHashtagResults = (suggestions, prefix, tagHistory) => {
+  prefix = prefix.toLowerCase();
+  if (suggestions.length < 4) {
+    const localTags = tagHistory.filter(tag => tag.toLowerCase().startsWith(prefix) && !suggestions.some(suggestion => suggestion.type === 'hashtag' && suggestion.name.toLowerCase() === tag.toLowerCase()));
+    return suggestions.concat(localTags.slice(0, 4 - suggestions.length).toJS().map(tag => ({ type: 'hashtag', name: tag })));
+  } else {
+    return suggestions;
+  }
+};
+
+const normalizeSuggestions = (state, { accounts, emojis, tags, token }) => {
   if (accounts) {
     return accounts.map(item => ({ id: item.id, type: 'account' }));
   } else if (emojis) {
     return emojis.map(item => ({ ...item, type: 'emoji' }));
   } else {
-    return sortHashtagsByUse(state, tags.map(item => ({ ...item, type: 'hashtag' })));
+    return mergeLocalHashtagResults(sortHashtagsByUse(state, tags.map(item => ({ ...item, type: 'hashtag' }))), token.slice(1), state.get('tagHistory'));
   }
+};
+
+const updateSuggestionTags = (state, token) => {
+  const prefix = token.slice(1);
+
+  const suggestions = state.get('suggestions').toJS();
+  return state.merge({
+    suggestions: ImmutableList(mergeLocalHashtagResults(suggestions, prefix, state.get('tagHistory'))),
+    suggestion_token: token,
+  });
 };
 
 export default function compose(state = initialState, action) {
@@ -328,6 +349,8 @@ export default function compose(state = initialState, action) {
     return state.set('suggestions', ImmutableList(normalizeSuggestions(state, action))).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion, action.path);
+  case COMPOSE_SUGGESTION_TAGS_UPDATE:
+    return updateSuggestionTags(state, action.token);
   case COMPOSE_TAG_HISTORY_UPDATE:
     return state.set('tagHistory', fromJS(action.tags));
   case TIMELINE_DELETE:

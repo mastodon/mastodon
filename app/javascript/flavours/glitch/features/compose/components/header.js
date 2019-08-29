@@ -53,7 +53,17 @@ class Header extends ImmutablePureComponent {
     showNotificationsBadge: PropTypes.bool,
     intl: PropTypes.object,
     onSettingsClick: PropTypes.func,
+    onLogout: PropTypes.func.isRequired,
   };
+
+  handleLogoutClick = e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.props.onLogout();
+
+    return false;
+  }
 
   render () {
     const { intl, columns, unreadNotifications, showNotificationsBadge, onSettingsClick } = this.props;
@@ -114,7 +124,7 @@ class Header extends ImmutablePureComponent {
         ><Icon icon='cogs' /></a>
         <a
           aria-label={intl.formatMessage(messages.logout)}
-          data-method='delete'
+          onClick={this.handleLogoutClick}
           href={ signOutLink }
           title={intl.formatMessage(messages.logout)}
         ><Icon icon='sign-out' /></a>

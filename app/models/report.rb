@@ -43,7 +43,7 @@ class Report < ApplicationRecord
   end
 
   def statuses
-    Status.where(id: status_ids).includes(:account, :media_attachments, :mentions)
+    Status.with_discarded.where(id: status_ids).includes(:account, :media_attachments, :mentions)
   end
 
   def media_attachments

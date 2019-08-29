@@ -138,6 +138,10 @@ export function Video () {
   return import(/* webpackChunkName: "flavours/glitch/async/video" */'flavours/glitch/features/video');
 }
 
+export function Audio () {
+  return import(/* webpackChunkName: "features/glitch/async/audio" */'flavours/glitch/features/audio');
+}
+
 export function EmbedModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/embed_modal" */'flavours/glitch/features/ui/components/embed_modal');
 }

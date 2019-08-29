@@ -10,7 +10,7 @@ import AttachmentList from './attachment_list';
 import Card from '../features/status/components/card';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { MediaGallery, Video } from 'flavours/glitch/util/async-components';
+import { MediaGallery, Video, Audio } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
 import classNames from 'classnames';
@@ -443,11 +443,15 @@ class Status extends ImmutablePureComponent {
   }
 
   renderLoadingMediaGallery () {
-    return <div className='media_gallery' style={{ height: '110px' }} />;
+    return <div className='media-gallery' style={{ height: '110px' }} />;
   }
 
   renderLoadingVideoPlayer () {
-    return <div className='media-spoiler-video' style={{ height: '110px' }} />;
+    return <div className='video-player' style={{ height: '110px' }} />;
+  }
+
+  renderLoadingAudioPlayer () {
+    return <div className='audio-player' style={{ height: '110px' }} />;
   }
 
   render () {
@@ -561,7 +565,24 @@ class Status extends ImmutablePureComponent {
             media={status.get('media_attachments')}
           />
         );
-      } else if (['video', 'audio'].includes(attachments.getIn([0, 'type']))) {
+      } else if (attachments.getIn([0, 'type']) === 'audio') {
+        const attachment = status.getIn(['media_attachments', 0]);
+
+        media = (
+          <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
+            {Component => (
+              <Component
+                src={attachment.get('url')}
+                alt={attachment.get('description')}
+                duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
+                peaks={[0]}
+                height={70}
+              />
+            )}
+          </Bundle>
+        );
+        mediaIcon = 'music';
+      } else if (attachments.getIn([0, 'type']) === 'video') {
         const attachment = status.getIn(['media_attachments', 0]);
 
         media = (
@@ -584,7 +605,7 @@ class Status extends ImmutablePureComponent {
             />)}
           </Bundle>
         );
-        mediaIcon = attachment.get('type') === 'video' ? 'video-camera' : 'music';
+        mediaIcon = 'video-camera';
       } else {  //  Media type is 'image' or 'gifv'
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
