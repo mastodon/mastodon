@@ -247,14 +247,17 @@ tr:
       x_months: "%{count}ay"
       x_seconds: "%{count}sn"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Bu sayfayı görmek için izniniz yok.
     '404': Aradığınız sayfa bulunamadı.
+    '406': This page is not available in the requested format.
     '410': Aradığınız sayfa artık yok.
     '422':
       content: Güvenlik doğrulaması başarısız oldu. Site cookie'lerini engellemiş olabilirsiniz.
       title: Güvenlik doğrulamasu başarısız
     '429': Throttled
     '500':
+    '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Blokladıklarınız
     follows: Takip ettikleriniz
