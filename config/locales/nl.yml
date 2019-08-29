@@ -621,8 +621,10 @@ nl:
     show_rationale: Motivering tonen
     silence: Negeren
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
+    '406': This page is not available in the requested format.
     '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
@@ -631,6 +633,7 @@ nl:
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   existing_username_validator:
     not_found: Kon geen lokale gebruiker met die gebruikersnaam vinden
