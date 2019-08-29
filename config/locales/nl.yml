@@ -292,6 +292,9 @@ nl:
           suspend: Opschorten
         title: Nieuwe domeinblokkade
       private_comment: Privé-opmerking
+      private_comment_hint: Opmerking over deze domeinbeperking voor intern gebruik door de moderatoren.
+      public_comment: Openbare opmerking
+      public_comment_hint: Opmerking over deze domeinbeperking voor het grote publiek, voor wanneer de openbare lijst met domeinbeperkingen is ingeschakeld.
       reject_media: Mediabestanden weigeren
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
@@ -311,6 +314,7 @@ nl:
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
       undo: domeinblokkade ongedaan maken
+      view: Domeinblokkade bekijken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Blokkeren e-maildomein geslaagd
@@ -334,6 +338,8 @@ nl:
         all: Alles
         limited: Beperkt
         title: Moderatie
+      private_comment: Privé-opmerking
+      public_comment: Openbare opmerking
       title: Andere domeinen
       total_blocked_by_us: Door ons geblokkeerd
       total_followed_by_them: Door hun gevolgd
@@ -411,6 +417,13 @@ nl:
       custom_css:
         desc_html: Het uiterlijk van deze server met CSS aanpassen
         title: Aangepaste CSS
+      domain_blocks:
+        all: Naar iedereen
+        disabled: Naar niemand
+        title: Domeinblokkades tonen
+        users: Naar ingelogde lokale gebruikers
+      domain_blocks_rationale:
+        title: Motivering tonen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -468,6 +481,8 @@ nl:
         desc_html: Toon een openbare tijdlijn op de voorpagina
         title: Tijdlijn op de voorpagina tonen
       title: Server-instellingen
+      trends:
+        title: Trending hashtags
     statuses:
       back_to_account: Terug naar accountpagina
       batch:
