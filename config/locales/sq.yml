@@ -501,8 +501,10 @@ sq:
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, s’gjendet këtu.
+    '406': This page is not available in the requested format.
     '410': Faqja që po kërkonit, s’gjendet më këtu.
     '422':
       content: Verifikimi i sigurisë dështoi. Mos i bllokoni gjë cookie-t?
@@ -511,6 +513,7 @@ sq:
     '500':
       content: Na ndjeni, diçka shkoi ters në anën tonë.
       title: Kjo faqe s’është e saktë
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Që të përdorni aplikacionin web Mastodon, ju lutemi, aktivizoni JavaScript-in. Ndryshe, provoni për Mastodon-in një nga <a href="%{apps_path}">aplikacionet e brendshëm</a> të platformës tuaj.
   exports:
     archive_takeout:
