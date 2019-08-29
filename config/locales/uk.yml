@@ -630,8 +630,10 @@ uk:
   domain_validator:
     invalid_domain: не є допустимим ім'ям домену
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': У Вас немає доступу до перегляду даної сторінки.
     '404': Сторінки, яку Ви шукали, не існує.
+    '406': This page is not available in the requested format.
     '410': Сторінки, яку Ви шукали, більше не існує.
     '422':
       content: Перевірка безпеки не вдалася. Можливо, Ви блокуєте cookies?
@@ -640,6 +642,7 @@ uk:
     '500':
       content: Пробачте, та щось пішло не так з нашого боку.
       title: Ця сторінка неправильна
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Для використання веб-застосунку Mastodon, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="%{apps_path}">нативних застосунків</a> для Mastodon для вашої платформи.
   existing_username_validator:
     not_found: не вдалося знайти локального користувача з таким ім'ям
