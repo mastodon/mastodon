@@ -653,8 +653,10 @@ sk:
   domain_validator:
     invalid_domain: nieje správny tvar domény
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
     '404': Stránka ktorú hľadáš nieje tu.
+    '406': This page is not available in the requested format.
     '410': Stránka ktorú si tu hľadal/a sa tu už viac nenachádza.
     '422':
       content: Bezpečtnostné overenie zlyhalo. Blokuješ cookies?
@@ -663,6 +665,7 @@ sk:
     '500':
       content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
   existing_username_validator:
     not_found: nepodarilo sa nájsť miestného užívateľa s takouto prezývkou
