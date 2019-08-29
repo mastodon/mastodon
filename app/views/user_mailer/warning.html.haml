@@ -42,11 +42,11 @@
                               - unless @warning.text.blank?
                                 = Formatter.instance.linkify(@warning.text)
 
-                              - unless @statuses.empty?
+                              - unless @statuses&.empty?
                                 %p
                                   %strong= t('user_mailer.warning.statuses')
 
-- unless @statuses.empty?
+- unless @statuses&.empty?
   - @statuses.each_with_index do |status, i|
     = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true
 
