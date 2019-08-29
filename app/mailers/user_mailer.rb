@@ -5,6 +5,7 @@ class UserMailer < Devise::Mailer
 
   helper :application
   helper :instance
+  helper :statuses
 
   add_template_helper RoutingHelper
 
@@ -79,10 +80,11 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def warning(user, warning)
+  def warning(user, warning, status_ids = nil)
     @resource = user
     @warning  = warning
     @instance = Rails.configuration.x.local_domain
+    @statuses = Status.where(id: status_ids).includes(:account) if status_ids.is_a?(Array)
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email,

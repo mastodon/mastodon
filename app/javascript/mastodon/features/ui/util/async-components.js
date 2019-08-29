@@ -137,3 +137,7 @@ export function Search () {
 export function Tesseract () {
   return import(/*webpackChunkName: "tesseract" */'tesseract.js');
 }
+
+export function Audio () {
+  return import(/* webpackChunkName: "features/audio" */'../../audio');
+}

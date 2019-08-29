@@ -948,7 +948,8 @@
   opacity: 1;
   animation: fade 150ms linear;
 
-  .video-player {
+  .video-player,
+  .audio-player {
     margin-top: 8px;
   }
 
@@ -1043,7 +1044,8 @@
       white-space: normal;
     }
 
-    .video-player {
+    .video-player,
+    .audio-player {
       margin-top: 8px;
       max-width: 250px;
     }
@@ -1154,7 +1156,8 @@
     }
   }
 
-  .video-player {
+  .video-player,
+  .audio-player {
     margin-top: 8px;
   }
 }
@@ -2130,7 +2133,8 @@ a.account__display-name {
       padding: 15px;
 
       .media-gallery,
-      .video-player {
+      .video-player,
+      .audio-player {
         margin-top: 15px;
       }
     }
@@ -2172,7 +2176,8 @@ a.account__display-name {
 
       .media-gallery,
       &__action-bar,
-      .video-player {
+      .video-player,
+      .audio-player {
         margin-top: 10px;
       }
     }
@@ -2764,6 +2769,15 @@ a.account__display-name {
     opacity: 1;
     animation: fade 150ms linear;
     margin-top: 10px;
+
+    h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: $darker-text-color;
+      padding: 10px;
+      font-weight: 500;
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
+    }
 
     @media screen and (max-height: 810px) {
       .trends__item:nth-child(3) {
@@ -5034,15 +5048,63 @@ a.status-card.compact:hover {
 
 }
 
+.audio-player {
+  box-sizing: border-box;
+  position: relative;
+  background: darken($ui-base-color, 8%);
+  border-radius: 4px;
+  padding-bottom: 44px;
+
+  &.editable {
+    border-radius: 0;
+    height: 100%;
+  }
+
+  &__waveform {
+    padding: 15px 0;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      border-top: 1px solid lighten($ui-base-color, 4%);
+      width: 100%;
+      height: 0;
+      left: 0;
+      top: calc(50% + 1px);
+    }
+  }
+
+  &__progress-placeholder {
+    background-color: rgba(lighten($ui-highlight-color, 8%), 0.5);
+  }
+
+  &__wave-placeholder {
+    background-color: lighten($ui-base-color, 16%);
+  }
+
+  .video-player__controls {
+    padding: 0 15px;
+    padding-top: 10px;
+    background: darken($ui-base-color, 8%);
+    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-radius: 0 0 4px 4px;
+  }
+}
+
 .video-player {
   overflow: hidden;
   position: relative;
   background: $base-shadow-color;
   max-width: 100%;
   border-radius: 4px;
+  box-sizing: border-box;
 
   &.editable {
     border-radius: 0;
+    height: 100% !important;
   }
 
   &:focus {

@@ -10,6 +10,7 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import IconButton from 'mastodon/components/icon_button';
 import Button from 'mastodon/components/button';
 import Video from 'mastodon/features/video';
+import Audio from 'mastodon/features/audio';
 import Textarea from 'react-textarea-autosize';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import CharacterCounter from 'mastodon/features/compose/components/character_counter';
@@ -244,12 +245,23 @@ class FocalPointModal extends ImmutablePureComponent {
               </div>
             )}
 
-            {['audio', 'video'].includes(media.get('type')) && (
+            {media.get('type') === 'video' && (
               <Video
                 preview={media.get('preview_url')}
                 blurhash={media.get('blurhash')}
                 src={media.get('url')}
                 detailed
+                inline
+                editable
+              />
+            )}
+
+            {media.get('type') === 'audio' && (
+              <Audio
+                src={media.get('url')}
+                duration={media.getIn(['meta', 'original', 'duration'], 0)}
+                height={150}
+                preload
                 editable
               />
             )}

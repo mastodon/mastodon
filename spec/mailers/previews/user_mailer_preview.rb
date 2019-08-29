@@ -42,6 +42,6 @@ class UserMailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/warning
   def warning
-    UserMailer.warning(User.first, AccountWarning.new(text: '', action: :silence))
+    UserMailer.warning(User.first, AccountWarning.new(text: '', action: :silence), [Status.first.id])
   end
 end

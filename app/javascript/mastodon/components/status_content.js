@@ -230,7 +230,7 @@ export default class StatusContent extends React.PureComponent {
       );
     } else if (this.props.onClick) {
       const output = [
-        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content'>
           <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}

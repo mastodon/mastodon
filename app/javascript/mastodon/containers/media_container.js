@@ -8,6 +8,7 @@ import Video from '../features/video';
 import Card from '../features/status/components/card';
 import Poll from 'mastodon/components/poll';
 import Hashtag from 'mastodon/components/hashtag';
+import Audio from 'mastodon/features/audio';
 import ModalRoot from '../components/modal_root';
 import { getScrollbarWidth } from '../features/ui/components/modal_root';
 import MediaModal from '../features/ui/components/media_modal';
@@ -16,7 +17,7 @@ import { List as ImmutableList, fromJS } from 'immutable';
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag };
+const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
 export default class MediaContainer extends PureComponent {
 
