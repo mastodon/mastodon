@@ -650,8 +650,10 @@ gl:
   domain_validator:
     invalid_domain: non é un nome de dominio válido
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Non ten permiso para ver esta páxina.
     '404': A páxina que está a buscar non está aquí.
+    '406': This page is not available in the requested format.
     '410': A páxina que estaba a buscar xa non existe.
     '422':
       content: Fallou a verificación de seguridade. Está bloqueando as cookies?
@@ -660,6 +662,7 @@ gl:
     '500':
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
   existing_username_validator:
     not_found: non se atopou unha usuaria local con ese alcume
