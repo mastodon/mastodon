@@ -182,6 +182,7 @@ nl:
       username: Gebruikersnaam
       warn: Waarschuwen
       web: Webapp
+      whitelisted: Op de witte lijst
     action_logs:
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
@@ -242,6 +243,7 @@ nl:
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     dashboard:
+      authorized_fetch_mode: Geautoriseerde ophaalmodus
       backlog: achterstallige taken
       config: Configuratie
       feature_deletions: Verwijderen van account
@@ -249,10 +251,13 @@ nl:
       feature_profile_directory: Gebruikersgids
       feature_registrations: Registraties
       feature_relay: Federatierelay
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Voorvertoning van tijdlijn
       features: Functies
       hidden_service: Federatie met verborgen diensten
       open_reports: onopgeloste rapportages
+      pending_tags: hashtags die op een beoordeling wachten
+      pending_users: gebruikers die op een beoordeling wachten
       recent_users: Recente gebruikers
       search: In volledige tekst zoeken
       single_user_mode: Modus voor één gebruiker
@@ -264,11 +269,18 @@ nl:
       week_interactions: interacties deze week
       week_users_active: actieve gebruikers deze week
       week_users_new: nieuwe gebruikers deze week
+      whitelist_mode: Modus voor de witte lijst
+    domain_allows:
+      add_new: Domein voor de witte lijst
+      created_msg: Het domein is succesvol aan de witte lijst toegevoegd
+      destroyed_msg: Het domein is van de witte lijst verwijderd
+      undo: Van de witte lijst verwijderen
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
+      edit: Domeinblokkade bewerken
       existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
       new:
         create: Blokkade aanmaken
@@ -279,6 +291,7 @@ nl:
           silence: Negeren
           suspend: Opschorten
         title: Nieuwe domeinblokkade
+      private_comment: Privé-opmerking
       reject_media: Mediabestanden weigeren
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
