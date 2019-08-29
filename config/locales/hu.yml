@@ -623,8 +623,10 @@ hu:
   domain_validator:
     invalid_domain: nem egy valódi domain név
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
+    '406': This page is not available in the requested format.
     '410': Az általad keresett oldal már nem létezik.
     '422':
       content: Megerősítés sikertelen. Nem tiltottad le esetleg a sütiket?
@@ -633,6 +635,7 @@ hu:
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   existing_username_validator:
     not_found: ezzel a névvel nem találtunk helyi felhasználót
