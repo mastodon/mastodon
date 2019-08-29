@@ -537,8 +537,10 @@ pt-BR:
     explanation: Descobrir usuários baseado em seus interesses
     explore_mastodon: Explorar %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Você não tem permissão para ver esta página.
     '404': A página pela qual você está procurando não existe.
+    '406': This page is not available in the requested format.
     '410': A página pela qual você está procurando não existe mais.
     '422':
       content: A verificação de segurança falhou. Você desativou o uso de cookies?
@@ -547,6 +549,7 @@ pt-BR:
     '500':
       content: Desculpe, algo deu errado.
       title: Esta página não está certa
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon em sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um usuário local com esse nome de usuário
