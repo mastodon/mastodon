@@ -645,8 +645,10 @@ it:
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
+    '406': This page is not available in the requested format.
     '410': La pagina che stavi cercando qui non esiste più.
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
@@ -655,6 +657,7 @@ it:
     '500':
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
