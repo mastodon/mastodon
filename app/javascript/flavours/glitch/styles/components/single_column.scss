@@ -83,6 +83,24 @@
     padding: 0;
   }
 
+  .directory__list {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      display: block;
+    }
+  }
+
+  .directory__card {
+    margin-bottom: 0;
+  }
+
+  .filter-form {
+    display: flex;
+  }
+
   .autosuggest-textarea__textarea {
     font-size: 16px;
   }
