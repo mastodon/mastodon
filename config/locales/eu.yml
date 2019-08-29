@@ -618,8 +618,10 @@ eu:
   domain_validator:
     invalid_domain: ez da domeinu izen baliogarria
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Ez duzu orri hau ikusteko baimenik.
     '404': Bilatu duzun orria ez dago hemen.
+    '406': This page is not available in the requested format.
     '410': Bilatu duzun orria ez dago hemen jada.
     '422':
       content: Segurtasun egiaztaketak huts egin du. Cookie-ak blokeatzen dituzu?
@@ -628,6 +630,7 @@ eu:
     '500':
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
   existing_username_validator:
     not_found: ezin izan da izen hori duen kide lokalik aurkitu
