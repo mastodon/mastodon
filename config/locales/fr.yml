@@ -651,8 +651,10 @@ fr:
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Vous n’avez pas accès à cette page.
     '404': La page que vous recherchez n’existe pas.
+    '406': This page is not available in the requested format.
     '410': La page que vous recherchez n’existe plus.
     '422':
       content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
@@ -661,6 +663,7 @@ fr:
     '500':
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
   existing_username_validator:
     not_found: n’a pas trouvé d’utilisateur·rice local·e avec ce nom
