@@ -606,8 +606,10 @@ eo:
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
     '404': La paĝo ke kiun vi serĉas ne ekzistas ĉi tie.
+    '406': This page is not available in the requested format.
     '410': La paĝo, kiun vi serĉas, ne plu ekzistas ĉi tie.
     '422':
       content: Sekureca konfirmo malsukcesa. Ĉu vi blokas kuketojn?
@@ -616,6 +618,7 @@ eo:
     '500':
       content: Ni bedaŭras, io malsukcesis niaflanke.
       title: Ĉi tiu paĝo ne estas ĝusta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: "Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la\n<a href=\"%{apps_path}\">operaciumaj aplikaĵoj</a> por Mastodon por via platformo."
   existing_username_validator:
     not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
