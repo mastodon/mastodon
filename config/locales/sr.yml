@@ -521,8 +521,10 @@ sr:
     explanation: Откријте кориснике на основу њихових интереса
     explore_mastodon: Истражи %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Немате дозвола да видите ову страну.
     '404': Страна коју сте тражили не постоји.
+    '406': This page is not available in the requested format.
     '410': Страна коју сте тражили више не постоји.
     '422':
       content: Безбедоносна провера није успела. Да не блокирате колачиће?
@@ -531,6 +533,7 @@ sr:
     '500':
       content: Извињавамо се, нешто је пошло по злу са ове стране.
       title: Страна није исправна
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Да бисте користили Мастодонт веб апликацију, омогућите JavaScript. У супротном, пробајте неку од <a href="%{apps_path}">оригиналних апликација</a> за Мастодонт за Вашу платформу.
   exports:
     archive_takeout:
