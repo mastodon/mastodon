@@ -5438,13 +5438,32 @@ a.status-card.compact:hover {
 
     &__extra {
       background: $ui-base-color;
-      padding: 15px 0;
       display: flex;
       align-items: center;
+      justify-content: center;
 
       .accounts-table__count {
         width: 33.33%;
         flex: 0 0 auto;
+        padding: 15px 0;
+      }
+
+      .account__header__content {
+        box-sizing: border-box;
+        padding: 15px 10px;
+        border-bottom: 1px solid lighten($ui-base-color, 8%);
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        p {
+          display: none;
+
+          &:first-child {
+            display: inline;
+          }
+        }
       }
     }
   }
