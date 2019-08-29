@@ -650,8 +650,10 @@ ca:
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': No tens permís per a veure aquesta pàgina.
     '404': La pàgina que estàs cercant no és aquí.
+    '406': This page is not available in the requested format.
     '410': La pàgina que estàs cercant ja no existeix.
     '422':
       content: La verificació de seguretat ha fallat. Tens les galetes blocades?
@@ -660,6 +662,7 @@ ca:
     '500':
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
   existing_username_validator:
     not_found: no s'ha pogut trobar cap usuari local amb aquest nom d'usuari
