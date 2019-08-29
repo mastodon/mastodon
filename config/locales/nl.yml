@@ -570,6 +570,8 @@ nl:
     set_new_password: Nieuw wachtwoord instellen
     setup:
       title: Instellen
+    status:
+      account_status: Accountstatus
     trouble_logging_in: Problemen met inloggen?
   authorize_follow:
     already_following: Je volgt dit account al
@@ -615,6 +617,14 @@ nl:
       one: "%{count} gebruikers"
       other: "%{count} gebruikers"
   domain_blocks:
+    domain: Domein
+    media_block: Mediabestanden weigeren
+    no_domain_blocks: "(geen domeinblokkades)"
+    severity: Zwaarte
+    severity_legend:
+      media_block: Mediabestanden die van deze server komen worden niet opgehaald, opgeslagen en aan de gebruiker getoond.
+      title: Zwaartes
+    show_rationale: Motivering tonen
     silence: Negeren
   errors:
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
