@@ -32,7 +32,7 @@ class RemoteInteractionController < ApplicationController
   end
 
   def session_params
-    { acct: session[:remote_follow] }
+    { acct: session[:remote_follow] || current_account&.username }
   end
 
   def set_status
