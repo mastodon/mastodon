@@ -5,6 +5,7 @@ class RemoteInteractionController < ApplicationController
 
   layout 'modal'
 
+  before_action :authenticate_user!, if: :whitelist_mode?
   before_action :set_interaction_type
   before_action :set_status
   before_action :set_body_classes
@@ -31,14 +32,13 @@ class RemoteInteractionController < ApplicationController
   end
 
   def session_params
-    { acct: session[:remote_follow] }
+    { acct: session[:remote_follow] || current_account&.username }
   end
 
   def set_status
     @status = Status.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404
     raise ActiveRecord::RecordNotFound
   end
 

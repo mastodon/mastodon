@@ -31,7 +31,7 @@ describe UnblockDomainService, type: :service do
       subject.call(@domain_block)
       expect_deleted_domain_block
       expect(@suspended.reload.suspended?).to be false
-      expect(@silenced.reload.silenced?).to be true
+      expect(@silenced.reload.silenced?).to be false
       expect(@independently_suspended.reload.suspended?).to be true
       expect(@independently_silenced.reload.silenced?).to be true
     end

@@ -75,44 +75,6 @@ RSpec.describe Admin::AccountsController, type: :controller do
     end
   end
 
-  describe 'POST #subscribe' do
-    subject { post :subscribe, params: { id: account.id } }
-
-    let(:current_user) { Fabricate(:user, admin: admin) }
-    let(:account) { Fabricate(:account) }
-
-    context 'when user is admin' do
-      let(:admin) { true }
-
-      it { is_expected.to redirect_to admin_account_path(account.id) }
-    end
-
-    context 'when user is not admin' do
-      let(:admin) { false }
-
-      it { is_expected.to have_http_status :forbidden }
-    end
-  end
-
-  describe 'POST #unsubscribe' do
-    subject { post :unsubscribe, params: { id: account.id } }
-
-    let(:current_user) { Fabricate(:user, admin: admin) }
-    let(:account) { Fabricate(:account) }
-
-    context 'when user is admin' do
-      let(:admin) { true }
-
-      it { is_expected.to redirect_to admin_account_path(account.id) }
-    end
-
-    context 'when user is not admin' do
-      let(:admin) { false }
-
-      it { is_expected.to have_http_status :forbidden }
-    end
-  end
-
   describe 'POST #memorialize' do
     subject { post :memorialize, params: { id: account.id } }
 

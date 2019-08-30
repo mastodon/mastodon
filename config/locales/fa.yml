@@ -24,6 +24,9 @@ fa:
     generic_description: "%{domain} یک سرور روی شبکه است"
     get_apps: یک اپ موبایل را امتحان کنید
     hosted_on: ماستدون، میزبانی‌شده روی %{domain}
+    instance_actor_flash: |
+      این حساب یک بازیگر مجازی برای نمایندگی از این سرور است و متعلق به هیچ کاربری نیست.
+      این حساب برای ارتباط میان‌سروری به کار می‌رود و نباید مسدود شود، مگر این که شما بخواهید کل سرور را مسدود کنید، که در آن صورت باید از راه مسدودسازی دامین پیش بروید.
     learn_more: بیشتر بدانید
     privacy_policy: سیاست رازداری
     see_whats_happening: ببینید چه خبر است
@@ -68,6 +71,7 @@ fa:
       admin: مدیر
       bot: ربات
       moderator: ناظم
+    unavailable: نمایهٔ ناموجود
     unfollow: پایان پیگیری
   admin:
     account_actions:
@@ -113,6 +117,7 @@ fa:
       header: زمینه
       inbox_url: نشانی صندوق ورودی
       invited_by: دعوت‌شده از طرف
+      ip: IP
       joined: عضویت از
       location:
         all: همه
@@ -248,6 +253,7 @@ fa:
       feature_profile_directory: فهرست گزیدهٔ کاربران
       feature_registrations: ثبت‌نام‌ها
       feature_relay: رله
+      feature_spam_check: ضدهرزنامه
       feature_timeline_preview: پیش‌نمایش نوشته‌ها
       features: ویژگی‌ها
       hidden_service: ارتباط میان‌سروری با سرویس‌های نهفته
@@ -268,6 +274,7 @@ fa:
       created_msg: مسدودکردن دامین در حال انجام است
       destroyed_msg: مسدودکردن دامین واگردانده شد
       domain: دامین
+      existing_domain_block_html: شما پیش‌تر محدودیت‌های سخت‌تری روی %{name} اعمال کرده‌اید، و باید نخست <a href="%{unblock_url}">مسدودسازی را لغو کنید</a>.
       new:
         create: مسدودسازی
         hint: مسدودسازی دامین جلوی فهرست‌شدن حساب‌ها در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
@@ -333,6 +340,8 @@ fa:
         expired: منقضی‌شده
         title: فیلتر
       title: دعوت‌ها
+    pending_accounts:
+      title: حساب‌های منتظر (%{count})
     relays:
       add_new: افزودن رلهٔ تازه
       delete: حذف
@@ -444,6 +453,9 @@ fa:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
       site_title: نام سرور
+      spam_check_enabled:
+        desc_html: ماستدون می‌تواند حساب‌ها را به طور خودکار بی‌صدا کند یا گزارش دهد. این کار بر اساس سنجه‌هایی از قبیل شناسایی پیغام‌های ناخواستهٔ تکراری انجام می‌شود و ممکن است گاهی اشتباه باشد.
+        title: ضدهرزنامه
       thumbnail:
         desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
         title: تصویر کوچک سرور
@@ -464,20 +476,8 @@ fa:
       no_status_selected: هیچ بوقی تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       title: نوشته‌های حساب
       with_media: دارای عکس یا ویدیو
-    subscriptions:
-      callback_url: نشانی Callback
-      confirmed: تأییدشده
-      expires_in: مهلت انقضا
-      last_delivery: آخرین ارسال
-      topic: موضوع
     tags:
-      accounts: حساب‌ها
-      hidden: پنهان‌شده
-      hide: در فهرست گزیدهٔ کاربران نشان نده
-      name: برچسب
       title: برچسب‌ها
-      unhide: نمایش در فهرست گزیدهٔ کاربران
-      visible: نمایان
     title: مدیریت سرور
     warning_presets:
       add_new: افزودن تازه
@@ -518,7 +518,6 @@ fa:
     apply_for_account: درخواست دعوت‌نامه
     change_password: رمز
     checkbox_agreement_html: من <a href="%{rules_path}" target="_blank">قانون‌های این سرور</a> و <a href="%{terms_path}" target="_blank">شرایط کاربری</a> را می‌پذیرم
-    confirm_email: تأیید ایمیل
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
@@ -529,6 +528,9 @@ fa:
     migrate_account: نقل مکان به یک حساب دیگر
     migrate_account_html: اگر می‌خواهید این حساب را به حساب دیگری منتقل کنید، <a href="%{path}">این‌جا را کلیک کنید</a>.
     or_log_in_with: یا ورود به وسیلهٔ
+    providers:
+      cas: CAS
+      saml: SAML
     register: عضو شوید
     registration_closed: سرور %{instance} عضو تازه‌ای نمی‌پذیرد
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
@@ -603,6 +605,7 @@ fa:
       request: درخواست بایگانی داده‌هایتان
       size: اندازه
     blocks: حساب‌های مسدودشده
+    csv: CSV
     domain_blocks: دامین‌های مسدودشده
     follows: حساب‌های پی‌گرفته
     lists: فهرست‌ها
@@ -746,11 +749,22 @@ fa:
       body: "%{name} نوشتهٔ شما را بازبوقید:"
       subject: "%{name} نوشتهٔ شما را بازبوقید"
       title: بازبوق تازه
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: تازه‌تر
     next: بعدی
     older: قدیمی‌تر
     prev: قبلی
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: شما قبلاً در این نظرسنجی رأی داده‌اید
@@ -763,6 +777,8 @@ fa:
       too_many_options: نمی‌تواند بیشتر از %{max} گزینه داشته باشد
   preferences:
     other: سایر تنظیمات
+    posting_defaults: تنظیمات پیش‌فرض انتشار
+    public_timelines: فهرست عمومی نوشته‌ها
   relationships:
     activity: فعالیت حساب
     dormant: غیرفعال
@@ -793,10 +809,6 @@ fa:
     reply:
       proceed: به سمت پاسخ‌دادن
       prompt: 'شما می‌خواهید به این بوق پاسخ دهید:'
-  remote_unfollow:
-    error: خطا
-    title: عنوان
-    unfollowed: پایان پیگیری
   scheduled_statuses:
     over_daily_limit: شما از حد مجاز %{limit} بوق زمان‌بندی‌شده در آن روز فراتر رفته‌اید
     over_total_limit: شما از حد مجاز %{limit} بوق زمان‌بندی‌شده فراتر رفته‌اید
@@ -805,12 +817,40 @@ fa:
     activity: آخرین فعالیت
     browser: مرورگر
     browsers:
+      alipay: Alipay
+      blackberry: بلک‌بری
+      chrome: کروم
+      edge: مایکروسافت اج
+      electron: الکترون
+      firefox: فایرفاکس
       generic: مرورگر ناشناخته
+      ie: اینترنت اکسپلورر
+      micro_messenger: مایکرومسنجر
+      nokia: Nokia S40 Ovi Browser
+      opera: اپرا
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: سافاری
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: نشست فعلی
     description: "%{browser} روی %{platform}"
     explanation: مرورگرهای زیر هم‌اینک به حساب شما وارد شده‌اند.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: اندروید
+      blackberry: بلک‌بری
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: لینوکس
+      mac: مک
       other: سیستم ناشناخته
+      windows: ویندوز
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: لغو کردن
     revoke_success: نشست با موفقیت لغو شد
     title: نشست‌ها
@@ -834,6 +874,8 @@ fa:
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
     two_factor_authentication: ورود دومرحله‌ای
+  spam_check:
+    spam_detected_and_silenced: این یک گزارش خودکار است. هرزنامه به طور خودکار تشخیص داده شده و کاربر بی‌صدا شده است. اگر اشتباهی رخ داده لطفاً حساب را باصدا کنید.
   statuses:
     attached:
       description: 'پیوست‌شده: %{attached}'
@@ -863,6 +905,7 @@ fa:
       vote: رأی
     show_more: نمایش
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: خصوصی
       private_long: تنها پیگیران شما می‌بینند
@@ -964,6 +1007,7 @@ fa:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد.

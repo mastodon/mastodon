@@ -160,8 +160,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
         let(:unconfirmed_user) { user.tap { |u| u.update!(confirmed_at: nil) } }
         let(:accept_language) { 'fr' }
 
-        it 'shows a translated login error' do
-          expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed', locale: accept_language))
+        it 'redirects to home' do
+          expect(response).to redirect_to(root_path)
         end
       end
 

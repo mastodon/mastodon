@@ -5,6 +5,9 @@ class Settings::DeletesController < Settings::BaseController
 
   before_action :check_enabled_deletion
   before_action :authenticate_user!
+  before_action :require_not_suspended!
+
+  skip_before_action :require_functional!
 
   def show
     @confirmation = Form::DeleteConfirmation.new
@@ -28,5 +31,9 @@ class Settings::DeletesController < Settings::BaseController
 
   def delete_params
     params.require(:form_delete_confirmation).permit(:password)
+  end
+
+  def require_not_suspended!
+    forbidden if current_account.suspended?
   end
 end

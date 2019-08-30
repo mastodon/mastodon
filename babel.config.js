@@ -17,9 +17,15 @@ module.exports = (api) => {
       ['@babel/proposal-object-rest-spread', { useBuiltIns: true }],
       ['@babel/proposal-decorators', { legacy: true }],
       '@babel/proposal-class-properties',
-      ['react-intl', { messagesDir: './build/messages/' }],
+      ['react-intl', { messagesDir: './build/messages' }],
       'preval',
     ],
+    overrides: [{
+      test: /tesseract\.js/,
+      presets: [
+        ['@babel/env', { ...envOptions, modules: 'commonjs' }],
+      ],
+    }],
   };
 
   switch (env) {
