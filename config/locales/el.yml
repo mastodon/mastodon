@@ -507,6 +507,9 @@ el:
       title: Καταστάσεις λογαριασμού
       with_media: Με πολυμέσα
     tags:
+      accounts_today: Μοναδικές χρήσεις ημέρας
+      accounts_week: Μοναδικές χρήσεις εβδομάδας
+      breakdown: Ανάλυση σημερινής χρήσης ανα πηγή
       context: Συνάφεια
       directory: Στον κατάλογο
       in_directory: "%{count} στον κατάλογο"
@@ -515,6 +518,7 @@ el:
       title: Ταμπέλες
       trending_right_now: Δημοφιλείς αυτή τη στιγμή
       unique_uses_today: "%{count} σημερινές δημοσιεύσεις"
+      unreviewed: Εκκρεμεί έγκριση
       updated_msg: Οι ρυθμίσεις των ταμπελών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     warning_presets:
@@ -627,6 +631,13 @@ el:
     directory: Κατάλογος λογαριασμών
     explanation: Βρες χρήστες βάσει των ενδιαφερόντων τους
     explore_mastodon: Εξερεύνησε το %{title}
+  domain_blocks:
+    blocked_domains: Λίστα περιορισμένων και αποκλεισμένων τομέων
+    description: Αυτή είναι η λίστα των διακομιστών που ο %{instance} περιορίζει ή απορρίπτει τη σύνδεση μαζί τους.
+    domain: Τομέας
+    media_block: Αποκλεισμός πολυμέσων
+    no_domain_blocks: "(Χωρίς αποκλεισμό πολυμέσων)"
+    severity: Αυστηρότητα
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Δεν έχεις δικαίωμα πρόσβασης σε αυτή τη σελίδα.
