@@ -9,7 +9,7 @@
         = image_tag account.avatar.url, alt: '', width: 48, height: 48, class: 'u-photo'
 
       .display-name
-        %span{id: "default_account_display_name", style: "display:none;"}= account.username
+        %span{ id: "default_account_display_name", style: "display: none" }= account.username
         %bdi
           %strong.emojify.p-name= display_name(account, custom_emojify: true)
         %span

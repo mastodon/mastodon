@@ -11,7 +11,7 @@ module WellKnown
 
       expires_in 3.days, public: true
       render json: @account, serializer: WebfingerSerializer, content_type: 'application/jrd+json'
-    rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound, ActionController::ParameterMissing
       head 404
     end
 

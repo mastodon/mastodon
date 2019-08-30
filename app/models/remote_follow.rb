@@ -6,7 +6,7 @@ class RemoteFollow
 
   attr_accessor :acct, :addressable_template
 
-  validates :acct, presence: true
+  validates :acct, presence: true, domain: { acct: true }
 
   def initialize(attrs = {})
     @acct = normalize_acct(attrs[:acct])
@@ -21,7 +21,7 @@ class RemoteFollow
   end
 
   def subscribe_address_for(account)
-    addressable_template.expand(uri: account.local_username_and_domain).to_s
+    addressable_template.expand(uri: ActivityPub::TagManager.instance.uri_for(account)).to_s
   end
 
   def interact_address_for(status)
@@ -44,6 +44,8 @@ class RemoteFollow
     end
 
     [username, domain].compact.join('@')
+  rescue Addressable::URI::InvalidURIError
+    value
   end
 
   def fetch_template!
