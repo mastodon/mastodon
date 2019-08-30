@@ -34,6 +34,26 @@ module StatusesHelper
     end
   end
 
+  def minimal_account_action_button(account)
+    if user_signed_in?
+      return if account.id == current_user.account_id
+
+      if current_account.following?(account) || current_account.requested?(account)
+        link_to account_unfollow_path(account), class: 'icon-button active', data: { method: :post }, title: t('accounts.unfollow') do
+          fa_icon('user-times fw')
+        end
+      elsif !(account.memorial? || account.moved?)
+        link_to account_follow_path(account), class: "icon-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post }, title: t('accounts.follow') do
+          fa_icon('user-plus fw')
+        end
+      end
+    elsif !(account.memorial? || account.moved?)
+      link_to account_remote_follow_path(account), class: 'icon-button modal-button', target: '_new', title: t('accounts.follow') do
+        fa_icon('user-plus fw')
+      end
+    end
+  end
+
   def svg_logo
     content_tag(:svg, tag(:use, 'xlink:href' => '#mastodon-svg-logo'), 'viewBox' => '0 0 216.4144 232.00976')
   end
