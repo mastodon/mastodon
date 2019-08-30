@@ -663,10 +663,10 @@ cs:
   domain_validator:
     invalid_domain: není platné doménové jméno
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Požadavek, který jste odeslal/a, byl neplatný nebo poškozený.
     '403': Nemáte povolení zobrazit tuto stránku.
     '404': Stránka, kterou hledáte, tu není.
-    '406': This page is not available in the requested format.
+    '406': Tato stránka není dostupná v požadovaném formátu.
     '410': Stránka, kterou hledáte, tu již neexistuje.
     '422':
       content: Bezpečnostní ověření selhalo. Neblokujete cookies?
@@ -675,7 +675,7 @@ cs:
     '500':
       content: Omlouváme se, ale něco se u nás pokazilo.
       title: Tato stránka není správná
-    '503': The page could not be served due to a temporary server failure.
+    '503': Stránku nelze načíst kvůli dočasnému selhání serveru.
     noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
   existing_username_validator:
     not_found: nelze najít místního uživatele s tímto uživatelským jménem
