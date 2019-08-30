@@ -763,6 +763,24 @@
     }
   }
 
+  .directory__list {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      display: block;
+    }
+
+    .icon-button {
+      font-size: 18px;
+    }
+  }
+
+  .directory__card {
+    margin-bottom: 0;
+  }
+
   .card-grid {
     display: flex;
     flex-wrap: wrap;

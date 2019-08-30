@@ -5367,6 +5367,7 @@ a.status-card.compact:hover {
       height: 125px;
       position: relative;
       background: darken($ui-base-color, 12%);
+      overflow: hidden;
 
       img {
         display: block;
@@ -5388,6 +5389,7 @@ a.status-card.compact:hover {
         display: flex;
         align-items: center;
         text-decoration: none;
+        overflow: hidden;
       }
 
       &__relationship {
@@ -5453,6 +5455,7 @@ a.status-card.compact:hover {
         padding: 15px 10px;
         border-bottom: 1px solid lighten($ui-base-color, 8%);
         width: 100%;
+        min-height: 18px + 30px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -5463,6 +5466,10 @@ a.status-card.compact:hover {
           &:first-child {
             display: inline;
           }
+        }
+
+        br {
+          display: none;
         }
       }
     }
