@@ -150,11 +150,20 @@ html {
 }
 
 .poll__chart {
-  background: darken($purple, 4%)
+  background: darken($purple, 4%);
+}
+
+.muted .poll__chart {
+  background: rgba($purple, 0.8);
+>>>>>>> 3da7ff7230a4de11f87724aa1d33d776f0616706
 }
 
 .poll__chart.leading {
   background: $pink;
+}
+
+.muted .poll__chart.leading {
+  background: rgba($pink, 0.8);
 }
 
 .status {
@@ -999,4 +1008,42 @@ body {
 
 .detailed-status__wrapper {
   background: $purple;
+}
+
+a.status-card.compact:hover {
+  background: $purple;
+  border: 1px solid lighten($purple, 4%);
+}
+
+.column-inline-form {
+  background: $blue;
+  border: 1px solid lighten($blue, 4%);
+}
+
+.account {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.notification-favourite .status.status-direct:not(.read) {
+  background: transparent;
+  border-bottom: 1px solid lighten(#eeeeee, 4%);
+}
+
+.loading-indicator__figure {
+  border: 0 solid lighten($green, 12%);
+}
+
+.account__header__bio .account__header__fields {
+  border-top: 1px solid lighten($purple, 8%);
+  border-bottom: 1px solid lighten($purple, 8%);
+}
+
+@media screen and (max-width: 600px) {
+  .public-layout .public-account-header__bar {
+    background: $blue;
+  }
+
+  .public-layout .public-account-header__extra .public-account-bio .account__header__fields {
+    border-color: lighten($blue, 8%);
+  }
 }
