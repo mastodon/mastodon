@@ -49,7 +49,13 @@ class PostStatusService < BaseService
   def preprocess_attributes!
     if @text.blank? && @options[:spoiler_text].present?
      @text = '.'
-     @text = @media.find(&:video?) ? '📹' : '🖼' if @media.size > 0
+     if @media.find(&:video?) || @media.find(&:gifv?)
+       @text = '📹'
+     elsif @media.find(&:audio?)
+       @text = '🎵'
+     elsif @media.find(&:image?)
+       @text = '🖼'
+     end
     end
     @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
     @visibility   = :unlisted if @visibility == :public && @account.silenced?

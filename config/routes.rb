@@ -6,6 +6,8 @@ require 'sidekiq-scheduler/web'
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
+  root 'home#index'
+
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
   authenticate :user, lambda { |u| u.admin? } do
@@ -336,6 +338,7 @@ Rails.application.routes.draw do
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
+      resource :directory, only: [:show]
 
       resources :follow_requests, only: [:index] do
         member do
@@ -440,10 +443,6 @@ Rails.application.routes.draw do
   get '/about/blocks', to: 'about#blocks'
   get '/terms',        to: 'about#terms'
 
-  root 'home#index'
-
-  match '*unmatched_route',
-        via: :all,
-        to: 'application#raise_not_found',
-        format: false
+  match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
+  match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false
 end

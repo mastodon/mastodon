@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { invitesEnabled, version, repository, source_url } from 'flavours/glitch/util/initial_state';
-import { signOutLink } from 'flavours/glitch/util/backend_links';
+import { signOutLink, securityLink } from 'flavours/glitch/util/backend_links';
 import { logOut } from 'flavours/glitch/util/log_out';
 import { openModal } from 'flavours/glitch/actions/modal';
 
@@ -46,7 +46,7 @@ class LinkFooter extends React.PureComponent {
       <div className='getting-started__footer'>
         <ul>
           {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
-          <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
+          {!!securityLink && <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>}
           <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this server' /></a> · </li>
           <li><a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a> · </li>
           <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>

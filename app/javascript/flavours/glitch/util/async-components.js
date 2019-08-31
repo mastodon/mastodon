@@ -161,3 +161,7 @@ export function Search () {
 export function Tesseract () {
   return import(/*webpackChunkName: "tesseract" */'tesseract.js');
 }
+
+export function Directory () {
+  return import(/* webpackChunkName: "features/glitch/async/directory" */'flavours/glitch/features/directory');
+}

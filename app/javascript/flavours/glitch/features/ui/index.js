@@ -46,6 +46,7 @@ import {
   Lists,
   Search,
   GettingStartedMisc,
+  Directory,
 } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me } from 'flavours/glitch/util/initial_state';
@@ -185,6 +186,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
           <WrappedRoute path='/search' component={Search} content={children} />
+          <WrappedRoute path='/directory' component={Directory} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />

@@ -669,38 +669,13 @@
     }
   }
 
-&.detailed,
-&.fullscreen {
-  .video-player__buttons {
-    button {
-      padding-top: 10px;
-      padding-bottom: 10px;
+  &.detailed,
+  &.fullscreen {
+    .video-player__buttons {
+      button {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
     }
   }
-}
-}
-
-.media-spoiler-video {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  margin-top: 8px;
-  position: relative;
-
-  @include fullwidth-gallery;
-
-  border: 0;
-  display: block;
-}
-
-.media-spoiler-video-play-icon {
-  border-radius: 100px;
-  color: rgba($primary-text-color, 0.8);
-  font-size: 36px;
-  left: 50%;
-  padding: 5px;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }

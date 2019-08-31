@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch, { columnId }) => ({
   },
 
   onLoad (value) {
-    return api().get('/api/v2/search', { params: { q: value } }).then(response => {
+    return api().get('/api/v2/search', { params: { q: value, type: 'hashtags' } }).then(response => {
       return (response.data.hashtags || []).map((tag) => {
         return { value: tag.name, label: `#${tag.name}` };
       });

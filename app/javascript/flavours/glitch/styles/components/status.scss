@@ -886,67 +886,6 @@ a.status-card.compact:hover {
   background-position: center center;
 }
 
-.status__video-player {
-  display: flex;
-  align-items: center;
-  background: $base-shadow-color;
-  box-sizing: border-box;
-  cursor: default; /* May not be needed */
-  margin-top: 8px;
-  overflow: hidden;
-  position: relative;
-
-  @include fullwidth-gallery;
-}
-
-.status__video-player-video {
-  height: 100%;
-  object-fit: contain;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  z-index: 1;
-
-  &:not(.letterbox) {
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-.status__video-player-expand,
-.status__video-player-mute {
-  color: $primary-text-color;
-  opacity: 0.8;
-  position: absolute;
-  right: 4px;
-  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
-}
-
-.status__video-player-spoiler {
-  display: none;
-  color: $primary-text-color;
-  left: 4px;
-  position: absolute;
-  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
-  top: 4px;
-  z-index: 100;
-
-  &.status__video-player-spoiler--visible {
-    display: block;
-  }
-}
-
-.status__video-player-expand {
-  bottom: 4px;
-  z-index: 100;
-}
-
-.status__video-player-mute {
-  top: 4px;
-  z-index: 5;
-}
-
 .attachment-list {
   display: flex;
   font-size: 14px;

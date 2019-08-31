@@ -12,7 +12,19 @@ import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
-import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, BookmarkedStatuses, ListTimeline } from 'flavours/glitch/util/async-components';
+import {
+  Compose,
+  Notifications,
+  HomeTimeline,
+  CommunityTimeline,
+  PublicTimeline,
+  HashtagTimeline,
+  DirectTimeline,
+  FavouritedStatuses,
+  BookmarkedStatuses,
+  ListTimeline,
+  Directory,
+} from 'flavours/glitch/util/async-components';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
 
@@ -30,6 +42,7 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
   'BOOKMARKS': BookmarkedStatuses,
   'LIST': ListTimeline,
+  'DIRECTORY': Directory,
 };
 
 const shouldHideFAB = path => path.match(/^\/statuses\/|^\/search|^\/getting-started/);

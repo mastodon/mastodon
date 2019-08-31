@@ -1,4 +1,4 @@
-import { POLLS_IMPORT } from 'mastodon/actions/importer';
+import { POLLS_IMPORT } from 'flavours/glitch/actions/importer';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const importPolls = (state, polls) => state.withMutations(map => polls.forEach(poll => map.set(poll.id, fromJS(poll))));

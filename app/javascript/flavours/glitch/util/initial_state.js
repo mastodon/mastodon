@@ -26,6 +26,7 @@ export const pollLimits = (initialState && initialState.poll_limits);
 export const invitesEnabled = getMeta('invites_enabled');
 export const version = getMeta('version');
 export const mascot = getMeta('mascot');
+export const profile_directory = getMeta('profile_directory');
 export const isStaff = getMeta('is_staff');
 export const defaultContentType = getMeta('default_content_type');
 export const forceSingleColumn = getMeta('advanced_layout') === false;

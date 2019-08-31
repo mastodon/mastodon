@@ -12,7 +12,18 @@ import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
-import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, ListTimeline } from '../../ui/util/async-components';
+import {
+  Compose,
+  Notifications,
+  HomeTimeline,
+  CommunityTimeline,
+  PublicTimeline,
+  HashtagTimeline,
+  DirectTimeline,
+  FavouritedStatuses,
+  ListTimeline,
+  Directory,
+} from '../../ui/util/async-components';
 import Icon from 'mastodon/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
@@ -30,6 +41,7 @@ const componentMap = {
   'DIRECT': DirectTimeline,
   'FAVOURITES': FavouritedStatuses,
   'LIST': ListTimeline,
+  'DIRECTORY': Directory,
 };
 
 const messages = defineMessages({
