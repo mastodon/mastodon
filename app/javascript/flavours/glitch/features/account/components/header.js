@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { autoPlayGif, me, isStaff } from 'flavours/glitch/util/initial_state';
+import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import Avatar from 'flavours/glitch/components/avatar';
@@ -69,7 +70,7 @@ class Header extends ImmutablePureComponent {
   };
 
   openEditProfile = () => {
-    window.open('/settings/profile', '_blank');
+    window.open(profileLink, '_blank');
   }
 
   _updateEmojis () {
@@ -148,7 +149,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
-    } else {
+    } else if (profileLink) {
       actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
     }
 
@@ -172,8 +173,8 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('id') === me) {
-      menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
-      menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
+      if (profileLink) menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
+      if (preferencesLink) menu.push({ text: intl.formatMessage(messages.preferences), href: preferencesLink });
       menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
@@ -223,9 +224,9 @@ class Header extends ImmutablePureComponent {
       }
     }
 
-    if (account.get('id') !== me && isStaff) {
+    if (account.get('id') !== me && isStaff && accountAdminLink) {
       menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${account.get('id')}` });
+      menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: accountAdminLink(account.get('id')) });
     }
 
     const content          = { __html: account.get('note_emojified') };
