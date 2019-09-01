@@ -315,15 +315,22 @@ class MediaGallery extends React.PureComponent {
       style.height = height;
     }
 
-    const size = media.take(4).size;
+    const size     = media.take(4).size;
+    const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (this.isStandaloneEligible()) {
       children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
-    if (visible) {
+    if (uncached) {
+      spoilerButton = (
+        <button type='button' disabled className='spoiler-button__overlay'>
+          <span className='spoiler-button__overlay__label'><FormattedMessage id='status.uncached_media_warning' defaultMessage='Not available' /></span>
+        </button>
+      );
+    } else if (visible) {
       spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='eye-slash' overlay onClick={this.handleOpen} />;
     } else {
       spoilerButton = (
@@ -335,7 +342,7 @@ class MediaGallery extends React.PureComponent {
 
     return (
       <div className='media-gallery' style={style} ref={this.handleRef}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible })}>
+        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached })}>
           {spoilerButton}
         </div>
 
