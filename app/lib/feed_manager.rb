@@ -63,7 +63,7 @@ class FeedManager
     reblog_key   = key(type, account_id, 'reblogs')
 
     # Remove any items past the MAX_ITEMS'th entry in our feed
-    redis.zremrangebyrank(timeline_key, '0', (-(FeedManager::MAX_ITEMS + 1)).to_s)
+    redis.zremrangebyrank(timeline_key, 0, -(FeedManager::MAX_ITEMS + 1))
 
     # Get the score of the REBLOG_FALLOFF'th item in our feed, and stop
     # tracking anything after it for deduplication purposes.
