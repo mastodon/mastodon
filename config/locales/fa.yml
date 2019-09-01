@@ -508,7 +508,17 @@ fa:
     tags:
       accounts_today: کاربرد یکتا در امروز
       accounts_week: کاربرد یکتا در این هفته
+      breakdown: کاربردهای امروز به تفکیک منبع
+      context: زمینه
+      directory: در فهرست
+      in_directory: "%{count} در فهرست"
+      review: وضعیت بازبینی
+      reviewed: بازبینی شده
       title: برچسب‌ها
+      trending_right_now: پرطرفدارهای کنونی
+      unique_uses_today: "%{count} امروز منتشر شده"
+      unreviewed: بازبینی نشده
+      updated_msg: تنظیمات برچسب‌ها با موفقیت به‌روز شد
     title: مدیریت سرور
     warning_presets:
       add_new: افزودن تازه
@@ -524,11 +534,15 @@ fa:
       body: "کاربر %{reporter} کاربر %{target} را گزارش داد"
       body_remote: کسی از %{domain} گزارش %{target} را فرستاده
       subject: 'گزارش تازه‌ای برای %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'برچسب #%{name} امروز پرطرفدار است، ولی تا حالا بازبینی نشده. تا وقتی که شما اجازه نداده‌اید، این برچسب به طور عمومی نمایش داده نخواهد شد. اگر فرم را به شکل فعلی ذخیره کنید، هیچ وقت چیزی دربارهٔ این برچسب نخواهید دید.'
+      subject: 'برچسب تازه‌ای در %{instance} نیازمند بررسی است (#%{name})'
   appearance:
     advanced_web_interface: رابط کاربری پیشرفته
     advanced_web_interface_hint: 'اگر می‌خواهید همهٔ فضای نمایشگر خود را به کار ببرید، می‌توانید به کمک رابط کاربری پیشرفته ستون‌های گوناگونی داشته باشید تا در یک نگاه همهٔ اطلاعاتی را که می‌خواهید ببینید: نوشته‌های دیگران، اعلان‌ها، فهرست نوشته‌های همه‌جا، و هر تعداد فهرست و برچسب که بخواهید.'
     animations_and_accessibility: پویانمایی‌های و دسترسی‌پذیری
     confirmation_dialogs: پیغام‌های تأیید
+    discovery: کاوش
     sensitive_content: محتوای حساس
   application_mailer:
     notification_preferences: تغییر ترجیحات ایمیل
