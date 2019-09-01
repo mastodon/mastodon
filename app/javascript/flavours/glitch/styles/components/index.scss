@@ -1267,6 +1267,14 @@
         background: rgba($base-overlay-background, 0.8);
       }
     }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      .spoiler-button__overlay__label {
+        background: rgba($base-overlay-background, 0.5);
+      }
+    }
   }
 }
 
