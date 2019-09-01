@@ -583,6 +583,15 @@ fa:
     reset_password: بازنشانی رمز
     security: امنیت
     set_new_password: تعیین رمز تازه
+    setup:
+      email_below_hint_html: اگر نشانی ایمیل زیر نادرست است، می‌توانید آن را تغییر دهید و ایمیل تأیید دوباره‌ای دریافت کنید.
+      email_settings_hint_html: ایمیل تأیید به %{email} فرستاده شد. اگر این نشانی ایمیل درست نیست، می‌توانید از تنظیمات حساب آن را تغییر دهید.
+      title: راه اندازی
+    status:
+      account_status: وضعیت حساب
+      confirming: در حال انتظار برای کامل شدن تأیید ایمیل.
+      functional: حساب شما قابل استفاده است.
+      pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
     trouble_logging_in: برای ورود مشکلی دارید؟
   authorize_follow:
     already_following: شما همین الان هم این حساب را پی‌می‌گیرید
@@ -621,6 +630,8 @@ fa:
     directory: فهرست گزیدهٔ کاربران
     explanation: کاربران این سرور را بر اساس علاقه‌مندی‌هایشان پیدا کنید
     explore_mastodon: گشت و گذار در %{title}
+  domain_blocks:
+    blocked_domains: فهرست دامین‌های محدود یا مسدود
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': شما اجازهٔ دیدن این صفحه را ندارید.
