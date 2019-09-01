@@ -5,7 +5,6 @@
   li {
     margin-bottom: 10px;
     position: relative;
-    height: 18px + 12px;
   }
 
   &__chart {
@@ -24,13 +23,11 @@
 
   &__text {
     position: relative;
-    display: inline-block;
+    display: flex;
     padding: 6px 0;
     line-height: 18px;
     cursor: default;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 
     input[type=radio],
     input[type=checkbox] {
@@ -99,6 +96,9 @@
     font-weight: 700;
     padding: 0 10px;
     text-align: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex: 0 0 36px;
   }
 
   &__footer {
