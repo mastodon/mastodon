@@ -717,46 +717,46 @@ a.name-tag,
   vertical-align: middle;
 }
 
-.admin-account-info {
-  .public-account-bio {
-    background: lighten($ui-base-color, 8%);
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-    border-radius: 4px;
-    overflow: hidden;
+.admin-account-bio {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+  margin-top: 20px;
+
+  > div {
+    box-sizing: border-box;
+    padding: 0 5px;
     margin-bottom: 10px;
-    margin-top: 10px;
+    flex: 1 0 50%;
+  }
 
-    .account__header__fields {
-      margin: 0;
-      border-top: 0;
+  .account__header__fields,
+  .account__header__content {
+    background: lighten($ui-base-color, 8%);
+    border-radius: 4px;
+    height: 100%;
+  }
 
-      a {
-        color: lighten($ui-highlight-color, 8%);
-      }
+  .account__header__fields {
+    margin: 0;
+    border: 0;
 
-      dl:first-child .verified {
-        border-radius: 0 4px 0 0;
-      }
-
-      .verified a {
-        color: $valid-value-color;
-      }
+    a {
+      color: lighten($ui-highlight-color, 8%);
     }
 
-    .account__header__content {
-      padding: 20px;
-      color: $primary-text-color;
+    dl:first-child .verified {
+      border-radius: 0 4px 0 0;
     }
 
-    &__extra,
-    .roles {
-      padding: 20px;
-      font-size: 14px;
-      color: $darker-text-color;
+    .verified a {
+      color: $valid-value-color;
     }
+  }
 
-    .roles {
-      padding-bottom: 0;
-    }
+  .account__header__content {
+    box-sizing: border-box;
+    padding: 20px;
+    color: $primary-text-color;
   }
 }
