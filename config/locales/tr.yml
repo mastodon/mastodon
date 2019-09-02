@@ -3,24 +3,35 @@ tr:
     about_hashtag_html: 'Bunlar <strong>#%{hashtag}X</strong> ile etiketlenen genel paylaşımlar. Açık alanda herhangi bir yerde bir hesabınız varsa, onlarla etkileşime geçebilirsiniz.'
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     about_this: Bu sunucu hakkında
+    active_footnote: Aylık Aktif Kullanıcılar (AAK)
     administered_by: 'Tarafından yönetildi:'
+    api: API
     apps: Mobil uygulamalar
+    apps_platforms: İos, Android ve diğer platformlardaki Mastodon'u kullanın
+    browse_directory: Bir profil dizinine göz atın ve ilgi alanlarına göre filtreleyin
+    browse_public_posts: Mastodon'daki herkese açık yayınlara göz atın
     contact: İletişim
     contact_missing: Ayarlanmadı
     contact_unavailable: Yok
+    discover_users: Kullanıcıları keşfet
     documentation: Belgeler
     extended_description_html: |
       <h3>Kural için iyi bir yer</h3>
       <p>Genişletilmiş açıklama henüz ayarlanmamış.</p>
+    federation_hint_html: '%{instance} hesabınızla, herhangi bir Mastodon sunucusundaki ve haricindeki kişileri takip edebilirsiniz.'
     generic_description: "%{domain} ağdaki bir sunucudur"
+    get_apps: Bir mobil uygulamayı deneyin
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     learn_more: Daha fazla bilgi edinin
     privacy_policy: Gizlilik politikası
+    see_whats_happening: Neler olduğunu görün
+    server_stats: 'Sunucu istatistikleri:'
     source_code: Kaynak kodu
     status_count_after:
       one: durum
       other: durum
     status_count_before: Şu ana kadar
+    tagline: Arkadaşlarını takip et ve yenilerini keşfet
     terms: Kullanım şartları
     user_count_after:
       one: kullanıcı
@@ -29,12 +40,15 @@ tr:
     what_is_mastodon: Mastodon nedir?
   accounts:
     choices_html: "%{name} seçimleri:"
+    endorsements_hint: Takip ettiğiniz kişileri web arayüzünden onaylayabilirsiniz, burada görünecekler.
+    featured_tags_hint: Burada görüntülenecek belirli etiketlere sahip olabilirsiniz.
     follow: Takip et
     followers:
       one: Takipçi
       other: Takipçi
     following: Takip ediliyor
     joined: '%{date} tarihinde katıldı'
+    last_active: son aktivite
     link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
     media: Medya
     moved_html: "%{name}, %{new_profile_link} adresine taşındı:"
@@ -49,7 +63,9 @@ tr:
     reserved_username: Kullanıcı adı saklıdır
     roles:
       admin: Yönetici
+      bot: Bot
       moderator: Denetleyici
+    unavailable: Profil kullanılamıyor
     unfollow: Takibi bırak
   admin:
     account_actions:
@@ -60,7 +76,10 @@ tr:
       delete: Sil
       destroyed_msg: Denetim notu başarıyla yok edildi!
     accounts:
+      approve: Onayla
+      approve_all: Tümünü onayla
       are_you_sure: Emin misiniz?
+      avatar: Avatar
       by_domain: Sunucu
       change_email:
         changed_msg: Hesap e-postası başarıyla değiştirildi!
@@ -73,6 +92,7 @@ tr:
       confirmed: Onaylandı
       confirming: Onaylama
       deleted: Silinen
+      demote: Düşür
       disable: Devre dışı
       disable_two_factor_authentication: 2AD kapat
       disabled: Kapalı
@@ -90,6 +110,7 @@ tr:
       header: Üstbilgi
       inbox_url: Gelen kutusu bağlantısı
       invited_by: Tarafından davet edildi
+      ip: IP
       joined: Katıldı
       location:
         all: Hepsi
@@ -100,6 +121,7 @@ tr:
       media_attachments: Medya ekleri
       memorialize: Bir hatıraya dön
       moderation:
+        active: Etkin
         all: Hepsi
         silenced: Susturulanlar
         suspended: Uzaklaştırılanlar
@@ -107,7 +129,10 @@ tr:
       moderation_notes: Denetleme notları
       most_recent_activity: Son aktivite
       most_recent_ip: Son IP
+      no_account_selected: Hiçbiri seçilmediğinden hiçbir hesap değiştirilmedi
       not_subscribed: Abone edilmedi
+      outbox_url: Giden Kutusu URL'si
+      pending: Bekleyen yorum
       perform_full_suspension: Askıya al
       profile_url: Profil linki
       promote: Yükselt
@@ -115,6 +140,8 @@ tr:
       public: Herkese açık
       push_subscription_expires: PuSH aboneliği dolumu
       redownload: Profili yenile
+      reject: Reddet
+      reject_all: Tümünü reddet
       remove_avatar: Avatarı kaldır
       remove_header: Üstbilgiyi kaldır
       resend_confirmation:
@@ -141,6 +168,7 @@ tr:
       statuses: Durumlar
       subscribe: Abone ol
       suspended: Askıya alındı
+      time_in_queue: '%{time} kuyruğunda bekliyor'
       title: Hesaplar
       unconfirmed_email: Onaylanmamış e-posta
       undo_silenced: Susturmayı geri al
@@ -148,9 +176,14 @@ tr:
       unsubscribe: Abonelikten çık
       username: Kullanıcı adı
       warn: Uyar
+      web: Web
+      whitelisted: Beyaz listede
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} kendilerine %{target} adlı raporu verdi"
+        change_email_user: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
         confirm_user: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
+        create_account_warning: "%{name} %{target} 'a bir uyarı gönderdi"
         create_custom_emoji: "%{name} yeni ifade yükledi %{target}"
         disable_2fa_user: "%{name}, %{target} kullanıcısı için iki adım gereksinimini kapattı"
     domain_blocks:
