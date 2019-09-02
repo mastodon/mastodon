@@ -267,6 +267,9 @@ tr:
       title: "%{acct} Takipçileri"
     instances:
       by_domain: Alan adı
+      known_accounts:
+        one: "%{count} bilinen hesap"
+        other: "%{count} bilinen hesap"
       moderation:
         all: Tümü
       title: Bilinen Sunucular
@@ -483,6 +486,9 @@ tr:
     expires_in_prompt: Asla
     generate: Oluştur
     invited_by: 'Tarafından davet edildi:'
+    max_uses:
+      one: 1 kullanım
+      other: "%{count} kullanım"
     max_uses_prompt: Limit yok
     prompt: Bu sunucuya erişim vermek için bağlantılar oluşturun ve başkalarıyla paylaşın
     table:
