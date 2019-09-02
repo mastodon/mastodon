@@ -442,6 +442,19 @@ tr:
     errors:
       limit: Zaten azami hashtag miktarı belirlediniz
     hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
+  filters:
+    contexts:
+      home: Ana zaman çizelgesi
+      notifications: Bildirimler
+      public: Genel zaman çizelgesi
+      thread: Sohbetler
+    edit:
+      title: Filtreyi düzenle
+    index:
+      delete: Sil
+      title: Filtreler
+    new:
+      title: Yeni filtre ekle
   generic:
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     save_changes: Değişiklikleri kaydet
@@ -462,14 +475,30 @@ tr:
       '21600': 6 hours
       '3600': 1 hour
       '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '604800': 1 hafta
+      '86400': 1 gün
+    expires_in_prompt: Asla
+    generate: Oluştur
+    invited_by: 'Tarafından davet edildi:'
+    max_uses_prompt: Limit yok
+    prompt: Bu sunucuya erişim vermek için bağlantılar oluşturun ve başkalarıyla paylaşın
+    table:
+      expires_at: Bitiş tarihi
+      uses: Kullanım
+    title: İnsanları davet et
   media_attachments:
     validations:
       images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
       too_many: 4'ten fazla dosya ekleyemezsiniz
+  migrations:
+    currently_redirecting: 'Profiliniz yönlendirmek üzere ayarlandı:'
+    proceed: Kaydet
+    updated_msg: Hesap taşıma ayarınız başarıyla güncellendi!
+  moderation:
+    title: Yönetim
   notification_mailer:
     digest:
+      action: Tüm bildirimleri görüntüle
       body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
       mention: "%{name} senden bahsetti:"
       new_followers_summary:
@@ -478,21 +507,35 @@ tr:
       subject:
         one: "Son ziyaretinizden beri 1 yeni bildiriminiz var \U0001F418"
         other: "Son ziyaretinizden beri %{count} yeni bildiriminiz var \U0001F418"
+      title: Senin yokluğunda...
     favourite:
       body: '%{name} durumunuzu favorilere ekledi:'
       subject: "%{name} favorilere ekledi"
+      title: Yeni favori
     follow:
       body: "%{name} sizi takip etmeye başladı!"
       subject: "%{name} sizi takip etmeye başladı"
+      title: Yeni takipçi
     follow_request:
+      action: Takip isteklerini yönet
       body: "%{name} size takip isteği gönderdi"
       subject: 'Takip isteği: %{name}'
+      title: Yeni takip isteği
     mention:
+      action: Yanıt
       body: '%{name} sizden bahsetti:'
       subject: '%{name} sizden bahsetti'
     reblog:
       body: '%{name} durumunuzu boost etti:'
       subject: "%{name} durumunuzu boost etti"
+      title: Yeni gönderi
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: M
+          million: M
   pagination:
     next: Sonraki
     prev: Önceki
