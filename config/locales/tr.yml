@@ -255,12 +255,30 @@ tr:
     email_domain_blocks:
       add_new: Yeni ekle
       delete: Sil
+      domain: Alan adı
+      new:
+        create: Alan adı ekle
+      title: E-posta kara listesi
+    followers:
+      back_to_account: Hesaba Geri Dön
+      title: "%{acct} Takipçileri"
     instances:
+      by_domain: Alan adı
+      moderation:
+        all: Tümü
       title: Bilinen Sunucular
     reports:
+      account:
+        note: not
+        report: şikayet
+      action_taken_by: tarafından gerçekleştirilen eylem
+      are_you_sure: Emin misiniz?
       comment:
         none: Yok
       mark_as_resolved: Giderildi olarak işaretle
+      notes:
+        create: Not Ekle
+        delete: Sil
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
@@ -269,13 +287,38 @@ tr:
       title: Şikayetler
       unresolved: Giderilmedi
     settings:
+      activity_api_enabled:
+        title: Kullanıcı etkinliği hakkında toplu istatistikler yayınlayın
       contact_information:
         email: Herkese açık e-posta adresiniz
         username: Bir kullanıcı adı giriniz
+      custom_css:
+        title: Özel CSS
+      domain_blocks:
+        all: Herkes için
+      domain_blocks_rationale:
+        title: Gerekçeyi göster
+      hero:
+        title: Kahraman görseli
+      mascot:
+        title: Maskot görseli
+      preview_sensitive_media:
+        desc_html: Medya duyarlı olarak işaretlenmiş olsa bile, diğer web sitelerindeki bağlantı ön izlemeleri küçük resim gösterecektir
+        title: OpenGraph ön izlemelerinde hassas medyayı göster
+      profile_directory:
+        desc_html: Kullanıcıların keşfedilebilir olmasına izin ver
+        title: Profil dizinini etkinleştir
       registrations:
         closed_message:
           desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
           title: Kayıt alımları kapatılma mesajı
+        min_invite_role:
+          title: tarafından yapılan davetlere izin ver
+      registrations_mode:
+        modes:
+          approved: Kayıt için onay gerekli
+          none: Hiç kimse kayıt olamaz
+          open: Herkes kaydolabilir
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
@@ -284,6 +327,8 @@ tr:
         title: Sunucu hakkında detaylı bilgi
       site_title: Site başlığı
       title: Site Ayarları
+    statuses:
+      no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
     tags:
       title: Etiketler
     title: Yönetim
@@ -291,6 +336,9 @@ tr:
       add_new: Yeni ekle
       delete: Sil
       edit: Düzenle
+  appearance:
+    animations_and_accessibility: Animasyonlar ve erişilebilirlik
+    discovery: Keşfet
   application_mailer:
     settings: 'E-mail tercihlerini değiştir: %{link}'
     view: 'Görüntüle:'
