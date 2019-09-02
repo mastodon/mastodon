@@ -337,18 +337,39 @@ tr:
       delete: Sil
       edit: Düzenle
   appearance:
+    advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
+    confirmation_dialogs: Onay iletişim kutuları
     discovery: Keşfet
+    sensitive_content: Hassas içerik
   application_mailer:
+    notification_preferences: E-posta tercihlerini değiştir
+    salutation: "%{name},"
     settings: 'E-mail tercihlerini değiştir: %{link}'
     view: 'Görüntüle:'
+    view_profile: Profili Görüntüle
+    view_status: Durumu görüntüle
   applications:
+    created: Uygulama başarıyla oluşturuldu
+    destroyed: Uygulama başarıyla silindi
     invalid_url: Verilen URL geçerli değil
+    regenerate_token: Erişim belirtecini yeniden oluştur
+    warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
+    your_token: Erişim belirteciniz
   auth:
+    apply_for_account: Davet et
+    change_password: Parola
+    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">sunucu kuralları</a> ve<a href="%{terms_path}" target="_blank">hizmet şartlarını</a> kabul ediyorum
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
+    delete_account: Hesabı sil
+    delete_account_html: Hesabınızı silmek isterseniz, <a href="%{path}">buradan devam edebilirsiniz</a>. Sizden onay istenecektir.
     didnt_get_confirmation: Hesap doğrulama mailini almadınız mı?
     forgot_password: Parolanızı unuttunuz mu?
+    invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     login: Giriş yap
     logout: Çıkış
+    migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
+    or_log_in_with: Veya giriş yapın
     register: Üye ol
     resend_confirmation: Doğrulama mailini tekrar gönder
     reset_password: Parolayı değiştir
@@ -372,6 +393,17 @@ tr:
       x_minutes: "%{count}dk"
       x_months: "%{count}ay"
       x_seconds: "%{count}sn"
+  directories:
+    directory: Profil dizini
+    explanation: Kullanıcıları ilgi alanlarına göre keşfedin
+    explore_mastodon: '%{title} keşfet'
+  domain_blocks:
+    blocked_domains: Sınırlı ve engellenen alanların listesi
+    description: Bu, %{instance} öğesinin sınırladığı veya federasyonu reddettiği sunucuların listesidir.
+    domain: Alan adı
+    severity_legend:
+      media_block: Sunucudan gelen medya dosyaları alınmaz, saklanmaz veya kullanıcıya gösterilmez.
+      silence: Susturulmuş sunuculardaki hesaplar bulunabilir, takip edilebilinir ve onlarla etkileşime girilebilinir, ancak gönderileri genel zaman çizelgelerinde görünmez ve onlardan gelen bildirimler onları takip etmeyen yerel kullanıcılara ulaşmaz.
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Bu sayfayı görmek için izniniz yok.
