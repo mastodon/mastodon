@@ -8,6 +8,14 @@
       {
         "defaultMessage": "An unexpected error occurred.",
         "id": "alert.unexpected.message"
+      },
+      {
+        "defaultMessage": "Rate limited",
+        "id": "alert.rate_limited.title"
+      },
+      {
+        "defaultMessage": "Please retry after {retry_time, time, medium}.",
+        "id": "alert.rate_limited.message"
       }
     ],
     "path": "app/javascript/mastodon/actions/alerts.json"
@@ -190,6 +198,10 @@
       {
         "defaultMessage": "Toggle visibility",
         "id": "media_gallery.toggle_visible"
+      },
+      {
+        "defaultMessage": "Not available",
+        "id": "status.uncached_media_warning"
       },
       {
         "defaultMessage": "Sensitive content",
@@ -1133,6 +1145,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/containers/navigation_container.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Media is marked as sensitive",
         "id": "compose_form.sensitive.marked"
       },
@@ -1218,6 +1243,14 @@
       {
         "defaultMessage": "Compose new toot",
         "id": "navigation_bar.compose"
+      },
+      {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/index.json"
@@ -1234,6 +1267,76 @@
       }
     ],
     "path": "app/javascript/mastodon/features/direct_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      },
+      {
+        "defaultMessage": "Awaiting approval",
+        "id": "account.requested"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Are you sure you want to unfollow {name}?",
+        "id": "confirmations.unfollow.message"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Followers",
+        "id": "account.followers"
+      },
+      {
+        "defaultMessage": "Never",
+        "id": "account.never_active"
+      },
+      {
+        "defaultMessage": "Last active",
+        "id": "account.last_status"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/directory/components/account_card.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Browse profiles",
+        "id": "column.directory"
+      },
+      {
+        "defaultMessage": "Recently active",
+        "id": "directory.recently_active"
+      },
+      {
+        "defaultMessage": "New arrivals",
+        "id": "directory.new_arrivals"
+      },
+      {
+        "defaultMessage": "From {domain} only",
+        "id": "directory.local"
+      },
+      {
+        "defaultMessage": "From known fediverse",
+        "id": "directory.federated"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/directory/index.json"
   },
   {
     "descriptors": [
@@ -2313,6 +2416,14 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
+      },
+      {
         "defaultMessage": "Invite people",
         "id": "getting_started.invite"
       },
@@ -2428,16 +2539,16 @@
         "id": "navigation_bar.lists"
       },
       {
+        "defaultMessage": "Profile directory",
+        "id": "getting_started.directory"
+      },
+      {
         "defaultMessage": "Preferences",
         "id": "navigation_bar.preferences"
       },
       {
         "defaultMessage": "Follows and followers",
         "id": "navigation_bar.follows_and_followers"
-      },
-      {
-        "defaultMessage": "Profile directory",
-        "id": "navigation_bar.profile_directory"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/navigation_panel.json"
