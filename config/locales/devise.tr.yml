@@ -1,4 +1,3 @@
----
 tr:
   devise:
     confirmations:
@@ -8,8 +7,28 @@ tr:
     failure:
       already_authenticated: Zaten oturum açtınız.
       inactive: Hesabınız henüz etkinleştirilmedi.
+      invalid: Geçersiz %{authentication_keys} ya da şifre.
       last_attempt: Hesabınız kilitlenmeden önce bir kez daha denemeniz gerekir.
       locked: Hesabınız kilitli.
+      not_found_in_database: Geçersiz %{authentication_keys} ya da şifre.
+      pending: Hesabınız hala inceleniyor.
+      timeout: Oturum süreniz sona erdi. Lütfen devam etmek için tekrar giriş yapınız.
+      unauthenticated: Devam etmeden önce oturum açmanız veya kayıt olmanız gerek.
+      unconfirmed: Devam etmeden önce e-posta adresini onaylamanız gerekli.
     mailer:
       confirmation_instructions:
         action: E-posta adresinizi doğrulayın
+        action_with_app: Onayla ve %{app}'a dön
+        explanation: Bu e-posta adresiyle %{host} bir hesap oluşturdunuz. Etkinleştirmekten bir tık uzaktasınız. Bu siz değilseniz, lütfen bu e-postayı dikkate almayın.
+        explanation_when_pending: Bu e-posta adresiyle %{host} adresine bir davetiye için başvuru yaptınız. E-posta adresinizi onayladıktan sonra başvurunuzu inceleyeceğiz. O zamana kadar giriş yapamazsınız. Başvurunuz reddedilirse, verileriniz silinecek, başka bir işlem yapmanız gerekmeyecek. Bu siz değilseniz, lütfen bu e-postayı dikkate almayın.
+        extra_html: Lütfen ayrıca <a href="%{terms_path}">sunucu kurallarını</a> ve <a href="%{policy_path}">hizmet şartlarımızı</a> inceleyin.
+        subject: 'Mastodon: %{instance} için onay talimatları'
+        title: E-posta adresini doğrulayın
+      email_changed:
+        explanation: 'Hesabınızın e-posta adresi şu şekilde değiştirildi:'
+        extra: E-posta adresinizi değiştirmediyseniz, muhtemelen hesabınıza birileri erişmiş demektir. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
+        subject: 'Mastodon: E-posta değişti'
+        title: Yeni e-posta adresi
+      password_change:
+        explanation: Hesabınızın parolası değiştirildi.
+        extra: Parolanızı değiştirmediyseniz, büyük olasılıkla birileri hesabınıza erişmiş olabilir. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
