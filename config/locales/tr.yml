@@ -404,23 +404,44 @@ tr:
     severity_legend:
       media_block: Sunucudan gelen medya dosyaları alınmaz, saklanmaz veya kullanıcıya gösterilmez.
       silence: Susturulmuş sunuculardaki hesaplar bulunabilir, takip edilebilinir ve onlarla etkileşime girilebilinir, ancak gönderileri genel zaman çizelgelerinde görünmez ve onlardan gelen bildirimler onları takip etmeyen yerel kullanıcılara ulaşmaz.
+    show_rationale: Gerekçeyi göster
+  domain_validator:
+    invalid_domain: geçerli bir alan adı değil
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Gönderdiğiniz istek geçersiz veya hatalı biçimlendirilmiş.
     '403': Bu sayfayı görmek için izniniz yok.
     '404': Aradığınız sayfa bulunamadı.
-    '406': This page is not available in the requested format.
+    '406': Bu sayfa istenen formatta mevcut değil.
     '410': Aradığınız sayfa artık yok.
     '422':
       content: Güvenlik doğrulaması başarısız oldu. Site cookie'lerini engellemiş olabilirsiniz.
       title: Güvenlik doğrulamasu başarısız
     '429': Throttled
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: Üzgünüz, ancak bir şey ters gitti.
+      title: Bu sayfa doğru değil
+    '503': Geçici sunucu hatası nedeniyle sayfa görüntülenemedi.
+    noscript_html: Mastodon web uygulamasını kullanmak için lütfen JavaScript'i etkinleştirin. Alternatif olarak, platformunuz için Mastodon <a href="%{apps_path}">yerel uygulamalardan</a> birini deneyin.
+  existing_username_validator:
+    not_found: bu kullanıcı adına sahip yerel bir kullanıcı bulunamadı
   exports:
+    archive_takeout:
+      date: Tarih
+      download: Arşivinizi indirin
+      hint_html: <strong>Gönderileriniz ve yüklediğiniz ortamların</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub formatında olacaktır. Her 7 günde bir arşiv talep edebilirsiniz.
+      in_progress: Arşivinizi derliyoruz...
+      size: Boyut
     blocks: Blokladıklarınız
+    csv: CSV
     follows: Takip ettikleriniz
+    lists: Listeler
     mutes: Susturduklarınız
     storage: Ortam deposu
+  featured_tags:
+    add_new: Yeni ekle
+    errors:
+      limit: Zaten azami hashtag miktarı belirlediniz
+    hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
   generic:
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     save_changes: Değişiklikleri kaydet
