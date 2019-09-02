@@ -84,9 +84,24 @@ tr:
         unauthorized_client: İstemci bu yöntemi kullanarak bu isteği gerçekleştirmek için yetkili değil.
         unsupported_grant_type: Yetkilendirme izni türü, yetkilendirme sunucusu tarafından desteklenmiyor.
         unsupported_response_type: Yetkilendirme sunucusu bu yanıt türünü desteklemiyor.
+    layouts:
+      admin:
+        nav:
+          oauth2_provider: OAuth2 Sağlayıcısı
+      application:
+        title: OAuth yetkilendirme gerekli
     scopes:
+      "admin:read": sunucudaki tüm verileri oku
+      "admin:read:accounts": tüm hesapların hassas bilgilerini oku
+      "admin:read:reports": tüm raporların ve raporlanan hesapların hassas bilgilerini oku
+      "read:accounts": hesap bilgilerini gör
       "read:favourites": favorilerini gör
       "read:follows": izlerini gör
+      "write:accounts": profilini değiştir
+      "write:favourites": favori durumlar
+      "write:filters": filtre oluştur
+      "write:follows": insanları takip et
+      "write:lists": liste oluştur
       "write:media": medya dosyalarını yükle
       "write:mutes": insanları ve konuşmaları sustur
       "write:reports": diğer insanları bildir
