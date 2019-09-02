@@ -4,6 +4,15 @@ tr:
       doorkeeper/application:
         name: Uygulama adı
         website: Uygulama web sitesi
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: parça içeremez.
+              invalid_uri: geçerli bir URI olmalıdır.
+              relative_uri: mutlaka bir URI olmalıdır.
+              secured_uri: HTTPS/SSL URI olması gerekir.
   doorkeeper:
     applications:
       buttons:
@@ -16,3 +25,25 @@ tr:
         destroy: Emin misiniz?
       edit:
         title: Uygulamayı düzenle
+      form:
+        error: Tüh! Muhtemel hatalar için formunuzu kontrol edin
+      help:
+        native_redirect_uri: Yerel testler için %{native_redirect_uri} kullanın
+        redirect_uri: URl başına bir satır kullanın
+      index:
+        application: Uygulama
+        callback_url: Geri Dönüş URL
+        delete: Sil
+        name: İsim
+        new: Yeni uygulama
+        show: Göster
+        title: Uygulamalarınız
+      new:
+        title: Yeni uygulama
+      show:
+        actions: Eylemler
+        title: 'Uygulama: %{name}'
+    authorizations:
+      buttons:
+        authorize: Yetkilendir
+        deny: Reddet
