@@ -58,6 +58,9 @@ tr:
     people_who_follow: Kullanıcı %{name}'i takip edenler
     pin_errors:
       following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
+    posts:
+      one: Gönderi
+      other: Tootlar
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
     reserved_username: Kullanıcı adı saklıdır
@@ -604,9 +607,32 @@ tr:
   statuses:
     attached:
       description: 'Ekli: %{attached}'
+      image:
+        one: "%{count} görsel"
+        other: "%{count} görsel"
+      video:
+        one: "%{count} video"
+        other: "%{count} video"
+    boosted_from_html: '%{acct_link} den yinelendi'
+    content_warning: 'İçerik uyarısı: %{warning}'
+    disallowed_hashtags:
+      one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
+      other: 'izin verilmeyen hashtag''leri içeriyordu: %{tags}'
+    language_detection: Dili otomatik olarak algıla
     open_in_web: Web sayfasında aç
     over_character_limit: '%{max} karakter limiti aşıldı'
+    pin_errors:
+      ownership: Başkasının gönderisi sabitlenemez
+      private: Halka açık olmayan gönderi sabitlenemez
+      reblog: Bir yineleme sabitlenemez
+    poll:
+      total_votes:
+        one: "%{count} oy"
+        other: "%{count} oy"
+      vote: Oy
     show_more: Daha fazla
+    sign_in_to_participate: Sohbete katılmak için oturum açın
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Sadece takipçiler
       private_long: Sadece takipçilerime gönder
@@ -615,8 +641,16 @@ tr:
       unlisted: Listelenmemiş
       unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
   stream_entries:
+    pinned: Sabitlenmiş gönderi
     reblogged: boost edildi
     sensitive_content: Hassas içerik
+  tags:
+    does_not_match_previous_name: önceki adla eşleşmiyor
+  terms:
+    title: "%{instance} Hizmet Şartları ve Gizlilik Politikası"
+  themes:
+    contrast: Mastodon (Yüksek karşıtlık)
+    default: Mastodon (Karanlık)
   two_factor_authentication:
     code_hint: Onaylamak için kimlik doğrulama uygulamanızın oluşturduğu kodu giriniz
     description_html: Eğer <strong>iki-faktörlü kimlik doğrulamayı</strong> aktif ederseniz, giriş yaparken sizin için giriş kodu üreten telefonunuza ihtiyaç duyacaksınız.
