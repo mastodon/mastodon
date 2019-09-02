@@ -9,6 +9,9 @@
   scheduled_statuses_scheduler:
     every: '5m'
     class: Scheduler::ScheduledStatusesScheduler
+  trending_tags_scheduler:
+    every: '5m'
+    class: Scheduler::TrendingTagsScheduler
   media_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::MediaCleanupScheduler
