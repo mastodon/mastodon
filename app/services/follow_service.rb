@@ -13,7 +13,7 @@ class FollowService < BaseService
     target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
-    raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account) || target_account.moved?
+    raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account) || target_account.moved? || (!target_account.local? && target_account.ostatus?) || source_account.domain_blocking?(target_account.domain)
 
     if source_account.following?(target_account)
       # We're already following this account, but we'll call follow! again to
@@ -32,7 +32,7 @@ class FollowService < BaseService
 
     if target_account.locked? || target_account.activitypub?
       request_follow(source_account, target_account, reblogs: reblogs)
-    else
+    elsif target_account.local?
       direct_follow(source_account, target_account, reblogs: reblogs)
     end
   end
@@ -44,9 +44,6 @@ class FollowService < BaseService
 
     if target_account.local?
       LocalNotificationWorker.perform_async(target_account.id, follow_request.id, follow_request.class.name)
-    elsif target_account.ostatus?
-      NotificationWorker.perform_async(build_follow_request_xml(follow_request), source_account.id, target_account.id)
-      AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
     elsif target_account.activitypub?
       ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), source_account.id, target_account.inbox_url)
     end
@@ -57,25 +54,10 @@ class FollowService < BaseService
   def direct_follow(source_account, target_account, reblogs: true)
     follow = source_account.follow!(target_account, reblogs: reblogs)
 
-    if target_account.local?
-      LocalNotificationWorker.perform_async(target_account.id, follow.id, follow.class.name)
-    else
-      Pubsubhubbub::SubscribeWorker.perform_async(target_account.id) unless target_account.subscribed?
-      NotificationWorker.perform_async(build_follow_xml(follow), source_account.id, target_account.id)
-      AfterRemoteFollowWorker.perform_async(follow.id)
-    end
-
+    LocalNotificationWorker.perform_async(target_account.id, follow.id, follow.class.name)
     MergeWorker.perform_async(target_account.id, source_account.id)
 
     follow
-  end
-
-  def build_follow_request_xml(follow_request)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_request_salmon(follow_request))
-  end
-
-  def build_follow_xml(follow)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_salmon(follow))
   end
 
   def build_json(follow_request)

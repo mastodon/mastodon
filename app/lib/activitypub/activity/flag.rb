@@ -23,7 +23,7 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
   private
 
   def skip_reports?
-    DomainBlock.find_by(domain: @account.domain)&.reject_reports?
+    DomainBlock.reject_reports?(@account.domain)
   end
 
   def object_uris

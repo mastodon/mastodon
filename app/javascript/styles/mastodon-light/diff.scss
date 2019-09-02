@@ -104,7 +104,8 @@ html {
 .box-widget input[type="email"],
 .box-widget input[type="password"],
 .box-widget textarea,
-.statuses-grid .detailed-status {
+.statuses-grid .detailed-status,
+.audio-player {
   border: 1px solid lighten($ui-base-color, 8%);
 }
 
@@ -699,4 +700,11 @@ html {
 .page-header,
 .compose-form .compose-form__warning {
   box-shadow: none;
+}
+
+.audio-player .video-player__controls button,
+.audio-player .video-player__time-sep,
+.audio-player .video-player__time-current,
+.audio-player .video-player__time-total {
+  color: $primary-text-color;
 }

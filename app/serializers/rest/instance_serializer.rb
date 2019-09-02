@@ -3,9 +3,9 @@
 class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :uri, :title, :description, :email,
+  attributes :uri, :title, :short_description, :description, :email,
              :version, :urls, :stats, :thumbnail,
-             :languages, :registrations
+             :languages, :registrations, :approval_required
 
   has_one :contact_account, serializer: REST::AccountSerializer
 
@@ -17,6 +17,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def title
     Setting.site_title
+  end
+
+  def short_description
+    Setting.site_short_description
   end
 
   def description
@@ -53,6 +57,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def registrations
     Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
+  end
+
+  def approval_required
+    Setting.registrations_mode == 'approved'
   end
 
   private

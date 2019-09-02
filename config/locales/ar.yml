@@ -5,9 +5,13 @@ ar:
     about_mastodon_html: ماستدون شبكة اجتماعية مبنية على أسُس بروتوكولات برمجيات الويب الحرة و مفتوحة المصدر. و هو لامركزي تمامًا كالبريد الإلكتروني.
     about_this: عن مثيل الخادوم هذا
     active_count_after: نشط
+    active_footnote: مستخدم نشيط شهريا (MAU)
     administered_by: 'يُديره:'
     api: واجهة برمجة التطبيقات
     apps: تطبيقات الأجهزة المحمولة
+    apps_platforms: إستخدم ماستودون في iOS، أندرويد وأنظمة أخرى
+    browse_directory: تصفح دليل المستخدمين وافرز بالمصالح
+    browse_public_posts: تصفح تيار مباشر من منشورات عامة على ماستدون
     contact: للتواصل معنا
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
@@ -16,6 +20,7 @@ ar:
     extended_description_html: |
       <h3>مكان جيد للقواعد</h3>
       <p>لم يتم بعد إدخال الوصف الطويل.</p>
+    federation_hint_html: بواسطة حساب في %{instance} ستتمكن من تتبع أناس في أي خادم ماستدون وأكثر.
     generic_description: "%{domain} هو سيرفر من بين سيرفرات الشبكة"
     get_apps: جرّب تطبيقا على الموبايل
     hosted_on: ماستدون مُستضاف على %{domain}
@@ -58,7 +63,7 @@ ar:
     last_active: آخر نشاط
     link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
     media: الوسائط
-    moved_html: "%{name} إنتقلَ إلى %{new_profile_link} :"
+    moved_html: "%{name} إنتقلَ إلى %{new_profile_link}:"
     network_hidden: إنّ المعطيات غير متوفرة
     nothing_here: لا يوجد أي شيء هنا!
     people_followed_by: الأشخاص الذين يتبعهم %{name}
@@ -194,6 +199,7 @@ ar:
       username: اسم المستخدم
       warn: تحذير
       web: الويب
+      whitelisted: في القائمة البيضاء
     action_logs:
       actions:
         assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
@@ -290,6 +296,7 @@ ar:
           silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
+      private_comment: تعليق خاص
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
@@ -337,6 +344,7 @@ ar:
         all: كافتها
         limited: محدود
         title: الإشراف
+      private_comment: تعليق خاص
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
@@ -478,20 +486,9 @@ ar:
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
       with_media: تحتوي على وسائط
-    subscriptions:
-      callback_url: عاود الاتصال بالعنوان
-      confirmed: مؤكَّد
-      expires_in: تنتهي مدة صلاحيتها في
-      last_delivery: آخر إيداع
-      topic: الموضوع
     tags:
-      accounts: الحسابات
-      hidden: المخفية
-      hide: الإخفاء عن سجل الحسابات
-      name: الوسم
+      context: السياق
       title: الوسوم
-      unhide: إظهاره في سجل حسابات المستخدمين
-      visible: ظاهر
     title: الإدارة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -509,6 +506,7 @@ ar:
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
     confirmation_dialogs: نوافذ التأكيد
+    discovery: استكشاف
     sensitive_content: محتوى حساس
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
@@ -528,7 +526,7 @@ ar:
     apply_for_account: اطلب دعوة
     change_password: الكلمة السرية
     checkbox_agreement_html: أوافق على <a href="%{rules_path}" target="_blank">قواعد الخادم</a> و <a href="%{terms_path}" target="_blank">شروط الخدمة</a>
-    confirm_email: تأكيد عنوان البريد الإلكتروني
+    checkbox_agreement_without_rules_html: أوافق على <a href="%{terms_path}" target="_blank">شروط الخدمة</a>
     delete_account: حذف حساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
@@ -548,6 +546,9 @@ ar:
     reset_password: إعادة تعيين كلمة المرور
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
+    status:
+      account_status: حالة الحساب
+      functional: حسابك جاهز.
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
@@ -575,7 +576,7 @@ ar:
       x_months: "%{count} شه"
       x_seconds: "%{count}ث"
   deletes:
-    bad_password_msg: محاولة جيدة يا هاكرز ! كلمة السر خاطئة
+    bad_password_msg: محاولة جيدة يا هاكرز! كلمة السر خاطئة
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
@@ -592,6 +593,8 @@ ar:
       other: "%{count} شخص"
       two: "%{count} شخص"
       zero: "%{count} شخص"
+  domain_validator:
+    invalid_domain: ليس بإسم نطاق صالح
   errors:
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
@@ -753,15 +756,15 @@ ar:
     follow_request:
       action: إدارة طلبات المتابَعة
       body: طلب %{name} متابعتك
-      subject: 'متابع مُعلّق : %{name}'
+      subject: 'متابع مُعلّق: %{name}'
       title: طلب متابَعة جديد
     mention:
       action: الرد
-      body: 'أشار إليك %{name} في :'
+      body: 'أشار إليك %{name} في:'
       subject: لقد قام %{name} بذِكرك
       title: إشارة جديدة
     reblog:
-      body: 'قام %{name} بترقية منشورك :'
+      body: 'قام %{name} بترقية منشورك:'
       subject: قام %{name} بترقية منشورك
       title: ترقية جديدة
   number:
@@ -818,10 +821,6 @@ ar:
     reply:
       proceed: المواصلة إلى الرد
       prompt: 'ترغب في الرد على هذا التبويق:'
-  remote_unfollow:
-    error: خطأ
-    title: العنوان
-    unfollowed: غير متابَع
   sessions:
     activity: آخر نشاط
     browser: المتصفح
@@ -968,6 +967,7 @@ ar:
       title:
         disable: الحساب مُجمَّد
         none: تحذير
+        silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:
       edit_profile_action: تهيئة الملف الشخصي
@@ -975,15 +975,15 @@ ar:
       explanation: ها هي بعض النصائح قبل بداية الاستخدام
       final_action: اشرَع في النشر
       final_step: |-
-        يمكنك الشروع في النشر في الحين! حتى و إن لم كنت لا تمتلك متابِعين بعدُ، يمكن للآخرين الإطلاع على منشوراتك الموجهة للجمهور على الخيط المحلي أو إن قمت باستخدام وسوم.
+        يمكنك الشروع في النشر في الحين! حتى و إن لم كنت لا تمتلك متابِعين بعدُ، يمكن للآخرين الإطلاع على منشوراتك الموجهة للجمهور على الخيط العام المحلي أو إن قمت باستخدام وسوم.
         ابدأ بتقديم نفسك باستعمال وسم #introductions.
       full_handle: عنوانك الكامل
       full_handle_hint: هذا هو ما يجب تقديمه لأصدقائك قصد أن يكون بإمكانهم متابَعتك أو مُراسَلتك حتى و إن كانت حساباتهم على خوادم أخرى.
       review_preferences_action: تعديل التفضيلات
       subject: أهلًا بك على ماستدون
       tip_federated_timeline: الخيط الزمني الفديرالي هو بمثابة شبه نظرة شاملة على شبكة ماستدون. غير أنه لا يشمل إلا على الأشخاص المتابَعين مِن طرف جيرانك و جاراتك، لذا فهذا الخيط لا يعكس كافة الشبكة برُمّتها.
-      tip_following: أنت تتبع تلقائيا مديري و مديرات الخادم. للعثور على أشخاص مميزين أو قد تهمك حساباتهم بإمكانك الإطلاع على الخيوط المحلية و كذا الفدرالية.
-      tip_local_timeline: الخيط الزمني المحلي هو بمثابة نظرة سريعة على الأشخاص المتواجدين على %{instance} يمكن اعتبارهم كجيرانك وجاراتك الأقرب إليك!
+      tip_following: أنت تتبع تلقائيا مديري و مديرات الخادم. للعثور على أشخاص مميزين أو قد تهمك حساباتهم بإمكانك الإطلاع على الخيوط العامة المحلية و كذا الفدرالية.
+      tip_local_timeline: الخيط العام المحلي هو بمثابة نظرة سريعة على الأشخاص المتواجدين على %{instance} يمكن اعتبارهم كجيرانك وجاراتك الأقرب إليك!
       tips: نصائح
       title: أهلاً بك، %{name}!
   users:

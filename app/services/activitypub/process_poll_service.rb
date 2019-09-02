@@ -5,6 +5,7 @@ class ActivityPub::ProcessPollService < BaseService
 
   def call(poll, json)
     @json = json
+
     return unless expected_type?
 
     previous_expires_at = poll.expires_at

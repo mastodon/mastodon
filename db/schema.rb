@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.string "also_known_as", array: true
     t.datetime "silenced_at"
     t.datetime "suspended_at"
+    t.integer "trust_level"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -208,6 +209,13 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.index ["uri"], name: "index_conversations_on_uri", unique: true
   end
 
+  create_table "custom_emoji_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_custom_emoji_categories_on_name", unique: true
+  end
+
   create_table "custom_emojis", force: :cascade do |t|
     t.string "shortcode", default: "", null: false
     t.string "domain"
@@ -221,6 +229,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.string "uri"
     t.string "image_remote_url"
     t.boolean "visible_in_picker", default: true, null: false
+    t.bigint "category_id"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
@@ -236,6 +245,13 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 
+  create_table "domain_allows", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_domain_allows_on_domain", unique: true
+  end
+
   create_table "domain_blocks", force: :cascade do |t|
     t.string "domain", default: "", null: false
     t.datetime "created_at", null: false
@@ -243,6 +259,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
     t.boolean "reject_reports", default: false, null: false
+    t.text "private_comment"
+    t.text "public_comment"
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
@@ -326,6 +344,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "autofollow", default: false, null: false
+    t.text "comment"
     t.index ["code"], name: "index_invites_on_code", unique: true
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
@@ -634,7 +653,9 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
     t.bigint "poll_id"
-    t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20180106", order: { id: :desc }
+    t.datetime "deleted_at"
+    t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
+    t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
@@ -648,36 +669,19 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
-  create_table "stream_entries", force: :cascade do |t|
-    t.bigint "activity_id"
-    t.string "activity_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "hidden", default: false, null: false
-    t.bigint "account_id"
-    t.index ["account_id", "activity_type", "id"], name: "index_stream_entries_on_account_id_and_activity_type_and_id"
-    t.index ["activity_id", "activity_type"], name: "index_stream_entries_on_activity_id_and_activity_type"
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string "callback_url", default: "", null: false
-    t.string "secret"
-    t.datetime "expires_at"
-    t.boolean "confirmed", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_successful_delivery_at"
-    t.string "domain"
-    t.bigint "account_id", null: false
-    t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "lower((name)::text) text_pattern_ops", name: "hashtag_search_index"
-    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.integer "score"
+    t.boolean "usable"
+    t.boolean "trendable"
+    t.boolean "listable"
+    t.datetime "reviewed_at"
+    t.datetime "requested_review_at"
+    t.datetime "last_status_at"
+    t.datetime "last_trend_at"
+    t.index "lower((name)::text)", name: "index_tags_on_name_lower", unique: true
   end
 
   create_table "tombstones", force: :cascade do |t|
@@ -834,8 +838,6 @@ ActiveRecord::Schema.define(version: 2019_08_26_134425) do
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
-  add_foreign_key "stream_entries", "accounts", name: "fk_5659b17554", on_delete: :cascade
-  add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
   add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "user_invite_requests", "users", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade

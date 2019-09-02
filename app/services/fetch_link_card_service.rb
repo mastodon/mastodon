@@ -29,7 +29,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
+  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
@@ -84,7 +84,7 @@ class FetchLinkCardService < BaseService
 
   def mention_link?(a)
     @status.mentions.any? do |mention|
-      a['href'] == TagManager.instance.url_for(mention.account)
+      a['href'] == ActivityPub::TagManager.instance.url_for(mention.account)
     end
   end
 

@@ -1,0 +1,14 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.domain_allows.add_new')
+
+= simple_form_for @domain_allow, url: admin_domain_allows_path do |f|
+  = render 'shared/error_messages', object: @domain_allow
+
+  .fields-group
+    = f.input :domain, wrapper: :with_label, label: t('admin.domain_blocks.domain'), required: true
+
+  .actions
+    = f.button :button, t('admin.domain_allows.add_new'), type: :submit

@@ -5,11 +5,11 @@ class TagPolicy < ApplicationPolicy
     staff?
   end
 
-  def hide?
+  def show?
     staff?
   end
 
-  def unhide?
+  def update?
     staff?
   end
 end

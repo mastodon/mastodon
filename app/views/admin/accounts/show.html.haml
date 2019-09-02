@@ -174,7 +174,7 @@
 
       - unless @account.local?
         - if DomainBlock.where(domain: @account.domain).exists?
-          = link_to t('admin.domain_blocks.undo'), admin_instance_path(@account.domain), class: 'button'
+          = link_to t('admin.domain_blocks.view'), admin_instance_path(@account.domain), class: 'button'
         - else
           = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain), class: 'button button--destructive'
 

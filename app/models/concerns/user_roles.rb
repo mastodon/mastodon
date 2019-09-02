@@ -13,6 +13,20 @@ module UserRoles
     admin? || moderator?
   end
 
+  def role=(value)
+    case value
+    when 'admin'
+      self.admin     = true
+      self.moderator = false
+    when 'moderator'
+      self.admin     = false
+      self.moderator = true
+    else
+      self.admin     = false
+      self.moderator = false
+    end
+  end
+
   def role
     if admin?
       'admin'

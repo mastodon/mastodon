@@ -21,8 +21,8 @@ class UnfollowService < BaseService
     return unless follow
 
     follow.destroy!
-    create_notification(follow) unless @target_account.local?
-    create_reject_notification(follow) if @target_account.local? && !@source_account.local?
+    create_notification(follow) if !@target_account.local? && @target_account.activitypub?
+    create_reject_notification(follow) if @target_account.local? && !@source_account.local? && @source_account.activitypub?
     UnmergeWorker.perform_async(@target_account.id, @source_account.id)
     follow
   end
@@ -38,16 +38,10 @@ class UnfollowService < BaseService
   end
 
   def create_notification(follow)
-    if follow.target_account.ostatus?
-      NotificationWorker.perform_async(build_xml(follow), follow.account_id, follow.target_account_id)
-    elsif follow.target_account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(build_json(follow), follow.account_id, follow.target_account.inbox_url)
-    end
+    ActivityPub::DeliveryWorker.perform_async(build_json(follow), follow.account_id, follow.target_account.inbox_url)
   end
 
   def create_reject_notification(follow)
-    # Rejecting an already-existing follow request
-    return unless follow.account.activitypub?
     ActivityPub::DeliveryWorker.perform_async(build_reject_json(follow), follow.target_account_id, follow.account.inbox_url)
   end
 
@@ -57,9 +51,5 @@ class UnfollowService < BaseService
 
   def build_reject_json(follow)
     Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer))
-  end
-
-  def build_xml(follow)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unfollow_salmon(follow))
   end
 end

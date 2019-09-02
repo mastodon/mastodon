@@ -5,6 +5,10 @@ class MediaProxyController < ApplicationController
 
   skip_before_action :store_current_location
 
+  before_action :authenticate_user!, if: :whitelist_mode?
+
+  rescue_from ActiveRecord::RecordInvalid, with: :not_found
+
   def show
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -39,6 +43,6 @@ class MediaProxyController < ApplicationController
   end
 
   def reject_media?
-    DomainBlock.find_by(domain: @media_attachment.account.domain)&.reject_media?
+    DomainBlock.reject_media?(@media_attachment.account.domain)
   end
 end

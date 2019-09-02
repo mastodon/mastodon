@@ -174,6 +174,7 @@ eo:
       statuses: Mesaĝoj
       subscribe: Aboni
       suspended: Haltigita
+      time_in_queue: Atendado en atendovico %{time}
       title: Kontoj
       unconfirmed_email: Nekonfirmita retadreso
       undo_silenced: Malfari kaŝon
@@ -182,6 +183,7 @@ eo:
       username: Uzantnomo
       warn: Averti
       web: Reto
+      whitelisted: En la blanka listo
     action_logs:
       actions:
         assigned_to_self_report: "%{name} asignis signalon %{target} al si mem"
@@ -249,6 +251,7 @@ eo:
       feature_profile_directory: Profilujo
       feature_registrations: Registriĝoj
       feature_relay: Federacia ripetilo
+      feature_spam_check: Kontraŭ-spamo
       feature_timeline_preview: Templinio antaŭvidi
       features: Funkcioj
       hidden_service: Federacio kun kaŝitaj servoj
@@ -264,11 +267,15 @@ eo:
       week_interactions: interagoj tiusemajne
       week_users_active: aktivaj tiusemajne
       week_users_new: uzantoj tiusemajne
+      whitelist_mode: En la blanka listo
+    domain_allows:
+      add_new: En la blanka listo domajno
     domain_blocks:
       add_new: Aldoni novan
       created_msg: Domajna blokado en traktado
       destroyed_msg: Domajna blokado malfarita
       domain: Domajno
+      existing_domain_block_html: Vi jam trudis pli striktajn limojn al %{name}, vi devas <a href="%{unblock_url}">malbloki ĝin</a> unue.
       new:
         create: Krei blokadon
         hint: La domajna blokado ne evitigos kreadon de novaj kontoj en la datumbazo, sed aplikos specifajn kontrolajn agojn sur ĉi tiujn kontojn aŭtomate kaj retroaktive.
@@ -278,6 +285,8 @@ eo:
           silence: Kaŝi
           suspend: Haltigi
         title: Nova domajna blokado
+      private_comment: Privata komento
+      public_comment: Publika komento
       reject_media: Malakcepti aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Senzorge pri haltigoj
       reject_reports: Malakcepti raportojn
@@ -320,6 +329,8 @@ eo:
         all: Ĉiuj
         limited: Limigita
         title: Kontrolo
+      private_comment: Privata komento
+      public_comment: Publika komento
       title: Federacio
       total_blocked_by_us: Blokitaj de ni
       total_followed_by_them: Sekvataj de ili
@@ -334,6 +345,8 @@ eo:
         expired: Eksvalida
         title: Filtri
       title: Invitoj
+    pending_accounts:
+      title: Pritraktataj kontoj (%{count})
     relays:
       add_new: Aldoni novan ripetilon
       delete: Forigi
@@ -445,6 +458,8 @@ eo:
         desc_html: Vi povas skribi vian propran privatecan politikon, viajn uzkondiĉojn aŭ aliajn leĝaĵojn. Vi povas uzi HTML-etikedojn
         title: Propraj uzkondiĉoj
       site_title: Nomo de la servilo
+      spam_check_enabled:
+        title: Kontraŭ-spamo aŭtomatige
       thumbnail:
         desc_html: Uzata por antaŭvidoj per OpenGraph kaj per API. 1200x630px rekomendita
         title: Bildeto de la servilo
@@ -465,21 +480,13 @@ eo:
       no_status_selected: Neniu mesaĝo estis ŝanĝita ĉar neniu estis elektita
       title: Mesaĝoj de la konto
       with_media: Kun aŭdovidaĵoj
-    subscriptions:
-      callback_url: Revena URL
-      confirmed: Konfirmita
-      expires_in: Eksvalidiĝas je
-      last_delivery: Lasta livero
-      title: WebSub
-      topic: Temo
     tags:
-      accounts: Kontoj
-      hidden: Kaŝitaj
-      hide: Kaŝi de la profilujo
-      name: Kradvorto
+      context: Kunteksto
+      directory: En la adresaro
+      review: La statuso de la recenzo
+      reviewed: Recenzis
       title: Kradvortoj
-      unhide: Montri en la profilujo
-      visible: Videblaj
+      unreviewed: Ne recenzis
     title: Administrado
     warning_presets:
       add_new: Aldoni novan
@@ -497,6 +504,7 @@ eo:
       subject: Nova signalo por %{instance} (#%{id})
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
+    animations_and_accessibility: Animacioj kaj alirebleco
     confirmation_dialogs: Konfirmaj dialogoj
     sensitive_content: Tikla enhavo
   application_mailer:
@@ -518,7 +526,6 @@ eo:
     apply_for_account: Peti inviton
     change_password: Pasvorto
     checkbox_agreement_html: Mi samopinii al la <a href="%{rules_path}" target="_blank">Servo reguloj</a> kaj <a href="%{terms_path}" target="_blank">kondiĉo al servadon</a>
-    confirm_email: Konfirmi retadreson
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
@@ -538,6 +545,11 @@ eo:
     reset_password: Ŝanĝi pasvorton
     security: Sekureco
     set_new_password: Elekti novan pasvorton
+    setup:
+      title: Agordi
+    status:
+      account_status: Statuso de la konto
+      functional: Via konto estas plene funkcianta.
     trouble_logging_in: Ĝeni ensaluti?
   authorize_follow:
     already_following: Vi jam sekvas tiun konton
@@ -780,7 +792,10 @@ eo:
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
     other: Aliaj aferoj
+    posting_defaults: Afiŝadoj defaŭltoj
+    public_timelines: Publikaj templinioj
   relationships:
+    activity: Konto aktiveco
     dormant: Dormanta
     last_active: Lasta aktiva
     most_recent: Plej lasta
@@ -788,6 +803,9 @@ eo:
     mutual: Reciproka
     primary: Primara
     relationship: Rilato
+    remove_selected_domains: Forigi ĉiuj sekvantojn el la selektitajn domajnojn
+    remove_selected_followers: Forigi selektitajn sekvantojn
+    remove_selected_follows: Malsekvi selektitajn uzantojn
     status: Statuso de la konto
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
@@ -806,10 +824,6 @@ eo:
     reply:
       proceed: Konfirmi la respondon
       prompt: 'Vi volas respondi al ĉi tiu mesaĝo:'
-  remote_unfollow:
-    error: Eraro
-    title: Titolo
-    unfollowed: Ne plu sekvita
   scheduled_statuses:
     over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
     over_total_limit: Vi transpasis la limigon al %{limit} planitaj mesaĝoj

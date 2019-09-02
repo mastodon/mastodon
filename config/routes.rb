@@ -6,6 +6,8 @@ require 'sidekiq-scheduler/web'
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
+  root 'home#index'
+
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
   authenticate :user, lambda { |u| u.admin? } do
@@ -28,9 +30,16 @@ Rails.application.routes.draw do
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
 
+  resource :instance_actor, path: 'actor', only: [:show] do
+    resource :inbox, only: [:create], module: :activitypub
+  end
+
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
-    match '/auth/finish_signup' => 'auth/confirmations#finish_signup', via: [:get, :patch], as: :finish_signup
+
+    namespace :auth do
+      resource :setup, only: [:show, :update], controller: :setup
+    end
   end
 
   devise_for :users, path: 'auth', controllers: {
@@ -45,12 +54,6 @@ Rails.application.routes.draw do
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
-    resources :stream_entries, path: 'updates', only: [:show] do
-      member do
-        get :embed
-      end
-    end
-
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
@@ -58,8 +61,9 @@ Rails.application.routes.draw do
       member do
         get :activity
         get :embed
-        get :replies
       end
+
+      resources :replies, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts
@@ -146,16 +150,18 @@ Rails.application.routes.draw do
   get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
-  # Remote follow
-  resource :remote_unfollow, only: [:create]
   resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
 
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
 
-    resources :subscriptions, only: [:index]
-    resources :domain_blocks, only: [:new, :create, :show, :destroy]
+    resources :domain_allows, only: [:new, :create, :show, :destroy]
+    resources :domain_blocks, only: [:new, :create, :show, :destroy, :update] do
+      member do
+        get :edit
+      end
+    end
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
@@ -191,8 +197,6 @@ Rails.application.routes.draw do
 
     resources :accounts, only: [:index, :show] do
       member do
-        post :subscribe
-        post :unsubscribe
         post :enable
         post :unsilence
         post :unsuspend
@@ -245,28 +249,12 @@ Rails.application.routes.draw do
     end
 
     resources :account_moderation_notes, only: [:create, :destroy]
-
-    resources :tags, only: [:index] do
-      member do
-        post :hide
-        post :unhide
-      end
-    end
+    resources :tags, only: [:index, :show, :update]
   end
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)
 
   namespace :api do
-    # PubSubHubbub outgoing subscriptions
-    resources :subscriptions, only: [:show]
-    post '/subscriptions/:id', to: 'subscriptions#update'
-
-    # PubSubHubbub incoming subscriptions
-    post '/push', to: 'push#update', as: :push
-
-    # Salmon
-    post '/salmon/:id', to: 'salmon#update', as: :salmon
-
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
 
@@ -294,12 +282,10 @@ Rails.application.routes.draw do
 
         member do
           get :context
-          get :card
         end
       end
 
       namespace :timelines do
-        resource :direct, only: :show, controller: :direct
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
@@ -320,12 +306,12 @@ Rails.application.routes.draw do
 
       get '/search', to: 'search#index', as: :search
 
-      resources :follows,      only: [:create]
       resources :media,        only: [:create, :update]
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
       resources :reports,      only: [:create]
+      resources :trends,       only: [:index]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
 
@@ -341,6 +327,7 @@ Rails.application.routes.draw do
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
+      resource :directory, only: [:show]
 
       resources :follow_requests, only: [:index] do
         member do
@@ -352,7 +339,6 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
-          post :dismiss # Deprecated
         end
 
         member do
@@ -398,6 +384,29 @@ Rails.application.routes.draw do
       namespace :push do
         resource :subscription, only: [:create, :show, :update, :destroy]
       end
+
+      namespace :admin do
+        resources :accounts, only: [:index, :show] do
+          member do
+            post :enable
+            post :unsilence
+            post :unsuspend
+            post :approve
+            post :reject
+          end
+
+          resource :action, only: [:create], controller: 'account_actions'
+        end
+
+        resources :reports, only: [:index, :show] do
+          member do
+            post :assign_to_self
+            post :unassign
+            post :reopen
+            post :resolve
+          end
+        end
+      end
     end
 
     namespace :v2 do
@@ -417,14 +426,11 @@ Rails.application.routes.draw do
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get '/about',      to: 'about#show'
-  get '/about/more', to: 'about#more'
-  get '/terms',      to: 'about#terms'
+  get '/about',        to: 'about#show'
+  get '/about/more',   to: 'about#more'
+  get '/about/blocks', to: 'about#blocks'
+  get '/terms',        to: 'about#terms'
 
-  root 'home#index'
-
-  match '*unmatched_route',
-        via: :all,
-        to: 'application#raise_not_found',
-        format: false
+  match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
+  match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false
 end
