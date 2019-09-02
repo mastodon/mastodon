@@ -534,25 +534,76 @@ tr:
       decimal_units:
         format: "%n%u"
         units:
-          billion: M
+          billion: B
           million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
+    newer: Daha yeni
     next: Sonraki
+    older: Daha Eski
     prev: Önceki
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Bu ankete daha önce oy verdiniz
+      expired: Anket çoktan sona erdi
+      over_character_limit: her biri %{max} karakterden daha uzun olamaz
+      too_few_options: birden fazla öğeye sahip olmalı
+      too_many_options: '%{max} öğeden fazla öğe içeremez'
+  preferences:
+    other: Diğer
+  relationships:
+    activity: Hesap etkinliği
+    last_active: Son aktivite
+    most_recent: En son
   remote_follow:
     acct: Takip edeceğiniz kişiyi kullaniciadi@sunuculinki şeklinde giriniz
     missing_resource: Hesabınız için yönlendirme linki bulunamadı
     proceed: Takip onayı
     prompt: 'Bu kullanıcıyı takip etmek istediğinize emin misiniz?'
+  sessions:
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: GNU/Linux
+      mac: Mac
+      other: bilinmeyen platform
+      windows: Windows
+      windows_mobile: Windows Mobil
+      windows_phone: Windows Phone
+    revoke: İptal
+    revoke_success: Oturum başarıyla iptal edildi
+    title: Oturumlar
   settings:
+    account: Hesap
+    account_settings: Hesap ayarları
+    appearance: Görünüm
     authorized_apps: Yetkilendirilen uygulamalar
     back: Mastodon'a geri dön
+    delete: Hesap silme
+    development: Geliştirme
     edit_profile: Profili düzenle
     export: Dışa aktar
+    featured_tags: Öne çıkan hashtag'ler
+    identity_proofs: Kimlik belgesi
     import: İçe aktar
+    import_and_export: İçe al ve dışarı aktar
+    migrate: Hesap taşıma
+    notifications: Bildirim
     preferences: Tercihler
+    profile: Profil
+    relationships: Takip edilenler ve takipçiler
     two_factor_authentication: İki-faktörlü doğrulama
   statuses:
+    attached:
+      description: 'Ekli: %{attached}'
     open_in_web: Web sayfasında aç
     over_character_limit: '%{max} karakter limiti aşıldı'
     show_more: Daha fazla
