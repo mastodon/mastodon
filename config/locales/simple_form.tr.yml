@@ -3,12 +3,21 @@ tr:
     hints:
       admin_account_action:
         send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
+        type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
+        bot: Bu hesap temelde otomatik eylemler gerçekleştirir ve izlenmeyebilir
+        context: Filtrenin geçerli olması gereken bir veya daha fazla içerik
+        digest: Yalnızca uzun süre kullanılmadığında ve yalnızca yokluğunda kişisel mesajlar aldıysanız gönderilir
+        discoverable: Profil dizini, hesabınızın daha geniş bir kitleye ulaşmasının başka bir yoludur
+        email: Onay e-postası gönderilecek
         header: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir.
+        irreversible: Filtre uygulanmış gönderiler, filtre daha sonra çıkartılsa bile geri dönüşümsüz biçimde kaybolur
+        locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
         locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
+        password: En az 8 karakter kullanın
       imports:
         data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
       sessions:
