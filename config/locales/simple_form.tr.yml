@@ -18,11 +18,37 @@ tr:
         locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
         locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
         password: En az 8 karakter kullanın
+        setting_default_sensitive: Hassas medya varsayılan olarak gizlenir ve bir tıklama ile görüntülenebilir
+        setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
+        setting_display_media_hide_all: Tüm medyayı gizle
+        setting_display_media_show_all: Hassas olarak işaretlenmiş medyayı göster
+        setting_hide_network: Takip edilenler ve takipçiler profilinizde gösterilmeyecek
+        setting_noindex: Herkese açık profilinizi ve durum sayfalarınızı etkiler
+        username: Kullanıcı adınız %{domain} alanında benzersiz olacak
+        whole_word: Anahtar kelime veya kelime öbeği yalnızca alfasayısal olduğunda, yalnızca tüm sözcükle eşleşirse uygulanır
+      featured_tag:
+        name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
       imports:
         data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
+      invite_request:
+        text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
       sessions:
         otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
+      user:
+        chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki karakterler genel zaman çizelgelerinde görüntülenir
     labels:
+      account:
+        fields:
+          name: Etiket
+          value: İçerik
+      admin_account_action:
+        send_email_notification: E-postayla kullanıcıyı bilgilendir
+        text: Özel uyarı
+        type: Eylem
+        types:
+          disable: Devre dışı
+          none: Hiç birşey
+          silence: Sessiz
       defaults:
         avatar: Profil resmi
         confirm_new_password: Yeni parolanız (tekrar)
