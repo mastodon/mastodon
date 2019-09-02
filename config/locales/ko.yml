@@ -54,6 +54,7 @@ ko:
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
     network_hidden: 이 정보는 사용할 수 없습니다
+    never_active: 없음
     nothing_here: 아무 것도 없습니다!
     people_followed_by: '%{name} 님이 팔로우 중인 계정'
     people_who_follow: '%{name} 님을 팔로우 중인 계정'
@@ -645,10 +646,10 @@ ko:
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
-    '406': This page is not available in the requested format.
+    '406': 이 페이지는 요청한 자료형으로 제공되지 않습니다.
     '410': 당신이 보려는 페이지는 더이상 여기에 존재하지 않습니다.
     '422':
       content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
@@ -657,7 +658,7 @@ ko:
     '500':
       content: 죄송합니다, 뭔가 잘못 되었습니다.
       title: 이 페이지는 잘못되었습니다
-    '503': The page could not be served due to a temporary server failure.
+    '503': 이 페이지는 임시적인 서버 문제로 인해 제공 될 수 없습니다.
     noscript_html: 마스토돈을 사용하기 위해서는 자바스크립트를 켜 주십시오. 아니면 <a href="%{apps_path}">네이티브 앱</a> 중 하나를 사용할 수 있습니다.
   existing_username_validator:
     not_found: 해당 유저네임에 대한 로컬 유저를 찾을 수 없습니다
