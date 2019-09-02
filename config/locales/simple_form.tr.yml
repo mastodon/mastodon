@@ -49,24 +49,44 @@ tr:
           disable: Devre dışı
           none: Hiç birşey
           silence: Sessiz
+          suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
       defaults:
+        autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
+        bot: Bu bir bot hesabı
+        chosen_languages: Dilleri filtrele
         confirm_new_password: Yeni parolanız (tekrar)
         confirm_password: Parolanız (tekrar)
+        context: İçeriği filtrele
         current_password: Mevcut parolanız
         data: Dosya
         display_name: Görünen adınız
         email: E-posta adresiniz
+        fields: Profil Metaverisi
         header: Kapak resmi
         locale: Dil
         locked: Hesabımı kilitle
+        max_uses: Maksimum kullanım sayısı
         new_password: Yeni parolanız
         note: Kişisel bilgiler
         otp_attempt: İki-faktörlü kod
         password: Parolanız
+        phrase: Anahtar kelime veya kelime öbeği
+        setting_advanced_layout: Gelişmiş web arayüzünü etkinleştir
         setting_auto_play_gif: GIF'leri otomatik oynatt
         setting_boost_modal: Boost etmeden önce onay diyaloğu göster
         setting_default_privacy: Gönderi gizliliği
+        setting_default_sensitive: Her zaman hassas medya olarak işaretle
+        setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusunu göster
+        setting_display_media: Medya görünümü
+        setting_display_media_default: Varsayılan
+        setting_display_media_hide_all: Tümünü gizle
+        setting_display_media_show_all: Tümünü göster
+        setting_hide_network: Ağını gizle
+        setting_noindex: Arama motoru endekslemesini iptal et
+        setting_reduce_motion: Animasyonlarda hareketi azalt
+        setting_show_application: İçerik göndermek için kullanılan uygulamayı belirt
+        setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         severity: Zorluk
         type: Dosya türü
         username: Kullanıcı adınız
@@ -80,7 +100,14 @@ tr:
         follow_request: Biri bana takip isteği gönderdiğinde, bana e-posta gönder
         mention: Biri benden bahsettiğinde, bana e-posta gönder
         reblog: Biri durumumu paylaştığında, bana e-posta gönder
+        trending_tag: İncelenmemiş bir hashtag trend olduğunda e-posta gönder
+      tag:
+        listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
+        name: Hashtag
+        trendable: Bu etiketin trendlerin altında görünmesine izin ver
     'no': 'Hayır'
+    recommended: Önerilen
     required:
+      mark: "*"
       text: gerekli
     'yes': 'Evet'
