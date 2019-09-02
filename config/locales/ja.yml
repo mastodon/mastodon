@@ -53,6 +53,7 @@ ja:
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
+    never_active: 活動なし
     nothing_here: 何もありません！
     people_followed_by: '%{name} さんがフォロー中のアカウント'
     people_who_follow: '%{name} さんをフォロー中のアカウント'
@@ -644,10 +645,10 @@ ja:
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。
-    '406': This page is not available in the requested format.
+    '406': このページは要求された形式では利用できません。
     '410': お探しのページはもう存在しません。
     '422':
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
@@ -656,7 +657,7 @@ ja:
     '500':
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
-    '503': The page could not be served due to a temporary server failure.
+    '503': 一時的なサーバー障害のため利用することができません。
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
   existing_username_validator:
     not_found: そのようなユーザー名はローカルに見つかりませんでした
