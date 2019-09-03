@@ -7,7 +7,7 @@
 
 <% end %>
 <%= @warning.text %>
-<% unless @statuses&.empty? %>
+<% if !@statuses.nil? && !@statuses.empty? %>
 <%= t('user_mailer.warning.statuses') %>
 
 <% @statuses.each do |status| %>
