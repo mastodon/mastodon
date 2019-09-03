@@ -38,7 +38,7 @@
 .table-wrapper
   %table.table
     %tbody
-      - total = @usage_by_domain.sum(&:statuses_count).to_f
+      - total = @usage_by_domain.sum(&:last).to_f
 
       - @usage_by_domain.each do |(domain, count)|
         %tr
