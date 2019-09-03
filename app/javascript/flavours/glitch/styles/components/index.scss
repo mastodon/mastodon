@@ -1239,6 +1239,10 @@
     align-items: center;
   }
 
+  &--click-thru {
+    pointer-events: none;
+  }
+
   &--hidden {
     display: none;
   }
@@ -1269,8 +1273,6 @@
     }
 
     &:disabled {
-      cursor: not-allowed;
-
       .spoiler-button__overlay__label {
         background: rgba($base-overlay-background, 0.5);
       }
