@@ -104,6 +104,7 @@ da:
       inbox_url: Link til indbakke
       invited_by: Inviteret af
       ip: IP-adresse
+      joined: Tilmeldt den
       location:
         all: Alle
         local: Lokalt
@@ -243,6 +244,8 @@ da:
       week_interactions: interaktioner denne uge
       week_users_active: aktive denne uge
       week_users_new: brugere denne uge
+    domain_allows:
+      undo: Fjern fra hvidliste
     domain_blocks:
       add_new: Tilføj ny domain block
       created_msg: Domæne blokade bliver nu behandlet
@@ -258,6 +261,7 @@ da:
           suspend: Udeluk
         title: Ny domæne blokering
       private_comment: Privat kommentar
+      public_comment: Offentlig kommentar
       reject_media: Afvis medie filer
       reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
       reject_reports: Afvis anmeldelser
@@ -523,6 +527,8 @@ da:
       title: Siden er ikke korrekt
     '503': The page could not be served due to a temporary server failure.
     noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
+  existing_username_validator:
+    not_found_multiple: kunne ikke finde %{usernames}
   exports:
     archive_takeout:
       date: Dato
