@@ -57,6 +57,7 @@ de:
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     network_hidden: Diese Informationen sind nicht verfügbar
+    never_active: Nie
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -567,6 +568,10 @@ de:
     checkbox_agreement_without_rules_html: Ich stimme den <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a> zu
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
+    description:
+      prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von Mastodon beizutreten!"
+      prefix_sign_up: Melde dich heute bei Mastodon an!
+      suffix: Mit einem Konto kannst du Leuten folgen, Updates veröffentlichen und Nachrichten mit Benutzern von jedem Mastodon-Server austauschen und mehr!
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
@@ -624,6 +629,11 @@ de:
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
+    warning:
+      before: 'Bevor du fortfährst, lese bitte diese Punkte sorgfältig durch:'
+      caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können weiterhin bestehen
+      data_removal: Deine Beiträge und andere Daten werden dauerhaft entfernt
+      email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
   directories:
     directory: Profilverzeichnis
     explanation: Entdecke Benutzer_innen basierend auf deren Interessen
