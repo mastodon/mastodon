@@ -22,14 +22,18 @@
 #  application_id         :bigint(8)
 #  in_reply_to_account_id :bigint(8)
 #  poll_id                :bigint(8)
+#  deleted_at             :datetime
 #
 
 class Status < ApplicationRecord
   before_destroy :unlink_from_conversations
 
+  include Discard::Model
   include Paginable
   include Cacheable
   include StatusThreadingConcern
+
+  self.discard_column = :deleted_at
 
   # If `override_timestamps` is set at creation time, Snowflake ID creation
   # will be based on current time instead of `created_at`
@@ -72,7 +76,7 @@ class Status < ApplicationRecord
 
   accepts_nested_attributes_for :poll
 
-  default_scope { recent }
+  default_scope { recent.kept }
 
   scope :recent, -> { reorder(id: :desc) }
   scope :remote, -> { where(local: false).where.not(uri: nil) }
@@ -388,13 +392,16 @@ class Status < ApplicationRecord
     end
   end
 
+  def status_stat
+    super || build_status_stat
+  end
+
   private
 
   def update_status_stat!(attrs)
     return if marked_for_destruction? || destroyed?
 
-    record = status_stat || build_status_stat
-    record.update(attrs)
+    status_stat.update(attrs)
   end
 
   def store_uri

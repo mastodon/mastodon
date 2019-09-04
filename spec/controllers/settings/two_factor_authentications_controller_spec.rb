@@ -112,7 +112,8 @@ describe Settings::TwoFactorAuthenticationsController do
       end
 
       it 'raises ActionController::ParameterMissing if code is missing' do
-        expect { post :destroy }.to raise_error(ActionController::ParameterMissing)
+        post :destroy
+        expect(response).to have_http_status(400)
       end
     end
 

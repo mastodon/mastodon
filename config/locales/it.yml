@@ -42,6 +42,7 @@ it:
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
+    featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
     followers:
       one: Seguace
@@ -183,6 +184,7 @@ it:
       username: Nome utente
       warn: Avverti
       web: Web
+      whitelisted: Nella whitelist
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
@@ -250,10 +252,13 @@ it:
       feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Anteprima timeline
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
       open_reports: apri report
+      pending_tags: hashtag in attesa di essere esaminati
+      pending_users: utenti in attesa di essere esaminati
       recent_users: Utenti Recenti
       search: Ricerca testo intero
       single_user_mode: Modalita utente singolo
@@ -265,6 +270,12 @@ it:
       week_interactions: interazioni per questa settimana
       week_users_active: attivi questa settimana
       week_users_new: utenti questa settimana
+      whitelist_mode: Modalità whitelist
+    domain_allows:
+      add_new: Dominio nella whitelist
+      created_msg: Il dominio è stato inserito nella whitelist
+      destroyed_msg: Il dominio è stato eliminato dalla whitelist
+      undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
       created_msg: Il blocco del dominio sta venendo processato
@@ -280,6 +291,8 @@ it:
           silence: Silenzia
           suspend: Sospendi
         title: Nuovo blocco dominio
+      private_comment: Commento privato
+      public_comment: Commento pubblico
       reject_media: Rifiuta file media
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
@@ -322,6 +335,8 @@ it:
         all: Tutto
         limited: Limitato
         title: Moderazione
+      private_comment: Commento privato
+      public_comment: Commento pubblico
       title: Istanze conosciute
       total_blocked_by_us: Bloccato da noi
       total_followed_by_them: Seguito da loro
@@ -449,6 +464,9 @@ it:
         desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
         title: Termini di servizio personalizzati
       site_title: Nome del server
+      spam_check_enabled:
+        desc_html: Mastodon può silenziare e segnalare automaticamente account che inviano ripetutamente messaggi non richiesti. Potrebbero esserci falsi positivi.
+        title: Automazione anti-spam
       thumbnail:
         desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
         title: Thumbnail del server
@@ -456,6 +474,9 @@ it:
         desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
       title: Impostazioni sito
+      trends:
+        desc_html: Visualizza pubblicamente gli hashtag precedentemente esaminati che sono attualmente in tendenza
+        title: Hashtag di tendenza
     statuses:
       back_to_account: Torna alla pagina dell'account
       batch:
@@ -470,13 +491,13 @@ it:
       title: Gli status dell'account
       with_media: con media
     tags:
-      accounts: Account
-      hidden: Nascosto
-      hide: Nascondi dalla directory
-      name: Etichetta
+      accounts_today: Usi unici oggi
+      accounts_week: Usi unici questa settimana
+      breakdown: Suddivisione dell'utilizzo di oggi per fonte
+      context: Contesto
+      directory: Nella directory
       title: Hashtag
-      unhide: Mostra nella directory
-      visible: Visibile
+      updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
     warning_presets:
       add_new: Aggiungi nuovo
@@ -519,7 +540,7 @@ it:
     apply_for_account: Richiedi un invito
     change_password: Password
     checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
-    confirm_email: Conferma email
+    checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
@@ -539,6 +560,14 @@ it:
     reset_password: Resetta la password
     security: Credenziali
     set_new_password: Imposta una nuova password
+    setup:
+      email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
+      email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
+    status:
+      account_status: Stato dell'account
+      confirming: In attesa che la conferma e-mail sia completata.
+      functional: Il tuo account è pienamente operativo.
+      pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
     trouble_logging_in: Problemi di accesso?
   authorize_follow:
     already_following: Stai già seguendo questo account
@@ -583,6 +612,8 @@ it:
     people:
       one: "%{count} persona"
       other: "%{count} persone"
+  domain_validator:
+    invalid_domain: non è un nome di dominio valido
   errors:
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
@@ -617,6 +648,7 @@ it:
     add_new: Aggiungi nuovo
     errors:
       limit: Hai già messo in evidenza il numero massimo di hashtag
+    hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
       home: Timeline home
@@ -876,6 +908,8 @@ it:
     profile: Profilo
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
+  spam_check:
+    spam_detected_and_silenced: Questa è una segnalazione automatica. É stato rilevato dello spam e il mittente è stato automaticamente silenziato. Se fosse un errore, per favore annulla questa operazione sull'account.
   statuses:
     attached:
       description: 'Allegato: %{attached}'
@@ -917,6 +951,8 @@ it:
     pinned: Toot fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+  tags:
+    does_not_match_previous_name: non corrisponde al nome precedente
   terms:
     title: "%{instance} Termini di servizio e politica della privacy"
   themes:

@@ -5,12 +5,12 @@ class RSS::AccountSerializer
   include StatusesHelper
   include RoutingHelper
 
-  def render(account, statuses)
+  def render(account, statuses, tag)
     builder = RSSBuilder.new
 
     builder.title("#{display_name(account)} (@#{account.local_username_and_domain})")
            .description(account_description(account))
-           .link(ActivityPub::TagManager.instance.url_for(account))
+           .link(tag.present? ? short_account_tag_url(account, tag) : short_account_url(account))
            .logo(full_pack_url('media/images/logo.svg'))
            .accent_color('2b90d9')
 
@@ -33,7 +33,7 @@ class RSS::AccountSerializer
     builder.to_xml
   end
 
-  def self.render(account, statuses)
-    new.render(account, statuses)
+  def self.render(account, statuses, tag)
+    new.render(account, statuses, tag)
   end
 end

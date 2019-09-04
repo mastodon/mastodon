@@ -1,0 +1,153 @@
+---
+et:
+  simple_form:
+    hints:
+      account_warning_preset:
+        text: Te saate kasutada tuututuse süntaksi, näiteks URLe, silte ja mainimisi
+      admin_account_action:
+        send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
+        text_html: Valikuline. Te saate kasutada tuututuse süntaksi. Te saate <a href="%{path}">lisada hoiatuste eelseadistusi</a> aega säästmiseks
+        type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
+        warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
+      defaults:
+        autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad Teid
+        avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
+        bot: See konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
+        context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
+        digest: Saadetakse ainult pärast pikka perioodi tegevusetust ja ainult siis, kui Teile on saadetud privaatseid sõnumeid
+        discoverable_html: <a href="%{path}" target="_blank">Kataloog</a> aitab inimestel leida kontosi sarnaste huvide ja aktiivsuse alusel. Nõuab vähemalt %{min_followers} jälgijat
+        email: Teile saadetakse kinnituskiri e-posti teel
+        fields: Te saate oma profiilil tabelina kuvada kuni 4 asja
+        header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
+        inbox_url: Kopeerige soovitud relee avalehe URL
+        irreversible: Filtreeritud tuututused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
+        locale: Kasutajaliidese, e-kirjade ja push-teadete keel
+        locked: Nõuab käsitsi jälgijate kinnitamist
+        password: Sisestage vähemalt 8 tähemärki
+        phrase: Kattub olenemata tuututuse teksti suurtähtedest või sisuhoiatusest
+        scopes: Milliseid API-sid see rakendus tohib kasutada. Kui Te valite kõrgeima taseme, ei pea Te valima individuaalseid.
+        setting_aggregate_reblogs: Ära näita uusi upitusi tuututustele, mis on just hiljuti upitatud (ainult kehtib uutele upitusele)
+        setting_default_sensitive: Tundlik meedia on vaikimisi peidetud ning seda saab avada sellele klikkides
+        setting_display_media_default: Peida tundlikuks märgitud meedia
+        setting_display_media_hide_all: Alati peida kõik meedia
+        setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
+        setting_hide_network: Keda Te jälgite ja kes jägib Teid ei kuvata Teie profiilil
+        setting_noindex: Mõjutab Teie avalikku profiili ja staatuse lehekülgi
+        setting_show_application: Rakendus, mida kasutate tuututamiseks, kuvatakse tuututuste üksikasjade vaates
+        setting_use_blurhash: Värvid põhinevad peidetud visuaalidel, kuid hägustavad igasuguseid detaile
+        setting_use_pending_items: Peida ajajoone uuendused kliki taga selle asemel, et automaatselt kerida voogu
+        username: Teie kasutajanimi on %{domain}-il unikaalne
+        whole_word: Kui võtmesõna või fraas on ainult tähtnumbriline, rakendub see ainult siis, kui see kattub terve sõnaga
+      domain_allow:
+        domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
+      featured_tag:
+        name: 'Äkki soovite kasutada mõnda neist:'
+      imports:
+        data: CSV fail eksporditi teisest Mastodoni serverist
+      invite_request:
+        text: See aitab meil üle vaadata Teie taotlust
+      sessions:
+        otp: 'Sisesta kahesammulise autentimise kood loodud Teie mobiilirakenduse poolt või sisesta mõni taastuskood:'
+      tag:
+        name: Te saate ainult muuta tähtede tõstetust, näiteks selleks, et muuta seda rohkem loetavaks
+      user:
+        chosen_languages: Kui valitud, ainult valitud keeltes tuututused näidatakse avalikes ajajoontes
+    labels:
+      account:
+        fields:
+          name: Nimetus
+          value: Sisu
+      account_warning_preset:
+        text: Eelseadistatud tekst
+      admin_account_action:
+        send_email_notification: Teavita kasutajat e-posti teel
+        text: Hoiatus
+        type: Tegevus
+        types:
+          disable: Keela
+          none: Ära tee midagi
+          silence: Vaigista
+          suspend: Peata ja taastamatult kustuta konto andmed
+        warning_preset_id: Kasuta hoiatuse eelseadistust
+      defaults:
+        autofollow: Kutsu oma kontot jälgima
+        avatar: Profiilipilt
+        bot: See konto on robot
+        chosen_languages: Filtreeri keeli
+        confirm_new_password: Kinnita uus salasõna
+        confirm_password: Kinnita salasõna
+        context: Filtreeri kontekste
+        current_password: Kehtiv salasõna
+        data: Andmed
+        discoverable: Lisage see konto kataloogi
+        display_name: Kuvanimi
+        email: E-posti aadress
+        expires_in: Aegu pärast
+        fields: Profiili metaandmed
+        header: Päis
+        inbox_url: Relee sisendkausta URL
+        irreversible: Kustuta selle asemel, et peita
+        locale: Kasutajaliidese keel
+        locked: Lukusta konto
+        max_uses: Maksimum kasutajate arv
+        new_password: Uus salasõna
+        note: Elulugu
+        otp_attempt: Kahesammulise autentimise kood
+        password: Salasõna
+        phrase: Võtmesõna või fraas
+        setting_advanced_layout: Aktiveeri arenenud veebiliides
+        setting_aggregate_reblogs: Grupita upitused ajajoontes
+        setting_auto_play_gif: Mängi GIF-e automaatselt
+        setting_boost_modal: Näita kinnitusdialoogi enne upitamist
+        setting_default_language: Postituse keel
+        setting_default_privacy: Postituse privaatsus
+        setting_default_sensitive: Alati märgista meedia tundlikuks
+        setting_delete_modal: Näita kinnitusdialoogi enne tuututuse kustutamist
+        setting_display_media: Meedia kuvarežiim
+        setting_display_media_default: Vaikimisi
+        setting_display_media_hide_all: Peida kõik
+        setting_display_media_show_all: Kuva kõik
+        setting_expand_spoilers: Alati laienda sisuhoiatustega tuututused
+        setting_hide_network: Peida oma võrk
+        setting_noindex: Keeldu otsingumootorite indekseerimistest
+        setting_reduce_motion: Vähenda liikumist animatsioonides
+        setting_show_application: Avalikusta tuututuste saatmisel kasutatud rakendused
+        setting_system_font_ui: Kasuta süsteemi vaikefonti
+        setting_theme: Saidi teema
+        setting_trends: Näita tänaseid trende
+        setting_unfollow_modal: Näita kinnitusdialoogi enne jälgimise eemaldamist
+        setting_use_blurhash: Näita peidetud meedia asemel värvilist pilti
+        setting_use_pending_items: Aeglane režiim
+        severity: Tõsidus
+        type: Impordi tüüp
+        username: Kasutajanimi
+        username_or_email: Kasutajanimi või e-post
+        whole_word: Terve sõna
+      featured_tag:
+        name: Silt
+      interactions:
+        must_be_follower: Keela teavitused mittejälgijatelt
+        must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi
+        must_be_following_dm: Keela privaatsõnumid kasutajatelt, keda sa ei jälgi
+      invite_request:
+        text: Miks Te soovite liituda?
+      notification_emails:
+        digest: Saada ülevaatlike e-kirju
+        favourite: Saada e-kiri, kui keegi lisab teie staatuse lemmikuks
+        follow: Saada e-kiri, kui keegi alustab Teie jälgimist
+        follow_request: Saada e-kiri, kui keegi soovib Teid jälgida
+        mention: Saada e-kiri, kui keegi mainib Teid
+        pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust
+        reblog: Saada e-kiri, kui keegi upitab Teie staatust
+        report: Saada e-kiri, kui esitatud on uus teavitus
+        trending_tag: Saada e-kiri, kui ülevaatamata silt trendib
+      tag:
+        listable: Luba sellel sildil ilmuda profiilide kataloogis
+        trendable: Luba sellel sildil trendida
+        usable: Luba tuututustel seda silti kasutada
+    'no': Ei
+    recommended: Soovituslik
+    required:
+      mark: "*"
+      text: kohustuslik
+    'yes': Jah

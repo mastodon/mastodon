@@ -314,11 +314,15 @@ module Mastodon
 
     desc 'follow ACCT', 'Make all local accounts follow account specified by ACCT'
     long_desc <<-LONG_DESC
-      Make all local accounts follow an account specified by ACCT. ACCT can be
-      a simple username, in case of a local user. It can also be in the format
-      username@domain, in case of a remote user.
+      Make all local accounts follow another local account specified by ACCT.
+      ACCT should be the username only.
     LONG_DESC
     def follow(acct)
+      if acct.include? '@'
+        say('Target account name should not contain a target instance, since it has to be a local account.', :red)
+        exit(1)
+      end
+
       target_account = ResolveAccountService.new.call(acct)
       processed      = 0
       failed         = 0

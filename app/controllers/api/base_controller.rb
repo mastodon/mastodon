@@ -14,6 +14,8 @@ class Api::BaseController < ApplicationController
 
   protect_from_forgery with: :null_session
 
+  skip_around_action :set_locale
+
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
   end
@@ -32,6 +34,14 @@ class Api::BaseController < ApplicationController
 
   rescue_from Mastodon::NotPermittedError do
     render json: { error: 'This action is not allowed' }, status: 403
+  end
+
+  rescue_from Mastodon::RaceConditionError do
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+  end
+
+  rescue_from ActionController::ParameterMissing do |e|
+    render json: { error: e.to_s }, status: 400
   end
 
   def doorkeeper_unauthorized_render_options(error: nil)

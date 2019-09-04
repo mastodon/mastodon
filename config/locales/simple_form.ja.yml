@@ -35,6 +35,7 @@ ja:
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_show_application: トゥートするのに使用したアプリがトゥートの詳細ビューに表示されるようになります
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
+        setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
         username: あなたのユーザー名は %{domain} の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       featured_tag:
@@ -45,6 +46,8 @@ ja:
         text: このサーバーは現在承認制です。申請を承認する際に役立つメッセージを添えてください
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
+      tag:
+        name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語のトゥートのみが公開タイムラインに表示されるようになります
     labels:
@@ -109,8 +112,10 @@ ja:
         setting_show_application: 送信したアプリを開示する
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
+        setting_trends: 本日のトレンドタグを表示する
         setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
         setting_use_blurhash: 非表示のメディアを色付きのぼかしで表示する
+        setting_use_pending_items: 手動更新モード
         severity: 重大性
         type: インポートする項目
         username: ユーザー名
@@ -133,6 +138,11 @@ ja:
         pending_account: 新しいアカウントの承認が必要な時にメールで通知する
         reblog: トゥートがブーストされた時にメールで通知する
         report: 通報を受けた時にメールで通知する
+        trending_tag: 未審査のハッシュタグが人気の時にメールで通知する
+      tag:
+        listable: 検索とディレクトリへの使用を許可する
+        trendable: トレンドへの表示を許可する
+        usable: トゥートへの使用を許可する
     'no': いいえ
     recommended: おすすめ
     required:

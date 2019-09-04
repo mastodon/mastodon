@@ -61,6 +61,7 @@ class SuspendAccountService < BaseService
     return if !@account.local? || @account.user.nil?
 
     if @options[:including_user]
+      @options[:destroy] = true if !@account.user_confirmed? || @account.user_pending?
       @account.user.destroy
     else
       @account.user.disable!

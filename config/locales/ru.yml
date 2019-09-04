@@ -119,7 +119,7 @@ ru:
       followers: Подписчики
       followers_url: URL подписчиков
       follows: Подписки
-      header: Заголовок
+      header: Шапка
       inbox_url: URL входящих
       invited_by: Приглашение выдал(а)
       ip: IP
@@ -171,6 +171,7 @@ ru:
         moderator: Модератор
         staff: Персонал
         user: Пользователь
+      salmon_url: Страница Salmon
       search: Поиск
       shared_inbox_url: URL общих входящих
       show:
@@ -181,6 +182,7 @@ ru:
       statuses: Статусы
       subscribe: Подписаться
       suspended: Заморожен
+      time_in_queue: Ожидание в очереди %{time}
       title: Аккаунты
       unconfirmed_email: Неподтверждённый e-mail
       undo_silenced: Снять глушение
@@ -189,6 +191,7 @@ ru:
       username: Имя пользователя
       warn: Предупредить
       web: Веб
+      whitelisted: В белом списке
     action_logs:
       actions:
         assigned_to_self_report: "%{name} назначил(а) жалобу %{target} на себя"
@@ -256,10 +259,13 @@ ru:
       feature_profile_directory: Каталог профилей
       feature_registrations: Регистрация
       feature_relay: Ретрансляторы
+      feature_spam_check: Анти-спам
       feature_timeline_preview: Предпросмотр ленты
       features: Возможности
       hidden_service: Федерация со скрытыми сервисами
       open_reports: открытых жалоб
+      pending_tags: хэштеги, ожидающие проверки
+      pending_users: пользователи, ожидающие проверки
       recent_users: Недавние пользователи
       search: Полнотекстовый поиск
       single_user_mode: Однопользовательский режим
@@ -271,11 +277,17 @@ ru:
       week_interactions: взаимодействий на этой неделе
       week_users_active: активно на этой неделе
       week_users_new: пользователей на этой неделе
+      whitelist_mode: Белый список
+    domain_allows:
+      created_msg: Домен добавлен в белый список
+      destroyed_msg: Домен убран из белого списка
+      undo: Убрать из белого списка
     domain_blocks:
       add_new: Заблокировать домен
       created_msg: Блокировка домена обрабатывается
       destroyed_msg: Блокировка домена снята
       domain: Домен
+      edit: Редактировать блокировку
       new:
         create: Создать блокировку
         hint: Блокировка домена не предотвратит создание новых аккаунтов в базе данных, но ретроактивно и автоматически применит указанные методы модерации для этих аккаунтов.
@@ -285,6 +297,8 @@ ru:
           silence: Глушение
           suspend: Блокировка
         title: Новая доменная блокировка
+      private_comment: Приватный комментарий
+      public_comment: Публичный комментарий
       reject_media: Запретить медиаконтент
       reject_media_hint: Удаляет локально хранимый медиаконтент и запрещает его загрузку в будущем. Не имеет значения в случае блокировки.
       reject_reports: Отклонять жалобы
@@ -458,6 +472,8 @@ ru:
         desc_html: Вы можете добавить сюда собственную политику конфиденциальности, пользовательское соглашение и другие документы. Можно использовать теги HTML
         title: Условия использования
       site_title: Название сайта
+      spam_check_enabled:
+        title: Анти-спам
       thumbnail:
         desc_html: Используется для предпросмотра с помощью OpenGraph и API. Рекомендуется разрешение 1200x630px
         title: Картинка узла
@@ -479,13 +495,7 @@ ru:
       title: Статусы аккаунта
       with_media: С медиаконтентом
     tags:
-      accounts: Аккаунты
-      hidden: Скрыты
-      hide: Скрыть из каталога
-      name: Хэштег
       title: Хэштеги
-      unhide: Показывать в каталоге
-      visible: Видны
     title: Администрирование
     warning_presets:
       add_new: Добавить
@@ -523,7 +533,6 @@ ru:
     apply_for_account: Запросить приглашение
     change_password: Пароль
     checkbox_agreement_html: Я соглашаюсь с <a href="%{rules_path}" target="_blank">правилами сервера</a> и <a href="%{terms_path}" target="_blank">Условиями использования</a>
-    confirm_email: Подтвердите email
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
@@ -532,7 +541,7 @@ ru:
     login: Войти
     logout: Выйти
     migrate_account: Перенести аккаунт
-    migrate_account_html: Если Вы хотите перенести этот аккаунт на другой, вы можете <a href="%{path}">сделать это здесь</a>.
+    migrate_account_html: Если вы хотите перенаправить подписчиков на другой аккаунт, это можно <a href="%{path}">настроить здесь</a>.
     or_log_in_with: Или войти с помощью
     providers:
       cas: CAS

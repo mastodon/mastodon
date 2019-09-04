@@ -24,6 +24,9 @@ cs:
     generic_description: "%{domain} je jedním ze serverů v síti"
     get_apps: Vyzkoušejte mobilní aplikaci
     hosted_on: Mastodon na adrese %{domain}
+    instance_actor_flash: |
+      Tento účet je virtuální aktér, který představuje server samotný a ne jedotlivého uživatele.
+      Používá se pro účely federace a nesmí být blokován, pokud nechcete blokovat celý server. V tomto případě použijte doménovou blokaci.
     learn_more: Zjistit více
     privacy_policy: Zásady soukromí
     see_whats_happening: Podívejte se, co se děje
@@ -258,6 +261,7 @@ cs:
       feature_profile_directory: Adresář profilů
       feature_registrations: Registrace
       feature_relay: Federovací most
+      feature_spam_check: Antispam
       feature_timeline_preview: Náhled časové osy
       features: Vlastnosti
       hidden_service: Federace se skrytými službami
@@ -461,6 +465,9 @@ cs:
         desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či jiné legality. Můžete použít HTML značky
         title: Vlastní podmínky používání
       site_title: Název serveru
+      spam_check_enabled:
+        desc_html: Mastodon může automaticky utišovat a nahlašovat účty podle opatření, jako například detekování účtů, které odesílají opakované nevyžadované zprávy. Mohou se najít špatné shody.
+        title: Antispam
       thumbnail:
         desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučuje se rozlišení 1200x630px
         title: Miniatura serveru
@@ -482,13 +489,7 @@ cs:
       title: Tooty účtu
       with_media: S médii
     tags:
-      accounts: Účty
-      hidden: Skryté
-      hide: Skrýt z adresáře
-      name: Hashtag
       title: Hashtagy
-      unhide: Zobrazit v adresáři
-      visible: Viditelné
     title: Administrace
     warning_presets:
       add_new: Přidat nové
@@ -529,7 +530,6 @@ cs:
     apply_for_account: Vyžádat si pozvánku
     change_password: Heslo
     checkbox_agreement_html: Souhlasím s <a href="%{rules_path}" target="_blank">pravidly serveru</a> a <a href="%{terms_path}" target="_blank">podmínkami používání</a>
-    confirm_email: Potvrdit e-mail
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádán/a o potvrzení.
     didnt_get_confirmation: Neobdržel/a jste pokyny pro potvrzení?
@@ -549,6 +549,14 @@ cs:
     reset_password: Obnovit heslo
     security: Zabezpečení
     set_new_password: Nastavit nové heslo
+    setup:
+      email_below_hint_html: Pokud je níže uvedená e-mailová adresa nesprávná, můžete ji změnit zde a obdržet nový potvrzovací e-mail.
+      email_settings_hint_html: Potvrzovací e-mail byl odeslán na %{email}. Pokud je tato adresa nesprávná, můžete ji změnit v nastavení účtu.
+      title: Nastavení
+    status:
+      account_status: Stav účtu
+      confirming: Čekám na dokončení potvrzení e-mailu.
+      pending: Váš požadavek čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
     trouble_logging_in: Problémy s přihlašováním?
   authorize_follow:
     already_following: Tento účet již sledujete
@@ -896,6 +904,8 @@ cs:
     profile: Profil
     relationships: Sledovaní a sledující
     two_factor_authentication: Dvoufázové ověřování
+  spam_check:
+    spam_detected_and_silenced: Tohle je automtické nahlášení. Byl detekován spam a jeho odesílatel byl automaticky utišen. Pokud je tohle chyba, prosím odtište tento účet.
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'

@@ -15,9 +15,11 @@ import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
 import { fetchFilters } from '../../actions/filters';
 import { clearHeight } from '../../actions/height_cache';
+import { focusApp, unfocusApp } from 'mastodon/actions/app';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
+import DocumentTitle from './components/document_title';
 import {
   Compose,
   Status,
@@ -45,6 +47,7 @@ import {
   PinnedStatuses,
   Lists,
   Search,
+  Directory,
 } from './util/async-components';
 import { me, forceSingleColumn } from '../../initial_state';
 import { previewState as previewMediaState } from './components/media_modal';
@@ -139,14 +142,24 @@ class SwitchingColumnsArea extends React.PureComponent {
     return location.state !== previewMediaState && location.state !== previewVideoState;
   }
 
-  handleResize = debounce(() => {
+  handleLayoutChange = debounce(() => {
     // The cached heights are no longer accurate, invalidate
     this.props.onLayoutChange();
-
-    this.setState({ mobile: isMobile(window.innerWidth) });
   }, 500, {
     trailing: true,
-  });
+  })
+
+  handleResize = () => {
+    const mobile = isMobile(window.innerWidth);
+
+    if (mobile !== this.state.mobile) {
+      this.handleLayoutChange.cancel();
+      this.props.onLayoutChange();
+      this.setState({ mobile });
+    } else {
+      this.handleLayoutChange();
+    }
+  }
 
   setRef = c => {
     this.node = c.getWrappedInstance();
@@ -176,6 +189,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute path='/search' component={Search} content={children} />
+          <WrappedRoute path='/directory' component={Directory} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute path='/statuses/new' component={Compose} content={children} />
           <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
@@ -226,7 +240,7 @@ class UI extends React.PureComponent {
     draggingOver: false,
   };
 
-  handleBeforeUnload = (e) => {
+  handleBeforeUnload = e => {
     const { intl, isComposing, hasComposingText, hasMediaAttachments } = this.props;
 
     if (isComposing && (hasComposingText || hasMediaAttachments)) {
@@ -235,6 +249,14 @@ class UI extends React.PureComponent {
       // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
     }
+  }
+
+  handleWindowFocus = () => {
+    this.props.dispatch(focusApp());
+  }
+
+  handleWindowBlur = () => {
+    this.props.dispatch(unfocusApp());
   }
 
   handleLayoutChange = () => {
@@ -314,6 +336,8 @@ class UI extends React.PureComponent {
   }
 
   componentWillMount () {
+    window.addEventListener('focus', this.handleWindowFocus, false);
+    window.addEventListener('blur', this.handleWindowBlur, false);
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
 
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -343,7 +367,10 @@ class UI extends React.PureComponent {
   }
 
   componentWillUnmount () {
+    window.removeEventListener('focus', this.handleWindowFocus);
+    window.removeEventListener('blur', this.handleWindowBlur);
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
+
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
@@ -502,6 +529,7 @@ class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+          <DocumentTitle />
         </div>
       </HotKeys>
     );

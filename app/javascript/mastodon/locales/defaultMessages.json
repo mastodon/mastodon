@@ -8,6 +8,14 @@
       {
         "defaultMessage": "An unexpected error occurred.",
         "id": "alert.unexpected.message"
+      },
+      {
+        "defaultMessage": "Rate limited",
+        "id": "alert.rate_limited.title"
+      },
+      {
+        "defaultMessage": "Please retry after {retry_time, time, medium}.",
+        "id": "alert.rate_limited.message"
       }
     ],
     "path": "app/javascript/mastodon/actions/alerts.json"
@@ -70,6 +78,15 @@
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{count} per week",
+        "id": "autosuggest_hashtag.per_week"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/autosuggest_hashtag.json"
   },
   {
     "descriptors": [
@@ -181,6 +198,10 @@
       {
         "defaultMessage": "Toggle visibility",
         "id": "media_gallery.toggle_visible"
+      },
+      {
+        "defaultMessage": "Not available",
+        "id": "status.uncached_media_warning"
       },
       {
         "defaultMessage": "Sensitive content",
@@ -578,6 +599,10 @@
         "id": "account.follow"
       },
       {
+        "defaultMessage": "Cancel follow request",
+        "id": "account.cancel_follow_request"
+      },
+      {
         "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
@@ -731,6 +756,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Play",
+        "id": "video.play"
+      },
+      {
+        "defaultMessage": "Pause",
+        "id": "video.pause"
+      },
+      {
+        "defaultMessage": "Mute sound",
+        "id": "video.mute"
+      },
+      {
+        "defaultMessage": "Unmute sound",
+        "id": "video.unmute"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/audio/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Blocked users",
         "id": "column.blocks"
       },
@@ -804,6 +850,10 @@
       {
         "defaultMessage": "Muted words",
         "id": "navigation_bar.filters"
+      },
+      {
+        "defaultMessage": "Logout",
+        "id": "navigation_bar.logout"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/action_bar.json"
@@ -1073,28 +1123,37 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Uploading...",
+        "defaultMessage": "Uploading…",
         "id": "upload_progress.label"
       }
     ],
-    "path": "app/javascript/mastodon/features/compose/components/upload_progress.json"
+    "path": "app/javascript/mastodon/features/compose/components/upload_form.json"
   },
   {
     "descriptors": [
-      {
-        "defaultMessage": "Describe for the visually impaired",
-        "id": "upload_form.description"
-      },
       {
         "defaultMessage": "Delete",
         "id": "upload_form.undo"
       },
       {
-        "defaultMessage": "Crop",
-        "id": "upload_form.focus"
+        "defaultMessage": "Edit",
+        "id": "upload_form.edit"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/upload.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/containers/navigation_container.json"
   },
   {
     "descriptors": [
@@ -1184,6 +1243,14 @@
       {
         "defaultMessage": "Compose new toot",
         "id": "navigation_bar.compose"
+      },
+      {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/index.json"
@@ -1200,6 +1267,76 @@
       }
     ],
     "path": "app/javascript/mastodon/features/direct_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      },
+      {
+        "defaultMessage": "Awaiting approval",
+        "id": "account.requested"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Are you sure you want to unfollow {name}?",
+        "id": "confirmations.unfollow.message"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Followers",
+        "id": "account.followers"
+      },
+      {
+        "defaultMessage": "Never",
+        "id": "account.never_active"
+      },
+      {
+        "defaultMessage": "Last active",
+        "id": "account.last_status"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/directory/components/account_card.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Browse profiles",
+        "id": "column.directory"
+      },
+      {
+        "defaultMessage": "Recently active",
+        "id": "directory.recently_active"
+      },
+      {
+        "defaultMessage": "New arrivals",
+        "id": "directory.new_arrivals"
+      },
+      {
+        "defaultMessage": "From {domain} only",
+        "id": "directory.local"
+      },
+      {
+        "defaultMessage": "From known fediverse",
+        "id": "directory.federated"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/directory/index.json"
   },
   {
     "descriptors": [
@@ -1291,6 +1428,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/following/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Trending now",
+        "id": "trends.trending_now"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/getting_started/components/trends.json"
   },
   {
     "descriptors": [
@@ -1425,6 +1571,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Basic",
+        "id": "home.column_settings.basic"
+      },
       {
         "defaultMessage": "Show boosts",
         "id": "home.column_settings.show_reblogs"
@@ -1805,14 +1955,6 @@
       {
         "defaultMessage": "Push notifications",
         "id": "notifications.column_settings.push"
-      },
-      {
-        "defaultMessage": "Basic",
-        "id": "home.column_settings.basic"
-      },
-      {
-        "defaultMessage": "Update in real-time",
-        "id": "home.column_settings.update_live"
       },
       {
         "defaultMessage": "Quick filter bar",
@@ -2224,6 +2366,47 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Apply",
+        "id": "upload_modal.apply"
+      },
+      {
+        "defaultMessage": "A quick brown fox jumps over the lazy dog",
+        "id": "upload_modal.description_placeholder"
+      },
+      {
+        "defaultMessage": "Edit media",
+        "id": "upload_modal.edit_media"
+      },
+      {
+        "defaultMessage": "Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.",
+        "id": "upload_modal.hint"
+      },
+      {
+        "defaultMessage": "Describe for the visually impaired",
+        "id": "upload_form.description"
+      },
+      {
+        "defaultMessage": "Analyzing picture…",
+        "id": "upload_modal.analyzing_picture"
+      },
+      {
+        "defaultMessage": "Detect text from picture",
+        "id": "upload_modal.detect_text"
+      },
+      {
+        "defaultMessage": "Preview ({ratio})",
+        "id": "upload_modal.preview_label"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/focal_point_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Follow requests",
         "id": "navigation_bar.follow_requests"
       }
@@ -2232,6 +2415,14 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
+      },
       {
         "defaultMessage": "Invite people",
         "id": "getting_started.invite"
@@ -2348,16 +2539,16 @@
         "id": "navigation_bar.lists"
       },
       {
+        "defaultMessage": "Profile directory",
+        "id": "getting_started.directory"
+      },
+      {
         "defaultMessage": "Preferences",
         "id": "navigation_bar.preferences"
       },
       {
         "defaultMessage": "Follows and followers",
         "id": "navigation_bar.follows_and_followers"
-      },
-      {
-        "defaultMessage": "Profile directory",
-        "id": "navigation_bar.profile_directory"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/navigation_panel.json"

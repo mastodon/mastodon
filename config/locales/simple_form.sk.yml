@@ -34,8 +34,11 @@ sk:
         setting_hide_network: Koho následuješ, a kto následuje teba, nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
         setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v podrobnom náhľade jednotlivých tvojích príspevkov
+        setting_use_pending_items: Skry aktualizovanie časovej osi tak, aby bola načitávaná iba po kliknutí, namiesto samostatného posúvania
         username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
+      domain_allow:
+        domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
       featured_tag:
         name: 'Možno by si chcel/a použiť niektoré z týchto:'
       imports:
@@ -101,15 +104,17 @@ sk:
         setting_display_media_default: Štandard
         setting_display_media_hide_all: Ukry všetky
         setting_display_media_show_all: Ukáž všetky
-        setting_expand_spoilers: Stále rozbaľ príspevky označené varovaním o obsahu
+        setting_expand_spoilers: Stále rozbaľ príspevky označené varovaním o chúlostivom obsahu
         setting_hide_network: Ukry svoju sieť kontaktov
         setting_noindex: Nezaraďuj príspevky do indexu pre vyhľadávče
         setting_reduce_motion: Mierni pohyb pri animáciách
         setting_show_application: Zverejni akú aplikáciu používaš na posielanie príspevkov
         setting_system_font_ui: Použi základné systémové písmo
         setting_theme: Vzhľad webu
+        setting_trends: Ukáž dnešné trendy
         setting_unfollow_modal: Vyžaduj potvrdenie pred skončením sledovania iného užívateľa
         setting_use_blurhash: Ukáž farebné prechody pre skryté médiá
+        setting_use_pending_items: Pomalý režim
         severity: Závažnosť
         type: Typ importu
         username: Prezývka
@@ -132,6 +137,11 @@ sk:
         pending_account: Zaslať email, ak treba prehodnotiť nový účet
         reblog: Zaslať email, ak niekto re-tootne tvoj príspevok
         report: Zaslať email, ak niekto podá nové nahlásenie
+        trending_tag: Pošli email, ak sa neoverený haštag stane populárnym
+      tag:
+        listable: Povoľ zobrazovanie tohto haštagu v zozname profilov
+        trendable: Povoľ zobrazovanie tohto haštagu medzi trendujúcimi
+        usable: Povoľ používanie tohto haštagu v príspevkoch
     'no': Nie
     recommended: Odporúčané
     required:

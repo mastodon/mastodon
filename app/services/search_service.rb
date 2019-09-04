@@ -52,15 +52,15 @@ class SearchService < BaseService
     preloaded_relations = relations_map_for_account(@account, account_ids, account_domains)
 
     results.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
-  rescue Faraday::ConnectionFailed
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
     []
   end
 
   def perform_hashtags_search!
-    Tag.search_for(
-      @query.gsub(/\A#/, ''),
-      @limit,
-      @offset
+    TagSearchService.new.call(
+      @query,
+      limit: @limit,
+      offset: @offset
     )
   end
 

@@ -45,6 +45,8 @@ en:
     what_is_mastodon: What is Mastodon?
   accounts:
     choices_html: "%{name}'s choices:"
+    endorsements_hint: You can endorse people you follow from the web interface, and they will show up here.
+    featured_tags_hint: You can feature specific hashtags that will be displayed here.
     follow: Follow
     followers:
       one: Follower
@@ -56,6 +58,7 @@ en:
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
+    never_active: Never
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
@@ -421,6 +424,13 @@ en:
       custom_css:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
+      domain_blocks:
+        all: To everyone
+        disabled: To no one
+        title: Show domain blocks
+        users: To logged-in local users
+      domain_blocks_rationale:
+        title: Show rationale
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
@@ -490,6 +500,7 @@ en:
         delete: Delete
         nsfw_off: Mark as not sensitive
         nsfw_on: Mark as sensitive
+      deleted: Deleted
       failed_to_execute: Failed to execute
       media:
         title: Media
@@ -558,6 +569,10 @@ en:
     checkbox_agreement_without_rules_html: I agree to the <a href="%{terms_path}" target="_blank">terms of service</a>
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
+    description:
+      prefix_invited_by_user: "@%{name} invites you to join this server of Mastodon!"
+      prefix_sign_up: Sign up on Mastodon today!
+      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
@@ -611,28 +626,49 @@ en:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Nice try, hackers! Incorrect password
+    bad_password_msg: The password you entered was incorrect
     confirm_password: Enter your current password to verify your identity
-    description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
     proceed: Delete account
     success_msg: Your account was successfully deleted
-    warning_html: Only deletion of content from this particular server is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
-    warning_title: Disseminated content availability
+    warning:
+      before: 'Before proceeding, please read these notes carefully:'
+      caches: Content that has been cached by other servers may persist
+      data_removal: Your posts and other data will be permanently removed
+      email_change_html: You can <a href="%{path}">change your e-mail address</a> without deleting your account
+      email_contact_html: If it still doesn't arrive, you can e-mail <a href="mailto:%{email}">%{email}</a> for help
+      email_reconfirmation_html: If you are not receiving the confirmation e-mail, you can <a href="%{path}">request it again</a>
+      irreversible: You will not be able to restore or reactivate your account
+      more_details_html: For more details, see the <a href="%{terms_path}">privacy policy</a>.
+      username_available: Your username will become available again
+      username_unavailable: Your username will remain unavailable
   directories:
     directory: Profile directory
-    enabled: You are currently listed in the directory.
-    enabled_but_waiting: You have opted-in to be listed in the directory, but you do not have the minimum number of followers (%{min_followers}) to be listed yet.
     explanation: Discover users based on their interests
     explore_mastodon: Explore %{title}
-    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
-    people:
-      one: "%{count} person"
-      other: "%{count} people"
+  domain_blocks:
+    blocked_domains: List of limited and blocked domains
+    description: This is the list of servers that %{instance} limits or reject federation with.
+    domain: Domain
+    media_block: Media block
+    no_domain_blocks: "(No domain blocks)"
+    severity: Severity
+    severity_legend:
+      media_block: Media files coming from the server are neither fetched, stored, or displayed to the user.
+      silence: Accounts from silenced servers can be found, followed and interacted with, but their toots will not appear in the public timelines, and notifications from them will not reach local users who are not following them.
+      suspension: No content from suspended servers is stored or displayed, nor is any content sent to them. Interactions from suspended servers are ignored.
+      suspension_disclaimer: Suspended servers may occasionally retrieve public content from this server.
+      title: Severities
+    show_rationale: Show rationale
+    silence: Silence
+    suspension: Suspension
+    title: "%{instance} List of blocked instances"
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
       content: Security verification failed. Are you blocking cookies?
@@ -641,6 +677,7 @@ en:
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
@@ -664,6 +701,7 @@ en:
     add_new: Add new
     errors:
       limit: You have already featured the maximum amount of hashtags
+    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
       home: Home timeline
@@ -684,6 +722,7 @@ en:
     developers: Developers
     more: More…
     resources: Resources
+    trending_now: Trending now
   generic:
     all: All
     changes_saved_msg: Changes successfully saved!
@@ -1086,7 +1125,9 @@ en:
         disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
         silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
         suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+      get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
       review_server_policies: Review server policies
+      statuses: 'Specifically, for:'
       subject:
         disable: Your account %{acct} has been frozen
         none: Warning for %{acct}
