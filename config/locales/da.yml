@@ -5,6 +5,7 @@ da:
     about_this: Om
     active_count_after: aktive
     administered_by: 'Administreret af:'
+    api: API
     apps: Apps til mobilen
     apps_platforms: Brug Mastodon på iOS, Android og andre platformer
     contact: Kontakt
@@ -322,6 +323,7 @@ da:
       pending: Venter på godkendelse fra relæet
       save_and_enable: Gem og aktiver
       setup: Opsæt en videresendelses forbindelse
+      status: Status
       title: Videresendelser
     report_notes:
       created_msg: Anmeldelse note blev oprettet!
@@ -351,6 +353,7 @@ da:
       reported_by: Anmeldt af
       resolved: Løst
       resolved_msg: Anmeldelse er sat til at være løst!
+      status: Status
       title: Anmeldelser
       unassign: Utildel
       unresolved: Uløst
@@ -390,6 +393,10 @@ da:
         min_invite_role:
           disabled: Ingen
           title: Tillad invitationer af
+      registrations_mode:
+        modes:
+          none: Ingen kan tilmelde sig
+          open: Alle kan tilmelde sig
       show_known_fediverse_at_about_page:
         desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
@@ -431,6 +438,8 @@ da:
       title: Konto statusser
       with_media: Med multimedier
     tags:
+      accounts_today: Unikke brug i dag
+      accounts_week: Unikke brug denne uge
       context: Kontekst
     warning_presets:
       delete: Slet
@@ -530,6 +539,7 @@ da:
     '503': The page could not be served due to a temporary server failure.
     noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
   existing_username_validator:
+    not_found: kunne ikke finde en lokal bruger med dette brugenavn
     not_found_multiple: kunne ikke finde %{usernames}
   exports:
     archive_takeout:
@@ -540,6 +550,7 @@ da:
       request: Anmod om dit arkiv
       size: Størrelse
     blocks: Du blokerer
+    csv: CSV
     follows: Du følger
     lists: Lister
     mutes: Du dæmper
@@ -691,6 +702,7 @@ da:
     prompt: 'Du er ved at følge:'
   sessions:
     activity: Sidste aktivitet
+    browser: Browser
     browsers:
       alipay: Ali-pay
       blackberry: Blackberry OS
@@ -712,11 +724,15 @@ da:
     current_session: Nuværrende session
     description: "%{browser} på %{platform}"
     explanation: Disse er de web browsere der på nuværende tidspunkt er logget ind på din Mastodon konto.
+    ip: IP
     platforms:
       adobe_air: Adobe air
+      android: Android
       blackberry: Blackberry OS
       chrome_os: Chromeos
       firefox_os: Firefox Os
+      ios: iOS
+      linux: Linux
       mac: Mac.
       other: ukendt platform
       windows: Microsoft windows
@@ -736,6 +752,7 @@ da:
     edit_profile: Rediger profil
     export: Data eksportering
     import: Importer
+    import_and_export: Importer og eksporter
     migrate: Konto migrering
     notifications: Notifikationer
     preferences: Præferencer
