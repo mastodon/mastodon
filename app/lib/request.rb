@@ -203,16 +203,15 @@ class Request
 
             sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
 
-            begin
-              sock.connect_nonblock(sockaddr)
-              # We somehow managed to connect immediately, close pending socks
-              # and return immediately
-              socks.each(&:close)
-              return sock
-            rescue IO::WaitWritable
-              socks << sock
-              addr_by_socket[sock] = sockaddr
-            end
+            sock.connect_nonblock(sockaddr)
+
+            # If that hasn't raised an exception, we somehow managed to connect
+            # immediately, close pending sockets and return immediately
+            socks.each(&:close)
+            return sock
+          rescue IO::WaitWritable
+            socks << sock
+            addr_by_socket[sock] = sockaddr
           rescue => e
             outer_e = e
           end
@@ -231,17 +230,15 @@ class Request
 
             begin
               sock.connect_nonblock(addr_by_socket[sock])
-              # Yippee!
-              socks.each(&:close)
-              return sock
             rescue Errno::EISCONN
-              # Yippee!
-              socks.each(&:close)
-              return sock
             rescue => e
               sock.close
               outer_e = e
+              next
             end
+
+            socks.each(&:close)
+            return sock
           end
         end
 
