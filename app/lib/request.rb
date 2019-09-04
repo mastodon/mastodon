@@ -191,6 +191,9 @@ class Request
           end
         end
 
+        socks = []
+        addr_by_socket = {}
+
         addresses.each do |address|
           begin
             check_private_address(address)
@@ -202,25 +205,43 @@ class Request
 
             begin
               sock.connect_nonblock(sockaddr)
+              # We somehow managed to connect immediately, close pending socks
+              # and return immediately
+              socks.each(&:close)
+              return sock
             rescue IO::WaitWritable
-              if IO.select(nil, [sock], nil, Request::TIMEOUT[:connect])
-                begin
-                  sock.connect_nonblock(sockaddr)
-                rescue Errno::EISCONN
-                  # Yippee!
-                rescue
-                  sock.close
-                  raise
-                end
-              else
-                sock.close
-                raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
-              end
+              socks << sock
+              addr_by_socket[sock] = sockaddr
             end
-
-            return sock
           rescue => e
             outer_e = e
+          end
+        end
+
+        until socks.empty?
+          _, available_socks, = IO.select(nil, socks, nil, Request::TIMEOUT[:connect])
+
+          if available_socks.nil?
+            socks.each(&:close)
+            raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
+          end
+
+          available_socks.each do |sock|
+            socks.delete(sock)
+
+            begin
+              sock.connect_nonblock(addr_by_socket[sock])
+              # Yippee!
+              socks.each(&:close)
+              return sock
+            rescue Errno::EISCONN
+              # Yippee!
+              socks.each(&:close)
+              return sock
+            rescue => e
+              sock.close
+              outer_e = e
+            end
           end
         end
 
