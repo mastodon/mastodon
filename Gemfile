@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.46', require: false
+gem 'aws-sdk-s3', '~> 1.48', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -113,12 +113,12 @@ end
 group :test do
   gem 'capybara', '~> 3.28'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.1'
+  gem 'faker', '~> 2.2'
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.17', require: false
-  gem 'webmock', '~> 3.6'
+  gem 'webmock', '~> 3.7'
   gem 'parallel_tests', '~> 2.29'
 end
 
