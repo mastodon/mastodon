@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_040524) do
+ActiveRecord::Schema.define(version: 2019_09_04_222339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -364,6 +364,17 @@ ActiveRecord::Schema.define(version: 2019_09_01_040524) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
+  end
+
+  create_table "markers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "timeline", default: "", null: false
+    t.bigint "last_read_id", default: 0, null: false
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "timeline"], name: "index_markers_on_user_id_and_timeline", unique: true
+    t.index ["user_id"], name: "index_markers_on_user_id"
   end
 
   create_table "media_attachments", force: :cascade do |t|
@@ -791,6 +802,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_040524) do
   add_foreign_key "list_accounts", "follows", on_delete: :cascade
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
   add_foreign_key "lists", "accounts", on_delete: :cascade
+  add_foreign_key "markers", "users", on_delete: :cascade
   add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify
   add_foreign_key "media_attachments", "scheduled_statuses", on_delete: :nullify
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify
