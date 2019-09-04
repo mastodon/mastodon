@@ -60,7 +60,6 @@ export default class Followers extends ImmutablePureComponent {
   }
 
   handleLoadMore = debounce(() => {
-    e.preventDefault();
     this.props.dispatch(expandFollowers(this.props.params.accountId));
   }, 300, { leading: true });
 
