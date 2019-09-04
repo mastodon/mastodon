@@ -33,7 +33,7 @@ class CustomEmoji < ApplicationRecord
   belongs_to :category, class_name: 'CustomEmojiCategory', optional: true
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
-  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }
+  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce +profile exif' } }
 
   before_validation :downcase_domain
 
