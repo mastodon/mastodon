@@ -507,6 +507,7 @@
       flex: 1 1 auto;
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     strong {
@@ -515,8 +516,10 @@
 
     &__uses {
       flex: 0 0 auto;
-      width: 80px;
       text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
