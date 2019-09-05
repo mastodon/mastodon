@@ -17,7 +17,4 @@
   .simple_form
     %p.hint= t('auth.setup.email_settings_hint_html', email: content_tag(:strong, @user.email))
 
-.form-footer
-  %ul.no-list
-    %li= link_to t('settings.account_settings'), edit_user_registration_path
-    %li= link_to t('auth.logout'), destroy_user_session_path, data: { method: :delete }
+.form-footer= render 'auth/shared/links'

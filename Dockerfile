@@ -4,7 +4,7 @@ FROM ubuntu:18.04 as build-dep
 SHELL ["bash", "-c"]
 
 # Install Node
-ENV NODE_VER="8.15.0"
+ENV NODE_VER="12.9.1"
 RUN	echo "Etc/UTC" > /etc/localtime && \
 	apt update && \
 	apt -y install wget make gcc g++ python && \
@@ -17,7 +17,7 @@ RUN	echo "Etc/UTC" > /etc/localtime && \
 	make install
 
 # Install jemalloc
-ENV JE_VER="5.1.0"
+ENV JE_VER="5.2.1"
 RUN apt update && \
 	apt -y install autoconf && \
 	cd ~ && \
@@ -30,7 +30,7 @@ RUN apt update && \
 	make install_bin install_include install_lib
 
 # Install ruby
-ENV RUBY_VER="2.6.1"
+ENV RUBY_VER="2.6.4"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
 RUN apt update && \

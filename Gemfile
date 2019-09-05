@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.46', require: false
+gem 'aws-sdk-s3', '~> 1.48', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -24,7 +24,7 @@ gem 'streamio-ffmpeg', '~> 3.0'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
-gem 'addressable', '~> 2.6'
+gem 'addressable', '~> 2.7'
 gem 'bootsnap', '~> 1.4', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
@@ -116,12 +116,12 @@ end
 group :test do
   gem 'capybara', '~> 3.28'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.1'
+  gem 'faker', '~> 2.2'
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.17', require: false
-  gem 'webmock', '~> 3.6'
+  gem 'webmock', '~> 3.7'
   gem 'parallel_tests', '~> 2.29'
 end
 

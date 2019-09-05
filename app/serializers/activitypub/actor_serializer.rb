@@ -6,7 +6,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :hashtag, :emoji, :identity_proof,
+                     :moved_to, :property_value, :identity_proof,
                      :discoverable
 
   attributes :id, :type, :following, :followers,
@@ -138,6 +138,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   class TagSerializer < ActivityPub::Serializer
+    context_extensions :hashtag
+
     include RoutingHelper
 
     attributes :type, :href, :name

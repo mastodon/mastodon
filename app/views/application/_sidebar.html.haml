@@ -5,7 +5,7 @@
   .hero-widget__text
     %p= @instance_presenter.site_short_description.html_safe.presence || @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
-- if Setting.trends
+- if Setting.trends && !(user_signed_in? && !current_user.setting_trends)
   - trends = TrendingTags.get(3)
 
   - unless trends.empty?

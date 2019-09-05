@@ -191,6 +191,9 @@ class Request
           end
         end
 
+        socks = []
+        addr_by_socket = {}
+
         addresses.each do |address|
           begin
             check_private_address(address)
@@ -200,27 +203,42 @@ class Request
 
             sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
 
-            begin
-              sock.connect_nonblock(sockaddr)
-            rescue IO::WaitWritable
-              if IO.select(nil, [sock], nil, Request::TIMEOUT[:connect])
-                begin
-                  sock.connect_nonblock(sockaddr)
-                rescue Errno::EISCONN
-                  # Yippee!
-                rescue
-                  sock.close
-                  raise
-                end
-              else
-                sock.close
-                raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
-              end
-            end
+            sock.connect_nonblock(sockaddr)
 
+            # If that hasn't raised an exception, we somehow managed to connect
+            # immediately, close pending sockets and return immediately
+            socks.each(&:close)
             return sock
+          rescue IO::WaitWritable
+            socks << sock
+            addr_by_socket[sock] = sockaddr
           rescue => e
             outer_e = e
+          end
+        end
+
+        until socks.empty?
+          _, available_socks, = IO.select(nil, socks, nil, Request::TIMEOUT[:connect])
+
+          if available_socks.nil?
+            socks.each(&:close)
+            raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
+          end
+
+          available_socks.each do |sock|
+            socks.delete(sock)
+
+            begin
+              sock.connect_nonblock(addr_by_socket[sock])
+            rescue Errno::EISCONN
+            rescue => e
+              sock.close
+              outer_e = e
+              next
+            end
+
+            socks.each(&:close)
+            return sock
           end
         end
 

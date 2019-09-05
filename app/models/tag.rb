@@ -7,14 +7,14 @@
 #  name                :string           default(""), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  score               :integer
 #  usable              :boolean
 #  trendable           :boolean
 #  listable            :boolean
 #  reviewed_at         :datetime
 #  requested_review_at :datetime
 #  last_status_at      :datetime
-#  last_trend_at       :datetime
+#  max_score           :float
+#  max_score_at        :datetime
 #
 
 class Tag < ApplicationRecord
