@@ -44,7 +44,7 @@ de:
     what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
-    endorsements_hint: Du kannst Personen unterstützen, die du von der Web-Schnittstelle folgen kannst, und sie werden hier angezeigt.
+    endorsements_hint: Du kannst Personen, denen du über die Weboberfläche folgst, auswählen, und sie werden hier angezeigt.
     featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
@@ -440,8 +440,8 @@ de:
         desc_html: Domain-Namen, die der Server im Fediversum gefunden hat
         title: Veröffentliche entdeckte Server durch die API
       preview_sensitive_media:
-        desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als heikel gekennzeichnet sind
-        title: Heikle Medien im OpenGraph-Vorschau anzeigen
+        desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als NSFW markiert sind
+        title: NSFW-Medien im OpenGraph-Vorschau anzeigen
       profile_directory:
         desc_html: Erlaube Benutzer auffindbar zu sein
         title: Aktiviere Profilverzeichnis
@@ -497,8 +497,8 @@ de:
       back_to_account: Zurück zum Konto
       batch:
         delete: Löschen
-        nsfw_off: Als nicht heikel markieren
-        nsfw_on: Als heikel markieren
+        nsfw_off: Als nicht NSFW markieren
+        nsfw_on: Als NSFW markieren
       deleted: Gelöscht
       failed_to_execute: Ausführen fehlgeschlagen
       media:
@@ -545,7 +545,7 @@ de:
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
-    sensitive_content: Heikle Inhalte
+    sensitive_content: NSFW
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
     salutation: "%{name},"
@@ -597,7 +597,7 @@ de:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
       functional: Dein Konto ist voll funktionsfähig.
-      pending: Deine Bewerbung wird von unseren Mitarbeitern noch nicht überprüft. Dies kann einige Zeit dauern. Du erhälst eine E-Mail, wenn deine Bewerbung genehmigt ist.
+      pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -634,6 +634,12 @@ de:
       caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können weiterhin bestehen
       data_removal: Deine Beiträge und andere Daten werden dauerhaft entfernt
       email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
+      email_contact_html: Wenn die Bestätigungs-E-Mail immer noch nicht ankam, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
+      email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
+      irreversible: Du kannst dein Konto nicht reaktivieren
+      more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzrichtlinie</a>.
+      username_available: Dein Benutzername wird wieder verfügbar
+      username_unavailable: Dein Benutzername bleibt nicht verfügbar
   directories:
     directory: Profilverzeichnis
     explanation: Entdecke Benutzer_innen basierend auf deren Interessen
@@ -658,10 +664,10 @@ de:
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Die Anfrage, die du gesendet hast, war ungültig oder fehlerhaft.
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Die Seite nach der du gesucht hast wurde nicht gefunden.
-    '406': This page is not available in the requested format.
+    '406': Diese Seite ist im gewünschten Format nicht verfügbar.
     '410': Die Seite nach der du gesucht hast existiert hier nicht mehr.
     '422':
       content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
@@ -670,7 +676,7 @@ de:
     '500':
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
     not_found: kann lokalen Benutzer nicht mit diesem Nuternamen finden
@@ -997,7 +1003,7 @@ de:
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
-    sensitive_content: Heikle Inhalte
+    sensitive_content: NSFW
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms:
