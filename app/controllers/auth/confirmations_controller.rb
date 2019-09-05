@@ -26,7 +26,7 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   def after_resending_confirmation_instructions_path_for(_resource_name)
     if user_signed_in?
-      if user.confirmed? && user.approved?
+      if current_user.confirmed? && current_user.approved?
         edit_user_registration_path
       else
         auth_setup_path
