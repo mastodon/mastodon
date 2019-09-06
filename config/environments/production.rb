@@ -44,6 +44,14 @@ Rails.application.configure do
   # Allow to specify public IP of reverse proxy if it's needed
   config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split.map { |item| IPAddr.new(item) } if ENV['TRUSTED_PROXY_IP'].present?
 
+  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  config.force_ssl = true
+  config.ssl_options = {
+    redirect: {
+      exclude: -> request { request.path.start_with?('/health') }
+    }
+  }
+
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
