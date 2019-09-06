@@ -314,6 +314,7 @@ Rails.application.routes.draw do
       resources :trends,       only: [:index]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
+      resources :markers,      only: [:index, :create]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'

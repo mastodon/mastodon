@@ -16,6 +16,7 @@ import { expandNotifications } from '../../actions/notifications';
 import { fetchFilters } from '../../actions/filters';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp } from 'mastodon/actions/app';
+import { submitMarkers } from 'mastodon/actions/markers';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -241,7 +242,9 @@ class UI extends React.PureComponent {
   };
 
   handleBeforeUnload = e => {
-    const { intl, isComposing, hasComposingText, hasMediaAttachments } = this.props;
+    const { intl, dispatch, isComposing, hasComposingText, hasMediaAttachments } = this.props;
+
+    dispatch(submitMarkers());
 
     if (isComposing && (hasComposingText || hasMediaAttachments)) {
       // Setting returnValue to any string causes confirmation dialog.
