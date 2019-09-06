@@ -37,7 +37,8 @@ module Admin
 
     def set_usage_by_domain
       @usage_by_domain = @tag.statuses
-                             .where(visibility: :public)
+                             .with_public_visibility
+                             .excluding_silenced_accounts
                              .where(Status.arel_table[:id].gteq(Mastodon::Snowflake.id_at(Time.now.utc.beginning_of_day)))
                              .joins(:account)
                              .group('accounts.domain')
@@ -56,7 +57,7 @@ module Admin
       scope = scope.unreviewed if filter_params[:review] == 'unreviewed'
       scope = scope.reviewed.order(reviewed_at: :desc) if filter_params[:review] == 'reviewed'
       scope = scope.pending_review.order(requested_review_at: :desc) if filter_params[:review] == 'pending_review'
-      scope.order(score: :desc)
+      scope.order(max_score: :desc)
     end
 
     def filter_params

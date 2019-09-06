@@ -58,6 +58,7 @@ en:
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
+    never_active: Never
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
@@ -581,6 +582,10 @@ en:
     checkbox_agreement_without_rules_html: I agree to the <a href="%{terms_path}" target="_blank">terms of service</a>
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
+    description:
+      prefix_invited_by_user: "@%{name} invites you to join this server of Mastodon!"
+      prefix_sign_up: Sign up on Mastodon today!
+      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
@@ -634,13 +639,21 @@ en:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Nice try, hackers! Incorrect password
+    bad_password_msg: The password you entered was incorrect
     confirm_password: Enter your current password to verify your identity
-    description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
     proceed: Delete account
     success_msg: Your account was successfully deleted
-    warning_html: Only deletion of content from this particular server is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
-    warning_title: Disseminated content availability
+    warning:
+      before: 'Before proceeding, please read these notes carefully:'
+      caches: Content that has been cached by other servers may persist
+      data_removal: Your posts and other data will be permanently removed
+      email_change_html: You can <a href="%{path}">change your e-mail address</a> without deleting your account
+      email_contact_html: If it still doesn't arrive, you can e-mail <a href="mailto:%{email}">%{email}</a> for help
+      email_reconfirmation_html: If you are not receiving the confirmation e-mail, you can <a href="%{path}">request it again</a>
+      irreversible: You will not be able to restore or reactivate your account
+      more_details_html: For more details, see the <a href="%{terms_path}">privacy policy</a>.
+      username_available: Your username will become available again
+      username_unavailable: Your username will remain unavailable
   directories:
     directory: Profile directory
     explanation: Discover users based on their interests
