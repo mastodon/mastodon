@@ -60,6 +60,7 @@ uk:
     media: Медіа
     moved_html: "%{name} переїхав до %{new_profile_link}:"
     network_hidden: Ця інформація недоступна
+    never_active: Ніколи
     nothing_here: Тут нічого немає!
     people_followed_by: Люди, на яких підписаний(-а) %{name}
     people_who_follow: Підписники %{name}
@@ -430,6 +431,10 @@ uk:
       custom_css:
         desc_html: Відобразити вигляд, коли CSS завантажено для кожної сторінки
         title: Користувацький CSS
+      domain_blocks:
+        all: Всi
+        disabled: Нікого
+        title: Показати, які домени заблоковані
       hero:
         desc_html: Відображається на головній сторінці. Рекомендовано як мінімум 600x100 пікселів. Якщо не вказано, буде використано передпоказ інстанції
         title: Банер інстанції
@@ -497,6 +502,7 @@ uk:
         delete: Видалити
         nsfw_off: Відмітити прийнятним
         nsfw_on: Відмітити неприйнятним
+      deleted: Видалено
       failed_to_execute: Не вийшло
       media:
         title: Медіа
@@ -563,6 +569,8 @@ uk:
     checkbox_agreement_without_rules_html: Я погоджуюся з <a href="%{terms_path}" target="_blank">умовами використання</a>
     delete_account: Видалити обліковий запис
     delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
+    description:
+      prefix_sign_up: Зареєструйтеся на Mastodon сьогодні!
     didnt_get_confirmation: Ви не отримали інструкції з підтвердження?
     forgot_password: Забули пароль?
     invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
@@ -624,6 +632,8 @@ uk:
     directory: Каталог профілів
     explanation: Шукайте користувачів за їх інтересами
     explore_mastodon: Досліджуйте %{title}
+  domain_blocks:
+    domain: Домен
   domain_validator:
     invalid_domain: не є допустимим ім'ям домену
   errors:
