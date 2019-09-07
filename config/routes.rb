@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
+  health_check_routes
+
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
     mount PgHero::Engine, at: 'pghero', as: :pghero
