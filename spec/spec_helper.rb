@@ -1,4 +1,5 @@
 GC.disable
+require 'test-rescue-agent'
 
 if ENV['DISABLE_SIMPLECOV'] != 'true'
   require 'simplecov'

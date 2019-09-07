@@ -1,0 +1,15 @@
+dockerfile_commands:
+  - RUN cd $REPOSITORY_NAME && rails assets:precompile
+before_test:
+  - rails db:create
+  - rails db:schema:load
+  - rails assets:precompile
+dependencies:
+  protobuf: latest
+  idn: latest
+  yarn: latest
+  postgresql: latest
+  redis: latest
+  imagemagick: latest
+  ffmpeg: latest
+  ruby: 2.6.3
