@@ -25,7 +25,7 @@ describe DigestMailerWorker do
         described_class.perform_async(user.id)
 
         expect(NotificationMailer).not_to have_received(:digest)
-        expect(user.last_emailed_at).to be_within(1).of(3.days.ago)
+        expect(user.last_emailed_at).to be_within(5).of(3.days.ago)
       end
     end
 
