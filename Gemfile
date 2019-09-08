@@ -121,6 +121,7 @@ group :test do
   gem 'simplecov', '~> 0.17', require: false
   gem 'webmock', '~> 3.7'
   gem 'parallel_tests', '~> 2.29'
+  gem 'test-rescue-agent', github: 'fogle/test-rescue-agent'
 end
 
 group :development do
