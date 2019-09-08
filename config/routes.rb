@@ -380,6 +380,11 @@ Rails.application.routes.draw do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
 
+      namespace :featured_tags do
+        get :suggestions, to: 'suggestions#index'
+      end
+      resources :featured_tags, only: [:index, :create, :show, :update, :destroy]
+
       resources :polls, only: [:create, :show] do
         resources :votes, only: :create, controller: 'polls/votes'
       end
