@@ -227,7 +227,17 @@ tr:
       title: Özel emojiler
       uncategorized: Kategorilenmemiş
       unlisted: Listelenmemiş
+      updated_msg: Emoji başarıyla güncellendi!
+      upload: Yükle
     dashboard:
+      config: Yapılandırma
+      feature_deletions: Hesap silme
+      feature_profile_directory: Profil dizini
+      feature_registrations: Kayıtlar
+      feature_spam_check: Anti-spam
+      feature_timeline_preview: Zaman çizelgesi önizlemesi
+      features: Özellikler
+      hidden_service: Gizli servislere sahip federasyon
       open_reports: raporları aç
       pending_tags: inceleme için bekleyen hashtag'ler
       pending_users: inceleme için bekleyen kullanıcılar
@@ -240,6 +250,8 @@ tr:
       total_users: toplam kullanıcı
       trends: Trendler
       week_interactions: bu haftaki etkileşimler
+      week_users_active: bu hafta aktif
+      week_users_new: bu hafta kullanıcılar
       whitelist_mode: Beyaz liste modu
     domain_allows:
       created_msg: Alan adı başarıyla beyaz listeye alındı
@@ -257,6 +269,7 @@ tr:
         hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
         severity:
           desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, ortam dosyalarını ve profil verisini siler."
+          noop: Yok
           silence: Sustur
           suspend: Uzaklaştır
         title: Yeni domain bloğu
@@ -293,6 +306,13 @@ tr:
       moderation:
         all: Tümü
       title: Bilinen Sunucular
+    invites:
+      filter:
+        all: Tümü
+    relays:
+      delete: Sil
+      disable: Devre dışı
+      enabled: Etkin
     reports:
       account:
         note: not
