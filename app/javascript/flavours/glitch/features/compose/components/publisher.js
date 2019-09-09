@@ -58,7 +58,7 @@ class Publisher extends ImmutablePureComponent {
             text={
               <span>
                 <Icon
-                  icon={{
+                  id={{
                     public: 'globe',
                     unlisted: 'unlock',
                     private: 'lock',
@@ -80,7 +80,7 @@ class Publisher extends ImmutablePureComponent {
               return (
                 <span>
                   <Icon
-                    icon={{
+                    id={{
                       direct: 'envelope',
                       private: 'lock',
                       public: 'globe',

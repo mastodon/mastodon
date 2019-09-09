@@ -82,7 +82,7 @@ class SearchResults extends ImmutablePureComponent {
       count   += results.get('accounts').size;
       accounts = (
         <section>
-          <h5><Icon icon='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
+          <h5><Icon id='users' fixedWidth /><FormattedMessage id='search_results.accounts' defaultMessage='People' /></h5>
 
           {results.get('accounts').map(accountId => <AccountContainer id={accountId} key={accountId} />)}
 
@@ -95,7 +95,7 @@ class SearchResults extends ImmutablePureComponent {
       count   += results.get('statuses').size;
       statuses = (
         <section>
-          <h5><Icon icon='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
+          <h5><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></h5>
 
           {results.get('statuses').map(statusId => <StatusContainer id={statusId} key={statusId}/>)}
 
@@ -108,7 +108,7 @@ class SearchResults extends ImmutablePureComponent {
       count += results.get('hashtags').size;
       hashtags = (
         <section>
-          <h5><Icon icon='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
+          <h5><Icon id='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></h5>
 
           {results.get('hashtags').map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
 
@@ -121,7 +121,7 @@ class SearchResults extends ImmutablePureComponent {
     return (
       <div className='drawer--results'>
         <header className='search-results__header'>
-          <Icon icon='search' fixedWidth />
+          <Icon id='search' fixedWidth />
           <FormattedMessage id='search_results.total' defaultMessage='{count, number} {count, plural, one {result} other {results}}' values={{ count }} />
         </header>
 

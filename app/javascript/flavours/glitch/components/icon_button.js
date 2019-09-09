@@ -3,6 +3,7 @@ import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Icon from 'flavours/glitch/components/icon';
 
 export default class IconButton extends React.PureComponent {
 
@@ -133,7 +134,7 @@ export default class IconButton extends React.PureComponent {
           tabIndex={tabIndex}
           disabled={disabled}
         >
-          <i className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
+          <Icon id={icon} fixedWidth aria-hidden='true' />
         </button>
       );
     }
@@ -155,7 +156,7 @@ export default class IconButton extends React.PureComponent {
             tabIndex={tabIndex}
             disabled={disabled}
           >
-            <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${icon}`} aria-hidden='true' />
+            <Icon id={icon} style={{ transform: `rotate(${rotate}deg)` }} fixedWidth aria-hidden='true' />
             {this.props.label}
           </button>)
         }

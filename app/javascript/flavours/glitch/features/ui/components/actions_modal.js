@@ -68,8 +68,8 @@ export default class ActionsModal extends ImmutablePureComponent {
               return (
                 <Icon
                   className='icon'
-                  fullwidth
-                  icon={icon}
+                  fixedWidth
+                  id={icon}
                 />
               );
             default:

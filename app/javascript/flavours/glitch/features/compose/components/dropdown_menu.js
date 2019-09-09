@@ -185,7 +185,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     if (on !== null && typeof on !== 'undefined') {
       prefix = <Toggle checked={on} onChange={this.handleClick} />;
     } else if (icon) {
-      prefix = <Icon className='icon' fullwidth icon={icon} />
+      prefix = <Icon className='icon' fixedWidth id={icon} />
     }
 
     return (

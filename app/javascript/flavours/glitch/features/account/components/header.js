@@ -158,7 +158,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('locked')) {
-      lockedIcon = <Icon icon='lock' title={intl.formatMessage(messages.account_locked)} />;
+      lockedIcon = <Icon id='lock' title={intl.formatMessage(messages.account_locked)} />;
     }
 
     if (account.get('id') !== me) {
@@ -256,7 +256,7 @@ class Header extends ImmutablePureComponent {
             <div className='account__header__tabs__buttons'>
               {actionBtn}
 
-              <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
+              <DropdownMenuContainer items={menu} id='ellipsis-v' size={24} direction='right' />
             </div>
           </div>
 

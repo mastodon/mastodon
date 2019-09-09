@@ -153,8 +153,8 @@ class Search extends React.PureComponent {
           role='button'
           tabIndex='0'
         >
-          <Icon icon='search' className={hasValue ? '' : 'active'} />
-          <Icon icon='times-circle' className={hasValue ? 'active' : ''} />
+          <Icon id='search' className={hasValue ? '' : 'active'} />
+          <Icon id='times-circle' className={hasValue ? 'active' : ''} />
         </div>
 
         <Overlay show={expanded && !hasValue} placement='bottom' target={this}>

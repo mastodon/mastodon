@@ -31,7 +31,7 @@ class ActionBar extends React.PureComponent {
     if (account.get('acct') !== account.get('username')) {
       extraInfo = (
         <div className='account__disclaimer'>
-          <Icon icon='info-circle' fixedWidth /> <FormattedMessage
+          <Icon id='info-circle' fixedWidth /> <FormattedMessage
             id='account.disclaimer_full'
             defaultMessage="Information below may reflect the user's profile incompletely."
           />

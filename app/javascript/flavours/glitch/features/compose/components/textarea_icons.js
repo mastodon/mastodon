@@ -47,8 +47,8 @@ class TextareaIcons extends ImmutablePureComponent {
               title={intl.formatMessage(message)}
             >
               <Icon
-                fullwidth
-                icon={icon}
+                fixedWidth
+                id={icon}
               />
             </span>
           ) : null

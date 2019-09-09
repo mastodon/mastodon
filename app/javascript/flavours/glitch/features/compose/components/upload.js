@@ -44,7 +44,7 @@ export default class Upload extends ImmutablePureComponent {
           {({ scale }) => (
             <div style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
               <div className={classNames('composer--upload_form--actions', { active: true })}>
-                <button className='icon-button' onClick={this.handleUndoClick}><Icon icon='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
+                <button className='icon-button' onClick={this.handleUndoClick}><Icon id='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
                 <button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>
               </div>
             </div>
