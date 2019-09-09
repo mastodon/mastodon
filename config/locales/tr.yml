@@ -198,7 +198,10 @@ tr:
         create_domain_block: "%{target} alanı, %{name} tarafından engellendi"
         create_email_domain_block: "%{target} e-posta alanı, %{name} tarafından kara listeye alınmış"
         destroy_custom_emoji: "%{target} emoji, %{name} tarafından kaldırıldı"
+        destroy_domain_block: "%{target} alan adının engeli %{name} tarafından kaldırıldı"
+        destroy_email_domain_block: "%{target} e-posta sunucusu, %{name} tarafından beyaz listeye alındı"
         disable_2fa_user: "%{name}, %{target} kullanıcısı için iki adım gereksinimini kapattı"
+        disable_custom_emoji: "%{target} emoji, %{name} tarafından devre dışı bırakıldı"
       deleted_status: "(silinmiş durum)"
       title: Denetim günlüğü
     custom_emojis:
@@ -206,6 +209,7 @@ tr:
       copied_msg: Emojinin yerel kopyası başarıyla oluşturuldu
       copy: Kopyala
       copy_failed_msg: Bu emojinin yerel bir kopyası oluşturulamadı
+      create_new_category: Yeni kategori ekle
       created_msg: Emoji başarıyla oluşturuldu!
       delete: Sil
       destroyed_msg: Emojo başarıyla yok edildi!
@@ -215,8 +219,14 @@ tr:
       enable: Etkinleştir
       enabled_msg: Bu emojiyi başarıyla etkinleştirdi
       image_hint: 50 KB'a kadar PNG
+      listed: Listelenen
       new:
         title: Yeni özel emoji ekle
+      overwrite: Üzerine yaz
+      shortcode_hint: En az 2 karakter, sadece alfanümerik karakterler ve alt çizgiler
+      title: Özel emojiler
+      uncategorized: Kategorilenmemiş
+      unlisted: Listelenmemiş
     dashboard:
       open_reports: raporları aç
       pending_tags: inceleme için bekleyen hashtag'ler
