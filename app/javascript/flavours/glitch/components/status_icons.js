@@ -7,6 +7,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 //  Mastodon imports.
 import IconButton from './icon_button';
 import VisibilityIcon from './status_visibility_icon';
+import Icon from 'flavours/glitch/components/icon';
 
 //  Messages for use with internationalization stuff.
 const messages = defineMessages({
@@ -74,21 +75,26 @@ class StatusIcons extends React.PureComponent {
     return (
       <div className='status__info__icons'>
         {status.get('in_reply_to_id', null) !== null ? (
-          <i
-            className={`fa fa-fw fa-comment status__reply-icon`}
+          <Icon
+            className='status__reply-icon'
+            fixedWidth
+            id='comment'
             aria-hidden='true'
             title={intl.formatMessage(messages.inReplyTo)}
           />
         ) : null}
         {status.get('local_only') &&
-          <i
-            className={`fa fa-fw fa-home`}
+          <Icon
+            fixedWidth
+            id='home'
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
         {mediaIcon ? (
-          <i
-            className={`fa fa-fw fa-${mediaIcon} status__media-icon`}
+          <Icon
+            fixedWidth
+            className='status__media-icon`'
+            id={mediaIcon}
             aria-hidden='true'
             title={this.mediaIconTitleText()}
           />

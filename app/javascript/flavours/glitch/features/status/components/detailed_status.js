@@ -16,6 +16,7 @@ import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 import scheduleIdleTask from 'flavours/glitch/util/schedule_idle_task';
 import classNames from 'classnames';
 import PollContainer from 'flavours/glitch/containers/poll_container';
+import Icon from 'flavours/glitch/components/icon';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -197,11 +198,11 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('visibility') === 'private') {
-      reblogLink = <i className={`fa fa-${reblogIcon}`} />;
+      reblogLink = <Icon id={reblogIcon} />;
     } else if (this.context.router) {
       reblogLink = (
         <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
-          <i className={`fa fa-${reblogIcon}`} />
+          <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
             <FormattedNumber value={status.get('reblogs_count')} />
           </span>
@@ -210,7 +211,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     } else {
       reblogLink = (
         <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <i className={`fa fa-${reblogIcon}`} />
+          <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
             <FormattedNumber value={status.get('reblogs_count')} />
           </span>
@@ -221,7 +222,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     if (this.context.router) {
       favouriteLink = (
         <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
-          <i className='fa fa-star' />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <FormattedNumber value={status.get('favourites_count')} />
           </span>
@@ -230,7 +231,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     } else {
       favouriteLink = (
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <i className='fa fa-star' />
+          <Icon id='star' />
           <span className='detailed-status__favorites'>
             <FormattedNumber value={status.get('favourites_count')} />
           </span>

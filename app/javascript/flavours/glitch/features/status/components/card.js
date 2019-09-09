@@ -5,6 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
 import classnames from 'classnames';
 import { decode as decodeIDNA } from 'flavours/glitch/util/idna';
+import Icon from 'flavours/glitch/components/icon';
 
 const getHostname = url => {
   const parser = document.createElement('a');
@@ -170,8 +171,8 @@ export default class Card extends React.PureComponent {
 
             <div className='status-card__actions'>
               <div>
-                <button onClick={this.handleEmbedClick}><i className={`fa fa-${iconVariant}`} /></button>
-                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><i className='fa fa-external-link' /></a>}
+                <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
+                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><Icon id='external-link' /></a>}
               </div>
             </div>
           </div>
@@ -193,7 +194,7 @@ export default class Card extends React.PureComponent {
     } else {
       embed = (
         <div className='status-card__image'>
-          <i className='fa fa-file-text' />
+          <Icon id='file-text' />
         </div>
       );
     }

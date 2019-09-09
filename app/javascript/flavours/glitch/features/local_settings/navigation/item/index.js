@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Icon from 'flavours/glitch/components/icon';
+
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 export default class LocalSettingsPage extends React.PureComponent {
@@ -42,7 +44,7 @@ export default class LocalSettingsPage extends React.PureComponent {
       active,
     }, className);
 
-    const iconElem = icon ? <i className={`fa fa-fw fa-${icon}`} /> : (textIcon ? <span className='text-icon-button'>{textIcon}</span> : null);
+    const iconElem = icon ? <Icon fixedWidth id={icon} /> : (textIcon ? <span className='text-icon-button'>{textIcon}</span> : null);
 
     if (href) return (
       <a

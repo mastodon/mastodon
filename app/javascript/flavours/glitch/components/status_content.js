@@ -5,6 +5,7 @@ import { isRtl } from 'flavours/glitch/util/rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
+import Icon from 'flavours/glitch/components/icon';
 import { autoPlayGif } from 'flavours/glitch/util/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/util/idna';
 
@@ -289,10 +290,10 @@ export default class StatusContent extends React.PureComponent {
           key='0'
         />,
         mediaIcon ? (
-          <i
-            className={
-              `fa fa-fw fa-${mediaIcon} status__content__spoiler-icon`
-            }
+          <Icon
+            fixedWidth
+            className='status__content__spoiler-icon'
+            id={mediaIcon}
             aria-hidden='true'
             key='1'
           />

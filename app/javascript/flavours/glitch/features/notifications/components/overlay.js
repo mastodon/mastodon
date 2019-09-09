@@ -9,6 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl } from 'react-intl';
+import Icon from 'flavours/glitch/components/icon';
 
 const messages = defineMessages({
   markForDeletion: { id: 'notification.markForDeletion', defaultMessage: 'Mark for deletion' },
@@ -47,7 +48,7 @@ class NotificationOverlay extends ImmutablePureComponent {
       >
         <div className='wrappy'>
           <div className='ckbox' aria-hidden='true' title={label}>
-            {active ? (<i className='fa fa-check' />) : ''}
+            {active ? (<Icon id='check' />) : ''}
           </div>
         </div>
       </div>

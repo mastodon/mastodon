@@ -47,7 +47,7 @@ class SearchResults extends ImmutablePureComponent {
         <div className='drawer--results'>
           <div className='trends'>
             <div className='trends__header'>
-              <i className='fa fa-user-plus fa-fw' />
+              <Icon fixedWidth id='user-plus' />
               <FormattedMessage id='suggestions.header' defaultMessage='You might be interested in…' />
             </div>
 

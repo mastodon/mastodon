@@ -7,6 +7,7 @@ import StatusContent from 'flavours/glitch/components/status_content';
 import Avatar from 'flavours/glitch/components/avatar';
 import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import DisplayName from 'flavours/glitch/components/display_name';
+import Icon from 'flavours/glitch/components/icon';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
@@ -76,7 +77,7 @@ class FavouriteModal extends ImmutablePureComponent {
         </div>
 
         <div className='favourite-modal__action-bar'>
-          <div><FormattedMessage id='favourite_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <i className='fa fa-star' /></span> }} /></div>
+          <div><FormattedMessage id='favourite_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='star' /></span> }} /></div>
           <Button text={intl.formatMessage(messages.favourite)} onClick={this.handleFavourite} ref={this.setRef} />
         </div>
       </div>
