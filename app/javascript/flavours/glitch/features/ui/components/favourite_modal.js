@@ -13,8 +13,8 @@ const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
 });
 
-@injectIntl
-export default class FavouriteModal extends ImmutablePureComponent {
+export default @injectIntl
+class FavouriteModal extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

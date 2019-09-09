@@ -21,9 +21,9 @@ const mapDispatchToProps = dispatch => ({
   onReset: () => dispatch(resetPinnedAccountsEditor()),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-export default class PinnedAccountsEditor extends ImmutablePureComponent {
+class PinnedAccountsEditor extends ImmutablePureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,

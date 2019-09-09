@@ -16,8 +16,8 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-@injectIntl
-export default class MediaModal extends ImmutablePureComponent {
+export default @injectIntl
+class MediaModal extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

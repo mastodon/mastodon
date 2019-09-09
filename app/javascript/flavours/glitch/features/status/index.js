@@ -139,9 +139,9 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-@injectIntl
+export default @injectIntl
 @connect(makeMapStateToProps)
-export default class Status extends ImmutablePureComponent {
+class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

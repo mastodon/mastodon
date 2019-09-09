@@ -14,8 +14,8 @@ const messages = defineMessages({
   enterNotifCleaning : { id: 'notification_purge.start', defaultMessage: 'Enter notification cleaning mode' },
 });
 
-@injectIntl
-export default class ColumnHeader extends React.PureComponent {
+export default @injectIntl
+class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

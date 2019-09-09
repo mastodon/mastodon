@@ -48,8 +48,8 @@ const obfuscatedCount = count => {
   }
 };
 
-@injectIntl
-export default class StatusActionBar extends ImmutablePureComponent {
+export default @injectIntl
+class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

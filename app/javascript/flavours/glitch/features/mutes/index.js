@@ -21,9 +21,9 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['user_lists', 'mutes', 'next']),
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class Mutes extends ImmutablePureComponent {
+class Mutes extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,

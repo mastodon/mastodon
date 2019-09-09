@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'flavours/glitch/components/button';
 
-@injectIntl
-export default class ConfirmationModal extends React.PureComponent {
+export default @injectIntl
+class ConfirmationModal extends React.PureComponent {
 
   static propTypes = {
     message: PropTypes.node.isRequired,

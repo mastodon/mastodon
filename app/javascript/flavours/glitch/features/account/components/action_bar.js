@@ -8,8 +8,8 @@ import { me, isStaff } from 'flavours/glitch/util/initial_state';
 import { profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
 import Icon from 'flavours/glitch/components/icon';
 
-@injectIntl
-export default class ActionBar extends React.PureComponent {
+export default @injectIntl
+class ActionBar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,

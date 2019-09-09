@@ -14,9 +14,9 @@ const mapStateToProps = state => ({
   collapseEnabled: state.getIn(['local_settings', 'collapsed', 'enabled']),
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class KeyboardShortcuts extends ImmutablePureComponent {
+class KeyboardShortcuts extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,

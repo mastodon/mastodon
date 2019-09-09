@@ -13,8 +13,8 @@ const messages = defineMessages({
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
-@injectIntl
-export default class AccountAuthorize extends ImmutablePureComponent {
+export default @injectIntl
+class AccountAuthorize extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,

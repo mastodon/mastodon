@@ -361,9 +361,9 @@ class EmojiPickerMenu extends React.PureComponent {
 
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
+export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-export default class EmojiPickerDropdown extends React.PureComponent {
+class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {
     custom_emojis: ImmutablePropTypes.list,

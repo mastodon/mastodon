@@ -21,8 +21,8 @@ const messages = defineMessages({
   localOnly: { id: 'status.local_only', defaultMessage: 'Only visible from your instance' },
 });
 
-@injectIntl
-export default class StatusIcons extends React.PureComponent {
+export default @injectIntl
+class StatusIcons extends React.PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,

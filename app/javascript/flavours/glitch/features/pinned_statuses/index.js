@@ -18,9 +18,9 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['status_lists', 'pins', 'next']),
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class PinnedStatuses extends ImmutablePureComponent {
+class PinnedStatuses extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

@@ -30,8 +30,8 @@ const messages = defineMessages({
   rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage:  'Rewrite with username' },
 });
 
-@injectIntl
-export default class LocalSettingsPage extends React.PureComponent {
+export default @injectIntl
+class LocalSettingsPage extends React.PureComponent {
 
   static propTypes = {
     index    : PropTypes.number,

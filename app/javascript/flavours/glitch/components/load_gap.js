@@ -6,8 +6,8 @@ const messages = defineMessages({
   load_more: { id: 'status.load_more', defaultMessage: 'Load more' },
 });
 
-@injectIntl
-export default class LoadGap extends React.PureComponent {
+export default @injectIntl
+class LoadGap extends React.PureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,

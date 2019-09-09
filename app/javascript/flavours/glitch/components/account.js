@@ -19,8 +19,8 @@ const messages = defineMessages({
   unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'You are currently muting notifications from @{name}. Click to unmute notifications' },
 });
 
-@injectIntl
-export default class Account extends ImmutablePureComponent {
+export default @injectIntl
+class Account extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,

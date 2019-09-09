@@ -84,8 +84,8 @@ export const getPointerPosition = (el, event) => {
   return position;
 };
 
-@injectIntl
-export default class Video extends React.PureComponent {
+export default @injectIntl
+class Video extends React.PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
