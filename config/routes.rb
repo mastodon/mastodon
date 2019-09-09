@@ -251,7 +251,14 @@ Rails.application.routes.draw do
     end
 
     resources :account_moderation_notes, only: [:create, :destroy]
-    resources :tags, only: [:index, :show, :update]
+
+    resources :tags, only: [:index, :show, :update] do
+      collection do
+        post :approve_all
+        post :reject_all
+        post :batch
+      end
+    end
   end
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)
