@@ -383,7 +383,8 @@ Rails.application.routes.draw do
       namespace :featured_tags do
         get :suggestions, to: 'suggestions#index'
       end
-      resources :featured_tags, only: [:index, :create, :show, :update, :destroy]
+
+      resources :featured_tags, only: [:index, :create, :destroy]
 
       resources :polls, only: [:create, :show] do
         resources :votes, only: :create, controller: 'polls/votes'
