@@ -59,6 +59,12 @@ class CustomEmoji < ApplicationRecord
     :emoji
   end
 
+  def copy!
+    copy = self.class.find_or_initialize_by(domain: nil, shortcode: shortcode)
+    copy.image = image
+    copy.save!
+  end
+
   class << self
     def from_text(text, domain)
       return [] if text.blank?
