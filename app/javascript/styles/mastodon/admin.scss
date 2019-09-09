@@ -716,3 +716,47 @@ a.name-tag,
   text-overflow: ellipsis;
   vertical-align: middle;
 }
+
+.admin-account-bio {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+  margin-top: 20px;
+
+  > div {
+    box-sizing: border-box;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    flex: 1 0 50%;
+  }
+
+  .account__header__fields,
+  .account__header__content {
+    background: lighten($ui-base-color, 8%);
+    border-radius: 4px;
+    height: 100%;
+  }
+
+  .account__header__fields {
+    margin: 0;
+    border: 0;
+
+    a {
+      color: lighten($ui-highlight-color, 8%);
+    }
+
+    dl:first-child .verified {
+      border-radius: 0 4px 0 0;
+    }
+
+    .verified a {
+      color: $valid-value-color;
+    }
+  }
+
+  .account__header__content {
+    box-sizing: border-box;
+    padding: 20px;
+    color: $primary-text-color;
+  }
+}
