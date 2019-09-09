@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/TankerHQ/identity-ruby
+  revision: d646cbc7b89b176fa55443a77cf8c82340f09a3b
+  specs:
+    tanker-identity (0.1.0)
+      rbnacl (~> 6.0.1)
+
+GIT
   remote: https://github.com/ianheggie/health_check
   revision: 0b799ead604f900ed50685e9b2d469cd2befba5b
   ref: 0b799ead604f900ed50685e9b2d469cd2befba5b
@@ -504,6 +511,8 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (13.0.1)
+    rbnacl (6.0.1)
+      ffi
     rdf (3.0.12)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
@@ -794,6 +803,7 @@ DEPENDENCIES
   stoplight (~> 2.2.0)
   streamio-ffmpeg (~> 3.0)
   strong_migrations (~> 0.4)
+  tanker-identity!
   thor (~> 0.20)
   tty-command (~> 0.9)
   tty-prompt (~> 0.19)

@@ -34,6 +34,11 @@ gem 'cld3', '~> 3.2.4'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
+# Warning: need to install libsodium for this gem to work
+# More info:
+# https://github.com/crypto-rb/rbnacl/wiki/Installing-libsodium
+gem 'tanker-identity', git: 'https://github.com/TankerHQ/identity-ruby'
+
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
 end
