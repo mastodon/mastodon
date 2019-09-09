@@ -3,6 +3,7 @@ tr:
     about_hashtag_html: 'Bunlar <strong>#%{hashtag}X</strong> ile etiketlenen genel paylaşımlar. Açık alanda herhangi bir yerde bir hesabınız varsa, onlarla etkileşime geçebilirsiniz.'
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     about_this: Bu sunucu hakkında
+    active_count_after: etkin
     active_footnote: Aylık Aktif Kullanıcılar (AAK)
     administered_by: 'Tarafından yönetildi:'
     api: API
@@ -22,6 +23,9 @@ tr:
     generic_description: "%{domain} ağdaki bir sunucudur"
     get_apps: Bir mobil uygulamayı deneyin
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
+    instance_actor_flash: |
+      Bu hesap, herhangi bir kullanıcıyı değil sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür.
+      Federasyon amaçlı kullanılır ve tüm yansıyı engellemek istemediğiniz sürece engellenmemelidir; bu durumda bir etki alanı bloğu kullanmanız gerekir.
     learn_more: Daha fazla bilgi edinin
     privacy_policy: Gizlilik politikası
     see_whats_happening: Neler olduğunu görün
@@ -53,6 +57,7 @@ tr:
     media: Medya
     moved_html: "%{name}, %{new_profile_link} adresine taşındı:"
     network_hidden: Bu bilgi mevcut değil
+    never_active: Asla
     nothing_here: Burada henüz hiçbir gönderi yok!
     people_followed_by: Kullanıcı %{name}'in takip ettikleri
     people_who_follow: Kullanıcı %{name}'i takip edenler
@@ -126,6 +131,7 @@ tr:
       moderation:
         active: Etkin
         all: Hepsi
+        pending: Bekliyor
         silenced: Susturulanlar
         suspended: Uzaklaştırılanlar
         title: Yönetim
@@ -133,6 +139,7 @@ tr:
       most_recent_activity: Son aktivite
       most_recent_ip: Son IP
       no_account_selected: Hiçbiri seçilmediğinden hiçbir hesap değiştirilmedi
+      no_limits_imposed: Sınır koymaz
       not_subscribed: Abone edilmedi
       outbox_url: Giden Kutusu URL'si
       pending: Bekleyen yorum
@@ -188,6 +195,9 @@ tr:
         confirm_user: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
         create_account_warning: "%{name} %{target} 'a bir uyarı gönderdi"
         create_custom_emoji: "%{name} yeni ifade yükledi %{target}"
+        create_domain_block: "%{target} alanı, %{name} tarafından engellendi"
+        create_email_domain_block: "%{target} e-posta alanı, %{name} tarafından kara listeye alınmış"
+        destroy_custom_emoji: "%{target} emoji, %{name} tarafından kaldırıldı"
         disable_2fa_user: "%{name}, %{target} kullanıcısı için iki adım gereksinimini kapattı"
       deleted_status: "(silinmiş durum)"
       title: Denetim günlüğü
