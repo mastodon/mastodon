@@ -49,6 +49,8 @@ cs:
     what_is_mastodon: Co je Mastodon?
   accounts:
     choices_html: 'Volby uživatele %{name}:'
+    endorsements_hint: Z webového rozhraní můžete podpořit lidi, které sledujete. Ti se poté zobrazí zde.
+    featured_tags_hint: Můžete vybrat konkrétní hashtagy, které se zobrazí zde.
     follow: Sledovat
     followers:
       few: Sledující
@@ -62,6 +64,7 @@ cs:
     media: Média
     moved_html: "%{name} se přesunul/a na %{new_profile_link}:"
     network_hidden: Tato informace není k dispozici
+    never_active: Nikdy
     nothing_here: Tady nic není!
     people_followed_by: Lidé, které sleduje %{name}
     people_who_follow: Lidé, kteří sledují uživatele %{name}
@@ -194,6 +197,7 @@ cs:
       username: Uživatelské jméno
       warn: Varovat
       web: Web
+      whitelisted: Na bílé listině
     action_logs:
       actions:
         assigned_to_self_report: "%{name} přidělil/a hlášení %{target} sobě"
@@ -254,6 +258,7 @@ cs:
       updated_msg: Emoji úspěšně aktualizováno!
       upload: Nahrát
     dashboard:
+      authorized_fetch_mode: Autorizovaný režim fetch
       backlog: opožděné úlohy
       config: Konfigurace
       feature_deletions: Smazání účtů
@@ -266,6 +271,8 @@ cs:
       features: Vlastnosti
       hidden_service: Federace se skrytými službami
       open_reports: otevřená hlášení
+      pending_tags: hashtagů čeká na posouzení
+      pending_users: uživatelů
       recent_users: Nedávní uživatelé
       search: Fulltextové vyhledávání
       single_user_mode: Režim jednoho uživatele
@@ -277,11 +284,18 @@ cs:
       week_interactions: interakcí tento týden
       week_users_active: aktivních tento týden
       week_users_new: uživatelů tento týden
+      whitelist_mode: Režim bílé listiny
+    domain_allows:
+      add_new: Přidat doménu na bílou listinu
+      created_msg: Doména byla úspěšně přidána na bílou listinu
+      destroyed_msg: Doména byla odstraněna z bílé listiny
+      undo: Odstranit z bílé listiny
     domain_blocks:
       add_new: Přidat novou blokaci domény
       created_msg: Blokace domény se právě vyřizuje
       destroyed_msg: Blokace domény byla zrušena
       domain: Doména
+      edit: Upravit doménovou blokaci
       existing_domain_block_html: Pro účet %{name} jste již nastavil/a přísnější omezení, musíte jej nejdříve <a href="%{unblock_url}">odblokovat</a>.
       new:
         create: Vytvořit blokaci
@@ -292,6 +306,10 @@ cs:
           silence: Utišit
           suspend: Pozastavit
         title: Nová doménová blokace
+      private_comment: Soukromý komentář
+      private_comment_hint: Komentář o tomto omezení domény pro vnitřní použití moderátory.
+      public_comment: Veřejný komentář
+      public_comment_hint: Komentář o tomto omezení domény pro obecnou veřejnost, pokud je povoleno zobrazování seznamu omezení domén.
       reject_media: Odmítat mediální soubory
       reject_media_hint: Odstraní lokálně uložené mediální soubory a odmítne jejich stahování v budoucnosti. Nepodstatné pro pozastavení
       reject_reports: Odmítat nahlášení
@@ -313,6 +331,7 @@ cs:
         title: Zrušit blokaci domény %{domain}
         undo: Odvolat
       undo: Odvolat blokaci domény
+      view: Zobrazit doménovou blokaci
     email_domain_blocks:
       add_new: Přidat nový
       created_msg: E-mailová doména úspěšně přidána na černou listinu
@@ -338,6 +357,8 @@ cs:
         all: Všechny
         limited: Omezené
         title: Moderování
+      private_comment: Soukromý komentář
+      public_comment: Veřejný komentář
       title: Federace
       total_blocked_by_us: Blokované námi
       total_followed_by_them: Sledované jimi
@@ -415,6 +436,13 @@ cs:
       custom_css:
         desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
         title: Vlastní CSS
+      domain_blocks:
+        all: Všem
+        disabled: Nikomu
+        title: Zobrazit doménové blokace
+        users: Přihlášeným místním uživatelům
+      domain_blocks_rationale:
+        title: Zobrazit odůvodnění
       hero:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura serveru
         title: Hlavní obrázek
@@ -475,12 +503,16 @@ cs:
         desc_html: Zobrazit na hlavní straně veřejnou časovou osu
         title: Náhled časové osy
       title: Nastavení stránky
+      trends:
+        desc_html: Veřejně zobrazit předtím schválené hashtagy, které jsou aktuálně populární
+        title: Populární hashtagy
     statuses:
       back_to_account: Zpět na stránku účtu
       batch:
         delete: Smazat
         nsfw_off: Označit, že není citlivý
         nsfw_on: Označit jako citlivý
+      deleted: Smazáno
       failed_to_execute: Nepodařilo se vykonat
       media:
         title: Média
@@ -489,7 +521,19 @@ cs:
       title: Tooty účtu
       with_media: S médii
     tags:
+      accounts_today: Jedinečná použití dnes
+      accounts_week: Jedinečná použití tento týden
+      breakdown: Přehled dnešního používání podle zdroje
+      context: Kontext
+      directory: V adresáři
+      in_directory: "%{count} v adresáři"
+      review: Stav schválení
+      reviewed: Schválen
       title: Hashtagy
+      trending_right_now: Aktuální trendy
+      unique_uses_today: "%{count} dnes píší"
+      unreviewed: Neposouzeno
+      updated_msg: Nastavení hashtagu bylo úspěšně aktualizováno
     title: Administrace
     warning_presets:
       add_new: Přidat nové
@@ -505,11 +549,15 @@ cs:
       body: "%{reporter} nahlásil/a uživatele %{target}"
       body_remote: Někdo z %{domain} nahlásil uživatele %{target}
       subject: Nové nahlášení pro %{instance} (#%{id})
+    new_trending_tag:
+      body: 'Hashtag #%{name} je dnes populární, nebyl však dříve schválen. Nebude zobrazen veřejně, pokud to nedovolíte. Můžete také pouze uložit formulář tak, jak je, a nikdy o něm opět neslyšet.'
+      subject: Nový hashtag ke schválení na %{instance} (#%{name})
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
     animations_and_accessibility: Animace a přístupnost
     confirmation_dialogs: Potvrzovací dialogy
+    discovery: Objevování
     sensitive_content: Citlivý obsah
   application_mailer:
     notification_preferences: Změnit volby e-mailu
@@ -530,8 +578,13 @@ cs:
     apply_for_account: Vyžádat si pozvánku
     change_password: Heslo
     checkbox_agreement_html: Souhlasím s <a href="%{rules_path}" target="_blank">pravidly serveru</a> a <a href="%{terms_path}" target="_blank">podmínkami používání</a>
+    checkbox_agreement_without_rules_html: Souhlasím s <a href="%{terms_path}" target="_blank">podmínkami používání</a>
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádán/a o potvrzení.
+    description:
+      prefix_invited_by_user: "@%{name} vás zve, abyste se přidal/a na tento server Mastodon!"
+      prefix_sign_up: Registrujte se na Mastodonu již dnes!
+      suffix: S účtem budete moci sledovat lidi, psát příspěvky a vyměňovat si zprávy s uživateli z kteréhokoliv serveru Mastodon a dalších služeb!
     didnt_get_confirmation: Neobdržel/a jste pokyny pro potvrzení?
     forgot_password: Zapomněl/a jste heslo?
     invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel. Prosím vyžádejte si nový.
@@ -556,6 +609,7 @@ cs:
     status:
       account_status: Stav účtu
       confirming: Čekám na dokončení potvrzení e-mailu.
+      functional: Váš účet je zcela funkční.
       pending: Váš požadavek čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
     trouble_logging_in: Problémy s přihlašováním?
   authorize_follow:
@@ -586,26 +640,47 @@ cs:
   deletes:
     bad_password_msg: Dobrý pokus, hackeři! Nesprávné heslo
     confirm_password: Zadejte svoje současné heslo pro ověření vaší identity
-    description_html: Tímto <strong>trvale a nenávratně</strong> odstraníte obsah z vašeho účtu a deaktivujete ho. Vaše uživatelské jméno zůstane rezervované pro zabránění budoucím napodobováním.
     proceed: Odstranit účet
     success_msg: Váš účet byl úspěšně odstraněn
-    warning_html: Pouze vymazání obsahu z tohoto konkrétního serveru je zaručeno. Obsah, který byl široce sdílen, po sobě pravděpodobně zanechá stopy. U offline serverů a serverů, které vaše aktualizace již neodebírají, nebudou databáze aktualizovány.
-    warning_title: Dostupnost rozšířeného obsahu
+    warning:
+      before: 'Před pokračováním si prosím pečlivě přečtěte tyto poznámky:'
+      caches: Obsah, který byl uložen do cache jiných serverů, nemusí být smazán
+      data_removal: Vaše příspěvky a další data budou trvale smazána
+      email_change_html: Můžete si <a href="%{path}">změnit svou e-mailovou adresu</a> bez smazání účtu
+      email_contact_html: Pokud stále nepřijde, můžete požádat o pomoc zasláním e-mailu na <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Pokud neobdržíte potvrzovací e-mail, můžete si ho <a href="%{path}">vyžádat znovu</a>
+      irreversible: Nebudete moci obnovit nebo znovu aktivovat váš účet
+      more_details_html: Více detailů najdete v <a href="%{terms_path}">zásadách soukromí</a>.
+      username_available: Vaše uživatelské jméno bude opět dostupné
+      username_unavailable: Vaše uživatelské jméno zůstane nedostupným
   directories:
     directory: Adresář profilů
-    enabled: Aktuálně jste v adresáři uveden/a.
-    enabled_but_waiting: Přihlásil/a jste se k uvedení v adresáři, ale ještě nemáte minimální počet sledujících (%{min_followers}) pro uvedení.
     explanation: Objevujte uživatele podle jejich zájmů
     explore_mastodon: Prozkoumejte %{title}
-    how_to_enable: Aktuálně nejste přihlášen/a do adresáře. Přihlásit se můžete níže. Použijte ve svém popisu profilu hashtagy, abyste mohl/a být uveden/a pod konkrétními hashtagy!
-    people:
-      few: "%{count} lidé"
-      many: "%{count} lidí"
-      one: "%{count} člověk"
-      other: "%{count} lidí"
+  domain_blocks:
+    blocked_domains: Seznam omezených a blokovaných domén
+    description: Tohle je seznam serverů, které server %{instance} omezuje nebo odmítá federaci.
+    domain: Doména
+    media_block: Blokace médií
+    no_domain_blocks: "(Žádné blokované domény)"
+    severity: Přísnost
+    severity_legend:
+      media_block: Mediální soubory přicházející ze serveru nejsou stahovány, ukládány ani zobrazovány uživatelům.
+      silence: Účty z utišených serverů lze nalézt, sledovat a interagovat s nimi, ale jejich tooty nebudou zobrazovány na veřejných časových osách a oznámení od nich se nedostanou k místním uživatelům, kteří je nesledují.
+      suspension: Z pozastavených serverů se neukládá ani nezobrazuje žádný obsah, ani se naně žádný obsah neposílá. Interakce z pozastavených serverů jsou ignorovány.
+      suspension_disclaimer: Pozastavené servery mohou občas stahovat veřejný obsah z tohoto serveru.
+      title: Přísnosti
+    show_rationale: Zobrazit odůvodnění
+    silence: Utišení
+    suspension: Pozastavení
+    title: "%{instance} Seznam blokovaných serverů"
+  domain_validator:
+    invalid_domain: není platné doménové jméno
   errors:
+    '400': Požadavek, který jste odeslal/a, byl neplatný nebo poškozený.
     '403': Nemáte povolení zobrazit tuto stránku.
     '404': Stránka, kterou hledáte, tu není.
+    '406': Tato stránka není dostupná v požadovaném formátu.
     '410': Stránka, kterou hledáte, tu již neexistuje.
     '422':
       content: Bezpečnostní ověření selhalo. Neblokujete cookies?
@@ -614,6 +689,7 @@ cs:
     '500':
       content: Omlouváme se, ale něco se u nás pokazilo.
       title: Tato stránka není správná
+    '503': Stránku nelze načíst kvůli dočasnému selhání serveru.
     noscript_html: Pro použití webové aplikace Mastodon prosím povolte JavaScript. Nebo zkuste jednu z <a href="%{apps_path}">nativních aplikací</a> pro Mastodon pro vaši platformu.
   existing_username_validator:
     not_found: nelze najít místního uživatele s tímto uživatelským jménem
@@ -637,6 +713,7 @@ cs:
     add_new: Přidat nový
     errors:
       limit: Již jste zvýraznil/a maximální počet hashtagů
+    hint_html: "<strong>Co jsou zvýrazněné hashtagy?</strong> Zobrazují se prominentně na vašem veřejném profilu a dovolují lidem prohlížet si vaše veřejné příspěvky konkrétně pod těmi hashtagy. Je to skvělý nástroj pro sledování kreativních děl nebo dlouhodobých projektů."
   filters:
     contexts:
       home: Domovská časová osa
@@ -657,10 +734,12 @@ cs:
     developers: Vývojáři
     more: Více…
     resources: Zdroje
+    trending_now: Aktuální trendy
   generic:
     all: Všechny
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
+    no_batch_actions_available: Pro tuto stránku nejsou dostupny žádné souhrnné akce
     order_by: Seřadit od
     save_changes: Uložit změny
     validation_errors:
@@ -955,6 +1034,8 @@ cs:
     pinned: Připnutý toot
     reblogged: boostnul/a
     sensitive_content: Citlivý obsah
+  tags:
+    does_not_match_previous_name: se neshoduje s předchozím názvem
   terms:
     body_html: |
       <h2>Zásady soukromí</h2>
@@ -1072,7 +1153,9 @@ cs:
         disable: Zatímco je váš účet zmražen, zůstávají data vašeho účtu nedotčená, ale nemůžete vykonávat žádné akce, dokud nebude odemčen.
         silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučen/a z různých veřejných výpisů. Ostatní vás však pořád mohou manuálně sledovat.
         suspend: Váš účet byl pozastaven a všechny vaše tooty a vaše nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měl/a sledující.
+      get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
       review_server_policies: Posoudit politiku serveru
+      statuses: 'Konkrétně kvůli:'
       subject:
         disable: Váš účet %{acct} byl zmražen
         none: Varování pro uživatele %{acct}

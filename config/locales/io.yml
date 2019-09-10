@@ -73,12 +73,15 @@ io:
       half_a_minute: Jus
       less_than_x_seconds: Jus
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': La pagino quan tu serchas ne existas.
+    '406': This page is not available in the requested format.
     '410': La pagino quan tu serchas ne plus existas.
     '422': 
     '429': Throttled
     '500': 
+    '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Tu blokusas
     follows: Tu sequas

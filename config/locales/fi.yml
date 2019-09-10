@@ -395,14 +395,13 @@ fi:
   deletes:
     bad_password_msg: Hyvä yritys, hakkerit! Väärä salasana
     confirm_password: Tunnistaudu syöttämällä nykyinen salasanasi
-    description_html: Tämä poistaa <strong>pysyvästi ja peruuttamattomasti</strong> kaiken tilisi sisällön ja poistaa tilin käytöstä. Käyttäjänimesi pysyy varattuna, jotta identiteettiäsi ei myöhemmin varasteta.
     proceed: Poista tili
     success_msg: Tilin poisto onnistui
-    warning_html: Sisällön poistaminen taataan vain tämän instanssin osalta. Jos sisältöä on jaettu paljon, siitä todennäköisesti jää jälkiä. Palvelimet, joihin ei saada yhteyttä tai jotka ovat lopettaneet päivitystesi tilaamisen, eivät päivitä tietokantojaan.
-    warning_title: Sisällön saatavuustieto levitetty
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Sinulla ei ole lupaa nähdä tätä sivua.
     '404': Etsimääsi sivua ei ole olemassa.
+    '406': This page is not available in the requested format.
     '410': Etsimääsi sivua ei ole enää olemassa.
     '422':
       content: Turvallisuusvahvistus epäonnistui. Oletko estänyt evästeet?
@@ -411,6 +410,7 @@ fi:
     '500':
       content: Valitettavasti jokin meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
   exports:
     archive_takeout:

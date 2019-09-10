@@ -613,26 +613,19 @@ hu:
   deletes:
     bad_password_msg: Haha, hekker! Helytelen jelszó
     confirm_password: Személyazonosságod megerősítéséhez írd be a jelenlegi jelszavad
-    description_html: Ezzel <strong>véglegesen és visszafordíthatatlanul</strong> törlöd minden tartalmadat és deaktiválod a fiókodat. A felhasználónevedet megtartjuk, hogy megakadályozzuk a neveddel történő jövőbeni visszaélések lehetőségét.
     proceed: Felhasználói fiók törlése
     success_msg: Felhasználói fiókod sikeresen töröltük
-    warning_html: Csak azt tudjuk garantálni, hogy az általad létrehozott tartalmat erről a szerverről töröljük. Ha egyes tartalmaidat sokan megosztották, valószínűleg marad nyomuk a megosztások miatt. Nem fogjuk tudni frissíteni azon szerverek adatbázisát, amelyek nem kapcsolódnak a föderációhoz vagy amelyek leiratkoztak a tülkjeidről.
-    warning_title: Szórt tartalmak elérése
   directories:
     directory: Profilok
-    enabled: Szerepelsz a profil adatbázisban.
-    enabled_but_waiting: Engedélyezted, hogy szerepelj a profil adatbázisban, de még nincs elegendő követőd (%{min_followers}) ehhez.
     explanation: Találj másokra érdeklődésük alapján
     explore_mastodon: "%{title} felfedezése"
-    how_to_enable: Nem engedélyezted a profil adatbázisban való megjelenésed. Engedélyezheted alább. Használj hashtageket az életrajzodban, hogy az ezekhez tartozó listákba bekerülj!
-    people:
-      one: "%{count} ember"
-      other: "%{count} ember"
   domain_validator:
     invalid_domain: nem egy valódi domain név
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
+    '406': This page is not available in the requested format.
     '410': Az általad keresett oldal már nem létezik.
     '422':
       content: Megerősítés sikertelen. Nem tiltottad le esetleg a sütiket?
@@ -641,6 +634,7 @@ hu:
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   existing_username_validator:
     not_found: ezzel a névvel nem találtunk helyi felhasználót
