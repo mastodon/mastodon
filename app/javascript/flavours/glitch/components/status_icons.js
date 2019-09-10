@@ -93,7 +93,7 @@ class StatusIcons extends React.PureComponent {
         {mediaIcon ? (
           <Icon
             fixedWidth
-            className='status__media-icon`'
+            className='status__media-icon'
             id={mediaIcon}
             aria-hidden='true'
             title={this.mediaIconTitleText()}

@@ -79,7 +79,7 @@ class Option extends React.PureComponent {
         </label>
 
         <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} id='times' onClick={this.handleOptionRemove} />
+          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
         </div>
       </li>
     );

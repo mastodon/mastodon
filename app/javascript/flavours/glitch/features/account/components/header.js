@@ -256,7 +256,7 @@ class Header extends ImmutablePureComponent {
             <div className='account__header__tabs__buttons'>
               {actionBtn}
 
-              <DropdownMenuContainer items={menu} id='ellipsis-v' size={24} direction='right' />
+              <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
             </div>
           </div>
 
