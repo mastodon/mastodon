@@ -118,7 +118,7 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
   validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
-  remotable_attachment :file, VIDEO_LIMIT
+  remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false
 
   include Attachmentable
 
