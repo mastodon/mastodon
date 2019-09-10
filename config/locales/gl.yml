@@ -56,6 +56,7 @@ gl:
     media: Medios
     moved_html: "%{name} mudouse a %{new_profile_link}:"
     network_hidden: A información non está dispoñible
+    never_active: Nunca
     nothing_here: Nada por aquí!
     people_followed_by: Personas que segue %{name}
     people_who_follow: Personas que seguen a %{name}
@@ -222,10 +223,12 @@ gl:
       deleted_status: "(estado eliminado)"
       title: Rexistro de auditoría
     custom_emojis:
+      assign_category: Asignar categoría
       by_domain: Dominio
       copied_msg: Creouse con éxito unha copia local dos emoji
       copy: Copiar
       copy_failed_msg: Non se puido facer copia local de ese emoji
+      create_new_category: Crear nova categoría
       created_msg: Creou o emoji con satisfactoriamente!
       delete: Eliminar
       destroyed_msg: Emojo destruído satisfactoriamente!
@@ -242,6 +245,7 @@ gl:
       shortcode: Código corto
       shortcode_hint: Cando menos 2 caracteres, só caracteres alfanuméricos e subliñados
       title: Emojis persoalizados
+      uncategorized: Sen categorizar
       unlisted: Non listado
       update_failed_msg: Non se puido actualizar ese emoji
       updated_msg: Actualizouse correctamente o emoji!
@@ -566,6 +570,10 @@ gl:
     checkbox_agreement_without_rules_html: Acepto os <a href="%{terms_path}" target="_blank">termos do servizo</a>
     delete_account: Eliminar conta
     delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
+    description:
+      prefix_invited_by_user: "@%{name} convídate a que te unas a este servidor Mastodon!"
+      prefix_sign_up: Rexístrate agora en Mastodon!
+      suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
     didnt_get_confirmation: Non recibeu as instruccións de confirmación?
     forgot_password: Esqueceu o contrasinal?
     invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
@@ -623,6 +631,17 @@ gl:
     confirm_password: Introduza o seu contrasinal para verificar a súa identidade
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
+    warning:
+      before: 'Antes de seguir, por favor lé estas notas con atención:'
+      caches: O contido almacenado en outros servidores podería persistir
+      data_removal: As túas publicacións e outros datos serán permanentemente borrados
+      email_change_html: Podes <a href="%{path}">cambiar o enderezo de correo</a> sen eliminar a conta
+      email_contact_html: Se non o recibes, podes escribir a <a href="mailto:%{email}">%{email}</a> pedindo axuda
+      email_reconfirmation_html: Se non recibes o correo de confirmación, podes <a href="%{path}">solicitalo de novo</a>
+      irreversible: Non poderás restaurar ou reactivar a conta
+      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de intimidade</a>.
+      username_available: O nome de usuario estará dispoñible novamente
+      username_unavailable: O nome de usuario non estará dispoñible
   directories:
     directory: Directorio de perfil
     explanation: Descubra usuarias según o seu interese
@@ -647,10 +666,10 @@ gl:
   domain_validator:
     invalid_domain: non é un nome de dominio válido
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.
     '404': A páxina que está a buscar non está aquí.
-    '406': This page is not available in the requested format.
+    '406': Esta páxina non está dispoñible no formato solicitado.
     '410': A páxina que estaba a buscar xa non existe.
     '422':
       content: Fallou a verificación de seguridade. Está bloqueando as cookies?
@@ -659,7 +678,7 @@ gl:
     '500':
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
-    '503': The page could not be served due to a temporary server failure.
+    '503': A páxina non se puido servir debido a un fallo temporal no servidor.
     noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
   existing_username_validator:
     not_found: non se atopou unha usuaria local con ese alcume
@@ -709,6 +728,7 @@ gl:
     all: Todo
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
+    no_batch_actions_available: Non hai accións en pila dispoñibles nesta páxina
     order_by: Ordenar por
     save_changes: Gardar cambios
     validation_errors:
