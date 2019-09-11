@@ -185,7 +185,7 @@ module Mastodon
       end
 
       say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
-      SuspendAccountService.new.call(account, including_user: true)
+      SuspendAccountService.new.call(account, reserve_email: false)
       say('OK', :green)
     end
 
@@ -239,7 +239,7 @@ module Mastodon
         end
 
         if [404, 410].include?(code)
-          SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
+          SuspendAccountService.new.call(account, reserve_username: false) unless options[:dry_run]
           1
         else
           # Touch account even during dry run to avoid getting the account into the window again

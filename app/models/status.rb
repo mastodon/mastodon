@@ -214,6 +214,10 @@ class Status < ApplicationRecord
     !sensitive? && with_media?
   end
 
+  def reported?
+    @reported ||= Report.where(target_account: account).unresolved.where('? = ANY(status_ids)', id).exists?
+  end
+
   def emojis
     return @emojis if defined?(@emojis)
 
