@@ -5,10 +5,10 @@ module Admin
     before_action :set_report_note, only: [:destroy]
 
     def create
-      authorize ReportNote, :create?
+      authorize :report_note, :create?
 
       @report_note = current_account.report_notes.new(resource_params)
-      @report = @report_note.report
+      @report      = @report_note.report
 
       if @report_note.save
         if params[:create_and_resolve]
@@ -26,9 +26,8 @@ module Admin
 
         redirect_to admin_report_path(@report), notice: I18n.t('admin.report_notes.created_msg')
       else
-        @report_notes = @report.notes.latest
-        @report_history = @report.history
-        @form = Form::StatusBatch.new
+        @report_notes = (@report.notes.latest + @report.history + @report.target_account.targeted_account_warnings.latest.custom).sort_by(&:created_at)
+        @form         = Form::StatusBatch.new
 
         render template: 'admin/reports/show'
       end
