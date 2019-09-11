@@ -107,5 +107,9 @@ module.exports = {
     // Called by http-link-header in an API we never use, increases
     // bundle size unnecessarily
     Buffer: false,
+    // `fs` and `crypto` are not used by libsodium when
+    // ran in the browser
+    fs: 'empty',
+    crypto: 'empty',
   },
 };
