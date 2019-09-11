@@ -110,6 +110,7 @@ describe ApplicationController, type: :controller do
       sign_in current_user
 
       allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
+      allow(Setting).to receive(:[]).with('noindex').and_return false
 
       expect(controller.view_context.current_theme).to eq 'contrast'
     end
