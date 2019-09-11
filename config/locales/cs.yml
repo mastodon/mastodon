@@ -438,6 +438,9 @@ cs:
       custom_css:
         desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
         title: Vlastní CSS
+      default_noindex:
+        desc_html: Ovlivňuje všechny uživatele, kteří toto nastavení sami nezměnili
+        title: Odhlásit uživatele z indexování vyhledávačemi ve výchozím stavu
       domain_blocks:
         all: Všem
         disabled: Nikomu
@@ -449,7 +452,7 @@ cs:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura serveru
         title: Hlavní obrázek
       mascot:
-        desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
+        desc_html: Zobrazuje se na několika stránkách. Doporučuje se rozlišení alespoň 293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
         title: Obrázek maskota
       peers_api_enabled:
         desc_html: Domény, na které tento server narazil ve fedivesmíru
