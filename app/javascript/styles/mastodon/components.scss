@@ -6027,3 +6027,14 @@ noscript {
     padding: 0.35rem;
   }
 }
+
+div.status__content,
+div.status__content--with-action,
+div.status__content--with-spoiler {
+  p {
+    span.show_more_button {
+      display: block;
+      margin: 0.25rem 0 0 0;
+    }
+  }
+}
