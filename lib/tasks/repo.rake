@@ -76,4 +76,19 @@ namespace :repo do
       tmp.unlink
     end
   end
+
+  task check_locales_files: :environment do
+    pastel = Pastel.new
+
+    missing_yaml_files = I18n.available_locales.reject { |locale| File.exist?(Rails.root.join('config', 'locales', "#{locale}.yml")) }
+    missing_json_files = I18n.available_locales.reject { |locale| File.exist?(Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json")) }
+
+    if missing_json_files.empty? && missing_yaml_files.empty?
+      puts pastel.green('OK')
+    else
+      puts pastel.red("Missing YAML files: #{pastel.bold(missing_yaml_files.join(', '))}") unless missing_yaml_files.empty?
+      puts pastel.red("Missing JSON files: #{pastel.bold(missing_json_files.join(', '))}") unless missing_json_files.empty?
+      exit(1)
+    end
+  end
 end
