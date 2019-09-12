@@ -35,7 +35,7 @@
               %h4
                 = fa_icon 'globe fw'
                 = t('about.see_whats_happening')
-                %small= t('about.browse_public_posts')
+                %small= t('about.browse_public_posts', title: site_title)
 
         .directory__tag
           = link_to 'https://joinmastodon.org/apps', target: '_blank', rel: 'noopener' do
