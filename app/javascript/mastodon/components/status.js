@@ -323,8 +323,7 @@ class Status extends ImmutablePureComponent {
 
       account = status.get('account');
       status  = status.get('reblog');
-    } else if (status.get('visibility') === 'direct') {
-
+    } else if (otherAccounts && otherAccounts.size > 0) {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend-icon-wrapper'><Icon id='users' className='status__prepend-icon' fixedWidth /></div>
