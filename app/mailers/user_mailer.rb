@@ -63,7 +63,7 @@ class UserMailer < Devise::Mailer
     return if @resource.disabled?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
+      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject', title: Setting.site_title)
     end
   end
 
