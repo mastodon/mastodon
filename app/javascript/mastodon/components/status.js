@@ -323,6 +323,14 @@ class Status extends ImmutablePureComponent {
 
       account = status.get('account');
       status  = status.get('reblog');
+    } else if (status.get('visibility') === 'direct') {
+
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><Icon id='users' className='status__prepend-icon' fixedWidth /></div>
+          <DisplayName account={status.get('account')} others={otherAccounts} />
+        </div>
+      );
     }
 
     if (status.get('media_attachments').size > 0) {
@@ -387,7 +395,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (otherAccounts && otherAccounts.size > 0) {
-      statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} />;
+      statusAvatar = <AvatarComposite account={status.get('account')} accounts={otherAccounts} />;
     } else if (account === undefined || account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={48} />;
     } else {
@@ -422,7 +430,7 @@ class Status extends ImmutablePureComponent {
                   {statusAvatar}
                 </div>
 
-                <DisplayName account={status.get('account')} others={otherAccounts} />
+                <DisplayName account={status.get('account')} others='' />
               </a>
             </div>
 

@@ -6,6 +6,7 @@ import { autoPlayGif } from '../initial_state';
 export default class AvatarComposite extends React.PureComponent {
 
   static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
     animate: PropTypes.bool,
     size: PropTypes.number.isRequired,
@@ -35,35 +36,35 @@ export default class AvatarComposite extends React.PureComponent {
 
     if (size === 2) {
       if (index === 0) {
-        right = '2px';
+        right = '0px';
       } else {
-        left = '2px';
+        left = '0px';
       }
     } else if (size === 3) {
       if (index === 0) {
-        right = '2px';
+        right = '0px';
       } else if (index > 0) {
-        left = '2px';
+        left = '0px';
       }
 
       if (index === 1) {
-        bottom = '2px';
+        bottom = '0px';
       } else if (index > 1) {
-        top = '2px';
+        top = '0px';
       }
     } else if (size === 4) {
       if (index === 0 || index === 2) {
-        right = '2px';
+        right = '0px';
       }
 
       if (index === 1 || index === 3) {
-        left = '2px';
+        left = '0px';
       }
 
       if (index < 2) {
-        bottom = '2px';
+        bottom = '0px';
       } else {
-        top = '2px';
+        top = '0px';
       }
     }
 
@@ -84,11 +85,18 @@ export default class AvatarComposite extends React.PureComponent {
   }
 
   render() {
-    const { accounts, size } = this.props;
+    const { account, accounts, size } = this.props;
+
+    const baseStyle = {
+      backgroundImage: `url(${account.get('avatar_static')})`,
+    };
 
     return (
-      <div className='account__avatar-composite' style={{ width: `${size}px`, height: `${size}px` }}>
-        {accounts.take(4).map((account, i) => this.renderItem(account, accounts.size, i))}
+      <div className='account__avatar-overlay'>
+        <div className='account__avatar-overlay-base' style={baseStyle} />
+        <div className='account__avatar-overlay-overlay account__avatar-composite' >
+          {accounts.take(4).map((dm_account, i) => this.renderItem(dm_account, accounts.size, i))}
+        </div>
       </div>
     );
   }
