@@ -9,7 +9,6 @@ export default class AvatarComposite extends React.PureComponent {
     account: ImmutablePropTypes.map.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
     animate: PropTypes.bool,
-    size: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
@@ -85,7 +84,7 @@ export default class AvatarComposite extends React.PureComponent {
   }
 
   render() {
-    const { account, accounts, size } = this.props;
+    const { account, accounts } = this.props;
 
     const baseStyle = {
       backgroundImage: `url(${account.get('avatar_static')})`,
