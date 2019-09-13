@@ -245,7 +245,7 @@ class StatusActionBar extends ImmutablePureComponent {
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
-    const shareButton = ('share' in navigator) && status.get('visibility') === 'public' && (
+    const shareButton = ('share' in navigator) && status.get('visibility') === 'public' && federated && (
       <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
     );
 
