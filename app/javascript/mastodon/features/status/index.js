@@ -33,6 +33,7 @@ import {
 } from '../../actions/statuses';
 import { initMuteModal } from '../../actions/mutes';
 import { initReport } from '../../actions/reports';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { makeGetStatus } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
 import ColumnBackButton from '../../components/column_back_button';
@@ -59,6 +60,7 @@ const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
+  title: { id: 'column.status', defaultMessage: 'Toot' },
 });
 
 const makeMapStateToProps = () => {
@@ -69,6 +71,7 @@ const makeMapStateToProps = () => {
     state => state.getIn(['contexts', 'inReplyTos']),
   ], (statusId, inReplyTos) => {
     let ancestorsIds = Immutable.List();
+
     ancestorsIds = ancestorsIds.withMutations(mutable => {
       let id = statusId;
 
@@ -105,6 +108,7 @@ const makeMapStateToProps = () => {
     }
 
     let insertAt = descendantsIds.findIndex((id) => statuses.get(id).get('in_reply_to_account_id') !== statuses.get(id).get('account'));
+
     if (insertAt !== -1) {
       descendantsIds.forEach((id, idx) => {
         if (idx > insertAt && statuses.get(id).get('in_reply_to_account_id') === statuses.get(id).get('account')) {
@@ -156,6 +160,7 @@ class Status extends ImmutablePureComponent {
     descendantsIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
+    columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
     domain: PropTypes.string.isRequired,
   };
@@ -185,6 +190,22 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleColumnPin = () => {
+    const { columnId, dispatch, params } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('STATUS', { ...params }));
+      this.context.router.history.push('/');
+    }
+  }
+
+  handleColumnMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  }
+
   handleToggleMediaVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
   }
@@ -207,6 +228,7 @@ class Status extends ImmutablePureComponent {
 
   handleReplyClick = (status) => {
     let { askReplyConfirmation, dispatch, intl } = this.props;
+
     if (askReplyConfirmation) {
       dispatch(openModal('CONFIRM', {
         message: intl.formatMessage(messages.replyMessage),
@@ -401,6 +423,7 @@ class Status extends ImmutablePureComponent {
       } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
         element.scrollIntoView(false);
       }
+
       element.focus();
     }
   }
@@ -434,6 +457,7 @@ class Status extends ImmutablePureComponent {
       window.requestAnimationFrame(() => {
         element.scrollIntoView(true);
       });
+
       this._scrolledIntoView = true;
     }
   }
@@ -448,8 +472,9 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl, domain, multiColumn } = this.props;
+    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl, domain, multiColumn, columnId } = this.props;
     const { fullscreen } = this.state;
+    const pinned = !!columnId;
 
     if (status === null) {
       return (
@@ -484,13 +509,18 @@ class Status extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           showBackButton
+          icon='comments'
+          title={pinned ? intl.formatMessage(messages.title) : false}
+          pinned={pinned}
+          onPin={this.handleColumnPin}
+          onMove={this.handleColumnMove}
           multiColumn={multiColumn}
           extraButton={(
             <button className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll} aria-pressed={status.get('hidden') ? 'false' : 'true'}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} /></button>
           )}
         />
 
-        <ScrollContainer scrollKey='thread' shouldUpdateScroll={shouldUpdateScroll}>
+        <ScrollContainer scrollKey={`thread-${columnId}`} shouldUpdateScroll={shouldUpdateScroll}>
           <div className={classNames('scrollable', { fullscreen })} ref={this.setRef}>
             {ancestors}
 

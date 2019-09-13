@@ -23,6 +23,7 @@ import {
   FavouritedStatuses,
   ListTimeline,
   Directory,
+  Status,
 } from '../../ui/util/async-components';
 import Icon from 'mastodon/components/icon';
 import ComposePanel from './compose_panel';
@@ -42,6 +43,7 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
   'LIST': ListTimeline,
   'DIRECTORY': Directory,
+  'STATUS': Status,
 };
 
 const messages = defineMessages({

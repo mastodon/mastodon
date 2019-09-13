@@ -4,6 +4,7 @@ import { COLUMN_ADD, COLUMN_REMOVE, COLUMN_MOVE, COLUMN_PARAMS_CHANGE } from '..
 import { STORE_HYDRATE } from '../actions/store';
 import { EMOJI_USE } from '../actions/emojis';
 import { LIST_DELETE_SUCCESS, LIST_FETCH_FAIL } from '../actions/lists';
+import { STATUS_FETCH_FAIL, STATUS_DELETE_SUCCESS } from '../actions/statuses';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 import uuid from '../uuid';
 
@@ -116,6 +117,8 @@ const updateFrequentEmojis = (state, emoji) => state.update('frequentlyUsedEmoji
 
 const filterDeadListColumns = (state, listId) => state.update('columns', columns => columns.filterNot(column => column.get('id') === 'LIST' && column.get('params').get('id') === listId));
 
+const filterDeadStatusColumns = (state, statusId) => state.update('columns', columns => columns.filterNot(column => column.get('id') === 'STATUS' && column.get('params').get('statusId') === statusId));
+
 export default function settings(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
@@ -143,8 +146,12 @@ export default function settings(state = initialState, action) {
     return state.set('saved', true);
   case LIST_FETCH_FAIL:
     return action.error.response.status === 404 ? filterDeadListColumns(state, action.id) : state;
+  case STATUS_FETCH_FAIL:
+    return action.error.response.status === 404 ? filterDeadStatusColumns(state, action.id) : state;
   case LIST_DELETE_SUCCESS:
     return filterDeadListColumns(state, action.id);
+  case STATUS_DELETE_SUCCESS:
+    return filterDeadStatusColumns(state, action.id);
   default:
     return state;
   }
