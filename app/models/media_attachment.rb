@@ -123,7 +123,7 @@ class MediaAttachment < ApplicationRecord
   include Attachmentable
 
   validates :account, presence: true
-  validates :description, length: { maximum: 420 }, if: :local?
+  validates :description, length: { maximum: 1_500 }, if: :local?
 
   scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
