@@ -39,16 +39,18 @@ sk:
       other: príspevky
     status_count_before: Ktorí napísali
     tagline: Následuj kamarátov, a objavuj nových
-    terms: Podmienky užívania
+    terms: Podmienky užitia
     user_count_after:
       few: užívateľov
-      many: užívateľov
+      many: užívatelia
       one: užívateľ
-      other: uživatelia
+      other: užívateľov
     user_count_before: Domov pre
     what_is_mastodon: Čo je Mastodon?
   accounts:
     choices_html: "%{name}vé voľby:"
+    endorsements_hint: Môžeš ukázať sledovaných užívateľov, s ktorými si spriaznený/á cez webové rozhranie, a tí tu budú zobrazení.
+    featured_tags_hint: Môžeš zvýrazniť určité haštagy, ktoré tu budú zobrazené.
     follow: Následuj
     followers:
       few: Sledovateľov
@@ -62,6 +64,7 @@ sk:
     media: Médiá
     moved_html: "%{name} účet bol presunutý na %{new_profile_link}:"
     network_hidden: Táto informácia nieje k dispozícii
+    never_active: Nikdy
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
@@ -434,6 +437,7 @@ sk:
         all: Všetkým
         disabled: Nikomu
         title: Ukáž blokované domény
+        users: Prihláseným, miestnym užívateľom
       domain_blocks_rationale:
         title: Ukáž zdôvodnenie
       hero:
@@ -505,6 +509,7 @@ sk:
         delete: Vymaž
         nsfw_off: Označ ako nechúlostivé
         nsfw_on: Označ ako chúlostivé
+      deleted: Vymazané
       failed_to_execute: Nepodarilo sa vykonať
       media:
         title: Médiá
@@ -572,6 +577,9 @@ sk:
     checkbox_agreement_without_rules_html: Súhlasím s <a href="%{terms_path}" target="_blank">podmienkami užívania</a>
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
+    description:
+      prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
+      prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
     didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
@@ -624,28 +632,38 @@ sk:
   deletes:
     bad_password_msg: Dobrý pokus, hakeri! Nesprávne heslo
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
-    description_html: Týmto <strong> natrvalo, nenavrátiteľne </strong> vymažeš obsah tvojho účtu, a deaktivuješ ho. Tvoja prezývka ale ostane rezervovaná ako prevencia pred budúcimi impersonáciami.
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
-    warning_html: Iba vymazanie obsahu z tohto konkrétneho serveru je zaručené. Obsah, ktorý bol zdieľaný široko-ďaleko pravdepodobne zanechá nejaké stopy. Servery ktoré sú offline a tie ktoré ignorujú tvoje zmeny teda nezaktualizujú svoje databázy.
-    warning_title: Dostupnosť rozšírovaného obsahu
+    warning:
+      before: 'Predtým, než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
+      caches: Obsah, ktorý bol predčítaný inými servermi môže zanechať pozostatky
+      username_unavailable: Tvoja prezývka ostane neprístupná
   directories:
     directory: Katalóg profilov
-    enabled: Momentálne si uvedený/á na zozname profilov.
-    enabled_but_waiting: Vyjadril/a si záujem o uvedenie na zozname profilov, lenže ešte nemáš minimálny vyžadovaný počet následovateľov (%{min_followers}), aby si tam bol/a uveden/á.
     explanation: Pátraj po užívateľoch podľa ich záujmov
     explore_mastodon: Prebádaj %{title}
-    how_to_enable: Momentálne niesi zaradený/á do verejnej profilovej databázy. Prihlásiť sa môžeš nižšie. Použi haštagy vo svojom biografickom popise na profile, ak chceš byť uvedený/á aj pod konkrétnými haštagmi!
-    people:
-      few: "%{count} ľudí"
-      many: "%{count} ľudí"
-      one: "%{count} človek"
-      other: "%{count} ľudia"
+  domain_blocks:
+    blocked_domains: Zoznam obmedzovaných a blokovaných domén
+    description: Toto je zoznam serverov, ktorých federáciu %{instance} obmedzuje, alebo nepríjma.
+    domain: Doména
+    media_block: Blokovanie médií
+    no_domain_blocks: "(Žiadne domény niesú blokované)"
+    severity: Závažnosť
+    severity_legend:
+      media_block: Mediálne súbory zo servera niesú ani zachytávané, ani ukladané, či zobrazované užívateľovi.
+      suspension_disclaimer: Vylúčené servery sa môžu občas dostať k verejnému obsahu tohto servera.
+      title: Závažnosti
+    show_rationale: Ukáž zdôvodnenie
+    silence: Stíš
+    suspension: Vylúčenie
+    title: Zoznam instancií, ktoré blokuje %{instance}
   domain_validator:
     invalid_domain: nieje správny tvar domény
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
     '404': Stránka ktorú hľadáš nieje tu.
+    '406': This page is not available in the requested format.
     '410': Stránka ktorú si tu hľadal/a sa tu už viac nenachádza.
     '422':
       content: Bezpečtnostné overenie zlyhalo. Blokuješ cookies?
@@ -654,6 +672,7 @@ sk:
     '500':
       content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
   existing_username_validator:
     not_found: nepodarilo sa nájsť miestného užívateľa s takouto prezývkou
@@ -697,6 +716,7 @@ sk:
     developers: Vývojári
     more: Viac…
     resources: Podklady
+    trending_now: Teraz populárne
   generic:
     all: Všetko
     changes_saved_msg: Zmeny boli úspešne uložené!
@@ -1034,6 +1054,7 @@ sk:
         silence: Kým máš účet obmedzený, tvoje príspevky na tomto serveri uvidia iba tí ľudia, ktorí ťa už následujú, a môžeš byť vylúčený/á z rôznych verejných záznamov. Ostatní ťa však stále budú môcť následovať manuálne.
         suspend: Tvoj účet bol vylúčený, a všetky tvoje príspevky a nahraté médiálné súbory boli nenávratne zmazané z tohto serveru, a zo serverov na ktorých si mal následovateľov.
       review_server_policies: Prehodnoť pravidlá servera
+      statuses: 'Konkrétne kvôli:'
       subject:
         disable: Tvoj účet %{acct} bol zamrazený
         none: Varovanie pre %{acct}

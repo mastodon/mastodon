@@ -528,24 +528,17 @@ pt-BR:
   deletes:
     bad_password_msg: Boa tentativa, hackers! Senha incorreta
     confirm_password: Insira a sua senha atual para verificar a sua identidade
-    description_html: Isto vai <strong>permanente e irreversivelmente</strong> remover conteúdo de sua conta e desativá-la. O seu nome de usuário permanecerá reservado para previnir futuros roubos de identidade.
     proceed: Excluir conta
     success_msg: A sua conta foi excluída com sucesso
-    warning_html: Apenas a exclusão de conteúdo desta instância em particular é garantida. Conteúdo que tenha sido largamente compartilhado muito provavelmente deixará traços. Servidores offline e servidores que se desinscreveram de suas atualizações não irão atualizar as suas bases de dados.
-    warning_title: Disponibilidade de conteúdo disseminado
   directories:
     directory: Diretório de perfis
-    enabled: Você está na lista do diretório.
-    enabled_but_waiting: Você escolheu ser listado no diretório, mas você ainda não tem o mínimo de seguidores (%{min_followers}) para ser listado.
     explanation: Descobrir usuários baseado em seus interesses
     explore_mastodon: Explorar %{title}
-    how_to_enable: Você não se inscreveu no diretório. Você pode se inscrever abaixo. Use hashtags no texto da sua bio para ser listado em hashtags específicas!
-    people:
-      one: "%{count} pessoa"
-      other: "%{count} pessoas"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Você não tem permissão para ver esta página.
     '404': A página pela qual você está procurando não existe.
+    '406': This page is not available in the requested format.
     '410': A página pela qual você está procurando não existe mais.
     '422':
       content: A verificação de segurança falhou. Você desativou o uso de cookies?
@@ -554,6 +547,7 @@ pt-BR:
     '500':
       content: Desculpe, algo deu errado.
       title: Esta página não está certa
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon em sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um usuário local com esse nome de usuário

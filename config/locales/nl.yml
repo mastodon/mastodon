@@ -183,6 +183,7 @@ nl:
       username: Gebruikersnaam
       warn: Waarschuwen
       web: Webapp
+      whitelisted: Op de witte lijst
     action_logs:
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
@@ -243,6 +244,7 @@ nl:
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     dashboard:
+      authorized_fetch_mode: Geautoriseerde ophaalmodus
       backlog: achterstallige taken
       config: Configuratie
       feature_deletions: Verwijderen van account
@@ -250,10 +252,13 @@ nl:
       feature_profile_directory: Gebruikersgids
       feature_registrations: Registraties
       feature_relay: Federatierelay
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Voorvertoning van tijdlijn
       features: Functies
       hidden_service: Federatie met verborgen diensten
       open_reports: onopgeloste rapportages
+      pending_tags: hashtags die op een beoordeling wachten
+      pending_users: gebruikers die op een beoordeling wachten
       recent_users: Recente gebruikers
       search: In volledige tekst zoeken
       single_user_mode: Modus voor één gebruiker
@@ -265,11 +270,18 @@ nl:
       week_interactions: interacties deze week
       week_users_active: actieve gebruikers deze week
       week_users_new: nieuwe gebruikers deze week
+      whitelist_mode: Modus voor de witte lijst
+    domain_allows:
+      add_new: Domein voor de witte lijst
+      created_msg: Het domein is succesvol aan de witte lijst toegevoegd
+      destroyed_msg: Het domein is van de witte lijst verwijderd
+      undo: Van de witte lijst verwijderen
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
+      edit: Domeinblokkade bewerken
       existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
       new:
         create: Blokkade aanmaken
@@ -280,6 +292,10 @@ nl:
           silence: Negeren
           suspend: Opschorten
         title: Nieuwe domeinblokkade
+      private_comment: Privé-opmerking
+      private_comment_hint: Opmerking over deze domeinbeperking voor intern gebruik door de moderatoren.
+      public_comment: Openbare opmerking
+      public_comment_hint: Opmerking over deze domeinbeperking voor het grote publiek, voor wanneer de openbare lijst met domeinbeperkingen is ingeschakeld.
       reject_media: Mediabestanden weigeren
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
@@ -299,6 +315,7 @@ nl:
         title: Domeinblokkade voor %{domain} ongedaan maken
         undo: Ongedaan maken
       undo: domeinblokkade ongedaan maken
+      view: Domeinblokkade bekijken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Blokkeren e-maildomein geslaagd
@@ -322,6 +339,8 @@ nl:
         all: Alles
         limited: Beperkt
         title: Moderatie
+      private_comment: Privé-opmerking
+      public_comment: Openbare opmerking
       title: Andere domeinen
       total_blocked_by_us: Door ons geblokkeerd
       total_followed_by_them: Door hun gevolgd
@@ -399,6 +418,13 @@ nl:
       custom_css:
         desc_html: Het uiterlijk van deze server met CSS aanpassen
         title: Aangepaste CSS
+      domain_blocks:
+        all: Naar iedereen
+        disabled: Naar niemand
+        title: Domeinblokkades tonen
+        users: Naar ingelogde lokale gebruikers
+      domain_blocks_rationale:
+        title: Motivering tonen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -456,12 +482,15 @@ nl:
         desc_html: Toon een openbare tijdlijn op de voorpagina
         title: Tijdlijn op de voorpagina tonen
       title: Server-instellingen
+      trends:
+        title: Trending hashtags
     statuses:
       back_to_account: Terug naar accountpagina
       batch:
         delete: Verwijderen
         nsfw_off: Als niet gevoelig markeren
         nsfw_on: Als gevoelig markeren
+      deleted: Verwijderd
       failed_to_execute: Uitvoeren mislukt
       media:
         title: Media
@@ -470,7 +499,16 @@ nl:
       title: Toots van account
       with_media: Met media
     tags:
+      accounts_today: Aantal unieke keren vandaag gebruikt
+      accounts_week: Aantal unieke keren deze week gebruikt
+      context: Context
+      directory: In de gebruikersgids
+      in_directory: "%{count} keer in de gebruikersgids"
+      review: Status beoordelen
+      reviewed: Beoordeeld
       title: Hashtags
+      trending_right_now: Op dit moment trending
+      unreviewed: Niet beoordeeld
     title: Beheer
     warning_presets:
       add_new: Nieuwe toevoegen
@@ -491,6 +529,7 @@ nl:
     advanced_web_interface_hint: 'Wanneer je van de hele schermbreedte gebruik wilt maken, stelt de geavanceerde webomgeving je in staat om meerdere verschillende kolommen te configureren. Hiermee kun je zoveel mogelijk informatie op hetzelfde moment bekijken, zoals: Start, meldingen, de globale tijdlijn, meerdere lijsten en hashtags.'
     animations_and_accessibility: Animaties en toegankelijkheid
     confirmation_dialogs: Bevestigingen
+    discovery: Ontdekken
     sensitive_content: Gevoelige inhoud
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
@@ -530,6 +569,10 @@ nl:
     reset_password: Wachtwoord opnieuw instellen
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
+    setup:
+      title: Instellen
+    status:
+      account_status: Accountstatus
     trouble_logging_in: Problemen met inloggen?
   authorize_follow:
     already_following: Je volgt dit account al
@@ -559,24 +602,27 @@ nl:
   deletes:
     bad_password_msg: Goed geprobeerd hackers! Ongeldig wachtwoord
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
-    description_html: Hierdoor worden alle gegevens van jouw account <strong>permanent, onomkeerbaar</strong> verwijderd en wordt deze gedeactiveerd. Om toekomstige identiteitsdiefstal te voorkomen, kan op deze server jouw gebruikersnaam niet meer gebruikt worden.
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
-    warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk sporen achter. Offline servers en servers die niet meer op jouw updates zijn geabonneerd zullen niet hun databases updaten.
-    warning_title: Verwijdering gegevens op andere servers
   directories:
     directory: Gebruikersgids
-    enabled: Je staat momenteel in de gebruikersgids vermeldt.
-    enabled_but_waiting: Je hebt er voor gekozen om in de gebruikersgids te worden vermeldt, maar je hebt daarvoor nog niet het minimaal aantal volgers (%{min_followers}).
     explanation: Ontdek gebruikers aan de hand van hun interesses
     explore_mastodon: "%{title} verkennen"
-    how_to_enable: Je geeft momenteel geen toestemming om in de gebruikersgids te worden vermeldt. Je kunt hieronder toestemming geven. Gebruik hashtags in de tekst van jouw bio, om onder bepaalde hashtags te worden vermeldt!
-    people:
-      one: "%{count} gebruikers"
-      other: "%{count} gebruikers"
+  domain_blocks:
+    domain: Domein
+    media_block: Mediabestanden weigeren
+    no_domain_blocks: "(geen domeinblokkades)"
+    severity: Zwaarte
+    severity_legend:
+      media_block: Mediabestanden die van deze server komen worden niet opgehaald, opgeslagen en aan de gebruiker getoond.
+      title: Zwaartes
+    show_rationale: Motivering tonen
+    silence: Negeren
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
+    '406': This page is not available in the requested format.
     '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
@@ -585,6 +631,7 @@ nl:
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   existing_username_validator:
     not_found: Kon geen lokale gebruiker met die gebruikersnaam vinden
@@ -628,6 +675,7 @@ nl:
     developers: Ontwikkelaars
     more: Meer…
     resources: Hulpmiddelen
+    trending_now: Trends
   generic:
     all: Alles
     changes_saved_msg: Wijzigingen succesvol opgeslagen!

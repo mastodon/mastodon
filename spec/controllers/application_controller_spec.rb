@@ -113,6 +113,7 @@ describe ApplicationController, type: :controller do
 
       allow(Setting).to receive(:[]).with('skin').and_return 'default'
       allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+      allow(Setting).to receive(:[]).with('noindex').and_return false
 
       expect(controller.view_context.current_flavour).to eq 'vanilla'
     end

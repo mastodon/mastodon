@@ -71,6 +71,9 @@
     .fields-group
       = f.input :trends, as: :boolean, wrapper: :with_label, label: t('admin.settings.trends.title'), hint: t('admin.settings.trends.desc_html')
 
+    .fields-group
+      = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
+
   .fields-group
     = f.input :hide_followers_count, as: :boolean, wrapper: :with_label, label: t('admin.settings.hide_followers_count.title'), hint: t('admin.settings.hide_followers_count.desc_html')
 

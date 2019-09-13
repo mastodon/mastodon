@@ -119,6 +119,7 @@ class Account < ApplicationRecord
            :approved?,
            :pending?,
            :disabled?,
+           :unconfirmed_or_pending?,
            :role,
            :admin?,
            :moderator?,

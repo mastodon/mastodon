@@ -583,28 +583,17 @@ cy:
   deletes:
     bad_password_msg: Go dda, hacwyr! Cyfrinair anghywir
     confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd yno
-    description_html: Bydd hyn yn cael gwared ar gynnwys o'ch cyfrif <strong>am byth heb fodd i'w adfer</strong> ac yn diffodd y cyfrif. Caiff eich eich enw defnyddiwr ei gadw i atal unrhyw ddynwarediadau yn y dyfodol.
     proceed: Dileu cyfrif
     success_msg: Llwyddwyd i ddileu eich cyfrif
-    warning_html: Dim ond dileu cynnwys o'r achos hwn ellid bod yn sicr ei fod wedi ei ddileu. Mae cynnwys sydd wedi ei rannu'n eang yn debygol o adael olion. Ni fydd gweinyddwyr all-lein a gweinyddwyr sydd wedi dad-danysgrifio o'ch diwedderiadau ddim yn diweddaru eu cronfeydd data.
-    warning_title: Argaeledd cynnwys wedi'i rannu
   directories:
     directory: Cyfeiriadur proffil
-    enabled: Rydych chi wedi'ch rhestru yn y cyfeiriadur ar hyn o bryd.
-    enabled_but_waiting: Rydych wedi dewis i chi gael eich rhestru yn y cyfeiriadur, ond nid oes gennych y nifer lleiaf o ddilynwyr (%{min_followers}) i'w rhestru eto.
     explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
     explore_mastodon: Archwilio %{title}
-    how_to_enable: Ar hyn o bryd nid ydych chi wedi dewis y cyfeiriadur. Gallwch ddewis i mewn isod. Defnyddiwch hashnodau yn eich bio-destun i'w restru dan hashnodau penodol!
-    people:
-      few: "%{count} o bobl"
-      many: "%{count} o bobl"
-      one: "%{count} berson"
-      other: "%{count} o bobl"
-      two: "%{count} o bobl"
-      zero: "%{count} person"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nid oes gennych ganiatad i weld y dudalen hon.
     '404': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli.
+    '406': This page is not available in the requested format.
     '410': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli mwyach.
     '422':
       content: Methwyd i ddilysu diogelwch. A ydych chi'n blocio cwcîs?
@@ -613,6 +602,7 @@ cy:
     '500':
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: I ddefnyddio ap gwe Mastodon, galluogwch JavaScript os gwlwch yn dda. Fel arall, gallwch drio un o'r <a href="%{apps_path}">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
   existing_username_validator:
     not_found: ni ddarganfwyd defnyddiwr lleol gyda'r enw cyfrif hynny

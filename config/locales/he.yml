@@ -212,14 +212,17 @@ he:
       x_months: "%{count} חודשים"
       x_seconds: "%{count} שניות"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': חסרות לך הרשאות לצפיה בעמוד זה.
     '404': הדף המבוקש לא קיים.
+    '406': This page is not available in the requested format.
     '410': הדף המבוקש כבר לא קיים.
     '422':
       content: בדיקת אבטחה נכשלה. החסמת עוגיותיך מפנינו?
       title: בדיקת בטיחות נכשלה
     '429': הוחנק
     '500': 
+    '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: רשימת חסימות
     follows: רשימת נעקבים

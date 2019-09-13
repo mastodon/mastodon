@@ -118,17 +118,18 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
   validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
-  remotable_attachment :file, VIDEO_LIMIT
+  remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false
 
   include Attachmentable
 
   validates :account, presence: true
-  validates :description, length: { maximum: 420 }, if: :local?
+  validates :description, length: { maximum: 1_500 }, if: :local?
 
   scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
   scope :local,      -> { where(remote_url: '') }
   scope :remote,     -> { where.not(remote_url: '') }
+  scope :cached,     -> { remote.where.not(file_file_name: nil) }
 
   default_scope { order(id: :asc) }
 

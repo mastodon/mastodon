@@ -5,6 +5,7 @@ co:
       account_warning_preset:
         text: Pudete utilizà a sintassa di i statuti, per esempiu l'URL, hashtag, minzione
       admin_account_action:
+        include_statuses: L'utilizatore viderà i statuti rispunsevuli di l'azzione o l'avertimentu di muderazione
         send_email_notification: L'utilizatore hà da riceve una spiegazione di cio chì hè accadutu à u so contu
         text_html: In uzzione. Pudete utilizà a sintassa di i statuti. Pudete ancu <a href="%{path}">aghjustà preselezzione d'avertimentu</a> per piglià tempu
         type_html: Sceglie chì fà cù <strong>%{acct}</strong>
@@ -15,7 +16,7 @@ co:
         bot: Stu contu hè autumatizatu è ùn hè forse micca survegliatu
         context: Cuntestu·i induve u filtru deve esse applicatu
         digest: Solu mandatu dopu à una longa perioda d’inattività, è solu s’elli ci sò novi missaghji diretti
-        discoverable_html: L'<a href="%{path}" target="_blank">annuariu</a> permette à a ghjente di truvà conti à partesi d'interessi è d'attività. Ci vole à avè almenu %{min_followers} abbunati
+        discoverable: L'annuariu di i prufili hè un'altra manera per u vostru contu di tuccà un'audienza più larga
         email: Avete da riceve un'e-mail di cunfirmazione
         fields: Pudete avè fin’à 4 elementi mustrati cum’un tavulone nant’à u vostru prufile
         header: Furmatu PNG, GIF o JPG. %{size} o menu. Sarà ridottu à %{dimensions}px
@@ -60,6 +61,7 @@ co:
       account_warning_preset:
         text: Testu preselezziunatu
       admin_account_action:
+        include_statuses: Inchjude i statuti palisati indè l'e-mail
         send_email_notification: Nutificà l'utilizatore cù un'e-mail
         text: Avertimentu persunalizatu
         type: Azzione
@@ -143,6 +145,7 @@ co:
         trending_tag: Mandà un'e-mail quandu un hashtag micca verificatu hè in e tendenze
       tag:
         listable: Auturizà stu hashtag à esse vistu nant'à l'annuariu di i prufili
+        name: Hashtag
         trendable: Auturizà stu hashtag à esse vistu in e tendenze
         usable: Auturizà i statuti à utilizà stu hashtag
     'no': Nò

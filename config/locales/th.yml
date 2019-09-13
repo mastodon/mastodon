@@ -428,11 +428,11 @@ th:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
-    people:
-      other: "%{count} คน"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
+    '406': This page is not available in the requested format.
     '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว คุณกำลังปิดกั้นคุกกี้หรือไม่?
@@ -440,6 +440,7 @@ th:
     '429': Throttled
     '500':
       title: หน้านี้ไม่ถูกต้อง
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: วันที่

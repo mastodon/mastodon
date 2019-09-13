@@ -225,10 +225,12 @@ en:
       deleted_status: "(deleted status)"
       title: Audit log
     custom_emojis:
+      assign_category: Assign category
       by_domain: Domain
       copied_msg: Successfully created local copy of the emoji
       copy: Copy
       copy_failed_msg: Could not make a local copy of that emoji
+      create_new_category: Create new category
       created_msg: Emoji successfully created!
       delete: Delete
       destroyed_msg: Emojo successfully destroyed!
@@ -245,6 +247,7 @@ en:
       shortcode: Shortcode
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
       title: Custom emojis
+      uncategorized: Uncategorized
       unlisted: Unlisted
       update_failed_msg: Could not update that emoji
       updated_msg: Emoji successfully updated!
@@ -425,6 +428,9 @@ en:
       custom_css:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
       domain_blocks:
         all: To everyone
         disabled: To no one
@@ -740,6 +746,7 @@ en:
     all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
+    no_batch_actions_available: No batch actions available on this page
     order_by: Order by
     save_changes: Save changes
     use_this: Use this

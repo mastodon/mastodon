@@ -328,14 +328,13 @@
   deletes:
     bad_password_msg: Godt forsøk, hacker! Feil passord
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
-    description_html: Dette vil <strong>permanent, irreversibelt</strong> fjerne innhold fra din konto og deaktivere den. Ditt brukernavn vil forbli reservert for å forhindre fremtidige etterligninger.
     proceed: Slett konto
     success_msg: Din konto ble slettet
-    warning_html: Kun sletting av innhold fra denne instansen er garantert. Innhold som har blitt delt i stor utstrekning vil sannsynligvis legge igjen spor. Tjenere som er frakoblet og tjenere som ikke abbonerer på dine oppdatereringer vil ikke oppdatere sine databaser.
-    warning_title: Tilgjengelighet av spredt innhold
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tillatelse til å vise denne siden.
     '404': Siden du leter etter finnes ikke.
+    '406': This page is not available in the requested format.
     '410': Siden du leter etter finnes ikke lenger.
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
@@ -344,6 +343,7 @@
     '500':
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   exports:
     blocks: Du blokkerer
