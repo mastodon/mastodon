@@ -311,8 +311,6 @@ Rails.application.routes.draw do
         end
       end
 
-      get '/search', to: 'search#index', as: :search
-
       resources :media,        only: [:create, :update]
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
