@@ -601,7 +601,7 @@ en:
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
-    noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
+    noscript_html: To use the %{title} web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
     not_found_multiple: could not find %{usernames}
@@ -850,7 +850,7 @@ en:
       weibo: Weibo
     current_session: Current session
     description: "%{browser} on %{platform}"
-    explanation: These are the web browsers currently logged in to your Mastodon account.
+    explanation: These are the web browsers currently logged in to your %{title} account.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1041,7 +1041,7 @@ en:
     wrong_code: The entered code was invalid! Are server time and device time correct?
   user_mailer:
     backup_ready:
-      explanation: You requested a full backup of your Mastodon account. It's now ready for download!
+      explanation: You requested a full backup of your %{title} account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
     warning:
@@ -1070,7 +1070,7 @@ en:
       full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
       review_preferences_action: Change preferences
       review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
-      subject: Welcome to Mastodon
+      subject: Welcome to %{title}
       tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
       tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
       tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
