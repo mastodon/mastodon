@@ -226,7 +226,7 @@ class FocalPointModal extends ImmutablePureComponent {
               <CharacterCounter max={1500} text={detecting ? '' : description} />
             </div>
 
-            <Button disabled={!dirty || detecting || length(description) > 420} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
+            <Button disabled={!dirty || detecting || length(description) > 1500} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
           </div>
 
           <div className='focal-point-modal__content'>
