@@ -49,6 +49,19 @@ class Poll extends ImmutablePureComponent {
     clearTimeout(this._timer);
   }
 
+  componentWillReceiveProps (nextProps) {
+    const { poll, intl } = nextProps;
+    clearTimeout(this._timer);
+    const expired = poll.get('expired') || (new Date(poll.get('expires_at'))).getTime() < intl.now();
+    this.setState({ expired });
+    if (!expired) {
+      const delay = (new Date(poll.get('expires_at'))).getTime() - intl.now();
+      this._timer = setTimeout(() => {
+        this.setState({ expired: true });
+      }, delay);
+    }
+  }
+
   handleOptionChange = e => {
     const { target: { value } } = e;
 
