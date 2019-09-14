@@ -28,15 +28,15 @@ class TagFilter
     when 'name'
       Tag.matches_name(value)
     when 'order'
-      set_order(value)
+      scope_for_order(value)
     when 'review'
-      set_review(value)
+      scope_for_review(value)
     else
       raise "Unknown filter: #{key}"
     end
   end
 
-  def set_order(order)
+  def scope_for_order(order)
     case order
     when 'popular'
       Tag.order('max_score DESC NULLS LAST')
@@ -47,7 +47,7 @@ class TagFilter
     end
   end
 
-  def set_review(review)
+  def scope_for_review(review)
     case review
     when 'reviewed'
       Tag.reviewed.order(reviewed_at: :desc)
