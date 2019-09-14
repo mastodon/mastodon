@@ -554,6 +554,12 @@ en:
     new_trending_tag:
       body: 'The hashtag #%{name} is trending today, but has not been previously reviewed. It will not be displayed publicly unless you allow it to, or just save the form as it is to never hear about it again.'
       subject: New hashtag up for review on %{instance} (#%{name})
+  aliases:
+    add_new: Create alias
+    created_msg: Successfully created a new alias. You can now initiate the move from the old account.
+    deleted_msg: Successfully remove the alias. Moving from that account to this one will no longer be possible.
+    hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
+    remove: Unlink alias
   appearance:
     advanced_web_interface: Advanced web interface
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
@@ -613,6 +619,7 @@ en:
       confirming: Waiting for e-mail confirmation to be completed.
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
+      redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
     trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
@@ -801,10 +808,32 @@ en:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
   migrations:
-    acct: username@domain of the new account
-    currently_redirecting: 'Your profile is set to redirect to:'
-    proceed: Save
-    updated_msg: Your account migration setting successfully updated!
+    acct: Moved to
+    cancel: Cancel redirect
+    cancel_explanation: Cancelling the redirect will re-activate your current account, but will not bring back followers that have been moved to that account.
+    cancelled_msg: Successfully cancelled the redirect.
+    errors:
+      already_moved: is the same account you have already moved to
+      missing_also_known_as: is not back-referencing this account
+      move_to_self: cannot be current account
+      not_found: could not be found
+      on_cooldown: You are on cooldown
+    followers_count: Followers at time of move
+    incoming_migrations: Moving from a different account
+    incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
+    moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
+    not_redirecting: Your account is not redirecting to any other account currently.
+    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    past_migrations: Past migrations
+    proceed_with_move: Move followers
+    redirecting_to: Your account is redirecting to %{acct}.
+    warning:
+      backreference_required: The new account must first be configured to back-reference this one
+      before: 'Before proceeding, please read these notes carefully:'
+      cooldown: After moving there is a cooldown period during which you will not be able to move again
+      disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
+      followers: This action will move all followers from the current account to the new account
+      other_data: No other data will be moved automatically
   moderation:
     title: Moderation
   notification_mailer:
@@ -950,6 +979,7 @@ en:
   settings:
     account: Account
     account_settings: Account settings
+    aliases: Account aliases
     appearance: Appearance
     authorized_apps: Authorized apps
     back: Back to Mastodon
