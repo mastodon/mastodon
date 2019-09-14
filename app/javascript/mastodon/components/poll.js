@@ -32,37 +32,36 @@ class Poll extends ImmutablePureComponent {
 
   state = {
     selected: {},
-    expired: this.props.poll.get('expired') || (new Date(this.props.poll.get('expires_at'))).getTime() < this.props.intl.now(),
+    expired: null,
   };
 
+  static getDerivedStateFromProps (props, state) {
+    const { poll, intl } = props;
+    const expired = poll.get('expired') || (new Date(poll.get('expires_at'))).getTime() < intl.now();
+    return (expired === state.expired) ? null : { expired };
+  }
+
   componentDidMount () {
-    if (!this.state.expired) {
-      this._setupTimer(this.props);
-    }
+    this._setupTimer();
+  }
+
+  componentDidUpdate () {
+    this._setupTimer();
   }
 
   componentWillUnmount () {
     clearTimeout(this._timer);
   }
 
-  componentWillReceiveProps (nextProps) {
-    const { poll, intl } = nextProps;
-    const oldPoll = this.props.poll;
-    if (poll.get('expires_at') !== oldPoll.get('expires_at') || poll.get('expired') !== oldPoll.get('expired')) {
-      clearTimeout(this._timer);
-      const expired = poll.get('expired') || (new Date(poll.get('expires_at'))).getTime() < intl.now();
-      this.setState({ expired });
-      if (!expired) {
-        this._setupTimer(nextProps);
-      }
+  _setupTimer () {
+    const { poll, intl } = this.props;
+    clearTimeout(this._timer);
+    if (!this.state.expired) {
+      const delay = (new Date(poll.get('expires_at'))).getTime() - intl.now();
+      this._timer = setTimeout(() => {
+        this.setState({ expired: true });
+      }, delay);
     }
-  }
-
-  _setupTimer ({ poll, intl }) {
-    const delay = (new Date(poll.get('expires_at'))).getTime() - intl.now();
-    this._timer = setTimeout(() => {
-      this.setState({ expired: true });
-    }, delay);
   }
 
   handleOptionChange = e => {
