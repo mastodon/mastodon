@@ -393,14 +393,13 @@ zh-HK:
   deletes:
     bad_password_msg: 想得美，黑客！密碼輸入錯誤
     confirm_password: 輸入你現在的密碼來驗證身份
-    description_html: 繼續操作將會<strong>永久地、不可還原地</strong>刪除帳戶中的所有內容，然後凍結帳戶。你的用戶名將會被保留，以防有人冒用你的身份。
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
-    warning_html: 我們只能保證本服務站上的內容將會被徹底刪除。對於已經被廣泛傳播的內容，它們在本服務站以外的某些地方可能仍然可見。此外，失去連接的服務站以及停止接收訂閱的服務站所存儲的數據亦無法刪除。
-    warning_title: 關於已傳播的內容的警告
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': 你沒有觀看本頁的權限。
     '404': 找不到內容。
+    '406': This page is not available in the requested format.
     '410': 內容已被刪除。
     '422':
       content: 無法確認登入資訊。會不會你阻擋了本站使用 Cookies 的權限？
@@ -409,6 +408,7 @@ zh-HK:
     '500':
       content: 抱歉，我們的後台出錯了。
       title: 這個頁面有問題
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:

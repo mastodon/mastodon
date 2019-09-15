@@ -55,6 +55,7 @@ ko:
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
     network_hidden: 이 정보는 사용할 수 없습니다
+    never_active: 없음
     nothing_here: 아무 것도 없습니다!
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
@@ -495,6 +496,7 @@ ko:
         delete: 삭제
         nsfw_off: NSFW 끄기
         nsfw_on: NSFW 켜기
+      deleted: 삭제됨
       failed_to_execute: 실행을 실패하였습니다
       media:
         title: 미디어
@@ -618,20 +620,12 @@ ko:
   deletes:
     bad_password_msg: 비밀번호가 올바르지 않습니다
     confirm_password: 본인 확인을 위해 현재 사용 중인 암호를 입력해 주십시오
-    description_html: 계정에 업로드된 모든 컨텐츠가 삭제되며, 계정은 비활성화 됩니다. 이것은 영구적으로 이루어지는 것이므로 <strong>되돌릴 수 없습니다</strong>. 사칭 행위를 방지하기 위해 같은 아이디로 다시 등록하는 것은 불가능합니다.
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
-    warning_html: 삭제가 보장되는 것은 이 서버 상에서의 컨텐츠에 한합니다. 타 서버 등, 외부에 멀리 공유된 컨텐츠는 흔적이 남아 삭제되지 않는 경우도 있습니다. 그리고 현재 접속이 불가능한 서버나, 업데이트를 받지 않게 된 서버에 대해서는 삭제가 반영되지 않을 수도 있습니다.
-    warning_title: 공유된 컨텐츠에 대해서
   directories:
     directory: 프로필 디렉토리
-    enabled: 당신은 디렉터리에 표시 되고 있습니다.
-    enabled_but_waiting: 디렉터리에 표시 되기 위해서는 수동으로 참여해야 합니다, 하지만 디렉터리에 표시 되기 위한 최소 팔로워(%{min_followers})수에 미치지 못했습니다.
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
-    how_to_enable: 아직 디렉터리에 참여하지 않았습니다. 아래에서 참여할 수 있습니다. 바이오 텍스트에 해시태그를 사용해 특정 해시태그 디렉터리에 표시 될 수 있습니다!
-    people:
-      other: "%{count}명"
   domain_blocks:
     blocked_domains: 제한 되거나 차단 된 도메인 목록
     description: 이것은 %{instance}가 제한하거나 연합을 거부한 서버들의 목록입니다.
@@ -652,8 +646,10 @@ ko:
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
+    '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
     '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
+    '406': 이 페이지는 요청한 자료형으로 제공되지 않습니다.
     '410': 당신이 보려는 페이지는 더이상 여기에 존재하지 않습니다.
     '422':
       content: 보안 인증에 실패했습니다. 쿠키를 차단하고 있진 않습니까?
@@ -662,6 +658,7 @@ ko:
     '500':
       content: 죄송합니다, 뭔가 잘못 되었습니다.
       title: 이 페이지는 잘못되었습니다
+    '503': 이 페이지는 임시적인 서버 문제로 인해 제공 될 수 없습니다.
     noscript_html: 마스토돈을 사용하기 위해서는 자바스크립트를 켜 주십시오. 아니면 <a href="%{apps_path}">네이티브 앱</a> 중 하나를 사용할 수 있습니다.
   existing_username_validator:
     not_found: 해당 유저네임에 대한 로컬 유저를 찾을 수 없습니다
@@ -1100,7 +1097,9 @@ ko:
         disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
         silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 툿을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
         suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
+      get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
       review_server_policies: 서버 정책 검토하기
+      statuses: '구체적으로:'
       subject:
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: "%{acct}에게의 경고"

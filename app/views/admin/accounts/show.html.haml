@@ -3,6 +3,34 @@
 
 = render 'application/card', account: @account
 
+- account = @account
+- proofs = account.identity_proofs.active
+- fields = account.fields
+- unless fields.empty? && proofs.empty? && account.note.blank?
+  .admin-account-bio
+    - unless fields.empty? && proofs.empty?
+      %div
+        .account__header__fields
+          - proofs.each do |proof|
+            %dl
+              %dt= proof.provider.capitalize
+              %dd.verified
+                = link_to fa_icon('check'), proof.badge.proof_url, class: 'verified__mark', title: t('accounts.link_verified_on', date: l(proof.updated_at))
+                = link_to proof.provider_username, proof.badge.profile_url
+
+          - fields.each do |field|
+            %dl
+              %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
+              %dd{ title: field.value, class: custom_field_classes(field) }
+                - if field.verified?
+                  %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
+                    = fa_icon 'check'
+                = Formatter.instance.format_field(account, field.value, custom_emojify: true)
+
+      - if account.note.present?
+        %div
+          .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+
 .dashboard__counters{ style: 'margin-top: 10px' }
   %div
     = link_to admin_account_statuses_path(@account.id) do

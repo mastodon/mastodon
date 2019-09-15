@@ -12,6 +12,7 @@ import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
 import { fetchFilters } from 'flavours/glitch/actions/filters';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
+import { submitMarkers } from 'flavours/glitch/actions/markers';
 import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -243,7 +244,9 @@ class UI extends React.Component {
   };
 
   handleBeforeUnload = (e) => {
-    const { intl, hasComposingText, hasMediaAttachments } = this.props;
+    const { intl, dispatch, hasComposingText, hasMediaAttachments } = this.props;
+
+    dispatch(submitMarkers());
 
     if (hasComposingText || hasMediaAttachments) {
       // Setting returnValue to any string causes confirmation dialog.

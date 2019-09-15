@@ -45,7 +45,7 @@ de:
     what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
-    endorsements_hint: Du kannst Personen unterstützen, die du von der Web-Schnittstelle folgen kannst, und sie werden hier angezeigt.
+    endorsements_hint: Du kannst Personen, denen du über die Weboberfläche folgst, auswählen, und sie werden hier angezeigt.
     featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
@@ -58,6 +58,7 @@ de:
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     network_hidden: Diese Informationen sind nicht verfügbar
+    never_active: Nie
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -499,6 +500,7 @@ de:
         delete: Löschen
         nsfw_off: Als nicht heikel markieren
         nsfw_on: Als heikel markieren
+      deleted: Gelöscht
       failed_to_execute: Ausführen fehlgeschlagen
       media:
         title: Medien
@@ -543,7 +545,7 @@ de:
     advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
-    discovery: Erkennung
+    discovery: Entdecken
     sensitive_content: Heikle Inhalte
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -567,6 +569,10 @@ de:
     checkbox_agreement_without_rules_html: Ich stimme den <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a> zu
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
+    description:
+      prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von Mastodon beizutreten!"
+      prefix_sign_up: Melde dich heute bei Mastodon an!
+      suffix: Mit einem Konto kannst du Leuten folgen, Updates veröffentlichen und Nachrichten mit Benutzern von jedem Mastodon-Server austauschen und mehr!
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
@@ -592,7 +598,7 @@ de:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
       functional: Dein Konto ist voll funktionsfähig.
-      pending: Deine Bewerbung wird von unseren Mitarbeitern noch nicht überprüft. Dies kann einige Zeit dauern. Du erhälst eine E-Mail, wenn deine Bewerbung genehmigt ist.
+      pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -622,21 +628,23 @@ de:
   deletes:
     bad_password_msg: Falsches Passwort
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
-    description_html: Hiermit wird <strong>dauerhaft und unwiederbringlich</strong> der Inhalt deines Kontos gelöscht und dein Konto deaktiviert. Dein Profilname wird reserviert, um künftige Imitationen zu verhindern.
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
-    warning_html: Wir können nur dafür garantieren, dass die Inhalte auf diesem einen Server gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
-    warning_title: Verfügbarkeit verstreuter Inhalte
+    warning:
+      before: 'Bevor du fortfährst, lese bitte diese Punkte sorgfältig durch:'
+      caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können weiterhin bestehen
+      data_removal: Deine Beiträge und andere Daten werden dauerhaft entfernt
+      email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
+      email_contact_html: Wenn die Bestätigungs-E-Mail immer noch nicht ankam, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
+      email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
+      irreversible: Du kannst dein Konto nicht reaktivieren
+      more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzrichtlinie</a>.
+      username_available: Dein Benutzername wird wieder verfügbar
+      username_unavailable: Dein Benutzername bleibt nicht verfügbar
   directories:
     directory: Profilverzeichnis
-    enabled: Du bist gerade in dem Verzeichnis gelistet.
-    enabled_but_waiting: Du bist damit einverstanden im Verzeichnis aufgelistet zu werden, aber du hast noch nicht genug Folger_innen (%{min_followers}).
     explanation: Entdecke Benutzer_innen basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
-    how_to_enable: Du hast dich gerade nicht dazu entschieden im Verzeichnis gelistet zu werden. Du kannst dich unten dafür eintragen. Benutze Hashtags in deiner Profilbeschreibung, um unter spezifischen Hashtags gelistet zu werden!
-    people:
-      one: "%{count} Person"
-      other: "%{count} Leute"
   domain_blocks:
     blocked_domains: Liste der begrenzten und blockierten Domains
     description: Dies ist die Liste der Server, die %{instance} limitiert oder dessen Föderation ablehnt.
@@ -657,8 +665,10 @@ de:
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
+    '400': Die Anfrage, die du gesendet hast, war ungültig oder fehlerhaft.
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Die Seite nach der du gesucht hast wurde nicht gefunden.
+    '406': Diese Seite ist im gewünschten Format nicht verfügbar.
     '410': Die Seite nach der du gesucht hast existiert hier nicht mehr.
     '422':
       content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
@@ -667,6 +677,7 @@ de:
     '500':
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
+    '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
     not_found: kann lokalen Benutzer nicht mit diesem Nuternamen finden
@@ -1115,7 +1126,9 @@ de:
         disable: Solange dein Konto eingefroren ist, sind deine Benutzerdaten intakt; aber du kannst nichts tun, bis dein Konto entsperrt wurde.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Dein Konto wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern, bei denen du Folgende hattest, gelöscht.
+      get_in_touch: Du kannst auf diese E-Mail antworten, um mit dem Personal von %{instance} in Kontakt zu treten.
       review_server_policies: Serverrichtlinien ansehen
+      statuses: 'Besonders für:'
       subject:
         disable: Dein Konto %{acct} wurde eingefroren
         none: Warnung für %{acct}

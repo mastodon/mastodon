@@ -8,6 +8,8 @@ class MediaProxyController < ApplicationController
   before_action :authenticate_user!, if: :whitelist_mode?
 
   rescue_from ActiveRecord::RecordInvalid, with: :not_found
+  rescue_from Mastodon::UnexpectedResponseError, with: :not_found
+  rescue_from HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, with: :internal_server_error
 
   def show
     RedisLock.acquire(lock_options) do |lock|

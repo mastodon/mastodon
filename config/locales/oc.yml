@@ -582,24 +582,17 @@ oc:
   deletes:
     bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
-    description_html: Aquò suprimirà <strong>definitivament e sens possibilitat de retorn</strong> lo contengut de vòstre compte e lo desactivarà. Lo nom d’utilizaire serà gardat per evitar una futura impostura.
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
-    warning_html: La supression del contengut d’aqueste servidor es sola assegurada. Lo contengut fòrça partejat daissarà probablament de traças. Los servidors fòra-linha e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
-    warning_title: Disponibilitat del contengut difusat
   directories:
     directory: Annuari de perfils
-    enabled: Sètz actualament listat dins l'annuari.
-    enabled_but_waiting: Avètz causit d'èsser listat dins l'annuari mas avètz pas encara lo nombre minimum de seguidors (%{min_followers}) per i èsser listat.
     explanation: Trobar d’utilizaires segon lor interèsses
     explore_mastodon: Explorar %{title}
-    how_to_enable: Sètz pas actualament listat dins l’annuari. Podètz cambiar aquò çai-jos. Utilizatz d'etiquetas dins vòstre tèxt de bio per èsser listat amb d’etiquetas especificas !
-    people:
-      one: "%{count} persona"
-      other: "%{count} personas"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
+    '406': This page is not available in the requested format.
     '410': La pagina que cercatz existís pas mai aquí.
     '422':
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
@@ -608,6 +601,7 @@ oc:
     '500':
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es pas corrècta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="%{apps_path}">una aplicacion</a> per vòstra plataforma coma alernativa.
   existing_username_validator:
     not_found: impossible de trobar un utilizaire local amb aqueste nom d’utilizaire

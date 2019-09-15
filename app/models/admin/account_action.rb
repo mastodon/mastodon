@@ -83,19 +83,23 @@ class Admin::AccountAction
 
     # A log entry is only interesting if the warning contains
     # custom text from someone. Otherwise it's just noise.
+
     log_action(:create, warning) if warning.text.present?
   end
 
   def process_reports!
-    return if report_id.blank?
+    # If we're doing "mark as resolved" on a single report,
+    # then we want to keep other reports open in case they
+    # contain new actionable information.
+    #
+    # Otherwise, we will mark all unresolved reports about
+    # the account as resolved.
 
-    authorize(report, :update?)
+    reports.each { |report| authorize(report, :update?) }
 
-    if type == 'none'
+    reports.each do |report|
       log_action(:resolve, report)
       report.resolve!(current_account)
-    else
-      Report.where(target_account: target_account).unresolved.update_all(action_taken: true, action_taken_by_account_id: current_account.id)
     end
   end
 
@@ -139,6 +143,16 @@ class Admin::AccountAction
 
   def status_ids
     @report.status_ids if @report && include_statuses
+  end
+
+  def reports
+    @reports ||= begin
+      if type == 'none' && with_report?
+        [report]
+      else
+        Report.where(target_account: target_account).unresolved
+      end
+    end
   end
 
   def warning_preset

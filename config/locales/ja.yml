@@ -43,6 +43,8 @@ ja:
     what_is_mastodon: Mastodon とは？
   accounts:
     choices_html: "%{name} によるおすすめ:"
+    endorsements_hint: あなたがフォローしている中でおすすめしたい人をここで紹介できます。
+    featured_tags_hint: 特定のハッシュタグをここに表示できます。
     follow: フォロー
     followers:
       other: フォロワー
@@ -53,6 +55,7 @@ ja:
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
+    never_active: 活動なし
     nothing_here: 何もありません！
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
@@ -182,6 +185,7 @@ ja:
       username: ユーザー名
       warn: 警告
       web: Web
+      whitelisted: ホワイトリストに登録済み
     action_logs:
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
@@ -270,6 +274,7 @@ ja:
       week_users_new: 今週登録した人数
       whitelist_mode: ホワイトリストモード
     domain_allows:
+      add_new: ホワイトリストに追加
       created_msg: ドメインのホワイトリストへの登録が正常に完了しました
       destroyed_msg: ドメインがホワイトリストから削除されました
       undo: ホワイトリストから削除
@@ -413,6 +418,13 @@ ja:
       custom_css:
         desc_html: 全ページに適用されるCSSの編集
         title: カスタムCSS
+      domain_blocks:
+        all: 誰でも許可
+        disabled: 誰も許可しない
+        title: ドメインブロックを表示
+        users: ログイン済みローカルユーザーのみ許可
+      domain_blocks_rationale:
+        title: コメントを表示
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
         title: ヒーローイメージ
@@ -482,6 +494,7 @@ ja:
         delete: 削除
         nsfw_off: 閲覧注意をはずす
         nsfw_on: 閲覧注意にする
+      deleted: 削除済み
       failed_to_execute: 実行に失敗しました
       media:
         title: メディア
@@ -570,6 +583,7 @@ ja:
     setup:
       email_below_hint_html: 下記のメールアドレスが間違っている場合、ここで変更することで新たに確認メールを受信できます。
       email_settings_hint_html: 確認用のメールを %{email} に送信しました。メールアドレスが正しくない場合、以下より変更することができます。
+      title: セットアップ
     status:
       account_status: アカウントの状態
       confirming: メールアドレスの確認が完了するのを待っています。
@@ -604,25 +618,36 @@ ja:
   deletes:
     bad_password_msg: パスワードが違います
     confirm_password: 本人確認のため、現在のパスワードを入力してください
-    description_html: あなたのアカウントに含まれるコンテンツは全て削除され、アカウントは無効化されます。これは恒久的なもので、<strong>取り消すことはできません</strong>。なりすましを防ぐために、同じユーザー名で再度登録することはできなくなります。
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
-    warning_html: 削除が保証されるのはこのサーバー上のコンテンツのみです。他のサーバー等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
-    warning_title: 共有されたコンテンツについて
   directories:
     directory: ディレクトリ
-    enabled: あなたはディレクトリに掲載されています。
-    enabled_but_waiting: あなたはディレクトリへの掲載を選択しましたが、掲載に必要な最小フォロワー数 (%{min_followers} 人) を満たしていません。
     explanation: 関心を軸にユーザーを発見しよう
     explore_mastodon: "%{title}を探索"
-    how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
-    people:
-      other: "%{count} 人"
+  domain_blocks:
+    blocked_domains: ドメインブロックリスト
+    description: "%{instance} が連合を制限または拒否しているサーバーのリストです。"
+    domain: ドメイン
+    media_block: メディアを拒否
+    no_domain_blocks: "(ドメインブロックなし)"
+    severity: 重大性
+    severity_legend:
+      media_block: サーバーから送信されるメディアファイルは取得も保存もされず、またユーザーには表示されません。
+      silence: サイレンスされたサーバーのアカウントは検索やフォロー、交流することができますが、トゥートは公開タイムラインに表示されません。またフォローしていないユーザーには通知が届きません。
+      suspension: 停止されたサーバーからのコンテンツは保存も表示もされず、また送信もされません。停止されたサーバーからの交流は拒否されます。
+      suspension_disclaimer: 停止されたサーバーでもこのサーバーから公開コンテンツを取得することがあります。
+      title: 重大性
+    show_rationale: コメントを表示
+    silence: サイレンス
+    suspension: 停止
+    title: "%{instance} のドメインブロックリスト"
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
+    '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
     '404': お探しのページは見つかりませんでした。
+    '406': このページは要求された形式では利用できません。
     '410': お探しのページはもう存在しません。
     '422':
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
@@ -631,6 +656,7 @@ ja:
     '500':
       content: もうしわけありませんが、なにかが間違っています。
       title: このページは正しくありません
+    '503': 一時的なサーバー障害のため利用することができません。
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
   existing_username_validator:
     not_found: そのようなユーザー名はローカルに見つかりませんでした
@@ -654,6 +680,7 @@ ja:
     add_new: 追加
     errors:
       limit: 注目のハッシュタグの上限に達しました
+    hint_html: "<strong>注目のハッシュタグとは？</strong>プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
       home: ホームタイムライン
@@ -951,6 +978,8 @@ ja:
     pinned: 固定されたトゥート
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
+  tags:
+    does_not_match_previous_name: 以前の名前と一致しません
   terms:
     body_html: |
       <h2>プライバシーポリシー</h2>
@@ -1068,7 +1097,9 @@ ja:
         disable: アカウントが凍結されている間、データはそのまま残りますが、凍結が解除されるまでは何の操作もできません。
         silence: あなたのアカウントは制限されていますが、あなたをフォローしているユーザーのみ、このサーバー上の投稿を見ることができます。そしてあなたは様々な公開リストから除外されるかもしれません。ただし、他のユーザーは手動であなたをフォローすることができます。
         suspend: あなたのアカウントは停止されています。あなたの投稿とアップロードされたメディアファイルは、このサーバーとあなたのフォロワーが参加していたサーバーから完全に削除されました。
+      get_in_touch: このメールに返信することで %{instance} のスタッフと連絡を取ることができます。
       review_server_policies: サーバーのポリシーを確認
+      statuses: '特に次のトゥート:'
       subject:
         disable: あなたのアカウント %{acct} は凍結されています
         none: "%{acct} に対する警告"

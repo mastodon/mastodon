@@ -501,26 +501,17 @@ pt:
   deletes:
     bad_password_msg: Boa tentativa, hackers! Palavra-passe incorreta
     confirm_password: Introduz a palavra-passe atual para verificar a tua identidade
-    description_html: Isto vai <strong>permanente e irreversivelmente</strong> remover conteúdo da tua conta e desativá-la. O teu nome de utilizador permanecerá reservado para prevenir futuros roubos de identidade.
     proceed: Eliminar conta
     success_msg: A tua conta foi eliminada com sucesso
-    warning_html: |-
-      Apenas a eliminação de conteúdo desta instância é garantido.
-      Conteúdo que tenha sido partilhado com outras instâncias muito provavelmente deixará pegadas. Servidores offline e servidores que se desinscreveram das tuas atualizações não  atualizarão as suas bases de dados.
-    warning_title: Disponibilidade de conteúdo disseminado
   directories:
     directory: Dirétorio de perfil
-    enabled: Neste momento tu estás listado no dirétorio.
-    enabled_but_waiting: Tu escolheste ser listado no diretório, mas ainda não tens o número mínimo de seguidores (%{min_followers}) para integrares esta lista.
     explanation: Descobre utilizadores com base nos seus interesses
     explore_mastodon: Explorar %{title}
-    how_to_enable: Tu ainda não integras este directório. Podes fazer isso abaixo. Usa hashtags na tua biografia para seres listado em hashtags específicas!
-    people:
-      one: "%{count} pessoa"
-      other: "%{count} pessoas"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Não tens a permissão necessária para ver esta página.
     '404': A página que estás a procurar não existe.
+    '406': This page is not available in the requested format.
     '410': A página que estás a procurar não existe mais.
     '422':
       content: "A verificação de segurança falhou. \nDesativaste o uso de cookies?"
@@ -529,6 +520,7 @@ pt:
     '500':
       content: Desculpe, mas algo correu mal.
       title: Esta página não está correta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript. Alternativamente, experimenta um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon na sua plataforma.
   exports:
     archive_takeout:

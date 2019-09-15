@@ -3,8 +3,9 @@ gl:
   simple_form:
     hints:
       account_warning_preset:
-        text: Vostede pode darlle formato ao toot, como URLs, etiquetas e mencións
+        text: Pódeslle dar formato ao toot, como URLs, etiquetas e mencións
       admin_account_action:
+        include_statuses: A usuaria verá que toots causaron a acción da moderación ou aviso
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
         text_html: Optativo. Pode utilizar formato no toot. Pode <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
         type_html: Escolla que facer con <strong>%{acct}</strong>
@@ -15,7 +16,7 @@ gl:
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
         digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe persoal na súa ausencia
-        discoverable_html: O <a href="%{path}" target="_blank">directorio</a> permite atopar contas en función de intereses e actividade. Require ter ao menos %{min_followers} seguidoras
+        discoverable: O directorio de perfil é outro xeito para que a túa conta alcance unha maior audiencia
         email: Enviaráselle un correo-e de confirmación
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
@@ -48,6 +49,8 @@ gl:
         text: Esto axudaranos a revisar a súa aplicación
       sessions:
         otp: 'Introduza o código de dobre-factor creado pola aplicación do seu móbil ou utilice un dos seus códigos de recuperación:'
+      tag:
+        name: Só pode cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
     labels:
@@ -58,6 +61,7 @@ gl:
       account_warning_preset:
         text: Texto preestablecido
       admin_account_action:
+        include_statuses: Incluír toots reportados no correo
         send_email_notification: Notificar a usuaria por correo-e
         text: Aviso personalizado
         type: Acción
@@ -141,6 +145,7 @@ gl:
         trending_tag: Enviar correo cando unha etiqueta non revisada é tendencia
       tag:
         listable: Permitir a esta etiqueta aparecer no directorio de perfil
+        name: Etiqueta
         trendable: Permitir a esta etiqueta aparecer baixo Tendencias
         usable: Permitir que os toots utilicen esta etiqueta
     'no': Non

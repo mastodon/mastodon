@@ -7,8 +7,8 @@ class TrendingTags
   THRESHOLD            = 5
   LIMIT                = 10
   REVIEW_THRESHOLD     = 3
-  MAX_SCORE_COOLDOWN   = 3.days.freeze
-  MAX_SCORE_HALFLIFE   = 6.hours.freeze
+  MAX_SCORE_COOLDOWN   = 2.days.freeze
+  MAX_SCORE_HALFLIFE   = 2.hours.freeze
 
   class << self
     include Redisable
@@ -83,6 +83,7 @@ class TrendingTags
       # Trim older items
 
       redis.zremrangebyrank(KEY, 0, -(LIMIT + 1))
+      redis.zremrangebyscore(KEY, '(0.3', '-inf')
     end
 
     def get(limit, filtered: true)
