@@ -7,8 +7,4 @@ module Admin::DashboardHelper
 
     safe_join([feature, content_tag(:span, indicator, class: class_names)])
   end
-
-  def short_number_format(number)
-    number_to_human number, units: { unit: '', thousand: 'K', million: 'M', billion: 'B' }
-  end
 end
