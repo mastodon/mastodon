@@ -71,10 +71,13 @@ end
 
 Devise.setup do |config|
   config.warden do |manager|
+    manager.default_strategies(scope: :user).unshift :database_authenticatable
     manager.default_strategies(scope: :user).unshift :ldap_authenticatable if Devise.ldap_authentication
     manager.default_strategies(scope: :user).unshift :pam_authenticatable  if Devise.pam_authentication
-    manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
-    manager.default_strategies(scope: :user).unshift :two_factor_backupable
+
+    # We handle 2FA in our own sessions controller so this gets in the way
+    manager.default_strategies(scope: :user).delete :two_factor_backupable
+    manager.default_strategies(scope: :user).delete :two_factor_authenticatable
   end
 
   # The secret key used by Devise. Devise uses this key to generate

@@ -14,12 +14,11 @@ class Settings::DeletesController < Settings::BaseController
   end
 
   def destroy
-    if current_user.valid_password?(delete_params[:password])
-      Admin::SuspensionWorker.perform_async(current_user.account_id, true)
-      sign_out
+    if challenge_passed?
+      destroy_account!
       redirect_to new_user_session_path, notice: I18n.t('deletes.success_msg')
     else
-      redirect_to settings_delete_path, alert: I18n.t('deletes.bad_password_msg')
+      redirect_to settings_delete_path, alert: I18n.t('deletes.challenge_not_passed')
     end
   end
 
@@ -29,11 +28,25 @@ class Settings::DeletesController < Settings::BaseController
     redirect_to root_path unless Setting.open_deletion
   end
 
-  def delete_params
-    params.require(:form_delete_confirmation).permit(:password)
+  def resource_params
+    params.require(:form_delete_confirmation).permit(:password, :username)
   end
 
   def require_not_suspended!
     forbidden if current_account.suspended?
+  end
+
+  def challenge_passed?
+    if current_user.encrypted_password.blank?
+      current_account.username == resource_params[:username]
+    else
+      current_user.valid_password?(resource_params[:password])
+    end
+  end
+
+  def destroy_account!
+    current_account.suspend!
+    Admin::SuspensionWorker.perform_async(current_user.account_id, true)
+    sign_out
   end
 end
