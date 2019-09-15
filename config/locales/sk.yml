@@ -19,7 +19,7 @@ sk:
     extended_description_html: |
       <h3>Pravidlá</h3>
       <p>Žiadne zatiaľ uvedené nie sú</p>
-    federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj inde.
+    federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj na iných serveroch.
     generic_description: "%{domain} je jeden server v sieti"
     get_apps: Vyskúšaj aplikácie
     hosted_on: Mastodon hostovaný na %{domain}
@@ -582,6 +582,7 @@ sk:
     description:
       prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
       prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
+      suffix: S pomocou účtu budeš môcť následovať ľudí, posielať príspevky, a vymienať si správy s užívateľmi na hociakom Mastodon serveri, ale aj na iných serveroch!
     didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
@@ -640,6 +641,8 @@ sk:
       before: 'Predtým, než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
       caches: Obsah, ktorý bol predčítaný inými servermi môže zanechať pozostatky
       data_removal: Tvoje príspevky a iné dáta budú natrvalo odstránené
+      more_details_html: Pre viac podrobností, pozri <a href="%{terms_path}">zásady súkromia</a>.
+      username_available: Tvoje užívateľské meno bude znova dostupné
       username_unavailable: Tvoja prezývka ostane neprístupná
   directories:
     directory: Katalóg profilov
@@ -675,7 +678,7 @@ sk:
     '500':
       content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
-    '503': The page could not be served due to a temporary server failure.
+    '503': Táto stránka nemôže byť načítaná, kvôli dočasnému výpadku servera.
     noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
   existing_username_validator:
     not_found: nepodarilo sa nájsť miestného užívateľa s takouto prezývkou
