@@ -32,7 +32,8 @@
       .dashboard__counters__label= t 'admin.dashboard.week_interactions'
   %div
     = link_to sidekiq_url do
-      .dashboard__counters__num= short_number_format @queue_backlog
+      .dashboard__counters__num= short_number_format 100000
+      -# .dashboard__counters__num= short_number_format @queue_backlog
       .dashboard__counters__label= t 'admin.dashboard.backlog'
 
 .dashboard__widgets

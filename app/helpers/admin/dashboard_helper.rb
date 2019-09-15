@@ -9,10 +9,6 @@ module Admin::DashboardHelper
   end
 
   def short_number_format(number)
-    if Setting.short_number_enabled
-      number_to_human number, units: { unit: '', thousand: 'K', million: 'M', billion: 'B' }
-    else
-      number_with_delimiter number
-    end
+    number_to_human number, units: { unit: '', thousand: 'K', million: 'M', billion: 'B' }
   end
 end

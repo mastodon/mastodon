@@ -33,7 +33,6 @@ class Form::AdminSettings
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
-    short_number_enabled
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -48,7 +47,6 @@ class Form::AdminSettings
     spam_check_enabled
     trends
     noindex
-    short_number_enabled
   ).freeze
 
   UPLOAD_KEYS = %i(
