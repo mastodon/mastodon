@@ -172,8 +172,9 @@ export default class ScrollableList extends PureComponent {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
+    const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
 
-    if (someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
+    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
       return this.getScrollHeight() - this.getScrollTop();
     } else {
       return null;
