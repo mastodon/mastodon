@@ -113,7 +113,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.28'
+  gem 'capybara', '~> 3.29'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.3'
   gem 'microformats', '~> 4.1'
