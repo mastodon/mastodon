@@ -40,6 +40,7 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
     if (timeline.endsWith(':pinned')) {
       mMap.set('items', statuses.map(status => status.get('id')));
     } else if (!statuses.isEmpty()) {
+      usePendingItems = usePendingItems || !mMap.get('top') || !mMap.get('pendingItems').isEmpty();
       mMap.update(usePendingItems ? 'pendingItems' : 'items', ImmutableList(), oldIds => {
         const newIds = statuses.map(status => status.get('id'));
 
@@ -60,7 +61,9 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
 };
 
 const updateTimeline = (state, timeline, status, usePendingItems) => {
-  if (usePendingItems) {
+  const top = state.getIn([timeline, 'top']);
+
+  if (usePendingItems || !top || !state.getIn([timeline, 'pendingItems']).isEmpty()) {
     if (state.getIn([timeline, 'pendingItems'], ImmutableList()).includes(status.get('id')) || state.getIn([timeline, 'items'], ImmutableList()).includes(status.get('id'))) {
       return state;
     }
@@ -68,7 +71,6 @@ const updateTimeline = (state, timeline, status, usePendingItems) => {
     return state.update(timeline, initialTimeline, map => map.update('pendingItems', list => list.unshift(status.get('id'))).update('unread', unread => unread + 1));
   }
 
-  const top        = state.getIn([timeline, 'top']);
   const ids        = state.getIn([timeline, 'items'], ImmutableList());
   const includesId = ids.includes(status.get('id'));
   const unread     = state.getIn([timeline, 'unread'], 0);
