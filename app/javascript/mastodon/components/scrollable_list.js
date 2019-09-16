@@ -261,6 +261,13 @@ export default class ScrollableList extends PureComponent {
   handleLoadPending = e => {
     e.preventDefault();
     this.props.onLoadPending();
+    // Prevent the weird scroll-jumping behavior, as we explicitly don't want to
+    // scroll to top, and we know the scroll height is going to change
+    this.scrollToTopOnMouseIdle = false;
+    this.lastScrollWasSynthetic = false;
+    this.clearMouseIdleTimer();
+    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
+    this.mouseMovedRecently = true;
   }
 
   render () {
