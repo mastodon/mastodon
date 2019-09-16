@@ -23,40 +23,22 @@ class TagFilter
 
   def scope_for(key, value)
     case key.to_s
-    when 'context'
-      Tag.discoverable if value == 'directory'
-    when 'name'
-      Tag.matches_name(value)
-    when 'order'
-      scope_for_order(value)
-    when 'review'
-      scope_for_review(value)
-    else
-      raise "Unknown filter: #{key}"
-    end
-  end
-
-  def scope_for_order(order)
-    case order
-    when 'popular'
-      Tag.order('max_score DESC NULLS LAST')
-    when 'active'
-      Tag.order('last_status_at DESC NULLS LAST')
-    else
-      raise "Unknown filter: #{order}"
-    end
-  end
-
-  def scope_for_review(review)
-    case review
+    when 'directory'
+      Tag.discoverable
     when 'reviewed'
       Tag.reviewed.order(reviewed_at: :desc)
     when 'unreviewed'
       Tag.unreviewed
     when 'pending_review'
       Tag.pending_review.order(requested_review_at: :desc)
+    when 'popular'
+      Tag.order('max_score DESC NULLS LAST')
+    when 'active'
+      Tag.order('last_status_at DESC NULLS LAST')
+    when 'name'
+      Tag.matches_name(value)
     else
-      raise "Unknown filter: #{review}"
+      raise "Unknown filter: #{key}"
     end
   end
 end
