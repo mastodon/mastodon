@@ -36,7 +36,7 @@ const notificationToMap = notification => ImmutableMap({
 
 const normalizeNotification = (state, notification, usePendingItems) => {
   if (usePendingItems) {
-    return state.update('pendingItems', list => list.unshift(notificationToMap(notification)));
+    return state.update('pendingItems', list => list.unshift(notificationToMap(notification))).update('unread', unread => unread + 1);
   }
 
   const top = state.get('top');
@@ -91,7 +91,7 @@ const filterNotifications = (state, accountIds) => {
 
 const updateTop = (state, top) => {
   if (top) {
-    state = state.set('unread', 0);
+    state = state.set('unread', state.get('pendingItems').size);
   }
 
   return state.set('top', top);
