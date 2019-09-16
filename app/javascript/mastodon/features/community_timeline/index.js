@@ -20,7 +20,7 @@ const mapStateToProps = (state, { onlyMedia, columnId }) => {
   const index = columns.findIndex(c => c.get('uuid') === uuid);
 
   return {
-    hasUnread: state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
+    hasUnread: state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'unread']) > 0 || state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'pendingItems']).size > 0,
     onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']),
   };
 };

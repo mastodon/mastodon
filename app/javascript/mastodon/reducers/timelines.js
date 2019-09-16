@@ -65,7 +65,7 @@ const updateTimeline = (state, timeline, status, usePendingItems) => {
       return state;
     }
 
-    return state.update(timeline, initialTimeline, map => map.update('pendingItems', list => list.unshift(status.get('id'))));
+    return state.update(timeline, initialTimeline, map => map.update('pendingItems', list => list.unshift(status.get('id'))).update('unread', unread => unread + 1));
   }
 
   const top        = state.getIn([timeline, 'top']);
@@ -128,7 +128,7 @@ const filterTimeline = (timeline, state, relationship, statuses) => {
 
 const updateTop = (state, timeline, top) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
-    if (top) mMap.set('unread', 0);
+    if (top) mMap.set('unread', mMap.get('pendingItems').size);
     mMap.set('top', top);
   }));
 };
