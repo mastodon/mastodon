@@ -2,7 +2,6 @@
 
 module Admin
   class TagsController < BaseController
-    before_action :set_tags, only: :index
     before_action :set_tag, except: [:index, :batch, :approve_all, :reject_all]
     before_action :set_usage_by_domain, except: [:index, :batch, :approve_all, :reject_all]
     before_action :set_counters, except: [:index, :batch, :approve_all, :reject_all]
@@ -10,6 +9,7 @@ module Admin
     def index
       authorize :tag, :index?
 
+      @tags = filtered_tags.page(params[:page])
       @form = Form::TagBatch.new
     end
 
@@ -48,10 +48,6 @@ module Admin
 
     private
 
-    def set_tags
-      @tags = filtered_tags.page(params[:page])
-    end
-
     def set_tag
       @tag = Tag.find(params[:id])
     end
@@ -73,16 +69,11 @@ module Admin
     end
 
     def filtered_tags
-      scope = Tag
-      scope = scope.discoverable if filter_params[:context] == 'directory'
-      scope = scope.unreviewed if filter_params[:review] == 'unreviewed'
-      scope = scope.reviewed.order(reviewed_at: :desc) if filter_params[:review] == 'reviewed'
-      scope = scope.pending_review.order(requested_review_at: :desc) if filter_params[:review] == 'pending_review'
-      scope.order(max_score: :desc)
+      TagFilter.new(filter_params).results
     end
 
     def filter_params
-      params.slice(:context, :review, :page).permit(:context, :review, :page)
+      params.slice(:directory, :reviewed, :unreviewed, :pending_review, :page, :popular, :active, :name).permit(:directory, :reviewed, :unreviewed, :pending_review, :page, :popular, :active, :name)
     end
 
     def tag_params
