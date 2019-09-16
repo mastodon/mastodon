@@ -48,7 +48,7 @@ class ResolveAccountService < BaseService
       return
     end
 
-    return if links_missing? || auto_suspend?
+    return if gone? || links_missing? || auto_suspend?
     return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
 
     RedisLock.acquire(lock_options) do |lock|
@@ -72,6 +72,12 @@ class ResolveAccountService < BaseService
   end
 
   private
+
+  def gone?
+    Request.new(:head, @webfinger.link('self').href).perform do |response|
+      return response.code == 410
+    end
+  end
 
   def links_missing?
     !(activitypub_ready? || ostatus_ready?)
