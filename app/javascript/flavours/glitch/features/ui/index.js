@@ -64,6 +64,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
+  canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
   layout: state.getIn(['local_settings', 'layout']),
   isWide: state.getIn(['local_settings', 'stretch']),
   navbarUnder: state.getIn(['local_settings', 'navbar_under']),
@@ -230,6 +231,7 @@ class UI extends React.Component {
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
     hasMediaAttachments: PropTypes.bool,
+    canUploadMore: PropTypes.bool,
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -272,7 +274,7 @@ class UI extends React.Component {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+    if (e.dataTransfer && e.dataTransfer.types.includes('Files') && this.props.canUploadMore) {
       this.setState({ draggingOver: true });
     }
   }
@@ -293,12 +295,13 @@ class UI extends React.Component {
 
   handleDrop = (e) => {
     if (this.dataTransferIsText(e.dataTransfer)) return;
+
     e.preventDefault();
 
     this.setState({ draggingOver: false });
     this.dragTargets = [];
 
-    if (e.dataTransfer && e.dataTransfer.files.length >= 1) {
+    if (e.dataTransfer && e.dataTransfer.files.length >= 1 && this.props.canUploadMore) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   }
