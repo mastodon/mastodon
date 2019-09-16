@@ -74,6 +74,8 @@ class ResolveAccountService < BaseService
   private
 
   def gone?
+    return if @webfinger.link('self').nil?
+
     Request.new(:head, @webfinger.link('self').href).perform do |response|
       return response.code == 410
     end
