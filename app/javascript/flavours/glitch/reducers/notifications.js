@@ -51,7 +51,7 @@ const notificationToMap = (state, notification) => ImmutableMap({
 
 const normalizeNotification = (state, notification, usePendingItems) => {
   if (usePendingItems) {
-    return state.update('pendingItems', list => list.unshift(notificationToMap(state, notification)));
+    return state.update('pendingItems', list => list.unshift(notificationToMap(state, notification))).update('unread', unread => unread + 1);
   }
 
   const top = !shouldCountUnreadNotifications(state);
@@ -117,7 +117,7 @@ const filterNotifications = (state, accountIds) => {
 };
 
 const clearUnread = (state) => {
-  state = state.set('unread', 0);
+  state = state.set('unread', state.get('pendingItems').size);
   const lastNotification = state.get('items').find(item => item !== null);
   return state.set('lastReadId', lastNotification ? lastNotification.get('id') : '0');
 }
@@ -140,6 +140,8 @@ const deleteByStatus = (state, statusId) => {
     state = state.update('unread', unread => unread - deletedUnread.size);
   }
   const helper = list => list.filterNot(item => item !== null && item.get('status') === statusId);
+  const deletedUnread = state.get('pendingItems').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
+  state = state.update('unread', unread => unread - deletedUnread.size);
   return state.update('items', helper).update('pendingItems', helper);
 };
 
