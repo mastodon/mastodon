@@ -1,9 +1,10 @@
+---
 tr:
   simple_form:
     hints:
       admin_account_action:
         send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
-        type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
+        type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
@@ -33,7 +34,7 @@ tr:
       invite_request:
         text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
       sessions:
-        otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
+        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki karakterler genel zaman çizelgelerinde görüntülenir
     labels:
@@ -119,9 +120,9 @@ tr:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Hashtag
         trendable: Bu etiketin trendlerin altında görünmesine izin ver
-    'no': 'Hayır'
+    'no': Hayır
     recommended: Önerilen
     required:
       mark: "*"
       text: gerekli
-    'yes': 'Evet'
+    'yes': Evet
