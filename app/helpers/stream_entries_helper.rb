@@ -16,20 +16,20 @@ module StreamEntriesHelper
     if user_signed_in?
       if account.id == current_user.account_id
         link_to settings_profile_url, class: 'button logo-button' do
-          safe_join([svg_logo, t('settings.edit_profile')])
+          safe_join([t('settings.edit_profile')])
         end
       elsif current_account.following?(account) || current_account.requested?(account)
         link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
-          safe_join([svg_logo, t('accounts.unfollow')])
+          safe_join([t('accounts.unfollow')])
         end
       elsif !(account.memorial? || account.moved?)
         link_to account_follow_path(account), class: "button logo-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post } do
-          safe_join([svg_logo, t('accounts.follow')])
+          safe_join([t('accounts.follow')])
         end
       end
     elsif !(account.memorial? || account.moved?)
       link_to account_remote_follow_path(account), class: 'button logo-button modal-button', target: '_new' do
-        safe_join([svg_logo, t('accounts.follow')])
+        safe_join([t('accounts.follow')])
       end
     end
   end
