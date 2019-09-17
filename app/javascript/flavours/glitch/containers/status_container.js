@@ -108,7 +108,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['local_settings', 'confirm_boost_missing_media_description']) && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
-        dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
+        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog, missingMediaDescription: true }));
       } else if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
