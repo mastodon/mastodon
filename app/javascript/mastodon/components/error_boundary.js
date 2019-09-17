@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import illustration from '../../images/elephant_ui_disappointed.svg';
+import defaultmascotlight from '../../images/defaultmascotlight.svg';
+import defaultmascotdark from '../../images/defaultmascotdark.svg';
+import {svgSelect} from '../features/compose/util/svg_select';
 
 export default class ErrorBoundary extends React.PureComponent {
 
@@ -31,7 +33,7 @@ export default class ErrorBoundary extends React.PureComponent {
 
     return (
       <div>
-        <img src={illustration} alt='' />
+        <img src={svgSelect(defaultmascotlight, defaultmascotdark)} alt='' />
       </div>
     );
   }
