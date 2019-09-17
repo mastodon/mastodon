@@ -33,7 +33,7 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
   hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
   showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
@@ -306,7 +306,7 @@ class Header extends ImmutablePureComponent {
 
             <div className='account__header__extra__links'>
               <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
-                <strong>{shortNumberFormat(account.get('statuses_count'))}</strong> <FormattedMessage id='account.posts' defaultMessage='Toots' />
+                <strong>{shortNumberFormat(account.get('statuses_count'))}</strong> <FormattedMessage id='account.posts' defaultMessage='Posts' />
               </NavLink>
 
               <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/following`} title={intl.formatNumber(account.get('following_count'))}>

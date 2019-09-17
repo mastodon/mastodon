@@ -10,7 +10,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  heading: { id: 'column.pins', defaultMessage: 'Pinned toot' },
+  heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
 });
 
 const mapStateToProps = state => ({
