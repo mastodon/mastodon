@@ -12,8 +12,10 @@ import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 import { changeComposing } from '../../actions/compose';
-import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
+import defaultmascotlight from '../../../images/defaultmascotlight.svg';
+import defaultmascotdark from '../../../images/defaultmascotdark.svg';
 import { mascot } from '../../initial_state';
+import {svgSelect} from './util/svg_select';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
@@ -31,6 +33,13 @@ const mapStateToProps = (state, ownProps) => ({
   columns: state.getIn(['settings', 'columns']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
 });
+
+let instanceMascot;
+if (mascot) {
+  instanceMascot = <img alt='' draggable='false' src={mascot} />;
+} else {
+  instanceMascot = <img alt='' draggable='false' className="defaultmascot" src={svgSelect(defaultmascotlight, defaultmascotdark)} />;
+}
 
 export default @connect(mapStateToProps)
 @injectIntl
@@ -110,7 +119,7 @@ class Compose extends React.PureComponent {
             <ComposeFormContainer />
 
             <div className='drawer__inner__mastodon'>
-              <img alt='' draggable='false' src={mascot || elephantUIPlane} />
+              {instanceMascot}
             </div>
           </div>}
 
