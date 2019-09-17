@@ -9,4 +9,19 @@ br:
       pending: O vezañ asantet eo ho kont.
     mailer:
       confirmation_instructions:
-        action: Gwiriekait ar chomlec'h postel
+        action: Gwiriekaat ar chomlec'h postel
+        action_with_app: Kadarnaat ha distroiñ da %{app}
+        title: Gwiriekaat ar chomlec'h postel
+      email_changed:
+        subject: 'Mastodoñ : Postel kemmet'
+        title: Chomlec'h postel nevez
+      password_change:
+        explanation: Kemmet eo bet ger-tremen ho kont.
+        subject: 'Mastodoñ : Ger-tremen kemmet'
+        title: Ger-tremen kemmet
+      reconfirmation_instructions:
+        explanation: Kadarnait ar chomlec'h nevez evit cheñch ho postel.
+        subject: 'Mastodoñ : Kadarnait ar postel evit %{instance}'
+        title: Gwiriekaat ar chomlec'h postel
+      reset_password_instructions:
+        action: Cheñch ar ger-tremen
