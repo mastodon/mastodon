@@ -7,9 +7,9 @@
 
 .landing
   .landing__brand
-    = link_to root_url, class: 'brand' do
-      = svg_logo_full
-      %span.brand__tagline=t 'about.tagline'
+    %h1
+      = link_to root_url, class: 'brand' do
+        = site_title
 
   .landing__grid
     .landing__grid__column.landing__grid__column-registration
