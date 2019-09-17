@@ -428,6 +428,7 @@ el:
         title: Προσαρμοσμένο CSS
       default_noindex:
         desc_html: Επηρεάζει όσους χρήστες δεν έχουν αλλάξει αυτή τη ρύθμιση
+        title: Εξαίρεση χρηστών από τις μηχανές αναζήτησης
       domain_blocks:
         all: Για όλους
         disabled: Για κανέναν
@@ -519,6 +520,10 @@ el:
       context: Συνάφεια
       directory: Στον κατάλογο
       in_directory: "%{count} στον κατάλογο"
+      last_active: Τελευταία δραστηριότητα
+      most_popular: Δημοφιλέστερες
+      most_recent: Πιο πρόσφατες
+      name: Ταμπέλα
       review: Κατάσταση έγκρισης
       reviewed: Εγκεκριμένες
       title: Ταμπέλες
@@ -630,7 +635,9 @@ el:
       x_months: "%{count}μ"
       x_seconds: "%{count}δ"
   deletes:
+    challenge_not_passed: Τα στοιχεία δεν ήταν σωστά
     confirm_password: Γράψε το τρέχον συνθηματικό σου για να πιστοποιήσεις την ταυτότητά σου
+    confirm_username: Γράψε το όνομα χρήστη σου για επιβεβαίωση
     proceed: Διαγραφή λογαριασμού
     success_msg: Ο λογαριασμός σου διαγράφηκε με επιτυχία
     warning:
@@ -730,6 +737,7 @@ el:
     all: Όλα
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
     copy: Αντιγραφή
+    no_batch_actions_available: Δεν υπάρχουν ομαδικές ενέργειες σε αυτή τη σελίδα
     order_by: Ταξινόμηση κατά
     save_changes: Αποθήκευσε τις αλλαγές
     validation_errors:
