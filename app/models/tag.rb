@@ -20,7 +20,7 @@
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
-  has_and_belongs_to_many :sample_accounts, -> { searchable.discoverable.popular.limit(3) }, class_name: 'Account'
+  has_and_belongs_to_many :sample_accounts, -> { local.discoverable.popular.limit(3) }, class_name: 'Account'
 
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_one :account_tag_stat, dependent: :destroy
