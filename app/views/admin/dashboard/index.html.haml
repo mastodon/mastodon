@@ -23,7 +23,7 @@
       .dashboard__counters__num= number_to_human @reports_count, strip_insignificant_zeros: true
       .dashboard__counters__label= t 'admin.dashboard.open_reports'
   %div
-    = link_to admin_tags_path(review: 'pending_review') do
+    = link_to admin_tags_path(pending_review: '1') do
       .dashboard__counters__num= number_to_human @pending_tags_count, strip_insignificant_zeros: true
       .dashboard__counters__label= t 'admin.dashboard.pending_tags'
   %div
