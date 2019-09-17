@@ -834,6 +834,16 @@ $small-breakpoint: 960px;
 .brand {
   position: relative;
   text-decoration: none;
+  color: $secondary-text-color;
+}
+
+a.brand {
+  color: $primary-text-color;
+}
+
+h1 a.brand {
+  color: $secondary-text-color;
+  font-size: 3.8em;
 }
 
 .brand__tagline {
@@ -853,4 +863,3 @@ $small-breakpoint: 960px;
     color: $dark-text-color;
   }
 }
-
