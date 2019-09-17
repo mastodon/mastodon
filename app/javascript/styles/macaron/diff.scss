@@ -1046,3 +1046,24 @@ a.status-card.compact:hover {
     border-color: lighten($blue, 8%);
   }
 }
+
+.regeneration-indicator {
+
+  &__figure {
+    background: url('../images/defaultmascotdark.svg') no-repeat center 0;
+  }
+
+  &.missing-indicator {
+
+    .regeneration-indicator__figure {
+      background-image: url('../images/defaultmascotdark.svg');
+    }
+  }
+}
+
+.modal-layout__mastodon {
+
+  > * {
+    background: url('../images/defaultmascotdark.svg') no-repeat left bottom / contain;
+  }
+}
