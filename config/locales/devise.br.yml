@@ -3,3 +3,10 @@ br:
     failure:
       inactive: N'eo ket gweredekaet ho kont c'hoazh.
       invalid: '%{authentication_keys} pe ger-tremen diwiriek.'
+      last_attempt: Un esae a chom deoc'h a-raok ma vefe prennet ho kont.
+      locked: Prennet eo ho kont.
+      not_found_in_database: '%{authentication_keys} pe ger-tremen diwiriek.'
+      pending: O vezañ asantet eo ho kont.
+    mailer:
+      confirmation_instructions:
+        action: Gwiriekait ar chomlec'h postel
