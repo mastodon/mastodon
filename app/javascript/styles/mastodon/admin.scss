@@ -233,32 +233,35 @@ hr.spacer {
   height: 1px;
 }
 
-.muted-hint {
-  color: $darker-text-color;
+body,
+.admin-wrapper .content {
+  .muted-hint {
+    color: $darker-text-color;
 
-  a {
-    color: $highlight-text-color;
+    a {
+      color: $highlight-text-color;
+    }
   }
-}
 
-.positive-hint {
-  color: $valid-value-color;
-  font-weight: 500;
-}
+  .positive-hint {
+    color: $valid-value-color;
+    font-weight: 500;
+  }
 
-.negative-hint {
-  color: $error-value-color;
-  font-weight: 500;
-}
+  .negative-hint {
+    color: $error-value-color;
+    font-weight: 500;
+  }
 
-.neutral-hint {
-  color: $dark-text-color;
-  font-weight: 500;
-}
+  .neutral-hint {
+    color: $dark-text-color;
+    font-weight: 500;
+  }
 
-.warning-hint {
-  color: $gold-star;
-  font-weight: 500;
+  .warning-hint {
+    color: $gold-star;
+    font-weight: 500;
+  }
 }
 
 .filters {

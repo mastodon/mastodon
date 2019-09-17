@@ -42,6 +42,7 @@ class Auth::SessionsController < Devise::SessionsController
   def destroy
     tmp_stored_location = stored_location_for(:user)
     super
+    session.delete(:challenge_passed_at)
     flash.delete(:notice)
     store_location_for(:user, tmp_stored_location) if continue_after?
   end

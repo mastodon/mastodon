@@ -3,9 +3,12 @@
 module Settings
   module TwoFactorAuthentication
     class ConfirmationsController < BaseController
+      include ChallengableConcern
+
       layout 'admin'
 
       before_action :authenticate_user!
+      before_action :require_challenge!
       before_action :ensure_otp_secret
 
       skip_before_action :require_functional!
@@ -21,6 +24,8 @@ module Settings
           current_user.otp_required_for_login = true
           @recovery_codes = current_user.generate_otp_backup_codes!
           current_user.save!
+
+          UserMailer.two_factor_enabled(current_user).deliver_later!
 
           render 'settings/two_factor_authentication/recovery_codes/index'
         else

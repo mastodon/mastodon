@@ -621,6 +621,11 @@ en:
       return: Show the user's profile
       web: Go to web
     title: Follow %{acct}
+  challenge:
+    confirm: Continue
+    hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
+    invalid_password: Invalid password
+    prompt: Confirm password to continue
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
