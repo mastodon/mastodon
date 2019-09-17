@@ -35,7 +35,7 @@ module StreamEntriesHelper
   end
 
   def svg_logo
-    content_tag(:svg, tag(:use, 'xlink:href' => '#mastodon-svg-logo'), 'viewBox' => '0 0 216.4144 232.00976')
+    content_tag(:svg, tag(:use, 'xlink:href' => '#hometownlogo'), 'viewBox' => '0 0 611.55 611.55')
   end
 
   def svg_logo_full
