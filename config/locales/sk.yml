@@ -20,7 +20,7 @@ sk:
     extended_description_html: |
       <h3>Pravidlá</h3>
       <p>Žiadne zatiaľ uvedené nie sú</p>
-    federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj inde.
+    federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj na iných serveroch.
     generic_description: "%{domain} je jeden server v sieti"
     get_apps: Vyskúšaj aplikácie
     hosted_on: Mastodon hostovaný na %{domain}
@@ -28,7 +28,7 @@ sk:
       Tento účet je virtuálnym aktérom, ktorý predstavuje samotný server a nie žiadného jedného užívateľa.
       Je využívaný pre potreby federovania a nemal by byť blokovaný, pokiaľ nechceš zablokovať celý server, čo ide lepšie dosiahnúť cez blokovanie domény.
     learn_more: Zisti viac
-    privacy_policy: Ustanovenia o súkromí
+    privacy_policy: Zásady súkromia
     see_whats_happening: Pozoruj, čo sa deje
     server_stats: 'Serverové štatistiky:'
     source_code: Zdrojový kód
@@ -233,10 +233,12 @@ sk:
       deleted_status: "(zmazaný príspevok)"
       title: Kontrólny záznam
     custom_emojis:
+      assign_category: Priraď kategóriu
       by_domain: Doména
       copied_msg: Miestna kópia emoji bola úspešne vytvorená
       copy: Kopíruj
       copy_failed_msg: Nebolo možné vytvoriť miestnu kópiu tohto emoji
+      create_new_category: Vytvor novú kategóriu
       created_msg: Emoji úspešne vytvorené!
       delete: Zmaž
       destroyed_msg: Emoji úspešne zničené!
@@ -253,6 +255,7 @@ sk:
       shortcode: Skratka
       shortcode_hint: Aspoň 2 znaky, povolené sú alfanumerické, alebo podčiarkovník
       title: Vlastné emoji
+      uncategorized: Nezaradené
       unlisted: Nie je na zozname
       update_failed_msg: Nebolo možné aktualizovať toto emoji
       updated_msg: Emoji bolo úspešne aktualizované!
@@ -580,6 +583,7 @@ sk:
     description:
       prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
       prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
+      suffix: S pomocou účtu budeš môcť následovať ľudí, posielať príspevky, a vymienať si správy s užívateľmi na hociakom Mastodon serveri, ale aj na iných serveroch!
     didnt_get_confirmation: Neobdržal/a si kroky na potvrdenie?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
@@ -630,13 +634,15 @@ sk:
       x_months: "%{count}mesiace"
       x_seconds: "%{count}sek"
   deletes:
-    bad_password_msg: Dobrý pokus, hakeri! Nesprávne heslo
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
     warning:
       before: 'Predtým, než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
       caches: Obsah, ktorý bol predčítaný inými servermi môže zanechať pozostatky
+      data_removal: Tvoje príspevky a iné dáta budú natrvalo odstránené
+      more_details_html: Pre viac podrobností, pozri <a href="%{terms_path}">zásady súkromia</a>.
+      username_available: Tvoje užívateľské meno bude znova dostupné
       username_unavailable: Tvoja prezývka ostane neprístupná
   directories:
     directory: Katalóg profilov
@@ -660,10 +666,10 @@ sk:
   domain_validator:
     invalid_domain: nieje správny tvar domény
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Požiadavka, ktorú si odoslal/a, bola buď nesprávna, alebo znehodnotená.
     '403': Nemáš povolenie pre zobrazenie tejto stránky.
     '404': Stránka ktorú hľadáš nieje tu.
-    '406': This page is not available in the requested format.
+    '406': Táto stránka nie je dostupná v požadovanom formáte.
     '410': Stránka ktorú si tu hľadal/a sa tu už viac nenachádza.
     '422':
       content: Bezpečtnostné overenie zlyhalo. Blokuješ cookies?
@@ -672,7 +678,7 @@ sk:
     '500':
       content: Ospravedlňujem sa. Niečo sa pokazilo na našom konci.
       title: Táto stránka nieje v poriadku
-    '503': The page could not be served due to a temporary server failure.
+    '503': Táto stránka nemôže byť načítaná, kvôli dočasnému výpadku servera.
     noscript_html: Aby bolo možné používať Mastodon web aplikáciu, povoľ prosím JavaScript. Alebo skús jednu z <a href="%{apps_path}"> aplikácii </a> dostupných pre vašu platformu.
   existing_username_validator:
     not_found: nepodarilo sa nájsť miestného užívateľa s takouto prezývkou
@@ -721,6 +727,7 @@ sk:
     all: Všetko
     changes_saved_msg: Zmeny boli úspešne uložené!
     copy: Kopíruj
+    no_batch_actions_available: Na tejto stránke niesú k dispozícii žiadne hromadné akcie
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
     validation_errors:

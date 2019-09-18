@@ -225,10 +225,12 @@ de:
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
     custom_emojis:
+      assign_category: Kategorie zuweisen
       by_domain: Domain
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
+      create_new_category: Neue Kategorie erstellen
       created_msg: Emoji erstellt!
       delete: Löschen
       destroyed_msg: Emoji gelöscht!
@@ -245,6 +247,7 @@ de:
       shortcode: Kürzel
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
+      uncategorized: Nicht kategorisiert
       unlisted: Ungelistet
       update_failed_msg: Konnte dieses Emoji nicht aktualisieren
       updated_msg: Emoji erfolgreich aktualisiert!
@@ -424,6 +427,9 @@ de:
       custom_css:
         desc_html: Verändere das Aussehen mit CSS, dass auf jeder Seite geladen wird
         title: Benutzerdefiniertes CSS
+      default_noindex:
+        desc_html: Beeinflusst alle Benutzer, die diese Einstellung nicht selbst geändert haben
+        title: Benutzer aus Suchmaschinen-Indizierung standardmäßig herausnehmen
       domain_blocks:
         all: An alle
         disabled: An niemanden
@@ -626,7 +632,6 @@ de:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Falsches Passwort
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
@@ -727,6 +732,7 @@ de:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
+    no_batch_actions_available: Keine Massenaktionen auf dieser Seite verfügbar
     order_by: Sortieren nach
     save_changes: Änderungen speichern
     validation_errors:

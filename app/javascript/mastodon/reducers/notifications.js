@@ -35,11 +35,11 @@ const notificationToMap = notification => ImmutableMap({
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {
-  if (usePendingItems) {
-    return state.update('pendingItems', list => list.unshift(notificationToMap(notification)));
-  }
-
   const top = state.get('top');
+
+  if (usePendingItems || !top || !state.get('pendingItems').isEmpty()) {
+    return state.update('pendingItems', list => list.unshift(notificationToMap(notification))).update('unread', unread => unread + 1);
+  }
 
   if (!top) {
     state = state.update('unread', unread => unread + 1);
@@ -54,7 +54,7 @@ const normalizeNotification = (state, notification, usePendingItems) => {
   });
 };
 
-const expandNormalizedNotifications = (state, notifications, next, usePendingItems) => {
+const expandNormalizedNotifications = (state, notifications, next, isLoadingRecent, usePendingItems) => {
   let items = ImmutableList();
 
   notifications.forEach((n, i) => {
@@ -63,6 +63,8 @@ const expandNormalizedNotifications = (state, notifications, next, usePendingIte
 
   return state.withMutations(mutable => {
     if (!items.isEmpty()) {
+      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('top') || !mutable.get('pendingItems').isEmpty());
+
       mutable.update(usePendingItems ? 'pendingItems' : 'items', list => {
         const lastIndex = 1 + list.findLastIndex(
           item => item !== null && (compareId(item.get('id'), items.last().get('id')) > 0 || item.get('id') === items.last().get('id'))
@@ -91,7 +93,7 @@ const filterNotifications = (state, accountIds) => {
 
 const updateTop = (state, top) => {
   if (top) {
-    state = state.set('unread', 0);
+    state = state.set('unread', state.get('pendingItems').size);
   }
 
   return state.set('top', top);
@@ -117,7 +119,7 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_UPDATE:
     return normalizeNotification(state, action.notification, action.usePendingItems);
   case NOTIFICATIONS_EXPAND_SUCCESS:
-    return expandNormalizedNotifications(state, action.notifications, action.next, action.usePendingItems);
+    return expandNormalizedNotifications(state, action.notifications, action.next, action.isLoadingRecent, action.usePendingItems);
   case ACCOUNT_BLOCK_SUCCESS:
     return filterNotifications(state, [action.relationship.id]);
   case ACCOUNT_MUTE_SUCCESS:

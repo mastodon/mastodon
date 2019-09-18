@@ -86,23 +86,33 @@ RSpec.describe SpamCheck do
     end
 
     it 'returns true for duplicate statuses to the same recipient' do
-      status1 = status_with_html('@alice Hello')
-      described_class.new(status1).remember!
+      described_class::THRESHOLD.times do
+        status1 = status_with_html('@alice Hello')
+        described_class.new(status1).remember!
+      end
+
       status2 = status_with_html('@alice Hello')
       expect(described_class.new(status2).spam?).to be true
     end
 
     it 'returns true for duplicate statuses to different recipients' do
-      status1 = status_with_html('@alice Hello')
-      described_class.new(status1).remember!
+      described_class::THRESHOLD.times do
+        status1 = status_with_html('@alice Hello')
+        described_class.new(status1).remember!
+      end
+
       status2 = status_with_html('@bob Hello')
       expect(described_class.new(status2).spam?).to be true
     end
 
     it 'returns true for nearly identical statuses with random numbers' do
       source_text = 'Sodium, atomic number 11, was first isolated by Humphry Davy in 1807. A chemical component of salt, he named it Na in honor of the saltiest region on earth, North America.'
-      status1 = status_with_html('@alice ' + source_text + ' 1234')
-      described_class.new(status1).remember!
+
+      described_class::THRESHOLD.times do
+        status1 = status_with_html('@alice ' + source_text + ' 1234')
+        described_class.new(status1).remember!
+      end
+
       status2 = status_with_html('@bob ' + source_text + ' 9568')
       expect(described_class.new(status2).spam?).to be true
     end
@@ -140,9 +150,9 @@ RSpec.describe SpamCheck do
     let(:redis_key) { spam_check.send(:redis_key) }
 
     it 'remembers' do
-      expect do
-        spam_check.remember!
-      end.to change { Redis.current.exists(redis_key) }.from(false).to(true)
+      expect(Redis.current.exists(redis_key)).to be true
+      spam_check.remember!
+      expect(Redis.current.exists(redis_key)).to be true
     end
   end
 
@@ -156,9 +166,9 @@ RSpec.describe SpamCheck do
     end
 
     it 'resets' do
-      expect do
-        spam_check.reset!
-      end.to change { Redis.current.exists(redis_key) }.from(true).to(false)
+      expect(Redis.current.exists(redis_key)).to be true
+      spam_check.reset!
+      expect(Redis.current.exists(redis_key)).to be false
     end
   end
 

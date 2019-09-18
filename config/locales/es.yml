@@ -56,6 +56,7 @@ es:
     media: Multimedia
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
     network_hidden: Esta información no está disponible
+    never_active: Nunca
     nothing_here: "¡No hay nada aquí!"
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
@@ -222,6 +223,7 @@ es:
       deleted_status: "(estado borrado)"
       title: Log de auditoría
     custom_emojis:
+      assign_category: Asignar categoría
       by_domain: Dominio
       copied_msg: Copia local del emoji creada con éxito
       copy: Copiar
@@ -242,6 +244,7 @@ es:
       shortcode: Código de atajo
       shortcode_hint: Al menos 2 caracteres, solo caracteres alfanuméricos y guiones bajos
       title: Emojis personalizados
+      uncategorized: Sin clasificar
       unlisted: Sin listar
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: "¡Emoji actualizado con éxito!"
@@ -489,6 +492,7 @@ es:
         delete: Eliminar
         nsfw_off: Marcar contenido como no sensible
         nsfw_on: Marcar contenido como sensible
+      deleted: Eliminado
       failed_to_execute: Falló al ejecutar
       media:
         title: Multimedia
@@ -609,7 +613,6 @@ es:
       x_months: "%{count}m"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: "¡Buen intento, hackers! Contraseña incorrecta"
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
@@ -617,6 +620,8 @@ es:
     directory: Directorio de perfiles
     explanation: Descubre usuarios según sus intereses
     explore_mastodon: Explorar %{title}
+  domain_blocks:
+    domain: Dominio
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
@@ -676,6 +681,7 @@ es:
     developers: Desarrolladores
     more: Mas…
     resources: Recursos
+    trending_now: Tendencia ahora
   generic:
     all: Todos
     changes_saved_msg: "¡Cambios guardados con éxito!"
