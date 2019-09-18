@@ -2,10 +2,13 @@
 
 module Settings
   class TwoFactorAuthenticationsController < BaseController
+    include ChallengableConcern
+
     layout 'admin'
 
     before_action :authenticate_user!
     before_action :verify_otp_required, only: [:create]
+    before_action :require_challenge!, only: [:create]
 
     skip_before_action :require_functional!
 
@@ -23,6 +26,7 @@ module Settings
       if acceptable_code?
         current_user.otp_required_for_login = false
         current_user.save!
+        UserMailer.two_factor_disabled(current_user).deliver_later!
         redirect_to settings_two_factor_authentication_path
       else
         flash.now[:alert] = I18n.t('two_factor_authentication.wrong_code')

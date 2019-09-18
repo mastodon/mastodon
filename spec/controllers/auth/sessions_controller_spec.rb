@@ -80,7 +80,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
         let(:user) do
           account = Fabricate.build(:account, username: 'pam_user1')
           account.save!(validate: false)
-          user = Fabricate(:user, email: 'pam@example.com', password: nil, account: account)
+          user = Fabricate(:user, email: 'pam@example.com', password: nil, account: account, external: true)
           user
         end
 
