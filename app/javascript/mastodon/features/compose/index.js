@@ -15,7 +15,6 @@ import { changeComposing } from '../../actions/compose';
 import defaultmascotlight from '../../../images/defaultmascotlight.svg';
 import defaultmascotdark from '../../../images/defaultmascotdark.svg';
 import { mascot } from '../../initial_state';
-import {svgSelect} from './util/svg_select';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
@@ -38,7 +37,7 @@ let instanceMascot;
 if (mascot) {
   instanceMascot = <img alt='' draggable='false' src={mascot} />;
 } else {
-  instanceMascot = <img alt='' draggable='false' className="defaultmascot" src={svgSelect(defaultmascotlight, defaultmascotdark)} />;
+  instanceMascot = <img alt='' draggable='false' className="defaultmascot" src={defaultmascotdark} />;
 }
 
 export default @connect(mapStateToProps)

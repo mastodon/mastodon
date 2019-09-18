@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import defaultmascotlight from '../../images/defaultmascotlight.svg';
 import defaultmascotdark from '../../images/defaultmascotdark.svg';
-import {svgSelect} from '../features/compose/util/svg_select';
+import {svgSelect} from '../svg_select';
 
 export default class ErrorBoundary extends React.PureComponent {
 
