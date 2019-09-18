@@ -233,10 +233,12 @@ cs:
       deleted_status: "(smazaný toot)"
       title: Záznam auditu
     custom_emojis:
+      assign_category: Přiřadit kategorii
       by_domain: Doména
       copied_msg: Místní kopie emoji byla úspěšně vytvořena
       copy: Kopírovat
       copy_failed_msg: Nebylo možné vytvořit místní kopii tohoto emoji
+      create_new_category: Vytvořit novou kategorii
       created_msg: Emoji úspěšně vytvořeno!
       delete: Smazat
       destroyed_msg: Emoji úspěšně zničeno!
@@ -253,6 +255,7 @@ cs:
       shortcode: Zkratka
       shortcode_hint: Alespoň 2 znaky, pouze alfanumerické znaky a podtržítka
       title: Vlastní emoji
+      uncategorized: Nezařazená
       unlisted: Neuvedeno
       update_failed_msg: Nebylo možné aktualizovat toto emoji
       updated_msg: Emoji úspěšně aktualizováno!
@@ -436,6 +439,9 @@ cs:
       custom_css:
         desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
         title: Vlastní CSS
+      default_noindex:
+        desc_html: Ovlivňuje všechny uživatele, kteří toto nastavení sami nezměnili
+        title: Odhlásit uživatele z indexování vyhledávačemi ve výchozím stavu
       domain_blocks:
         all: Všem
         disabled: Nikomu
@@ -447,7 +453,7 @@ cs:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura serveru
         title: Hlavní obrázek
       mascot:
-        desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
+        desc_html: Zobrazuje se na několika stránkách. Doporučuje se rozlišení alespoň 293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
         title: Obrázek maskota
       peers_api_enabled:
         desc_html: Domény, na které tento server narazil ve fedivesmíru
@@ -638,7 +644,6 @@ cs:
       x_months: "%{count} mesíců"
       x_seconds: "%{count} s"
   deletes:
-    bad_password_msg: Dobrý pokus, hackeři! Nesprávné heslo
     confirm_password: Zadejte svoje současné heslo pro ověření vaší identity
     proceed: Odstranit účet
     success_msg: Váš účet byl úspěšně odstraněn

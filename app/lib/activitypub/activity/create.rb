@@ -408,15 +408,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def check_for_spam
-    spam_check = SpamCheck.new(@status)
-
-    return if spam_check.skip?
-
-    if spam_check.spam?
-      spam_check.flag!
-    else
-      spam_check.remember!
-    end
+    SpamCheck.perform(@status)
   end
 
   def forward_for_reply

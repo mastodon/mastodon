@@ -76,7 +76,7 @@ module Mastodon
       :no,
       :oc,
       :pl,
-      :pt,
+      :'pt-PT',
       :'pt-BR',
       :ro,
       :ru,

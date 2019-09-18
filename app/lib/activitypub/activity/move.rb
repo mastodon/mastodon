@@ -10,10 +10,13 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
 
     target_account = ActivityPub::FetchRemoteAccountService.new.call(target_uri)
 
-    return if target_account.nil? || !target_account.also_known_as.include?(origin_account.uri)
+    if target_account.nil? || target_account.suspended? || !target_account.also_known_as.include?(origin_account.uri)
+      unmark_as_processing!
+      return
+    end
 
     # In case for some reason we didn't have a redirect for the profile already, set it
-    origin_account.update(moved_to_account: target_account) if origin_account.moved_to_account_id.nil?
+    origin_account.update(moved_to_account: target_account)
 
     # Initiate a re-follow for each follower
     origin_account.followers.local.select(:id).find_in_batches do |follower_accounts|
@@ -39,5 +42,9 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
 
   def mark_as_processing!
     redis.setex("move_in_progress:#{@account.id}", PROCESSING_COOLDOWN, true)
+  end
+
+  def unmark_as_processing!
+    redis.del("move_in_progress:#{@account.id}")
   end
 end

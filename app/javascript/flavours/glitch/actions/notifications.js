@@ -165,7 +165,7 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
       dispatch(importFetchedAccounts(response.data.map(item => item.account)));
       dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
 
-      dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent && preferPendingItems));
+      dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
       fetchRelatedRelationships(dispatch, response.data);
       done();
     }).catch(error => {
@@ -182,11 +182,12 @@ export function expandNotificationsRequest(isLoadingMore) {
   };
 };
 
-export function expandNotificationsSuccess(notifications, next, isLoadingMore, usePendingItems) {
+export function expandNotificationsSuccess(notifications, next, isLoadingMore, isLoadingRecent, usePendingItems) {
   return {
     type: NOTIFICATIONS_EXPAND_SUCCESS,
     notifications,
     next,
+    isLoadingRecent: isLoadingRecent,
     usePendingItems,
     skipLoading: !isLoadingMore,
   };

@@ -50,11 +50,11 @@ const notificationToMap = (state, notification) => ImmutableMap({
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {
-  if (usePendingItems) {
-    return state.update('pendingItems', list => list.unshift(notificationToMap(state, notification)));
-  }
-
   const top = !shouldCountUnreadNotifications(state);
+
+  if (usePendingItems || !top || !state.get('pendingItems').isEmpty()) {
+    return state.update('pendingItems', list => list.unshift(notificationToMap(state, notification))).update('unread', unread => unread + 1);
+  }
 
   if (top) {
     state = state.set('lastReadId', notification.id);
@@ -71,7 +71,7 @@ const normalizeNotification = (state, notification, usePendingItems) => {
   });
 };
 
-const expandNormalizedNotifications = (state, notifications, next, usePendingItems) => {
+const expandNormalizedNotifications = (state, notifications, next, isLoadingRecent, usePendingItems) => {
   const top = !(shouldCountUnreadNotifications(state));
   const lastReadId = state.get('lastReadId');
   let items = ImmutableList();
@@ -82,6 +82,8 @@ const expandNormalizedNotifications = (state, notifications, next, usePendingIte
 
   return state.withMutations(mutable => {
     if (!items.isEmpty()) {
+      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('top') || !mutable.get('pendingItems').isEmpty());
+
       mutable.update(usePendingItems ? 'pendingItems' : 'items', list => {
         const lastIndex = 1 + list.findLastIndex(
           item => item !== null && (compareId(item.get('id'), items.last().get('id')) > 0 || item.get('id') === items.last().get('id'))
@@ -117,7 +119,7 @@ const filterNotifications = (state, accountIds) => {
 };
 
 const clearUnread = (state) => {
-  state = state.set('unread', 0);
+  state = state.set('unread', state.get('pendingItems').size);
   const lastNotification = state.get('items').find(item => item !== null);
   return state.set('lastReadId', lastNotification ? lastNotification.get('id') : '0');
 }
@@ -140,6 +142,8 @@ const deleteByStatus = (state, statusId) => {
     state = state.update('unread', unread => unread - deletedUnread.size);
   }
   const helper = list => list.filterNot(item => item !== null && item.get('status') === statusId);
+  const deletedUnread = state.get('pendingItems').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
+  state = state.update('unread', unread => unread - deletedUnread.size);
   return state.update('items', helper).update('pendingItems', helper);
 };
 
@@ -216,7 +220,7 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_UPDATE:
     return normalizeNotification(state, action.notification, action.usePendingItems);
   case NOTIFICATIONS_EXPAND_SUCCESS:
-    return expandNormalizedNotifications(state, action.notifications, action.next, action.usePendingItems);
+    return expandNormalizedNotifications(state, action.notifications, action.next, action.isLoadingRecent, action.usePendingItems);
   case ACCOUNT_BLOCK_SUCCESS:
     return filterNotifications(state, [action.relationship.id]);
   case ACCOUNT_MUTE_SUCCESS:

@@ -1,4 +1,4 @@
-import inherited from 'mastodon/locales/pt.json';
+import inherited from 'mastodon/locales/pt-PT.json';
 
 const messages = {
   //  No translations available.

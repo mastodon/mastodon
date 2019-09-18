@@ -34,7 +34,7 @@ module Settings
     private
 
     def confirmation_params
-      params.require(:form_two_factor_confirmation).permit(:code)
+      params.require(:form_two_factor_confirmation).permit(:otp_attempt)
     end
 
     def verify_otp_required
@@ -42,8 +42,8 @@ module Settings
     end
 
     def acceptable_code?
-      current_user.validate_and_consume_otp!(confirmation_params[:code]) ||
-        current_user.invalidate_otp_backup_code!(confirmation_params[:code])
+      current_user.validate_and_consume_otp!(confirmation_params[:otp_attempt]) ||
+        current_user.invalidate_otp_backup_code!(confirmation_params[:otp_attempt])
     end
   end
 end
