@@ -24,8 +24,13 @@
             %strong= number_with_delimiter @instance_presenter.status_count
             %span= t 'about.status_count_after', count: @instance_presenter.status_count
         .row__mascot
-          .landing-page__mascot
-            = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('media/images/elephant_ui_plane.svg'), alt: ''
+          - if @instance_presenter.mascot&.file&.url
+            .landing-page__mascot
+              = image_tag @instance_presenter.mascot&.file&.url
+          - else
+            .landing-page__mascot{:class => ("originalmascot")}
+              %div{:class => ("originalmascotimg")}
+                = svg_logo
 
   .column-2
     .landing-page__information.contact-widget
