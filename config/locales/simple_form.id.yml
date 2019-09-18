@@ -1,4 +1,3 @@
----
 id:
   simple_form:
     hints:
@@ -9,7 +8,7 @@ id:
       imports:
         data: File CSV yang diexpor dari server Mastodon lain
       sessions:
-        otp: Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.
+        otp: 'Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.'
     labels:
       defaults:
         confirm_new_password: Konfirmasi kata sandi baru
@@ -37,7 +36,7 @@ id:
         follow_request: Kirim email saat seseorang meminta untuk mengikuti anda
         mention: Kirim email saat seseorang menyebut anda
         reblog: Kirim email saat seseorang mem-boost status anda
-    'no': Tidak
+    'no': 'Tidak'
     required:
       text: wajib
-    'yes': Ya
+    'yes': 'Ya'
