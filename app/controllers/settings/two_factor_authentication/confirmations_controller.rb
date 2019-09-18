@@ -15,7 +15,7 @@ module Settings
       end
 
       def create
-        if current_user.validate_and_consume_otp!(confirmation_params[:code])
+        if current_user.validate_and_consume_otp!(confirmation_params[:otp_attempt])
           flash.now[:notice] = I18n.t('two_factor_authentication.enabled_success')
 
           current_user.otp_required_for_login = true
@@ -33,7 +33,7 @@ module Settings
       private
 
       def confirmation_params
-        params.require(:form_two_factor_confirmation).permit(:code)
+        params.require(:form_two_factor_confirmation).permit(:otp_attempt)
       end
 
       def prepare_two_factor_form
