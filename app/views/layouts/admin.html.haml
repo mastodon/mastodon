@@ -5,8 +5,7 @@
   .admin-wrapper
     .sidebar-wrapper
       .sidebar
-        = link_to root_path do
-          = image_pack_tag 'logo.svg', class: 'logo', alt: site_title
+        %div{:class => ("logo")}
 
         = render_navigation
     .content-wrapper
