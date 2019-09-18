@@ -71,7 +71,7 @@ const normalizeNotification = (state, notification, usePendingItems) => {
   });
 };
 
-const expandNormalizedNotifications = (state, notifications, next, usePendingItems) => {
+const expandNormalizedNotifications = (state, notifications, next, isLoadingRecent, usePendingItems) => {
   const top = !(shouldCountUnreadNotifications(state));
   const lastReadId = state.get('lastReadId');
   let items = ImmutableList();
@@ -82,7 +82,7 @@ const expandNormalizedNotifications = (state, notifications, next, usePendingIte
 
   return state.withMutations(mutable => {
     if (!items.isEmpty()) {
-      usePendingItems = usePendingItems || !mutable.get('top') || !mutable.get('pendingItems').isEmpty();
+      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('top') || !mutable.get('pendingItems').isEmpty());
 
       mutable.update(usePendingItems ? 'pendingItems' : 'items', list => {
         const lastIndex = 1 + list.findLastIndex(
@@ -220,7 +220,7 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_UPDATE:
     return normalizeNotification(state, action.notification, action.usePendingItems);
   case NOTIFICATIONS_EXPAND_SUCCESS:
-    return expandNormalizedNotifications(state, action.notifications, action.next, action.usePendingItems);
+    return expandNormalizedNotifications(state, action.notifications, action.next, action.isLoadingRecent, action.usePendingItems);
   case ACCOUNT_BLOCK_SUCCESS:
     return filterNotifications(state, [action.relationship.id]);
   case ACCOUNT_MUTE_SUCCESS:
