@@ -44,6 +44,10 @@
     font-family: inherit;
     resize: vertical;
 
+    &::placeholder {
+      color: $dark-text-color;
+    }
+
     &:focus { outline: 0 }
     @include single-column('screen and (max-width: 630px)') { font-size: 16px }
   }
@@ -262,6 +266,10 @@
       font-family: inherit;
       resize: none;
       scrollbar-color: initial;
+
+      &::placeholder {
+        color: $dark-text-color;
+      }
 
       &::-webkit-scrollbar {
         all: unset;
