@@ -338,6 +338,10 @@ code {
     border-radius: 4px;
     padding: 10px;
 
+    &::placeholder {
+      color: lighten($darker-text-color, 4%);
+    }
+
     &:invalid {
       box-shadow: none;
     }
