@@ -38,6 +38,9 @@ de:
     unavailable_content_description:
       reason: 'Grund:'
       rejecting_media: Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.
+      silenced: Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.
+      suspended: Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.
+    unavailable_content_html: Mastodon erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
     user_count_after:
       one: Profil
       other: Profile
@@ -621,6 +624,11 @@ de:
       return: Zeige das Profil
       web: In der Benutzeroberfläche öffnen
     title: '%{acct} folgen'
+  challenge:
+    confirm: Fortfahren
+    hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
+    invalid_password: Ungültiges Passwort
+    prompt: Gib dein Passwort ein um fortzufahren
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
