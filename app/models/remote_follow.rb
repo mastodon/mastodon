@@ -49,7 +49,7 @@ class RemoteFollow
   end
 
   def fetch_template!
-    return missing_resource if acct.blank?
+    return missing_resource_error if acct.blank?
 
     _, domain = acct.split('@')
 

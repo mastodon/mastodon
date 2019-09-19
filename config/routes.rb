@@ -134,8 +134,14 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
-    resource :migration, only: [:show, :update]
 
+    resource :migration, only: [:show, :create] do
+      collection do
+        post :cancel
+      end
+    end
+
+    resources :aliases, only: [:index, :create, :destroy]
     resources :sessions, only: [:destroy]
     resources :featured_tags, only: [:index, :create, :destroy]
   end
