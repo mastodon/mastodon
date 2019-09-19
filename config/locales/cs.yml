@@ -16,9 +16,6 @@ cs:
     contact_unavailable: Neuvedeno
     discover_users: Objevujte uživatele
     documentation: Dokumentace
-    extended_description_html: |
-      <h3>Dobré místo pro pravidla</h3>
-      <p>Rozšířený popis ještě nebyl nastaven.</p>
     federation_hint_html: S účtem na %{instance} můžete sledovat lidi na jakémkoliv serveru Mastodon a jiných službách.
     generic_description: "%{domain} je jedním ze serverů v síti"
     get_apps: Vyzkoušejte mobilní aplikaci
@@ -672,23 +669,6 @@ cs:
     directory: Adresář profilů
     explanation: Objevujte uživatele podle jejich zájmů
     explore_mastodon: Prozkoumejte %{title}
-  domain_blocks:
-    blocked_domains: Seznam omezených a blokovaných domén
-    description: Tohle je seznam serverů, které server %{instance} omezuje nebo odmítá federaci.
-    domain: Doména
-    media_block: Blokace médií
-    no_domain_blocks: "(Žádné blokované domény)"
-    severity: Přísnost
-    severity_legend:
-      media_block: Mediální soubory přicházející ze serveru nejsou stahovány, ukládány ani zobrazovány uživatelům.
-      silence: Účty z utišených serverů lze nalézt, sledovat a interagovat s nimi, ale jejich tooty nebudou zobrazovány na veřejných časových osách a oznámení od nich se nedostanou k místním uživatelům, kteří je nesledují.
-      suspension: Z pozastavených serverů se neukládá ani nezobrazuje žádný obsah, ani se naně žádný obsah neposílá. Interakce z pozastavených serverů jsou ignorovány.
-      suspension_disclaimer: Pozastavené servery mohou občas stahovat veřejný obsah z tohoto serveru.
-      title: Přísnosti
-    show_rationale: Zobrazit odůvodnění
-    silence: Utišení
-    suspension: Pozastavení
-    title: "%{instance} Seznam blokovaných serverů"
   domain_validator:
     invalid_domain: není platné doménové jméno
   errors:
