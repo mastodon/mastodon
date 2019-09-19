@@ -557,7 +557,7 @@ de:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
     deleted_msg: Der Alias wurde erfolgreich entfernt. Aus diesem Konto zu diesem zu verschieben ist nicht mehr möglich.
-    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird bevor du deine Follower vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
+    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird bevor du deine Folger_innen vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
@@ -809,7 +809,7 @@ de:
   migrations:
     acct: benutzername@domain des neuen Kontos
     cancel: Umleitung abbrechen
-    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower, die auf dieses Konto verschoben wurden, zurückholen.
+    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Folger_innen, die auf dieses Konto verschoben wurden, zurückholen.
     cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
     errors:
       already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
@@ -830,6 +830,9 @@ de:
       backreference_required: Das neue Konto muss zuerst so konfiguriert werden, dass es auf das alte Konto referenziert
       before: 'Bevor du fortfährst, lese bitte diese Hinweise sorgfältig durch:'
       cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
+      disabled_account: Dein aktuelles Konto wird nachher nicht vollständig nutzbar sein. Du hast jedoch Zugriff auf den Datenexport sowie die Reaktivierung.
+      followers: Diese Aktion wird alle Folger_innen vom aktuellen Konto auf das neue Konto verschieben
+      other_data: Keine anderen Daten werden automatisch verschoben
   moderation:
     title: Moderation
   notification_mailer:
@@ -974,6 +977,7 @@ de:
   settings:
     account: Konto
     account_settings: Konto & Sicherheit
+    aliases: Kontoaliase
     appearance: Aussehen
     authorized_apps: Autorisierte Anwendungen
     back: Zurück zu Mastodon
