@@ -16,9 +16,6 @@ de:
     contact_unavailable: Nicht verfügbar
     discover_users: Benutzer_innen entdecken
     documentation: Dokumentation
-    extended_description_html: |
-      <h3>Ein hervorragender Ort für Regeln</h3>
-      <p>Die erweiterte Beschreibung wurde von dem Administrator noch nicht eingestellt.</p>
     federation_hint_html: Mit einem Konto auf %{instance} wirst du in der Lage sein Nutzer_innen auf beliebigen Mastodon-Servern und darüber hinaus zu folgen.
     generic_description: "%{domain} ist ein Server im Fediversum"
     get_apps: Versuche eine mobile App
@@ -655,23 +652,6 @@ de:
     directory: Profilverzeichnis
     explanation: Entdecke Benutzer_innen basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
-  domain_blocks:
-    blocked_domains: Liste der begrenzten und blockierten Domains
-    description: Dies ist die Liste der Server, die %{instance} limitiert oder dessen Föderation ablehnt.
-    domain: Domain
-    media_block: Medienblockade
-    no_domain_blocks: "(Keine Domain-Blockaden)"
-    severity: Schweregrad
-    severity_legend:
-      media_block: Mediendateien, die vom Server stammen, werden weder vom Benutzer abgerufen, gespeichert noch angezeigt.
-      silence: Konten von stummgeschalteten Servern können gefunden und gefolgt werden und man kann mit ihnen interagieren, aber ihre Beiträge werden nicht in der öffentlichen Zeitleiste erscheinen und Benachrichtigungen von ihnen werden nicht zu lokalen Benutzern gesendet, die sie nicht folgen.
-      suspension: Keine Inhalte von gesperrten Servern werden gespeichert oder angezeigt, und es werden auch keine Inhalte an sie gesendet. Die Interaktionen von gesperrten Servern werden ignoriert.
-      suspension_disclaimer: Gesperrte Server können gelegentlich öffentliche Inhalte von diesem Server abrufen.
-      title: Schweregrade
-    show_rationale: Rationale anzeigen
-    silence: Stummschalten
-    suspension: Sperre
-    title: "%{instance} Liste der blockierten Instanzen"
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
