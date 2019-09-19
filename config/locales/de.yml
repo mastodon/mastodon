@@ -553,6 +553,12 @@ de:
     new_trending_tag:
       body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
       subject: 'Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})'
+  aliases:
+    add_new: Alias erstellen
+    created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
+    deleted_msg: Der Alias wurde erfolgreich entfernt. Aus diesem Konto zu diesem zu verschieben ist nicht mehr möglich.
+    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird bevor du deine Follower vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
+    remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
     advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.'
@@ -612,6 +618,7 @@ de:
       confirming: Warte auf die Bestätigung der E-Mail.
       functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
+      redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -801,6 +808,28 @@ de:
       too_many: Es können nicht mehr als 4 Dateien angehängt werden
   migrations:
     acct: benutzername@domain des neuen Kontos
+    cancel: Umleitung abbrechen
+    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower, die auf dieses Konto verschoben wurden, zurückholen.
+    cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
+    errors:
+      already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
+      missing_also_known_as: referenziert nicht zurück auf dieses Konto
+      move_to_self: darf nicht das aktuelles Konto sein
+      not_found: kann nicht gefunden werden
+      on_cooldown: Die Abklingzeit läuft gerade
+    followers_count: Folger_innen zur Zeit des Verschiebens
+    incoming_migrations: Ziehe von einem anderen Konto um
+    incoming_migrations_html: Um von einem anderen Konto zu diesem zu wechseln, musst du zuerst <a href="%{path}">einen Kontoalias</a> erstellen.
+    moved_msg: Dein Konto wird jetzt zu %{acct} weitergeleitet und deine Folger_innen werden verschoben.
+    not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
+    on_cooldown: Du hast dein Konto vor kurzem migriert. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
+    past_migrations: Vorherige Migrationen
+    proceed_with_move: Folger_innen verschieben
+    redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
+    warning:
+      backreference_required: Das neue Konto muss zuerst so konfiguriert werden, dass es auf das alte Konto referenziert
+      before: 'Bevor du fortfährst, lese bitte diese Hinweise sorgfältig durch:'
+      cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
   moderation:
     title: Moderation
   notification_mailer:
