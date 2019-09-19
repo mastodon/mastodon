@@ -1,6 +1,10 @@
 de:
   simple_form:
     hints:
+      account_alias:
+        acct: Gib den benutzernamen@domain des Kontos an, von dem du umziehen möchtest
+      account_migration:
+        acct: Gib den benutzernamen@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
         text: Du kannst Beitragssyntax benutzen, wie z.B. URLs, Hashtags und Erwähnungen
       admin_account_action:
@@ -14,6 +18,8 @@ de:
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
         bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
         context: Ein oder mehrere Kontexte, wo der Filter aktiv werden soll
+        current_password: Aus Sicherheitsgründen gib bitte das Passwort des aktuellen Kontos ein
+        current_username: Um das zu bestätigen, gib den Benutzernamen des aktuellen Kontos ein
         digest: Wenn du eine lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen zugeschickt, die du in deiner Abwesenheit empfangen hast
         discoverable: Das Profilverzeichnis ist eine andere Möglichkeit, mit der dein Konto ein größeres Publikum erreichen kann
         email: Du wirst eine Bestätigungs-E-Mail erhalten
@@ -59,6 +65,10 @@ de:
         fields:
           name: Bezeichnung
           value: Inhalt
+      account_alias:
+        acct: Adresse des alten Kontos
+      account_migration:
+        acct: Adresse des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
       admin_account_action:
