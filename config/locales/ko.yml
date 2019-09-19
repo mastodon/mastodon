@@ -16,9 +16,6 @@ ko:
     contact_unavailable: 없음
     discover_users: 유저 발견하기
     documentation: 문서
-    extended_description_html: |
-      <h3>룰을 작성하는 장소</h3>
-      <p>아직 설명이 작성되지 않았습니다.</p>
     federation_hint_html: '%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다.'
     generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     get_apps: 모바일 앱 사용해 보기
@@ -649,23 +646,6 @@ ko:
     directory: 프로필 디렉토리
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: '%{title} 탐사하기'
-  domain_blocks:
-    blocked_domains: 제한 되거나 차단 된 도메인 목록
-    description: 이것은 %{instance}가 제한하거나 연합을 거부한 서버들의 목록입니다.
-    domain: 도메인
-    media_block: 미디어 차단
-    no_domain_blocks: "(도메인 차단 없음)"
-    severity: 심각도
-    severity_legend:
-      media_block: 이 서버의 미디어는 불러오거나, 저장 되거나, 유저에게 보여지지 않습니다.
-      silence: 침묵 된 서버의 계정은 발견 되고, 팔로우 하고, 그들과 상호작용 할 수 있습니다, 그러나 그들의 툿은 툿 공개 타임라인에 나타나지 않으며 그들에게서 오는 알림은 그들을 팔로우 하지 않는 로컬 유저에게는 전달되지 않습니다.
-      suspension: 정지 된 서버의 어떤 콘텐츠도 저장 되거나 보여지거나 하지 않고 어떤 콘텐츠도 그 서버로 전달 되지 않습니다. 정지 된 서버에서의 상호작용은 무시됩니다.
-      suspension_disclaimer: 정지 된 서버는 때때로 이 서버의 공개 콘텐츠를 받아 갈 수도 잇습니다.
-      title: 심각도
-    show_rationale: 사유 보여주기
-    silence: 침묵
-    suspension: 정지
-    title: "%{instance}의 차단한 인스턴스 목록"
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
