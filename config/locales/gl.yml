@@ -16,9 +16,6 @@ gl:
     contact_unavailable: N/A
     discover_users: Descubra usuarias
     documentation: Documentación
-    extended_description_html: |
-      <h3>Un bo lugar para regras</h3>
-      <p>A descrición extendida aínda non se proporcionou.</p>
     federation_hint_html: Con unha conta en %{instance} poderá seguir a outras persoas en calquera dos servidores Mastodon e incluso máis.
     generic_description: "%{domain} é un servidor na rede"
     get_apps: Probe cunha app móbil
@@ -645,23 +642,6 @@ gl:
     directory: Directorio de perfil
     explanation: Descubra usuarias según o seu interese
     explore_mastodon: Explorar %{title}
-  domain_blocks:
-    blocked_domains: Lista de dominios limitados e bloqueados
-    description: Esta é a lista dos servidores cos que %{instance} limita ou rexeita federar.
-    domain: Dominio
-    media_block: Bloqueo de medios
-    no_domain_blocks: "(Sen bloqueo de medios)"
-    severity: Rigurosidade
-    severity_legend:
-      media_block: Os ficheiros de medios procedentes do servidor non se obterán, gardarán nin mostrarán as usuarias.
-      silence: As contas de servidores silenciados pódense atopar, seguir e interactuar con elas, pero os seus toots non aparecerán na liña temporal púbica, as notificacións procedentes deles non chegarán as usuarias que non as están a seguir.
-      suspension: Non se mostra nin garda ningún contido de servidores suspendidos, tampouco se lles envía contido. As interaccións con servidores suspendidos son ignoradas.
-      suspension_disclaimer: Os servidores suspendidos poderían obter ocasionalmente contido público de este servidor.
-      title: Rigurosidades
-    show_rationale: Mostrar razón
-    silence: Silenciar
-    suspension: Suspensión
-    title: "%{instance} Lista de instancias bloqueadas"
   domain_validator:
     invalid_domain: non é un nome de dominio válido
   errors:
