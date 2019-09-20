@@ -1276,13 +1276,27 @@
 
   &-composite {
     @include avatar-radius;
+    border-radius: 50%;
     overflow: hidden;
+    position: relative;
+    cursor: default;
 
     & > div {
-      @include avatar-radius;
       float: left;
       position: relative;
       box-sizing: border-box;
+    }
+
+    &__label {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $primary-text-color;
+      text-shadow: 1px 1px 2px $base-shadow-color;
+      font-weight: 700;
+      font-size: 15px;
     }
   }
 }
@@ -6381,48 +6395,57 @@ noscript {
   }
 }
 
-.layout-toggle {
+.conversation {
   display: flex;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   padding: 5px;
+  padding-bottom: 0;
 
-  button {
-    box-sizing: border-box;
-    flex: 0 0 50%;
-    background: transparent;
-    padding: 5px;
-    border: 0;
-    position: relative;
+  &:focus {
+    background: lighten($ui-base-color, 2%);
+    outline: 0;
+  }
 
-    &:hover,
-    &:focus,
-    &:active {
-      svg path:first-child {
-        fill: lighten($ui-base-color, 16%);
+  &__avatar {
+    flex: 0 0 auto;
+    padding: 10px;
+    padding-top: 12px;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    padding: 10px 5px;
+    padding-right: 15px;
+
+    &__info {
+      overflow: hidden;
+    }
+
+    &__relative-time {
+      float: right;
+      font-size: 15px;
+      color: $darker-text-color;
+      padding-left: 15px;
+    }
+
+    &__names {
+      color: $darker-text-color;
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+
+      a {
+        color: $primary-text-color;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+        }
       }
     }
-  }
-
-  svg {
-    width: 100%;
-    height: auto;
-
-    path:first-child {
-      fill: lighten($ui-base-color, 12%);
-    }
-
-    path:last-child {
-      fill: darken($ui-base-color, 14%);
-    }
-  }
-
-  &__active {
-    color: $ui-highlight-color;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: lighten($ui-base-color, 12%);
-    border-radius: 50%;
-    padding: 0.35rem;
   }
 }
