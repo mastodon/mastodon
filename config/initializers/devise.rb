@@ -319,7 +319,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :keycloak_openid, 'account', '705f299f-21fe-45ef-82d5-9db459e80650', client_options: { site:  'http://13.234.235.79:9080', realm: 'jhipster' }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId, callback_url: 'https://plank.gq/auth/auth/keycloakopenid/callback'
+  config.omniauth :keycloak_openid, env['KEYCLOAK_CLIENT_NAME'], env['KEYCLOAK_SECRET_KEY'], client_options: { site:  ENV['KEYCLOAK_SITE'], realm: env['KEYCLOAK_REALM'] }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId, callback_url: ENV['KEYCLOAK_CALLBACK'] 
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
