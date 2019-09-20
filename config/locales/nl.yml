@@ -755,7 +755,11 @@ nl:
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
     acct: gebruikersnaam@domein van het nieuwe account
+    cancelled_msg: De doorverwijzing is succesvol geannuleerd.
     errors:
+      already_moved: is hetzelfde account waarnaar je al naar toe bent verhuisd
+      missing_also_known_as: verwijst niet terug naar dit account
+      move_to_self: kan niet het huidige account zijn
       not_found: kon niet worden gevonden
     past_migrations: Vorige migraties
     proceed_with_move: Volgers verhuizen
