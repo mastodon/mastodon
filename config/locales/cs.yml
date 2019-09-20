@@ -570,6 +570,7 @@ cs:
     created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
     deleted_msg: Alias byl úspěšně odstraněn. Přesun z tamtoho účtu na tento již nebude možný.
     hint_html: Chcete-li se přesunout z jiného účtu na tento, můžete si zde vytvořit alias, který je vyžadován předtím, než můžete pokračovat přesunem sledujících ze starého účtu na tento. Tato akce sama o sobě je <strong>neškodná a vratná</strong>. <strong>Přesun účtu se zahajuje ze starého účtu</strong>.
+    remove: Odpojit alias
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
@@ -629,6 +630,7 @@ cs:
       confirming: Čekám na dokončení potvrzení e-mailu.
       functional: Váš účet je zcela funkční.
       pending: Váš požadavek čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
+      redirecting_to: Váš účet je neaktivní, protože právě přesměrovává na účet %{acct}.
     trouble_logging_in: Problémy s přihlašováním?
   authorize_follow:
     already_following: Tento účet již sledujete
@@ -822,6 +824,23 @@ cs:
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: Přesunuto na
+    cancel: Zrušit přesměrování
+    cancel_explanation: Zrušením přesměrování znovu aktivujete svůj aktuální účet, ale nevrátí se vám sledující, kteří byli přesměrováni na druhý účet.
+    cancelled_msg: Přesměrování bylo úspěšně zrušeno.
+    errors:
+      already_moved: je stejný účet, na který jste se již přesunul/a
+      missing_also_known_as: neodkazuje na tento účet
+      move_to_self: nemůže být aktuální účet
+      not_found: nemohl být nalezen
+    followers_count: Sledující v době přesunu
+    incoming_migrations: Přesun z jiného účtu
+    incoming_migrations_html: Chcete-li se přesunout z jiného účtu na tento, potřebujete si nejprve <a href="%{path}">vytvořit alias účtu</a>.
+    moved_msg: Váš účet nyní přesměrovává na účet %{acct} a vaši sledující se na něj přesouvají.
+    not_redirecting: Váš účet aktuálně nepřesměrovává na žádný jiný účet.
+    on_cooldown: Nedávno jste přesunul/a svůj účet. Tato funkce bude opět dostupná za %{count} dní.
+    past_migrations: Předchozí přesuny
+    proceed_with_move: Přesunout sledující
+    redirecting_to: Váš účet přesměrovává na účet %{acct}.
   moderation:
     title: Moderování
   notification_mailer:
