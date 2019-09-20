@@ -554,6 +554,8 @@ sk:
       subject: 'Nové hlásenie pre %{instance} (#%{id})'
     new_trending_tag:
       subject: 'Nový haštag očakáva preverenie na %{instance} (#%{name})'
+  aliases:
+    add_new: Vytvor alias
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
     advanced_web_interface_hint: 'Ak chceš využiť celkovú šírku tvojej obrazovky, pokročilé webové rozhranie ti umožňuje nastaviť mnoho rôznych stĺpcov, aby si videl/a toľko informácií naraz, koľko chceš: Domov, oboznámenia, federovanú časovú os, a ľubovolný počet zoznamov, či haštagov.'
@@ -795,6 +797,12 @@ sk:
       too_many: Nemôžeš priložiť viac ako 4 súbory
   migrations:
     acct: prezývka@doména nového účtu
+    cancel: Zruš presmerovanie
+    errors:
+      move_to_self: nemôže to byť tvoj súčasný účet
+      not_found: nebolo možné nájsť
+    past_migrations: Predošlé presuny
+    proceed_with_move: Presuň sledovateľov
   moderation:
     title: Moderovanie
   notification_mailer:
