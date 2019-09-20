@@ -1,6 +1,10 @@
 cs:
   simple_form:
     hints:
+      account_alias:
+        acct: Zadejte přezdívku@doménu účtu, ze kterého se chcete přesunout
+      account_migration:
+        acct: Zadejte přezdívku@doménu účtu, na který se chcete přesunout
       account_warning_preset:
         text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
       admin_account_action:
@@ -14,6 +18,7 @@ cs:
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jeden či více kontextů, ve kterých má být filtr uplatněn
+        current_password: Z bezpečnostních důvodů prosím zadejte heslo aktuálního účtu
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
         discoverable: Adresář profilů je další způsob, díky kterému se může váš účet dostat k širšímu publiku
         email: Bude vám poslán potvrzovací e-mail
