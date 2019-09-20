@@ -565,6 +565,11 @@ cs:
     new_trending_tag:
       body: 'Hashtag #%{name} je dnes populární, nebyl však dříve schválen. Nebude zobrazen veřejně, pokud to nedovolíte. Můžete také pouze uložit formulář tak, jak je, a nikdy o něm opět neslyšet.'
       subject: 'Nový hashtag ke schválení na %{instance} (#%{name})'
+  aliases:
+    add_new: Vytvořit alias
+    created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
+    deleted_msg: Alias byl úspěšně odstraněn. Přesun z tamtoho účtu na tento již nebude možný.
+    hint_html: Chcete-li se přesunout z jiného účtu na tento, můžete si zde vytvořit alias, který je vyžadován předtím, než můžete pokračovat přesunem sledujících ze starého účtu na tento. Tato akce sama o sobě je <strong>neškodná a vratná</strong>. <strong>Přesun účtu se zahajuje ze starého účtu</strong>.
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
@@ -816,7 +821,7 @@ cs:
       images_and_video: K tootu, který již obsahuje obrázky, nelze připojit video
       too_many: Nelze připojit více než 4 soubory
   migrations:
-    acct: přezdívka@doména nového účtu
+    acct: Přesunuto na
   moderation:
     title: Moderování
   notification_mailer:
@@ -976,7 +981,7 @@ cs:
     identity_proofs: Důkazy identity
     import: Import
     import_and_export: Import a export
-    migrate: Přesunutí účtu
+    migrate: Přesun účtu
     notifications: Oznámení
     preferences: Předvolby
     profile: Profil
