@@ -45,7 +45,7 @@ class TOCGenerator
     parsed_html.traverse do |node|
       next unless TARGET_ELEMENTS.include?(node.name)
 
-      anchor = node.text.parameterize
+      anchor = node['id'] || node.text.parameterize
       @slugs[anchor] += 1
       anchor = "#{anchor}-#{@slugs[anchor]}" if @slugs[anchor] > 1
 
