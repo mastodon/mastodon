@@ -815,7 +815,7 @@ gl:
       missing_also_known_as: non está referenciando hacia esta conta
       move_to_self: non pode ser a conta actual
       not_found: non se atopou
-      on_cooldown: Estas calmándote
+      on_cooldown: Estas no período de calma
     followers_count: Seguidoras no momento da migración
     incoming_migrations: Movendo desde unha conta diferente
     incoming_migrations_html: Para migrar doutra conta cara esta, primeiro debes <a href="%{path}">crear un alias da conta</a>.
@@ -825,6 +825,13 @@ gl:
     past_migrations: Migracións pasadas
     proceed_with_move: Mover seguidoras
     redirecting_to: A conta está redirixindo cara a %{acct}.
+    warning:
+      backreference_required: Tes que configurar primeiro a nova conta para referenciar hacia esta
+      before: 'Antes de seguir, por favor lé estas notas con atención:'
+      cooldown: Tras a migración existe un período de calma durante o cal non poderás voltar a migrar de novo
+      disabled_account: Tras o cambio a túa conta actual non será totalmente usable, pero terás acceso a exportar os datos e tamén a reactivación.
+      followers: Esta acción moverá todas as túas seguidoras desde a conta actual a nova conta
+      other_data: Non se moverán outros datos de xeito automático
   moderation:
     title: Moderación
   notification_mailer:
@@ -969,6 +976,7 @@ gl:
   settings:
     account: Conta
     account_settings: Axustes da conta
+    aliases: Alcumes da conta
     appearance: Aparencia
     authorized_apps: Apps autorizadas
     back: Voltar a Mastodon
