@@ -25,6 +25,7 @@
       pointer-events: none;
       display: flex;
       justify-content: flex-end;
+      min-width: 285px;
 
       &--start {
         justify-content: flex-start;
@@ -42,6 +43,7 @@
       box-sizing: border-box;
       width: 100%;
       max-width: 600px;
+      flex: 0 0 auto;
       display: flex;
       flex-direction: column;
 
