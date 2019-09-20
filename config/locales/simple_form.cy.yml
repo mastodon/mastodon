@@ -2,10 +2,13 @@ cy:
   simple_form:
     hints:
       account_alias:
-        acct: Nodwch enw defnyddiwr@parth y cyfrif rydych chi am symud ohono
+        acct: Rhowch enwdefnyddiwr@parth y cyfrif rydych chi am symud ohono
+      account_migration:
+        acct: Rhowch enwdefnyddiwr@parth y cyfrif rydych chi am symud iddo
       account_warning_preset:
         text: Gallwch defnyddio cystrawen tŵt, fel URLs, hashnodau a sôniadau
       admin_account_action:
+        include_statuses: Bydd y defnyddiwr yn gweld pa tŵtiau sydd wedi achosi'r weithred gymedroli neu'r rhybudd
         send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
         text_html: Yn ddewisol. Gallwch defnyddio cystrawen tŵt. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
         type_html: Dewis beth i wneud gyda <strong>%{acct}</strong>
