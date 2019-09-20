@@ -33,6 +33,13 @@ gl:
     status_count_before: Que publicaron
     tagline: Siga as amizades e faga outras novas
     terms: Termos do servizo
+    unavailable_content: Contido non dispoñible
+    unavailable_content_description:
+      reason: 'Razón:'
+      rejecting_media: Os ficheiros de medios de este servidor non se procesarán e non se mostrarán miniaturas, precisando solicitarse manualmente ao outro servidor.
+      silenced: As publicacións desde este servidor non se mostrarán en ningún lugar excepto no Inicio se segues ao autor.
+      suspended: Non poderás seguir a ninguén desde este servidor, e non se procesarán nin se gardarán datos que procedan del, e non se intercambiarán datos.
+    unavailable_content_html: Normalmente Mastodon permíteche ver contidos de outros servidores do fediverso e interactuar coas súas usuarias. Estas son as excepcións que se estableceron en este servidor particular.
     user_count_after:
       one: usuaria
       other: usuarias
@@ -422,6 +429,9 @@ gl:
       custom_css:
         desc_html: Modificar o aspecto con CSS cargado en cada páxina
         title: CSS persoalizado
+      default_noindex:
+        desc_html: Aféctalle a todas as usuarias que non cambiaron os axustes elas mesmas
+        title: Por omisión exclúe as usuarias do indexado por servidores de busca
       domain_blocks:
         all: Para todas
         disabled: Para ninguén
@@ -513,6 +523,8 @@ gl:
       context: Contexto
       directory: No directorio
       in_directory: "%{count} no directorio"
+      last_active: Úlimo activo
+      most_popular: Máis popular
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
