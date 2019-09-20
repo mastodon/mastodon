@@ -28,6 +28,9 @@ export const NOTIFICATIONS_CLEAR        = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP   = 'NOTIFICATIONS_SCROLL_TOP';
 export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 
+export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
+export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
+
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
   group: { id: 'notifications.group', defaultMessage: '{count} notifications' },
@@ -215,3 +218,11 @@ export function setFilter (filterType) {
     dispatch(saveSettings());
   };
 };
+
+export const mountNotifications = () => ({
+  type: NOTIFICATIONS_MOUNT,
+});
+
+export const unmountNotifications = () => ({
+  type: NOTIFICATIONS_UNMOUNT,
+});
