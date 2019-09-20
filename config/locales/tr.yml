@@ -17,9 +17,6 @@ tr:
     contact_unavailable: Yok
     discover_users: Kullanıcıları keşfet
     documentation: Belgeler
-    extended_description_html: |
-      <h3>Kural için iyi bir yer</h3>
-      <p>Genişletilmiş açıklama henüz ayarlanmamış.</p>
     federation_hint_html: "%{instance} hesabınızla, herhangi bir Mastodon sunucusundaki ve haricindeki kişileri takip edebilirsiniz."
     generic_description: "%{domain} ağdaki bir sunucudur"
     get_apps: Bir mobil uygulamayı deneyin
@@ -444,14 +441,6 @@ tr:
     directory: Profil dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
     explore_mastodon: "%{title} keşfet"
-  domain_blocks:
-    blocked_domains: Sınırlı ve engellenen alanların listesi
-    description: Bu, %{instance} öğesinin sınırladığı veya federasyonu reddettiği sunucuların listesidir.
-    domain: Alan adı
-    severity_legend:
-      media_block: Sunucudan gelen medya dosyaları alınmaz, saklanmaz veya kullanıcıya gösterilmez.
-      silence: Susturulmuş sunuculardaki hesaplar bulunabilir, takip edilebilinir ve onlarla etkileşime girilebilinir, ancak gönderileri genel zaman çizelgelerinde görünmez ve onlardan gelen bildirimler onları takip etmeyen yerel kullanıcılara ulaşmaz.
-    show_rationale: Gerekçeyi göster
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
   errors:
@@ -540,10 +529,6 @@ tr:
     validations:
       images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
       too_many: 4'ten fazla dosya ekleyemezsiniz
-  migrations:
-    currently_redirecting: 'Profiliniz yönlendirmek üzere ayarlandı:'
-    proceed: Kaydet
-    updated_msg: Hesap taşıma ayarınız başarıyla güncellendi!
   moderation:
     title: Yönetim
   notification_mailer:

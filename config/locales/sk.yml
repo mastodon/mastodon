@@ -17,9 +17,6 @@ sk:
     contact_unavailable: Neuvedený/á
     discover_users: Objavuj užívateľov
     documentation: Dokumentácia
-    extended_description_html: |
-      <h3>Pravidlá</h3>
-      <p>Žiadne zatiaľ uvedené nie sú</p>
     federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj na iných serveroch.
     generic_description: "%{domain} je jeden server v sieti"
     get_apps: Vyskúšaj aplikácie
@@ -40,6 +37,9 @@ sk:
     status_count_before: Ktorí napísali
     tagline: Následuj kamarátov, a objavuj nových
     terms: Podmienky užitia
+    unavailable_content: Nedostupný obsah
+    unavailable_content_description:
+      reason: 'Dôvod:'
     user_count_after:
       few: užívateľov
       many: užívatelia
@@ -527,6 +527,10 @@ sk:
       context: Súvis
       directory: V zozname
       in_directory: "%{count} v zozname"
+      last_active: Naposledy aktívny
+      most_popular: Najpopulárnejšie
+      most_recent: Najnovšie
+      name: Haštag
       review: Prehodnoť stav
       reviewed: Zhodnotené
       title: Haštagy
@@ -551,6 +555,8 @@ sk:
       subject: Nové hlásenie pre %{instance} (#%{id})
     new_trending_tag:
       subject: Nový haštag očakáva preverenie na %{instance} (#%{name})
+  aliases:
+    add_new: Vytvor alias
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
     advanced_web_interface_hint: 'Ak chceš využiť celkovú šírku tvojej obrazovky, pokročilé webové rozhranie ti umožňuje nastaviť mnoho rôznych stĺpcov, aby si videl/a toľko informácií naraz, koľko chceš: Domov, oboznámenia, federovanú časovú os, a ľubovolný počet zoznamov, či haštagov.'
@@ -619,6 +625,10 @@ sk:
       return: Ukáž užívateľov profil
       web: Prejdi do siete
     title: Následuj %{acct}
+  challenge:
+    confirm: Pokračuj
+    invalid_password: Nesprávne heslo
+    prompt: Pre pokračovanie potvrď svoje heslo
   datetime:
     distance_in_words:
       about_x_hours: "%{count}hod"
@@ -648,21 +658,6 @@ sk:
     directory: Katalóg profilov
     explanation: Pátraj po užívateľoch podľa ich záujmov
     explore_mastodon: Prebádaj %{title}
-  domain_blocks:
-    blocked_domains: Zoznam obmedzovaných a blokovaných domén
-    description: Toto je zoznam serverov, ktorých federáciu %{instance} obmedzuje, alebo nepríjma.
-    domain: Doména
-    media_block: Blokovanie médií
-    no_domain_blocks: "(Žiadne domény niesú blokované)"
-    severity: Závažnosť
-    severity_legend:
-      media_block: Mediálne súbory zo servera niesú ani zachytávané, ani ukladané, či zobrazované užívateľovi.
-      suspension_disclaimer: Vylúčené servery sa môžu občas dostať k verejnému obsahu tohto servera.
-      title: Závažnosti
-    show_rationale: Ukáž zdôvodnenie
-    silence: Stíš
-    suspension: Vylúčenie
-    title: Zoznam instancií, ktoré blokuje %{instance}
   domain_validator:
     invalid_domain: nieje správny tvar domény
   errors:
@@ -805,9 +800,12 @@ sk:
       too_many: Nemôžeš priložiť viac ako 4 súbory
   migrations:
     acct: prezývka@doména nového účtu
-    currently_redirecting: 'Tvoj profil má nastavené presmerovanie na:'
-    proceed: Uložiť
-    updated_msg: Tvoje nastavenia pre presmerovanie účtu boli úspešne aktualizované!
+    cancel: Zruš presmerovanie
+    errors:
+      move_to_self: nemôže to byť tvoj súčasný účet
+      not_found: nebolo možné nájsť
+    past_migrations: Predošlé presuny
+    proceed_with_move: Presuň sledovateľov
   moderation:
     title: Moderovanie
   notification_mailer:

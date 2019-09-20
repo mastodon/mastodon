@@ -17,9 +17,6 @@ co:
     contact_unavailable: Micca dispunibule
     discover_users: Scopre utilizatori
     documentation: Ducumentazione
-    extended_description_html: |
-      <h3>Una bona piazza per e regule</h3>
-      <p>A descrizzione stesa ùn hè micca stata riempiuta.</p>
     federation_hint_html: Cù un contu nant'à %{instance} puderete siguità ghjente da tutti i servori Mastodon è ancu più d'altri.
     generic_description: "%{domain} hè un servore di a rete"
     get_apps: Pruvà un'applicazione di telefuninu
@@ -521,6 +518,10 @@ co:
       context: Cuntestu
       directory: In l'annuariu
       in_directory: "%{count} in l'annuariu"
+      last_active: Ultima attività
+      most_popular: Più pupulari
+      most_recent: Più ricente
+      name: Hashtag
       review: Statutu di verificazione
       reviewed: Verificatu
       title: Hashtag
@@ -617,6 +618,11 @@ co:
       return: Vede u prufile di l’utilizatore
       web: Andà à l’interfaccia web
     title: Siguità %{acct}
+  challenge:
+    confirm: Cuntinuvà
+    hint_html: "<strong>Astuzia:</strong> Ùn avemu micca da dumandavvi stu codice per l'ore chì vene."
+    invalid_password: Chjave d'accessu micca curretta
+    prompt: Cunfirmà a chjave d'accessu per cuntinuvà
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -632,7 +638,9 @@ co:
       x_months: "%{count}Me"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: L'infurmazione entrata ùn era micca curretta
     confirm_password: Entrate a vostra chjave d’accessu attuale per verificà a vostra identità
+    confirm_username: Entrà u vostru cugnome per cunfirmà a prucedura
     proceed: Sguassà u contu
     success_msg: U vostru contu hè statu sguassatu
     warning:
@@ -650,23 +658,6 @@ co:
     directory: Annuariu di i prufili
     explanation: Scopre utilizatori à partesi di i so centri d'interessu
     explore_mastodon: Scopre à %{title}
-  domain_blocks:
-    blocked_domains: Lista di dumini bluccati è limitati
-    description: Quessa ghjè a lista di i servori limitati da o cù quelli %{instance} righjetta a federazione.
-    domain: Duminiu
-    media_block: Blucchime di media
-    no_domain_blocks: "(Nisun blucchime di duminiu)"
-    severity: Severità
-    severity_legend:
-      media_block: I fugliali media chì venenu sa stu servore ùn saranu mai ricuperati, cunservati, o affissati à l'utilizatore.
-      silence: I conti nant'à i servori silenzati ponu esse trovi, siguitati è spartuti/favurizati, mà i statuti ùn saranu micca in e linee pubbliche, è l'utilizatori lucali ch'ùn sò micca abbunati à sti conti ùn anu micca da riceve e so nutificazione.
-      suspension: U cuntinutu da i servori suspesi ùn hè mai cunservatu o affissatu, è u cuntinutu di stu servore ùn li hè micca mandatu. L'interazzione da sti servori suspesi sò ignurate.
-      suspension_disclaimer: I servori suspesi ponu ognitantu ricuperà i cuntinuti pubblichi da stu servore.
-      title: Severità
-    show_rationale: Vede ragiò
-    silence: Silenziu
-    suspension: Suspensione
-    title: Lista di servori bluccati da %{instance}
   domain_validator:
     invalid_domain: ùn hè micca un nome di duminiu currettu
   errors:
@@ -804,9 +795,6 @@ co:
       too_many: Ùn si pò micca aghjunghje più di 4 fugliali
   migrations:
     acct: cugnome@duminiu di u novu contu
-    currently_redirecting: 'U vostru prufile riindiriza tuttu versu à:'
-    proceed: Salvà
-    updated_msg: I paramettri di migrazione sò stati messi à ghjornu!
   moderation:
     title: Muderazione
   notification_mailer:

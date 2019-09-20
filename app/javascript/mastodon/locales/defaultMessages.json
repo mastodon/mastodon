@@ -1267,6 +1267,56 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "More",
+        "id": "status.more"
+      },
+      {
+        "defaultMessage": "View conversation",
+        "id": "conversation.open"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "status.reply"
+      },
+      {
+        "defaultMessage": "Mark as read",
+        "id": "conversation.mark_as_read"
+      },
+      {
+        "defaultMessage": "Delete conversation",
+        "id": "conversation.delete"
+      },
+      {
+        "defaultMessage": "Mute conversation",
+        "id": "status.mute_conversation"
+      },
+      {
+        "defaultMessage": "Unmute conversation",
+        "id": "status.unmute_conversation"
+      },
+      {
+        "defaultMessage": "With {names}",
+        "id": "conversation.with"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/direct_timeline/components/conversation.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/direct_timeline/containers/conversation_container.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Direct messages",
         "id": "column.direct"
       },

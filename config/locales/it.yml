@@ -17,9 +17,6 @@ it:
     contact_unavailable: N/D
     discover_users: Scopri utenti
     documentation: Documentazione
-    extended_description_html: |
-      <h3>Un buon posto per le regole</h3>
-      <p>La descrizione estesa non è ancora stata preparata.</p>
     federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
     generic_description: "%{domain} è un server nella rete"
     get_apps: Prova un'app per smartphone
@@ -624,23 +621,6 @@ it:
     directory: Directory dei profili
     explanation: Scopri utenti in base ai loro interessi
     explore_mastodon: Esplora %{title}
-  domain_blocks:
-    blocked_domains: Elenco dei domini limitati e bloccati
-    description: Questo è l'elenco dei server con cui %{instance} limita o rifiuta la federazione.
-    domain: Dominio
-    media_block: Blocco dei media
-    no_domain_blocks: "(Nessun blocco di dominio)"
-    severity: Gravità
-    severity_legend:
-      media_block: I file multimediali provenienti dal server non sono recuperati, memorizzati o visualizzati all'utente.
-      silence: Gli account di server silenziati possono essere trovati e seguiti, e gli utenti possono interagire con essi, ma i loro toot non appariranno nelle timeline pubbliche e le relative notifiche non raggiungeranno gli utenti locali che non li seguono.
-      suspension: Nessun contenuto dai server sospesi è memorizzato o visualizzato, e nessun contenuto gli viene inviato. Le interazioni dai server sospesi sono ignorate.
-      suspension_disclaimer: I server sospesi possono talvolta recuperare contenuti pubblici da questo server.
-      title: Gravità
-    show_rationale: Mostra motivazione
-    silence: Silenzia
-    suspension: Sospensione
-    title: "%{instance} Elenco delle istanze bloccate"
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
@@ -777,9 +757,6 @@ it:
       too_many: Impossibile allegare più di 4 file
   migrations:
     acct: utente@dominio del nuovo account
-    currently_redirecting: 'Il tuo profilo sarà ridirezionato a:'
-    proceed: Salva
-    updated_msg: L'impostazione per la migrazione dell'account è sta aggiornata!
   moderation:
     title: Moderazione
   notification_mailer:

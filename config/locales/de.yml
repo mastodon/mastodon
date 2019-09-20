@@ -17,9 +17,6 @@ de:
     contact_unavailable: Nicht verfügbar
     discover_users: Benutzer_innen entdecken
     documentation: Dokumentation
-    extended_description_html: |
-      <h3>Ein hervorragender Ort für Regeln</h3>
-      <p>Die erweiterte Beschreibung wurde von dem Administrator noch nicht eingestellt.</p>
     federation_hint_html: Mit einem Konto auf %{instance} wirst du in der Lage sein Nutzer_innen auf beliebigen Mastodon-Servern und darüber hinaus zu folgen.
     generic_description: "%{domain} ist ein Server im Fediversum"
     get_apps: Versuche eine mobile App
@@ -38,6 +35,13 @@ de:
     status_count_before: mit
     tagline: Finde deine Freunde und entdecke neue
     terms: Nutzungsbedingungen
+    unavailable_content: Nicht verfügbarer Inhalt
+    unavailable_content_description:
+      reason: 'Grund:'
+      rejecting_media: Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.
+      silenced: Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.
+      suspended: Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.
+    unavailable_content_html: Mastodon erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
     user_count_after:
       one: Profil
       other: Profile
@@ -521,6 +525,10 @@ de:
       context: Kontext
       directory: Im Verzeichnis
       in_directory: "%{count} im Verzeichnis"
+      last_active: Zuletzt aktiv
+      most_popular: Am beliebtesten
+      most_recent: Neuste
+      name: Hashtag
       review: Prüfstatus
       reviewed: Überprüft
       title: Hashtags
@@ -546,6 +554,12 @@ de:
     new_trending_tag:
       body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
       subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})
+  aliases:
+    add_new: Alias erstellen
+    created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
+    deleted_msg: Der Alias wurde erfolgreich entfernt. Aus diesem Konto zu diesem zu verschieben ist nicht mehr möglich.
+    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird bevor du deine Folger_innen vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
+    remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
     advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
@@ -605,6 +619,7 @@ de:
       confirming: Warte auf die Bestätigung der E-Mail.
       functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
+      redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -617,6 +632,11 @@ de:
       return: Zeige das Profil
       web: In der Benutzeroberfläche öffnen
     title: "%{acct} folgen"
+  challenge:
+    confirm: Fortfahren
+    hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
+    invalid_password: Ungültiges Passwort
+    prompt: Gib dein Passwort ein um fortzufahren
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -632,7 +652,9 @@ de:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
+    confirm_username: Gib deinen Benutzernamen ein, um das Verfahren zu bestätigen
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
     warning:
@@ -650,23 +672,6 @@ de:
     directory: Profilverzeichnis
     explanation: Entdecke Benutzer_innen basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
-  domain_blocks:
-    blocked_domains: Liste der begrenzten und blockierten Domains
-    description: Dies ist die Liste der Server, die %{instance} limitiert oder dessen Föderation ablehnt.
-    domain: Domain
-    media_block: Medienblockade
-    no_domain_blocks: "(Keine Domain-Blockaden)"
-    severity: Schweregrad
-    severity_legend:
-      media_block: Mediendateien, die vom Server stammen, werden weder vom Benutzer abgerufen, gespeichert noch angezeigt.
-      silence: Konten von stummgeschalteten Servern können gefunden und gefolgt werden und man kann mit ihnen interagieren, aber ihre Beiträge werden nicht in der öffentlichen Zeitleiste erscheinen und Benachrichtigungen von ihnen werden nicht zu lokalen Benutzern gesendet, die sie nicht folgen.
-      suspension: Keine Inhalte von gesperrten Servern werden gespeichert oder angezeigt, und es werden auch keine Inhalte an sie gesendet. Die Interaktionen von gesperrten Servern werden ignoriert.
-      suspension_disclaimer: Gesperrte Server können gelegentlich öffentliche Inhalte von diesem Server abrufen.
-      title: Schweregrade
-    show_rationale: Rationale anzeigen
-    silence: Stummschalten
-    suspension: Sperre
-    title: "%{instance} Liste der blockierten Instanzen"
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
@@ -804,9 +809,31 @@ de:
       too_many: Es können nicht mehr als 4 Dateien angehängt werden
   migrations:
     acct: benutzername@domain des neuen Kontos
-    currently_redirecting: 'Deine Profilweiterleitung wurde gesetzt auf:'
-    proceed: Speichern
-    updated_msg: Deine Konto-Migrationseinstellungen wurden erfolgreich aktualisiert!
+    cancel: Umleitung abbrechen
+    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Folger_innen, die auf dieses Konto verschoben wurden, zurückholen.
+    cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
+    errors:
+      already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
+      missing_also_known_as: referenziert nicht zurück auf dieses Konto
+      move_to_self: darf nicht das aktuelles Konto sein
+      not_found: kann nicht gefunden werden
+      on_cooldown: Die Abklingzeit läuft gerade
+    followers_count: Folger_innen zur Zeit des Verschiebens
+    incoming_migrations: Ziehe von einem anderen Konto um
+    incoming_migrations_html: Um von einem anderen Konto zu diesem zu wechseln, musst du zuerst <a href="%{path}">einen Kontoalias</a> erstellen.
+    moved_msg: Dein Konto wird jetzt zu %{acct} weitergeleitet und deine Folger_innen werden verschoben.
+    not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
+    on_cooldown: Du hast dein Konto vor kurzem migriert. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
+    past_migrations: Vorherige Migrationen
+    proceed_with_move: Folger_innen verschieben
+    redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
+    warning:
+      backreference_required: Das neue Konto muss zuerst so konfiguriert werden, dass es auf das alte Konto referenziert
+      before: 'Bevor du fortfährst, lese bitte diese Hinweise sorgfältig durch:'
+      cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
+      disabled_account: Dein aktuelles Konto wird nachher nicht vollständig nutzbar sein. Du hast jedoch Zugriff auf den Datenexport sowie die Reaktivierung.
+      followers: Diese Aktion wird alle Folger_innen vom aktuellen Konto auf das neue Konto verschieben
+      other_data: Keine anderen Daten werden automatisch verschoben
   moderation:
     title: Moderation
   notification_mailer:
@@ -951,6 +978,7 @@ de:
   settings:
     account: Konto
     account_settings: Konto & Sicherheit
+    aliases: Kontoaliase
     appearance: Aussehen
     authorized_apps: Autorisierte Anwendungen
     back: Zurück zu Mastodon

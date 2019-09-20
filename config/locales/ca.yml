@@ -17,9 +17,6 @@ ca:
     contact_unavailable: N/D
     discover_users: Descobreix usuaris
     documentation: Documentació
-    extended_description_html: |
-      <h3>Un bon lloc per les regles</h3>
-      <p>Encara no s'ha configurat la descripció ampliada.</p>
     federation_hint_html: Amb un compte de %{instance} podràs seguir persones de qualsevol servidor Mastodon i altres.
     generic_description: "%{domain} és un servidor a la xarxa"
     get_apps: Prova una aplicació mòbil
@@ -627,23 +624,6 @@ ca:
     directory: Directori de perfils
     explanation: Descobreix usuaris segons els seus interessos
     explore_mastodon: Explora %{title}
-  domain_blocks:
-    blocked_domains: Llistat dels dominis limitats i bloquejats
-    description: Aquesta és la llista de servidors que %{instance} limita o en rebutja la federació.
-    domain: Domini
-    media_block: Bloqueig multimèdia
-    no_domain_blocks: "(Sense bloquejos de domini)"
-    severity: Severitat
-    severity_legend:
-      media_block: Els fitxers multimèdia procedents del servidor no es poden recuperar, emmagatzemar ni mostrar a l'usuari.
-      silence: Es poden trobar comptes de servidors silenciats, seguits i amb interacció, però els seus tuts no apareixeran en les línies de temps públiques i les seves notificacions no arribaran als usuaris locals que no els segueixen.
-      suspension: No s’emmagatzema ni es mostra contingut de servidors en suspens, ni se’ls envia cap contingut. S'ignoren les interaccions dels servidors suspesos.
-      suspension_disclaimer: Els servidors suspesos poden ocasionalment recuperar contingut públic d’aquest servidor.
-      title: Severitats
-    show_rationale: Mostra el raonament
-    silence: Silenci
-    suspension: Suspensió
-    title: "%{instance} Llistat de les instàncies bloquejades"
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
   errors:
@@ -780,9 +760,6 @@ ca:
       too_many: No es poden adjuntar més de 4 fitxers
   migrations:
     acct: usuari@domini del nou compte
-    currently_redirecting: 'El teu perfil està configurat com a redirecció a:'
-    proceed: Desa
-    updated_msg: La configuració de la migració del compte s'ha actualitzat correctament!
   moderation:
     title: Moderació
   notification_mailer:

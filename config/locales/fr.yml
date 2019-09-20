@@ -17,9 +17,6 @@ fr:
     contact_unavailable: Non disponible
     discover_users: Découvrez des utilisateur·rice·s
     documentation: Documentation
-    extended_description_html: |
-      <h3>Un bon endroit pour les règles</h3>
-      <p>La description étendue n’a pas été remplie.</p>
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
     generic_description: "%{domain} est seulement un serveur du réseau"
     get_apps: Essayez une application mobile
@@ -637,23 +634,6 @@ fr:
     directory: Annuaire des profils
     explanation: Découvrir des utilisateurs en se basant sur leurs centres d’intérêt
     explore_mastodon: Explorer %{title}
-  domain_blocks:
-    blocked_domains: Liste des domaines limités et bloqués
-    description: Ceci est la liste des serveurs envers qui %{instance} limite ou rejette la fédération.
-    domain: Domaine
-    media_block: Bloqueur de média
-    no_domain_blocks: "(Aucun bloqueur de domaine)"
-    severity: Sévérité
-    severity_legend:
-      media_block: Les fichiers de média provenant du serveur ne sont ni récupérés, ni stockés, ni affichés à l’utilisateur·rice.
-      silence: Les comptes des serveurs masqués peuvent être trouvés, suivis et interagis avec, mais leurs Toots n'apparaîtront pas dans les fil d'actualité publiques, et les notifications de ceux-ci ne parviendront pas aux utilisateurs locaux qui ne les suivent pas.
-      suspension: Aucun contenu des serveurs suspendus n'est stocké ou affiché, ni ne leur est communiqué. Les interactions des serveurs suspendus sont ignorées.
-      suspension_disclaimer: Les serveurs suspendus peuvent parfois récupérer du contenu public de ce serveur.
-      title: Séverités
-    show_rationale: Voir le raisonnement
-    silence: Masquer
-    suspension: Suspendre
-    title: "%{instance} Liste des instances bloquées"
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
@@ -790,9 +770,6 @@ fr:
       too_many: Impossible de joindre plus de 4 fichiers
   migrations:
     acct: profil@domaine du nouveau compte
-    currently_redirecting: 'Votre profil va être redirigé vers :'
-    proceed: Enregistrer
-    updated_msg: Les paramètres de votre migration de compte ont été mis à jour avec succès !
   moderation:
     title: Modération
   notification_mailer:

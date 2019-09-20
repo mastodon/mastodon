@@ -17,9 +17,6 @@ ja:
     contact_unavailable: N/A
     discover_users: ユーザーを見つける
     documentation: ドキュメント
-    extended_description_html: |
-      <h3>ルールを書くのに適した場所</h3>
-      <p>詳細説明が設定されていません。</p>
     federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
@@ -623,23 +620,6 @@ ja:
     directory: ディレクトリ
     explanation: 関心を軸にユーザーを発見しよう
     explore_mastodon: "%{title}を探索"
-  domain_blocks:
-    blocked_domains: ドメインブロックリスト
-    description: "%{instance} が連合を制限または拒否しているサーバーのリストです。"
-    domain: ドメイン
-    media_block: メディアを拒否
-    no_domain_blocks: "(ドメインブロックなし)"
-    severity: 重大性
-    severity_legend:
-      media_block: サーバーから送信されるメディアファイルは取得も保存もされず、またユーザーには表示されません。
-      silence: サイレンスされたサーバーのアカウントは検索やフォロー、交流することができますが、トゥートは公開タイムラインに表示されません。またフォローしていないユーザーには通知が届きません。
-      suspension: 停止されたサーバーからのコンテンツは保存も表示もされず、また送信もされません。停止されたサーバーからの交流は拒否されます。
-      suspension_disclaimer: 停止されたサーバーでもこのサーバーから公開コンテンツを取得することがあります。
-      title: 重大性
-    show_rationale: コメントを表示
-    silence: サイレンス
-    suspension: 停止
-    title: "%{instance} のドメインブロックリスト"
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -774,9 +754,6 @@ ja:
       too_many: 追加できるファイルは4つまでです
   migrations:
     acct: 引っ越し先の ユーザー名@ドメイン
-    currently_redirecting: 'あなたのプロフィールは引っ越し先が設定されています:'
-    proceed: 保存
-    updated_msg: アカウントの引っ越し設定を更新しました！
   moderation:
     title: モデレーション
   notification_mailer:

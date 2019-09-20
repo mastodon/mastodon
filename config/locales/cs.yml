@@ -17,9 +17,6 @@ cs:
     contact_unavailable: Neuvedeno
     discover_users: Objevujte uživatele
     documentation: Dokumentace
-    extended_description_html: |
-      <h3>Dobré místo pro pravidla</h3>
-      <p>Rozšířený popis ještě nebyl nastaven.</p>
     federation_hint_html: S účtem na %{instance} můžete sledovat lidi na jakémkoliv serveru Mastodon a jiných službách.
     generic_description: "%{domain} je jedním ze serverů v síti"
     get_apps: Vyzkoušejte mobilní aplikaci
@@ -40,6 +37,13 @@ cs:
     status_count_before: Kteří napsali
     tagline: Sledujte své přátele a objevujte nové
     terms: Podmínky používání
+    unavailable_content: Nedostupný obsah
+    unavailable_content_description:
+      reason: 'Důvod:'
+      rejecting_media: Mediální soubory z tohoto serveru nebudou zpracovány a nebudou zobrazeny žádné náhledy. Pro prohlédnutí médií bude třeba manuálně přejít na druhý server.
+      silenced: Příspěvky z tohoto severu nebudou zobrazeni nikde kromě vašeho domovského proudu, v případě, že sledujete autora.
+      suspended: Nebudete moci sledovat nikoho z tohoto serveru, žádná data z něj nebudou zpracována či uložena a žádná data nebudou vyměněna mezi servery.
+    unavailable_content_html: Mastodon vám obvykle dovoluje prohlížet si obsah a komunikovat s uživateli z jakéhokoliv dalšího serveru ve fedivesmíru. Tohle jsou výjimky, které byly zavedeny na tomto konkrétním serveru.
     user_count_after:
       few: uživatelé
       many: uživatelů
@@ -533,6 +537,10 @@ cs:
       context: Kontext
       directory: V adresáři
       in_directory: "%{count} v adresáři"
+      last_active: Naposledy aktivní
+      most_popular: Nejpopulárnější
+      most_recent: Nejnovější
+      name: Hashtag
       review: Stav schválení
       reviewed: Schválen
       title: Hashtagy
@@ -558,6 +566,12 @@ cs:
     new_trending_tag:
       body: 'Hashtag #%{name} je dnes populární, nebyl však dříve schválen. Nebude zobrazen veřejně, pokud to nedovolíte. Můžete také pouze uložit formulář tak, jak je, a nikdy o něm opět neslyšet.'
       subject: Nový hashtag ke schválení na %{instance} (#%{name})
+  aliases:
+    add_new: Vytvořit alias
+    created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
+    deleted_msg: Alias byl úspěšně odstraněn. Přesun z tamtoho účtu na tento již nebude možný.
+    hint_html: Chcete-li se přesunout z jiného účtu na tento, můžete si zde vytvořit alias, který je vyžadován předtím, než můžete pokračovat přesunem sledujících ze starého účtu na tento. Tato akce sama o sobě je <strong>neškodná a vratná</strong>. <strong>Přesun účtu se zahajuje ze starého účtu</strong>.
+    remove: Odpojit alias
   appearance:
     advanced_web_interface: Pokročilé webové rozhraní
     advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže můžete vidět ve stejnou chvíli tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
@@ -617,6 +631,7 @@ cs:
       confirming: Čekám na dokončení potvrzení e-mailu.
       functional: Váš účet je zcela funkční.
       pending: Váš požadavek čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
+      redirecting_to: Váš účet je neaktivní, protože právě přesměrovává na účet %{acct}.
     trouble_logging_in: Problémy s přihlašováním?
   authorize_follow:
     already_following: Tento účet již sledujete
@@ -629,6 +644,11 @@ cs:
       return: Zobrazit profil uživatele
       web: Přejít na web
     title: Sledovat uživatele %{acct}
+  challenge:
+    confirm: Pokračovat
+    hint_html: "<strong>Tip:</strong> Po dobu hodiny vás nebudeme znovu žádat o heslo."
+    invalid_password: Neplatné heslo
+    prompt: Pokračujte potvrzením hesla
   datetime:
     distance_in_words:
       about_x_hours: "%{count} hod"
@@ -644,7 +664,9 @@ cs:
       x_months: "%{count} mesíců"
       x_seconds: "%{count} s"
   deletes:
+    challenge_not_passed: Informace, které jste zadal/a, nejsou správné
     confirm_password: Zadejte svoje současné heslo pro ověření vaší identity
+    confirm_username: Zadáním svého uživatelského jména potvrdíte proces
     proceed: Odstranit účet
     success_msg: Váš účet byl úspěšně odstraněn
     warning:
@@ -662,23 +684,6 @@ cs:
     directory: Adresář profilů
     explanation: Objevujte uživatele podle jejich zájmů
     explore_mastodon: Prozkoumejte %{title}
-  domain_blocks:
-    blocked_domains: Seznam omezených a blokovaných domén
-    description: Tohle je seznam serverů, které server %{instance} omezuje nebo odmítá federaci.
-    domain: Doména
-    media_block: Blokace médií
-    no_domain_blocks: "(Žádné blokované domény)"
-    severity: Přísnost
-    severity_legend:
-      media_block: Mediální soubory přicházející ze serveru nejsou stahovány, ukládány ani zobrazovány uživatelům.
-      silence: Účty z utišených serverů lze nalézt, sledovat a interagovat s nimi, ale jejich tooty nebudou zobrazovány na veřejných časových osách a oznámení od nich se nedostanou k místním uživatelům, kteří je nesledují.
-      suspension: Z pozastavených serverů se neukládá ani nezobrazuje žádný obsah, ani se naně žádný obsah neposílá. Interakce z pozastavených serverů jsou ignorovány.
-      suspension_disclaimer: Pozastavené servery mohou občas stahovat veřejný obsah z tohoto serveru.
-      title: Přísnosti
-    show_rationale: Zobrazit odůvodnění
-    silence: Utišení
-    suspension: Pozastavení
-    title: "%{instance} Seznam blokovaných serverů"
   domain_validator:
     invalid_domain: není platné doménové jméno
   errors:
@@ -819,10 +824,32 @@ cs:
       images_and_video: K tootu, který již obsahuje obrázky, nelze připojit video
       too_many: Nelze připojit více než 4 soubory
   migrations:
-    acct: přezdívka@doména nového účtu
-    currently_redirecting: 'Váš profil má nastaveno přesměrování na:'
-    proceed: Uložit
-    updated_msg: Vaše nastavení přesunutí účtu bylo úspěšně aktualizováno!
+    acct: Přesunuto na
+    cancel: Zrušit přesměrování
+    cancel_explanation: Zrušením přesměrování znovu aktivujete svůj aktuální účet, ale nevrátí se vám sledující, kteří byli přesměrováni na druhý účet.
+    cancelled_msg: Přesměrování bylo úspěšně zrušeno.
+    errors:
+      already_moved: je stejný účet, na který jste se již přesunul/a
+      missing_also_known_as: neodkazuje na tento účet
+      move_to_self: nemůže být aktuální účet
+      not_found: nemohl být nalezen
+      on_cooldown: Probíhá období odpočinku
+    followers_count: Sledující v době přesunu
+    incoming_migrations: Přesun z jiného účtu
+    incoming_migrations_html: Chcete-li se přesunout z jiného účtu na tento, potřebujete si nejprve <a href="%{path}">vytvořit alias účtu</a>.
+    moved_msg: Váš účet nyní přesměrovává na účet %{acct} a vaši sledující se na něj přesouvají.
+    not_redirecting: Váš účet aktuálně nepřesměrovává na žádný jiný účet.
+    on_cooldown: Nedávno jste přesunul/a svůj účet. Tato funkce bude opět dostupná za %{count} dní.
+    past_migrations: Předchozí přesuny
+    proceed_with_move: Přesunout sledující
+    redirecting_to: Váš účet přesměrovává na účet %{acct}.
+    warning:
+      backreference_required: Nový účet musí být nejprve nastaven, aby odkazoval zpátky na tento
+      before: 'Před pokračováním si prosím pečlivě přečtěte tyto poznámky:'
+      cooldown: Po přesunu nastane období odpočinku, kdy se nebudete moci opět přesunout
+      disabled_account: Váš aktuální účet nebude poté zcela použitelný. Budete však mít přístup k datovým exportům a budete ho moci znovu aktivovat.
+      followers: Touto akcí přesunete všechny sledující z aktuálního účtu na nový účet
+      other_data: Žádná další data nebudou přesunuta automaticky
   moderation:
     title: Moderování
   notification_mailer:
@@ -971,6 +998,7 @@ cs:
   settings:
     account: Účet
     account_settings: Nastavení účtu
+    aliases: Aliasy účtů
     appearance: Vzhled
     authorized_apps: Autorizované aplikace
     back: Zpět na Mastodon
@@ -982,7 +1010,7 @@ cs:
     identity_proofs: Důkazy identity
     import: Import
     import_and_export: Import a export
-    migrate: Přesunutí účtu
+    migrate: Přesun účtu
     notifications: Oznámení
     preferences: Předvolby
     profile: Profil

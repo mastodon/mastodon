@@ -2,6 +2,10 @@
 gl:
   simple_form:
     hints:
+      account_alias:
+        acct: Indica o usuaria@servidor da conta desde a cal queres migrar
+      account_migration:
+        acct: Indica o usuaria@servidor da conta a cal queres migrar
       account_warning_preset:
         text: Pódeslle dar formato ao toot, como URLs, etiquetas e mencións
       admin_account_action:
@@ -15,6 +19,8 @@ gl:
         avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
+        current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
+        current_username: Para confirmar, introduce o nome de usuaria da conta actual
         digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe persoal na súa ausencia
         discoverable: O directorio de perfil é outro xeito para que a túa conta alcance unha maior audiencia
         email: Enviaráselle un correo-e de confirmación
@@ -43,6 +49,8 @@ gl:
         domain: Este dominio estará en disposición de obter datos desde este servidor e datos de entrada a el poderán ser procesados e gardados
       featured_tag:
         name: 'Podería utilizar algunha de estas:'
+      form_challenge:
+        current_password: Estás entrando nun área segura
       imports:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
       invite_request:
@@ -58,6 +66,10 @@ gl:
         fields:
           name: Etiqueta
           value: Contido
+      account_alias:
+        acct: Xestina a conta antiga
+      account_migration:
+        acct: Xestiona a nova conta
       account_warning_preset:
         text: Texto preestablecido
       admin_account_action:
@@ -131,6 +143,8 @@ gl:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
+      invite:
+        comment: Comentar
       invite_request:
         text: Por que quere unirse?
       notification_emails:
