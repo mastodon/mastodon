@@ -43,6 +43,7 @@ cy:
       reason: 'Rheswm:'
       rejecting_media: Ni fydd ffeiliau cyfryngau o'r gweinydd hwn yn cael eu prosesu ac ni fydd unrhyw fawd yn cael eu harddangos, sy'n gofyn am glicio â llaw i'r gweinydd arall.
       silenced: Ni fydd swyddi o'r gweinydd hwn yn ymddangos yn unman heblaw eich porthiant cartref os dilynwch yr awdur.
+      suspended: Ni fyddwch yn gallu dilyn unrhyw un o'r gweinydd hwn, ac ni fydd unrhyw ddata ohono'n cael ei brosesu na'i storio, ac ni chyfnewidir unrhyw ddata.
     unavailable_content_html: Yn gyffredinol, mae Mastodon yn caniatáu ichi weld cynnwys gan unrhyw weinyddwr arall yn y ffederasiwn a rhyngweithio â hi. Dyma'r eithriadau a wnaed ar y gweinydd penodol hwn.
     user_count_after:
       zero: defnyddwyr
@@ -55,6 +56,8 @@ cy:
     what_is_mastodon: Beth yw Mastodon?
   accounts:
     choices_html: "Dewisiadau %{name}:"
+    endorsements_hint: Gallwch gymeradwyo pobl rydych chi'n eu dilyn o'r rhyngwyneb gwe, a byddan nhw'n ymddangos yma.
+    featured_tags_hint: Gallwch ychwanegu hashnodau penodol a fydd yn cael eu harddangos yma.
     follow: Dilynwch
     followers:
       zero: Dilynwyr
@@ -205,6 +208,7 @@ cy:
       username: Enw defnyddiwr
       warn: Rhybuddio
       web: Gwe
+      whitelisted: Rhestredig wen
     action_logs:
       actions:
         assigned_to_self_report: "Aseiniodd %{name} adroddiad %{target} i'w hunan"
@@ -240,6 +244,7 @@ cy:
       deleted_status: "(statws wedi ei ddileu)"
       title: Log archwilio
     custom_emojis:
+      assign_category: Neilltuo categori
       by_domain: Parth
       copied_msg: Llwyddwyd i greu copi lleol o'r emoji
       copy: Copïo
@@ -267,6 +272,7 @@ cy:
       updated_msg: Llwyddwyd i ddiweddaru'r emoji!
       upload: Uwchlwytho
     dashboard:
+      authorized_fetch_mode: Modd nôl awdurdodedig
       backlog: tasgau heb eu cwblhau
       config: Cyfluniad
       feature_deletions: Dileadau cyfrif
@@ -292,11 +298,18 @@ cy:
       week_interactions: ymadweithiau yr wythnos hon
       week_users_active: gweithredol yr wythnos hon
       week_users_new: defnyddwyr yr wythnos hon
+      whitelist_mode: Modd rhestr wen
+    domain_allows:
+      add_new: Rhestrwch parth
+      created_msg: Rhestrwyd wen parth yn llwyddiannus
+      destroyed_msg: Mae parth wedi'i dynnu o'r rhestr wen
+      undo: Tynnwch o'r rhestr wen
     domain_blocks:
       add_new: Ychwanegu bloc parth newydd
       created_msg: Mae'r bloc parth nawr yn cael ei brosesu
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       domain: Parth
+      edit: Golygu bloc parth
       existing_domain_block_html: Rydych yn barod wedi gosod cyfyngau fwy llym ar %{name}, mae rhaid i chi ei <a href="%{unblock_url}">ddadblocio</a> yn gyntaf.
       new:
         create: Creu bloc
@@ -332,6 +345,7 @@ cy:
         title: Dadwneud blocio parth ar gyfer %{domain}
         undo: Dadwneud
       undo: Dadwneud bloc parth
+      view: Gweld bloc parth
     email_domain_blocks:
       add_new: Ychwanegu
       created_msg: Llwyddwyd i ychwanegu parth e-bost i'r gosbrestr
@@ -517,6 +531,7 @@ cy:
       name: Hashnod
       reviewed: Wedi'i adolygu
       title: Hashnodau
+      trending_right_now: Yn tueddu nawr
       unreviewed: Heb ei adolygu
     title: Gweinyddiaeth
     warning_presets:
