@@ -6,6 +6,7 @@ pt-BR:
     active_count_after: Ativo
     active_footnote: Usuários ativos mensais (UAM)
     administered_by: 'Administrado por:'
+    api: API
     apps: Apps
     apps_platforms: Use o Mastodon a partir de iOS, Android e outras plataformas
     browse_directory: Navegue pelo diretório de perfis e filtre por interesses
@@ -27,6 +28,9 @@ pt-BR:
     status_count_before: Autores de
     tagline: Siga amigos e encontre novos
     terms: Termos de serviço
+    unavailable_content: Conteúdo indisponível
+    unavailable_content_description:
+      reason: 'Motivo:'
     user_count_after:
       one: usuário
       other: usuários
@@ -45,6 +49,7 @@ pt-BR:
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
+    never_active: Nunca
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
@@ -71,6 +76,7 @@ pt-BR:
       approve: Aprovar
       approve_all: Aprovar tudo
       are_you_sure: Você tem certeza?
+      avatar: Imagem de Perfil
       by_domain: Domínio
       change_email:
         changed_msg: E-mail da conta modificado com sucesso!
@@ -232,6 +238,7 @@ pt-BR:
       feature_profile_directory: Diretório de perfis
       feature_registrations: Cadastros
       feature_relay: Repetidor da federação
+      feature_spam_check: Anti-spam
       feature_timeline_preview: pré-visualização da timeline
       features: Funcionalidades
       hidden_service: Federação com serviços onion
@@ -239,6 +246,7 @@ pt-BR:
       recent_users: Usuários recentes
       search: Pesquisa em texto
       single_user_mode: Modo de usuário único
+      software: Software
       space: Uso de espaço em disco
       title: Painel de controle
       total_users: usuários no total
@@ -260,6 +268,7 @@ pt-BR:
           silence: Silêncio
           suspend: Suspensão
         title: Novo bloqueio de domínio
+      private_comment: Comentário privado
       reject_media: Rejeitar arquivos de mídia
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
@@ -377,6 +386,9 @@ pt-BR:
       custom_css:
         desc_html: Modificar o visual com CSS que é carregado em todas as páginas
         title: CSS customizado
+      domain_blocks:
+        all: Para todo mundo
+        disabled: Para ninguém
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
         title: Imagem de capa
