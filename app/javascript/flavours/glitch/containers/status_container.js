@@ -80,6 +80,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   onReply (status, router) {
     dispatch((_, getState) => {
       let state = getState();
+
       if (state.getIn(['local_settings', 'confirm_before_clearing_draft']) && state.getIn(['compose', 'text']).trim().length !== 0) {
         dispatch(openModal('CONFIRM', {
           message: intl.formatMessage(messages.replyMessage),
