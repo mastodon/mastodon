@@ -577,6 +577,14 @@ cy:
     reset_password: Ailosod cyfrinair
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
+    setup:
+      title: Gosodiad
+    status:
+      account_status: Statws cyfrif
+      confirming: Aros i gadarnhad e-bost gael ei gwblhau.
+      functional: Mae eich cyfrif yn gwbl weithredol.
+      pending: Mae'ch cais yn aros i gael ei adolygu gan ein staff. Gall hyn gymryd cryn amser. Byddwch yn derbyn e-bost os caiff eich cais ei gymeradwyo.
+      redirecting_to: Mae eich cyfrif yn anactif oherwydd ei fod ar hyn o bryd yn ailgyfeirio i %{acct}.
     trouble_logging_in: Trafferdd mewngofnodi?
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
@@ -589,6 +597,9 @@ cy:
       return: Dangos proffil y defnyddiwr
       web: I'r wê
     title: Dilyn %{acct}
+  challenge:
+    confirm: Parhau
+    invalid_password: Cyfrinair annilys
   datetime:
     distance_in_words:
       about_x_hours: "%{count}awr"
@@ -611,6 +622,8 @@ cy:
     directory: Cyfeiriadur proffil
     explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
     explore_mastodon: Archwilio %{title}
+  domain_validator:
+    invalid_domain: ddim yn enw parth dilys
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nid oes gennych ganiatad i weld y dudalen hon.
