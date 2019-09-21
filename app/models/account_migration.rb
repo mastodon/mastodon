@@ -46,6 +46,11 @@ class AccountMigration < ApplicationRecord
     created_at + COOLDOWN_PERIOD
   end
 
+  def acct=(val)
+    val = val.to_s.strip
+    super(val.start_with?('@') ? val[1..-1] : val)
+  end
+
   private
 
   def set_target_account
