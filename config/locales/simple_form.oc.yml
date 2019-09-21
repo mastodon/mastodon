@@ -1,7 +1,10 @@
----
 oc:
   simple_form:
     hints:
+      account_alias:
+        acct: Donatz l’utilizaire@domeni del compte que volètz desplaçar
+      account_migration:
+        acct: Donatz l’utilizaire@domeni del compte ont volètz anar
       account_warning_preset:
         text: Podètz utilizar la sintaxi dels tuts, coma las URL, las etiquetas e las mencions
       admin_account_action:
@@ -14,6 +17,8 @@ oc:
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
         bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         context: Un o mai de contèxtes ont lo filtre deuriá s’aplicar
+        current_password: Per de rasons de seguretat volgatz picar lo senhal del compte actual
+        current_username: Per confirmar, volgatz picar lo nom d’utilizaire del compte actual
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
         email: Vos mandarem un corrièl de confirmacion
         fields: Podètz far veire cap a 4 elements sus vòstre perfil
@@ -39,12 +44,16 @@ oc:
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
       featured_tag:
         name: 'Benlèu que volètz utilizar una d’aquestas causas :'
+      form_challenge:
+        current_password: Dintratz dins una zòna segura
       imports:
         data: Fichièr CSV exportat d’un autre servidor Mastodon
       invite_request:
         text: Aquò nos ajudarà per validar vòstra demanda
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
+      tag:
+        name: Podètz pas que cambiar la talha de las letras, per exemple, per que sián de melhor legir
       user:
         chosen_languages: Quand seleccionadas, solament los tuts dins las lengas triadas seràn mostrats dins vòstre flux d’actualitat
     labels:
@@ -52,9 +61,14 @@ oc:
         fields:
           name: Nom
           value: Contengut
+      account_alias:
+        acct: Identificant de l’ancian compte
+      account_migration:
+        acct: Identificant del nòu compte
       account_warning_preset:
         text: Tèxt predefinit
       admin_account_action:
+        include_statuses: Inclure los tuts senhalats dins lo corrièl
         send_email_notification: Avisar l’utilizaire per corrièl
         text: Avertiment personalizat
         type: Accions
@@ -142,9 +156,9 @@ oc:
         name: Etiqueta
         trendable: Permetre a aquesta etiqueta d’aparéisser a las tendéncias
         usable: Permetre als tuts d’utilizar aquesta etiqueta
-    'no': Non
+    'no': 'Non'
     recommended: Recomandat
     required:
       mark: "*"
       text: requesit
-    'yes': Òc
+    'yes': 'Òc'
