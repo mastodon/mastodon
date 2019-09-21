@@ -65,7 +65,7 @@
                   = t('about.unavailable_content_description.silenced') if domain_block.silence?
                   = t('about.unavailable_content_description.rejecting_media') if domain_block.reject_media?
 
-                - if display_blocks_rationale?
+                - if display_blocks_rationale? && domain_block.public_comment.present?
                   %strong= t('about.unavailable_content_description.reason')
                   = domain_block.public_comment
 
