@@ -809,6 +809,23 @@ fa:
   migrations:
     acct: username@domain حساب تازه
     cancel: لغو انتقال
+    cancel_explanation: با لغو انتقال، حساب شما دوباره فعال می‌شود، ولی این کار پیگیران شما را که به حساب دیگر منتقل شده‌اند برنمی‌گرداند.
+    cancelled_msg: انتقال حساب با موفقیت لغو شد.
+    errors:
+      already_moved: این همان حسابی است که به آن منتقل شده‌اید
+      missing_also_known_as: به حساب شما اشاره نمی‌کند
+      move_to_self: نمی‌تواند حساب فعلی شما باشد
+      not_found: چنین حسابی پیدا نشد
+      on_cooldown: شما باید صبر کنید
+    followers_count: شمار پیگیران در زمان انتقال
+    incoming_migrations: انتقال از یک حساب دیگر
+    incoming_migrations_html: برای انتقال از یک حساب دیگر به این حساب، شما باید نخست <a href="%{path}">یک نام مستعار بسازید</a>.
+    moved_msg: حساب شما هم‌اینک به %{acct} منتقل شده است و پیگیران شما در حال انتقال به آن‌جا هستند.
+    not_redirecting: حساب شما هم‌اینک به هیچ حساب دیگری منتقل نشده است یا اشاره نمی‌کند.
+    on_cooldown: شما به تازگی حساب خود را منتقل کرده‌اید. این ویژگی برای شما دوباره در %{count} روز فعال خواهد شد.
+    past_migrations: انتقال‌های پیشین
+    proceed_with_move: انتقال پیگیران
+    redirecting_to: حساب شما هم‌اینک به %{acct} منتقل شده است.
   moderation:
     title: مدیریت کاربران
   notification_mailer:
