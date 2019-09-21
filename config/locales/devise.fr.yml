@@ -49,6 +49,14 @@ fr:
         explanation: L'authentification à deux facteurs pour votre compte a été désactivée. La connexion est maintenant possible en utilisant uniquement l'adresse courriel et le mot de passe.
         subject: 'Mastodon : authentification à deux facteurs désactivée'
         title: 2FA désactivée
+      two_factor_enabled:
+        explanation: L'authentification à deux facteurs a été activée pour votre compte. Un jeton généré par l'application appariée TOTP sera nécessaire pour vous connecter.
+        subject: 'Mastodon : authentification à deux facteurs activée'
+        title: A2F activée
+      two_factor_recovery_codes_changed:
+        explanation: Les codes de récupération précédents ont été invalidés et de nouveaux sont générés.
+        subject: 'Mastodon : codes de récupération à deux facteurs ré-générés'
+        title: Codes de récupération 2FA modifiés
       unlock_instructions:
         subject: 'Mastodon : Instructions pour déverrouiller votre compte'
     omniauth_callbacks:
