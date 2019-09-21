@@ -665,15 +665,19 @@ fa:
       email_reconfirmation_html: اگر ایمیل تأیید به دستتان نرسیده، می‌توانید <a href="%{path}">یک بار دیگر برایش درخواست بدهید</a>
       irreversible: شما نخواهید توانست حساب خود را بازیابی یا فعال‌سازی کنید
       more_details_html: برای اطلاعات بیشتر <a href="%{terms_path}">سیاست رازداری</a> را ببینید.
+      username_available: نام کاربری شما دوباره در دسترس خواهد بود
+      username_unavailable: نام کاربری شما برای دیگران غیرقابل دسترس خواهد ماند
   directories:
     directory: فهرست گزیدهٔ کاربران
     explanation: کاربران این سرور را بر اساس علاقه‌مندی‌هایشان پیدا کنید
     explore_mastodon: گشت و گذار در %{title}
+  domain_validator:
+    invalid_domain: نام دامین معتبر نیست
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': درخواستی که فرستادید نامعتبر یا اشتباه بود.
     '403': شما اجازهٔ دیدن این صفحه را ندارید.
     '404': صفحه‌ای که به دنبالش هستید این‌جا نیست.
-    '406': This page is not available in the requested format.
+    '406': این صفحه در قالبی که درخواست کرده‌اید موجود نیست.
     '410': صفحه‌ای که به دنبالش بودید دیگر این‌جا وجود ندارد.
     '422':
       content: تأیید امنیتی انجام نشد. آیا مرورگر شما کوکی‌ها را مسدود می‌کند؟
@@ -682,7 +686,7 @@ fa:
     '500':
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
-    '503': The page could not be served due to a temporary server failure.
+    '503': این صفحه به خاطر مشکل موقت سرور در دسترس نیست.
     noscript_html: برای استفاده از نسخهٔ تحت وب ماستدون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک اپ ماستدون</a> را به‌کار ببرید.
   existing_username_validator:
     not_found: کاربری در این سرور با این نام کاربری پیدا نشد
