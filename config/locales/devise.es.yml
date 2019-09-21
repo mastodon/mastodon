@@ -1,4 +1,3 @@
----
 es:
   devise:
     confirmations:
@@ -46,6 +45,18 @@ es:
         extra: Si no solicitaste esto, por favor ignora este correo. Tu contraseña no cambiará hasta que tu accedas al vinculo arriba y crees una nueva.
         subject: 'Mastodon: Instrucciones para reiniciar contraseña'
         title: Reiniciar contraseña
+      two_factor_disabled:
+        explanation: La autenticación de dos factores para tu cuenta ha sido deshabilitada. Ahora puedes conectarte solamente usando la dirección de correo electrónico y la contraseña.
+        subject: 'Mastodon: La autenticación de dos factores está deshabilitada'
+        title: 2FA desactivada
+      two_factor_enabled:
+        explanation: La autenticación de dos factores para tu cuenta ha sido habilitada. Se requiere un token generado por la aplicación TOTP emparejada para ingresar.
+        subject: 'Mastodon: La autenticación de dos factores está habilitada'
+        title: 2FA activada
+      two_factor_recovery_codes_changed:
+        explanation: Los códigos de recuperación previos han sido invalidados y se generaron códigos nuevos.
+        subject: 'Mastodon: Los códigos de recuperación de dos factores fueron regenerados'
+        title: Códigos de recuperación 2FA cambiados
       unlock_instructions:
         subject: 'Mastodon: Instrucciones para desbloquear'
     omniauth_callbacks:
@@ -58,8 +69,8 @@ es:
       updated: Su contraseña ha sido cambiada con éxito. Ahora ya está registrado.
       updated_not_active: Su contraseña ha sido cambiada con éxito.
     registrations:
-      destroyed: "¡Adios! Su cuenta ha sido cancelada con éxito. Esperamos verle pronto de nuevo."
-      signed_up: "¡Bienvenido! Se ha registrado con éxito."
+      destroyed: '¡Adios! Su cuenta ha sido cancelada con éxito. Esperamos verle pronto de nuevo.'
+      signed_up: '¡Bienvenido! Se ha registrado con éxito.'
       signed_up_but_inactive: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta no ha sido activada todavía.
       signed_up_but_locked: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta está bloqueada.
       signed_up_but_pending: Un mensaje con un enlace de confirmacion ha sido enviado a su direccion de email. Luego de clickear el link revisaremos su aplicacion. Seras notificado si es aprovada.
