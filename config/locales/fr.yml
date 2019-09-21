@@ -34,6 +34,13 @@ fr:
     status_count_before: Ayant publié
     tagline: Suivez vos ami·e·s et découvrez en de nouveaux·elles
     terms: Conditions d’utilisation
+    unavailable_content: Contenu non disponible
+    unavailable_content_description:
+      reason: 'Motif :'
+      rejecting_media: Les fichiers média de ce serveur ne seront pas traités et aucune miniature ne sera affichée, nécessitant un clic manuel vers l'autre serveur.
+      silenced: Les messages de ce serveur ne s'afficheront nulle part sauf votre flux personnel si vous suivez l'auteur.
+      suspended: Vous ne pourrez suivre personne de ce serveur, aucune donnée ne sera traitée ou stockée et aucune donnée ne sera échangée.
+    unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateurs de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
     user_count_after:
       one: utilisateur
       other: utilisateurs
@@ -221,10 +228,12 @@ fr:
       deleted_status: "(statut supprimé)"
       title: Journal d’audit
     custom_emojis:
+      assign_category: Attribuer une catégorie
       by_domain: Domaine
       copied_msg: Copie locale de l’émoji créée avec succès !
       copy: Copier
       copy_failed_msg: Impossible de faire une copie locale de cet émoji
+      create_new_category: Créer une nouvelle catégorie
       created_msg: Émoji créé avec succès !
       delete: Supprimer
       destroyed_msg: Émoji supprimé avec succès !
@@ -241,6 +250,7 @@ fr:
       shortcode: Raccourci
       shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
       title: Émojis personnalisés
+      uncategorized: Non catégorisé
       unlisted: Délisté
       update_failed_msg: N’a pas pu mettre à jour cet émoji
       updated_msg: Émoji mis à jour avec succès !
@@ -420,6 +430,8 @@ fr:
       custom_css:
         desc_html: Modifier l’apparence avec une CSS chargée sur chaque page
         title: CSS personnalisé
+      default_noindex:
+        desc_html: Affecte tous les utilisateurs qui n'ont pas changé eux-mêmes ce paramètre
       domain_blocks:
         all: À tout le monde
         disabled: À personne
