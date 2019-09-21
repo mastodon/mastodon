@@ -17,7 +17,7 @@ class Settings::AliasesController < Settings::BaseController
     if @alias.save
       redirect_to settings_aliases_path, notice: I18n.t('aliases.created_msg')
     else
-      render :show
+      render :index
     end
   end
 
