@@ -5,19 +5,19 @@ module Mastodon
     module_function
 
     def major
-      2
-    end
-
-    def minor
-      9
-    end
-
-    def patch
       3
     end
 
+    def minor
+      0
+    end
+
+    def patch
+      0
+    end
+
     def flags
-      ''
+      'rc1'
     end
 
     def suffix
