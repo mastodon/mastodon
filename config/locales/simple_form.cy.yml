@@ -1,4 +1,3 @@
----
 cy:
   simple_form:
     hints:
@@ -67,6 +66,7 @@ cy:
       account_warning_preset:
         text: Testun rhagosodedig
       admin_account_action:
+        include_statuses: Cynhwyswch tŵtiau yr adroddwyd amdanynt yn yr e-bost
         send_email_notification: Hysbysu'r defnyddiwr trwy e-bost
         text: Rhybudd wedi'i addasu
         type: Gweithredu
@@ -121,6 +121,7 @@ cy:
         setting_show_application: Datguddio'r offer defnyddwyd i anfon tŵtiau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_theme: Thema'r wefan
+        setting_trends: Dangos tueddiadau o heddiw ymlaen
         setting_unfollow_modal: Dangos deialog cadarnhau cyn dad-ddilyn rhywun
         setting_use_blurhash: Dangoswch raddiannau lliwgar ar gyfer cyfryngau cudd
         setting_use_pending_items: Modd araf
@@ -153,9 +154,9 @@ cy:
         name: Hashnod
         trendable: Gadewch i'r hashnod hwn ymddangos o dan dueddiadau
         usable: Caniatáu i tŵtiau ddefnyddio'r hashnod hwn
-    'no': Na
+    'no': 'Na'
     recommended: Argymhellwyd
     required:
       mark: "*"
       text: gofynnol
-    'yes': Ie
+    'yes': 'Ie'
