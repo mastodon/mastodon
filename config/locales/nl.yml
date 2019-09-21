@@ -40,6 +40,7 @@ nl:
       reason: 'Reden:'
       rejecting_media: Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken.
       silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
+      suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
     user_count_after:
       one: gebruiker
       other: gebruikers
@@ -510,8 +511,8 @@ nl:
       title: Toots van account
       with_media: Met media
     tags:
-      accounts_today: Aantal unieke keren vandaag gebruikt
-      accounts_week: Aantal unieke keren deze week gebruikt
+      accounts_today: Aantal verschillende keren vandaag gebruikt
+      accounts_week: Aantal verschillende keren deze week gebruikt
       breakdown: Uitsplitsing van het gebruik van vandaag naar bron
       context: Context
       directory: In de gebruikersgids
@@ -524,8 +525,9 @@ nl:
       reviewed: Beoordeeld
       title: Hashtags
       trending_right_now: Op dit moment trending
-      unique_uses_today: "%{count} toots vandaag"
+      unique_uses_today: "%{count} keer vandaag gebruikt"
       unreviewed: Niet beoordeeld
+      updated_msg: Instellingen hashtag succesvol bijgewerkt
     title: Beheer
     warning_presets:
       add_new: Nieuwe toevoegen
@@ -541,6 +543,11 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
+  aliases:
+    add_new: Alias aanmaken
+    created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
+    deleted_msg: De alias is succesvol verwijderd. Verhuizen vanaf dat account naar dit account is niet meer mogelijk.
+    remove: Alias ontkoppelen
   appearance:
     advanced_web_interface: Geavanceerde webomgeving
     advanced_web_interface_hint: 'Wanneer je van de hele schermbreedte gebruik wilt maken, stelt de geavanceerde webomgeving je in staat om meerdere verschillende kolommen te configureren. Hiermee kun je zoveel mogelijk informatie op hetzelfde moment bekijken, zoals: Start, meldingen, de globale tijdlijn, meerdere lijsten en hashtags.'
@@ -569,6 +576,8 @@ nl:
     checkbox_agreement_html: Ik ga akkoord met de <a href="%{rules_path}" target="_blank">regels van deze server</a> en de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
+    description:
+      prefix_sign_up: Registreer je vandaag nog op Mastodon!
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
@@ -590,6 +599,7 @@ nl:
       title: Instellen
     status:
       account_status: Accountstatus
+      functional: Jouw account is volledig operationeel.
     trouble_logging_in: Problemen met inloggen?
   authorize_follow:
     already_following: Je volgt dit account al
@@ -626,10 +636,15 @@ nl:
     confirm_username: Voer uw gebruikersnaam in om de procedure te bevestigen
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
+    warning:
+      username_available: Jouw gebruikersnaam zal weer beschikbaar komen
+      username_unavailable: Jouw gebruikersnaam zal onbeschikbaar blijven
   directories:
     directory: Gebruikersgids
     explanation: Ontdek gebruikers aan de hand van hun interesses
     explore_mastodon: "%{title} verkennen"
+  domain_validator:
+    invalid_domain: is een ongeldige domeinnaam
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
@@ -763,6 +778,7 @@ nl:
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
     acct: Verhuisd naar
+    cancel: Doorverwijzing annuleren
     cancelled_msg: De doorverwijzing is succesvol geannuleerd.
     errors:
       already_moved: is hetzelfde account waarnaar je al naar toe bent verhuisd
@@ -989,6 +1005,8 @@ nl:
     pinned: Vastgemaakte toot
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
+  tags:
+    does_not_match_previous_name: komt niet overeen met de vorige naam
   terms:
     body_html: |
       <h2>Privacy Policy</h2>
@@ -1106,7 +1124,9 @@ nl:
         disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
         silence: Zolang jouw account wordt beperkt, kunnen alleen mensen die jou al volgen jouw toots op deze server zien. Tevens ben je niet zichtbaar in meldingen, gesprekken en op openbare tijdlijnen. Anderen kunnen je echter wel handmatig volgen.
         suspend: Jouw account is opgeschort. Jouw toots en geüploade media zijn onomkeerbaar van deze server verwijderd, en ook o.a. van de servers waar jij volgers had.
+      get_in_touch: Je kunt deze e-mail beantwoorden om in contact te komen met de medewerkers van %{instance}.
       review_server_policies: Serverbeleid bekijken
+      statuses: 'Met name voor:'
       subject:
         disable: Jouw account %{acct} is bevroren
         none: Waarschuwing voor %{acct}

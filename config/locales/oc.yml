@@ -32,6 +32,9 @@ oc:
     status_count_before: qu’an escrich
     tagline: Seguètz d’amics e trobatz-ne de nòus
     terms: Condicions d’utilizacion
+    unavailable_content: Contengut pas disponible
+    unavailable_content_description:
+      reason: 'Motiu :'
     user_count_after:
       one: utilizaire
       other: utilizaires
@@ -486,6 +489,10 @@ oc:
       context: Contèxt
       directory: A l’annuari
       in_directory: "%{count} a l’annuari"
+      last_active: Darrièra activitat
+      most_popular: Mai popularas
+      most_recent: Mai recentas
+      name: Etiqueta
       title: Etiquetas
     title: Administracion
     warning_presets:
@@ -507,6 +514,7 @@ oc:
     advanced_web_interface_hint: 'Se volètz utilizar la nautor complèta de l’ecran, l’interfàcia web avançada vos permet de configurar diferentas colomnas per mostrar tan d’informacions que volètz : Acuèlh, notificacions, flux d’actualitat, e d’autras listas e etiquetas.'
     animations_and_accessibility: Animacion e accessibilitat
     confirmation_dialogs: Fenèstras de confirmacion
+    discovery: Descobèrta
     sensitive_content: Contengut sensible
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
@@ -562,6 +570,10 @@ oc:
       return: Veire lo perfil a la persona
       web: Tornar a l’interfàcia Web
     title: Sègre %{acct}
+  challenge:
+    confirm: Contunhar
+    invalid_password: Senhal invalid
+    prompt: Confirmatz lo senhal per dire de contunhar
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -584,6 +596,8 @@ oc:
     directory: Annuari de perfils
     explanation: Trobar d’utilizaires segon lor interèsses
     explore_mastodon: Explorar %{title}
+  domain_validator:
+    invalid_domain: es pas un nom de domeni valid
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
@@ -641,6 +655,7 @@ oc:
     developers: Desvolopaires
     more: Mai…
     resources: Ressorsas
+    trending_now: Tendéncia del moment
   generic:
     all: Tot
     changes_saved_msg: Cambiaments ben realizats !
@@ -716,6 +731,10 @@ oc:
       too_many: Se pòt pas ajustar mai de 4 fichièrs
   migrations:
     acct: nomutilizaire@domeni del nòu compte
+    errors:
+      move_to_self: pòt pas èsser lo compte actual
+      not_found: impossible de trobar
+    proceed_with_move: Desplaçar los seguidors
   moderation:
     title: Moderacion
   notification_mailer:
@@ -1038,6 +1057,7 @@ oc:
         silence: Del temps que vòstre compte es limitat, solament lo monde que vos sègon veiràn vòstres tuts sus aqueste servidor, e poiriatz èsser tirat de mantunas listas publicas. Pasmens, d’autres vos pòdon sègre manualament.
         suspend: Vòstre compte es suspendut e totes vòstres tuts e fichièrs enviats son estats suprimits sens retorn possible d’aqueste servidor e los de vòstres seguidors.
       review_server_policies: Repassar las politicas del servidor
+      statuses: 'Especificament per :'
       subject:
         disable: Vòstre compte %{acct} es gelat
         none: Avertiment per %{acct}

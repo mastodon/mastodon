@@ -34,6 +34,13 @@ ja:
     status_count_before: トゥート数
     tagline: Follow friends and discover new ones
     terms: 利用規約
+    unavailable_content: 制限中のサーバー
+    unavailable_content_description:
+      reason: '制限理由:'
+      rejecting_media: このサーバーからのメディアファイルは受信されず、サムネイルも表示されません。表示するにはクリックしてそのサーバーに直接アクセスする必要があります。
+      silenced: このサーバーからの投稿は相手をフォローしてもあなたのホームタイムライン以外には表示されません。
+      suspended: このサーバーからは誰もフォローできません。このサーバーからのデータは受信されず、やりとりもされません。
+    unavailable_content_html: 通常 Mastodon では連合先のどんなサーバーのユーザーとでもやりとりできます。ただし次のサーバーには例外が設定されています。
     user_count_after:
       other: 人
     user_count_before: ユーザー数
@@ -218,10 +225,12 @@ ja:
       deleted_status: "(削除済)"
       title: 操作履歴
     custom_emojis:
+      assign_category: カテゴリーを割り当て
       by_domain: ドメイン
       copied_msg: 絵文字のコピーをローカルに作成しました
       copy: コピー
       copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
+      create_new_category: カテゴリーを作成
       created_msg: 絵文字の追加に成功しました！
       delete: 削除
       destroyed_msg: 絵文字の削除に成功しました！
@@ -238,6 +247,7 @@ ja:
       shortcode: ショートコード
       shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます
       title: カスタム絵文字
+      uncategorized: 未分類
       unlisted: 未収載
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
@@ -415,6 +425,9 @@ ja:
       custom_css:
         desc_html: 全ページに適用されるCSSの編集
         title: カスタムCSS
+      default_noindex:
+        desc_html: この設定を変更していない全ユーザーに影響します
+        title: デフォルトで検索エンジンによるインデックスを拒否する
       domain_blocks:
         all: 誰でも許可
         disabled: 誰も許可しない
@@ -506,6 +519,10 @@ ja:
       context: 表示先
       directory: ディレクトリに使用
       in_directory: "%{count} 人がディレクトリに使用"
+      last_active: 最近使われた順
+      most_popular: 使用頻度順
+      most_recent: 新着順
+      name: ハッシュタグ
       review: 審査状況
       reviewed: 審査済み
       title: ハッシュタグ
@@ -531,6 +548,12 @@ ja:
     new_trending_tag:
       body: 'ハッシュタグ #%{name} が本日のトレンドになっていますが、審査がまだ行われていないためトレンドタグには表示されていません。一度許可すれば次回からこの操作は不要です。'
       subject: "%{instance} で新しいハッシュタグ (#%{name}) が審査待ちです"
+  aliases:
+    add_new: エイリアスを作成
+    created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
+    deleted_msg: エイリアスを解除しました。そのアカウントからは引っ越しできなくなります。
+    hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
+    remove: エイリアスを解除
   appearance:
     advanced_web_interface: 上級者向け UI
     advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
@@ -560,6 +583,10 @@ ja:
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">利用規約</a> に同意します
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
+    description:
+      prefix_invited_by_user: "@%{name} があなたをこの Mastodon サーバーに招待しました"
+      prefix_sign_up: 今すぐ Mastodon に登録しましょう！
+      suffix: アカウントがあれば、どんな Mastodon 互換サーバーのユーザーでもフォローしたりメッセージをやり取りできるようになります！
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
@@ -586,6 +613,7 @@ ja:
       confirming: メールアドレスの確認が完了するのを待っています。
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
+      redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
     trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
@@ -598,6 +626,11 @@ ja:
       return: ユーザーのプロフィールを見る
       web: Web を開く
     title: "%{acct} をフォロー"
+  challenge:
+    confirm: 続行する
+    hint_html: 以後 1 時間はパスワードの再入力を求めません
+    invalid_password: パスワードが間違っています
+    prompt: 続行するにはパスワードを入力してください
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"

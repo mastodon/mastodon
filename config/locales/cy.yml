@@ -36,6 +36,12 @@ cy:
     status_count_before: Ysgriffennwyd gan
     tagline: Dilyn ffrindiau a darganfod rhai newydd
     terms: Telerau gwasanaeth
+    unavailable_content: Cynnwys nad yw ar gael
+    unavailable_content_description:
+      reason: 'Rheswm:'
+      rejecting_media: Ni fydd ffeiliau cyfryngau o'r gweinydd hwn yn cael eu prosesu ac ni fydd unrhyw fawd yn cael eu harddangos, sy'n gofyn am glicio â llaw i'r gweinydd arall.
+      silenced: Ni fydd swyddi o'r gweinydd hwn yn ymddangos yn unman heblaw eich porthiant cartref os dilynwch yr awdur.
+    unavailable_content_html: Yn gyffredinol, mae Mastodon yn caniatáu ichi weld cynnwys gan unrhyw weinyddwr arall yn y ffederasiwn a rhyngweithio â hi. Dyma'r eithriadau a wnaed ar y gweinydd penodol hwn.
     user_count_after:
       few: defnyddwyr
       many: defnyddwyr
@@ -62,6 +68,7 @@ cy:
     media: Cyfryngau
     moved_html: 'Mae %{name} wedi symud i %{new_profile_link}:'
     network_hidden: Nid yw'r wybodaeth hyn ar gael
+    never_active: Peidiwch byth
     nothing_here: Does dim byd yma!
     people_followed_by: Pobl y mae %{name} yn ei ddilyn
     people_who_follow: Pobl sy'n dilyn %{name}
@@ -235,6 +242,7 @@ cy:
       copied_msg: Llwyddwyd i greu copi lleol o'r emoji
       copy: Copïo
       copy_failed_msg: Methwyd i greu copi lleol o'r emoji hwnnw
+      create_new_category: Create new category
       created_msg: Llwyddwyd i greu emoji!
       delete: Dileu
       destroyed_msg: Llwyddwyd i ddinistrio emojo!
@@ -251,6 +259,7 @@ cy:
       shortcode: Byrgod
       shortcode_hint: O leiaf 2 nodyn, dim ond nodau alffaniwmerig a tanlinellau
       title: Emoji unigryw
+      uncategorized: Heb gategori
       unlisted: Heb eu rhestru
       update_failed_msg: Methwyd a diweddaru'r emoji hwnnw
       updated_msg: Llwyddwyd i ddiweddaru'r emoji!
@@ -263,10 +272,13 @@ cy:
       feature_profile_directory: Cyfeiriadur proffil
       feature_registrations: Cofrestriadau
       feature_relay: Relái ffederasiwn
+      feature_spam_check: Gwrth-sbam
       feature_timeline_preview: Rhagolwg o'r ffrwd
       features: Nodweddion
       hidden_service: Ffederasiwn a gwasanaethau cudd
       open_reports: adroddiadau agored
+      pending_tags: hashnodau yn aros am adolygiad
+      pending_users: defnyddwyr yn aros am adolygiad
       recent_users: Defnyddwyr diweddar
       search: Chwilio testun llawn
       single_user_mode: Modd un defnyddiwr
@@ -293,6 +305,8 @@ cy:
           silence: Tawelwch
           suspend: Atal
         title: Blocio parth newydd
+      private_comment: Sylw preifat
+      public_comment: Sylw cyhoeddus
       reject_media: Gwrthod dogfennau cyfryngau
       reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
       reject_reports: Gwrthod adroddiadau
@@ -343,6 +357,8 @@ cy:
         all: Pob
         limited: Gyfyngedig
         title: Goruwchwyliad
+      private_comment: Sylw preifat
+      public_comment: Sylw cyhoeddus
       title: Ffederasiwn
       total_blocked_by_us: Wedi'i bloc gan ni
       total_followed_by_them: Yn dilyn ganynt
@@ -420,6 +436,8 @@ cy:
       custom_css:
         desc_html: Addasu gwedd gyda CSS wedi lwytho ar bob tudalen
         title: CSS wedi'i addasu
+      domain_blocks:
+        all: I bawb
       hero:
         desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia. Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
         title: Delwedd arwr
@@ -491,7 +509,12 @@ cy:
       title: Statysau cyfrif
       with_media: A chyfryngau
     tags:
+      context: Cyd-destun
+      last_active: Yn weithredol ddiwethaf
+      name: Hashnod
+      reviewed: Wedi'i adolygu
       title: Hashnodau
+      unreviewed: Heb ei adolygu
     title: Gweinyddiaeth
     warning_presets:
       add_new: Ychwanegu newydd
@@ -725,6 +748,8 @@ cy:
       too_many: Ni ellir ychwanegu mwy na 4 dogfen
   migrations:
     acct: enwdefnyddiwr@parth y cyfrif newydd
+    errors:
+      not_found: ni ellid dod o hyd iddo
   moderation:
     title: Goruwchwyliad
   notification_mailer:

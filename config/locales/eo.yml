@@ -1,7 +1,7 @@
 ---
 eo:
   about:
-    about_hashtag_html: Ĉi tiuj estas la publikaj fajfoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
+    about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
     about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
     about_this: Pri
     active_count_after: aktiva
@@ -21,6 +21,9 @@ eo:
     generic_description: "%{domain} estas unu servilo en la reto"
     get_apps: Provu telefonan aplikaĵon
     hosted_on: "%{domain} estas nodo de Mastodon"
+    instance_actor_flash: |
+      Ĉi tiu konto estas virtuala ulo uzata por reprezenti la servilon mem kaj ne iun apartan uzanton.
+      Ĝi estas uzata por frataraj celoj kaj ĝi ne devus esti blokita krom se vi volas bloki la tutan servilon, tiuokaze vi devus uzi domajnan blokadon.
     learn_more: Lerni pli
     privacy_policy: Privateca politiko
     see_whats_happening: Vidi kio okazas
@@ -32,6 +35,9 @@ eo:
     status_count_before: Kie skribiĝis
     tagline: Sekvi amikojn kaj trovi novan onin
     terms: Uzkondiĉoj
+    unavailable_content: Nedisponebla enhavo
+    unavailable_content_description:
+      reason: 'Kialo:'
     user_count_after:
       one: uzanto
       other: uzantoj
@@ -482,7 +488,7 @@ eo:
       back_to_account: Reveni al konta paĝo
       batch:
         delete: Forigi
-        nsfw_off: Marki ne tikla
+        nsfw_off: Marki netikla
         nsfw_on: Marki tikla
       deleted: Forigita
       failed_to_execute: Ekigo malsukcesa
@@ -521,6 +527,7 @@ eo:
       subject: Nova kradvorto kontrolebla en %{instance} (#%{name})
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
+    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara tempolinio, kaj ajna kvanto de listoj kaj kradvortoj.'
     animations_and_accessibility: Animacioj kaj alirebleco
     confirmation_dialogs: Konfirmaj fenestroj
     sensitive_content: Tikla enhavo
@@ -642,6 +649,7 @@ eo:
     add_new: Aldoni novan
     errors:
       limit: Vi jam elstarigis la maksimuman kvanton da kradvortoj
+    hint_html: "<strong>Kio estas la trajtaj kradvortoj?</strong> Ili bone videblas en via publika profilo kaj permesas al homoj trarigardi viajn publikajn mesaĝojn specife laŭ tiuj kradvortoj. Ili estas bonaj iloj por sekvi la evoluon de kreadaj laboroj aŭ longdaŭraj projektoj."
   filters:
     contexts:
       home: Hejma templinio
@@ -673,7 +681,7 @@ eo:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   html_validator:
-    invalid_markup: 'havas malvalida HTML markado: %{error}'
+    invalid_markup: 'havas nevalidan HTML-markadon: %{error}'
   identity_proofs:
     active: Aktiva
     authorize: Jes, permesi
