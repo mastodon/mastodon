@@ -415,6 +415,7 @@ pt-BR:
         all: Para todo mundo
         disabled: Para ninguém
         title: Mostrar domínios bloqueados
+        users: Para usuários locais logados
       domain_blocks_rationale:
         title: Visualizar justificativa
       hero:
@@ -494,6 +495,7 @@ pt-BR:
       with_media: Com mídia
     tags:
       context: Contexto
+      directory: No diretório
       most_popular: Mais populares
       most_recent: Mais recentes
       name: Hashtag
@@ -516,8 +518,14 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: 'Nova denúncia sobre %{instance} (#%{id})'
+  appearance:
+    animations_and_accessibility: Animações e acessibilidade
+    confirmation_dialogs: Popups de confirmação
+    discovery: Descobrir
+    sensitive_content: Conteúdo sensível
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
+    salutation: "%{name},"
     settings: 'Mudar e-mail de preferência: %{link}'
     view: 'Visualizar:'
     view_profile: Ver perfil
@@ -534,8 +542,13 @@ pt-BR:
     apply_for_account: Pedir um convite
     change_password: Senha
     checkbox_agreement_html: Eu concordo com <a href="%{rules_path}" target="_blank">as regras do servidor</a> e com <a href="%{terms_path}" target="_blank">os termos de serviço</a>
+    checkbox_agreement_without_rules_html: Concordo com os <a href="%{terms_path}" target="_blank">termos do serviço </a>
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir a sua conta, você pode <a href="%{path}">prosseguir para cá</a>. Uma confirmação será requisitada.
+    description:
+      prefix_invited_by_user: "@%{name} convidou você para entrar neste servidor do Mastodon!"
+      prefix_sign_up: Cadastre-se no Mastodon hoje!
+      suffix: Com uma conta, você poderá seguir pessoas, postar atualizações, trocar mensagens com usuários de qualquer servidor Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu instruções de confirmação?
     forgot_password: Esqueceu a sua senha?
     invalid_reset_password_token: Token de modificação de senha é inválido ou expirou. Por favor, requisite um novo.
@@ -544,6 +557,9 @@ pt-BR:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou faça login com
+    providers:
+      cas: CAS
+      saml: SAML
     register: Cadastrar-se
     registration_closed: "%{instance} não está aceitando novos membros"
     resend_confirmation: Reenviar instruções de confirmação
@@ -826,6 +842,11 @@ pt-BR:
     activity: Última atividade
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
       firefox: Firefox
       generic: Navegador desconhecido
       ie: Internet Explorer
@@ -878,6 +899,8 @@ pt-BR:
     profile: Perfil
     relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação em dois passos
+  spam_check:
+    spam_detected_and_silenced: Este é um relatório automatizado. Spam foi detectado e o remetente foi silenciado automaticamente. Se isto for um erro, por favor, desfaça esta ação.
   statuses:
     attached:
       description: 'Anexado: %{attached}'
