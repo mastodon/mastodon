@@ -31,6 +31,7 @@ pt-BR:
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
       reason: 'Motivo:'
+      suspended: Você não será capaz de seguir ninguém deste servidor, e nenhum dado dele será processado ou armazenado, e nenhum dado trocado.
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outro servidor no fediverso. Estas são as exceções deste servidor específico.
     user_count_after:
       one: usuário
@@ -39,6 +40,7 @@ pt-BR:
     what_is_mastodon: O que é Mastodon?
   accounts:
     choices_html: "Escolhas de %{name}:"
+    featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
     followers:
       one: Seguidor
@@ -216,10 +218,12 @@ pt-BR:
       deleted_status: "(status deletado)"
       title: Auditar relatório
     custom_emojis:
+      assign_category: Designar Categoria
       by_domain: Domínio
       copied_msg: Cópia local do emoji criada com sucesso
       copy: Copiar
       copy_failed_msg: Não foi possível criar uma cópia local deste emoji
+      create_new_category: Criar nova categoria
       created_msg: Emoji criado com sucesso!
       delete: Excluir
       destroyed_msg: Emoji deletado com sucesso!
@@ -284,6 +288,7 @@ pt-BR:
           suspend: Suspensão
         title: Novo bloqueio de domínio
       private_comment: Comentário privado
+      public_comment: Comentário público
       reject_media: Rejeitar arquivos de mídia
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
@@ -404,10 +409,14 @@ pt-BR:
       custom_css:
         desc_html: Modificar o visual com CSS que é carregado em todas as páginas
         title: CSS customizado
+      default_noindex:
+        desc_html: Afeta qualquer usuário que não tenha modificado esta configuração manualmente
       domain_blocks:
         all: Para todo mundo
         disabled: Para ninguém
         title: Mostrar domínios bloqueados
+      domain_blocks_rationale:
+        title: Visualizar justificativa
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
         title: Imagem de capa
@@ -489,6 +498,9 @@ pt-BR:
       most_recent: Mais recentes
       name: Hashtag
       title: Hashtags
+      trending_right_now: Em alta no momento
+      unreviewed: Não revisadas
+      updated_msg: Configurações de hashtag atualizadas com sucesso
     title: Administração
     warning_presets:
       add_new: Adicionar um novo
@@ -550,8 +562,12 @@ pt-BR:
       return: Exibir o perfil do usuário
       web: Voltar para a página inicial
     title: Seguir %{acct}
+  challenge:
+    invalid_password: Senha inválida
+    prompt: Confirme sua senha para continuar
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count} meses"
       about_x_years: "%{count} anos"
       almost_x_years: "%{count} anos"
@@ -564,9 +580,16 @@ pt-BR:
       x_months: "%{count} meses"
       x_seconds: "%{count} segundos"
   deletes:
+    challenge_not_passed: As informações que você inseriu não estão corretas
     confirm_password: Insira a sua senha atual para verificar a sua identidade
+    confirm_username: Digite seu nome de usuário para confirmar o procedimento
     proceed: Excluir conta
     success_msg: A sua conta foi excluída com sucesso
+    warning:
+      before: 'Antes de prosseguir, por favor leia com cuidado:'
+      data_removal: Suas postagens e outros dados serão removidos permanentemente
+      username_available: Seu nome de usuário ficará disponível novamente
+      username_unavailable: Seu nome de usuário permanecerá indisponível
   directories:
     directory: Diretório de perfis
     explanation: Descobrir usuários baseado em seus interesses
@@ -598,6 +621,7 @@ pt-BR:
       request: Solicitar o seu arquivo
       size: Tamanho
     blocks: Você bloqueou
+    csv: CSV
     domain_blocks: Bloqueios de domínio
     follows: Você segue
     lists: Listas
@@ -702,6 +726,15 @@ pt-BR:
       too_many: Não é possível anexar mais de 4 imagens
   migrations:
     acct: username@domain da nova conta
+    incoming_migrations: Migrando de outra conta
+    moved_msg: Agora sua conta está redirecionando para %{acct} e seus seguidores estão sendo movidos.
+    not_redirecting: Sua conta não está redirecionando para nenhuma outra conta atualmente.
+    on_cooldown: Você migrou recentemente sua conta. Esta função ficará disponível novamente em %{count} dias.
+    past_migrations: Migrações passadas
+    proceed_with_move: Migrar seguidores
+    redirecting_to: Sua conta está redirecionando para %{acct}.
+    warning:
+      before: 'Antes de prosseguir, por favor leia com cuidado:'
   moderation:
     title: Moderação
   notification_mailer:
@@ -793,13 +826,35 @@ pt-BR:
     activity: Última atividade
     browser: Navegador
     browsers:
+      firefox: Firefox
       generic: Navegador desconhecido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta do Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: Plataforma desconhecida
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
@@ -852,6 +907,7 @@ pt-BR:
       vote: Votar
     show_more: Mostrar mais
     sign_in_to_participate: Entre para participar dessa conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Apenas seguidores
       private_long: Mostrar apenas para seguidores
@@ -863,6 +919,8 @@ pt-BR:
     pinned: Toot fixado
     reblogged: compartilhou
     sensitive_content: Conteúdo sensível
+  tags:
+    does_not_match_previous_name: não corresponde ao nome anterior
   terms:
     body_html: |
       <h2>Política de privacidade</h2>
@@ -979,6 +1037,7 @@ pt-BR:
         disable: Enquanto sua conta está congelada, seus dados estão intactos, mas você não pode realizar nenhuma ação até que sua conta seja desbloqueada.
         silence: Enquanto sua conta está limitada, somente pessoas que já estão seguindo você poderão ver seus toots nesse servidor, e você pode ser excluído de diversas listagens públicas. No entanto, outros ainda podem seguir você manualmente.
         suspend: Sua conta está suspensa e todos os seus toots e mídias foram irreversivelmente removidas desse servidor e de servidores onde você tinha seguidores.
+      get_in_touch: Você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
       review_server_policies: Revisar as políticas do servidor
       subject:
         disable: Sua conta %{acct} foi congelada
