@@ -432,6 +432,7 @@ fr:
         title: CSS personnalisé
       default_noindex:
         desc_html: Affecte tous les utilisateurs qui n'ont pas changé eux-mêmes ce paramètre
+        title: Opter pour le retrait de l'indexation des moteurs de recherche par défaut
       domain_blocks:
         all: À tout le monde
         disabled: À personne
@@ -523,6 +524,10 @@ fr:
       context: Contexte 
       directory: Dans le répertoire
       in_directory: "%{count} dans le répertoire"
+      last_active: Dernière activité
+      most_popular: Plus populaire
+      most_recent: Plus récent
+      name: Mot-clé
       review: État de traitement
       reviewed: Traité
       title: Hashtags
@@ -548,6 +553,12 @@ fr:
     new_trending_tag:
       body: 'Le hashtag #%{name} est populaire aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que l’autorisiez, ou sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
       subject: 'Nouveau hashtag en attente de traitement sur %{instance} (#%{name})'
+  aliases:
+    add_new: Créer un alias
+    created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant lancer le déplacement depuis l'ancien compte.
+    deleted_msg: Suppression réussie de l'alias. Déplacer de ce compte vers celui-ci ne sera plus possible.
+    hint_html: Si vous voulez passer d'un autre compte à celui-ci, vous pouvez créer ici un alias, qui est nécessaire avant de pouvoir déplacer les abonné·e·s de l'ancien compte à celui-ci. Cette action en soi est <strong>inoffensive et réversible</strong>. <strong>La migration du compte est initiée à partir de l'ancien compte</strong>.
+    remove: Détacher l'alias
   appearance:
     advanced_web_interface: Interface web avancée
     advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil public fédéré, un nombre illimité de listes et hashtags.'
@@ -607,6 +618,7 @@ fr:
       confirming: En attente de la confirmation par e-mail à compléter.
       functional: Votre compte est entièrement opérationnel.
       pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
+      redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
   authorize_follow:
     already_following: Vous suivez déjà ce compte
@@ -619,6 +631,11 @@ fr:
       return: Afficher le profil de l’utilisateur⋅ice
       web: Retour à l’interface web
     title: Suivre %{acct}
+  challenge:
+    confirm: Continuer
+    hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
+    invalid_password: Mot de passe invalide
+    prompt: Confirmez votre mot de passe pour continuer
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -634,10 +651,15 @@ fr:
       x_months: "%{count} mois"
       x_seconds: "%{count} s"
   deletes:
+    challenge_not_passed: Les renseignements que vous avez entrés n'étaient pas exacts
     confirm_password: Entrez votre mot de passe pour vérifier votre identité
+    confirm_username: Entrez votre nom d'utilisateur pour confirmer la procédure
     proceed: Supprimer compte
     success_msg: Votre compte a été supprimé avec succès
     warning:
+      before: 'Avant de procéder, veuillez lire attentivement ces notes :'
+      caches: Le contenu mis en cache par d'autres serveurs peut persister
+      data_removal: Vos messages et autres données seront définitivement supprimés
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur sera à nouveau disponible
       username_unavailable: Votre nom d’utilisateur restera indisponible
