@@ -15,6 +15,7 @@ class Settings::AliasesController < Settings::BaseController
     @alias = current_account.aliases.build(resource_params)
 
     if @alias.save
+      ActivityPub::UpdateDistributionWorker.perform_async(current_account.id)
       redirect_to settings_aliases_path, notice: I18n.t('aliases.created_msg')
     else
       render :index
