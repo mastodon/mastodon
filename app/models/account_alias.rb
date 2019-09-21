@@ -17,10 +17,16 @@ class AccountAlias < ApplicationRecord
 
   validates :acct, presence: true, domain: { acct: true }
   validates :uri, presence: true
+  validates :uri, uniqueness: { scope: :account_id }
 
   before_validation :set_uri
   after_create :add_to_account
   after_destroy :remove_from_account
+
+  def acct=(val)
+    val = val.to_s.strip
+    super(val.start_with?('@') ? val[1..-1] : val)
+  end
 
   private
 
