@@ -179,6 +179,7 @@ pt-BR:
       unsubscribe: Desinscrever-se
       username: Nome de usuário
       warn: Notificar
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
@@ -270,6 +271,7 @@ pt-BR:
       destroyed_msg: Bloqueio de domínio desfeito
       domain: Domínio
       edit: Editar bloqueio de domínio
+      existing_domain_block_html: Você já impôs limites mais restritivos a %{name}, é necessário primeiro <a href="%{unblock_url}">desbloqueá-lo</a>.
       new:
         create: Criar bloqueio
         hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai reatroativa e automaticamente aplicar métodos específicos de moderação nestas contas.
@@ -299,6 +301,7 @@ pt-BR:
         title: Retirar bloqueio de domínio de %{domain}
         undo: Retirar
       undo: Retirar bloqueio de domínio
+      view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio de domínio de e-mail criado com sucesso
@@ -322,6 +325,8 @@ pt-BR:
         all: Todas
         limited: Limitado
         title: Moderação
+      private_comment: Comentário privado
+      public_comment: Comentário público
       title: Federação
       total_blocked_by_us: Bloqueado por nós
       total_followed_by_them: Seguidos por eles
@@ -400,6 +405,7 @@ pt-BR:
       domain_blocks:
         all: Para todo mundo
         disabled: Para ninguém
+        title: Mostrar domínios bloqueados
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
         title: Imagem de capa
@@ -470,6 +476,12 @@ pt-BR:
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Postagens da conta
       with_media: Com mídia
+    tags:
+      context: Contexto
+      most_popular: Mais populares
+      most_recent: Mais recentes
+      name: Hashtag
+      title: Hashtags
     title: Administração
     warning_presets:
       add_new: Adicionar um novo
