@@ -34,6 +34,9 @@ es:
     status_count_before: Qué han escrito
     tagline: Seguir a amigos existentes y descubre nuevos
     terms: Condiciones de servicio
+    unavailable_content: Contenido no disponible
+    unavailable_content_description:
+      reason: 'Motivo:'
     user_count_after:
       one: usuario
       other: usuarios
@@ -224,6 +227,7 @@ es:
       copied_msg: Copia local del emoji creada con éxito
       copy: Copiar
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
+      create_new_category: Crear una nueva categoría
       created_msg: '¡Emoji creado con éxito!'
       delete: Borrar
       destroyed_msg: '¡Emojo destruido con éxito!'
@@ -419,6 +423,9 @@ es:
       custom_css:
         desc_html: Modificar el aspecto con CSS cargado en cada página
         title: CSS personalizado
+      domain_blocks:
+        all: A todos
+        disabled: A nadie
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -502,6 +509,10 @@ es:
       context: Contexto
       directory: En el directorio
       in_directory: "%{count} en el directorio"
+      last_active: Última actividad
+      most_popular: Más popular
+      most_recent: Más reciente
+      name: Hashtag
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
@@ -594,6 +605,8 @@ es:
       return: Regresar al perfil del usuario
       web: Ir al sitio web
     title: Seguir a %{acct}
+  challenge:
+    confirm: Continuar
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
