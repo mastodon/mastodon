@@ -825,6 +825,14 @@ fr:
     on_cooldown: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
     past_migrations: Migrations passées
     proceed_with_move: Déplacer les abonnés
+    redirecting_to: Votre compte est redirigé vers %{acct}.
+    warning:
+      backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci
+      before: 'Avant de procéder, veuillez lire attentivement ces notes :'
+      cooldown: Après le déménagement, il y a une période de refroidissement pendant laquelle vous ne pourrez plus bouger
+      disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la ré-activation.
+      followers: Cette action va déplacer tous les abonnés du compte courant vers le nouveau compte
+      other_data: Aucune autre donnée ne sera déplacée automatiquement
   moderation:
     title: Modération
   notification_mailer:
@@ -969,6 +977,7 @@ fr:
   settings:
     account: Compte
     account_settings: Paramètres du compte
+    aliases: Alias du compte
     appearance: Apparence
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
