@@ -31,6 +31,7 @@ pt-BR:
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
       reason: 'Motivo:'
+    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outro servidor no fediverso. Estas são as exceções deste servidor específico.
     user_count_after:
       one: usuário
       other: usuários
@@ -55,6 +56,10 @@ pt-BR:
     people_who_follow: Pessoas que seguem %{name}
     pin_errors:
       following: Você tem que estar seguindo a pessoa que você quer sugerir
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: Este usuário está reservado
     roles:
@@ -107,9 +112,11 @@ pt-BR:
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
+      ip: IP
       joined: Se cadastrou
       location:
         all: Todos
+        local: Local
         remote: Remoto
         title: Localização
       login_status: Situação de login
@@ -216,6 +223,7 @@ pt-BR:
       destroyed_msg: Emoji deletado com sucesso!
       disable: Desabilitar
       disabled_msg: Emoji desabilitado com sucesso
+      emoji: Emoji
       enable: Habilitar
       enabled_msg: Emoji habilitado com sucesso
       image_hint: PNG de até 50KB
@@ -226,6 +234,7 @@ pt-BR:
       shortcode: Atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underscores
       title: Emojis customizados
+      uncategorized: Não categorizado
       unlisted: Não listado
       update_failed_msg: Não foi possível atualizar esse emoji
       updated_msg: Emoji atualizado com sucesso!
@@ -243,6 +252,7 @@ pt-BR:
       features: Funcionalidades
       hidden_service: Federação com serviços onion
       open_reports: Denúncias em aberto
+      pending_users: usuários aguardando revisão
       recent_users: Usuários recentes
       search: Pesquisa em texto
       single_user_mode: Modo de usuário único
@@ -259,6 +269,7 @@ pt-BR:
       created_msg: Bloqueio de domínio está sendo processado
       destroyed_msg: Bloqueio de domínio desfeito
       domain: Domínio
+      edit: Editar bloqueio de domínio
       new:
         create: Criar bloqueio
         hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai reatroativa e automaticamente aplicar métodos específicos de moderação nestas contas.
