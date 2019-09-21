@@ -660,6 +660,10 @@ fr:
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
       caches: Le contenu mis en cache par d'autres serveurs peut persister
       data_removal: Vos messages et autres données seront définitivement supprimés
+      email_change_html: Vous pouvez <a href="%{path}">modifier votre adresse courriel</a> sans supprimer votre compte
+      email_contact_html: S'il n'arrive toujours pas, vous pouvez envoyer un courriel à <a href="mailto:%{email}">%{email}</a> pour de l'aide
+      email_reconfirmation_html: Si vous ne recevez pas le courriel de confirmation, vous pouvez le <a href="%{path}">demander à nouveau</a>
+      irreversible: Vous ne pourrez pas restaurer ou réactiver votre compte
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur sera à nouveau disponible
       username_unavailable: Votre nom d’utilisateur restera indisponible
@@ -670,7 +674,7 @@ fr:
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': La demande que vous avez soumise est invalide ou mal formée.
     '403': Vous n’avez pas accès à cette page.
     '404': La page que vous recherchez n’existe pas.
     '406': Cette page n'est pas disponible au format demandé.
@@ -682,7 +686,7 @@ fr:
     '500':
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
-    '503': The page could not be served due to a temporary server failure.
+    '503': La page n'a pas pu être servie en raison d'une défaillance temporaire du serveur.
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
   existing_username_validator:
     not_found: n’a pas trouvé d’utilisateur·rice local·e avec ce nom
@@ -732,6 +736,7 @@ fr:
     all: Tous
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     copy: Copier
+    no_batch_actions_available: Aucune action par lots disponible sur cette page
     order_by: Classer par
     save_changes: Enregistrer les modifications
     validation_errors:
@@ -803,6 +808,23 @@ fr:
       too_many: Impossible de joindre plus de 4 fichiers
   migrations:
     acct: profil@domaine du nouveau compte
+    cancel: Annuler la redirection
+    cancel_explanation: Annuler la redirection réactivera votre compte courant, mais ne rapportera pas les abonnés qui ont été déplacés sur ce compte.
+    cancelled_msg: Suppression de la redirection réussie.
+    errors:
+      already_moved: est le même compte que vous avez déjà déplacé vers
+      missing_also_known_as: ne référence pas rétroactivement ce compte
+      move_to_self: ne peut pas être un compte courant
+      not_found: n'a pas été trouvé
+      on_cooldown: Vous êtes en refroidissement
+    followers_count: Abonnés au moment du déplacement
+    incoming_migrations: Déplacement d'un compte différent
+    incoming_migrations_html: Pour passer d'un autre compte à celui-ci, vous devez d'abord <a href="%{path}">créer un alias de compte</a>.
+    moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonnés sont déplacés.
+    not_redirecting: Votre compte n'est pas redirigé vers un autre compte actuellement.
+    on_cooldown: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
+    past_migrations: Migrations passées
+    proceed_with_move: Déplacer les abonnés
   moderation:
     title: Modération
   notification_mailer:
