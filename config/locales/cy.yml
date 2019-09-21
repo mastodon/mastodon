@@ -599,7 +599,9 @@ cy:
     title: Dilyn %{acct}
   challenge:
     confirm: Parhau
+    hint_html: "<strong>Awgrym:</strong> Ni fyddwn yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
     invalid_password: Cyfrinair annilys
+    prompt: Cadarnhewch gyfrinair i barhau
   datetime:
     distance_in_words:
       about_x_hours: "%{count}awr"
@@ -615,9 +617,16 @@ cy:
       x_months: "%{count}mis"
       x_seconds: "%{count}eiliad"
   deletes:
+    challenge_not_passed: Nid oedd y wybodaeth a nodoch yn gywir
     confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd yno
+    confirm_username: Rhowch eich enw defnyddiwr i gadarnhau'r weithdrefn
     proceed: Dileu cyfrif
     success_msg: Llwyddwyd i ddileu eich cyfrif
+    warning:
+      before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
+      irreversible: Ni fyddwch yn gallu adfer nac ail-greu eich cyfrif
+      username_available: Bydd eich enw defnyddiwr ar gael eto
+      username_unavailable: Ni fydd eich enw defnyddiwr ar gael
   directories:
     directory: Cyfeiriadur proffil
     explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
@@ -681,6 +690,7 @@ cy:
     developers: Datblygwyr
     more: Mwy…
     resources: Adnoddau
+    trending_now: Yn tueddu nawr
   generic:
     all: Popeth
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
@@ -764,8 +774,12 @@ cy:
       too_many: Ni ellir ychwanegu mwy na 4 dogfen
   migrations:
     acct: enwdefnyddiwr@parth y cyfrif newydd
+    cancel: Canslo ailgyfeirio
     errors:
       not_found: ni ellid dod o hyd iddo
+    past_migrations: Ymfudiadau yn y gorffennol
+    warning:
+      before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
   moderation:
     title: Goruwchwyliad
   notification_mailer:
@@ -918,6 +932,7 @@ cy:
   settings:
     account: Cyfrif
     account_settings: Gosodiadau'r cyfrif
+    aliases: Aliasau cyfrif
     appearance: Arddangosiad
     authorized_apps: Apiau awdurdodedig
     back: Yn ôl i Mastodon
@@ -992,6 +1007,8 @@ cy:
     pinned: Tŵt wedi'i binio
     reblogged: hybwyd
     sensitive_content: Cynnwys sensitif
+  tags:
+    does_not_match_previous_name: ddim yn cyfateb i'r enw blaenorol
   terms:
     body_html: |
       <h2>Polisi Preifatrwydd</h2>
@@ -1109,7 +1126,9 @@ cy:
         disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
         silence: Pan mae eich cyfrif yn gyfyngiedig, dim ond pobl sydd yn barod yn eich dilyn yn gweld eich tŵtiau ar y gweinydd hon, a efallai byddwch yn cael eich tynnu o restrau cyhoeddus. Er hyn, gall eraill eich dilyn chi wrth law.
         suspend: Mae eich cyfrif wedi cael ei wahardd, a mae gyd o'ch tŵtiau a'ch ffeiliau cyfrwng uwchlwythadwy wedi cael eu tynnu or gweinydd yn barhaol, ac o weinyddau ble yr oedd eich dilynwyr.
+      get_in_touch: Gallwch ymateb i'r e-bost hwn i gysylltu â staff %{instance}.
       review_server_policies: Adolygu polisïau'r gweinydd
+      statuses: 'Yn benodol, ar gyfer:'
       subject:
         disable: Mae'ch cyfrif %{acct} wedi'i rewi
         none: Rhybudd am %{acct}
