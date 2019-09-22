@@ -37,6 +37,9 @@ co:
     unavailable_content: Cuntinutu micca dispunibule
     unavailable_content_description:
       reason: 'Ragione:'
+      rejecting_media: I fugliali media da stu servore ùn saranu micca arregistrati è e vignette ùn saranu micca affissate, duverete cliccà manualmente per accede à l'altru servore è vedeli.
+      silenced: I statuti da stu servore ùn saranu mai visti tranne nant'a vostra pagina d'accolta s'e voi siguitate l'autore.
+    unavailable_content_html: Mastodon vi parmette in generale di vede u cuntinutu è interagisce cù l'utilizatori di tutti l'altri servori di u fediversu. Quessi sò l'eccezzione fatte nant'à stu servore in particulare.
     user_count_after:
       one: utilizatore
       other: utilizatori
@@ -549,6 +552,8 @@ co:
     new_trending_tag:
       body: 'U hashtag #%{name} hè in e tendenze oghji, mà ùn hè micca verificatu. Ùn sarà micca mustratu à u pubblicu eccettu s''ellu hè auturizatu, o pudete ancu salvà u furmulariu cusì per ùn mai più avè à ne sente parlà.'
       subject: 'Novu hashtag in attesa di rivista nant''à %{instance} (#%{name})'
+  aliases:
+    add_new: Creà un pseudonimu
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: 'S''è voi vulete fà usu di a larghezza sana di u vostru screnu, l''interfaccia web avanzata vi permette di cunfigurà parechje culonne sfarente per vede tutta l''infurmazione chì vulete vede in listessu tempu: Accolta, nutificazione, linea pubblica, è tutti l''hashtag è liste chì vulete.'
@@ -798,6 +803,12 @@ co:
   migrations:
     acct: cugnome@duminiu di u novu contu
     cancel: Annullà ridirezzione
+    incoming_migrations: Traslucà da un'altru contu
+    proceed_with_move: Trasferì l'abbunati
+    warning:
+      before: 'Nanz''à cuntinuà, leghjete ste note attentamente:'
+      followers: St'azzione hà da spiazzà tutti l'abbunati di u contu attuale nant'à u novu contu
+      other_data: L'altri dati ùn saranu micca autumaticamente trasferiti
   moderation:
     title: Muderazione
   notification_mailer:
@@ -942,6 +953,7 @@ co:
   settings:
     account: Contu
     account_settings: Parametri di u contu
+    aliases: Pseudonimi di contu
     appearance: Apparenza
     authorized_apps: Applicazione auturizate
     back: Ritornu nant’à Mastodon
