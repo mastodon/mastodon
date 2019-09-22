@@ -71,8 +71,9 @@ export function normalizePoll(poll) {
 
   const emojiMap = makeEmojiMap(normalPoll);
 
-  normalPoll.options = poll.options.map(option => ({
+  normalPoll.options = poll.options.map((option, index) => ({
     ...option,
+    voted: poll.own_votes && poll.own_votes.includes(index),
     title_emojified: emojify(escapeTextContentForBrowser(option.title), emojiMap),
   }));
 
