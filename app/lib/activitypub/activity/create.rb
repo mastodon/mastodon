@@ -253,15 +253,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def poll_vote!
     poll = replied_to_status.preloadable_poll
+    already_voted = true
     RedisLock.acquire(poll_lock_options) do |lock|
       if lock.acquired?
         already_voted = poll.votes.where(account: @account).exists?
         poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: @object['id'])
-        increment_voters_count! unless already_voted
       else
         raise Mastodon::RaceConditionError
       end
     end
+    increment_voters_count! unless already_voted
     ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, replied_to_status.id) unless replied_to_status.preloadable_poll.hide_totals?
   end
 

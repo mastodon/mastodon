@@ -12,6 +12,8 @@ class VoteService < BaseService
     @choices = choices
     @votes   = []
 
+    already_voted = true
+
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         already_voted = @poll.votes.where(account: @account).exists?
@@ -21,12 +23,12 @@ class VoteService < BaseService
             @votes << @poll.votes.create!(account: @account, choice: choice)
           end
         end
-
-        increment_voters_count! unless already_voted
       else
         raise Mastodon::RaceConditionError
       end
     end
+
+    increment_voters_count! unless already_voted
 
     ActivityTracker.increment('activity:interactions')
 
