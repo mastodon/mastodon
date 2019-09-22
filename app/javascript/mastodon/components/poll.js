@@ -10,6 +10,7 @@ import spring from 'react-motion/lib/spring';
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from 'mastodon/features/emoji/emoji';
 import RelativeTimestamp from './relative_timestamp';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   closed: { id: 'poll.closed', defaultMessage: 'Closed' },
@@ -103,6 +104,7 @@ class Poll extends ImmutablePureComponent {
     const percent            = poll.get('votes_count') === 0 ? 0 : (option.get('votes_count') / poll.get('votes_count')) * 100;
     const leading            = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
     const active             = !!this.state.selected[`${optionIndex}`];
+    const voted              = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
 
     let titleEmojified = option.get('title_emojified');
     if (!titleEmojified) {
@@ -131,7 +133,10 @@ class Poll extends ImmutablePureComponent {
           />
 
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
-          {showResults && <span className='poll__number'>{Math.round(percent)}%</span>}
+          {showResults && <span className='poll__number'>
+            {!!voted && <Icon id='check' className='poll__vote__mark' />}
+            {Math.round(percent)}%
+          </span>}
 
           <span dangerouslySetInnerHTML={{ __html: titleEmojified }} />
         </label>
