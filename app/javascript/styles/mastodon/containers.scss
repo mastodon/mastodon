@@ -169,7 +169,7 @@
 .grid-4 {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-auto-columns: 25%;
   grid-auto-rows: max-content;
 
