@@ -354,11 +354,14 @@ th:
         delete: ลบ
         nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
         nsfw_on: ทำเครื่องหมายว่าละเอียดอ่อน
+      deleted: ลบแล้ว
       media:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
     tags:
+      in_directory: "%{count} ในไดเรกทอรี"
+      name: แฮชแท็ก
       title: แฮชแท็ก
     title: การดูแล
     warning_presets:
@@ -411,6 +414,9 @@ th:
       return: แสดงโปรไฟล์ของผู้ใช้
       web: ไปยังเว็บ
     title: ติดตาม %{acct}
+  challenge:
+    invalid_password: รหัสผ่านไม่ถูกต้อง
+    prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ชั่วโมง"
