@@ -232,20 +232,21 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       items    = @object['oneOf']
     end
 
+    voters_count = @object['votersCount']
+
     @account.polls.new(
       multiple: multiple,
       expires_at: expires_at,
       options: items.map { |item| item['name'].presence || item['content'] }.compact,
-      cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 }
+      cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 },
+      voters_count: voters_count
     )
   end
 
   def poll_vote?
     return false if replied_to_status.nil? || replied_to_status.preloadable_poll.nil? || !replied_to_status.local? || !replied_to_status.preloadable_poll.options.include?(@object['name'])
 
-    unless replied_to_status.preloadable_poll.expired?
-      poll_vote!
-    end
+    poll_vote! unless replied_to_status.preloadable_poll.expired?
 
     true
   end
@@ -430,12 +431,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def increment_voters_count!
-    unless @poll.voters_count.nil?
-      @poll.voters_count = @poll.voters_count + 1
-      @poll.save
+    poll = replied_to_status.preloadable_poll
+    unless poll.voters_count.nil?
+      poll.voters_count = poll.voters_count + 1
+      poll.save
     end
   rescue ActiveRecord::StaleObjectError
-    @poll.reload
+    poll.reload
     retry
   end
 
