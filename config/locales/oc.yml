@@ -474,12 +474,15 @@ oc:
         desc_html: Mostrar lo flux public sus la pagina d’acuèlh
         title: Apercebut flux public
       title: Paramètres del site
+      trends:
+        title: Etiquetas tendéncia
     statuses:
       back_to_account: Tornar a la pagina Compte
       batch:
         delete: Suprimir
         nsfw_off: Marcar coma pas sensible
         nsfw_on: Marcar coma sensible
+      deleted: Suprimits
       failed_to_execute: Fracàs
       media:
         title: Mèdia
@@ -574,6 +577,7 @@ oc:
     title: Sègre %{acct}
   challenge:
     confirm: Contunhar
+    hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
     invalid_password: Senhal invalid
     prompt: Confirmatz lo senhal per dire de contunhar
   datetime:
@@ -591,11 +595,15 @@ oc:
       x_months: "%{count} meses"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Las informacions qu’avètz fornidas son pas corrèctas
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
+    confirm_username: Picatz vòstre nom d’utilizaire per confirmar la procedura
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
     warning:
       caches: Lo contengut en cache suls autres servidors pòt demorar
+      email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
+      username_unavailable: Vòstre nom d’utilizaire demorarà pas disponible
   directories:
     directory: Annuari de perfils
     explanation: Trobar d’utilizaires segon lor interèsses
