@@ -802,15 +802,25 @@ ko:
     acct: 새 계정의 username@domain
     cancel: 리디렉션 취소
     cancel_explanation: 리다이렉트를 취소하면 현재 계정이 다시 활성화 됩니다, 새 계정으로 이동한 팔로워를 되찾을 수는 없습니다.
+    cancelled_msg: 리다이렉트를 성공적으로 취소했습니다.
     errors:
+      already_moved: 이미 이동한 계정과 동일합니다
+      missing_also_known_as: 이 계정을 역으로 참조하지 않고 있습니다
+      move_to_self: 현재 계정은 사용할 수 없습니다
       not_found: 찾을 수 없습니다
+    followers_count: 이주 될 팔로워들
     incoming_migrations: 다른 계정으로부터 옮기기
+    moved_msg: 당신의 계정은 %{acct}로 리다이렉트 되고 있으며 팔로워들은 이주 될 것입니다.
+    not_redirecting: 현재 이 계정은 어디로도 리다이렉트 되고 있지 않습니다.
     on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count} 일 후에 다시 이용 가능합니다.
     past_migrations: 이전 마이그레이션
     proceed_with_move: 팔로워 이동
     redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
     warning:
+      backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다
       before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
+      cooldown: 이주 뒤에는 새로운 이주를 하지 못하는 쿨다운 기간이 존재합니다
+      disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
       other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
   moderation:
