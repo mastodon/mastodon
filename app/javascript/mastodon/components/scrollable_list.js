@@ -201,10 +201,6 @@ export default class ScrollableList extends PureComponent {
     this.detachIntersectionObserver();
 
     detachFullscreenListener(this.onFullScreenChange);
-
-    if (this.props.onScrollToTop) {
-      this.props.onScrollToTop();
-    }
   }
 
   onFullScreenChange = () => {
