@@ -163,5 +163,7 @@ class BackupService < BaseService
         io.write(buffer)
       end
     end
+  rescue Errno::ENOENT
+    Rails.logger.warn "Could not backup file #{filename}: file not found"
   end
 end

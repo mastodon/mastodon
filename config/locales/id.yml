@@ -10,9 +10,6 @@ id:
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
     documentation: Dokumentasi
-    extended_description_html: |
-      <h3>Tempat yang baik untuk peraturan</h3>
-      <p>Deskripsi lainnya belum diset.</p>
     generic_description: "%{domain} adalah satu server dalam jaringan"
     hosted_on: Mastodon dihosting di %{domain}
     learn_more: Pelajari selengkapnya
@@ -191,11 +188,6 @@ id:
         title: Deskripsi situs tambahan
       site_title: Judul Situs
       title: Pengaturan situs
-    subscriptions:
-      confirmed: Dikonfirmasi
-      expires_in: Kadaluarsa dalam
-      last_delivery: Terakhir dikirim
-      topic: Topik
     title: Administrasi
   application_mailer:
     settings: 'Ubah pilihan email: %{link}'
@@ -231,14 +223,17 @@ id:
       x_months: "%{count}bln"
       x_seconds: "%{count}dtk"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Anda tidak mempunyai izin untuk melihat halaman ini.
     '404': Halaman yang anda cari tidak ditemukan
+    '406': This page is not available in the requested format.
     '410': Halaman yang anda cari sudah tidak dapat ditemukan lagi.
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal
     '429': Throttled
     '500': 
+    '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Anda blokir
     follows: Anda ikuti

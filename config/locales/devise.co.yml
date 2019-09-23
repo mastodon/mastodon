@@ -46,6 +46,18 @@ co:
         extra: S’ellu ùn era micca voi, ignurate stu missaghju. A chjave d’accessu ùn cambiarà micca s’è voi ùn cliccate micca u ligame.
         subject: 'Mastodon: Cambià a chjave d’accessu'
         title: Cambià a chjave
+      two_factor_disabled:
+        explanation: L'autentificazione à dui fattori per u vostru contu hè stata disattivata. A cunnessione hè avà pussibule cù l'usu solu di u vostru e-mail è di a chjave d'accessu.
+        subject: 'Mastodon: Autentificazione à dui fattori disattivata'
+        title: A2F disattivata
+      two_factor_enabled:
+        explanation: L'autentificazione à dui fattori hè stata attivata per u vostru contu. Un codice, o fiscia, generata da l'applicazione TOTP assuciata sarà dumandata per cunnettavvi.
+        subject: 'Mastodon: Autentificazione à dui fattori attivata'
+        title: A2F attivata
+      two_factor_recovery_codes_changed:
+        explanation: I codici di ricuperazione pricidenti ùn sò più validi è un novu inseme di codici hè statu creatu.
+        subject: 'Mastodon: Rigenerazione di i codici à dui fattori di ricuperazione'
+        title: Cambiamentu di i codici di ricuperazione d'A2F
       unlock_instructions:
         subject: 'Mastodon: Riapre u contu'
     omniauth_callbacks:

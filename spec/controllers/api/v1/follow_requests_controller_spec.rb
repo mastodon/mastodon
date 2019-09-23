@@ -38,6 +38,12 @@ RSpec.describe Api::V1::FollowRequestsController, type: :controller do
     it 'allows follower to follow' do
       expect(follower.following?(user.account)).to be true
     end
+
+    it 'returns JSON with followed_by=true' do
+      json = body_as_json
+
+      expect(json[:followed_by]).to be true
+    end
   end
 
   describe 'POST #reject' do
@@ -53,6 +59,12 @@ RSpec.describe Api::V1::FollowRequestsController, type: :controller do
 
     it 'removes follow request' do
       expect(FollowRequest.where(target_account: user.account, account: follower).count).to eq 0
+    end
+
+    it 'returns JSON with followed_by=false' do
+      json = body_as_json
+
+      expect(json[:followed_by]).to be false
     end
   end
 end

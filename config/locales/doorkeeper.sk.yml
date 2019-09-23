@@ -19,34 +19,34 @@ sk:
   doorkeeper:
     applications:
       buttons:
-        authorize: Overiť
-        cancel: Zrušiť
+        authorize: Autorizuj
+        cancel: Zruš
         destroy: Zničiť
-        edit: Upraviť
-        submit: Poslať
+        edit: Uprav
+        submit: Pošli
       confirmations:
         destroy: Si si istý/á?
       edit:
-        title: Upraviť aplikáciu
+        title: Uprav aplikáciu
       form:
-        error: No teda! Pozrite formulár pre prípadné chyby
+        error: No teda! Skontroluj formulár pre prípadné chyby
       help:
-        native_redirect_uri: Použite %{native_redirect_uri} pre lokálne testy
-        redirect_uri: Iba jedna URI na riadok
-        scopes: Oprávnenia oddeľujte medzerami. Nechajte prázdne pre štandardné oprávnenia.
+        native_redirect_uri: Použi %{native_redirect_uri} pre lokálne testy
+        redirect_uri: Použi jeden riadok pre každú URI
+        scopes: Oprávnenia oddeľuj medzerami. Nechaj prázdne pre štandardné oprávnenia.
       index:
         application: Aplikácia
         callback_url: Návratová URL
-        delete: Zmazať
+        delete: Vymaž
         name: Názov
         new: Nová aplikácia
         scopes: Oprávnenia
-        show: Ukázať
-        title: Vaše aplikácie
+        show: Ukáž
+        title: Tvoje aplikácie
       new:
         title: Nová aplikácia
       show:
-        actions: Akcie
+        actions: Úkony
         application_id: Kľúč klienta
         callback_urls: Návratové URL adresy
         scopes: Oprávnenia
@@ -54,7 +54,7 @@ sk:
         title: 'Aplikácia: %{name}'
     authorizations:
       buttons:
-        authorize: Overiť
+        authorize: Over
         deny: Zamietni
       error:
         title: Nastala chyba
@@ -91,7 +91,7 @@ sk:
         resource_owner_authenticator_not_configured: Resource Owner zlyhal pretože Doorkeeper.configure.resource_owner_authenticator nebol nakonfigurovaný.
         server_error: Nastala neočakávaná chyba na autorizačnom serveri ktorá zabránila vykonať požiadavku.
         temporarily_unavailable: Autorizačný server ťa teraz nemôže obslúžiť, pretože prebieha údržba alebo je dočasne preťažený.
-        unauthorized_client: Klient nie je autorizovaný vykonať danú požiadavku takouto metódou.
+        unauthorized_client: Klient nie je autorizovaný vykonať danú požiadavku týmto spôsobom.
         unsupported_grant_type: Tento typ oprávnenia nie je podporovaný autorizačným serverom.
         unsupported_response_type: Autorizačný server nepodporuje typ tejto odpovede.
     flash:
@@ -113,6 +113,12 @@ sk:
       application:
         title: Požadovaná OAuth autorizácia
     scopes:
+      admin:read: prezeraj všetky dáta na serveri
+      admin:read:accounts: prezeraj chúlostivé informácie na všetkých účtoch
+      admin:read:reports: čítaj chulostivé informácie o všetkých hláseniach a nahlásených účtoch
+      admin:write: uprav všetky dáta na serveri
+      admin:write:accounts: urob moderovacie úkony na účtoch
+      admin:write:reports: urob moderovacie úkony voči hláseniam
       follow: uprav vzťahy svojho účtu
       push: dostávaj oboznámenia ohľadom tvojho účtu na obrazovku
       read: prezri si všetky dáta ohľadom svojho účetu

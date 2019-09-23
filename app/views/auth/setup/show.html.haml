@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t('auth.setup.title')
+
+- if missing_email?
+  = simple_form_for(@user, url: auth_setup_path) do |f|
+    = render 'shared/error_messages', object: @user
+
+    .fields-group
+      %p.hint= t('auth.setup.email_below_hint_html')
+
+    .fields-group
+      = f.input :email, required: true, hint: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }
+
+    .actions
+      = f.submit t('admin.accounts.change_email.label'), class: 'button'
+- else
+  .simple_form
+    %p.hint= t('auth.setup.email_settings_hint_html', email: content_tag(:strong, @user.email))
+
+.form-footer= render 'auth/shared/links'

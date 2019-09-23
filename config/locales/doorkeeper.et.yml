@@ -1,0 +1,148 @@
+---
+et:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Rakenduse nimi
+        redirect_uri: Suunamise URL
+        scopes: Ulatused
+        website: Rakenduse veebileht
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ei tohi sisaldada fragmenti.
+              invalid_uri: peab olema õige URI.
+              relative_uri: peab olema absoluutne URI.
+              secured_uri: peab olema HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autoriseeri
+        cancel: Katkesta
+        destroy: Hävita
+        edit: Redigeeri
+        submit: Saada
+      confirmations:
+        destroy: Olete kindel?
+      edit:
+        title: Redigeeri rakendust
+      form:
+        error: Oih! Kontrollige oma vormi võimalikest vigadest
+      help:
+        native_redirect_uri: Kasutage %{native_redirect_uri} kohalikeks testideks
+        redirect_uri: Kasuta ühte rida iga URI jaoks
+        scopes: Eralda ulatused tühikutega. Jäta tühjaks, et kasutada vaikimisi ulatusi.
+      index:
+        application: Rakendus
+        callback_url: Ümbersuunamise URL
+        delete: Kustuta
+        name: Nimi
+        new: Uus rakendus
+        scopes: Ulatused
+        show: Kuva
+        title: Teie rakendused
+      new:
+        title: Uus rakendus
+      show:
+        actions: Tegevused
+        application_id: Kliendi võti
+        callback_urls: Ümbersuunamise URLid
+        scopes: Ulatused
+        secret: Kliendi salasõna
+        title: 'Rakendus: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autoriseeri
+        deny: Keeldu
+      error:
+        title: Ilmnes viga
+      new:
+        able_to: Sellel on võimalik
+        prompt: Rakendus %{client_name} soovib ligipääsu Teie kontole
+        title: Autoriseerimine vajalik
+      show:
+        title: Kopeeri see autoriseerimisvõti ja kleebi see rakendusse.
+    authorized_applications:
+      buttons:
+        revoke: Tühista
+      confirmations:
+        revoke: Olete kindel?
+      index:
+        application: Rakendus
+        created_at: Autoriseeritud
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Ulatused
+        title: Autoriseeritud rakendused
+    errors:
+      messages:
+        access_denied: Ressursi omanik või autoriseerimisserver lükkas taotluse tagasi.
+        credential_flow_not_configured: Resource Owner Password Credentials vool ebaõnnestus, kuna Doorkeeper.configure.resource_owner_from_credentials ei ole seadistatud.
+        invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
+        invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
+        invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
+        invalid_request: Taotlusel puudub kohustuslik parameeter, sisaldab mitte toetatud parameetri väärtust või on kuidagi teisiti vale.
+        invalid_resource_owner: Antud ressursi omaniku andmed on valed või ressursi omanikku ei leitud
+        invalid_scope: Soovitud ulatus on vale, tundmatu või vigane.
+        invalid_token:
+          expired: Ligipääsuvõti on aegunud
+          revoked: Ligipääsuvõti on tagasi võetud
+          unknown: Ligipääsuvõti on vale
+        resource_owner_authenticator_not_configured: Ressursi omaniku leidmine ebaõnnestus, kuna Doorkeeper.configure.resource_owner_authenticator pole seadistatud.
+        server_error: Autoriseerimisserveril toimus ootamatu viga ning selle tulemusena ei läinud taotlus läbi.
+        temporarily_unavailable: Autoriseerimisserver ei ole hetkel võimeline taotlust vastu võtma, mis võib olla tingitud serveri ülekoormusest või hooldustöödest.
+        unauthorized_client: Klient ei ole lubatud seda taotlust vastu võtma kasutades seda meetodit.
+        unsupported_grant_type: Autoriseerimisloa tüüp ei ole toetatud antud serveri poolt.
+        unsupported_response_type: Autoriseerimisserver ei toeta seda vastuse tüüpi.
+    flash:
+      applications:
+        create:
+          notice: Rakendus loodud.
+        destroy:
+          notice: Rakendus kustutatud.
+        update:
+          notice: Rakendus uuendatud.
+      authorized_applications:
+        destroy:
+          notice: Rakendus tagasi lükatud.
+    layouts:
+      admin:
+        nav:
+          applications: Rakendused
+          oauth2_provider: OAuth2 pakkuja
+      application:
+        title: OAuth autoriseerimine vajalik
+    scopes:
+      admin:read: lugeda kõiki andmeid serveril
+      admin:read:accounts: lugeda privaatset informatsiooni kõikidel kontodel
+      admin:read:reports: lugeda privaatset informatsiooni kõikide teavituste ja teavitatud kasutajate kohta
+      admin:write: muuta kõiki andmeid serveril
+      admin:write:accounts: teostada moderaatori tegevusi kontodel
+      admin:write:reports: teostada moderaatori tegevusi teavitustel
+      follow: muuta kontode suhteid
+      push: saada Teie teateid
+      read: lugeda kogu Teie konto andmeid
+      read:accounts: näha konto informatsiooni
+      read:blocks: näha Teie blokeeringuid
+      read:favourites: näha Teie lemmikuid
+      read:filters: näha Teie filtreid
+      read:follows: näha Teie jälgimisi
+      read:lists: näha Teie nimekirju
+      read:mutes: näha Teie vaigistusi
+      read:notifications: näha Teie teateid
+      read:reports: näha Teie teavitusi
+      read:search: otsida Teie nimel
+      read:statuses: näha kõiki staatuseid
+      write: redigeerida kogu Teie konto andmeid
+      write:accounts: redigeerida Teie profiili
+      write:blocks: blokeerida kontosid ja domeene
+      write:favourites: lisada staatuseid lemmikuks
+      write:filters: luua filtreid
+      write:follows: jälgida inimesi
+      write:lists: luua nimekirju
+      write:media: üles laadida meediafaile
+      write:mutes: vaigista inimesi ja vestluseid
+      write:notifications: puhasta Teie teateid
+      write:reports: teavitada teistest inimestest
+      write:statuses: avaldada staatuseid

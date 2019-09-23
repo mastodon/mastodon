@@ -5,17 +5,19 @@ ar:
     about_mastodon_html: ماستدون شبكة اجتماعية مبنية على أسُس بروتوكولات برمجيات الويب الحرة و مفتوحة المصدر. و هو لامركزي تمامًا كالبريد الإلكتروني.
     about_this: عن مثيل الخادوم هذا
     active_count_after: نشط
+    active_footnote: مستخدم نشيط شهريا (MAU)
     administered_by: 'يُديره:'
     api: واجهة برمجة التطبيقات
     apps: تطبيقات الأجهزة المحمولة
+    apps_platforms: إستخدم ماستودون في iOS، أندرويد وأنظمة أخرى
+    browse_directory: تصفح دليل المستخدمين وافرز بالمصالح
+    browse_public_posts: تصفح تيارًا مباشرًا مِن منشورات عامة على ماستدون
     contact: للتواصل معنا
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
     discover_users: اكتشف مستخدِمين
     documentation: الدليل
-    extended_description_html: |
-      <h3>مكان جيد للقواعد</h3>
-      <p>لم يتم بعد إدخال الوصف الطويل.</p>
+    federation_hint_html: بواسطة حساب في %{instance} ستتمكن من تتبع أناس في أي خادم ماستدون وأكثر.
     generic_description: "%{domain} هو سيرفر من بين سيرفرات الشبكة"
     get_apps: جرّب تطبيقا على الموبايل
     hosted_on: ماستدون مُستضاف على %{domain}
@@ -60,6 +62,7 @@ ar:
     media: الوسائط
     moved_html: "%{name} إنتقلَ إلى %{new_profile_link}:"
     network_hidden: إنّ المعطيات غير متوفرة
+    never_active: أبدا
     nothing_here: لا يوجد أي شيء هنا!
     people_followed_by: الأشخاص الذين يتبعهم %{name}
     people_who_follow: الأشخاص الذين يتبعون %{name}
@@ -194,6 +197,7 @@ ar:
       username: اسم المستخدم
       warn: تحذير
       web: الويب
+      whitelisted: في القائمة البيضاء
     action_logs:
       actions:
         assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
@@ -233,6 +237,7 @@ ar:
       copied_msg: تم إنشاء نسخة محلية للإيموجي بنجاح
       copy: نسخ
       copy_failed_msg: فشلت عملية إنشاء نسخة محلية لهذا الإيموجي
+      create_new_category: انشئ فئة جديدة
       created_msg: تم إنشاء الإيموجي بنجاح!
       delete: حذف
       destroyed_msg: تمت عملية تدمير الإيموجي بنجاح!
@@ -249,6 +254,7 @@ ar:
       shortcode: الترميز المُصَغّر
       shortcode_hint: على الأقل حرفين، و فقط رموز أبجدية عددية و أسطر سفلية
       title: الإيموجي الخاصة
+      uncategorized: غير مصنّف
       unlisted: غير مدرج
       update_failed_msg: تعذرت عملية تحديث ذاك الإيموجي
       updated_msg: تم تحديث الإيموجي بنجاح!
@@ -261,10 +267,13 @@ ar:
       feature_profile_directory: دليل الحسابات
       feature_registrations: التسجيلات
       feature_relay: المُرحّل الفديرالي
+      feature_spam_check: مكافح البريد المزعج
       feature_timeline_preview: معاينة الخيط الزمني
       features: الميّزات
       hidden_service: الفيديرالية مع الخدمات الخفية
       open_reports: فتح الشكاوى
+      pending_tags: وسوم في انتظار المراجعة
+      pending_users: مستخدمين في انتظار مراجعة
       recent_users: أحدث المستخدِمين
       search: البحث النصي الكامل
       single_user_mode: وضع المستخدِم الأوحد
@@ -290,6 +299,7 @@ ar:
           silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
+      private_comment: تعليق خاص
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
@@ -337,6 +347,7 @@ ar:
         all: كافتها
         limited: محدود
         title: الإشراف
+      private_comment: تعليق خاص
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
@@ -413,6 +424,8 @@ ar:
       custom_css:
         desc_html: يقوم بتغيير المظهر بواسطة سي أس أس يُحمَّل على كافة الصفحات
         title: سي أس أس مخصص
+      domain_blocks:
+        all: للجميع
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
@@ -437,6 +450,7 @@ ar:
           title: المستخدِمون المصرح لهم لإرسال الدعوات
       registrations_mode:
         modes:
+          approved: طلب الموافقة لازم عند إنشاء حساب
           none: لا أحد يمكنه إنشاء حساب
           open: يمكن للجميع إنشاء حساب
         title: طريقة إنشاء الحسابات
@@ -465,12 +479,15 @@ ar:
         desc_html: عرض الخيط العمومي على صفحة الاستقبال
         title: مُعاينة الخيط العام
       title: إعدادات الموقع
+      trends:
+        title: الوسوم المتداولة
     statuses:
       back_to_account: العودة إلى صفحة الحساب
       batch:
         delete: حذف
         nsfw_off: تعيينه كمنشور غير حساس
         nsfw_on: تعيينه كمنشور حساس
+      deleted: محذوف
       failed_to_execute: خطأ في التفعيل
       media:
         title: الوسائط
@@ -478,20 +495,14 @@ ar:
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
       with_media: تحتوي على وسائط
-    subscriptions:
-      callback_url: عاود الاتصال بالعنوان
-      confirmed: مؤكَّد
-      expires_in: تنتهي مدة صلاحيتها في
-      last_delivery: آخر إيداع
-      topic: الموضوع
     tags:
-      accounts: الحسابات
-      hidden: المخفية
-      hide: الإخفاء عن سجل الحسابات
-      name: الوسم
+      context: السياق
+      in_directory: "%{count} في سجل حسابات المستخدمين"
       title: الوسوم
-      unhide: إظهاره في سجل حسابات المستخدمين
-      visible: ظاهر
+      trending_right_now: متداول اللحظة
+      unique_uses_today: "%{count} منشورات اليوم"
+      unreviewed: غير مُراجَع
+      updated_msg: تم تحديث إعدادات الوسوم بنجاح
     title: الإدارة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -508,7 +519,9 @@ ar:
       subject: تقرير جديد ل%{instance} (#%{id})
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
+    animations_and_accessibility: الإتاحة والحركة
     confirmation_dialogs: نوافذ التأكيد
+    discovery: استكشاف
     sensitive_content: محتوى حساس
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
@@ -528,9 +541,11 @@ ar:
     apply_for_account: اطلب دعوة
     change_password: الكلمة السرية
     checkbox_agreement_html: أوافق على <a href="%{rules_path}" target="_blank">قواعد الخادم</a> و <a href="%{terms_path}" target="_blank">شروط الخدمة</a>
-    confirm_email: تأكيد عنوان البريد الإلكتروني
+    checkbox_agreement_without_rules_html: أوافق على <a href="%{terms_path}" target="_blank">شروط الخدمة</a>
     delete_account: حذف حساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
+    description:
+      prefix_sign_up: أنشئ حسابًا على ماستدون اليوم!
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
     invalid_reset_password_token: رمز إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية. يرجى طلب واحد جديد.
@@ -548,6 +563,11 @@ ar:
     reset_password: إعادة تعيين كلمة المرور
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
+    setup:
+      title: الضبط
+    status:
+      account_status: حالة الحساب
+      functional: حسابك جاهز.
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
@@ -575,26 +595,20 @@ ar:
       x_months: "%{count} شه"
       x_seconds: "%{count}ث"
   deletes:
-    bad_password_msg: محاولة جيدة يا هاكرز! كلمة السر خاطئة
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
-    warning_title: توافر المحتوى المنشور و المبعثَر
   directories:
     directory: سِجلّ الحسابات
-    enabled: إنّ حسابك الآن ضمن فهرس المستخدِمين.
     explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
     explore_mastodon: استكشف %{title}
-    people:
-      few: "%{count} شخص"
-      many: "%{count} شخص"
-      one: "%{count} شخص"
-      other: "%{count} شخص"
-      two: "%{count} شخص"
-      zero: "%{count} شخص"
+  domain_validator:
+    invalid_domain: ليس بإسم نطاق صالح
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
+    '406': This page is not available in the requested format.
     '410': إنّ الصفحة التي تبحث عنها لم تعد موجودة.
     '422':
       content: فشل التحقق الآمن. ربما منعتَ كعكات الكوكيز؟
@@ -603,6 +617,7 @@ ar:
     '500':
       content: نحن متأسفون، لقد حدث خطأ ما مِن جانبنا.
       title: هذه الصفحة خاطئة
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="%{apps_path}">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
   existing_username_validator:
     not_found_multiple: تعذر العثور على %{usernames}
@@ -643,6 +658,7 @@ ar:
     developers: المطورون
     more: المزيد…
     resources: الموارد
+    trending_now: المتداولة الآن
   generic:
     all: الكل
     changes_saved_msg: تم حفظ التعديلات بنجاح!
@@ -717,9 +733,6 @@ ar:
       too_many: لا يمكن إرفاق أكثر من 4 ملفات
   migrations:
     acct: username@domain للحساب الجديد
-    currently_redirecting: 'تم تحويل رابط ملفك الشخصي إلى:'
-    proceed: حفظ
-    updated_msg: تم تحديث إعدادات ترحيل حسابك بنجاح!
   moderation:
     title: الإشراف
   notification_mailer:
@@ -784,6 +797,7 @@ ar:
     errors:
       already_voted: لقد قمت بالتصويت على استطلاع الرأي هذا مِن قبل
       duplicate_options: يحتوي على عناصر مكررة
+      duration_too_long: بعيد جدا في المستقبَل
       duration_too_short: مبكّر جدا
       expired: لقد انتهى استطلاع الرأي
   preferences:
@@ -796,6 +810,7 @@ ar:
     last_active: آخر نشاط
     most_recent: الأحدث
     moved: هاجر
+    mutual: متبادل
     primary: رئيسي
     relationship: العلاقة
     remove_selected_domains: احذف كافة المتابِعين القادمين مِن النطاقات المختارة
@@ -818,10 +833,6 @@ ar:
     reply:
       proceed: المواصلة إلى الرد
       prompt: 'ترغب في الرد على هذا التبويق:'
-  remote_unfollow:
-    error: خطأ
-    title: العنوان
-    unfollowed: غير متابَع
   sessions:
     activity: آخر نشاط
     browser: المتصفح
@@ -961,6 +972,7 @@ ar:
       title: المغادرة بأرشيف الحساب
     warning:
       review_server_policies: مراجعة شروط السيرفر
+      statuses: 'خصيصا لـ:'
       subject:
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
@@ -968,6 +980,7 @@ ar:
       title:
         disable: الحساب مُجمَّد
         none: تحذير
+        silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:
       edit_profile_action: تهيئة الملف الشخصي

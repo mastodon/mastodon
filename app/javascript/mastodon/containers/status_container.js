@@ -58,6 +58,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onReply (status, router) {
     dispatch((_, getState) => {
       let state = getState();
+
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
         dispatch(openModal('CONFIRM', {
           message: intl.formatMessage(messages.replyMessage),
@@ -79,7 +80,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onReblog (status, e) {
-    if (e.shiftKey || !boostModal) {
+    if ((e && e.shiftKey) || !boostModal) {
       this.onModalReblog(status);
     } else {
       dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));

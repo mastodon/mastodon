@@ -14,8 +14,7 @@ eu:
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
         bot: Kontu honek nagusiki automatizatutako ekintzak burutzen ditu eta agian ez du inork monitorizatzen
         context: Iragazkia aplikatzeko testuinguru bat edo batzuk
-        digest: Soilik jarduerarik gabeko epe luze bat eta gero, eta soilik ez zeudela mezu pertsonalen bat jaso baduzu
-        discoverable_html: <a href="%{path}" target="_blank">Direktorioa</a>k Jendea interesen eta jardueraren arabera aurkitzea ahalbidetzen du. Gutxienez %{min_followers} jarraitzaile behar dira bertan agertzeko
+        digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu, besterik ez
         email: Baieztapen e-mail bat bidaliko zaizu
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
         header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
@@ -26,7 +25,7 @@ eu:
         password: Erabili 8 karaktere gutxienez
         phrase: Bat egingo du Maiuskula/minuskula kontuan hartu gabe eta edukiaren abisua kontuan hartu gabe
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
-        setting_aggregate_reblogs: Ez erakutsi buktzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die besterik ez)
+        setting_aggregate_reblogs: Ez erakutsi bultzada berriak berriki bultzada jaso duten toot-entzat (berriki jasotako bultzadei eragiten die bakarrik)
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
@@ -34,6 +33,7 @@ eu:
         setting_hide_network: Nor jarraitzen duzun eta nork jarraitzen zaituen ez da bistaratuko zure profilean
         setting_noindex: Zure profil publiko eta Toot-en orrietan eragina du
         setting_show_application: Tootak bidaltzeko erabiltzen duzun aplikazioa zure tooten ikuspegi xehetsuan bistaratuko da
+        setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
         username: Zure erabiltzaile-izena bakana izango da %{domain} domeinuan
         whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
       featured_tag:
@@ -108,7 +108,10 @@ eu:
         setting_show_application: Utzi agerian tootak bidaltzeko erabilitako aplikazioa
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
         setting_theme: Gunearen gaia
+        setting_trends: Erakutsi gaurko joerak
         setting_unfollow_modal: Erakutsi baieztapen elkarrizketa-koadroa inor jarraitzeari utzi aurretik
+        setting_use_blurhash: Erakutsi gradiente koloretsuak ezkutatutako multimediaren ordez
+        setting_use_pending_items: Modu geldoa
         severity: Larritasuna
         type: Inportazio mota
         username: Erabiltzaile-izena
@@ -118,8 +121,8 @@ eu:
         name: Traola
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
-        must_be_following: Blokeatu zuk jarraitzen ez dituzunen jakinarazpenak
-        must_be_following_dm: Blokeatu zuk jarraitzen ez dituzunen mezu zuzenak
+        must_be_following: Blokeatu zuk jarraitzen ez dituzu horien jakinarazpenak
+        must_be_following_dm: Blokeatu zuk jarraitzen ez dituzun horien mezu zuzenak
       invite_request:
         text: Zergatik elkartu nahi duzu?
       notification_emails:
@@ -131,6 +134,9 @@ eu:
         pending_account: Bidali e-mail bat kontu bat berrikusi behar denean
         reblog: Bidali e-mail bat norbaitek zure mezuari bultzada ematen badio
         report: Bidali e-maila txosten berri bat aurkezten denean
+      tag:
+        trendable: Baimendu traola hau joeretan agertzea
+        usable: Baimendu toot-ek traola hau erabiltzea
     'no': Ez
     recommended: Aholkatua
     required:

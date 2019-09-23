@@ -6,12 +6,14 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :hashtag, :emoji, :identity_proof
+                     :moved_to, :property_value, :identity_proof,
+                     :discoverable
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
-             :url, :manually_approves_followers
+             :url, :manually_approves_followers,
+             :discoverable
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
@@ -39,11 +41,17 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   delegate :moved?, to: :object
 
   def id
-    account_url(object)
+    object.instance_actor? ? instance_actor_url : account_url(object)
   end
 
   def type
-    object.bot? ? 'Service' : 'Person'
+    if object.instance_actor?
+      'Application'
+    elsif object.bot?
+      'Service'
+    else
+      'Person'
+    end
   end
 
   def following
@@ -55,7 +63,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def inbox
-    account_inbox_url(object)
+    object.instance_actor? ? instance_actor_inbox_url : account_inbox_url(object)
   end
 
   def outbox
@@ -95,7 +103,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def url
-    short_account_url(object)
+    object.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(object)
   end
 
   def avatar_exists?
@@ -130,6 +138,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   class TagSerializer < ActivityPub::Serializer
+    context_extensions :hashtag
+
     include RoutingHelper
 
     attributes :type, :href, :name

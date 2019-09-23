@@ -2,9 +2,14 @@
 de:
   simple_form:
     hints:
+      account_alias:
+        acct: Gib den benutzernamen@domain des Kontos an, von dem du umziehen möchtest
+      account_migration:
+        acct: Gib den benutzernamen@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
         text: Du kannst Beitragssyntax benutzen, wie z.B. URLs, Hashtags und Erwähnungen
       admin_account_action:
+        include_statuses: Der Benutzer wird sehen, welche Beiträge diese Maßnahme verursacht haben
         send_email_notification: Benutzer_in wird Bescheid gegeben, was mit dem Konto geschehen ist
         text_html: Optional. Du kannst Beitragssyntax nutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
@@ -14,8 +19,10 @@ de:
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
         bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
         context: Ein oder mehrere Kontexte, wo der Filter aktiv werden soll
+        current_password: Aus Sicherheitsgründen gib bitte das Passwort des aktuellen Kontos ein
+        current_username: Um das zu bestätigen, gib den Benutzernamen des aktuellen Kontos ein
         digest: Wenn du eine lange Zeit inaktiv bist, wird dir eine Zusammenfassung von Erwähnungen zugeschickt, die du in deiner Abwesenheit empfangen hast
-        discoverable_html: Das <a href="%{path}" target="_blank">Verzeichnis</a> erlaubt es dein Profil durch deine Hashtags und deine Aktivitäten zu entdecken. Voraussetzung ist allerdings mindestens %{min_followers} Folger_innen
+        discoverable: Das Profilverzeichnis ist eine andere Möglichkeit, mit der dein Konto ein größeres Publikum erreichen kann
         email: Du wirst eine Bestätigungs-E-Mail erhalten
         fields: Du kannst bis zu 4 Elemente auf deinem Profil anzeigen lassen, die als Tabelle dargestellt werden
         header: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
@@ -34,16 +41,24 @@ de:
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_show_application: Die Anwendung die du nutzst wird in der detaillierten Ansicht deiner Beiträge angezeigt
+        setting_use_blurhash: Die Farbverläufe basieren auf den Farben der versteckten Medien, aber verstecken irgendwelche Details
+        setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken anstatt automatisch zu scrollen
         username: Dein Profilname wird auf %{domain} einzigartig sein
         whole_word: Wenn das Schlagwort nur aus Buchstaben und Zahlen besteht, wird es nur angewendet, wenn es dem ganzen Wort entspricht
+      domain_allow:
+        domain: Diese Domain kann Daten von diesem Server abrufen und eingehende Daten werden verarbeitet und gespeichert
       featured_tag:
         name: 'Du möchtest vielleicht einen von diesen benutzen:'
+      form_challenge:
+        current_password: Du betrittst einen sicheren Bereich
       imports:
         data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
       invite_request:
         text: Dies wird uns helfen deine Anmeldungsanfrage besser zu verarbeiten
       sessions:
         otp: 'Gib die Zwei-Faktor-Authentifizierung von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
+      tag:
+        name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
       user:
         chosen_languages: Wenn aktiviert, werden nur Beiträge in den ausgewählten Sprachen auf den öffentlichen Zeitleisten angezeigt
     labels:
@@ -51,9 +66,14 @@ de:
         fields:
           name: Bezeichnung
           value: Inhalt
+      account_alias:
+        acct: Adresse des alten Kontos
+      account_migration:
+        acct: Adresse des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
       admin_account_action:
+        include_statuses: Meldungen der E-Mail beifügen
         send_email_notification: Benachrichtige den Nutzer per E-Mail
         text: Eigene Warnung
         type: Aktion
@@ -108,7 +128,10 @@ de:
         setting_show_application: Anwendung preisgeben, die benutzt wurde um Beiträge zu versenden
         setting_system_font_ui: Standardschriftart des Systems verwenden
         setting_theme: Theme
+        setting_trends: Heutige Trends anzeigen
         setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemandem entfolgt wird
+        setting_use_blurhash: Farbverlauf für versteckte Medien anzeigen
+        setting_use_pending_items: Langsamer Modus
         severity: Schweregrad
         type: Art des Imports
         username: Profilname
@@ -120,6 +143,8 @@ de:
         must_be_follower: Benachrichtigungen von Profilen blockieren, die mir nicht folgen
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge
         must_be_following_dm: Private Nachrichten von Profilen, denen ich nicht folge, blockieren
+      invite:
+        comment: Kommentar
       invite_request:
         text: Warum möchtest du beitreten?
       notification_emails:
@@ -131,6 +156,12 @@ de:
         pending_account: E-Mail senden, wenn ein neues Benutzerkonto zur Überprüfung aussteht
         reblog: E-Mail senden, wenn jemand meinen Beitrag teilt
         report: E-Mail senden, wenn ein neuer Bericht vorliegt
+        trending_tag: E-Mail senden, wenn ein ausstehender Hashtag angesagt ist
+      tag:
+        listable: Erlaube diesem Hashtag im Profilverzeichnis zu erscheinen
+        name: Hashtag
+        trendable: Erlaube es diesen Hashtag in den Trends erscheinen zu lassen
+        usable: Beiträge erlauben, diesen Hashtag zu verwenden
     'no': Nein
     recommended: Empfohlen
     required:

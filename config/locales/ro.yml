@@ -4,7 +4,6 @@ ro:
     hosted_on: Mastodon găzduit de %{domain}
   auth:
     change_password: Parolă
-    confirm_email: Confirmă email
     delete_account: Șterge contul
     delete_account_html: Dacă vrei să ștergi acest cont <a href="%{path}">poți începe aici</a>. Va trebui să confirmi această acțiune.
     didnt_get_confirmation: Nu ai primit instrucțiunile de confirmare?
@@ -44,22 +43,17 @@ ro:
       x_days: "%{count}z"
       x_months: "%{count}l"
   deletes:
-    bad_password_msg: Bună încercare, hackere! Parolă incorectă
     confirm_password: Introdu parola curentă pentru a-ți verifica identitatea
-    description_html: Această acțiune este <strong>permanentă și ireversibilă,</strong> elimină conținutul și dezactivează contul tău. Acest username va rămâne permanent rezervat pentru a evita furtul de identitate.
     proceed: Șterge contul
     success_msg: Contul tău a fost șterg. Nu mai poate fi recuperat :D
-    warning_html: Doar ștergerea conținutului de pe acest server este garantată. Conținutul tău care a fost redistribuit în alte instațe e posibil să lase urme. Serverele deconecate sau care nu mai sunt abonate la actualizările contului tău nu își vor mai actualiza baza de date.
   directories:
     explanation: Descoperă oameni și companii în funcție de interesele lor
     explore_mastodon: Explorează %{title}
-    people:
-      few: "%{count} persoană"
-      one: "%{count} persoană"
-      other: "%{count} oameni"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nu ai permisiunea să vizitezi această pagină.
     '404': Pagina pe care o cauți nu există.
+    '406': This page is not available in the requested format.
     '410': Pagina pe care o cauți nu mai există.
     '422':
       content: Verificarea securității a eșuat. Ai blocat cookiurile?
@@ -68,6 +62,7 @@ ro:
     '500':
       content: Ne pare rău, dar ceva a funcționat greșit. Încercați din nou!?
       title: Această pagină nu este corectă
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Pentru a utiliza o aplicație web Mastodon, te rog activează JavaScript. Alternativ, încearcă una din <a href="%{apps_path}">aplicațiile native</a> Mastodon pentru platforma ta.
   exports:
     archive_takeout:

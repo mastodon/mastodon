@@ -33,7 +33,7 @@ class InstancePresenter
   end
 
   def sample_accounts
-    Rails.cache.fetch('sample_accounts', expires_in: 12.hours) { Account.discoverable.popular.limit(3) }
+    Rails.cache.fetch('sample_accounts', expires_in: 12.hours) { Account.local.discoverable.popular.limit(3) }
   end
 
   def version_number

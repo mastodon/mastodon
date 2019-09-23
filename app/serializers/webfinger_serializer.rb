@@ -10,17 +10,25 @@ class WebfingerSerializer < ActiveModel::Serializer
   end
 
   def aliases
-    [short_account_url(object), account_url(object)]
+    if object.instance_actor?
+      [instance_actor_url]
+    else
+      [short_account_url(object), account_url(object)]
+    end
   end
 
   def links
-    [
-      { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: short_account_url(object) },
-      { rel: 'http://schemas.google.com/g/2010#updates-from', type: 'application/atom+xml', href: account_url(object, format: 'atom') },
-      { rel: 'self', type: 'application/activity+json', href: account_url(object) },
-      { rel: 'salmon', href: api_salmon_url(object.id) },
-      { rel: 'magic-public-key', href: "data:application/magic-public-key,#{object.magic_key}" },
-      { rel: 'http://ostatus.org/schema/1.0/subscribe', template: "#{authorize_interaction_url}?uri={uri}" },
-    ]
+    if object.instance_actor?
+      [
+        { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: about_more_url(instance_actor: true) },
+        { rel: 'self', type: 'application/activity+json', href: instance_actor_url },
+      ]
+    else
+      [
+        { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: short_account_url(object) },
+        { rel: 'self', type: 'application/activity+json', href: account_url(object) },
+        { rel: 'http://ostatus.org/schema/1.0/subscribe', template: "#{authorize_interaction_url}?uri={uri}" },
+      ]
+    end
   end
 end

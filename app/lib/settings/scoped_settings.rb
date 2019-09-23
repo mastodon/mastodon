@@ -4,6 +4,7 @@ module Settings
   class ScopedSettings
     DEFAULTING_TO_UNSCOPED = %w(
       theme
+      noindex
     ).freeze
 
     def initialize(object)

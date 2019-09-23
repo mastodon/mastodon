@@ -31,7 +31,7 @@ const loadImage = inputFile => new Promise((resolve, reject) => {
 });
 
 const getOrientation = (img, type = 'image/png') => new Promise(resolve => {
-  if (!['image/jpeg', 'image/webp'].includes(type)) {
+  if (type !== 'image/jpeg') {
     resolve(1);
     return;
   }
@@ -66,6 +66,14 @@ const processImage = (img, { width, height, orientation, type = 'image/png' }) =
   }
 
   context.drawImage(img, 0, 0, width, height);
+
+  // The Tor Browser and maybe other browsers may prevent reading from canvas
+  // and return an all-white image instead. Assume reading failed if the resized
+  // image is perfectly white.
+  const imageData = context.getImageData(0, 0, width, height);
+  if (imageData.data.every(value => value === 255)) {
+    throw 'Failed to read from canvas';
+  }
 
   canvas.toBlob(resolve, type);
 });

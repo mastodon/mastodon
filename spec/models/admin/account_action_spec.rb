@@ -58,8 +58,8 @@ RSpec.describe Admin::AccountAction, type: :model do
       end.to change { Admin::ActionLog.count }.by 1
     end
 
-    it 'calls queue_email!' do
-      expect(account_action).to receive(:queue_email!)
+    it 'calls process_email!' do
+      expect(account_action).to receive(:process_email!)
       subject
     end
 
