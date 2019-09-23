@@ -48,6 +48,7 @@ nl:
   accounts:
     choices_html: "Aanbevelingen van %{name}:"
     endorsements_hint: Je kunt mensen die je volgt in de webomgeving aanbevelen, waarna ze dan hier zullen verschijnen.
+    featured_tags_hint: Je kunt specifieke hashtags uitlichten, waarna ze dan hier zullen verschijnen.
     follow: Volgen
     followers:
       one: Volger
@@ -428,6 +429,9 @@ nl:
       custom_css:
         desc_html: Het uiterlijk van deze server met CSS aanpassen
         title: Aangepaste CSS
+      default_noindex:
+        desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
+        title: Toots van gebruikers standaard niet door zoekmachines laten indexeren
       domain_blocks:
         all: Naar iedereen
         disabled: Naar niemand
