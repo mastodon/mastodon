@@ -35,8 +35,10 @@ hu:
     terms: Felhasználási feltételek
     unavailable_content: A tartalom nem elérhető
     unavailable_content_description:
-      reason: 'Oka:'
+      reason: 'Indok:'
       rejecting_media: A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.
+      silenced: A szerver hozzászólásai csak a saját hírvonalon jelennek meg, ha követik a szerzőt.
+      suspended: Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.
     user_count_after:
       one: felhasználónk
       other: felhasználónk
@@ -44,6 +46,7 @@ hu:
     what_is_mastodon: Mi a Mastodon?
   accounts:
     choices_html: "%{name} választásai:"
+    endorsements_hint: A webes felületen jóváhagyhatod a követett embereket, és itt jelennek meg.
     follow: Követés
     followers:
       one: Követő
@@ -424,10 +427,14 @@ hu:
       custom_css:
         desc_html: Változtasd meg a kinézetet ebben a CSS-ben, mely minden oldalon be fog töltődni
         title: Egyedi CSS
+      default_noindex:
+        desc_html: Olyan felhasználókat érinti, akik nem módosították ezt a beállítást
       domain_blocks:
         all: Mindenkinek
         disabled: Senkinek
         title: Domain tiltások megjelenitése
+      domain_blocks_rationale:
+        title: Mutasd meg az indokolást
       hero:
         desc_html: A kezdőoldalon látszik. Legalább 600x100px méret javasolt. Ha nincs beállítva, a szerver bélyegképet használjuk
         title: Hősi kép
@@ -497,6 +504,7 @@ hu:
         delete: Törlés
         nsfw_off: Szenzitív megjelölés törlése
         nsfw_on: Megjelölés szenzitív tartalomként
+      deleted: Törölve
       failed_to_execute: Végrehajtás sikertelen
       media:
         title: Média
@@ -511,6 +519,10 @@ hu:
       context: Környezet
       directory: Katalógusban
       in_directory: "%{count} a katalógusban"
+      last_active: Utoljára aktív
+      most_popular: Legnépszerűbb
+      most_recent: Legutóbbi
+      name: Címke
       review: Engedélyezés állapota
       reviewed: Engedélyezett
       title: Hashtagek
@@ -536,6 +548,12 @@ hu:
     new_trending_tag:
       body: 'A #%{name} hashtag trendi a mai napon, de még nem engedélyeztük eddig. Nem mutatjuk meg nyilvánosan, hacsak nem engedélyezed. Csak simán mentsd az űrlapot, ha soha többé nem akarsz erről a hashtagről hallani.'
       subject: 'Új hashtag (#%{name}) engedélyezésre vár a %{instance} szerveren'
+  aliases:
+    add_new: Alias készítése
+    created_msg: Elkészült az új aliasod. Most már elkezdheted a költöztetést a régi fiókból.
+    deleted_msg: Sikeresen eltávolítottad az aliast. A fiókról erre a fiókra való áttérés már nem lehetséges.
+    hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítését a régi fiókból indul el. </strong>
+    remove: Alias szétkapcsolása
   appearance:
     advanced_web_interface: Haladó webes felület
     advanced_web_interface_hint: 'Ha szeretnéd, a teljes képernyőszélességet felhasználhatod. A haladó webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi infót láthass, amennyit csak akarsz: Saját idővonal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
@@ -565,6 +583,9 @@ hu:
     checkbox_agreement_without_rules_html: Egyetértek a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
+    description:
+      prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz erre a Mastodon szerverre!"
+      prefix_sign_up: Regisztrláj még ma a Mastodonra!
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
     forgot_password: Elfelejtetted a jelszavad?
     invalid_reset_password_token: A jelszó-visszaállítási kulcs nem megfelelő vagy lejárt. Kérlek generálj egy újat.
