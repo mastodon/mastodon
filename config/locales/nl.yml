@@ -549,10 +549,14 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: 'Nieuwe rapportage op %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'De hashtag #%{name} is vandaag trending, maar is nog niet beoordeeld. Het wordt niet in het openbaar getoond alvorens je de hashtag goedkeurt. Je kunt ook het formulier zoals het nu is opslaan, waarna je er niks meer over zult horen.'
+      subject: 'Nieuwe hashtag te beoordelen op %{instance} (#%{name})'
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
     deleted_msg: De alias is succesvol verwijderd. Verhuizen vanaf dat account naar dit account is niet meer mogelijk.
+    hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
     advanced_web_interface: Geavanceerde webomgeving
@@ -580,9 +584,11 @@ nl:
     apply_for_account: Een uitnodiging aanvragen
     change_password: Wachtwoord
     checkbox_agreement_html: Ik ga akkoord met de <a href="%{rules_path}" target="_blank">regels van deze server</a> en de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
+    checkbox_agreement_without_rules_html: Ik ga akkoord met de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     description:
+      prefix_invited_by_user: "@%{name} nodigt je hier bij uit voor deze Mastodonserver!"
       prefix_sign_up: Registreer je vandaag nog op Mastodon!
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
