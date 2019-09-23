@@ -1,4 +1,3 @@
----
 hu:
   devise:
     confirmations:
@@ -46,6 +45,15 @@ hu:
         extra: Amennyiben nem te kezdeményezted a módosítást, kérjük tekintsd ezt az e-mailt tárgytalannak. A Mastodon fiókodhoz tartozó jelszavad változatlan marad mindaddig, amíg újat nem hozol létre a fenti linkre kattintva.
         subject: 'Mastodon: Jelszó visszaállítási lépések'
         title: Jelszó visszaállítása
+      two_factor_disabled:
+        subject: 'Kétlépcsős azonosítás letiltva'
+        title: Kétlépcsős hitelesítés engedélyezve
+      two_factor_enabled:
+        subject: 'Kétlépcsős azonosítás engedélyezve'
+      two_factor_recovery_codes_changed:
+        explanation: A korábbi helyreállítási kódokat letiltottuk, és újakat generáltunk.
+        subject: 'Kétlépcsős helyreállítási kódok újra létrejöttek'
+        title: A kétlépcsős kódok megváltozott
       unlock_instructions:
         subject: 'Mastodon: Feloldási lépések'
     omniauth_callbacks:
@@ -77,7 +85,7 @@ hu:
   errors:
     messages:
       already_confirmed: már meg lett erősítve, kérjük jelentkezz be
-      confirmation_period_expired: "%{period} belül kellett megerősíteni, kérjük igényelj újat"
+      confirmation_period_expired: '%{period} belül kellett megerősíteni, kérjük igényelj újat'
       expired: lejárt, kérjük igényelj újat
       not_found: nem található
       not_locked: nincs lezárva
