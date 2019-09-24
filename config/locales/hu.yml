@@ -812,11 +812,26 @@ hu:
     cancelled_msg: Az átirányítást sikeresen töröltük.
     errors:
       already_moved: ugyanaz a fiók, ahová már elköltöztél
-      missing_also_known_as: nem referálja vissza ezt a fiókot
+      missing_also_known_as: nem hivatkozza vissza ezt a fiókot
       move_to_self: nem lehet az aktuális fiók
       not_found: nem található
       on_cooldown: Még tart a türelmi idő
     followers_count: Követő a költözéskor
+    incoming_migrations: Más fiókból költöző
+    incoming_migrations_html: Ahhoz, hogy egy másik fiókból ebbe költözz, először <a href="%{path}">hozz létre egy fiók aliast</a>.
+    moved_msg: A fiókod mostantól ide %{acct} irányít át, a követőidet átköltöztetjük.
+    not_redirecting: A fiókod nincs átirányítva jelenleg sehová sem.
+    on_cooldown: Nemrég költöztetted a fiókod. Ez a funkció %{count} nap múlva lesz megint elérhető.
+    past_migrations: Eddigi költözések
+    proceed_with_move: Követők átköltöztetése
+    redirecting_to: A fiókod át van irányítva ide %{acct}.
+    warning:
+      backreference_required: Az új fiókot először be kell úgy állítani, hogy ezt visszahivatkozza
+      before: 'Mielőtt továbbmész, olvasd el ezeket kérlek figyelmesen:'
+      cooldown: A költözés után van egy türelmi idő, mely alatt nem tudsz majd újra költözni
+      disabled_account: A jelenlegi fiókod nem lesz teljesen használható ezután. Viszont elérhető lesz majd az adatexport funkció, valamint a reaktiválás is.
+      followers: Ez a művelet az összes követődet a jelenlegi fiókról az újra fogja költöztetni
+      other_data: Más adatot nem fogunk automatikusan mozgatni
   moderation:
     title: Moderáció
   notification_mailer:
@@ -961,6 +976,7 @@ hu:
   settings:
     account: Fiók
     account_settings: Fiók beállítások
+    aliases: Fiók aliasok
     appearance: Megjelenés
     authorized_apps: Jóváhagyott alkalmazások
     back: Vissza a Mastodonhoz
@@ -1140,6 +1156,7 @@ hu:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
         silence: A fiókod korlátozott állapotában csak a követőid láthatják a tülkjeidet, valamint nem kerülsz rá nyilvános idővonalakra. Ugyanakkor mások manuálisan még követhetnek.
         suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
+      get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
       review_server_policies: Szerver szabályzat átnézése
       subject:
         disable: A fiókodat %{acct} befagyasztották
