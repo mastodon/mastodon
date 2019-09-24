@@ -660,6 +660,12 @@ hu:
       caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
       data_removal: A tülkjeid és minden más adatod véglegesen törlődni fog
       email_change_html: <a href="%{path}">Megváltoztathatod az email címed</a> a fiókod törlése nélkül
+      email_contact_html: Ha még mindig nem érkezik meg, emailezhetsz ide <a href="mailto:%{email}">%{email}</a> segítségért
+      email_reconfirmation_html: Ha nem kaptad meg a megerősítő emailt, <a href="%{path}">itt újrakérheted</a>
+      irreversible: Nem fogod tudni visszaállítani vagy újraaktiválni a fiókodat
+      more_details_html: A részletekért nézd meg az <a href="%{terms_path}">adatvédelmi szabályzatot</a>.
+      username_available: A fiókod ismét elérhetővé válik
+      username_unavailable: A fiókod elérhetetlen marad
   directories:
     directory: Profilok
     explanation: Találj másokra érdeklődésük alapján
@@ -667,10 +673,10 @@ hu:
   domain_validator:
     invalid_domain: nem egy valódi domain név
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': A küldött kérés érvénytelen vagy hibás volt.
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
-    '406': This page is not available in the requested format.
+    '406': Ez az oldal a kért formátumban nem áll rendelkezésre.
     '410': Az általad keresett oldal már nem létezik.
     '422':
       content: Megerősítés sikertelen. Nem tiltottad le esetleg a sütiket?
@@ -679,7 +685,7 @@ hu:
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
-    '503': The page could not be served due to a temporary server failure.
+    '503': Az oldalt nem tudjuk megmutatni átmeneti szerverprobléma miatt.
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   existing_username_validator:
     not_found: ezzel a névvel nem találtunk helyi felhasználót
@@ -703,6 +709,7 @@ hu:
     add_new: Új hozzáadása
     errors:
       limit: Már kiemelted a maximálisan engedélyezett számú hashtaget
+    hint_html: "<strong>Mik a kiemelt hashtagek?</strong> Ezek állandóan megjelennek a nyilvános profilodon és lehetővé teszik, hogy mások kifejezetten az ezekhez tartozó tülkjeidet böngésszék. Jó eszköz ez kreatív munkák vagy hosszútávú projektek nyomonkövetésére."
   filters:
     contexts:
       home: Saját idővonal
@@ -723,10 +730,12 @@ hu:
     developers: Fejlesztőknek
     more: Többet…
     resources: Segédanyagok
+    trending_now: Most trendi
   generic:
     all: Mind
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
+    no_batch_actions_available: Ezen az oldalon nem elérhetőek kötegelt műveletek
     order_by: Rendezés
     save_changes: Változások mentése
     validation_errors:
@@ -798,6 +807,16 @@ hu:
       too_many: Maximum négy fájlt csatolhatsz a tülkhöz
   migrations:
     acct: Az új fiók felhasznalonev@domain formátumban
+    cancel: Átirányítás törlése
+    cancel_explanation: Az átirányítás törlése reaktiválja a fiókodat, de nem fogja visszahozni azokat a követőidet, akik közben a másik fiókhoz kerültek át.
+    cancelled_msg: Az átirányítást sikeresen töröltük.
+    errors:
+      already_moved: ugyanaz a fiók, ahová már elköltöztél
+      missing_also_known_as: nem referálja vissza ezt a fiókot
+      move_to_self: nem lehet az aktuális fiók
+      not_found: nem található
+      on_cooldown: Még tart a türelmi idő
+    followers_count: Követő a költözéskor
   moderation:
     title: Moderáció
   notification_mailer:
