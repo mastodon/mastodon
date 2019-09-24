@@ -1570,6 +1570,11 @@ a.account__display-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media screen and (max-width: 1550px) {
+    resize: vertical;
+  }
+
 }
 
 .display-name__html {
@@ -1878,6 +1883,13 @@ a.account__display-name {
         width: 285px;
         pointer-events: auto;
         height: 100%;
+
+        @media screen and (max-width: 1550px) {
+          overflow-y: scroll;
+          overflow-x: hidden;
+          padding-right: 10px;
+        }
+
       }
     }
 
@@ -2261,6 +2273,12 @@ a.account__display-name {
   height: calc(100% - 10px);
   overflow-y: hidden;
 
+  @media screen and (max-width: 1550px) {
+    height: auto;
+    min-height: 100%;
+    overflow-y: visible;
+  }
+
   .navigation-bar {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -2287,6 +2305,11 @@ a.account__display-name {
     background-color: $white;
     border-radius: 4px 4px 0 0;
     flex: 0 1 auto;
+
+    @media screen and (max-width: 1550px) {
+      overflow-y: visible;
+    }
+
   }
 
   .autosuggest-textarea__textarea {
