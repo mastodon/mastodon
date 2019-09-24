@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/ianheggie/health_check
+  revision: 0b799ead604f900ed50685e9b2d469cd2befba5b
+  ref: 0b799ead604f900ed50685e9b2d469cd2befba5b
+  specs:
+    health_check (4.0.0.pre)
+      rails (>= 4.0)
+
+GIT
   remote: https://github.com/rtomayko/posix-spawn
   revision: 58465d2e213991f8afb13b984854a49fcdcc980c
   ref: 58465d2e213991f8afb13b984854a49fcdcc980c
@@ -161,7 +169,7 @@ GEM
     case_transform (0.2)
       activesupport
     charlock_holmes (0.7.6)
-    chewy (5.0.1)
+    chewy (5.1.0)
       activesupport (>= 4.0)
       elasticsearch (>= 2.0.0)
       elasticsearch-dsl
@@ -278,8 +286,6 @@ GEM
       concurrent-ruby (~> 1.0)
     hashdiff (1.0.0)
     hashie (3.6.0)
-    health_check (3.0.0)
-      railties (>= 5.0)
     heapy (0.1.4)
     highline (2.0.1)
     hiredis (0.6.3)
@@ -687,7 +693,7 @@ DEPENDENCIES
   capistrano-yarn (~> 2.0)
   capybara (~> 3.29)
   charlock_holmes (~> 0.7.6)
-  chewy (~> 5.0)
+  chewy (~> 5.1)
   cld3 (~> 3.2.4)
   climate_control (~> 0.2)
   concurrent-ruby
@@ -708,7 +714,7 @@ DEPENDENCIES
   fuubar (~> 2.4)
   goldfinger (~> 2.1)
   hamlit-rails (~> 0.2)
-  health_check (~> 3.0)
+  health_check!
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
   http (~> 3.3)
