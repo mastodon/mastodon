@@ -48,6 +48,7 @@ hu:
   accounts:
     choices_html: "%{name} választásai:"
     endorsements_hint: A webes felületen jóváhagyhatod a követett embereket, és itt jelennek meg.
+    featured_tags_hint: Szerepeltethetsz bizonyos hashtageket, melyek itt jelennek majd meg.
     follow: Követés
     followers:
       one: Követő
@@ -430,10 +431,12 @@ hu:
         title: Egyedi CSS
       default_noindex:
         desc_html: Olyan felhasználókat érinti, akik nem módosították ezt a beállítást
+        title: Alapértelmezésként ne indexeljék a keresők a felhasználóinkat
       domain_blocks:
         all: Mindenkinek
         disabled: Senkinek
         title: Domain tiltások megjelenitése
+        users: Bejelentkezett helyi felhasználóknak
       domain_blocks_rationale:
         title: Mutasd meg az indokolást
       hero:
@@ -587,6 +590,7 @@ hu:
     description:
       prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz erre a Mastodon szerverre!"
       prefix_sign_up: Regisztrláj még ma a Mastodonra!
+      suffix: Egy fiókkal követhetsz másokat, tülkölhetsz, eszmét cserélhetsz más Mastodon szerverek felhasználóival!
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
     forgot_password: Elfelejtetted a jelszavad?
     invalid_reset_password_token: A jelszó-visszaállítási kulcs nem megfelelő vagy lejárt. Kérlek generálj egy újat.
@@ -613,6 +617,7 @@ hu:
       confirming: Várakozás a visszaigazolásra.
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
+      redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
     trouble_logging_in: Problémád van a bejelentkezéssel?
   authorize_follow:
     already_following: Már követed ezt a felhasználót
@@ -625,6 +630,11 @@ hu:
       return: Visszatérés a felhasználó profiloldalára
       web: Megtekintés a weben
     title: '%{acct} követése'
+  challenge:
+    confirm: Folytatás
+    hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
+    invalid_password: Érvénytelen jelszó
+    prompt: Add meg a jelszót a folytatáshoz
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -640,9 +650,16 @@ hu:
       x_months: "%{count}h"
       x_seconds: "%{count}mp"
   deletes:
+    challenge_not_passed: A beírt információ helytelen
     confirm_password: Személyazonosságod megerősítéséhez írd be a jelenlegi jelszavad
+    confirm_username: Add meg a felhasználói nevedet a jóváhagyáshoz
     proceed: Felhasználói fiók törlése
     success_msg: Felhasználói fiókod sikeresen töröltük
+    warning:
+      before: 'Mielőtt továbbmész, kérlek olvasd el ezt alaposan:'
+      caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
+      data_removal: A tülkjeid és minden más adatod véglegesen törlődni fog
+      email_change_html: <a href="%{path}">Megváltoztathatod az email címed</a> a fiókod törlése nélkül
   directories:
     directory: Profilok
     explanation: Találj másokra érdeklődésük alapján
