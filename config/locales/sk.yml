@@ -645,6 +645,7 @@ sk:
       x_seconds: "%{count}sek"
   deletes:
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
+    confirm_username: Zadaj svoju prezývku, na potvrdenie úkonu
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
     warning:
@@ -799,7 +800,9 @@ sk:
   migrations:
     acct: prezývka@doména nového účtu
     cancel: Zruš presmerovanie
+    cancelled_msg: Presmerovanie úspešne zrušené.
     errors:
+      missing_also_known_as: neodkazuje spätne na tento účet
       move_to_self: nemôže to byť tvoj súčasný účet
       not_found: nebolo možné nájsť
     followers_count: Následovatelia v čase presunu
