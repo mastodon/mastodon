@@ -27,7 +27,7 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
   end
 
   def set_replies
-    @replies = page_params[:other_accounts] ? Status.where.not(account_id: @account.id) : @account.statuses
+    @replies = page_params[:only_other_accounts] ? Status.where.not(account_id: @account.id) : @account.statuses
     @replies = @replies.where(in_reply_to_id: @status.id, visibility: [:public, :unlisted])
     @replies = @replies.paginate_by_min_id(DESCENDANTS_LIMIT, params[:min_id])
   end
@@ -38,7 +38,7 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
       type: :unordered,
       part_of: account_status_replies_url(@account, @status),
       next: next_page,
-      items: @replies.map { |status| status.local ? status : status.id }
+      items: @replies.map { |status| status.local ? status : status.uri }
     )
 
     return page if page_requested?
@@ -55,16 +55,17 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
   end
 
   def next_page
+    only_other_accounts = !(@replies&.last&.account_id == @account.id && @replies.size == DESCENDANTS_LIMIT)
     account_status_replies_url(
       @account,
       @status,
       page: true,
-      min_id: @replies&.last&.id,
-      other_accounts: !(@replies&.last&.account_id == @account.id && @replies.size == DESCENDANTS_LIMIT)
+      min_id: only_other_accounts && !page_params[:only_other_accounts] ? nil : @replies&.last&.id,
+      only_other_accounts: only_other_accounts
     )
   end
 
   def page_params
-    params_slice(:other_accounts, :min_id).merge(page: true)
+    params_slice(:only_other_accounts, :min_id).merge(page: true)
   end
 end

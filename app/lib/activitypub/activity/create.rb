@@ -189,22 +189,25 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     media_attachments = []
 
     as_array(@object['attachment']).each do |attachment|
-      next if attachment['url'].blank?
+      next if attachment['url'].blank? || media_attachments.size >= 4
 
-      href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-      media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
-      media_attachments << media_attachment
+      begin
+        href             = Addressable::URI.parse(attachment['url']).normalize.to_s
+        media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
+        media_attachments << media_attachment
 
-      next if unsupported_media_type?(attachment['mediaType']) || skip_download?
+        next if unsupported_media_type?(attachment['mediaType']) || skip_download?
 
-      media_attachment.file_remote_url = href
-      media_attachment.save
+        media_attachment.file_remote_url = href
+        media_attachment.save
+      rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+        RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+      end
     end
 
     media_attachments
   rescue Addressable::URI::InvalidURIError => e
-    Rails.logger.debug e
-
+    Rails.logger.debug "Invalid URL in attachment: #{e}"
     media_attachments
   end
 
@@ -405,15 +408,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def check_for_spam
-    spam_check = SpamCheck.new(@status)
-
-    return if spam_check.skip?
-
-    if spam_check.spam?
-      spam_check.flag!
-    else
-      spam_check.remember!
-    end
+    SpamCheck.perform(@status)
   end
 
   def forward_for_reply

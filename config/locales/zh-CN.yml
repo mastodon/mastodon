@@ -17,9 +17,6 @@ zh-CN:
     contact_unavailable: 未公开
     discover_users: 发现用户
     documentation: 文档
-    extended_description_html: |
-      <h3>这里可以写一些规定</h3>
-      <p>本站尚未设置详细介绍。</p>
     federation_hint_html: 在%{instance} 上拥有账户后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     generic_description: "%{domain} 是这个庞大网络中的一台服务器"
     get_apps: 尝试移动应用
@@ -90,7 +87,7 @@ zh-CN:
         title: 为 %{username} 更改电子邮件地址
       confirm: 确认
       confirmed: 已确认
-      confirming: 确认
+      confirming: 确认中
       deleted: 已删除
       demote: 降任
       disable: 停用
@@ -179,6 +176,7 @@ zh-CN:
       username: 用户名
       warn: 警告
       web: 站内页面
+      whitelisted: 已加入白名单
     action_logs:
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
@@ -246,10 +244,13 @@ zh-CN:
       feature_profile_directory: 用户目录
       feature_registrations: 公开注册
       feature_relay: 中继服务器
+      feature_spam_check: 反垃圾
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
       open_reports: 待处理举报数
+      pending_tags: 等待审核的标签
+      pending_users: 等待审核的用户
       recent_users: 新用户
       search: 全文搜索
       single_user_mode: 单用户模式
@@ -261,11 +262,18 @@ zh-CN:
       week_interactions: 本周互动数
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
+      whitelist_mode: 白名单模式
+    domain_allows:
+      add_new: 白名单域名
+      created_msg: 域名已被列入白名单
+      destroyed_msg: 域名已从白名单中移除
+      undo: 从白名单中移除
     domain_blocks:
       add_new: 添加新屏蔽域名
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
+      edit: 编辑域名屏蔽
       existing_domain_block_html: 您已经对 %{name} 施加了更严格的限制，您需要先 <a href="%{unblock_url}">解封</a>。
       new:
         create: 添加屏蔽
@@ -276,6 +284,8 @@ zh-CN:
           silence: 自动隐藏
           suspend: 自动封禁
         title: 添加域名屏蔽
+      private_comment: 私密评论
+      public_comment: 公开评论
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
       reject_reports: 拒绝接收举报
@@ -294,6 +304,7 @@ zh-CN:
         title: 撤销对 %{domain} 的域名屏蔽
         undo: 撤销
       undo: 撤销屏蔽域名
+      view: 查看域名屏蔽
     email_domain_blocks:
       add_new: 添加新条目
       created_msg: 电子邮件域名屏蔽添加成功
@@ -316,6 +327,8 @@ zh-CN:
         all: 全部
         limited: 受限的
         title: 运营
+      private_comment: 私密评论
+      public_comment: 公开评论
       title: 已知实例
       total_blocked_by_us: 被我方屏蔽的
       total_followed_by_them: 被对方关注的
@@ -443,6 +456,9 @@ zh-CN:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
         title: 自定义使用条款
       site_title: 本站名称
+      spam_check_enabled:
+        desc_html: Mastodon可以自动隐藏和举报重复发送垃圾消息的账户。但是本功能有可能误伤无辜。
+        title: 自动反垃圾
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
         title: 本站缩略图
@@ -450,12 +466,15 @@ zh-CN:
         desc_html: 在主页显示公共时间轴
         title: 时间轴预览
       title: 网站设置
+      trends:
+        title: 热门标签
     statuses:
       back_to_account: 返回帐户信息页
       batch:
         delete: 删除
         nsfw_off: 标记为非敏感内容
         nsfw_on: 标记为敏感内容
+      deleted: 已删除
       failed_to_execute: 执行失败
       media:
         title: 媒体文件
@@ -464,13 +483,14 @@ zh-CN:
       title: 帐户嘟文
       with_media: 含有媒体文件
     tags:
-      accounts: 帐户
-      hidden: 隐藏
-      hide: 从用户目录中隐藏
-      name: 话题标签
+      accounts_today: 今日活跃用户
+      accounts_week: 本周活跃用户
+      directory: 在目录中
+      review: 审核状态
+      reviewed: 已审核
       title: 话题标签
-      unhide: 在用户目录中显示
-      visible: 可见
+      trending_right_now: 当前热门
+      unreviewed: 未审核
     title: 管理
     warning_presets:
       add_new: 添加新条目
@@ -491,6 +511,7 @@ zh-CN:
     advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
+    discovery: 发现
     sensitive_content: 敏感内容
   application_mailer:
     notification_preferences: 更改电子邮件首选项
@@ -511,7 +532,6 @@ zh-CN:
     apply_for_account: 请求邀请
     change_password: 密码
     checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">服务器规则</a> 和 <a href="%{terms_path}" target="_blank">服务条款</a>
-    confirm_email: 确认电子邮件地址
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
     didnt_get_confirmation: 没有收到确认邮件？
@@ -531,6 +551,11 @@ zh-CN:
     reset_password: 重置密码
     security: 帐户安全
     set_new_password: 设置新密码
+    setup:
+      title: 初始设置
+    status:
+      account_status: 帐户状态
+      confirming: 等待电子邮件确认完成。
     trouble_logging_in: 登录有问题？
   authorize_follow:
     already_following: 你已经在关注此用户了
@@ -558,25 +583,20 @@ zh-CN:
       x_months: "%{count}个月"
       x_seconds: "%{count}秒"
   deletes:
-    bad_password_msg: 想得美，黑客！密码输入错误
     confirm_password: 输入你当前的密码来验证身份
-    description_html: 继续操作将会<strong>永久地、不可撤销地</strong>删除帐户中的所有内容，然后冻结帐户。你的用户名将会被保留，以防有人冒用你的身份。
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
-    warning_html: 我们只能保证本服务器上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本服务器以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器所存储的数据亦无法删除。
-    warning_title: 关于已传播的内容的警告
   directories:
     directory: 用户目录
-    enabled: 您已被收录在用户目录中。
-    enabled_but_waiting: 你已选择将账号收录到用户目录中，但是你的关注者不足 (%{min_followers}) 人 。
     explanation: 根据兴趣发现用户
     explore_mastodon: 探索 %{title}
-    how_to_enable: 您目前没有被收录到用户目录中。您可以在下面选择收录。在个人简介中加上话题标签后，话题标签也会显示在用户目录上！
-    people:
-      other: "%{count} 人"
+  domain_validator:
+    invalid_domain: 不是一个有效的域名
   errors:
+    '400': 您提交的请求无效或格式不正确。
     '403': 你没有访问这个页面的权限。
     '404': 无法找到你所要访问的页面。
+    '406': This page is not available in the requested format.
     '410': 你所要访问的页面此处已不存在。
     '422':
       content: 无法确认登录信息。你是不是屏蔽了 Cookie？
@@ -585,6 +605,7 @@ zh-CN:
     '500':
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
@@ -628,6 +649,7 @@ zh-CN:
     developers: 开发者
     more: 更多…
     resources: 资源
+    trending_now: 现在流行
   generic:
     all: 全部
     changes_saved_msg: 更改保存成功！
@@ -701,9 +723,6 @@ zh-CN:
       too_many: 最多只能添加 4 张图片
   migrations:
     acct: 新帐户的 用户名@域名
-    currently_redirecting: 目前你的个人资料页显示的新帐户是：
-    proceed: 保存
-    updated_msg: 帐户迁移设置更新成功！
   moderation:
     title: 运营
   notification_mailer:
@@ -900,6 +919,8 @@ zh-CN:
     pinned: 置顶嘟文
     reblogged: 转嘟
     sensitive_content: 敏感内容
+  tags:
+    does_not_match_previous_name: 和之前的名称不匹配
   terms:
     body_html: |
       <h2>隐私政策</h2>

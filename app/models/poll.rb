@@ -54,6 +54,10 @@ class Poll < ApplicationRecord
     account.id == account_id || votes.where(account: account).exists?
   end
 
+  def own_votes(account)
+    votes.where(account: account).pluck(:choice)
+  end
+
   delegate :local?, to: :account
 
   def remote?

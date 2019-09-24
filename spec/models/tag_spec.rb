@@ -62,6 +62,10 @@ RSpec.describe Tag, type: :model do
       expect(subject.match('hello #one·two·three').to_s).to eq ' #one·two·three'
     end
 
+    it 'matches ZWNJ' do
+      expect(subject.match('just add #نرم‌افزار and').to_s).to eq ' #نرم‌افزار'
+    end
+
     it 'does not match middle dots at the start' do
       expect(subject.match('hello #·one·two·three')).to be_nil
     end
@@ -136,8 +140,8 @@ RSpec.describe Tag, type: :model do
     end
 
     it 'finds the exact matching tag as the first item' do
-      similar_tag = Fabricate(:tag, name: "matchlater", score: 1)
-      tag = Fabricate(:tag, name: "match", score: 1)
+      similar_tag = Fabricate(:tag, name: "matchlater", reviewed_at: Time.now.utc)
+      tag = Fabricate(:tag, name: "match", reviewed_at: Time.now.utc)
 
       results = Tag.search_for("match")
 

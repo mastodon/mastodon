@@ -1,12 +1,16 @@
 ---
 uk:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Кінцевий термін
+        options: Варіанти вибору
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: тільки букви, цифри та нижні підкреслювання
+              invalid: тільки літери, цифри та підкреслення
         status:
           attributes:
             reblog:

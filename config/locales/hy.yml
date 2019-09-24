@@ -1,12 +1,26 @@
 ---
 hy:
+  about:
+    active_count_after: ակտիվ
+    see_whats_happening: Տես ինչ ա կատարվում
+    status_count_after:
+      one: ստատուս
+      other: ստատուս
+    what_is_mastodon: Ի՞նչ է Մաստոդոնը
+  accounts:
+    media: Մեդիա
+  auth:
+    login: Մտնել
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
     '429': Throttled
     '500': 
+    '503': The page could not be served due to a temporary server failure.
   invites:
     expires_in:
       '1800': 30 minutes
@@ -15,3 +29,7 @@ hy:
       '43200': 12 hours
       '604800': 1 week
       '86400': 1 day
+  sessions:
+    platforms:
+      android: Անդրոիդ
+      linux: Լինուքս

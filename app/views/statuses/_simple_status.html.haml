@@ -31,9 +31,13 @@
           = render partial: 'statuses/poll', locals: { status: status, poll: status.preloadable_poll, autoplay: autoplay }
 
   - if !status.media_attachments.empty?
-    - if status.media_attachments.first.audio_or_video?
+    - if status.media_attachments.first.video?
       - video = status.media_attachments.first
       = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), blurhash: video.blurhash, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description do
+        = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+    - elsif status.media_attachments.first.audio?
+      - audio = status.media_attachments.first
+      = react_component :audio, src: audio.file.url(:original), height: 110, alt: audio.description, duration: audio.file.meta.dig(:original, :duration) do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - else
       = react_component :media_gallery, height: 343, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do

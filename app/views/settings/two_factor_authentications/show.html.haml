@@ -2,33 +2,35 @@
   = t('settings.two_factor_authentication')
 
 - if current_user.otp_required_for_login
-  %p.positive-hint
-    = fa_icon 'check'
-    = ' '
-    = t 'two_factor_authentication.enabled'
+  %p.hint
+    %span.positive-hint
+      = fa_icon 'check'
+      = ' '
+      = t 'two_factor_authentication.enabled'
 
-  %hr/
+  %hr.spacer/
 
   = simple_form_for @confirmation, url: settings_two_factor_authentication_path, method: :delete do |f|
-    = f.input :code, wrapper: :with_label, hint: t('two_factor_authentication.code_hint'), label: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }, required: true
+    .fields-group
+      = f.input :otp_attempt, wrapper: :with_block_label, hint: t('two_factor_authentication.code_hint'), label: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }, required: true
 
     .actions
-      = f.button :button, t('two_factor_authentication.disable'), type: :submit
+      = f.button :button, t('two_factor_authentication.disable'), type: :submit, class: 'negative'
 
-  %hr/
+  %hr.spacer/
 
-  %h6= t('two_factor_authentication.recovery_codes')
-  %p.muted-hint
-    = t('two_factor_authentication.lost_recovery_codes')
-    = link_to t('two_factor_authentication.generate_recovery_codes'),
-      settings_two_factor_authentication_recovery_codes_path,
-      data: { method: :post }
+  %h3= t('two_factor_authentication.recovery_codes')
+  %p.muted-hint= t('two_factor_authentication.lost_recovery_codes')
+
+  %hr.spacer/
+
+  .simple_form
+    = link_to t('two_factor_authentication.generate_recovery_codes'), settings_two_factor_authentication_recovery_codes_path, data: { method: :post }, class: 'block-button'
 
 - else
   .simple_form
     %p.hint= t('two_factor_authentication.description_html')
 
-    = link_to t('two_factor_authentication.setup'),
-      settings_two_factor_authentication_path,
-      data: { method: :post },
-      class: 'block-button'
+    %hr.spacer/
+
+    = link_to t('two_factor_authentication.setup'), settings_two_factor_authentication_path, data: { method: :post }, class: 'block-button'

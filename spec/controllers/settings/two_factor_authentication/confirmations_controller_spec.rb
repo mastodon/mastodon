@@ -24,7 +24,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
     context 'when signed in' do
       subject do
         sign_in user, scope: :user
-        get :new
+        get :new, session: { challenge_passed_at: Time.now.utc }
       end
 
       include_examples 'renders :new'
@@ -37,7 +37,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
     it 'redirects if user do not have otp_secret' do
       sign_in user_without_otp_secret, scope: :user
-      get :new
+      get :new, session: { challenge_passed_at: Time.now.utc }
       expect(response).to redirect_to('/settings/two_factor_authentication')
     end
   end
@@ -50,7 +50,8 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
       describe 'when form_two_factor_confirmation parameter is not provided' do
         it 'raises ActionController::ParameterMissing' do
-          expect { post :create, params: {} }.to raise_error(ActionController::ParameterMissing)
+          post :create, params: {}, session: { challenge_passed_at: Time.now.utc }
+          expect(response).to have_http_status(400)
         end
       end
 
@@ -67,7 +68,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             true
           end
 
-          post :create, params: { form_two_factor_confirmation: { code: '123456' } }
+          post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }, session: { challenge_passed_at: Time.now.utc }
 
           expect(assigns(:recovery_codes)).to eq otp_backup_codes
           expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
@@ -84,7 +85,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             false
           end
 
-          post :create, params: { form_two_factor_confirmation: { code: '123456' } }
+          post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }, session: { challenge_passed_at: Time.now.utc }
         end
 
         it 'renders the new view' do
@@ -98,7 +99,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
     context 'when not signed in' do
       it 'redirects if not signed in' do
-        post :create, params: { form_two_factor_confirmation: { code: '123456' } }
+        post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
         expect(response).to redirect_to('/auth/sign_in')
       end
     end

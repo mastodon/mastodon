@@ -26,14 +26,14 @@ class MediaAttachment < ApplicationRecord
 
   enum type: [:image, :gifv, :video, :unknown, :audio]
 
-  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif .webp).freeze
+  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
-  AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp).freeze
+  AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp .wma).freeze
 
-  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif image/webp).freeze
+  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif).freeze
   VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
-  AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/ogg audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/3gpp).freeze
+  AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/ogg audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -118,17 +118,18 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
   validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
-  remotable_attachment :file, VIDEO_LIMIT
+  remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false
 
   include Attachmentable
 
   validates :account, presence: true
-  validates :description, length: { maximum: 420 }, if: :local?
+  validates :description, length: { maximum: 1_500 }, if: :local?
 
   scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
   scope :local,      -> { where(remote_url: '') }
   scope :remote,     -> { where.not(remote_url: '') }
+  scope :cached,     -> { remote.where.not(file_file_name: nil) }
 
   default_scope { order(id: :asc) }
 

@@ -8,8 +8,6 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
 
-  prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
-
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
 
@@ -22,32 +20,34 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def create
-    super do |resource|
-      remember_me(resource)
-      flash.delete(:notice)
+    self.resource = begin
+      if user_params[:email].blank? && session[:otp_user_id].present?
+        User.find(session[:otp_user_id])
+      else
+        warden.authenticate!(auth_options)
+      end
+    end
+
+    if resource.otp_required_for_login?
+      if user_params[:otp_attempt].present? && session[:otp_user_id].present?
+        authenticate_with_two_factor_via_otp(resource)
+      else
+        prompt_for_two_factor(resource)
+      end
+    else
+      authenticate_and_respond(resource)
     end
   end
 
   def destroy
     tmp_stored_location = stored_location_for(:user)
     super
+    session.delete(:challenge_passed_at)
     flash.delete(:notice)
     store_location_for(:user, tmp_stored_location) if continue_after?
   end
 
   protected
-
-  def find_user
-    if session[:otp_user_id]
-      User.find(session[:otp_user_id])
-    elsif user_params[:email]
-      if use_seamless_external_login? && Devise.check_at_sign && user_params[:email].index('@').nil?
-        User.joins(:account).find_by(accounts: { username: user_params[:email] })
-      else
-        User.find_for_authentication(email: user_params[:email])
-      end
-    end
-  end
 
   def user_params
     params.require(:user).permit(:email, :password, :otp_attempt)
@@ -71,32 +71,17 @@ class Auth::SessionsController < Devise::SessionsController
     super
   end
 
-  def two_factor_enabled?
-    find_user.try(:otp_required_for_login?)
-  end
-
   def valid_otp_attempt?(user)
     user.validate_and_consume_otp!(user_params[:otp_attempt]) ||
       user.invalidate_otp_backup_code!(user_params[:otp_attempt])
-  rescue OpenSSL::Cipher::CipherError => _error
+  rescue OpenSSL::Cipher::CipherError
     false
-  end
-
-  def authenticate_with_two_factor
-    user = self.resource = find_user
-
-    if user_params[:otp_attempt].present? && session[:otp_user_id]
-      authenticate_with_two_factor_via_otp(user)
-    elsif user&.valid_password?(user_params[:password])
-      prompt_for_two_factor(user)
-    end
   end
 
   def authenticate_with_two_factor_via_otp(user)
     if valid_otp_attempt?(user)
       session.delete(:otp_user_id)
-      remember_me(user)
-      sign_in(user)
+      authenticate_and_respond(user)
     else
       flash.now[:alert] = I18n.t('users.invalid_otp_token')
       prompt_for_two_factor(user)
@@ -106,6 +91,13 @@ class Auth::SessionsController < Devise::SessionsController
   def prompt_for_two_factor(user)
     session[:otp_user_id] = user.id
     render :two_factor
+  end
+
+  def authenticate_and_respond(user)
+    sign_in(user)
+    remember_me(user)
+
+    respond_with user, location: after_sign_in_path_for(user)
   end
 
   private
@@ -120,9 +112,11 @@ class Auth::SessionsController < Devise::SessionsController
 
   def home_paths(resource)
     paths = [about_path]
+
     if single_user_mode? && resource.is_a?(User)
       paths << short_account_path(username: resource.account)
     end
+
     paths
   end
 

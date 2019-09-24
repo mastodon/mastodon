@@ -17,9 +17,6 @@ oc:
     contact_unavailable: Pas disponible
     discover_users: Descobrissètz de nòvas personas
     documentation: Documentacion
-    extended_description_html: |
-      <h3>Una bona plaça per las règlas</h3>
-      <p>La descripcion longa es pas estada causida pel moment.</p>
     federation_hint_html: Amb un compte sus %{instance} poiretz sègre de personas de qualque siasque servidor Mastodon e encara mai.
     generic_description: "%{domain} es un dels servidors del malhum"
     get_apps: Ensajatz una aplicacion mobil
@@ -35,6 +32,9 @@ oc:
     status_count_before: qu’an escrich
     tagline: Seguètz d’amics e trobatz-ne de nòus
     terms: Condicions d’utilizacion
+    unavailable_content: Contengut pas disponible
+    unavailable_content_description:
+      reason: 'Motiu :'
     user_count_after:
       one: utilizaire
       other: utilizaires
@@ -183,6 +183,7 @@ oc:
       username: Nom d’utilizaire
       warn: Avisar
       web: Web
+      whitelisted: Mes en lista blanca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
@@ -250,6 +251,7 @@ oc:
       feature_profile_directory: Annuari de perfils
       feature_registrations: Inscripcions
       feature_relay: Relai de federacion
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Apercebut del flux d’actualitats
       features: Foncionalitats
       hidden_service: Federacion amb servicis amagats
@@ -265,11 +267,18 @@ oc:
       week_interactions: interaccions aquesta setmana
       week_users_active: actius aquesta setmana
       week_users_new: utilizaires aquesta setmana
+      whitelist_mode: Mòde lista blanca
+    domain_allows:
+      add_new: Plaçar en lista blanca
+      created_msg: Lo domeni es corrèctament estat plaçat en lista blanca
+      destroyed_msg: Lo domeni es corrèctament estat levat de la lista blanca
+      undo: Levar de la lista blanca
     domain_blocks:
       add_new: Ajustar un novèl blocatge de domeni
       created_msg: Domeni blocat es a èsser tractat
       destroyed_msg: Lo blocatge del domeni es estat levat
       domain: Domeni
+      edit: Modificar lo blocatge de domeni
       existing_domain_block_html: Impausèretz ja de limitas mai estrictas per %{name}, vos cal lo <a href="%{unblock_url}">desblocar</a>d’en primièr.
       new:
         create: Crear blocatge
@@ -280,6 +289,8 @@ oc:
           silence: Silenci
           suspend: Suspendre
         title: Nòu blocatge domeni
+      private_comment: Comentari privat
+      public_comment: Comentari public
       reject_media: Regetar los fichièrs mèdias
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
       reject_reports: Regetar los senhalaments
@@ -299,6 +310,7 @@ oc:
         title: Restablir lo blocatge de domeni de %{domain}
         undo: Restablir
       undo: Restablir
+      view: Veire lo blocatge de domeni
     email_domain_blocks:
       add_new: Ajustar
       created_msg: Blocatge del domeni de corrièl ben plaçat
@@ -322,6 +334,8 @@ oc:
         all: Totas
         limited: Limitat
         title: Moderacion
+      private_comment: Comentari privat
+      public_comment: Comentari public
       title: Federacion
       total_blocked_by_us: Avèm blocat
       total_followed_by_them: Sègon
@@ -449,6 +463,8 @@ oc:
         desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
         title: Politica de confidencialitat del site
       site_title: Títol del servidor
+      spam_check_enabled:
+        title: Anti-spam
       thumbnail:
         desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada
         title: Miniatura del servidor
@@ -470,13 +486,14 @@ oc:
       title: Estatuts del compte
       with_media: Amb mèdia
     tags:
-      accounts: Comptes
-      hidden: Amagat
-      hide: Amagar dins l’annuari
+      context: Contèxt
+      directory: A l’annuari
+      in_directory: "%{count} a l’annuari"
+      last_active: Darrièra activitat
+      most_popular: Mai popularas
+      most_recent: Mai recentas
       name: Etiqueta
       title: Etiquetas
-      unhide: Aparéisser dins l’annuari
-      visible: Visible
     title: Administracion
     warning_presets:
       add_new: N’ajustar un nòu
@@ -497,6 +514,7 @@ oc:
     advanced_web_interface_hint: 'Se volètz utilizar la nautor complèta de l’ecran, l’interfàcia web avançada vos permet de configurar diferentas colomnas per mostrar tan d’informacions que volètz : Acuèlh, notificacions, flux d’actualitat, e d’autras listas e etiquetas.'
     animations_and_accessibility: Animacion e accessibilitat
     confirmation_dialogs: Fenèstras de confirmacion
+    discovery: Descobèrta
     sensitive_content: Contengut sensible
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
@@ -517,7 +535,6 @@ oc:
     apply_for_account: Demandar una invitacion
     change_password: Senhal
     checkbox_agreement_html: Accepti las <a href="%{rules_path}" target="_blank">règlas del servidor</a> e <a href="%{terms_path}" target="_blank">los tèrmes del servici</a>
-    confirm_email: Confirmar lo corrièl
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
@@ -537,6 +554,10 @@ oc:
     reset_password: Reïnicializar lo senhal
     security: Seguretat
     set_new_password: Picar un nòu senhal
+    setup:
+      title: Configuracion
+    status:
+      account_status: Estat del compte
     trouble_logging_in: Problèmas de connexion ?
   authorize_follow:
     already_following: Seguètz ja aqueste compte
@@ -549,6 +570,10 @@ oc:
       return: Veire lo perfil a la persona
       web: Tornar a l’interfàcia Web
     title: Sègre %{acct}
+  challenge:
+    confirm: Contunhar
+    invalid_password: Senhal invalid
+    prompt: Confirmatz lo senhal per dire de contunhar
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -564,26 +589,20 @@ oc:
       x_months: "%{count} meses"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
-    description_html: Aquò suprimirà <strong>definitivament e sens possibilitat de retorn</strong> lo contengut de vòstre compte e lo desactivarà. Lo nom d’utilizaire serà gardat per evitar una futura impostura.
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
-    warning_html: La supression del contengut d’aqueste servidor es sola assegurada. Lo contengut fòrça partejat daissarà probablament de traças. Los servidors fòra-linha e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
-    warning_title: Disponibilitat del contengut difusat
   directories:
     directory: Annuari de perfils
-    enabled: Sètz actualament listat dins l'annuari.
-    enabled_but_waiting: Avètz causit d'èsser listat dins l'annuari mas avètz pas encara lo nombre minimum de seguidors (%{min_followers}) per i èsser listat.
     explanation: Trobar d’utilizaires segon lor interèsses
     explore_mastodon: Explorar %{title}
-    how_to_enable: Sètz pas actualament listat dins l’annuari. Podètz cambiar aquò çai-jos. Utilizatz d'etiquetas dins vòstre tèxt de bio per èsser listat amb d’etiquetas especificas !
-    people:
-      one: "%{count} persona"
-      other: "%{count} personas"
+  domain_validator:
+    invalid_domain: es pas un nom de domeni valid
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
+    '406': This page is not available in the requested format.
     '410': La pagina que cercatz existís pas mai aquí.
     '422':
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
@@ -592,6 +611,7 @@ oc:
     '500':
       content: Un quicomet a pas foncionat coma caliá.
       title: Aquesta pagina es pas corrècta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="%{apps_path}">una aplicacion</a> per vòstra plataforma coma alernativa.
   existing_username_validator:
     not_found: impossible de trobar un utilizaire local amb aqueste nom d’utilizaire
@@ -600,8 +620,8 @@ oc:
     archive_takeout:
       date: Data
       download: Telecargar vòstre archiu
-      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, ligible pels logicials compatibles. Podètz demandar un archiu cada 7 jorns.
-      in_progress: Complilacion de vòstre archiu...
+      hint_html: Podètz demandar un archiu de vòstres <strong>tuts e mèdias enviats</strong>. Las donadas exportadas seràn al format ActivityPub, legible pels logicials compatibles. Podètz demandar un archiu cada 7 jorns.
+      in_progress: Compilacion de vòstre archiu...
       request: Demandar vòstre archiu
       size: Talha
     blocks: Personas que blocatz
@@ -635,6 +655,7 @@ oc:
     developers: Desvolopaires
     more: Mai…
     resources: Ressorsas
+    trending_now: Tendéncia del moment
   generic:
     all: Tot
     changes_saved_msg: Cambiaments ben realizats !
@@ -710,9 +731,10 @@ oc:
       too_many: Se pòt pas ajustar mai de 4 fichièrs
   migrations:
     acct: nomutilizaire@domeni del nòu compte
-    currently_redirecting: 'Vòstre perfil es parametrat per mandar a :'
-    proceed: Enregistrar
-    updated_msg: Vòstre paramètre de migracion es ben estat mes a jorn !
+    errors:
+      move_to_self: pòt pas èsser lo compte actual
+      not_found: impossible de trobar
+    proceed_with_move: Desplaçar los seguidors
   moderation:
     title: Moderacion
   notification_mailer:
@@ -1035,6 +1057,7 @@ oc:
         silence: Del temps que vòstre compte es limitat, solament lo monde que vos sègon veiràn vòstres tuts sus aqueste servidor, e poiriatz èsser tirat de mantunas listas publicas. Pasmens, d’autres vos pòdon sègre manualament.
         suspend: Vòstre compte es suspendut e totes vòstres tuts e fichièrs enviats son estats suprimits sens retorn possible d’aqueste servidor e los de vòstres seguidors.
       review_server_policies: Repassar las politicas del servidor
+      statuses: 'Especificament per :'
       subject:
         disable: Vòstre compte %{acct} es gelat
         none: Avertiment per %{acct}

@@ -15,7 +15,6 @@ oc:
         bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         context: Un o mai de contèxtes ont lo filtre deuriá s’aplicar
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
-        discoverable_html: L’<a href="%{path}" target="_blank">annuari</a> permet al monde de trobar de comptes segon lor interèsses e activitats. Requerís almens %{min_followers} seguidors
         email: Vos mandarem un corrièl de confirmacion
         fields: Podètz far veire cap a 4 elements sus vòstre perfil
         header: PNG, GIF o JPG. Maximum %{size}. Serà retalhada en %{dimensions}px
@@ -35,6 +34,7 @@ oc:
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
         setting_show_application: Lo nom de l’aplicacion qu’utilizatz per publicar serà mostrat dins la vista detalhada de vòstres tuts
         setting_use_blurhash: Los degradats venon de las colors de l’imatge rescondut en enfoscar los detalhs
+        setting_use_pending_items: Rescondre las actualizacions del flux d’actualitat aprèp un clic allòc de desfilar lo flux automaticament
         username: Vòstre nom d’utilizaire serà unic sus %{domain}
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
       featured_tag:
@@ -109,8 +109,10 @@ oc:
         setting_show_application: Revelar lo nom de l’aplicacion utilizada per enviar de tuts
         setting_system_font_ui: Utilizar la polissa del sistèma
         setting_theme: Tèma del site
+        setting_trends: Veire las tendéncias d’uèi
         setting_unfollow_modal: Mostrar una confirmacion abans de quitar de sègre qualqu’un
         setting_use_blurhash: Mostrar los degradats colorats pels mèdias resconduts
+        setting_use_pending_items: Mòde lent
         severity: Severitat
         type: Tipe d’impòrt
         username: Nom d’utilizaire
@@ -122,6 +124,8 @@ oc:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
         must_be_following_dm: Blocar los messatges del monde que seguètz pas
+      invite:
+        comment: Comentari
       invite_request:
         text: Perqué volètz vos marcar ?
       notification_emails:
@@ -133,6 +137,11 @@ oc:
         pending_account: Enviar un corrièl quand cal validar un compte novèl
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
         report: Enviar un corrièl pels nòus senhalaments
+      tag:
+        listable: Permetre a aquesta etiqueta d’aparéisser a las recèrcas e a l’annuari de perfils
+        name: Etiqueta
+        trendable: Permetre a aquesta etiqueta d’aparéisser a las tendéncias
+        usable: Permetre als tuts d’utilizar aquesta etiqueta
     'no': Non
     recommended: Recomandat
     required:

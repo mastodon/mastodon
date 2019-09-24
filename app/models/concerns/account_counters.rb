@@ -26,7 +26,8 @@ module AccountCounters
   private
 
   def save_account_stat
-    return unless account_stat&.changed?
+    return unless association(:account_stat).loaded? && account_stat&.changed?
+
     account_stat.save
   end
 end
