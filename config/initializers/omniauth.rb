@@ -1,3 +1,5 @@
+# require 'devise/omniauth/urlhelpers'
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   # Vanilla omniauth stategies
   # provider :developer unless Rails.env.production?
@@ -35,7 +37,9 @@ Devise.setup do |config|
   end
 
   if ENV['KEYCLOAK_ENABLED'] == 'true'
-    config.omniauth :keycloak_openid, ENV['KEYCLOAK_CLIENT_NAME'], ENV['KEYCLOAK_SECRET_KEY'], client_options: { site:  ENV['KEYCLOAK_SITE'], realm: ENV['KEYCLOAK_REALM'] }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId, callback_url: ENV['KEYCLOAK_CALLBACK']
+    # config.omniauth :keycloak_openid, 'account', 'e5af5318-2e8c-4d3e-a52a-7484bfcf6024', client_options: { site:  'http://localhost:8080', realm: 'demo' }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId, callback_url: 'http://localhost:3000/auth/auth/keycloakopenid/callback'
+    
+    # config.omniauth :keycloak_openid, ENV['KEYCLOAK_CLIENT_NAME'], ENV['KEYCLOAK_SECRET_KEY'], client_options: { site:  ENV['KEYCLOAK_SITE'], realm: ENV['KEYCLOAK_REALM'] }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId, callback_url: ENV['KEYCLOAK_CALLBACK']
   end
 
   # SAML strategy
