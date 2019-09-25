@@ -945,6 +945,13 @@ ar:
       private: لا يمكن تدبيس تبويق لم يُنشر للعامة
       reblog: لا يمكن تثبيت ترقية
     poll:
+      total_votes:
+        zero: "بدون صوت %{count}"
+        one: "صوت واحد %{count}"
+        two: "صوتين %{count}"
+        few: "%{count} أصوات"
+        many: "%{count} أصوات"
+        other: "%{count} صوتا"
       vote: صوّت
     show_more: أظهر المزيد
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
