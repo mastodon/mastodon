@@ -42,7 +42,7 @@ class PostStatusService < BaseService
 
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
 
-    $kafka_producer.produce(build_json(@status), topic: $KAFKA_FLOW_TOPIC)
+    $kafka_producer.produce(build_json(@status), topic: $KAFKA_ACTIVITYLOG_TOPIC)
     $kafka_producer.deliver_messages
 
     @status

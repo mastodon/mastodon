@@ -47,7 +47,7 @@ class RemoveStatusService < BaseService
     remove_from_remote_followers
     remove_from_remote_affected
 
-    $kafka_producer.produce(build_json(@status), topic: $KAFKA_FLOW_TOPIC)
+    $kafka_producer.produce(build_json(@status), topic: $KAFKA_ACTIVITYLOG_TOPIC)
     $kafka_producer.deliver_messages
   end
 
