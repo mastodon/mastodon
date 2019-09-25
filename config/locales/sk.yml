@@ -613,6 +613,7 @@ sk:
       confirming: Čaká sa na dokončenie potvrdenia emailom.
       functional: Tvoj účet je plne funkčný.
       pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
+      redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
     trouble_logging_in: Problém s prihlásením?
   authorize_follow:
     already_following: Tento účet už následuješ
@@ -807,8 +808,12 @@ sk:
       not_found: nebolo možné nájsť
     followers_count: Následovatelia v čase presunu
     incoming_migrations: Presúvam sa z iného účtu
+    not_redirecting: Tvoj účet v súčasnosti nepresmerováva na žiaden iný účet.
     past_migrations: Predošlé presuny
     proceed_with_move: Presuň sledovateľov
+    redirecting_to: Tvoj účet presmerováva na %{acct}.
+    warning:
+      other_data: Žiadne iné dáta nebudú presunuté automaticky
   moderation:
     title: Moderovanie
   notification_mailer:
