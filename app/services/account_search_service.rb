@@ -43,7 +43,7 @@ class AccountSearchService < BaseService
 
     @search_results ||= begin
       results = from_elasticsearch if Chewy.enabled?
-      results = from_database if results.blank?
+      results = from_database if results.nil?
       results
     end
   end
@@ -91,7 +91,7 @@ class AccountSearchService < BaseService
 
     records
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed
-    []
+    nil
   end
 
   def reputation_score_function
