@@ -26,6 +26,7 @@ class AboutController < ApplicationController
 
   helper_method :display_blocks?
   helper_method :display_blocks_rationale?
+  helper_method :block_severity_text
   helper_method :public_fetch_mode?
   helper_method :new_user
 
@@ -41,6 +42,17 @@ class AboutController < ApplicationController
 
   def display_blocks_rationale?
     Setting.show_domain_blocks_rationale == 'all' || (Setting.show_domain_blocks_rationale == 'users' && user_signed_in?)
+  end
+
+  def block_severity_text(block)
+    if block.severity == 'suspend'
+      I18n.t('about.unavailable_content_severities.suspension')
+    else
+      limitations = []
+      limitations << I18n.t('about.unavailable_content_severities.media_block') if block.reject_media?
+      limitations << I18n.t('about.unavailable_content_severities.silence') if block.severity == 'silence'
+      limitations.join(', ')
+    end
   end
 
   def new_user

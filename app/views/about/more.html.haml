@@ -55,19 +55,42 @@
 
             %p= t('about.unavailable_content_html')
 
-            - @blocks.each do |domain_block|
+            .table-wrapper
+              %table.blocks-table
+                %thead
+                  %tr
+                    %th= t('about.unavailable_content_domain')
+                    %th.severity-column= t('about.unavailable_content_severity')
+                    - if display_blocks_rationale?
+                      %th.button-column
+                %tbody
+                  - @blocks.each_with_index do |block, i|
+                    %tr{ class: i % 2 == 0 ? 'even': nil }
+                      %td{ title: block.domain }= block.domain
+                      %td= block_severity_text(block)
+                      - if display_blocks_rationale?
+                        %td
+                          - if block.public_comment.present?
+                            %button.icon-button{ title: t('domain_blocks.show_rationale'), 'aria-label' => t('domain_blocks.show_rationale') }
+                              = fa_icon 'chevron-down fw', 'aria-hidden' => true
+                    - if display_blocks_rationale? && block.public_comment.present?
+                      %tr.rationale.hidden
+                        %td{ colspan: 3 }= block.public_comment.presence
+
+            - if @blocks.any? { |block| block.reject_media? }
               %p
-                %strong= "#{domain_block.domain}:"
+                %strong= "#{t('about.unavailable_content_severities.media_block')}:"
+                = t('about.unavailable_content_description.rejecting_media')
 
-                - if domain_block.suspend?
-                  = t('about.unavailable_content_description.suspended')
-                - else
-                  = t('about.unavailable_content_description.silenced') if domain_block.silence?
-                  = t('about.unavailable_content_description.rejecting_media') if domain_block.reject_media?
+            - if @blocks.any? { |block| block.severity == 'silence' }
+              %p
+                %strong= "#{t('about.unavailable_content_severities.silence')}:"
+                = t('about.unavailable_content_description.silenced')
 
-                - if display_blocks_rationale? && domain_block.public_comment.present?
-                  %strong= t('about.unavailable_content_description.reason')
-                  = domain_block.public_comment
+            - if @blocks.any? { |block| block.severity == 'suspend' }
+              %p
+                %strong= "#{t('about.unavailable_content_severities.suspension')}:"
+                = t('about.unavailable_content_description.suspended')
 
   .column-4
     %ul.table-of-contents
