@@ -505,6 +505,8 @@ ar:
       most_popular: الأكثر شعبية
       most_recent: الأحدث
       name: الوسم
+      review: حالة المراجعة
+      reviewed: مُراجَع
       title: الوسوم
       trending_right_now: متداول اللحظة
       unique_uses_today: "%{count} منشورات اليوم"
@@ -609,6 +611,8 @@ ar:
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
+    warning:
+      username_unavailable: سيبقى اسم المستخدم الخاص بك غير متوفر
   directories:
     directory: سِجلّ الصفحات التعريفية
     explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
@@ -745,8 +749,11 @@ ar:
   migrations:
     acct: username@domain للحساب الجديد
     cancel: ألغِ التوجيه
+    cancelled_msg: تم إلغاء التوجيه بنجاح.
     errors:
       not_found: تعذر العثور عليه
+    followers_count: المتابِعين عند الإنتقال
+    incoming_migrations: الانتقال مِن حساب آخر
     past_migrations: التهجيرات السابقة
     proceed_with_move: انقل مشارِكيك
     redirecting_to: حسابك موجَّه إلى %{acct}.
