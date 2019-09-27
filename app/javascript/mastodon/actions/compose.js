@@ -369,6 +369,7 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
       q: token.slice(1),
       resolve: false,
       limit: 4,
+      exclude_unreviewed: true,
     },
   }).then(({ data }) => {
     dispatch(readyComposeSuggestionsTags(token, data.hashtags));
