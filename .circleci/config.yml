@@ -173,9 +173,11 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
+      - *install_system_dependencies
       - run: bundle exec i18n-tasks check-normalized
       - run: bundle exec i18n-tasks unused -l en
       - run: bundle exec i18n-tasks check-consistent-interpolations
+      - run: bundle exec rake repo:check_locales_files
 
 workflows:
   version: 2

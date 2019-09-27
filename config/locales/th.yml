@@ -17,9 +17,6 @@ th:
     contact_unavailable: ไม่มี
     discover_users: ค้นพบผู้ใช้
     documentation: เอกสารประกอบ
-    extended_description_html: |
-      <h3>สถานที่ที่ดีสำหรับกฎ</h3>
-      <p>ยังไม่ได้ตั้งคำอธิบายเพิ่มเติม</p>
     federation_hint_html: เมื่อคุณมีบัญชีที่ %{instance} แล้ว คุณสามารถติดตามผู้คนบนเซิร์ฟเวอร์ Mastodon เซิร์ฟเวอร์ใดก็ได้
     generic_description: "%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย"
     get_apps: ลองแอปสำหรับมือถือ
@@ -48,6 +45,7 @@ th:
     media: สื่อ
     moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
     network_hidden: ไม่มีข้อมูลนี้
+    never_active: ไม่เลย
     nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
@@ -428,11 +426,11 @@ th:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
-    people:
-      other: "%{count} คน"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
+    '406': This page is not available in the requested format.
     '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว คุณกำลังปิดกั้นคุกกี้หรือไม่?
@@ -440,6 +438,7 @@ th:
     '429': Throttled
     '500':
       title: หน้านี้ไม่ถูกต้อง
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: วันที่
@@ -513,7 +512,6 @@ th:
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
     acct: username@domain ของบัญชีใหม่
-    proceed: บันทึก
   moderation:
     title: การควบคุม
   notification_mailer:

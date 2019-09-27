@@ -9,9 +9,6 @@ lt:
     contact: Kontaktai
     contact_missing: Nenustatyta
     documentation: Dokumentacija
-    extended_description_html: |
-      <h3>Taisyklės</h3>
-      <p>Ilgas aprašymas dar nėra sudartyas</p>
     generic_description: "%{domain} yra vienas serveris tinkle"
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
     learn_more: Daugiau
@@ -490,23 +487,18 @@ lt:
       x_months: "%{count}mėn"
       x_seconds: "%{count}sek"
   deletes:
-    bad_password_msg: Geras bandymas, programišiau! Neteisingas slaptažodis
     confirm_password: Kad patvirtintumėte savo tapatybę, įveskite dabartini slaptažodį
-    description_html: Tai <strong>be sugrąžinimo, visam laikui</strong> panaikins visa turini iš Jūsų paskyros ir deaktyvuos ją. Jūsų vartotojo vardas paliks rezervuotas, kad išvengtumėme tapatybės pavagimo ateityje.
     proceed: Ištrinti paskyrą
     success_msg: Jūsų paskyra sėkmingai ištrinta
-    warning_html: Tiktai panaikinimas turinio iš šio serverio garantuotas. Turinys, kuris buvo viešai prieinamas ir dalinamas kituose serveriuose paliks pėdsakus. Serveriai, kurie neseka jūsų, kurie nėra tinkle, nepakeis savo duomenų sistemos.
-    warning_title: Platinamo turinio prieinamumas
   directories:
     directory: Profilio direktorija
-    enabled: Jūs esate rodomas šioje direktorijoje.
-    enabled_but_waiting: Jūs pasirinkote būti įtrauktas į direktorija, bet jūs neturite minimalaus sekėjų skaičiaus (%{min_followers}), kad būtumėte rodomas.
     explanation: Raskite vartotojus, remiantis tuo, kuo jie domisi
     explore_mastodon: Naršyti %{title}
-    how_to_enable: Jūs nesate prisijungęs prie šios direktorijos. Galite prisijungti žemiau. Naudokite saitažodžius savo biografiniame tekste, kad būtumėte rastas naudojantis specifinius saitažodžius!
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
+    '406': This page is not available in the requested format.
     '410': Puslapis neegzistuoja.
     '422':
       content: Apsaugos patvirtinmas klaidingas. Ar jūs blokuojate sausainius?
@@ -515,6 +507,7 @@ lt:
     '500':
       content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
       title: Netinkamas puslapis
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
   exports:
     archive_takeout:
@@ -601,9 +594,6 @@ lt:
       too_many: Negalima pridėti daugiau nei 4 failų
   migrations:
     acct: slapyvardis@domenas naujam vartotojui
-    currently_redirecting: 'Jūsų profilis nustatytas nukreipimui į:'
-    proceed: Išsaugoti
-    updated_msg: Jūsų paskyros migracijos nustatymai sėkmingai pakeisti!
   moderation:
     title: Moderacija
   notification_mailer:

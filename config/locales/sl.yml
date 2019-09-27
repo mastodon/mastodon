@@ -17,9 +17,6 @@ sl:
     contact_unavailable: Ni na voljo
     discover_users: Odkrijte uporabnike
     documentation: Dokumentacija
-    extended_description_html: |
-      <h3>Dober prostor za pravila</h3>
-      <p>Razširjen opis še ni bil nastavljen.</p>
     federation_hint_html: Z računom na %{instance} boste lahko spremljali ljudi na kateremkoli Mastodon strežniku.
     generic_description: "%{domain} je en strežnik v omrežju"
     get_apps: Poskusite mobilno aplikacijo
@@ -591,28 +588,18 @@ sl:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Lep poskus, hekerji! napačno geslo
     confirm_password: Vnesite svoje trenutno geslo, da potrdite svojo identiteto
-    description_html: S tem boste <strong>trajno, nepovratno</strong> odstranili vsebino iz vašega računa in jo deaktivirali. Vaše uporabniško ime bo ostalo rezervirano za preprečevanje prihodnjih lažnih predstav.
     proceed: Izbriši račun
     success_msg: Vaš račun je bil uspešno izbrisan
-    warning_html: Zagotovljeno je samo brisanje vsebine iz tega strežnika. Vsebina, ki je široko razširjena, bo verjetno pustila sledi. Strežniki brez povezave in strežniki, ki so se odjavili od vaših posodobitev, ne bodo posodabljali svojih podatkovnih baz.
-    warning_title: Razširjena razpoložljivost vsebine
   directories:
     directory: Imenik profilov
-    enabled: Trenutno ste navedeni v imeniku.
-    enabled_but_waiting: Vključili ste, da ste navedeni v imeniku, vendar še nimate najmanjšega števila sledilcev (%{min_followers}), da bi vas prikazalo.
     explanation: Odkrijte uporabnike glede na njihove interese
     explore_mastodon: Razišči %{title}
-    how_to_enable: Trenutno niste vključeni v imenik. Spodaj se lahko vključite. Uporabite ključnike v vaši biografiji, da boste navedeni pod specifične ključnike!
-    people:
-      few: "%{count} osebe"
-      one: "%{count} oseba"
-      other: "%{count} oseb"
-      two: "%{count} osebi"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nimate dovoljenja za ogled te strani.
     '404': Iskana stran ne obstaja.
+    '406': This page is not available in the requested format.
     '410': Iskana stran ne obstaja več.
     '422':
       content: Varnostno preverjanje ni uspelo. Ali blokirate piškotke?
@@ -621,6 +608,7 @@ sl:
     '500':
       content: Žal nam je, toda na našem koncu je prišlo do napake.
       title: Ta stran ni pravilna
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Če želite uporabljati spletno aplikacijo Mastodon, omogočite JavaScript. Druga možnost je, da za svojo platformo poskusite eno od <a href="%{apps_path}">lastnih aplikacij</a> za Mastodon.
   existing_username_validator:
     not_found: s tem uporabniškim imenom ni bilo mogoče najti lokalnega uporabnika
@@ -743,9 +731,6 @@ sl:
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
     acct: username@domain novega računa
-    currently_redirecting: 'Vaš profil je preusmerjen na:'
-    proceed: Shrani
-    updated_msg: Nastavitev selitve računa je bila uspešno posodobljena!
   moderation:
     title: Moderiranje
   notification_mailer:

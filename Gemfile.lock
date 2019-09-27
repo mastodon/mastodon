@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/ianheggie/health_check
+  revision: 0b799ead604f900ed50685e9b2d469cd2befba5b
+  ref: 0b799ead604f900ed50685e9b2d469cd2befba5b
+  specs:
+    health_check (4.0.0.pre)
+      rails (>= 4.0)
+
+GIT
   remote: https://github.com/rtomayko/posix-spawn
   revision: 58465d2e213991f8afb13b984854a49fcdcc980c
   ref: 58465d2e213991f8afb13b984854a49fcdcc980c
@@ -150,7 +158,7 @@ GEM
       sshkit (~> 1.3)
     capistrano-yarn (2.0.2)
       capistrano (~> 3.0)
-    capybara (3.28.0)
+    capybara (3.29.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -161,7 +169,7 @@ GEM
     case_transform (0.2)
       activesupport
     charlock_holmes (0.7.6)
-    chewy (5.0.0)
+    chewy (5.1.0)
       activesupport (>= 4.0)
       elasticsearch (>= 2.0.0)
       elasticsearch-dsl
@@ -188,7 +196,7 @@ GEM
       rack (>= 1)
       rake (> 10, < 13)
       thor (~> 0.19)
-    devise (4.7.0)
+    devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -209,19 +217,19 @@ GEM
     docile (1.3.2)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (5.1.0)
+    doorkeeper (5.2.1)
       railties (>= 5)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    elasticsearch (6.0.2)
-      elasticsearch-api (= 6.0.2)
-      elasticsearch-transport (= 6.0.2)
-    elasticsearch-api (6.0.2)
+    elasticsearch (7.3.0)
+      elasticsearch-api (= 7.3.0)
+      elasticsearch-transport (= 7.3.0)
+    elasticsearch-api (7.3.0)
       multi_json
-    elasticsearch-dsl (0.1.5)
-    elasticsearch-transport (6.0.2)
+    elasticsearch-dsl (0.1.8)
+    elasticsearch-transport (7.3.0)
       faraday
       multi_json
     encryptor (3.0.0)
@@ -231,12 +239,12 @@ GEM
       tzinfo
     excon (0.62.0)
     fabrication (2.20.2)
-    faker (2.2.1)
-      i18n (>= 0.8)
-    faraday (0.15.0)
+    faker (2.4.0)
+      i18n (~> 1.6.0)
+    faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
-    fastimage (2.1.5)
+    fastimage (2.1.7)
     ffi (1.10.0)
     fog-core (2.1.0)
       builder
@@ -314,7 +322,7 @@ GEM
     jmespath (1.4.0)
     json (2.2.0)
     json-canonicalization (0.1.0)
-    json-ld-preloaded (3.0.3)
+    json-ld-preloaded (3.0.4)
       json-ld (~> 3.0)
       multi_json (~> 1.12)
       rdf (~> 3.0)
@@ -362,32 +370,32 @@ GEM
     microformats (4.1.0)
       json (~> 2.1)
       nokogiri (~> 1.8, >= 1.8.3)
-    mime-types (3.2.2)
+    mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2018.0812)
+    mime-types-data (3.2019.0904)
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.11.3)
+    minitest (5.12.0)
     msgpack (1.3.1)
     multi_json (1.13.1)
-    multipart-post (2.0.0)
+    multipart-post (2.1.1)
     necromancer (0.5.0)
     net-ldap (0.16.1)
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
-    nio4r (2.4.0)
+    nio4r (2.5.1)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    nokogumbo (2.0.0)
+    nokogumbo (2.0.1)
       nokogiri (~> 1.8, >= 1.8.4)
     nsa (0.2.7)
       activesupport (>= 4.2, < 6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
-    oj (3.9.0)
+    oj (3.9.1)
     omniauth (1.9.0)
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
@@ -443,7 +451,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.1)
-    puma (4.1.0)
+    puma (4.2.0)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -498,7 +506,7 @@ GEM
       link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.3.3)
       rdf (>= 2.2, < 4.0)
-    redis (4.1.2)
+    redis (4.1.3)
     redis-actionpack (5.0.2)
       actionpack (>= 4.0, < 6)
       redis-rack (>= 1, < 3)
@@ -563,7 +571,7 @@ GEM
     rufus-scheduler (3.5.2)
       fugit (~> 1.1, >= 1.1.5)
     safe_yaml (1.0.5)
-    sanitize (5.0.0)
+    sanitize (5.1.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.8.0)
       nokogumbo (~> 2.0)
@@ -588,7 +596,7 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    simplecov (0.17.0)
+    simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
@@ -635,7 +643,7 @@ GEM
       unf (~> 0.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2019.2)
+    tzinfo-data (1.2019.3)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
@@ -644,7 +652,7 @@ GEM
     uniform_notifier (1.12.1)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webmock (3.7.1)
+    webmock (3.7.5)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -683,9 +691,9 @@ DEPENDENCIES
   capistrano-rails (~> 1.4)
   capistrano-rbenv (~> 2.1)
   capistrano-yarn (~> 2.0)
-  capybara (~> 3.28)
+  capybara (~> 3.29)
   charlock_holmes (~> 0.7.6)
-  chewy (~> 5.0)
+  chewy (~> 5.1)
   cld3 (~> 3.2.4)
   climate_control (~> 0.2)
   concurrent-ruby
@@ -695,10 +703,10 @@ DEPENDENCIES
   devise-two-factor (~> 3.1)
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.1)
-  doorkeeper (~> 5.1)
+  doorkeeper (~> 5.2)
   dotenv-rails (~> 2.7)
   fabrication (~> 2.20)
-  faker (~> 2.2)
+  faker (~> 2.4)
   fast_blank (~> 1.0)
   fastimage
   fog-core (<= 2.1.0)
@@ -706,6 +714,7 @@ DEPENDENCIES
   fuubar (~> 2.4)
   goldfinger (~> 2.1)
   hamlit-rails (~> 0.2)
+  health_check!
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
   http (~> 3.3)
@@ -726,7 +735,7 @@ DEPENDENCIES
   mario-redis-lock (~> 1.2)
   memory_profiler
   microformats (~> 4.1)
-  mime-types (~> 3.2)
+  mime-types (~> 3.3)
   net-ldap (~> 0.10)
   nilsimsa!
   nokogiri (~> 1.10)
@@ -749,7 +758,7 @@ DEPENDENCIES
   private_address_check (~> 0.5)
   pry-byebug (~> 3.7)
   pry-rails (~> 0.3)
-  puma (~> 4.1)
+  puma (~> 4.2)
   pundit (~> 2.1)
   rack-attack (~> 6.1)
   rack-cors (~> 1.0)
@@ -766,7 +775,8 @@ DEPENDENCIES
   rspec-sidekiq (~> 3.0)
   rubocop (~> 0.74)
   rubocop-rails (~> 2.3)
-  sanitize (~> 5.0)
+  ruby-progressbar (~> 1.10)
+  sanitize (~> 5.1)
   sidekiq (~> 5.2)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 3.0)
@@ -789,7 +799,7 @@ DEPENDENCIES
   webpush
 
 RUBY VERSION
-   ruby 2.6.1p33
+   ruby 2.6.4p104
 
 BUNDLED WITH
    1.17.3

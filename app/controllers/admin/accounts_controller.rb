@@ -41,7 +41,7 @@ module Admin
 
     def reject
       authorize @account.user, :reject?
-      SuspendAccountService.new.call(@account, including_user: true, destroy: true, skip_distribution: true)
+      SuspendAccountService.new.call(@account, reserve_email: false, reserve_username: false)
       redirect_to admin_pending_accounts_path
     end
 

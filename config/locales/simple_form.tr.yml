@@ -4,49 +4,125 @@ tr:
     hints:
       admin_account_action:
         send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
+        type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
+        bot: Bu hesap temelde otomatik eylemler gerçekleştirir ve izlenmeyebilir
+        context: Filtrenin geçerli olması gereken bir veya daha fazla içerik
+        digest: Yalnızca uzun süre kullanılmadığında ve yalnızca yokluğunda kişisel mesajlar aldıysanız gönderilir
+        discoverable: Profil dizini, hesabınızın daha geniş bir kitleye ulaşmasının başka bir yoludur
+        email: Onay e-postası gönderilecek
         header: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir.
+        irreversible: Filtre uygulanmış gönderiler, filtre daha sonra çıkartılsa bile geri dönüşümsüz biçimde kaybolur
+        locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
         locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
+        password: En az 8 karakter kullanın
+        setting_default_sensitive: Hassas medya varsayılan olarak gizlenir ve bir tıklama ile görüntülenebilir
+        setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
+        setting_display_media_hide_all: Tüm medyayı gizle
+        setting_display_media_show_all: Hassas olarak işaretlenmiş medyayı göster
+        setting_hide_network: Takip edilenler ve takipçiler profilinizde gösterilmeyecek
+        setting_noindex: Herkese açık profilinizi ve durum sayfalarınızı etkiler
+        username: Kullanıcı adınız %{domain} alanında benzersiz olacak
+        whole_word: Anahtar kelime veya kelime öbeği yalnızca alfasayısal olduğunda, yalnızca tüm sözcükle eşleşirse uygulanır
+      featured_tag:
+        name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
       imports:
         data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
+      invite_request:
+        text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
       sessions:
         otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+      user:
+        chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki karakterler genel zaman çizelgelerinde görüntülenir
     labels:
+      account:
+        fields:
+          name: Etiket
+          value: İçerik
+      admin_account_action:
+        send_email_notification: E-postayla kullanıcıyı bilgilendir
+        text: Özel uyarı
+        type: Eylem
+        types:
+          disable: Devre dışı
+          none: Hiç birşey
+          silence: Sessiz
+          suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
       defaults:
+        autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
+        bot: Bu bir bot hesabı
+        chosen_languages: Dilleri filtrele
         confirm_new_password: Yeni parolanız (tekrar)
         confirm_password: Parolanız (tekrar)
+        context: İçeriği filtrele
         current_password: Mevcut parolanız
         data: Dosya
         display_name: Görünen adınız
         email: E-posta adresiniz
+        fields: Profil Metaverisi
         header: Kapak resmi
         locale: Dil
         locked: Hesabımı kilitle
+        max_uses: Maksimum kullanım sayısı
         new_password: Yeni parolanız
         note: Kişisel bilgiler
         otp_attempt: İki-faktörlü kod
         password: Parolanız
+        phrase: Anahtar kelime veya kelime öbeği
+        setting_advanced_layout: Gelişmiş web arayüzünü etkinleştir
         setting_auto_play_gif: GIF'leri otomatik oynatt
         setting_boost_modal: Boost etmeden önce onay diyaloğu göster
         setting_default_privacy: Gönderi gizliliği
+        setting_default_sensitive: Her zaman hassas medya olarak işaretle
+        setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusunu göster
+        setting_display_media: Medya görünümü
+        setting_display_media_default: Varsayılan
+        setting_display_media_hide_all: Tümünü gizle
+        setting_display_media_show_all: Tümünü göster
+        setting_hide_network: Ağını gizle
+        setting_noindex: Arama motoru endekslemesini iptal et
+        setting_reduce_motion: Animasyonlarda hareketi azalt
+        setting_show_application: İçerik göndermek için kullanılan uygulamayı belirt
+        setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
+        setting_theme: Site teması
+        setting_trends: Bugünün trendlerini göster
+        setting_unfollow_modal: Birini takip etmeden önce onay iletişim kutusunu göster
+        setting_use_blurhash: Gizli ortamlar için renkli gradyen göster
+        setting_use_pending_items: Yavaş mod
         severity: Zorluk
         type: Dosya türü
         username: Kullanıcı adınız
+        username_or_email: Kullanıcı adı ya da email
+        whole_word: Tüm dünya
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
+        must_be_following_dm: Takip etmediğiniz kişilerin doğrudan ileti göndermesini engelle
+      invite_request:
+        text: Neden katılmak istiyorsun?
       notification_emails:
         digest: Özet e-postaları gönder
         favourite: Biri durumumu favorilerine eklediginde bana e-posta gönder
         follow: Biri beni takip ettiğinde bana e-posta gönder
         follow_request: Biri bana takip isteği gönderdiğinde, bana e-posta gönder
         mention: Biri benden bahsettiğinde, bana e-posta gönder
+        pending_account: Yeni bir hesap incelemesi gerektiğinde e-posta gönder
         reblog: Biri durumumu paylaştığında, bana e-posta gönder
+        report: Yeni bir rapor gönderildiğinde e-posta gönder
+        trending_tag: İncelenmemiş bir hashtag trend olduğunda e-posta gönder
+      tag:
+        listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
+        name: Hashtag
+        trendable: Bu etiketin trendlerin altında görünmesine izin ver
     'no': Hayır
+    recommended: Önerilen
     required:
+      mark: "*"
       text: gerekli
     'yes': Evet

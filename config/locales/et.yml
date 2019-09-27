@@ -17,9 +17,6 @@ et:
     contact_unavailable: Pole saadaval
     discover_users: Avasta kasutajaid
     documentation: Dokumentatsioon
-    extended_description_html: |
-      <h3>Hea koht reeglite jaoks</h3>
-      <p>Laiendatud kirjeldus pole veel üles seadistatud.</p>
     federation_hint_html: Kui Teil on kasutaja %{instance}-is, saate Te jälgida inimesi üks kõik millisel Mastodoni serveril ja kaugemalgi.
     generic_description: "%{domain} on ainult üks server terves võrgus"
     get_apps: Proovi mobiilirakendusi
@@ -585,26 +582,18 @@ et:
       x_months: "%{count}k"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Hea proov, häkkerid! Vale salasõna
     confirm_password: Sisesta oma praegune salasõna, et kinnitada oma identiteet
-    description_html: Seda tehes kustutatakse <strong>igaveseks ja taastamatult</strong> kogu konto andmed ja sisselogimine keelatakse. Sinu kasutajanimi jääb reserveerituks, et vältida tulevikus kehastamist.
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
-    warning_html: Ainult sellel serveril oleva sisu kustutamine on garanteeritud. Sisu, mis on laialdaselt jagatud, jätab tõenäoliselt jälgi. Serverid, mis on välja lülitatud, ning serverid, mis on sinu uuendustest loobunud, ei uuenda oma andmebaase.
-    warning_title: Levitatud sisu kättesaadavus
   directories:
     directory: Profiilikataloog
-    enabled: Te olete praegu nimekirjastatud kataloogis.
-    enabled_but_waiting: Te olete ennast lubanud kataloogi kanda, kuid teil ei ole miinimum kohustuslik jälgijate arv (%{min_followers}), et teid nimekirjastada.
     explanation: Avasta kasutajaid nende huvide põhjal
     explore_mastodon: Avasta %{title}
-    how_to_enable: Te ei ole hetkel kataloogis. Te saate end lisada allpool. Kasutage silte oma eluloos, et saaksite ilmuda kindlate siltide all!
-    people:
-      one: "%{count} inimene"
-      other: "%{count} inimest"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Sul puudub õigus seda lehte vaadata.
     '404': Soovitud lehte ei leitud.
+    '406': This page is not available in the requested format.
     '410': Soovitud lehekülge pole enam siin.
     '422':
       content: Turvalisuse kontroll ebaõnnestus. Kas Te blokeerite küpsiseid?
@@ -613,6 +602,7 @@ et:
     '500':
       content: Palume vabandust, midagi läks valesti meie pool.
       title: See lehekülg pole õige
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Et kasutada Mastodoni veebirakendust, palun lubage JavaScript. Alternatiivselt, proovige mõnda <a href="%{apps_path}">rakendust</a> Teie platvormile.
   existing_username_validator:
     not_found: ei suutnud leida kohalikku kasutajat selle kasutajanimega
@@ -731,9 +721,6 @@ et:
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
     acct: uue konto kasutajanimi@domeen
-    currently_redirecting: 'Teie profiil on sätestatud suunama ümber:'
-    proceed: Salvesta
-    updated_msg: Teie konto migreerumissätete uuendamine õnnestus!
   moderation:
     title: Moderatsioon
   notification_mailer:

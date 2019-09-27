@@ -17,9 +17,6 @@ eu:
     contact_unavailable: E/E
     discover_users: Aurkitu erabiltzaileak
     documentation: Dokumentazioa
-    extended_description_html: |
-      <h3>Arauentzako toki egoki bat</h3>
-      <p>Azalpen luzea ez da ezarri oraindik.</p>
     federation_hint_html: "%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere."
     generic_description: "%{domain} sareko zerbitzari bat da"
     get_apps: Probatu mugikorrerako aplikazio bat
@@ -56,6 +53,7 @@ eu:
     media: Multimedia
     moved_html: "%{name} hona lekualdatu da %{new_profile_link}:"
     network_hidden: Informazio hau ez dago eskuragarri
+    never_active: Inoiz ez
     nothing_here: Ez dago ezer hemen!
     people_followed_by: "%{name}(e)k jarraitzen dituenak"
     people_who_follow: "%{name} jarraitzen dutenak"
@@ -421,6 +419,9 @@ eu:
       custom_css:
         desc_html: Aldatu itxura orri bakoitzean kargatutako CSS bidez
         title: CSS pertsonala
+      domain_blocks:
+        all: Guztiei
+        disabled: Inori ez
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
         title: Azaleko irudia
@@ -489,6 +490,7 @@ eu:
         delete: Ezabatu
         nsfw_off: Markatu ez hunkigarri gisa
         nsfw_on: Markatu hunkigarri gisa
+      deleted: Ezabatuta
       failed_to_execute: Ezin izan da burutu
       media:
         title: Multimedia
@@ -606,28 +608,20 @@ eu:
       x_months: "%{count} hilabete"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Saiakera ona hacker! Pasahitz okerra
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
-    description_html: Honek <strong>behin betirako eta atzera egiteko aukera gabe</strong> zure kontuko edukia kendu eta hau desaktibatuko du. Zure erabiltzaile-izena erreserbatuko da etorkizunean inork zure itxurak ez egiteko.
     proceed: Ezabatu kontua
     success_msg: Zure kontua ongi ezabatu da
-    warning_html: Zerbitzari honetako edukiak ezabatzea besterik ezin da bermatu. Asko partekatu den edukiaren arrastoak geratzea izan liteke. Deskonektatuta dauden zerbitzariak edo zure eguneraketetatik harpidetza kendu duten zerbitzariek ez dituzte beraien datu-baseak eguneratuko.
-    warning_title: Sakabanatutako edukiaren eskuragarritasuna
   directories:
     directory: Profilen direktorioa
-    enabled: Direktorioan zerrendatuta zaude orain.
-    enabled_but_waiting: Direktorioan zerrendatuta izatea aukeratu duzu, baina ez duzu oraindik gutxieneko jarraitzaile kopurua (%{min_followers}) zerrendan agertzeko.
     explanation: Deskubritu erabiltzaileak interesen arabera
     explore_mastodon: Esploratu %{title}
-    how_to_enable: Ez duzu aukeratu direktorioan zerrendatua izatea aukeratu. Behean aukeratu dezakezu. Erabili traolak zure biografiaren testuan traola zehatzetan agertzeko!
-    people:
-      one: pertsona %{count}
-      other: "%{count} pertsona"
   domain_validator:
     invalid_domain: ez da domeinu izen baliogarria
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Ez duzu orri hau ikusteko baimenik.
     '404': Bilatu duzun orria ez dago hemen.
+    '406': This page is not available in the requested format.
     '410': Bilatu duzun orria ez dago hemen jada.
     '422':
       content: Segurtasun egiaztaketak huts egin du. Cookie-ak blokeatzen dituzu?
@@ -636,6 +630,7 @@ eu:
     '500':
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
   existing_username_validator:
     not_found: ezin izan da izen hori duen kide lokalik aurkitu
@@ -679,6 +674,7 @@ eu:
     developers: Garatzaileak
     more: Gehiago…
     resources: Baliabideak
+    trending_now: Joera orain
   generic:
     all: Denak
     changes_saved_msg: Aldaketak ongi gorde dira!
@@ -754,9 +750,6 @@ eu:
       too_many: Ezin dira 4 fitxategi baino gehiago erantsi
   migrations:
     acct: Kontu berriaren erabiltzaile@domeinua
-    currently_redirecting: 'Zure profila hona birbideratzeko ezarri da:'
-    proceed: Gorde
-    updated_msg: Kontuaren migrazio-ezarpenak ongi eguneratu dira!
   moderation:
     title: Moderazioa
   notification_mailer:

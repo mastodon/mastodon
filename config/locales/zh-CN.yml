@@ -17,9 +17,6 @@ zh-CN:
     contact_unavailable: 未公开
     discover_users: 发现用户
     documentation: 文档
-    extended_description_html: |
-      <h3>这里可以写一些规定</h3>
-      <p>本站尚未设置详细介绍。</p>
     federation_hint_html: 在%{instance} 上拥有账户后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     generic_description: "%{domain} 是这个庞大网络中的一台服务器"
     get_apps: 尝试移动应用
@@ -276,6 +273,7 @@ zh-CN:
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
+      edit: 编辑域名屏蔽
       existing_domain_block_html: 您已经对 %{name} 施加了更严格的限制，您需要先 <a href="%{unblock_url}">解封</a>。
       new:
         create: 添加屏蔽
@@ -476,6 +474,7 @@ zh-CN:
         delete: 删除
         nsfw_off: 标记为非敏感内容
         nsfw_on: 标记为敏感内容
+      deleted: 已删除
       failed_to_execute: 执行失败
       media:
         title: 媒体文件
@@ -487,6 +486,7 @@ zh-CN:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
       directory: 在目录中
+      review: 审核状态
       reviewed: 已审核
       title: 话题标签
       trending_right_now: 当前热门
@@ -583,25 +583,20 @@ zh-CN:
       x_months: "%{count}个月"
       x_seconds: "%{count}秒"
   deletes:
-    bad_password_msg: 想得美，黑客！密码输入错误
     confirm_password: 输入你当前的密码来验证身份
-    description_html: 继续操作将会<strong>永久地、不可撤销地</strong>删除帐户中的所有内容，然后冻结帐户。你的用户名将会被保留，以防有人冒用你的身份。
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
-    warning_html: 我们只能保证本服务器上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本服务器以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器所存储的数据亦无法删除。
-    warning_title: 关于已传播的内容的警告
   directories:
     directory: 用户目录
-    enabled: 您已被收录在用户目录中。
-    enabled_but_waiting: 你已选择将账号收录到用户目录中，但是你的关注者不足 (%{min_followers}) 人 。
     explanation: 根据兴趣发现用户
     explore_mastodon: 探索 %{title}
-    how_to_enable: 您目前没有被收录到用户目录中。您可以在下面选择收录。在个人简介中加上话题标签后，话题标签也会显示在用户目录上！
-    people:
-      other: "%{count} 人"
+  domain_validator:
+    invalid_domain: 不是一个有效的域名
   errors:
+    '400': 您提交的请求无效或格式不正确。
     '403': 你没有访问这个页面的权限。
     '404': 无法找到你所要访问的页面。
+    '406': This page is not available in the requested format.
     '410': 你所要访问的页面此处已不存在。
     '422':
       content: 无法确认登录信息。你是不是屏蔽了 Cookie？
@@ -610,6 +605,7 @@ zh-CN:
     '500':
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
@@ -653,6 +649,7 @@ zh-CN:
     developers: 开发者
     more: 更多…
     resources: 资源
+    trending_now: 现在流行
   generic:
     all: 全部
     changes_saved_msg: 更改保存成功！
@@ -726,9 +723,6 @@ zh-CN:
       too_many: 最多只能添加 4 张图片
   migrations:
     acct: 新帐户的 用户名@域名
-    currently_redirecting: 目前你的个人资料页显示的新帐户是：
-    proceed: 保存
-    updated_msg: 帐户迁移设置更新成功！
   moderation:
     title: 运营
   notification_mailer:
@@ -925,6 +919,8 @@ zh-CN:
     pinned: 置顶嘟文
     reblogged: 转嘟
     sensitive_content: 敏感内容
+  tags:
+    does_not_match_previous_name: 和之前的名称不匹配
   terms:
     body_html: |
       <h2>隐私政策</h2>

@@ -6,11 +6,10 @@ class TagSearchService < BaseService
     @offset = options[:offset].to_i
     @limit  = options[:limit].to_i
 
-    if Chewy.enabled?
-      from_elasticsearch
-    else
-      from_database
-    end
+    results = from_elasticsearch if Chewy.enabled?
+    results ||= from_database
+
+    results
   end
 
   private
@@ -74,6 +73,8 @@ class TagSearchService < BaseService
     }
 
     TagsIndex.query(query).filter(filter).limit(@limit).offset(@offset).objects.compact
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+    nil
   end
 
   def from_database

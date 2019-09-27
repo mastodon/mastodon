@@ -74,6 +74,7 @@ class User < ApplicationRecord
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :backups, inverse_of: :user
   has_many :invites, inverse_of: :user
+  has_many :markers, inverse_of: :user, dependent: :destroy
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? }
@@ -167,7 +168,11 @@ class User < ApplicationRecord
   end
 
   def functional?
-    confirmed? && approved? && !disabled? && !account.suspended?
+    confirmed? && approved? && !disabled? && !account.suspended? && account.moved_to_account_id.nil?
+  end
+
+  def unconfirmed_or_pending?
+    !(confirmed? && approved?)
   end
 
   def inactive_message
@@ -259,17 +264,20 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    return false if Devise.pam_authentication || Devise.ldap_authentication
+    return false if external?
+
     super
   end
 
   def send_reset_password_instructions
-    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
+    return false if encrypted_password.blank?
+
     super
   end
 
   def reset_password!(new_password, new_password_confirmation)
-    return false if encrypted_password.blank? && (Devise.pam_authentication || Devise.ldap_authentication)
+    return false if encrypted_password.blank?
+
     super
   end
 

@@ -9,9 +9,6 @@ sr:
     contact: Контакт
     contact_missing: Није постављено
     documentation: Документација
-    extended_description_html: |
-      <h3>Добро место за правила</h3>
-      <p>Проширени опис који још није постављен.</p>
     generic_description: "%{domain} је сервер на мрежи"
     hosted_on: Мастодонт хостован на %{domain}
     learn_more: Сазнајте више
@@ -510,25 +507,18 @@ sr:
       x_days: "%{count}д"
       x_months: "%{count}месец"
   deletes:
-    bad_password_msg: Добар покушај, хакери! Неисправна лозинка
     confirm_password: Унесите тренутну лозинку да бисмо проверили Ваш идентитет
-    description_html: Ово ће <strong>трајно, бесповратно</strong> уклонити садржај са Вашеф налога и деактивирати га. Ваше корисничко име ће остати резервисано да се спречи да се неко не представља као Ви сутра.
     proceed: Обриши налог
     success_msg: Ваш налог је успешно обрисан
-    warning_html: Гарантовано је само брисање садржаја са ове инстанце. Садржај који је дељен даље ће вероватно да остави неке трагове. Недоступни и угашени сервери, као и сервери који су одјављени од примања статуса од Вас, неће ажурирати своје базе.
-    warning_title: Доступност расејаног садржаја
   directories:
     directory: Профил фасцикле
-    enabled: Ви сте тренутно видљиви у фасцикли.
     explanation: Откријте кориснике на основу њихових интереса
     explore_mastodon: Истражи %{title}
-    people:
-      few: "%{count} људе"
-      one: "%{count} особа/е"
-      other: "%{count} људи"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Немате дозвола да видите ову страну.
     '404': Страна коју сте тражили не постоји.
+    '406': This page is not available in the requested format.
     '410': Страна коју сте тражили више не постоји.
     '422':
       content: Безбедоносна провера није успела. Да не блокирате колачиће?
@@ -537,6 +527,7 @@ sr:
     '500':
       content: Извињавамо се, нешто је пошло по злу са ове стране.
       title: Страна није исправна
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Да бисте користили Мастодонт веб апликацију, омогућите JavaScript. У супротном, пробајте неку од <a href="%{apps_path}">оригиналних апликација</a> за Мастодонт за Вашу платформу.
   exports:
     archive_takeout:
@@ -620,9 +611,6 @@ sr:
       too_many: Не може се прикачити више од 4 фајла
   migrations:
     acct: корисник@домен новог налога
-    currently_redirecting: 'Профил Вам је подешен да преусмерава на :'
-    proceed: Сачувај
-    updated_msg: Пребацивање поставки Вашег налога успешно измењено!
   moderation:
     title: Модерација
   notification_mailer:

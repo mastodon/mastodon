@@ -2,9 +2,14 @@
 cs:
   simple_form:
     hints:
+      account_alias:
+        acct: Zadejte přezdívku@doménu účtu, ze kterého se chcete přesunout
+      account_migration:
+        acct: Zadejte přezdívku@doménu účtu, na který se chcete přesunout
       account_warning_preset:
         text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
       admin_account_action:
+        include_statuses: Uživatel uvidí, které tooty způsobily moderátorskou akci nebo varování
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
         text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
         type_html: Vyberte, co chcete udělat s účtem <strong>%{acct}</strong>
@@ -14,8 +19,10 @@ cs:
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jeden či více kontextů, ve kterých má být filtr uplatněn
+        current_password: Z bezpečnostních důvodů prosím zadejte heslo aktuálního účtu
+        current_username: Prosím potvrďte zadáním uživatelského jména aktuálního účtu
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
-        discoverable_html: <a href="%{path}" target="_blank">Adresář</a> dovoluje lidem najít účty podle zájmů a aktivity. Vyžaduje alespoň %{min_followers} sledujících
+        discoverable: Adresář profilů je další způsob, díky kterému se může váš účet dostat k širšímu publiku
         email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -35,17 +42,23 @@ cs:
         setting_noindex: Ovlivňuje váš veřejný profil a stránky tootů
         setting_show_application: Aplikace, kterou používáte k psaní tootů, bude zobrazena v detailním zobrazení vašich tootů
         setting_use_blurhash: Gradienty jsou založeny na barvách skryté grafiky, ale zakrývají jakékoliv detaily
-        setting_use_pending_items: Skrýt aktualizace časový osy a načíst je kliknutím namísto automatického rolování proudu
+        setting_use_pending_items: Skrýt aktualizace časové osy a načíst je kliknutím namísto automatického rolování proudu
         username: Vaše uživatelské jméno bude na %{domain} unikátní
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
+      domain_allow:
+        domain: Tato doména bude moci stahovat data z tohoto serveru a příchozí data z ní budou zpracována a uložena
       featured_tag:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
+      form_challenge:
+        current_password: Vstupujete do zabezpečeného prostoru
       imports:
         data: Soubor CSV exportovaný z jiného serveru Mastodon
       invite_request:
         text: To nám pomůže posoudit váš požadavek
       sessions:
         otp: 'Napište dvoufázový kód vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
+      tag:
+        name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
         chosen_languages: Je-li tohle zaškrtnuto, budou ve veřejných časových osách zobrazeny pouze tooty ve zvolených jazycích
     labels:
@@ -53,9 +66,14 @@ cs:
         fields:
           name: Označení
           value: Obsah
+      account_alias:
+        acct: Adresa starého účtu
+      account_migration:
+        acct: Adresa nového účtu
       account_warning_preset:
         text: Text předlohy
       admin_account_action:
+        include_statuses: Zahrnout v e-mailu nahlášené tooty
         send_email_notification: Informovat uživatele e-mailem
         text: Vlastní varování
         type: Akce
@@ -110,6 +128,7 @@ cs:
         setting_show_application: Zobrazit aplikaci používanou k psaní tootů
         setting_system_font_ui: Použít výchozí písmo systému
         setting_theme: Motiv stránky
+        setting_trends: Zobrazit dnešní trendy
         setting_unfollow_modal: Zobrazovat před zrušením sledování potvrzovací okno
         setting_use_blurhash: Zobrazit pro skrytá média barevné gradienty
         setting_use_pending_items: Pomalý režim
@@ -124,6 +143,8 @@ cs:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
         must_be_following_dm: Blokovat přímé zprávy od lidí, které nesledujete
+      invite:
+        comment: Komentář
       invite_request:
         text: Proč se chcete připojit?
       notification_emails:
@@ -135,6 +156,12 @@ cs:
         pending_account: Posílat e-maily, když je třeba posoudit nový účet
         reblog: Posílat e-maily, když někdo boostne váš toot
         report: Posílat e-maily, je-li odesláno nové nahlášení
+        trending_tag: Posílat e-maily, když se neschválený hashtag stane populárním
+      tag:
+        listable: Dovolit tomuto hashtagu objevovat se v hledáních a v adresáři profilů
+        name: Hashtag
+        trendable: Dovolit tomuto hashtagu objevovat se v trendech
+        usable: Dovolit tootům používat tento hashtag
     'no': Ne
     recommended: Doporučeno
     required:

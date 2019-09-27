@@ -16,9 +16,6 @@ zh-TW:
     contact_unavailable: 未公開
     discover_users: 探索使用者
     documentation: 文件
-    extended_description_html: |
-      <h3>這裡可以寫一些網站規則</h3>
-      <p>本站點未有詳細介紹</p>
     generic_description: "%{domain} 是 Mastodon 網路中其中一個站點"
     get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
@@ -465,16 +462,14 @@ zh-TW:
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
   deletes:
-    bad_password_msg: 想得美，駭客! 密碼輸入錯誤
     confirm_password: 輸入你現在的密碼來驗證身份
-    description_html: 繼續操作將會<strong>永久地、不可還原地</strong>刪除帳戶中的所有內容，然後凍結帳戶。你的使用者名稱將會被保留，以防有人冒用你的身份。
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
-    warning_html: 我們只能保證本伺服器上的內容將會被徹底刪除。對於已經被廣泛傳播的內容，它們在本伺服器以外的某些地方可能仍然可見。此外，離線伺服器以及停止接收訂閱的伺服器所儲存的資料亦無法刪除。
-    warning_title: 關於已傳播的內容警告
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': 你沒有觀看這個頁面的權限。
     '404': 您所尋找的網頁不存在。
+    '406': This page is not available in the requested format.
     '410': 您所尋找的網頁此處已不存在。
     '422':
       content: 安全驗證失敗。請確定有開啟瀏覽器 Cookies 功能?
@@ -483,6 +478,7 @@ zh-TW:
     '500':
       content: 抱歉，我們的後台出現問題了。
       title: 這個頁面有問題
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
@@ -536,9 +532,6 @@ zh-TW:
       too_many: 無法加入超過 4 個檔案
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
-    currently_redirecting: 目前你的個人資料頁顯示的新帳戶是：
-    proceed: 儲存
-    updated_msg: 帳戶搬遷設定更新成功!
   moderation:
     title: 營運
   notification_mailer:
