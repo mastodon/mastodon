@@ -51,8 +51,9 @@ RSpec.describe FollowService, type: :service do
         subject.call(sender, bob.acct)
       end
 
-      it 'creates a follow request with reblogs' do
-        expect(FollowRequest.find_by(account: sender, target_account: bob, show_reblogs: true)).to_not be_nil
+      it 'creates a following relation with reblogs' do
+        expect(sender.following?(bob)).to be true
+        expect(sender.muting_reblogs?(bob)).to be false
       end
     end
 

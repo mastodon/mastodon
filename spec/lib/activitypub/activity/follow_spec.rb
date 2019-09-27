@@ -52,12 +52,12 @@ RSpec.describe ActivityPub::Activity::Follow do
         subject.perform
       end
 
-      it 'does not create a follow from sender to recipient' do
-        expect(sender.following?(recipient)).to be false
+      it 'creates a follow from sender to recipient' do
+        expect(sender.following?(recipient)).to be true
       end
 
-      it 'creates a follow request' do
-        expect(sender.requested?(recipient)).to be true
+      it 'does not create a follow request' do
+        expect(sender.requested?(recipient)).to be false
       end
     end
 

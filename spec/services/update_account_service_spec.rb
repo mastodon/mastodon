@@ -30,9 +30,9 @@ RSpec.describe UpdateAccountService, type: :service do
       expect(bob.requested?(account)).to be true
     end
 
-    it 'does not auto-accept pending follow requests from muted users' do
-      expect(eve.following?(account)).to be false
-      expect(eve.requested?(account)).to be true
+    it 'auto-accepts pending follow requests from muted users so as to not leak mute' do
+      expect(eve.following?(account)).to be true
+      expect(eve.requested?(account)).to be false
     end
   end
 end
