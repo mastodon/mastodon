@@ -107,7 +107,10 @@ function appendMedia(state, media, file) {
   const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
-    map.update('media_attachments', list => list.push(media.set('file', file)));
+    if (media.get('type') === 'image') {
+      media = media.set('file', file);
+    }
+    map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
     map.set('idempotencyKey', uuid());
