@@ -2,6 +2,10 @@
 ko:
   simple_form:
     hints:
+      account_alias:
+        acct: 이동하고자 하는 계정의 사용자이름@도메인을 설정하세요
+      account_migration:
+        acct: 이동하고자 하는 목적지 계정의 사용자이름@도메인을 설정하세요
       account_warning_preset:
         text: URL, 해시태그, 멘션과 같은 툿 문법을 사용할 수 있습니다
       admin_account_action:
@@ -62,6 +66,10 @@ ko:
         fields:
           name: 라벨
           value: 내용
+      account_alias:
+        acct: 기존 계정의 핸들
+      account_migration:
+        acct: 새 계정의 핸들
       account_warning_preset:
         text: 프리셋 텍스트
       admin_account_action:

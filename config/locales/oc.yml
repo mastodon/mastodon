@@ -53,6 +53,7 @@ oc:
     media: Mèdias
     moved_html: "%{name} a mudat a %{new_profile_link} :"
     network_hidden: Aquesta informacion es pas disponibla
+    never_active: Jamai
     nothing_here: I a pas res aquí !
     people_followed_by: Lo monde que %{name} sèc
     people_who_follow: Lo monde que sègon %{name}
@@ -219,10 +220,12 @@ oc:
       deleted_status: "(estatut suprimit)"
       title: Audit dels jornals
     custom_emojis:
+      assign_category: Atribuir una categoria
       by_domain: Domeni
       copied_msg: Còpia locala de l’emoji ben creada
       copy: Copiar
       copy_failed_msg: Fracàs de la còpia locala de l’emoji
+      create_new_category: Crear una nòva categoria
       created_msg: Emoji ben creat !
       delete: Suprimir
       destroyed_msg: Emoji ben suprimit !
@@ -244,6 +247,7 @@ oc:
       updated_msg: Emoji ben mes a jorn !
       upload: Enviar
     dashboard:
+      authorized_fetch_mode: Mòde recuperacion autorizat
       backlog: Accions en retard
       config: Configuracion
       feature_deletions: Supressions de comptes
@@ -472,12 +476,15 @@ oc:
         desc_html: Mostrar lo flux public sus la pagina d’acuèlh
         title: Apercebut flux public
       title: Paramètres del site
+      trends:
+        title: Etiquetas tendéncia
     statuses:
       back_to_account: Tornar a la pagina Compte
       batch:
         delete: Suprimir
         nsfw_off: Marcar coma pas sensible
         nsfw_on: Marcar coma sensible
+      deleted: Suprimits
       failed_to_execute: Fracàs
       media:
         title: Mèdia
@@ -572,6 +579,7 @@ oc:
     title: Sègre %{acct}
   challenge:
     confirm: Contunhar
+    hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
     invalid_password: Senhal invalid
     prompt: Confirmatz lo senhal per dire de contunhar
   datetime:
@@ -589,9 +597,15 @@ oc:
       x_months: "%{count} meses"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Las informacions qu’avètz fornidas son pas corrèctas
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
+    confirm_username: Picatz vòstre nom d’utilizaire per confirmar la procedura
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
+    warning:
+      caches: Lo contengut en cache suls autres servidors pòt demorar
+      email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
+      username_unavailable: Vòstre nom d’utilizaire demorarà pas disponible
   directories:
     directory: Annuari de perfils
     explanation: Trobar d’utilizaires segon lor interèsses
@@ -731,6 +745,8 @@ oc:
       too_many: Se pòt pas ajustar mai de 4 fichièrs
   migrations:
     acct: nomutilizaire@domeni del nòu compte
+    cancel: Anullar la redireccion
+    cancelled_msg: Redireccion corrèctament anullada.
     errors:
       move_to_self: pòt pas èsser lo compte actual
       not_found: impossible de trobar
@@ -1056,6 +1072,7 @@ oc:
         disable: Quand vòstre compte es gelat, las donadas d’aqueste demòran senceras, mas podètz pas realizar cap d’accion fins que siá desblocat.
         silence: Del temps que vòstre compte es limitat, solament lo monde que vos sègon veiràn vòstres tuts sus aqueste servidor, e poiriatz èsser tirat de mantunas listas publicas. Pasmens, d’autres vos pòdon sègre manualament.
         suspend: Vòstre compte es suspendut e totes vòstres tuts e fichièrs enviats son estats suprimits sens retorn possible d’aqueste servidor e los de vòstres seguidors.
+      get_in_touch: Podètz respondre a aqueste corrièl per contactar la còla de %{instance}.
       review_server_policies: Repassar las politicas del servidor
       statuses: 'Especificament per :'
       subject:

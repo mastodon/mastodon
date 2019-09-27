@@ -502,6 +502,9 @@ eo:
       context: Kunteksto
       directory: En la adresaro
       in_directory: "%{count} en adresaro"
+      last_active: Lasta aktiva
+      most_recent: Plej lasta
+      name: Kradvorto
       review: La statuso de la recenzo
       reviewed: Recenzis
       title: Kradvortoj
@@ -530,6 +533,7 @@ eo:
     advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara tempolinio, kaj ajna kvanto de listoj kaj kradvortoj.'
     animations_and_accessibility: Animacioj kaj alirebleco
     confirmation_dialogs: Konfirmaj fenestroj
+    discovery: Eltrovo
     sensitive_content: Tikla enhavo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
@@ -552,6 +556,8 @@ eo:
     checkbox_agreement_html: Mi samopinii al la <a href="%{rules_path}" target="_blank">Servo reguloj</a> kaj <a href="%{terms_path}" target="_blank">kondiĉo al servadon</a>
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
+    description:
+      prefix_sign_up: Registriĝi ĉe Mastodon hodiaŭ!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
@@ -586,6 +592,10 @@ eo:
       return: Montri la profilon de la uzanto
       web: Iri al reto
     title: Sekvi %{acct}
+  challenge:
+    confirm: Daŭrigi
+    invalid_password: Nevalida pasvorto
+    prompt: Konfirmi pasvorton por daŭrigi
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
