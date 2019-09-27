@@ -6418,13 +6418,17 @@ noscript {
     flex: 1 1 auto;
     padding: 10px 5px;
     padding-right: 15px;
+    word-break: break-all;
+    overflow: hidden;
 
     &__info {
       overflow: hidden;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
     }
 
     &__relative-time {
-      float: right;
       font-size: 15px;
       color: $darker-text-color;
       padding-left: 15px;
@@ -6437,6 +6441,8 @@ noscript {
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 4px;
+      flex-basis: 170px;
+      flex-shrink: 1000;
 
       a {
         color: $primary-text-color;
