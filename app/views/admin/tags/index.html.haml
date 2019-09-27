@@ -43,8 +43,10 @@
 
 = form_for(@form, url: batch_admin_tags_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
-  = hidden_field_tag :context, params[:context]
-  = hidden_field_tag :review, params[:review]
+  = hidden_field_tag :name, params[:name] if params[:name].present?
+
+  - Admin::FilterHelper::TAGS_FILTERS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
 
   .batch-table
     .batch-table__toolbar
