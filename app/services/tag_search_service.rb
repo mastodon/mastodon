@@ -62,9 +62,9 @@ class TagSearchService < BaseService
           },
 
           {
-            term: {
+            match: {
               name: {
-                value: @query,
+                query: @query,
               },
             },
           },
