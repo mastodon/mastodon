@@ -190,11 +190,11 @@ function continueThread (state, status) {
   });
 }
 
-function appendMedia(state, media) {
+function appendMedia(state, media, file) {
   const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
-    map.update('media_attachments', list => list.push(media));
+    map.update('media_attachments', list => list.push(media.set('file', file)));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
     map.set('idempotencyKey', uuid());
@@ -422,7 +422,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_REQUEST:
     return state.set('is_uploading', true);
   case COMPOSE_UPLOAD_SUCCESS:
-    return appendMedia(state, fromJS(action.media));
+    return appendMedia(state, fromJS(action.media), action.file);
   case COMPOSE_UPLOAD_FAIL:
     return state.set('is_uploading', false);
   case COMPOSE_UPLOAD_UNDO:
