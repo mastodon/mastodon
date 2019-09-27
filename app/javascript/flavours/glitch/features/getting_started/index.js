@@ -104,16 +104,14 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
   }
 
   componentDidMount () {
-    const { myAccount, fetchFollowRequests, multiColumn } = this.props;
+    const { fetchFollowRequests, multiColumn } = this.props;
 
     if (!multiColumn && window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
       this.context.router.history.replace('/timelines/home');
       return;
     }
 
-    if (myAccount.get('locked')) {
-      fetchFollowRequests();
-    }
+    fetchFollowRequests();
   }
 
   render () {
@@ -148,7 +146,7 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
       navItems.push(<ColumnLink key='5' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
     }
 
-    if (myAccount.get('locked')) {
+    if (myAccount.get('locked') || unreadFollowRequests > 0) {
       navItems.push(<ColumnLink key='6' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
     }
 
