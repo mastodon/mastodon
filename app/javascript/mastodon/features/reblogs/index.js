@@ -27,7 +27,9 @@ class Reblogs extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchReblogs(this.props.params.statusId));
+    if (!this.props.accountIds) {
+      this.props.dispatch(fetchReblogs(this.props.params.statusId));
+    }
   }
 
   componentWillReceiveProps(nextProps) {
