@@ -14,6 +14,7 @@ import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   closed: { id: 'poll.closed', defaultMessage: 'Closed' },
+  voted: { id: 'poll.voted', defaultMessage: 'You voted for this answer', description: 'Tooltip of the "voted" checkmark in polls' },
 });
 
 const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
@@ -100,11 +101,11 @@ class Poll extends ImmutablePureComponent {
   };
 
   renderOption (option, optionIndex, showResults) {
-    const { poll, disabled } = this.props;
-    const percent            = poll.get('votes_count') === 0 ? 0 : (option.get('votes_count') / poll.get('votes_count')) * 100;
-    const leading            = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
-    const active             = !!this.state.selected[`${optionIndex}`];
-    const voted              = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
+    const { poll, disabled, intl } = this.props;
+    const percent = poll.get('votes_count') === 0 ? 0 : (option.get('votes_count') / poll.get('votes_count')) * 100;
+    const leading = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
+    const active  = !!this.state.selected[`${optionIndex}`];
+    const voted   = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
 
     let titleEmojified = option.get('title_emojified');
     if (!titleEmojified) {
@@ -134,7 +135,7 @@ class Poll extends ImmutablePureComponent {
 
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
           {showResults && <span className='poll__number'>
-            {!!voted && <Icon id='check' className='poll__vote__mark' />}
+            {!!voted && <Icon id='check' className='poll__vote__mark' title={intl.formatMessage(messages.voted)} />}
             {Math.round(percent)}%
           </span>}
 
