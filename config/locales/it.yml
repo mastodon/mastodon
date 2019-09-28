@@ -1,7 +1,6 @@
----
 it:
   about:
-    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
+    about_hashtag_html: 'Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.'
     about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
     about_this: A proposito di questo server
     active_count_after: attivo
@@ -35,13 +34,17 @@ it:
     status_count_before: Che hanno pubblicato
     tagline: Segui amici e trovane di nuovi
     terms: Termini di Servizio
+    unavailable_content: Contenuto non disponibile
+    unavailable_content_description:
+      reason: 'Motivo:'
+      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
     user_count_after:
       one: utente
       other: utenti
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
-    choices_html: 'Suggerimenti da %{name}:'
+    choices_html: "Suggerimenti da %{name}:"
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
     followers:
@@ -54,6 +57,7 @@ it:
     media: Media
     moved_html: "%{name} si è spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
+    never_active: Mai
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
@@ -220,10 +224,12 @@ it:
       deleted_status: "(stato cancellato)"
       title: Registro di controllo
     custom_emojis:
+      assign_category: Assegna categoria
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
       copy: Copia
       copy_failed_msg: Impossibile creare una copia locale di questo emoji
+      create_new_category: Crea nuova categoria
       created_msg: Emoji creato con successo!
       delete: Elimina
       destroyed_msg: Emoji distrutto con successo!
@@ -231,6 +237,7 @@ it:
       disabled_msg: Questa emoji è stata disabilitata con successo
       emoji: Emoji
       enable: Abilita
+      enabled: Abilitato
       enabled_msg: Questa emoji è stata abilitata con successo
       image_hint: PNG fino a 50 KB
       listed: Elencato
@@ -240,11 +247,13 @@ it:
       shortcode: Scorciatoia
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
       title: Emoji personalizzate
+      uncategorized: Nessuna categoria
       unlisted: Non elencato
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
     dashboard:
+      authorized_fetch_mode: Modalità sicura
       backlog: lavori arretrati
       config: Configurazione
       feature_deletions: Cancellazioni di account
@@ -308,7 +317,7 @@ it:
       show:
         affected_accounts:
           one: Interessato un solo account nel database
-          other: Interessati %{count} account nel database
+          other: "Interessati %{count} account nel database"
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -328,7 +337,7 @@ it:
       title: Lista nera email
     followers:
       back_to_account: Torna all'account
-      title: Seguaci di %{acct}
+      title: "Seguaci di %{acct}"
     instances:
       by_domain: Dominio
       delivery_available: Distribuzione disponibile
@@ -528,15 +537,13 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     sensitive_content: Contenuto sensibile
