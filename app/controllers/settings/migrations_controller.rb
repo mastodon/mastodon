@@ -27,15 +27,6 @@ class Settings::MigrationsController < Settings::BaseController
     end
   end
 
-  def cancel
-    if current_account.moved_to_account_id.present?
-      current_account.update!(moved_to_account: nil)
-      ActivityPub::UpdateDistributionWorker.perform_async(current_account.id)
-    end
-
-    redirect_to settings_migration_path, notice: I18n.t('migrations.cancelled_msg')
-  end
-
   helper_method :on_cooldown?
 
   private

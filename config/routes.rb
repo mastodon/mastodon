@@ -134,11 +134,10 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
+    resource :migration, only: [:show, :create]
 
-    resource :migration, only: [:show, :create] do
-      collection do
-        post :cancel
-      end
+    namespace :migration do
+      resource :redirect, only: [:new, :create, :destroy]
     end
 
     resources :aliases, only: [:index, :create, :destroy]
