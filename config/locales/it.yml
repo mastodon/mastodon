@@ -518,6 +518,10 @@ it:
       context: Contesto
       directory: Nella directory
       in_directory: "%{count} nella directory"
+      last_active: Ultima attività
+      most_popular: Più popolari
+      most_recent: Più recenti
+      name: Hashtag
       reviewed: Controllato
       title: Hashtag
       trending_right_now: Di tendenza ora
@@ -541,6 +545,8 @@ it:
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
+  aliases:
+    add_new: Crea alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
@@ -606,6 +612,11 @@ it:
       return: Mostra il profilo dell'utente
       web: Vai al web
     title: Segui %{acct}
+  challenge:
+    confirm: Continua
+    hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
+    invalid_password: Password non valida
+    prompt: Conferma la tua password per continuare
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ore"
@@ -621,9 +632,13 @@ it:
       x_months: "%{count} mesi"
       x_seconds: "%{count} secondi"
   deletes:
+    challenge_not_passed: Le informazioni che hai inserito non sono corrette
     confirm_password: Inserisci la tua password attuale per verificare la tua identità
+    confirm_username: Inserisci il tuo nome utente per confermare la procedura
     proceed: Cancella l'account
     success_msg: Il tuo account è stato cancellato
+    warning:
+      before: 'Prima di procedere, per favore leggi attentamente queste note:'
   directories:
     directory: Directory dei profili
     explanation: Scopri utenti in base ai loro interessi
