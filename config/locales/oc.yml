@@ -263,6 +263,8 @@ oc:
       features: Foncionalitats
       hidden_service: Federacion amb servicis amagats
       open_reports: Senhalaments dobèrts
+      pending_tags: etiquetas en espèra de validacion
+      pending_users: utilizaires en espèra de validacion
       recent_users: Utilizaires recents
       search: Recèrca tèxte complèt
       single_user_mode: Mòde sol utilizaire
@@ -297,6 +299,7 @@ oc:
           suspend: Suspendre
         title: Nòu blocatge domeni
       private_comment: Comentari privat
+      private_comment_hint: Comentari tocant la limitacion d’aqueste domeni per un usatge intèrn pels moderators.
       public_comment: Comentari public
       reject_media: Regetar los fichièrs mèdias
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
@@ -372,6 +375,7 @@ oc:
       pending: En espèra d’aprovacion del relai
       save_and_enable: Salvar e activar
       setup: Configurar una connexion relai
+      signatures_not_enabled: Los relais foncionaràn pas coma cal se lo mòde segur o lista blanca es activat
       status: Estatut
       title: Relais
     report_notes:
@@ -420,6 +424,15 @@ oc:
       custom_css:
         desc_html: Modificar l’estil amb una fuèlha CSS cargada sus cada pagina
         title: CSS personalizada
+      default_noindex:
+        desc_html: Tòca totes los utilizaires qu’an pas cambiat lo paramètre
+      domain_blocks:
+        all: A tot lo monde
+        disabled: A degun
+        title: Mostrar los blocatges de domeni
+        users: Als utilizaires locals connectats
+      domain_blocks_rationale:
+        title: Mostrar lo rasonament
       hero:
         desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge del servidor serà mostrat
         title: Imatge de l’eròi
@@ -496,6 +509,8 @@ oc:
       title: Estatuts del compte
       with_media: Amb mèdia
     tags:
+      accounts_today: Utilizacions unicas uèi
+      accounts_week: Utilizacions unicas aquesta setmana
       context: Contèxt
       directory: A l’annuari
       in_directory: "%{count} a l’annuari"
@@ -503,7 +518,13 @@ oc:
       most_popular: Mai popularas
       most_recent: Mai recentas
       name: Etiqueta
+      review: Repassar l’estatut
+      reviewed: Repassadas
       title: Etiquetas
+      trending_right_now: Actualament en tendéncia
+      unique_uses_today: "%{count} publicacions uèi"
+      unreviewed: Pas repassadas
+      updated_msg: Paramètres d’etiquetas corrèctament actualizats
     title: Administracion
     warning_presets:
       add_new: N’ajustar un nòu
@@ -545,9 +566,11 @@ oc:
     apply_for_account: Demandar una invitacion
     change_password: Senhal
     checkbox_agreement_html: Accepti las <a href="%{rules_path}" target="_blank">règlas del servidor</a> e <a href="%{terms_path}" target="_blank">los tèrmes del servici</a>
+    checkbox_agreement_without_rules_html: Soi d’acòrdi amb las <a href="%{terms_path}" target="_blank">condicions d’utilizacion</a>
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     description:
+      prefix_invited_by_user: "@%{name} vos convida a rejónher aqueste servidor Mastodon !"
       prefix_sign_up: Marcatz-vos a Mostodon uèi !
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
@@ -611,6 +634,8 @@ oc:
     warning:
       caches: Lo contengut en cache suls autres servidors pòt demorar
       email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
+      irreversible: Poiretz pas restaurar o reactivar vòstre compte
+      more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
       username_available: Vòstre nom d’utilizaire serà disponible de nòu
       username_unavailable: Vòstre nom d’utilizaire demorarà pas disponible
   directories:
@@ -623,7 +648,7 @@ oc:
     '400': The request you submitted was invalid or malformed.
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
-    '406': This page is not available in the requested format.
+    '406': La pagina es pas disponibla dins lo format demandat.
     '410': La pagina que cercatz existís pas mai aquí.
     '422':
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
@@ -681,6 +706,7 @@ oc:
     all: Tot
     changes_saved_msg: Cambiaments ben realizats !
     copy: Copiar
+    no_batch_actions_available: Cap d’accion de massa pas disponibla sus aquesta pagina
     order_by: Triar per
     save_changes: Salvar los cambiaments
     validation_errors:
@@ -760,7 +786,12 @@ oc:
     incoming_migrations: Mudar d’un compte diferent
     moved_msg: Vòstre compte manda ara a %{acct} e vòstres seguidors son desplaçats.
     not_redirecting: Vòstre compte manda pas enlòc pel moment.
+    past_migrations: Migracions passadas
     proceed_with_move: Desplaçar los seguidors
+    redirecting_to: Vòstre compte manda a %{acct}.
+    warning:
+      before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
+      other_data: Cap d’autra donada serà desplaçada automaticament
   moderation:
     title: Moderacion
   notification_mailer:
@@ -963,6 +994,8 @@ oc:
     pinned: Tut penjat
     reblogged: a partejat
     sensitive_content: Contengut sensible
+  tags:
+    does_not_match_previous_name: correspond pas al nom precedent
   terms:
     body_html: |
       <h2>Politica de confidencialitat</h2>
