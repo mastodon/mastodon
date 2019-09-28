@@ -85,11 +85,10 @@ class MuteModal extends React.PureComponent {
               defaultMessage='This will hide content from or mentioning them, but it will still let them follow you.'
             />
           </p>
-          <div>
-            <label htmlFor='mute-modal__hide-notifications-checkbox'>
+          <div className='setting-toggle'>
+            <Toggle id='mute-modal__hide-notifications-checkbox' checked={notifications} onChange={this.toggleNotifications} />
+            <label className='setting-toggle__label' htmlFor='mute-modal__hide-notifications-checkbox'>
               <FormattedMessage id='mute_modal.hide_notifications' defaultMessage='Hide notifications from this user?' />
-              {' '}
-              <Toggle id='mute-modal__hide-notifications-checkbox' checked={notifications} onChange={this.toggleNotifications} />
             </label>
           </div>
         </div>

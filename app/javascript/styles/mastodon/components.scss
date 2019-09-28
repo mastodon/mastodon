@@ -4680,6 +4680,22 @@ a.status-card.compact:hover {
   }
 }
 
+.block-modal,
+.mute-modal {
+  .setting-toggle {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+
+    &__label {
+      color: $inverted-text-color;
+      margin: 0;
+      margin-left: 8px;
+    }
+  }
+}
+
 .report-modal__comment {
   padding: 20px;
   border-right: 1px solid $ui-secondary-color;
