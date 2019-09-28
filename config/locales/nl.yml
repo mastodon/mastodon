@@ -666,6 +666,8 @@ nl:
       email_change_html: Je kunt <a href="%{path}">je e-mailadres wijzigen</a> zonder dat je jouw account hoeft te verwijderen
       email_contact_html: Wanneer het nog steeds niet aankomt, kun je voor hulp e-mailen naar <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Wanneer je de bevestigingsmail niet hebt ontvangen, kun je deze <a href="%{path}">opnieuw aanvragen</a>
+      irreversible: Je zult niet in staat zijn om jouw account te herstellen of te deactiveren
+      more_details_html: Zie het <a href="%{terms_path}">privacybeleid</a> voor meer informatie.
       username_available: Jouw gebruikersnaam zal weer beschikbaar komen
       username_unavailable: Jouw gebruikersnaam zal onbeschikbaar blijven
   directories:
@@ -675,10 +677,10 @@ nl:
   domain_validator:
     invalid_domain: is een ongeldige domeinnaam
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': De aanvraag die je hebt ingediend was ongeldig of foutief.
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
-    '406': This page is not available in the requested format.
+    '406': Deze pagina is niet beschikbaar in het opgevraagde formaat.
     '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
@@ -687,7 +689,7 @@ nl:
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
-    '503': The page could not be served due to a temporary server failure.
+    '503': De pagina kon door een tijdelijke serverstoring niet worden geladen.
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   existing_username_validator:
     not_found: Kon geen lokale gebruiker met die gebruikersnaam vinden
@@ -711,6 +713,7 @@ nl:
     add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximaal aantal hashtags uitgelicht
+    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare toots per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
       home: Starttijdlijn
@@ -736,6 +739,7 @@ nl:
     all: Alles
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
+    no_batch_actions_available: Geen batchacties op deze pagina beschikbaar
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
     validation_errors:
