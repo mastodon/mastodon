@@ -35,6 +35,10 @@ it:
     status_count_before: Che hanno pubblicato
     tagline: Segui amici e trovane di nuovi
     terms: Termini di Servizio
+    unavailable_content: Contenuto non disponibile
+    unavailable_content_description:
+      reason: 'Motivo:'
+      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
     user_count_after:
       one: utente
       other: utenti
@@ -54,6 +58,7 @@ it:
     media: Media
     moved_html: "%{name} si è spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
+    never_active: Mai
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
@@ -220,10 +225,12 @@ it:
       deleted_status: "(stato cancellato)"
       title: Registro di controllo
     custom_emojis:
+      assign_category: Assegna categoria
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
       copy: Copia
       copy_failed_msg: Impossibile creare una copia locale di questo emoji
+      create_new_category: Crea nuova categoria
       created_msg: Emoji creato con successo!
       delete: Elimina
       destroyed_msg: Emoji distrutto con successo!
@@ -231,6 +238,7 @@ it:
       disabled_msg: Questa emoji è stata disabilitata con successo
       emoji: Emoji
       enable: Abilita
+      enabled: Abilitato
       enabled_msg: Questa emoji è stata abilitata con successo
       image_hint: PNG fino a 50 KB
       listed: Elencato
@@ -240,11 +248,13 @@ it:
       shortcode: Scorciatoia
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
       title: Emoji personalizzate
+      uncategorized: Nessuna categoria
       unlisted: Non elencato
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
     dashboard:
+      authorized_fetch_mode: Modalità sicura
       backlog: lavori arretrati
       config: Configurazione
       feature_deletions: Cancellazioni di account
@@ -509,6 +519,10 @@ it:
       context: Contesto
       directory: Nella directory
       in_directory: "%{count} nella directory"
+      last_active: Ultima attività
+      most_popular: Più popolari
+      most_recent: Più recenti
+      name: Hashtag
       reviewed: Controllato
       title: Hashtag
       trending_right_now: Di tendenza ora
@@ -532,6 +546,8 @@ it:
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
+  aliases:
+    add_new: Crea alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: |-
@@ -599,6 +615,11 @@ it:
       return: Mostra il profilo dell'utente
       web: Vai al web
     title: Segui %{acct}
+  challenge:
+    confirm: Continua
+    hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
+    invalid_password: Password non valida
+    prompt: Conferma la tua password per continuare
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ore"
@@ -614,9 +635,13 @@ it:
       x_months: "%{count} mesi"
       x_seconds: "%{count} secondi"
   deletes:
+    challenge_not_passed: Le informazioni che hai inserito non sono corrette
     confirm_password: Inserisci la tua password attuale per verificare la tua identità
+    confirm_username: Inserisci il tuo nome utente per confermare la procedura
     proceed: Cancella l'account
     success_msg: Il tuo account è stato cancellato
+    warning:
+      before: 'Prima di procedere, per favore leggi attentamente queste note:'
   directories:
     directory: Directory dei profili
     explanation: Scopri utenti in base ai loro interessi
