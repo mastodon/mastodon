@@ -23,12 +23,13 @@ Rails.application.routes.draw do
                 tokens: 'oauth/tokens'
   end
 
-  get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta,    defaults: { format: 'xml' }
-  get '.well-known/nodeinfo', to: 'well_known/node_info#index', as: :node_info,    defaults: { format: 'json' }
-  get 'nodeinfo/2.0', to: 'well_known/node_info#show',  as: :node_info_schema, defaults: { format: 'json' }
+  get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+  get '.well-known/nodeinfo', to: 'well_known/nodeinfo#index', as: :nodeinfo, defaults: { format: 'json' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
   get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show'
+
+  get '/nodeinfo/2.0', to: 'well_known/nodeinfo#show', as: :nodeinfo_schema
 
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'

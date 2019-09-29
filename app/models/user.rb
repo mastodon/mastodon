@@ -323,7 +323,6 @@ class User < ApplicationRecord
 
   def prepare_returning_user!
     ActivityTracker.record('activity:logins', id)
-    ActivityTracker.record_month('activity:logins_month', id)
     regenerate_feed! if needs_feed_update?
   end
 
