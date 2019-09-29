@@ -447,16 +447,11 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     } else if (suggestion.type === 'hashtag') {
       completion    = `#${suggestion.name}`;
       startPosition = position - 1;
-<<<<<<< HEAD
-    } else if (suggestion[0] === '[') {
-      completion    = suggestion.replace(/^\[|\]$/g, '');
+    } else if (suggestion.type === 'alphabet') {
+      completion    = suggestion.item.replace(/^\[|\]$/g, '');
       startPosition = position - 1;
-    } else {
-      completion    = getState().getIn(['accounts', suggestion, 'acct']);
-=======
     } else if (suggestion.type === 'account') {
       completion    = getState().getIn(['accounts', suggestion.id, 'acct']);
->>>>>>> upstream/master
       startPosition = position;
     }
 

@@ -236,11 +236,13 @@ const mergeLocalHashtagResults = (suggestions, prefix, tagHistory) => {
   }
 };
 
-const normalizeSuggestions = (state, { accounts, emojis, tags, token }) => {
+const normalizeSuggestions = (state, { accounts, emojis, alphabets, tags, token }) => {
   if (accounts) {
     return accounts.map(item => ({ id: item.id, type: 'account' }));
   } else if (emojis) {
     return emojis.map(item => ({ ...item, type: 'emoji' }));
+  } else if (alphabets) {
+    return alphabets.map(item => ({ item, type: 'alphabet' }));
   } else {
     return mergeLocalHashtagResults(sortHashtagsByUse(state, tags.map(item => ({ ...item, type: 'hashtag' }))), token.slice(1), state.get('tagHistory'));
   }
@@ -366,14 +368,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
-<<<<<<< HEAD
-    if (action.alphabets) {
-      return state.set('suggestions', ImmutableList(action.alphabets)).set('suggestion_token', action.token);
-    }
-    return state.set('suggestions', ImmutableList(action.accounts ? action.accounts.map(item => item.id) : action.emojis)).set('suggestion_token', action.token);
-=======
     return state.set('suggestions', ImmutableList(normalizeSuggestions(state, action))).set('suggestion_token', action.token);
->>>>>>> upstream/master
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion, action.path);
   case COMPOSE_SUGGESTION_TAGS_UPDATE:
