@@ -12,27 +12,31 @@
 
         %p.hint= t('migrations.cancel_explanation')
 
-        %p.hint= link_to t('migrations.cancel'), cancel_settings_migration_path, data: { method: :post }
+        %p.hint= link_to t('migrations.cancel'), settings_migration_redirect_path, data: { method: :delete }
   - else
     %p.hint
       %span.positive-hint= t('migrations.not_redirecting')
 
 %hr.spacer/
 
-%h3= t 'migrations.proceed_with_move'
+%h3= t('auth.migrate_account')
 
 = simple_form_for @migration, url: settings_migration_path do |f|
   - if on_cooldown?
-    %span.warning-hint= t('migrations.on_cooldown', count: ((@cooldown.cooldown_at - Time.now.utc) / 1.day.seconds).ceil)
+    %p.hint
+      %span.warning-hint= t('migrations.on_cooldown', count: ((@cooldown.cooldown_at - Time.now.utc) / 1.day.seconds).ceil)
   - else
     %p.hint= t('migrations.warning.before')
 
     %ul.hint
       %li.warning-hint= t('migrations.warning.followers')
+      %li.warning-hint= t('migrations.warning.redirect')
       %li.warning-hint= t('migrations.warning.other_data')
       %li.warning-hint= t('migrations.warning.backreference_required')
       %li.warning-hint= t('migrations.warning.cooldown')
       %li.warning-hint= t('migrations.warning.disabled_account')
+
+  %p.hint= t('migrations.warning.only_redirect_html', path: new_settings_migration_redirect_path)
 
   %hr.spacer/
 
