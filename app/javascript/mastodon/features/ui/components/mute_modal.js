@@ -82,7 +82,7 @@ class MuteModal extends React.PureComponent {
           <p>
             <FormattedMessage
               id='confirmations.mute.explanation'
-              defaultMessage='This will hide content from or mentioning them, but it will still let them follow you.'
+              defaultMessage='This will hide posts from them and posts mentioning them, but it will still allow them to see your posts follow you.'
             />
           </p>
           <div className='setting-toggle'>
