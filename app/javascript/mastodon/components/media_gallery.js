@@ -248,10 +248,12 @@ class MediaGallery extends React.PureComponent {
     cacheWidth: PropTypes.func,
     visible: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    quote: PropTypes.bool,
   };
 
   static defaultProps = {
     standalone: false,
+    quote: false,
   };
 
   state = {
@@ -296,7 +298,7 @@ class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height, defaultWidth } = this.props;
+    const { media, intl, sensitive, height, defaultWidth, quote } = this.props;
     const { visible } = this.state;
 
     const width = this.state.width || defaultWidth;
@@ -310,13 +312,17 @@ class MediaGallery extends React.PureComponent {
         style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
       }
     } else if (width) {
-      style.height = width / (16/9);
+        style.height = width / (16/9);
     } else {
       style.height = height;
     }
 
     const size     = media.take(4).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
+
+    if (quote && style.height) {
+      style.height /= 2;
+    }
 
     if (this.isStandaloneEligible()) {
       children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
@@ -339,7 +345,7 @@ class MediaGallery extends React.PureComponent {
         </button>
       );
     }
-
+    
     return (
       <div className='media-gallery' style={style} ref={this.handleRef}>
         <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>

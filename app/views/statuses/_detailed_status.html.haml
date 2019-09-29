@@ -26,6 +26,9 @@
         = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
           = render partial: 'statuses/poll', locals: { status: status, poll: status.preloadable_poll, autoplay: autoplay }
 
+  - if status.quote?
+    = render partial: "quote_status", locals: {status: status.quote}
+
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
