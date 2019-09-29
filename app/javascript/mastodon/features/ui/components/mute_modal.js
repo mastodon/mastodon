@@ -79,7 +79,7 @@ class MuteModal extends React.PureComponent {
               values={{ name: <strong>@{account.get('acct')}</strong> }}
             />
           </p>
-          <p>
+          <p className='mute-modal__explanation'>
             <FormattedMessage
               id='confirmations.mute.explanation'
               defaultMessage='This will hide posts from them and posts mentioning them, but it will still allow them to see your posts follow you.'
