@@ -13,6 +13,7 @@ import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
 import {
   MuteModal,
+  BlockModal,
   ReportModal,
   EmbedModal,
   ListEditor,
@@ -25,6 +26,7 @@ const MODAL_COMPONENTS = {
   'BOOST': () => Promise.resolve({ default: BoostModal }),
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
+  'BLOCK': BlockModal,
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
