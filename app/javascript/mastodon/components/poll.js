@@ -161,7 +161,7 @@ class Poll extends ImmutablePureComponent {
     let votesCount = null;
 
     if (poll.get('voters_count') !== null && poll.get('voters_count') !== undefined) {
-      votesCount = <FormattedMessage id='poll.total_voters' defaultMessage='{count, plural, one {# voter} other {# voters}}' values={{ count: poll.get('voters_count') }} />;
+      votesCount = <FormattedMessage id='poll.total_people' defaultMessage='{count, plural, one {# person} other {# people}}' values={{ count: poll.get('voters_count') }} />;
     } else {
       votesCount = <FormattedMessage id='poll.total_votes' defaultMessage='{count, plural, one {# vote} other {# votes}}' values={{ count: poll.get('votes_count') }} />;
     }
