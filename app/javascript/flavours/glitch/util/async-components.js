@@ -122,6 +122,10 @@ export function MuteModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/mute_modal" */'flavours/glitch/features/ui/components/mute_modal');
 }
 
+export function BlockModal () {
+  return import(/* webpackChunkName: "flavours/glitch/async/block_modal" */'flavours/glitch/features/ui/components/block_modal');
+}
+
 export function ReportModal () {
   return import(/* webpackChunkName: "flavours/glitch/async/report_modal" */'flavours/glitch/features/ui/components/report_modal');
 }
