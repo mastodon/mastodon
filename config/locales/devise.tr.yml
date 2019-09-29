@@ -87,4 +87,11 @@ tr:
       unlocked: Hesabınızın kilidi başarıyla açıldı. Devam etmek için lütfen oturum açın.
   errors:
     messages:
+      already_confirmed: zaten onaylanmış, lütfen tekrar oturum açmayı deneyin
+      confirmation_period_expired: '%{period} içinde onaylanması gerekli, lütfen yeni bir tane talep edin'
+      expired: süresi geçti, lütfen yeni bir tane talep edin
       not_found: bulunamadı
+      not_locked: kilitlenmemiş
+      not_saved:
+        one: '1 hata bu %{resource} kaydedilmesini önledi:'
+        other: "%{count} hata bu %{resource} kaydedilmesini önledi:"
