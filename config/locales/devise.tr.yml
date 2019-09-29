@@ -1,4 +1,3 @@
----
 tr:
   devise:
     confirmations:
@@ -46,6 +45,10 @@ tr:
         extra: Bunu siz yapmadıysanız, lütfen bu e-postayı dikkate almayın. Parolanız yukarıdaki bağlantıya erişene ve yeni bir tane oluşturuncaya kadar değişmez.
         subject: 'Mastodon: Parola sıfırlama talimatları'
         title: Parola sıfırlama
+      two_factor_disabled:
+        explanation: Hesabınız için iki-adımlı kimlik doğrulama devre dışı bırakıldı. Şimdi sadece e-posta adresi ve parola kullanarak giriş yapabilirsiniz.
+        subject: 'Mastodon: İki-adımlı kimlik doğrulama devre dışı'
+        title: 2FA devre dışı
       unlock_instructions:
         subject: 'Mastodon: Engel kaldırma talimatları'
     passwords:
