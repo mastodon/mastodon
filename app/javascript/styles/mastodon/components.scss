@@ -4680,27 +4680,6 @@ a.status-card.compact:hover {
   }
 }
 
-.block-modal,
-.mute-modal {
-  &__explanation {
-    margin-top: 20px;
-    text-align: initial;
-  }
-
-  .setting-toggle {
-    margin-top: 20px;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-
-    &__label {
-      color: $inverted-text-color;
-      margin: 0;
-      margin-left: 8px;
-    }
-  }
-}
-
 .report-modal__comment {
   padding: 20px;
   border-right: 1px solid $ui-secondary-color;
@@ -4884,7 +4863,6 @@ a.status-card.compact:hover {
 .report-modal__target {
   padding: 30px;
   font-size: 16px;
-  text-align: center;
 
   strong {
     font-weight: 500;
@@ -4893,6 +4871,31 @@ a.status-card.compact:hover {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
+    }
+  }
+}
+
+.confirmation-modal__container,
+.report-modal__target {
+  text-align: center;
+}
+
+.block-modal,
+.mute-modal {
+  &__explanation {
+    margin-top: 20px;
+  }
+
+  .setting-toggle {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+
+    &__label {
+      color: $inverted-text-color;
+      margin: 0;
+      margin-left: 8px;
     }
   }
 }
