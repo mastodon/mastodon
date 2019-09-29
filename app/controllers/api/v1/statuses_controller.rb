@@ -46,7 +46,8 @@ class Api::V1::StatusesController < Api::BaseController
                                          application: doorkeeper_token.application,
                                          poll: status_params[:poll],
                                          idempotency: request.headers['Idempotency-Key'],
-                                         with_rate_limit: true)
+                                         with_rate_limit: true,
+                                         quote_id: status_params[:quote_id].presence)
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
@@ -85,6 +86,7 @@ class Api::V1::StatusesController < Api::BaseController
       :spoiler_text,
       :visibility,
       :scheduled_at,
+      :quote_id,
       media_ids: [],
       poll: [
         :multiple,

@@ -46,6 +46,9 @@ class DetailedStatus extends ImmutablePureComponent {
       available: PropTypes.bool,
     }),
     onToggleMediaVisibility: PropTypes.func,
+    onQuoteToggleHidden: PropTypes.func.isRequired,
+    showQuoteMedia: PropTypes.bool,
+    onToggleQuoteMediaVisibility: PropTypes.func,
   };
 
   state = {
@@ -102,6 +105,19 @@ class DetailedStatus extends ImmutablePureComponent {
     window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
   }
 
+  handleExpandedQuoteToggle = () => {
+    this.props.onQuoteToggleHidden(this.props.status);
+  }
+
+  handleQuoteClick = () => {
+    if (!this.context.router) {
+      return;
+    }
+
+    const { status } = this.props;
+    this.context.router.history.push(`/statuses/${status.getIn(['quote', 'id'])}`);
+  }
+
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
     const outerStyle = { boxSizing: 'border-box' };
@@ -119,6 +135,73 @@ class DetailedStatus extends ImmutablePureComponent {
 
     if (this.props.measureHeight) {
       outerStyle.height = `${this.state.height}px`;
+    }
+
+    let quote = null;
+    if (status.get('quote', null) !== null) {
+      let quote_status = status.get('quote');
+
+      let quote_media = null;
+      if (quote_status.get('media_attachments').size > 0) {
+
+        if (quote_status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+          const attachment = quote_status.getIn(['media_attachments', 0]);
+
+          quote_media = (
+            <Audio
+              src={attachment.get('url')}
+              alt={attachment.get('description')}
+              duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
+              height={60}
+              preload
+            />
+          );
+        } else if (quote_status.getIn(['media_attachments', 0, 'type']) === 'video') {
+          const attachment = quote_status.getIn(['media_attachments', 0]);
+
+          quote_media = (
+            <Video
+              preview={attachment.get('preview_url')}
+              blurhash={attachment.get('blurhash')}
+              src={attachment.get('url')}
+              alt={attachment.get('description')}
+              width={300}
+              height={150}
+              inline
+              onOpenVideo={this.handleOpenVideo}
+              sensitive={quote_status.get('sensitive')}
+              visible={this.props.showQuoteMedia}
+              onToggleVisibility={this.props.onToggleQuoteMediaVisibility}
+              quote
+            />
+          );
+        } else {
+          quote_media = (
+            <MediaGallery
+              standalone
+              sensitive={quote_status.get('sensitive')}
+              media={quote_status.get('media_attachments')}
+              height={300}
+              onOpenMedia={this.props.onOpenMedia}
+              visible={this.props.showQuoteMedia}
+              onToggleVisibility={this.props.onToggleQuoteMediaVisibility}
+              quote
+            />
+          );
+        }
+      }
+
+      quote = (
+        <div className='quote-status'>
+          <a href={quote_status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+            <div className='detailed-status__display-avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
+            <DisplayName account={quote_status.get('account')} localDomain={this.props.domain} />
+          </a>
+
+          <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} quote />
+          {quote_media}
+        </div>
+      );
     }
 
     if (pictureInPicture.get('inUse')) {
@@ -247,6 +330,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
           <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
+          {quote}
           {media}
 
           <div className='detailed-status__meta'>

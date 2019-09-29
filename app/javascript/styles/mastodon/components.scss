@@ -1009,6 +1009,70 @@
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 }
 
+.quote-inline {
+  display: none;
+}
+
+.quote-status {
+  border: solid 1px $ui-base-lighter-color;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 8px;
+  position: relative;
+
+  & > .unlisted-quote {
+    color: $dark-text-color;
+    font-weight: 500;
+
+    & > button {
+      color: $dark-text-color;
+      font-size: 100%;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+      appearance: none;
+    }
+  }
+
+  .status__avatar,
+  .detailed-status__display-avatar {
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 5px !important;
+    left: 5px !important;
+    cursor: pointer;
+
+    & > div {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .display-name__account {
+    color: $ui-base-lighter-color;
+  }
+
+  .display-name {
+    padding-left: 20px;
+  }
+
+  .detailed-status__display-name {
+    margin-bottom: 0px;
+
+    strong,
+    span {
+      display: inline;
+    }
+  }
+}
+
+.muted .quote-status .display-name {
+  color: $ui-base-lighter-color;
+}
+
 .status__prepend-icon-wrapper {
   left: -26px;
   position: absolute;

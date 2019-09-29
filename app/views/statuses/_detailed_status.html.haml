@@ -25,6 +25,9 @@
       - if status.preloadable_poll
         = render_poll_component(status)
 
+  - if status.quote?
+    = render partial: "quote_status", locals: {status: status.quote}
+
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       = render_video_component(status, width: 670, height: 380, detailed: true)
