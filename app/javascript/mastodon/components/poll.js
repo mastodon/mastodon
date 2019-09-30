@@ -14,6 +14,7 @@ import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   closed: { id: 'poll.closed', defaultMessage: 'Closed' },
+  voted: { id: 'poll.voted', defaultMessage: 'You voted for this answer', description: 'Tooltip of the "voted" checkmark in polls' },
 });
 
 const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
@@ -100,11 +101,12 @@ class Poll extends ImmutablePureComponent {
   };
 
   renderOption (option, optionIndex, showResults) {
-    const { poll, disabled } = this.props;
-    const percent            = poll.get('votes_count') === 0 ? 0 : (option.get('votes_count') / poll.get('votes_count')) * 100;
-    const leading            = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') > other.get('votes_count'));
-    const active             = !!this.state.selected[`${optionIndex}`];
-    const voted              = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
+    const { poll, disabled, intl } = this.props;
+    const pollVotesCount  = poll.get('voters_count') || poll.get('votes_count');
+    const percent         = pollVotesCount === 0 ? 0 : (option.get('votes_count') / pollVotesCount) * 100;
+    const leading         = poll.get('options').filterNot(other => other.get('title') === option.get('title')).every(other => option.get('votes_count') >= other.get('votes_count'));
+    const active          = !!this.state.selected[`${optionIndex}`];
+    const voted           = option.get('voted') || (poll.get('own_votes') && poll.get('own_votes').includes(optionIndex));
 
     let titleEmojified = option.get('title_emojified');
     if (!titleEmojified) {
@@ -134,7 +136,7 @@ class Poll extends ImmutablePureComponent {
 
           {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
           {showResults && <span className='poll__number'>
-            {!!voted && <Icon id='check' className='poll__vote__mark' />}
+            {!!voted && <Icon id='check' className='poll__vote__mark' title={intl.formatMessage(messages.voted)} />}
             {Math.round(percent)}%
           </span>}
 
@@ -156,6 +158,14 @@ class Poll extends ImmutablePureComponent {
     const showResults   = poll.get('voted') || expired;
     const disabled      = this.props.disabled || Object.entries(this.state.selected).every(item => !item);
 
+    let votesCount = null;
+
+    if (poll.get('voters_count') !== null && poll.get('voters_count') !== undefined) {
+      votesCount = <FormattedMessage id='poll.total_people' defaultMessage='{count, plural, one {# person} other {# people}}' values={{ count: poll.get('voters_count') }} />;
+    } else {
+      votesCount = <FormattedMessage id='poll.total_votes' defaultMessage='{count, plural, one {# vote} other {# votes}}' values={{ count: poll.get('votes_count') }} />;
+    }
+
     return (
       <div className='poll'>
         <ul>
@@ -165,7 +175,7 @@ class Poll extends ImmutablePureComponent {
         <div className='poll__footer'>
           {!showResults && <button className='button button-secondary' disabled={disabled} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
           {showResults && !this.props.disabled && <span><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </span>}
-          <FormattedMessage id='poll.total_votes' defaultMessage='{count, plural, one {# vote} other {# votes}}' values={{ count: poll.get('votes_count') }} />
+          {votesCount}
           {poll.get('expires_at') && <span> · {timeRemaining}</span>}
         </div>
       </div>

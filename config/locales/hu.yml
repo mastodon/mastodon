@@ -35,6 +35,13 @@ hu:
     status_count_before: eddig
     tagline: Kövess barátokat és találj újakat
     terms: Felhasználási feltételek
+    unavailable_content: A tartalom nem elérhető
+    unavailable_content_description:
+      reason: 'Indok:'
+      rejecting_media: A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.
+      silenced: A szerver hozzászólásai csak a saját hírvonalon jelennek meg, ha követik a szerzőt.
+      suspended: Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.
+    unavailable_content_html: A Mastodon általában mindenféle tartalomcserét és interakciót lehetővé tesz bármelyik szerverrel a fediverzumban. Ezek azok a kivételek, melyek a mi szerverünkön érvényben vannak.
     user_count_after:
       one: felhasználónk
       other: felhasználónk
@@ -42,6 +49,8 @@ hu:
     what_is_mastodon: Mi a Mastodon?
   accounts:
     choices_html: "%{name} választásai:"
+    endorsements_hint: A webes felületen jóváhagyhatod a követett embereket, és itt jelennek meg.
+    featured_tags_hint: Szerepeltethetsz bizonyos hashtageket, melyek itt jelennek majd meg.
     follow: Követés
     followers:
       one: Követő
@@ -53,6 +62,7 @@ hu:
     media: Média
     moved_html: "%{name} ide költözött: %{new_profile_link}"
     network_hidden: Ez az információ nem elérhető
+    never_active: Soha
     nothing_here: Nincs itt semmi!
     people_followed_by: "%{name} követettjei"
     people_who_follow: "%{name} követői"
@@ -219,10 +229,12 @@ hu:
       deleted_status: "(törölt tülk)"
       title: Audit napló
     custom_emojis:
+      assign_category: Kategóriák
       by_domain: Domain
       copied_msg: Sikeresen létrehoztuk az emoji helyi másolatát
       copy: Másolás
       copy_failed_msg: Emoji helyi másolatának létrehozása sikertelen
+      create_new_category: Új kategória létrehozása
       created_msg: Emoji létrehozva!
       delete: Törlés
       destroyed_msg: Emoji törlése sikeres!
@@ -239,6 +251,7 @@ hu:
       shortcode: Rövidítés
       shortcode_hint: Legalább két karakter, csak betűk, számok és alsóvonás
       title: Egyedi emojik
+      uncategorized: Nem kategorizált
       unlisted: Nincs listázva
       update_failed_msg: Nem sikerült frissíteni az emojit
       updated_msg: Emoji sikeresen frissítve!
@@ -418,6 +431,16 @@ hu:
       custom_css:
         desc_html: Változtasd meg a kinézetet ebben a CSS-ben, mely minden oldalon be fog töltődni
         title: Egyedi CSS
+      default_noindex:
+        desc_html: Olyan felhasználókat érinti, akik nem módosították ezt a beállítást
+        title: Alapértelmezésként ne indexeljék a keresők a felhasználóinkat
+      domain_blocks:
+        all: Mindenkinek
+        disabled: Senkinek
+        title: Domain tiltások megjelenitése
+        users: Bejelentkezett helyi felhasználóknak
+      domain_blocks_rationale:
+        title: Mutasd meg az indokolást
       hero:
         desc_html: A kezdőoldalon látszik. Legalább 600x100px méret javasolt. Ha nincs beállítva, a szerver bélyegképet használjuk
         title: Hősi kép
@@ -487,6 +510,7 @@ hu:
         delete: Törlés
         nsfw_off: Szenzitív megjelölés törlése
         nsfw_on: Megjelölés szenzitív tartalomként
+      deleted: Törölve
       failed_to_execute: Végrehajtás sikertelen
       media:
         title: Média
@@ -501,6 +525,10 @@ hu:
       context: Környezet
       directory: Katalógusban
       in_directory: "%{count} a katalógusban"
+      last_active: Utoljára aktív
+      most_popular: Legnépszerűbb
+      most_recent: Legutóbbi
+      name: Címke
       review: Engedélyezés állapota
       reviewed: Engedélyezett
       title: Hashtagek
@@ -526,6 +554,12 @@ hu:
     new_trending_tag:
       body: 'A #%{name} hashtag trendi a mai napon, de még nem engedélyeztük eddig. Nem mutatjuk meg nyilvánosan, hacsak nem engedélyezed. Csak simán mentsd az űrlapot, ha soha többé nem akarsz erről a hashtagről hallani.'
       subject: Új hashtag (#%{name}) engedélyezésre vár a %{instance} szerveren
+  aliases:
+    add_new: Alias készítése
+    created_msg: Elkészült az új aliasod. Most már elkezdheted a költöztetést a régi fiókból.
+    deleted_msg: Sikeresen eltávolítottad az aliast. A fiókról erre a fiókra való áttérés már nem lehetséges.
+    hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítését a régi fiókból indul el. </strong>
+    remove: Alias szétkapcsolása
   appearance:
     advanced_web_interface: Haladó webes felület
     advanced_web_interface_hint: 'Ha szeretnéd, a teljes képernyőszélességet felhasználhatod. A haladó webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi infót láthass, amennyit csak akarsz: Saját idővonal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
@@ -555,6 +589,10 @@ hu:
     checkbox_agreement_without_rules_html: Egyetértek a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
+    description:
+      prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz erre a Mastodon szerverre!"
+      prefix_sign_up: Regisztrláj még ma a Mastodonra!
+      suffix: Egy fiókkal követhetsz másokat, tülkölhetsz, eszmét cserélhetsz más Mastodon szerverek felhasználóival!
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
     forgot_password: Elfelejtetted a jelszavad?
     invalid_reset_password_token: A jelszó-visszaállítási kulcs nem megfelelő vagy lejárt. Kérlek generálj egy újat.
@@ -581,6 +619,7 @@ hu:
       confirming: Várakozás a visszaigazolásra.
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
+      redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
     trouble_logging_in: Problémád van a bejelentkezéssel?
   authorize_follow:
     already_following: Már követed ezt a felhasználót
@@ -593,6 +632,11 @@ hu:
       return: Visszatérés a felhasználó profiloldalára
       web: Megtekintés a weben
     title: "%{acct} követése"
+  challenge:
+    confirm: Folytatás
+    hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
+    invalid_password: Érvénytelen jelszó
+    prompt: Add meg a jelszót a folytatáshoz
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -608,9 +652,22 @@ hu:
       x_months: "%{count}h"
       x_seconds: "%{count}mp"
   deletes:
+    challenge_not_passed: A beírt információ helytelen
     confirm_password: Személyazonosságod megerősítéséhez írd be a jelenlegi jelszavad
+    confirm_username: Add meg a felhasználói nevedet a jóváhagyáshoz
     proceed: Felhasználói fiók törlése
     success_msg: Felhasználói fiókod sikeresen töröltük
+    warning:
+      before: 'Mielőtt továbbmész, kérlek olvasd el ezt alaposan:'
+      caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
+      data_removal: A tülkjeid és minden más adatod véglegesen törlődni fog
+      email_change_html: <a href="%{path}">Megváltoztathatod az email címed</a> a fiókod törlése nélkül
+      email_contact_html: Ha még mindig nem érkezik meg, emailezhetsz ide <a href="mailto:%{email}">%{email}</a> segítségért
+      email_reconfirmation_html: Ha nem kaptad meg a megerősítő emailt, <a href="%{path}">itt újrakérheted</a>
+      irreversible: Nem fogod tudni visszaállítani vagy újraaktiválni a fiókodat
+      more_details_html: A részletekért nézd meg az <a href="%{terms_path}">adatvédelmi szabályzatot</a>.
+      username_available: A fiókod ismét elérhetővé válik
+      username_unavailable: A fiókod elérhetetlen marad
   directories:
     directory: Profilok
     explanation: Találj másokra érdeklődésük alapján
@@ -618,10 +675,10 @@ hu:
   domain_validator:
     invalid_domain: nem egy valódi domain név
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': A küldött kérés érvénytelen vagy hibás volt.
     '403': Nincs jogosultságod az oldal megtekintéséhez.
     '404': Az általad keresett oldal nem található.
-    '406': This page is not available in the requested format.
+    '406': Ez az oldal a kért formátumban nem áll rendelkezésre.
     '410': Az általad keresett oldal már nem létezik.
     '422':
       content: Megerősítés sikertelen. Nem tiltottad le esetleg a sütiket?
@@ -630,7 +687,7 @@ hu:
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
-    '503': The page could not be served due to a temporary server failure.
+    '503': Az oldalt nem tudjuk megmutatni átmeneti szerverprobléma miatt.
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   existing_username_validator:
     not_found: ezzel a névvel nem találtunk helyi felhasználót
@@ -654,6 +711,7 @@ hu:
     add_new: Új hozzáadása
     errors:
       limit: Már kiemelted a maximálisan engedélyezett számú hashtaget
+    hint_html: "<strong>Mik a kiemelt hashtagek?</strong> Ezek állandóan megjelennek a nyilvános profilodon és lehetővé teszik, hogy mások kifejezetten az ezekhez tartozó tülkjeidet böngésszék. Jó eszköz ez kreatív munkák vagy hosszútávú projektek nyomonkövetésére."
   filters:
     contexts:
       home: Saját idővonal
@@ -674,10 +732,12 @@ hu:
     developers: Fejlesztőknek
     more: Többet…
     resources: Segédanyagok
+    trending_now: Most trendi
   generic:
     all: Mind
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
+    no_batch_actions_available: Ezen az oldalon nem elérhetőek kötegelt műveletek
     order_by: Rendezés
     save_changes: Változások mentése
     validation_errors:
@@ -749,6 +809,31 @@ hu:
       too_many: Maximum négy fájlt csatolhatsz a tülkhöz
   migrations:
     acct: Az új fiók felhasznalonev@domain formátumban
+    cancel: Átirányítás törlése
+    cancel_explanation: Az átirányítás törlése reaktiválja a fiókodat, de nem fogja visszahozni azokat a követőidet, akik közben a másik fiókhoz kerültek át.
+    cancelled_msg: Az átirányítást sikeresen töröltük.
+    errors:
+      already_moved: ugyanaz a fiók, ahová már elköltöztél
+      missing_also_known_as: nem hivatkozza vissza ezt a fiókot
+      move_to_self: nem lehet az aktuális fiók
+      not_found: nem található
+      on_cooldown: Még tart a türelmi idő
+    followers_count: Követő a költözéskor
+    incoming_migrations: Más fiókból költöző
+    incoming_migrations_html: Ahhoz, hogy egy másik fiókból ebbe költözz, először <a href="%{path}">hozz létre egy fiók aliast</a>.
+    moved_msg: A fiókod mostantól ide %{acct} irányít át, a követőidet átköltöztetjük.
+    not_redirecting: A fiókod nincs átirányítva jelenleg sehová sem.
+    on_cooldown: Nemrég költöztetted a fiókod. Ez a funkció %{count} nap múlva lesz megint elérhető.
+    past_migrations: Eddigi költözések
+    proceed_with_move: Követők átköltöztetése
+    redirecting_to: A fiókod át van irányítva ide %{acct}.
+    warning:
+      backreference_required: Az új fiókot először be kell úgy állítani, hogy ezt visszahivatkozza
+      before: 'Mielőtt továbbmész, olvasd el ezeket kérlek figyelmesen:'
+      cooldown: A költözés után van egy türelmi idő, mely alatt nem tudsz majd újra költözni
+      disabled_account: A jelenlegi fiókod nem lesz teljesen használható ezután. Viszont elérhető lesz majd az adatexport funkció, valamint a reaktiválás is.
+      followers: Ez a művelet az összes követődet a jelenlegi fiókról az újra fogja költöztetni
+      other_data: Más adatot nem fogunk automatikusan mozgatni
   moderation:
     title: Moderáció
   notification_mailer:
@@ -893,6 +978,7 @@ hu:
   settings:
     account: Fiók
     account_settings: Fiók beállítások
+    aliases: Fiók aliasok
     appearance: Megjelenés
     authorized_apps: Jóváhagyott alkalmazások
     back: Vissza a Mastodonhoz
@@ -1072,7 +1158,9 @@ hu:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
         silence: A fiókod korlátozott állapotában csak a követőid láthatják a tülkjeidet, valamint nem kerülsz rá nyilvános idővonalakra. Ugyanakkor mások manuálisan még követhetnek.
         suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
+      get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
       review_server_policies: Szerver szabályzat átnézése
+      statuses: 'Különösen hozzá:'
       subject:
         disable: A fiókodat %{acct} befagyasztották
         none: Figyelmeztetés a %{acct} fióknak

@@ -242,8 +242,10 @@ de:
       disabled_msg: Das Emoji wurde deaktiviert
       emoji: Emoji
       enable: Aktivieren
+      enabled: Aktiviert
       enabled_msg: Das Emoji wurde aktiviert
       image_hint: PNG bis zu 50 kB
+      list: Liste
       listed: Gelistet
       new:
         title: Eigenes Emoji hinzufügen
@@ -252,6 +254,7 @@ de:
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
       uncategorized: Nicht kategorisiert
+      unlist: Nicht listen
       unlisted: Ungelistet
       update_failed_msg: Konnte dieses Emoji nicht aktualisieren
       updated_msg: Emoji erfolgreich aktualisiert!
@@ -383,6 +386,7 @@ de:
       pending: Warte auf Zustimmung des Relays
       save_and_enable: Speichern und aktivieren
       setup: Relaisverbindung einrichten
+      signatures_not_enabled: Relais funktionieren nicht korrekt, während der sichere Modus oder der Whitelist-Modus aktiviert ist
       status: Zustand
       title: Relais
     report_notes:
@@ -827,13 +831,16 @@ de:
     past_migrations: Vorherige Migrationen
     proceed_with_move: Folger_innen verschieben
     redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
+    set_redirect: Umleitung einrichten
     warning:
       backreference_required: Das neue Konto muss zuerst so konfiguriert werden, dass es auf das alte Konto referenziert
       before: 'Bevor du fortfährst, lese bitte diese Hinweise sorgfältig durch:'
       cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
       disabled_account: Dein aktuelles Konto wird nachher nicht vollständig nutzbar sein. Du hast jedoch Zugriff auf den Datenexport sowie die Reaktivierung.
       followers: Diese Aktion wird alle Folger_innen vom aktuellen Konto auf das neue Konto verschieben
+      only_redirect_html: Alternativ kannst du <a href="%{path}">nur eine Weiterleitung auf dein Profil</a> erstellen.
       other_data: Keine anderen Daten werden automatisch verschoben
+      redirect: Das Profil deines aktuellen Kontos wird mit einer Weiterleitungsnachricht versehen und von Suchanfragen ausgeschlossen
   moderation:
     title: Moderation
   notification_mailer:

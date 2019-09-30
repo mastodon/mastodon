@@ -2,6 +2,10 @@
 ja:
   simple_form:
     hints:
+      account_alias:
+        acct: 引っ越し元のユーザー名@ドメインを指定してください
+      account_migration:
+        acct: 引っ越し先のユーザー名@ドメインを指定してください
       account_warning_preset:
         text: URL、ハッシュタグ、メンションなど、投稿に用いる構文が使用できます
       admin_account_action:
@@ -15,6 +19,8 @@ ja:
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
+        current_password: 現在のアカウントのパスワードを入力してください
+        current_username: 確認のため、現在のアカウントのユーザー名を入力してください
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
         discoverable: ディレクトリはあなたのアカウントをより多くの人に見つけてもらうためのひとつの手段です
         email: 確認のメールが送信されます
@@ -43,6 +49,8 @@ ja:
         domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
       featured_tag:
         name: 'これらを使うといいかもしれません:'
+      form_challenge:
+        current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
       invite_request:
@@ -58,6 +66,10 @@ ja:
         fields:
           name: ラベル
           value: 内容
+      account_alias:
+        acct: 引っ越し元のユーザー ID
+      account_migration:
+        acct: 引っ越し先のユーザー ID
       account_warning_preset:
         text: プリセット警告文
       admin_account_action:
@@ -131,6 +143,8 @@ ja:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
         must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージをブロック
+      invite:
+        comment: コメント
       invite_request:
         text: 意気込みをお聞かせください
       notification_emails:

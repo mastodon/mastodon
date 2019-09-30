@@ -19,11 +19,7 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
     origin_account.update(moved_to_account: target_account)
 
     # Initiate a re-follow for each follower
-    origin_account.followers.local.select(:id).find_in_batches do |follower_accounts|
-      UnfollowFollowWorker.push_bulk(follower_accounts.map(&:id)) do |follower_account_id|
-        [follower_account_id, origin_account.id, target_account.id]
-      end
-    end
+    MoveWorker.perform_async(origin_account.id, target_account.id)
   end
 
   private

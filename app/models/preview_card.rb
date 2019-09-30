@@ -47,6 +47,10 @@ class PreviewCard < ApplicationRecord
 
   before_save :extract_dimensions, if: :link?
 
+  def missing_image?
+    width.present? && height.present? && image_file_name.blank?
+  end
+
   def save_with_optional_image!
     save!
   rescue ActiveRecord::RecordInvalid

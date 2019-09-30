@@ -124,16 +124,15 @@ class Tag < ApplicationRecord
       end
     end
 
-    def search_for(term, limit = 5, offset = 0)
+    def search_for(term, limit = 5, offset = 0, options = {})
       normalized_term = normalize(term.strip).mb_chars.downcase.to_s
       pattern         = sanitize_sql_like(normalized_term) + '%'
+      query           = Tag.listable.where(arel_table[:name].lower.matches(pattern))
+      query           = query.where(arel_table[:name].lower.eq(normalized_term).or(arel_table[:reviewed_at].not_eq(nil))) if options[:exclude_unreviewed]
 
-      Tag.listable
-         .where(arel_table[:name].lower.matches(pattern))
-         .where(arel_table[:name].lower.eq(normalized_term).or(arel_table[:reviewed_at].not_eq(nil)))
-         .order(Arel.sql('length(name) ASC, name ASC'))
-         .limit(limit)
-         .offset(offset)
+      query.order(Arel.sql('length(name) ASC, name ASC'))
+           .limit(limit)
+           .offset(offset)
     end
 
     def find_normalized(name)

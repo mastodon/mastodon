@@ -37,6 +37,10 @@ ko:
     unavailable_content: 이용 불가능한 컨텐츠
     unavailable_content_description:
       reason: '이유:'
+      rejecting_media: 이 서버의 미디어 파일들은 처리되지 않고 썸네일또한 보이지 않게 됩니다. 수동으로 클릭하여 해당 서버로 가게 됩니다.
+      silenced: 이 서버의 게시물은 작성자를 팔로우 한 경우에만 홈 피드에 나타나며 이를 제외한 어디에도 나타나지 않습니다.
+      suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
+    unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 유저와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
     user_count_after:
       other: 명
     user_count_before: 사용자 수
@@ -234,8 +238,10 @@ ko:
       disabled_msg: 성공적으로 비활성화하였습니다
       emoji: 에모지
       enable: 활성화
+      enabled: 활성됨
       enabled_msg: 성공적으로 활성화하였습니다
       image_hint: 50KB 이하의 PNG
+      list: 목록
       listed: 목록에 실림
       new:
         title: 새 커스텀 에모지 추가
@@ -244,6 +250,7 @@ ko:
       shortcode_hint: 최소 2글자, 영문자, 숫자, _만 사용 가능
       title: 커스텀 에모지
       uncategorized: 분류되지 않음
+      unlist: 목록에서 제거
       unlisted: 목록에 없음
       update_failed_msg: 에모지를 업데이트 할 수 없습니다
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
@@ -375,6 +382,7 @@ ko:
       pending: 릴레이의 승인 대기중
       save_and_enable: 저장하고 활성화
       setup: 릴레이 연결 설정
+      signatures_not_enabled: 시큐어모드나 화이트리스트모드를 사용하고 있다면 릴레이는 제대로 동작하지 않을 것입니다
       status: 상태
       title: 릴레이
     report_notes:
@@ -525,7 +533,7 @@ ko:
       reviewed: 심사 됨
       title: 해시태그
       trending_right_now: 지금 유행 중
-      unique_uses_today: 오늘 %{count}개의 포스팅
+      unique_uses_today: 오늘 %{count}명이 포스팅
       unreviewed: 심사 되지 않음
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
@@ -546,6 +554,12 @@ ko:
     new_trending_tag:
       body: "#%{name}가 오늘 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다."
       subject: 새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})
+  aliases:
+    add_new: 별칭 만들기
+    created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
+    deleted_msg: 성공적으로 별칭을 삭제했습니다. 해당 계정에서 이 계정으로의 이주는 더이상 가능하지 않습니다.
+    hint_html: 다른 계정에서 이 계정으로 옮기길 원하는 경우, 여기에서 별칭을 만들 수 있습니다, 기존 계정의 팔로워를 이쪽으로 옮기고 싶은 경우 필요한 과정입니다. 이 행동 자체는 <strong>해롭지 않고 되돌리기가 가능합니다</strong>.<strong>계정 이주는 이전 계정에서 착수하게 됩니다</strong>
+    remove: 별칭 연결 끊기
   appearance:
     advanced_web_interface: 고급 웹 인터페이스
     advanced_web_interface_hint: '화면의 가로폭을 가득 채우고 싶다면, 고급 웹 인터페이스는 한 번에 여러 정보를 볼 수 있도록 여러 컬럼을 설정할 수 있도록 합니다: 홈, 알림, 연합타임라인, 리스트, 해시태그 등'
@@ -605,6 +619,7 @@ ko:
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
       functional: 계정이 완벽이 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
+      redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
@@ -793,15 +808,28 @@ ko:
   migrations:
     acct: 새 계정의 username@domain
     cancel: 리디렉션 취소
+    cancel_explanation: 리다이렉트를 취소하면 현재 계정이 다시 활성화 됩니다, 새 계정으로 이동한 팔로워를 되찾을 수는 없습니다.
+    cancelled_msg: 리다이렉트를 성공적으로 취소했습니다.
     errors:
+      already_moved: 이미 이동한 계정과 동일합니다
+      missing_also_known_as: 이 계정을 역으로 참조하지 않고 있습니다
+      move_to_self: 현재 계정은 사용할 수 없습니다
       not_found: 찾을 수 없습니다
+      on_cooldown: 쿨다운 기간입니다
+    followers_count: 이주 될 팔로워들
     incoming_migrations: 다른 계정으로부터 옮기기
+    incoming_migrations_html: 다른 계정을 이 계정으로 이주하고 싶은 경우, 먼저 <a href="%{path}">계정 별칭을 만들어야 합니다</a>.
+    moved_msg: 당신의 계정은 %{acct}로 리다이렉트 되고 있으며 팔로워들은 이주 될 것입니다.
+    not_redirecting: 현재 이 계정은 어디로도 리다이렉트 되고 있지 않습니다.
     on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count} 일 후에 다시 이용 가능합니다.
     past_migrations: 이전 마이그레이션
     proceed_with_move: 팔로워 이동
     redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
     warning:
+      backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다
       before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
+      cooldown: 이주 뒤에는 새로운 이주를 하지 못하는 쿨다운 기간이 존재합니다
+      disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
       other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
   moderation:

@@ -2,15 +2,15 @@
 
 class TagSearchService < BaseService
   def call(query, options = {})
-    @query  = query.strip.gsub(/\A#/, '')
-    @offset = options[:offset].to_i
-    @limit  = options[:limit].to_i
+    @query   = query.strip.gsub(/\A#/, '')
+    @offset  = options.delete(:offset).to_i
+    @limit   = options.delete(:limit).to_i
+    @options = options
 
-    if Chewy.enabled?
-      from_elasticsearch
-    else
-      from_database
-    end
+    results   = from_elasticsearch if Chewy.enabled?
+    results ||= from_database
+
+    results
   end
 
   private
@@ -63,9 +63,9 @@ class TagSearchService < BaseService
           },
 
           {
-            term: {
+            match: {
               name: {
-                value: @query,
+                query: @query,
               },
             },
           },
@@ -73,10 +73,15 @@ class TagSearchService < BaseService
       },
     }
 
-    TagsIndex.query(query).filter(filter).limit(@limit).offset(@offset).objects.compact
+    definition = TagsIndex.query(query)
+    definition = definition.filter(filter) if @options[:exclude_unreviewed]
+
+    definition.limit(@limit).offset(@offset).objects.compact
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+    nil
   end
 
   def from_database
-    Tag.search_for(@query, @limit, @offset)
+    Tag.search_for(@query, @limit, @offset, @options)
   end
 end

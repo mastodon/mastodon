@@ -41,6 +41,7 @@ nl:
       rejecting_media: Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken.
       silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
       suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
+    unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
     user_count_after:
       one: gebruiker
       other: gebruikers
@@ -48,6 +49,8 @@ nl:
     what_is_mastodon: Wat is Mastodon?
   accounts:
     choices_html: 'Aanbevelingen van %{name}:'
+    endorsements_hint: Je kunt mensen die je volgt in de webomgeving aanbevelen, waarna ze dan hier zullen verschijnen.
+    featured_tags_hint: Je kunt specifieke hashtags uitlichten, waarna ze dan hier zullen verschijnen.
     follow: Volgen
     followers:
       one: Volger
@@ -239,8 +242,10 @@ nl:
       disabled_msg: Uitschakelen van deze emoji geslaagd
       emoji: Emoji
       enable: Inschakelen
+      enabled: Ingeschakeld
       enabled_msg: Inschakelen van deze emoji geslaagd
       image_hint: PNG van max. 50KB
+      list: In lijst
       listed: Weergegeven
       new:
         title: Lokale emoji toevoegen
@@ -249,12 +254,13 @@ nl:
       shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
       title: Lokale emoji’s
       uncategorized: Niet gecategoriseerd
+      unlist: Niet in lijst
       unlisted: Niet weergegeven
       update_failed_msg: Deze emoji kon niet worden bijgewerkt
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     dashboard:
-      authorized_fetch_mode: Geautoriseerde ophaalmodus
+      authorized_fetch_mode: Veilige modus
       backlog: achterstallige taken
       config: Configuratie
       feature_deletions: Verwijderen van account
@@ -380,6 +386,7 @@ nl:
       pending: Aan het wachten op toestemming van de relayserver
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
+      signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de witte lijstmodus is ingeschakeld
       status: Status
       title: Relayservers
     report_notes:
@@ -428,6 +435,9 @@ nl:
       custom_css:
         desc_html: Het uiterlijk van deze server met CSS aanpassen
         title: Aangepaste CSS
+      default_noindex:
+        desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
+        title: Toots van gebruikers standaard niet door zoekmachines laten indexeren
       domain_blocks:
         all: Naar iedereen
         disabled: Naar niemand
@@ -486,6 +496,7 @@ nl:
         title: Aangepaste gebruiksvoorwaarden
       site_title: Naam Mastodonserver
       spam_check_enabled:
+        desc_html: Mastodon kan accounts die herhaaldelijk ongevraagde berichten versturen automatisch negeren of rapporteren. Het is mogelijk dat er foutpositieven tussen zitten.
         title: Automatische spambestrijding
       thumbnail:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
@@ -495,6 +506,7 @@ nl:
         title: Tijdlijn op de voorpagina tonen
       title: Server-instellingen
       trends:
+        desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
         title: Trending hashtags
     statuses:
       back_to_account: Terug naar accountpagina
@@ -543,10 +555,14 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
+    new_trending_tag:
+      body: 'De hashtag #%{name} is vandaag trending, maar is nog niet beoordeeld. Het wordt niet in het openbaar getoond alvorens je de hashtag goedkeurt. Je kunt ook het formulier zoals het nu is opslaan, waarna je er niks meer over zult horen.'
+      subject: Nieuwe hashtag te beoordelen op %{instance} (#%{name})
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
     deleted_msg: De alias is succesvol verwijderd. Verhuizen vanaf dat account naar dit account is niet meer mogelijk.
+    hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
     advanced_web_interface: Geavanceerde webomgeving
@@ -574,10 +590,13 @@ nl:
     apply_for_account: Een uitnodiging aanvragen
     change_password: Wachtwoord
     checkbox_agreement_html: Ik ga akkoord met de <a href="%{rules_path}" target="_blank">regels van deze server</a> en de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
+    checkbox_agreement_without_rules_html: Ik ga akkoord met de <a href="%{terms_path}" target="_blank">gebruiksvoorwaarden</a>
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     description:
+      prefix_invited_by_user: "@%{name} nodigt je hierbij uit om een account aan te maken op deze Mastodonserver!"
       prefix_sign_up: Registreer je vandaag nog op Mastodon!
+      suffix: Met een account ben je in staat om mensen te volgen, berichten te plaatsen en uit te wisselen met mensen die zich op andere Mastodonservers bevinden en meer!
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
@@ -596,10 +615,15 @@ nl:
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
     setup:
+      email_below_hint_html: Wanneer onderstaand e-mailadres niet klopt, kun je dat hier veranderen. Je ontvangt dan hierna een bevestigingsmail.
+      email_settings_hint_html: De bevestigingsmail is verzonden naar %{email}. Wanneer dat e-mailadres niet klopt, kun je dat veranderen in je accountinstellingen.
       title: Instellen
     status:
       account_status: Accountstatus
+      confirming: Aan het wachten totdat de e-mail is bevestigd.
       functional: Jouw account is volledig operationeel.
+      pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
+      redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
     trouble_logging_in: Problemen met inloggen?
   authorize_follow:
     already_following: Je volgt dit account al
@@ -614,6 +638,7 @@ nl:
     title: Volg %{acct}
   challenge:
     confirm: Doorgaan
+    hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
     invalid_password: Ongeldig wachtwoord
     prompt: Bevestig wachtwoord om door te gaan
   datetime:
@@ -637,6 +662,14 @@ nl:
     proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
     warning:
+      before: 'Lees deze tekst zorgvuldig voordat je verder gaat:'
+      caches: Toots en media die op andere servers zijn opgeslagen kunnen daar achterblijven
+      data_removal: Jouw toots en andere gegevens worden permanent verwijderd
+      email_change_html: Je kunt <a href="%{path}">je e-mailadres wijzigen</a> zonder dat je jouw account hoeft te verwijderen
+      email_contact_html: Wanneer het nog steeds niet aankomt, kun je voor hulp e-mailen naar <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Wanneer je de bevestigingsmail niet hebt ontvangen, kun je deze <a href="%{path}">opnieuw aanvragen</a>
+      irreversible: Je zult niet in staat zijn om jouw account te herstellen of te deactiveren
+      more_details_html: Zie het <a href="%{terms_path}">privacybeleid</a> voor meer informatie.
       username_available: Jouw gebruikersnaam zal weer beschikbaar komen
       username_unavailable: Jouw gebruikersnaam zal onbeschikbaar blijven
   directories:
@@ -646,10 +679,10 @@ nl:
   domain_validator:
     invalid_domain: is een ongeldige domeinnaam
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': De aanvraag die je hebt ingediend was ongeldig of foutief.
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
-    '406': This page is not available in the requested format.
+    '406': Deze pagina is niet beschikbaar in het opgevraagde formaat.
     '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
@@ -658,7 +691,7 @@ nl:
     '500':
       content: Het spijt ons, er is aan onze kant iets fout gegaan.
       title: Er is iets mis
-    '503': The page could not be served due to a temporary server failure.
+    '503': De pagina kon door een tijdelijke serverstoring niet worden geladen.
     noscript_html: Schakel JavaScript in om de webapp van Mastodon te kunnen gebruiken. Als alternatief kan je een <a href="%{apps_path}">Mastodon-app</a> zoeken voor jouw platform.
   existing_username_validator:
     not_found: Kon geen lokale gebruiker met die gebruikersnaam vinden
@@ -682,6 +715,7 @@ nl:
     add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximaal aantal hashtags uitgelicht
+    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare toots per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
       home: Starttijdlijn
@@ -707,6 +741,7 @@ nl:
     all: Alles
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
+    no_batch_actions_available: Geen batchacties op deze pagina beschikbaar
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
     validation_errors:
@@ -779,6 +814,7 @@ nl:
   migrations:
     acct: Verhuisd naar
     cancel: Doorverwijzing annuleren
+    cancel_explanation: Het annuleren van de doorverwijzing zal jouw huidige account opnieuw activeren, maar brengt geen volgers terug die naar het andere account zijn verhuisd.
     cancelled_msg: De doorverwijzing is succesvol geannuleerd.
     errors:
       already_moved: is hetzelfde account waarnaar je al naar toe bent verhuisd
@@ -788,7 +824,7 @@ nl:
       on_cooldown: Jouw laatste migratie is nog te kort geleden
     followers_count: Volgers op het moment van verhuizing
     incoming_migrations: Verhuizen vanaf een ander account
-    incoming_migrations_html: Om te vanaf een ander account naar dit account te verhuizen, moet je eerst <a href="%{path}">een accountalias aanmaken</a>.
+    incoming_migrations_html: Om vanaf een ander account naar dit account te verhuizen, dien je eerst <a href="%{path}">een accountalias aan te maken</a>.
     moved_msg: Jouw account wordt nu naar %{acct} doorverwezen en jouw volgers worden verhuisd.
     not_redirecting: Jouw account wordt momenteel niet naar een ander account doorverwezen.
     on_cooldown: Je hebt recentelijk jouw account verhuisd. Deze mogelijkheid is weer beschikbaar over %{count} dagen.
@@ -964,6 +1000,8 @@ nl:
     profile: Profiel
     relationships: Volgers en gevolgden
     two_factor_authentication: Tweestapsverificatie
+  spam_check:
+    spam_detected_and_silenced: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd en de verzender hiervan werd automatisch genegeerd. Wanneer dit een vergissing is, kun je het negeren van dit account beter weer ongedaan maken.
   statuses:
     attached:
       description: 'Bijlagen: %{attached}'

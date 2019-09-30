@@ -21,6 +21,9 @@ cy:
     generic_description: Mae %{domain} yn un gweinydd yn y rhwydwaith
     get_apps: Rhowch gynnig ar ap dyfeis symudol
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
+    instance_actor_flash: |
+      Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol.
+      Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei rwystro oni bai eich bod am rwystro'r achos cyfan, ac os felly dylech ddefnyddio bloc parth.
     learn_more: Dysu mwy
     privacy_policy: Polisi preifatrwydd
     see_whats_happening: Gweld beth sy'n digwydd
@@ -41,6 +44,7 @@ cy:
       reason: 'Rheswm:'
       rejecting_media: Ni fydd ffeiliau cyfryngau o'r gweinydd hwn yn cael eu prosesu ac ni fydd unrhyw fawd yn cael eu harddangos, sy'n gofyn am glicio â llaw i'r gweinydd arall.
       silenced: Ni fydd swyddi o'r gweinydd hwn yn ymddangos yn unman heblaw eich porthiant cartref os dilynwch yr awdur.
+      suspended: Ni fyddwch yn gallu dilyn unrhyw un o'r gweinydd hwn, ac ni fydd unrhyw ddata ohono'n cael ei brosesu na'i storio, ac ni chyfnewidir unrhyw ddata.
     unavailable_content_html: Yn gyffredinol, mae Mastodon yn caniatáu ichi weld cynnwys gan unrhyw weinyddwr arall yn y ffederasiwn a rhyngweithio â hi. Dyma'r eithriadau a wnaed ar y gweinydd penodol hwn.
     user_count_after:
       few: defnyddwyr
@@ -53,6 +57,8 @@ cy:
     what_is_mastodon: Beth yw Mastodon?
   accounts:
     choices_html: 'Dewisiadau %{name}:'
+    endorsements_hint: Gallwch gymeradwyo pobl rydych chi'n eu dilyn o'r rhyngwyneb gwe, a byddan nhw'n ymddangos yma.
+    featured_tags_hint: Gallwch ychwanegu hashnodau penodol a fydd yn cael eu harddangos yma.
     follow: Dilynwch
     followers:
       few: Dilynwyr
@@ -203,6 +209,7 @@ cy:
       username: Enw defnyddiwr
       warn: Rhybuddio
       web: Gwe
+      whitelisted: Rhestredig wen
     action_logs:
       actions:
         assigned_to_self_report: Aseiniodd %{name} adroddiad %{target} i'w hunan
@@ -238,6 +245,7 @@ cy:
       deleted_status: "(statws wedi ei ddileu)"
       title: Log archwilio
     custom_emojis:
+      assign_category: Neilltuo categori
       by_domain: Parth
       copied_msg: Llwyddwyd i greu copi lleol o'r emoji
       copy: Copïo
@@ -265,6 +273,7 @@ cy:
       updated_msg: Llwyddwyd i ddiweddaru'r emoji!
       upload: Uwchlwytho
     dashboard:
+      authorized_fetch_mode: Modd nôl awdurdodedig
       backlog: tasgau heb eu cwblhau
       config: Cyfluniad
       feature_deletions: Dileadau cyfrif
@@ -290,11 +299,18 @@ cy:
       week_interactions: ymadweithiau yr wythnos hon
       week_users_active: gweithredol yr wythnos hon
       week_users_new: defnyddwyr yr wythnos hon
+      whitelist_mode: Modd rhestr wen
+    domain_allows:
+      add_new: Rhestrwch parth
+      created_msg: Rhestrwyd wen parth yn llwyddiannus
+      destroyed_msg: Mae parth wedi'i dynnu o'r rhestr wen
+      undo: Tynnwch o'r rhestr wen
     domain_blocks:
       add_new: Ychwanegu bloc parth newydd
       created_msg: Mae'r bloc parth nawr yn cael ei brosesu
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       domain: Parth
+      edit: Golygu bloc parth
       existing_domain_block_html: Rydych yn barod wedi gosod cyfyngau fwy llym ar %{name}, mae rhaid i chi ei <a href="%{unblock_url}">ddadblocio</a> yn gyntaf.
       new:
         create: Creu bloc
@@ -330,6 +346,7 @@ cy:
         title: Dadwneud blocio parth ar gyfer %{domain}
         undo: Dadwneud
       undo: Dadwneud bloc parth
+      view: Gweld bloc parth
     email_domain_blocks:
       add_new: Ychwanegu
       created_msg: Llwyddwyd i ychwanegu parth e-bost i'r gosbrestr
@@ -501,6 +518,7 @@ cy:
         delete: Dileu
         nsfw_off: Marcio fel nad yw'n sensitif
         nsfw_on: Marcio'n sensitif
+      deleted: Dilëwyd
       failed_to_execute: Methwyd a gweithredu
       media:
         title: Cyfryngau
@@ -514,6 +532,7 @@ cy:
       name: Hashnod
       reviewed: Wedi'i adolygu
       title: Hashnodau
+      trending_right_now: Yn tueddu nawr
       unreviewed: Heb ei adolygu
     title: Gweinyddiaeth
     warning_presets:
@@ -574,6 +593,14 @@ cy:
     reset_password: Ailosod cyfrinair
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
+    setup:
+      title: Gosodiad
+    status:
+      account_status: Statws cyfrif
+      confirming: Aros i gadarnhad e-bost gael ei gwblhau.
+      functional: Mae eich cyfrif yn gwbl weithredol.
+      pending: Mae'ch cais yn aros i gael ei adolygu gan ein staff. Gall hyn gymryd cryn amser. Byddwch yn derbyn e-bost os caiff eich cais ei gymeradwyo.
+      redirecting_to: Mae eich cyfrif yn anactif oherwydd ei fod ar hyn o bryd yn ailgyfeirio i %{acct}.
     trouble_logging_in: Trafferdd mewngofnodi?
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
@@ -586,6 +613,11 @@ cy:
       return: Dangos proffil y defnyddiwr
       web: I'r wê
     title: Dilyn %{acct}
+  challenge:
+    confirm: Parhau
+    hint_html: "<strong>Awgrym:</strong> Ni fyddwn yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
+    invalid_password: Cyfrinair annilys
+    prompt: Cadarnhewch gyfrinair i barhau
   datetime:
     distance_in_words:
       about_x_hours: "%{count}awr"
@@ -601,13 +633,22 @@ cy:
       x_months: "%{count}mis"
       x_seconds: "%{count}eiliad"
   deletes:
+    challenge_not_passed: Nid oedd y wybodaeth a nodoch yn gywir
     confirm_password: Mewnbynnwch eich cyfrinair presennol i gadarnhau mai chi sydd yno
+    confirm_username: Rhowch eich enw defnyddiwr i gadarnhau'r weithdrefn
     proceed: Dileu cyfrif
     success_msg: Llwyddwyd i ddileu eich cyfrif
+    warning:
+      before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
+      irreversible: Ni fyddwch yn gallu adfer nac ail-greu eich cyfrif
+      username_available: Bydd eich enw defnyddiwr ar gael eto
+      username_unavailable: Ni fydd eich enw defnyddiwr ar gael
   directories:
     directory: Cyfeiriadur proffil
     explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
     explore_mastodon: Archwilio %{title}
+  domain_validator:
+    invalid_domain: ddim yn enw parth dilys
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nid oes gennych ganiatad i weld y dudalen hon.
@@ -665,6 +706,7 @@ cy:
     developers: Datblygwyr
     more: Mwy…
     resources: Adnoddau
+    trending_now: Yn tueddu nawr
   generic:
     all: Popeth
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
@@ -748,8 +790,12 @@ cy:
       too_many: Ni ellir ychwanegu mwy na 4 dogfen
   migrations:
     acct: enwdefnyddiwr@parth y cyfrif newydd
+    cancel: Canslo ailgyfeirio
     errors:
       not_found: ni ellid dod o hyd iddo
+    past_migrations: Ymfudiadau yn y gorffennol
+    warning:
+      before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
   moderation:
     title: Goruwchwyliad
   notification_mailer:
@@ -904,6 +950,7 @@ cy:
   settings:
     account: Cyfrif
     account_settings: Gosodiadau'r cyfrif
+    aliases: Aliasau cyfrif
     appearance: Arddangosiad
     authorized_apps: Apiau awdurdodedig
     back: Yn ôl i Mastodon
@@ -978,6 +1025,8 @@ cy:
     pinned: Tŵt wedi'i binio
     reblogged: hybwyd
     sensitive_content: Cynnwys sensitif
+  tags:
+    does_not_match_previous_name: ddim yn cyfateb i'r enw blaenorol
   terms:
     body_html: |
       <h2>Polisi Preifatrwydd</h2>
@@ -1095,7 +1144,9 @@ cy:
         disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
         silence: Pan mae eich cyfrif yn gyfyngiedig, dim ond pobl sydd yn barod yn eich dilyn yn gweld eich tŵtiau ar y gweinydd hon, a efallai byddwch yn cael eich tynnu o restrau cyhoeddus. Er hyn, gall eraill eich dilyn chi wrth law.
         suspend: Mae eich cyfrif wedi cael ei wahardd, a mae gyd o'ch tŵtiau a'ch ffeiliau cyfrwng uwchlwythadwy wedi cael eu tynnu or gweinydd yn barhaol, ac o weinyddau ble yr oedd eich dilynwyr.
+      get_in_touch: Gallwch ymateb i'r e-bost hwn i gysylltu â staff %{instance}.
       review_server_policies: Adolygu polisïau'r gweinydd
+      statuses: 'Yn benodol, ar gyfer:'
       subject:
         disable: Mae'ch cyfrif %{acct} wedi'i rewi
         none: Rhybudd am %{acct}
