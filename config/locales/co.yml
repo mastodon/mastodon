@@ -35,6 +35,13 @@ co:
     status_count_before: chì anu pubblicatu
     tagline: Siguità amichi è scopre ancu di più altri
     terms: Cundizione di u serviziu
+    unavailable_content: Cuntinutu micca dispunibule
+    unavailable_content_description:
+      reason: 'Ragione:'
+      rejecting_media: I fugliali media da stu servore ùn saranu micca arregistrati è e vignette ùn saranu micca affissate, duverete cliccà manualmente per accede à l'altru servore è vedeli.
+      silenced: I statuti da stu servore ùn saranu mai visti tranne nant'a vostra pagina d'accolta s'e voi siguitate l'autore.
+      suspended: Ùn puderete micca siguità qualsiasi nant'à stu servore, i dati versu o da quallà ùn saranu mai accessi, scambiati o arregistrati.
+    unavailable_content_html: Mastodon vi parmette in generale di vede u cuntinutu è interagisce cù l'utilizatori di tutti l'altri servori di u fediversu. Quessi sò l'eccezzione fatte nant'à stu servore in particulare.
     user_count_after:
       one: utilizatore
       other: utilizatori
@@ -235,8 +242,10 @@ co:
       disabled_msg: L’emoji hè stata disattivata
       emoji: Emoji
       enable: Attivà
+      enabled: Attivate
       enabled_msg: L’emoji hè stata attivata
       image_hint: PNG di 50Ko o menu
+      list: Listà
       listed: Listata
       new:
         title: Aghjunghje una nov’emoji
@@ -245,6 +254,7 @@ co:
       shortcode_hint: 2 caratteri o più, solu lettere, numeri è liniette basse
       title: Emoji parsunalizate
       uncategorized: Micca categurizatu
+      unlist: Slistà
       unlisted: Micca listata
       update_failed_msg: Ùn s’hè micca pussutu mette à ghjornu l’emoji
       updated_msg: L’emoji hè stata messa à ghjornu!
@@ -376,6 +386,7 @@ co:
       pending: In attesa di l'apprubazione di u ripetitore
       save_and_enable: Salvà è attivà
       setup: Creà una cunnessione cù un ripetitore
+      signatures_not_enabled: I ripetitori ùn marchjeranu micca currettamente mentre chì u modu sicurizatu o à lista bianca hè attivatu
       status: Statutu
       title: Ripetitori
     report_notes:
@@ -547,6 +558,12 @@ co:
     new_trending_tag:
       body: 'U hashtag #%{name} hè in e tendenze oghji, mà ùn hè micca verificatu. Ùn sarà micca mustratu à u pubblicu eccettu s''ellu hè auturizatu, o pudete ancu salvà u furmulariu cusì per ùn mai più avè à ne sente parlà.'
       subject: Novu hashtag in attesa di rivista nant'à %{instance} (#%{name})
+  aliases:
+    add_new: Creà un pseudonimu
+    created_msg: Novu pseudonimu creatu. Pudete avà inizià u trasferimentu da u vechju contu.
+    deleted_msg: U pseudonimu hè statu sguassatu. Ùn si puderà più migrà da questu contu à quellu.
+    hint_html: Per traslucà da un altru contu à questu, quì pudete creà un pseudonimu o "alias", riquisitu per trasferì l'abbunati da u vechju contu à u novu. St'azzione sola <strong>ùn face nunda</strong> è pò esse <strong>annullata senza prublemi</strong>. <strong>A migrazione hè principiata dapoi u vechju contu</strong>.
+    remove: Sguassà u pseudonimu
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: 'S''è voi vulete fà usu di a larghezza sana di u vostru screnu, l''interfaccia web avanzata vi permette di cunfigurà parechje culonne sfarente per vede tutta l''infurmazione chì vulete vede in listessu tempu: Accolta, nutificazione, linea pubblica, è tutti l''hashtag è liste chì vulete.'
@@ -606,6 +623,7 @@ co:
       confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
       functional: U vostru contu hè uperaziunale.
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
+      redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     trouble_logging_in: Difficultà per cunnettavi?
   authorize_follow:
     already_following: Site digià abbunatu·a à stu contu
@@ -795,6 +813,34 @@ co:
       too_many: Ùn si pò micca aghjunghje più di 4 fugliali
   migrations:
     acct: cugnome@duminiu di u novu contu
+    cancel: Annullà ridirezzione
+    cancel_explanation: L'annullazione di a ridirezzione hà da riattivà stu contu, mà ùn si puderà micca ricuperà l'abbunati chì sò digià stati trasferriti à l'altru contu.
+    cancelled_msg: Ridirezzione annullata.
+    errors:
+      already_moved: hè digià u contu induve avede traslucatu
+      missing_also_known_as: ùn fà micca riferenza à stu contu
+      move_to_self: ùn pò micca esse u contu attuale
+      not_found: ùn hè micca statu trovu
+      on_cooldown: Perioda di ricuperazione
+    followers_count: Abbunati à u mumentu di trasferimentu
+    incoming_migrations: Traslucà da un'altru contu
+    incoming_migrations_html: Per spustà da stu contu à un'altru, primu duvete <a href="%{path}">creà un pseudonimu di contu</a>.
+    moved_msg: Avà u vostru contu riindirizza versu %{acct} è i vostri abbunati sò in corsu di trasferimentu.
+    not_redirecting: U vostru contu ùn riindirizza micca ancu versu un'altru contu.
+    on_cooldown: Avede digià migratu u vostru contu. Sta funzionne sarà torna dispunibule in %{count} ghjorni.
+    past_migrations: Anziane migrazione
+    proceed_with_move: Trasferì l'abbunati
+    redirecting_to: U vostru contu riindirizza versu à %{acct}.
+    set_redirect: Creà ridirezzione
+    warning:
+      backreference_required: U novu contu deve prima esse cunfiguratu per fà rifirenza cù un pseudonimu à quessu contu
+      before: 'Nanz''à cuntinuà, leghjete ste note attentamente:'
+      cooldown: Dopu à a traslucazione, c'hè una perioda di ricuperazione in quella ùn puderete micca cambià torna di contu
+      disabled_account: U contu attuale ùn puderà più esse utilizatu dop'à st'azzione. Però, puderete accede à a spurtazione di dati o riattivà u contu.
+      followers: St'azzione hà da spiazzà tutti l'abbunati di u contu attuale nant'à u novu contu
+      only_redirect_html: Pudete ancu <a href="%{path}">mette solu una ridirezzione nant'à u vostru prufile</a>.
+      other_data: L'altri dati ùn saranu micca autumaticamente trasferiti
+      redirect: U prufile di u vostru contu attuale sarà messu à ghjornu cù una nutificazione di ridirezzione è sarà sclusu di e ricerche
   moderation:
     title: Muderazione
   notification_mailer:
@@ -939,6 +985,7 @@ co:
   settings:
     account: Contu
     account_settings: Parametri di u contu
+    aliases: Pseudonimi di contu
     appearance: Apparenza
     authorized_apps: Applicazione auturizate
     back: Ritornu nant’à Mastodon

@@ -20,6 +20,10 @@ class Web::PushSubscription < ApplicationRecord
 
   has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription
 
+  validates :endpoint, presence: true
+  validates :key_p256dh, presence: true
+  validates :key_auth, presence: true
+
   def push(notification)
     I18n.with_locale(associated_user&.locale || I18n.default_locale) do
       push_payload(payload_for_notification(notification), 48.hours.seconds)

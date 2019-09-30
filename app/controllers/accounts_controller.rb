@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
   before_action :set_body_classes
 
   skip_around_action :set_locale, if: -> { request.format == :json }
+  skip_before_action :require_functional!
 
   def show
     respond_to do |format|

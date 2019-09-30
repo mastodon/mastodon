@@ -174,7 +174,7 @@ class PostStatusService < BaseService
   def poll_attributes
     return if @options[:poll].blank?
 
-    @options[:poll].merge(account: @account)
+    @options[:poll].merge(account: @account, voters_count: 0)
   end
 
   def scheduled_options

@@ -35,6 +35,9 @@ el:
     status_count_before: Που έγραψαν
     tagline: Ακολούθησε τους γνωστούς σου και ανακάλυψε νέους ανθρώπους
     terms: Όροι χρήσης
+    unavailable_content: Μη διαθέσιμο
+    unavailable_content_description:
+      reason: 'Αιτία:'
     user_count_after:
       one: χρήστης
       other: χρήστες
@@ -235,6 +238,7 @@ el:
       disabled_msg: Επιτυχής απενεργοποίηση αυτού του emoji
       emoji: Emoji
       enable: Ενεργοποίηση
+      enabled: Ενεργοποιημένα
       enabled_msg: Επιτυχής ενεργοποίηση αυτού του emoji
       image_hint: PNG έως 50KB
       listed: Αναφερθέντα
@@ -618,6 +622,10 @@ el:
       return: Δείξε το προφίλ του χρήστη
       web: Πήγαινε στο δίκτυο
     title: Ακολούθησε %{acct}
+  challenge:
+    confirm: Συνέχεια
+    invalid_password: Μη έγκυρο συνθηματικό
+    prompt: Επιβεβαίωση συνθηματικού για συνέχεια
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ω"
@@ -686,7 +694,7 @@ el:
     domain_blocks: Μπλοκαρίσματα κόμβων
     follows: Ακολουθείς
     lists: Λίστες
-    mutes: Αποσιωπάς
+    mutes: Αποσιωπήσεις
     storage: Αποθήκευση πολυμέσων
   featured_tags:
     add_new: Προσθήκη νέας
@@ -720,7 +728,7 @@ el:
     copy: Αντιγραφή
     no_batch_actions_available: Δεν υπάρχουν ομαδικές ενέργειες σε αυτή τη σελίδα
     order_by: Ταξινόμηση κατά
-    save_changes: Αποθήκευσε τις αλλαγές
+    save_changes: Αποθήκευση αλλαγών
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
       other: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε τα παρακάτω %{count} σφάλματα
@@ -790,6 +798,10 @@ el:
       too_many: Δεν γίνεται να προσθέσεις περισσότερα από 4 αρχεία
   migrations:
     acct: ΌνομαΧρήστη@Τομέας του νέου λογαριασμού
+    cancel: Ακύρωση ανακατεύθυνσης
+    errors:
+      not_found: δεν βρέθηκε
+    proceed_with_move: Μετακίνηση ακολούθων
   moderation:
     title: Συντονισμός
   notification_mailer:
@@ -853,7 +865,7 @@ el:
       too_few_options: πρέπει να έχει περισσότερες από μια επιλογές
       too_many_options: δεν μπορεί να έχει περισσότερες από %{max} επιλογές
   preferences:
-    other: Άλλο
+    other: Άλλες
     posting_defaults: Προεπιλογές δημοσίευσης
     public_timelines: Δημόσιες ροές
   relationships:

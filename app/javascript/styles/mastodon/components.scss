@@ -1529,6 +1529,7 @@ a.account__display-name {
 }
 
 .muted {
+  .status__content,
   .status__content p,
   .status__content a {
     color: $dark-text-color;
@@ -4532,7 +4533,8 @@ a.status-card.compact:hover {
 .confirmation-modal,
 .report-modal,
 .actions-modal,
-.mute-modal {
+.mute-modal,
+.block-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $inverted-text-color;
   border-radius: 8px;
@@ -4586,7 +4588,8 @@ a.status-card.compact:hover {
 
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
-.mute-modal__action-bar {
+.mute-modal__action-bar,
+.block-modal__action-bar {
   display: flex;
   justify-content: space-between;
   background: $ui-secondary-color;
@@ -4614,11 +4617,13 @@ a.status-card.compact:hover {
   font-size: 14px;
 }
 
-.mute-modal {
+.mute-modal,
+.block-modal {
   line-height: 24px;
 }
 
-.mute-modal .react-toggle {
+.mute-modal .react-toggle,
+.block-modal .react-toggle {
   vertical-align: middle;
 }
 
@@ -4829,33 +4834,35 @@ a.status-card.compact:hover {
 }
 
 .confirmation-modal__action-bar,
-.mute-modal__action-bar {
-  .confirmation-modal__secondary-button,
-  .confirmation-modal__cancel-button,
-  .mute-modal__cancel-button {
-    background-color: transparent;
-    color: $lighter-text-color;
-    font-size: 14px;
-    font-weight: 500;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: darken($lighter-text-color, 4%);
-    }
-  }
-
+.mute-modal__action-bar,
+.block-modal__action-bar {
   .confirmation-modal__secondary-button {
     flex-shrink: 1;
   }
 }
 
+.confirmation-modal__secondary-button,
+.confirmation-modal__cancel-button,
+.mute-modal__cancel-button,
+.block-modal__cancel-button {
+  background-color: transparent;
+  color: $lighter-text-color;
+  font-size: 14px;
+  font-weight: 500;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: darken($lighter-text-color, 4%);
+  }
+}
+
 .confirmation-modal__container,
 .mute-modal__container,
+.block-modal__container,
 .report-modal__target {
   padding: 30px;
   font-size: 16px;
-  text-align: center;
 
   strong {
     font-weight: 500;
@@ -4864,6 +4871,31 @@ a.status-card.compact:hover {
       &:lang(#{$lang}) {
         font-weight: 700;
       }
+    }
+  }
+}
+
+.confirmation-modal__container,
+.report-modal__target {
+  text-align: center;
+}
+
+.block-modal,
+.mute-modal {
+  &__explanation {
+    margin-top: 20px;
+  }
+
+  .setting-toggle {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+
+    &__label {
+      color: $inverted-text-color;
+      margin: 0;
+      margin-left: 8px;
     }
   }
 }

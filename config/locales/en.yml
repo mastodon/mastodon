@@ -37,10 +37,11 @@ en:
     terms: Terms of service
     unavailable_content: Unavailable content
     unavailable_content_description:
-      reason: 'Reason:'
-      rejecting_media: Media files from this server will not be processed and and no thumbnails will be displayed, requiring manual click-through to the other server.
-      silenced: Posts from this server will not show up anywhere except your home feed if you follow the author.
-      suspended: You won't be able to follow anyone from this server, and no data from it will be processed or stored, and no data exchanged.
+      domain: Server
+      reason: Reason
+      rejecting_media: 'Media files from these servers will not be processed or stored, and and no thumbnails will be displayed, requiring manual click-through to the original file:'
+      silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users'' interactions, unless you are following them:'
+      suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
     unavailable_content_html: Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
     user_count_after:
       one: user
@@ -831,13 +832,16 @@ en:
     past_migrations: Past migrations
     proceed_with_move: Move followers
     redirecting_to: Your account is redirecting to %{acct}.
+    set_redirect: Set redirect
     warning:
       backreference_required: The new account must first be configured to back-reference this one
       before: 'Before proceeding, please read these notes carefully:'
       cooldown: After moving there is a cooldown period during which you will not be able to move again
       disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
       followers: This action will move all followers from the current account to the new account
+      only_redirect_html: Alternatively, you can <a href="%{path}">only put up a redirect on your profile</a>.
       other_data: No other data will be moved automatically
+      redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
   moderation:
     title: Moderation
   notification_mailer:
@@ -1026,6 +1030,9 @@ en:
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} people"
       total_votes:
         one: "%{count} vote"
         other: "%{count} votes"

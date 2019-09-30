@@ -238,8 +238,10 @@ ja:
       disabled_msg: 絵文字を無効化しました
       emoji: 絵文字
       enable: 有効化
+      enabled: 有効
       enabled_msg: 絵文字を有効化しました
       image_hint: 50KBまでのPNG画像を利用できます
+      list: 表示
       listed: 収載
       new:
         title: 新規カスタム絵文字の追加
@@ -248,6 +250,7 @@ ja:
       shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます
       title: カスタム絵文字
       uncategorized: 未分類
+      unlist: 非表示
       unlisted: 未収載
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
@@ -377,6 +380,7 @@ ja:
       pending: リレーサーバーの承認待ちです
       save_and_enable: 保存して有効にする
       setup: リレー接続を設定する
+      signatures_not_enabled: セキュアモードまたはホワイトリストモードが有効の場合、リレーは正常に動作しません
       status: ステータス
       title: リレー
     report_notes:
@@ -646,9 +650,22 @@ ja:
       x_months: "%{count}月"
       x_seconds: "%{count}秒"
   deletes:
+    challenge_not_passed: 入力された情報は正しくありません
     confirm_password: 本人確認のため、現在のパスワードを入力してください
+    confirm_username: 確認のためユーザー名を入力してください
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
+    warning:
+      before: '続行する前に、次の点を再度確認してください:'
+      caches: 削除しても他のサーバーに残り続ける場合があります
+      data_removal: あなたの投稿やその他のデータはこのサーバーから完全に削除されます
+      email_change_html: アカウントを削除しなくても<a href="%{path}">メールアドレスを変更</a>できます
+      email_contact_html: それでも届かない場合、<a href="mailto:%{email}">%{email}</a> までメールで問い合わせてください
+      email_reconfirmation_html: 確認のメールが届かない場合、<a href="%{path}">もう一度申請</a>できます。
+      irreversible: アカウントを元に戻したり復活させることはできません
+      more_details_html: 詳しくは<a href="%{terms_path}">プライバシーポリシー</a>をご覧ください。
+      username_available: あなたのユーザー名は再利用できるようになります
+      username_unavailable: あなたのユーザー名は引き続き利用できません
   directories:
     directory: ディレクトリ
     explanation: 関心を軸にユーザーを発見しよう
@@ -718,6 +735,7 @@ ja:
     all: すべて
     changes_saved_msg: 正常に変更されました！
     copy: コピー
+    no_batch_actions_available: 利用可能なバッチアクションはありません
     order_by: 並び順
     save_changes: 変更を保存
     validation_errors:
@@ -787,6 +805,31 @@ ja:
       too_many: 追加できるファイルは4つまでです
   migrations:
     acct: 引っ越し先の ユーザー名@ドメイン
+    cancel: 引っ越しを取り消す
+    cancel_explanation: 引っ越しを取り消すと現在のアカウントが再度有効化されますが、引き継がれたフォロワーは戻されません。
+    cancelled_msg: 引っ越し設定を取り消しました。
+    errors:
+      already_moved: は既に引っ越したアカウントと同じです
+      missing_also_known_as: はこのアカウントとエイリアスの設定がされていません
+      move_to_self: 同じアカウントに引っ越すことはできません
+      not_found: 見つかりませんでした
+      on_cooldown: クールダウン期間中です
+    followers_count: 引き継がれるフォロワー
+    incoming_migrations: 別のアカウントから引っ越す
+    incoming_migrations_html: 別のアカウントからこのアカウントに引っ越すには、まず<a href="%{path}">アカウントエイリアスを作成</a>する必要があります。
+    moved_msg: アカウントは %{acct} に引っ越し設定されており、フォロワーは引っ越し先に引き継がれています。
+    not_redirecting: アカウントは現在引っ越し設定されていません。
+    on_cooldown: あなたは最近アカウントを引っ越ししています。この機能は %{count} 日後に再度利用できるようになります。
+    past_migrations: 過去の引っ越し
+    proceed_with_move: フォロワーを引き継ぐ
+    redirecting_to: アカウントは %{acct} に引っ越し設定されています。
+    warning:
+      backreference_required: まずは引っ越し先のアカウントでこのアカウントに対しエイリアスを作成する必要があります
+      before: '続行する前に、次の点を再度確認してください:'
+      cooldown: 引っ越し後はクールダウン期間があります。その間再度引っ越すことはできません
+      disabled_account: 引っ越すと現在のアカウントの機能は完全には利用できなくなります。ただしデータのエクスポートと再有効化は利用できます。
+      followers: この操作により、すべてのフォロワーを現在のアカウントから新しいアカウントに引き継ぎます。
+      other_data: その他のデータは自動的に引き継がれません
   moderation:
     title: モデレーション
   notification_mailer:
@@ -929,6 +972,7 @@ ja:
   settings:
     account: アカウント
     account_settings: セキュリティ
+    aliases: アカウントエイリアス
     appearance: 外観
     authorized_apps: 認証済みアプリ
     back: Mastodon に戻る
@@ -1079,7 +1123,7 @@ ja:
       default: "%Y年%m月%d日 %H:%M"
       month: "%Y年 %b"
   two_factor_authentication:
-    code_hint: 確認するには認証アプリで表示されたコードを入力してください
+    code_hint: 続行するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
     disable: 無効
     enable: 有効

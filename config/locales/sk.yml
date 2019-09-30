@@ -246,8 +246,10 @@ sk:
       disabled_msg: Emoji bolo úspešne zakázané
       emoji: Emotikony
       enable: Povoľ
+      enabled: Povolené
       enabled_msg: Emoji bolo úspešne povolené
       image_hint: PNG do 50KB
+      list: Zoznam
       listed: V zozname
       new:
         title: Pridaj nové, vlastné emoji
@@ -256,11 +258,13 @@ sk:
       shortcode_hint: Aspoň 2 znaky, povolené sú alfanumerické, alebo podčiarkovník
       title: Vlastné emoji
       uncategorized: Nezaradené
+      unlist: Nezaraď
       unlisted: Nie je na zozname
       update_failed_msg: Nebolo možné aktualizovať toto emoji
       updated_msg: Emoji bolo úspešne aktualizované!
       upload: Nahraj
     dashboard:
+      authorized_fetch_mode: Autorizovaný režim
       backlog: odložené aktivity
       config: Nastavenia
       feature_deletions: Vymazanie účtov
@@ -436,6 +440,8 @@ sk:
       custom_css:
         desc_html: Uprav vzhľad pomocou CSS, ktoré je načítané na každej stránke
         title: Vlastné CSS
+      default_noindex:
+        desc_html: Ovplyvňuje všetkých užívateľov, ktorí si toto nasavenie nezmenili sami
       domain_blocks:
         all: Všetkým
         disabled: Nikomu
@@ -557,6 +563,7 @@ sk:
       subject: Nový haštag očakáva preverenie na %{instance} (#%{name})
   aliases:
     add_new: Vytvor alias
+    remove: Odpoj alias
   appearance:
     advanced_web_interface: Pokročilé webové rozhranie
     advanced_web_interface_hint: 'Ak chceš využiť celkovú šírku tvojej obrazovky, pokročilé webové rozhranie ti umožňuje nastaviť mnoho rôznych stĺpcov, aby si videl/a toľko informácií naraz, koľko chceš: Domov, oboznámenia, federovanú časovú os, a ľubovolný počet zoznamov, či haštagov.'
@@ -613,6 +620,7 @@ sk:
       confirming: Čaká sa na dokončenie potvrdenia emailom.
       functional: Tvoj účet je plne funkčný.
       pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
+      redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
     trouble_logging_in: Problém s prihlásením?
   authorize_follow:
     already_following: Tento účet už následuješ
@@ -645,6 +653,7 @@ sk:
       x_seconds: "%{count}sek"
   deletes:
     confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
+    confirm_username: Zadaj svoju prezývku, na potvrdenie úkonu
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
     warning:
@@ -801,11 +810,19 @@ sk:
   migrations:
     acct: prezývka@doména nového účtu
     cancel: Zruš presmerovanie
+    cancelled_msg: Presmerovanie úspešne zrušené.
     errors:
+      missing_also_known_as: neodkazuje spätne na tento účet
       move_to_self: nemôže to byť tvoj súčasný účet
       not_found: nebolo možné nájsť
+    followers_count: Následovatelia v čase presunu
+    incoming_migrations: Presúvam sa z iného účtu
+    not_redirecting: Tvoj účet v súčasnosti nepresmerováva na žiaden iný účet.
     past_migrations: Predošlé presuny
     proceed_with_move: Presuň sledovateľov
+    redirecting_to: Tvoj účet presmerováva na %{acct}.
+    warning:
+      other_data: Žiadne iné dáta nebudú presunuté automaticky
   moderation:
     title: Moderovanie
   notification_mailer:

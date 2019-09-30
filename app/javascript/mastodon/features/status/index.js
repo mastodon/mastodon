@@ -23,7 +23,6 @@ import {
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
-import { blockAccount } from '../../actions/accounts';
 import {
   muteStatus,
   unmuteStatus,
@@ -32,6 +31,7 @@ import {
   revealStatus,
 } from '../../actions/statuses';
 import { initMuteModal } from '../../actions/mutes';
+import { initBlockModal } from '../../actions/blocks';
 import { initReport } from '../../actions/reports';
 import { makeGetStatus } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
@@ -39,7 +39,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import ColumnHeader from '../../components/column_header';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import { boostModal, deleteModal } from '../../initial_state';
@@ -52,13 +52,11 @@ const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
-  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
 });
 
 const makeMapStateToProps = () => {
@@ -296,19 +294,9 @@ class Status extends ImmutablePureComponent {
   }
 
   handleBlockClick = (status) => {
-    const { dispatch, intl } = this.props;
+    const { dispatch } = this.props;
     const account = status.get('account');
-
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockConfirm),
-      onConfirm: () => dispatch(blockAccount(account.get('id'))),
-      secondary: intl.formatMessage(messages.blockAndReport),
-      onSecondary: () => {
-        dispatch(blockAccount(account.get('id')));
-        dispatch(initReport(account, status));
-      },
-    }));
+    dispatch(initBlockModal(account));
   }
 
   handleReport = (status) => {

@@ -30,6 +30,8 @@ th:
       other: สถานะ
     status_count_before: ผู้ใช้เหล่านั้นได้สร้าง
     terms: เงื่อนไขการให้บริการ
+    unavailable_content_description:
+      reason: 'เหตุผล:'
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
@@ -174,6 +176,7 @@ th:
     custom_emojis:
       by_domain: โดเมน
       copy: คัดลอก
+      create_new_category: สร้างหมวดหมู่ใหม่
       created_msg: สร้างอีโมจิสำเร็จ!
       delete: ลบ
       destroyed_msg: ทำลายอีโมโจสำเร็จ!
@@ -217,6 +220,7 @@ th:
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
       destroyed_msg: เลิกทำการปิดกั้นโดเมนแล้ว
       domain: โดเมน
+      edit: แก้ไขการปิดกั้นโดเมน
       new:
         create: สร้างการปิดกั้น
         hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมเฉพาะกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
@@ -226,6 +230,8 @@ th:
           silence: เงียบ
           suspend: ระงับ
         title: การปิดกั้นโดเมนใหม่
+      private_comment: ความคิดเห็นส่วนตัว
+      public_comment: ความคิดเห็นสาธารณะ
       reject_media: ปฏิเสธไฟล์สื่อ
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเว็บออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
@@ -241,6 +247,7 @@ th:
         title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
+      view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
       add_new: เพิ่มใหม่
       delete: ลบ
@@ -348,11 +355,14 @@ th:
         delete: ลบ
         nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
         nsfw_on: ทำเครื่องหมายว่าละเอียดอ่อน
+      deleted: ลบแล้ว
       media:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
     tags:
+      in_directory: "%{count} ในไดเรกทอรี"
+      name: แฮชแท็ก
       title: แฮชแท็ก
     title: การดูแล
     warning_presets:
@@ -405,6 +415,9 @@ th:
       return: แสดงโปรไฟล์ของผู้ใช้
       web: ไปยังเว็บ
     title: ติดตาม %{acct}
+  challenge:
+    invalid_password: รหัสผ่านไม่ถูกต้อง
+    prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ชั่วโมง"
@@ -641,6 +654,7 @@ th:
       video:
         other: "%{count} วิดีโอ"
     content_warning: 'คำเตือนเนื้อหา: %{warning}'
+    language_detection: ตรวจหาภาษาโดยอัตโนมัติ
     open_in_web: เปิดในเว็บ
     pin_errors:
       reblog: ไม่สามารถปักหมุดการดัน
