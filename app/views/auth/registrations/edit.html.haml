@@ -13,7 +13,7 @@
       .fields-row__column.fields-group.fields-row__column-6
         = f.input :email, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }, required: true, disabled: current_account.suspended?
       .fields-row__column.fields-group.fields-row__column-6
-        = f.input :current_password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, required: true, disabled: current_account.suspended?
+        = f.input :current_password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, required: true, disabled: current_account.suspended?, hint: false
 
     .fields-row
       .fields-row__column.fields-group.fields-row__column-6
@@ -30,7 +30,18 @@
 
 = render 'sessions'
 
+%hr.spacer/
+
+%h3= t('auth.migrate_account')
+%p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)
+
+%hr.spacer/
+
+%h3= t('migrations.incoming_migrations')
+%p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)
+
 - if open_deletion? && !current_account.suspended?
   %hr.spacer/
+
   %h3= t('auth.delete_account')
   %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)

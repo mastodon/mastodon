@@ -46,6 +46,18 @@ nl:
         extra: Wanneer jij dit niet hebt aangevraagd, mag je deze e-mail negeren. Jouw wachtwoord wordt pas gewijzigd nadat je de link hierboven hebt aangeklikt en een nieuw wachtwoord aanmaakt.
         subject: 'Mastodon: Wachtwoord opnieuw instellen'
         title: Wachtwoord opnieuw instellen
+      two_factor_disabled:
+        explanation: Tweestapsverificatie voor jouw account is uitgeschakeld. Je kunt nu alleen inloggen met een e-mailadres en wachtwoord.
+        subject: 'Mastodon: Tweestapsverificatie uitgeschakeld'
+        title: Tweestapsverificatie uitgeschakeld
+      two_factor_enabled:
+        explanation: Tweestapsverificatie voor jouw account is ingeschakeld. Om te kunnen aanmelden is een door een tweestapsverificatie-app genereerde aanmeldcode nodig.
+        subject: 'Mastodon: Tweestapsverificatie ingeschakeld'
+        title: Tweestapsverificatie ingeschakeld
+      two_factor_recovery_codes_changed:
+        explanation: De vorige herstelcodes zijn ongeldig gemaakt en nieuwe zijn aangemaakt.
+        subject: 'Mastodon: Tweestaps-herstelcodes zijn opnieuw aangemaakt'
+        title: Herstelcodes tweestapsverificatie veranderd
       unlock_instructions:
         subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
     omniauth_callbacks:

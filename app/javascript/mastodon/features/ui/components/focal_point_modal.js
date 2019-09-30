@@ -173,7 +173,17 @@ class FocalPointModal extends ImmutablePureComponent {
         langPath: `${assetHost}/ocr/lang-data`,
       });
 
-      worker.recognize(media.get('url'))
+      let media_url = media.get('file');
+
+      if (window.URL && URL.createObjectURL) {
+        try {
+          media_url = URL.createObjectURL(media.get('file'));
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      worker.recognize(media_url)
         .progress(({ progress }) => this.setState({ progress }))
         .finally(() => worker.terminate())
         .then(({ text }) => this.setState({ description: removeExtraLineBreaks(text), dirty: true, detecting: false }))

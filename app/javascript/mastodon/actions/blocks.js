@@ -1,6 +1,7 @@
 import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts } from './importer';
+import { openModal } from './modal';
 
 export const BLOCKS_FETCH_REQUEST = 'BLOCKS_FETCH_REQUEST';
 export const BLOCKS_FETCH_SUCCESS = 'BLOCKS_FETCH_SUCCESS';
@@ -9,6 +10,8 @@ export const BLOCKS_FETCH_FAIL    = 'BLOCKS_FETCH_FAIL';
 export const BLOCKS_EXPAND_REQUEST = 'BLOCKS_EXPAND_REQUEST';
 export const BLOCKS_EXPAND_SUCCESS = 'BLOCKS_EXPAND_SUCCESS';
 export const BLOCKS_EXPAND_FAIL    = 'BLOCKS_EXPAND_FAIL';
+
+export const BLOCKS_INIT_MODAL = 'BLOCKS_INIT_MODAL';
 
 export function fetchBlocks() {
   return (dispatch, getState) => {
@@ -83,3 +86,14 @@ export function expandBlocksFail(error) {
     error,
   };
 };
+
+export function initBlockModal(account) {
+  return dispatch => {
+    dispatch({
+      type: BLOCKS_INIT_MODAL,
+      account,
+    });
+
+    dispatch(openModal('BLOCK'));
+  };
+}

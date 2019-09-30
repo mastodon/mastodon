@@ -17,9 +17,6 @@ ko:
     contact_unavailable: 없음
     discover_users: 유저 발견하기
     documentation: 문서
-    extended_description_html: |
-      <h3>룰을 작성하는 장소</h3>
-      <p>아직 설명이 작성되지 않았습니다.</p>
     federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
     generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     get_apps: 모바일 앱 사용해 보기
@@ -37,6 +34,13 @@ ko:
     status_count_before: 툿 수
     tagline: 친구들을 팔로우 하고 새로운 사람들도 만나기
     terms: 이용약관
+    unavailable_content: 이용 불가능한 컨텐츠
+    unavailable_content_description:
+      reason: '이유:'
+      rejecting_media: 이 서버의 미디어 파일들은 처리되지 않고 썸네일또한 보이지 않게 됩니다. 수동으로 클릭하여 해당 서버로 가게 됩니다.
+      silenced: 이 서버의 게시물은 작성자를 팔로우 한 경우에만 홈 피드에 나타나며 이를 제외한 어디에도 나타나지 않습니다.
+      suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
+    unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 유저와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
     user_count_after:
       other: 명
     user_count_before: 사용자 수
@@ -221,10 +225,12 @@ ko:
       deleted_status: "(삭제됨)"
       title: 감사 기록
     custom_emojis:
+      assign_category: 분류 지정
       by_domain: 도메인
       copied_msg: 성공적으로 에모지의 로컬 복사본을 생성했습니다
       copy: 복사
       copy_failed_msg: 에모지의 로컬 복사본을 만드는 데 실패하였습니다
+      create_new_category: 분류 생성
       created_msg: 에모지가 성공적으로 생성되었습니다!
       delete: 삭제
       destroyed_msg: 에모지가 성공적으로 삭제되었습니다!
@@ -232,8 +238,10 @@ ko:
       disabled_msg: 성공적으로 비활성화하였습니다
       emoji: 에모지
       enable: 활성화
+      enabled: 활성됨
       enabled_msg: 성공적으로 활성화하였습니다
       image_hint: 50KB 이하의 PNG
+      list: 목록
       listed: 목록에 실림
       new:
         title: 새 커스텀 에모지 추가
@@ -241,6 +249,8 @@ ko:
       shortcode: 짧은 코드
       shortcode_hint: 최소 2글자, 영문자, 숫자, _만 사용 가능
       title: 커스텀 에모지
+      uncategorized: 분류되지 않음
+      unlist: 목록에서 제거
       unlisted: 목록에 없음
       update_failed_msg: 에모지를 업데이트 할 수 없습니다
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
@@ -372,6 +382,7 @@ ko:
       pending: 릴레이의 승인 대기중
       save_and_enable: 저장하고 활성화
       setup: 릴레이 연결 설정
+      signatures_not_enabled: 시큐어모드나 화이트리스트모드를 사용하고 있다면 릴레이는 제대로 동작하지 않을 것입니다
       status: 상태
       title: 릴레이
     report_notes:
@@ -420,6 +431,9 @@ ko:
       custom_css:
         desc_html: 모든 페이지에 적용할 CSS
         title: 커스텀 CSS
+      default_noindex:
+        desc_html: 이 설정을 바꾸지 않은 모든 유저들에게 적용 됩니다
+        title: 유저들이 기본적으로 검색엔진에 인덱싱 되지 않도록 합니다
       domain_blocks:
         all: 모두에게
         disabled: 아무에게도 안 함
@@ -511,11 +525,15 @@ ko:
       context: 문맥
       directory: 디렉토리에 있음
       in_directory: 디렉토리에 %{count}개 있음
+      last_active: 최근 활동
+      most_popular: 최고 인기
+      most_recent: 최신
+      name: 해시태그
       review: 심사 상태
       reviewed: 심사 됨
       title: 해시태그
       trending_right_now: 지금 유행 중
-      unique_uses_today: 오늘 %{count}개의 포스팅
+      unique_uses_today: 오늘 %{count}명이 포스팅
       unreviewed: 심사 되지 않음
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
@@ -536,6 +554,12 @@ ko:
     new_trending_tag:
       body: "#%{name}가 오늘 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다."
       subject: 새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})
+  aliases:
+    add_new: 별칭 만들기
+    created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
+    deleted_msg: 성공적으로 별칭을 삭제했습니다. 해당 계정에서 이 계정으로의 이주는 더이상 가능하지 않습니다.
+    hint_html: 다른 계정에서 이 계정으로 옮기길 원하는 경우, 여기에서 별칭을 만들 수 있습니다, 기존 계정의 팔로워를 이쪽으로 옮기고 싶은 경우 필요한 과정입니다. 이 행동 자체는 <strong>해롭지 않고 되돌리기가 가능합니다</strong>.<strong>계정 이주는 이전 계정에서 착수하게 됩니다</strong>
+    remove: 별칭 연결 끊기
   appearance:
     advanced_web_interface: 고급 웹 인터페이스
     advanced_web_interface_hint: '화면의 가로폭을 가득 채우고 싶다면, 고급 웹 인터페이스는 한 번에 여러 정보를 볼 수 있도록 여러 컬럼을 설정할 수 있도록 합니다: 홈, 알림, 연합타임라인, 리스트, 해시태그 등'
@@ -565,6 +589,10 @@ ko:
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">이용 약관</a>에 동의합니다
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
+    description:
+      prefix_invited_by_user: "@%{name} 님이 당신을 이 마스토돈 서버로 초대했습니다!"
+      prefix_sign_up: 마스토돈에 가입하세요!
+      suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 유저와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
     forgot_password: 비밀번호를 잊어버리셨습니까?
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
@@ -591,6 +619,7 @@ ko:
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
       functional: 계정이 완벽이 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
+      redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
@@ -603,6 +632,11 @@ ko:
       return: 유저 프로필 보기
       web: 웹으로 가기
     title: "%{acct} 를 팔로우"
+  challenge:
+    confirm: 계속
+    hint_html: "<strong>팁:</strong>한 시간동안 다시 비밀번호를 묻지 않을 겁니다."
+    invalid_password: 잘못된 비밀번호
+    prompt: 계속하려면 암호 확인
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
@@ -618,30 +652,26 @@ ko:
       x_months: "%{count}월"
       x_seconds: "%{count}초"
   deletes:
+    challenge_not_passed: 입력한 정보가 올바르지 않습니다
     confirm_password: 본인 확인을 위해 현재 사용 중인 암호를 입력해 주십시오
+    confirm_username: 절차를 진행하려면 당신의 사용자명을 입력하세요
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
+    warning:
+      before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
+      caches: 다른 서버에 캐싱 된 정보들은 남아있을 수 있습니다
+      data_removal: 당신의 게시물과 다른 정보들은 영구적으로 삭제 됩니다
+      email_change_html: 계정을 지우지 않고도 <a href="%{path}">이메일 주소를 수정할 수 있습니다</a>
+      email_contact_html: 아직 도착하지 않았다면, <a href="mailto:%{email}">%{email}</a>에 메일을 보내 도움을 요청할 수 있습니다
+      email_reconfirmation_html: 아직 확인 메일이 도착하지 않은 경우, <a href="%{path}">다시 요청할 수 있습니다</a>
+      irreversible: 계정을 복구하거나 다시 사용할 수 없게 됩니다
+      more_details_html: 더 자세한 정보는, <a href="%{terms_path}">개인정보 정책</a>을 참고하세요.
+      username_available: 당신의 계정명은 다시 사용할 수 있게 됩니다
+      username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
   directories:
     directory: 프로필 디렉토리
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
-  domain_blocks:
-    blocked_domains: 제한 되거나 차단 된 도메인 목록
-    description: 이것은 %{instance}가 제한하거나 연합을 거부한 서버들의 목록입니다.
-    domain: 도메인
-    media_block: 미디어 차단
-    no_domain_blocks: "(도메인 차단 없음)"
-    severity: 심각도
-    severity_legend:
-      media_block: 이 서버의 미디어는 불러오거나, 저장 되거나, 유저에게 보여지지 않습니다.
-      silence: 침묵 된 서버의 계정은 발견 되고, 팔로우 하고, 그들과 상호작용 할 수 있습니다, 그러나 그들의 툿은 툿 공개 타임라인에 나타나지 않으며 그들에게서 오는 알림은 그들을 팔로우 하지 않는 로컬 유저에게는 전달되지 않습니다.
-      suspension: 정지 된 서버의 어떤 콘텐츠도 저장 되거나 보여지거나 하지 않고 어떤 콘텐츠도 그 서버로 전달 되지 않습니다. 정지 된 서버에서의 상호작용은 무시됩니다.
-      suspension_disclaimer: 정지 된 서버는 때때로 이 서버의 공개 콘텐츠를 받아 갈 수도 잇습니다.
-      title: 심각도
-    show_rationale: 사유 보여주기
-    silence: 침묵
-    suspension: 정지
-    title: "%{instance}의 차단한 인스턴스 목록"
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -707,6 +737,7 @@ ko:
     all: 모두
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
+    no_batch_actions_available: 이 페이지에서 수행할 수 있는 일괄작업이 없습니다
     order_by: 순서
     save_changes: 변경 사항을 저장
     validation_errors:
@@ -776,9 +807,31 @@ ko:
       too_many: 최대 4개까지 첨부할 수 있습니다
   migrations:
     acct: 새 계정의 username@domain
-    currently_redirecting: '당신의 프로파일은 여기로 리디렉션 됩니다:'
-    proceed: 저장
-    updated_msg: 계정 이동 설정이 저장되었습니다!
+    cancel: 리디렉션 취소
+    cancel_explanation: 리다이렉트를 취소하면 현재 계정이 다시 활성화 됩니다, 새 계정으로 이동한 팔로워를 되찾을 수는 없습니다.
+    cancelled_msg: 리다이렉트를 성공적으로 취소했습니다.
+    errors:
+      already_moved: 이미 이동한 계정과 동일합니다
+      missing_also_known_as: 이 계정을 역으로 참조하지 않고 있습니다
+      move_to_self: 현재 계정은 사용할 수 없습니다
+      not_found: 찾을 수 없습니다
+      on_cooldown: 쿨다운 기간입니다
+    followers_count: 이주 될 팔로워들
+    incoming_migrations: 다른 계정으로부터 옮기기
+    incoming_migrations_html: 다른 계정을 이 계정으로 이주하고 싶은 경우, 먼저 <a href="%{path}">계정 별칭을 만들어야 합니다</a>.
+    moved_msg: 당신의 계정은 %{acct}로 리다이렉트 되고 있으며 팔로워들은 이주 될 것입니다.
+    not_redirecting: 현재 이 계정은 어디로도 리다이렉트 되고 있지 않습니다.
+    on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count} 일 후에 다시 이용 가능합니다.
+    past_migrations: 이전 마이그레이션
+    proceed_with_move: 팔로워 이동
+    redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
+    warning:
+      backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다
+      before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
+      cooldown: 이주 뒤에는 새로운 이주를 하지 못하는 쿨다운 기간이 존재합니다
+      disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
+      followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
+      other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
   moderation:
     title: 모더레이션
   notification_mailer:
@@ -921,6 +974,7 @@ ko:
   settings:
     account: 계정
     account_settings: 계정 설정
+    aliases: 계정 별명
     appearance: 외관
     authorized_apps: 인증된 애플리케이션
     back: 돌아가기

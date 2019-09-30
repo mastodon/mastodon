@@ -1,0 +1,27 @@
+- content_for :page_title do
+  = t('settings.migrate')
+
+= simple_form_for @redirect, url: settings_migration_redirect_path do |f|
+  %p.hint= t('migrations.warning.before')
+
+  %ul.hint
+    %li.warning-hint= t('migrations.warning.redirect')
+    %li.warning-hint= t('migrations.warning.other_data')
+    %li.warning-hint= t('migrations.warning.disabled_account')
+
+  %hr.spacer/
+
+  = render 'shared/error_messages', object: @redirect
+
+  .fields-row
+    .fields-row__column.fields-group.fields-row__column-6
+      = f.input :acct, wrapper: :with_block_label, input_html: { autocapitalize: 'none', autocorrect: 'off' }, label: t('simple_form.labels.account_migration.acct'), hint: t('simple_form.hints.account_migration.acct')
+
+    .fields-row__column.fields-group.fields-row__column-6
+      - if current_user.encrypted_password.present?
+        = f.input :current_password, wrapper: :with_block_label, input_html: { :autocomplete => 'off' }, required: true
+      - else
+        = f.input :current_username, wrapper: :with_block_label, input_html: { :autocomplete => 'off' }, required: true
+
+  .actions
+    = f.button :button, t('migrations.set_redirect'), type: :submit, class: 'button button--destructive'

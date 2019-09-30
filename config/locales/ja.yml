@@ -17,9 +17,6 @@ ja:
     contact_unavailable: N/A
     discover_users: ユーザーを見つける
     documentation: ドキュメント
-    extended_description_html: |
-      <h3>ルールを書くのに適した場所</h3>
-      <p>詳細説明が設定されていません。</p>
     federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
@@ -37,6 +34,13 @@ ja:
     status_count_before: トゥート数
     tagline: Follow friends and discover new ones
     terms: 利用規約
+    unavailable_content: 制限中のサーバー
+    unavailable_content_description:
+      reason: '制限理由:'
+      rejecting_media: このサーバーからのメディアファイルは受信されず、サムネイルも表示されません。表示するにはクリックしてそのサーバーに直接アクセスする必要があります。
+      silenced: このサーバーからの投稿は相手をフォローしてもあなたのホームタイムライン以外には表示されません。
+      suspended: このサーバーからは誰もフォローできません。このサーバーからのデータは受信されず、やりとりもされません。
+    unavailable_content_html: 通常 Mastodon では連合先のどんなサーバーのユーザーとでもやりとりできます。ただし次のサーバーには例外が設定されています。
     user_count_after:
       other: 人
     user_count_before: ユーザー数
@@ -221,10 +225,12 @@ ja:
       deleted_status: "(削除済)"
       title: 操作履歴
     custom_emojis:
+      assign_category: カテゴリーを割り当て
       by_domain: ドメイン
       copied_msg: 絵文字のコピーをローカルに作成しました
       copy: コピー
       copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
+      create_new_category: カテゴリーを作成
       created_msg: 絵文字の追加に成功しました！
       delete: 削除
       destroyed_msg: 絵文字の削除に成功しました！
@@ -232,8 +238,10 @@ ja:
       disabled_msg: 絵文字を無効化しました
       emoji: 絵文字
       enable: 有効化
+      enabled: 有効
       enabled_msg: 絵文字を有効化しました
       image_hint: 50KBまでのPNG画像を利用できます
+      list: 表示
       listed: 収載
       new:
         title: 新規カスタム絵文字の追加
@@ -241,6 +249,8 @@ ja:
       shortcode: ショートコード
       shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます
       title: カスタム絵文字
+      uncategorized: 未分類
+      unlist: 非表示
       unlisted: 未収載
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
@@ -370,6 +380,7 @@ ja:
       pending: リレーサーバーの承認待ちです
       save_and_enable: 保存して有効にする
       setup: リレー接続を設定する
+      signatures_not_enabled: セキュアモードまたはホワイトリストモードが有効の場合、リレーは正常に動作しません
       status: ステータス
       title: リレー
     report_notes:
@@ -418,6 +429,9 @@ ja:
       custom_css:
         desc_html: 全ページに適用されるCSSの編集
         title: カスタムCSS
+      default_noindex:
+        desc_html: この設定を変更していない全ユーザーに影響します
+        title: デフォルトで検索エンジンによるインデックスを拒否する
       domain_blocks:
         all: 誰でも許可
         disabled: 誰も許可しない
@@ -509,6 +523,10 @@ ja:
       context: 表示先
       directory: ディレクトリに使用
       in_directory: "%{count} 人がディレクトリに使用"
+      last_active: 最近使われた順
+      most_popular: 使用頻度順
+      most_recent: 新着順
+      name: ハッシュタグ
       review: 審査状況
       reviewed: 審査済み
       title: ハッシュタグ
@@ -534,6 +552,12 @@ ja:
     new_trending_tag:
       body: 'ハッシュタグ #%{name} が本日のトレンドになっていますが、審査がまだ行われていないためトレンドタグには表示されていません。一度許可すれば次回からこの操作は不要です。'
       subject: "%{instance} で新しいハッシュタグ (#%{name}) が審査待ちです"
+  aliases:
+    add_new: エイリアスを作成
+    created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
+    deleted_msg: エイリアスを解除しました。そのアカウントからは引っ越しできなくなります。
+    hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
+    remove: エイリアスを解除
   appearance:
     advanced_web_interface: 上級者向け UI
     advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
@@ -563,6 +587,10 @@ ja:
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">利用規約</a> に同意します
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
+    description:
+      prefix_invited_by_user: "@%{name} があなたをこの Mastodon サーバーに招待しました"
+      prefix_sign_up: 今すぐ Mastodon に登録しましょう！
+      suffix: アカウントがあれば、どんな Mastodon 互換サーバーのユーザーでもフォローしたりメッセージをやり取りできるようになります！
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
@@ -589,6 +617,7 @@ ja:
       confirming: メールアドレスの確認が完了するのを待っています。
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
+      redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
     trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
@@ -601,6 +630,11 @@ ja:
       return: ユーザーのプロフィールを見る
       web: Web を開く
     title: "%{acct} をフォロー"
+  challenge:
+    confirm: 続行する
+    hint_html: 以後 1 時間はパスワードの再入力を求めません
+    invalid_password: パスワードが間違っています
+    prompt: 続行するにはパスワードを入力してください
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -616,30 +650,26 @@ ja:
       x_months: "%{count}月"
       x_seconds: "%{count}秒"
   deletes:
+    challenge_not_passed: 入力された情報は正しくありません
     confirm_password: 本人確認のため、現在のパスワードを入力してください
+    confirm_username: 確認のためユーザー名を入力してください
     proceed: アカウントを削除する
     success_msg: アカウントは正常に削除されました
+    warning:
+      before: '続行する前に、次の点を再度確認してください:'
+      caches: 削除しても他のサーバーに残り続ける場合があります
+      data_removal: あなたの投稿やその他のデータはこのサーバーから完全に削除されます
+      email_change_html: アカウントを削除しなくても<a href="%{path}">メールアドレスを変更</a>できます
+      email_contact_html: それでも届かない場合、<a href="mailto:%{email}">%{email}</a> までメールで問い合わせてください
+      email_reconfirmation_html: 確認のメールが届かない場合、<a href="%{path}">もう一度申請</a>できます。
+      irreversible: アカウントを元に戻したり復活させることはできません
+      more_details_html: 詳しくは<a href="%{terms_path}">プライバシーポリシー</a>をご覧ください。
+      username_available: あなたのユーザー名は再利用できるようになります
+      username_unavailable: あなたのユーザー名は引き続き利用できません
   directories:
     directory: ディレクトリ
     explanation: 関心を軸にユーザーを発見しよう
     explore_mastodon: "%{title}を探索"
-  domain_blocks:
-    blocked_domains: ドメインブロックリスト
-    description: "%{instance} が連合を制限または拒否しているサーバーのリストです。"
-    domain: ドメイン
-    media_block: メディアを拒否
-    no_domain_blocks: "(ドメインブロックなし)"
-    severity: 重大性
-    severity_legend:
-      media_block: サーバーから送信されるメディアファイルは取得も保存もされず、またユーザーには表示されません。
-      silence: サイレンスされたサーバーのアカウントは検索やフォロー、交流することができますが、トゥートは公開タイムラインに表示されません。またフォローしていないユーザーには通知が届きません。
-      suspension: 停止されたサーバーからのコンテンツは保存も表示もされず、また送信もされません。停止されたサーバーからの交流は拒否されます。
-      suspension_disclaimer: 停止されたサーバーでもこのサーバーから公開コンテンツを取得することがあります。
-      title: 重大性
-    show_rationale: コメントを表示
-    silence: サイレンス
-    suspension: 停止
-    title: "%{instance} のドメインブロックリスト"
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -705,6 +735,7 @@ ja:
     all: すべて
     changes_saved_msg: 正常に変更されました！
     copy: コピー
+    no_batch_actions_available: 利用可能なバッチアクションはありません
     order_by: 並び順
     save_changes: 変更を保存
     use_this: これを使う
@@ -775,9 +806,31 @@ ja:
       too_many: 追加できるファイルは4つまでです
   migrations:
     acct: 引っ越し先の ユーザー名@ドメイン
-    currently_redirecting: 'あなたのプロフィールは引っ越し先が設定されています:'
-    proceed: 保存
-    updated_msg: アカウントの引っ越し設定を更新しました！
+    cancel: 引っ越しを取り消す
+    cancel_explanation: 引っ越しを取り消すと現在のアカウントが再度有効化されますが、引き継がれたフォロワーは戻されません。
+    cancelled_msg: 引っ越し設定を取り消しました。
+    errors:
+      already_moved: は既に引っ越したアカウントと同じです
+      missing_also_known_as: はこのアカウントとエイリアスの設定がされていません
+      move_to_self: 同じアカウントに引っ越すことはできません
+      not_found: 見つかりませんでした
+      on_cooldown: クールダウン期間中です
+    followers_count: 引き継がれるフォロワー
+    incoming_migrations: 別のアカウントから引っ越す
+    incoming_migrations_html: 別のアカウントからこのアカウントに引っ越すには、まず<a href="%{path}">アカウントエイリアスを作成</a>する必要があります。
+    moved_msg: アカウントは %{acct} に引っ越し設定されており、フォロワーは引っ越し先に引き継がれています。
+    not_redirecting: アカウントは現在引っ越し設定されていません。
+    on_cooldown: あなたは最近アカウントを引っ越ししています。この機能は %{count} 日後に再度利用できるようになります。
+    past_migrations: 過去の引っ越し
+    proceed_with_move: フォロワーを引き継ぐ
+    redirecting_to: アカウントは %{acct} に引っ越し設定されています。
+    warning:
+      backreference_required: まずは引っ越し先のアカウントでこのアカウントに対しエイリアスを作成する必要があります
+      before: '続行する前に、次の点を再度確認してください:'
+      cooldown: 引っ越し後はクールダウン期間があります。その間再度引っ越すことはできません
+      disabled_account: 引っ越すと現在のアカウントの機能は完全には利用できなくなります。ただしデータのエクスポートと再有効化は利用できます。
+      followers: この操作により、すべてのフォロワーを現在のアカウントから新しいアカウントに引き継ぎます。
+      other_data: その他のデータは自動的に引き継がれません
   moderation:
     title: モデレーション
   notification_mailer:
@@ -920,6 +973,7 @@ ja:
   settings:
     account: アカウント
     account_settings: セキュリティ
+    aliases: アカウントエイリアス
     appearance: 外観
     authorized_apps: 認証済みアプリ
     back: Mastodon に戻る
@@ -1071,7 +1125,7 @@ ja:
       default: "%Y年%m月%d日 %H:%M"
       month: "%Y年 %b"
   two_factor_authentication:
-    code_hint: 確認するには認証アプリで表示されたコードを入力してください
+    code_hint: 続行するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
     disable: 無効
     enable: 有効

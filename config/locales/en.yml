@@ -17,9 +17,6 @@ en:
     contact_unavailable: N/A
     discover_users: Discover users
     documentation: Documentation
-    extended_description_html: |
-      <h3>A good place for rules</h3>
-      <p>The extended description has not been set up yet.</p>
     federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} is one server in the network"
     get_apps: Try a mobile app
@@ -38,6 +35,14 @@ en:
     status_count_before: Who authored
     tagline: Follow friends and discover new ones
     terms: Terms of service
+    unavailable_content: Unavailable content
+    unavailable_content_description:
+      domain: Server
+      reason: Reason
+      rejecting_media: 'Media files from these servers will not be processed or stored, and and no thumbnails will be displayed, requiring manual click-through to the original file:'
+      silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users'' interactions, unless you are following them:'
+      suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
+    unavailable_content_html: Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
     user_count_after:
       one: user
       other: users
@@ -238,8 +243,10 @@ en:
       disabled_msg: Successfully disabled that emoji
       emoji: Emoji
       enable: Enable
+      enabled: Enabled
       enabled_msg: Successfully enabled that emoji
       image_hint: PNG up to 50KB
+      list: List
       listed: Listed
       new:
         title: Add new custom emoji
@@ -248,12 +255,13 @@ en:
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
       title: Custom emojis
       uncategorized: Uncategorized
+      unlist: Unlist
       unlisted: Unlisted
       update_failed_msg: Could not update that emoji
       updated_msg: Emoji successfully updated!
       upload: Upload
     dashboard:
-      authorized_fetch_mode: Authorized fetch mode
+      authorized_fetch_mode: Secure mode
       backlog: backlogged jobs
       config: Configuration
       feature_deletions: Account deletions
@@ -380,6 +388,7 @@ en:
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
       setup: Setup a relay connection
+      signatures_not_enabled: Relays will not work correctly while secure mode or whitelist mode is enabled
       status: Status
       title: Relays
     report_notes:
@@ -563,6 +572,12 @@ en:
     new_trending_tag:
       body: 'The hashtag #%{name} is trending today, but has not been previously reviewed. It will not be displayed publicly unless you allow it to, or just save the form as it is to never hear about it again.'
       subject: New hashtag up for review on %{instance} (#%{name})
+  aliases:
+    add_new: Create alias
+    created_msg: Successfully created a new alias. You can now initiate the move from the old account.
+    deleted_msg: Successfully remove the alias. Moving from that account to this one will no longer be possible.
+    hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
+    remove: Unlink alias
   appearance:
     advanced_web_interface: Advanced web interface
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
@@ -622,6 +637,7 @@ en:
       confirming: Waiting for e-mail confirmation to be completed.
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
+      redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
     trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
@@ -634,6 +650,11 @@ en:
       return: Show the user's profile
       web: Go to web
     title: Follow %{acct}
+  challenge:
+    confirm: Continue
+    hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
+    invalid_password: Invalid password
+    prompt: Confirm password to continue
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -669,23 +690,6 @@ en:
     directory: Profile directory
     explanation: Discover users based on their interests
     explore_mastodon: Explore %{title}
-  domain_blocks:
-    blocked_domains: List of limited and blocked domains
-    description: This is the list of servers that %{instance} limits or reject federation with.
-    domain: Domain
-    media_block: Media block
-    no_domain_blocks: "(No domain blocks)"
-    severity: Severity
-    severity_legend:
-      media_block: Media files coming from the server are neither fetched, stored, or displayed to the user.
-      silence: Accounts from silenced servers can be found, followed and interacted with, but their toots will not appear in the public timelines, and notifications from them will not reach local users who are not following them.
-      suspension: No content from suspended servers is stored or displayed, nor is any content sent to them. Interactions from suspended servers are ignored.
-      suspension_disclaimer: Suspended servers may occasionally retrieve public content from this server.
-      title: Severities
-    show_rationale: Show rationale
-    silence: Silence
-    suspension: Suspension
-    title: "%{instance} List of blocked instances"
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:
@@ -823,10 +827,35 @@ en:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
   migrations:
-    acct: username@domain of the new account
-    currently_redirecting: 'Your profile is set to redirect to:'
-    proceed: Save
-    updated_msg: Your account migration setting successfully updated!
+    acct: Moved to
+    cancel: Cancel redirect
+    cancel_explanation: Cancelling the redirect will re-activate your current account, but will not bring back followers that have been moved to that account.
+    cancelled_msg: Successfully cancelled the redirect.
+    errors:
+      already_moved: is the same account you have already moved to
+      missing_also_known_as: is not back-referencing this account
+      move_to_self: cannot be current account
+      not_found: could not be found
+      on_cooldown: You are on cooldown
+    followers_count: Followers at time of move
+    incoming_migrations: Moving from a different account
+    incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
+    moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
+    not_redirecting: Your account is not redirecting to any other account currently.
+    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    past_migrations: Past migrations
+    proceed_with_move: Move followers
+    redirecting_to: Your account is redirecting to %{acct}.
+    set_redirect: Set redirect
+    warning:
+      backreference_required: The new account must first be configured to back-reference this one
+      before: 'Before proceeding, please read these notes carefully:'
+      cooldown: After moving there is a cooldown period during which you will not be able to move again
+      disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
+      followers: This action will move all followers from the current account to the new account
+      only_redirect_html: Alternatively, you can <a href="%{path}">only put up a redirect on your profile</a>.
+      other_data: No other data will be moved automatically
+      redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
   moderation:
     title: Moderation
   notification_mailer:
@@ -972,6 +1001,7 @@ en:
   settings:
     account: Account
     account_settings: Account settings
+    aliases: Account aliases
     appearance: Appearance
     authorized_apps: Authorized apps
     back: Back to Mastodon
@@ -1015,6 +1045,9 @@ en:
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} people"
       total_votes:
         one: "%{count} vote"
         other: "%{count} votes"

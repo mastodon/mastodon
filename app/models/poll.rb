@@ -16,6 +16,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  lock_version    :integer          default(0), not null
+#  voters_count    :bigint(8)
 #
 
 class Poll < ApplicationRecord
@@ -52,6 +53,10 @@ class Poll < ApplicationRecord
 
   def voted?(account)
     account.id == account_id || votes.where(account: account).exists?
+  end
+
+  def own_votes(account)
+    votes.where(account: account).pluck(:choice)
   end
 
   delegate :local?, to: :account

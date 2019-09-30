@@ -5,7 +5,7 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :web, safe_join([fa_icon('chevron-left fw'), t('settings.back')]), root_url
 
     n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_url, if: -> { current_user.functional? } do |s|
-      s.item :profile, safe_join([fa_icon('pencil fw'), t('settings.appearance')]), settings_profile_url, highlights_on: %r{/settings/profile|/settings/migration}
+      s.item :profile, safe_join([fa_icon('pencil fw'), t('settings.appearance')]), settings_profile_url
       s.item :featured_tags, safe_join([fa_icon('hashtag fw'), t('settings.featured_tags')]), settings_featured_tags_url
       s.item :identity_proofs, safe_join([fa_icon('key fw'), t('settings.identity_proofs')]), settings_identity_proofs_path, highlights_on: %r{/settings/identity_proofs*}, if: proc { current_account.identity_proofs.exists? }
     end
@@ -26,13 +26,13 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :filters, safe_join([fa_icon('filter fw'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { current_user.functional? }
 
     n.item :security, safe_join([fa_icon('lock fw'), t('settings.account')]), edit_user_registration_url do |s|
-      s.item :password, safe_join([fa_icon('lock fw'), t('settings.account_settings')]), edit_user_registration_url, highlights_on: %r{/auth/edit|/settings/delete}
+      s.item :password, safe_join([fa_icon('lock fw'), t('settings.account_settings')]), edit_user_registration_url, highlights_on: %r{/auth/edit|/settings/delete|/settings/migration|/settings/aliases}
       s.item :two_factor_authentication, safe_join([fa_icon('mobile fw'), t('settings.two_factor_authentication')]), settings_two_factor_authentication_url, highlights_on: %r{/settings/two_factor_authentication}
       s.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_url
     end
 
-    n.item :data, safe_join([fa_icon('cloud-download fw'), t('settings.import_and_export')]), settings_export_url, if: -> { current_user.functional? } do |s|
-      s.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_import_url
+    n.item :data, safe_join([fa_icon('cloud-download fw'), t('settings.import_and_export')]), settings_export_url do |s|
+      s.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_import_url, if: -> { current_user.functional? }
       s.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_url
     end
 
@@ -53,7 +53,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :dashboard, safe_join([fa_icon('tachometer fw'), t('admin.dashboard.title')]), admin_dashboard_url
       s.item :settings, safe_join([fa_icon('cogs fw'), t('admin.settings.title')]), edit_admin_settings_url, if: -> { current_user.admin? }, highlights_on: %r{/admin/settings}
       s.item :custom_emojis, safe_join([fa_icon('smile-o fw'), t('admin.custom_emojis.title')]), admin_custom_emojis_url, highlights_on: %r{/admin/custom_emojis}
-      s.item :relays, safe_join([fa_icon('exchange fw'), t('admin.relays.title')]), admin_relays_url, if: -> { current_user.admin? }, highlights_on: %r{/admin/relays}
+      s.item :relays, safe_join([fa_icon('exchange fw'), t('admin.relays.title')]), admin_relays_url, if: -> { current_user.admin? && !whitelist_mode? }, highlights_on: %r{/admin/relays}
       s.item :sidekiq, safe_join([fa_icon('diamond fw'), 'Sidekiq']), sidekiq_url, link_html: { target: 'sidekiq' }, if: -> { current_user.admin? }
       s.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url, link_html: { target: 'pghero' }, if: -> { current_user.admin? }
     end

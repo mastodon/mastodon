@@ -199,6 +199,7 @@ export default class ScrollableList extends PureComponent {
     this.clearMouseIdleTimer();
     this.detachScrollListener();
     this.detachIntersectionObserver();
+
     detachFullscreenListener(this.onFullScreenChange);
   }
 

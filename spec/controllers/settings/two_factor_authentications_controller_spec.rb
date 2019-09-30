@@ -58,7 +58,7 @@ describe Settings::TwoFactorAuthenticationsController do
       describe 'when creation succeeds' do
         it 'updates user secret' do
           before = user.otp_secret
-          post :create
+          post :create, session: { challenge_passed_at: Time.now.utc }
 
           expect(user.reload.otp_secret).not_to eq(before)
           expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)

@@ -11,6 +11,8 @@ class RemoteInteractionController < ApplicationController
   before_action :set_body_classes
   before_action :set_pack
 
+  skip_before_action :require_functional!
+
   def new
     @remote_follow = RemoteFollow.new(session_params)
   end

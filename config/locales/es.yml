@@ -17,9 +17,6 @@ es:
     contact_unavailable: N/A
     discover_users: Descubrir usuarios
     documentation: Documentación
-    extended_description_html: |
-      <h3>Un buen lugar para las reglas</h3>
-      <p>La descripción extendida no se ha colocado aún.</p>
     federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
     generic_description: "%{domain} es un servidor en la red"
     get_apps: Probar una aplicación móvil
@@ -38,6 +35,13 @@ es:
     status_count_before: Qué han escrito
     tagline: Seguir a amigos existentes y descubre nuevos
     terms: Condiciones de servicio
+    unavailable_content: Contenido no disponible
+    unavailable_content_description:
+      reason: 'Motivo:'
+      rejecting_media: Los archivos multimedia de este servidor no serán procesados y no se mostrarán miniaturas, lo que requiere un clic manual en el otro servidor.
+      silenced: Las publicaciones de este servidor no se mostrarán en ningún lugar salvo en el Inicio si sigues al autor.
+      suspended: No podrás seguir a nadie de este servidor, y ningún dato de este será procesado o almacenado, y no se intercambiarán datos.
+    unavailable_content_html: Mastodon generalmente le permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.
     user_count_after:
       one: usuario
       other: usuarios
@@ -45,6 +49,8 @@ es:
     what_is_mastodon: "¿Qué es Mastodon?"
   accounts:
     choices_html: 'Elecciones de %{name}:'
+    endorsements_hint: Puedes recomendar a gente que sigues desde la interfaz web, y aparecerán allí.
+    featured_tags_hint: Puede presentar hashtags específicos que se mostrarán aquí.
     follow: Seguir
     followers:
       one: Seguidor
@@ -228,6 +234,7 @@ es:
       copied_msg: Copia local del emoji creada con éxito
       copy: Copiar
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
+      create_new_category: Crear una nueva categoría
       created_msg: "¡Emoji creado con éxito!"
       delete: Borrar
       destroyed_msg: "¡Emojo destruido con éxito!"
@@ -423,6 +430,9 @@ es:
       custom_css:
         desc_html: Modificar el aspecto con CSS cargado en cada página
         title: CSS personalizado
+      domain_blocks:
+        all: A todos
+        disabled: A nadie
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -506,6 +516,10 @@ es:
       context: Contexto
       directory: En el directorio
       in_directory: "%{count} en el directorio"
+      last_active: Última actividad
+      most_popular: Más popular
+      most_recent: Más reciente
+      name: Hashtag
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
@@ -598,6 +612,8 @@ es:
       return: Regresar al perfil del usuario
       web: Ir al sitio web
     title: Seguir a %{acct}
+  challenge:
+    confirm: Continuar
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -620,8 +636,6 @@ es:
     directory: Directorio de perfiles
     explanation: Descubre usuarios según sus intereses
     explore_mastodon: Explorar %{title}
-  domain_blocks:
-    domain: Dominio
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
@@ -757,9 +771,6 @@ es:
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
     acct: username@domain de la nueva cuenta
-    currently_redirecting: 'Tu perfil está redireccionado a:'
-    proceed: Guardar
-    updated_msg: "¡La configuración de migración de tu cuenta  ha sido actualizada con éxito!"
   moderation:
     title: Moderación
   notification_mailer:
