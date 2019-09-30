@@ -16,7 +16,7 @@
 class AccountStat < ApplicationRecord
   belongs_to :account, inverse_of: :account_stat
 
-  update_index('accounts#account', :account) if Chewy.enabled?
+  update_index('accounts#account', :account)
 
   def increment_count!(key)
     update(attributes_for_increment(key))
