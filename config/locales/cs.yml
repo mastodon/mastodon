@@ -1054,6 +1054,11 @@ cs:
       private: Nelze připnout neveřejné tooty
       reblog: Nelze připnout boost
     poll:
+      total_people:
+        one: "%{count} člověk"
+        few: "%{count} lidé"
+        many: "%{count} lidí"
+        other: "%{count} lidí"
       total_votes:
         one: "%{count} hlas"
         few: "%{count} hlasy"
