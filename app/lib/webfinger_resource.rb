@@ -23,9 +23,15 @@ class WebfingerResource
   def username_from_url
     if account_show_page?
       path_params[:username]
+    elsif instance_actor_page?
+      Rails.configuration.x.local_domain
     else
       raise ActiveRecord::RecordNotFound
     end
+  end
+
+  def instance_actor_page?
+    path_params[:controller] == 'instance_actors'
   end
 
   def account_show_page?

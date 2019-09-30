@@ -65,7 +65,7 @@ describe Admin::StatusesController do
       it 'removes a status' do
         allow(RemovalWorker).to receive(:perform_async)
         subject.call
-        expect(RemovalWorker).to have_received(:perform_async).with(status_ids.first)
+        expect(RemovalWorker).to have_received(:perform_async).with(status_ids.first, immediate: true)
       end
     end
 

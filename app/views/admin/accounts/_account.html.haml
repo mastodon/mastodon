@@ -19,4 +19,4 @@
       = table_link_to 'times', t('admin.accounts.reject'), reject_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:reject, account.user)
     - else
       = table_link_to 'circle', t('admin.accounts.web'), web_path("accounts/#{account.id}")
-      = table_link_to 'globe', t('admin.accounts.public'), TagManager.instance.url_for(account)
+      = table_link_to 'globe', t('admin.accounts.public'), ActivityPub::TagManager.instance.url_for(account)

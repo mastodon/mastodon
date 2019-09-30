@@ -7,6 +7,8 @@ require_relative 'cli_helper'
 
 module Mastodon
   class AccountsCLI < Thor
+    include CLIHelper
+
     def self.exit_on_failure?
       true
     end
@@ -26,18 +28,20 @@ module Mastodon
       if options[:all]
         processed = 0
         delay     = 0
+        scope     = Account.local.without_suspended
+        progress  = create_progress_bar(scope.count)
 
-        Account.local.without_suspended.find_in_batches do |accounts|
+        scope.find_in_batches do |accounts|
           accounts.each do |account|
             rotate_keys_for_account(account, delay)
+            progress.increment
             processed += 1
-            say('.', :green, false)
           end
 
           delay += 5.minutes
         end
 
-        say
+        progress.finish
         say("OK, rotated keys for #{processed} accounts", :green)
       elsif username.present?
         rotate_keys_for_account(Account.find_local(username))
@@ -181,7 +185,7 @@ module Mastodon
       end
 
       say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
-      SuspendAccountService.new.call(account, including_user: true)
+      SuspendAccountService.new.call(account, reserve_email: false)
       say('OK', :green)
     end
 
@@ -206,6 +210,8 @@ module Mastodon
       say('OK', :green)
     end
 
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
     desc 'cull', 'Remove remote accounts that no longer exist'
     long_desc <<-LONG_DESC
@@ -215,63 +221,45 @@ module Mastodon
 
       Accounts that have had confirmed activity within the last week
       are excluded from the checks.
-
-      Domains that are unreachable are not checked.
-
-      With the --dry-run option, no deletes will actually be carried
-      out.
     LONG_DESC
     def cull
       skip_threshold = 7.days.ago
-      culled         = 0
-      dry_run_culled = []
-      skip_domains   = Set.new
       dry_run        = options[:dry_run] ? ' (DRY RUN)' : ''
+      skip_domains   = Concurrent::Set.new
 
-      Account.remote.where(protocol: :activitypub).partitioned.find_each do |account|
-        next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold)
+      processed, culled = parallelize_with_progress(Account.remote.where(protocol: :activitypub).partitioned) do |account|
+        next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold) || skip_domains.include?(account.domain)
 
         code = 0
-        unless skip_domains.include?(account.domain)
-          begin
-            code = Request.new(:head, account.uri).perform(&:code)
-          rescue HTTP::ConnectionError
-            skip_domains << account.domain
-          rescue StandardError
-            next
-          end
+
+        begin
+          code = Request.new(:head, account.uri).perform(&:code)
+        rescue HTTP::ConnectionError
+          skip_domains << account.domain
         end
 
         if [404, 410].include?(code)
-          if options[:dry_run]
-            dry_run_culled << account.acct
-          else
-            SuspendAccountService.new.call(account, destroy: true)
-          end
-          culled += 1
-          say('+', :green, false)
+          SuspendAccountService.new.call(account, reserve_username: false) unless options[:dry_run]
+          1
         else
-          account.touch # Touch account even during dry run to avoid getting the account into the window again
-          say('.', nil, false)
+          # Touch account even during dry run to avoid getting the account into the window again
+          account.touch
         end
       end
 
-      say
-      say("Removed #{culled} accounts. #{skip_domains.size} servers skipped#{dry_run}", skip_domains.empty? ? :green : :yellow)
+      say("Visited #{processed} accounts, removed #{culled}#{dry_run}", :green)
 
       unless skip_domains.empty?
-        say('The following servers were not available during the check:', :yellow)
+        say('The following domains were not available during the check:', :yellow)
         skip_domains.each { |domain| say('    ' + domain) }
-      end
-
-      unless dry_run_culled.empty?
-        say('The following accounts would have been deleted:', :green)
-        dry_run_culled.each { |account| say('    ' + account) }
       end
     end
 
     option :all, type: :boolean
     option :domain
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, aliases: [:v]
+    option :dry_run, type: :boolean
     desc 'refresh [USERNAME]', 'Fetch remote user data and files'
     long_desc <<-LONG_DESC
       Fetch remote user data and files for one or multiple accounts.
@@ -280,21 +268,23 @@ module Mastodon
       Through the --domain option, this can be narrowed down to a
       specific domain only. Otherwise, a single remote account must
       be specified with USERNAME.
-
-      All processing is done in the background through Sidekiq.
     LONG_DESC
     def refresh(username = nil)
+      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
+
       if options[:domain] || options[:all]
-        queued = 0
         scope  = Account.remote
         scope  = scope.where(domain: options[:domain]) if options[:domain]
 
-        scope.select(:id).reorder(nil).find_in_batches do |accounts|
-          Maintenance::RedownloadAccountMediaWorker.push_bulk(accounts.map(&:id))
-          queued += accounts.size
+        processed, = parallelize_with_progress(scope) do |account|
+          next if options[:dry_run]
+
+          account.reset_avatar!
+          account.reset_header!
+          account.save
         end
 
-        say("Scheduled refreshment of #{queued} accounts", :green, true)
+        say("Refreshed #{processed} accounts#{dry_run}", :green, true)
       elsif username.present?
         username, domain = username.split('@')
         account = Account.find_remote(username, domain)
@@ -304,72 +294,53 @@ module Mastodon
           exit(1)
         end
 
-        Maintenance::RedownloadAccountMediaWorker.perform_async(account.id)
-        say('OK', :green)
+        unless options[:dry_run]
+          account.reset_avatar!
+          account.reset_header!
+          account.save
+        end
+
+        say("OK#{dry_run}", :green)
       else
         say('No account(s) given', :red)
         exit(1)
       end
     end
 
-    desc 'follow ACCT', 'Make all local accounts follow account specified by ACCT'
-    long_desc <<-LONG_DESC
-      Make all local accounts follow an account specified by ACCT. ACCT can be
-      a simple username, in case of a local user. It can also be in the format
-      username@domain, in case of a remote user.
-    LONG_DESC
-    def follow(acct)
-      target_account = ResolveAccountService.new.call(acct)
-      processed      = 0
-      failed         = 0
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, aliases: [:v]
+    desc 'follow USERNAME', 'Make all local accounts follow account specified by USERNAME'
+    def follow(username)
+      target_account = Account.find_local(username)
 
       if target_account.nil?
-        say("Target account (#{acct}) could not be resolved", :red)
+        say('No such account', :red)
         exit(1)
       end
 
-      Account.local.without_suspended.find_each do |account|
-        begin
-          FollowService.new.call(account, target_account)
-          processed += 1
-          say('.', :green, false)
-        rescue StandardError
-          failed += 1
-          say('.', :red, false)
-        end
+      processed, = parallelize_with_progress(Account.local.without_suspended) do |account|
+        FollowService.new.call(account, target_account)
       end
 
-      say("OK, followed target from #{processed} accounts, skipped #{failed}", :green)
+      say("OK, followed target from #{processed} accounts", :green)
     end
 
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, aliases: [:v]
     desc 'unfollow ACCT', 'Make all local accounts unfollow account specified by ACCT'
-    long_desc <<-LONG_DESC
-      Make all local accounts unfollow an account specified by ACCT. ACCT can be
-      a simple username, in case of a local user. It can also be in the format
-      username@domain, in case of a remote user.
-    LONG_DESC
     def unfollow(acct)
       target_account = Account.find_remote(*acct.split('@'))
-      processed      = 0
-      failed         = 0
 
       if target_account.nil?
-        say("Target account (#{acct}) was not found", :red)
+        say('No such account', :red)
         exit(1)
       end
 
-      target_account.followers.local.find_each do |account|
-        begin
-          UnfollowService.new.call(account, target_account)
-          processed += 1
-          say('.', :green, false)
-        rescue StandardError
-          failed += 1
-          say('.', :red, false)
-        end
+      parallelize_with_progress(target_account.followers.local) do |account|
+        UnfollowService.new.call(account, target_account)
       end
 
-      say("OK, unfollowed target from #{processed} accounts, skipped #{failed}", :green)
+      say("OK, unfollowed target from #{processed} accounts", :green)
     end
 
     option :follows, type: :boolean, default: false
@@ -392,51 +363,50 @@ module Mastodon
       account = Account.find_local(username)
 
       if account.nil?
-        say('No user with such username', :red)
+        say('No such account', :red)
         exit(1)
       end
 
+      total     = 0
+      total    += Account.where(id: ::Follow.where(account: account).select(:target_account_id)).count if options[:follows]
+      total    += Account.where(id: ::Follow.where(target_account: account).select(:account_id)).count if options[:followers]
+      progress  = create_progress_bar(total)
+      processed = 0
+
       if options[:follows]
-        processed = 0
-        failed    = 0
+        scope = Account.where(id: ::Follow.where(account: account).select(:target_account_id))
 
-        say("Unfollowing #{account.username}'s followees, this might take a while...")
-
-        Account.where(id: ::Follow.where(account: account).select(:target_account_id)).find_each do |target_account|
+        scope.find_each do |target_account|
           begin
             UnfollowService.new.call(account, target_account)
+          rescue => e
+            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+          ensure
+            progress.increment
             processed += 1
-            say('.', :green, false)
-          rescue StandardError
-            failed += 1
-            say('.', :red, false)
           end
         end
 
         BootstrapTimelineWorker.perform_async(account.id)
-
-        say("OK, unfollowed #{processed} followees, skipped #{failed}", :green)
       end
 
       if options[:followers]
-        processed = 0
-        failed    = 0
+        scope = Account.where(id: ::Follow.where(target_account: account).select(:account_id))
 
-        say("Removing #{account.username}'s followers, this might take a while...")
-
-        Account.where(id: ::Follow.where(target_account: account).select(:account_id)).find_each do |target_account|
+        scope.find_each do |target_account|
           begin
             UnfollowService.new.call(target_account, account)
+          rescue => e
+            progress.log pastel.red("Error processing #{target_account.id}: #{e}")
+          ensure
+            progress.increment
             processed += 1
-            say('.', :green, false)
-          rescue StandardError
-            failed += 1
-            say('.', :red, false)
           end
         end
-
-        say("OK, removed #{processed} followers, skipped #{failed}", :green)
       end
+
+      progress.finish
+      say("Processed #{processed} relationships", :green, true)
     end
 
     option :number, type: :numeric, aliases: [:n]

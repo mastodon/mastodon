@@ -91,13 +91,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           expect(response).to have_http_status(404)
         end
       end
-
-      describe 'GET #card' do
-        it 'returns http unautharized' do
-          get :card, params: { id: status.id }
-          expect(response).to have_http_status(404)
-        end
-      end
     end
 
     context 'with a public status' do
@@ -117,13 +110,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
         it 'returns http success' do
           get :context, params: { id: status.id }
-          expect(response).to have_http_status(200)
-        end
-      end
-
-      describe 'GET #card' do
-        it 'returns http success' do
-          get :card, params: { id: status.id }
           expect(response).to have_http_status(200)
         end
       end

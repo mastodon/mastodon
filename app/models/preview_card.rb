@@ -25,7 +25,7 @@
 #
 
 class PreviewCard < ApplicationRecord
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
+  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   LIMIT = 1.megabytes
 
   self.inheritance_column = false
@@ -42,6 +42,8 @@ class PreviewCard < ApplicationRecord
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :image, less_than: LIMIT
   remotable_attachment :image, LIMIT
+
+  scope :cached, -> { where.not(image_file_name: [nil, '']) }
 
   before_save :extract_dimensions, if: :link?
 

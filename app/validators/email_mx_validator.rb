@@ -14,6 +14,7 @@ class EmailMxValidator < ActiveModel::Validator
 
     return true if domain.nil?
 
+    domain    = TagManager.instance.normalize_domain(domain)
     hostnames = []
     ips       = []
 
@@ -29,6 +30,8 @@ class EmailMxValidator < ActiveModel::Validator
     end
 
     ips.empty? || on_blacklist?(hostnames + ips)
+  rescue Addressable::URI::InvalidURIError
+    true
   end
 
   def on_blacklist?(values)

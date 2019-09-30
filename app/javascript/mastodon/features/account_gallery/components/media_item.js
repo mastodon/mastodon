@@ -96,6 +96,12 @@ export default class MediaItem extends ImmutablePureComponent {
 
     if (attachment.get('type') === 'unknown') {
       // Skip
+    } else if (attachment.get('type') === 'audio') {
+      thumbnail = (
+        <span className='account-gallery__item__icons'>
+          <Icon id='music' />
+        </span>
+      );
     } else if (attachment.get('type') === 'image') {
       const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
       const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;

@@ -12,7 +12,19 @@ import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
-import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, BookmarkedStatuses, ListTimeline } from '../../ui/util/async-components';
+import {
+  Compose,
+  Notifications,
+  HomeTimeline,
+  CommunityTimeline,
+  PublicTimeline,
+  HashtagTimeline,
+  DirectTimeline,
+  FavouritedStatuses,
+  BookmarkedStatuses,
+  ListTimeline,
+  Directory,
+} from '../../ui/util/async-components';
 import Icon from 'mastodon/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
@@ -31,6 +43,7 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
   'BOOKMARKED': BookmarkedStatuses,
   'LIST': ListTimeline,
+  'DIRECTORY': Directory,
 };
 
 const messages = defineMessages({
@@ -111,6 +124,11 @@ class ColumnsArea extends ImmutablePureComponent {
     // React-router does this for us, but too late, feeling laggy.
     document.querySelector(currentLinkSelector).classList.remove('active');
     document.querySelector(nextLinkSelector).classList.add('active');
+
+    if (!this.state.shouldAnimate && typeof this.pendingIndex === 'number') {
+      this.context.router.history.push(getLink(this.pendingIndex));
+      this.pendingIndex = null;
+    }
   }
 
   handleAnimationEnd = () => {
@@ -161,7 +179,6 @@ class ColumnsArea extends ImmutablePureComponent {
     const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
-    this.pendingIndex = null;
 
     if (singleColumn) {
       const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/statuses/new' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;

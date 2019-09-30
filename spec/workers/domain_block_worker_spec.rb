@@ -14,7 +14,7 @@ describe DomainBlockWorker do
       result = subject.perform(domain_block.id)
 
       expect(result).to be_nil
-      expect(service).to have_received(:call).with(domain_block)
+      expect(service).to have_received(:call).with(domain_block, false)
     end
 
     it 'calls domain block service for relevant domain block' do

@@ -5,7 +5,6 @@
   %meta{ name: 'robots', content: 'noindex' }/
   %link{ rel: 'alternate', type: 'application/rss+xml', href: tag_url(@tag, format: 'rss') }/
 
-  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
   = render 'og'
 

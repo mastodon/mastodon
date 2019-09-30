@@ -31,6 +31,18 @@
           = fa_icon 'times'
       .dashboard__counters__label= t 'admin.instances.delivery_available'
 
+- if @private_comment.present?
+  .speech-bubble
+    .speech-bubble__bubble
+      = simple_format(h(@private_comment))
+    .speech-bubble__owner= t 'admin.instances.private_comment'
+
+- if @public_comment.present?
+  .speech-bubble
+    .speech-bubble__bubble
+      = simple_format(h(@public_comment))
+    .speech-bubble__owner= t 'admin.instances.public_comment'
+
 %hr.spacer/
 
 %div{ style: 'overflow: hidden' }
@@ -38,7 +50,10 @@
     = link_to t('admin.accounts.title'), admin_accounts_path(remote: '1', by_domain: @instance.domain), class: 'button'
 
   %div{ style: 'float: right' }
-    - if @domain_block
+    - if @domain_allow
+      = link_to t('admin.domain_allows.undo'), admin_domain_allow_path(@domain_allow), class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
+    - elsif @domain_block
+      = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@domain_block), class: 'button'
       = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@domain_block), class: 'button'
     - else
       = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @instance.domain), class: 'button'
