@@ -15,6 +15,7 @@ import FocalPointModal from './focal_point_modal';
 import {
   OnboardingModal,
   MuteModal,
+  BlockModal,
   ReportModal,
   SettingsModal,
   EmbedModal,
@@ -32,6 +33,7 @@ const MODAL_COMPONENTS = {
   'DOODLE': () => Promise.resolve({ default: DoodleModal }),
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
+  'BLOCK': BlockModal,
   'REPORT': ReportModal,
   'SETTINGS': SettingsModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),

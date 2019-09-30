@@ -1,17 +1,89 @@
 - content_for :page_title do
   = t('settings.migrate')
 
-= simple_form_for @migration, as: :migration, url: settings_migration_path, html: { method: :put } do |f|
-  - if @migration.account
-    %p.hint= t('migrations.currently_redirecting')
+.simple_form
+  - if current_account.moved_to_account.present?
+    .fields-row
+      .fields-row__column.fields-group.fields-row__column-6
+        = render 'application/card', account: current_account.moved_to_account
+      .fields-row__column.fields-group.fields-row__column-6
+        %p.hint
+          %span.positive-hint= t('migrations.redirecting_to', acct: current_account.moved_to_account.acct)
 
-    .fields-group
-      = render partial: 'application/card', locals: { account: @migration.account }
+        %p.hint= t('migrations.cancel_explanation')
+
+        %p.hint= link_to t('migrations.cancel'), settings_migration_redirect_path, data: { method: :delete }
+  - else
+    %p.hint
+      %span.positive-hint= t('migrations.not_redirecting')
+
+%hr.spacer/
+
+%h3= t('auth.migrate_account')
+
+= simple_form_for @migration, url: settings_migration_path do |f|
+  - if on_cooldown?
+    %p.hint
+      %span.warning-hint= t('migrations.on_cooldown', count: ((@cooldown.cooldown_at - Time.now.utc) / 1.day.seconds).ceil)
+  - else
+    %p.hint= t('migrations.warning.before')
+
+    %ul.hint
+      %li.warning-hint= t('migrations.warning.followers')
+      %li.warning-hint= t('migrations.warning.redirect')
+      %li.warning-hint= t('migrations.warning.other_data')
+      %li.warning-hint= t('migrations.warning.backreference_required')
+      %li.warning-hint= t('migrations.warning.cooldown')
+      %li.warning-hint= t('migrations.warning.disabled_account')
+
+  %p.hint= t('migrations.warning.only_redirect_html', path: new_settings_migration_redirect_path)
+
+  %hr.spacer/
 
   = render 'shared/error_messages', object: @migration
 
-  .fields-group
-    = f.input :acct, placeholder: t('migrations.acct')
+  .fields-row
+    .fields-row__column.fields-group.fields-row__column-6
+      = f.input :acct, wrapper: :with_block_label, input_html: { autocapitalize: 'none', autocorrect: 'off' }, disabled: on_cooldown?
+
+    .fields-row__column.fields-group.fields-row__column-6
+      - if current_user.encrypted_password.present?
+        = f.input :current_password, wrapper: :with_block_label, input_html: { :autocomplete => 'off' }, required: true, disabled: on_cooldown?
+      - else
+        = f.input :current_username, wrapper: :with_block_label, input_html: { :autocomplete => 'off' }, required: true, disabled: on_cooldown?
 
   .actions
-    = f.button :button, t('migrations.proceed'), type: :submit, class: 'negative'
+    = f.button :button, t('migrations.proceed_with_move'), type: :submit, class: 'button button--destructive', disabled: on_cooldown?
+
+- unless @migrations.empty?
+  %hr.spacer/
+
+  %h3= t 'migrations.past_migrations'
+
+  %hr.spacer/
+
+  .table-wrapper
+    %table.table.inline-table
+      %thead
+        %tr
+          %th= t('migrations.acct')
+          %th= t('migrations.followers_count')
+          %th
+      %tbody
+        - @migrations.each do |migration|
+          %tr
+            %td
+              - if migration.target_account.present?
+                = compact_account_link_to migration.target_account
+              - else
+                = migration.acct
+
+            %td= number_with_delimiter migration.followers_count
+
+            %td
+              %time.time-ago{ datetime: migration.created_at.iso8601, title: l(migration.created_at) }= l(migration.created_at)
+
+%hr.spacer/
+
+%h3= t 'migrations.incoming_migrations'
+%p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)

@@ -2,6 +2,10 @@
 co:
   simple_form:
     hints:
+      account_alias:
+        acct: Entrate u cugnome@duminiu di u contu attuale
+      account_migration:
+        acct: Entrate u cugnome@duminiu di u contu induve vulete traslucà
       account_warning_preset:
         text: Pudete utilizà a sintassa di i statuti, per esempiu l'URL, hashtag, minzione
       admin_account_action:
@@ -15,6 +19,8 @@ co:
         avatar: Furmatu PNG, GIF o JPG. %{size} o menu. Sarà ridottu à %{dimensions}px
         bot: Stu contu hè autumatizatu è ùn hè forse micca survegliatu
         context: Cuntestu·i induve u filtru deve esse applicatu
+        current_password: Per ragione di sicurità, entrate a chjave d'accessu di stu contu
+        current_username: Per cunfirmà, entrate u cugnome di questu contu
         digest: Solu mandatu dopu à una longa perioda d’inattività, è solu s’elli ci sò novi missaghji diretti
         discoverable: L'annuariu di i prufili hè un'altra manera per u vostru contu di tuccà un'audienza più larga
         email: Avete da riceve un'e-mail di cunfirmazione
@@ -43,6 +49,8 @@ co:
         domain: Stu duminiu puderà ricuperà i dati di stu servore è i dati ch'affaccanu da quallà saranu trattati è cunservati
       featured_tag:
         name: 'Pudete vulè utilizà unu di quelli:'
+      form_challenge:
+        current_password: Entrate in in una zona sicurizata
       imports:
         data: Un fugliale CSV da un’altru servore di Mastodon
       invite_request:
@@ -58,6 +66,10 @@ co:
         fields:
           name: Marcu
           value: Cuntinutu
+      account_alias:
+        acct: Cugnome di l'anzianu contu
+      account_migration:
+        acct: Cugnome di u novu contu
       account_warning_preset:
         text: Testu preselezziunatu
       admin_account_action:
@@ -131,6 +143,8 @@ co:
         must_be_follower: Piattà e nutificazione di quelli·e ch’ùn vi seguitanu
         must_be_following: Piattà e nutificazione di quelli·e ch’ùn seguitate
         must_be_following_dm: Bluccà e missaghji diretti di quelli·e ch’ùn seguitate
+      invite:
+        comment: Cummentariu
       invite_request:
         text: Perchè vulete ghjunghje?
       notification_emails:

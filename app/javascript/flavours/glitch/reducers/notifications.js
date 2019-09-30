@@ -52,7 +52,7 @@ const notificationToMap = (state, notification) => ImmutableMap({
 const normalizeNotification = (state, notification, usePendingItems) => {
   const top = !shouldCountUnreadNotifications(state);
 
-  if (usePendingItems || !top || !state.get('pendingItems').isEmpty()) {
+  if (usePendingItems || !state.get('pendingItems').isEmpty()) {
     return state.update('pendingItems', list => list.unshift(notificationToMap(state, notification))).update('unread', unread => unread + 1);
   }
 
@@ -82,7 +82,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
 
   return state.withMutations(mutable => {
     if (!items.isEmpty()) {
-      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('top') || !mutable.get('pendingItems').isEmpty());
+      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('pendingItems').isEmpty());
 
       mutable.update(usePendingItems ? 'pendingItems' : 'items', list => {
         const lastIndex = 1 + list.findLastIndex(

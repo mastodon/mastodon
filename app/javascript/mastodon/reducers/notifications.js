@@ -7,6 +7,8 @@ import {
   NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
   NOTIFICATIONS_LOAD_PENDING,
+  NOTIFICATIONS_MOUNT,
+  NOTIFICATIONS_UNMOUNT,
 } from '../actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -22,6 +24,7 @@ const initialState = ImmutableMap({
   items: ImmutableList(),
   hasMore: true,
   top: false,
+  mounted: false,
   unread: 0,
   isLoading: false,
 });
@@ -37,7 +40,7 @@ const notificationToMap = notification => ImmutableMap({
 const normalizeNotification = (state, notification, usePendingItems) => {
   const top = state.get('top');
 
-  if (usePendingItems || !top || !state.get('pendingItems').isEmpty()) {
+  if (usePendingItems || !state.get('pendingItems').isEmpty()) {
     return state.update('pendingItems', list => list.unshift(notificationToMap(notification))).update('unread', unread => unread + 1);
   }
 
@@ -63,7 +66,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
 
   return state.withMutations(mutable => {
     if (!items.isEmpty()) {
-      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('top') || !mutable.get('pendingItems').isEmpty());
+      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('pendingItems').isEmpty());
 
       mutable.update(usePendingItems ? 'pendingItems' : 'items', list => {
         const lastIndex = 1 + list.findLastIndex(
@@ -134,6 +137,10 @@ export default function notifications(state = initialState, action) {
     return action.timeline === 'home' ?
       state.update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
+  case NOTIFICATIONS_MOUNT:
+    return state.set('mounted', true);
+  case NOTIFICATIONS_UNMOUNT:
+    return state.set('mounted', false);
   default:
     return state;
   }

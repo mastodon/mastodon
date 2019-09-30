@@ -1,7 +1,7 @@
 ---
 eo:
   about:
-    about_hashtag_html: Ĉi tiuj estas la publikaj fajfoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
+    about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
     about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
     about_this: Pri
     active_count_after: aktiva
@@ -17,13 +17,13 @@ eo:
     contact_unavailable: Ne disponebla
     discover_users: Malkovri uzantojn
     documentation: Dokumentado
-    extended_description_html: |
-      <h3>Bona loko por reguloj</h3>
-      <p>La detala priskribo ne estis elektita.</p>
     federation_hint_html: Per konto ĉe %{instance}, vi povos sekvi homojn ĉe iu ajn Mastodon nodo kaj preter.
     generic_description: "%{domain} estas unu servilo en la reto"
     get_apps: Provu telefonan aplikaĵon
     hosted_on: "%{domain} estas nodo de Mastodon"
+    instance_actor_flash: |
+      Ĉi tiu konto estas virtuala ulo uzata por reprezenti la servilon mem kaj ne iun apartan uzanton.
+      Ĝi estas uzata por frataraj celoj kaj ĝi ne devus esti blokita krom se vi volas bloki la tutan servilon, tiuokaze vi devus uzi domajnan blokadon.
     learn_more: Lerni pli
     privacy_policy: Privateca politiko
     see_whats_happening: Vidi kio okazas
@@ -35,6 +35,9 @@ eo:
     status_count_before: Kie skribiĝis
     tagline: Sekvi amikojn kaj trovi novan onin
     terms: Uzkondiĉoj
+    unavailable_content: Nedisponebla enhavo
+    unavailable_content_description:
+      reason: 'Kialo:'
     user_count_after:
       one: uzanto
       other: uzantoj
@@ -485,7 +488,7 @@ eo:
       back_to_account: Reveni al konta paĝo
       batch:
         delete: Forigi
-        nsfw_off: Marki ne tikla
+        nsfw_off: Marki netikla
         nsfw_on: Marki tikla
       deleted: Forigita
       failed_to_execute: Ekigo malsukcesa
@@ -499,6 +502,9 @@ eo:
       context: Kunteksto
       directory: En la adresaro
       in_directory: "%{count} en adresaro"
+      last_active: Lasta aktiva
+      most_recent: Plej lasta
+      name: Kradvorto
       review: La statuso de la recenzo
       reviewed: Recenzis
       title: Kradvortoj
@@ -524,8 +530,10 @@ eo:
       subject: Nova kradvorto kontrolebla en %{instance} (#%{name})
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
+    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara tempolinio, kaj ajna kvanto de listoj kaj kradvortoj.'
     animations_and_accessibility: Animacioj kaj alirebleco
     confirmation_dialogs: Konfirmaj fenestroj
+    discovery: Eltrovo
     sensitive_content: Tikla enhavo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
@@ -548,6 +556,8 @@ eo:
     checkbox_agreement_html: Mi samopinii al la <a href="%{rules_path}" target="_blank">Servo reguloj</a> kaj <a href="%{terms_path}" target="_blank">kondiĉo al servadon</a>
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
+    description:
+      prefix_sign_up: Registriĝi ĉe Mastodon hodiaŭ!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
@@ -582,6 +592,10 @@ eo:
       return: Montri la profilon de la uzanto
       web: Iri al reto
     title: Sekvi %{acct}
+  challenge:
+    confirm: Daŭrigi
+    invalid_password: Nevalida pasvorto
+    prompt: Konfirmi pasvorton por daŭrigi
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -604,10 +618,6 @@ eo:
     directory: Profilujo
     explanation: Malkovru uzantojn per iliaj interesoj
     explore_mastodon: Esplori %{title}
-  domain_blocks:
-    domain: Domajno
-    no_domain_blocks: "(Nenio domajna blokado)"
-    silence: Silenta
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
   errors:
@@ -649,6 +659,7 @@ eo:
     add_new: Aldoni novan
     errors:
       limit: Vi jam elstarigis la maksimuman kvanton da kradvortoj
+    hint_html: "<strong>Kio estas la trajtaj kradvortoj?</strong> Ili bone videblas en via publika profilo kaj permesas al homoj trarigardi viajn publikajn mesaĝojn specife laŭ tiuj kradvortoj. Ili estas bonaj iloj por sekvi la evoluon de kreadaj laboroj aŭ longdaŭraj projektoj."
   filters:
     contexts:
       home: Hejma templinio
@@ -680,7 +691,7 @@ eo:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   html_validator:
-    invalid_markup: 'havas malvalida HTML markado: %{error}'
+    invalid_markup: 'havas nevalidan HTML-markadon: %{error}'
   identity_proofs:
     active: Aktiva
     authorize: Jes, permesi
@@ -745,9 +756,6 @@ eo:
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
     acct: uzantnomo@domajno de la nova konto
-    currently_redirecting: 'Via profilo alidirektos al:'
-    proceed: Konservi
-    updated_msg: Via agordo pri konta migrado estis sukcese ĝisdatigita!
   moderation:
     title: Kontrolado
   notification_mailer:

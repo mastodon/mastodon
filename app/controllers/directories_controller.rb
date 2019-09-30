@@ -10,6 +10,8 @@ class DirectoriesController < ApplicationController
   before_action :set_accounts
   before_action :set_pack
 
+  skip_before_action :require_functional!
+
   def index
     render :index
   end

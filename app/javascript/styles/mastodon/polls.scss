@@ -95,13 +95,19 @@
 
   &__number {
     display: inline-block;
-    width: 36px;
+    width: 52px;
     font-weight: 700;
     padding: 0 10px;
+    padding-left: 8px;
     text-align: right;
     margin-top: auto;
     margin-bottom: auto;
-    flex: 0 0 36px;
+    flex: 0 0 52px;
+  }
+
+  &__vote__mark {
+    float: left;
+    line-height: 18px;
   }
 
   &__footer {

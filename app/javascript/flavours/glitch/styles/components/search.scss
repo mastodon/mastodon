@@ -10,6 +10,28 @@
   padding-right: 30px;
   line-height: 18px;
   font-size: 16px;
+
+  &::placeholder {
+    color: lighten($darker-text-color, 4%);
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
+    outline: 0 !important;
+  }
+
+  &:focus {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .search__icon {

@@ -245,6 +245,10 @@ code {
       &-6 {
         max-width: 50%;
       }
+
+      .actions {
+        margin-top: 27px;
+      }
     }
 
     .fields-group:last-child,
@@ -300,6 +304,13 @@ code {
     }
   }
 
+  .input.static .label_input__wrapper {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid $dark-text-color;
+    border-radius: 4px;
+  }
+
   input[type=text],
   input[type=number],
   input[type=email],
@@ -317,6 +328,10 @@ code {
     border: 1px solid darken($ui-base-color, 14%);
     border-radius: 4px;
     padding: 10px;
+
+    &::placeholder {
+      color: lighten($darker-text-color, 4%);
+    }
 
     &:invalid {
       box-shadow: none;

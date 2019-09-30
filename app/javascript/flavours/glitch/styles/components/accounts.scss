@@ -50,12 +50,26 @@
   &-composite {
     @include avatar-radius;
     overflow: hidden;
+    position: relative;
+    cursor: default;
 
     & div {
       @include avatar-radius;
       float: left;
       position: relative;
       box-sizing: border-box;
+    }
+
+    &__label {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $primary-text-color;
+      text-shadow: 1px 1px 2px $base-shadow-color;
+      font-weight: 700;
+      font-size: 15px;
     }
   }
 }
@@ -245,6 +259,28 @@
   .column-select {
     &__control {
       @include search-input();
+
+      &::placeholder {
+        color: lighten($darker-text-color, 4%);
+      }
+
+      &::-moz-focus-inner {
+        border: 0;
+      }
+
+      &::-moz-focus-inner,
+      &:focus,
+      &:active {
+        outline: 0 !important;
+      }
+
+      &:focus {
+        background: lighten($ui-base-color, 4%);
+      }
+
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
     }
 
     &__placeholder {

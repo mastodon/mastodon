@@ -62,24 +62,6 @@
   color: $darker-text-color;
   font-size: 14px;
   margin: 0;
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 16px;
-  }
 }
 
 @mixin search-popout() {

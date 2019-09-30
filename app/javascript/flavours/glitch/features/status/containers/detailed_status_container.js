@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import DetailedStatus from '../components/detailed_status';
 import { makeGetStatus } from 'flavours/glitch/selectors';
@@ -15,7 +14,6 @@ import {
   pin,
   unpin,
 } from 'flavours/glitch/actions/interactions';
-import { blockAccount } from 'flavours/glitch/actions/accounts';
 import {
   muteStatus,
   unmuteStatus,
@@ -24,9 +22,10 @@ import {
   revealStatus,
 } from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
+import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { openModal } from 'flavours/glitch/actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import { boostModal, deleteModal } from 'flavours/glitch/util/initial_state';
 import { showAlertForError } from 'flavours/glitch/actions/alerts';
 
@@ -35,10 +34,8 @@ const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
-  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
 });
 
 const makeMapStateToProps = () => {
@@ -139,16 +136,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onBlock (status) {
     const account = status.get('account');
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockConfirm),
-      onConfirm: () => dispatch(blockAccount(account.get('id'))),
-      secondary: intl.formatMessage(messages.blockAndReport),
-      onSecondary: () => {
-        dispatch(blockAccount(account.get('id')));
-        dispatch(initReport(account, status));
-      },
-    }));
+    dispatch(initBlockModal(account));
   },
 
   onReport (status) {

@@ -57,6 +57,8 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def pinned_scope
+    return Status.none if @account.blocking?(current_account)
+
     @account.pinned_statuses
   end
 

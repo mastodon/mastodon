@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import Status from 'flavours/glitch/components/status';
 import { List as ImmutableList } from 'immutable';
@@ -18,9 +17,9 @@ import {
   pin,
   unpin,
 } from 'flavours/glitch/actions/interactions';
-import { blockAccount } from 'flavours/glitch/actions/accounts';
 import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
+import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
@@ -37,10 +36,8 @@ const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.' },
-  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
   unfilterConfirm: { id: 'confirmations.unfilter.confirm', defaultMessage: 'Show' },
   author: { id: 'confirmations.unfilter.author', defaultMessage: 'Author' },
   matchingFilters: { id: 'confirmations.unfilter.filters', defaultMessage: 'Matching {count, plural, one {filter} other {filters}}' },
@@ -83,6 +80,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   onReply (status, router) {
     dispatch((_, getState) => {
       let state = getState();
+
       if (state.getIn(['local_settings', 'confirm_before_clearing_draft']) && state.getIn(['compose', 'text']).trim().length !== 0) {
         dispatch(openModal('CONFIRM', {
           message: intl.formatMessage(messages.replyMessage),
@@ -186,16 +184,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onBlock (status) {
     const account = status.get('account');
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockConfirm),
-      onConfirm: () => dispatch(blockAccount(account.get('id'))),
-      secondary: intl.formatMessage(messages.blockAndReport),
-      onSecondary: () => {
-        dispatch(blockAccount(account.get('id')));
-        dispatch(initReport(account, status));
-      },
-    }));
+    dispatch(initBlockModal(account));
   },
 
   onUnfilter (status, onConfirm) {

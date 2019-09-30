@@ -114,6 +114,16 @@ function main() {
       this.parentElement.parentElement.nextElementSibling.classList.toggle('hidden');
     });
   });
+
+  delegate(document, '.sidebar__toggle__icon', 'click', () => {
+    const target = document.querySelector('.sidebar ul');
+
+    if (target.style.display === 'block') {
+      target.style.display = 'none';
+    } else {
+      target.style.display = 'block';
+    }
+  });
 }
 
 loadPolyfills().then(main).catch(error => {

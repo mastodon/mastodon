@@ -2,6 +2,10 @@
 fr:
   simple_form:
     hints:
+      account_alias:
+        acct: Spécifiez le nom d'utilisateur@domaine du compte que vous souhaitez déplacer
+      account_migration:
+        acct: Spécifiez le nom d'utilisateur@domaine du compte vers lequel vous souhaitez déplacer
       account_warning_preset:
         text: Vous pouvez utiliser la syntaxe des pouets, comme les URLs, les hashtags et les mentions
       admin_account_action:
@@ -15,6 +19,8 @@ fr:
         avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         context: Un ou plusieurs contextes où le filtre devrait s’appliquer
+        current_password: Pour des raisons de sécurité, veuillez saisir le mot de passe du compte courant
+        current_username: Pour confirmer, veuillez saisir le nom d'utilisateur du compte courant
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
         discoverable: L’annuaire des profils est une autre façon pour votre compte d’atteindre une plus grand audience
         email: Vous recevrez un courriel de confirmation
@@ -43,6 +49,8 @@ fr:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
       featured_tag:
         name: 'Vous pourriez vouloir utiliser l’un d’entre eux :'
+      form_challenge:
+        current_password: Vous entrez une zone sécurisée
       imports:
         data: Un fichier CSV généré par un autre serveur de Mastodon
       invite_request:
@@ -58,6 +66,10 @@ fr:
         fields:
           name: Étiquette
           value: Contenu
+      account_alias:
+        acct: Gestion de l'ancien compte
+      account_migration:
+        acct: Gestion du nouveau compte
       account_warning_preset:
         text: Texte de présélection
       admin_account_action:
@@ -131,6 +143,8 @@ fr:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Masquer les notifications des personnes que vous ne suivez pas
         must_be_following_dm: Bloquer les messages directs des personnes que vous ne suivez pas
+      invite:
+        comment: Commentaire
       invite_request:
         text: Pourquoi voulez-vous vous inscrire ?
       notification_emails:

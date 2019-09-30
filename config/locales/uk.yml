@@ -17,9 +17,6 @@ uk:
     contact_unavailable: Недоступно
     discover_users: Знайдіть цікавих користувачів
     documentation: Документація
-    extended_description_html: |
-      <h3>Гарне місце для правил</h3>
-      <p>Детальний опис ще не налаштований.</p>
     federation_hint_html: З обліковим записом на %{instance} ви зможете слідкувати за людьми на будь-якому сервері Mastodon та поза ним.
     generic_description: "%{domain} є одним сервером у мережі"
     get_apps: Спробуйте мобільний додаток
@@ -651,17 +648,6 @@ uk:
     directory: Каталог профілів
     explanation: Шукайте користувачів за їх інтересами
     explore_mastodon: Досліджуйте %{title}
-  domain_blocks:
-    blocked_domains: Обмежені та заблоковані домени
-    description: Перелік серверів, з якими %{instance} не хоче або не буде вступати до федеративних відносин.
-    domain: Домен
-    no_domain_blocks: "(Немає заблокованих доменів)"
-    severity_legend:
-      media_block: Файли медіа з цього сервера не отримуються, не зберігаються та не відображаються.
-      suspension: Інформація з призупинених серверів не зберігається та не відображається. Ніякі дані не надсилаються до них, взаємодії ігноруються.
-      suspension_disclaimer: Призупинені сервери можуть інколи отримувати публічні дані з цього сервера.
-    show_rationale: Обґрунтування
-    title: "%{instance} Перелік заблокованих серверів"
   domain_validator:
     invalid_domain: не є допустимим ім'ям домену
   errors:
@@ -797,9 +783,6 @@ uk:
       too_many: Не можна додати більше 4 файлів
   migrations:
     acct: username@domain нового облікового запису
-    currently_redirecting: 'Ваш профіль налаштований перенаправляти до:'
-    proceed: Зберегти
-    updated_msg: Налаштування переїзду вашого облікового запису успішно оновлені!
   moderation:
     title: Модерація
   notification_mailer:

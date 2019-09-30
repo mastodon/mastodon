@@ -103,10 +103,13 @@ function clearAll(state) {
   });
 };
 
-function appendMedia(state, media) {
+function appendMedia(state, media, file) {
   const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
+    if (media.get('type') === 'image') {
+      media = media.set('file', file);
+    }
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
@@ -321,7 +324,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_REQUEST:
     return state.set('is_uploading', true);
   case COMPOSE_UPLOAD_SUCCESS:
-    return appendMedia(state, fromJS(action.media));
+    return appendMedia(state, fromJS(action.media), action.file);
   case COMPOSE_UPLOAD_FAIL:
     return state.set('is_uploading', false);
   case COMPOSE_UPLOAD_UNDO:

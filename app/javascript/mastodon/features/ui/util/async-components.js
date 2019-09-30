@@ -106,6 +106,10 @@ export function MuteModal () {
   return import(/* webpackChunkName: "modals/mute_modal" */'../components/mute_modal');
 }
 
+export function BlockModal () {
+  return import(/* webpackChunkName: "modals/block_modal" */'../components/block_modal');
+}
+
 export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }

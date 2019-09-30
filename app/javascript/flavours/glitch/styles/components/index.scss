@@ -1433,49 +1433,68 @@
   height: 1em;
 }
 
-.layout-toggle {
+.conversation {
   display: flex;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   padding: 5px;
+  padding-bottom: 0;
 
-  button {
-    box-sizing: border-box;
-    flex: 0 0 50%;
-    background: transparent;
-    padding: 5px;
-    border: 0;
-    position: relative;
+  &:focus {
+    background: lighten($ui-base-color, 2%);
+    outline: 0;
+  }
 
-    &:hover,
-    &:focus,
-    &:active {
-      svg path:first-child {
-        fill: lighten($ui-base-color, 16%);
+  &__avatar {
+    flex: 0 0 auto;
+    padding: 10px;
+    padding-top: 12px;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    padding: 10px 5px;
+    padding-right: 15px;
+    word-break: break-all;
+    overflow: hidden;
+
+    &__info {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+
+    &__relative-time {
+      font-size: 15px;
+      color: $darker-text-color;
+      padding-left: 15px;
+    }
+
+    &__names {
+      color: $darker-text-color;
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+      flex-basis: 170px;
+      flex-shrink: 1000;
+
+      a {
+        color: $primary-text-color;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+        }
       }
     }
-  }
 
-  svg {
-    width: 100%;
-    height: auto;
-
-    path:first-child {
-      fill: lighten($ui-base-color, 12%);
+    .status__content {
+      margin: 0;
     }
-
-    path:last-child {
-      fill: darken($ui-base-color, 14%);
-    }
-  }
-
-  &__active {
-    color: $ui-highlight-color;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: lighten($ui-base-color, 12%);
-    border-radius: 50%;
-    padding: 0.35rem;
   }
 }
 

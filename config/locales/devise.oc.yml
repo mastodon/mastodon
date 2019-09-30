@@ -46,6 +46,18 @@ oc:
         extra: S’avètz pas res demandat, fasquètz pas cas a aqueste corrièl. Vòstre senhal cambiarà pas se clicatz pas lo ligam e que ne causissètz pas un novèl.
         subject: Mastodon : consignas per reïnicializar lo senhal
         title: Reïnicializacion del senhal
+      two_factor_disabled:
+        explanation: L’autentificacion dos factors per vòstre compte es estada desactivada. La connexion es ara possibla solament amb l’adreça electronica e lo senhal.
+        subject: 'Mastodon : autentificacion dos factors desactivada'
+        title: 2FA desactivat
+      two_factor_enabled:
+        explanation: L’autentificacion dos factors es estada activada per vòstre compte. La connexion demandarà un geton generat per l’aplicacion TOTP associada.
+        subject: 'Mastodon : autentificacion dos factor activada'
+        title: 2FA activat
+      two_factor_recovery_codes_changed:
+        explanation: Los còdis de recuperacion precedents son ara invalids e de nòus son estats generats.
+        subject: 'Mastodon : còdis de recuperacion dos factors regenerats'
+        title: Còdis 2FA de recuperacion cambiats
       unlock_instructions:
         subject: Mastodon : consignas de desblocatge
     omniauth_callbacks:
