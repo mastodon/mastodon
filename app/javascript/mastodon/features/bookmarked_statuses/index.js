@@ -95,6 +95,7 @@ class Bookmarks extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );
