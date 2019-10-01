@@ -17,7 +17,7 @@ module Mastodon
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
     option :whitelist_mode, type: :boolean
-    desc 'purge [DOMAIN]', 'Remove accounts from a DOMAIN without a trace'
+    desc 'purge [DOMAIN...]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
       records. Unlike a suspension, if the DOMAIN still exists in the wild,
@@ -27,16 +27,16 @@ module Mastodon
       from a single domain, all accounts from domains that are not whitelisted
       are removed from the database.
     LONG_DESC
-    def purge(domain = nil)
+    def purge(*domains)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       scope = begin
         if options[:whitelist_mode]
           Account.remote.where.not(domain: DomainAllow.pluck(:domain))
-        elsif domain.present?
-          Account.remote.where(domain: domain)
+        elsif !domains.empty?
+          Account.remote.where(domain: domains)
         else
-          say('No domain given', :red)
+          say('No domain(s) given', :red)
           exit(1)
         end
       end
@@ -45,11 +45,11 @@ module Mastodon
         SuspendAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
       end
 
-      DomainBlock.where(domain: domain).destroy_all unless options[:dry_run]
+      DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]
 
       say("Removed #{processed} accounts#{dry_run}", :green)
 
-      custom_emojis = CustomEmoji.where(domain: domain)
+      custom_emojis = CustomEmoji.where(domain: domains)
       custom_emojis_count = custom_emojis.count
       custom_emojis.destroy_all unless options[:dry_run]
 
