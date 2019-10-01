@@ -34,6 +34,10 @@ tr:
     status_count_before: Şu ana kadar
     tagline: Arkadaşlarını takip et ve yenilerini keşfet
     terms: Kullanım şartları
+    unavailable_content: Mevcut olmayan içerik
+    unavailable_content_description:
+      domain: Sunucu
+      reason: Sebep
     user_count_after:
       one: kullanıcı
       other: kullanıcı
@@ -75,6 +79,7 @@ tr:
   admin:
     account_actions:
       action: Eylemi gerçekleştir
+      title: '%{acct} üzerinde denetleme eylemi gerçekleştir'
     account_moderation_notes:
       create: Not bırakın
       created_msg: Denetim notu başarıyla oluşturuldu!
@@ -194,11 +199,24 @@ tr:
         create_custom_emoji: "%{name} yeni ifade yükledi %{target}"
         create_domain_block: "%{target} alanı, %{name} tarafından engellendi"
         create_email_domain_block: "%{target} e-posta alanı, %{name} tarafından kara listeye alınmış"
+        demote_user: "%{name} %{target} kullanıcısını düşürdü"
         destroy_custom_emoji: "%{target} emoji, %{name} tarafından kaldırıldı"
         destroy_domain_block: "%{target} alan adının engeli %{name} tarafından kaldırıldı"
         destroy_email_domain_block: "%{target} e-posta sunucusu, %{name} tarafından beyaz listeye alındı"
         disable_2fa_user: "%{name}, %{target} kullanıcısı için iki adım gereksinimini kapattı"
         disable_custom_emoji: "%{target} emoji, %{name} tarafından devre dışı bırakıldı"
+        disable_user: "%{name} %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
+        enable_custom_emoji: "%{name} %{target} için emojiyi etkinleştirdi"
+        enable_user: "%{name} %{target} için oturum açmayı etkinleştirdi"
+        memorialize_account: "%{name} %{target}'in hesabını bir hatıra sayfasına dönüştürdü"
+        promote_user: "%{name} %{target} kullanıcısını yükseltti"
+        remove_avatar_user: "%{name} %{target}'in avatarını kaldırdı"
+        reopen_report: "%{name} %{target} şikayetini yeniden açtı"
+        reset_password_user: "%{name} %{target} kullanıcısının parolasını resetledi"
+        resolve_report: "%{name} %{target} şikayetini çözdü"
+        silence_account: "%{name} %{target}'in hesabını susturdu"
+        suspend_account: "%{name} %{target}'in hesabını uzaklaştırdı"
+        unsilence_account: "%{name} %{target}'in hesabının susturmasını kaldırdı"
       deleted_status: "(silinmiş durum)"
       title: Denetim günlüğü
     custom_emojis:
