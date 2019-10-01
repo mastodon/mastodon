@@ -50,6 +50,7 @@ All notable changes to this project will be documented in this file.
 - **Add search syntax for operators and phrases** ([Gargron](https://github.com/tootsuite/mastodon/pull/11411))
 - **Add REST API for managing featured hashtags** ([noellabo](https://github.com/tootsuite/mastodon/pull/11778))
 - **Add REST API for managing timeline read markers** ([Gargron](https://github.com/tootsuite/mastodon/pull/11762))
+- Add `exclude_unreviewed` param to `GET /api/v2/search` REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/11977))
 - **Add ActivityPub secure mode** ([Gargron](https://github.com/tootsuite/mastodon/pull/11269), [ThibG](https://github.com/tootsuite/mastodon/pull/11332), [ThibG](https://github.com/tootsuite/mastodon/pull/11295))
 - Add HTTP signatures to all outgoing ActivityPub GET requests ([Gargron](https://github.com/tootsuite/mastodon/pull/11284), [ThibG](https://github.com/tootsuite/mastodon/pull/11300))
 - Add support for ActivityPub Audio activities ([ThibG](https://github.com/tootsuite/mastodon/pull/11189))
@@ -98,6 +99,7 @@ All notable changes to this project will be documented in this file.
 - Change Dockerfile ([Shleeble](https://github.com/tootsuite/mastodon/pull/11710), [ykzts](https://github.com/tootsuite/mastodon/pull/11768), [Shleeble](https://github.com/tootsuite/mastodon/pull/11707))
 - Change supported Node versions to include v12 ([abcang](https://github.com/tootsuite/mastodon/pull/11706))
 - Change Portuguese language from `pt` to `pt-PT` ([Gargron](https://github.com/tootsuite/mastodon/pull/11820))
+- Change domain block silence to always require approval on follow ([ThibG](https://github.com/tootsuite/mastodon/pull/11975))
 
 ### Removed
 
@@ -172,6 +174,8 @@ All notable changes to this project will be documented in this file.
 - Fix URLs counting towards RTL detection ([ahangarha](https://github.com/tootsuite/mastodon/pull/11759))
 - Fix unnecessary status re-rendering in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/11211))
 - Fix http_parser.rb gem not being compiled when no network available ([petabyteboy](https://github.com/tootsuite/mastodon/pull/11444))
+- Fix muted text color not applying to all text ([trwnh](https://github.com/tootsuite/mastodon/pull/11996))
+- Fix follower/following lists resetting on back-navigation in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/11986))
 
 ## [2.9.3] - 2019-08-10
 ### Added

@@ -145,8 +145,6 @@ $small-breakpoint: 960px;
 
     thead tr,
     tbody tr {
-      break-after: auto;
-      break-inside: avoid;
       border-bottom: 1px solid lighten($ui-base-color, 4%);
       font-size: 1em;
       line-height: 1.625;
@@ -167,12 +165,25 @@ $small-breakpoint: 960px;
       padding: 8px;
       align-self: start;
       align-items: start;
+      word-break: break-all;
 
       &.nowrap {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         width: 25%;
+        position: relative;
+
+        &::before {
+          content: '&nbsp;';
+          visibility: hidden;
+        }
+
+        span {
+          position: absolute;
+          left: 8px;
+          right: 8px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }

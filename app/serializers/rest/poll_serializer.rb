@@ -2,7 +2,7 @@
 
 class REST::PollSerializer < ActiveModel::Serializer
   attributes :id, :expires_at, :expired,
-             :multiple, :votes_count
+             :multiple, :votes_count, :voters_count
 
   has_many :loaded_options, key: :options
   has_many :emojis, serializer: REST::CustomEmojiSerializer
