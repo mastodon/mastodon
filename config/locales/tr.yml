@@ -382,14 +382,21 @@ tr:
         title: Özel CSS
       default_noindex:
         desc_html: Bu ayarı kendileri değiştirmeyen tüm kullanıcıları etkiler
+        title: Varsayılan olarak kullanıcıları arama motoru indekslemesinin dışında tut
       domain_blocks:
         all: Herkes için
+        disabled: Hiç kimseye
+        title: Alan adı bloklarını göster
+        users: Oturum açan yerel kullanıcılara
       domain_blocks_rationale:
         title: Gerekçeyi göster
       hero:
         title: Kahraman görseli
       mascot:
         title: Maskot görseli
+      peers_api_enabled:
+        desc_html: Bu sunucunun fediverse'te karşılaştığı alan adları
+        title: Keşfedilen sunucuların listesini yayınla
       preview_sensitive_media:
         desc_html: Medya duyarlı olarak işaretlenmiş olsa bile, diğer web sitelerindeki bağlantı ön izlemeleri küçük resim gösterecektir
         title: OpenGraph ön izlemelerinde hassas medyayı göster
@@ -400,19 +407,32 @@ tr:
         closed_message:
           desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
           title: Kayıt alımları kapatılma mesajı
+        deletion:
+          desc_html: Herkese hesabını silme izni ver
+          title: Hesap silmeyi aç
         min_invite_role:
+          disabled: Hiç kimse
           title: tarafından yapılan davetlere izin ver
       registrations_mode:
         modes:
           approved: Kayıt için onay gerekli
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
+        title: Kayıt modu
+      show_staff_badge:
+        desc_html: Kullanıcının sayfasında bir personel rozeti göster
+        title: Personel rozeti göster
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
       site_description_extended:
         desc_html: Harici bilgi sayfasında gösterilir.<br>HTML etiketleri girebilirsiniz
         title: Sunucu hakkında detaylı bilgi
+      site_short_description:
+        title: Kısa sunucu açıklaması
+      site_terms:
+        desc_html: Kendi gizlilik politikanızı, hizmet şartlarınızı ya da diğer hukuki metinlerinizi yazabilirsiniz. HTML etiketleri kullanabilirsiniz
+        title: Özel hizmet şartları
       site_title: Site başlığı
       title: Site Ayarları
     statuses:
