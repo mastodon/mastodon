@@ -36,7 +36,7 @@ ko:
     unavailable_content: 이용 불가능한 컨텐츠
     unavailable_content_description:
       domain: 서버
-      reason: '이유:'
+      reason: 이유
       rejecting_media: '이 서버의 미디어 파일들은 처리되지 않고 썸네일또한 보이지 않게 됩니다. 수동으로 클릭하여 해당 서버로 가게 됩니다.'
       silenced: '이 서버의 게시물은 작성자를 팔로우 한 경우에만 홈 피드에 나타나며 이를 제외한 어디에도 나타나지 않습니다.'
       suspended: '이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.'
@@ -633,8 +633,8 @@ ko:
     title: '%{acct} 를 팔로우'
   challenge:
     confirm: 계속
-    hint_html: "<strong>팁:</strong>한 시간동안 다시 비밀번호를 묻지 않을 겁니다."
-    invalid_password: 잘못된 비밀번호
+    hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
+    invalid_password: 잘못된 암호
     prompt: 계속하려면 암호 확인
   datetime:
     distance_in_words:
@@ -820,8 +820,8 @@ ko:
     incoming_migrations_html: 다른 계정을 이 계정으로 이주하고 싶은 경우, 먼저 <a href="%{path}">계정 별칭을 만들어야 합니다</a>.
     moved_msg: 당신의 계정은 %{acct}로 리다이렉트 되고 있으며 팔로워들은 이주 될 것입니다.
     not_redirecting: 현재 이 계정은 어디로도 리다이렉트 되고 있지 않습니다.
-    on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count} 일 후에 다시 이용 가능합니다.
-    past_migrations: 이전 마이그레이션
+    on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count}일 후에 다시 이용 가능합니다.
+    past_migrations: 과거 이주
     proceed_with_move: 팔로워 이동
     redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
     set_redirect: 리디렉션 설정
