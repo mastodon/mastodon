@@ -34,7 +34,7 @@ module Mastodon
         if options[:whitelist_mode]
           Account.remote.where.not(domain: DomainAllow.pluck(:domain))
         elsif domains.present?
-          Account.remote.where('domain in (?)', domains)
+          Account.remote.where(domain: domains)
         else
           say('No domain given', :red)
           exit(1)
