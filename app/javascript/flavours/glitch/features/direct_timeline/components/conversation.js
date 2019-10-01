@@ -37,6 +37,7 @@ class Conversation extends ImmutablePureComponent {
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     markRead: PropTypes.func.isRequired,
+    delete: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
