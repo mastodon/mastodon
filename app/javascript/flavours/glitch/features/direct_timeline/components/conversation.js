@@ -11,6 +11,7 @@ import Permalink from 'flavours/glitch/components/permalink';
 import IconButton from 'flavours/glitch/components/icon_button';
 import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import { HotKeys } from 'react-hotkeys';
+import { autoPlayGif } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -64,6 +65,43 @@ class Conversation extends ImmutablePureComponent {
     }
   }
 
+  _updateEmojis () {
+    const node = this.namesNode;
+
+    if (!node || autoPlayGif) {
+      return;
+    }
+
+    const emojis = node.querySelectorAll('.custom-emoji');
+
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      if (emoji.classList.contains('status-emoji')) {
+        continue;
+      }
+      emoji.classList.add('status-emoji');
+
+      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
+      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+    }
+  }
+
+  componentDidMount () {
+    this._updateEmojis();
+  }
+
+  componentDidUpdate () {
+    this._updateEmojis();
+  }
+
+  handleEmojiMouseEnter = ({ target }) => {
+    target.src = target.getAttribute('data-original');
+  }
+
+  handleEmojiMouseLeave = ({ target }) => {
+    target.src = target.getAttribute('data-static');
+  }
+
   handleClick = () => {
     if (!this.context.router) {
       return;
@@ -110,6 +148,10 @@ class Conversation extends ImmutablePureComponent {
 
   setExpansion = value => {
     this.setState({ isExpanded: value });
+  }
+
+  setNamesRef = (c) => {
+    this.namesNode = c;
   }
 
   render () {
@@ -162,7 +204,7 @@ class Conversation extends ImmutablePureComponent {
                 <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
               </div>
 
-              <div className='conversation__content__names'>
+              <div className='conversation__content__names' ref={this.setNamesRef}>
                 <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
               </div>
             </div>
