@@ -36,7 +36,8 @@ ko:
     terms: 이용약관
     unavailable_content: 이용 불가능한 컨텐츠
     unavailable_content_description:
-      reason: '이유:'
+      domain: 서버
+      reason: 이유
       rejecting_media: 이 서버의 미디어 파일들은 처리되지 않고 썸네일또한 보이지 않게 됩니다. 수동으로 클릭하여 해당 서버로 가게 됩니다.
       silenced: 이 서버의 게시물은 작성자를 팔로우 한 경우에만 홈 피드에 나타나며 이를 제외한 어디에도 나타나지 않습니다.
       suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
@@ -235,6 +236,7 @@ ko:
       delete: 삭제
       destroyed_msg: 에모지가 성공적으로 삭제되었습니다!
       disable: 비활성화
+      disabled: 비활성
       disabled_msg: 성공적으로 비활성화하였습니다
       emoji: 에모지
       enable: 활성화
@@ -634,8 +636,8 @@ ko:
     title: "%{acct} 를 팔로우"
   challenge:
     confirm: 계속
-    hint_html: "<strong>팁:</strong>한 시간동안 다시 비밀번호를 묻지 않을 겁니다."
-    invalid_password: 잘못된 비밀번호
+    hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
+    invalid_password: 잘못된 암호
     prompt: 계속하려면 암호 확인
   datetime:
     distance_in_words:
@@ -821,17 +823,20 @@ ko:
     incoming_migrations_html: 다른 계정을 이 계정으로 이주하고 싶은 경우, 먼저 <a href="%{path}">계정 별칭을 만들어야 합니다</a>.
     moved_msg: 당신의 계정은 %{acct}로 리다이렉트 되고 있으며 팔로워들은 이주 될 것입니다.
     not_redirecting: 현재 이 계정은 어디로도 리다이렉트 되고 있지 않습니다.
-    on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count} 일 후에 다시 이용 가능합니다.
-    past_migrations: 이전 마이그레이션
+    on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count}일 후에 다시 이용 가능합니다.
+    past_migrations: 과거 이주
     proceed_with_move: 팔로워 이동
     redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
+    set_redirect: 리디렉션 설정
     warning:
       backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다
       before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
       cooldown: 이주 뒤에는 새로운 이주를 하지 못하는 쿨다운 기간이 존재합니다
       disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
+      only_redirect_html: 대신, <a href="%{path}">프로필에 리디렉션만 표시</a>할 수 있습니다.
       other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
+      redirect: 현재 계정 프로필은 리다이렉트 알림과 함께 업데이트 되며 검색에서 제외 됩니다
   moderation:
     title: 모더레이션
   notification_mailer:
@@ -1014,6 +1019,8 @@ ko:
       private: 비공개 툿은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
     poll:
+      total_people:
+        other: "%{count}명"
       total_votes:
         other: "%{count}명 투표함"
       vote: 투표

@@ -37,6 +37,7 @@ de:
     terms: Nutzungsbedingungen
     unavailable_content: Nicht verfügbarer Inhalt
     unavailable_content_description:
+      domain: Server
       reason: 'Grund:'
       rejecting_media: Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.
       silenced: Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.
@@ -239,6 +240,7 @@ de:
       delete: Löschen
       destroyed_msg: Emoji gelöscht!
       disable: Deaktivieren
+      disabled: Deaktiviert
       disabled_msg: Das Emoji wurde deaktiviert
       emoji: Emoji
       enable: Aktivieren
@@ -1028,6 +1030,9 @@ de:
       private: Du kannst nur öffentliche Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
     poll:
+      total_people:
+        one: "%{count} Person"
+        other: "%{count} Personen"
       total_votes:
         one: "%{count} Stimme"
         other: "%{count} Stimmen"
