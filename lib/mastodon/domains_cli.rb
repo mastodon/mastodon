@@ -36,7 +36,7 @@ module Mastodon
         elsif domains.present?
           Account.remote.where(domain: domains)
         else
-          say('No domain given', :red)
+          say('No domain(s) given', :red)
           exit(1)
         end
       end
