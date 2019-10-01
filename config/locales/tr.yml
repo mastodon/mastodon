@@ -434,10 +434,32 @@ tr:
         desc_html: Kendi gizlilik politikanızı, hizmet şartlarınızı ya da diğer hukuki metinlerinizi yazabilirsiniz. HTML etiketleri kullanabilirsiniz
         title: Özel hizmet şartları
       site_title: Site başlığı
+      spam_check_enabled:
+        desc_html: Mastodon, tekrar eden istenmeyen mesajlar gönderen hesapları otomatik olarak susturabilir ve şikayet edebilir. Yanlışlar olabilir.
+        title: Anti-spam otomasyonu
+      thumbnail:
+        desc_html: OpenGraph ve API ile ön izlemeler için kullanılır. 1200x630px tavsiye edilir
+        title: Sunucu küçük resmi
       title: Site Ayarları
+      trends:
+        title: Trend etiketler
     statuses:
+      back_to_account: Hesap sayfasına geri dön
+      batch:
+        delete: Sil
+        nsfw_off: Hassas değil olarak işaretle
+        nsfw_on: Hassas olarak işaretle
+      deleted: Silindi
+      failed_to_execute: Çalıştırılamadı
+      media:
+        title: Medya
+      no_media: Medya yok
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
+      title: Hesap durumları
+      with_media: Medya ile
     tags:
+      context: İçerik
+      directory: Dizinde
       title: Etiketler
     title: Yönetim
     warning_presets:
@@ -483,6 +505,13 @@ tr:
     reset_password: Parolayı değiştir
     security: Kimlik bilgileri
     set_new_password: Yeni parola oluştur
+    setup:
+      email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
+      title: Kurulum
+    status:
+      account_status: Hesap durumu
+      confirming: E-posta doğrulamasının tamamlanması bekleniyor.
+      functional: Hesabınız tamamen kullanıma hazır.
   authorize_follow:
     error: Uzak hesap aranırken bir hata oluştu
     follow: Takip et
