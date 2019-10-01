@@ -6450,7 +6450,6 @@ noscript {
     flex: 1 1 auto;
     padding: 10px 5px;
     padding-right: 15px;
-    word-break: break-all;
     overflow: hidden;
 
     &__info {
@@ -6486,6 +6485,10 @@ noscript {
           text-decoration: underline;
         }
       }
+    }
+
+    a {
+      word-break: break-word;
     }
   }
 }
