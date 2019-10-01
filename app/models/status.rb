@@ -141,7 +141,7 @@ class Status < ApplicationRecord
       ids += preloaded.reblogs[id] || []
     end
 
-    ids.uniq
+    Account.where('id in (?)', ids.uniq).filter(&:local?).map(&:id)
   end
 
   def reply?
