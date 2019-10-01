@@ -39,12 +39,6 @@ class FetchLinkCardService < BaseService
   def process_url
     @card ||= PreviewCard.new(url: @url)
 
-    failed = Request.new(:head, @url).perform do |res|
-      res.code != 405 && res.code != 501 && (res.code != 200 || res.mime_type != 'text/html')
-    end
-
-    return if failed
-
     Request.new(:get, @url).perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
