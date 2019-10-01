@@ -6,5 +6,7 @@
   %tbody
     - domain_blocks.each do |domain_block|
       %tr
-        %td.nowrap= domain_block.domain
-        %td= domain_block.public_comment if display_blocks_rationale?
+        %td.nowrap
+          %span{ title: domain_block.domain }= domain_block.domain
+        %td
+          = domain_block.public_comment if display_blocks_rationale?
