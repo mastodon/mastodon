@@ -49,8 +49,9 @@
         = render 'login'
 
       .hero-widget
-        .hero-widget__img
-          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
+        - if @instance_presenter.hero.present? || @instance_presenter.thumbnail.present?
+          .hero-widget__img
+            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url, alt: @instance_presenter.site_title
 
         - if @instance_presenter.site_short_description.present?
           .hero-widget__text
