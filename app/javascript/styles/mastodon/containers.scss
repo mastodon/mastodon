@@ -191,6 +191,29 @@
   }
 }
 
+.originalhero {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+
+    svg {
+      fill: $secondary-text-color;
+      height: 200px;
+    }
+
+    h1 {
+      flex-grow: 2;
+      text-align: center;
+      white-space: nowrap;
+      font-family: $font-display, sans-serif;
+      font-size: 0.6rem;
+    }
+  }
+
 .public-layout {
   @media screen and (max-width: $no-gap-breakpoint) {
     padding-top: 48px;
@@ -410,7 +433,7 @@
             flex-grow: 2;
             text-align: center;
             white-space: nowrap;
-            font-family: $font-sans-serif, sans-serif;
+            font-family: $font-display, sans-serif;
           }
         }
 
