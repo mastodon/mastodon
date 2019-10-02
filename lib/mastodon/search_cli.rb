@@ -27,7 +27,7 @@ module Mastodon
     private
 
     def parallel
-      options[:parallel] == 'auto' ? true : Integer(options[:parallel], exception: false) || 1
+      options[:parallel] == 'auto' ? true : Integer(options[:parallel], exception: false) || false
     end
   end
 end
