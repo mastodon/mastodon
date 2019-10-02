@@ -38,6 +38,10 @@ ca:
     unavailable_content_description:
       domain: Servidor
       reason: Raó
+      rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats o emmagatzemats i cap miniatura serà mostrada, requerint clic manual a través de l''arxiu original:'
+      silenced: 'Les publicacions d''aquests servidors seran amagades en les línies de temps públiques i converses, i cap notificació serà generada de les interaccions dels seus usuaris, llevat que estiguis seguint-los:'
+      suspended: 'Cap dada d''aquests servidors serà processada, emmagatzemada o intercanviada, fent impossible qualsevol interacció o comunicació amb els usuaris d''aquests servidors:'
+    unavailable_content_html: Mastodon generalment et permet per veure contingut i interaccionar amb usuaris de qualsevol altre servidor en el fedivers. Aquestes són les excepcions que s'han fet en aquest servidor particular.
     user_count_after:
       one: usuari
       other: usuaris
@@ -58,6 +62,7 @@ ca:
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
     network_hidden: Aquesta informació no està disponible
+    never_active: Mai
     nothing_here: No hi ha res aquí!
     people_followed_by: Usuaris seguits per %{name}
     people_who_follow: Usuaris que segueixen %{name}
@@ -224,19 +229,24 @@ ca:
       deleted_status: "(toot suprimit)"
       title: Registre d'auditoria
     custom_emojis:
+      assign_category: Assigna una categoria
       by_domain: Domini
       copied_msg: S'ha creat correctament la còpia local de l'emoji
       copy: Copia
       copy_failed_msg: No s'ha pogut fer una còpia local d'aquest emoji
+      create_new_category: Crea una categoria nova
       created_msg: Emoji creat amb èxit!
       delete: Suprimeix
       destroyed_msg: Emojo s'ha destruït amb èxit!
       disable: Inhabilita
+      disabled: Desactivat
       disabled_msg: S'ha inhabilitat l'emoji amb èxit
       emoji: Emoji
       enable: Habilita
+      enabled: Activat
       enabled_msg: S'ha habilitat amb èxit emoji
       image_hint: PNG de fins a 50 KB
+      list: Llista
       listed: Enumerat
       new:
         title: Afegeix emoji personalitzat nou
@@ -244,6 +254,8 @@ ca:
       shortcode: Codi curt
       shortcode_hint: Com a mínim 2 caràcters, només caràcters alfanumèrics i guions baixos
       title: Emojis personalitzats
+      uncategorized: Sense categoria
+      unlist: No llistat
       unlisted: Sense classificar
       update_failed_msg: No s'ha pogut actualitzar aquest emoji
       updated_msg: Emoji s'ha actualitzat correctament!
@@ -375,6 +387,7 @@ ca:
       pending: S'està esperant l'aprovació del relay
       save_and_enable: Desa i activa
       setup: Configura una connexió de relay
+      signatures_not_enabled: Els relays no treballaran correctament mentre estiguin habilitats el mode segur o llista blanca
       status: Estat
       title: Relays
     report_notes:
@@ -423,6 +436,9 @@ ca:
       custom_css:
         desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
         title: CSS personalitzat
+      default_noindex:
+        desc_html: Afecta a tots els usuaris que no han canviat aquest ajustament ells mateixos
+        title: Configurar per defecte als usuaris fora de l'indexació dels motor de cerca
       domain_blocks:
         all: Per a tothom
         disabled: Per a ningú
@@ -499,6 +515,7 @@ ca:
         delete: Suprimeix
         nsfw_off: Marcar com a no sensible
         nsfw_on: Marcar com a sensible
+      deleted: Esborrats
       failed_to_execute: No s'ha pogut executar
       media:
         title: Contingut multimèdia
@@ -513,6 +530,10 @@ ca:
       context: Context
       directory: En el directori
       in_directory: "%{count} en el directori"
+      last_active: Darrer actiu
+      most_popular: Més populars
+      most_recent: Més recent
+      name: Etiqueta
       review: Revisar l'estat
       reviewed: Revisades
       title: Etiquetes
@@ -538,6 +559,12 @@ ca:
     new_trending_tag:
       body: 'La etiqueta #%{name} està actualment en tendència però no s''ha revisat prèviament. No es mostrarà públicament tret que ho permetis o guardis el formulari tal com està per a no tornar a escoltar res al respecte.'
       subject: 'Nova etiqueta pendent de revisió a %{instance} (#%{name})'
+  aliases:
+    add_new: Crear àlies
+    created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
+    deleted_msg: Àlies eliminat amb èxit. Moure't des d'aquell compte a aquests ja no serà possible.
+    hint_html: Si et vols moure des d'un altre compte a aquest, aquí pots crear un àlies, el qual és requerit abans que puguis procedir a moure els seguidors del compte vell a aquest. Aquesta acció és per si mateixa <strong>inofensiva i reversible</strong>. <strong>La migració del compte és iniciada des de'l compte vell</strong>.
+    remove: Desvincular l'àlies
   appearance:
     advanced_web_interface: Interfície web avançada
     advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol número de llistes i etiquetes.'
@@ -567,6 +594,9 @@ ca:
     checkbox_agreement_without_rules_html: Acepto els <a href="%{terms_path}" target="_blank">termes del servei</a>
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
+    description:
+      prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de Mastodon!"
+      prefix_sign_up: Registra't avui a Mastodon!
     didnt_get_confirmation: No has rebut el correu de confirmació?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
