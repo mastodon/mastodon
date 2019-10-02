@@ -359,26 +359,50 @@ tr:
         available: Mevcut
         expired: Süresi dolmuş
         title: Filtre
+      title: Davetler
+    pending_accounts:
+      title: Bekleyen hesaplar (%{count})
     relays:
+      add_new: Yeni aktarıcı ekle
       delete: Sil
       disable: Devre dışı
+      disabled: Devre dışı
+      enable: Etkin
       enabled: Etkin
+      inbox_url: Aktarıcı URL'si
+      pending: Aktarıcının onaylaması için bekleniyor
+      save_and_enable: Kaydet ve etkinleştir
+      setup: Bir aktarıcı bağlantısı kur
+      signatures_not_enabled: Güvenli mod ya da beyaz liste modu etkin iken aktarıcılar düzgün çalışmayacaktır
+      status: Durum
+      title: Aktarıcılar
+    report_notes:
+      created_msg: Şikayet notu başarıyla oluşturuldu!
+      destroyed_msg: Şikayet notu başarıyla silindi!
     reports:
       account:
         note: not
         report: şikayet
       action_taken_by: tarafından gerçekleştirilen eylem
       are_you_sure: Emin misiniz?
+      assign_to_self: Bana ata
+      assigned: Denetleyici atandı
       comment:
         none: Yok
+      created_at: Şikayet edildi
       mark_as_resolved: Giderildi olarak işaretle
+      mark_as_unresolved: Çözümlenmemiş olarak işaretle
       notes:
         create: Not Ekle
+        create_and_resolve: Not ile çözümle
+        create_and_unresolve: Not ile tekrar aç
         delete: Sil
+      reopen: Şikayeti tekrar aç
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
       resolved: Giderildi
+      resolved_msg: Şikayet başarıyla çözümlendi!
       status: Durum
       title: Şikayetler
       unresolved: Giderilmedi
@@ -479,6 +503,8 @@ tr:
       add_new: Yeni ekle
       delete: Sil
       edit: Düzenle
+  aliases:
+    add_new: Takma ad oluştur
   appearance:
     advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
