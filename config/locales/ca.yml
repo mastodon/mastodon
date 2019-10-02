@@ -837,6 +837,11 @@ ca:
       backreference_required: El compte nou primer ha de ser configurat per a referenciar aquest
       before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
       cooldown: Després de moure't hi ha un període de recuperació durant el qual no seràs capaç de moure't un altre cop
+      disabled_account: El teu compte actual no serà plenament utilitzable després. Tanmateix, tindràs accés a exportació de dades així com reactivació.
+      followers: Aquesta acció mourà tots els seguidors des de l'actual al compte nou
+      only_redirect_html: Alternativament, pots <a href="%{path}">posar només una redirecció en el teu perfil</a>.
+      other_data: Cap altre dada serà moguda automàticament
+      redirect: El perfil del teu compte actual serà actualitzat amb un avís de redirecció i serà exclòs de les cerques
   moderation:
     title: Moderació
   notification_mailer:
@@ -981,6 +986,7 @@ ca:
   settings:
     account: Compte
     account_settings: Ajustos del compte
+    aliases: Àlies de compte
     appearance: Aparènça
     authorized_apps: Aplicacions autoritzades
     back: Torna a Mastodon
@@ -1023,6 +1029,9 @@ ca:
       private: No es pot fixar el toot no públic
       reblog: No es pot fixar un impuls
     poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} persones"
       total_votes:
         one: "%{count} vot"
         other: "%{count} vots"
@@ -1160,7 +1169,9 @@ ca:
         disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
         silence: Mentre el teu compte estigui limitat només les persones que ja et segueixen veuen les teves dades en aquest servidor i pots ser exclòs de diverses llistes públiques. No obstant això, d'altres encara poden seguir-te manualment.
         suspend: El teu compte s'ha suspès i tots els teus toots i fitxers multimèdia penjats s'han eliminat irreversiblement d'aquest servidor i dels servidors on tenies seguidors.
+      get_in_touch: Pots respondre a aquest correu electrònic per a contactar amb el personal de %{instance}.
       review_server_policies: Revisa les polítiques del servidor
+      statuses: 'Concretament, per:'
       subject:
         disable: S'ha congelat el teu compte %{acct}
         none: Avís per a %{acct}
