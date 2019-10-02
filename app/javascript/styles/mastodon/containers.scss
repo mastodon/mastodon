@@ -412,6 +412,20 @@
     }
   }
 
+  .directory__card {
+    border-radius: 4px;
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-radius: 0;
+    }
+  }
+
+  .page-header {
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-bottom: 0;
+    }
+  }
+
   .public-account-header {
     overflow: hidden;
     margin-bottom: 10px;
