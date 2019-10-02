@@ -260,6 +260,7 @@ tr:
       feature_invites: Davet linkleri
       feature_profile_directory: Profil dizini
       feature_registrations: Kayıtlar
+      feature_relay: Federasyon aktarıcısı
       feature_spam_check: Anti-spam
       feature_timeline_preview: Zaman çizelgesi önizlemesi
       features: Özellikler
@@ -405,6 +406,7 @@ tr:
       resolved_msg: Şikayet başarıyla çözümlendi!
       status: Durum
       title: Şikayetler
+      unassign: Atamayı geri al
       unresolved: Giderilmedi
       updated_at: Güncellendi
     settings:
@@ -477,6 +479,8 @@ tr:
       thumbnail:
         desc_html: OpenGraph ve API ile ön izlemeler için kullanılır. 1200x630px tavsiye edilir
         title: Sunucu küçük resmi
+      timeline_preview:
+        title: Zaman çizelgesi önizlemesi
       title: Site Ayarları
       trends:
         title: Trend etiketler
@@ -497,12 +501,32 @@ tr:
     tags:
       context: İçerik
       directory: Dizinde
+      last_active: Son aktiflik
+      most_popular: En popüler
+      most_recent: En yeni
+      name: Etiket
+      review: Durumu gözden geçir
+      reviewed: Gözden geçirildi
       title: Etiketler
+      trending_right_now: Şu anda trend
+      unique_uses_today: "bugün %{count} gönderi"
+      unreviewed: Gözden geçirilmedi
+      updated_msg: Etiket ayarları başarıyla güncellendi
     title: Yönetim
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
       edit: Düzenle
+      edit_preset: Uyarı ön-ayarını düzenle
+      title: Uyarı ön-ayarlarını yönet
+  admin_mailer:
+    new_pending_account:
+      body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
+      subject: '%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})'
+    new_report:
+      body: "%{reporter} %{target}'i şikayet etti"
+      body_remote: '%{domain}''den birisi %{target}''i şikayet etti'
+      subject: '%{instance} için yeni şikayet (#%{id})'
   aliases:
     add_new: Takma ad oluştur
   appearance:
