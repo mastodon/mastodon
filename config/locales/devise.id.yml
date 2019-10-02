@@ -42,7 +42,21 @@ id:
       reset_password_instructions:
         action: Ubah kata sandi
         explanation: Kata sandi baru yang diminta untuk akun Anda.
+        extra: Jika Anda tak meminta ini, abaikan surel ini. Kata sandi tak berubah sampai Anda mengakses tautan di atas dan membuatnya yang baru.
         subject: 'Mastodon: Petunjuk mereset kata sandi'
+        title: Reset kata sandi
+      two_factor_disabled:
+        explanation: Otentifikasi dua-faktor untuk akun Anda dimatikan. Kini Masuk dapat dilakukan hanya dengan alamat surel dan kata sandi.
+        subject: 'Mastodon: Otentifikasi dua-faktor dimatikan'
+        title: 2FA dimatikan
+      two_factor_enabled:
+        explanation: Otentifikasi dua-faktor telah dimatikan untuk Akun Anda. Token yang dibuat menggunakan aplikasi TOTP berpasangan akan diperlukan untuk masuk.
+        subject: 'Mastodon: Otentifikasi dua-faktor diaktifkan'
+        title: 2FA diaktifkan
+      two_factor_recovery_codes_changed:
+        explanation: Kode pemulihan sebelumnya telah dibatalkan dan yang baru telah dibuat.
+        subject: 'Mastodon: Kode pemulihan dua-faktor dibuat ulang'
+        title: Kode pemulihan 2FA diubah
       unlock_instructions:
         subject: 'Mastodon: Petunjuk membuka'
     omniauth_callbacks:
@@ -59,6 +73,7 @@ id:
       signed_up: Selamat datang! Pendaftaran anda berhasil.
       signed_up_but_inactive: Anda berhasil melakukan pendaftaran. Tetapi kami tidak dapat memasukkan anda karena akun anda belum diaktifkan.
       signed_up_but_locked: Anda berhasil melakukan pendaftaran. Tetapi kami tidak dapat memasukkan anda karena akun anda dikunci.
+      signed_up_but_pending: Pesan dengan tautan konfirmasi telah dikirim ke alamat surel Anda. Setelah Anda mengklik tautan, kami akan meninjau lamaran Anda. Anda akan diberitahu jika diterima.
       signed_up_but_unconfirmed: Sebuah pesan berisi link konfirmasi telah dikirim ke alamat email anda. Silakan ikuti link tersebut untuk mengaktifkan akun anda.
       update_needs_confirmation: Akun anda telah berhasil diubah, tetapi kami harus memverifikasi alamat email anda yang baru. Mohon cek email anda dan ikuti link untuk mengkonfirmasi alamat email anda yang baru.
       updated: Akun anda berhasil diubah.
