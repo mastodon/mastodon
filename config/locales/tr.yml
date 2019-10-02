@@ -679,20 +679,42 @@ tr:
     validation_errors:
       one: Bir şeyler ters gitti! Lütfen aşağıdaki hatayı gözden geçiriniz
       other: Bir şeyler ters gitti! Lütfen aşağıdaki %{count} hatayı gözden geçiriniz
+  html_validator:
+    invalid_markup: 'geçersiz HTML markup içermektedir: %{error}'
+  identity_proofs:
+    active: Aktif
+    authorize: Evet, yetkilendir
+    authorize_connection_prompt: Bu kriptolu bağlantıyı yetkilendir?
+    errors:
+      failed: Kriptolu bağlantı başarısız oldu. Lütfen %{provider} üzerinden tekrar deneyin.
+    i_am_html: Ben %{service} üzerinde %{username}.
+    identity: Kimlik
+    inactive: Pasif
+    publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
+    status: Doğrulama durumu
   imports:
+    modes:
+      merge: Birleştir
+      merge_long: Mevcut kayıtları sakla ve yenileri ekle
+      overwrite: Üzerine yaz
+      overwrite_long: Mevcut kayıtları yenileriyle değiştir
     preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik olarak engelleyebilirsiniz.
     success: Verileriniz başarıyla yüklendi ve zaman içinde işlenecek
     types:
       blocking: Engellenenler listesi
+      domain_blocking: Alan adı engelleme listesi
       following: Takip edilenler listesi
       muting: Susturulanlar listesi
     upload: Yükle
+  in_memoriam_html: Hatırada.
   invites:
+    delete: Devre dışı bırak
+    expired: Süresi dolmuş
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
+      '1800': 30 dakika
+      '21600': 6 saat
+      '3600': 1 saat
+      '43200': 12 saat
       '604800': 1 hafta
       '86400': 1 gün
     expires_in_prompt: Asla
@@ -707,10 +729,15 @@ tr:
       expires_at: Bitiş tarihi
       uses: Kullanım
     title: İnsanları davet et
+  lists:
+    errors:
+      limit: Maksimum liste miktarına ulaştınız
   media_attachments:
     validations:
       images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
       too_many: 4'ten fazla dosya ekleyemezsiniz
+  migrations:
+    acct: Taşındı
   moderation:
     title: Yönetim
   notification_mailer:
@@ -771,16 +798,49 @@ tr:
       too_many_options: '%{max} öğeden fazla öğe içeremez'
   preferences:
     other: Diğer
+    public_timelines: Genel zaman çizelgeleri
   relationships:
     activity: Hesap etkinliği
+    dormant: Atıl
     last_active: Son aktivite
     most_recent: En son
+    moved: Taşındı
+    mutual: Ortak
+    primary: Birincil
+    relationship: İlişki
+    remove_selected_domains: Seçili alan adlarından tüm takipçileri kaldır
+    remove_selected_followers: Seçili takipçileri kaldır
+    remove_selected_follows: Seçili kullanıcıları takip etmeyi bırak
+    status: Hesap durumu
   remote_follow:
     acct: Takip edeceğiniz kişiyi kullaniciadi@sunuculinki şeklinde giriniz
     missing_resource: Hesabınız için yönlendirme linki bulunamadı
+    no_account_html: Hesabınız yok mu? <a href='%{sign_up_path}' target='_blank'>Buradan kaydolabilirsiniz</a>
     proceed: Takip onayı
     prompt: 'Bu kullanıcıyı takip etmek istediğinize emin misiniz?'
   sessions:
+    activity: Son aktivite
+    browser: Tarayıcı
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Bilinmeyen tarayıcı
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    current_session: Şu anki oturum
+    description: "%{platform} üzerinde %{browser}"
     ip: IP
     platforms:
       adobe_air: Adobe Air
