@@ -20,10 +20,28 @@ id:
         action: Verifikasi alamat surel
         action_with_app: Konfirmasi dan kembali ke %{app}
         explanation: Anda membuat akun di %{host} dengan surel ini. Anda hanya perlu satu klik untuk mengaktifkannya. Jika ini bukan Anda, abaikan surel ini.
+        explanation_when_pending: Anda melamar undangan ke %{host} dengan surel ini. Saat Anda mengonfirmasi alamat surel Anda, kami akan meninjaunya. Anda dapat masuk untuk mengubah detail Anda atau menghapus akun Anda, tapi Anda tak dapat mengakses mayoritas fungsi sampai akun disetujui. Jika lamaran anda ditolak, data Anda akan dihapus, tak ada aksi lain yang dilakukan dari Anda. Jika ini bukan Anda, abaikan surel ini.
+        extra_html: Tolong cek juga <a href="%{terms_path}">peraturan server</a> dan <a href="%{policy_path}">ketentuan layanan kami</a>.
         subject: 'Mastodon: Petunjuk mengkonfirmasi untuk %{instance}'
+        title: Verifikasi alamat surel
+      email_changed:
+        explanation: 'Alamat surel akun Anda diubah menjadi:'
+        extra: Jika Anda tak mengganti surel Anda, mungkin seseorang telah mendapatkan akses ke Akun Anda. Mohon ubah kata sandi secepatnya atau hubungi admin server jika Anda dikunci dari akun Anda.
+        subject: 'Mastodon: Surel diganti'
+        title: Alamat surel baru
       password_change:
+        explanation: Kata sandi akun Anda telah diganti.
+        extra: Jika Anda tak mengubah kata sandi Anda, mungkin seseorang telah mendapatkan akses ke akun Anda. Mohon ubah kata sandi secepatnya atau hubungi admin server jika Anda dikunci dari akun Anda.
         subject: 'Mastodon: Kata sandi telah diubah'
+        title: Kata sandi diubah
+      reconfirmation_instructions:
+        explanation: Konfirmasi alamat baru untuk mengubah surel Anda.
+        extra: Jika perubahan ini tidak dimulai dari Anda, abaikan surel ini. Alamat surel untuk akun Mastodon tak berubah sampai Anda mengakses tautan di atas.
+        subject: 'Mastodon: Konfirmasi surel untuk %{instance}'
+        title: Verifikasi alamat surel
       reset_password_instructions:
+        action: Ubah kata sandi
+        explanation: Kata sandi baru yang diminta untuk akun Anda.
         subject: 'Mastodon: Petunjuk mereset kata sandi'
       unlock_instructions:
         subject: 'Mastodon: Petunjuk membuka'
