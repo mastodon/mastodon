@@ -112,7 +112,17 @@ sv:
       application:
         title: OAuth-behörighet krävs
     scopes:
+      "admin:read": läs all data på servern
+      "admin:read:accounts": läs känslig information från alla konton
+      "admin:read:reports": läs känslig information från alla rapporter och rapporterade konton
+      "admin:write": ändra all data på servern
+      "admin:write:accounts": utför alla aktiviteter för moderering på konton
+      "admin:write:reports": utför alla aktiviteter för moderering i rapporter
       follow: följa, blockera, ta bort blockerade och sluta följa konton
       push: ta emot push aviseringar för ditt konto
       read: läsa dina kontodata
+      "read:accounts": se kontoinformation
+      "read:blocks": se dina block
+      "read:favourites": se dina favoriter
+      "read:filters": se dina filter
       write: posta åt dig
