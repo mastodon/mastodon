@@ -597,6 +597,7 @@ ca:
     description:
       prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de Mastodon!"
       prefix_sign_up: Registra't avui a Mastodon!
+      suffix: Amb un compte seràs capaç de seguir persones, publicar i intercanviar missatges amb usuaris de qualsevol servidor de Mastodon i més!
     didnt_get_confirmation: No has rebut el correu de confirmació?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
@@ -623,6 +624,7 @@ ca:
       confirming: Esperant que es completi la confirmació del correu electrònic.
       functional: El teu compte és plenament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
+      redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
     trouble_logging_in: Problemes per iniciar la sessió?
   authorize_follow:
     already_following: Ja estàs seguint aquest compte
@@ -635,6 +637,11 @@ ca:
       return: Mostra el perfil de l'usuari
       web: Vés a la web
     title: Segueix %{acct}
+  challenge:
+    confirm: Continua
+    hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
+    invalid_password: Contrasenya no vàlida
+    prompt: Confirmi la contrasenya per a continuar
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -650,9 +657,15 @@ ca:
       x_months: "%{count} mesos"
       x_seconds: "%{count} s"
   deletes:
+    challenge_not_passed: L'informació que has entrat no és correcte
     confirm_password: Introdueix la contrasenya actual per a verificar la identitat
+    confirm_username: Escriu el teu nom d'usuari per a confirmar el procediment
     proceed: Suprimeix el compte
     success_msg: El compte s'ha eliminat correctament
+    warning:
+      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      caches: El contingut que ha estat memoritzat en la memòria cau per altres servidors pot persistir
+      data_removal: Les teves publicacions i altres dades seran permanentment eliminades
   directories:
     directory: Directori de perfils
     explanation: Descobreix usuaris segons els seus interessos
