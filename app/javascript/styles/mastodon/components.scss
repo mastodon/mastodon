@@ -4267,10 +4267,13 @@ a.status-card.compact:hover {
   z-index: 9999;
 }
 
-.video-modal {
+.video-modal__container {
   max-width: 100vw;
   max-height: 100vh;
-  position: relative;
+}
+
+.audio-modal__container {
+  width: 50vw;
 }
 
 .media-modal {
@@ -4370,6 +4373,7 @@ a.status-card.compact:hover {
   }
 
   a {
+    pointer-events: auto;
     text-decoration: none;
     font-weight: 500;
     color: $ui-secondary-color;

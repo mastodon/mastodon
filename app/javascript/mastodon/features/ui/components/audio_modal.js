@@ -1,20 +1,18 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Video from 'mastodon/features/video';
+import Audio from 'mastodon/features/audio';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
+import { previewState } from './video_modal';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
-export const previewState = 'previewVideoModal';
-
-export default class VideoModal extends ImmutablePureComponent {
+export default class AudioModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     status: ImmutablePropTypes.map,
-    time: PropTypes.number,
     onClose: PropTypes.func.isRequired,
   };
 
@@ -52,19 +50,17 @@ export default class VideoModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { media, status, time, onClose } = this.props;
+    const { media, status } = this.props;
 
     return (
-      <div className='modal-root__modal video-modal'>
-        <div className='video-modal__container'>
-          <Video
-            preview={media.get('preview_url')}
-            blurhash={media.get('blurhash')}
+      <div className='modal-root__modal audio-modal'>
+        <div className='audio-modal__container'>
+          <Audio
             src={media.get('url')}
-            startTime={time}
-            onCloseVideo={onClose}
-            detailed
             alt={media.get('description')}
+            duration={media.getIn(['meta', 'original', 'duration'], 0)}
+            height={135}
+            preload
           />
         </div>
 
