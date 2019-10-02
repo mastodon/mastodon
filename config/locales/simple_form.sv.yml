@@ -1,10 +1,14 @@
----
 sv:
   simple_form:
     hints:
+      account_alias:
+        acct: Ange användarnamn@domän för kontot du flyttar från
+      account_migration:
+        acct: Ange användarnamn@domän för kontot du flyttar till
       account_warning_preset:
         text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
       admin_account_action:
+        include_statuses: Användaren ser de toots som orsakat moderering eller varning
         send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
       defaults:
@@ -78,7 +82,7 @@ sv:
         follow_request: Skicka e-post när någon begär att följa dig
         mention: Skicka e-post när någon nämner dig
         reblog: Skicka e-post när någon knuffar din status
-    'no': Nej
+    'no': 'Nej'
     required:
       text: obligatorisk
-    'yes': Ja
+    'yes': 'Ja'
