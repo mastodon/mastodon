@@ -15,19 +15,27 @@ module Mastodon
       This command will also upgrade indices if the underlying schema has been
       changed since the last run.
 
-      With the --parallel option, Execute tasks in parallel. The default is 2,
-      which specifies the number of processors. If 'auto' is specified,
-      it is automatically derived.
+      With the --parallel option, specify the number of processes to run the command
+      with. The default is 2. If 'auto' is specified, the number is automatically
+      derived from available CPUs.
     LONG_DESC
     def deploy
       processed = Chewy::RakeHelper.upgrade parallel: parallel
-      Chewy::RakeHelper.sync(except: processed)
+      Chewy::RakeHelper.sync(except: processed, parallel: parallel)
     end
 
     private
 
     def parallel
-      options[:parallel] == 'auto' ? true : Integer(options[:parallel], exception: false) || false
+      return true if options[:parallel] == 'auto'
+
+      num = options[:parallel].to_i
+
+      if num < 2
+        nil
+      else
+        num
+      end
     end
   end
 end
