@@ -65,6 +65,17 @@ class MediaAttachment < ApplicationRecord
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
     },
+
+    original: {
+      keep_same_format: true,
+      convert_options: {
+        output: {
+          'map_metadata' => '-1',
+          'c:v' => 'copy',
+          'c:a' => 'copy',
+        },
+      },
+    },
   }.freeze
 
   AUDIO_STYLES = {
@@ -86,14 +97,15 @@ class MediaAttachment < ApplicationRecord
       output: {
         'loglevel' => 'fatal',
         'movflags' => 'faststart',
-        'pix_fmt'  => 'yuv420p',
-        'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-        'vsync'    => 'cfr',
-        'c:v'      => 'h264',
-        'b:v'      => '500K',
-        'maxrate'  => '1300K',
-        'bufsize'  => '1300K',
-        'crf'      => 18,
+        'pix_fmt' => 'yuv420p',
+        'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
+        'vsync' => 'cfr',
+        'c:v' => 'h264',
+        'maxrate' => '1300K',
+        'bufsize' => '1300K',
+        'frames:v' => 60 * 60 * 3,
+        'crf' => 18,
+        'map_metadata' => '-1',
       },
     },
   }.freeze
@@ -103,7 +115,7 @@ class MediaAttachment < ApplicationRecord
     original: VIDEO_FORMAT,
   }.freeze
 
-  IMAGE_LIMIT = 8.megabytes
+  IMAGE_LIMIT = 10.megabytes
   VIDEO_LIMIT = 40.megabytes
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
@@ -244,7 +256,9 @@ class MediaAttachment < ApplicationRecord
 
   def set_meta
     meta = populate_meta
+
     return if meta == {}
+
     file.instance_write :meta, meta
   end
 
@@ -287,6 +301,7 @@ class MediaAttachment < ApplicationRecord
 
   def reset_parent_cache
     return if status_id.nil?
+
     Rails.cache.delete("statuses/#{status_id}")
   end
 end
