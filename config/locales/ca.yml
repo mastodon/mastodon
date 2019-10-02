@@ -666,6 +666,13 @@ ca:
       before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
       caches: El contingut que ha estat memoritzat en la memòria cau per altres servidors pot persistir
       data_removal: Les teves publicacions i altres dades seran permanentment eliminades
+      email_change_html: Pots <a href="%{path}">canviar la teva adreça de correu electrònic</a> sense eliminar el teu compte
+      email_contact_html: Si encara no arriba pots enviar un correu electrònic a <a href="mailto:%{email}">%{email}</a> per a demanar ajuda
+      email_reconfirmation_html: Si no estàs rebent el correu electrònic de confirmació <a href="%{path}">pots demanar-lo un altre cop</a>
+      irreversible: No seràs capaç de restaurar o reactivar el teu compte
+      more_details_html: Per a més detalls, llegeix la <a href="%{terms_path}">política de privadesa</a>.
+      username_available: El teu nom d'usuari esdevindrà altre cop disponible
+      username_unavailable: El teu nom d'usuari quedarà inutilitzable
   directories:
     directory: Directori de perfils
     explanation: Descobreix usuaris segons els seus interessos
@@ -673,10 +680,10 @@ ca:
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
     '404': La pàgina que estàs cercant no és aquí.
-    '406': This page is not available in the requested format.
+    '406': Aquesta pàgina no está disponible en el format demanat.
     '410': La pàgina que estàs cercant ja no existeix.
     '422':
       content: La verificació de seguretat ha fallat. Tens les galetes blocades?
@@ -685,7 +692,7 @@ ca:
     '500':
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
-    '503': The page could not be served due to a temporary server failure.
+    '503': La pàgina no podria ser servida a causa d'un error temporal del servidor.
     noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
   existing_username_validator:
     not_found: no s'ha pogut trobar cap usuari local amb aquest nom d'usuari
@@ -735,6 +742,7 @@ ca:
     all: Tot
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copia
+    no_batch_actions_available: Cap accions de lot disponibles en aquesta pàgina
     order_by: Ordena per
     save_changes: Desa els canvis
     validation_errors:
@@ -806,6 +814,12 @@ ca:
       too_many: No es poden adjuntar més de 4 fitxers
   migrations:
     acct: usuari@domini del nou compte
+    cancel: Cancel·la redirecció
+    cancel_explanation: Cancel·lant la redirecció reactivará el teu compte actual però no recuperarà els seguidors que han estat moguts a aquell compte.
+    cancelled_msg: Redirecció cancel·lada amb èxit.
+    errors:
+      already_moved: és el mateix compte al que ja t'has mogut
+      missing_also_known_as: no fa referencia a aquest compte
   moderation:
     title: Moderació
   notification_mailer:
