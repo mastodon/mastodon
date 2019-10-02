@@ -588,9 +588,14 @@ tr:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
       functional: Hesabınız tamamen kullanıma hazır.
+      pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
+    trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
   authorize_follow:
+    already_following: Bu hesabı zaten takip ediyorsunuz
     error: Uzak hesap aranırken bir hata oluştu
     follow: Takip et
+    follow_request: 'Şuna takip isteği gönderdiniz:'
+    following: 'Başarılı! Artık şunu takip ediyorsunuz:'
     title: '%{acct}''i takip et'
   datetime:
     distance_in_words:
@@ -660,8 +665,16 @@ tr:
       title: Filtreler
     new:
       title: Yeni filtre ekle
+  footer:
+    developers: Geliştiriciler
+    more: Daha Fazla…
+    resources: Kaynaklar
+    trending_now: Trendler
   generic:
+    all: Tümü
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
+    copy: Kopyala
+    order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
     validation_errors:
       one: Bir şeyler ters gitti! Lütfen aşağıdaki hatayı gözden geçiriniz
