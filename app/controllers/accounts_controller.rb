@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   before_action :set_cache_headers
   before_action :set_body_classes
 
-  skip_around_action :set_locale, if: -> { request.format == :json }
+  skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format) }
   skip_before_action :require_functional!
 
   def show
@@ -38,7 +38,7 @@ class AccountsController < ApplicationController
       end
 
       format.rss do
-        expires_in 0, public: true
+        expires_in 1.minute, public: true
 
         @statuses = filtered_statuses.without_reblogs.without_replies.limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
