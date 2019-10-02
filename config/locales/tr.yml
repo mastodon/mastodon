@@ -499,6 +499,8 @@ tr:
       title: Hesap durumları
       with_media: Medya ile
     tags:
+      accounts_today: Bugünkü eşsiz kullanımlar
+      accounts_week: Bu haftaki eşsiz kullanımlar
       context: İçerik
       directory: Dizinde
       last_active: Son aktiflik
@@ -530,6 +532,7 @@ tr:
   aliases:
     add_new: Takma ad oluştur
   appearance:
+    advanced_web_interface: Gelişmiş web arayüzü
     advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
     confirmation_dialogs: Onay iletişim kutuları
@@ -547,6 +550,7 @@ tr:
     destroyed: Uygulama başarıyla silindi
     invalid_url: Verilen URL geçerli değil
     regenerate_token: Erişim belirtecini yeniden oluştur
+    token_regenerated: Erişim belirteci başarıyla oluşturuldu
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
     your_token: Erişim belirteciniz
   auth:
@@ -556,19 +560,28 @@ tr:
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
     delete_account_html: Hesabınızı silmek isterseniz, <a href="%{path}">buradan devam edebilirsiniz</a>. Sizden onay istenecektir.
+    description:
+      prefix_invited_by_user: "@%{name} sizi Mastodon'un bu sunucusuna katılmaya davet ediyor!"
+      prefix_sign_up: Bugün Mastodon'a kaydolun!
     didnt_get_confirmation: Hesap doğrulama mailini almadınız mı?
     forgot_password: Parolanızı unuttunuz mu?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     login: Giriş yap
     logout: Çıkış
+    migrate_account: Farklı bir hesaba taşının
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
     or_log_in_with: Veya giriş yapın
+    providers:
+      cas: CAS
+      saml: SAML
     register: Üye ol
+    registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Doğrulama mailini tekrar gönder
     reset_password: Parolayı değiştir
     security: Kimlik bilgileri
     set_new_password: Yeni parola oluştur
     setup:
+      email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
       title: Kurulum
     status:
