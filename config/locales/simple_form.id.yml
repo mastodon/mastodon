@@ -1,15 +1,34 @@
----
 id:
   simple_form:
     hints:
+      account_alias:
+        acct: Tentukan namapengguna@domain akun yang ingin Anda pindah
+      account_migration:
+        acct: Tentukan namapengguna@domain akun yang ingin Anda pindah
+      account_warning_preset:
+        text: Anda dapat memakai sintaks toot, seperti URL, tagar, dan sebutan
+      admin_account_action:
+        include_statuses: Pengguna dapat melihat toot mana yang menyebabkan aksi atau peringatan moderasi
+        send_email_notification: Pengguna akan menerima penjelasan tentang apa yang terjadi pada akun mereka
+        text_html: Opsional. Anda dapat memakai sintaks toot. Anda dapat <a href="%{path}">menambahkan preset peringatan</a> untuk hemat waktu
+        type_html: Pilih apa yang perlu dilakukan dengan <strong>%{acct}</strong>
+        warning_preset_id: Opsional. Anda tetap dapat menambahkan teks kustom pada akhir preset
       defaults:
+        autofollow: Orang yang ingin mendaftar lewat undangan, otomatis mengikuti Anda
         avatar: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
+        bot: Akun ini melakukan aksi otomatis dan mungkin tak termonitor
+        context: Satu atau lebih konteks tempat saringan perlu diterapkan
+        current_password: Untuk tujuan keamanan mohon masukkan kata sandi akun ini
+        current_username: Untuk konfirmasi, mohon masukkan nama pengguna akun ini
+        digest: Hanya kirim setelah lama tidak aktif dan hanya jika Anda menerima pesan personal atas absensi Anda
+        discoverable: Direktori profil adalah cara lain agar akun Anda menyentuh audiens yang lebih luas
+        email: Anda akan dikirimi surel konfirmasi
         header: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
         locked: Anda harus menerima permintaan pengikut secara manual dan setting privasi postingan akan diubah khusus untuk pengikut
       imports:
         data: File CSV yang diexpor dari server Mastodon lain
       sessions:
-        otp: Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.
+        otp: 'Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.'
     labels:
       defaults:
         confirm_new_password: Konfirmasi kata sandi baru
@@ -37,7 +56,7 @@ id:
         follow_request: Kirim email saat seseorang meminta untuk mengikuti anda
         mention: Kirim email saat seseorang menyebut anda
         reblog: Kirim email saat seseorang mem-boost status anda
-    'no': Tidak
+    'no': 'Tidak'
     required:
       text: wajib
-    'yes': Ya
+    'yes': 'Ya'
