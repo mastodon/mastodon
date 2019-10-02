@@ -827,6 +827,16 @@ ca:
     incoming_migrations: Movent des d'un compte diferent
     incoming_migrations_html: Per a moure't des d'un altre compte a aquest, primer necessites <a href="%{path}">crear un àlies de compte</a>.
     moved_msg: El teu compte ara està redirigint a %{acct} i els teus seguidors estan sent moguts.
+    not_redirecting: El teu compte no està redirigint actualment a cap altre.
+    on_cooldown: Recentment has emigrat el teu compte. Aquesta funció esdevindrà un altre cop disponible en %{count} dies.
+    past_migrations: Migracions passades
+    proceed_with_move: Moure seguidors
+    redirecting_to: El teu compte està redirigint a %{acct}.
+    set_redirect: Ajusta la redirecció
+    warning:
+      backreference_required: El compte nou primer ha de ser configurat per a referenciar aquest
+      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      cooldown: Després de moure't hi ha un període de recuperació durant el qual no seràs capaç de moure't un altre cop
   moderation:
     title: Moderació
   notification_mailer:
