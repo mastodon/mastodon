@@ -12,3 +12,27 @@ es-AR:
       locked: Se bloqueó tu cuenta.
       not_found_in_database: '%{authentication_keys} o contraseña no válidas.'
       pending: Tu cuenta todavía está bajo revisión.
+      timeout: Venció tu sesión. Por favor, volvé a iniciar sesión para continuar.
+      unauthenticated: Necesitás iniciar sesión o registrarte antes de continuar.
+      unconfirmed: Tenés que confirmar tu dirección de correo electrónico antes de continuar.
+    mailer:
+      confirmation_instructions:
+        action: Verificar dirección de correo electrónico
+        action_with_app: Confirmar y volver a %{app}
+        explanation: Te creaste una cuenta en %{host} con esta dirección de correo electrónico. Estás a un clic de activarla. Si vos no te creaste ninguna cuenta acá, por favor, simplemente ignorá este mensaje.
+        explanation_when_pending: Pediste una invitación para %{host} con esta dirección de correo electrónico. Una vez que confirmés esta dirección de correo, revisaremos tu pedido. Podés iniciar sesión para cambiar tus detalles o eliminar tu cuenta, pero no vas a poder acceder a la mayoría de las funciones hasta que no se apruebe tu cuenta. Si tu pedido es rechazado, se eliminarán tus datos, por lo que no vas a necesitar hacer nada en especial. Si vos no pediste ninguna cuenta acá, por favor, simplemente ignorá este mensaje.
+        extra_html: Por favor, también leé <a href="%{terms_path}">las reglas del servidor</a> y <a href="%{policy_path}">nuestros términos del servicio</a>.
+        subject: 'Mastodon: instrucciones de confirmación para %{instance}'
+        title: Verificar dirección de correo electrónico
+      email_changed:
+        explanation: 'La dirección de correo electrónico de tu cuenta está siendo cambiada a:'
+        extra: Si no cambiaste tu correo electrónico, es probable que alguien más haya obtenido acceso a tu cuenta. Por favor, cambiá tu contraseña inmediatamente o contactá con el administrador del servidor si no podés ingresar a tu cuenta.
+        subject: 'Mastodon: correo electrónico cambiado'
+        title: Nueva dirección de correo electrónico
+      password_change:
+        explanation: Se cambió la contraseña de tu cuenta.
+        extra: Si no cambiaste tu contraseña, es probable que alguien más haya obtenido acceso a tu cuenta. Por favor, cambiá tu contraseña inmediatamente o contactá con el administrador del servidor si no podés ingresar a tu cuenta.
+        subject: 'Mastodon: contraseña cambiada'
+        title: Contraseña cambiada
+      reconfirmation_instructions:
+        explanation: Confirmá la nueva dirección para cambiar tu correo electrónico.
