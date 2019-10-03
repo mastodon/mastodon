@@ -19,25 +19,38 @@ sv:
   accounts:
     follow: Följa
     following: Följer
+    joined: Gick med %{date}
+    last_active: senast aktiv
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
+    never_active: Aldrig
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
+    posts_tab_heading: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
     roles:
+      admin: Administratör
+      bot: Robot
       moderator: Moderator
+    unavailable: Profilen är inte tillgänglig
     unfollow: Sluta följa
   admin:
+    account_actions:
+      action: Utför åtgärd
+      title: Utför aktivitet för moderering på %{acct}
     account_moderation_notes:
       create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
       delete: Ta bort
       destroyed_msg: Modereringsnotering borttagen utan problem!
     accounts:
+      approve: Godkänn
+      approve_all: Godkänn alla
       are_you_sure: Är du säker?
+      avatar: Profilbild
       by_domain: Domän
       change_email:
         changed_msg: E-postadressen har ändrats!
@@ -49,6 +62,7 @@ sv:
       confirm: Bekräfta
       confirmed: Bekräftad
       confirming: Bekräftande
+      deleted: Raderad
       demote: Degradera
       disable: inaktivera
       disable_two_factor_authentication: Inaktivera 2FA

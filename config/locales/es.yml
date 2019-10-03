@@ -37,6 +37,7 @@ es:
     terms: Condiciones de servicio
     unavailable_content: Contenido no disponible
     unavailable_content_description:
+      domain: Servidor
       reason: 'Motivo:'
       rejecting_media: Los archivos multimedia de este servidor no serán procesados y no se mostrarán miniaturas, lo que requiere un clic manual en el otro servidor.
       silenced: Las publicaciones de este servidor no se mostrarán en ningún lugar salvo en el Inicio si sigues al autor.
@@ -239,9 +240,11 @@ es:
       delete: Borrar
       destroyed_msg: "¡Emojo destruido con éxito!"
       disable: Deshabilitar
+      disabled: Desactivado
       disabled_msg: Se deshabilitó con éxito ese emoji
       emoji: Emoji
       enable: Habilitar
+      enabled: Activado
       enabled_msg: Se habilitó con éxito ese emoji
       image_hint: PNG de hasta 50KB
       listed: Listados
@@ -257,6 +260,7 @@ es:
       updated_msg: "¡Emoji actualizado con éxito!"
       upload: Subir
     dashboard:
+      authorized_fetch_mode: Modo seguro
       backlog: trabajos de backlog
       config: Configuración
       feature_deletions: Borrados de cuenta
@@ -433,6 +437,7 @@ es:
       domain_blocks:
         all: A todos
         disabled: A nadie
+        users: Para los usuarios locales que han iniciado sesión
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -545,6 +550,11 @@ es:
     new_trending_tag:
       body: 'El hashtag #%{name} está en tendencia hoy, pero no ha sido revisado previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario como para no volver a ver esto.'
       subject: Nuevo hashtag para revisión en %{instance} (#%{name})
+  aliases:
+    add_new: Crear alias
+    created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
+    deleted_msg: Elimina el alias correctamente. El traslado de esa cuenta a esta ya no será posible.
+    remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
     advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
@@ -574,6 +584,10 @@ es:
     checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank">términos de servicio</a>
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
+    description:
+      prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
+      prefix_sign_up: "¡Únete a Mastodon hoy!"
+      suffix: "¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!"
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
@@ -600,6 +614,7 @@ es:
       confirming: Esperando confirmación de correo electrónico.
       functional: Su cuenta está totalmente operativa.
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
+      redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
     trouble_logging_in: "¿Problemas para iniciar sesión?"
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
@@ -614,6 +629,9 @@ es:
     title: Seguir a %{acct}
   challenge:
     confirm: Continuar
+    hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
+    invalid_password: Contraseña incorrecta
+    prompt: Confirmar contraseña para seguir
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -629,9 +647,21 @@ es:
       x_months: "%{count}m"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
+    confirm_username: Escribe tu nombre de usuario para confirmar
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
+    warning:
+      before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
+      data_removal: Tus publicaciones y el resto de datos se eliminarán definitivamente
+      email_change_html: Puedes <a href="%{path}"> cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
+      email_contact_html: Si aún no te ha llegado, puedes escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
+      email_reconfirmation_html: Si no te ha llegado el correo de confirmación, puedes <a href="%{path}"> volver a solicitarlo</a>
+      irreversible: No podrás restaurar ni reactivar tu cuenta
+      more_details_html: Para más detalles, ver <a href="%{terms_path}"> la política de privacidad</a>.
+      username_available: Tu nombre de usuario volverá a estar disponible
+      username_unavailable: Tu nombre de usuario no estará disponible
   directories:
     directory: Directorio de perfiles
     explanation: Descubre usuarios según sus intereses
@@ -642,7 +672,7 @@ es:
     '400': The request you submitted was invalid or malformed.
     '403': No tienes permiso para acceder a esta página.
     '404': La página que estabas buscando no existe.
-    '406': This page is not available in the requested format.
+    '406': Esta página no está disponible en el formato solicitado.
     '410': La página que estabas buscando no existe más.
     '422':
       content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
@@ -651,7 +681,7 @@ es:
     '500':
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
-    '503': The page could not be served due to a temporary server failure.
+    '503': La página no se ha podido cargar debido a un fallo temporal del servidor.
     noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodon para tu plataforma.
   existing_username_validator:
     not_found: no pudo encontrar un usuario local con ese nombre de usuario
@@ -771,6 +801,11 @@ es:
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
     acct: username@domain de la nueva cuenta
+    cancel: Cancelar redireccionamiento
+    cancel_explanation: Al cancelar el redireccionamiento se reactivará tu cuenta actual, pero no recuperarás los seguidores que hayan sido trasladados a la otra cuenta.
+    cancelled_msg: El redireccionamiento se ha cancelado correctamente.
+    errors:
+      not_found: no se pudo encontrar
   moderation:
     title: Moderación
   notification_mailer:

@@ -261,6 +261,7 @@ tr:
       feature_invites: Davet linkleri
       feature_profile_directory: Profil dizini
       feature_registrations: Kayıtlar
+      feature_relay: Federasyon aktarıcısı
       feature_spam_check: Anti-spam
       feature_timeline_preview: Zaman çizelgesi önizlemesi
       features: Özellikler
@@ -343,32 +344,70 @@ tr:
         other: "%{count} bilinen hesap"
       moderation:
         all: Tümü
+        limited: Sınırlı
+        title: Denetim
+      private_comment: Özel yorum
+      public_comment: Genel yorum
       title: Bilinen Sunucular
+      total_blocked_by_us: Tarafımızca engellenen
+      total_followed_by_them: Onlar tarafından takip edilen
+      total_followed_by_us: Tarafımızca takip edilen
+      total_reported: Onlar hakkında şikayetler
+      total_storage: Medya ekleri
     invites:
+      deactivate_all: Tümünü devre dışı bırak
       filter:
         all: Tümü
+        available: Mevcut
+        expired: Süresi dolmuş
+        title: Filtre
+      title: Davetler
+    pending_accounts:
+      title: Bekleyen hesaplar (%{count})
     relays:
+      add_new: Yeni aktarıcı ekle
       delete: Sil
       disable: Devre dışı
+      disabled: Devre dışı
+      enable: Etkin
       enabled: Etkin
+      inbox_url: Aktarıcı URL'si
+      pending: Aktarıcının onaylaması için bekleniyor
+      save_and_enable: Kaydet ve etkinleştir
+      setup: Bir aktarıcı bağlantısı kur
+      signatures_not_enabled: Güvenli mod ya da beyaz liste modu etkin iken aktarıcılar düzgün çalışmayacaktır
+      status: Durum
+      title: Aktarıcılar
+    report_notes:
+      created_msg: Şikayet notu başarıyla oluşturuldu!
+      destroyed_msg: Şikayet notu başarıyla silindi!
     reports:
       account:
         note: not
         report: şikayet
       action_taken_by: tarafından gerçekleştirilen eylem
       are_you_sure: Emin misiniz?
+      assign_to_self: Bana ata
+      assigned: Denetleyici atandı
       comment:
         none: Yok
+      created_at: Şikayet edildi
       mark_as_resolved: Giderildi olarak işaretle
+      mark_as_unresolved: Çözümlenmemiş olarak işaretle
       notes:
         create: Not Ekle
+        create_and_resolve: Not ile çözümle
+        create_and_unresolve: Not ile tekrar aç
         delete: Sil
+      reopen: Şikayeti tekrar aç
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
       resolved: Giderildi
+      resolved_msg: Şikayet başarıyla çözümlendi!
       status: Durum
       title: Şikayetler
+      unassign: Atamayı geri al
       unresolved: Giderilmedi
       updated_at: Güncellendi
     settings:
@@ -441,6 +480,8 @@ tr:
       thumbnail:
         desc_html: OpenGraph ve API ile ön izlemeler için kullanılır. 1200x630px tavsiye edilir
         title: Sunucu küçük resmi
+      timeline_preview:
+        title: Zaman çizelgesi önizlemesi
       title: Site Ayarları
       trends:
         title: Trend etiketler
@@ -459,15 +500,40 @@ tr:
       title: Hesap durumları
       with_media: Medya ile
     tags:
+      accounts_today: Bugünkü eşsiz kullanımlar
+      accounts_week: Bu haftaki eşsiz kullanımlar
       context: İçerik
       directory: Dizinde
+      last_active: Son aktiflik
+      most_popular: En popüler
+      most_recent: En yeni
+      name: Etiket
+      review: Durumu gözden geçir
+      reviewed: Gözden geçirildi
       title: Etiketler
+      trending_right_now: Şu anda trend
+      unique_uses_today: bugün %{count} gönderi
+      unreviewed: Gözden geçirilmedi
+      updated_msg: Etiket ayarları başarıyla güncellendi
     title: Yönetim
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
       edit: Düzenle
+      edit_preset: Uyarı ön-ayarını düzenle
+      title: Uyarı ön-ayarlarını yönet
+  admin_mailer:
+    new_pending_account:
+      body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
+      subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
+    new_report:
+      body: "%{reporter} %{target}'i şikayet etti"
+      body_remote: "%{domain}'den birisi %{target}'i şikayet etti"
+      subject: "%{instance} için yeni şikayet (#%{id})"
+  aliases:
+    add_new: Takma ad oluştur
   appearance:
+    advanced_web_interface: Gelişmiş web arayüzü
     advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
     confirmation_dialogs: Onay iletişim kutuları
@@ -485,6 +551,7 @@ tr:
     destroyed: Uygulama başarıyla silindi
     invalid_url: Verilen URL geçerli değil
     regenerate_token: Erişim belirtecini yeniden oluştur
+    token_regenerated: Erişim belirteci başarıyla oluşturuldu
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
     your_token: Erişim belirteciniz
   auth:
@@ -494,28 +561,42 @@ tr:
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
     delete_account_html: Hesabınızı silmek isterseniz, <a href="%{path}">buradan devam edebilirsiniz</a>. Sizden onay istenecektir.
+    description:
+      prefix_invited_by_user: "@%{name} sizi Mastodon'un bu sunucusuna katılmaya davet ediyor!"
+      prefix_sign_up: Bugün Mastodon'a kaydolun!
     didnt_get_confirmation: Hesap doğrulama mailini almadınız mı?
     forgot_password: Parolanızı unuttunuz mu?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     login: Giriş yap
     logout: Çıkış
+    migrate_account: Farklı bir hesaba taşının
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
     or_log_in_with: Veya giriş yapın
+    providers:
+      cas: CAS
+      saml: SAML
     register: Üye ol
+    registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Doğrulama mailini tekrar gönder
     reset_password: Parolayı değiştir
     security: Kimlik bilgileri
     set_new_password: Yeni parola oluştur
     setup:
+      email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
       title: Kurulum
     status:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
       functional: Hesabınız tamamen kullanıma hazır.
+      pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
+    trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
   authorize_follow:
+    already_following: Bu hesabı zaten takip ediyorsunuz
     error: Uzak hesap aranırken bir hata oluştu
     follow: Takip et
+    follow_request: 'Şuna takip isteği gönderdiniz:'
+    following: 'Başarılı! Artık şunu takip ediyorsunuz:'
     title: "%{acct}'i takip et"
   datetime:
     distance_in_words:
@@ -585,26 +666,56 @@ tr:
       title: Filtreler
     new:
       title: Yeni filtre ekle
+  footer:
+    developers: Geliştiriciler
+    more: Daha Fazla…
+    resources: Kaynaklar
+    trending_now: Trendler
   generic:
+    all: Tümü
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
+    copy: Kopyala
+    order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
     validation_errors:
       one: Bir şeyler ters gitti! Lütfen aşağıdaki hatayı gözden geçiriniz
       other: Bir şeyler ters gitti! Lütfen aşağıdaki %{count} hatayı gözden geçiriniz
+  html_validator:
+    invalid_markup: 'geçersiz HTML markup içermektedir: %{error}'
+  identity_proofs:
+    active: Aktif
+    authorize: Evet, yetkilendir
+    authorize_connection_prompt: Bu kriptolu bağlantıyı yetkilendir?
+    errors:
+      failed: Kriptolu bağlantı başarısız oldu. Lütfen %{provider} üzerinden tekrar deneyin.
+    i_am_html: Ben %{service} üzerinde %{username}.
+    identity: Kimlik
+    inactive: Pasif
+    publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
+    status: Doğrulama durumu
   imports:
+    modes:
+      merge: Birleştir
+      merge_long: Mevcut kayıtları sakla ve yenileri ekle
+      overwrite: Üzerine yaz
+      overwrite_long: Mevcut kayıtları yenileriyle değiştir
     preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik olarak engelleyebilirsiniz.
     success: Verileriniz başarıyla yüklendi ve zaman içinde işlenecek
     types:
       blocking: Engellenenler listesi
+      domain_blocking: Alan adı engelleme listesi
       following: Takip edilenler listesi
       muting: Susturulanlar listesi
     upload: Yükle
+  in_memoriam_html: Hatırada.
   invites:
+    delete: Devre dışı bırak
+    expired: Süresi dolmuş
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
+      '1800': 30 dakika
+      '21600': 6 saat
+      '3600': 1 saat
+      '43200': 12 saat
       '604800': 1 hafta
       '86400': 1 gün
     expires_in_prompt: Asla
@@ -619,10 +730,15 @@ tr:
       expires_at: Bitiş tarihi
       uses: Kullanım
     title: İnsanları davet et
+  lists:
+    errors:
+      limit: Maksimum liste miktarına ulaştınız
   media_attachments:
     validations:
       images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
       too_many: 4'ten fazla dosya ekleyemezsiniz
+  migrations:
+    acct: Taşındı
   moderation:
     title: Yönetim
   notification_mailer:
@@ -683,16 +799,50 @@ tr:
       too_many_options: "%{max} öğeden fazla öğe içeremez"
   preferences:
     other: Diğer
+    public_timelines: Genel zaman çizelgeleri
   relationships:
     activity: Hesap etkinliği
+    dormant: Atıl
     last_active: Son aktivite
     most_recent: En son
+    moved: Taşındı
+    mutual: Ortak
+    primary: Birincil
+    relationship: İlişki
+    remove_selected_domains: Seçili alan adlarından tüm takipçileri kaldır
+    remove_selected_followers: Seçili takipçileri kaldır
+    remove_selected_follows: Seçili kullanıcıları takip etmeyi bırak
+    status: Hesap durumu
   remote_follow:
     acct: Takip edeceğiniz kişiyi kullaniciadi@sunuculinki şeklinde giriniz
     missing_resource: Hesabınız için yönlendirme linki bulunamadı
+    no_account_html: Hesabınız yok mu? <a href='%{sign_up_path}' target='_blank'>Buradan kaydolabilirsiniz</a>
     proceed: Takip onayı
     prompt: Bu kullanıcıyı takip etmek istediğinize emin misiniz?
   sessions:
+    activity: Son aktivite
+    browser: Tarayıcı
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Bilinmeyen tarayıcı
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    current_session: Şu anki oturum
+    description: "%{platform} üzerinde %{browser}"
+    explanation: Bunlar şu anda Mastodon hesabınızda oturum açan web tarayıcılarıdır.
     ip: IP
     platforms:
       adobe_air: Adobe Air

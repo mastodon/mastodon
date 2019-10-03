@@ -34,6 +34,11 @@ ru:
     status_count_before: Опубликовано
     tagline: Подписывайтесь на друзей и заводите новые знакомства
     terms: Условия использования
+    unavailable_content: Содержимое недоступно
+    unavailable_content_description:
+      domain: Сервер
+      reason: Причина
+      rejecting_media: 'Медиафайлы с этих серверов не будут обработаны или сохранены. Их миниатюры не будут отображаться и вам придётся вручную нажимать на исходный файл:'
     user_count_after:
       few: пользователя
       many: пользователей
@@ -56,6 +61,7 @@ ru:
     media: Медиа
     moved_html: "%{name} переехал(а) на %{new_profile_link}:"
     network_hidden: Эта информация недоступна
+    never_active: Никогда
     nothing_here: Здесь ничего нет!
     people_followed_by: Люди, на которых подписан(а) %{name}
     people_who_follow: Подписчики %{name}
@@ -224,19 +230,24 @@ ru:
       deleted_status: "(удалённый статус)"
       title: Журнал событий
     custom_emojis:
+      assign_category: Задать категорию
       by_domain: Домен
       copied_msg: Локальная копия эмодзи успешно создана
       copy: Копировать
       copy_failed_msg: Не удалось создать локальную копию эмодзи
+      create_new_category: Создать новую категорию
       created_msg: Эмодзи успешно создано!
       delete: Удалить
       destroyed_msg: Эмодзи успешно удалено!
       disable: Отключить
+      disabled: Отключено
       disabled_msg: Эмодзи успешно отключено
       emoji: Эмодзи
       enable: Включить
+      enabled: Включено
       enabled_msg: Эмодзи успешно включено
       image_hint: PNG до 50KB
+      list: Список
       listed: В списке
       new:
         title: Добавить новый эмодзи
@@ -244,11 +255,13 @@ ru:
       shortcode: Шорткод
       shortcode_hint: Как минимум 2 символа, только алфавитно-цифровые символы и подчеркивания
       title: Собственные эмодзи
+      uncategorized: Вне категорий
       unlisted: Не в списке
       update_failed_msg: Невозможно обновить этот эмодзи
       updated_msg: Эмодзи обновлён!
       upload: Загрузить
     dashboard:
+      authorized_fetch_mode: Защищённый режим
       backlog: задачи
       config: Конфигурация
       feature_deletions: Удаление аккаунтов
@@ -422,6 +435,13 @@ ru:
       custom_css:
         desc_html: Измените внешний вид с CSS, загружаемым на каждой странице
         title: Особый CSS
+      default_noindex:
+        title: Исключить пользователей из индексации поисковиками по умолчанию
+      domain_blocks:
+        all: Всем
+        disabled: Никому
+        title: Доменные блокировки
+        users: Залогиненным локальным пользователям
       hero:
         desc_html: Отображается на главной странице. Рекомендуется разрешение не менее 600х100px. Если не установлено, используется изображение узла
         title: Баннер узла
@@ -481,12 +501,15 @@ ru:
         desc_html: Показывать публичную ленту на приветственной странице
         title: Предпросмотр ленты
       title: Настройки сайта
+      trends:
+        title: Популярные хэштеги
     statuses:
       back_to_account: Назад к странице аккаунта
       batch:
         delete: Удалить
         nsfw_off: Выключить NSFW
         nsfw_on: Включить NSFW
+      deleted: Удалено
       failed_to_execute: Не удалось выполнить
       media:
         title: Медиаконтент
@@ -495,7 +518,11 @@ ru:
       title: Статусы аккаунта
       with_media: С медиаконтентом
     tags:
+      accounts_today: Уникальных использований за сегодня
+      accounts_week: Уникальных использований за эту неделю
       context: Контекст
+      directory: В каталоге
+      in_directory: "%{count} в каталоге"
       title: Хэштеги
     title: Администрирование
     warning_presets:
@@ -567,6 +594,9 @@ ru:
       return: Вернуться к профилю пользователя
       web: Перейти к WWW
     title: Подписаться на %{acct}
+  challenge:
+    invalid_password: Неверный пароль
+    prompt: Введите пароль для продолжения
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ч"
@@ -582,15 +612,26 @@ ru:
       x_months: "%{count}мес"
       x_seconds: "%{count}сек"
   deletes:
+    challenge_not_passed: Введённая вами информация некорректна
     confirm_password: Введите текущий пароль для подтверждения Вашей личности
+    confirm_username: Введите свой юзернейм для подтверждения
     proceed: Удалить аккаунт
     success_msg: Ваш аккаунт был успешно удален
+    warning:
+      before: 'Внимательно прочитайте следующую информацию перед началом:'
+      caches: Содержимое, которое было закэшировано другими серверами, может сохраниться
+      data_removal: Ваши записи и прочие данные будут безвозвратно удалены
+      irreversible: Вы не сможете восстановить или повторно активировать свой аккаунт
+      username_available: Ваш юзернейм снова станет доступным
+      username_unavailable: Ваш юзернейм останется недоступным
   directories:
     directory: Каталог профилей
     explanation: Находите пользователей по интересам
     explore_mastodon: Изучайте %{title}
+  domain_validator:
+    invalid_domain: не является корректным доменным именем
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Ваш запрос был недействительным или неправильным.
     '403': У Вас нет доступа к просмотру этой страницы.
     '404': Страница, которую Вы искали, не существует.
     '406': This page is not available in the requested format.
@@ -602,7 +643,7 @@ ru:
     '500':
       content: Приносим извинения, но на нашей стороне что-то пошло не так.
       title: Страница неверна
-    '503': The page could not be served due to a temporary server failure.
+    '503': Страница не может быть отображена из-за временного сбоя на сервере.
     noscript_html: Для работы с Mastodon, пожалуйста, включите JavaScript. Кроме того, вы можете использовать одно из <a href="%{apps_path}">приложений</a> Mastodon для Вашей платформы.
   existing_username_validator:
     not_found: не удалось найти локального пользователя с таким именем
@@ -646,6 +687,7 @@ ru:
     developers: Разработчикам
     more: Ещё…
     resources: Ссылки
+    trending_now: Актуально сейчас
   generic:
     all: Все
     changes_saved_msg: Изменения успешно сохранены!
@@ -725,6 +767,23 @@ ru:
       too_many: Нельзя добавить более 4 файлов
   migrations:
     acct: имя@домен нового аккаунта
+    cancel: Отменить переезд
+    cancelled_msg: Переезд был успешно отменён.
+    errors:
+      on_cooldown: Вы пока не можете переезжать
+    followers_count: Подписчиков на момент переезда
+    incoming_migrations: Переезд с другого аккаунта
+    on_cooldown: Вы уже недавно переносили свой аккаунт. Эта возможность будет снова доступна через %{count} дн.
+    past_migrations: Прошлые переезды
+    proceed_with_move: Перенести подписчиков
+    redirecting_to: Ваша учётная запись перенаправлена на %{acct}.
+    set_redirect: Настроить перенаправление
+    warning:
+      before: 'Прежде чем продолжить, внимательно прочитайте следующую информацию:'
+      cooldown: После переезда наступает период, в течение которого вы не сможете ещё раз переехать
+      disabled_account: Ваш текущий аккаунт впоследствии нельзя будет больше использовать. При этом, у вас будет доступ к экспорту данных, а также к повторной активации аккаунта.
+      followers: Это действие перенесёт всех ваших подписчиков с текущего аккаунта на новый
+      other_data: Никакие другие данные не будут автоматически перенесены
   moderation:
     title: Модерация
   notification_mailer:
@@ -793,6 +852,7 @@ ru:
       too_many_options: может содержать не больше %{max} вариантов
   preferences:
     other: Другое
+    posting_defaults: Настройки отправки по умолчанию
     public_timelines: Публичные ленты
   relationships:
     activity: Активность аккаунта
@@ -872,6 +932,7 @@ ru:
   settings:
     account: Учётная запись
     account_settings: Настройки учётной записи
+    aliases: Псевдонимы аккаунта
     appearance: Внешний вид
     authorized_apps: Авторизованные приложения
     back: Назад в Mastodon
@@ -1052,6 +1113,7 @@ ru:
         silence: Пока ваш аккаунт ограничен, ваши посты на этом сервере увидят только ваши действующие подписчики, а ваш аккаунт может быть исключён из различных каталогов. Впрочем, остальные могут подписаться на вас вручную.
         suspend: Ваш аккаунт заблокирован и все ваши посты и загруженные медиафайлы безвозвратно удалены с этого сервера и других серверов, где у вас были подписчики.
       review_server_policies: Посмотреть правила сервера
+      statuses: 'В частности, для:'
       subject:
         disable: Ваш аккаунт %{acct} заморожен
         none: "%{acct}, вам вынесено предупреждение"
