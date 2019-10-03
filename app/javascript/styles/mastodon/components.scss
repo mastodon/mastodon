@@ -1486,6 +1486,10 @@ a.account__display-name {
   color: inherit;
 }
 
+.detailed-status .button.logo-button {
+  margin-bottom: 15px;
+}
+
 .detailed-status__display-name {
   color: $secondary-text-color;
   display: block;
@@ -4854,6 +4858,7 @@ a.status-card.compact:hover {
   &:focus,
   &:active {
     color: darken($lighter-text-color, 4%);
+    background-color: transparent;
   }
 }
 
@@ -5850,6 +5855,7 @@ noscript {
 }
 
 .embed-modal {
+  width: auto;
   max-width: 80vw;
   max-height: 80vh;
 
@@ -5880,6 +5886,7 @@ noscript {
       font-size: 14px;
       margin: 0;
       margin-bottom: 15px;
+      border-radius: 4px;
 
       &::-moz-focus-inner {
         border: 0;
@@ -5905,6 +5912,7 @@ noscript {
       max-width: 100%;
       overflow: hidden;
       border: 0;
+      border-radius: 4px;
     }
   }
 }
