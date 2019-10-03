@@ -21,7 +21,7 @@ ja:
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
     instance_actor_flash: |
-      このアカウントはサーバーそのものを示す仮想的なもので、個人のアカウントではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックする以外の目的でブロックしないでください。サーバー全体をブロックする場合、ドメインブロックを使用してください。
+      このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     see_whats_happening: やりとりを見てみる
@@ -307,7 +307,7 @@ ja:
       private_comment: コメント (非公開)
       private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
       public_comment: コメント (公開)
-      public_comment_hint: ドメインブロックの公開を有効にしている場合、このコメントも一般に公開されます。
+      public_comment_hint: ドメインブロックの公開を有効にしている場合、このコメントも公開されます。
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: 通報を拒否
@@ -433,8 +433,8 @@ ja:
         desc_html: この設定を変更していない全ユーザーに影響します
         title: デフォルトで検索エンジンによるインデックスを拒否する
       domain_blocks:
-        all: 誰でも許可
-        disabled: 誰も許可しない
+        all: 全ユーザーに対し許可
+        disabled: 全ユーザーに対し禁止
         title: ドメインブロックを表示
         users: ログイン済みローカルユーザーのみ許可
       domain_blocks_rationale:
