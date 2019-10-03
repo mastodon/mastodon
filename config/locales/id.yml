@@ -1,7 +1,6 @@
----
 id:
   about:
-    about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
+    about_hashtag_html: 'Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.'
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
     active_count_after: aktif
@@ -21,9 +20,8 @@ id:
     generic_description: "%{domain} adalah satu server dalam jaringan"
     get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
-    instance_actor_flash: 'Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
-
-'
+    instance_actor_flash: |
+      Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
     learn_more: Pelajari selengkapnya
     privacy_policy: Kebijakan Privasi
     see_whats_happening: Lihat apa yang sedang terjadi
@@ -47,7 +45,7 @@ id:
     user_count_before: Tempat bernaung bagi
     what_is_mastodon: Apa itu Mastodon?
   accounts:
-    choices_html: 'Pilihan %{name}:'
+    choices_html: "Pilihan %{name}:"
     endorsements_hint: Anda dapat mempromosikan orang yang Anda ikuti lewat antar muka web, dan mereka akan muncul di sini.
     featured_tags_hint: Anda dapat mengunggulkan tagar tertentu yang akan ditampilkan di sini.
     follow: Ikuti
@@ -315,7 +313,7 @@ id:
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal
     '429': Throttled
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Anda blokir
