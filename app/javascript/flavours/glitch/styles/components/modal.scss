@@ -736,6 +736,7 @@
   &:focus,
   &:active {
     color: darken($lighter-text-color, 4%);
+    background-color: transparent;
   }
 }
 
@@ -804,6 +805,7 @@
 }
 
 .embed-modal {
+  width: auto;
   max-width: 80vw;
   max-height: 80vh;
 
@@ -834,6 +836,7 @@
       font-size: 14px;
       margin: 0;
       margin-bottom: 15px;
+      border-radius: 4px;
 
       &::-moz-focus-inner {
         border: 0;
@@ -859,6 +862,7 @@
       max-width: 100%;
       overflow: hidden;
       border: 0;
+      border-radius: 4px;
     }
   }
 }
