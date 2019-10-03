@@ -47,6 +47,7 @@ id:
   accounts:
     choices_html: "Pilihan %{name}:"
     endorsements_hint: Anda dapat mempromosikan orang yang Anda ikuti lewat antar muka web, dan mereka akan muncul di sini.
+    featured_tags_hint: Anda dapat mengunggulkan tagar tertentu yang akan ditampilkan di sini.
     follow: Ikuti
     followers:
       other: Pengikut
@@ -54,8 +55,10 @@ id:
     joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
+    media: Media
     moved_html: "%{name} telah pindah ke %{new_profile_link}:"
     network_hidden: Informasi ini tidak tersedia
+    never_active: Tak pernah
     nothing_here: Tidak ada apapun disini!
     people_followed_by: Orang yang diikuti %{name}
     people_who_follow: Orang-orang yang mengikuti %{name}
@@ -67,7 +70,10 @@ id:
     posts_with_replies: Toot dan balasan
     reserved_username: Nama pengguna telah dipesan
     roles:
+      admin: Admin
+      bot: Bot
       moderator: Moderator
+    unavailable: Profil tidak tersedia
     unfollow: Berhenti mengikuti
   admin:
     account_actions:
@@ -79,7 +85,11 @@ id:
       delete: Hapus
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
+      approve: Terima
+      approve_all: Terima semua
       are_you_sure: Anda yakin?
+      avatar: Avatar
+      by_domain: Domian
       change_email:
         changed_msg: Email akun ini berhasil diubah!
         current_email: Email saat ini
@@ -91,10 +101,12 @@ id:
       confirmed: Dikonfirmasi
       confirming: Mengkonfirmasi
       deleted: Terhapus
+      demote: Turunkan
       disable: Nonaktifkan
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
       display_name: Nama
+      domain: Domain
       edit: Ubah
       email: E-mail
       email_status: Status Email
@@ -104,12 +116,15 @@ id:
       followers: Pengikut
       followers_url: URL pengikut
       follows: Mengikut
+      header: Tajuk
       inbox_url: URL Kotak masuk
       invited_by: Diundang oleh
+      ip: IP
       joined: Bergabung
       location:
         all: Semua
         local: Lokal
+        remote: Remot
         title: Lokasi
       login_status: Status login
       media_attachments: Lampiran media
@@ -117,12 +132,14 @@ id:
       moderation:
         active: Aktif
         all: Semua
+        pending: Tertunda
         silenced: Didiamkan
         suspended: Disuspen
         title: Moderasi
       moderation_notes: Catatan moderasi
       most_recent_activity: Aktivitas terbaru
       most_recent_ip: IP terbaru
+      no_account_selected: Tak ada akun yang diubah sebab tak ada yang dipilih
       no_limits_imposed: Tidak ada batasan
       not_subscribed: Tidak berlangganan
       outbox_url: URL Kotak keluar
@@ -133,20 +150,26 @@ id:
       public: Publik
       push_subscription_expires: Langganan PuSH telah kadaluarsa
       redownload: Muat ulang profil
+      reject: Tolak
+      reject_all: Tolak semua
       remove_avatar: Hapus avatar
       remove_header: Hapus header
       resend_confirmation:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
         success: Email konfirmasi berhasil dikirim!
+      reset: Reset
       reset_password: Reset kata sandi
       resubscribe: Langganan ulang
       role: Hak akses
       roles:
+        admin: Administrator
+        moderator: Moderator
         staff: Staf
         user: Pengguna
       salmon_url: URL Salmon
       search: Cari
+      shared_inbox_url: URL kotak masuk bersama
       show:
         created_reports: Laporan yang dibuat oleh akun ini
         targeted_reports: Laporan yang dibuat tentang akun ini
