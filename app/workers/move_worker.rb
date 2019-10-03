@@ -22,7 +22,7 @@ class MoveWorker
     @source_account.passive_relationships
                    .where(account: Account.local)
                    .in_batches
-                   .update_all(target_account: @target_account)
+                   .update_all(target_account_id: @target_account.id)
   end
 
   def queue_follow_unfollows!
