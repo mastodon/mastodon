@@ -62,3 +62,16 @@ es-AR:
     omniauth_callbacks:
       failure: 'No se te pudo autenticar desde %{kind} debido a esto: "%{reason}".'
       success: Se autenticó exitosamente para la cuenta %{kind}.
+    passwords:
+      no_token: No podés acceder a esta página sin venir desde un correo electrónico destinado al cambio de contraseña. Si venís desde dicho mensaje, por favor, asegurate que usaste toda la dirección web ofrecida.
+      send_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con un enlace para cambiar tu contraseña. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      send_paranoid_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con un enlace para cambiar tu contraseña. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      updated: Se cambió existosamente tu contraseña. Ya iniciaste sesión.
+      updated_not_active: Se cambió exitosamente tu contraseña.
+    registrations:
+      destroyed: '¡Chauchas! Se canceló exitosamente tu cuenta. Esperamos verte pronto de nuevo.'
+      signed_up: '¡Bienvenido! Te registraste exitosamente.'
+      signed_up_but_inactive: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta todavía no está activada.
+      signed_up_but_locked: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta está bloqueada.
+      signed_up_but_pending: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Después que hagás clic en ese enlace, revisaremos tu pedido. Si sos aprobado, serás notificado.
+      signed_up_but_unconfirmed: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Por favor, seguí ese enlace para activar tu cuenta.
