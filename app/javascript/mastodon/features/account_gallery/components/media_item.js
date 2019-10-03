@@ -119,6 +119,7 @@ export default class MediaItem extends ImmutablePureComponent {
       );
     } else if (['gifv', 'video'].indexOf(attachment.get('type')) !== -1) {
       const autoPlay = !isIOS() && autoPlayGif;
+      const label    = attachment.get('type') === 'video' ? <Icon id='play' /> : 'GIF';
 
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
@@ -135,7 +136,7 @@ export default class MediaItem extends ImmutablePureComponent {
             muted
           />
 
-          <span className='media-gallery__gifv__label'>GIF</span>
+          <span className='media-gallery__gifv__label'>{label}</span>
         </div>
       );
     }
