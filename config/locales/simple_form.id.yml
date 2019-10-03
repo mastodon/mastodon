@@ -71,6 +71,13 @@ id:
         text: Teks preset
       admin_account_action:
         include_statuses: Sertakan toot terlapor pada surel
+        send_email_notification: Beritahu pengguna per surel
+        text: Peringatan kustom
+        type: Aksi
+        types:
+          disable: Matikan
+          none: Biarkan
+          silence: Diamkan
       defaults:
         confirm_new_password: Konfirmasi kata sandi baru
         confirm_password: Konfirmasi kata sandi
