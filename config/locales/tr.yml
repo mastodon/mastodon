@@ -772,6 +772,9 @@ tr:
     set_redirect: Yönlendirme ayarla
     warning:
       before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
+      cooldown: Taşındıktan sonra, yeniden taşınma imkanınızın olmayacağı bir soğuma periyodu vardır
+      followers: Bu eylem tüm takipçileri şu anki hesaptan yeni hesaba taşıyacaktır
+      other_data: Başka bir veri otomatik olarak taşınmayacaktır
   moderation:
     title: Yönetim
   notification_mailer:
@@ -803,6 +806,7 @@ tr:
       action: Yanıt
       body: '%{name} sizden bahsetti:'
       subject: '%{name} sizden bahsetti'
+      title: Yeni bahsetme
     reblog:
       body: '%{name} durumunuzu boost etti:'
       subject: "%{name} durumunuzu boost etti"
@@ -832,6 +836,7 @@ tr:
       too_many_options: '%{max} öğeden fazla öğe içeremez'
   preferences:
     other: Diğer
+    posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
   relationships:
     activity: Hesap etkinliği
@@ -852,6 +857,16 @@ tr:
     no_account_html: Hesabınız yok mu? <a href='%{sign_up_path}' target='_blank'>Buradan kaydolabilirsiniz</a>
     proceed: Takip onayı
     prompt: 'Bu kullanıcıyı takip etmek istediğinize emin misiniz?'
+  remote_interaction:
+    favourite:
+      proceed: Favorilere eklemek için ilerle
+      prompt: 'Bu gönderiyi favorilerinize eklemek istiyorsunuz:'
+    reblog:
+      proceed: Yinelemek için ilerle
+      prompt: 'Bu gönderiyi yinelemek istiyorsunuz:'
+    reply:
+      proceed: Cevap vermek için ilerle
+      prompt: 'Bu gönderiye cevap vermek istiyorsunuz:'
   sessions:
     activity: Son aktivite
     browser: Tarayıcı
