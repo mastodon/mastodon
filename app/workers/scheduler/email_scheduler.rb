@@ -5,13 +5,12 @@ class Scheduler::EmailScheduler
 
   sidekiq_options unique: :until_executed, retry: 0
 
-  FREQUENCY      = 7.days.freeze
+  FREQUENCY      = 1.day.freeze
   SIGN_IN_OFFSET = 1.day.freeze
 
   def perform
     eligible_users.reorder(nil).find_each do |user|
-      next unless user.allows_digest_emails?
-      DigestMailerWorker.perform_async(user.id)
+      DigestMailerWorker.perform_async(user.id) if user.allows_digest_emails?
     end
   end
 
