@@ -46,8 +46,23 @@ tr:
         extra: Bunu siz yapmadıysanız, lütfen bu e-postayı dikkate almayın. Parolanız yukarıdaki bağlantıya erişene ve yeni bir tane oluşturuncaya kadar değişmez.
         subject: 'Mastodon: Parola sıfırlama talimatları'
         title: Parola sıfırlama
+      two_factor_disabled:
+        explanation: Hesabınız için iki-adımlı kimlik doğrulama devre dışı bırakıldı. Şimdi sadece e-posta adresi ve parola kullanarak giriş yapabilirsiniz.
+        subject: 'Mastodon: İki-adımlı kimlik doğrulama devre dışı bırakıldı'
+        title: 2FA devre dışı bırakıldı
+      two_factor_enabled:
+        explanation: Hesabınız için iki-adımlı kimlik doğrulama etkinleştirildi. Giriş yapmak için eşleştirilmiş TOTP uygulaması tarafından oluşturulan bir belirteç gereklidir.
+        subject: 'Mastodon: İki-adımlı kimlik doğrulama etkinleştirildi'
+        title: 2FA etkinleştirildi
+      two_factor_recovery_codes_changed:
+        explanation: Önceki kurtarma kodları geçersiz kılındı ve yenileri oluşturuldu.
+        subject: 'Mastodon: İki-adımlı kurtarma kodları yeniden oluşturuldu'
+        title: 2FA kurtarma kodları değiştirildi
       unlock_instructions:
         subject: 'Mastodon: Engel kaldırma talimatları'
+    omniauth_callbacks:
+      failure: '%{kind}''den kimliğiniz doğrulanamadı çünkü "%{reason}".'
+      success: "%{kind} hesabından başarıyla kimlik doğrulaması yapıldı."
     passwords:
       no_token: Bu sayfaya şifre sıfırlama e-postasından gelmeden erişemezsiniz. Şifre sıfırlama e-postasından geliyorsanız lütfen sağlanan tam URL'yi kullandığınızdan emin olun.
       send_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinize birkaç dakika içinde bir parola kurtarma bağlantısı gönderilir. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
@@ -70,6 +85,14 @@ tr:
     unlocks:
       send_instructions: Hesabınızı birkaç dakika içinde nasıl açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
       send_paranoid_instructions: Hesabınız varsa, birkaç dakika içinde nasıl kilidini açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      unlocked: Hesabınızın kilidi başarıyla açıldı. Devam etmek için lütfen oturum açın.
   errors:
     messages:
+      already_confirmed: zaten onaylanmış, lütfen tekrar oturum açmayı deneyin
+      confirmation_period_expired: "%{period} içinde onaylanması gerekli, lütfen yeni bir tane talep edin"
+      expired: süresi geçti, lütfen yeni bir tane talep edin
       not_found: bulunamadı
+      not_locked: kilitlenmemiş
+      not_saved:
+        one: '1 hata bu %{resource} kaydedilmesini önledi:'
+        other: "%{count} hata bu %{resource} kaydedilmesini önledi:"

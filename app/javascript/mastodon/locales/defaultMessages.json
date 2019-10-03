@@ -151,6 +151,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Due to a bug in our code or a browser compatibility issue, this page could not be displayed correctly.",
+        "id": "error.unexpected_crash.explanation"
+      },
+      {
+        "defaultMessage": "Try refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.",
+        "id": "error.unexpected_crash.next_steps"
+      },
+      {
+        "defaultMessage": "Report issue",
+        "id": "errors.unexpected_crash.report_issue"
+      },
+      {
+        "defaultMessage": "Copy stacktrace to clipboard",
+        "id": "errors.unexpected_crash.copy_stacktrace"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/error_boundary.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{count} {rawCount, plural, one {person} other {people}} talking",
         "id": "trends.count_by_accounts"
       }
@@ -239,16 +260,20 @@
         "id": "poll.voted"
       },
       {
+        "defaultMessage": "{count, plural, one {# person} other {# people}}",
+        "id": "poll.total_people"
+      },
+      {
+        "defaultMessage": "{count, plural, one {# vote} other {# votes}}",
+        "id": "poll.total_votes"
+      },
+      {
         "defaultMessage": "Vote",
         "id": "poll.vote"
       },
       {
         "defaultMessage": "Refresh",
         "id": "poll.refresh"
-      },
-      {
-        "defaultMessage": "{count, plural, one {# vote} other {# votes}}",
-        "id": "poll.total_votes"
       }
     ],
     "path": "app/javascript/mastodon/components/poll.json"
@@ -499,24 +524,12 @@
         "id": "confirmations.redraft.message"
       },
       {
-        "defaultMessage": "Block",
-        "id": "confirmations.block.confirm"
-      },
-      {
         "defaultMessage": "Reply",
         "id": "confirmations.reply.confirm"
       },
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
-      },
-      {
-        "defaultMessage": "Block & Report",
-        "id": "confirmations.block.block_and_report"
-      },
-      {
-        "defaultMessage": "Are you sure you want to block {name}?",
-        "id": "confirmations.block.message"
       }
     ],
     "path": "app/javascript/mastodon/containers/status_container.json"
@@ -554,24 +567,12 @@
         "id": "confirmations.unfollow.confirm"
       },
       {
-        "defaultMessage": "Block",
-        "id": "confirmations.block.confirm"
-      },
-      {
         "defaultMessage": "Hide entire domain",
         "id": "confirmations.domain_block.confirm"
       },
       {
-        "defaultMessage": "Block & Report",
-        "id": "confirmations.block.block_and_report"
-      },
-      {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
-      },
-      {
-        "defaultMessage": "Are you sure you want to block {name}?",
-        "id": "confirmations.block.message"
       },
       {
         "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.",
@@ -1483,6 +1484,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Refresh",
+        "id": "refresh"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       },
@@ -2156,6 +2161,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Refresh",
+        "id": "refresh"
+      },
+      {
         "defaultMessage": "No one has boosted this toot yet. When someone does, they will show up here.",
         "id": "status.reblogs.empty"
       }
@@ -2274,24 +2283,12 @@
         "id": "confirmations.redraft.message"
       },
       {
-        "defaultMessage": "Block",
-        "id": "confirmations.block.confirm"
-      },
-      {
         "defaultMessage": "Reply",
         "id": "confirmations.reply.confirm"
       },
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
-      },
-      {
-        "defaultMessage": "Block & Report",
-        "id": "confirmations.block.block_and_report"
-      },
-      {
-        "defaultMessage": "Are you sure you want to block {name}?",
-        "id": "confirmations.block.message"
       }
     ],
     "path": "app/javascript/mastodon/features/status/containers/detailed_status_container.json"
@@ -2315,10 +2312,6 @@
         "id": "confirmations.redraft.message"
       },
       {
-        "defaultMessage": "Block",
-        "id": "confirmations.block.confirm"
-      },
-      {
         "defaultMessage": "Show more for all",
         "id": "status.show_more_all"
       },
@@ -2337,21 +2330,39 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "View context",
+        "id": "lightbox.view_context"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/audio_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to block {name}?",
+        "id": "confirmations.block.message"
+      },
+      {
+        "defaultMessage": "Cancel",
+        "id": "confirmation_modal.cancel"
       },
       {
         "defaultMessage": "Block & Report",
         "id": "confirmations.block.block_and_report"
       },
       {
-        "defaultMessage": "Toot",
-        "id": "column.status"
-      },
-      {
-        "defaultMessage": "Are you sure you want to block {name}?",
-        "id": "confirmations.block.message"
+        "defaultMessage": "Block",
+        "id": "confirmations.block.confirm"
       }
     ],
-    "path": "app/javascript/mastodon/features/status/index.json"
+    "path": "app/javascript/mastodon/features/ui/components/block_modal.json"
   },
   {
     "descriptors": [
@@ -2424,6 +2435,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
       {
         "defaultMessage": "Embed",
         "id": "status.embed"
@@ -2568,6 +2583,10 @@
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "This will hide posts from them and posts mentioning them, but it will still allow them to see your posts and follow you.",
+        "id": "confirmations.mute.explanation"
       },
       {
         "defaultMessage": "Hide notifications from this user?",

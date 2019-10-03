@@ -1486,6 +1486,10 @@ a.account__display-name {
   color: inherit;
 }
 
+.detailed-status .button.logo-button {
+  margin-bottom: 15px;
+}
+
 .detailed-status__display-name {
   color: $secondary-text-color;
   display: block;
@@ -4267,10 +4271,13 @@ a.status-card.compact:hover {
   z-index: 9999;
 }
 
-.video-modal {
+.video-modal__container {
   max-width: 100vw;
   max-height: 100vh;
-  position: relative;
+}
+
+.audio-modal__container {
+  width: 50vw;
 }
 
 .media-modal {
@@ -4370,6 +4377,7 @@ a.status-card.compact:hover {
   }
 
   a {
+    pointer-events: auto;
     text-decoration: none;
     font-weight: 500;
     color: $ui-secondary-color;
@@ -4854,6 +4862,7 @@ a.status-card.compact:hover {
   &:focus,
   &:active {
     color: darken($lighter-text-color, 4%);
+    background-color: transparent;
   }
 }
 
@@ -5120,6 +5129,7 @@ a.status-card.compact:hover {
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
+  direction: ltr;
 
   &.editable {
     border-radius: 0;
@@ -5167,6 +5177,7 @@ a.status-card.compact:hover {
   max-width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
+  direction: ltr;
 
   &.editable {
     border-radius: 0;
@@ -5850,6 +5861,7 @@ noscript {
 }
 
 .embed-modal {
+  width: auto;
   max-width: 80vw;
   max-height: 80vh;
 
@@ -5880,6 +5892,7 @@ noscript {
       font-size: 14px;
       margin: 0;
       margin-bottom: 15px;
+      border-radius: 4px;
 
       &::-moz-focus-inner {
         border: 0;
@@ -5905,6 +5918,7 @@ noscript {
       max-width: 100%;
       overflow: hidden;
       border: 0;
+      border-radius: 4px;
     }
   }
 }
@@ -6450,7 +6464,6 @@ noscript {
     flex: 1 1 auto;
     padding: 10px 5px;
     padding-right: 15px;
-    word-break: break-all;
     overflow: hidden;
 
     &__info {
@@ -6473,8 +6486,8 @@ noscript {
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 4px;
-      flex-basis: 170px;
-      flex-shrink: 1000;
+      flex-basis: 90px;
+      flex-grow: 1;
 
       a {
         color: $primary-text-color;
@@ -6486,6 +6499,10 @@ noscript {
           text-decoration: underline;
         }
       }
+    }
+
+    a {
+      word-break: break-word;
     }
   }
 }

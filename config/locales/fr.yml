@@ -37,6 +37,7 @@ fr:
     terms: Conditions d’utilisation
     unavailable_content: Contenu non disponible
     unavailable_content_description:
+      domain: Serveur
       reason: 'Motif :'
       rejecting_media: Les fichiers média de ce serveur ne seront pas traités et aucune miniature ne sera affichée, nécessitant un clic manuel vers l'autre serveur.
       silenced: Les messages de ce serveur ne s'afficheront nulle part sauf votre flux personnel si vous suivez l'auteur.
@@ -239,6 +240,7 @@ fr:
       delete: Supprimer
       destroyed_msg: Émoji supprimé avec succès !
       disable: Désactiver
+      disabled: Désactivé
       disabled_msg: Émoji désactivé avec succès !
       emoji: Émoji
       enable: Activer
@@ -831,13 +833,16 @@ fr:
     past_migrations: Migrations passées
     proceed_with_move: Déplacer les abonnés
     redirecting_to: Votre compte est redirigé vers %{acct}.
+    set_redirect: Définir redirection
     warning:
       backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
       cooldown: Après le déménagement, il y a une période de refroidissement pendant laquelle vous ne pourrez plus bouger
       disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la ré-activation.
       followers: Cette action va déplacer tous les abonnés du compte courant vers le nouveau compte
+      only_redirect_html: Alternativement, vous pouvez <a href="%{path}">seulement appliquer une redirection sur votre profil</a>.
       other_data: Aucune autre donnée ne sera déplacée automatiquement
+      redirect: Le profil de votre compte actuel sera mis à jour avec un avis de redirection et sera exclu des recherches
   moderation:
     title: Modération
   notification_mailer:
@@ -1025,6 +1030,9 @@ fr:
       private: Les statuts non-publics ne peuvent pas être épinglés
       reblog: Un partage ne peut pas être épinglé
     poll:
+      total_people:
+        one: "%{count} personnes"
+        other: "%{count} personnes"
       total_votes:
         one: "%{count} vote"
         other: "%{count} votes"
