@@ -603,6 +603,7 @@ tr:
   challenge:
     confirm: Devam et
     invalid_password: Geçersiz parola
+    prompt: Devam etmek parolayı doğrulayın
   datetime:
     distance_in_words:
       about_x_hours: "%{count}sa"
@@ -617,6 +618,17 @@ tr:
       x_minutes: "%{count}dk"
       x_months: "%{count}ay"
       x_seconds: "%{count}sn"
+  deletes:
+    challenge_not_passed: Girdiğiniz bilgi doğru değildi
+    confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
+    confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
+    proceed: Hesabı sil
+    success_msg: Hesabınız başarıyla silindi
+    warning:
+      before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
+      caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
+      data_removal: Gönderileriniz ve diğer verileriniz kalıcı olarak silinecektir
+      email_change_html: Hesabınızı silmeden <a href="%{path}">e-posta adresinizi değiştirebilirsiniz</a>
   directories:
     directory: Profil dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
@@ -698,6 +710,7 @@ tr:
     inactive: Pasif
     publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
     status: Doğrulama durumu
+    view_proof: Kanıt görüntüle
   imports:
     modes:
       merge: Birleştir
@@ -744,6 +757,21 @@ tr:
       too_many: 4'ten fazla dosya ekleyemezsiniz
   migrations:
     acct: Taşındı
+    cancel: Yönlendirmeyi iptal et
+    cancelled_msg: Yönlendirme başarıyla iptal edildi.
+    errors:
+      already_moved: zaten taşındığınızla aynı hesap
+      move_to_self: mevcut hesap olamaz
+      not_found: bulunamadı
+      on_cooldown: Soğuma aşamasındasınız
+    followers_count: Taşınma zamanındaki takipçiler
+    incoming_migrations: Farklı bir hesaptan taşınma
+    past_migrations: Geçmiş taşınmalar
+    proceed_with_move: Takipçileri taşı
+    redirecting_to: Hesabınız %{acct} hesabına yönlendirilmektedir.
+    set_redirect: Yönlendirme ayarla
+    warning:
+      before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
   moderation:
     title: Yönetim
   notification_mailer:
