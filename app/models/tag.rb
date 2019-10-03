@@ -49,7 +49,7 @@ class Tag < ApplicationRecord
 
   after_save :save_account_tag_stat
 
-  update_index('tags#tag', :self) if Chewy.enabled?
+  update_index('tags#tag', :self)
 
   def account_tag_stat
     super || build_account_tag_stat
