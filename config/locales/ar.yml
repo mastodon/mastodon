@@ -38,6 +38,7 @@ ar:
     terms: شروط الخدمة
     unavailable_content: محتوى غير متوفر
     unavailable_content_description:
+      domain: الخادم
       reason: 'السبب:'
     user_count_after:
       few: مستخدمين
@@ -245,11 +246,14 @@ ar:
       delete: حذف
       destroyed_msg: تمت عملية تدمير الإيموجي بنجاح!
       disable: تعطيل
+      disabled: مُعطَّل
       disabled_msg: تمت عملية تعطيل ذلك الإيموجي بنجاح
       emoji: إيموجي
       enable: تفعيل
+      enabled: مُشغَّل
       enabled_msg: تم تنشيط ذاك الإيموجي بنجاح
       image_hint: ملف PNG إلى غاية حجم 50 ك.ب
+      list: القائمة
       listed: مُدرَج
       new:
         title: إضافة إيموجي خاص جديد
@@ -263,6 +267,7 @@ ar:
       updated_msg: تم تحديث الإيموجي بنجاح!
       upload: رفع
     dashboard:
+      authorized_fetch_mode: الوضع الآمن
       backlog: الأعمال المتراكمة
       config: الإعداد
       feature_deletions: الحسابات المحذوفة
@@ -475,6 +480,8 @@ ar:
         desc_html: يمكنك كتابة سياسة الخصوصية الخاصة بك ، شروط الخدمة أو غيرها من القوانين. يمكنك استخدام علامات HTML
         title: شروط الخدمة المخصصة
       site_title: اسم مثيل الخادم
+      spam_check_enabled:
+        title: مكافحة البريد المزعج
       thumbnail:
         desc_html: يستخدم للعروض السابقة عبر Open Graph و API. 1200x630px موصى به
         title: الصورة الرمزية المصغرة لمثيل الخادوم
@@ -758,6 +765,7 @@ ar:
     past_migrations: التهجيرات السابقة
     proceed_with_move: انقل مشارِكيك
     redirecting_to: حسابك موجَّه إلى %{acct}.
+    set_redirect: تعين إعادة التوجيه
   moderation:
     title: الإشراف
   notification_mailer:
