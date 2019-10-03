@@ -39,6 +39,7 @@ cs:
     terms: Podmínky používání
     unavailable_content: Nedostupný obsah
     unavailable_content_description:
+      domain: Server
       reason: 'Důvod:'
       rejecting_media: Mediální soubory z tohoto serveru nebudou zpracovány a nebudou zobrazeny žádné náhledy. Pro prohlédnutí médií bude třeba manuálně přejít na druhý server.
       silenced: Příspěvky z tohoto severu nebudou zobrazeni nikde kromě vašeho domovského proudu, v případě, že sledujete autora.
@@ -247,6 +248,7 @@ cs:
       delete: Smazat
       destroyed_msg: Emoji úspěšně zničeno!
       disable: Zakázat
+      disabled: Zakázáno
       disabled_msg: Emoji bylo úspěšně zakázáno
       emoji: Emoji
       enable: Povolit
@@ -1054,6 +1056,11 @@ cs:
       private: Nelze připnout neveřejné tooty
       reblog: Nelze připnout boost
     poll:
+      total_people:
+        few: "%{count} lidé"
+        many: "%{count} lidí"
+        one: "%{count} člověk"
+        other: "%{count} lidí"
       total_votes:
         few: "%{count} hlasy"
         many: "%{count} hlasů"
