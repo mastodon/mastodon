@@ -115,8 +115,7 @@ class MediaAttachment < ApplicationRecord
     original: VIDEO_FORMAT,
   }.freeze
 
-  IMAGE_LIMIT = 10.megabytes
-  VIDEO_LIMIT = 40.megabytes
+  FILE_SIZE_LIMIT = 40.megabytes
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
@@ -128,9 +127,8 @@ class MediaAttachment < ApplicationRecord
                     convert_options: { all: '-quality 90 -strip +set modify-date +set create-date' }
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
-  validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
-  validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
-  remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false
+  validates_attachment_size :file, less_than: FILE_SIZE_LIMIT
+  remotable_attachment :file, FILE_SIZE_LIMIT, suppress_errors: false
 
   include Attachmentable
 
