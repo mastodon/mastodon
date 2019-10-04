@@ -1,4 +1,3 @@
----
 uk:
   devise:
     confirmations:
@@ -45,6 +44,10 @@ uk:
         extra: Якщо ви не запитували зміну пароля, ігноруйте цей лист. Ваш пароль не буде змінено, допоки ви не перейдете за посиланням та не створите новий.
         subject: 'Mastodon: Інструкції для скидання паролю'
         title: Скидання пароля
+      two_factor_disabled:
+        title: Двофакторна автентифікація вимкнена
+      two_factor_enabled:
+        title: Двофакторна автентифікація увімкнена
       unlock_instructions:
         subject: 'Mastodon: Інструкції для розблокування'
     omniauth_callbacks:
@@ -81,7 +84,7 @@ uk:
       not_found: не знайдено
       not_locked: не був заблокований
       not_saved:
+        one: '1 помилка не дала цьому %{resource} зберегтися:'
         few: "%{count} помилки не дали цьому %{resource} зберегтися:"
         many: "%{count} помилок не дало цьому %{resource} зберегтися:"
-        one: '1 помилка не дала цьому %{resource} зберегтися:'
         other: "%{count} помилок не дало цьому %{resource} зберегтися:"
