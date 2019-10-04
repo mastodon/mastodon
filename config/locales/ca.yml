@@ -17,13 +17,13 @@ ca:
     contact_unavailable: N/D
     discover_users: Descobreix usuaris
     documentation: Documentació
-    extended_description_html: |
-      <h3>Un bon lloc per les regles</h3>
-      <p>Encara no s'ha configurat la descripció ampliada.</p>
     federation_hint_html: Amb un compte de %{instance} podràs seguir persones de qualsevol servidor Mastodon i altres.
     generic_description: "%{domain} és un servidor a la xarxa"
     get_apps: Prova una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
+    instance_actor_flash: |
+      Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
+      S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
     learn_more: Més informació
     privacy_policy: Política de privacitat
     see_whats_happening: Mira què està passant
@@ -35,6 +35,14 @@ ca:
     status_count_before: Que han escrit
     tagline: Segueix els teus amics i descobreix-ne de nous
     terms: Termes del servei
+    unavailable_content: Contingut no disponible
+    unavailable_content_description:
+      domain: Servidor
+      reason: Raó
+      rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats o emmagatzemats i cap miniatura serà mostrada, requerint clic manual a través de l''arxiu original:'
+      silenced: 'Les publicacions d''aquests servidors seran amagades en les línies de temps públiques i converses, i cap notificació serà generada de les interaccions dels seus usuaris, llevat que estiguis seguint-los:'
+      suspended: 'Cap dada d''aquests servidors serà processada, emmagatzemada o intercanviada, fent impossible qualsevol interacció o comunicació amb els usuaris d''aquests servidors:'
+    unavailable_content_html: Mastodon generalment et permet per veure contingut i interaccionar amb usuaris de qualsevol altre servidor en el fedivers. Aquestes són les excepcions que s'han fet en aquest servidor particular.
     user_count_after:
       one: usuari
       other: usuaris
@@ -42,6 +50,8 @@ ca:
     what_is_mastodon: Què és Mastodon?
   accounts:
     choices_html: 'Eleccions de %{name}:'
+    endorsements_hint: Pots recomanar persones que segueixes a l'interfície de web, que apareixeran aquí.
+    featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
     followers:
       one: Seguidor
@@ -53,6 +63,7 @@ ca:
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
     network_hidden: Aquesta informació no està disponible
+    never_active: Mai
     nothing_here: No hi ha res aquí!
     people_followed_by: Usuaris seguits per %{name}
     people_who_follow: Usuaris que segueixen %{name}
@@ -183,6 +194,7 @@ ca:
       username: Nom d'usuari
       warn: Avís
       web: Web
+      whitelisted: Llista blanca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
@@ -218,19 +230,24 @@ ca:
       deleted_status: "(toot suprimit)"
       title: Registre d'auditoria
     custom_emojis:
+      assign_category: Assigna una categoria
       by_domain: Domini
       copied_msg: S'ha creat correctament la còpia local de l'emoji
       copy: Copia
       copy_failed_msg: No s'ha pogut fer una còpia local d'aquest emoji
+      create_new_category: Crea una categoria nova
       created_msg: Emoji creat amb èxit!
       delete: Suprimeix
       destroyed_msg: Emojo s'ha destruït amb èxit!
       disable: Inhabilita
+      disabled: Desactivat
       disabled_msg: S'ha inhabilitat l'emoji amb èxit
       emoji: Emoji
       enable: Habilita
+      enabled: Activat
       enabled_msg: S'ha habilitat amb èxit emoji
       image_hint: PNG de fins a 50 KB
+      list: Llista
       listed: Enumerat
       new:
         title: Afegeix emoji personalitzat nou
@@ -238,11 +255,14 @@ ca:
       shortcode: Codi curt
       shortcode_hint: Com a mínim 2 caràcters, només caràcters alfanumèrics i guions baixos
       title: Emojis personalitzats
+      uncategorized: Sense categoria
+      unlist: No llistat
       unlisted: Sense classificar
       update_failed_msg: No s'ha pogut actualitzar aquest emoji
       updated_msg: Emoji s'ha actualitzat correctament!
       upload: Carrega
     dashboard:
+      authorized_fetch_mode: Mode d'obtenció autoritzat
       backlog: treballs en espera
       config: Configuració
       feature_deletions: Supressions del compte
@@ -250,10 +270,13 @@ ca:
       feature_profile_directory: Directori de perfils
       feature_registrations: Registres
       feature_relay: Relay de la Federació
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista previa de línia de temps
       features: Característiques
       hidden_service: Federació amb serveis ocults
       open_reports: informes oberts
+      pending_tags: etiquetes pendents de revisar
+      pending_users: usuaris pendents de revisar
       recent_users: Usuaris recents
       search: Cerca de text complet
       single_user_mode: Mode d'usuari únic
@@ -265,11 +288,18 @@ ca:
       week_interactions: interaccions d'aquesta setmana
       week_users_active: usuaris actius aquesta setmana
       week_users_new: nous usuaris aquest setmana
+      whitelist_mode: Mode llista blanca
+    domain_allows:
+      add_new: Dominis autoritzats
+      created_msg: El domini ha estat correctament autoritzat
+      destroyed_msg: S'ha esborrat el domini de la llista blanca
+      undo: Treure de la llista blanca
     domain_blocks:
       add_new: Afegir nou bloqueig de domini
       created_msg: El bloqueig de domini ara s'està processant
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
+      edit: Editar el bloqueig del domini
       existing_domain_block_html: Ja has imposat uns limits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
       new:
         create: Crea un bloqueig
@@ -280,6 +310,10 @@ ca:
           silence: Silenci
           suspend: Suspensió
         title: Bloqueig de domini nou
+      private_comment: Comentari privat
+      private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
+      public_comment: Comentari públic
+      public_comment_hint: Comentari pel públic general sobre aquesta limitació del domini, si la publicació de la llista de limitacions de domini està habilitada.
       reject_media: Rebutja els fitxers multimèdia
       reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
       reject_reports: Rebutja informes
@@ -299,6 +333,7 @@ ca:
         title: Desfés el bloqueig de domini de %{domain}
         undo: Desfés
       undo: Desfés el bloqueig del domini
+      view: Veure el bloqueig del domini
     email_domain_blocks:
       add_new: Afegir nou
       created_msg: S'ha creat el bloc de domini de correu electrònic
@@ -322,6 +357,8 @@ ca:
         all: Totes
         limited: Limitades
         title: Moderació
+      private_comment: Comentari privat
+      public_comment: Comentari públic
       title: Federació
       total_blocked_by_us: Bloquejats per nosaltres
       total_followed_by_them: Seguits per ells
@@ -351,6 +388,7 @@ ca:
       pending: S'està esperant l'aprovació del relay
       save_and_enable: Desa i activa
       setup: Configura una connexió de relay
+      signatures_not_enabled: Els relays no treballaran correctament mentre estiguin habilitats el mode segur o llista blanca
       status: Estat
       title: Relays
     report_notes:
@@ -399,6 +437,16 @@ ca:
       custom_css:
         desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
         title: CSS personalitzat
+      default_noindex:
+        desc_html: Afecta a tots els usuaris que no han canviat aquest ajustament ells mateixos
+        title: Configurar per defecte als usuaris fora de l'indexació dels motor de cerca
+      domain_blocks:
+        all: Per a tothom
+        disabled: Per a ningú
+        title: Mostra els bloquejos de domini
+        users: Per als usuaris locals en línia
+      domain_blocks_rationale:
+        title: Mostra el raonament
       hero:
         desc_html: Es mostra en pàgina frontal. Recomanat al menys 600x100px. Si no es configura es mostrarà el del servidor
         title: Imatge d’heroi
@@ -449,6 +497,9 @@ ca:
         desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
         title: Termes del servei personalitzats
       site_title: Nom del servidor
+      spam_check_enabled:
+        desc_html: Mastodon pot auto-silenciar i informar automàticament de comptes basat en mesures com ara la detecció de comptes que envien missatges repetits no sol·licitats. Pot haver-hi falsos positius.
+        title: Anti-spam
       thumbnail:
         desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
         title: Miniatura del servidor
@@ -456,12 +507,16 @@ ca:
         desc_html: Mostra la línia de temps pública a la pàgina inicial
         title: Vista prèvia de la línia de temps
       title: Configuració del lloc
+      trends:
+        desc_html: Mostra públicament les etiquetes revisades anteriorment que actualment estan en tendència
+        title: Etiquetes tendència
     statuses:
       back_to_account: Torna a la pàgina del compte
       batch:
         delete: Suprimeix
         nsfw_off: Marcar com a no sensible
         nsfw_on: Marcar com a sensible
+      deleted: Esborrats
       failed_to_execute: No s'ha pogut executar
       media:
         title: Contingut multimèdia
@@ -469,21 +524,24 @@ ca:
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
-    subscriptions:
-      callback_url: URL de retorn
-      confirmed: Confirmat
-      expires_in: Expira en
-      last_delivery: Últim lliurament
-      title: WebSub
-      topic: Tema
     tags:
-      accounts: Comptes
-      hidden: Amagat
-      hide: Ocult del directori
+      accounts_today: Usos únics actuals
+      accounts_week: Usos únics d'aquesta setmana
+      breakdown: Desglossament de l’ús actual per origen
+      context: Context
+      directory: En el directori
+      in_directory: "%{count} en el directori"
+      last_active: Darrer actiu
+      most_popular: Més populars
+      most_recent: Més recent
       name: Etiqueta
+      review: Revisar l'estat
+      reviewed: Revisades
       title: Etiquetes
-      unhide: Mostra en el directori
-      visible: Visible
+      trending_right_now: Actualment en tendència
+      unique_uses_today: "%{count} publicacions d'avui"
+      unreviewed: Sense revisar
+      updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
     title: Administració
     warning_presets:
       add_new: Afegir nou
@@ -499,11 +557,21 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
+    new_trending_tag:
+      body: 'La etiqueta #%{name} està actualment en tendència però no s''ha revisat prèviament. No es mostrarà públicament tret que ho permetis o guardis el formulari tal com està per a no tornar a escoltar res al respecte.'
+      subject: Nova etiqueta pendent de revisió a %{instance} (#%{name})
+  aliases:
+    add_new: Crear àlies
+    created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
+    deleted_msg: Àlies eliminat amb èxit. Moure't des d'aquell compte a aquests ja no serà possible.
+    hint_html: Si et vols moure des d'un altre compte a aquest, aquí pots crear un àlies, el qual és requerit abans que puguis procedir a moure els seguidors del compte vell a aquest. Aquesta acció és per si mateixa <strong>inofensiva i reversible</strong>. <strong>La migració del compte és iniciada des de'l compte vell</strong>.
+    remove: Desvincular l'àlies
   appearance:
     advanced_web_interface: Interfície web avançada
     advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol número de llistes i etiquetes.'
     animations_and_accessibility: Animacions i accessibilitat
     confirmation_dialogs: Diàlegs de confirmació
+    discovery: Descobriment
     sensitive_content: Contingut sensible
   application_mailer:
     notification_preferences: Canvia les preferències de correu
@@ -524,9 +592,13 @@ ca:
     apply_for_account: Demana una invitació
     change_password: Contrasenya
     checkbox_agreement_html: Estic d'acord amb les <a href="%{rules_path}" target="_blank">normes del servidor</a> i <a href="%{terms_path}" target="_blank"> els termes del servei</a>
-    confirm_email: Confirmar correu electrònic
+    checkbox_agreement_without_rules_html: Acepto els <a href="%{terms_path}" target="_blank">termes del servei</a>
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
+    description:
+      prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de Mastodon!"
+      prefix_sign_up: Registra't avui a Mastodon!
+      suffix: Amb un compte seràs capaç de seguir persones, publicar i intercanviar missatges amb usuaris de qualsevol servidor de Mastodon i més!
     didnt_get_confirmation: No has rebut el correu de confirmació?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
@@ -544,6 +616,16 @@ ca:
     reset_password: Restableix la contrasenya
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
+    setup:
+      email_below_hint_html: Si l’adreça de correu electrònic següent és incorrecta, podeu canviar-la aquí i rebre un nou correu electrònic de confirmació.
+      email_settings_hint_html: El correu electrònic de confirmació es va enviar a %{email}. Si aquesta adreça de correu electrònic no és correcta, la podeu canviar a la configuració del compte.
+      title: Configuració
+    status:
+      account_status: Estat del compte
+      confirming: Esperant que es completi la confirmació del correu electrònic.
+      functional: El teu compte és plenament operatiu.
+      pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
+      redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
     trouble_logging_in: Problemes per iniciar la sessió?
   authorize_follow:
     already_following: Ja estàs seguint aquest compte
@@ -556,6 +638,11 @@ ca:
       return: Mostra el perfil de l'usuari
       web: Vés a la web
     title: Segueix %{acct}
+  challenge:
+    confirm: Continua
+    hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
+    invalid_password: Contrasenya no vàlida
+    prompt: Confirmi la contrasenya per a continuar
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -571,26 +658,33 @@ ca:
       x_months: "%{count} mesos"
       x_seconds: "%{count} s"
   deletes:
-    bad_password_msg: Bon intent hackers! La contrasenya no és correcta
+    challenge_not_passed: L'informació que has entrat no és correcte
     confirm_password: Introdueix la contrasenya actual per a verificar la identitat
-    description_html: Això eliminarà de forma <strong>irreversible i permanent</strong> el contingut del teu compte i el desactivarà. El teu nom d'usuari romandrà reservat per evitar que algú volgués fer-se passar per tu.
+    confirm_username: Escriu el teu nom d'usuari per a confirmar el procediment
     proceed: Suprimeix el compte
     success_msg: El compte s'ha eliminat correctament
-    warning_html: Només és garantida l'eliminació del contingut d'aquest servidor en particular. El contingut que s'ha compartit àmpliament deixa petjades. Els servidors fora de línia i els que ja no estan subscrits no actualitzaran les seves bases de dades.
-    warning_title: Disponibilitat de contingut disseminat
+    warning:
+      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      caches: El contingut que ha estat memoritzat en la memòria cau per altres servidors pot persistir
+      data_removal: Les teves publicacions i altres dades seran permanentment eliminades
+      email_change_html: Pots <a href="%{path}">canviar la teva adreça de correu electrònic</a> sense eliminar el teu compte
+      email_contact_html: Si encara no arriba pots enviar un correu electrònic a <a href="mailto:%{email}">%{email}</a> per a demanar ajuda
+      email_reconfirmation_html: Si no estàs rebent el correu electrònic de confirmació <a href="%{path}">pots demanar-lo un altre cop</a>
+      irreversible: No seràs capaç de restaurar o reactivar el teu compte
+      more_details_html: Per a més detalls, llegeix la <a href="%{terms_path}">política de privadesa</a>.
+      username_available: El teu nom d'usuari esdevindrà altre cop disponible
+      username_unavailable: El teu nom d'usuari quedarà inutilitzable
   directories:
     directory: Directori de perfils
-    enabled: Actualment estàs inclòs al directori.
-    enabled_but_waiting: Has optat per aparèixer al directori però encara no tens el nombre mínim de seguidors (%{min_followers}) per ser-hi.
     explanation: Descobreix usuaris segons els seus interessos
     explore_mastodon: Explora %{title}
-    how_to_enable: Actualment no tens activat ser al directori. Pots optar-hi a continuació. Utilitza etiquetes en el teu text bio per incloure't sota etiquetes especifiques!
-    people:
-      one: "%{count} persona"
-      other: "%{count} gent"
+  domain_validator:
+    invalid_domain: no es un nom de domini vàlid
   errors:
+    '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
     '404': La pàgina que estàs cercant no és aquí.
+    '406': Aquesta pàgina no está disponible en el format demanat.
     '410': La pàgina que estàs cercant ja no existeix.
     '422':
       content: La verificació de seguretat ha fallat. Tens les galetes blocades?
@@ -599,6 +693,7 @@ ca:
     '500':
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
+    '503': La pàgina no podria ser servida a causa d'un error temporal del servidor.
     noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la vostra plataforma.
   existing_username_validator:
     not_found: no s'ha pogut trobar cap usuari local amb aquest nom d'usuari
@@ -622,6 +717,7 @@ ca:
     add_new: Afegir nova
     errors:
       limit: Ja has mostrat la quantitat màxima d'etiquetes
+    hint_html: "<strong>Què son les etiquetes destacades?</strong> Es mostren de manera destacada en el teu perfil públic i permeten a les persones navegar per les teves publicacions amb aquestes etiquetes. Són una gran eina per fer un seguiment de treballs creatius o de projectes a llarg termini."
   filters:
     contexts:
       home: Línia de temps Inici
@@ -642,10 +738,12 @@ ca:
     developers: Desenvolupadors
     more: Més…
     resources: Recursos
+    trending_now: En tendència
   generic:
     all: Tot
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copia
+    no_batch_actions_available: Cap accions de lot disponibles en aquesta pàgina
     order_by: Ordena per
     save_changes: Desa els canvis
     validation_errors:
@@ -717,9 +815,34 @@ ca:
       too_many: No es poden adjuntar més de 4 fitxers
   migrations:
     acct: usuari@domini del nou compte
-    currently_redirecting: 'El teu perfil està configurat com a redirecció a:'
-    proceed: Desa
-    updated_msg: La configuració de la migració del compte s'ha actualitzat correctament!
+    cancel: Cancel·la redirecció
+    cancel_explanation: Cancel·lant la redirecció reactivará el teu compte actual però no recuperarà els seguidors que han estat moguts a aquell compte.
+    cancelled_msg: Redirecció cancel·lada amb èxit.
+    errors:
+      already_moved: és el mateix compte al que ja t'has mogut
+      missing_also_known_as: no fa referencia a aquest compte
+      move_to_self: no pot ser el compte actual
+      not_found: podria no ser trobat
+      on_cooldown: Estàs en temps de recuperació
+    followers_count: Seguidors en el moment del moviment
+    incoming_migrations: Movent des d'un compte diferent
+    incoming_migrations_html: Per a moure't des d'un altre compte a aquest, primer necessites <a href="%{path}">crear un àlies de compte</a>.
+    moved_msg: El teu compte ara està redirigint a %{acct} i els teus seguidors estan sent moguts.
+    not_redirecting: El teu compte no està redirigint actualment a cap altre.
+    on_cooldown: Recentment has emigrat el teu compte. Aquesta funció esdevindrà un altre cop disponible en %{count} dies.
+    past_migrations: Migracions passades
+    proceed_with_move: Moure seguidors
+    redirecting_to: El teu compte està redirigint a %{acct}.
+    set_redirect: Ajusta la redirecció
+    warning:
+      backreference_required: El compte nou primer ha de ser configurat per a referenciar aquest
+      before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
+      cooldown: Després de moure't hi ha un període de recuperació durant el qual no seràs capaç de moure't un altre cop
+      disabled_account: El teu compte actual no serà plenament utilitzable després. Tanmateix, tindràs accés a exportació de dades així com reactivació.
+      followers: Aquesta acció mourà tots els seguidors des de l'actual al compte nou
+      only_redirect_html: Alternativament, pots <a href="%{path}">posar només una redirecció en el teu perfil</a>.
+      other_data: Cap altre dada serà moguda automàticament
+      redirect: El perfil del teu compte actual serà actualitzat amb un avís de redirecció i serà exclòs de les cerques
   moderation:
     title: Moderació
   notification_mailer:
@@ -816,10 +939,6 @@ ca:
     reply:
       proceed: Procedir a respondre
       prompt: 'Vols respondre a aquest toot:'
-  remote_unfollow:
-    error: Error
-    title: Títol
-    unfollowed: Sense seguir
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} toots programats per a aquell dia
     over_total_limit: Has superat el limit de %{limit} toots programats
@@ -868,6 +987,7 @@ ca:
   settings:
     account: Compte
     account_settings: Ajustos del compte
+    aliases: Àlies de compte
     appearance: Aparènça
     authorized_apps: Aplicacions autoritzades
     back: Torna a Mastodon
@@ -885,6 +1005,8 @@ ca:
     profile: Perfil
     relationships: Seguits i seguidors
     two_factor_authentication: Autenticació de dos factors
+  spam_check:
+    spam_detected_and_silenced: Aquest és un informe automatitzat. S'ha detectat correu brossa i el remitent s'ha silenciat automàticament. Si es tracta d’un error, si us plau, trèieu el silenci del compte.
   statuses:
     attached:
       description: 'Adjunt: %{attached}'
@@ -908,6 +1030,9 @@ ca:
       private: No es pot fixar el toot no públic
       reblog: No es pot fixar un impuls
     poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} persones"
       total_votes:
         one: "%{count} vot"
         other: "%{count} vots"
@@ -926,6 +1051,8 @@ ca:
     pinned: Toot fixat
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
+  tags:
+    does_not_match_previous_name: no coincideix amb el nom anterior
   terms:
     body_html: |
       <h2>Política de Privacitat</h2>
@@ -1043,7 +1170,9 @@ ca:
         disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
         silence: Mentre el teu compte estigui limitat només les persones que ja et segueixen veuen les teves dades en aquest servidor i pots ser exclòs de diverses llistes públiques. No obstant això, d'altres encara poden seguir-te manualment.
         suspend: El teu compte s'ha suspès i tots els teus toots i fitxers multimèdia penjats s'han eliminat irreversiblement d'aquest servidor i dels servidors on tenies seguidors.
+      get_in_touch: Pots respondre a aquest correu electrònic per a contactar amb el personal de %{instance}.
       review_server_policies: Revisa les polítiques del servidor
+      statuses: 'Concretament, per:'
       subject:
         disable: S'ha congelat el teu compte %{acct}
         none: Avís per a %{acct}

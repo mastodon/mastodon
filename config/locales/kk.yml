@@ -10,9 +10,6 @@ kk:
     contact_missing: Бапталмаған
     contact_unavailable: Белгісіз
     documentation: Құжаттама
-    extended_description_html: |
-      <h3>Ережелерге арналған жақсы орын</h3>
-      <p>Әлі ештеңе жазылмапты</p>
     generic_description: "%{domain} желідегі серверлердің бірі"
     hosted_on: Mastodon орнатылған %{domain} доменінде
     learn_more: Көбірек білу
@@ -436,21 +433,8 @@ kk:
       no_status_selected: Бірде-бір статус өзгерген жоқ, себебі ештеңе таңдалмады
       title: Аккаунт статустары
       with_media: Медиамен
-    subscriptions:
-      callback_url: Callbаck URL
-      confirmed: Confirmеd
-      expires_in: Expirеs in
-      last_delivery: Last dеlivery
-      title: WеbSub
-      topic: Tоpic
     tags:
-      accounts: Accоunts
-      hidden: Hiddеn
-      hide: Hidе from directory
-      name: Hаshtag
       title: Hashtаgs
-      unhide: Shоw in directory
-      visible: Visiblе
     title: Administrаtion
     warning_presets:
       add_new: Add nеw
@@ -479,7 +463,6 @@ kk:
     your_token: Your access tokеn
   auth:
     change_password: Құпиясөз
-    confirm_email: Еmаil құптау
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
     didnt_get_confirmation: Растау хаты келмеді ме?
@@ -524,26 +507,18 @@ kk:
       x_months: "%{count}ай"
       x_seconds: "%{count}сек"
   deletes:
-    bad_password_msg: Болмады ма, хакер бала? Құпиясөз қате
     confirm_password: Қазіргі құпиясөзіңізді жазыңыз
-    description_html: This will <strong>permanently, irreversibly</strong> remove content from your account аnd deactivate it. Your username will remain reserved to prevent future impersonations.
     proceed: Аккаунт өшіру
     success_msg: Аккаунтыңыз сәтті өшірілді
-    warning_html: Only deletion of content from this particular server is guaranteed. Content that has been widely sharеd is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
-    warning_title: Бөлінген мазмұнның қол жетімділігі
   directories:
     directory: Профильдер каталогы
-    enabled: Каталогтағы тізімге ендіңіз.
-    enabled_but_waiting: Каталогта көрінгіңіз келетінін түсінеміз, бірақ ол үшін кем дегенде (%{min_followers}) оқырманыңыз болуы қажет.
     explanation: Қолданушыларды қызығушылықтарына қарай реттеу
     explore_mastodon: "%{title} шарлау"
-    how_to_enable: Сіз қазіргі уақытта каталогқа қосылмағансыз. Төменде қосылуға болады. Арнайы био мәтініндегі хэштегтерді қолданыңыз!
-    people:
-      one: "%{count} адам"
-      other: "%{count} адам"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Бұны көру үшін сізде рұқсат жоқ.
     '404': Сіз іздеген бет бұл жерде емес екен.
+    '406': This page is not available in the requested format.
     '410': Сіз іздеген бет қазір жоқ екен.
     '422':
       content: Қауіпсіздік растауы қате. кукилерді блоктағансыз ба?
@@ -552,6 +527,7 @@ kk:
     '500':
       content: Кешірерсіз, бірақ қазір бір қате пайда болып тұр.
       title: Бұл бет дұрыс емес екен
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Mastodon веб қосымшасын қолдану үшін, JavaScript қосыңыз. Болмай жатса, <a href="%{apps_path}">мына қосымшаларды</a> қосып көріңіз, Mastodon қолдану үшін.
   exports:
     archive_takeout:
@@ -645,9 +621,6 @@ kk:
       too_many: 4 файлдан артық қосылмайды
   migrations:
     acct: жаңа аккаунт үшін username@domain
-    currently_redirecting: 'Профиліңіз көшіріледі:'
-    proceed: Сақтау
-    updated_msg: Аккаунт көшіруіңіз сәтті аяқталды!
   moderation:
     title: Модерация
   notification_mailer:
@@ -726,10 +699,6 @@ kk:
     reply:
       proceed: Жауап жазу
       prompt: 'Сіз мына жазбаға жауап жазасыз:'
-  remote_unfollow:
-    error: Қате
-    title: Тақырыбы
-    unfollowed: Жазылудан бас тартылды
   scheduled_statuses:
     over_daily_limit: Сіз бір күндік %{limit} жазба лимитін тауыстыңыз
     over_total_limit: Сіз %{limit} жазба лимитін тауыстыңыз

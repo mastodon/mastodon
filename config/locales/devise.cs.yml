@@ -46,6 +46,18 @@ cs:
         extra: Pokud jste tohle nevyžádal/a, prosím ignorujte tento e-mail. Vaše heslo nebude změněno, dokud nepřejdete na výše uvedenou adresu a nevytvoříte si nové.
         subject: 'Mastodon: Instrukce pro obnovení hesla'
         title: Obnovení hesla
+      two_factor_disabled:
+        explanation: Dvoufázové ověřování bylo pr váš účet zakázáno. Přihlašování je nyní možné pouze pomocí e-mailové adresy a hesla.
+        subject: 'Mastodon: Dvoufázové ověřování zakázáno'
+        title: 2FA zakázáno
+      two_factor_enabled:
+        explanation: Dvoufázové ověřování bylo pr váš účet povoleno. Pro přihlášení bude vyžadován token vygenerovaný spárovanou TOTP aplikací.
+        subject: 'Mastodon: Dvoufázové ověřování povoleno'
+        title: 2FA povoleno
+      two_factor_recovery_codes_changed:
+        explanation: Předchozí záložní kódy byly zrušeny a byly vygenerovány nové.
+        subject: 'Mastodon: Dvoufázové záložní kódy znovu vygenerovány'
+        title: Záložní kódy pro 2FA změněny
       unlock_instructions:
         subject: 'Mastodon: Instrukce pro odemčení účtu'
     omniauth_callbacks:

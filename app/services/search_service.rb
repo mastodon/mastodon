@@ -11,7 +11,7 @@ class SearchService < BaseService
 
     default_results.tap do |results|
       if url_query?
-        results.merge!(url_resource_results) unless url_resource.nil?
+        results.merge!(url_resource_results) unless url_resource.nil? || (@options[:type].present? && url_resource_symbol != @options[:type].to_sym)
       elsif @query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
         results[:statuses] = perform_statuses_search! if full_text_searchable?
@@ -33,8 +33,7 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = StatusesIndex.filter(term: { searchable_by: @account.id })
-                              .query(multi_match: { type: 'most_fields', query: @query, operator: 'and', fields: %w(text text.stemmed) })
+    definition = parsed_query.apply(StatusesIndex.filter(term: { searchable_by: @account.id }))
 
     if @options[:account_id].present?
       definition = definition.filter(term: { account_id: @options[:account_id] })
@@ -53,15 +52,16 @@ class SearchService < BaseService
     preloaded_relations = relations_map_for_account(@account, account_ids, account_domains)
 
     results.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
-  rescue Faraday::ConnectionFailed
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
     []
   end
 
   def perform_hashtags_search!
-    Tag.search_for(
-      @query.gsub(/\A#/, ''),
-      @limit,
-      @offset
+    TagSearchService.new.call(
+      @query,
+      limit: @limit,
+      offset: @offset,
+      exclude_unreviewed: @options[:exclude_unreviewed]
     )
   end
 
@@ -70,7 +70,7 @@ class SearchService < BaseService
   end
 
   def url_query?
-    @options[:type].blank? && @query =~ /\Ahttps?:\/\//
+    @resolve && @query =~ /\Ahttps?:\/\//
   end
 
   def url_resource_results
@@ -119,5 +119,9 @@ class SearchService < BaseService
       following: Account.following_map(account_ids, account.id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, account.id),
     }
+  end
+
+  def parsed_query
+    SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query))
   end
 end

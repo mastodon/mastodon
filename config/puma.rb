@@ -1,3 +1,5 @@
+persistent_timeout ENV.fetch('PERSISTENT_TIMEOUT') { 20 }.to_i
+
 threads_count = ENV.fetch('MAX_THREADS') { 5 }.to_i
 threads threads_count, threads_count
 
