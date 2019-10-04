@@ -313,6 +313,7 @@ tr:
       reject_media: Ortam dosyalarını reddetme
       reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
       reject_reports: Raporları reddet
+      reject_reports_hint: Bu alan adından gelen tüm şikayetleri yok sayın. Uzaklaştırmalar için mevzu dışıdır
       rejecting_media: ortam dosyalarını reddet
       rejecting_reports: şikayetleri reddet
       severity:
@@ -373,9 +374,11 @@ tr:
     relays:
       add_new: Yeni aktarıcı ekle
       delete: Sil
+      description_html: <strong>Federasyon aktarıcısı</strong>, kendisine abone olan ve yayın yapan sunucular arasında büyük miktarlarda herkese açık gönderilerin değiş tokuşunu yapan aracı bir sunucudur. <strong>Küçük ve orta boyutlu sunucuların fediverse'ten içerik keşfetmesine yardımcı olurlar</strong>, aksi takdirde yerel kullanıcıların uzak sunuculardaki diğer kişileri manuel olarak takip etmeleri gerekecektir.
       disable: Devre dışı
       disabled: Devre dışı
       enable: Etkin
+      enable_hint: Etkinleştirildiğinde, sunucunuz bu aktarıcıdan gelecek tüm herkese açık gönderilere abone olacak, ve kendisinin herkese açık gönderilerini bu aktarıcıya göndermeye başlayacaktır.
       enabled: Etkin
       inbox_url: Aktarıcı URL'si
       pending: Aktarıcının onaylaması için bekleniyor
