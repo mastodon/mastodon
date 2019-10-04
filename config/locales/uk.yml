@@ -35,6 +35,10 @@ uk:
     status_count_before: Опубліковано
     tagline: Слідкуйте за друзями та знаходьте нових
     terms: Правила використання
+    unavailable_content: Недоступний вміст
+    unavailable_content_description:
+      domain: Сервер
+      reason: Причина
     user_count_after:
       one: користувач
       few: користувача
@@ -234,11 +238,14 @@ uk:
       delete: Видалити
       destroyed_msg: Емодзі усіпішно видалене!
       disable: Вимкнути
+      disabled: Вимкнено
       disabled_msg: Емодзі успішно вимкнено
       emoji: Емодзі
       enable: Увімкнути
+      enabled: Увімкнено
       enabled_msg: Емодзі успішно увімкнене
       image_hint: PNG розміром до 50 КБ
+      list: Список
       listed: У списку
       new:
         title: Додати новий емодзі
@@ -246,6 +253,7 @@ uk:
       shortcode: Шорткод
       shortcode_hint: Мінімум два символи, тільки цифрові й латинські символи або підкреслення
       title: Особливі емодзі
+      uncategorized: Без категорії
       unlisted: Не у списку
       update_failed_msg: Не вийшло оновити емозді
       updated_msg: Емодзі успішно оновлене!
@@ -380,6 +388,7 @@ uk:
       pending: Очікуємо на підтвердження ретранслятором
       save_and_enable: Зберегти та увімкнути
       setup: Налаштування з'єднання з ретранслятором
+      signatures_not_enabled: Ретранслятори не будуть добре працювати поки ввімкнений безопасний режим або режим білого списка
       status: Статус
       title: Ретранслятори
     report_notes:
@@ -428,6 +437,8 @@ uk:
       custom_css:
         desc_html: Відобразити вигляд, коли CSS завантажено для кожної сторінки
         title: Користувацький CSS
+      default_noindex:
+        desc_html: Впливає на усіх користувачів, які не змінили це настроювання самостійно
       domain_blocks:
         all: Всi
         disabled: Нікого
@@ -516,6 +527,7 @@ uk:
       context: Контекст
       directory: У каталозі
       in_directory: "%{count} у каталозі"
+      name: Хештеґ
       review: Переглянути статус
       reviewed: Переглянуто
       title: Хештеґи
