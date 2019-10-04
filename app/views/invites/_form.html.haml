@@ -10,8 +10,5 @@
   .fields-group
     = f.input :autofollow, wrapper: :with_label
 
-  .fields-group
-    = f.input :comment, wrapper: :with_label, input_html: { maxlength: 420 }
-
   .actions
     = f.button :button, t('invites.generate'), type: :submit
