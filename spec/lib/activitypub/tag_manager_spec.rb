@@ -143,12 +143,6 @@ RSpec.describe ActivityPub::TagManager do
       expect(subject.uri_to_resource(OStatus::TagManager.instance.uri_for(status), Status)).to eq status
     end
 
-    it 'returns the local status for OStatus StreamEntry URL' do
-      status = Fabricate(:status)
-      stream_entry_url = account_stream_entry_url(status.account, status.stream_entry)
-      expect(subject.uri_to_resource(stream_entry_url, Status)).to eq status
-    end
-
     it 'returns the remote status by matching URI without fragment part' do
       status = Fabricate(:status, uri: 'https://example.com/123')
       expect(subject.uri_to_resource('https://example.com/123#456', Status)).to eq status

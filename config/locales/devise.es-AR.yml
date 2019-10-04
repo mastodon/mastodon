@@ -1,0 +1,98 @@
+---
+es-AR:
+  devise:
+    confirmations:
+      confirmed: Se confirmó exitosamente tu dirección de correo electrónico.
+      send_instructions: En unos minutos, vas a recibir un correo electrónico con instrucciones sobre cómo confirmar tu dirección de correo. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      send_paranoid_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con instrucciones sobre cómo confirmar tu dirección de correo. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+    failure:
+      already_authenticated: Ya iniciaste sesión.
+      inactive: Tu cuenta todavía no está activada.
+      invalid: "%{authentication_keys} o contraseña no válidas."
+      last_attempt: Tenés un intento más antes de que se bloquee tu cuenta.
+      locked: Se bloqueó tu cuenta.
+      not_found_in_database: "%{authentication_keys} o contraseña no válidas."
+      pending: Tu cuenta todavía está bajo revisión.
+      timeout: Venció tu sesión. Por favor, volvé a iniciar sesión para continuar.
+      unauthenticated: Necesitás iniciar sesión o registrarte antes de continuar.
+      unconfirmed: Tenés que confirmar tu dirección de correo electrónico antes de continuar.
+    mailer:
+      confirmation_instructions:
+        action: Verificar dirección de correo electrónico
+        action_with_app: Confirmar y volver a %{app}
+        explanation: Te creaste una cuenta en %{host} con esta dirección de correo electrónico. Estás a un clic de activarla. Si vos no te creaste ninguna cuenta acá, por favor, simplemente ignorá este mensaje.
+        explanation_when_pending: Pediste una invitación para %{host} con esta dirección de correo electrónico. Una vez que confirmés esta dirección de correo, revisaremos tu pedido. Podés iniciar sesión para cambiar tus detalles o eliminar tu cuenta, pero no vas a poder acceder a la mayoría de las funciones hasta que no se apruebe tu cuenta. Si tu pedido es rechazado, se eliminarán tus datos, por lo que no vas a necesitar hacer nada en especial. Si vos no pediste ninguna cuenta acá, por favor, simplemente ignorá este mensaje.
+        extra_html: Por favor, también leé <a href="%{terms_path}">las reglas del servidor</a> y <a href="%{policy_path}">nuestros términos del servicio</a>.
+        subject: 'Mastodon: instrucciones de confirmación para %{instance}'
+        title: Verificar dirección de correo electrónico
+      email_changed:
+        explanation: 'La dirección de correo electrónico de tu cuenta está siendo cambiada a:'
+        extra: Si no cambiaste tu correo electrónico, es probable que alguien más haya obtenido acceso a tu cuenta. Por favor, cambiá tu contraseña inmediatamente o contactá con el administrador del servidor si no podés ingresar a tu cuenta.
+        subject: 'Mastodon: correo electrónico cambiado'
+        title: Nueva dirección de correo electrónico
+      password_change:
+        explanation: Se cambió la contraseña de tu cuenta.
+        extra: Si no cambiaste tu contraseña, es probable que alguien más haya obtenido acceso a tu cuenta. Por favor, cambiá tu contraseña inmediatamente o contactá con el administrador del servidor si no podés ingresar a tu cuenta.
+        subject: 'Mastodon: contraseña cambiada'
+        title: Contraseña cambiada
+      reconfirmation_instructions:
+        explanation: Confirmá la nueva dirección para cambiar tu correo electrónico.
+        extra: Si no pediste este cambio, por favor, ignorá este mensaje. No se cambiará la dirección de correo electrónico de tu cuenta de Mastodon hasta que no accedas al enlace de arriba.
+        subject: 'Mastodon: confirmar correo electrónico para %{instance}'
+        title: Verifique dirección de correo electrónico
+      reset_password_instructions:
+        action: Cambiar contraseña
+        explanation: Pediste una nueva contraseña para tu cuenta.
+        extra: Si no pediste este cambio, por favor, ignorá este mensaje. No se cambiará la contraseña de tu cuenta de Mastodon hasta que no accedas al enlace de arriba y crees una nueva.
+        subject: 'Mastodon: instrucciones para cambiar la contraseña'
+        title: Cambiar contraseña
+      two_factor_disabled:
+        explanation: La autenticación de dos factores para tu cuenta está deshabilitada. Ahora el inicio de sesión sólo es posible usando la dirección de correo electrónico y la contraseña.
+        subject: 'Mastodon: autenticación de dos factores, deshabilitada'
+        title: 2FA deshabilitada
+      two_factor_enabled:
+        explanation: La autenticación de dos factores para tu cuenta está habilitada. Se requiere una clave generada por la aplicación TOTP asociada para iniciar sesión.
+        subject: 'Mastodon: autenticación de dos factores, habilitada'
+        title: 2FA habilitada
+      two_factor_recovery_codes_changed:
+        explanation: Los códigos anteriores de recuperación fueron invalidados y se generaron unos nuevos.
+        subject: 'Mastodon: códigos de recuperación de dos factores, regenerados'
+        title: Códigos de recuperación 2FA cambiados
+      unlock_instructions:
+        subject: 'Mastodon: instrucciones de desbloqueo'
+    omniauth_callbacks:
+      failure: 'No se te pudo autenticar desde %{kind} debido a esto: "%{reason}".'
+      success: Se autenticó exitosamente para la cuenta %{kind}.
+    passwords:
+      no_token: No podés acceder a esta página sin venir desde un correo electrónico destinado al cambio de contraseña. Si venís desde dicho mensaje, por favor, asegurate que usaste toda la dirección web ofrecida.
+      send_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con un enlace para cambiar tu contraseña. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      send_paranoid_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con un enlace para cambiar tu contraseña. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      updated: Se cambió existosamente tu contraseña. Ya iniciaste sesión.
+      updated_not_active: Se cambió exitosamente tu contraseña.
+    registrations:
+      destroyed: "¡Chauchas! Se canceló exitosamente tu cuenta. Esperamos verte pronto de nuevo."
+      signed_up: "¡Bienvenido! Te registraste exitosamente."
+      signed_up_but_inactive: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta todavía no está activada.
+      signed_up_but_locked: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta está bloqueada.
+      signed_up_but_pending: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Después que hagás clic en ese enlace, revisaremos tu pedido. Si sos aprobado, serás notificado.
+      signed_up_but_unconfirmed: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Por favor, seguí ese enlace para activar tu cuenta. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      update_needs_confirmation: Actualizaste tu cuenta exitosamente. Sin embargo, necesitamos verificar tu nueva dirección de correo electrónico. Por favor, revisá tu correo electrónico y seguí el enlace de confirmación. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      updated: Se actualizó exitosamente tu cuenta.
+    sessions:
+      already_signed_out: Cerraste sesión exitosamente.
+      signed_in: Iniciaste sesión exitosamente.
+      signed_out: Cerraste sesión exitosamente.
+    unlocks:
+      send_instructions: En unos minutos, vas a recibir un correo electrónico con instrucciones sobre cómo desbloquear tu cuenta. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      send_paranoid_instructions: Si tu cuenta existe en nuestra base de datos, en unos minutos vas a recibir un correo electrónico con instrucciones sobre cómo desbloquear tu cuenta. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
+      unlocked: Se desbloqueó tu cuenta exitosamente. Por favor, iniciá sesión para continuar.
+  errors:
+    messages:
+      already_confirmed: ya se confirmó; por favor, intentá iniciar sesión
+      confirmation_period_expired: necesita confirmarse dentro de %{period}; por favor, solicitá una nueva
+      expired: venció; por favor, solicitá una nueva
+      not_found: no se encontró
+      not_locked: no se bloqueó
+      not_saved:
+        one: '1 error prohibió que este %{resource} se guarde:'
+        other: "%{count} errores prohibieron que este %{resource} se guarde:"

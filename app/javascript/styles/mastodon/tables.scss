@@ -180,6 +180,18 @@ a.table-action-link {
     }
   }
 
+  &__form {
+    padding: 16px;
+    border: 1px solid darken($ui-base-color, 8%);
+    border-top: 0;
+    background: $ui-base-color;
+
+    .fields-row {
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
   &__row {
     border: 1px solid darken($ui-base-color, 8%);
     border-top: 0;
@@ -209,6 +221,45 @@ a.table-action-link {
 
       &--unpadded {
         padding: 0;
+      }
+
+      &--with-image {
+        display: flex;
+        align-items: center;
+      }
+
+      &__image {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+
+        .emojione {
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      &__text {
+        flex: 1 1 auto;
+      }
+
+      &__extra {
+        flex: 0 0 auto;
+        text-align: right;
+        color: $darker-text-color;
+        font-weight: 500;
+      }
+    }
+
+    .directory__tag {
+      margin: 0;
+      width: 100%;
+
+      a {
+        background: transparent;
+        border-radius: 0;
       }
     }
   }

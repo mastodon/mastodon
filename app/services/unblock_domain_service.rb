@@ -10,24 +10,9 @@ class UnblockDomainService < BaseService
   end
 
   def process_retroactive_updates
-    blocked_accounts.in_batches.update_all(update_options) unless domain_block.noop?
-  end
-
-  def blocked_accounts
     scope = Account.by_domain_and_subdomains(domain_block.domain)
 
-    if domain_block.silence?
-      scope.where(silenced_at: @domain_block.created_at)
-    else
-      scope.where(suspended_at: @domain_block.created_at)
-    end
-  end
-
-  def update_options
-    { domain_block_impact => nil }
-  end
-
-  def domain_block_impact
-    domain_block.silence? ? :silenced_at : :suspended_at
+    scope.where(silenced_at: domain_block.created_at).in_batches.update_all(silenced_at: nil) unless domain_block.noop?
+    scope.where(suspended_at: domain_block.created_at).in_batches.update_all(suspended_at: nil) if domain_block.suspend?
   end
 end

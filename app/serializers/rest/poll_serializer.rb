@@ -2,12 +2,13 @@
 
 class REST::PollSerializer < ActiveModel::Serializer
   attributes :id, :expires_at, :expired,
-             :multiple, :votes_count
+             :multiple, :votes_count, :voters_count
 
   has_many :loaded_options, key: :options
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   attribute :voted, if: :current_user?
+  attribute :own_votes, if: :current_user?
 
   def id
     object.id.to_s
@@ -19,6 +20,10 @@ class REST::PollSerializer < ActiveModel::Serializer
 
   def voted
     object.voted?(current_user.account)
+  end
+
+  def own_votes
+    object.own_votes(current_user.account)
   end
 
   def current_user?

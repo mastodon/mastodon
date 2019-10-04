@@ -10,9 +10,6 @@ ms:
     contact_missing: Tidak ditetapkan
     contact_unavailable: Tidak tersedia
     documentation: Pendokumenan
-    extended_description_html: |
-      <h3>Tempat sesuai untuk peraturan</h3>
-      <p>Kenyataan penuh masih belum ditetapkan.</p>
     generic_description: "%{domain} ialah salah sebuah pelayan dalam rangkaian Mastodon"
     hosted_on: Mastodon dihoskan di %{domain}
     learn_more: Ketahui lebih lanjut
@@ -297,12 +294,15 @@ ms:
         create_and_resolve: Selesaikan dengan nota
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
     '429': Throttled
     '500': 
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       in_progress: Mengkompil arkib anda...

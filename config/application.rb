@@ -13,7 +13,9 @@ require_relative '../lib/paperclip/video_transcoder'
 require_relative '../lib/paperclip/type_corrector'
 require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/version'
-require_relative '../lib/devise/ldap_authenticatable'
+require_relative '../lib/devise/two_factor_ldap_authenticatable'
+require_relative '../lib/devise/two_factor_pam_authenticatable'
+require_relative '../lib/chewy/strategy/custom_sidekiq'
 
 Dotenv::Railtie.load
 
@@ -37,11 +39,11 @@ module Mastodon
     # All translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
-      :en,
       :ar,
       :ast,
       :bg,
       :bn,
+      :br,
       :ca,
       :co,
       :cs,
@@ -49,8 +51,11 @@ module Mastodon
       :da,
       :de,
       :el,
+      :en,
       :eo,
+      :'es-AR',
       :es,
+      :et,
       :eu,
       :fa,
       :fi,
@@ -71,20 +76,22 @@ module Mastodon
       :ko,
       :lt,
       :lv,
+      :mk,
       :ms,
       :nl,
+      :nn,
       :no,
       :oc,
       :pl,
-      :pt,
       :'pt-BR',
+      :'pt-PT',
       :ro,
       :ru,
       :sk,
       :sl,
       :sq,
-      :sr,
       :'sr-Latn',
+      :sr,
       :sv,
       :ta,
       :te,

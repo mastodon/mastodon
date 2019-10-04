@@ -9,7 +9,9 @@ th:
       already_authenticated: คุณได้ลงชื่อเข้าอยู่แล้ว
       inactive: ยังไม่ได้เปิดใช้งานบัญชีของคุณ
       invalid: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
+      locked: บัญชีของคุณถูกล็อก
       not_found_in_database: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
+      pending: บัญชีของคุณกำลังถูกตรวจสอบ
       timeout: เซสชันของคุณหมดอายุแล้ว โปรดลงชื่อเข้าอีกครั้งเพื่อดำเนินการต่อ
     mailer:
       email_changed:
@@ -23,6 +25,7 @@ th:
       send_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
       send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
     registrations:
+      signed_up_but_pending: ข้อความที่ได้รับการยืนยันจะถูกส่งไปยังอีเมลของคุณ หลังจากนั้นให้ทำการคลิกลิงก์ เพื่อให้พวกเราตรวจสอบข้อมูลเสร็จเรียบร้อย และหลังจากนั้นคุณจะได้รับการยืนยัน
       signed_up_but_unconfirmed: A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.
       update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.
     sessions:

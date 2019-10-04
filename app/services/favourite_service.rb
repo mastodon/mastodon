@@ -30,8 +30,6 @@ class FavouriteService < BaseService
 
     if status.account.local?
       NotifyService.new.call(status.account, favourite)
-    elsif status.account.ostatus?
-      NotificationWorker.perform_async(build_xml(favourite), favourite.account_id, status.account_id)
     elsif status.account.activitypub?
       ActivityPub::DeliveryWorker.perform_async(build_json(favourite), favourite.account_id, status.account.inbox_url)
     end
@@ -45,9 +43,5 @@ class FavouriteService < BaseService
 
   def build_json(favourite)
     Oj.dump(serialize_payload(favourite, ActivityPub::LikeSerializer))
-  end
-
-  def build_xml(favourite)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.favourite_salmon(favourite))
   end
 end
