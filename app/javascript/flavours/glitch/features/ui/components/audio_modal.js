@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Audio from 'flavours/glitch/features/audio';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
-import { previewState } from './video_modal';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 
@@ -19,28 +18,6 @@ export default class AudioModal extends ImmutablePureComponent {
   static contextTypes = {
     router: PropTypes.object,
   };
-
-  componentDidMount () {
-    if (this.context.router) {
-      const history = this.context.router.history;
-
-      history.push(history.location.pathname, previewState);
-
-      this.unlistenHistory = history.listen(() => {
-        this.props.onClose();
-      });
-    }
-  }
-
-  componentWillUnmount () {
-    if (this.context.router) {
-      this.unlistenHistory();
-
-      if (this.context.router.history.location.state === previewState) {
-        this.context.router.history.goBack();
-      }
-    }
-  }
 
   handleStatusClick = e => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
