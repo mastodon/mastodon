@@ -39,6 +39,10 @@ tr:
     unavailable_content_description:
       domain: Sunucu
       reason: Sebep
+      rejecting_media: 'Bu sunuculardaki medya dosyaları işlenmeyecek ya da saklanmayacak, ve hiçbir küçük resim gösterilmeyecektir, dolayısıyla orjinal dosyaya manuel tıklama gerekecektir:'
+      silenced: 'Bu sunuculardan gelen gönderiler genel zaman çizelgelerinde ve konuşmalarda gizlenecek ve siz onları takip etmediğiniz sürece, kullanıcıların etkileşimlerinden hiçbir bildirim alınmayacaktır:'
+      suspended: 'Bu sunuculardaki hiçbir veri işlenmeyecek, saklanmayacak veya değiş tokuş edilmeyecektir, dolayısıyla bu sunuculardaki kullanıcılarla herhangi bir etkileşim ya da iletişim imkansız olacaktır:'
+    unavailable_content_html: Mastodon, genel olarak fediverse'teki herhangi bir sunucudan içerik görüntülemenize ve kullanıcılarıyla etkileşim kurmanıza izin verir. Bunlar, bu sunucuda yapılmış olan istisnalardır.
     user_count_after:
       one: kullanıcı
       other: kullanıcı
@@ -597,7 +601,14 @@ tr:
     follow: Takip et
     follow_request: 'Şuna takip isteği gönderdiniz:'
     following: 'Başarılı! Artık şunu takip ediyorsunuz:'
+    post_follow:
+      close: Ya da, sadece bu pencereyi kapatabilirsiniz.
+      return: Kullanıcının profilini göster
     title: "%{acct}'i takip et"
+  challenge:
+    confirm: Devam et
+    invalid_password: Geçersiz parola
+    prompt: Devam etmek parolayı doğrulayın
   datetime:
     distance_in_words:
       about_x_hours: "%{count}sa"
@@ -612,6 +623,17 @@ tr:
       x_minutes: "%{count}dk"
       x_months: "%{count}ay"
       x_seconds: "%{count}sn"
+  deletes:
+    challenge_not_passed: Girdiğiniz bilgi doğru değildi
+    confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
+    confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
+    proceed: Hesabı sil
+    success_msg: Hesabınız başarıyla silindi
+    warning:
+      before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
+      caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
+      data_removal: Gönderileriniz ve diğer verileriniz kalıcı olarak silinecektir
+      email_change_html: Hesabınızı silmeden <a href="%{path}">e-posta adresinizi değiştirebilirsiniz</a>
   directories:
     directory: Profil dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
@@ -693,6 +715,7 @@ tr:
     inactive: Pasif
     publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
     status: Doğrulama durumu
+    view_proof: Kanıt görüntüle
   imports:
     modes:
       merge: Birleştir
@@ -739,6 +762,24 @@ tr:
       too_many: 4'ten fazla dosya ekleyemezsiniz
   migrations:
     acct: Taşındı
+    cancel: Yönlendirmeyi iptal et
+    cancelled_msg: Yönlendirme başarıyla iptal edildi.
+    errors:
+      already_moved: zaten taşındığınızla aynı hesap
+      move_to_self: mevcut hesap olamaz
+      not_found: bulunamadı
+      on_cooldown: Soğuma aşamasındasınız
+    followers_count: Taşınma zamanındaki takipçiler
+    incoming_migrations: Farklı bir hesaptan taşınma
+    past_migrations: Geçmiş taşınmalar
+    proceed_with_move: Takipçileri taşı
+    redirecting_to: Hesabınız %{acct} hesabına yönlendirilmektedir.
+    set_redirect: Yönlendirme ayarla
+    warning:
+      before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
+      cooldown: Taşındıktan sonra, yeniden taşınma imkanınızın olmayacağı bir soğuma periyodu vardır
+      followers: Bu eylem tüm takipçileri şu anki hesaptan yeni hesaba taşıyacaktır
+      other_data: Başka bir veri otomatik olarak taşınmayacaktır
   moderation:
     title: Yönetim
   notification_mailer:
@@ -770,6 +811,7 @@ tr:
       action: Yanıt
       body: "%{name} sizden bahsetti:"
       subject: "%{name} sizden bahsetti"
+      title: Yeni bahsetme
     reblog:
       body: "%{name} durumunuzu boost etti:"
       subject: "%{name} durumunuzu boost etti"
@@ -799,6 +841,7 @@ tr:
       too_many_options: "%{max} öğeden fazla öğe içeremez"
   preferences:
     other: Diğer
+    posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
   relationships:
     activity: Hesap etkinliği
@@ -819,6 +862,16 @@ tr:
     no_account_html: Hesabınız yok mu? <a href='%{sign_up_path}' target='_blank'>Buradan kaydolabilirsiniz</a>
     proceed: Takip onayı
     prompt: Bu kullanıcıyı takip etmek istediğinize emin misiniz?
+  remote_interaction:
+    favourite:
+      proceed: Favorilere eklemek için ilerle
+      prompt: 'Bu gönderiyi favorilerinize eklemek istiyorsunuz:'
+    reblog:
+      proceed: Yinelemek için ilerle
+      prompt: 'Bu gönderiyi yinelemek istiyorsunuz:'
+    reply:
+      proceed: Cevap vermek için ilerle
+      prompt: 'Bu gönderiye cevap vermek istiyorsunuz:'
   sessions:
     activity: Son aktivite
     browser: Tarayıcı
