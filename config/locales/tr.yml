@@ -220,6 +220,7 @@ tr:
         resolve_report: "%{name} %{target} şikayetini çözdü"
         silence_account: "%{name} %{target}'in hesabını susturdu"
         suspend_account: "%{name} %{target}'in hesabını uzaklaştırdı"
+        unassigned_report: "%{name} %{target} şikayetinin atamasını geri aldı"
         unsilence_account: "%{name} %{target}'in hesabının susturmasını kaldırdı"
         unsuspend_account: "%{name} %{target}'in hesabının uzaklaştırmasını kaldırdı"
         update_custom_emoji: "%{name} %{target} emojiyi güncelledi"
@@ -306,7 +307,9 @@ tr:
           suspend: Uzaklaştır
         title: Yeni domain bloğu
       private_comment: Özel yorum
+      private_comment_hint: Denetleyiciler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
       public_comment: Genel yorum
+      public_comment_hint: Eğer alan adı sınırlamaları listesinin tanıtılması etkinleştirilmişse, genel kullanım için bu alan adı sınırlaması hakkında yorum.
       reject_media: Ortam dosyalarını reddetme
       reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
       reject_reports: Raporları reddet
