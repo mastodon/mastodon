@@ -1,5 +1,11 @@
 module Friends
   module ProfileEmoji
+    class FalsyLoaded
+      def loaded?
+        false
+      end
+    end
+
     class Emoji < ActiveModelSerializers::Model
       SHORTCODE_RE_FRAGMENT = /@(#{Account::USERNAME_RE})(?:@([a-z0-9\.\-]+[a-z0-9]+))?/i
 
@@ -30,6 +36,13 @@ module Friends
 
       def visible_in_picker
         false
+      end
+
+      # FIXME: NoMethodError object.association handling
+      #
+      # ref: app/serializers/rest/custom_emoji_serializer.rb:23:in `category_loaded?'
+      def association(*_args)
+        FalsyLoaded.new
       end
 
       class << self
