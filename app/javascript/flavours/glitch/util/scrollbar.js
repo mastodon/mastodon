@@ -1,5 +1,3 @@
-import { isMobile } from 'flavours/glitch/util/is_mobile';
-
 /** @type {number | null} */
 let cachedScrollbarWidth = null;
 
@@ -29,7 +27,7 @@ export const getScrollbarWidth = () => {
     return cachedScrollbarWidth;
   }
 
-  const scrollbarWidth = isMobile(window.innerWidth) ? 0 : getActualScrollbarWidth();
+  const scrollbarWidth = getActualScrollbarWidth();
   cachedScrollbarWidth = scrollbarWidth;
 
   return scrollbarWidth;
