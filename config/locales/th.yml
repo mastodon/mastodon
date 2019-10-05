@@ -353,6 +353,8 @@ th:
         desc_html: แสดงเส้นเวลาสาธารณะในหน้าเริ่มต้น
         title: ตัวอย่างเส้นเวลา
       title: การตั้งค่าไซต์
+      trends:
+        title: แฮชแท็กที่กำลังนิยม
     statuses:
       back_to_account: กลับไปที่หน้าบัญชี
       batch:
@@ -370,6 +372,7 @@ th:
       in_directory: "%{count} ในไดเรกทอรี"
       name: แฮชแท็ก
       title: แฮชแท็ก
+      trending_right_now: กำลังนิยม
     title: การดูแล
     warning_presets:
       add_new: เพิ่มใหม่
@@ -381,6 +384,7 @@ th:
     advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
     animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
     confirmation_dialogs: กล่องโต้ตอบการยืนยัน
+    discovery: ค้นพบ
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
@@ -422,6 +426,7 @@ th:
       web: ไปยังเว็บ
     title: ติดตาม %{acct}
   challenge:
+    confirm: ดำเนินการต่อ
     invalid_password: รหัสผ่านไม่ถูกต้อง
     prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
   datetime:
@@ -490,6 +495,7 @@ th:
     developers: นักพัฒนา
     more: เพิ่มเติม…
     resources: ทรัพยากร
+    trending_now: กำลังนิยม
   generic:
     all: ทั้งหมด
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
@@ -531,6 +537,9 @@ th:
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
     acct: username@domain ของบัญชีใหม่
+    cancel: ยกเลิกการเปลี่ยนเส้นทาง
+    proceed_with_move: ย้ายผู้ติดตาม
+    set_redirect: ตั้งการเปลี่ยนเส้นทาง
   moderation:
     title: การควบคุม
   notification_mailer:
