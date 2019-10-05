@@ -559,6 +559,8 @@ tr:
     add_new: Takma ad oluştur
     created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
     deleted_msg: Yeni takma ad başarıyla kaldırıldı. O hesaptan bu hesaba taşınmak artık mümkün değil.
+    hint_html: Başka bir hesaptan bu hesaba taşınmak istiyorsanız, takipçileri eski hesaptan bu hesaba taşımadan önce gerekli olan takma adı burada oluşturabilirsiniz. Bu eylem kendi başına <strong>zararsızdır ve geri döndürülebilir</strong>. <strong>Hesap taşıma işlemi eski hesaptan başlatılır</strong>.
+    remove: Takma adların bağlantısını kaldır
   appearance:
     advanced_web_interface: Gelişmiş web arayüzü
     advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
@@ -591,6 +593,7 @@ tr:
     description:
       prefix_invited_by_user: "@%{name} sizi Mastodon'un bu sunucusuna katılmaya davet ediyor!"
       prefix_sign_up: Bugün Mastodon'a kaydolun!
+      suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir Mastodon sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
     didnt_get_confirmation: Hesap doğrulama mailini almadınız mı?
     forgot_password: Parolanızı unuttunuz mu?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
@@ -617,6 +620,7 @@ tr:
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
       functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
+      redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
     trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
   authorize_follow:
     already_following: Bu hesabı zaten takip ediyorsunuz
@@ -627,9 +631,11 @@ tr:
     post_follow:
       close: Ya da, sadece bu pencereyi kapatabilirsiniz.
       return: Kullanıcının profilini göster
+      web: Web'e git
     title: '%{acct}''i takip et'
   challenge:
     confirm: Devam et
+    hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
     invalid_password: Geçersiz parola
     prompt: Devam etmek parolayı doğrulayın
   datetime:
@@ -657,6 +663,8 @@ tr:
       caches: Diğer sunucular tarafından ön belleğe alınan içerik kalabilir
       data_removal: Gönderileriniz ve diğer verileriniz kalıcı olarak silinecektir
       email_change_html: Hesabınızı silmeden <a href="%{path}">e-posta adresinizi değiştirebilirsiniz</a>
+      email_contact_html: Eğer hala ulaşmazsa, yardım için <a href="mailto:%{email}">%{email}</a> adresine e-posta gönderebilirsiniz
+      email_reconfirmation_html: Eğer doğrulama e-postası almıyorsanız, <a href="%{path}">tekrar talep edebilirsiniz</a>
   directories:
     directory: Profil dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
