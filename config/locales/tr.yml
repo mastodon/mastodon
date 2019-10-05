@@ -444,8 +444,10 @@ tr:
       domain_blocks_rationale:
         title: Gerekçeyi göster
       hero:
+        desc_html: Önsayfada gösterilmektedir. En az 600x100px önerilir. Ayarlanmadığında, sunucu küçük resmi kullanılır
         title: Kahraman görseli
       mascot:
+        desc_html: Birden fazla sayfada gösterilmektedir. En az 293x205px önerilir. Ayarlanmadığında, varsayılan maskot kullanılır
         title: Maskot görseli
       peers_api_enabled:
         desc_html: Bu sunucunun fediverse'te karşılaştığı alan adları
@@ -472,6 +474,9 @@ tr:
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
         title: Kayıt modu
+      show_known_fediverse_at_about_page:
+        desc_html: Değiştirildiğinde, bilinen bütün fediverse'lerden gönderileri ön izlemede gösterir. Diğer türlü sadece yerel gönderileri gösterecektir.
+        title: Zaman çizelgesi ön izlemesinde bilinen fediverse'i göster
       show_staff_badge:
         desc_html: Kullanıcının sayfasında bir personel rozeti göster
         title: Personel rozeti göster
