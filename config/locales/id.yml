@@ -291,14 +291,17 @@ id:
       destroyed_msg: Pemblokiran domain telah dibatalkan
       domain: Domain
       edit: Edit blok domain
+      existing_domain_block_html: Anda telah menerapkan batasan yang lebih ketat pada %{name}, Anda harus <a href="%{unblock_url}">membuka blokirnya</a> lebih dulu.
       new:
         create: Buat pemblokiran
         hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
         severity:
           desc_html: "<strong>Pendiaman</strong> akan membuat semua postingan tidak dapat dilihat oleh semua orang yang tidak mengikutinya. <strong>Suspen</strong> akan menghapus semua konten, media, dan profil dari akun yang bersangkutan."
+          noop: Tidak ada
           silence: Pendiaman
           suspend: Suspen
         title: Pemblokiran domain baru
+      private_comment: Komentar pribadi
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       show:
