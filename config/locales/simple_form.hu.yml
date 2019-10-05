@@ -2,9 +2,14 @@
 hu:
   simple_form:
     hints:
+      account_alias:
+        acct: Adjad meg annak a fióknak a felhasználóneve@domainjét, ahonnan át szeretnéd mozgatni
+      account_migration:
+        acct: Add meg a fióknév@domain fiókot, melybe költözni szeretnél
       account_warning_preset:
         text: Használhatod a tülkökben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
       admin_account_action:
+        include_statuses: A felhasználó látni fogja, melyik tülk okozta a moderációt vagy figyelmeztetést
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
         text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
@@ -14,8 +19,10 @@ hu:
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
         bot: Ez a fiók automatikus műveleteket végez és valószínűleg nem figyeljük
         context: Kontextusok, ahol a szűrőnek működnie kell
+        current_password: Biztonsági okok miatt kérlek, írd be a jelenlegi fiók jelszavát
+        current_username: A jóváhagyáshoz írd be a jelenlegi fiók felhasználói nevét
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
-        discoverable_html: A <a href="%{path}" target="_blank">profilok</a> adatbázisa lehetővé teszi, hogy embereket közös érdeklődés vagy tevékenység alapján találj meg. Legalább %{min_followers} követőre van szükség az adatbázisba való bekerüléshez
+        discoverable: A profil adatbázis egy újabb mód, ahogyan a fiókod szélesebb tömegeket érhet el
         email: Kapsz egy megerősítő e-mailt
         fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -34,16 +41,24 @@ hu:
         setting_hide_network: Nem látszik majd a profilodon, kik követnek és te kiket követsz
         setting_noindex: A nyilvános profilodra és a tülkjeidre vonatkozik
         setting_show_application: A tülkök részletes nézetében látszani fog, milyen alkalmazást használtál a tülköléshez
+        setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
+        setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
         username: A felhasználói neved egyedi lesz a %{domain} domainen
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
+      domain_allow:
+        domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
       featured_tag:
         name: 'Ezeket esetleg használhatod:'
+      form_challenge:
+        current_password: Beléptél egy biztonsági térben
       imports:
         data: Egy másik Mastodon szerverről exportált CSV fájl
       invite_request:
         text: Ez segít nekünk átnézni a jelentkezésedet
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
+      tag:
+        name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű tülkök jelennek majd meg a nyilvános idővonalon
     labels:
@@ -51,9 +66,14 @@ hu:
         fields:
           name: Címke
           value: Tartalom
+      account_alias:
+        acct: Régi fiók kezelése
+      account_migration:
+        acct: Új fiók kezelése
       account_warning_preset:
         text: Figyelmeztető szöveg
       admin_account_action:
+        include_statuses: Helyezd az e-mailbe a jelentett tülköket
         send_email_notification: Figyelmeztessük a felhasználót e-mailben
         text: Egyedi figyelmeztetés
         type: Művelet
@@ -108,7 +128,10 @@ hu:
         setting_show_application: A tülkölésre használt alkalmazás feltüntetése
         setting_system_font_ui: Rendszer betűtípusának használata
         setting_theme: Megjelenítési sablon
+        setting_trends: Mai trend mutatása
         setting_unfollow_modal: Megerősítés kérése mielőtt abbahagyod valaki követését
+        setting_use_blurhash: Rejtett média helyett homály mutatása
+        setting_use_pending_items: Lassú mód
         severity: Súlyosság
         type: Importálás típusa
         username: Felhasználónév
@@ -120,6 +143,8 @@ hu:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
         must_be_following_dm: Nem követettjeidtől érkező üzenetek tiltása
+      invite:
+        comment: Hozzászólás
       invite_request:
         text: Miért akarsz csatlakozni?
       notification_emails:
@@ -131,6 +156,12 @@ hu:
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
         reblog: E-mail küldése, amikor valaki megtolja a tülködet
         report: E-mail küldése, ha új bejelentés érkezett
+        trending_tag: E-mail küldése, ha egy még nem látott hashtag trendi lett
+      tag:
+        listable: A hashtag megjelenhet a profiladatbázisban
+        name: Címke
+        trendable: A hashtag megjelenhet a trendek között
+        usable: Tülkök használhatják ezt a hashtaget
     'no': Nem
     recommended: Ajánlott
     required:

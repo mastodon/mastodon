@@ -22,5 +22,9 @@ describe Sanitize::Config do
     it 'converts ul inside ul' do
       expect(Sanitize.fragment('<ul><li>Foo</li><li><ul><li>Bar</li><li>Baz</li></ul></li></ul>', subject)).to eq '<p>Foo<br>Bar<br>Baz</p>'
     end
+
+    it 'keep links in lists' do
+      expect(Sanitize.fragment('<p>Check out:</p><ul><li><a href="https://joinmastodon.org" rel="nofollow noopener" target="_blank">joinmastodon.org</a></li><li>Bar</li></ul>', subject)).to eq '<p>Check out:</p><p><a href="https://joinmastodon.org" rel="nofollow noopener" target="_blank">joinmastodon.org</a><br>Bar</p>'
+    end
   end
 end

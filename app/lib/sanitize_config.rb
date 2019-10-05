@@ -25,6 +25,8 @@ class Sanitize
       case env[:node_name]
       when 'li'
         env[:node].traverse do |node|
+          next unless %w(p ul ol li).include?(node.name)
+
           node.add_next_sibling('<br>') if node.next_sibling
           node.replace(node.children) unless node.text?
         end

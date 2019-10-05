@@ -2,15 +2,28 @@
   = t('settings.delete')
 
 = simple_form_for @confirmation, url: settings_delete_path, method: :delete do |f|
-  .warning
-    %strong
-      = fa_icon('warning')
-      = t('deletes.warning_title')
-    = t('deletes.warning_html')
+  %p.hint= t('deletes.warning.before')
 
-  %p.hint= t('deletes.description_html')
+  %ul.hint
+    - if current_user.confirmed? && current_user.approved?
+      %li.warning-hint= t('deletes.warning.irreversible')
+      %li.warning-hint= t('deletes.warning.username_unavailable')
+      %li.warning-hint= t('deletes.warning.data_removal')
+      %li.warning-hint= t('deletes.warning.caches')
+    - else
+      %li.positive-hint= t('deletes.warning.email_change_html', path: edit_user_registration_path)
+      %li.positive-hint= t('deletes.warning.email_reconfirmation_html', path: new_user_confirmation_path)
+      %li.positive-hint= t('deletes.warning.email_contact_html', email: Setting.site_contact_email)
+      %li.positive-hint= t('deletes.warning.username_available')
 
-  = f.input :password, placeholder: t('simple_form.labels.defaults.current_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, hint: t('deletes.confirm_password')
+  %p.hint= t('deletes.warning.more_details_html', terms_path: terms_path)
+
+  %hr.spacer/
+
+  - if current_user.encrypted_password.present?
+    = f.input :password, wrapper: :with_block_label, input_html: { :autocomplete => 'off' }, hint: t('deletes.confirm_password')
+  - else
+    = f.input :username, wrapper: :with_block_label, input_html: { :autocomplete => 'off' }, hint: t('deletes.confirm_username')
 
   .actions
     = f.button :button, t('deletes.proceed'), type: :submit, class: 'negative'

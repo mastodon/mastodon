@@ -8,30 +8,22 @@ class BlockService < BaseService
 
     UnfollowService.new.call(account, target_account) if account.following?(target_account)
     UnfollowService.new.call(target_account, account) if target_account.following?(account)
-    RejectFollowService.new.call(account, target_account) if target_account.requested?(account)
+    RejectFollowService.new.call(target_account, account) if target_account.requested?(account)
 
     block = account.block!(target_account)
 
     BlockWorker.perform_async(account.id, target_account.id)
-    create_notification(block) unless target_account.local?
+    create_notification(block) if !target_account.local? && target_account.activitypub?
     block
   end
 
   private
 
   def create_notification(block)
-    if block.target_account.ostatus?
-      NotificationWorker.perform_async(build_xml(block), block.account_id, block.target_account_id)
-    elsif block.target_account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(build_json(block), block.account_id, block.target_account.inbox_url)
-    end
+    ActivityPub::DeliveryWorker.perform_async(build_json(block), block.account_id, block.target_account.inbox_url)
   end
 
   def build_json(block)
     Oj.dump(serialize_payload(block, ActivityPub::BlockSerializer))
-  end
-
-  def build_xml(block)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.block_salmon(block))
   end
 end

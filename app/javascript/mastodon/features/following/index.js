@@ -36,11 +36,14 @@ class Following extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchAccount(this.props.params.accountId));
-    this.props.dispatch(fetchFollowing(this.props.params.accountId));
+    if (!this.props.accountIds) {
+      this.props.dispatch(fetchAccount(this.props.params.accountId));
+      this.props.dispatch(fetchFollowing(this.props.params.accountId));
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -55,7 +58,7 @@ class Following extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount } = this.props;
+    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount, multiColumn } = this.props;
 
     if (!isAccount) {
       return (
@@ -77,7 +80,7 @@ class Following extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <ScrollableList
           scrollKey='following'
@@ -87,6 +90,7 @@ class Following extends ImmutablePureComponent {
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {blockedBy ? [] : accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />

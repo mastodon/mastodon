@@ -5,31 +5,31 @@ module Mastodon
     module_function
 
     def major
-      2
+      3
     end
 
     def minor
-      9
+      0
     end
 
     def patch
-      2
-    end
-
-    def pre
-      nil
+      0
     end
 
     def flags
       ''
     end
 
+    def suffix
+      ''
+    end
+
     def to_a
-      [major, minor, patch, pre].compact
+      [major, minor, patch].compact
     end
 
     def to_s
-      [to_a.join('.'), flags].join
+      [to_a.join('.'), flags, suffix].join
     end
 
     def repository

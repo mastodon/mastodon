@@ -58,7 +58,7 @@ describe Settings::TwoFactorAuthenticationsController do
       describe 'when creation succeeds' do
         it 'updates user secret' do
           before = user.otp_secret
-          post :create
+          post :create, session: { challenge_passed_at: Time.now.utc }
 
           expect(user.reload.otp_secret).not_to eq(before)
           expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)
@@ -91,7 +91,7 @@ describe Settings::TwoFactorAuthenticationsController do
           true
         end
 
-        post :destroy, params: { form_two_factor_confirmation: { code: '123456' } }
+        post :destroy, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
 
         expect(response).to redirect_to(settings_two_factor_authentication_path)
         user.reload
@@ -105,14 +105,15 @@ describe Settings::TwoFactorAuthenticationsController do
           false
         end
 
-        post :destroy, params: { form_two_factor_confirmation: { code: '057772' } }
+        post :destroy, params: { form_two_factor_confirmation: { otp_attempt: '057772' } }
 
         user.reload
         expect(user.otp_required_for_login).to eq(true)
       end
 
       it 'raises ActionController::ParameterMissing if code is missing' do
-        expect { post :destroy }.to raise_error(ActionController::ParameterMissing)
+        post :destroy
+        expect(response).to have_http_status(400)
       end
     end
 

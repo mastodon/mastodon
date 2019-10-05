@@ -2,9 +2,14 @@
 fr:
   simple_form:
     hints:
+      account_alias:
+        acct: Spécifiez le nom d'utilisateur@domaine du compte que vous souhaitez déplacer
+      account_migration:
+        acct: Spécifiez le nom d'utilisateur@domaine du compte vers lequel vous souhaitez déplacer
       account_warning_preset:
         text: Vous pouvez utiliser la syntaxe des pouets, comme les URLs, les hashtags et les mentions
       admin_account_action:
+        include_statuses: L’utilisateur·rice verra quels sont les pouets qui ont provoqué l’action de modération ou l’avertissement
         send_email_notification: L’utilisateur recevra une explication de ce qu’il s’est passé avec son compte
         text_html: Optionnel. Vous pouvez utilisez la syntaxe des pouets. Vous pouvez <a href="%{path}">ajouter des présélections d’attention</a> pour économiser du temps
         type_html: Choisir que faire avec <strong>%{acct}</strong>
@@ -14,8 +19,10 @@ fr:
         avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         bot: Ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         context: Un ou plusieurs contextes où le filtre devrait s’appliquer
+        current_password: Pour des raisons de sécurité, veuillez saisir le mot de passe du compte courant
+        current_username: Pour confirmer, veuillez saisir le nom d'utilisateur du compte courant
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
-        discoverable_html: L’<a href="%{path}" target="_blank">annuaire</a> permet aux gens de trouver des comptes en se basant sur les intérêts et les activités. Nécessite au moins %{min_followers} abonnés
+        discoverable: L’annuaire des profils est une autre façon pour votre compte d’atteindre une plus grand audience
         email: Vous recevrez un courriel de confirmation
         fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
@@ -34,16 +41,24 @@ fr:
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
         setting_show_application: Le nom de l’application que vous utilisez afin d’envoyer des pouets sera affiché dans la vue détaillée de ceux-ci
+        setting_use_blurhash: Les dégradés sont basés sur les couleurs des visuels cachés mais ne divulgent pas les détails
+        setting_use_pending_items: Masquer les mises à jour chronologiques derrière un clic au lieu de les montrer automatiquement en faisant défiler le flux d'actualités
         username: Votre nom d’utilisateur sera unique sur %{domain}
         whole_word: Lorsque le mot-clef ou la phrase-clef est uniquement alphanumérique, ça sera uniquement appliqué s’il correspond au mot entier
+      domain_allow:
+        domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
       featured_tag:
         name: 'Vous pourriez vouloir utiliser l’un d’entre eux :'
+      form_challenge:
+        current_password: Vous entrez une zone sécurisée
       imports:
         data: Un fichier CSV généré par un autre serveur de Mastodon
       invite_request:
         text: Cela nous aidera à considérer votre demande
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
+      tag:
+        name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
         chosen_languages: Lorsque coché, seuls les pouets dans les langues sélectionnées seront affichés sur les fils publics
     labels:
@@ -51,9 +66,14 @@ fr:
         fields:
           name: Étiquette
           value: Contenu
+      account_alias:
+        acct: L’identifiant de l’ancien compte
+      account_migration:
+        acct: L’identifiant du nouveau compte
       account_warning_preset:
         text: Texte de présélection
       admin_account_action:
+        include_statuses: Inclure les pouets signalés dans le courriel
         send_email_notification: Notifier l’utilisateur par courriel
         text: Attention personnalisée
         type: Action
@@ -108,7 +128,10 @@ fr:
         setting_show_application: Dévoiler le nom de l’application utilisée pour envoyer des pouets
         setting_system_font_ui: Utiliser la police par défaut du système
         setting_theme: Thème du site
+        setting_trends: Afficher les tendances du jour
         setting_unfollow_modal: Afficher une fenêtre de confirmation avant de vous désabonner d’un compte
+        setting_use_blurhash: Afficher les dégradés colorés pour les médias cachés
+        setting_use_pending_items: Mode lent
         severity: Sévérité
         type: Type d’import
         username: Identifiant
@@ -120,6 +143,8 @@ fr:
         must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Masquer les notifications des personnes que vous ne suivez pas
         must_be_following_dm: Bloquer les messages directs des personnes que vous ne suivez pas
+      invite:
+        comment: Commentaire
       invite_request:
         text: Pourquoi voulez-vous vous inscrire ?
       notification_emails:
@@ -131,6 +156,12 @@ fr:
         pending_account: Envoyer un courriel lorsqu’un nouveau compte est en attente d’approbation
         reblog: Envoyer un courriel lorsque quelqu’un partage mes statuts
         report: Envoyer un courriel lorsqu’un nouveau rapport est soumis
+        trending_tag: Envoyer un e-mail quand un hashtag non contrôlé est en tendance actuelle
+      tag:
+        listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
+        name: Hashtag
+        trendable: Autoriser ce hashtag à apparaître sous les tendances du jour
+        usable: Autoriser les toots à utiliser ce hashtag
     'no': Non
     recommended: Recommandé
     required:

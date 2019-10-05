@@ -28,7 +28,9 @@
       - reports.each do |report|
         .report-card__summary__item
           .report-card__summary__item__reported-by
-            - if report.account.local?
+            - if report.account.instance_actor?
+              = site_hostname
+            - elsif report.account.local?
               = admin_account_link_to report.account
             - else
               = report.account.domain

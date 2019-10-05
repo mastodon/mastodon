@@ -12,6 +12,7 @@ const uuid = require('uuid');
 const fs = require('fs');
 
 const env = process.env.NODE_ENV || 'development';
+const alwaysRequireAuth = process.env.WHITELIST_MODE === 'true' || process.env.AUTHORIZED_FETCH === 'true';
 
 dotenv.config({
   path: env === 'production' ? '.env.production' : '.env',
@@ -271,7 +272,7 @@ const startWorker = (workerId) => {
 
   const wsVerifyClient = (info, cb) => {
     const location = url.parse(info.req.url, true);
-    const authRequired = !PUBLIC_STREAMS.some(stream => stream === location.query.stream);
+    const authRequired = alwaysRequireAuth || !PUBLIC_STREAMS.some(stream => stream === location.query.stream);
     const allowedScopes = [];
 
     if (authRequired) {
@@ -306,7 +307,7 @@ const startWorker = (workerId) => {
       return;
     }
 
-    const authRequired = !PUBLIC_ENDPOINTS.some(endpoint => endpoint === req.path);
+    const authRequired = alwaysRequireAuth || !PUBLIC_ENDPOINTS.some(endpoint => endpoint === req.path);
     const allowedScopes = [];
 
     if (authRequired) {
@@ -672,7 +673,7 @@ const attachServerWithConfig = (server, onSuccess) => {
       }
     });
   } else {
-    server.listen(+process.env.PORT || 4000, process.env.BIND || '0.0.0.0', () => {
+    server.listen(+process.env.PORT || 4000, process.env.BIND || '127.0.0.1', () => {
       if (onSuccess) {
         onSuccess(`${server.address().address}:${server.address().port}`);
       }
