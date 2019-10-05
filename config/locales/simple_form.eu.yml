@@ -1,6 +1,8 @@
 eu:
   simple_form:
     hints:
+      account_alias:
+        acct: Zehaztu migrazioaren jatorri den kontuaren erabiltzailea@domeinua
       account_warning_preset:
         text: Toot sintaxia erabili dezakezu, URLak, traolak eta aipamenak
       admin_account_action:
@@ -50,6 +52,8 @@ eu:
         fields:
           name: Etiketa
           value: Edukia
+      account_alias:
+        acct: Kontu zaharraren helbidea
       account_warning_preset:
         text: Aurrez ezarritako testua
       admin_account_action:
@@ -122,6 +126,8 @@ eu:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzu horien jakinarazpenak
         must_be_following_dm: Blokeatu zuk jarraitzen ez dituzun horien mezu zuzenak
+      invite:
+        comment: Iruzkina
       invite_request:
         text: Zergatik elkartu nahi duzu?
       notification_emails:
@@ -134,6 +140,7 @@ eu:
         reblog: Bidali e-mail bat norbaitek zure mezuari bultzada ematen badio
         report: Bidali e-maila txosten berri bat aurkezten denean
       tag:
+        name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu toot-ek traola hau erabiltzea
     'no': 'Ez'
