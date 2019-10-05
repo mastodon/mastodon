@@ -721,6 +721,9 @@ tr:
       thread: Sohbetler
     edit:
       title: Filtreyi düzenle
+    errors:
+      invalid_context: Sıfır ya da geçersiz içerik sağlandı
+      invalid_irreversible: Geri dönüşümsüz filtreleme sadece anasayfa ya da bildirim bağlamında çalışır
     index:
       delete: Sil
       title: Filtreler
@@ -735,6 +738,7 @@ tr:
     all: Tümü
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
+    no_batch_actions_available: Bu sayfada toplu işlem yok
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
     validation_errors:
@@ -748,6 +752,8 @@ tr:
     authorize_connection_prompt: Bu kriptolu bağlantıyı yetkilendir?
     errors:
       failed: Kriptolu bağlantı başarısız oldu. Lütfen %{provider} üzerinden tekrar deneyin.
+      keybase:
+        invalid_token: Keybase belirteçleri imza hash'leridir ve 66 hex karakter içermelidir
     i_am_html: Ben %{service} üzerinde %{username}.
     identity: Kimlik
     inactive: Pasif
