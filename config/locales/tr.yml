@@ -444,10 +444,10 @@ tr:
       domain_blocks_rationale:
         title: Gerekçeyi göster
       hero:
-        desc_html: Önsayfada gösterilmektedir. En az 600x100px önerilir. Ayarlanmadığında, sunucu küçük resmi kullanılır
+        desc_html: Önsayfada görüntülenir. En az 600x100px önerilir. Ayarlanmadığında, sunucu küçük resmi kullanılır
         title: Kahraman görseli
       mascot:
-        desc_html: Birden fazla sayfada gösterilmektedir. En az 293x205px önerilir. Ayarlanmadığında, varsayılan maskot kullanılır
+        desc_html: Birden fazla sayfada görüntülenir. En az 293x205px önerilir. Ayarlanmadığında, varsayılan maskot kullanılır
         title: Maskot görseli
       peers_api_enabled:
         desc_html: Bu sunucunun fediverse'te karşılaştığı alan adları
@@ -487,6 +487,7 @@ tr:
         desc_html: Harici bilgi sayfasında gösterilir.<br>HTML etiketleri girebilirsiniz
         title: Sunucu hakkında detaylı bilgi
       site_short_description:
+        desc_html: Kenar çubuğunda ve meta etiketlerinde görüntülenir. Mastodon'un ne olduğunu ve bu sunucuyu özel kılan şeyleri tek bir paragrafta açıklayın.
         title: Kısa sunucu açıklaması
       site_terms:
         desc_html: Kendi gizlilik politikanızı, hizmet şartlarınızı ya da diğer hukuki metinlerinizi yazabilirsiniz. HTML etiketleri kullanabilirsiniz
@@ -499,9 +500,11 @@ tr:
         desc_html: OpenGraph ve API ile ön izlemeler için kullanılır. 1200x630px tavsiye edilir
         title: Sunucu küçük resmi
       timeline_preview:
+        desc_html: Açılış sayfasında genel zaman çizelgesini görüntüle
         title: Zaman çizelgesi önizlemesi
       title: Site Ayarları
       trends:
+        desc_html: Şu anda trend olan ve daha önce incelenen etiketleri herkese açık olarak göster
         title: Trend etiketler
     statuses:
       back_to_account: Hesap sayfasına geri dön
@@ -520,6 +523,7 @@ tr:
     tags:
       accounts_today: Bugünkü eşsiz kullanımlar
       accounts_week: Bu haftaki eşsiz kullanımlar
+      breakdown: Bugünkü kullanımın kaynağa göre dağılımı
       context: İçerik
       directory: Dizinde
       last_active: Son aktiflik
@@ -548,8 +552,13 @@ tr:
       body: "%{reporter} %{target}'i şikayet etti"
       body_remote: '%{domain}''den birisi %{target}''i şikayet etti'
       subject: '%{instance} için yeni şikayet (#%{id})'
+    new_trending_tag:
+      body: '#%{name} etiketi bugün trend, ancak daha önce incelenmedi. Siz izin vermediğiniz sürece herkese açık olarak gösterilmeyecek, ya da bir daha asla hakkında bir şey duymamak için olduğu şekliyle formu kaydedin.'
+      subject: '%{instance} üzerinde gözden geçirmek için yeni etiket (#%{name})'
   aliases:
     add_new: Takma ad oluştur
+    created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
+    deleted_msg: Yeni takma ad başarıyla kaldırıldı. O hesaptan bu hesaba taşınmak artık mümkün değil.
   appearance:
     advanced_web_interface: Gelişmiş web arayüzü
     advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
