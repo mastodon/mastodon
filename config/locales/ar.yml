@@ -564,6 +564,7 @@ ar:
     delete_account: حذف حساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     description:
+      prefix_invited_by_user: "يدعوك @%{name} للاتحاق بخادم ماستدون هذا!"
       prefix_sign_up: أنشئ حسابًا على ماستدون اليوم!
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
@@ -621,9 +622,11 @@ ar:
   deletes:
     challenge_not_passed: المعلومات التي أدخلتها لم تكن صحيحة
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
+    confirm_username: ادخل اسم المستخدم الخاص بك لتأكيد الإجراء
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
     warning:
+      before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
       data_removal: سوف تُحذَف منشوراتك والبيانات الأخرى نهائيا
       email_change_html: بإمكانك <a href="%{path}">تغيير عنوان بريدك الإلكتروني</a> دون أن يُحذف حسابك
       irreversible: لن يكون بإمكانك استرجاع أو إعادة تنشيط حسابك
@@ -879,6 +882,9 @@ ar:
     reply:
       proceed: المواصلة إلى الرد
       prompt: 'ترغب في الرد على هذا التبويق:'
+  scheduled_statuses:
+    over_total_limit: لقد بلغت حد الـ %{limit} مِن التبويقات المبرمَجة
+    too_soon: يجب أن يكون تاريخ البرمجة في المستقبَل
   sessions:
     activity: آخر نشاط
     browser: المتصفح
