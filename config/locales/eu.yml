@@ -33,6 +33,7 @@ eu:
     status_count_before: Hauek
     tagline: Jarraitu lagunak eta egin berriak
     terms: Erabilera baldintzak
+    unavailable_content: Eduki eskuraezina
     unavailable_content_description:
       domain: Zerbitzaria
       reason: Arrazoia
@@ -430,6 +431,7 @@ eu:
       domain_blocks:
         all: Guztiei
         disabled: Inori ez
+        title: Erakutsi domeinu-blokeoak
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
         title: Azaleko irudia
@@ -538,6 +540,11 @@ eu:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: '%{domain} domeinuko norbaitek %{target} salatu du'
       subject: 'Salaketa berria %{instance} instantzian (#%{id})'
+  aliases:
+    add_new: Sortu ezizena
+    created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.
+    deleted_msg: Ongi kendu da ezizena. Orain ezin izango da aurreko kontutik hona migratu.
+    remove: Deslotu ezizena
   appearance:
     advanced_web_interface: Web interfaze aurreratua
     advanced_web_interface_hint: 'Pantaila bere zabalera osoan erabili nahi baduzu, web interfaze aurreratuak hainbat zutabe desberdin konfiguratzea ahalbidetzen dizu, aldi berean nahi beste informazio ikusteko: Hasiera, jakinarazpenak, federatutako denbora-lerroa, edo nahi beste zerrenda eta traola.'
@@ -605,6 +612,10 @@ eu:
       return: Erakutsi erabiltzailearen profila
       web: Joan webera
     title: Jarraitu %{acct}
+  challenge:
+    confirm: Jarraitu
+    invalid_password: Pasahitz baliogabea
+    prompt: Berretsi pasahitza jarraitzeko
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -620,6 +631,7 @@ eu:
       x_months: "%{count} hilabete"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Sartu duzun informazioa ez da zuzena
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
     proceed: Ezabatu kontua
     success_msg: Zure kontua ongi ezabatu da
@@ -762,6 +774,10 @@ eu:
       too_many: Ezin dira 4 fitxategi baino gehiago erantsi
   migrations:
     acct: Kontu berriaren erabiltzaile@domeinua
+    incoming_migrations_html: Beste kontu batetik hona migratzeko, aurretik <a href="%{path}">kontuaren ezizen bat sortu</a> behar duzu.
+    proceed_with_move: Mugitu jarraitzaileak
+    redirecting_to: 'Zure kontuak hona birbideratzen du: %{acct}.'
+    set_redirect: Ezarri birbideratzea
   moderation:
     title: Moderazioa
   notification_mailer:
@@ -906,6 +922,7 @@ eu:
   settings:
     account: Kontua
     account_settings: Kontuaren ezarpenak
+    aliases: Kontuaren ezizenak
     appearance: Itxura
     authorized_apps: Baimendutako aplikazioak
     back: Itzuli Mastodon-era
