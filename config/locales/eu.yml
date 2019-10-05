@@ -53,7 +53,7 @@ eu:
     last_active: azkenekoz aktiboa
     link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
     media: Multimedia
-    moved_html: "%{name} hona lekualdatu da %{new_profile_link}:"
+    moved_html: "%{name} hona migratu da %{new_profile_link}:"
     network_hidden: Informazio hau ez dago eskuragarri
     never_active: Inoiz ez
     nothing_here: Ez dago ezer hemen!
@@ -432,6 +432,8 @@ eu:
         all: Guztiei
         disabled: Inori ez
         title: Erakutsi domeinu-blokeoak
+      domain_blocks_rationale:
+        title: Erakutsi arrazoia
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
         title: Azaleko irudia
@@ -544,6 +546,7 @@ eu:
     add_new: Sortu ezizena
     created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.
     deleted_msg: Ongi kendu da ezizena. Orain ezin izango da aurreko kontutik hona migratu.
+    hint_html: Beste kontu batetik hona migratu nahi baduzu, hemen ezizen bat sortu dezakezu, hau beharrezkoa da kontu zaharreko jarraitzaileak hona ekartzeko. Ekintza hau berez <strong>kaltegabea eta desegingarria</strong> da. <strong>Kontuaren migrazioa kontu zaharretik abiatzen da</strong>.
     remove: Deslotu ezizena
   appearance:
     advanced_web_interface: Web interfaze aurreratua
@@ -574,12 +577,14 @@ eu:
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Erabilera baldintzak</a> onartzen ditut
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
+    description:
+      prefix_sign_up: Eman izena Mastodon-en!
     didnt_get_confirmation: Ez dituzu berresteko argibideak jaso?
     forgot_password: Pasahitza ahaztu duzu?
     invalid_reset_password_token: Pasahitza berrezartzeko token-a baliogabea da edo iraungitu du. Eskatu beste bat.
     login: Hasi saioa
     logout: Amaitu saioa
-    migrate_account: Lekualdatu beste kontu batera
+    migrate_account: Migratu beste kontu batera
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
     or_log_in_with: Edo hasi saioa honekin
     providers:
@@ -635,6 +640,8 @@ eu:
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
     proceed: Ezabatu kontua
     success_msg: Zure kontua ongi ezabatu da
+    warning:
+      data_removal: Zure mezuak eta beste datuak behin betiko ezabatuko dira
   directories:
     directory: Profilen direktorioa
     explanation: Deskubritu erabiltzaileak interesen arabera
@@ -774,7 +781,15 @@ eu:
       too_many: Ezin dira 4 fitxategi baino gehiago erantsi
   migrations:
     acct: Kontu berriaren erabiltzaile@domeinua
+    cancel_explanation: Birbideratzea ezezteak zure kontu hau berriro aktibatuko du, baina ez ditu atzera ekarriko bestera aldatu diren jarraitzaileak.
+    errors:
+      already_moved: kontu honetara migratu duzu dagoeneko
+      move_to_self: ezin da oraingo kontua izan
+      not_found: ezin izan da aurkitu
+    followers_count: Jarraitzaileak migrazioaren unean
+    incoming_migrations: Beste kontu batetik migratuz
     incoming_migrations_html: Beste kontu batetik hona migratzeko, aurretik <a href="%{path}">kontuaren ezizen bat sortu</a> behar duzu.
+    moved_msg: Zure kontuak orain %{acct} kontura birbideratzen du, eta zure jarraitzaileak hara migratuak izaten ari dira.
     proceed_with_move: Mugitu jarraitzaileak
     redirecting_to: 'Zure kontuak hona birbideratzen du: %{acct}.'
     set_redirect: Ezarri birbideratzea
