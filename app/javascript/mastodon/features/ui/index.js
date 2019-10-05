@@ -327,7 +327,7 @@ class UI extends React.PureComponent {
   }
 
   dataTransferIsText = (dataTransfer) => {
-    return (dataTransfer && Array.from(dataTransfer.types).includes('text/plain') && dataTransfer.items.length === 1);
+    return (dataTransfer && Array.from(dataTransfer.types).filter((type) => type === 'text/plain').length === 1);
   }
 
   closeUploadModal = () => {

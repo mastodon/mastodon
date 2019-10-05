@@ -21,7 +21,7 @@ ja:
     generic_description: "%{domain} は、Mastodon サーバーの一つです"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
-    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、個人のアカウントではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックする以外の目的でブロックしないでください。サーバー全体をブロックする場合、ドメインブロックを使用してください。
+    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。
 
 '
     learn_more: もっと詳しく
@@ -36,10 +36,11 @@ ja:
     terms: 利用規約
     unavailable_content: 制限中のサーバー
     unavailable_content_description:
-      reason: '制限理由:'
-      rejecting_media: このサーバーからのメディアファイルは受信されず、サムネイルも表示されません。表示するにはクリックしてそのサーバーに直接アクセスする必要があります。
-      silenced: このサーバーからの投稿は相手をフォローしてもあなたのホームタイムライン以外には表示されません。
-      suspended: このサーバーからは誰もフォローできません。このサーバーからのデータは受信されず、やりとりもされません。
+      domain: サーバー
+      reason: 制限理由
+      rejecting_media: 'これらのサーバーからのメディアファイルは処理されず、保存や変換もされません。サムネイルも表示されません。表示するにはクリックしてそのサーバーに直接アクセスする必要があります:'
+      silenced: 'これらのサーバーからの投稿は公開タイムラインと会話から隠されます。また該当するユーザーからの通知は相手をフォローしている場合を除き表示されません:'
+      suspended: 'これらのサーバーからのデータは処理されず、保存や変換もされません。該当するユーザーとの交流もできません:'
     unavailable_content_html: 通常 Mastodon では連合先のどんなサーバーのユーザーとでもやりとりできます。ただし次のサーバーには例外が設定されています。
     user_count_after:
       other: 人
@@ -235,6 +236,7 @@ ja:
       delete: 削除
       destroyed_msg: 絵文字の削除に成功しました！
       disable: 無効化
+      disabled: 無効
       disabled_msg: 絵文字を無効化しました
       emoji: 絵文字
       enable: 有効化
@@ -251,7 +253,7 @@ ja:
       title: カスタム絵文字
       uncategorized: 未分類
       unlist: 非表示
-      unlisted: 未収載
+      unlisted: 非表示
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
@@ -285,8 +287,8 @@ ja:
       whitelist_mode: ホワイトリストモード
     domain_allows:
       add_new: ホワイトリストに追加
-      created_msg: ドメインのホワイトリストへの登録が正常に完了しました
-      destroyed_msg: ドメインがホワイトリストから削除されました
+      created_msg: ドメインのホワイトリストへの登録が完了しました
+      destroyed_msg: ドメインをホワイトリストから削除しました
       undo: ホワイトリストから削除
     domain_blocks:
       add_new: ドメインブロックを追加
@@ -307,7 +309,7 @@ ja:
       private_comment: コメント (非公開)
       private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
       public_comment: コメント (公開)
-      public_comment_hint: ドメインブロックの公開を有効にしている場合、このコメントも一般に公開されます。
+      public_comment_hint: ドメインブロックの公開を有効にしている場合、このコメントも公開されます。
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: 通報を拒否
@@ -433,8 +435,8 @@ ja:
         desc_html: この設定を変更していない全ユーザーに影響します
         title: デフォルトで検索エンジンによるインデックスを拒否する
       domain_blocks:
-        all: 誰でも許可
-        disabled: 誰も許可しない
+        all: 誰にでも許可
+        disabled: 誰にも許可しない
         title: ドメインブロックを表示
         users: ログイン済みローカルユーザーのみ許可
       domain_blocks_rationale:
@@ -462,12 +464,12 @@ ja:
           desc_html: 誰でも自分のアカウントを削除できるようにします
           title: アカウント削除を受け付ける
         min_invite_role:
-          disabled: 誰も許可しない
+          disabled: 誰にも許可しない
           title: 招待の作成を許可
       registrations_mode:
         modes:
           approved: 登録には承認が必要
-          none: 誰も許可しない
+          none: 誰にも許可しない
           open: 誰でも登録可
         title: 新規登録
       show_known_fediverse_at_about_page:
@@ -490,7 +492,7 @@ ja:
         title: カスタム利用規約
       site_title: サーバーの名前
       spam_check_enabled:
-        desc_html: 求められていないメッセージを繰り返し送信するアカウントを自動でサイレンスにし通報することができます。誤検知を含む可能性もあります。
+        desc_html: 迷惑なメッセージを繰り返し送信するアカウントを自動でサイレンスにし通報することができます。誤検知を含む可能性があります。
         title: スパム対策を有効にする
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
@@ -533,7 +535,7 @@ ja:
       trending_right_now: 現在のトレンド
       unique_uses_today: 本日 %{count} 人がトゥートに使用
       unreviewed: 未審査
-      updated_msg: ハッシュタグ設定の更新に成功しました
+      updated_msg: ハッシュタグ設定が更新されました
     title: 管理
     warning_presets:
       add_new: 追加
@@ -555,9 +557,9 @@ ja:
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
-    deleted_msg: エイリアスを解除しました。そのアカウントからは引っ越しできなくなります。
+    deleted_msg: エイリアスを削除しました。指定されていたアカウントからは引っ越しできなくなります。
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
-    remove: エイリアスを解除
+    remove: エイリアスを削除
   appearance:
     advanced_web_interface: 上級者向け UI
     advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
@@ -589,7 +591,7 @@ ja:
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     description:
       prefix_invited_by_user: "@%{name} があなたをこの Mastodon サーバーに招待しました"
-      prefix_sign_up: 今すぐ Mastodon に登録しましょう！
+      prefix_sign_up: 今すぐ Mastodon を始めよう！
       suffix: アカウントがあれば、どんな Mastodon 互換サーバーのユーザーでもフォローしたりメッセージをやり取りできるようになります！
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
@@ -631,7 +633,7 @@ ja:
       web: Web を開く
     title: "%{acct} をフォロー"
   challenge:
-    confirm: 続行する
+    confirm: 続ける
     hint_html: 以後 1 時間はパスワードの再入力を求めません
     invalid_password: パスワードが間違っています
     prompt: 続行するにはパスワードを入力してください
@@ -820,17 +822,20 @@ ja:
     incoming_migrations_html: 別のアカウントからこのアカウントに引っ越すには、まず<a href="%{path}">アカウントエイリアスを作成</a>する必要があります。
     moved_msg: アカウントは %{acct} に引っ越し設定されており、フォロワーは引っ越し先に引き継がれています。
     not_redirecting: アカウントは現在引っ越し設定されていません。
-    on_cooldown: あなたは最近アカウントを引っ越ししています。この機能は %{count} 日後に再度利用できるようになります。
+    on_cooldown: あなたは最近アカウントを引っ越しました。この機能は %{count} 日後に再度利用できるようになります。
     past_migrations: 過去の引っ越し
     proceed_with_move: フォロワーを引き継ぐ
     redirecting_to: アカウントは %{acct} に引っ越し設定されています。
+    set_redirect: 引っ越しを設定
     warning:
       backreference_required: まずは引っ越し先のアカウントでこのアカウントに対しエイリアスを作成する必要があります
       before: '続行する前に、次の点を再度確認してください:'
       cooldown: 引っ越し後はクールダウン期間があります。その間再度引っ越すことはできません
-      disabled_account: 引っ越すと現在のアカウントの機能は完全には利用できなくなります。ただしデータのエクスポートと再有効化は利用できます。
-      followers: この操作により、すべてのフォロワーを現在のアカウントから新しいアカウントに引き継ぎます。
+      disabled_account: 引っ越した後はデータのエクスポートと再有効化を除きほとんどの機能が利用できなくなります
+      followers: すべてのフォロワーを現在のアカウントから新しいアカウントに引き継ぎます
+      only_redirect_html: または、<a href="%{path}">フォロワーを残したまま引っ越す</a>こともできます。
       other_data: その他のデータは自動的に引き継がれません
+      redirect: プロフィールに引っ越し済みの通知が表示され、検索結果から除外されます
   moderation:
     title: モデレーション
   notification_mailer:
@@ -972,7 +977,7 @@ ja:
     title: セッション
   settings:
     account: アカウント
-    account_settings: セキュリティ
+    account_settings: アカウント設定
     aliases: アカウントエイリアス
     appearance: 外観
     authorized_apps: 認証済みアプリ
@@ -1014,6 +1019,8 @@ ja:
       private: 非公開のトゥートを固定することはできません
       reblog: ブーストを固定することはできません
     poll:
+      total_people:
+        other: "%{count} 人"
       total_votes:
         other: "%{count}票"
       vote: 投票

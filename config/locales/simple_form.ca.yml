@@ -2,9 +2,14 @@
 ca:
   simple_form:
     hints:
+      account_alias:
+        acct: Especifica l'usuari@domini del compte des d'on et vols moure
+      account_migration:
+        acct: Especifica l'usuari@domini del compte al que et vols moure
       account_warning_preset:
         text: Pots utilitzar totes les sintaxi com ara URL, etiquetes i mencions
       admin_account_action:
+        include_statuses: L'usuari veurà quin tuts ha causat l'acció de moderació o avís
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
         text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
@@ -14,7 +19,10 @@ ca:
         avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
         context: Un o diversos contextos on s'ha d'aplicar el filtre
+        current_password: Per motius de seguretat si us plau entra la contrasenya del compte actual
+        current_username: Per a confirmar, si us plau entra el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
+        discoverable: El directori de perfils és una altra manera per quin el teu compte pot assolir una audiència més àmplia
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
@@ -41,6 +49,8 @@ ca:
         domain: Aquest domini podrà obtenir dades d’aquest servidor i les dades entrants d’aquests seran processades i emmagatzemades
       featured_tag:
         name: 'És possible que vulguis utilitzar un d''aquests:'
+      form_challenge:
+        current_password: Estàs entrant en una àrea segura
       imports:
         data: Fitxer CSV exportat des d'un altre servidor de Mastodon
       invite_request:
@@ -56,9 +66,14 @@ ca:
         fields:
           name: Etiqueta
           value: Contingut
+      account_alias:
+        acct: Nom del compte vell
+      account_migration:
+        acct: Nom del nou compte
       account_warning_preset:
         text: Text predefinit
       admin_account_action:
+        include_statuses: Inclou tuts reportats en el correu electrònic
         send_email_notification: Notifica l'usuari per correu electrònic
         text: Avís personalitzat
         type: Acció
@@ -128,6 +143,8 @@ ca:
         must_be_follower: Blocar les notificacions de persones que no et segueixen
         must_be_following: Bloca les notificacions de persones que no segueixes
         must_be_following_dm: Bloca els missatges directes de persones que no segueixes
+      invite:
+        comment: Comenta
       invite_request:
         text: Per què vols unir-te?
       notification_emails:
@@ -142,6 +159,7 @@ ca:
         trending_tag: Envia un correu quan una etiqueta sense revisar està en tendència
       tag:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
+        name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
         usable: Permet als tuts emprar aquesta etiqueta
     'no': 'No'

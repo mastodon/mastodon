@@ -179,10 +179,13 @@
   position: absolute;
 }
 
-.video-modal {
+.video-modal__container {
   max-width: 100vw;
   max-height: 100vh;
-  position: relative;
+}
+
+.audio-modal__container {
+  width: 50vw;
 }
 
 .media-modal {
@@ -282,6 +285,7 @@
   }
 
   a {
+    pointer-events: auto;
     text-decoration: none;
     font-weight: 500;
     color: $ui-secondary-color;
@@ -339,6 +343,7 @@
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
+  direction: ltr;
 
   &.editable {
     border-radius: 0;
@@ -386,6 +391,7 @@
   max-width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
+  direction: ltr;
 
   &.editable {
     border-radius: 0;

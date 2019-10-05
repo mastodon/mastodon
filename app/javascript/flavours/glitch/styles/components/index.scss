@@ -1454,7 +1454,6 @@
     flex: 1 1 auto;
     padding: 10px 5px;
     padding-right: 15px;
-    word-break: break-all;
     overflow: hidden;
 
     &__info {
@@ -1477,8 +1476,8 @@
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 4px;
-      flex-basis: 170px;
-      flex-shrink: 1000;
+      flex-basis: 90px;
+      flex-grow: 1;
 
       a {
         color: $primary-text-color;
@@ -1524,6 +1523,10 @@ noscript {
       &:hover {
         text-decoration: none;
       }
+    }
+
+    a {
+      word-break: break-word;
     }
   }
 }

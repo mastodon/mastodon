@@ -7,6 +7,7 @@ import {
   CONVERSATIONS_FETCH_FAIL,
   CONVERSATIONS_UPDATE,
   CONVERSATIONS_READ,
+  CONVERSATIONS_DELETE_SUCCESS,
 } from '../actions/conversations';
 import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'flavours/glitch/actions/accounts';
 import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
@@ -107,6 +108,8 @@ export default function conversations(state = initialState, action) {
     return filterConversations(state, [action.relationship.id]);
   case DOMAIN_BLOCK_SUCCESS:
     return filterConversations(state, action.accounts);
+  case CONVERSATIONS_DELETE_SUCCESS:
+    return state.update('items', list => list.filterNot(item => item.get('id') === action.id));
   default:
     return state;
   }

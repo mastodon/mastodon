@@ -3,7 +3,7 @@
 class NodeInfo::Serializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :version, :software, :protocols, :usage
+  attributes :version, :software, :protocols, :usage, :open_registrations
 
   def version
     '2.0'
@@ -31,6 +31,10 @@ class NodeInfo::Serializer < ActiveModel::Serializer
 
       local_posts: instance_presenter.status_count,
     }
+  end
+
+  def open_registrations
+    Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
   end
 
   private

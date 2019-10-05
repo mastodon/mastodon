@@ -3,8 +3,7 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
-
+## [3.0.0] - 2019-10-03
 ### Added
 
 - Add "not available" label to unloaded media attachments in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/11715), [Gargron](https://github.com/tootsuite/mastodon/pull/11745))
@@ -13,7 +12,7 @@ All notable changes to this project will be documented in this file.
   - Add profile directory REST API
 - Add special alert for throttled requests in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/11677))
 - Add confirmation modal when logging out from the web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/11671))
-- **Add audio player in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/11644), [Gargron](https://github.com/tootsuite/mastodon/pull/11652), [Gargron](https://github.com/tootsuite/mastodon/pull/11654), [ThibG](https://github.com/tootsuite/mastodon/pull/11629))
+- **Add audio player in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/11644), [Gargron](https://github.com/tootsuite/mastodon/pull/11652), [Gargron](https://github.com/tootsuite/mastodon/pull/11654), [ThibG](https://github.com/tootsuite/mastodon/pull/11629), [Gargron](https://github.com/tootsuite/mastodon/pull/12056))
 - **Add autosuggestions for hashtags in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/11422), [ThibG](https://github.com/tootsuite/mastodon/pull/11632), [Gargron](https://github.com/tootsuite/mastodon/pull/11764), [Gargron](https://github.com/tootsuite/mastodon/pull/11588), [Gargron](https://github.com/tootsuite/mastodon/pull/11442))
 - **Add media editing modal with OCR tool in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/11563), [Gargron](https://github.com/tootsuite/mastodon/pull/11566), [ThibG](https://github.com/tootsuite/mastodon/pull/11575), [ThibG](https://github.com/tootsuite/mastodon/pull/11576), [Gargron](https://github.com/tootsuite/mastodon/pull/11577), [Gargron](https://github.com/tootsuite/mastodon/pull/11573), [Gargron](https://github.com/tootsuite/mastodon/pull/11571))
 - Add indicator of unread notifications to window title when web UI is out of focus ([Gargron](https://github.com/tootsuite/mastodon/pull/11560), [Gargron](https://github.com/tootsuite/mastodon/pull/11572))
@@ -22,6 +21,9 @@ All notable changes to this project will be documented in this file.
 - **Add option to disable real-time updates in web UI ("slow mode")** ([Gargron](https://github.com/tootsuite/mastodon/pull/9984), [ykzts](https://github.com/tootsuite/mastodon/pull/11880), [ThibG](https://github.com/tootsuite/mastodon/pull/11883), [Gargron](https://github.com/tootsuite/mastodon/pull/11898), [ThibG](https://github.com/tootsuite/mastodon/pull/11859))
 - Add option to disable blurhash previews in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/11188))
 - Add native smooth scrolling when supported in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/11207))
+- Add scrolling to the search bar on focus in web UI ([Kjwon15](https://github.com/tootsuite/mastodon/pull/12032))
+- Add refresh button to list of rebloggers/favouriters in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/12031))
+- Add error description and button to copy stack trace to web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/12033))
 - Add search and sort functions to hashtag admin UI ([mayaeh](https://github.com/tootsuite/mastodon/pull/11829), [Gargron](https://github.com/tootsuite/mastodon/pull/11897), [mayaeh](https://github.com/tootsuite/mastodon/pull/11875))
 - Add setting for default search engine indexing in admin UI ([brortao](https://github.com/tootsuite/mastodon/pull/11804))
 - Add account bio to account view in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/11473))
@@ -30,7 +32,6 @@ All notable changes to this project will be documented in this file.
 - **Add account migration UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/11846), [noellabo](https://github.com/tootsuite/mastodon/pull/11905), [noellabo](https://github.com/tootsuite/mastodon/pull/11907), [noellabo](https://github.com/tootsuite/mastodon/pull/11906), [noellabo](https://github.com/tootsuite/mastodon/pull/11902))
 - **Add table of contents to about page** ([Gargron](https://github.com/tootsuite/mastodon/pull/11885), [ykzts](https://github.com/tootsuite/mastodon/pull/11941), [ykzts](https://github.com/tootsuite/mastodon/pull/11895), [Kjwon15](https://github.com/tootsuite/mastodon/pull/11916))
 - **Add password challenge to 2FA settings, e-mail notifications** ([Gargron](https://github.com/tootsuite/mastodon/pull/11878))
-- Add optional invite comments ([ThibG](https://github.com/tootsuite/mastodon/pull/10465))
 - **Add optional public list of domain blocks with comments** ([ThibG](https://github.com/tootsuite/mastodon/pull/11298), [ThibG](https://github.com/tootsuite/mastodon/pull/11515), [Gargron](https://github.com/tootsuite/mastodon/pull/11908))
 - Add an RSS feed for featured hashtags ([noellabo](https://github.com/tootsuite/mastodon/pull/10502))
 - Add explanations to featured hashtags UI and profile ([Gargron](https://github.com/tootsuite/mastodon/pull/11586))
@@ -51,6 +52,7 @@ All notable changes to this project will be documented in this file.
 - **Add REST API for managing featured hashtags** ([noellabo](https://github.com/tootsuite/mastodon/pull/11778))
 - **Add REST API for managing timeline read markers** ([Gargron](https://github.com/tootsuite/mastodon/pull/11762))
 - Add `exclude_unreviewed` param to `GET /api/v2/search` REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/11977))
+- Add `reason` param to `POST /api/v1/accounts` REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/12064))
 - **Add ActivityPub secure mode** ([Gargron](https://github.com/tootsuite/mastodon/pull/11269), [ThibG](https://github.com/tootsuite/mastodon/pull/11332), [ThibG](https://github.com/tootsuite/mastodon/pull/11295))
 - Add HTTP signatures to all outgoing ActivityPub GET requests ([Gargron](https://github.com/tootsuite/mastodon/pull/11284), [ThibG](https://github.com/tootsuite/mastodon/pull/11300))
 - Add support for ActivityPub Audio activities ([ThibG](https://github.com/tootsuite/mastodon/pull/11189))
@@ -64,6 +66,7 @@ All notable changes to this project will be documented in this file.
 - Add `tootctl media refresh` command ([Gargron](https://github.com/tootsuite/mastodon/pull/11775))
 - Add `tootctl cache recount` command ([Gargron](https://github.com/tootsuite/mastodon/pull/11597))
 - Add option to exclude suspended domains from `tootctl domains crawl` ([dariusk](https://github.com/tootsuite/mastodon/pull/11454))
+- Add parallelization to `tootctl search deploy` ([noellabo](https://github.com/tootsuite/mastodon/pull/12051))
 - Add soft delete for statuses for instant deletes through API ([Gargron](https://github.com/tootsuite/mastodon/pull/11623), [Gargron](https://github.com/tootsuite/mastodon/pull/11648))
 - Add rails-level JSON caching ([Gargron](https://github.com/tootsuite/mastodon/pull/11333), [Gargron](https://github.com/tootsuite/mastodon/pull/11271))
 - **Add request pool to improve delivery performance** ([Gargron](https://github.com/tootsuite/mastodon/pull/10353), [ykzts](https://github.com/tootsuite/mastodon/pull/11756))
@@ -72,6 +75,13 @@ All notable changes to this project will be documented in this file.
 - **Add more accurate hashtag search** ([Gargron](https://github.com/tootsuite/mastodon/pull/11579), [Gargron](https://github.com/tootsuite/mastodon/pull/11427), [Gargron](https://github.com/tootsuite/mastodon/pull/11448))
 - **Add more accurate account search** ([Gargron](https://github.com/tootsuite/mastodon/pull/11537), [Gargron](https://github.com/tootsuite/mastodon/pull/11580))
 - **Add a spam check** ([Gargron](https://github.com/tootsuite/mastodon/pull/11217), [Gargron](https://github.com/tootsuite/mastodon/pull/11806), [ThibG](https://github.com/tootsuite/mastodon/pull/11296))
+- Add new languages ([Gargron](https://github.com/tootsuite/mastodon/pull/12062))
+  - Breton
+  - Spanish (Argentina)
+  - Estonian
+  - Macedonian
+  - New Norwegian
+- Add NodeInfo endpoint ([Gargron](https://github.com/tootsuite/mastodon/pull/12002), [Gargron](https://github.com/tootsuite/mastodon/pull/12058))
 
 ### Changed
 
@@ -100,6 +110,8 @@ All notable changes to this project will be documented in this file.
 - Change supported Node versions to include v12 ([abcang](https://github.com/tootsuite/mastodon/pull/11706))
 - Change Portuguese language from `pt` to `pt-PT` ([Gargron](https://github.com/tootsuite/mastodon/pull/11820))
 - Change domain block silence to always require approval on follow ([ThibG](https://github.com/tootsuite/mastodon/pull/11975))
+- Change link preview fetcher to not perform a HEAD request first ([Gargron](https://github.com/tootsuite/mastodon/pull/12028))
+- Change `tootctl domains purge` to accept multiple domains at once ([Gargron](https://github.com/tootsuite/mastodon/pull/12046))
 
 ### Removed
 
@@ -176,6 +188,16 @@ All notable changes to this project will be documented in this file.
 - Fix http_parser.rb gem not being compiled when no network available ([petabyteboy](https://github.com/tootsuite/mastodon/pull/11444))
 - Fix muted text color not applying to all text ([trwnh](https://github.com/tootsuite/mastodon/pull/11996))
 - Fix follower/following lists resetting on back-navigation in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/11986))
+- Fix n+1 query when approving multiple follow requests ([abcang](https://github.com/tootsuite/mastodon/pull/12004))
+- Fix records not being indexed into ElasticSearch sometimes ([Gargron](https://github.com/tootsuite/mastodon/pull/12024))
+- Fix needlessly indexing unsearchable statuses into ElasticSearch ([Gargron](https://github.com/tootsuite/mastodon/pull/12041))
+- Fix new user bootstrapping crashing when to-be-followed accounts are invalid ([ThibG](https://github.com/tootsuite/mastodon/pull/12037))
+- Fix featured hashtag URL being interpreted as media or replies tab ([Gargron](https://github.com/tootsuite/mastodon/pull/12048))
+- Fix account counters being overwritten by parallel writes ([Gargron](https://github.com/tootsuite/mastodon/pull/12045))
+
+### Security
+
+- Fix performance of GIF re-encoding and always strip EXIF data from videos ([Gargron](https://github.com/tootsuite/mastodon/pull/12057))
 
 ## [2.9.3] - 2019-08-10
 ### Added
