@@ -40,6 +40,7 @@ if ENV['S3_ENABLED'] == 'true'
       http_open_timeout: 5,
       http_read_timeout: 5,
       http_idle_timeout: 5,
+      retry_limit: 0,
     }
   )
 
