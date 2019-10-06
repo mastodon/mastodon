@@ -3,6 +3,696 @@ html {
 }
 
 body {
+  background-color: lighten($ui-base-color, 4%);
+
+  & .ui {
+    background: url($foresdon-background-image) no-repeat fixed center 48px;
+    background-size: cover;
+  }
+
+  & .tabs-bar__wrapper {
+    margin: 0;
+    padding: 0 1px;
+  
+    & .column-header,
+    & .drawer__header {
+      margin: 0;
+    }
+
+    & .tabs-bar {
+      margin-bottom: 0;
+    }
+  }
+  & .drawer {
+    margin-bottom: 3px;
+    padding: 0;
+  
+    &__header {
+      margin-bottom: 3px;
+      background-color: lighten($ui-base-color, 4%);
+    }
+  
+    &__inner {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+  
+      @media screen and (max-width: 600px + (10px * 1)) {
+        margin-top: 48px + 3px;
+      }
+  
+      &__mastodon {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+body.layout-single-column {
+  background-color: darken($ui-base-color, 8%);
+
+  & .ui {
+    background: url($foresdon-background-image) no-repeat fixed center 48px; 
+    background-size: cover;
+
+    @media screen and (max-width: 600px + (285px * 2) + (10px * 1)) {
+      background: url($foresdon-background-image) no-repeat fixed center 96px; 
+    }
+  }
+
+  & .tabs-bar__wrapper {
+    margin: 0;
+    padding: 0 1px;
+    background-color: darken($ui-base-color, 8%);
+  
+    & .column-header,
+    & .drawer__header {
+      margin-left: 0;
+      margin-right: 0;
+      background: none;
+    }
+
+    & .tabs-bar {
+      margin-bottom: 0;
+    }
+
+    & .drawer__inner {
+      @media screen and (max-width: 600px + (285px * 2) + (10px * 1)) {
+        margin-top: 48px + 3px;
+      }
+    }
+  }
+
+  & .column-header__button,
+  & .column-header__back-button {
+    background: none;
+  }
+
+  & .column-back-button {
+    background-color: darken($ui-base-color, 8%);
+  }
+}
+
+.public-layout {
+  background: url($foresdon-background-image) no-repeat fixed center bottom; 
+  background-size: cover;
+  height: calc(100% + 10px);
+
+  & > .container {
+    margin-top : -10px;
+    padding-top: 5px;
+
+    & > .header {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      box-shadow: none;
+    }
+
+    & > .page-header {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+    }
+
+    & > .public-account-header {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+    }
+
+    & .account__section-headline {
+      margin-bottom: 3px;
+    }
+
+    & .activity-stream {
+      box-shadow: none;
+
+      & .entry {
+        margin-bottom: $foresdon-margin-bottom;
+        background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+        border: none;
+        border-radius: $foresdon-primary-border-radius;
+
+        & > a.load-more,
+        & > a.load-gap {
+          background: none;
+        }
+      }
+    }
+
+    & .public-account-bio {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border: none;
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+
+      & .account__header__fields > dl > dt {
+        background: rgba($ui-base-color, 0.40);
+      }
+    }
+
+    & .directory__list {
+      min-height: 60vh;
+    }
+
+    & .directory__tag a {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border: none;
+      border-radius: $foresdon-primary-border-radius;
+    }
+
+    & .hero-widget {
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+
+      &__text {
+        background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      }
+    }
+
+    & .card {
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+
+      & .card__bar {
+        background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      }
+    }
+
+    & .detailed-status {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border: none;
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+    }
+
+    & .landing-page__call-to-action,
+    & .contact-widget,
+    & .box-widget,
+    & .nothing-here,
+    & .table-of-contents {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border: none;
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+    }
+
+    & .box-widget,
+    & .nothing-here,
+    & .table-of-contents {
+      min-height: 30vh;
+      margin-bottom: 15px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    & > .footer {
+      padding-left: 20px;
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+      box-shadow: none;
+    }
+  }
+}
+
+.columns-area__panels {
+  padding: 0;
+
+  &__main {
+    padding: 0;
+  }
+
+  &__pane {
+    background: none;
+  }
+}
+
+.column {
+  padding: 0 0 0 2px;
+}
+
+.search {
+  margin-bottom: 3px;
+
+  & .search__input {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.compose-panel {
+  margin-top: 0;
+
+  @media screen and (max-width: 600px + (285px * 2) + (10px * 1)) {
+    margin-top: 48px;
+  }
+
+  &>div:nth-of-type(2) {
+    border-radius: $foresdon-primary-border-radius $foresdon-primary-border-radius 0 0;
+  }
+
+  &>div:last-of-type {
+    border-radius: 0 0 $foresdon-primary-border-radius $foresdon-primary-border-radius;
+  }
+
+  & .navigation-panel {
+    margin-top: 48px;
+  }
+  
+  & .navigation-bar {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  & .compose-form {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  & .getting-started__footer {
+    margin-bottom: 0;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
+
+.drawer__pager {
+  & .drawer__inner.darker {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  & .search-results__header {
+    background: rgba($ui-base-color, 0.60);
+  }
+}
+.columns-area__panels__pane--start {
+  & .navigation-panel {
+    margin-top: 51px;
+    height: calc(100% - (51px + 10px));
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.column>.scrollable {
+  margin: 0 1px;
+  padding: 3px 1px 3px 1px;
+  background: none;
+}
+
+.column-header__collapsible-inner {
+  margin: $foresdon-margin-bottom $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.column-inline-form {
+  margin: 5px $foresdon-margin-right $foresdon-margin-bottom 2px;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.item-list {
+  & .column-subheading {
+    background: rgba($ui-base-color, 0.95);
+    border-radius: $foresdon-primary-border-radius $foresdon-primary-border-radius 0 0;
+  }
+
+  & a.column-link {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  &>article:last-of-type>a.column-link {
+    border-radius: 0 0 $foresdon-primary-border-radius $foresdon-primary-border-radius;
+  }
+}
+
+.status__wrapper,
+.status__wrapper-public,
+.status__wrapper-reply {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  &.focusable:focus {
+    background: rgba($ui-base-color, 0.85);
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.status__wrapper-direct.focusable:focus {
+  .status-direct {
+    background: rgba($ui-base-color, 0.92);
+  }
+}
+
+.status__wrapper--filtered {
+  background: rgba($ui-base-color, 0.5);
+  border-radius: $foresdon-primary-border-radius;
+  padding: 1px 0;
+}
+
+.status {
+  border: none;
+
+  &.status-direct:not(.read) {
+    background: rgba($ui-base-color, 0.60);
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+  }
+}
+
+.detailed-status__wrapper {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &.focusable:focus {
+    background: rgba($ui-base-color, 0.85);
+    border-radius: $foresdon-primary-border-radius;
+
+    & .detailed-status {
+      background: none;
+  
+      &__action-bar {
+        border-bottom: 0;
+        background: none;
+      }
+    }
+  }
+
+  & .detailed-status {
+    background: none;
+
+    &__action-bar {
+      border-bottom: 0;
+      background: none;
+    }
+  }
+}
+
+.notification {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  & .status,
+  & .status.direct {
+    margin: 0;
+    background: none;
+    border: none;
+  }
+
+  & .status__wrapper,
+  & .status__wrapper-direct {
+    background: none;
+  }
+
+  & .account {
+    border: none;
+  }
+
+  &.focusable:focus {
+    background: rgba($ui-base-color, 0.90);
+  }
+}
+
+.account-authorize__wrapper {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  .account--panel {
+    background: none;
+  }
+}
+
+.account-timeline__header {
+  & .account__header {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    border-radius: $foresdon-primary-border-radius;
+
+    &__bar {
+      background: none;
+    }
+  }
+}
+
+.notification__filter-bar,
+.account__section-headline {
+  margin-top: 1px;
+  padding: 2px 0;
+  border: none;
+  background: none;
+
+  & button,
+  & a {
+    padding: 3px 0;
+    background: none;
+    transition: color 100ms ease-in;
+
+    &:hover {
+      color: lighten($ui-primary-color, 15%);
+    }
+
+    &.active {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      border-radius: $foresdon-primary-border-radius;
+
+      &::before,
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+.conversation {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  &.focusable:focus {
+    background: rgba($ui-base-color, 0.90);
+  }
+}
+
+.filter-form {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.directory__card {
+  border-radius: $foresdon-primary-border-radius;
+
+  &>div:first-of-type {
+    border-radius: $foresdon-primary-border-radius $foresdon-primary-border-radius 0 0;
+  }
+
+  &>div:last-of-type {
+    border-radius: 0 0 $foresdon-primary-border-radius $foresdon-primary-border-radius;
+  }
+
+  &__bar {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  &__extra {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
+
+.getting-started {
+  margin-top: 3px;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+
+  @media screen and (max-width: 600px + (285px * 2) + (10px * 1)) {
+    margin-top: 48px + 3px;
+  }
+
+  &__wrapper {
+    background: none;
+  }
+
+  & .column-subheading {
+    background: rgba($ui-base-color, 0.40);
+  }
+
+  & .column-link {
+    background: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: rgba($ui-base-color, 0.20);
+    }
+  }
+}
+
+.boost-modal,
+.confirmation-modal,
+.report-modal,
+.actions-modal,
+.mute-modal,
+.block-modal {
+  background: $ui-base-color;
+  color: $ui-primary-color;
+
+  & .status.light .display-name strong,
+  & .status.light .status__content {
+    color: $ui-primary-color;
+  }
+}
+.report-modal__statuses .status__content,
+.report-modal__statuses .status__content p,
+.focal-point-modal__content .status__content,
+.focal-point-modal__content .status__content p {
+  color: $ui-primary-color;
+}
+
+.report-modal {
+  &__container,
+  &__comment,
+  &__statuses .status-check-box {
+    border-color: lighten($ui-base-color, 10%);
+  }
+
+  &__comment .setting-text-label {
+    color: $ui-primary-color;
+  }
+
+  &__statuses .status__content,
+  &__statuses .status__content p {
+    color: $ui-primary-color;
+    border-color: lighten($ui-base-color, 20%);
+  }
+}
+
+
+.dropdown-menu {
+  color: $ui-primary-color;
+  background: rgba($ui-base-color, 0.95);
+
+  &__item a {
+    color: $ui-primary-color;
+    background: none;
+
+    &:hover {
+      color: $ui-base-color;
+      background: rgba($ui-primary-color, $foresdon-primary-ui-alpha);
+    }
+  }
+  &__arrow.bottom {
+    border-bottom-color: rgba($ui-base-color, 0.95);
+  }
+
+  &__arrow.top {
+    border-top-color: rgba($ui-base-color, 0.95);
+  }
+}
+
+.admin-wrapper {
+  background: url($foresdon-background-image) no-repeat fixed center bottom;
+  background-size: cover;
+
+  & .sidebar-wrapper {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  & .sidebar-wrapper__inner {
+    background: none;
+  }
+
+  & .sidebar {
+    &>ul {
+      & a:hover {
+        background: rgba($ui-highlight-color, 0.40);
+      }
+
+      &>li>a.selected,
+      &>li>ul {
+        border-radius: $foresdon-primary-border-radius 0 0 $foresdon-primary-border-radius;
+        background: rgba($ui-base-color, 0.50);
+
+        &>li>a {
+          border-radius: 0;
+        }
+      }
+
+      & .simple-navigation-active-leaf a {
+        background: rgba($ui-highlight-color, 0.40);
+
+        &:hover {
+          background: rgba($ui-highlight-color, 0.40);
+        }
+      }
+    }
+  }
+
+  & .table-wrapper {
+    border-radius: $foresdon-primary-border-radius;
+  }
+
+  & .table th,
+  & .table td {
+    background: rgba($ui-base-color, 0.85);
+    border: none;
+  }
+
+  & .table > tbody > tr:nth-child(2n+1) > td,
+  & .table > tbody > tr:nth-child(2n+1) > th {
+    background: rgba($ui-base-color, 0.70);
+  }
+
+  & .batch-table {
+    &__toolbar {
+      background: rgba($ui-base-color, 0.85);
+      border: none;
+      border-radius: $foresdon-primary-border-radius $foresdon-primary-border-radius 0 0;
+    }
+
+    &__body {
+      &>div.batch-table__row {
+        background: rgba($ui-base-color, 0.85);
+        border: none;
+      }
+
+      &>div.batch-table__row:nth-child(2n+1) {
+        background: rgba($ui-base-color, 0.70);
+      }
+
+      & > div.batch-table__row:last-of-type {
+        border-radius: 0 0$foresdon-primary-border-radius $foresdon-primary-border-radius;
+      }
+    }
+
+    & .nothing-here {
+      background: rgba($ui-base-color, 0.85);
+      border: none;
+      border-radius: 0 0$foresdon-primary-border-radius $foresdon-primary-border-radius;
+    }
+  }
+}
+
+.load-more,
+.load-gap {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.empty-column-indicator,
+.error-column {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+article div {
+  outline: 0;
+}
+
+/*
+body {
   background: url($foresdon-background-image) no-repeat fixed center bottom;
 
   &.app-body {
@@ -22,19 +712,23 @@ body {
   background: none;
 }
 
-.tabs-bar {
+.tabs-bar__wrapper {
   background: none;
-//  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
-//  border-radius: $foresdon-primary-border-radius;
 
-  &__link {
-    border: none;
+  & .tabs-bar {
+    margin-bottom: $foresdon-margin-bottom;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
     border-radius: $foresdon-primary-border-radius;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  
+    &__link {
+      border: none;
+      border-radius: $foresdon-primary-border-radius;
+  
+      &:hover,
+      &:focus,
+      &:active {
+        background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+      }
     }
   }
 }
@@ -228,6 +922,20 @@ body {
   }
 }
 
+// about
+.contact-widget {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.table-of-contents,
+.box-widget,
+.nothing-here {
+  margin-bottom: 5px;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
 // drawer
 .drawer__header {
   background: none;
@@ -268,13 +976,19 @@ body {
   }
 
   &.darker {
-    background: rgba($ui-base-color, 0.97);
+//    background: rgba($ui-base-color, 0.97);
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+
+  & .search-results__header {
+    background: rgba($ui-base-color, 0.20);
   }
 }
 
 // columns
 .column-header {
-  background: none;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
 
   &__button {
     background: none;
@@ -537,9 +1251,54 @@ body {
   }
 }
 
+// conversation as direct message column
+.conversation {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+}
+
+// profile directory
+.filter-form {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.directory__card {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border: none;
+  border-radius: $foresdon-primary-border-radius;
+
+  &__img {
+    border-radius: $foresdon-primary-border-radius $foresdon-primary-border-radius 0 0;
+  }
+
+  &__bar {
+    background: none;
+  }
+
+  &__extra {
+    background: none;
+  }
+}
+
+.statuses-grid {
+  & .detailed-status {
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  }
+}
+
 // config
 body.admin .sidebar-wrapper {
     background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+
+    &__inner {
+      background: none;
+    }
 }
 
 .admin-wrapper .sidebar ul {
@@ -643,3 +1402,4 @@ body.admin .sidebar-wrapper {
     border-color: lighten($ui-base-color, 10%);
   }
 }
+*/
