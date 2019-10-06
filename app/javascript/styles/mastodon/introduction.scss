@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background: $ui-base-color;
 
   @media screen and (max-width: 920px) {
-    background: darken($ui-base-color, 8%);
     display: block !important;
   }
 
