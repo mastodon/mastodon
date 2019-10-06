@@ -44,6 +44,7 @@ eu:
     what_is_mastodon: Zer da Mastodon?
   accounts:
     choices_html: "%{name}(r)en aukerak:"
+    endorsements_hint: Jarraitzen duzun jendea sustatu dezakezu web interfazearen bidez, eta hemen agertuko da.
     follow: Jarraitu
     followers:
       one: Jarraitzaile
@@ -432,6 +433,7 @@ eu:
         all: Guztiei
         disabled: Inori ez
         title: Erakutsi domeinu-blokeoak
+        users: Saioa hasita duten erabiltzaile lokalei
       domain_blocks_rationale:
         title: Erakutsi arrazoia
       hero:
@@ -495,6 +497,7 @@ eu:
         title: Denbora-lerroaren aurrebista
       title: Gunearen ezarpenak
       trends:
+        desc_html: Erakutsi publikoki orain joeran dauden aurretik errebisatutako traolak
         title: Traolak joeran
     statuses:
       back_to_account: Atzera kontuaren orrira
@@ -620,6 +623,7 @@ eu:
     title: Jarraitu %{acct}
   challenge:
     confirm: Jarraitu
+    hint_html: "<strong>Oharra:</strong> Ez dizugu pasahitza berriro eskatuko ordu batez."
     invalid_password: Pasahitz baliogabea
     prompt: Berretsi pasahitza jarraitzeko
   datetime:
@@ -782,18 +786,31 @@ eu:
       too_many: Ezin dira 4 fitxategi baino gehiago erantsi
   migrations:
     acct: Kontu berriaren erabiltzaile@domeinua
+    cancel: Ezeztatu birbideratzea
     cancel_explanation: Birbideratzea ezezteak zure kontu hau berriro aktibatuko du, baina ez ditu atzera ekarriko bestera aldatu diren jarraitzaileak.
+    cancelled_msg: Ongi ezeztatu da birbideratzea.
     errors:
       already_moved: kontu honetara migratu duzu dagoeneko
       move_to_self: ezin da oraingo kontua izan
       not_found: ezin izan da aurkitu
+      on_cooldown: Egonaldian zaude
     followers_count: Jarraitzaileak migrazioaren unean
     incoming_migrations: Beste kontu batetik migratuz
     incoming_migrations_html: Beste kontu batetik hona migratzeko, aurretik <a href="%{path}">kontuaren ezizen bat sortu</a> behar duzu.
     moved_msg: Zure kontuak orain %{acct} kontura birbideratzen du, eta zure jarraitzaileak hara migratuak izaten ari dira.
+    not_redirecting: Zure kontuak ez du orain beste konturen batera birbideratzen.
+    on_cooldown: Duela gutxi migratu duzu. Funtzio hau %{count} egun barru egongo da berriro eskuragarri.
+    past_migrations: Aurreko migrazioak
     proceed_with_move: Mugitu jarraitzaileak
     redirecting_to: 'Zure kontuak hona birbideratzen du: %{acct}.'
     set_redirect: Ezarri birbideratzea
+    warning:
+      backreference_required: Kontu berria honi erreferentzia egiteko konfiguratu behar da
+      cooldown: Migratu eta gero egonaldi tarte bat egongo da eta bitartean ezin izango duzu berriro migratu
+      followers: Ekintza honek jarraitzaile guztiak eramango ditu uneko kontutik kontu berrira
+      only_redirect_html: Bestela, <a href="%{path}">zure profilean birbideratze soil bat jarri</a> dezakezu.
+      other_data: Ez da beste daturik migratuko automatikoki
+      redirect: Zure uneko kontuaren profila eguneratuko da birbideratze ohar batekin eta bilaketetatik kenduko da
   moderation:
     title: Moderazioa
   notification_mailer:
@@ -981,6 +998,9 @@ eu:
       private: Ezin dira publikoak ez diren toot-ak finkatu
       reblog: Bultzada bat ezin da finkatu
     poll:
+      total_people:
+        one: "pertsona %{count}"
+        other: "%{count} pertsona"
       total_votes:
         one: "Boto %{count}"
         other: "%{count} boto"
@@ -1119,6 +1139,7 @@ eu:
         silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure Toot-ak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
         suspend: Zure kontua kanporatua izan da, zure toot guztiak eta multimedia fitxategiak behin betiko ezabatu dira zerbitzari honetatik, eta zure jarraitzaileen zerbitzarietatik.
       review_server_policies: Berrikusi zerbitzariko politikak
+      statuses: 'Zehazki, honentzat:'
       subject:
         disable: Zure  %{acct} kontua izoztu da
         none: '%{acct} konturako abisua'
