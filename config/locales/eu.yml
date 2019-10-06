@@ -46,6 +46,7 @@ eu:
   accounts:
     choices_html: "%{name}(r)en aukerak:"
     endorsements_hint: Jarraitzen duzun jendea sustatu dezakezu web interfazearen bidez, eta hemen agertuko da.
+    featured_tags_hint: Hemen agertuko diren traolak nabarmendu ditzakezu.
     follow: Jarraitu
     followers:
       one: Jarraitzaile
@@ -646,9 +647,11 @@ eu:
   deletes:
     challenge_not_passed: Sartu duzun informazioa ez da zuzena
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
+    confirm_username: Sartu zure erabiltzaile-izena prozedura berresteko
     proceed: Ezabatu kontua
     success_msg: Zure kontua ongi ezabatu da
     warning:
+      before: 'Jarraitu aurretik, irakurri adi ohar hauek:'
       data_removal: Zure mezuak eta beste datuak behin betiko ezabatuko dira
       more_details_html: Xehetasun gehiagorako, ikusi <a href="%{terms_path}">pribatutasun politika</a>.
       username_available: Zure erabiltzaile-izena berriro eskuragarri egongo da
