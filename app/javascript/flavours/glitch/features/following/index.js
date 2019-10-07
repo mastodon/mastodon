@@ -33,6 +33,7 @@ class Following extends ImmutablePureComponent {
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -70,7 +71,7 @@ class Following extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds, hasMore, isAccount } = this.props;
+    const { accountIds, hasMore, isAccount, multiColumn } = this.props;
 
     if (!isAccount) {
       return (
@@ -92,7 +93,7 @@ class Following extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setRef}>
-        <ProfileColumnHeader onClick={this.handleHeaderClick} />
+        <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <ScrollableList
           scrollKey='following'
@@ -101,6 +102,7 @@ class Following extends ImmutablePureComponent {
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
             <AccountContainer key={id} id={id} withNote={false} />

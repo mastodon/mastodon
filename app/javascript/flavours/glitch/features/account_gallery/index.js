@@ -55,6 +55,7 @@ class AccountGallery extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   state = {
@@ -130,7 +131,7 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { attachments, isLoading, hasMore, isAccount } = this.props;
+    const { attachments, isLoading, hasMore, isAccount, multiColumn } = this.props;
     const { width } = this.state;
 
     if (!isAccount) {
@@ -157,7 +158,7 @@ class AccountGallery extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setColumnRef}>
-        <ProfileColumnHeader onClick={this.handleHeaderClick} />
+        <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={this.shouldUpdateScroll}>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>

@@ -226,6 +226,7 @@ class Notifications extends React.PureComponent {
         onScrollToTop={this.handleScrollToTop}
         onScroll={this.handleScroll}
         shouldUpdateScroll={shouldUpdateScroll}
+        bindToDocument={!multiColumn}
       >
         {scrollableContent}
       </ScrollableList>
@@ -233,6 +234,7 @@ class Notifications extends React.PureComponent {
 
     return (
       <Column
+        bindToDocument={!multiColumn}
         ref={this.setColumnRef}
         name='notifications'
         extraClasses={this.props.notifCleaningActive ? 'notif-cleaning' : null}

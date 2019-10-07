@@ -12,11 +12,12 @@ class ProfileColumnHeader extends React.PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func,
+    multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
   render() {
-    const { onClick, intl } = this.props;
+    const { onClick, intl, multiColumn } = this.props;
 
     return (
       <ColumnHeader
@@ -24,6 +25,7 @@ class ProfileColumnHeader extends React.PureComponent {
         title={intl.formatMessage(messages.profile)}
         onClick={onClick}
         showBackButton
+        multiColumn={multiColumn}
       />
     );
   }

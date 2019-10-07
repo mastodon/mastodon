@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Base from '../../../components/modal_root';
+import { getScrollbarWidth } from 'flavours/glitch/util/scrollbar';
+import Base from 'flavours/glitch/components/modal_root';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
 import ModalLoading from './modal_loading';
@@ -61,8 +62,10 @@ export default class ModalRoot extends React.PureComponent {
   componentDidUpdate (prevProps, prevState, { visible }) {
     if (visible) {
       document.body.classList.add('with-modals--active');
+      document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
     } else {
       document.body.classList.remove('with-modals--active');
+      document.documentElement.style.marginRight = 0;
     }
   }
 

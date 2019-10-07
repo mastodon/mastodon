@@ -31,6 +31,7 @@ class Mutes extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -42,7 +43,7 @@ class Mutes extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, accountIds, hasMore } = this.props;
+    const { intl, accountIds, hasMore, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -55,13 +56,14 @@ class Mutes extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
 
     return (
-      <Column name='mutes' icon='volume-off' heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} name='mutes' icon='volume-off' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
             <AccountContainer key={id} id={id} />

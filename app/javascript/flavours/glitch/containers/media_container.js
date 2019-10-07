@@ -2,16 +2,17 @@ import React, { PureComponent, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
+import { List as ImmutableList, fromJS } from 'immutable';
 import { getLocale } from 'mastodon/locales';
+import { getScrollbarWidth } from 'flavours/glitch/util/scrollbar';
 import MediaGallery from 'flavours/glitch/components/media_gallery';
-import Video from 'flavours/glitch/features/video';
-import Card from 'flavours/glitch/features/status/components/card';
 import Poll from 'flavours/glitch/components/poll';
 import Hashtag from 'flavours/glitch/components/hashtag';
-import Audio from 'flavours/glitch/features/audio';
 import ModalRoot from 'flavours/glitch/components/modal_root';
 import MediaModal from 'flavours/glitch/features/ui/components/media_modal';
-import { List as ImmutableList, fromJS } from 'immutable';
+import Video from 'flavours/glitch/features/video';
+import Card from 'flavours/glitch/features/status/components/card';
+import Audio from 'flavours/glitch/features/audio';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
@@ -33,6 +34,8 @@ export default class MediaContainer extends PureComponent {
 
   handleOpenMedia = (media, index) => {
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, index });
   }
 
@@ -40,11 +43,15 @@ export default class MediaContainer extends PureComponent {
     const media = ImmutableList([video]);
 
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, time });
   }
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
+    document.documentElement.style.marginRight = 0;
+
     this.setState({ media: null, index: null, time: null });
   }
 

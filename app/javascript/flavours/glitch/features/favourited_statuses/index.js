@@ -73,7 +73,7 @@ class Favourites extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favourite toots yet. When you favourite one, it will show up here." />;
 
     return (
-      <Column ref={this.setRef} name='favourites' label={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} name='favourites' label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
           icon='star'
           title={intl.formatMessage(messages.heading)}
@@ -93,6 +93,7 @@ class Favourites extends ImmutablePureComponent {
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

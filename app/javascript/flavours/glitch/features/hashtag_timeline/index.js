@@ -145,6 +145,7 @@ class HashtagTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           showBackButton
+          bindToDocument={!multiColumn}
         >
           {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>
@@ -155,6 +156,7 @@ class HashtagTimeline extends React.PureComponent {
           timelineId={`hashtag:${id}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );
