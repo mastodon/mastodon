@@ -97,5 +97,17 @@ module Mastodon
 
       say("Downloaded #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
     end
+
+    desc 'usage', 'Calculate disk space consumed by Mastodon'
+    def usage
+      say("Attachments:\t#{number_to_human_size(MediaAttachment.sum(:file_file_size))} (#{number_to_human_size(MediaAttachment.where(account: Account.local).sum(:file_file_size))} local)")
+      say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
+      say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
+      say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
+      say("Headers:\t#{number_to_human_size(Account.sum(:header_file_size))} (#{number_to_human_size(Account.local.sum(:header_file_size))} local)")
+      say("Backups:\t#{number_to_human_size(Backup.sum(:dump_file_size))}")
+      say("Imports:\t#{number_to_human_size(Import.sum(:data_file_size))}")
+      say("Settings:\t#{number_to_human_size(SiteUpload.sum(:file_file_size))}")
+    end
   end
 end
