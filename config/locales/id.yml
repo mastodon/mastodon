@@ -302,8 +302,15 @@ id:
           suspend: Suspen
         title: Pemblokiran domain baru
       private_comment: Komentar pribadi
+      public_comment: Komentar publik
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
+      reject_reports: Tolak laporan
+      reject_reports_hint: Abaikan semua laporan dari domain ini. Tidak relevan untuk penangguhan
+      rejecting_media: tolak berkas media
+      severity:
+        silence: dibungkam
+        suspend: ditangguhkan
       show:
         affected_accounts:
           other: "%{count} akun dalam database terpengaruh"
@@ -311,6 +318,8 @@ id:
           silence: Hapus pendiaman terhadap akun pada domain ini
           suspend: Hapus suspen terhadap akun pada domain ini
         title: Hapus pemblokiran domain %{domain}
+        undo: Urungkan
+      undo: Urungkan blokir domain
     instances:
       title: Server yang diketahui
     reports:
