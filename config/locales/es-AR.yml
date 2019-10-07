@@ -174,6 +174,53 @@ es-AR:
         user: Usuario
       search: Buscar
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
+      show:
+        created_reports: Informes hechos
+        targeted_reports: Denunciado por otros
+      silence: Silenciar
+      silenced: Silenciadas
+      statuses: Estados
+      subscribe: Suscribirse
+      suspended: Suspendidas
+      title: Cuentas
+      unconfirmed_email: Correo electrónico sin confirmar
+      undo_silenced: Deshacer silenciado
+      undo_suspension: Deshacer suspensión
+      unsubscribe: Desuscribirse
+      username: Nombre de usuario
+      warn: Advertir
+      web: Web
+      whitelisted: Aprobadas
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} se asignó la denuncia %{target} a sí"
+        change_email_user: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
+        confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
+        create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_custom_emoji: "%{name} subió nuevo emoji %{target}"
+        create_domain_block: "%{name} bloqueó el dominio %{target}"
+        create_email_domain_block: "%{name} desaprobó el dominio de correo electrónico %{target}"
+        demote_user: "%{name} bajó de nivel al usuario %{target}"
+        destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
+        destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
+        destroy_email_domain_block: "%{name} aprobó el dominio de correo electrónico %{target}"
+        destroy_status: "%{name} eliminó el estado de %{target}"
+        disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
+        disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
+        disable_user: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
+        enable_custom_emoji: "%{name} habilitó el emoji %{target}"
+        enable_user: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de recordatorio"
+        remove_avatar_user: "%{name} quitó el avatar de %{target}"
+        reopen_report: "%{name} reabrió la denuncia %{target}"
+        reset_password_user: "%{name} cambió la contraseña del usuario %{target}"
+        resolve_report: "%{name} resolvió la denuncia %{target}"
+        silence_account: "%{name} silenció la cuenta de %{target}"
+        suspend_account: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report: "%{name} desasignó la denuncia %{target}"
+        unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
+        unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
+        update_custom_emoji: "%{name} actualizó el emoji %{target}"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
