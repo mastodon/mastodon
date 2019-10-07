@@ -20,7 +20,7 @@ module Mastodon
         exit(1)
       end
 
-      ActiveRecord::Base.configurations[Rails.env]['pool'] = options[:concurrency]
+      ActiveRecord::Base.configurations[Rails.env]['pool'] = options[:concurrency] + 1
 
       progress  = create_progress_bar(scope.count)
       pool      = Concurrent::FixedThreadPool.new(options[:concurrency])
