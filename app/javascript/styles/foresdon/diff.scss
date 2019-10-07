@@ -7,6 +7,7 @@ body {
 
   & .ui {
     background: url($foresdon-background-image) no-repeat fixed center 48px;
+//    background: url($foresdon-background-image) no-repeat fixed center bottom;
     background-size: cover;
   }
 
@@ -52,9 +53,10 @@ body.layout-single-column {
 
   & .ui {
     background: url($foresdon-background-image) no-repeat fixed center 48px; 
+//    background: url($foresdon-background-image) no-repeat fixed center bottom; 
     background-size: cover;
 
-    @media screen and (max-width: 600px + (285px * 2) + (10px * 1)) {
+    @media screen and (max-width: 600px + (285px * 2) + (10px * 2) - 1) {
       background: url($foresdon-background-image) no-repeat fixed center 96px; 
     }
   }
@@ -74,10 +76,14 @@ body.layout-single-column {
     & .tabs-bar {
       margin-bottom: 0;
     }
+  }
 
-    & .drawer__inner {
-      @media screen and (max-width: 600px + (285px * 2) + (10px * 1)) {
-        margin-top: 48px + 3px;
+  & .drawer__inner {
+    @media screen and (max-width: 600px + (285px * 2) + (10px * 2) - 1) {
+      margin-top: 48px + 3px;
+
+      &.darker {
+        margin-top: 0;
       }
     }
   }
@@ -275,11 +281,20 @@ body.layout-single-column {
 
 .drawer__pager {
   & .drawer__inner.darker {
-    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    background: rgba($ui-base-color, 0.98);
   }
 
-  & .search-results__header {
-    background: rgba($ui-base-color, 0.60);
+  & .search-results {
+    &__header {
+      background: none;
+    }
+
+    &__section {
+      & h5 {
+        border: none;
+        background: darken($ui-base-color, 3%);
+      }
+    }
   }
 }
 .columns-area__panels__pane--start {
@@ -301,6 +316,10 @@ body.layout-single-column {
   margin: $foresdon-margin-bottom $foresdon-margin-right $foresdon-margin-bottom 0;
   background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
   border-radius: $foresdon-primary-border-radius;
+}
+
+.tabs-bar__wrapper .column-header__collapsible-inner {
+  background: none;
 }
 
 .column-inline-form {
@@ -439,7 +458,7 @@ body.layout-single-column {
 .notification__filter-bar,
 .account__section-headline {
   margin-top: 1px;
-  padding: 2px 0;
+  padding: 2px;
   border: none;
   background: none;
 
@@ -679,6 +698,10 @@ body.layout-single-column {
   background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
   border: none;
   border-radius: $foresdon-primary-border-radius;
+
+  &:hover {
+    background: rgba($ui-base-color, 0.85);
+  }
 }
 
 .empty-column-indicator,
