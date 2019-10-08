@@ -409,9 +409,20 @@ id:
       activity_api_enabled:
         desc_html: Hitung status yang dipos scr lokal, pengguna aktif, dan registrasi baru dlm keranjang bulanan
         title: Terbitkan statistik keseluruhan tentang aktivitas pengguna
+      bootstrap_timeline_accounts:
+        desc_html: Pisahkan nama pengguna dengan koma. Hanya akun lokal dan tak terkunci yang akan bekerja. Isi bawaan jika kosong adalah semua admin lokal.
+        title: Ikuti scr bawaan untuk pengguna baru
       contact_information:
         email: Masukkan alamat email
         username: Masukkan nama pengguna
+      custom_css:
+        desc_html: Ubah tampilan dengan CSS yang dimuat di setiap halaman
+        title: CSS Kustom
+      default_noindex:
+        title: Singkirkan pengguna dari pengindeksan mesin pencari scr bawaan
+      domain_blocks:
+        all: Kepada semua orang
+        title: Lihat blokir domain
       registrations:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
@@ -424,6 +435,27 @@ id:
         title: Deskripsi situs tambahan
       site_title: Judul Situs
       title: Pengaturan situs
+    statuses:
+      batch:
+        nsfw_off: Tandai sebagai tak sensitif
+        nsfw_on: Tandai sebagai sensitif
+      deleted: Dihapus
+      failed_to_execute: Gagal mengeksekusi
+      media:
+        title: Media
+      no_media: Tanpa media
+      no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
+      title: Status akun
+      with_media: Dengan media
+    tags:
+      accounts_today: Penggunaan unik hari ini
+      accounts_week: Penggunaan unik minggu ini
+      breakdown: Rinci penggunaan hari ini berdasar sumber
+      context: Konteks
+      directory: Di direktori
+      in_directory: "%{count} di direktori"
+      last_active: Terakhir aktif
+      most_popular: Paling populer
     title: Administrasi
   application_mailer:
     settings: 'Ubah pilihan email: %{link}'
