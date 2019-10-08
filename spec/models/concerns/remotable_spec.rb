@@ -18,6 +18,8 @@ RSpec.describe Remotable do
 
     def hoge=(arg); end
 
+    def hoge_file_name; end
+
     def hoge_file_name=(arg); end
 
     def has_attribute?(arg); end

@@ -309,11 +309,10 @@ class Account < ApplicationRecord
 
   def save_with_optional_media!
     save!
-  rescue ActiveRecord::RecordInvalid
-    self.avatar              = nil
-    self.header              = nil
-    self[:avatar_remote_url] = ''
-    self[:header_remote_url] = ''
+  rescue ActiveRecord::RecordInvalid, *Mastodon.storage_errors
+    self.avatar = nil
+    self.header = nil
+
     save!
   end
 

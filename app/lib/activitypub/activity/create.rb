@@ -181,6 +181,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
     emoji.save
+  rescue *Mastodon.storage_errors
+    nil
   end
 
   def process_attachments
@@ -200,7 +202,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
         media_attachment.file_remote_url = href
         media_attachment.save
-      rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+      rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, *Mastodon.storage_errors
         RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
       end
     end

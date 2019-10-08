@@ -18,4 +18,14 @@ module Mastodon
       end
     end
   end
+
+  def self.storage_errors
+    if ENV['S3_ENABLED'] == 'true'
+      [Seahorse::Client::NetworkingError]
+    elsif ENV['SWIFT_ENABLED'] == 'true'
+      [Fog::Errors::Error, Excon::Errors::Error]
+    else
+      []
+    end
+  end
 end
