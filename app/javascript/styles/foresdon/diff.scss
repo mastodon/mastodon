@@ -656,6 +656,31 @@ body.layout-single-column {
     }
   }
 
+  & .card {
+    border: none;
+    border-radius: $foresdon-primary-border-radius;
+
+    & .card__bar {
+      background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+    }
+
+    & > a:hover .card__bar, 
+    & > a:active .card__bar,
+    & > a:focus .card__bar {
+      background: rgba($ui-base-color, 0.90);
+    }
+  }
+
+  & .dashboard__counters > div > a,
+  & .dashboard__counters > div > div {
+    border-radius: $foresdon-primary-border-radius;
+    background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+
+    &:hover {
+      background: rgba($ui-base-color, 0.90);
+    }
+  }
+
   & .table-wrapper {
     border-radius: $foresdon-primary-border-radius;
   }
