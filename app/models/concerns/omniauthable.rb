@@ -59,7 +59,7 @@ module Omniauthable
       assume_verified   = strategy.try(:security).try(:assume_email_is_verified)
       email_is_verified = auth.info.verified || auth.info.verified_email || assume_verified
       email             = auth.info.verified_email || auth.info.email
-      email             = email_is_verified && !User.exists?(email: auth.info.email) && email
+      email             = !User.exists?(email: auth.info.email) && email
       display_name      = auth.info.full_name || [auth.info.first_name, auth.info.last_name].join(' ')
 
       {
