@@ -198,7 +198,7 @@ class Account < ApplicationRecord
   end
 
   def unsilence!
-    update!(silenced_at: nil, trust_level: trust_level == TRUST_LEVELS[:untrusted] ? TRUST_LEVELS[:trusted] : trust_level)
+    update!(silenced_at: nil)
   end
 
   def suspended?
