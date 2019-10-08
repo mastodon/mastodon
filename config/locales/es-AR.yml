@@ -221,6 +221,55 @@ es-AR:
         unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_status: "%{name} actualizó el estado de %{target}"
+      deleted_status: "(estado borrado)"
+      title: Registro de auditoría
+    custom_emojis:
+      assign_category: Asignar categoría
+      by_domain: Dominio
+      copied_msg: Copia local del emoji creada exitosamente
+      copy: Copiar
+      copy_failed_msg: No se pudo realizar una copia local de ese emoji
+      create_new_category: Crear nueva categoría
+      created_msg: '¡Emoji creado exitosamente!'
+      delete: Eliminar
+      destroyed_msg: '¡Emoji destruido exitosamente!'
+      disable: Deshabilitar
+      disabled: Deshabilitado
+      disabled_msg: Se deshabilitó ese emoji exitosamente
+      emoji: Emoji
+      enable: Habilitar
+      enabled: Habilitado
+      enabled_msg: Se habilitó ese emoji exitosamente
+      image_hint: PNG de hasta 50KB
+      list: Lista
+      listed: Listados
+      new:
+        title: Agregar nuevo emoji personalizado
+      overwrite: Sobreescribir
+      shortcode: Código corto
+      shortcode_hint: Al menos 2 caracteres, sólo caracteres alfanuméricos y subguiones ("_")
+      title: Emojis personalizados
+      uncategorized: Sin categoría
+      unlist: No agregar a lista
+      unlisted: No listado
+      update_failed_msg: No se pudo actualizar ese emoji
+      updated_msg: '¡Emoji actualizado exitosamente!'
+      upload: Subir
+    dashboard:
+      authorized_fetch_mode: Modo seguro
+      backlog: trabajos registrados
+      config: Configuración
+      feature_deletions: Eliminaciones de cuenta
+      feature_invites: Enlaces de invitación
+      feature_profile_directory: Directorio de perfiles
+      feature_registrations: Registros
+      feature_relay: Relé de federación
+      feature_spam_check: Anti-spam
+      feature_timeline_preview: Previsualización de la línea temporal
+      features: Funciones
+      hidden_service: Federación con servicios ocultos
+      open_reports: abrir denuncias
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
