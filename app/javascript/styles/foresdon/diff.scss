@@ -408,13 +408,21 @@ body.layout-single-column {
   }
 }
 
-.notification {
+.account {
+  margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+  border-radius: $foresdon-primary-border-radius;
+}
+
+.notification,
+.notification-favourite {
   margin: 0 $foresdon-margin-right $foresdon-margin-bottom 0;
   background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
   border-radius: $foresdon-primary-border-radius;
 
   & .status,
-  & .status.direct {
+  & .status.status-direct,
+  & .status.status-direct:not(.read) {
     margin: 0;
     background: none;
     border: none;
@@ -426,6 +434,7 @@ body.layout-single-column {
   }
 
   & .account {
+    background: none;
     border: none;
   }
 
@@ -682,6 +691,10 @@ body.layout-single-column {
       & > div.batch-table__row:last-of-type {
         border-radius: 0 0$foresdon-primary-border-radius $foresdon-primary-border-radius;
       }
+    }
+
+    & .account {
+      background: none;
     }
 
     & .nothing-here {
