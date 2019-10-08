@@ -95,7 +95,7 @@ class AccountTimeline extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' /> : <FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />;
+    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' /> : <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts here!' />;
 
     return (
       <Column>

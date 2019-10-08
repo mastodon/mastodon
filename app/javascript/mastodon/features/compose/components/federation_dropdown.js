@@ -10,9 +10,9 @@ import classNames from 'classnames';
 
 const messages = defineMessages({
   federate_short: { id: 'federation.federated.short', defaultMessage: 'Federated' },
-  federate_long: { id: 'federation.federated.long', defaultMessage: 'Allow toot to reach other instances' },
+  federate_long: { id: 'federation.federated.long', defaultMessage: 'Allow post to reach other instances' },
   local_only_short: { id: 'federation.local_only.short', defaultMessage: 'Local-only' },
-  local_only_long: { id: 'federation.local_only.long', defaultMessage: 'Restrict this toot only to my instance' },
+  local_only_long: { id: 'federation.local_only.long', defaultMessage: 'Restrict this post only to my instance' },
   change_federation: { id: 'federation.change', defaultMessage: 'Adjust status federation' },
 });
 
