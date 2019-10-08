@@ -50,6 +50,7 @@ module Mastodon
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
+    option :force, type: :boolean, default: false
     desc 'refresh', 'Fetch remote media files'
     long_desc <<-DESC
       Re-downloads media attachments from other servers. You must specify the
@@ -62,6 +63,9 @@ module Mastodon
       using username@domain handle of the account.
 
       Use the --domain option to download attachments from a specific domain.
+
+      By default, attachments that are believed to be already downloaded will
+      not be re-downloaded. To force re-download of every URL, use --force.
     DESC
     def refresh
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
@@ -85,7 +89,7 @@ module Mastodon
       end
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
-        next if media_attachment.remote_url.blank?
+        next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
 
         unless options[:dry_run]
           media_attachment.reset_file!
