@@ -76,7 +76,7 @@ class Tag < ApplicationRecord
   alias listable? listable
 
   def trendable
-    boolean_with_default('trendable', false)
+    boolean_with_default('trendable', Setting.trendable_by_default)
   end
 
   alias trendable? trendable

@@ -478,8 +478,8 @@ en:
           open: Anyone can sign up
         title: Registrations mode
       show_known_fediverse_at_about_page:
-        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
-        title: Show known fediverse on timeline preview
+        desc_html: When disabled, restricts the public timeline linked from the landing page to showing only local content
+        title: Include federated content on unauthenticated public timeline page
       show_staff_badge:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
@@ -503,9 +503,12 @@ en:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
         title: Server thumbnail
       timeline_preview:
-        desc_html: Display public timeline on landing page
-        title: Timeline preview
+        desc_html: Display link to public timeline on landing page and allow API access to the public timeline without authentication
+        title: Allow unauthenticated access to public timeline
       title: Site settings
+      trendable_by_default:
+        desc_html: Affects hashtags that have not been previously disallowed
+        title: Allow hashtags to trend without prior review
       trends:
         desc_html: Publicly display previously reviewed hashtags that are currently trending
         title: Trending hashtags
