@@ -456,7 +456,30 @@ id:
       in_directory: "%{count} di direktori"
       last_active: Terakhir aktif
       most_popular: Paling populer
+      most_recent: Terkini
+      name: Tagar
+      review: Tinjau status
+      reviewed: Ditinjau
+      title: Tagar
+      trending_right_now: Sedang tren sekarang
+      unique_uses_today: "%{count} memposkan hari ini"
+      unreviewed: Tak tertinjau
+      updated_msg: Pembaruan pengaturan tagar berhasil
     title: Administrasi
+    warning_presets:
+      add_new: Tambah baru
+      delete: Hapus
+      edit: Sunting
+      edit_preset: Sunting preset peringatan
+      title: Kelola preset peringatan
+  admin_mailer:
+    new_pending_account:
+      body: Detail akun baru di bawah. Anda dapat menyetujui atau menolak lamaran ini.
+      subject: Akun baru muncul untuk ditinjau di %{instance} (%{username})
+    new_report:
+      body: "%{reporter} telah melaporkan %{target}"
+      body_remote: Seseorang dari %{domain} telah melaporkan %{target}
+      subject: 'Laporan baru untuk %{instance} (#%{id})'
   application_mailer:
     settings: 'Ubah pilihan email: %{link}'
     view: 'Tampilan:'
