@@ -66,9 +66,7 @@ describe RemoteFollowController do
         end
 
         it 'redirects to the remote location' do
-          address = "http://example.com/follow_me?acct=test_user%40#{Rails.configuration.x.local_domain}"
-
-          expect(response).to redirect_to(address)
+          expect(response).to redirect_to("http://example.com/follow_me?acct=https%3A%2F%2F#{Rails.configuration.x.local_domain}%2Fusers%2Ftest_user")
         end
       end
     end

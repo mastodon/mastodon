@@ -1,6 +1,7 @@
 ---
 th:
   about:
+    about_hashtag_html: มีโพสต์สาธารณะที่ถูกแท็กด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบได้หากคุณมีบัญชีที่ไหนก็ได้ในเฟดิเวิร์ส
     about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ กระจายศูนย์เหมือนอีเมล
     about_this: เกี่ยวกับ
     active_count_after: ที่ใช้งาน
@@ -16,11 +17,10 @@ th:
     contact_unavailable: ไม่มี
     discover_users: ค้นพบผู้ใช้
     documentation: เอกสารประกอบ
-    extended_description_html: |
-      <h3>สถานที่ที่ดีสำหรับกฎ</h3>
-      <p>ยังไม่ได้ตั้งคำอธิบายแบบขยาย</p>
+    federation_hint_html: เมื่อคุณมีบัญชีที่ %{instance} แล้ว คุณสามารถติดตามผู้คนบนเซิร์ฟเวอร์ Mastodon เซิร์ฟเวอร์ใดก็ได้
     generic_description: "%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย"
     get_apps: ลองแอปสำหรับมือถือ
+    hosted_on: Mastodon ให้บริการบน %{domain}
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
     see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
@@ -28,8 +28,10 @@ th:
     source_code: โค้ดต้นฉบับ
     status_count_after:
       other: สถานะ
-    status_count_before: ผู้สร้าง
+    status_count_before: ผู้ใช้เหล่านั้นได้สร้าง
     terms: เงื่อนไขการให้บริการ
+    unavailable_content_description:
+      reason: 'เหตุผล:'
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
@@ -45,6 +47,7 @@ th:
     media: สื่อ
     moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
     network_hidden: ไม่มีข้อมูลนี้
+    never_active: ไม่เลย
     nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
@@ -156,11 +159,24 @@ th:
       warn: เตือน
       web: เว็บ
     action_logs:
+      actions:
+        change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
+        confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
+        create_account_warning: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
+        create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
+        destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
+        destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
+        destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
+        disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        enable_custom_emoji: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
+        update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
       title: รายการบันทึกการตรวจสอบ
     custom_emojis:
       by_domain: โดเมน
       copy: คัดลอก
+      create_new_category: สร้างหมวดหมู่ใหม่
       created_msg: สร้างอีโมจิสำเร็จ!
       delete: ลบ
       destroyed_msg: ทำลายอีโมโจสำเร็จ!
@@ -204,6 +220,7 @@ th:
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
       destroyed_msg: เลิกทำการปิดกั้นโดเมนแล้ว
       domain: โดเมน
+      edit: แก้ไขการปิดกั้นโดเมน
       new:
         create: สร้างการปิดกั้น
         hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมเฉพาะกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
@@ -213,6 +230,8 @@ th:
           silence: เงียบ
           suspend: ระงับ
         title: การปิดกั้นโดเมนใหม่
+      private_comment: ความคิดเห็นส่วนตัว
+      public_comment: ความคิดเห็นสาธารณะ
       reject_media: ปฏิเสธไฟล์สื่อ
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเว็บออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
@@ -228,6 +247,7 @@ th:
         title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
+      view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
       add_new: เพิ่มใหม่
       delete: ลบ
@@ -287,6 +307,8 @@ th:
       unresolved: ยังไม่ได้แก้ปัญหา
       updated_at: อัปเดตเมื่อ
     settings:
+      bootstrap_timeline_accounts:
+        title: การติดตามเริ่มต้นสำหรับผู้ใช้ใหม่
       contact_information:
         email: อีเมลธุรกิจ
         username: ชื่อผู้ใช้ในการติดต่อ
@@ -320,6 +342,8 @@ th:
         title: ข้อมูลแบบขยายที่กำหนดเอง
       site_short_description:
         title: คำอธิบายเซิร์ฟเวอร์แบบสั้น
+      site_terms:
+        title: เงื่อนไขการให้บริการที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
       timeline_preview:
         desc_html: แสดงเส้นเวลาสาธารณะในหน้าเริ่มต้น
@@ -331,25 +355,15 @@ th:
         delete: ลบ
         nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
         nsfw_on: ทำเครื่องหมายว่าละเอียดอ่อน
+      deleted: ลบแล้ว
       media:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
-    subscriptions:
-      callback_url: URL เรียกกลับ
-      confirmed: ยืนยันแล้ว
-      expires_in: หมดอายุภายใน
-      last_delivery: ส่งล่าสุด
-      title: WebSub
-      topic: หัวข้อ
     tags:
-      accounts: บัญชี
-      hidden: ซ่อนอยู่
-      hide: ซ่อนจากไดเรกทอรี
+      in_directory: "%{count} ในไดเรกทอรี"
       name: แฮชแท็ก
       title: แฮชแท็ก
-      unhide: แสดงในไดเรกทอรี
-      visible: มองเห็น
     title: การดูแล
     warning_presets:
       add_new: เพิ่มใหม่
@@ -360,6 +374,7 @@ th:
   appearance:
     advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
     animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
+    confirmation_dialogs: กล่องโต้ตอบการยืนยัน
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
@@ -368,11 +383,12 @@ th:
     view_profile: ดูโปรไฟล์
     view_status: ดูสถานะ
   applications:
+    created: สร้างแอปพลิเคชันสำเร็จ
+    destroyed: ลบแอปพลิเคชันสำเร็จ
     invalid_url: URL ที่ระบุไม่ถูกต้อง
   auth:
     apply_for_account: ขอคำเชิญ
     change_password: รหัสผ่าน
-    confirm_email: ยืนยันอีเมล
     delete_account: ลบบัญชี
     forgot_password: ลืมรหัสผ่านของคุณ?
     login: เข้าสู่ระบบ
@@ -387,6 +403,8 @@ th:
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
+    status:
+      account_status: สถานะบัญชี
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
@@ -397,6 +415,9 @@ th:
       return: แสดงโปรไฟล์ของผู้ใช้
       web: ไปยังเว็บ
     title: ติดตาม %{acct}
+  challenge:
+    invalid_password: รหัสผ่านไม่ถูกต้อง
+    prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ชั่วโมง"
@@ -419,8 +440,10 @@ th:
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
+    '406': This page is not available in the requested format.
     '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว คุณกำลังปิดกั้นคุกกี้หรือไม่?
@@ -428,6 +451,7 @@ th:
     '429': Throttled
     '500':
       title: หน้านี้ไม่ถูกต้อง
+    '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: วันที่
@@ -488,9 +512,12 @@ th:
       '86400': 1 วัน
     expires_in_prompt: ไม่เลย
     generate: สร้าง
+    max_uses:
+      other: "%{count} การใช้"
     max_uses_prompt: ไม่มีขีดจำกัด
     table:
       expires_at: หมดอายุเมื่อ
+      uses: การใช้
     title: เชิญผู้คน
   media_attachments:
     validations:
@@ -498,7 +525,6 @@ th:
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
     acct: username@domain ของบัญชีใหม่
-    proceed: บันทึก
   moderation:
     title: การควบคุม
   notification_mailer:
@@ -536,7 +562,11 @@ th:
     older: เก่ากว่า
     prev: ก่อนหน้า
     truncate: "&hellip;"
+  polls:
+    errors:
+      duplicate_options: มีรายการที่ซ้ำกัน
   preferences:
+    other: อื่น ๆ
     posting_defaults: ค่าเริ่มต้นการโพสต์
     public_timelines: เส้นเวลาสาธารณะ
   relationships:
@@ -562,10 +592,6 @@ th:
     reply:
       proceed: ดำเนินการต่อเพื่อตอบกลับ
       prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
-  remote_unfollow:
-    error: ข้อผิดพลาด
-    title: ชื่อเรื่อง
-    unfollowed: เลิกติดตามแล้ว
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
@@ -613,7 +639,7 @@ th:
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
-    import: นำเข้า
+    import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
@@ -628,12 +654,14 @@ th:
       video:
         other: "%{count} วิดีโอ"
     content_warning: 'คำเตือนเนื้อหา: %{warning}'
+    language_detection: ตรวจหาภาษาโดยอัตโนมัติ
     open_in_web: เปิดในเว็บ
     pin_errors:
       reblog: ไม่สามารถปักหมุดการดัน
     poll:
       total_votes:
         other: "%{count} การลงคะแนน"
+      vote: ลงคะแนน
     show_more: แสดงเพิ่มเติม
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'

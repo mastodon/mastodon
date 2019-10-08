@@ -46,6 +46,18 @@ ko:
         extra: 만약 당신이 시도한 것이 아니라면 이 메일을 무시해 주세요. 위 링크를 클릭해 패스워드를 새로 설정하기 전까지는 패스워드가 바뀌지 않습니다.
         subject: '마스토돈: 패스워드 재설정 방법'
         title: 패스워드 재설정
+      two_factor_disabled:
+        explanation: 당신의 계정에 설정된 이중 인증이 비활성화 되었습니다. 이제 이메일과 암호만으로 로그인이 가능합니다.
+        subject: '마스토돈: 이중 인증 비활성화'
+        title: 2FA 비활성화 됨
+      two_factor_enabled:
+        explanation: 당신의 계정에 이중 인증이 활성화되었습니다. 로그인시 페어링된 T-OTP 앱에서 생성된 토큰이 필요합니다.
+        subject: '마스토돈: 이중 인증 활성화'
+        title: 2FA 활성화 됨
+      two_factor_recovery_codes_changed:
+        explanation: 이전 복구 코드가 무효화되고 새 코드가 생성되었습니다
+        subject: '마스토돈: 이중 인증 복구 코드 재생성 됨'
+        title: 2FA 복구 코드 변경됨
       unlock_instructions:
         subject: '마스토돈: 잠금 해제 방법'
     omniauth_callbacks:

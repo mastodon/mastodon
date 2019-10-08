@@ -5,7 +5,7 @@ class ActivityPub::Activity
   include Redisable
 
   SUPPORTED_TYPES = %w(Note Question Article).freeze
-  CONVERTED_TYPES = %w(Image Video Page).freeze
+  CONVERTED_TYPES = %w(Image Audio Video Page).freeze
 
   def initialize(json, account, **options)
     @json    = json

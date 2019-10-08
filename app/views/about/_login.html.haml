@@ -1,4 +1,4 @@
-= simple_form_for(new_user, url: user_session_path) do |f|
+= simple_form_for(new_user, url: user_session_path, namespace: 'login') do |f|
   .fields-group
     - if use_seamless_external_login?
       = f.input :email, placeholder: t('simple_form.labels.defaults.username_or_email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.username_or_email') }, hint: false

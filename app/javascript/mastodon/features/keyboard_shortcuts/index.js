@@ -18,10 +18,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl } = this.props;
+    const { intl, multiColumn } = this.props;
 
     return (
-      <Column icon='question' heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='question' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <div className='keyboard-shortcuts scrollable optionally-scrollable'>
           <table>

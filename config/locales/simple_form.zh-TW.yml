@@ -2,6 +2,10 @@
 zh-TW:
   simple_form:
     hints:
+      account_alias:
+        acct: 指定欲移動之帳戶的 使用者名稱@站台
+      account_migration:
+        acct: 指定欲移動至之帳戶的 使用者名稱@站台
       account_warning_preset:
         text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
       admin_account_action:
@@ -15,7 +19,6 @@ zh-TW:
         bot: 此帳戶主要執行自動操作且可能未被監控
         context: 應該套用過濾器的一項或多項內容
         digest: 僅在你長時間未登入且在未登入期間收到私訊時傳送
-        discoverable_html: <a href="%{path}" target="_blank">目錄</a> 讓使用者們能基於興趣與活動尋找帳戶。需要至少 %{min_followers} 位關注者
         email: 您將收到一封確認電子郵件
         fields: 您可在個人資料上有至多 4 個以表格形式顯示的項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會按比例縮小成 %{dimensions} 像素

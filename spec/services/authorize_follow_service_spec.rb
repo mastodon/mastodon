@@ -38,13 +38,6 @@ RSpec.describe AuthorizeFollowService, type: :service do
     it 'creates follow relation' do
       expect(bob.following?(sender)).to be true
     end
-
-    it 'sends a follow request authorization salmon slap' do
-      expect(a_request(:post, "http://salmon.example.com/").with { |req|
-        xml = OStatus2::Salmon.new.unpack(req.body)
-        xml.match(OStatus::TagManager::VERBS[:authorize])
-      }).to have_been_made.once
-    end
   end
 
   describe 'remote ActivityPub' do

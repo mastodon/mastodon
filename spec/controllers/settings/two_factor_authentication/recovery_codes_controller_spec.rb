@@ -15,7 +15,7 @@ describe Settings::TwoFactorAuthentication::RecoveryCodesController do
       end
 
       sign_in user, scope: :user
-      post :create
+      post :create, session: { challenge_passed_at: Time.now.utc }
 
       expect(assigns(:recovery_codes)).to eq otp_backup_codes
       expect(flash[:notice]).to eq 'Recovery codes successfully regenerated'

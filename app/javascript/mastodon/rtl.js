@@ -20,6 +20,7 @@ export function isRtl(text) {
   text = text.replace(/(?:^|[^\/\w])@([a-z0-9_]+(@[a-z0-9\.\-]+)?)/ig, '');
   text = text.replace(/(?:^|[^\/\w])#([\S]+)/ig, '');
   text = text.replace(/\s+/g, '');
+  text = text.replace(/(\w\S+\.\w{2,}\S*)/g, '');
 
   const matches = text.match(rtlChars);
 

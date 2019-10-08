@@ -4,32 +4,36 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   layout 'auth'
 
   before_action :set_body_classes
-  before_action :set_user, only: [:finish_signup]
+  before_action :require_unconfirmed!
 
-  def finish_signup
-    return unless request.patch? && params[:user]
+  skip_before_action :require_functional!
 
-    if @user.update(user_params)
-      @user.skip_reconfirmation!
-      bypass_sign_in(@user)
-      redirect_to root_path, notice: I18n.t('devise.confirmations.send_instructions')
-    else
-      @show_errors = true
-    end
+  def new
+    super
+
+    resource.email = current_user.unconfirmed_email || current_user.email if user_signed_in?
   end
 
   private
 
-  def set_user
-    @user = current_user
+  def require_unconfirmed!
+    redirect_to edit_user_registration_path if user_signed_in? && current_user.confirmed? && current_user.unconfirmed_email.blank?
   end
 
   def set_body_classes
     @body_classes = 'lighter'
   end
 
-  def user_params
-    params.require(:user).permit(:email)
+  def after_resending_confirmation_instructions_path_for(_resource_name)
+    if user_signed_in?
+      if current_user.confirmed? && current_user.approved?
+        edit_user_registration_path
+      else
+        auth_setup_path
+      end
+    else
+      new_user_session_path
+    end
   end
 
   def after_confirmation_path_for(_resource_name, user)

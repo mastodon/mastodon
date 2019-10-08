@@ -119,46 +119,4 @@ RSpec.describe TagManager do
       expect(TagManager.instance.same_acct?('username', 'incorrect@Cb6E6126.nGrOk.Io')).to eq false
     end
   end
-
-  describe '#url_for' do
-    let(:alice) { Fabricate(:account, username: 'alice') }
-
-    subject { TagManager.instance.url_for(target) }
-
-    context 'activity object' do
-      let(:target) { Fabricate(:status, account: alice, reblog: Fabricate(:status)).stream_entry }
-
-      it 'returns the unique tag for status' do
-        expect(target.object_type).to eq :activity
-        is_expected.to eq "https://cb6e6126.ngrok.io/@alice/#{target.id}"
-      end
-    end
-
-    context 'comment object' do
-      let(:target) { Fabricate(:status, account: alice, reply: true) }
-
-      it 'returns the unique tag for status' do
-        expect(target.object_type).to eq :comment
-        is_expected.to eq "https://cb6e6126.ngrok.io/@alice/#{target.id}"
-      end
-    end
-
-    context 'note object' do
-      let(:target) { Fabricate(:status, account: alice, reply: false, thread: nil) }
-
-      it 'returns the unique tag for status' do
-        expect(target.object_type).to eq :note
-        is_expected.to eq "https://cb6e6126.ngrok.io/@alice/#{target.id}"
-      end
-    end
-
-    context 'person object' do
-      let(:target) { alice }
-
-      it 'returns the URL for account' do
-        expect(target.object_type).to eq :person
-        is_expected.to eq 'https://cb6e6126.ngrok.io/@alice'
-      end
-    end
-  end
 end

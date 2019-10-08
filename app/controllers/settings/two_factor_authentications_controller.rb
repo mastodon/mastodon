@@ -2,10 +2,15 @@
 
 module Settings
   class TwoFactorAuthenticationsController < BaseController
+    include ChallengableConcern
+
     layout 'admin'
 
     before_action :authenticate_user!
     before_action :verify_otp_required, only: [:create]
+    before_action :require_challenge!, only: [:create]
+
+    skip_before_action :require_functional!
 
     def show
       @confirmation = Form::TwoFactorConfirmation.new
@@ -21,6 +26,7 @@ module Settings
       if acceptable_code?
         current_user.otp_required_for_login = false
         current_user.save!
+        UserMailer.two_factor_disabled(current_user).deliver_later!
         redirect_to settings_two_factor_authentication_path
       else
         flash.now[:alert] = I18n.t('two_factor_authentication.wrong_code')
@@ -32,7 +38,7 @@ module Settings
     private
 
     def confirmation_params
-      params.require(:form_two_factor_confirmation).permit(:code)
+      params.require(:form_two_factor_confirmation).permit(:otp_attempt)
     end
 
     def verify_otp_required
@@ -40,8 +46,8 @@ module Settings
     end
 
     def acceptable_code?
-      current_user.validate_and_consume_otp!(confirmation_params[:code]) ||
-        current_user.invalidate_otp_backup_code!(confirmation_params[:code])
+      current_user.validate_and_consume_otp!(confirmation_params[:otp_attempt]) ||
+        current_user.invalidate_otp_backup_code!(confirmation_params[:otp_attempt])
     end
   end
 end
