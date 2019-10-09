@@ -837,6 +837,13 @@ es:
     set_redirect: Establecer redirección
     warning:
       backreference_required: La nueva cuenta debe ser configurada primero para hacer referencia a esta
+      before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
+      cooldown: Después de migrar hay un período de espera durante el cual no podrás volver a migrar
+      disabled_account: Tu cuenta actual no será completamente utilizable después. Sin embargo, tendrás acceso a la exportación de datos así como a la reactivación.
+      followers: Esta acción migrará a todos los seguidores de la cuenta actual a la nueva cuenta
+      only_redirect_html: Alternativamente, solo puedes <a href="%{path}">poner una redirección en tu perfil</a>.
+      other_data: No se moverán otros datos automáticamente
+      redirect: El perfil de tu cuenta actual se actualizará con un aviso de redirección y será excluido de las búsquedas
   moderation:
     title: Moderación
   notification_mailer:
@@ -981,6 +988,7 @@ es:
   settings:
     account: Cuenta
     account_settings: Ajustes de la cuenta
+    aliases: Alias de la cuenta
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
