@@ -517,3 +517,16 @@ a.mention, .notification__message .fa {
 .status.status-direct:not(.read), .account {
   border-bottom: 1px solid lighten($purple2, 8%);
 }
+
+.drawer__inner__mastodon svg#hometownlogo {
+  fill: $ui-primary-color;
+}
+
+.audio-player,
+.audio-player .video-player__controls {
+  background: $ui-base-color;
+}
+
+.video-player__buttons button {
+  color: $ui-primary-color;
+}
