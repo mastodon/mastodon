@@ -291,7 +291,10 @@ ar:
       week_interactions: تفاعُلات هذا الأسبوع
       week_users_active: نشط هذا الأسبوع
       week_users_new: مستخدِمين هذا الأسبوع
+      whitelist_mode: وضع القائمة البيضاء
     domain_allows:
+      add_new: إضافة النطاق إلى القائمة البيضاء
+      created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
       undo: إزالة من القائمة البيضاء
     domain_blocks:
       add_new: إضافة حجب جديد لنطاق
@@ -309,6 +312,7 @@ ar:
           suspend: تعليق
         title: حجب نطاق جديد
       private_comment: تعليق خاص
+      public_comment: تعليق للعلن
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
@@ -357,6 +361,7 @@ ar:
         limited: محدود
         title: الإشراف
       private_comment: تعليق خاص
+      public_comment: تعليق للعلن
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
@@ -435,6 +440,8 @@ ar:
         title: سي أس أس مخصص
       domain_blocks:
         all: للجميع
+      domain_blocks_rationale:
+        title: اظهر السبب
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
@@ -772,6 +779,7 @@ ar:
     errors:
       move_to_self: لا يمكنه أن يكون الحساب الحالي
       not_found: تعذر العثور عليه
+      on_cooldown: إنّك في مرحلة الجمود
     followers_count: المتابِعين عند الإنتقال
     incoming_migrations: الانتقال مِن حساب آخر
     not_redirecting: حاليا ، حسابك لا يقوم بالتحويل إلى أي حساب آخر.
@@ -1008,6 +1016,10 @@ ar:
     contrast: ماستدون (تباين عالٍ)
     default: ماستدون (داكن)
     mastodon-light: ماستدون (فاتح)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: قم بإدخال الرمز المُوَلّد عبر تطبيق المصادقة للتأكيد
     description_html: في حال تفعيل <strong>المصادقة بخطوتين </strong>، فتسجيل الدخول يتطلب منك أن يكون بحوزتك هاتفك النقال قصد توليد الرمز الذي سيتم إدخاله.
