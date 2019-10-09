@@ -286,6 +286,25 @@ es-AR:
     domain_allows:
       add_new: Aprobar dominio
       created_msg: El dominio se aprobó exitosamente
+      destroyed_msg: El dominio no se aprobó
+      undo: No aprobado
+    domain_blocks:
+      add_new: Agregar nuevo bloquedo de dominio
+      created_msg: Ahora se está procesando el bloquedo de dominio
+      destroyed_msg: Se deshizo el bloqueo de dominio
+      domain: Dominio
+      edit: Editar bloqueo de dominio
+      existing_domain_block_html: Ya le aplicaste límites más estrictos a %{name}, por lo que primero necesitás <a href="%{unblock_url}">desbloquearlo</a>.
+      new:
+        create: Crear bloqueo
+        hint: El bloqueo de dominio no va a prevenir la creación de entradas de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
+        severity:
+          desc_html: "<strong>Silenciar</strong> hará que los toots de la cuenta sean invisibles a quienes no estén siguiendo esa cuenta. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de la cuenta. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
+          noop: Ninguno
+          silence: Silenciar
+          suspend: Suspender
+        title: Nuevo bloquedo de dominio
+      private_comment: Comentario privado
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
