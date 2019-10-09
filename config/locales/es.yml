@@ -435,10 +435,16 @@ es:
       custom_css:
         desc_html: Modificar el aspecto con CSS cargado en cada página
         title: CSS personalizado
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
+        title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
       domain_blocks:
         all: A todos
         disabled: A nadie
+        title: Mostrar dominios bloqueados
         users: Para los usuarios locales que han iniciado sesión
+      domain_blocks_rationale:
+        title: Mostrar la razón de ser
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -499,6 +505,9 @@ es:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
+      trendable_by_default:
+        desc_html: Afecta a etiquetas que no han sido previamente rechazadas
+        title: Permitir que las etiquetas sean tendencia sin revisión previa
       trends:
         desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
         title: Hashtags de tendencia
@@ -519,6 +528,7 @@ es:
     tags:
       accounts_today: Usos únicos de hoy
       accounts_week: Usos únicos esta semana
+      breakdown: Desglose del consumo actual por fuentes
       context: Contexto
       directory: En el directorio
       in_directory: "%{count} en el directorio"
