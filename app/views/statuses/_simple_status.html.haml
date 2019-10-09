@@ -24,7 +24,7 @@
       %p{ :style => ('margin-bottom: 0' unless current_account&.user&.setting_expand_spoilers) }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content{ lang: status.language, style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }
+    .e-content{ style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }
       = Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
       - if status.preloadable_poll
         = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
