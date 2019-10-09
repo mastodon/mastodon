@@ -3,7 +3,7 @@
     = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
 
   .hero-widget__text
-    %p= @instance_presenter.site_short_description.html_safe.presence || @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+    %p= @instance_presenter.site_short_description.html_safe.presence || t('about.about_mastodon_html')
 
 - if Setting.trends && !(user_signed_in? && !current_user.setting_trends)
   - trends = TrendingTags.get(3)
