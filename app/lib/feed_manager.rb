@@ -133,7 +133,7 @@ class FeedManager
       break if statuses.empty?
 
       statuses.each do |status|
-        next if filter_from_home?(status, account)
+        next if filter_from_home?(status, account.id)
         added += 1 if add_to_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
       end
 
