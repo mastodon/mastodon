@@ -352,6 +352,18 @@ a.mention, .notification__message .fa {
   border: 4px solid $purple2;
 }
 
+.public-layout .public-account-header__image {
+  background: $ui-base-color;
+}
+
+.public-layout .public-account-header__image .originalheader svg, .originalmascotimg svg {
+  fill: $ui-primary-color;
+}
+
+.public-layout .public-account-header__image .originalheader h1 a.brand {
+  color: $ui-primary-color;
+}
+
 .public-layout .header .nav-button {
   background: darken($purple3, 4%);
   &:hover, &:focus {
