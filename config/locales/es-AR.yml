@@ -305,6 +305,25 @@ es-AR:
           suspend: Suspender
         title: Nuevo bloquedo de dominio
       private_comment: Comentario privado
+      private_comment_hint: Comentario sobre la limitación de este dominio, para uso interno de los moderadores.
+      public_comment: Comentario público
+      public_comment_hint: Comentario sobre la limitación de este dominio para el público en general, si está habilitada la publicación de lista de limitaciones de dominio.
+      reject_media: Rechazar archivos de medio
+      reject_media_hint: Quita los archivos de medio almacenados e impide la descarga en el futuro. Irrelevante para suspensiones.
+      reject_reports: Rechazar denuncias
+      reject_reports_hint: Ignora todas las denuncias que vengan de este dominio. Irrelevante para suspensiones.
+      rejecting_media: rechazando archivos de medio
+      rejecting_reports: rechazando denuncias
+      severity:
+        silence: silenciado
+        suspend: suspendido
+      show:
+        affected_accounts:
+          one: Una cuenta afectada en la base de datos
+          other: "%{count} cuentas afectadas en la base de datos"
+        retroactive:
+          silence: Quitar silenciado de las cuentas existentes afectadas de este dominio
+          suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
