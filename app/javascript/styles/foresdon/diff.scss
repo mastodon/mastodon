@@ -210,6 +210,10 @@ body.layout-single-column {
       padding-bottom: 20px;
     }
 
+    & .box-widget.notice-widget {
+      min-height: 1vh;
+    }
+
     & > .footer {
       padding-left: 20px;
       background: rgba($ui-base-color, $foresdon-primary-ui-alpha);

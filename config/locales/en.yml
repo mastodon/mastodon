@@ -676,8 +676,14 @@ en:
       username_unavailable: Your username will remain unavailable
   directories:
     directory: Profile directory
+    enabled: You are currently listed in the directory.
+    enabled_but_warning: You have opted-in to be listed in the directory, but you dont have the minimum number of followers (0) to be listed yet.
     explanation: Discover users based on their interests
     explore_mastodon: Explore %{title}
+    how_to_enable: You are not currently opted-in to the directory. You can opt-in below. Use hashtags in your bio text to be listed under specific hashtags!
+    people:
+      one: "%{count} person"
+      other: "%{count} people"
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:

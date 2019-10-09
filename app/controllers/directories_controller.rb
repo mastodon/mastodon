@@ -7,6 +7,7 @@ class DirectoriesController < ApplicationController
   before_action :require_enabled!
   before_action :set_instance_presenter
   before_action :set_tag, only: :show
+  before_action :set_tags
   before_action :set_accounts
 
   skip_before_action :require_functional!
@@ -27,6 +28,10 @@ class DirectoriesController < ApplicationController
 
   def set_tag
     @tag = Tag.discoverable.find_normalized!(params[:id])
+  end
+
+  def set_tags
+    @tags = Tag.discoverable.limit(30).reject { |tag| tag.cached_sample_accounts.empty? }
   end
 
   def set_accounts
