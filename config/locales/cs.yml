@@ -1,7 +1,7 @@
 cs:
   about:
     about_hashtag_html: 'Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.'
-    about_mastodon_html: 'Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentralizovaná jako e-mail.'
+    about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
     about_this: O tomto serveru
     active_count_after: aktivních
     active_footnote: Měsíční aktivní uživatelé (MAU)
@@ -38,10 +38,10 @@ cs:
     unavailable_content: Nedostupný obsah
     unavailable_content_description:
       domain: Server
-      reason: 'Důvod:'
-      rejecting_media: 'Mediální soubory z tohoto serveru nebudou zpracovány a nebudou zobrazeny žádné náhledy. Pro prohlédnutí médií bude třeba manuálně přejít na druhý server.'
-      silenced: 'Příspěvky z tohoto severu nebudou zobrazeni nikde kromě vašeho domovského proudu, v případě, že sledujete autora.'
-      suspended: 'Nebudete moci sledovat nikoho z tohoto serveru, žádná data z něj nebudou zpracována či uložena a žádná data nebudou vyměněna mezi servery.'
+      reason: Důvod
+      rejecting_media: 'Mediální soubory z tohoto serveru nebudou zpracovány a nebudou zobrazeny žádné náhledy. Pro prohlédnutí médií bude třeba manuálně přejít na druhý server:'
+      silenced: 'Příspěvky z těchto serverů nebudou zobrazeny ve veřejných časových osách a konverzacích a nebudou generována oznámení o interakcích uživatelů z toho serveru, pokud je nesledujete:'
+      suspended: 'Žádná data z těchto serverů nebudou zpracována, ukládána ani vyměňována, čímž bude znemožněna jakákoliv interakce či komunikace s uživateli z těchto serverů:'
     unavailable_content_html: Mastodon vám obvykle dovoluje prohlížet si obsah a komunikovat s uživateli z jakéhokoliv dalšího serveru ve fedivesmíru. Tohle jsou výjimky, které byly zavedeny na tomto konkrétním serveru.
     user_count_after:
       one: uživatel
@@ -268,7 +268,7 @@ cs:
       updated_msg: Emoji úspěšně aktualizováno!
       upload: Nahrát
     dashboard:
-      authorized_fetch_mode: Autorizovaný režim fetch
+      authorized_fetch_mode: Zabezpečený reřim
       backlog: opožděné úlohy
       config: Konfigurace
       feature_deletions: Smazání účtů
@@ -398,7 +398,7 @@ cs:
       pending: Čekám na souhlas mostu
       save_and_enable: Uložit a povolit
       setup: Nastavit připojení k mostu
-      signatures_not_enabled: Mosty nebudou fungovat správně, dokud je povolen bezpečný režim nebo režim bílé listiny
+      signatures_not_enabled: Mosty nebudou fungovat správně, dokud je povolen zabezpečený režim nebo režim bílé listiny
       status: Stav
       title: Mosty
     report_notes:
@@ -810,7 +810,7 @@ cs:
       '604800': 1 týden
       '86400': 1 den
     expires_in_prompt: Nikdy
-    generate: Vygenerovat
+    generate: Vygenerovat pozvánku
     invited_by: 'Byl/a jste pozván/a uživatelem:'
     max_uses:
       one: 1 použití
@@ -1026,8 +1026,6 @@ cs:
     profile: Profil
     relationships: Sledovaní a sledující
     two_factor_authentication: Dvoufázové ověřování
-  spam_check:
-    spam_detected_and_silenced: Tohle je automtické nahlášení. Byl detekován spam a jeho odesílatel byl automaticky utišen. Pokud je tohle chyba, prosím odtište tento účet.
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
