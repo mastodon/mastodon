@@ -476,8 +476,8 @@ nl:
           open: Iedereen kan zich registreren
         title: Registratiemodus
       show_known_fediverse_at_about_page:
-        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
-        title: De globale tijdlijn op de voorpagina tonen
+        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdlijn
+        title: De globale tijdlijn op de openbare tijdlijnpagina tonen
       show_staff_badge:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
@@ -501,8 +501,8 @@ nl:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodonserver
       timeline_preview:
-        desc_html: Toon een openbare tijdlijn op de voorpagina
-        title: Tijdlijn op de voorpagina tonen
+        desc_html: Toon een link naar de openbare tijdlijnpagina op de voorpagina en geef de API zonder in te loggen toegang tot de openbare tijdlijn
+        title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
@@ -792,7 +792,7 @@ nl:
       '604800': 1 week
       '86400': 1 dag
     expires_in_prompt: Nooit
-    generate: Genereren
+    generate: Uitnodigingslink genereren
     invited_by: 'Jij bent uitgenodigd door:'
     max_uses:
       one: 1 keer
