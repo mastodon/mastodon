@@ -352,6 +352,18 @@ a.mention, .notification__message .fa {
   border: 4px solid $purple2;
 }
 
+.public-layout .public-account-header__image {
+  background: $ui-base-color;
+}
+
+.public-layout .public-account-header__image .originalheader svg, .originalmascotimg svg {
+  fill: $ui-primary-color;
+}
+
+.public-layout .public-account-header__image .originalheader h1 a.brand {
+  color: $ui-primary-color;
+}
+
 .public-layout .header .nav-button {
   background: darken($purple3, 4%);
   &:hover, &:focus {
@@ -516,4 +528,17 @@ a.mention, .notification__message .fa {
 
 .status.status-direct:not(.read), .account {
   border-bottom: 1px solid lighten($purple2, 8%);
+}
+
+.drawer__inner__mastodon svg#hometownlogo {
+  fill: $ui-primary-color;
+}
+
+.audio-player,
+.audio-player .video-player__controls {
+  background: $ui-base-color;
+}
+
+.video-player__buttons button {
+  color: $ui-primary-color;
 }
