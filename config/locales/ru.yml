@@ -552,6 +552,7 @@ ru:
     remove: Отвязать псевдоним
   appearance:
     advanced_web_interface: Многоколоночный интерфейс
+    animations_and_accessibility: Анимации и доступность
     confirmation_dialogs: Окна подтверждений
     discovery: Обзор
     sensitive_content: Чувствительное содержимое
@@ -574,10 +575,13 @@ ru:
     apply_for_account: Запросить приглашение
     change_password: Пароль
     checkbox_agreement_html: Я соглашаюсь с <a href="%{rules_path}" target="_blank">правилами сервера</a> и <a href="%{terms_path}" target="_blank">Условиями использования</a>
+    checkbox_agreement_without_rules_html: Я согласен с <a href="%{terms_path}" target="_blank">условиями использования</a>
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
     description:
+      prefix_invited_by_user: "@%{name} приглашает вас присоединиться к этому узлу Mastodon."
       prefix_sign_up: Зарегистрируйтесь в Mastodon уже сегодня!
+      suffix: Имея аккаунт, вы можете подписываться на людей, постить обновления, обмениваться сообщениями с пользователями любых узлов Mastodon и не только!
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
     forgot_password: Забыли пароль?
     invalid_reset_password_token: Токен сброса пароля неверен или устарел. Пожалуйста, запросите новый.
@@ -595,8 +599,15 @@ ru:
     reset_password: Сбросить пароль
     security: Безопасность
     set_new_password: Задать новый пароль
+    setup:
+      email_below_hint_html: Если ниже указан неправильный адрес, вы можете исправить его здесь и получить новое письмо подтверждения.
+      email_settings_hint_html: Письмо с подтверждением было отправлено на %{email}. Если адрес указан неправильно, его можно поменять в настройках аккаунта.
+      title: Установка
     status:
+      account_status: Статус аккаунта
+      confirming: Ожидание подтверждения e-mail.
       functional: Ваш аккаунт в полном порядке.
+      pending: Ваша заявка ожидает одобрения администраторами, это может занять немного времени. Вы получите письмо, как только заявку одобрят.
       redirecting_to: Ваш аккаунт признан неактивным, потому что он перенаправляет на %{acct}.
     trouble_logging_in: Не удаётся войти?
   authorize_follow:
@@ -611,6 +622,8 @@ ru:
       web: Перейти к WWW
     title: Подписаться на %{acct}
   challenge:
+    confirm: Продолжить
+    hint_html: "<strong>Подсказка</strong>: мы не будем спрашивать пароль повторно в течение часа."
     invalid_password: Неверный пароль
     prompt: Введите пароль для продолжения
   datetime:
