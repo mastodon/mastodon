@@ -18,7 +18,6 @@ hu:
     discover_users: Találj meg másokat
     documentation: Dokumentáció
     federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
-    generic_description: "%{domain} csak egy a számtalan szerver közül a föderációban"
     get_apps: Próbálj ki egy mobil appot
     hosted_on: "%{domain} Mastodon szerver"
     instance_actor_flash: 'Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
@@ -37,6 +36,7 @@ hu:
     terms: Felhasználási feltételek
     unavailable_content: A tartalom nem elérhető
     unavailable_content_description:
+      domain: Szerver
       reason: 'Indok:'
       rejecting_media: A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.
       silenced: A szerver hozzászólásai csak a saját hírvonalon jelennek meg, ha követik a szerzőt.
@@ -239,11 +239,14 @@ hu:
       delete: Törlés
       destroyed_msg: Emoji törlése sikeres!
       disable: Letiltás
+      disabled: Letiltva
       disabled_msg: Emoji letiltva
       emoji: Emoji
       enable: Engedélyezés
+      enabled: Engedélyezve
       enabled_msg: Emoji engedélyezve
       image_hint: PNG (maximális méret 50KB)
+      list: Listázás
       listed: Listázva
       new:
         title: Új egyedi emoji hozzáadása
@@ -252,6 +255,7 @@ hu:
       shortcode_hint: Legalább két karakter, csak betűk, számok és alsóvonás
       title: Egyedi emojik
       uncategorized: Nem kategorizált
+      unlist: Elrejtés a listáról
       unlisted: Nincs listázva
       update_failed_msg: Nem sikerült frissíteni az emojit
       updated_msg: Emoji sikeresen frissítve!
@@ -383,6 +387,7 @@ hu:
       pending: Várakozás a relé jóváhagyására
       save_and_enable: Mentés és engedélyezés
       setup: Relé kapcsolat felállítása
+      signatures_not_enabled: A relék nem fognak jól működni, amíg a biztonságos mód vagy az engedélyező listás mód aktív
       status: Állapot
       title: Relék
     report_notes:
@@ -827,13 +832,16 @@ hu:
     past_migrations: Eddigi költözések
     proceed_with_move: Követők átköltöztetése
     redirecting_to: A fiókod át van irányítva ide %{acct}.
+    set_redirect: Átirányítás beállítása
     warning:
       backreference_required: Az új fiókot először be kell úgy állítani, hogy ezt visszahivatkozza
       before: 'Mielőtt továbbmész, olvasd el ezeket kérlek figyelmesen:'
       cooldown: A költözés után van egy türelmi idő, mely alatt nem tudsz majd újra költözni
       disabled_account: A jelenlegi fiókod nem lesz teljesen használható ezután. Viszont elérhető lesz majd az adatexport funkció, valamint a reaktiválás is.
       followers: Ez a művelet az összes követődet a jelenlegi fiókról az újra fogja költöztetni
+      only_redirect_html: Az is lehetséges, hogy <a href="%{path}">csak átirányítást raksz a profilodra</a>.
       other_data: Más adatot nem fogunk automatikusan mozgatni
+      redirect: A jelenlegi fiókod profiljára átirányításról szóló figyelmeztetést rakunk, valamint már nem fogjuk mutatni a keresésekben
   moderation:
     title: Moderáció
   notification_mailer:
@@ -996,8 +1004,6 @@ hu:
     profile: Profil
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős azonosítás
-  spam_check:
-    spam_detected_and_silenced: Ez egy automatikus bejelentés. Spamet érzékeltünk, így a küldőt automatikusan elnémítottuk. Ha ez hiba, oldd fel a némítást.
   statuses:
     attached:
       description: 'Csatolva: %{attached}'
@@ -1021,6 +1027,9 @@ hu:
       private: Csak nyilvános tülköt tűzhetsz ki
       reblog: Megtolt tülköt nem tudsz kitűzni
     poll:
+      total_people:
+        one: "%{count} személy"
+        other: "%{count} személy"
       total_votes:
         one: "%{count} szavazat"
         other: "%{count} szavazat"

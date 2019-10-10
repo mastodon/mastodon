@@ -18,7 +18,6 @@ co:
     discover_users: Scopre utilizatori
     documentation: Ducumentazione
     federation_hint_html: Cù un contu nant'à %{instance} puderete siguità ghjente da tutti i servori Mastodon è ancu più d'altri.
-    generic_description: "%{domain} hè un servore di a rete"
     get_apps: Pruvà un'applicazione di telefuninu
     hosted_on: Mastodon allughjatu nant’à %{domain}
     instance_actor_flash: |
@@ -507,6 +506,9 @@ co:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
       title: Parametri di u situ
+      trendable_by_default:
+        desc_html: Ùn affetta micca quelli chì sò digià stati ricusati
+        title: Auturizà l'hashtag à esse in tindenze senza verificazione
       trends:
         desc_html: Mustrà à u pubblicu i hashtag chì sò stati digià verificati è chì sò in e tendenze avà
         title: Tendenze di hashtag
@@ -1005,8 +1007,6 @@ co:
     profile: Prufile
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
-  spam_check:
-    spam_detected_and_silenced: Quessu ghjè un signalamente autumaticu. Un spam hè statu ditettatu è u speditore hè statu silenzatu. S'ellu era un sbagliu, pudete annullà l'azzione.
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'
