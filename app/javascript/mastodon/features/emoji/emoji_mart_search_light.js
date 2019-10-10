@@ -81,7 +81,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       }).filter(a => a).slice(0, maxResults);
     }
 
-    let values = value.toLowerCase().split(/[\s|,|\-|_]+/),
+    let values = value.toLowerCase().split(/[\s|,\-_]+/),
       allResults = [];
 
     if (values.length > 2) {

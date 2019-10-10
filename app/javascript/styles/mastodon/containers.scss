@@ -141,8 +141,69 @@
     grid-row: 3;
   }
 
+  @media screen and (max-width: $no-gap-breakpoint) {
+    grid-gap: 0;
+    grid-template-columns: minmax(0, 100%);
+
+    .column-0 {
+      grid-column: 1;
+    }
+
+    .column-1 {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .column-2 {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .column-3 {
+      grid-column: 1;
+      grid-row: 4;
+    }
+  }
+}
+
+.grid-4 {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-columns: 25%;
+  grid-auto-rows: max-content;
+
+  .column-0 {
+    grid-column: 1 / 5;
+    grid-row: 1;
+  }
+
+  .column-1 {
+    grid-column: 1 / 4;
+    grid-row: 2;
+  }
+
+  .column-2 {
+    grid-column: 4;
+    grid-row: 2;
+  }
+
+  .column-3 {
+    grid-column: 2 / 5;
+    grid-row: 3;
+  }
+
+  .column-4 {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
   .landing-page__call-to-action {
     min-height: 100%;
+  }
+
+  .flash-message {
+    margin-bottom: 10px;
   }
 
   @media screen and (max-width: 738px) {
@@ -185,6 +246,11 @@
     }
 
     .column-3 {
+      grid-column: 1;
+      grid-row: 5;
+    }
+
+    .column-4 {
       grid-column: 1;
       grid-row: 4;
     }
@@ -343,6 +409,20 @@
       .column-1 {
         display: none;
       }
+    }
+  }
+
+  .directory__card {
+    border-radius: 4px;
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-radius: 0;
+    }
+  }
+
+  .page-header {
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-bottom: 0;
     }
   }
 
@@ -749,14 +829,22 @@
     }
   }
 
-  .static-icon-button {
-    color: $action-button-color;
-    font-size: 18px;
+  .directory__list {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: minmax(0, 50%) minmax(0, 50%);
 
-    & > span {
-      font-size: 14px;
-      font-weight: 500;
+    @media screen and (max-width: $no-gap-breakpoint) {
+      display: block;
     }
+
+    .icon-button {
+      font-size: 18px;
+    }
+  }
+
+  .directory__card {
+    margin-bottom: 0;
   }
 
   .card-grid {

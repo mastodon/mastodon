@@ -12,9 +12,11 @@ import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 import { changeComposing } from '../../actions/compose';
+import { openModal } from 'mastodon/actions/modal';
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 import { mascot } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
+import { logOut } from 'mastodon/utils/log_out';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -25,6 +27,8 @@ const messages = defineMessages({
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new toot' },
+  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
+  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
 
 const mapStateToProps = (state, ownProps) => ({
@@ -61,6 +65,21 @@ class Compose extends React.PureComponent {
     }
   }
 
+  handleLogoutClick = e => {
+    const { dispatch, intl } = this.props;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.logoutMessage),
+      confirm: intl.formatMessage(messages.logoutConfirm),
+      onConfirm: () => logOut(),
+    }));
+
+    return false;
+  }
+
   onFocus = () => {
     this.props.dispatch(changeComposing(true));
   }
@@ -92,7 +111,7 @@ class Compose extends React.PureComponent {
             <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' fixedWidth /></Link>
           )}
           <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' fixedWidth /></a>
-          <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)}><Icon id='sign-out' fixedWidth /></a>
+          <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' fixedWidth /></a>
         </nav>
       );
     }

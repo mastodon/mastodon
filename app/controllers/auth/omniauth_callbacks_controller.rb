@@ -27,7 +27,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if resource.email_verified?
       root_path
     else
-      finish_signup_path
+      auth_setup_path(missing_email: '1')
     end
   end
 end

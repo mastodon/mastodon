@@ -10,11 +10,23 @@ class AfterBlockDomainFromAccountService < BaseService
     @account = account
     @domain  = domain
 
+    clear_notifications!
+    remove_follows!
     reject_existing_followers!
     reject_pending_follow_requests!
   end
 
   private
+
+  def remove_follows!
+    @account.active_relationships.where(account: Account.where(domain: @domain)).includes(:target_account).reorder(nil).find_each do |follow|
+      UnfollowService.new.call(@account, follow.target_account)
+    end
+  end
+
+  def clear_notifications!
+    Notification.where(account: @account).where(from_account: Account.where(domain: @domain)).in_batches.delete_all
+  end
 
   def reject_existing_followers!
     @account.passive_relationships.where(account: Account.where(domain: @domain)).includes(:account).reorder(nil).find_each do |follow|

@@ -3,7 +3,7 @@ version: 2
 aliases:
   - &defaults
     docker:
-      - image: circleci/ruby:2.6.0-stretch-node
+      - image: circleci/ruby:2.6-stretch-node
         environment: &ruby_environment
           BUNDLE_APP_CONFIG: ./.bundle/
           DB_HOST: localhost
@@ -105,14 +105,14 @@ jobs:
   install-ruby2.5:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.5.3-stretch-node
+      - image: circleci/ruby:2.5-stretch-node
         environment: *ruby_environment
     <<: *install_ruby_dependencies
 
   install-ruby2.4:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.4.5-stretch-node
+      - image: circleci/ruby:2.4-stretch-node
         environment: *ruby_environment
     <<: *install_ruby_dependencies
 
@@ -131,40 +131,40 @@ jobs:
   test-ruby2.6:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.6.0-stretch-node
+      - image: circleci/ruby:2.6-stretch-node
         environment: *ruby_environment
       - image: circleci/postgres:10.6-alpine
         environment:
           POSTGRES_USER: root
-      - image: circleci/redis:5.0.3-alpine3.8
+      - image: circleci/redis:5-alpine
     <<: *test_steps
 
   test-ruby2.5:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.5.3-stretch-node
+      - image: circleci/ruby:2.5-stretch-node
         environment: *ruby_environment
       - image: circleci/postgres:10.6-alpine
         environment:
           POSTGRES_USER: root
-      - image: circleci/redis:4.0.12-alpine
+      - image: circleci/redis:5-alpine
     <<: *test_steps
 
   test-ruby2.4:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.4.5-stretch-node
+      - image: circleci/ruby:2.4-stretch-node
         environment: *ruby_environment
       - image: circleci/postgres:10.6-alpine
         environment:
           POSTGRES_USER: root
-      - image: circleci/redis:4.0.12-alpine
+      - image: circleci/redis:5-alpine
     <<: *test_steps
 
   test-webui:
     <<: *defaults
     docker:
-      - image: circleci/node:8.15.0-stretch
+      - image: circleci/node:12.9-stretch
     steps:
       - *attach_workspace
       - run: ./bin/retry yarn test:jest
@@ -173,9 +173,11 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
+      - *install_system_dependencies
       - run: bundle exec i18n-tasks check-normalized
       - run: bundle exec i18n-tasks unused -l en
       - run: bundle exec i18n-tasks check-consistent-interpolations
+      - run: bundle exec rake repo:check_locales_files
 
 workflows:
   version: 2

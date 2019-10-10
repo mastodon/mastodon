@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const iconStyle = {
+  height: null,
+  lineHeight: '27px',
+  width: `${18 * 1.28571429}px`,
+};
+
 export default class TextIconButton extends React.PureComponent {
 
   static propTypes = {
@@ -20,7 +26,14 @@ export default class TextIconButton extends React.PureComponent {
     const { label, title, active, ariaControls } = this.props;
 
     return (
-      <button title={title} aria-label={title} className={`text-icon-button ${active ? 'active' : ''}`} aria-expanded={active} onClick={this.handleClick} aria-controls={ariaControls}>
+      <button
+        title={title}
+        aria-label={title}
+        className={`text-icon-button ${active ? 'active' : ''}`}
+        aria-expanded={active}
+        onClick={this.handleClick}
+        aria-controls={ariaControls} style={iconStyle}
+      >
         {label}
       </button>
     );
