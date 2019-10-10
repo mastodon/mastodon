@@ -36,7 +36,7 @@ class Api::V1::Statuses::FavouritesController < Api::BaseController
 
   def unfavourite_service_result
     UnfavouriteService.new.call(current_user.account, requested_status)
-  end  
+  end
 
   def requested_status
     Status.find(params[:status_id])
