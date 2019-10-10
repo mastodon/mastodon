@@ -14,10 +14,8 @@ class Api::V1::Statuses::FavouritesController < Api::BaseController
   end
 
   def destroy
-    @status = requested_status
+    @status = unfavourited_status
     @favourites_map = { @status.id => false }
-
-    UnfavouriteWorker.perform_async(current_user.account_id, @status.id)
 
     render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, favourites_map: @favourites_map)
   end
@@ -25,12 +23,20 @@ class Api::V1::Statuses::FavouritesController < Api::BaseController
   private
 
   def favourited_status
-    service_result.status.reload
+    favourite_service_result.status.reload
   end
 
-  def service_result
+  def unfavourited_status
+    unfavourite_service_result.status.reload
+  end
+
+  def favourite_service_result
     FavouriteService.new.call(current_user.account, requested_status)
   end
+
+  def unfavourite_service_result
+    UnfavouriteService.new.call(current_user.account, requested_status)
+  end  
 
   def requested_status
     Status.find(params[:status_id])
