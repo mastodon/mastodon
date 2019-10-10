@@ -18,7 +18,6 @@ ar:
     discover_users: اكتشف مستخدِمين
     documentation: الدليل
     federation_hint_html: بواسطة حساب في %{instance} ستتمكن من تتبع أناس في أي خادم ماستدون وأكثر.
-    generic_description: "%{domain} هو سيرفر من بين سيرفرات الشبكة"
     get_apps: جرّب تطبيقا على الموبايل
     hosted_on: ماستدون مُستضاف على %{domain}
     learn_more: تعلم المزيد
@@ -237,6 +236,7 @@ ar:
       deleted_status: "(منشور محذوف)"
       title: سِجلّ التفتيش و المعاينة
     custom_emojis:
+      assign_category: اسند فئة
       by_domain: النطاق
       copied_msg: تم إنشاء نسخة محلية للإيموجي بنجاح
       copy: نسخ
@@ -279,7 +279,7 @@ ar:
       feature_timeline_preview: معاينة الخيط الزمني
       features: الميّزات
       hidden_service: الفيديرالية مع الخدمات الخفية
-      open_reports: فتح الشكاوى
+      open_reports: شكاوي مفتوحة
       pending_tags: وسوم في انتظار المراجعة
       pending_users: مستخدمين في انتظار مراجعة
       recent_users: أحدث المستخدِمين
@@ -289,15 +289,22 @@ ar:
       space: المساحة المستخدَمة
       title: لوح المراقبة
       total_users: إجمالي المستخدِمين
-      trends: المؤشرات
+      trends: المتداوَلة
       week_interactions: تفاعُلات هذا الأسبوع
-      week_users_active: نشط هذا الأسبوع
+      week_users_active: نشطاء هذا الأسبوع
       week_users_new: مستخدِمين هذا الأسبوع
+      whitelist_mode: وضع القائمة البيضاء
+    domain_allows:
+      add_new: إضافة النطاق إلى القائمة البيضاء
+      created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
+      destroyed_msg: تمت إزالة النطاق مِن القائمة البيضاء
+      undo: إزالة من القائمة البيضاء
     domain_blocks:
       add_new: إضافة حجب جديد لنطاق
       created_msg: إنّ حجب النطاق حيز التشغيل
       destroyed_msg: تم إلغاء الحجب المفروض على النطاق
       domain: النطاق
+      edit: تحرير النطاق المحظور
       new:
         create: إنشاء حظر
         hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
@@ -308,6 +315,7 @@ ar:
           suspend: تعليق
         title: حجب نطاق جديد
       private_comment: تعليق خاص
+      public_comment: تعليق للعلن
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
@@ -356,6 +364,7 @@ ar:
         limited: محدود
         title: الإشراف
       private_comment: تعليق خاص
+      public_comment: تعليق للعلن
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
@@ -434,6 +443,8 @@ ar:
         title: سي أس أس مخصص
       domain_blocks:
         all: للجميع
+      domain_blocks_rationale:
+        title: اظهر السبب
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
@@ -562,6 +573,7 @@ ar:
     delete_account: حذف حساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
     description:
+      prefix_invited_by_user: يدعوك @%{name} للاتحاق بخادم ماستدون هذا!
       prefix_sign_up: أنشئ حسابًا على ماستدون اليوم!
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
@@ -585,6 +597,7 @@ ar:
     status:
       account_status: حالة الحساب
       functional: حسابك جاهز.
+      redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
@@ -616,10 +629,18 @@ ar:
       x_months: "%{count} شه"
       x_seconds: "%{count}ث"
   deletes:
+    challenge_not_passed: المعلومات التي أدخلتها لم تكن صحيحة
     confirm_password: قم بإدخال كلمتك السرية الحالية للتحقق من هويتك
+    confirm_username: ادخل اسم المستخدم الخاص بك لتأكيد الإجراء
     proceed: حذف حساب
     success_msg: تم حذف حسابك بنجاح
     warning:
+      before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
+      data_removal: سوف تُحذَف منشوراتك والبيانات الأخرى نهائيا
+      email_change_html: بإمكانك <a href="%{path}">تغيير عنوان بريدك الإلكتروني</a> دون أن يُحذف حسابك
+      irreversible: لن يكون بإمكانك استرجاع أو إعادة تنشيط حسابك
+      more_details_html: للمزيد مِن التفاصيل ، يرجى الإطلاع على <a href="%{terms_path}">سياسة الخصوصية</a>.
+      username_available: سيصبح اسم مستخدمك متوفرا ثانية
       username_unavailable: سيبقى اسم المستخدم الخاص بك غير متوفر
   directories:
     directory: سِجلّ الصفحات التعريفية
@@ -759,13 +780,18 @@ ar:
     cancel: ألغِ التوجيه
     cancelled_msg: تم إلغاء التوجيه بنجاح.
     errors:
+      move_to_self: لا يمكنه أن يكون الحساب الحالي
       not_found: تعذر العثور عليه
+      on_cooldown: إنّك في مرحلة الجمود
     followers_count: المتابِعين عند الإنتقال
     incoming_migrations: الانتقال مِن حساب آخر
+    not_redirecting: حاليا ، حسابك لا يقوم بالتحويل إلى أي حساب آخر.
     past_migrations: التهجيرات السابقة
     proceed_with_move: انقل مشارِكيك
     redirecting_to: حسابك موجَّه إلى %{acct}.
     set_redirect: تعين إعادة التوجيه
+    warning:
+      before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
   moderation:
     title: الإشراف
   notification_mailer:
@@ -866,6 +892,9 @@ ar:
     reply:
       proceed: المواصلة إلى الرد
       prompt: 'ترغب في الرد على هذا التبويق:'
+  scheduled_statuses:
+    over_total_limit: لقد بلغت حد الـ %{limit} مِن التبويقات المبرمَجة
+    too_soon: يجب أن يكون تاريخ البرمجة في المستقبَل
   sessions:
     activity: آخر نشاط
     browser: المتصفح
@@ -927,6 +956,8 @@ ar:
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
     two_factor_authentication: المُصادقة بخُطوَتَيْن
+  spam_check:
+    spam_detected: هذا إبلاغ تلقائي. تم اكتشاف منشورات عشوائية غير مرغوب فيها.
   statuses:
     attached:
       description: 'مُرفَق: %{attached}'
@@ -990,6 +1021,10 @@ ar:
     contrast: ماستدون (تباين عالٍ)
     default: ماستدون (داكن)
     mastodon-light: ماستدون (فاتح)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: قم بإدخال الرمز المُوَلّد عبر تطبيق المصادقة للتأكيد
     description_html: في حال تفعيل <strong>المصادقة بخطوتين </strong>، فتسجيل الدخول يتطلب منك أن يكون بحوزتك هاتفك النقال قصد توليد الرمز الذي سيتم إدخاله.

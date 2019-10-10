@@ -2,7 +2,7 @@
 en:
   about:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
-    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
+    about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralization! Own your data with Mastodon!'
     about_this: About
     active_count_after: active
     active_footnote: Monthly Active Users (MAU)
@@ -18,7 +18,6 @@ en:
     discover_users: Discover users
     documentation: Documentation
     federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
-    generic_description: "%{domain} is one server in the network"
     get_apps: Try a mobile app
     hosted_on: Mastodon hosted on %{domain}
     instance_actor_flash: |
@@ -479,8 +478,8 @@ en:
           open: Anyone can sign up
         title: Registrations mode
       show_known_fediverse_at_about_page:
-        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
-        title: Show known fediverse on timeline preview
+        desc_html: When disabled, restricts the public timeline linked from the landing page to showing only local content
+        title: Include federated content on unauthenticated public timeline page
       show_staff_badge:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
@@ -498,15 +497,18 @@ en:
         title: Custom terms of service
       site_title: Server name
       spam_check_enabled:
-        desc_html: Mastodon can auto-silence and auto-report accounts that send repeated unsolicited messages. There may be false positives.
+        desc_html: Mastodon can auto-report accounts that send repeated unsolicited messages. There may be false positives.
         title: Anti-spam automation
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
         title: Server thumbnail
       timeline_preview:
-        desc_html: Display public timeline on landing page
-        title: Timeline preview
+        desc_html: Display link to public timeline on landing page and allow API access to the public timeline without authentication
+        title: Allow unauthenticated access to public timeline
       title: Site settings
+      trendable_by_default:
+        desc_html: Affects hashtags that have not been previously disallowed
+        title: Allow hashtags to trend without prior review
       trends:
         desc_html: Publicly display previously reviewed hashtags that are currently trending
         title: Trending hashtags
@@ -1007,7 +1009,7 @@ en:
     relationships: Follows and followers
     two_factor_authentication: Two-factor Auth
   spam_check:
-    spam_detected_and_silenced: This is an automated report. Spam has been detected and the sender has been silenced automatically. If this is a mistake, please unsilence the account.
+    spam_detected: This is an automated report. Spam has been detected.
   statuses:
     attached:
       description: 'Attached: %{attached}'

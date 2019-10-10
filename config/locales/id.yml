@@ -18,7 +18,6 @@ id:
     discover_users: Temukan pengguna
     documentation: Dokumentasi
     federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
-    generic_description: "%{domain} adalah satu server dalam jaringan"
     get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
     instance_actor_flash: 'Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
@@ -145,6 +144,7 @@ id:
       no_limits_imposed: Tidak ada batasan
       not_subscribed: Tidak berlangganan
       outbox_url: URL Kotak keluar
+      pending: Tinjauan tertunda
       perform_full_suspension: Lakukan suspen penuh
       profile_url: URL profil
       promote: Promosikan
@@ -193,7 +193,54 @@ id:
     action_logs:
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
+        change_email_user: "%{name} mengubah alamat surel pengguna %{target}"
+        confirm_user: "%{name} mengonfirmasi alamat surel pengguna %{target}"
+        create_account_warning: "%{name} mengirim peringatan untuk %{target}"
+        create_custom_emoji: "%{name} mengunggah emoji baru %{target}"
+        create_domain_block: "%{name} memblokir domain %{target}"
+        create_email_domain_block: "%{name} memasukkan ke daftar hitam domain surel %{target}"
+        demote_user: "%{name} menurunkan pengguna %{target}"
+        destroy_custom_emoji: "%{name} menghapus emoji %{target}"
+        destroy_domain_block: "%{name} membuka blokir domain %{target}"
+        destroy_email_domain_block: "%{name} memasukkan ke daftar putih surel domain %{target}"
+        disable_2fa_user: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
+        disable_custom_emoji: "%{name} mematikan emoji %{target}"
+        disable_user: "%{name} mematikan login untuk pengguna %{target}"
+        enable_custom_emoji: "%{name} mengaktifkan emoji %{target}"
+        enable_user: "%{name} mengaktifkan login untuk pengguna %{target}"
+        memorialize_account: "%{name} mengubah akun %{target} jadi halaman memorial"
+        promote_user: "%{name} mempromosikan pengguna %{target}"
+        remove_avatar_user: "%{name} menghapus avatar %{target}"
+        reopen_report: "%{name} membuka ulang laporan %{target}"
+        reset_password_user: "%{name} mereset kata sandi pengguna %{target}"
+        resolve_report: "%{name} menyelesaikan laporan %{target}"
+        silence_account: "%{name} membungkam akun %{target}"
+        suspend_account: "%{name} menangguhkan akun %{target}"
+        unassigned_report: "%{name} tidak menugaskan laporan %{target}"
+        unsilence_account: "%{name} menghapus bungkaman akun %{target}"
+        unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
+        update_custom_emoji: "%{name} memperbarui emoji %{target}"
+      deleted_status: "(status dihapus)"
+      title: Log audit
     custom_emojis:
+      assign_category: Beri kategori
+      by_domain: Domain
+      copied_msg: Pembuatan salinan lokal emoji berhasil
+      copy: Salin
+      copy_failed_msg: Tidak dapat membuat salinan lokal emoji
+      create_new_category: Buat kategori baru
+      created_msg: Emoji berhasil dibuat!
+      delete: Hapus
+      destroyed_msg: Emoji berhasil dihapus!
+      disable: Matikan
+      disabled: Dinonaktifkan
+      disabled_msg: Emoji berhasil dinonaktifkan
+      emoji: Emoji
+      enable: Aktifkan
+      enabled: Diaktifkan
+      enabled_msg: Emoji berhasil diaktifkan
+      image_hint: PNG hingga 50KB
+      list: Daftar
       listed: Terdaftar
       new:
         title: Tambah emoji kustom baru
@@ -209,6 +256,7 @@ id:
       upload: Unggah
     dashboard:
       authorized_fetch_mode: Mode aman
+      backlog: pekerjaan di-backlog
       config: Konfigurasi
       feature_deletions: Penghapusan akun
       feature_invites: Tautan undangan
@@ -222,20 +270,49 @@ id:
       open_reports: buka laporan
       pending_tags: tagar menunggu ditinjau
       pending_users: pengguna menunggu ditinjau
+      recent_users: Pengguna terbaru
+      search: Pencarian teks lengkap
+      single_user_mode: Mode pengguna tunggal
+      software: Perangkat lunak
+      space: Penggunaan ruang
+      title: Dasbor
+      total_users: total pengguna
+      trends: Tren
+      week_interactions: interaksi minggu ini
+      week_users_active: aktif minggu ini
+      week_users_new: pengguna minggu ini
+      whitelist_mode: Mode daftar putih
+    domain_allows:
+      add_new: Daftar putihkan domain
+      created_msg: Domain berhasil masuk daftar putih
+      destroyed_msg: Domain dihapus dari daftar putih
+      undo: Hapus dari daftar putih
     domain_blocks:
       add_new: Tambah
       created_msg: Pemblokiran domain sedang diproses
       destroyed_msg: Pemblokiran domain telah dibatalkan
+      domain: Domain
+      edit: Edit blok domain
+      existing_domain_block_html: Anda telah menerapkan batasan yang lebih ketat pada %{name}, Anda harus <a href="%{unblock_url}">membuka blokirnya</a> lebih dulu.
       new:
         create: Buat pemblokiran
         hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
         severity:
           desc_html: "<strong>Pendiaman</strong> akan membuat semua postingan tidak dapat dilihat oleh semua orang yang tidak mengikutinya. <strong>Suspen</strong> akan menghapus semua konten, media, dan profil dari akun yang bersangkutan."
+          noop: Tidak ada
           silence: Pendiaman
           suspend: Suspen
         title: Pemblokiran domain baru
+      private_comment: Komentar pribadi
+      public_comment: Komentar publik
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
+      reject_reports: Tolak laporan
+      reject_reports_hint: Abaikan semua laporan dari domain ini. Tidak relevan untuk penangguhan
+      rejecting_media: tolak berkas media
+      severity:
+        silence: dibungkam
+        suspend: ditangguhkan
       show:
         affected_accounts:
           other: "%{count} akun dalam database terpengaruh"
@@ -243,22 +320,111 @@ id:
           silence: Hapus pendiaman terhadap akun pada domain ini
           suspend: Hapus suspen terhadap akun pada domain ini
         title: Hapus pemblokiran domain %{domain}
+        undo: Urungkan
+      undo: Urungkan blokir domain
+      view: Lihat blokir domain
+    email_domain_blocks:
+      add_new: Tambah baru
+      created_msg: Berhasil menambahkan domain surel ke daftar hitam
+      delete: Hapus
+      destroyed_msg: Berhasil menghapus domain surel dari daftar hitam
+      domain: Domain
+      new:
+        create: Tambah domain
+        title: Entri daftar hitam surel baru
+      title: Daftar hitam surel
+    followers:
+      back_to_account: Kembali Ke Akun
+      title: Pengikut %{acct}
     instances:
+      by_domain: Domain
+      delivery_available: Pengiriman tersedia
+      moderation:
+        all: Semua
+        limited: Terbatas
+        title: Moderasi
+      private_comment: Komentar pribadi
+      public_comment: Komentar publik
       title: Server yang diketahui
+      total_blocked_by_us: Yang kita blokir
+      total_followed_by_them: Diikuti mereka
+      total_followed_by_us: Diikuti kita
+      total_storage: Lampiran media
+    invites:
+      deactivate_all: Nonaktifkan semua
+      filter:
+        all: Semua
+        available: Tersedia
+        expired: Kedaluwarsa
+        title: Saring
+      title: Undang
+    pending_accounts:
+      title: Akun tertunda (%{count})
+    relays:
+      add_new: Tambah relai baru
+      delete: Hapus
+      disable: Matikan
+      disabled: Dimatikan
+      enable: Aktifkan
+      enable_hint: Saat diaktifkan, server Anda akan melanggan semua toot publik dari relai ini, dan akan mengirim toot publik server ini ke sana.
+      enabled: Diaktifkan
+      inbox_url: URL Relai
+      pending: Menunggu persetujuan relai
+      save_and_enable: Simpan dan aktifkan
+      setup: Atur koneksi relai
+      signatures_not_enabled: Relai tak akan bekerja dengan benar saat mode aman atau mode daftar putih diaktifkan
+      status: Status
+      title: Relai
+    report_notes:
+      created_msg: Catatan laporan berhasil dibuat!
+      destroyed_msg: Catatan laporan berhasil dihapus!
     reports:
+      account:
+        note: catatan
+        report: lapor
+      action_taken_by: Aksi dilakukan oleh
+      are_you_sure: Apakah Anda yakin?
+      assign_to_self: Tugaskan kpd saya
+      assigned: Moderator tertugas
       comment:
         none: Tidak ada
+      created_at: Dilaporkan
       mark_as_resolved: Tandai telah diseleseikan
+      mark_as_unresolved: Tandai belum terselesaikan
+      notes:
+        create: Tambah catatan
+        create_and_resolve: Diselesaikan dengan catatan
+        create_and_unresolve: Dibuka kembali dengan catatan
+        delete: Hapus
+        placeholder: Jelaskan aksi yang telah dilakukan, atau pembaruan lain yang berhubungan...
+      reopen: Buka lagi laporan
       report: 'Laporkan #%{id}'
       reported_account: Akun yang dilaporkan
       reported_by: Dilaporkan oleh
       resolved: Terseleseikan
+      resolved_msg: Laporan berhasil diselesaikan!
+      status: Status
       title: Laporan
       unresolved: Belum Terseleseikan
+      updated_at: Diperbarui
     settings:
+      activity_api_enabled:
+        desc_html: Hitung status yang dipos scr lokal, pengguna aktif, dan registrasi baru dlm keranjang bulanan
+        title: Terbitkan statistik keseluruhan tentang aktivitas pengguna
+      bootstrap_timeline_accounts:
+        desc_html: Pisahkan nama pengguna dengan koma. Hanya akun lokal dan tak terkunci yang akan bekerja. Isi bawaan jika kosong adalah semua admin lokal.
+        title: Ikuti scr bawaan untuk pengguna baru
       contact_information:
         email: Masukkan alamat email
         username: Masukkan nama pengguna
+      custom_css:
+        desc_html: Ubah tampilan dengan CSS yang dimuat di setiap halaman
+        title: CSS Kustom
+      default_noindex:
+        title: Singkirkan pengguna dari pengindeksan mesin pencari scr bawaan
+      domain_blocks:
+        all: Kepada semua orang
+        title: Lihat blokir domain
       registrations:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
@@ -271,7 +437,51 @@ id:
         title: Deskripsi situs tambahan
       site_title: Judul Situs
       title: Pengaturan situs
+    statuses:
+      batch:
+        nsfw_off: Tandai sebagai tak sensitif
+        nsfw_on: Tandai sebagai sensitif
+      deleted: Dihapus
+      failed_to_execute: Gagal mengeksekusi
+      media:
+        title: Media
+      no_media: Tanpa media
+      no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
+      title: Status akun
+      with_media: Dengan media
+    tags:
+      accounts_today: Penggunaan unik hari ini
+      accounts_week: Penggunaan unik minggu ini
+      breakdown: Rinci penggunaan hari ini berdasar sumber
+      context: Konteks
+      directory: Di direktori
+      in_directory: "%{count} di direktori"
+      last_active: Terakhir aktif
+      most_popular: Paling populer
+      most_recent: Terkini
+      name: Tagar
+      review: Tinjau status
+      reviewed: Ditinjau
+      title: Tagar
+      trending_right_now: Sedang tren sekarang
+      unique_uses_today: "%{count} memposkan hari ini"
+      unreviewed: Tak tertinjau
+      updated_msg: Pembaruan pengaturan tagar berhasil
     title: Administrasi
+    warning_presets:
+      add_new: Tambah baru
+      delete: Hapus
+      edit: Sunting
+      edit_preset: Sunting preset peringatan
+      title: Kelola preset peringatan
+  admin_mailer:
+    new_pending_account:
+      body: Detail akun baru di bawah. Anda dapat menyetujui atau menolak lamaran ini.
+      subject: Akun baru muncul untuk ditinjau di %{instance} (%{username})
+    new_report:
+      body: "%{reporter} telah melaporkan %{target}"
+      body_remote: Seseorang dari %{domain} telah melaporkan %{target}
+      subject: Laporan baru untuk %{instance} (#%{id})
   application_mailer:
     settings: 'Ubah pilihan email: %{link}'
     view: 'Tampilan:'

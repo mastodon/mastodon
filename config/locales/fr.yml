@@ -18,7 +18,6 @@ fr:
     discover_users: Découvrez des utilisateur·rice·s
     documentation: Documentation
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
-    generic_description: "%{domain} est seulement un serveur du réseau"
     get_apps: Essayez une application mobile
     hosted_on: Serveur Mastodon hébergée par %{domain}
     instance_actor_flash: |
@@ -51,7 +50,7 @@ fr:
   accounts:
     choices_html: "%{name} recommande :"
     endorsements_hint: Vous pouvez soutenir les personnes que vous suivez depuis l’interface web, et elles apparaîtront ici.
-    featured_tags_hint: Vous pouvez mettre en avant des hashtags spécifiques qui seront affichés ici.
+    featured_tags_hint: Vous pouvez recommander des hashtags spécifiques qui seront affichés ici.
     follow: Suivre
     followers:
       one: Abonné·e
@@ -378,7 +377,7 @@ fr:
     relays:
       add_new: Ajouter un nouveau relais
       delete: Effacer
-      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyen serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
+      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets publics entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyen serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
       disable: Désactiver
       disabled: Désactivé
       enable: Activé
@@ -507,6 +506,9 @@ fr:
         desc_html: Afficher le fil public sur la page d’accueil
         title: Prévisualisation du fil global
       title: Paramètres du serveur
+      trendable_by_default:
+        desc_html: Affecte les hashtags qui n'ont pas été précédemment non autorisés
+        title: Autoriser les hashtags à apparaître dans les tendances sans examen préalable
       trends:
         desc_html: Afficher publiquement les hashtags approuvés qui sont populaires en ce moment
         title: Hashtags populaires
@@ -558,13 +560,13 @@ fr:
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
     new_trending_tag:
-      body: 'Le hashtag #%{name} est populaire aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que l’autorisiez, ou sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
+      body: 'Le hashtag #%{name} est populaire aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que vous l’autorisiez, ou sauvegardiez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
       subject: Nouveau hashtag en attente de traitement sur %{instance} (#%{name})
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant lancer le déplacement depuis l'ancien compte.
-    deleted_msg: Suppression réussie de l'alias. Déplacer de ce compte vers celui-ci ne sera plus possible.
-    hint_html: Si vous voulez passer d'un autre compte à celui-ci, vous pouvez créer ici un alias, qui est nécessaire avant de pouvoir déplacer les abonné·e·s de l'ancien compte à celui-ci. Cette action en soi est <strong>inoffensive et réversible</strong>. <strong>La migration du compte est initiée à partir de l'ancien compte</strong>.
+    deleted_msg: Suppression réussie de l'alias. Le déménagement de ce compte vers celui-ci ne sera plus possible.
+    hint_html: Si vous voulez déménager d’un autre compte vers celui-ci, vous pouvez créer ici un alias, qui est nécessaire avant de pouvoir migrer les abonné·e·s de l’ancien compte vers celui-ci. Cette action en soi est <strong>inoffensive et réversible</strong>. <strong>La migration du compte est initiée à partir de l’ancien compte</strong>.
     remove: Détacher l'alias
   appearance:
     advanced_web_interface: Interface web avancée
@@ -604,7 +606,7 @@ fr:
     invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
     login: Se connecter
     logout: Se déconnecter
-    migrate_account: Déplacer vers un compte différent
+    migrate_account: Déménager vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
     providers:
@@ -716,7 +718,7 @@ fr:
   featured_tags:
     add_new: Ajouter un nouvel hashtag
     errors:
-      limit: Vous avez déjà mis en avant le nombre maximum de hashtags
+      limit: Vous avez déjà recommandé le nombre maximum de hashtags
     hint_html: "<strong>Que sont les hashtags vedettes ?</strong> Ils sont affichés avec emphase sur votre flux d'actualités publique et permettent aux gens de parcourir vos messages publics spécifiquement sous ces hashtags. Ils sont un excellent outil pour garder trace des œuvres créatives ou des projets à long terme."
   filters:
     contexts:
@@ -816,7 +818,7 @@ fr:
   migrations:
     acct: profil@domaine du nouveau compte
     cancel: Annuler la redirection
-    cancel_explanation: Annuler la redirection réactivera votre compte courant, mais ne rapportera pas les abonnés qui ont été déplacés sur ce compte.
+    cancel_explanation: Annuler la redirection réactivera votre compte courant, mais ne rapportera pas les abonné·e·s qui ont été déplacé·e·s sur ce compte.
     cancelled_msg: Suppression de la redirection réussie.
     errors:
       already_moved: est le même compte que vous avez déjà déplacé vers
@@ -831,15 +833,15 @@ fr:
     not_redirecting: Votre compte n'est pas redirigé vers un autre compte actuellement.
     on_cooldown: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
     past_migrations: Migrations passées
-    proceed_with_move: Déplacer les abonnés
+    proceed_with_move: Migrer les abonné·e·s
     redirecting_to: Votre compte est redirigé vers %{acct}.
     set_redirect: Définir redirection
     warning:
       backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
-      cooldown: Après le déménagement, il y a une période de refroidissement pendant laquelle vous ne pourrez plus bouger
+      cooldown: Après le déménagement, il y a une période de gel pendant laquelle vous ne pourrez plus re-déménager
       disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la ré-activation.
-      followers: Cette action va déplacer tous les abonnés du compte courant vers le nouveau compte
+      followers: Cette action va déménager tou·te·s les abonné·e·s du compte actuel vers le nouveau compte
       only_redirect_html: Alternativement, vous pouvez <a href="%{path}">seulement appliquer une redirection sur votre profil</a>.
       other_data: Aucune autre donnée ne sera déplacée automatiquement
       redirect: Le profil de votre compte actuel sera mis à jour avec un avis de redirection et sera exclu des recherches
@@ -995,7 +997,7 @@ fr:
     development: Développement
     edit_profile: Modifier le profil
     export: Export de données
-    featured_tags: Hashtags mis en avant
+    featured_tags: Hashtags recommandés
     identity_proofs: Preuves d’identité
     import: Import de données
     import_and_export: Import et export
@@ -1006,7 +1008,7 @@ fr:
     relationships: Abonnements et abonné·e·s
     two_factor_authentication: Identification à deux facteurs
   spam_check:
-    spam_detected_and_silenced: Ceci est un rapport automatisé. Du spam a été détecté et l’expéditeur a été silencié automatiquement. Si c’est une erreur, veuillez désactiver la sourdine du compte.
+    spam_detected: Ceci est un rapport automatisé. Du spam a été détecté.
   statuses:
     attached:
       description: 'Attaché : %{attached}'

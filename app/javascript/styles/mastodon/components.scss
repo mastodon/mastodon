@@ -3127,37 +3127,27 @@ a.status-card.compact:hover {
   cursor: default;
   display: flex;
   flex: 1 1 auto;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
 
-  & > div {
-    width: 100%;
-    background: transparent;
-    padding-top: 0;
-  }
-
   &__figure {
-    background: url('../images/elephant_ui_working.svg') no-repeat center 0;
-    width: 100%;
-    height: 160px;
-    background-size: contain;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &.missing-indicator {
-    padding-top: 20px + 48px;
-
-    .regeneration-indicator__figure {
-      background-image: url('../images/elephant_ui_disappointed.svg');
+    &,
+    img {
+      display: block;
+      width: auto;
+      height: 160px;
+      margin: 0;
     }
   }
 
+  &--without-header {
+    padding-top: 20px + 48px;
+  }
+
   &__label {
-    margin-top: 200px;
+    margin-top: 30px;
 
     strong {
       display: block;
@@ -6102,7 +6092,8 @@ noscript {
   background: $base-shadow-color;
 
   img,
-  video {
+  video,
+  canvas {
     display: block;
     max-height: 80vh;
     width: 100%;
