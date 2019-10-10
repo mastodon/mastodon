@@ -3,7 +3,7 @@ import {
   REBLOG_FAIL,
   FAVOURITE_REQUEST,
   FAVOURITE_FAIL,
-  UNFAVOURITE_SUCCESS
+  UNFAVOURITE_SUCCESS,
 } from '../actions/interactions';
 import {
   STATUS_MUTE_SUCCESS,
