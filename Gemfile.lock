@@ -14,19 +14,6 @@ GIT
     posix-spawn (0.3.13)
 
 GIT
-  remote: https://github.com/ruby-rdf/json-ld.git
-  revision: e742697a0906e74e8bb777ef98137bc3955d981d
-  ref: e742697a0906e74e8bb777ef98137bc3955d981d
-  specs:
-    json-ld (3.0.2)
-      htmlentities (~> 4.3)
-      json-canonicalization (~> 0.1)
-      link_header (~> 0.0, >= 0.0.8)
-      multi_json (~> 1.13)
-      rack (>= 1.6, < 3.0)
-      rdf (~> 3.0, >= 3.0.8)
-
-GIT
   remote: https://github.com/tmm1/http_parser.rb
   revision: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
   ref: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
@@ -323,8 +310,10 @@ GEM
     jaro_winkler (1.5.3)
     jmespath (1.4.0)
     json (2.2.0)
-    json-canonicalization (0.1.0)
-    json-ld-preloaded (3.0.4)
+    json-ld (3.0.2)
+      multi_json (~> 1.12)
+      rdf (>= 2.2.8, < 4.0)
+    json-ld-preloaded (3.0.2)
       json-ld (~> 3.0)
       multi_json (~> 1.12)
       rdf (~> 3.0)
@@ -727,8 +716,8 @@ DEPENDENCIES
   i18n-tasks (~> 0.9)
   idn-ruby
   iso-639
-  json-ld!
-  json-ld-preloaded (~> 3.0)
+  json-ld (= 3.0.2)
+  json-ld-preloaded (= 3.0.2)
   kaminari (~> 1.1)
   letter_opener (~> 1.7)
   letter_opener_web (~> 1.3)
