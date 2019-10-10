@@ -47,6 +47,14 @@ ru:
         title: Сброс пароля
       two_factor_disabled:
         explanation: Двуфакторная авторизация вашего аккаунта отключена. Войти теперь можно используя только e-mail и пароль.
+        subject: 'Mastodon: двуфакторная авторизация убрана'
+        title: 2ФА отключена
+      two_factor_enabled:
+        explanation: Двуфакторная авторизация включена для вашего аккаунта. Отныне для входа потребуется также временный код из привязанного приложения.
+        subject: 'Mastodon: двуфакторная авторизация установлена'
+        title: 2ФА включена
+      two_factor_recovery_codes_changed:
+        title: Резервные коды 2ФА изменены
       unlock_instructions:
         subject: 'Mastodon: Инструкция по разблокировке'
     omniauth_callbacks:
