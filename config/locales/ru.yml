@@ -526,11 +526,12 @@ ru:
       most_recent: Последние
       name: Хэштег
       review: Состояние проверки
-      reviewed: Проверен
+      reviewed: Проверенные
       title: Хэштеги
       trending_right_now: Популярно сейчас
       unique_uses_today: "%{count} чел. пишут об этом"
-      unreviewed: Не проверен
+      unreviewed: Непроверенные
+      updated_msg: Настройки хэштега обновлены
     title: Администрирование
     warning_presets:
       add_new: Добавить
@@ -546,6 +547,9 @@ ru:
       body: "%{reporter} подал(а) жалобу на %{target}"
       body_remote: Кто-то с узла %{domain} пожаловался на %{target}
       subject: 'Новая жалоба, узел %{instance} (#%{id})'
+  aliases:
+    add_new: Создать псевдоним
+    remove: Отвязать псевдоним
   appearance:
     advanced_web_interface: Многоколоночный интерфейс
     confirmation_dialogs: Окна подтверждений
@@ -572,6 +576,8 @@ ru:
     checkbox_agreement_html: Я соглашаюсь с <a href="%{rules_path}" target="_blank">правилами сервера</a> и <a href="%{terms_path}" target="_blank">Условиями использования</a>
     delete_account: Удалить аккаунт
     delete_account_html: Если Вы хотите удалить свой аккаунт, вы можете <a href="%{path}">перейти сюда</a>. У Вас будет запрошено подтверждение.
+    description:
+      prefix_sign_up: Зарегистрируйтесь в Mastodon уже сегодня!
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
     forgot_password: Забыли пароль?
     invalid_reset_password_token: Токен сброса пароля неверен или устарел. Пожалуйста, запросите новый.
