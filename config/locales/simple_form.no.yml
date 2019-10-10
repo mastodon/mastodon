@@ -1,5 +1,4 @@
----
-'no':
+"no":
   simple_form:
     hints:
       defaults:
@@ -11,7 +10,7 @@
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
     labels:
       defaults:
         confirm_new_password: Bekreft nytt passord
@@ -52,7 +51,7 @@
         follow_request: Send e-post når noen ber om å få følge deg
         mention: Send e-post når noen nevner deg
         reblog: Send e-post når noen fremhever din status
-    'no': Nei
+    'no': 'Nei'
     required:
       text: obligatorisk
-    'yes': Ja
+    'yes': 'Ja'
