@@ -324,6 +324,58 @@ es-AR:
         retroactive:
           silence: Quitar silenciado de las cuentas existentes afectadas de este dominio
           suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
+        title: Deshacer el bloqueo de dominio para %{domain}
+        undo: Deshacer
+      undo: Deshacer bloqueo de dominio
+      view: Ver bloqueo de dominio
+    email_domain_blocks:
+      add_new: Agregar nuevo
+      created_msg: Se desaprobó dominio de correo electrónico exitosamente
+      delete: Eliminar
+      destroyed_msg: Se aprobó dominio de correo electrónico exitosamente
+      domain: Dominio
+      new:
+        create: Agregar dominio
+        title: Nueva desaprobación de correo electrónico
+      title: Desaprobación de correo electrónico
+    followers:
+      back_to_account: Volver a la cuenta
+      title: "Seguidores de %{acct}"
+    instances:
+      by_domain: Dominio
+      delivery_available: La entrega está disponible
+      known_accounts:
+        one: "%{count} cuenta conocida"
+        other: "%{count} cuentas conocidas"
+      moderation:
+        all: Todas
+        limited: Limitadas
+        title: Moderación
+      private_comment: Comentario privado
+      public_comment: Comentario público
+      title: Federación
+      total_blocked_by_us: Bloqueada por nosotros
+      total_followed_by_them: Seguidos por ellos
+      total_followed_by_us: Seguidos por nosotros
+      total_reported: Denuncias sobre ellos
+      total_storage: Adjuntos
+    invites:
+      deactivate_all: Desactivar todas
+      filter:
+        all: Todas
+        available: Disponibles
+        expired: Vencidas
+        title: Filtrar
+      title: Invitaciones
+    pending_accounts:
+      title: Cuentas pendientes (%{count})
+    relays:
+      add_new: Agregar nuevo relé
+      delete: Eliminar
+      description_html: Un <strong>relé de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores chicos y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
+      disable: Deshabilitar
+      disabled: Deshabilitado
+      enable: Habilitar
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
