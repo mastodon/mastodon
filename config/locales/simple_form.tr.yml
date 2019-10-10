@@ -1,4 +1,3 @@
----
 tr:
   simple_form:
     hints:
@@ -12,7 +11,7 @@ tr:
         include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi ya da uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
         text_html: İsteğe bağlı. Gönderi sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
-        type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
+        type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
@@ -56,7 +55,7 @@ tr:
       invite_request:
         text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
       sessions:
-        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
@@ -121,11 +120,11 @@ tr:
         setting_display_media_default: Varsayılan
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
-        setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
+        setting_expand_spoilers: İçerik uyarılarıyla işaretli tootları her zaman genişlet
         setting_hide_network: Ağını gizle
         setting_noindex: Arama motoru endekslemesini iptal et
         setting_reduce_motion: Animasyonlarda hareketi azalt
-        setting_show_application: İçerik göndermek için kullanılan uygulamayı belirt
+        setting_show_application: Toot göndermek için kullanılan uygulamayı belirt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_theme: Site teması
         setting_trends: Bugünün trendlerini göster
@@ -161,10 +160,10 @@ tr:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Hashtag
         trendable: Bu etiketin trendlerin altında görünmesine izin ver
-        usable: Gönderilerin bu etiketi kullanmasına izin ver
-    'no': Hayır
+        usable: Tootların bu etiketi kullanmasına izin ver
+    'no': 'Hayır'
     recommended: Önerilen
     required:
       mark: "*"
       text: gerekli
-    'yes': Evet
+    'yes': 'Evet'
