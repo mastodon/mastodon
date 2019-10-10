@@ -433,6 +433,9 @@ eu:
       custom_css:
         desc_html: Aldatu itxura orri bakoitzean kargatutako CSS bidez
         title: CSS pertsonala
+      default_noindex:
+        desc_html: Ezarpen hau berez aldatu ez duten erabiltzaile guztiei eragiten die
+        title: Utzi erabiltzaileak bilatzailearen indexaziotik kanpo lehenetsita
       domain_blocks:
         all: Guztiei
         disabled: Inori ez
@@ -500,6 +503,9 @@ eu:
         desc_html: Bistaratu denbora-lerro publikoa hasiera orrian
         title: Denbora-lerroaren aurrebista
       title: Gunearen ezarpenak
+      trendable_by_default:
+        desc_html: Aurretik debekatu ez diren traola guztiei eragiten dio
+        title: Baimendu traolak joera bihurtzea aurretik errebisatu gabe
       trends:
         desc_html: Erakutsi publikoki orain joeran dauden aurretik errebisatutako traolak
         title: Traolak joeran
@@ -520,6 +526,7 @@ eu:
     tags:
       accounts_today: Erabilera bakanak gaur
       accounts_week: Erabilera bakanak aste honetan
+      breakdown: Gaurko erabilera iturriaren arabera
       context: Testuingurua
       directory: Direktorioan
       in_directory: "%{count} direktorioan"
@@ -550,6 +557,7 @@ eu:
       body_remote: '%{domain} domeinuko norbaitek %{target} salatu du'
       subject: 'Salaketa berria %{instance} instantzian (#%{id})'
     new_trending_tag:
+      body: '#%{name} traola joeran dago gaur, baina ez da oraindik errebisatu. Ez da publikoki agertuko baimentzen ez baduzu, edo gorde inprimakia dagoen moduan eta ez duzu berriro honi buruz entzungo.'
       subject: 'Traola berria errebisatzeko %{instance} instantzian (#%{name})'
   aliases:
     add_new: Sortu ezizena
@@ -658,6 +666,10 @@ eu:
       before: 'Jarraitu aurretik, irakurri adi ohar hauek:'
       caches: Beste zerbitzariek cachean duten edukia mantentzea gerta daiteke
       data_removal: Zure mezuak eta beste datuak behin betiko ezabatuko dira
+      email_change_html: <a href="%{path}">Zure e-mail helbidea aldatu dezakezu</a> kontua ezabatu gabe
+      email_contact_html: Oraindik heltzen ez bada, e-mail bai bidali dezakezu <a href="mailto:%{email}">%{email}</a> helbidera laguntza eskatzeko
+      email_reconfirmation_html: Ez baduzu baieztamen e-maila jasotzen, <a href="%{path}">berriro eskatu</a> dezakezu
+      irreversible: Ezin izango duzu kontua berreskuratu edo berraktibatu
       more_details_html: Xehetasun gehiagorako, ikusi <a href="%{terms_path}">pribatutasun politika</a>.
       username_available: Zure erabiltzaile-izena berriro eskuragarri egongo da
       username_unavailable: Zure erabiltzaile-izena ez da eskuragarri egongo
@@ -680,7 +692,7 @@ eu:
     '500':
       content: Sentitzen dugu, zerbait okerra gertatu da gure aldean.
       title: Orri hau ez da zuzena
-    '503': The page could not be served due to a temporary server failure.
+    '503': Orria ezin izan da zerbitzatu zerbitzariaren behin behineko arazo bat dela eta.
     noscript_html: Mastodon web aplikazioa erabiltzeko, gaitu JavaScript. Bestela, probatu Mastodon plataformarako <a href="%{apps_path}">aplikazio natibo</a>ren bat.
   existing_username_validator:
     not_found: ezin izan da izen hori duen kide lokalik aurkitu
@@ -704,6 +716,7 @@ eu:
     add_new: Gehitu berria
     errors:
       limit: Gehienezko traola kopurua nabarmendu duzu jada
+    hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten mezu publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
       home: Hasierako denbora-lerroa
@@ -729,6 +742,7 @@ eu:
     all: Denak
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
+    no_batch_actions_available: Ez dago ekintza masiborik orri honetan eskuragarri
     order_by: Ordenatze-irizpidea
     save_changes: Gorde aldaketak
     validation_errors:
@@ -823,6 +837,7 @@ eu:
       backreference_required: Kontu berria honi erreferentzia egiteko konfiguratu behar da
       before: 'Jarraitu aurretik, irakurri adi ohar hauek:'
       cooldown: Migratu eta gero egonaldi tarte bat egongo da eta bitartean ezin izango duzu berriro migratu
+      disabled_account: Zure uneko kontua ezin izango da gero erabili. Hala ere, datua exporatu ahal izango dituzu, eta berriro aktibatu.
       followers: Ekintza honek jarraitzaile guztiak eramango ditu uneko kontutik kontu berrira
       only_redirect_html: Bestela, <a href="%{path}">zure profilean birbideratze soil bat jarri</a> dezakezu.
       other_data: Ez da beste daturik migratuko automatikoki
@@ -989,6 +1004,8 @@ eu:
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
     two_factor_authentication: Bi faktoreetako autentifikazioa
+  spam_check:
+    spam_detected: Hau salaketa automatiko bat da. Spam-a antzeman da.
   statuses:
     attached:
       description: 'Erantsita: %{attached}'
