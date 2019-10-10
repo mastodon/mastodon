@@ -380,7 +380,7 @@ tr:
       disable: Devre dışı
       disabled: Devre dışı
       enable: Etkin
-      enable_hint: Etkinleştirildiğinde, sunucunuz bu aktarıcıdan gelecek tüm herkese açık gönderilere abone olacak, ve kendisinin herkese açık gönderilerini bu aktarıcıya göndermeye başlayacaktır.
+      enable_hint: Etkinleştirildiğinde, sunucunuz bu aktarıcıdan gelecek tüm herkese açık tootlara abone olacak, ve kendisinin herkese açık tootlarını bu aktarıcıya göndermeye başlayacaktır.
       enabled: Etkin
       inbox_url: Aktarıcı URL'si
       pending: Aktarıcının onaylaması için bekleniyor
@@ -703,7 +703,7 @@ tr:
     archive_takeout:
       date: Tarih
       download: Arşivinizi indirin
-      hint_html: <strong>Gönderileriniz ve yüklediğiniz ortamların</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub formatında olacaktır. Her 7 günde bir arşiv talep edebilirsiniz.
+      hint_html: <strong>Tootlarınızın ve yüklediğiniz ortamların</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub formatında olacaktır. Her 7 günde bir arşiv talep edebilirsiniz.
       in_progress: Arşivinizi derliyoruz...
       request: Arşiv isteği
       size: Boyut
@@ -766,7 +766,7 @@ tr:
     i_am_html: Ben %{service} üzerinde %{username}.
     identity: Kimlik
     inactive: Pasif
-    publicize_checkbox: 'Ve bunu paylaş:'
+    publicize_checkbox: 'Ve bunu tootla:'
     publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
     status: Doğrulama durumu
     view_proof: Kanıt görüntüle
@@ -933,16 +933,16 @@ tr:
   remote_interaction:
     favourite:
       proceed: Favorilere eklemek için ilerle
-      prompt: 'Bu gönderiyi favorilerinize eklemek istiyorsunuz:'
+      prompt: 'Bu tootu favorilerinize eklemek istiyorsunuz:'
     reblog:
       proceed: Yinelemek için ilerle
-      prompt: 'Bu gönderiyi yinelemek istiyorsunuz:'
+      prompt: 'Bu tootu yinelemek istiyorsunuz:'
     reply:
       proceed: Cevap vermek için ilerle
-      prompt: 'Bu gönderiye cevap vermek istiyorsunuz:'
+      prompt: 'Bu toota cevap vermek istiyorsunuz:'
   scheduled_statuses:
-    over_daily_limit: O gün için %{limit} zamanlanmış gönderi sınırını aştınız
-    over_total_limit: '%{limit} zamanlanmış gönderi sınırını aştınız'
+    over_daily_limit: O gün için %{limit} zamanlanmış toot sınırını aştınız
+    over_total_limit: '%{limit} zamanlanmış toot sınırını aştınız'
     too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
   sessions:
     activity: Son aktivite
@@ -1026,9 +1026,9 @@ tr:
     open_in_web: Web sayfasında aç
     over_character_limit: '%{max} karakter limiti aşıldı'
     pin_errors:
-      limit: Hali hazırda maksimum sayıda gönderiyi sabitlediniz
-      ownership: Başkasının gönderisi sabitlenemez
-      private: Halka açık olmayan gönderi sabitlenemez
+      limit: Hali hazırda maksimum sayıda tootu sabitlediniz
+      ownership: Başkasının tootu sabitlenemez
+      private: Halka açık olmayan toot sabitlenemez
       reblog: Bir yineleme sabitlenemez
     poll:
       total_people:
@@ -1049,7 +1049,7 @@ tr:
       unlisted: Listelenmemiş
       unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
   stream_entries:
-    pinned: Sabitlenmiş gönderi
+    pinned: Sabitlenmiş toot
     reblogged: boost edildi
     sensitive_content: Hassas içerik
   tags:
@@ -1088,10 +1088,11 @@ tr:
     warning:
       explanation:
         disable: Hesabınız donmuşken, hesap verileriniz bozulmadan kalır, ancak kilidi açılıncaya kadar herhangi bir işlem gerçekleştiremezsiniz.
-        silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucuda gönderilerinizi görecek ve çeşitli halka açık listelerin dışında tutulabilirsiniz. Ancak, diğerleri hala sizi manuel olarak takip edebilir.
-        suspend: Hesabınız askıya alındı ve tüm gönderileriniz ve yüklediğiniz medya dosyalarınız bu sunucudan ve takipçilerinizin bulunduğu sunuculardan geri alınamaz şekilde kaldırıldı.
+        silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucuda tootlarınızı görecek ve çeşitli halka açık listelerin dışında tutulabilirsiniz. Ancak, diğerleri hala sizi manuel olarak takip edebilir.
+        suspend: Hesabınız askıya alındı ve tüm tootlarınız ve yüklediğiniz medya dosyalarınız bu sunucudan ve takipçilerinizin bulunduğu sunuculardan geri alınamaz şekilde kaldırıldı.
       get_in_touch: '%{instance} çalışanlarıyla iletişim kurmak için bu e-postayı yanıtlayabilirsiniz.'
       review_server_policies: Sunucu politikalarını inceleyin
+      statuses: 'Özellikle, şunun için:'
       subject:
         disable: '%{acct} hesabınız donduruldu'
         none: '%{acct} için uyarı'
@@ -1100,6 +1101,10 @@ tr:
       title:
         disable: Hesap donduruldu
         none: Uyarı
+        silence: Hesap sınırlandırıldı
+        suspend: Hesap askıya alındı
+    welcome:
+      edit_profile_action: Profil ayarla
   users:
     invalid_email: E-posta adresiniz geçersiz
     invalid_otp_token: İki-faktörlü kodunuz geçersiz
