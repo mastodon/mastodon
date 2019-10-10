@@ -52,6 +52,6 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
   end
 
   def notifications_about_direct_statuses
-    Notification.joins(mention: :status).where(activity_type: 'Mention', statuses: { visibility: :direct })
+    Notification.joins('INNER JOIN mentions ON mentions.id = notifications.activity_id INNER JOIN statuses ON statuses.id = mentions.status_id').where(activity_type: 'Mention', statuses: { visibility: :direct })
   end
 end

@@ -18,22 +18,11 @@ class Settings::MigrationsController < Settings::BaseController
     @migration = current_account.migrations.build(resource_params)
 
     if @migration.save_with_challenge(current_user)
-      current_account.update!(moved_to_account: @migration.target_account)
-      ActivityPub::UpdateDistributionWorker.perform_async(current_account.id)
-      ActivityPub::MoveDistributionWorker.perform_async(@migration.id)
+      MoveService.new.call(@migration)
       redirect_to settings_migration_path, notice: I18n.t('migrations.moved_msg', acct: current_account.moved_to_account.acct)
     else
       render :show
     end
-  end
-
-  def cancel
-    if current_account.moved_to_account_id.present?
-      current_account.update!(moved_to_account: nil)
-      ActivityPub::UpdateDistributionWorker.perform_async(current_account.id)
-    end
-
-    redirect_to settings_migration_path, notice: I18n.t('migrations.cancelled_msg')
   end
 
   helper_method :on_cooldown?

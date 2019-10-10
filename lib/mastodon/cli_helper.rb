@@ -15,7 +15,12 @@ module Mastodon
     end
 
     def parallelize_with_progress(scope)
-      ActiveRecord::Base.configurations[Rails.env]['pool'] = options[:concurrency]
+      if options[:concurrency] < 1
+        say('Cannot run with this concurrency setting, must be at least 1', :red)
+        exit(1)
+      end
+
+      ActiveRecord::Base.configurations[Rails.env]['pool'] = options[:concurrency] + 1
 
       progress  = create_progress_bar(scope.count)
       pool      = Concurrent::FixedThreadPool.new(options[:concurrency])
@@ -27,17 +32,26 @@ module Mastodon
 
         items.each do |item|
           futures << Concurrent::Future.execute(executor: pool) do
-            ActiveRecord::Base.connection_pool.with_connection do
-              begin
-                progress.log("Processing #{item.id}") if options[:verbose]
+            begin
+              if !progress.total.nil? && progress.progress + 1 > progress.total
+                # The number of items has changed between start and now,
+                # since there is no good way to predict the final count from
+                # here, just change the progress bar to an indeterminate one
 
-                result = yield(item)
-                aggregate.increment(result) if result.is_a?(Integer)
-              rescue => e
-                progress.log pastel.red("Error processing #{item.id}: #{e}")
-              ensure
-                progress.increment
+                progress.total = nil
               end
+
+              progress.log("Processing #{item.id}") if options[:verbose]
+
+              result = ActiveRecord::Base.connection_pool.with_connection do
+                yield(item)
+              end
+
+              aggregate.increment(result) if result.is_a?(Integer)
+            rescue => e
+              progress.log pastel.red("Error processing #{item.id}: #{e}")
+            ensure
+              progress.increment
             end
           end
         end
@@ -46,7 +60,7 @@ module Mastodon
         futures.map(&:value)
       end
 
-      progress.finish
+      progress.stop
 
       [total.value, aggregate.value]
     end

@@ -34,11 +34,10 @@ RSpec.describe HomeFeed, type: :model do
         Redis.current.set("account:#{account.id}:regeneration", true)
       end
 
-      it 'gets statuses with ids in the range from database' do
+      it 'returns nothing' do
         results = subject.get(3)
 
-        expect(results.map(&:id)).to eq [10, 3, 2]
-        expect(results.first.attributes.keys).to include('id', 'updated_at')
+        expect(results.map(&:id)).to eq []
       end
     end
   end

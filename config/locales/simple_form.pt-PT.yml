@@ -2,9 +2,14 @@
 pt-PT:
   simple_form:
     hints:
+      account_alias:
+        acct: Especifique o nome de usuário@domínio da conta de onde você deseja mover
+      account_migration:
+        acct: Especifique o nome de usuário@domínio da conta para onde você deseja mover
       account_warning_preset:
         text: Tu podes usar sintaxe de escrita, como URLs, hashtags e referências
       admin_account_action:
+        include_statuses: O usuário verá quais ferramentas causaram a ação de moderação ou aviso
         send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
         text_html: Opcional. Tu podes usar sintaxe de escrita. Tu podes <a href="%{path}"> adicionar predefinições de aviso</a> para poupar tempo
         type_html: Escolhe o que fazer com <strong>%{acct}</strong>
@@ -14,6 +19,7 @@ pt-PT:
         avatar: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
         bot: Esta conta executa essencialmente acções automáticas e pode não poder ser monitorizada
         context: Um ou múltiplos contextos nos quais o filtro deve ser aplicado
+        current_password: Para fins de segurança, por favor, digite a senha da conta atual
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
         email: Será enviado um e-mail de confirmação
         fields: Podes ter até 4 itens expostos, em forma de tabela, no teu perfil

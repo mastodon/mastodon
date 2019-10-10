@@ -55,19 +55,15 @@
 
             %p= t('about.unavailable_content_html')
 
-            - @blocks.each do |domain_block|
-              %p
-                %strong= "#{domain_block.domain}:"
-
-                - if domain_block.suspend?
-                  = t('about.unavailable_content_description.suspended')
-                - else
-                  = t('about.unavailable_content_description.silenced') if domain_block.silence?
-                  = t('about.unavailable_content_description.rejecting_media') if domain_block.reject_media?
-
-                - if display_blocks_rationale? && domain_block.public_comment.present?
-                  %strong= t('about.unavailable_content_description.reason')
-                  = domain_block.public_comment
+            - if (blocks = @blocks.select(&:reject_media?)) && !blocks.empty?
+              %p= t('about.unavailable_content_description.rejecting_media')
+              = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
+            - if (blocks = @blocks.select(&:silence?)) && !blocks.empty?
+              %p= t('about.unavailable_content_description.silenced')
+              = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
+            - if (blocks = @blocks.select(&:suspend?)) && !blocks.empty?
+              %p= t('about.unavailable_content_description.suspended')
+              = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
 
   .column-4
     %ul.table-of-contents

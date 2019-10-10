@@ -28,6 +28,8 @@ class ActivityPub::ProcessPollService < BaseService
       end
     end
 
+    voters_count = @json['votersCount']
+
     latest_options = items.map { |item| item['name'].presence || item['content'] }
 
     # If for some reasons the options were changed, it invalidates all previous
@@ -39,7 +41,8 @@ class ActivityPub::ProcessPollService < BaseService
         last_fetched_at: Time.now.utc,
         expires_at: expires_at,
         options: latest_options,
-        cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 }
+        cached_tallies: items.map { |item| item.dig('replies', 'totalItems') || 0 },
+        voters_count: voters_count
       )
     rescue ActiveRecord::StaleObjectError
       poll.reload

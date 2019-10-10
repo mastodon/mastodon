@@ -8,6 +8,7 @@ class FollowerAccountsController < ApplicationController
   before_action :set_cache_headers
 
   skip_around_action :set_locale, if: -> { request.format == :json }
+  skip_before_action :require_functional!
 
   def index
     respond_to do |format|

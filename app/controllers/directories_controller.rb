@@ -9,6 +9,8 @@ class DirectoriesController < ApplicationController
   before_action :set_tag, only: :show
   before_action :set_accounts
 
+  skip_before_action :require_functional!
+
   def index
     render :index
   end

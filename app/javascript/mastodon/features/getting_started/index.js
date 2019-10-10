@@ -77,16 +77,14 @@ class GettingStarted extends ImmutablePureComponent {
   };
 
   componentDidMount () {
-    const { myAccount, fetchFollowRequests, multiColumn } = this.props;
+    const { fetchFollowRequests, multiColumn } = this.props;
 
     if (!multiColumn && window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
       this.context.router.history.replace('/timelines/home');
       return;
     }
 
-    if (myAccount.get('locked')) {
-      fetchFollowRequests();
-    }
+    fetchFollowRequests();
   }
 
   render () {
@@ -134,7 +132,7 @@ class GettingStarted extends ImmutablePureComponent {
 
     height += 48*3;
 
-    if (myAccount.get('locked')) {
+    if (myAccount.get('locked') || unreadFollowRequests > 0) {
       navItems.push(<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       height += 48;
     }

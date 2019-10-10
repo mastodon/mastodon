@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
-  context_extensions :atom_uri, :conversation, :sensitive
+  context_extensions :atom_uri, :conversation, :sensitive, :voters_count
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
@@ -22,6 +22,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   attribute :end_time, if: :poll_and_expires?
   attribute :closed, if: :poll_and_expired?
+
+  attribute :voters_count, if: :poll_and_voters_count?
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -141,12 +143,20 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   alias end_time closed
 
+  def voters_count
+    object.preloadable_poll.voters_count
+  end
+
   def poll_and_expires?
     object.preloadable_poll&.expires_at&.present?
   end
 
   def poll_and_expired?
     object.preloadable_poll&.expired?
+  end
+
+  def poll_and_voters_count?
+    object.preloadable_poll&.voters_count
   end
 
   class MediaAttachmentSerializer < ActivityPub::Serializer

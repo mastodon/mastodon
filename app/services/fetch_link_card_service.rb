@@ -22,7 +22,7 @@ class FetchLinkCardService < BaseService
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         @card = PreviewCard.find_by(url: @url)
-        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago
+        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
       else
         raise Mastodon::RaceConditionError
       end
@@ -38,12 +38,6 @@ class FetchLinkCardService < BaseService
 
   def process_url
     @card ||= PreviewCard.new(url: @url)
-
-    failed = Request.new(:head, @url).perform do |res|
-      res.code != 405 && res.code != 501 && (res.code != 200 || res.mime_type != 'text/html')
-    end
-
-    return if failed
 
     Request.new(:get, @url).perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'

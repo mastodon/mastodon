@@ -57,6 +57,8 @@ cy:
         text: Bydd hyn yn helpu ni adolygu eich cais
       sessions:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
+      tag:
+        name: Dim ond er mwyn ei gwneud yn fwy darllenadwy y gallwch chi newid y llythrennau, er enghraifft
       user:
         chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
     labels:
@@ -64,9 +66,14 @@ cy:
         fields:
           name: Label
           value: Cynnwys
+      account_alias:
+        acct: Enw'r hen gyfrif
+      account_migration:
+        acct: Enw'r cyfrif newydd
       account_warning_preset:
         text: Testun rhagosodedig
       admin_account_action:
+        include_statuses: Cynhwyswch tŵtiau yr adroddwyd amdanynt yn yr e-bost
         send_email_notification: Hysbysu'r defnyddiwr trwy e-bost
         text: Rhybudd wedi'i addasu
         type: Gweithredu
@@ -121,6 +128,7 @@ cy:
         setting_show_application: Datguddio'r offer defnyddwyd i anfon tŵtiau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_theme: Thema'r wefan
+        setting_trends: Dangos tueddiadau o heddiw ymlaen
         setting_unfollow_modal: Dangos deialog cadarnhau cyn dad-ddilyn rhywun
         setting_use_blurhash: Dangoswch raddiannau lliwgar ar gyfer cyfryngau cudd
         setting_use_pending_items: Modd araf
@@ -148,6 +156,7 @@ cy:
         pending_account: Anfon ebost pan mae cyfrif newydd angen adolygiad
         reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
         report: Anfon e-bost pan y cyflwynir adroddiad newydd
+        trending_tag: Anfonwch e-bost pan fydd hashnod heb ei adolygu yn tueddu
       tag:
         listable: Gadewch i'r hashnod hwn ymddangos mewn chwiliadau ac ar y cyfeiriadur proffil
         name: Hashnod
