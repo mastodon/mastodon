@@ -1,4 +1,3 @@
----
 eu:
   simple_form:
     hints:
@@ -40,6 +39,8 @@ eu:
         setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
         username: Zure erabiltzaile-izena bakana izango da %{domain} domeinuan
         whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
+      domain_allow:
+        domain: Domeinu honek zerbitzari honetatik datuak hartu ahal izango ditu eta bertatik jasotako informazioa prozesatu eta gordeko da
       featured_tag:
         name: 'Hauetakoren bat erabili zenezake:'
       form_challenge:
@@ -153,9 +154,9 @@ eu:
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu toot-ek traola hau erabiltzea
-    'no': Ez
+    'no': 'Ez'
     recommended: Aholkatua
     required:
       mark: "*"
       text: beharrezkoa
-    'yes': Bai
+    'yes': 'Bai'
