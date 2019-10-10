@@ -508,7 +508,7 @@ cs:
         title: Vlastní podmínky používání
       site_title: Název serveru
       spam_check_enabled:
-        desc_html: Mastodon může automaticky nahlašovat účty podle opatření, jako například detekování účtů, které odesílají opakované nevyžadované zprávy. Mohou se najít špatné shody.
+        desc_html: Mastodon může automaticky nahlašovat účty, které opakovaně odesílají nevyžádané zprávy. Mohou se najít špatné shody.
         title: Antispamová automatizace
       thumbnail:
         desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučuje se rozlišení 1200x630px
@@ -552,7 +552,7 @@ cs:
       reviewed: Schválen
       title: Hashtagy
       trending_right_now: Aktuální trendy
-      unique_uses_today: "%{count} dnes píší"
+      unique_uses_today: "%{count} dnes píše"
       unreviewed: Neposouzeno
       updated_msg: Nastavení hashtagu bylo úspěšně aktualizováno
     title: Administrace
@@ -1026,6 +1026,8 @@ cs:
     profile: Profil
     relationships: Sledovaní a sledující
     two_factor_authentication: Dvoufázové ověřování
+  spam_check:
+    spam_detected: Tohle je automatizované nahlášení. Byl detekován spam.
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
