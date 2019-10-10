@@ -941,6 +941,10 @@ tr:
     reply:
       proceed: Cevap vermek için ilerle
       prompt: 'Bu gönderiye cevap vermek istiyorsunuz:'
+  scheduled_statuses:
+    over_daily_limit: O gün için %{limit} zamanlanmış gönderi sınırını aştınız
+    over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
+    too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
   sessions:
     activity: Son aktivite
     browser: Tarayıcı
@@ -1003,6 +1007,8 @@ tr:
     profile: Profil
     relationships: Takip edilenler ve takipçiler
     two_factor_authentication: İki-faktörlü doğrulama
+  spam_check:
+    spam_detected: Bu otomatik bir şikayettir. Spam tespit edildi.
   statuses:
     attached:
       description: 'Ekli: %{attached}'
@@ -1021,6 +1027,7 @@ tr:
     open_in_web: Web sayfasında aç
     over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
+      limit: Hali hazırda maksimum sayıda gönderiyi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       private: Halka açık olmayan gönderi sabitlenemez
       reblog: Bir yineleme sabitlenemez
@@ -1075,7 +1082,17 @@ tr:
     setup: Kuruluma başla
     wrong_code: Girdiğiniz kod geçersiz! Telefonunuzun saati geri/ileri kalmış olabilir.
   user_mailer:
+    backup_ready:
+      explanation: Mastodon hesabınızın tam bir yedeğini istediniz. Şimdi indirmeye hazır!
+      subject: Arşiviniz indirilmeye hazır
+      title: Arşiv paketlemesi
     warning:
+      explanation:
+        disable: Hesabınız donmuşken, hesap verileriniz bozulmadan kalır, ancak kilidi açılıncaya kadar herhangi bir işlem gerçekleştiremezsiniz.
+        silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucuda gönderilerinizi görecek ve çeşitli halka açık listelerin dışında tutulabilirsiniz. Ancak, diğerleri hala sizi manuel olarak takip edebilir.
+        suspend: Hesabınız askıya alındı ve tüm gönderileriniz ve yüklediğiniz medya dosyalarınız bu sunucudan ve takipçilerinizin bulunduğu sunuculardan geri alınamaz şekilde kaldırıldı.
+      get_in_touch: "%{instance} çalışanlarıyla iletişim kurmak için bu e-postayı yanıtlayabilirsiniz."
+      review_server_policies: Sunucu politikalarını inceleyin
       subject:
         disable: "%{acct} hesabınız donduruldu"
         none: "%{acct} için uyarı"
