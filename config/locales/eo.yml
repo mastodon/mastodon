@@ -538,6 +538,7 @@ eo:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
     deleted_msg: Forigis la alinomon sukcese. Transloki el tiu konto al ĉi tiu ne plu eblos.
+    remove: Malligili alinomon
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
     advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara tempolinio, kaj ajna kvanto de listoj kaj kradvortoj.'
@@ -564,9 +565,11 @@ eo:
     apply_for_account: Peti inviton
     change_password: Pasvorto
     checkbox_agreement_html: Mi samopinii al la <a href="%{rules_path}" target="_blank">Servo reguloj</a> kaj <a href="%{terms_path}" target="_blank">kondiĉo al servadon</a>
+    checkbox_agreement_without_rules_html: Mi konsenti la <a href="%{terms_path}" target="_blank">reguloj de servado</a>
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
+      prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
       prefix_sign_up: Registriĝi ĉe Mastodon hodiaŭ!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     forgot_password: Pasvorto forgesita?
@@ -622,6 +625,7 @@ eo:
       x_seconds: "%{count}s"
   deletes:
     confirm_password: Enmetu vian nunan pasvorton por konfirmi vian identecon
+    confirm_username: Enigi vian uzantnomon por konfirmi la procedo
     proceed: Forigi konton
     success_msg: Via konto estis sukcese forigita
   directories:
@@ -908,6 +912,7 @@ eo:
   settings:
     account: Konto
     account_settings: Agordoj de konto
+    aliases: Kontoj alinomoj
     appearance: Apero
     authorized_apps: Rajtigitaj aplikaĵoj
     back: Reveni al Mastodon
