@@ -297,7 +297,7 @@ es-AR:
       existing_domain_block_html: Ya le aplicaste límites más estrictos a %{name}, por lo que primero necesitás <a href="%{unblock_url}">desbloquearlo</a>.
       new:
         create: Crear bloqueo
-        hint: El bloqueo de dominio no va a prevenir la creación de entradas de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
+        hint: El bloqueo de dominio no va a prevenir la creación de toots de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
         severity:
           desc_html: "<strong>Silenciar</strong> hará que los toots de la cuenta sean invisibles a quienes no estén siguiendo esa cuenta. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de la cuenta. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
           noop: Ninguno
@@ -376,6 +376,11 @@ es-AR:
       disable: Deshabilitar
       disabled: Deshabilitado
       enable: Habilitar
+      enable_hint: Una vez habilitado, tu servidor se suscribirá a todos los toots públicos desde este relé, y comenzará a enviar los toots públicos de este servidor al relé.
+      enabled: Habilitado
+      inbox_url: Dirección web del relé
+      pending: Esperando aprobación del relé
+      save_and_enable: Guardar y habilitar
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
