@@ -2,6 +2,8 @@
 eu:
   simple_form:
     hints:
+      account_alias:
+        acct: Zehaztu migrazioaren jatorri den kontuaren erabiltzailea@domeinua
       account_warning_preset:
         text: Toot sintaxia erabili dezakezu, URLak, traolak eta aipamenak
       admin_account_action:
@@ -14,6 +16,8 @@ eu:
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
         bot: Kontu honek nagusiki automatizatutako ekintzak burutzen ditu eta agian ez du inork monitorizatzen
         context: Iragazkia aplikatzeko testuinguru bat edo batzuk
+        current_password: Segurtasunagatik sartu uneko kontuaren pasahitza
+        current_username: Berresteko sartu uneko kontuaren erabiltzaile-izena
         digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu, besterik ez
         email: Baieztapen e-mail bat bidaliko zaizu
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
@@ -38,6 +42,8 @@ eu:
         whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
       featured_tag:
         name: 'Hauetakoren bat erabili zenezake:'
+      form_challenge:
+        current_password: Zonalde seguruan sartzen ari zara
       imports:
         data: Beste Mastodon zerbitzari batetik esportatutako CSV fitxategia
       invite_request:
@@ -51,9 +57,14 @@ eu:
         fields:
           name: Etiketa
           value: Edukia
+      account_alias:
+        acct: Kontu zaharraren helbidea
+      account_migration:
+        acct: Kontu berriaren helbidea
       account_warning_preset:
         text: Aurrez ezarritako testua
       admin_account_action:
+        include_statuses: Txertatu salatutako toot-ak e-mailean
         send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
         text: Abisu pertsonalizatua
         type: Ekintza
@@ -123,6 +134,8 @@ eu:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzu horien jakinarazpenak
         must_be_following_dm: Blokeatu zuk jarraitzen ez dituzun horien mezu zuzenak
+      invite:
+        comment: Iruzkina
       invite_request:
         text: Zergatik elkartu nahi duzu?
       notification_emails:
@@ -134,7 +147,10 @@ eu:
         pending_account: Bidali e-mail bat kontu bat berrikusi behar denean
         reblog: Bidali e-mail bat norbaitek zure mezuari bultzada ematen badio
         report: Bidali e-maila txosten berri bat aurkezten denean
+        trending_tag: Bidali e-mail bat errebisatu gabeko traola bat joeran dagoenean
       tag:
+        listable: Baimendu traola hau bilaketetan agertzea eta profilen direktorioan
+        name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu toot-ek traola hau erabiltzea
     'no': Ez
