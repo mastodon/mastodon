@@ -108,6 +108,7 @@ class Auth::SessionsController < Devise::SessionsController
 
   def prompt_for_two_factor(user)
     session[:otp_user_id] = user.id
+    use_pack 'auth'
     @body_classes = 'lighter'
     render :two_factor
   end
