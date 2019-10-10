@@ -18,7 +18,6 @@ sk:
     discover_users: Objavuj užívateľov
     documentation: Dokumentácia
     federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj na iných serveroch.
-    generic_description: "%{domain} je jeden server v sieti"
     get_apps: Vyskúšaj aplikácie
     hosted_on: Mastodon hostovaný na %{domain}
     instance_actor_flash: |
@@ -660,7 +659,7 @@ sk:
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
     warning:
-      before: 'Predtým, než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
+      before: 'Než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
       caches: Obsah, ktorý bol predčítaný inými servermi môže zanechať pozostatky
       data_removal: Tvoje príspevky a iné dáta budú natrvalo odstránené
       more_details_html: Pre viac podrobností, pozri <a href="%{terms_path}">zásady súkromia</a>.
@@ -818,6 +817,7 @@ sk:
       missing_also_known_as: neodkazuje spätne na tento účet
       move_to_self: nemôže to byť tvoj súčasný účet
       not_found: nebolo možné nájsť
+      on_cooldown: Si v spánkovom stave
     followers_count: Následovatelia v čase presunu
     incoming_migrations: Presúvam sa z iného účtu
     not_redirecting: Tvoj účet v súčasnosti nepresmerováva na žiaden iný účet.
@@ -826,6 +826,8 @@ sk:
     redirecting_to: Tvoj účet presmerováva na %{acct}.
     set_redirect: Nastav presmerovanie
     warning:
+      backreference_required: Nový účet musí byť najskôr nastavený tak, aby spätne odkazoval na tento
+      before: 'Než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
       other_data: Žiadne iné dáta nebudú presunuté automaticky
   moderation:
     title: Moderovanie
@@ -1093,7 +1095,7 @@ sk:
         suspend: Tvoj účet bol vylúčený
     welcome:
       edit_profile_action: Nastav profil
-      edit_profile_step: Profil si môžeš prispôsobiť nahratím portrétu a hlavičky, môžeš upraviť svoje meno a viac. Pokiaľ chceš preverovať nových následovateľov predtým než ťa budú môcť sledovať, môžeš uzamknúť svoj účet.
+      edit_profile_step: Profil si môžeš prispôsobiť nahratím portrétu a záhlavia, môžeš upraviť svoje meno a viac. Pokiaľ chceš preverovať nových následovateľov predtým než ťa budú môcť sledovať, môžeš uzamknúť svoj účet.
       explanation: Tu nájdeš nejaké tipy do začiatku
       final_action: Začni prispievať
       final_step: 'Začni písať! Aj bez následovateľov budú tvoje verejné príspevky videné ostatnými, napríklad na miestnej osi a pod haštagmi. Ak chceš, môžeš sa ostatným predstaviť pod haštagom #introductions.'

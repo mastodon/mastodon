@@ -5,7 +5,7 @@ de:
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diesen Server
     active_count_after: aktiv
-    active_footnote: Monatlich Aktive Nutzer_innen (MAU)
+    active_footnote: Monatlich Aktive User (MAU)
     administered_by: 'Betrieben von:'
     api: API
     apps: Mobile Apps
@@ -15,10 +15,9 @@ de:
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
-    discover_users: Benutzer_innen entdecken
+    discover_users: Benutzer entdecken
     documentation: Dokumentation
-    federation_hint_html: Mit einem Konto auf %{instance} wirst du in der Lage sein Nutzer_innen auf beliebigen Mastodon-Servern und darüber hinaus zu folgen.
-    generic_description: "%{domain} ist ein Server im Fediversum"
+    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
     get_apps: Versuche eine mobile App
     hosted_on: Mastodon, gehostet auf %{domain}
     instance_actor_flash: |
@@ -54,8 +53,8 @@ de:
     featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
-      one: Folger_innen
-      other: Folger_innen
+      one: Folgender
+      other: Folgende
     following: Folgt
     joined: Beigetreten am %{date}
     last_active: zuletzt aktiv
@@ -119,8 +118,8 @@ de:
       enable: Freischalten
       enabled: Freigegeben
       feed_url: Feed-URL
-      followers: Folger_innen
-      followers_url: URL der Folger_innen
+      followers: Folgende
+      followers_url: URL des Folgenden
       follows: Folgt
       header: Titelbild
       inbox_url: Posteingangs-URL
@@ -283,11 +282,11 @@ de:
       software: Software
       space: Speicherverbrauch
       title: Übersicht
-      total_users: Benutzer_innen insgesamt
+      total_users: Benutzer insgesamt
       trends: Trends
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
-      week_users_new: Benutzer_innen diese Woche
+      week_users_new: Benutzer diese Woche
       whitelist_mode: Whitelist-Modus
     domain_allows:
       add_new: Whitelist-Domain
@@ -346,7 +345,7 @@ de:
       title: E-Mail-Domain-Blockade
     followers:
       back_to_account: Zurück zum Konto
-      title: "%{acct}'s Folger_innen"
+      title: "%{acct}'s Follower"
     instances:
       by_domain: Domain
       delivery_available: Zustellung funktioniert
@@ -507,6 +506,9 @@ de:
         desc_html: Auf der Einstiegsseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
       title: Server-Einstellungen
+      trendable_by_default:
+        desc_html: Betroffene Hashtags, die bisher nicht gesperrt wurden
+        title: Hashtags ohne vorherige Überprüfung erlauben zu trenden
       trends:
         desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
         title: Trendende Hashtags
@@ -564,7 +566,7 @@ de:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
     deleted_msg: Der Alias wurde erfolgreich entfernt. Aus diesem Konto zu diesem zu verschieben ist nicht mehr möglich.
-    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird bevor du deine Folger_innen vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
+    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird bevor du deine Folgenden vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
@@ -676,7 +678,7 @@ de:
       username_unavailable: Dein Benutzername bleibt nicht verfügbar
   directories:
     directory: Profilverzeichnis
-    explanation: Entdecke Benutzer_innen basierend auf deren Interessen
+    explanation: Entdecke Benutzer basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
@@ -816,7 +818,7 @@ de:
   migrations:
     acct: benutzername@domain des neuen Kontos
     cancel: Umleitung abbrechen
-    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Folger_innen, die auf dieses Konto verschoben wurden, zurückholen.
+    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Folgenden, die auf dieses Konto verschoben wurden, zurückholen.
     cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
     errors:
       already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
@@ -824,14 +826,14 @@ de:
       move_to_self: darf nicht das aktuelles Konto sein
       not_found: kann nicht gefunden werden
       on_cooldown: Die Abklingzeit läuft gerade
-    followers_count: Folger_innen zur Zeit des Verschiebens
+    followers_count: Folgende zur Zeit des Verschiebens
     incoming_migrations: Ziehe von einem anderen Konto um
     incoming_migrations_html: Um von einem anderen Konto zu diesem zu wechseln, musst du zuerst <a href="%{path}">einen Kontoalias</a> erstellen.
-    moved_msg: Dein Konto wird jetzt zu %{acct} weitergeleitet und deine Folger_innen werden verschoben.
+    moved_msg: Dein Konto wird jetzt zu %{acct} weitergeleitet und deine Folgende werden verschoben.
     not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
     on_cooldown: Du hast dein Konto vor kurzem migriert. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
     past_migrations: Vorherige Migrationen
-    proceed_with_move: Folger_innen verschieben
+    proceed_with_move: Folgende verschieben
     redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
     set_redirect: Umleitung einrichten
     warning:
@@ -839,7 +841,7 @@ de:
       before: 'Bevor du fortfährst, lese bitte diese Hinweise sorgfältig durch:'
       cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
       disabled_account: Dein aktuelles Konto wird nachher nicht vollständig nutzbar sein. Du hast jedoch Zugriff auf den Datenexport sowie die Reaktivierung.
-      followers: Diese Aktion wird alle Folger_innen vom aktuellen Konto auf das neue Konto verschieben
+      followers: Diese Aktion wird alle Folgende vom aktuellen Konto auf das neue Konto verschieben
       only_redirect_html: Alternativ kannst du <a href="%{path}">nur eine Weiterleitung auf dein Profil</a> erstellen.
       other_data: Keine anderen Daten werden automatisch verschoben
       redirect: Das Profil deines aktuellen Kontos wird mit einer Weiterleitungsnachricht versehen und von Suchanfragen ausgeschlossen
@@ -1003,10 +1005,10 @@ de:
     notifications: Benachrichtigungen
     preferences: Einstellungen
     profile: Profil
-    relationships: Folger_innen und Gefolgte
+    relationships: Folgende und Gefolgte
     two_factor_authentication: Zwei-Faktor-Auth
   spam_check:
-    spam_detected_and_silenced: Dies ist ein automatisierter Bericht. Spam wurde erkannt und der Absender wurde automatisch stummgeschaltet. Wenn dies ein Fehler ist, schalte dieses Konto bitte wieder frei.
+    spam_detected: Dies ist ein automatisierter Bericht. Es wurde Spam erkannt.
   statuses:
     attached:
       description: 'Angehängt: %{attached}'
@@ -1041,8 +1043,8 @@ de:
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Nur für Folger_innen
-      private_long: Nur für Folger_innen sichtbar
+      private: Nur Folgende
+      private_long: Nur für Folgende sichtbar
       public: Öffentlich
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
@@ -1059,9 +1061,9 @@ de:
       <h3 id="collect">Welche Informationen sammeln wir?</h3>
 
       <ul>
-      <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzer:innen-Namen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen wie etwa einen Anzeigenamen oder eine Biografie eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzer:innen-Name, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
+      <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzernamen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen wie etwa einen Anzeigenamen oder eine Biografie eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzername, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
       <li><em>Beiträge, Folge- und andere öffentliche Informationen</em>: Die Liste der Leute, denen du folgst, wird öffentlich gezeigt, das gleiche gilt für deine Folgenden (Follower). Sobald du eine Nachricht übermittelst, wird das Datum und die Uhrzeit gemeinsam mit der Information, welche Anwendung du dafür verwendet hast, gespeichert. Nachricht können Medienanhänge enthalten, etwa Bilder und Videos. Öffentliche und ungelistete Beiträge sind öffentlich verfügbar. Sobald du einen Beitrag auf deinem Profil anpinnst, sind dies auch öffentlich verfügbare Informationen. Deine Beiträge werden an deine Folgenden ausgeliefert, was in manchen Fällen bedeutet, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Sobald du Beiträge löschst, wird dies ebenso an deine Follower ausgeliefert. Die Handlungen des Teilens und Favorisieren eines anderen Beitrages ist immer öffentlich.</li>
-      <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer:innen, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer:innen. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über Mastodon.</em></li>
+      <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über Mastodon.</em></li>
       <li><em>Internet Protocol-Adressen (IP-Adressen) und andere Metadaten</em>: Sobald du dich anmeldest, erfassen wir sowohl die IP-Adresse, von der aus du dich anmeldest, als auch den Namen deine Browseranwendung. Alle angemeldeten Sitzungen (Sessions) sind für deine Überprüfung und Widerruf in den Einstellungen verfügbar. Die letzte verwendete IP-Adresse wird bis zu 12 Monate lang gespeichert. Wir könnten auch Serverprotokoll behalten, welche die IP-Adresse von jeder Anfrage an unseren Server enthalten.</li>
       </ul>
 
@@ -1091,7 +1093,7 @@ de:
 
       <ul>
       <li>Serverprotokolle, die IP-Adressen von allen deinen Anfragen an diesen Server, falls solche Protokolle behalten werden, für nicht mehr als 90 Tage behalten.</li>
-      <li>registrierten Benutzer:innen zugeordnete IP-Adressen nicht länger als 12 Monate behalten.</li>
+      <li>registrierten Benutzer zugeordnete IP-Adressen nicht länger als 12 Monate behalten.</li>
       </ul>
 
       <p>Du kannst ein Archiv deines Inhalts anfordern und herunterladen, inkludierend deiner Beiträge, Medienanhänge, Profilbilder und Headerbilder.</p>

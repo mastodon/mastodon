@@ -1,7 +1,7 @@
 ---
 ko:
   about:
-    about_hashtag_html: "<strong>#%{hashtag}</strong> 라는 해시태그가 붙은 공개 툿 입니다. 같은 연합에 속한 임의의 인스턴스에 계정을 생성하면 당신도 대화에 참여할 수 있습니다."
+    about_hashtag_html: "<strong>#%{hashtag}</strong> 해시태그가 붙은 공개 툿 입니다. 같은 연합에 속한 임의의 인스턴스에 계정을 생성하면 당신도 대화에 참여할 수 있습니다."
     about_mastodon_html: 마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
     active_count_after: 활성 사용자
@@ -18,7 +18,6 @@ ko:
     discover_users: 유저 발견하기
     documentation: 문서
     federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
-    generic_description: "%{domain} 은 네트워크에 있는 한 서버입니다"
     get_apps: 모바일 앱 사용해 보기
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     instance_actor_flash: |
@@ -463,7 +462,7 @@ ko:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
           title: 신규 등록 정지 시 메시지
         deletion:
-          desc_html: 유저가 자신의 계정을 삭제할 수 있도록 설정합니다
+          desc_html: 유저가 자신의 계정을 삭제할 수 있도록 허용합니다
           title: 계정 삭제를 허가함
         min_invite_role:
           disabled: 아무도 못 하게
@@ -503,6 +502,9 @@ ko:
         desc_html: 랜딩 페이지에 공개 타임라인을 표시합니다
         title: 타임라인 프리뷰
       title: 사이트 설정
+      trendable_by_default:
+        desc_html: 이전에 비허용 되지 않은 해시태그들에 영향을 미칩니다
+        title: 해시태그가 사전 리뷰 없이 트렌드에 올라갈 수 있도록 허용
       trends:
         desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
         title: 유행하는 해시태그
@@ -554,7 +556,7 @@ ko:
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
     new_trending_tag:
-      body: "#%{name}가 오늘 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다."
+      body: '오늘 #%{name} 해시태그가 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다.'
       subject: 새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})
   aliases:
     add_new: 별칭 만들기
@@ -997,8 +999,6 @@ ko:
     profile: 프로필
     relationships: 팔로잉과 팔로워
     two_factor_authentication: 2단계 인증
-  spam_check:
-    spam_detected_and_silenced: 이것은 자동화 된 보고입니다. 스팸이 감지 되어 작성자를 자동으로 침묵 처리하였습니다. 만약 실수였다면 계정을 침묵 해제하세요.
   statuses:
     attached:
       description: '첨부: %{attached}'
