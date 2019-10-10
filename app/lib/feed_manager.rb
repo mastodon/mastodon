@@ -91,7 +91,7 @@ class FeedManager
   def merge_into_timeline(from_account, into_account)
     timeline_key = key(:home, into_account.id)
     aggregate    = into_account.user&.aggregates_reblogs?
-    query        = from_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    query        = from_account.statuses.where.not(visibility: :direct).includes(:preloadable_poll, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
