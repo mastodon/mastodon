@@ -505,6 +505,9 @@ tr:
         desc_html: Açılış sayfasında genel zaman çizelgesini görüntüle
         title: Zaman çizelgesi önizlemesi
       title: Site Ayarları
+      trendable_by_default:
+        desc_html: Daha önce izin verilmeyen etiketleri etkiler
+        title: Ön inceleme yapmadan etiketlerin trend olmasına izin ver
       trends:
         desc_html: Şu anda trend olan ve daha önce incelenen etiketleri herkese açık olarak göster
         title: Trend etiketler
@@ -528,6 +531,7 @@ tr:
       breakdown: Bugünkü kullanımın kaynağa göre dağılımı
       context: İçerik
       directory: Dizinde
+      in_directory: "Dizinde %{count}"
       last_active: Son aktiflik
       most_popular: En popüler
       most_recent: En yeni
@@ -823,15 +827,23 @@ tr:
       on_cooldown: Soğuma aşamasındasınız
     followers_count: Taşınma zamanındaki takipçiler
     incoming_migrations: Farklı bir hesaptan taşınma
+    incoming_migrations_html: Başka bir hesaptan bu hesaba taşınmak için önce bir <a href="%{path}">hesap takma adı oluşturmanız</a> gerekmektedir.
+    moved_msg: Hesabınız şimdi %{acct} adresine yönlendiriliyor ve takipçileriniz taşınıyor.
+    not_redirecting: Hesabınız şu anda başka bir hesaba yönlendirilmemektedir.
+    on_cooldown: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
     past_migrations: Geçmiş taşınmalar
     proceed_with_move: Takipçileri taşı
     redirecting_to: Hesabınız %{acct} hesabına yönlendirilmektedir.
     set_redirect: Yönlendirme ayarla
     warning:
+      backreference_required: Öncelikle, yeni hesap bu hesabı geri referans edecek şekilde yapılandırılmalıdır
       before: 'Devam etmeden önce, lütfen bu notları dikkatlice okuyun:'
       cooldown: Taşındıktan sonra, yeniden taşınma imkanınızın olmayacağı bir soğuma periyodu vardır
+      disabled_account: Sonrasında, mevcut hesabınız tamamen kullanılabilir olmayacaktır. Ancak, yeniden etkinleştirme işleminin yanı sıra veri dışa aktarma erişimine sahip olacaksınız.
       followers: Bu eylem tüm takipçileri şu anki hesaptan yeni hesaba taşıyacaktır
+      only_redirect_html: Alternatif olarak, <a href="%{path}">sadece profilinize bir yönlendirme koyabilirsiniz</a>.
       other_data: Başka bir veri otomatik olarak taşınmayacaktır
+      redirect: Mevcut hesabınızın profili bir yönlendirme bildirimi ile güncellenecek ve aramaların dışında tutulacaktır
   moderation:
     title: Yönetim
   notification_mailer:
@@ -888,6 +900,8 @@ tr:
     errors:
       already_voted: Bu ankete daha önce oy verdiniz
       duplicate_options: kopya ögeler içeriyor
+      duration_too_long: ileriye doğru çok geç
+      duration_too_short: çok erken
       expired: Anket çoktan sona erdi
       over_character_limit: her biri %{max} karakterden daha uzun olamaz
       too_few_options: birden fazla öğeye sahip olmalı
@@ -915,6 +929,7 @@ tr:
     no_account_html: Hesabınız yok mu? <a href='%{sign_up_path}' target='_blank'>Buradan kaydolabilirsiniz</a>
     proceed: Takip onayı
     prompt: 'Bu kullanıcıyı takip etmek istediğinize emin misiniz?'
+    reason_html: "<strong>Bu adım neden gerekli?</strong><code>%{instance}</code> kayıtlı olduğunuz sunucu olmayabilir, bu yüzden önce sizi kendi sunucunuza yönlendirmemiz gerekmektedir."
   remote_interaction:
     favourite:
       proceed: Favorilere eklemek için ilerle
