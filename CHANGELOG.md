@@ -3,11 +3,11 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## [3.0.1] - 2019-10-09
+## [3.0.1] - 2019-10-10
 ### Added
 
 - Add `tootctl media usage` command ([Gargron](https://github.com/tootsuite/mastodon/pull/12115))
-- Add admin setting to auto-approve trending hashtags ([Gargron](https://github.com/tootsuite/mastodon/pull/12122))
+- Add admin setting to auto-approve trending hashtags ([Gargron](https://github.com/tootsuite/mastodon/pull/12122), [Gargron](https://github.com/tootsuite/mastodon/pull/12130))
 
 ### Changed
 
@@ -21,6 +21,9 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fix preloaded JSON-LD context for identity not being used ([Gargron](https://github.com/tootsuite/mastodon/pull/12138))
+- Fix media editing modal changing dimensions once the image loads ([Gargron](https://github.com/tootsuite/mastodon/pull/12131))
+- Fix not showing whether a custom emoji has a local counterpart in admin UI ([Gargron](https://github.com/tootsuite/mastodon/pull/12135))
 - Fix attachment not being re-downloaded even if file is not stored ([Gargron](https://github.com/tootsuite/mastodon/pull/12125))
 - Fix old migration trying to use new column due to default status scope ([Gargron](https://github.com/tootsuite/mastodon/pull/12095))
 - Fix column back button missing for not found accounts ([trwnh](https://github.com/tootsuite/mastodon/pull/12094))
