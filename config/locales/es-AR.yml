@@ -1,5 +1,387 @@
 ---
 es-AR:
+  about:
+    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Si tenés una cuenta en cualquier parte del fediverso, podés interactuar con ellos.
+    about_mastodon_html: Mastodon es una red social basada en protocolos abiertos de la web y es software libre y de código abierto. Es descentralizada, como el correo electrónico.
+    about_this: Acerca de Mastodon
+    active_count_after: activo
+    active_footnote: Usuarios activos mensualmente (MAU)
+    administered_by: 'Administrado por:'
+    api: API
+    apps: Aplicaciones móviles
+    apps_platforms: Usá Mastodon desde iOS, Android y otras plataformas
+    browse_directory: Explorá el directorio de perfiles y filtrá por intereses
+    browse_public_posts: Explorá un flujo en tiempo real de toots públicos en Mastodon
+    contact: Contacto
+    contact_missing: No establecido
+    contact_unavailable: No disponible
+    discover_users: Descubrir usuarios
+    documentation: Documentación
+    federation_hint_html: Con una cuenta en %{instance} vas a poder seguir a gente de cualquier servidor de Mastodon y más allá.
+    get_apps: Probá una aplicación móvil
+    hosted_on: Mastodon alojado en %{domain}
+    instance_actor_flash: |
+      Esta cuenta es un actor virtual usado para representar al propio servidor y no a ningún usuario individual.
+      Se usa para fines federativos y no debe ser bloqueado a menos que quieras bloquear toda la instancia, en cuyo caso deberías usar un bloqueo de dominio.
+    learn_more: Aprendé más
+    privacy_policy: Política de privacidad
+    see_whats_happening: Esto es lo que está pasando ahora
+    server_stats: 'Estadísticas del servidor:'
+    source_code: Código fuente
+    status_count_after:
+      one: estado
+      other: estados
+    status_count_before: Que enviaron
+    tagline: Seguí a tus amigos y descubrí nueva gente
+    terms: Términos del servicio
+    unavailable_content: Contenido no disponible
+    unavailable_content_description:
+      domain: Servidor
+      reason: Razón
+      rejecting_media: 'Los archivos de medios de este servidor no van a ser procesados y no se mostrarán miniaturas, lo que requiere un clic manual hacia el archivo original:'
+      silenced: 'Los toots de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
+      suspended: 'No se procesarán, almacenarán o intercambiarán datos de estos servidores, haciendo imposible cualquier interacción o comunicación con los usuarios de estos servidores:'
+    unavailable_content_html: Mastodon generalmente te permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se hicieron en este servidor en particular.
+    user_count_after:
+      one: usuario
+      other: usuarios
+    user_count_before: Hogar de
+    what_is_mastodon: "¿Qué es Mastodon?"
+  accounts:
+    choices_html: 'Recomendados de %{name}:'
+    endorsements_hint: Podés recomendar a gente que seguís desde la interface web, y van a aparecerán acá.
+    featured_tags_hint: Pdés destacar etiquetas específicas que se mostrarán acá.
+    follow: Seguir
+    followers:
+      one: Seguidor
+      other: Seguidores
+    following: Siguiendo
+    joined: Se unió en %{date}
+    last_active: última vez activo
+    link_verified_on: La propiedad de este enlace fue verificada el %{date}
+    media: Medios
+    moved_html: "%{name} se mudó a %{new_profile_link}:"
+    network_hidden: Esta información no está disponible
+    never_active: Nunca
+    nothing_here: "¡No hay nada acá!"
+    people_followed_by: "%{name} sigue a estas personas"
+    people_who_follow: Estas personas siguen a %{name}
+    pin_errors:
+      following: Ya tenés que estar siguiendo a la persona que querés recomendar
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
+    posts_with_replies: Toots con respuestas
+    reserved_username: El nombre de usuario está reservado
+    roles:
+      admin: Administrador
+      bot: Bot
+      moderator: Moderador
+    unavailable: Perfil no disponible
+    unfollow: Dejar de seguir
+  admin:
+    account_actions:
+      action: Ejecutar acción
+      title: Ejecutar acción de moderación en %{acct}
+    account_moderation_notes:
+      create: Dejar nota
+      created_msg: "¡Nota de moderación creada exitosamente!"
+      delete: Eliminar
+      destroyed_msg: "¡Nota de moderación destruída exitosamente!"
+    accounts:
+      approve: Aprobar
+      approve_all: Aprobar todas
+      are_you_sure: "¿Estás seguro?"
+      avatar: Avatar
+      by_domain: Dominio
+      change_email:
+        changed_msg: "¡Correo electrónico de cuenta cambiado exitosamente!"
+        current_email: Correo electrónico actual
+        label: Cambiar correo electrónico
+        new_email: Nuevo correo electrónico
+        submit: Cambiar correo electrónico
+        title: Cambiar correo electrónico para %{username}
+      confirm: Confirmar
+      confirmed: Confirmado
+      confirming: Confirmando
+      deleted: Eliminado
+      demote: Bajar de nivel
+      disable: Deshabilitar
+      disable_two_factor_authentication: Deshabilitar 2FA
+      disabled: Deshabilitada
+      display_name: Nombre para mostrar
+      domain: Dominio
+      edit: Editar
+      email: Correo electrónico
+      email_status: Estado del correo
+      enable: Habilitar
+      enabled: Habilitada
+      feed_url: Dirección de la fuente web
+      followers: Seguidores
+      followers_url: Dirección web de los seguidores
+      header: Cabecera
+      inbox_url: Dirección web de la bandeja de entrada
+      invited_by: Invitado por
+      ip: Dirección IP
+      joined: Se unió en
+      location:
+        all: Todas
+        local: Local
+        remote: Remota
+        title: Ubicación
+      login_status: Estado del inicio de sesión
+      media_attachments: Adjuntos
+      memorialize: Convertir en recordatorio
+      moderation:
+        active: Activa
+        all: Todas
+        pending: Pendiente
+        silenced: Silenciados
+        suspended: Suspendidos
+        title: Moderación
+      moderation_notes: Notas de moderación
+      most_recent_activity: Actividad más reciente
+      most_recent_ip: Direcciones IP más recientes
+      no_account_selected: No se cambió ninguna cuenta ya que ninguna fue seleccionada
+      no_limits_imposed: Sin límites impuestos
+      not_subscribed: No suscripto
+      outbox_url: Dirección web de la bandeja de salida
+      pending: Revisión pendiente
+      perform_full_suspension: Suspender
+      profile_url: Dirección web del perfil
+      promote: Promocionar
+      protocol: Protocolo
+      public: Pública
+      push_subscription_expires: La suscripción PuSH vence
+      redownload: Recargar perfil
+      reject: Rechazar
+      reject_all: Rechazar todas
+      remove_avatar: Quitar avatar
+      remove_header: Quitar cabecera
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado exitosamente!"
+      reset: Restablecer
+      reset_password: Cambiar contraseña
+      resubscribe: Resuscribir
+      role: Permisos
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        staff: Equipo
+        user: Usuario
+      search: Buscar
+      shared_inbox_url: Dirección web de la bandeja de entrada compartida
+      show:
+        created_reports: Informes hechos
+        targeted_reports: Denunciado por otros
+      silence: Silenciar
+      silenced: Silenciadas
+      statuses: Estados
+      subscribe: Suscribirse
+      suspended: Suspendidas
+      title: Cuentas
+      unconfirmed_email: Correo electrónico sin confirmar
+      undo_silenced: Deshacer silenciado
+      undo_suspension: Deshacer suspensión
+      unsubscribe: Desuscribirse
+      username: Nombre de usuario
+      warn: Advertir
+      web: Web
+      whitelisted: Aprobadas
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} se asignó la denuncia %{target} a sí"
+        change_email_user: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
+        confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
+        create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_custom_emoji: "%{name} subió nuevo emoji %{target}"
+        create_domain_block: "%{name} bloqueó el dominio %{target}"
+        create_email_domain_block: "%{name} desaprobó el dominio de correo electrónico %{target}"
+        demote_user: "%{name} bajó de nivel al usuario %{target}"
+        destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
+        destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
+        destroy_email_domain_block: "%{name} aprobó el dominio de correo electrónico %{target}"
+        destroy_status: "%{name} eliminó el estado de %{target}"
+        disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
+        disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
+        disable_user: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
+        enable_custom_emoji: "%{name} habilitó el emoji %{target}"
+        enable_user: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de recordatorio"
+        remove_avatar_user: "%{name} quitó el avatar de %{target}"
+        reopen_report: "%{name} reabrió la denuncia %{target}"
+        reset_password_user: "%{name} cambió la contraseña del usuario %{target}"
+        resolve_report: "%{name} resolvió la denuncia %{target}"
+        silence_account: "%{name} silenció la cuenta de %{target}"
+        suspend_account: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report: "%{name} desasignó la denuncia %{target}"
+        unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
+        unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
+        update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_status: "%{name} actualizó el estado de %{target}"
+      deleted_status: "(estado borrado)"
+      title: Registro de auditoría
+    custom_emojis:
+      assign_category: Asignar categoría
+      by_domain: Dominio
+      copied_msg: Copia local del emoji creada exitosamente
+      copy: Copiar
+      copy_failed_msg: No se pudo realizar una copia local de ese emoji
+      create_new_category: Crear nueva categoría
+      created_msg: "¡Emoji creado exitosamente!"
+      delete: Eliminar
+      destroyed_msg: "¡Emoji destruido exitosamente!"
+      disable: Deshabilitar
+      disabled: Deshabilitado
+      disabled_msg: Se deshabilitó ese emoji exitosamente
+      emoji: Emoji
+      enable: Habilitar
+      enabled: Habilitado
+      enabled_msg: Se habilitó ese emoji exitosamente
+      image_hint: PNG de hasta 50KB
+      list: Lista
+      listed: Listados
+      new:
+        title: Agregar nuevo emoji personalizado
+      overwrite: Sobreescribir
+      shortcode: Código corto
+      shortcode_hint: Al menos 2 caracteres, sólo caracteres alfanuméricos y subguiones ("_")
+      title: Emojis personalizados
+      uncategorized: Sin categoría
+      unlist: No agregar a lista
+      unlisted: No listado
+      update_failed_msg: No se pudo actualizar ese emoji
+      updated_msg: "¡Emoji actualizado exitosamente!"
+      upload: Subir
+    dashboard:
+      authorized_fetch_mode: Modo seguro
+      backlog: trabajos registrados
+      config: Configuración
+      feature_deletions: Eliminaciones de cuenta
+      feature_invites: Enlaces de invitación
+      feature_profile_directory: Directorio de perfiles
+      feature_registrations: Registros
+      feature_relay: Relé de federación
+      feature_spam_check: Anti-spam
+      feature_timeline_preview: Previsualización de la línea temporal
+      features: Funciones
+      hidden_service: Federación con servicios ocultos
+      open_reports: abrir denuncias
+      pending_tags: etiquetas esperando revisión
+      pending_users: usuarios esperando revisión
+      recent_users: Usuarios recientes
+      search: Búsqueda de texto completo
+      single_user_mode: Modo de usuario único
+      software: Software
+      space: Uso del espacio
+      title: Panel
+      total_users: usuarios en total
+      trends: Tendencias
+      week_interactions: interacciones esta semana
+      week_users_active: activos esta semana
+      week_users_new: usuarios esta semana
+      whitelist_mode: Modo de aprobación
+    domain_allows:
+      add_new: Aprobar dominio
+      created_msg: El dominio se aprobó exitosamente
+      destroyed_msg: El dominio no se aprobó
+      undo: No aprobado
+    domain_blocks:
+      add_new: Agregar nuevo bloquedo de dominio
+      created_msg: Ahora se está procesando el bloquedo de dominio
+      destroyed_msg: Se deshizo el bloqueo de dominio
+      domain: Dominio
+      edit: Editar bloqueo de dominio
+      existing_domain_block_html: Ya le aplicaste límites más estrictos a %{name}, por lo que primero necesitás <a href="%{unblock_url}">desbloquearlo</a>.
+      new:
+        create: Crear bloqueo
+        hint: El bloqueo de dominio no va a prevenir la creación de toots de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
+        severity:
+          desc_html: "<strong>Silenciar</strong> hará que los toots de la cuenta sean invisibles a quienes no estén siguiendo esa cuenta. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de la cuenta. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
+          noop: Ninguno
+          silence: Silenciar
+          suspend: Suspender
+        title: Nuevo bloquedo de dominio
+      private_comment: Comentario privado
+      private_comment_hint: Comentario sobre la limitación de este dominio, para uso interno de los moderadores.
+      public_comment: Comentario público
+      public_comment_hint: Comentario sobre la limitación de este dominio para el público en general, si está habilitada la publicación de lista de limitaciones de dominio.
+      reject_media: Rechazar archivos de medio
+      reject_media_hint: Quita los archivos de medio almacenados e impide la descarga en el futuro. Irrelevante para suspensiones.
+      reject_reports: Rechazar denuncias
+      reject_reports_hint: Ignora todas las denuncias que vengan de este dominio. Irrelevante para suspensiones.
+      rejecting_media: rechazando archivos de medio
+      rejecting_reports: rechazando denuncias
+      severity:
+        silence: silenciado
+        suspend: suspendido
+      show:
+        affected_accounts:
+          one: Una cuenta afectada en la base de datos
+          other: "%{count} cuentas afectadas en la base de datos"
+        retroactive:
+          silence: Quitar silenciado de las cuentas existentes afectadas de este dominio
+          suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
+        title: Deshacer el bloqueo de dominio para %{domain}
+        undo: Deshacer
+      undo: Deshacer bloqueo de dominio
+      view: Ver bloqueo de dominio
+    email_domain_blocks:
+      add_new: Agregar nuevo
+      created_msg: Se desaprobó dominio de correo electrónico exitosamente
+      delete: Eliminar
+      destroyed_msg: Se aprobó dominio de correo electrónico exitosamente
+      domain: Dominio
+      new:
+        create: Agregar dominio
+        title: Nueva desaprobación de correo electrónico
+      title: Desaprobación de correo electrónico
+    followers:
+      back_to_account: Volver a la cuenta
+      title: Seguidores de %{acct}
+    instances:
+      by_domain: Dominio
+      delivery_available: La entrega está disponible
+      known_accounts:
+        one: "%{count} cuenta conocida"
+        other: "%{count} cuentas conocidas"
+      moderation:
+        all: Todas
+        limited: Limitadas
+        title: Moderación
+      private_comment: Comentario privado
+      public_comment: Comentario público
+      title: Federación
+      total_blocked_by_us: Bloqueada por nosotros
+      total_followed_by_them: Seguidos por ellos
+      total_followed_by_us: Seguidos por nosotros
+      total_reported: Denuncias sobre ellos
+      total_storage: Adjuntos
+    invites:
+      deactivate_all: Desactivar todas
+      filter:
+        all: Todas
+        available: Disponibles
+        expired: Vencidas
+        title: Filtrar
+      title: Invitaciones
+    pending_accounts:
+      title: Cuentas pendientes (%{count})
+    relays:
+      add_new: Agregar nuevo relé
+      delete: Eliminar
+      description_html: Un <strong>relé de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores chicos y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
+      disable: Deshabilitar
+      disabled: Deshabilitado
+      enable: Habilitar
+      enable_hint: Una vez habilitado, tu servidor se suscribirá a todos los toots públicos desde este relé, y comenzará a enviar los toots públicos de este servidor al relé.
+      enabled: Habilitado
+      inbox_url: Dirección web del relé
+      pending: Esperando aprobación del relé
+      save_and_enable: Guardar y habilitar
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.

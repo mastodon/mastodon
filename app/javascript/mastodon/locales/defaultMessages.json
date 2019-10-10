@@ -281,6 +281,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Loading…",
+        "id": "regeneration_indicator.label"
+      },
+      {
+        "defaultMessage": "Your home feed is being prepared!",
+        "id": "regeneration_indicator.sublabel"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/regeneration_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "now",
         "id": "relative_time.just_now"
       },
@@ -444,19 +457,6 @@
       }
     ],
     "path": "app/javascript/mastodon/components/status_content.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Loading…",
-        "id": "regeneration_indicator.label"
-      },
-      {
-        "defaultMessage": "Your home feed is being prepared!",
-        "id": "regeneration_indicator.sublabel"
-      }
-    ],
-    "path": "app/javascript/mastodon/components/status_list.json"
   },
   {
     "descriptors": [
@@ -1138,15 +1138,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Uploading...",
-        "id": "upload_progress.label"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/compose/components/upload_progress.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Delete",
         "id": "upload_form.undo"
       },
@@ -1436,6 +1427,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Refresh",
+        "id": "refresh"
+      },
+      {
         "defaultMessage": "No one has favourited this toot yet. When someone does, they will show up here.",
         "id": "empty_column.favourites"
       }
@@ -1483,10 +1478,6 @@
   },
   {
     "descriptors": [
-      {
-        "defaultMessage": "Refresh",
-        "id": "refresh"
-      },
       {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
@@ -1640,6 +1631,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Basic",
+        "id": "home.column_settings.basic"
+      },
       {
         "defaultMessage": "Show boosts",
         "id": "home.column_settings.show_reblogs"
@@ -2022,14 +2017,6 @@
         "id": "notifications.column_settings.push"
       },
       {
-        "defaultMessage": "Basic",
-        "id": "home.column_settings.basic"
-      },
-      {
-        "defaultMessage": "Update in real-time",
-        "id": "home.column_settings.update_live"
-      },
-      {
         "defaultMessage": "Quick filter bar",
         "id": "notifications.column_settings.filter_bar.category"
       },
@@ -2087,10 +2074,6 @@
   },
   {
     "descriptors": [
-      {
-        "defaultMessage": "and {count, plural, one {# other} other {# others}}",
-        "id": "notification.and_n_others"
-      },
       {
         "defaultMessage": "{name} followed you",
         "id": "notification.follow"
