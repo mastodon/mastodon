@@ -651,7 +651,9 @@ uk:
       x_months: "%{count}міс"
       x_seconds: "%{count}сек"
   deletes:
+    challenge_not_passed: Невірна інформація
     confirm_password: Введіть актуальний пароль, щоб перевірити що ви це ви
+    confirm_username: Введіть ваше ім'я користувача, щоб підтвердити процедуру
     proceed: Видалити обліковий запис
     success_msg: Ваш обліковий запис було успішно видалено
     warning:
@@ -805,6 +807,9 @@ uk:
   migrations:
     acct: username@domain нового облікового запису
     cancel: Скасувати перенаправлення
+    errors:
+      not_found: не знайдено
+    set_redirect: Встановити перенаправлення
   moderation:
     title: Модерація
   notification_mailer:
