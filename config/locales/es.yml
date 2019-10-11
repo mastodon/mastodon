@@ -18,7 +18,6 @@ es:
     discover_users: Descubrir usuarios
     documentation: Documentación
     federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
-    generic_description: "%{domain} es un servidor en la red"
     get_apps: Probar una aplicación móvil
     hosted_on: Mastodon hosteado en %{domain}
     instance_actor_flash: |
@@ -247,6 +246,7 @@ es:
       enabled: Activado
       enabled_msg: Se habilitó con éxito ese emoji
       image_hint: PNG de hasta 50KB
+      list: Lista
       listed: Listados
       new:
         title: Añadir nuevo emoji personalizado
@@ -255,6 +255,7 @@ es:
       shortcode_hint: Al menos 2 caracteres, solo caracteres alfanuméricos y guiones bajos
       title: Emojis personalizados
       uncategorized: Sin clasificar
+      unlist: No listado
       unlisted: Sin listar
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: "¡Emoji actualizado con éxito!"
@@ -386,6 +387,7 @@ es:
       pending: Esperando la aprobación del relés
       save_and_enable: Guardar y conectar
       setup: Preparar una conexión de relés
+      signatures_not_enabled: Los relés no funcionarán correctamente mientras el modo seguro o el modo de lista blanca estén habilitados
       status: Estado
       title: Releses
     report_notes:
@@ -434,10 +436,16 @@ es:
       custom_css:
         desc_html: Modificar el aspecto con CSS cargado en cada página
         title: CSS personalizado
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
+        title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
       domain_blocks:
         all: A todos
         disabled: A nadie
+        title: Mostrar dominios bloqueados
         users: Para los usuarios locales que han iniciado sesión
+      domain_blocks_rationale:
+        title: Mostrar la razón de ser
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -498,6 +506,9 @@ es:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
+      trendable_by_default:
+        desc_html: Afecta a etiquetas que no han sido previamente rechazadas
+        title: Permitir que las etiquetas sean tendencia sin revisión previa
       trends:
         desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
         title: Hashtags de tendencia
@@ -518,6 +529,7 @@ es:
     tags:
       accounts_today: Usos únicos de hoy
       accounts_week: Usos únicos esta semana
+      breakdown: Desglose del consumo actual por fuentes
       context: Contexto
       directory: En el directorio
       in_directory: "%{count} en el directorio"
@@ -554,6 +566,7 @@ es:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
     deleted_msg: Elimina el alias correctamente. El traslado de esa cuenta a esta ya no será posible.
+    hint_html: Si quieres migrar de otra cuenta a esta, aquí puedes crear un alias, es necesario proceder antes de empezar a mover seguidores de la cuenta anterior a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta antigua</strong>.
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
@@ -654,6 +667,7 @@ es:
     success_msg: Tu cuenta se eliminó con éxito
     warning:
       before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
+      caches: El contenido que ha sido almacenado en caché por otros servidores puede persistir
       data_removal: Tus publicaciones y el resto de datos se eliminarán definitivamente
       email_change_html: Puedes <a href="%{path}"> cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
       email_contact_html: Si aún no te ha llegado, puedes escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
@@ -669,7 +683,7 @@ es:
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': La solicitud que has enviado no es valida o estaba malformada.
     '403': No tienes permiso para acceder a esta página.
     '404': La página que estabas buscando no existe.
     '406': Esta página no está disponible en el formato solicitado.
@@ -705,6 +719,7 @@ es:
     add_new: Añadir nuevo
     errors:
       limit: Ya has alcanzado la cantidad máxima de hashtags
+    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
       home: Timeline propio
@@ -730,6 +745,7 @@ es:
     all: Todos
     changes_saved_msg: "¡Cambios guardados con éxito!"
     copy: Copiar
+    no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
     validation_errors:
@@ -805,7 +821,30 @@ es:
     cancel_explanation: Al cancelar el redireccionamiento se reactivará tu cuenta actual, pero no recuperarás los seguidores que hayan sido trasladados a la otra cuenta.
     cancelled_msg: El redireccionamiento se ha cancelado correctamente.
     errors:
+      already_moved: es la misma cuenta a la que ya has migrado
+      missing_also_known_as: no está haciendo referencia a esta cuenta
+      move_to_self: no puede ser la cuenta actual
       not_found: no se pudo encontrar
+      on_cooldown: Estás en tiempo de reutilización
+    followers_count: Seguidores al momento de migrar
+    incoming_migrations: Migrar de una cuenta diferente
+    incoming_migrations_html: Para migrar de otra cuenta a esta, primero necesitas <a href="%{path}">crear un alias de la cuenta</a>.
+    moved_msg: Tu cuenta ahora se está redirigiendo a %{acct} y tus seguidores se están migrando.
+    not_redirecting: Tu cuenta no se está redirigiendo a ninguna otra cuenta actualmente.
+    on_cooldown: Has migrado tu cuenta recientemente. Esta función estará disponible de nuevo en %{count} días.
+    past_migrations: Migraciones pasadas
+    proceed_with_move: Migrar seguidores
+    redirecting_to: Tu cuenta se está redirigiendo a %{acct}.
+    set_redirect: Establecer redirección
+    warning:
+      backreference_required: La nueva cuenta debe ser configurada primero para hacer referencia a esta
+      before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
+      cooldown: Después de migrar hay un período de espera durante el cual no podrás volver a migrar
+      disabled_account: Tu cuenta actual no será completamente utilizable después. Sin embargo, tendrás acceso a la exportación de datos así como a la reactivación.
+      followers: Esta acción migrará a todos los seguidores de la cuenta actual a la nueva cuenta
+      only_redirect_html: Alternativamente, solo puedes <a href="%{path}">poner una redirección en tu perfil</a>.
+      other_data: No se moverán otros datos automáticamente
+      redirect: El perfil de tu cuenta actual se actualizará con un aviso de redirección y será excluido de las búsquedas
   moderation:
     title: Moderación
   notification_mailer:
@@ -950,6 +989,7 @@ es:
   settings:
     account: Cuenta
     account_settings: Ajustes de la cuenta
+    aliases: Alias de la cuenta
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
@@ -968,7 +1008,7 @@ es:
     relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
   spam_check:
-    spam_detected_and_silenced: Este es un informe automatizado. Se ha detectado spam y el remitente ha sido silenciado automáticamente. Si esto es un error, por favor, deja de silenciar la cuenta.
+    spam_detected: Este es un informe automatizado. Se ha detectado Spam.
   statuses:
     attached:
       description: 'Adjunto: %{attached}'
@@ -992,6 +1032,9 @@ es:
       private: Los toots no-públicos no pueden fijarse
       reblog: Un boost no puede fijarse
     poll:
+      total_people:
+        one: persona %{count}
+        other: "%{count} gente"
       total_votes:
         one: "%{count} voto"
         other: "%{count} votos"
@@ -1129,7 +1172,9 @@ es:
         disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
         silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
         suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
+      get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
       review_server_policies: Revisar las políticas del servidor
+      statuses: 'Específicamente, para:'
       subject:
         disable: Su cuenta %{acct} ha sido congelada
         none: Advertencia para %{acct}
