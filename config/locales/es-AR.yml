@@ -431,6 +431,14 @@ es-AR:
       custom_css:
         desc_html: Modificá la apariencia con CSS cargado en cada página
         title: CSS personalizado
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no cambiaron esta configuración por sí mismos
+        title: Quitar predeterminadamente a los usuarios de la indexación de los motores de búsqueda
+      domain_blocks:
+        all: A todos
+        disabled: A nadie
+        title: Mostrar dominios bloqueados
+        users: A usuarios locales con sesiones abiertas
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
