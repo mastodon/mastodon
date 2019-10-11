@@ -381,6 +381,56 @@ es-AR:
       inbox_url: Dirección web del relé
       pending: Esperando aprobación del relé
       save_and_enable: Guardar y habilitar
+      setup: Configurar una conexión de relé
+      signatures_not_enabled: Los relés no funcionarán correctamente mientras el modo seguro o el de aprobación estén habilitados
+      status: Estado
+      title: Relés
+    report_notes:
+      created_msg: '¡La nota de denuncia fue creada exitosamente!'
+      destroyed_msg: '¡La nota de denuncia fue eliminada exitosamente!'
+    reports:
+      account:
+        note: nota
+        report: denuncia
+      action_taken_by: Acción tomada por
+      are_you_sure: '¿Estás seguro?'
+      assign_to_self: Asignármela a mí
+      assigned: Moderador asignado
+      comment:
+        none: Ninguno
+      created_at: Denunciado
+      mark_as_resolved: Marcar como resuelta
+      mark_as_unresolved: Marcar como no resuelta
+      notes:
+        create: Agregar nota
+        create_and_resolve: Resolver con nota
+        create_and_unresolve: Reabrir con nota
+        delete: Eliminar
+        placeholder: Describí qué acciones se tomaron, o cualquier otra actualización relacionada…
+      reopen: Reabrir denuncia
+      report: 'Denunciar #%{id}'
+      reported_account: Cuenta denunciada
+      reported_by: Denunciada por
+      resolved: Resuelta
+      resolved_msg: '¡Denuncia exitosamente resuelta!'
+      status: Estado
+      title: Denuncias
+      unassign: Desasignar
+      unresolved: No resuelta
+      updated_at: Actualizada
+    settings:
+      activity_api_enabled:
+        desc_html: Conteos de estados publicados localmente, usuarios activos y nuevos registros en tandas semanales
+        title: Publicar estadísticas agregadas sobre la actividad del usuario
+      bootstrap_timeline_accounts:
+        desc_html: Separar múltiples nombres de usuario con coma. Sólo funcionarán las cuentas locales y desbloqueadas. Predeterminadamente, cuando está vacío todos los administradores locales.
+        title: Seguimientos predeterminados para usuarios nuevos
+      contact_information:
+        email: Correo electrónico de negocios
+        username: Nombre de usuario de contacto
+      custom_css:
+        desc_html: Modificá la apariencia con CSS cargado en cada página
+        title: CSS personalizado
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
