@@ -291,10 +291,6 @@ class Status < ApplicationRecord
       where(language: nil).or where(language: account.chosen_languages)
     end
 
-    def as_home_timeline(account)
-      where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
-    end
-
     def as_direct_timeline(account, limit = 20, max_id = nil, since_id = nil, cache_ids = false)
       # direct timeline is mix of direct message from_me and to_me.
       # 2 queries are executed with pagination.

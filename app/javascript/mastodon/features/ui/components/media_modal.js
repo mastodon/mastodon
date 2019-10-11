@@ -3,13 +3,13 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Video from 'mastodon/features/video';
-import ExtendedVideoPlayer from 'mastodon/components/extended_video_player';
 import classNames from 'classnames';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from 'mastodon/components/icon_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImageLoader from './image_loader';
 import Icon from 'mastodon/components/icon';
+import GIFV from 'mastodon/components/gifv';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -169,10 +169,8 @@ class MediaModal extends ImmutablePureComponent {
         );
       } else if (image.get('type') === 'gifv') {
         return (
-          <ExtendedVideoPlayer
+          <GIFV
             src={image.get('url')}
-            muted
-            controls={false}
             width={width}
             height={height}
             key={image.get('preview_url')}

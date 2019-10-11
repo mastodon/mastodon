@@ -57,6 +57,7 @@ class MediaAttachment < ApplicationRecord
     small: {
       convert_options: {
         output: {
+          'loglevel' => 'fatal',
           vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
         },
       },
@@ -70,6 +71,7 @@ class MediaAttachment < ApplicationRecord
       keep_same_format: true,
       convert_options: {
         output: {
+          'loglevel' => 'fatal',
           'map_metadata' => '-1',
           'c:v' => 'copy',
           'c:a' => 'copy',
@@ -84,6 +86,7 @@ class MediaAttachment < ApplicationRecord
       content_type: 'audio/mpeg',
       convert_options: {
         output: {
+          'loglevel' => 'fatal',
           'q:a' => 2,
         },
       },
