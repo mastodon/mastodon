@@ -1,4 +1,3 @@
----
 uk:
   devise:
     confirmations:
@@ -46,9 +45,14 @@ uk:
         subject: 'Mastodon: Інструкції для скидання паролю'
         title: Скидання пароля
       two_factor_disabled:
+        subject: 'Mastodon: двофакторну авторизацію вимкнено'
         title: Двофакторна автентифікація вимкнена
       two_factor_enabled:
+        subject: 'Mastodon: двофакторну авторизацію увімкнено'
         title: Двофакторна автентифікація увімкнена
+      two_factor_recovery_codes_changed:
+        subject: 'Mastodon: коди двофакторного відновлення повторно згенеровано'
+        title: Коди двофакторного відновлення змінено
       unlock_instructions:
         subject: 'Mastodon: Інструкції для розблокування'
     omniauth_callbacks:
@@ -85,7 +89,7 @@ uk:
       not_found: не знайдено
       not_locked: не був заблокований
       not_saved:
+        one: '1 помилка не дала цьому %{resource} зберегтися:'
         few: "%{count} помилки не дали цьому %{resource} зберегтися:"
         many: "%{count} помилок не дало цьому %{resource} зберегтися:"
-        one: '1 помилка не дала цьому %{resource} зберегтися:'
         other: "%{count} помилок не дало цьому %{resource} зберегтися:"
