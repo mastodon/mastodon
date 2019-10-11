@@ -258,6 +258,7 @@ uk:
       updated_msg: Емодзі успішно оновлене!
       upload: Вивантажити
     dashboard:
+      authorized_fetch_mode: Безпечний режим
       backlog: відкладені завдання
       config: Налаштування
       feature_deletions: Видалення облікових записів
@@ -526,6 +527,9 @@ uk:
       context: Контекст
       directory: У каталозі
       in_directory: "%{count} у каталозі"
+      last_active: За активністю
+      most_popular: За популярністю
+      most_recent: За часом створення
       name: Хештеґ
       review: Переглянути статус
       reviewed: Переглянуто
@@ -614,6 +618,7 @@ uk:
       confirming: Очікуємо на завершення підтвердження за допомогою електронної пошти.
       functional: Ваш обліковий запис повністю робочій.
       pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
+      redirecting_to: Ваш обліковий запис наразі неактивний, тому що він перенаправлений до %{acct}.
     trouble_logging_in: Проблема під час входу?
   authorize_follow:
     already_following: Ви вже слідкуєте за цим обліковим записом
@@ -626,6 +631,11 @@ uk:
       return: Перейти до профілю користувача
       web: Перейти до вебу
     title: Підписатися на %{acct}
+  challenge:
+    confirm: Далі
+    hint_html: "<strong>Підказка:</strong> ми не будемо запитувати ваш пароль впродовж наступної години."
+    invalid_password: Невірний пароль
+    prompt: Підтвердіть пароль для продовження
   datetime:
     distance_in_words:
       about_x_hours: "%{count}г"
