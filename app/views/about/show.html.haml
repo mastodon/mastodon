@@ -52,13 +52,12 @@
         .hero-widget__img
           = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
 
-        - if @instance_presenter.site_short_description.present?
-          .hero-widget__text
-            %p
-              = @instance_presenter.site_short_description.html_safe.presence
-              = link_to about_more_path do
-                = t('about.learn_more')
-                = fa_icon 'angle-double-right'
+        .hero-widget__text
+          %p
+            = @instance_presenter.site_short_description.html_safe.presence || t('about.about_mastodon_html')
+            = link_to about_more_path do
+              = t('about.learn_more')
+              = fa_icon 'angle-double-right'
 
         .hero-widget__footer
           .hero-widget__footer__column

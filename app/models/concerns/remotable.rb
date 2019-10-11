@@ -18,7 +18,7 @@ module Remotable
           return
         end
 
-        return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.blank? || self[attribute_name] == url
+        return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.blank? || (self[attribute_name] == url && send("#{attachment_name}_file_name").present?)
 
         begin
           Request.new(:get, url).perform do |response|

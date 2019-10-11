@@ -8,7 +8,7 @@ cs:
     failure:
       already_authenticated: Již jste přihlášen/a.
       inactive: Váš účet ještě není aktivován.
-      invalid: Neplatný %{authentication_keys} nebo heslo.
+      invalid: Neplatné %{authentication_keys} nebo heslo.
       last_attempt: Máte ještě jeden pokus, než bude váš účet uzamčen.
       locked: Váš účet je uzamčen.
       not_found_in_database: Neplatné %{authentication_keys} nebo heslo.
@@ -21,7 +21,7 @@ cs:
         action: Potvrdit e-mailovou adresu
         action_with_app: Potvrdit a navrátit se do %{app}
         explanation: S touto e-mailovou adresou jste si vytvořil/a účet na %{host}. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyl/a vy, prosím ignorujte tento e-mail.
-        explanation_when_pending: S touto e-mailovou adresou jste si vyžádal/a pozvánku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, posoudíme váš poadavek. Do té doby se nemůžete přihlásit. Pokud bude váš požadavek zamítnut, budou vaše data odstraněna, takže od vás nebude vyžadována žádná další akce. Pokud jste to nebyl/a vy, prosím ignorujte tento e-mail.
+        explanation_when_pending: S touto e-mailovou adresou jste si vyžádal/a pozvánku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, posoudíme váš poadavek. Můžete se přihlásit, změnit si své detaily či smazat svůj účet, ale do schválení účtu nemáte přístup ke většině funkcí. Pokud bude váš požadavek zamítnut, budou vaše data odstraněna, takže od vás nebude vyžadována žádná další akce. Pokud jste to nebyl/a vy, prosím ignorujte tento e-mail.
         extra_html: Prosím podívejte se také na <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky používání</a>.
         subject: 'Mastodon: Potvrzovací instrukce pro %{instance}'
         title: Potvrďte e-mailovou adresu

@@ -18,7 +18,6 @@ eo:
     discover_users: Malkovri uzantojn
     documentation: Dokumentado
     federation_hint_html: Per konto ĉe %{instance}, vi povos sekvi homojn ĉe iu ajn Mastodon nodo kaj preter.
-    generic_description: "%{domain} estas unu servilo en la reto"
     get_apps: Provu telefonan aplikaĵon
     hosted_on: "%{domain} estas nodo de Mastodon"
     instance_actor_flash: |
@@ -508,13 +507,16 @@ eo:
       directory: En la adresaro
       in_directory: "%{count} en adresaro"
       last_active: Lasta aktiva
+      most_popular: La plej populara
       most_recent: Plej lasta
       name: Kradvorto
       review: La statuso de la recenzo
       reviewed: Recenzis
       title: Kradvortoj
       trending_right_now: Nunaj furoraĵoj
+      unique_uses_today: "%{count} uzas hodiaŭ"
       unreviewed: Ne recenzis
+      updated_msg: Kradvorto agordoj ĝisdatigis sukcese
     title: Administrado
     warning_presets:
       add_new: Aldoni novan
@@ -533,6 +535,11 @@ eo:
     new_trending_tag:
       body: 'La kradvorto #%{name} furoras hodiaŭ, sed ankoraŭ ne estis kontrolita. Ĝi ne aperos publike sen via aprobo. Se vi ne volas tion, simple konservu la formularon tiel kiel.'
       subject: Nova kradvorto kontrolebla en %{instance} (#%{name})
+  aliases:
+    add_new: Krei alinomon
+    created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
+    deleted_msg: Forigis la alinomon sukcese. Transloki el tiu konto al ĉi tiu ne plu eblos.
+    remove: Malligili alinomon
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
     advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara tempolinio, kaj ajna kvanto de listoj kaj kradvortoj.'
@@ -559,9 +566,11 @@ eo:
     apply_for_account: Peti inviton
     change_password: Pasvorto
     checkbox_agreement_html: Mi samopinii al la <a href="%{rules_path}" target="_blank">Servo reguloj</a> kaj <a href="%{terms_path}" target="_blank">kondiĉo al servadon</a>
+    checkbox_agreement_without_rules_html: Mi konsenti la <a href="%{terms_path}" target="_blank">reguloj de servado</a>
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
+      prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
       prefix_sign_up: Registriĝi ĉe Mastodon hodiaŭ!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     forgot_password: Pasvorto forgesita?
@@ -617,6 +626,7 @@ eo:
       x_seconds: "%{count}s"
   deletes:
     confirm_password: Enmetu vian nunan pasvorton por konfirmi vian identecon
+    confirm_username: Enigi vian uzantnomon por konfirmi la procedo
     proceed: Forigi konton
     success_msg: Via konto estis sukcese forigita
   directories:
@@ -761,6 +771,7 @@ eo:
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
     acct: uzantnomo@domajno de la nova konto
+    proceed_with_move: Translokigi sekvantoj
   moderation:
     title: Kontrolado
   notification_mailer:
@@ -905,6 +916,7 @@ eo:
   settings:
     account: Konto
     account_settings: Agordoj de konto
+    aliases: Kontoj alinomoj
     appearance: Apero
     authorized_apps: Rajtigitaj aplikaĵoj
     back: Reveni al Mastodon
