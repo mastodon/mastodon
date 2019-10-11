@@ -1,9 +1,9 @@
 ---
 gl:
   about:
-    about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Pode interactuar con elas si ten unha conta nalgures do fediverso.
+    about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Podes interactuar con elas se tes unha conta nalgures do fediverso.
     about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
-    about_this: Sobre
+    about_this: Acerca de
     active_count_after: activo
     active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
@@ -18,7 +18,6 @@ gl:
     discover_users: Descubra usuarias
     documentation: Documentación
     federation_hint_html: Con unha conta en %{instance} poderá seguir a outras persoas en calquera dos servidores Mastodon e incluso máis.
-    generic_description: "%{domain} é un servidor na rede"
     get_apps: Probe cunha app móbil
     hosted_on: Mastodon aloxado en %{domain}
     instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queira bloquear a toda a instancia, en tal caso debería utilizar o bloqueo do dominio.
@@ -37,6 +36,7 @@ gl:
     terms: Termos do servizo
     unavailable_content: Contido non dispoñible
     unavailable_content_description:
+      domain: Servidor
       reason: 'Razón:'
       rejecting_media: Os ficheiros de medios de este servidor non se procesarán e non se mostrarán miniaturas, precisando solicitarse manualmente ao outro servidor.
       silenced: As publicacións desde este servidor non se mostrarán en ningún lugar excepto no Inicio se segues ao autor.
@@ -239,11 +239,14 @@ gl:
       delete: Eliminar
       destroyed_msg: Emojo destruído satisfactoriamente!
       disable: Deshabilitar
+      disabled: Desactivado
       disabled_msg: Deshabilitouse correctamente ese emoji
       emoji: Emoji
       enable: Habilitar
+      enabled: Activado
       enabled_msg: Habilitouse correctamente ese emoji
       image_hint: PNG ate 50KB
+      list: A lista
       listed: Listado
       new:
         title: Engadir novo emoji persoalizado
@@ -252,6 +255,7 @@ gl:
       shortcode_hint: Cando menos 2 caracteres, só caracteres alfanuméricos e subliñados
       title: Emojis persoalizados
       uncategorized: Sen categorizar
+      unlist: Sacar da lista
       unlisted: Non listado
       update_failed_msg: Non se puido actualizar ese emoji
       updated_msg: Actualizouse correctamente o emoji!
@@ -383,6 +387,7 @@ gl:
       pending: Agardando polo permiso do repetidor
       save_and_enable: Gardar e activar
       setup: Configurar a conexión ao repetidor
+      signatures_not_enabled: Os repetidores non funcionarán correctamente se o modo seguro ou lista branca están activados
       status: Estado
       title: Repetidores
     report_notes:
@@ -501,6 +506,9 @@ gl:
         desc_html: Mostrar liña de tempo pública na páxina de inicio
         title: vista previa da liña temporal
       title: Axustes do sitio
+      trendable_by_default:
+        desc_html: Afecta a etiquetas que non foron rexeitadas previamente
+        title: Permite as etiquetas ser tendencia sen revisión previa
       trends:
         desc_html: Mostrar públicamente etiquetas previamente revisadas que actualmente son tendencia
         title: Etiquetas Tendencia
@@ -827,13 +835,16 @@ gl:
     past_migrations: Migracións pasadas
     proceed_with_move: Mover seguidoras
     redirecting_to: A conta está redirixindo cara a %{acct}.
+    set_redirect: Establecer redirección
     warning:
       backreference_required: Tes que configurar primeiro a nova conta para referenciar hacia esta
       before: 'Antes de seguir, por favor lé estas notas con atención:'
       cooldown: Tras a migración existe un período de calma durante o cal non poderás voltar a migrar de novo
       disabled_account: Tras o cambio a túa conta actual non será totalmente usable, pero terás acceso a exportar os datos e tamén a reactivación.
       followers: Esta acción moverá todas as túas seguidoras desde a conta actual a nova conta
+      only_redirect_html: De xeito alternativo, podes <a href="%{path}">simplemente por unha redirección no perfil</a>.
       other_data: Non se moverán outros datos de xeito automático
+      redirect: O perfil da túa conta actualizarase cun aviso de redirección e será excluído das buscas
   moderation:
     title: Moderación
   notification_mailer:
@@ -996,8 +1007,6 @@ gl:
     profile: Perfil
     relationships: Seguindo e seguidoras
     two_factor_authentication: Validar Dobre Factor
-  spam_check:
-    spam_detected_and_silenced: Esto é un informe automático. Detectouse spam e o remitente foi bloqueado automáticamente. Se o considera un fallo, por favor desbloquee a conta.
   statuses:
     attached:
       description: 'Axenado: %{attached}'
@@ -1021,6 +1030,9 @@ gl:
       private: As mensaxes non-públicas non poden ser fixadas
       reblog: Non se poden fixar as mensaxes promovidas
     poll:
+      total_people:
+        one: "%{count} persoa"
+        other: "%{count} persoas"
       total_votes:
         one: "%{count} voto"
         other: "%{count} votos"
