@@ -15,10 +15,10 @@ module Admin
     def show
       authorize :instance, :show?
 
-      @following_count = Follow.where(account: Account.where(domain: params[:id])).count
-      @followers_count = Follow.where(target_account: Account.where(domain: params[:id])).count
+      @following_count = Follow.where(account: Account.where(domain: params[:id])).distinct.count(:target_account_id)
+      @followers_count = Follow.where(target_account: Account.where(domain: params[:id])).distinct.count(:target_account_id)
       @reports_count   = Report.where(target_account: Account.where(domain: params[:id])).count
-      @blocks_count    = Block.where(target_account: Account.where(domain: params[:id])).count
+      @blocks_count    = Block.where(target_account: Account.where(domain: params[:id])).distinct.count(:target_account_id)
       @available       = DeliveryFailureTracker.available?(Account.select(:shared_inbox_url).where(domain: params[:id]).first&.shared_inbox_url)
       @media_storage   = MediaAttachment.where(account: Account.where(domain: params[:id])).sum(:file_file_size)
       @private_comment = @domain_block&.private_comment
