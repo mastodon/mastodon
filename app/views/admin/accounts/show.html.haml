@@ -151,6 +151,7 @@
             %td
               - if @account.user_current_sign_in_at
                 %time.formatted{ datetime: @account.user_current_sign_in_at.iso8601, title: l(@account.user_current_sign_in_at) }= l @account.user_current_sign_in_at
+            %td
 
           - if @account.user&.invited?
             %tr
