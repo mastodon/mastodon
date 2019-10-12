@@ -491,6 +491,22 @@ es-AR:
       site_title: Nombre del servidor
       spam_check_enabled:
         desc_html: Mastodon puede denunciar automáticamente cuentas que envían mensajes no solicitados de forma repetida. Podrían haber falsos positivos.
+        title: Automatización antispam
+      thumbnail:
+        desc_html: Usado para previsualizaciones vía OpenGraph y APIs. Se recomienda 1200x630 píxeles.
+        title: Miniatura del servidor
+      timeline_preview:
+        desc_html: Mostrar enlace a la línea temporal pública en la página de inicio y permitir el acceso a la API a la línea temporal pública sin autenticación
+        title: Permitir acceso no autorizado a la línea temporal pública
+      title: Configuración del sitio
+      trendable_by_default:
+        desc_html: Afecta a etiquetas que no fueron rechazadas previamente
+        title: Permitir que las etiquetas sean tendencia sin revisión previa
+      trends:
+        desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia actualmente
+        title: Etiquetas tendencias
+    statuses:
+      back_to_account: Volver a la página de la cuenta
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
