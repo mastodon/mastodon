@@ -179,6 +179,7 @@ th:
       deleted_status: "(สถานะที่ลบแล้ว)"
       title: รายการบันทึกการตรวจสอบ
     custom_emojis:
+      assign_category: กำหนดหมวดหมู่
       by_domain: โดเมน
       copy: คัดลอก
       create_new_category: สร้างหมวดหมู่ใหม่
@@ -208,6 +209,7 @@ th:
       feature_invites: ลิงก์เชิญ
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
       feature_registrations: การลงทะเบียน
+      feature_spam_check: การป้องกันสแปม
       feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
       open_reports: รายงานที่เปิด
@@ -301,6 +303,7 @@ th:
         report: รายงาน
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
+      assigned: ผู้ควบคุมที่ได้รับมอบหมาย
       comment:
         none: ไม่มี
       created_at: รายงานเมื่อ
@@ -415,6 +418,7 @@ th:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
     invalid_url: URL ที่ระบุไม่ถูกต้อง
+    your_token: โทเคนการเข้าถึงของคุณ
   auth:
     apply_for_account: ขอคำเชิญ
     change_password: รหัสผ่าน
@@ -561,6 +565,9 @@ th:
   migrations:
     acct: username@domain ของบัญชีใหม่
     cancel: ยกเลิกการเปลี่ยนเส้นทาง
+    errors:
+      move_to_self: ไม่สามารถเป็นบัญชีปัจจุบัน
+      not_found: ไม่พบ
     proceed_with_move: ย้ายผู้ติดตาม
     redirecting_to: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     set_redirect: ตั้งการเปลี่ยนเส้นทาง
@@ -611,6 +618,7 @@ th:
   relationships:
     activity: กิจกรรมบัญชี
     last_active: ใช้งานล่าสุด
+    most_recent: ล่าสุด
     relationship: ความสัมพันธ์
     remove_selected_domains: เอาผู้ติดตามทั้งหมดออกจากโดเมนที่เลือก
     remove_selected_followers: เอาผู้ติดตามที่เลือกออก
@@ -701,6 +709,8 @@ th:
     pin_errors:
       reblog: ไม่สามารถปักหมุดการดัน
     poll:
+      total_people:
+        other: "%{count} คน"
       total_votes:
         other: "%{count} การลงคะแนน"
       vote: ลงคะแนน
