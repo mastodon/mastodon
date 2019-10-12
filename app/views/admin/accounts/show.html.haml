@@ -143,6 +143,8 @@
             %th= t('admin.accounts.most_recent_ip')
             %td= @account.user_current_sign_in_ip
             %td
+              - if @account.user_current_sign_in_ip
+                = table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: @account.user_current_sign_in_ip)
 
           %tr
             %th= t('admin.accounts.most_recent_activity')
