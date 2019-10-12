@@ -261,6 +261,8 @@ th:
       title: "ผู้ติดตามของ %{acct}"
     instances:
       by_domain: โดเมน
+      known_accounts:
+        other: "%{count} บัญชีที่รู้จัก"
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -385,6 +387,9 @@ th:
       edit: แก้ไข
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
+  aliases:
+    add_new: สร้างนามแฝง
+    remove: เลิกเชื่อมโยงนามแฝง
   appearance:
     advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
     animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
