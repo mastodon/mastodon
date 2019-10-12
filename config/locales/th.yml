@@ -279,6 +279,8 @@ th:
     invites:
       deactivate_all: ปิดใช้งานทั้งหมด
       title: คำเชิญ
+    pending_accounts:
+      title: บัญชีที่รอดำเนินการ (%{count})
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -306,6 +308,8 @@ th:
       mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
       notes:
         create: เพิ่มหมายเหตุ
+        create_and_resolve: แก้ปัญหาโดยมีหมายเหตุ
+        create_and_unresolve: เปิดใหม่โดยมีหมายเหตุ
         delete: ลบ
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
