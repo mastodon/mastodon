@@ -578,6 +578,7 @@ body.layout-single-column {
     color: $ui-primary-color;
   }
 }
+
 .report-modal__statuses .status__content,
 .report-modal__statuses .status__content p,
 .focal-point-modal__content .status__content,
@@ -603,6 +604,29 @@ body.layout-single-column {
   }
 }
 
+.list-adder {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+
+  &__account {
+    background: none;
+
+    & .account {
+      background: none;
+      border: none;
+    }
+  }
+
+  & .column-inline-form {
+    margin: 3px 0;
+    background: rbga($ui-base-color, 0.98);
+    border-radius: 0;
+  }
+
+  &__lists {
+    background: none;
+  }
+
+}
 
 .dropdown-menu {
   color: $ui-primary-color;
