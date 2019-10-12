@@ -439,6 +439,17 @@ es-AR:
         disabled: A nadie
         title: Mostrar dominios bloqueados
         users: A usuarios locales con sesiones abiertas
+      hero:
+        desc_html: Mostrado en la página principal. Se recomienda un tamaño mínimo de 600x100 píxeles. Predeterminadamente se establece a la miniatura del servidor.
+        title: Imagen de portada
+      mascot:
+        desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de 293x205 píxeles. Cuando no se especifica, se muestra la mascota predeterminada.
+        title: Imagen de la mascota
+      peers_api_enabled:
+        desc_html: Nombres de dominio que este servidor encontró en el fediverso
+        title: Publicar lista de servidores descubiertos
+      preview_sensitive_media:
+        desc_html: Los enlaces de previsualizaciones en otros sitios web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
