@@ -194,6 +194,7 @@ th:
       enabled: เปิดใช้งานอยู่
       enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
       image_hint: PNG สูงสุด 50KB
+      list: แสดงรายการ
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
       overwrite: เขียนทับ
@@ -204,6 +205,7 @@ th:
       updated_msg: อัปเดตอีโมจิสำเร็จ!
       upload: อัปโหลด
     dashboard:
+      authorized_fetch_mode: โหมดปลอดภัย
       config: การกำหนดค่า
       feature_deletions: การลบบัญชี
       feature_invites: ลิงก์เชิญ
@@ -314,6 +316,7 @@ th:
         create_and_resolve: แก้ปัญหาโดยมีหมายเหตุ
         create_and_unresolve: เปิดใหม่โดยมีหมายเหตุ
         delete: ลบ
+      reopen: เปิดรายงานใหม่
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
       reported_by: รายงานโดย
@@ -335,6 +338,7 @@ th:
       domain_blocks:
         title: แสดงการปิดกั้นโดเมน
       profile_directory:
+        desc_html: อนุญาตให้ผู้ใช้สามารถค้นพบได้
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
       registrations:
         closed_message:
@@ -610,6 +614,7 @@ th:
     truncate: "&hellip;"
   polls:
     errors:
+      already_voted: คุณได้ลงคะแนนในโพลนี้อยู่แล้ว
       duplicate_options: มีรายการที่ซ้ำกัน
   preferences:
     other: อื่น ๆ
@@ -691,6 +696,7 @@ th:
     featured_tags: แฮชแท็กที่แนะนำ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
+    migrate: การโยกย้ายบัญชี
     notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์
