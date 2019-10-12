@@ -168,7 +168,12 @@ th:
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
         destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
         disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        disable_user: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        enable_user: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
+        remove_avatar_user: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
+        suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
+        unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
@@ -632,6 +637,7 @@ th:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
+      generic: เบราว์เซอร์ที่ไม่รู้จัก
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -653,6 +659,7 @@ th:
       ios: iOS
       linux: Linux
       mac: Mac
+      other: แพลตฟอร์มที่ไม่รู้จัก
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
