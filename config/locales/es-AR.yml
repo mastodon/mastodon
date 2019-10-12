@@ -450,6 +450,47 @@ es-AR:
         title: Publicar lista de servidores descubiertos
       preview_sensitive_media:
         desc_html: Los enlaces de previsualizaciones en otros sitios web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
+        title: Mostrar medios sensibles en previsualizaciones de OpenGraph
+      profile_directory:
+        desc_html: Permitir que los usuarios puedan ser descubiertos
+        title: Habilitar directorio de perfiles
+      registrations:
+        closed_message:
+          desc_html: Mostrado en la portada cuando los registros están cerrados. Podés usar etiquetas HTML.
+          title: Mensaje de registro cerrado
+        deletion:
+          desc_html: Permitor que cualquiera elimine su cuenta
+          title: Abrir eliminación de cuenta
+        min_invite_role:
+          disabled: Nadie
+          title: Permitir invitaciones de
+      registrations_mode:
+        modes:
+          approved: Se requiere aprobación para registrarse
+          none: Nadie puede registrarse
+          open: Cualquiera puede registrarse
+        title: Modo de registros
+      show_known_fediverse_at_about_page:
+        desc_html: Cuando está deshabilitado, restringe la línea temporal pública enlazada desde la página de inicio para mostrar sólo contenido local
+        title: Incluir contenido federado en la página de línea temporal pública no autenticada
+      show_staff_badge:
+        desc_html: Mostrar una insignia de equipo en la página de un usuario
+        title: Mostrar insignia de equipo
+      site_description:
+        desc_html: Párrafo introductorio en la API. Describe qué hace especial a este servidor de Mastodon y todo lo demás que sea importante. Podés usar etiquetas HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
+        title: Descripción del servidor
+      site_description_extended:
+        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que definen tu servidor. Podés usar etiquets HTML.
+        title: Información extendida personalizada
+      site_short_description:
+        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe lo que es Mastodon y qué hace especial a este servidor en un solo párrafo.
+        title: Descripción corta del servidor
+      site_terms:
+        desc_html: Podés escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Podés usar etiquetas HTML.
+        title: Términos de servicio personalizados
+      site_title: Nombre del servidor
+      spam_check_enabled:
+        desc_html: Mastodon puede denunciar automáticamente cuentas que envían mensajes no solicitados de forma repetida. Podrían haber falsos positivos.
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
