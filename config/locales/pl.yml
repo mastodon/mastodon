@@ -19,6 +19,9 @@ pl:
     federation_hint_html: Z kontem na %{instance}, możesz śledzić użytkowników każdego serwera Mastodona i nie tylko.
     get_apps: Spróbuj aplikacji mobilnej
     hosted_on: Mastodon uruchomiony na %{domain}
+    instance_actor_flash: |
+      To konto jest wirtualnym nadawcą, używanym do reprezentacji serwera, a nie jakiegokolwiek użytkownika.
+      Jest używane w celu federowania i nie powinno być blokowane, chyba że chcesz zablokować całą instację, w takim przypadku użyj blokady domeny.
     learn_more: Dowiedz się więcej
     privacy_policy: Polityka prywatności
     see_whats_happening: Zobacz co się dzieje
@@ -32,6 +35,13 @@ pl:
     status_count_before: Są autorami
     tagline: Śledź znajomych i poznawaj nowych
     terms: Zasady użytkowania
+    unavailable_content: Niedostępne treści
+    unavailable_content_description:
+      domain: Serwer
+      reason: Powód
+      rejecting_media: 'Pliki multimedialne z tych serwerów nie będą przetwarzane ani przechowywane, ani ich miniaturki nie będą wyświetlane, wymuszając ręczne przejście do oryginalnego pliku:'
+      silenced: 'Posty z tych serwerów będą ukryte na publicznych osiach czasu i konwersacjach, a powiadomienia z interakcji ich użytkowników nie będą generowane, chyba że ich obserwujesz:'
+      suspended: 'Żadne dane z tych serwerów nie będą przetwarzane, przechowywane ani wymieniane, sprawiając że jakakolwiek interakcja czy komunikacja z użytkownikami tych serwerów będzie niemożliwa:'
     user_count_after:
       one: użytkownik
       few: użytkowników
