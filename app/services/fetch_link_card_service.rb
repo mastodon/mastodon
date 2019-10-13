@@ -67,7 +67,7 @@ class FetchLinkCardService < BaseService
     else
       html  = Nokogiri::HTML(@status.text)
       links = html.css('a')
-      urls  = links.map { |a| Addressable::URI.parse(a['href']).normalize unless skip_link?(a) }.compact
+      urls  = links.map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.compact.map(&:normalize).compact
     end
 
     urls.reject { |uri| bad_url?(uri) }.first
