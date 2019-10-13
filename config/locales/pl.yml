@@ -42,6 +42,7 @@ pl:
       rejecting_media: 'Pliki multimedialne z tych serwerów nie będą przetwarzane ani przechowywane, ani ich miniaturki nie będą wyświetlane, wymuszając ręczne przejście do oryginalnego pliku:'
       silenced: 'Posty z tych serwerów będą ukryte na publicznych osiach czasu i konwersacjach, a powiadomienia z interakcji ich użytkowników nie będą generowane, chyba że ich obserwujesz:'
       suspended: 'Żadne dane z tych serwerów nie będą przetwarzane, przechowywane ani wymieniane, sprawiając że jakakolwiek interakcja czy komunikacja z użytkownikami tych serwerów będzie niemożliwa:'
+    unavailable_content_html: Normalnie Mastodon pozwala ci przeglądać treści od innych użytkowników z jakiegokolwiek serwera w fediwersum. To są wyjątki, które zostały stworzone na tym konkretnym serwerze.
     user_count_after:
       one: użytkownik
       few: użytkowników
@@ -51,6 +52,8 @@ pl:
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     choices_html: "Polecani przez %{name}:"
+    endorsements_hint: Możesz promować ludzi, których obserwujesz, z poziomu interfejsu webowego - wtedy oni pojawią się w tym miejscu.
+    featured_tags_hint: Możesz przedstawić w tym miejscu kilka wybranych hasztagów.
     follow: Śledź
     followers:
       one: śledzący
@@ -64,6 +67,7 @@ pl:
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     network_hidden: Ta informacja nie jest dostępna
+    never_active: Nigdy
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -196,6 +200,7 @@ pl:
       username: Nazwa użytkownika
       warn: Ostrzeż
       web: Sieć
+      whitelisted: Na białej liście
     action_logs:
       actions:
         assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
@@ -231,10 +236,12 @@ pl:
       deleted_status: "(usunięty wpis)"
       title: Dziennik działań administracyjnych
     custom_emojis:
+      assign_category: Ustaw kategorię
       by_domain: Domeny
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
       copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
+      create_new_category: Stwórz nową kategorię
       created_msg: Pomyślnie utworzono emoji!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto emoji!
@@ -244,6 +251,7 @@ pl:
       enable: Włącz
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
+      list: Dodaj do listy
       listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
@@ -251,11 +259,14 @@ pl:
       shortcode: Krótki kod
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
+      uncategorized: Bez kategorii
+      unlist: Usuń z listy
       unlisted: Niewidoczne
       update_failed_msg: Nie udało się zaktualizować emoji
       updated_msg: Pomyślnie zaktualizowano emoji!
       upload: Dodaj
     dashboard:
+      authorized_fetch_mode: Tryb bezpieczny
       backlog: zaległe zadania
       config: Konfiguracja
       feature_deletions: Usuwanie kont
@@ -263,10 +274,13 @@ pl:
       feature_profile_directory: Katalog profilów
       feature_registrations: Rejestracja
       feature_relay: Przekazywanie federacji
+      feature_spam_check: Anty-spam
       feature_timeline_preview: Podgląd osi czasu
       features: Możliwości
       hidden_service: Federowanie z ukrytymi usługami
       open_reports: otwarte zgłoszenia
+      pending_tags: hasztagi oczekujące na sprawdzenie
+      pending_users: użytkownicy oczekujący na sprawdzenie
       recent_users: Ostatni użytkownicy
       search: Wyszukiwanie pełnego tekstu
       single_user_mode: Tryb jednego użytkownika
@@ -278,6 +292,7 @@ pl:
       week_interactions: interakcje w tym tygodniu
       week_users_active: aktywni w tym tygodniu
       week_users_new: rejestracje w tym tygodniu
+      whitelist_mode: Tryb białej listy
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
