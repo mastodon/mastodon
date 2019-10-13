@@ -547,6 +547,20 @@ es-AR:
   admin_mailer:
     new_pending_account:
       body: Abajo están los detalles de la nueva cuenta. Podés aprobar o rechazar esta aplicación.
+      subject: Nueva cuenta para revisión en %{instance} (%{username})
+    new_report:
+      body: "%{reporter} denunció a %{target}"
+      body_remote: Alguien de %{domain} denunció a %{target}
+      subject: 'Nueva denuncia para %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'La etiqueta #%{name} está en tendencia hoy, pero no fue revisada previamente. No se mostrará públicamente a menos que lo permitas, o si no simplemente guardá el formulario como está para no volver a ver esto.'
+      subject: 'Nueva etiqueta para revisión en %{instance} (#%{name})'
+  aliases:
+    add_new: Crear alias
+    created_msg: El nuevo alias se creó exitosamente. Ahora podés empezar la mudanza desde la cuenta vieja.
+    deleted_msg: Eliminaste el alias exitosamente. La mudanza de esa cuenta a esta ya no será posible.
+    hint_html: Si querés mudarte desde otra cuenta a esta, acá podés crear un alias, el cual es necesario antes de empezar a mudar seguidores de la cuenta vieja a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta anterior</strong>.
+    remove: Desenlazar alias
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
