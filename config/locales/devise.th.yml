@@ -10,6 +10,8 @@ th:
       not_found_in_database: '%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง'
       pending: บัญชีของคุณยังอยู่ระหว่างการตรวจทาน
       timeout: เซสชันของคุณหมดอายุแล้ว โปรดลงชื่อเข้าอีกครั้งเพื่อดำเนินการต่อ
+      unauthenticated: คุณต้องลงชื่อเข้าหรือลงทะเบียนก่อนดำเนินการต่อ
+      unconfirmed: คุณต้องยืนยันที่อยู่อีเมลของคุณก่อนดำเนินการต่อ
     mailer:
       confirmation_instructions:
         action: ยืนยันที่อยู่อีเมล
@@ -49,6 +51,8 @@ th:
       already_signed_out: ลงชื่อออกสำเร็จ
       signed_in: ลงชื่อเข้าสำเร็จ
       signed_out: ลงชื่อออกสำเร็จ
+    unlocks:
+      unlocked: ปลดล็อคบัญชีของคุณสำเร็จ โปรดลงชื่อเข้าเพื่อดำเนินการต่อ
   errors:
     messages:
       not_found: ไม่พบ
