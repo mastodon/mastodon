@@ -11,11 +11,18 @@ th:
       pending: บัญชีของคุณยังอยู่ระหว่างการตรวจทาน
       timeout: เซสชันของคุณหมดอายุแล้ว โปรดลงชื่อเข้าอีกครั้งเพื่อดำเนินการต่อ
     mailer:
+      confirmation_instructions:
+        action: ยืนยันที่อยู่อีเมล
+        title: ยืนยันที่อยู่อีเมล
       email_changed:
+        subject: 'Mastodon: เปลี่ยนอีเมลแล้ว'
         title: ที่อยู่อีเมลใหม่
       password_change:
         subject: 'Mastodon: เปลี่ยนรหัสผ่านแล้ว'
         title: เปลี่ยนรหัสผ่านแล้ว
+      reconfirmation_instructions:
+        subject: 'Mastodon: ยืนยันอีเมลสำหรับ %{instance}'
+        title: ยืนยันที่อยู่อีเมล
       reset_password_instructions:
         action: เปลี่ยนรหัสผ่าน
       two_factor_disabled:
