@@ -78,7 +78,7 @@ A **Vagrant** configuration is included for development purposes.
 
 ## Contributing
 
-Mastodon is **free, open source software** licensed under **AGPLv3**.
+Mastodon is **free, open-source software** licensed under **AGPLv3**.
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
