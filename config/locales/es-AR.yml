@@ -568,6 +568,28 @@ es-AR:
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrimiento
     sensitive_content: Contenido sensible
+  application_mailer:
+    notification_preferences: Cambiar configuración de correo electrónico
+    salutation: "%{name}:"
+    settings: 'Cambiar configuración de correo electrónico: %{link}'
+    view: 'Vista:'
+    view_profile: Ver perfil
+    view_status: Ver estado
+  applications:
+    created: Aplicación creada exitosamente
+    destroyed: Apicación eliminada exitosamente
+    invalid_url: La dirección web ofrecida no es válida
+    regenerate_token: Regenerar clave de acceso
+    token_regenerated: Clave de acceso regenerada exitosamente
+    warning: Ojo con estos datos. ¡Nunca los compartas con nadie!
+    your_token: Tu clave de acceso
+  auth:
+    apply_for_account: Solicitar una invitación
+    change_password: Contraseña
+    checkbox_agreement_html: Acepto las <a href="%{rules_path}" target="_blank">reglas del servidor</a> y los <a href="%{terms_path}" target="_blank">términos del servicio</a>
+    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank">términos del servicio</a>
+    delete_account: Eliminar cuenta
+    delete_account_html: Si querés eliminar tu cuenta, podés <a href="%{path}">seguí por acá</a>. Se te va a pedir una confirmación.
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
