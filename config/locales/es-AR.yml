@@ -638,6 +638,34 @@ es-AR:
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña no válida
     prompt: Confirmar contraseña para seguir
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}m"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
+      half_a_minute: Recién
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Recién
+      over_x_years: "%{count}a"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}m"
+      x_seconds: "%{count}s"
+  deletes:
+    challenge_not_passed: La información que ingresaste no es correcta
+    confirm_password: Ingresa tu contraseña actual para verificar tu identidad
+    confirm_username: Ingresá tu nombre de usuario para confirmar el procedimiento
+    proceed: Eliminar cuenta
+    success_msg: Tu cuenta fue eliminada exitosamente
+    warning:
+      before: 'Antes de proceder, por favor, leé estas notas cuidadosamente:'
+      caches: El contenido que fue almacenado en caché por otros servidores puede persistir
+      data_removal: Tus toots y el resto de los datos se eliminarán definitivamente
+      email_change_html: Podés <a href="%{path}">cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
+      email_contact_html: Si todavía no llegó, podés escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
+      email_reconfirmation_html: Si no te llegó el correo de confirmación, podés <a href="%{path}">solicitarlo de nuevo</a>
+      irreversible: No podrás restaurar ni reactivar tu cuenta
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
