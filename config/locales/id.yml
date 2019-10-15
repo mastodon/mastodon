@@ -201,6 +201,7 @@ id:
         destroy_custom_emoji: "%{name} menghapus emoji %{target}"
         destroy_domain_block: "%{name} membuka blokir domain %{target}"
         destroy_email_domain_block: "%{name} memasukkan ke daftar putih surel domain %{target}"
+        destroy_status: "%{name} menghapus status %{target}"
         disable_2fa_user: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
         disable_custom_emoji: "%{name} mematikan emoji %{target}"
         disable_user: "%{name} mematikan login untuk pengguna %{target}"
@@ -218,6 +219,7 @@ id:
         unsilence_account: "%{name} menghapus bungkaman akun %{target}"
         unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
         update_custom_emoji: "%{name} memperbarui emoji %{target}"
+        update_status: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       title: Log audit
     custom_emojis:
@@ -302,6 +304,7 @@ id:
           suspend: Suspen
         title: Pemblokiran domain baru
       private_comment: Komentar pribadi
+      private_comment_hint: Komentar tentang pembatasan domain ini untuk penggunaan internal oleh moderator.
       public_comment: Komentar publik
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
