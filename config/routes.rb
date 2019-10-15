@@ -2,12 +2,14 @@
 
 require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
+require 'sidekiq/prometheus/exporter'
 
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
   root 'home#index'
 
+  mount Sidekiq::Prometheus::Exporter, at: 'sidekiq_metrics'
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
   health_check_routes
