@@ -4,8 +4,7 @@ import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'flavours/glitch/util/compare_id';
 import { me, usePendingItems as preferPendingItems } from 'flavours/glitch/util/initial_state';
 import { getFiltersRegex } from 'flavours/glitch/selectors';
-
-const domParser = new DOMParser();
+import { searchTextFromRawStatus } from 'flavours/glitch/actions/importer/normalizer';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
@@ -19,12 +18,6 @@ export const TIMELINE_SCROLL_TOP   = 'TIMELINE_SCROLL_TOP';
 export const TIMELINE_LOAD_PENDING = 'TIMELINE_LOAD_PENDING';
 export const TIMELINE_DISCONNECT   = 'TIMELINE_DISCONNECT';
 export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
-
-const searchTextFromRawStatus = (status) => {
-  const spoilerText   = status.spoiler_text || '';
-  const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-  return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-}
 
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
