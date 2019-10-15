@@ -14,6 +14,7 @@ import { unescapeHTML } from 'flavours/glitch/util/html';
 import { getFiltersRegex } from 'flavours/glitch/selectors';
 import { usePendingItems as preferPendingItems } from 'flavours/glitch/util/initial_state';
 import compareId from 'flavours/glitch/util/compare_id';
+import { searchTextFromRawStatus } from 'flavours/glitch/actions/importer/normalizer';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 
@@ -71,7 +72,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     if (notification.type === 'mention') {
       const dropRegex   = filters[0];
       const regex       = filters[1];
-      const searchIndex = notification.status.spoiler_text + '\n' + unescapeHTML(notification.status.content);
+      const searchIndex = searchTextFromRawStatus(notification.status);
 
       if (dropRegex && dropRegex.test(searchIndex)) {
         return;
