@@ -686,7 +686,46 @@ es-AR:
       title: Falló la verificación de seguridad
     '429': Asfixiado
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: Lo sentimos, pero algo salió mal en nuestro lado.
+      title: Esta página no es correcta
+    '503': La página no se pudo cargar debido a un fallo temporal del servidor.
+    noscript_html: Para usar la aplicación web de Mastodon, por favor, activá Javascript. Alternativamente, probá alguna de las <a href="%{apps_path}">aplicaciones nativas</a> de Mastodon para tu plataforma.
+  existing_username_validator:
+    not_found: no pudo encontrar un usuario local con ese nombre de usuario
+    not_found_multiple: no se pudo encontrar a %{usernames}
+  exports:
+    archive_takeout:
+      date: Fecha
+      download: Descargá tu archivo historial
+      hint_html: Podés solicitar un archivo historial de tus <strong>toots y medios subidos</strong>. Los datos exportados estarán en formato "ActivityPub", legibles por cualquier software compatible. Podés solicitar un archivo historial cada 7 días.
+      in_progress: Compilando tu archivo historial…
+      request: Solicitá tu archivo historial
+      size: Tamaño
+    blocks: Tus bloqueos
+    csv: CSV
+    domain_blocks: Dominios bloqueados
+    follows: Quienes seguís
+    lists: Listas
+    mutes: Quienes silenciaste
+    storage: Almacenamiento de medios
+  featured_tags:
+    add_new: Agregar nueva
+    errors:
+      limit: Alcanzaste el máximo de etiquetas destacadas
+    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus toots públicos específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
+  filters:
+    contexts:
+      home: Línea temporal principal
+      notifications: Notificaciones
+      public: Líneas temporales públicas
+      thread: Conversaciones
+    edit:
+      title: Editar filtro
+    errors:
+      invalid_context: Se suministró un contexto no válido o vacío
+      invalid_irreversible: El filtrado irreversible sólo funciona con los contextos de "Principal" o de notificaciones
+    index:
+      delete: Eliminar
   invites:
     expires_in:
       '1800': 30 minutes
