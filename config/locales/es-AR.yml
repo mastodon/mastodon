@@ -666,14 +666,25 @@ es-AR:
       email_contact_html: Si todavía no llegó, podés escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
       email_reconfirmation_html: Si no te llegó el correo de confirmación, podés <a href="%{path}">solicitarlo de nuevo</a>
       irreversible: No podrás restaurar ni reactivar tu cuenta
+      more_details_html: Para más detalles, leé la <a href="%{terms_path}">política de privacidad</a>.
+      username_available: Tu nombre de usuario volverá a estar disponible
+      username_unavailable: Tu nombre de usuario no estará disponible
+  directories:
+    directory: Directorio de perfiles
+    explanation: Descubrí usuarios basados en sus intereses
+    explore_mastodon: Navegá %{title}
+  domain_validator:
+    invalid_domain: no es un nombre de dominio válido
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': La solicitud que enviaste no era válida o estaba corrompida.
+    '403': No tenés permiso para ver esta página.
+    '404': La página que estabas buscando no está acá.
+    '406': Esta página no está disponible en el formato solicitado.
+    '410': La página que estabas buscando no existe más.
     '422':
-    '429': Throttled
+      content: Falló la verificación de seguridad. ¿Estás bloqueando cookies?
+      title: Falló la verificación de seguridad
+    '429': Asfixiado
     '500':
     '503': The page could not be served due to a temporary server failure.
   invites:
