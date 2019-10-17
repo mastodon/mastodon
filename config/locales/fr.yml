@@ -28,7 +28,7 @@ fr:
     server_stats: 'Statistiques du serveur :'
     source_code: Code source
     status_count_after:
-      one: Statut
+      one: statuts
       other: Statuts
     status_count_before: Ayant publié
     tagline: Suivez vos ami·e·s et découvrez en de nouveaux·elles
@@ -36,10 +36,10 @@ fr:
     unavailable_content: Contenu non disponible
     unavailable_content_description:
       domain: Serveur
-      reason: 'Motif :'
-      rejecting_media: 'Les fichiers média de ce serveur ne seront pas traités et aucune miniature ne sera affichée, nécessitant un clic manuel vers l''autre serveur.'
-      silenced: 'Les messages de ce serveur ne s''afficheront nulle part sauf votre flux personnel si vous suivez l''auteur.'
-      suspended: 'Vous ne pourrez suivre personne de ce serveur, aucune donnée ne sera traitée ou stockée et aucune donnée ne sera échangée.'
+      reason: Motif
+      rejecting_media: 'Les fichiers média de ces serveurs ne seront pas traités et aucune miniature ne sera affichée, nécessitant un clic manuel vers le fichier d''origine :'
+      silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·ice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
+      suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant toute interaction ou communication avec les utilisateurs de ces serveurs impossible :'
     unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateurs de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
     user_count_after:
       one: utilisateur
@@ -48,7 +48,7 @@ fr:
     what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
     choices_html: "%{name} recommande :"
-    endorsements_hint: Vous pouvez soutenir les personnes que vous suivez depuis l’interface web, et elles apparaîtront ici.
+    endorsements_hint: Vous pouvez recommander des personnes que vous suivez depuis l’interface web, et elles apparaîtront ici.
     featured_tags_hint: Vous pouvez recommander des hashtags spécifiques qui seront affichés ici.
     follow: Suivre
     followers:
@@ -56,7 +56,7 @@ fr:
       other: Abonné⋅e⋅s
     following: Abonnements
     joined: Inscrit·e en %{date}
-    last_active: actif dernièrement
+    last_active: actif·ve dernièrement
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
@@ -71,7 +71,7 @@ fr:
       one: Pouet
       other: Pouets
     posts_tab_heading: Pouets
-    posts_with_replies: Statuts & réponses
+    posts_with_replies: Pouets & réponses
     reserved_username: Ce nom d’utilisateur⋅ice est réservé
     roles:
       admin: Admin
