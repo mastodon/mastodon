@@ -452,6 +452,7 @@ id:
           title: Pesan penutupan pendaftaran
         deletion:
           desc_html: Izinkan siapapun untuk menghapus akun miliknya
+          title: Buka penghapusan akun
         min_invite_role:
           disabled: Tidak ada satu pun
           title: Izinkan undangan oleh
@@ -541,8 +542,13 @@ id:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
       subject: 'Laporan baru untuk %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Tagar #%{name} sedang tren hari ini, tetapi belum ditinjau. Itu tidak akan ditampilkan secara publik kecuali Anda mengizinkannya, atau simpan saja borang sebagaimana mestinya untuk tidak mendengarnya lagi.'
+      subject: 'Tagar baru muncul untuk ditinjau di %{instance} (#%{name})'
   aliases:
     add_new: Buat alias
+    created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
+    deleted_msg: Berhasil menghapus alias. Pindah dari akun tersebut ke sini tidak akan lagi bisa dilakukan.
   appearance:
     advanced_web_interface: Antar muka web tingkat lanjut
     animations_and_accessibility: Animasi dan aksesibilitas
