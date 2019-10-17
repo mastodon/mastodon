@@ -726,6 +726,49 @@ es-AR:
       invalid_irreversible: El filtrado irreversible sólo funciona con los contextos de "Principal" o de notificaciones
     index:
       delete: Eliminar
+      title: Filtros
+    new:
+      title: Agregar nuevo filtro
+  footer:
+    developers: Desarrolladores
+    more: Más…
+    resources: Recursos
+    trending_now: Tendencia ahora
+  generic:
+    changes_saved_msg: '¡Cambios guardados exitosamente!'
+    copy: Copiar
+    no_batch_actions_available: No hay acciones por lotes disponibles en esta página
+    order_by: Ordenar por
+    save_changes: Guardar cambios
+    validation_errors:
+      one: '¡Falta algo! Por favor, revisá el error abajo'
+      other: '¡Falta algo! Por favor, revisá los %{count} errores abajo'
+  html_validator:
+    invalid_markup: 'contiene markup HTML no válido: %{error}'
+  identity_proofs:
+    active: Activa
+    authorize: Sí, autorizar
+    authorize_connection_prompt: '¿Autorizar esta conexión criptográfica?'
+    errors:
+      failed: Falló la conexión criptográfica. Por favor, intentá de nuevo desde %{provider}.
+      keybase:
+        invalid_token: Las claves de Keybase son hashes de firmas y deben tener 66 caracteres hexadecimales
+        verification_failed: Keybase no reconoce esta clave como una firma del usuario de Keybase %{kb_username}. Por favor, intentá de nuevo desde Keybase.
+      wrong_user: No se puede crear una prueba para %{proving} mientras se haya iniciado sesión como %{current}. Iniciá sesión como %{proving} e intentá de nuevo.
+    explanation_html: Acá podés conectar criptográficamente tus otras identidades, como un perfil de Keybase. Esto permite a otras personas enviarte mensajes cifrados y confiar en el contenido que les envías.
+    i_am_html: Soy %{username} en %{service}.
+    identity: Identidad
+    inactive: Inactiva
+    publicize_checkbox: 'Y tooteá esto:'
+    publicize_toot: '¡Comprobado! Soy %{username} en %{service}: %{url}'
+    status: Estado de verificación
+    view_proof: Ver prueba
+  imports:
+    modes:
+      merge: Combinar
+      merge_long: Mantener registros existentes y agregar nuevos
+      overwrite: Sobrescribir
+      overwrite_long: Reemplazar registros actuales con los nuevos
   invites:
     expires_in:
       '1800': 30 minutes
