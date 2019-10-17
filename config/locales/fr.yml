@@ -817,24 +817,24 @@ fr:
   migrations:
     acct: A déménagé vers
     cancel: Annuler la redirection
-    cancel_explanation: Annuler la redirection réactivera votre compte courant, mais ne rapportera pas les abonné·e·s qui ont été déplacé·e·s sur ce compte.
+    cancel_explanation: Annuler la redirection réactivera votre compte actuel, mais ne rapportera pas les abonné·e·s qui ont été déplacé·e·s sur ce compte.
     cancelled_msg: Suppression de la redirection réussie.
     errors:
       already_moved: est le même compte que vous avez déjà déplacé vers
       missing_also_known_as: ne référence pas rétroactivement ce compte
-      move_to_self: ne peut pas être un compte courant
+      move_to_self: ne peut pas être le compte actuel
       not_found: n'a pas été trouvé
-      on_cooldown: Vous êtes en refroidissement
-    followers_count: Abonnés au moment du déplacement
+      on_cooldown: Vous êtes soumis·e à un temps de rechargement
+    followers_count: Abonné·e·s au moment du déménagement
     incoming_migrations: Déplacement d'un compte différent
-    incoming_migrations_html: Pour passer d'un autre compte à celui-ci, vous devez d'abord <a href="%{path}">créer un alias de compte</a>.
-    moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonnés sont déplacés.
+    incoming_migrations_html: Pour déménager d'un autre compte à celui-ci, vous devez d'abord <a href="%{path}">créer un alias de compte</a>.
+    moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonné·e·s sont en train d'être déplacé·e·s.
     not_redirecting: Votre compte n'est pas redirigé vers un autre compte actuellement.
     on_cooldown: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
     past_migrations: Migrations passées
     proceed_with_move: Migrer les abonné·e·s
     redirecting_to: Votre compte est redirigé vers %{acct}.
-    set_redirect: Définir redirection
+    set_redirect: Définir la redirection
     warning:
       backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
@@ -849,7 +849,7 @@ fr:
   notification_mailer:
     digest:
       action: Voir toutes les notifications
-      body: Voici un bref résumé des messages que vous auriez raté depuis votre dernière visite le %{since}
+      body: Voici un bref résumé des messages que vous avez raté depuis votre dernière visite le %{since}
       mention: "%{name} vous a mentionné⋅e dans :"
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
@@ -860,7 +860,7 @@ fr:
       title: Pendant votre absence…
     favourite:
       body: '%{name} a ajouté votre pouet à ses favoris :'
-      subject: "%{name} a ajouté votre post à ses favoris"
+      subject: "%{name} a ajouté votre pouet à ses favoris"
       title: Nouveau favori
     follow:
       body: "%{name} vous suit !"
@@ -869,7 +869,7 @@ fr:
     follow_request:
       action: Gérer les demandes d’abonnement
       body: "%{name} a demandé à vous suivre"
-      subject: 'Abonné⋅es en attente : %{name}'
+      subject: 'Abonné⋅e·s en attente : %{name}'
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
@@ -905,7 +905,7 @@ fr:
       expired: Ce sondage est déjà terminé
       over_character_limit: ne peuvent être plus long que %{max} caractères chacun
       too_few_options: doit avoir plus qu’une proposition
-      too_many_options: ne peut contenir plus que %{max} propositions
+      too_many_options: ne peut contenir plus de %{max} propositions
   preferences:
     other: Autre
     posting_defaults: Paramètres par défaut des pouets
@@ -922,9 +922,9 @@ fr:
     remove_selected_domains: Supprimer tous les abonné·e·s des domaines sélectionnés
     remove_selected_followers: Supprimer les abonné·e·s sélectionnés
     remove_selected_follows: Cesser de suivre les utilisateur·rice·s sélectionné·e·s
-    status: Statut du compte
+    status: État du compte
   remote_follow:
-    acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez vous abonner
+    acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez effectuer cette action
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Confirmer l’abonnement
