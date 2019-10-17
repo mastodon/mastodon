@@ -929,7 +929,7 @@ fr:
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Confirmer l’abonnement
     prompt: 'Vous allez suivre :'
-    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur où vous vous êtes inscrit, et nous devons donc vous rediriger vers votre serveur de base en premier."
+    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur sur lequel vous vous êtes inscrit·e, et nous devons donc vous rediriger vers votre serveur de base en premier."
   remote_interaction:
     favourite:
       proceed: Confirmer l’ajout aux favoris
@@ -992,7 +992,7 @@ fr:
     appearance: Apparence
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
-    delete: Suppression de compte
+    delete: Suppression du compte
     development: Développement
     edit_profile: Modifier le profil
     export: Export de données
@@ -1024,7 +1024,7 @@ fr:
       other: 'contient les hashtags désactivés : %{tags}'
     language_detection: Détecter automatiquement la langue
     open_in_web: Ouvrir sur le web
-    over_character_limit: limite de caractères dépassée de %{max} caractères
+    over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       limit: Vous avez déjà épinglé le nombre maximum de pouets
       ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
@@ -1032,7 +1032,7 @@ fr:
       reblog: Un partage ne peut pas être épinglé
     poll:
       total_people:
-        one: "%{count} personnes"
+        one: "%{count} personne"
         other: "%{count} personnes"
       total_votes:
         one: "%{count} vote"
