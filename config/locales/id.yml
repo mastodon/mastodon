@@ -432,10 +432,26 @@ id:
         all: Kepada semua orang
         disabled: Tidak kepada siapa pun
         title: Lihat blokir domain
+      hero:
+        desc_html: Ditampilkan di halaman depan. Direkomendasikan minimal 600x100px. Jika tidak diatur, kembali ke server gambar kecil
+      mascot:
+        desc_html: Ditampilkan di banyak halaman. Direkomendasikan minimal 293x205px. Jika tidak diatur, kembali ke maskot bawaan
+        title: Gambar maskot
+      peers_api_enabled:
+        desc_html: Nama domain server ini dijumpai di fediverse
+        title: Terbitkan daftar server yang ditemukan
+      preview_sensitive_media:
+        desc_html: Pratinjau tautan pada situsweb lain akan menampilkan gambar kecil meski media ditandai sebagai sensitif
+        title: Tampilkan media sensitif di pratinjau OpenGraph
+      profile_directory:
+        desc_html: Izinkan pengguna untuk ditemukan
+        title: Aktifkan direktori profil
       registrations:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
+        deletion:
+          desc_html: Izinkan siapapun untuk menghapus akun miliknya
         min_invite_role:
           disabled: Tidak ada satu pun
           title: Izinkan undangan oleh
@@ -528,6 +544,7 @@ id:
   aliases:
     add_new: Buat alias
   appearance:
+    advanced_web_interface: Antar muka web tingkat lanjut
     animations_and_accessibility: Animasi dan aksesibilitas
     confirmation_dialogs: Dialog konfirmasi
     sensitive_content: Konten sensitif
@@ -539,11 +556,17 @@ id:
     view_profile: Lihat profil
     view_status: Lihat status
   applications:
+    created: Aplikasi berhasil dibuat
+    destroyed: Aplikasi berhasil dihapus
     invalid_url: URL tidak sesuai
+    regenerate_token: Buat ulang token akses
+    token_regenerated: Token akses berhasil dibuat ulang
+    warning: Hati-hati dengan data ini. Jangan bagikan kepada siapapun!
     your_token: Token akses Anda
   auth:
     apply_for_account: Meminta undangan
     change_password: Kata sandi
+    checkbox_agreement_html: Saya setuju dengan <a href="%{rules_path}" target="_blank">peraturan server</a> dan <a href="%{terms_path}" target="_blank">ketentuan layanan</a>
     delete_account: Hapus akun
     didnt_get_confirmation: Tidak menerima petunjuk konfirmasi?
     forgot_password: Lupa kata sandi?
