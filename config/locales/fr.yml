@@ -198,14 +198,14 @@ fr:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
         confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
-        create_account_warning: "%{name} a envoyé une attention à %{target}"
+        create_account_warning: "%{name} a envoyé un avertissement à %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
-        create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
+        create_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste noire"
         demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
         destroy_custom_emoji: "%{name} a détruit l’émoticône %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
-        destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
+        destroy_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
         disable_2fa_user: "%{name} a désactivé l’authentification à deux facteurs pour l’utilisateur·ice %{target}"
         disable_custom_emoji: "%{name} a désactivé l’émoji %{target}"
@@ -245,18 +245,18 @@ fr:
       enabled: Activé
       enabled_msg: Émoji activé avec succès
       image_hint: PNG de moins de 50 Ko
-      list: Liste
+      list: Lister
       listed: Listé
       new:
         title: Ajouter un nouvel émoji personnalisé
-      overwrite: Réécrire
+      overwrite: Écraser
       shortcode: Raccourci
       shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
       title: Émojis personnalisés
       uncategorized: Non catégorisé
-      unlist: Délisté
+      unlist: Délister
       unlisted: Délisté
-      update_failed_msg: N’a pas pu mettre à jour cet émoji
+      update_failed_msg: Cet émoji n'a pas pu être mis à jour
       updated_msg: Émoji mis à jour avec succès !
       upload: Téléverser
     dashboard:
@@ -311,8 +311,8 @@ fr:
       private_comment: Commentaire privé
       private_comment_hint: Commenter sur cette limitation de domaine pour informer les modérateurs internes.
       public_comment: Commentaire public
-      public_comment_hint: Commentaire sur cette limitation de domaine pour le grand public, si la visibilité publique de la liste des limitations de domaine est activée.
-      reject_media: Fichiers média rejetés
+      public_comment_hint: Commentaire sur cette limitation de domaine pour le grand public, si l'affichage publique de la liste des limitations de domaine est activée.
+      reject_media: Rejeter les fichiers média
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
       reject_reports: Rejeter les signalements
       reject_reports_hint: Ignorez tous les signalements provenant de ce domaine. Ne concerne pas les suspensions
@@ -326,8 +326,8 @@ fr:
           one: Un compte affecté dans la base de données
           other: "%{count} comptes affectés dans la base de données"
         retroactive:
-          silence: Annuler le masquage sur tous les comptes existants pour ce domaine
-          suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
+          silence: Annuler le masquage des comptes existants affectés pour ce domaine
+          suspend: Annuler la suspension des comptes existants affectés pour ce domaine
         title: Annuler le blocage de domaine pour %{domain}
         undo: Annuler
       undo: Annuler le bloqueur de domaine
@@ -379,10 +379,10 @@ fr:
       description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets publics entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyen serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
       disable: Désactiver
       disabled: Désactivé
-      enable: Activé
+      enable: Activer
       enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
       enabled: Activé
-      inbox_url: URL de relais
+      inbox_url: URL du relais
       pending: En attente de l’approbation du relai
       save_and_enable: Sauvegarder et activer
       setup: Paramétrer une connexion de relais
@@ -424,7 +424,7 @@ fr:
       updated_at: Mis à jour
     settings:
       activity_api_enabled:
-        desc_html: Nombre de statuts affichés localement, d’utilisateur·ice·s actif·ve·s et de nouveaux enregistrements dans les registres hebdomadaires
+        desc_html: Nombre de statuts affichés localement, d’utilisateur·ice·s actif·ve·s et de nouveaux·elles utilisateur·ice·s regroupé·e·s par semaine
         title: Publier des statistiques agrégées sur l’activité des utilisateur·ice·s
       bootstrap_timeline_accounts:
         desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
