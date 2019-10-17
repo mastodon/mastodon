@@ -5157,10 +5157,6 @@ a.status-card.compact:hover {
     background: darken($ui-base-color, 8%);
     border-top: 1px solid lighten($ui-base-color, 4%);
     border-radius: 0 0 4px 4px;
-
-    .video-player__download__icon {
-      color: inherit;
-    }
   }
 }
 
@@ -5275,6 +5271,10 @@ a.status-card.compact:hover {
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
+
+    .video-player__download__icon {
+      color: inherit;
+    }
   }
 
   &__buttons {
