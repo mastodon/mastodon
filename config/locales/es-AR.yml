@@ -735,6 +735,7 @@ es-AR:
     resources: Recursos
     trending_now: Tendencia ahora
   generic:
+    all: Todas
     changes_saved_msg: '¡Cambios guardados exitosamente!'
     copy: Copiar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
@@ -784,7 +785,36 @@ es-AR:
     expires_in:
       '1800': 30 minutos
       '21600': 6 horas
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '3600': 1 hora
+      '43200': 12 horas
+      '604800': 1 semana
+      '86400': 1 día
+    expires_in_prompt: Nunca
+    generate: Generar enlace de invitación
+    invited_by: 'Fuiste invitado por:'
+    max_uses:
+      one: 1 uso
+      other: "%{count} usos"
+    max_uses_prompt: Sin límite
+    prompt: Generar y compartir enlaces con otros para ofrecer acceso a este servidor
+    table:
+      expires_at: Vence
+      uses: Usos
+    title: Invitar a gente
+  lists:
+    errors:
+      limit: Alcanzaste el máximo de listas
+  media_attachments:
+    validations:
+      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      too_many: No se pueden adjuntar más de 4 archivos
+  migrations:
+    acct: Mudada a
+    cancel: Cancelar redireccionamiento
+    cancel_explanation: Al cancelar el redireccionamiento se reactivará tu cuenta actual, pero no recuperarás los seguidores que hayan sido mudados a la otra cuenta.
+    cancelled_msg: Se canceló exitosamente el redireccionamiento.
+    errors:
+      already_moved: es la misma cuenta a la que ya te mudaste
+      missing_also_known_as: no está haciendo referencia a esta cuenta
+      move_to_self: no puede ser la cuenta actual
+      not_found: no se pudo encontrar
