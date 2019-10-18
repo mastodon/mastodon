@@ -818,3 +818,25 @@ es-AR:
       missing_also_known_as: no está haciendo referencia a esta cuenta
       move_to_self: no puede ser la cuenta actual
       not_found: no se pudo encontrar
+      on_cooldown: Estás en receso intermedio
+    followers_count: Seguidores al momento de mudarse
+    incoming_migrations: Mudarse desde una cuenta diferente
+    incoming_migrations_html: Para mudarte de otra cuenta a esta, primero necesitás <a href="%{path}">crear un alias de la cuenta</a>.
+    moved_msg: Ahora tu cuenta está siendo redirigida a %{acct} y tus seguidores se están mudando.
+    not_redirecting: Actualmente, tu cuenta no está siendo redirigida a ninguna otra cuenta.
+    on_cooldown: Recientemente mudaste tu cuenta. Esta función estará disponible de nuevo en %{count} días.
+    past_migrations: Mudanzas pasadas
+    proceed_with_move: Mudar seguidores
+    redirecting_to: Tu cuenta está siendo redirigida a %{acct}.
+    set_redirect: Establecer redireccionamiento
+    warning:
+      backreference_required: La nueva cuenta debe ser configurada primero para hacer referencia a esta
+      before: 'Antes de proceder, por favor, leé estas notas cuidadosamente:'
+      cooldown: Después de mudarte hay un período de receso intermedio durante el cual no podrás volver a mudarte
+      disabled_account: Tu cuenta actual no será completamente utilizable luego de esto. Sin embargo, tendrás acceso a la exportación de datos así como a la reactivación.
+      followers: Esta acción mudará a todos los seguidores de la cuenta actual a la nueva cuenta
+      only_redirect_html: Alternativamente, podés <a href="%{path}">poner solamente un redireccionamiento en tu perfil</a>.
+      other_data: No se mudarán otros datos automáticamente
+      redirect: El perfil de tu cuenta actual se actualizará con un aviso de redireccionamiento y será excluido de las búsquedas
+  moderation:
+    title: Moderación
