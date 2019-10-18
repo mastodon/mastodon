@@ -28,7 +28,7 @@ services:
         GID: 1000
         RAILS_ENV: "development"
         NODE_ENV: "development"
-        BUNDLE_WITHOUT: "''"
+        BUNDLE_WITHOUT: ""
 
     image: catgram-dev
     env_file: .env.development
