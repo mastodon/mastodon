@@ -2,9 +2,14 @@
 gl:
   simple_form:
     hints:
+      account_alias:
+        acct: Indica o usuaria@servidor da conta desde a cal queres migrar
+      account_migration:
+        acct: Indica o usuaria@servidor da conta a cal queres migrar
       account_warning_preset:
-        text: Vostede pode utilizar dar formato ao toot, como URLs, etiquetas e mencións
+        text: Pódeslle dar formato ao toot, como URLs, etiquetas e mencións
       admin_account_action:
+        include_statuses: A usuaria verá que toots causaron a acción da moderación ou aviso
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
         text_html: Optativo. Pode utilizar formato no toot. Pode <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
         type_html: Escolla que facer con <strong>%{acct}</strong>
@@ -14,8 +19,10 @@ gl:
         avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
+        current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
+        current_username: Para confirmar, introduce o nome de usuaria da conta actual
         digest: Enviar só tras un longo período de inactividade e só si recibeu algunha mensaxe persoal na súa ausencia
-        discoverable_html: O <a href="%{path}" target="_blank">directorio</a> permite atopar contas en función de intereses e actividade. Require ter ao menos %{min_followers} seguidoras
+        discoverable: O directorio de perfil é outro xeito para que a túa conta alcance unha maior audiencia
         email: Enviaráselle un correo-e de confirmación
         fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
@@ -34,16 +41,24 @@ gl:
         setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
         setting_show_application: A aplicación que está a utilizar para enviar toots mostrarase na vista detallada do toot
+        setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esborranchando todos os detalles
+        setting_use_pending_items: Ocultar as actualizacións da liña temporal tras un click no lugar de desprazar automáticamente os comentarios
         username: O seu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
+      domain_allow:
+        domain: Este dominio estará en disposición de obter datos desde este servidor e datos de entrada a el poderán ser procesados e gardados
       featured_tag:
         name: 'Podería utilizar algunha de estas:'
+      form_challenge:
+        current_password: Estás entrando nun área segura
       imports:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
       invite_request:
         text: Esto axudaranos a revisar a súa aplicación
       sessions:
-        otp: 'Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación:'
+        otp: 'Introduza o código de dobre-factor creado pola aplicación do seu móbil ou utilice un dos seus códigos de recuperación:'
+      tag:
+        name: Só pode cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
     labels:
@@ -51,9 +66,14 @@ gl:
         fields:
           name: Etiqueta
           value: Contido
+      account_alias:
+        acct: Xestina a conta antiga
+      account_migration:
+        acct: Xestiona a nova conta
       account_warning_preset:
         text: Texto preestablecido
       admin_account_action:
+        include_statuses: Incluír toots reportados no correo
         send_email_notification: Notificar a usuaria por correo-e
         text: Aviso personalizado
         type: Acción
@@ -86,7 +106,7 @@ gl:
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
         note: Sobre vostede
-        otp_attempt: Código de Doble-Factor
+        otp_attempt: Código de Dobre-Factor
         password: Contrasinal
         phrase: Palabra chave ou frase
         setting_advanced_layout: Activar interface web avanzada
@@ -108,7 +128,10 @@ gl:
         setting_show_application: Mostrar a aplicación utilizada para tootear
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
         setting_theme: Decorado da instancia
+        setting_trends: Mostrar as tendencias de hoxe
         setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
+        setting_use_blurhash: Mostrar gradientes coloridos para medios ocultos
+        setting_use_pending_items: Modo lento
         severity: Severidade
         type: Tipo de importación
         username: Nome de usuaria
@@ -120,6 +143,8 @@ gl:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
+      invite:
+        comment: Comentar
       invite_request:
         text: Por que quere unirse?
       notification_emails:
@@ -131,6 +156,12 @@ gl:
         pending_account: Enviar correo-e cando unha nova conta precisa revisión
         reblog: Enviar un correo cando alguén promociona a súa mensaxe
         report: Enviar un correo cando se envíe un novo informe
+        trending_tag: Enviar correo cando unha etiqueta non revisada é tendencia
+      tag:
+        listable: Permitir a esta etiqueta aparecer no directorio de perfil
+        name: Etiqueta
+        trendable: Permitir a esta etiqueta aparecer baixo Tendencias
+        usable: Permitir que os toots utilicen esta etiqueta
     'no': Non
     recommended: Recomendado
     required:

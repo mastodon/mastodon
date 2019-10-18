@@ -12,7 +12,7 @@
 class EmailDomainBlock < ApplicationRecord
   include DomainNormalizable
 
-  validates :domain, presence: true, uniqueness: true
+  validates :domain, presence: true, uniqueness: true, domain: true
 
   def self.block?(email)
     _, domain = email.split('@', 2)

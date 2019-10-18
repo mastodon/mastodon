@@ -17,6 +17,8 @@
 #
 
 class Report < ApplicationRecord
+  include Paginable
+
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
   belongs_to :action_taken_by_account, class_name: 'Account', optional: true
@@ -26,6 +28,7 @@ class Report < ApplicationRecord
 
   scope :unresolved, -> { where(action_taken: false) }
   scope :resolved,   -> { where(action_taken: true) }
+  scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].each_with_object({}) { |k, h| h[k] = { user: [:invite_request, :invite] } }) }
 
   validates :comment, length: { maximum: 1000 }
 
@@ -40,7 +43,7 @@ class Report < ApplicationRecord
   end
 
   def statuses
-    Status.where(id: status_ids).includes(:account, :media_attachments, :mentions)
+    Status.with_discarded.where(id: status_ids).includes(:account, :media_attachments, :mentions)
   end
 
   def media_attachments
@@ -56,6 +59,7 @@ class Report < ApplicationRecord
   end
 
   def resolve!(acting_account)
+    RemovalWorker.push_bulk(Status.with_discarded.discarded.where(id: status_ids).pluck(:id)) { |status_id| [status_id, { immediate: true }] }
     update!(action_taken: true, action_taken_by_account_id: acting_account.id)
   end
 

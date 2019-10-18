@@ -15,6 +15,15 @@ describe Settings::DeletesController do
         get :show
         expect(response).to have_http_status(200)
       end
+
+      context 'when suspended' do
+        let(:user) { Fabricate(:user, account_attributes: { username: 'alice', suspended_at: Time.now.utc }) }
+
+        it 'returns http forbidden' do
+          get :show
+          expect(response).to have_http_status(403)
+        end
+      end
     end
 
     context 'when not signed in' do
@@ -48,6 +57,14 @@ describe Settings::DeletesController do
 
         it 'marks account as suspended' do
           expect(user.account.reload).to be_suspended
+        end
+
+        context 'when suspended' do
+          let(:user) { Fabricate(:user, account_attributes: { username: 'alice', suspended_at: Time.now.utc }) }
+
+          it 'returns http forbidden' do
+            expect(response).to have_http_status(403)
+          end
         end
       end
 

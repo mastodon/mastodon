@@ -114,6 +114,12 @@ ca:
       application:
         title: OAuth autorització requerida
     scopes:
+      admin:read: llegir totes les dades en el servidor
+      admin:read:accounts: llegir l'informació sensible de tots els comptes
+      admin:read:reports: llegir l'informació sensible de tots els informes i comptes reportats
+      admin:write: modificar totes les dades en el servidor
+      admin:write:accounts: fer l'acció de moderació en els comptes
+      admin:write:reports: fer l'acció de moderació en els informes
       follow: seguir, blocar, desblocar i deixar de seguir comptes
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte

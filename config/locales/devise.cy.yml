@@ -12,6 +12,7 @@ cy:
       last_attempt: Mae gennych un cyfle arall cyn i'ch cyfrif gael ei gloi.
       locked: Mae eich cyfrif wedi ei gloi.
       not_found_in_database: "%{authentication_keys} neu gyfrinair annilys."
+      pending: Mae eich cyfrif dal o dan adolygiad.
       timeout: Mae eich sesiwn wedi dod i ben. Mewngofnodwch eto i barhau.
       unauthenticated: Mae angen i chi fewngofnodi neu gofrestru cyn parhau.
       unconfirmed: Mae rhaid i chi gadarnhau eich cyfeiriad e-bost cyn parhau.
@@ -20,6 +21,7 @@ cy:
         action: Gwiriwch eich cyfeiriad e-bost
         action_with_app: Cadarnhau a dychwelyd i %{app}
         explanation: Yr ydych wedi creu cyfrif ar %{host} gyda'r cyfrif e-bost hwn. Dim ond un clic sydd angen i'w wneud yn weithredol. Os nad chi oedd hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda.
+        explanation_when_pending: Rydych wedi gwneud cais am wahoddiad i %{host} gyda'r ebost hyn. Unwaith rydych wedi cadarnhau eich ebost, byddem yn adolygu eich cais. Ni fyddwch yn gallu mewngofnodi tan yr amser hono. Os caiff eich cais ei wrthod, felly nid oes angen unrhyw gweithred pellach o chi. Os nad oeddech wedi gwneud y cais hyn, anwybyddu'r ebost hon, os gwelwch yn dda.
         extra_html: Gwnewch yn siŵr i edrych ar <a href="%{terms_path}">reolau'r achos</a> a <a href="%{policy_path}">ein telerau gwasanaeth</a>.
         subject: 'Mastodon: Canllawiau cadarnhau i %{instance}'
         title: Gwirio cyfeiriad e-bost
@@ -44,6 +46,18 @@ cy:
         extra: Os na wnaethoch gais am hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda. Ni fydd eich cyfrinair yn newid nes i chi fynd at y ddolen uchod a chreu un newydd.
         subject: 'Mastodon: Ailosod cyfarwyddiadau cyfrinair'
         title: Ailosod cyfrinair
+      two_factor_disabled:
+        explanation: Mae dilysu dau ffactor ar gyfer eich cyfrif wedi'i anablu. Mae mewngofnodi bellach yn bosibl gan ddefnyddio cyfeiriad e-bost a chyfrinair yn unig.
+        subject: 'Mastodon: Dilysu dau ffactor yn anabl'
+        title: Dilysu dau ffactor yn anabl
+      two_factor_enabled:
+        explanation: Mae dilysu dau ffactor wedi'i alluogi ar gyfer eich cyfrif. Bydd angen tocyn a gynhyrchir gan yr ap TOTP pâr i fewngofnodi.
+        subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
+        title: Mae dilysu dau ffactor wedi'i alluogi
+      two_factor_recovery_codes_changed:
+        explanation: Mae'r codau adfer blaenorol wedi'u hannilysu a chynhyrchwyd rhai newydd.
+        subject: 'Mastodon: Mae codau adfer dau ffactor wedi''u hadfywio'
+        title: Newidiodd codau adfer 2FA
       unlock_instructions:
         subject: 'Mastodon: Cyfarwyddiadau datgloi'
     omniauth_callbacks:
@@ -60,6 +74,7 @@ cy:
       signed_up: Croeso! Rydych wedi cofrestru'n llwyddiannus.
       signed_up_but_inactive: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos nid yw eich cyfrif wedi ei actifadu eto.
       signed_up_but_locked: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos fod eich cyfrif wedi ei gloi.
+      signed_up_but_pending: Mae neges a'ch cysylltiad cadarnhau wedi cael ei hanfon i'ch ebost. Ar ôl i chi ei glicio, byddem yn adolygu eich cais. Byddwch yn derbyn hysbysiad os caiff ei gymeradwyo.
       signed_up_but_unconfirmed: Mae neges gyda dolen cadarnhau wedi ei anfon i'ch cyfeiriad e-bost. Dilynwch y ddolen er mwyn actifadu eich cyfrif. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
       update_needs_confirmation: Rydych wedi diweddaru eich cyfrif yn llwyddiannus, ond mae angen i ni wirio'ch cyfeiriad e-bost newydd. Edrychwch ar eich e-byst a dilynwch y ddolen gadarnhau er mwyn cadarnhau eich cyfeiriad e-bost newydd. Edrychwch ar eich ffolder sbam os na dderbynioch chi yr e-bost hwn.
       updated: Mae eich cyfrif wedi ei ddiweddaru yn llwyddiannus.

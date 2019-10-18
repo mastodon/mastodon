@@ -2,11 +2,12 @@
 
 class ActivityPub::ProcessAccountService < BaseService
   include JsonLdHelper
+  include DomainControlHelper
 
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json, options = {})
-    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id'])
+    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id']) || domain_not_allowed?(domain)
 
     @options     = options
     @json        = json
@@ -55,7 +56,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.domain       = @domain
     @account.private_key  = nil
     @account.suspended_at = domain_block.created_at if auto_suspend?
-    @account.silenced_at = domain_block.created_at if auto_silence?
+    @account.silenced_at  = domain_block.created_at if auto_silence?
   end
 
   def update_account
@@ -82,6 +83,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
     @account.actor_type              = actor_type
+    @account.discoverable            = @json['discoverable'] || false
   end
 
   def set_fetchable_attributes!
@@ -205,7 +207,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def domain_block
     return @domain_block if defined?(@domain_block)
-    @domain_block = DomainBlock.find_by(domain: @domain)
+    @domain_block = DomainBlock.rule_for(@domain)
   end
 
   def key_changed?

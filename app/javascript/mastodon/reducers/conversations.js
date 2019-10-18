@@ -7,7 +7,10 @@ import {
   CONVERSATIONS_FETCH_FAIL,
   CONVERSATIONS_UPDATE,
   CONVERSATIONS_READ,
+  CONVERSATIONS_DELETE_SUCCESS,
 } from '../actions/conversations';
+import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'mastodon/actions/accounts';
+import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
 import compareId from '../compare_id';
 
 const initialState = ImmutableMap({
@@ -74,6 +77,10 @@ const expandNormalizedConversations = (state, conversations, next, isLoadingRece
   });
 };
 
+const filterConversations = (state, accountIds) => {
+  return state.update('items', list => list.filterNot(item => item.get('accounts').some(accountId => accountIds.includes(accountId))));
+};
+
 export default function conversations(state = initialState, action) {
   switch (action.type) {
   case CONVERSATIONS_FETCH_REQUEST:
@@ -96,6 +103,13 @@ export default function conversations(state = initialState, action) {
 
       return item;
     }));
+  case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
+    return filterConversations(state, [action.relationship.id]);
+  case DOMAIN_BLOCK_SUCCESS:
+    return filterConversations(state, action.accounts);
+  case CONVERSATIONS_DELETE_SUCCESS:
+    return state.update('items', list => list.filterNot(item => item.get('id') === action.id));
   default:
     return state;
   }

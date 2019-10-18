@@ -14,7 +14,7 @@ class ActivityPub::UpdatePollSerializer < ActivityPub::Serializer
   end
 
   def actor
-    ActivityPub::TagManager.instance.uri_for(object)
+    ActivityPub::TagManager.instance.uri_for(object.account)
   end
 
   def to
