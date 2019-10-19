@@ -38,13 +38,15 @@ class MediaAttachment < ApplicationRecord
 
   MAX_DESCRIPTION_LENGTH = 1_500
 
-  IMAGE_LIMIT = 10.megabytes
-  VIDEO_LIMIT = 40.megabytes
+  # IMAGE_LIMIT = 10.megabytes
+  # VIDEO_LIMIT = 40.megabytes
+  IMAGE_LIMIT = ((ENV['IMAGE_LIMIT'] || 10).to_i).megabytes
+  VIDEO_LIMIT = ((ENV['VIDEO_LIMIT'] || 40).to_i).megabytes
 
   MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
   MAX_VIDEO_FRAME_RATE   = 60
 
-  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif).freeze
+  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif .webp .heif .heic).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
   AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp .wma).freeze
 
@@ -55,7 +57,8 @@ class MediaAttachment < ApplicationRecord
     small
   ).freeze
 
-  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif).freeze
+  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif image/webp image/heif image/heic).freeze
+  IMAGE_CONVERTIBLE_MIME_TYPES = %w(image/webp image/heif image/heic).freeze
   VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
   AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/ogg audio/vorbis audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
@@ -158,12 +161,6 @@ class MediaAttachment < ApplicationRecord
   GLOBAL_CONVERT_OPTIONS = {
     all: '-quality 90 -strip +set modify-date +set create-date',
   }.freeze
-
-  IMAGE_LIMIT = ((ENV['IMAGE_LIMIT'] || 10).to_i).megabytes
-  VIDEO_LIMIT = ((ENV['VIDEO_LIMIT'] || 40).to_i).megabytes
-
-  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
-  MAX_VIDEO_FRAME_RATE   = 60
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
@@ -299,6 +296,8 @@ class MediaAttachment < ApplicationRecord
         [:transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
         [:image_extractor, :transcoder, :type_corrector]
+      elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(instance.file_content_type)
+        [:img_converter, :lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       else
         [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       end
