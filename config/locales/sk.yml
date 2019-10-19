@@ -827,6 +827,7 @@ sk:
     followers_count: Následovatelia v čase presunu
     incoming_migrations: Presúvam sa z iného účtu
     not_redirecting: Tvoj účet v súčasnosti nepresmerováva na žiaden iný účet.
+    on_cooldown: Účet si si presunul/a len nedávno. Táto vymoženosť bude znovu sprístupnená za %{count} dní.
     past_migrations: Predošlé presuny
     proceed_with_move: Presuň sledovateľov
     redirecting_to: Tvoj účet presmerováva na %{acct}.
@@ -834,7 +835,9 @@ sk:
     warning:
       backreference_required: Nový účet musí byť najskôr nastavený tak, aby spätne odkazoval na tento
       before: 'Než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
+      only_redirect_html: Ako alternatívu, môžeš <a href="%{path}">iba nastaviť presmerovanie na tvoj profil</a>.
       other_data: Žiadne iné dáta nebudú presunuté automaticky
+      redirect: Tvoj súčastný účet bude aktualizovaný s oznamom o presunutí a bude vylúčený z vyhľadávania
   moderation:
     title: Moderovanie
   notification_mailer:
