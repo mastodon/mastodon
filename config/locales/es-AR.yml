@@ -840,3 +840,50 @@ es-AR:
       redirect: El perfil de tu cuenta actual se actualizará con un aviso de redireccionamiento y será excluido de las búsquedas
   moderation:
     title: Moderación
+  notification_mailer:
+    digest:
+      action: Ver todas las notificaciones
+      body: Acá tenés un resumen de los mensajes que te perdiste desde tu última visita, el %{since}
+      mention: "%{name} te mencionó en:"
+      new_followers_summary:
+        one: Además, ¡ganaste un nuevo seguidor mientras estabas ausente! ¡Esa!
+        other: Además, ¡ganaste %{count} nuevos seguidores mientras estabas ausente! ¡Esssa!
+      subject:
+        one: "1 nueva notificación desde tu última visita \U0001F418"
+        other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
+      title: En tu ausencia…
+    favourite:
+      body: 'Tu estado fue marcado como favorito por %{name}:'
+      subject: "%{name} marcó como favorito tu estado"
+      title: Nuevo favorito
+    follow:
+      body: "¡%{name} te está siguiendo!"
+      subject: "%{name} te está siguiendo"
+      title: Nuevo seguidor
+    follow_request:
+      action: Administrar solicitudes de seguimiento
+      body: "%{name} solicitó seguirte"
+      subject: 'Seguidor pendiente: %{name}'
+      title: Nueva solicitud de seguimiento
+    mention:
+      action: Responder
+      body: 'Fuiste mencionado por %{name} en:'
+      subject: Fuiste mencionado por %{name}
+      title: Nueva mención
+    reblog:
+      body: '%{name} retooteó tu estado:'
+      subject: "%{name} retooteó tu estado"
+      title: Nuevo retoot
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: m
+          trillion: T
+  pagination:
+    newer: Más recientes
+    next: Siguiente
