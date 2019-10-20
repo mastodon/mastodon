@@ -504,8 +504,19 @@ kk:
   aliases:
     add_new: Алиас қосу
     created_msg: Жаңа алиас сәтті жасалды. Енді сіз ескі аккаунттан көшіруді бастай аласыз.
+    deleted_msg: Алиасты сәтті алып тастаңыз. Осы есептік жазбадан екіншіге ауысу мүмкін болмайды.
+    hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
+    remove: Алиас сілтемесін алып тастау
+  appearance:
+    advanced_web_interface: Кеңейтілген веб-интерфейс
+    advanced_web_interface_hint: 'Егер сіз бүкіл экранның енін пайдаланғыңыз келсе, кеңейтілген веб-интерфейс сізге көптеген ақпаратты бір уақытта қалағанша көру үшін әр түрлі бағандарды конфигурациялауға мүмкіндік береді: негізгі бет, ескертпелер, жаһандық желі, тізім мен хэштегтерді.'
+    animations_and_accessibility: Анимациялар және қолжетімділік
+    confirmation_dialogs: Пікірталас диалогтары
+    discovery: Пікірталас
+    sensitive_content: Нәзік контент
   application_mailer:
     notification_preferences: Change e-mail prеferences
+    salutation: "%{name},"
     settings: 'Change e-mail preferеnces: %{link}'
     view: 'Viеw:'
     view_profile: Viеw Profile
@@ -519,9 +530,16 @@ kk:
     warning: Be very carеful with this data. Never share it with anyone!
     your_token: Your access tokеn
   auth:
+    apply_for_account: Шақыруды сұрау
     change_password: Құпиясөз
+    checkbox_agreement_html: Мен <a href="%{rules_path}" target="_blank">ережелер</a> мен <a href="%{terms_path}" target="_blank">шарттарды</a> қабылдаймын
+    checkbox_agreement_without_rules_html: Мен <a href="%{terms_path}" target="_blank">шарттармен</a> келісемін
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
+    description:
+      prefix_invited_by_user: "@%{name} сізді Желіге қосылуға шақырады!"
+      prefix_sign_up: Желіге бүгін қосылыңыз!
+      suffix: Аккаунтыңызбен сіз кез-келген Mastodon серверінен және желідегі басқа адамдарды оқып, пост жаза аласыз және хат алмаса аласыз!
     didnt_get_confirmation: Растау хаты келмеді ме?
     forgot_password: Құпиясөзіңізді ұмытып қалдыңыз ба?
     invalid_reset_password_token: Құпиясөз қайтып алу қолжетімді емес немесе мерзімі аяқталған. Қайтадан сұратыңыз.
@@ -534,10 +552,13 @@ kk:
       cas: САS
       saml: SАML
     register: Тіркелу
+    registration_closed: "%{instance} жаңа мүшелер қабылдамайды"
     resend_confirmation: Растау нұсқаулықтарын жіберу
     reset_password: Құпиясөзді қалпына келтіру
     security: Қауіпсіздік
     set_new_password: Жаңа құпиясөз қою
+    setup:
+      email_below_hint_html: Егер төмендегі электрондық пошта мекенжайы дұрыс болмаса, оны осында өзгертіп, жаңа растау электрондық хатын ала аласыз.
   authorize_follow:
     already_following: Бұл аккаунтқа жазылғансыз
     error: Өкінішке орай, қашықтағы тіркелгіні іздеуде қате пайда болды
