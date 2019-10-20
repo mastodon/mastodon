@@ -442,6 +442,9 @@ kk:
         all: Бәріне
         disabled: Ешкімге
         title: Домен блоктарын көрсету
+        users: Жергілікті қолданушыларға
+      domain_blocks_rationale:
+        title: Дәлелді көрсету
       hero:
         desc_html: Бастапқы бетінде көрсетіледі. Кем дегенде 600x100px ұсынылады. Орнатылмаған кезде, сервердің нобайына оралады
         title: Қаһарман суреті
@@ -467,6 +470,12 @@ kk:
         min_invite_role:
           disabled: Ешкім
           title: Allow шақырулар by
+      registrations_mode:
+        modes:
+          approved: Тіркелу үшін мақұлдау қажет
+          none: Ешкім тіркеле алмайды
+          open: Бәрі тіркеле алады
+        title: Тіркелулер
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show жергілікті toots.
         title: Show known fediverse on timeline превью
@@ -486,6 +495,9 @@ kk:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML тег
         title: Қолдану шарттары мен ережелер
       site_title: Сервер аты
+      spam_check_enabled:
+        desc_html: Мастодон бірнеше рет қажетсіз хабарламаларды жіберетін есептік жазбаларды автоматты түрде жасай алады. Жалған позитивтер болуы мүмкін.
+        title: Спамға қарсы автоматика
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px рекоменделеді
         title: Сервер суреті
@@ -493,12 +505,19 @@ kk:
         desc_html: Display public timeline on лендинг пейдж
         title: Таймлайн превьюі
       title: Сайт баптаулары
+      trendable_by_default:
+        desc_html: Бұрын тыйым салынбаған хэштегтерге әсер етеді
+        title: Хэштегтерге алдын-ала шолусыз тренд беруге рұқсат етіңіз
+      trends:
+        desc_html: Бұрын қарастырылған хэштегтерді қазіргі уақытта трендте көпшілікке көрсету
+        title: Тренд хештегтер
     statuses:
       back_to_account: Аккаунт бетіне оралы
       batch:
         delete: Delеte
         nsfw_off: Сезімтал емес ретінде белгіле
         nsfw_on: Сезімтал ретінде белгіле
+      deleted: Өшірілді
       failed_to_execute: Орындалмады
       media:
         title: Медиa
@@ -507,6 +526,12 @@ kk:
       title: Аккаунт статустары
       with_media: Медиамен
     tags:
+      accounts_today: Бүгін қолданылғандар
+      accounts_week: Осы аптада қолданылғандар
+      breakdown: Бүгінгі пайдалану көздері бойынша бөлу
+      context: Контекст
+      directory: Бөлім ішінде
+      in_directory: "%{count} бөлім ішінде"
       title: Hashtаgs
     title: Administrаtion
     warning_presets:
