@@ -532,7 +532,17 @@ kk:
       context: Контекст
       directory: Бөлім ішінде
       in_directory: "%{count} бөлім ішінде"
+      last_active: Соңғы белсенділік
+      most_popular: Ең танымал
+      most_recent: Ең соңғы
+      name: Хэштег
+      review: Статусты көрсету
+      reviewed: Көрілген
       title: Hashtаgs
+      trending_right_now: Бұгінгі трендте
+      unique_uses_today: "%{count} бүгін жазылған"
+      unreviewed: Қаралды
+      updated_msg: Хэштег параметрлері сәтті жаңартылды
     title: Administrаtion
     warning_presets:
       add_new: Add nеw
@@ -541,11 +551,15 @@ kk:
       edit_preset: Edit warning prеset
       title: Manage warning presеts
   admin_mailer:
+    new_pending_account:
+      body: Жаңа есептік жазба туралы мәліметтер төменде берілген. Бұл қолданбаны мақұлдауыңызға немесе қабылдамауыңызға болады.
+      subject: 'Жаңа аккаунт күтілуде %{instance} (#%{username})'
     new_report:
       body: "%{reporter} has rеported %{target}"
       body_remote: Someone from %{domain} has rеported %{target}
       subject: 'New rеport for %{instance} (#%{id})'
     new_trending_tag:
+      body: '#%{name} хэштегі бүгін тренд, бірақ бұрын қарастырылмаған. Егер сіз оған рұқсат бермесеңіз немесе ол туралы ешқашан естімейтін болсаңыз, ол көпшілікке көрсетілмейді.'
       subject: 'Жаңа хештег күтілуде %{instance} (#%{name})'
   aliases:
     add_new: Алиас қосу
@@ -684,6 +698,7 @@ kk:
     noscript_html: Mastodon веб қосымшасын қолдану үшін, JavaScript қосыңыз. Болмай жатса, <a href="%{apps_path}">мына қосымшаларды</a> қосып көріңіз, Mastodon қолдану үшін.
   existing_username_validator:
     not_found: осындай логині бар бар жергілікті пайдаланушы табылмады
+    not_found_multiple: табылмады %{usernames}
   exports:
     archive_takeout:
       date: Уақыты
@@ -703,6 +718,7 @@ kk:
     add_new: Жаңасын қосу
     errors:
       limit: Хэштег лимитинен асып кеттіңіз
+    hint_html: "<strong> Ерекшеліктері бар хэштегтер дегеніміз не? </strong> Олар жалпыға қол жетімді профильде көрсетіледі және адамдарға сіздің жалпы хабарламаларыңызды сол хэштегтердің астына қарауға мүмкіндік береді. Олар шығармашылық жұмыстарды немесе ұзақ мерзімді жобаларды бақылаудың тамаша құралы."
   filters:
     contexts:
       home: Ішкі желі
@@ -723,13 +739,32 @@ kk:
     developers: Жасаушылар
     more: Тағы…
     resources: Ресурстар
+    trending_now: Бүгінгі трендтер
   generic:
+    all: Барлығы
     changes_saved_msg: Өзгерістер сәтті сақталды!
     copy: Көшіру
+    no_batch_actions_available: Бұл бетте ешқандай әрекет жоқ
+    order_by: Сұрыптау
     save_changes: Өзгерістерді сақтау
     validation_errors:
       one: Бір нәрсе дұрыс емес! Төмендегі қатені қараңыз
       other: Бір нәрсе дұрыс емес! Төмендегі %{count} қатені қараңыз
+  html_validator:
+    invalid_markup: 'жарамсыз HTML код: %{error}'
+  identity_proofs:
+    active: Актив
+    authorize: Иә, авторластырыңыз
+    authorize_connection_prompt: Осы криптографиялық қосылымға рұқсат бересіз бе?
+    errors:
+      failed: Криптографиялық байланыс сәтсіз аяқталды. %{provider} әрекетті қайталаңыз.
+      keybase:
+        invalid_token: Пернетақтаның таңбалауыштары қолтаңбалар болып табылады және олар 66 таңбадан тұруы керек
+        verification_failed: Keybase бұл белгіні Keybase пайдаланушысының %{kb_username} қолтаңбасы ретінде танымайды. Keybase-тен қайталап көріңіз.
+      wrong_user: '%{current} ретінде кірген кезде %{proving} үшін дәлелдер жасау мүмкін емес. %{proving} ретінде кіріп, әрекетті қайталаңыз.'
+    explanation_html: Мұнда сіз өзіңіздің жеке басыңызды, мысалы, Keybase профилі сияқты криптографиялық түрде байланыстыра аласыз. Бұл сізге басқа адамдарға шифрланған хабарламаларды жіберуге және сіз жіберетін мазмұнға сенімді болуға мүмкіндік береді.
+    i_am_html: Мен %{username} атты қолданушымын - %{service}.
+    identity: Жеке бас куәлігі
   imports:
     modes:
       merge: Біріктіру
