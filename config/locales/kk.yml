@@ -611,15 +611,21 @@ kk:
       email_change_html: Аккаунтыңызды жоймай-ақ <a href="%{path}"> электрондық пошта мекенжайын өзгертуге болады </a>
       email_contact_html: Егер әлі келмесе, көмек үшін <a href="mailto:%{email}">%{email} </a> мекен-жайына хат жібере аласыз
       email_reconfirmation_html: Егер сіз растау электрондық хатын алмасаңыз, сіз <a href="%{path}"> оны қайтадан сұрай аласыз </a>
+      irreversible: Аккаунтты қалпына келтіре немесе қайта белсендіре алмайсыз
+      more_details_html: Қосымша мәліметтер алу үшін <a href="%{terms_path}"> құпиялылық саясатын </a> қараңыз.
+      username_available: Аккаунтыңыз қайтадан қолжетімді болады
+      username_unavailable: Логиніңіз қолжетімді болмайды
   directories:
     directory: Профильдер каталогы
     explanation: Қолданушыларды қызығушылықтарына қарай реттеу
     explore_mastodon: '%{title} шарлау'
+  domain_validator:
+    invalid_domain: жарамды домен атауы емес
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Сіз жіберген сұрау жарамсыз немесе дұрыс емес.
     '403': Бұны көру үшін сізде рұқсат жоқ.
     '404': Сіз іздеген бет бұл жерде емес екен.
-    '406': This page is not available in the requested format.
+    '406': Бұл бет сұралған форматта қол жетімді емес.
     '410': Сіз іздеген бет қазір жоқ екен.
     '422':
       content: Қауіпсіздік растауы қате. кукилерді блоктағансыз ба?
@@ -628,8 +634,10 @@ kk:
     '500':
       content: Кешірерсіз, бірақ қазір бір қате пайда болып тұр.
       title: Бұл бет дұрыс емес екен
-    '503': The page could not be served due to a temporary server failure.
+    '503': Уақытша сервер қатесі себебінен параққа қызмет көрсету мүмкін болмады.
     noscript_html: Mastodon веб қосымшасын қолдану үшін, JavaScript қосыңыз. Болмай жатса, <a href="%{apps_path}">мына қосымшаларды</a> қосып көріңіз, Mastodon қолдану үшін.
+  existing_username_validator:
+    not_found: осындай логині бар бар жергілікті пайдаланушы табылмады
   exports:
     archive_takeout:
       date: Уақыты
@@ -771,6 +779,7 @@ kk:
     next: Келесі
     older: Ерте
     prev: Алдыңғы
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Бұл сауалнамаға қатысқансыз
@@ -783,6 +792,8 @@ kk:
       too_many_options: '%{max} жауаптан көп болмайды'
   preferences:
     other: Басқа
+    posting_defaults: Пост жазу негіздері
+    public_timelines: Ашық таймлайндар
   remote_follow:
     acct: Өзіңіздің username@domain теріңіз
     missing_resource: Аккаунтыңызға байланған URL табылмады
