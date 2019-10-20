@@ -765,6 +765,11 @@ kk:
     explanation_html: Мұнда сіз өзіңіздің жеке басыңызды, мысалы, Keybase профилі сияқты криптографиялық түрде байланыстыра аласыз. Бұл сізге басқа адамдарға шифрланған хабарламаларды жіберуге және сіз жіберетін мазмұнға сенімді болуға мүмкіндік береді.
     i_am_html: Мен %{username} атты қолданушымын - %{service}.
     identity: Жеке бас куәлігі
+    inactive: Инактив
+    publicize_checkbox: 'Түрт мынаны:'
+    publicize_toot: 'Керемет! Мен енді %{username} болып тіркелдім %{service}: %{url}'
+    status: Тексеру күйі
+    view_proof: Пруф көрсету
   imports:
     modes:
       merge: Біріктіру
@@ -811,6 +816,34 @@ kk:
       too_many: 4 файлдан артық қосылмайды
   migrations:
     acct: жаңа аккаунт үшін username@domain
+    cancel: Редайректті қайтару
+    cancel_explanation: Бағыттауды болдырмау сіздің ағымдағы есептік жазбаңызды қайта іске қосады, бірақ сол тіркелгіге көшкен оқырмандарды қайтармайды.
+    cancelled_msg: Редайрект қайтарылды.
+    errors:
+      already_moved: бұл сіз ауысқан есептік жазба
+      missing_also_known_as: бұл тіркелгіге сілтеме жасамайды
+      move_to_self: ағымдағы шот болуы мүмкін емес
+      not_found: табылмады
+      on_cooldown: You are on cooldown
+    followers_count: Көшу кезіндегі оқырмандар
+    incoming_migrations: Moving from a different account
+    incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
+    moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
+    not_redirecting: Your account is not redirecting to any other account currently.
+    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    past_migrations: Past migrations
+    proceed_with_move: Move followers
+    redirecting_to: Your account is redirecting to %{acct}.
+    set_redirect: Set redirect
+    warning:
+      backreference_required: The new account must first be configured to back-reference this one
+      before: 'Жұмысты бастамас бұрын, осы жазбаларды мұқият оқып шығыңыз:'
+      cooldown: After moving there is a cooldown period during which you will not be able to move again
+      disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
+      followers: This action will move all followers from the current account to the new account
+      only_redirect_html: Alternatively, you can <a href="%{path}">only put up a redirect on your profile</a>.
+      other_data: No other data will be moved automatically
+      redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
   moderation:
     title: Модерация
   notification_mailer:
@@ -850,9 +883,11 @@ kk:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: В
           million: М
+          quadrillion: Q
           thousand: К
           trillion: Т
   pagination:
