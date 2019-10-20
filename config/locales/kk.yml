@@ -794,6 +794,19 @@ kk:
     other: Басқа
     posting_defaults: Пост жазу негіздері
     public_timelines: Ашық таймлайндар
+  relationships:
+    activity: Аккаунт белсенділігі
+    dormant: Ұйқысыз
+    last_active: Соңғы белсенділік
+    most_recent: Ең соңғы
+    moved: Көшірілді
+    mutual: Өзара
+    primary: Бастапқы
+    relationship: Қарым-қатынас
+    remove_selected_domains: Таңдалған домендерден барлық оқырмандарды алып тастаңыз
+    remove_selected_followers: Таңдалған оқырмандарды өшіру
+    remove_selected_follows: Таңдалған қолданушыларды оқымау
+    status: Аккаунт статусы
   remote_follow:
     acct: Өзіңіздің username@domain теріңіз
     missing_resource: Аккаунтыңызға байланған URL табылмады
@@ -857,6 +870,10 @@ kk:
     revoke_success: Сессиялар сәтті жабылды
     title: Сессиялар
   settings:
+    account: Аккаунт
+    account_settings: Аккаунт баптаулары
+    aliases: Аккаунт алиастары
+    appearance: Сыртқы түрі
     authorized_apps: Authorizеd apps
     back: Желіге оралу
     delete: Аккаунт өшіру
@@ -864,11 +881,17 @@ kk:
     edit_profile: Профиль өңдеу
     export: Экспорт уақыты
     featured_tags: Таңдаулы хэштегтер
+    identity_proofs: Жеке куәлік
     import: Импорт
+    import_and_export: Импорт/экспорт
     migrate: Аккаунт көшіру
     notifications: Ескертпелер
     preferences: Таңдаулар
+    profile: Профиль
+    relationships: Жазылымдар және оқырмандар
     two_factor_authentication: Екі-факторлы авторизация
+  spam_check:
+    spam_detected: Бұл автоматтандырылған есеп. Спам анықталды.
   statuses:
     attached:
       description: 'Жүктелді: %{attached}'
@@ -892,12 +915,16 @@ kk:
       private: Жабық жазба жабыстырылмайды
       reblog: Бөлісілген жазба жабыстырылмайды
     poll:
+      total_people:
+        one: "%{count} адам"
+        other: "%{count} адам"
       total_votes:
         one: "%{count} дауыс"
         other: "%{count} дауыс"
       vote: Дауыс беру
     show_more: Тағы әкел
     sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді
@@ -909,6 +936,8 @@ kk:
     pinned: Жабыстырылған жазба
     reblogged: бөлісті
     sensitive_content: Нәзік мазмұн
+  tags:
+    does_not_match_previous_name: алдыңғы атқа сәйкес келмейді
   terms:
     body_html: |
       <h2>Құпиялылық шарттары</h2>
@@ -996,6 +1025,10 @@ kk:
     contrast: Mastodon (Жоғары контраст)
     default: Mastodon (Қою)
     mastodon-light: Mastodon (Ашық)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Растау үшін түпнұсқалықты растау бағдарламасы арқылы жасалған кодты енгізіңіз
     description_html: <strong>екі факторлы түпнұсқалықты растауды</strong> қоссаңыз, кіру үшін сізге телефонға кіруіңізді талап етеді, сізге арнайы токен беріледі.
