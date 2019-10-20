@@ -69,7 +69,42 @@ kk:
         acct: Handle of the old account
       account_migration:
         acct: Handle of the new account
+      account_warning_preset:
+        text: Алдын ала белгіленген мәтін
+      admin_account_action:
+        include_statuses: Include reported toots in the e-mail
+        send_email_notification: Notify the user per e-mail
+        text: Жеке ескерту
+        type: Әрекет
+        types:
+          disable: Ажырату
+          none: Ештеңе істемеу
+          silence: Үнсіз
+          suspend: Suspend and irreversibly delete account data
+        warning_preset_id: Use a warning preset
       defaults:
+        autofollow: Жазылуға шақыру
+        avatar: Аватар
+        bot: Бұл бот аккаунт
+        chosen_languages: Тіл фильтрі
+        confirm_new_password: Жаңа құпиясөзді құптау
+        confirm_password: Құпиясөзді құптау
+        context: Фильтр контекстері
+        current_password: Ағымдағы кілтсөз
+        data: Дата
+        discoverable: Бұл аккаунтты каталогта көрсету
+        display_name: Атын көрсет
+        email: Эл. пошта мекен жайы
+        expires_in: Аяқталу мерзімі
+        fields: Профиль метадатасы
+        header: Басы
+        inbox_url: URL of the relay inbox
+        irreversible: Drop instead of hide
+        locale: Интерфейс тілі
+        locked: Аккаунтты құлыптау
+        max_uses: Максимум қолданушы саны
+        new_password: Жаңа құпиясөз
+        note: Био
         setting_reduce_motion: Reduce motion in animations
         setting_show_application: Disclose application used to send toots
         setting_system_font_ui: Жүйенің әдепкі қарпі
@@ -96,3 +131,21 @@ kk:
       notification_emails:
         digest: Дайджест e-mail жібер
         favourite: Біреу жазбамды ұнатқан кезде хат жібер
+        follow: Біреу жазылған кезде хат жібер
+        follow_request: Біреу жазылуға сұранған кезде хат жібер
+        mention: Біреу мен туралы жазған кезде хат жібер
+        pending_account: Жаңа аккаунт құптау күткен кезде хат жібер
+        reblog: Жазбамды біреу бөліскен кезде хат жібер
+        report: Жаңа шағым түскен кезде хат жібер
+        trending_tag: Қаралмаған хештег шыққан кезде хат жібер
+      tag:
+        listable: Бұл хештегті барлық жерде көрсетуге рұқсат бер
+        name: Хэштег
+        trendable: Хештегті трендтерде көрсетуге рұқсат бер
+        usable: Бұл хештегті қолдануға рұқсат бер
+    'no': 'Жоқ'
+    recommended: Рекоменделген
+    required:
+      mark: "*"
+      text: міндетті
+    'yes': 'Иә'
