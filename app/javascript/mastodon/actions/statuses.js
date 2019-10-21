@@ -10,6 +10,8 @@ export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
 export const STATUS_FETCH_FAIL    = 'STATUS_FETCH_FAIL';
 
+export const STATUS_UPDATE_CONTENT = 'STATUS_UPDATE_CONTENT';
+
 export const STATUS_DELETE_REQUEST = 'STATUS_DELETE_REQUEST';
 export const STATUS_DELETE_SUCCESS = 'STATUS_DELETE_SUCCESS';
 export const STATUS_DELETE_FAIL    = 'STATUS_DELETE_FAIL';
@@ -79,6 +81,16 @@ function getFromDB(dispatch, getState, accountIndex, index, id) {
       resolve(Promise.all(promises));
     };
   });
+}
+
+
+export function updateStatusContent(id, content, contentHtml) {
+  return {
+    type: STATUS_UPDATE_CONTENT,
+    id,
+    content,
+    contentHtml,
+  };
 }
 
 export function fetchStatus(id) {

@@ -1,4 +1,5 @@
 import { normalizeAccount, normalizeStatus, normalizePoll } from './normalizer';
+import { updateStatusContent } from '../../actions/statuses';
 
 export const ACCOUNT_IMPORT  = 'ACCOUNT_IMPORT';
 export const ACCOUNTS_IMPORT = 'ACCOUNTS_IMPORT';
@@ -57,12 +58,12 @@ export function importFetchedStatus(status) {
 }
 
 export function importFetchedStatuses(statuses) {
-  return (dispatch, getState) => {
+  return (dispatch, getState, { tankerService }) => {
     const accounts = [];
     const normalStatuses = [];
     const polls = [];
 
-    function processStatus(status) {
+    async function processStatus(status) {
       pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(['statuses', status.id])));
       pushUnique(accounts, status.account);
 
@@ -73,9 +74,22 @@ export function importFetchedStatuses(statuses) {
       if (status.poll && status.poll.id) {
         pushUnique(polls, normalizePoll(status.poll));
       }
+
+      if (status.encrypted) {
+        const { id, content } = status;
+        // `content` as returned by the server as a <p> around it, so
+        // clean that first
+        const encryptedText = content.substring(3, content.length-4);
+        const clearText = await tankerService.decrypt(encryptedText);
+        // Here we should re-do process of @mentions, links and the like ...
+        const clearHtml = `<p>${clearText}</p>`;
+        dispatch(updateStatusContent(id, clearText, clearHtml));
+      }
     }
 
-    statuses.forEach(processStatus);
+    Promise.all(statuses.map(processStatus)).catch(error =>
+      console.error(error)
+    );
 
     dispatch(importPolls(polls));
     dispatch(importFetchedAccounts(accounts));

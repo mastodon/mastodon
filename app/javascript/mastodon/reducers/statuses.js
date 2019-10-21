@@ -12,6 +12,7 @@ import {
   STATUS_UNMUTE_SUCCESS,
   STATUS_REVEAL,
   STATUS_HIDE,
+  STATUS_UPDATE_CONTENT,
 } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
@@ -57,6 +58,9 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'muted'], true);
   case STATUS_UNMUTE_SUCCESS:
     return state.setIn([action.id, 'muted'], false);
+  case STATUS_UPDATE_CONTENT:
+    const { content, contentHtml, id } = action;
+    return state.update(id, (status) => status.merge({ content, contentHtml }));
   case STATUS_REVEAL:
     return state.withMutations(map => {
       action.ids.forEach(id => {
