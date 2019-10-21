@@ -21,7 +21,7 @@ import GIFV from 'mastodon/components/gifv';
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
   apply: { id: 'upload_modal.apply', defaultMessage: 'Apply' },
-  placeholder: { id: 'upload_modal.description_placeholder', defaultMessage: 'A quick brown fox jumps over the lazy dog' },
+  placeholder: { id: 'upload_modal.description_placeholder', defaultMessage: 'The quick brown fox jumps over the lazy dog' },
 });
 
 const mapStateToProps = (state, { id }) => ({
