@@ -75,7 +75,7 @@ services:
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 24 -q default -q push
+    command: bundle exec sidekiq -c 16 -q default -q push
     depends_on:
       - db
       - redis
@@ -90,7 +90,7 @@ services:
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 24 -q push -q default
+    command: bundle exec sidekiq -c 16 -q push -q default
     depends_on:
       - db
       - redis
@@ -105,7 +105,7 @@ services:
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 24 -q default,1 -q push,1 -q mailers,1 -q pull,1
+    command: bundle exec sidekiq -c 16 -q default,1 -q push,1 -q mailers,1 -q pull,1
     depends_on:
       - db
       - redis
