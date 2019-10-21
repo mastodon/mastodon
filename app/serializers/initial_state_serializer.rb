@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings
@@ -39,6 +38,9 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:is_staff]          = object.current_account.user.staff?
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
+      store[:email]             = object.current_account.user.email
+      store[:tanker_identity]   = object.current_account.user.tanker_identity
+      store[:tanker_app_id]     = ENV["TANKER_APP_ID"]
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
