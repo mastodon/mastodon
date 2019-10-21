@@ -1,6 +1,7 @@
 import React from 'react';
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 import AutosuggestEmoji from './autosuggest_emoji';
+import AutosuggestHashtag from './autosuggest_hashtag';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
@@ -167,15 +168,15 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     const { selectedSuggestion } = this.state;
     let inner, key;
 
-    if (typeof suggestion === 'object') {
+    if (suggestion.type === 'emoji') {
       inner = <AutosuggestEmoji emoji={suggestion} />;
       key   = suggestion.id;
-    } else if (suggestion[0] === '#') {
-      inner = suggestion;
-      key   = suggestion;
-    } else {
-      inner = <AutosuggestAccountContainer id={suggestion} />;
-      key   = suggestion;
+    } else if (suggestion.type ==='hashtag') {
+      inner = <AutosuggestHashtag tag={suggestion} />;
+      key   = suggestion.name;
+    } else if (suggestion.type === 'account') {
+      inner = <AutosuggestAccountContainer id={suggestion.id} />;
+      key   = suggestion.id;
     }
 
     return (

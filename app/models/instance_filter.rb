@@ -12,6 +12,10 @@ class InstanceFilter
       scope = DomainBlock
       scope = scope.matches_domain(params[:by_domain]) if params[:by_domain].present?
       scope.order(id: :desc)
+    elsif params[:allowed].present?
+      scope = DomainAllow
+      scope = scope.matches_domain(params[:by_domain]) if params[:by_domain].present?
+      scope.order(id: :desc)
     else
       scope = Account.remote
       scope = scope.matches_domain(params[:by_domain]) if params[:by_domain].present?

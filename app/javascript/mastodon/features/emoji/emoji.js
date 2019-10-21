@@ -92,8 +92,11 @@ export const buildCustomEmojis = (customEmojis) => {
       keywords: [name],
       imageUrl: url,
       custom: true,
+      customCategory: emoji.get('category'),
     });
   });
 
   return emojis;
 };
+
+export const categoriesFromEmojis = customEmojis => customEmojis.reduce((set, emoji) => set.add(emoji.get('category') ? `custom-${emoji.get('category')}` : 'custom'), new Set(['custom']));

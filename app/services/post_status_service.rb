@@ -95,7 +95,6 @@ class PostStatusService < BaseService
     LinkCrawlWorker.perform_async(@status.id) unless @status.spoiler_text?
     DistributionWorker.perform_async(@status.id)
     unless @status.local_only?
-      Pubsubhubbub::DistributionWorker.perform_async(@status.stream_entry.id)
       ActivityPub::DistributionWorker.perform_async(@status.id)
       PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
     end
@@ -184,7 +183,7 @@ class PostStatusService < BaseService
   def poll_attributes
     return if @options[:poll].blank?
 
-    @options[:poll].merge(account: @account)
+    @options[:poll].merge(account: @account, voters_count: 0)
   end
 
   def scheduled_options

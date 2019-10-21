@@ -5,7 +5,5 @@ class ProcessingWorker
 
   sidekiq_options backtrace: true
 
-  def perform(account_id, body)
-    ProcessFeedService.new.call(body, Account.find(account_id), override_timestamps: true)
-  end
+  def perform(account_id, body); end
 end

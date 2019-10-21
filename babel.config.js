@@ -20,6 +20,12 @@ module.exports = (api) => {
       ['react-intl', { messagesDir: './build/messages' }],
       'preval',
     ],
+    overrides: [{
+      test: /tesseract\.js/,
+      presets: [
+        ['@babel/env', { ...envOptions, modules: 'commonjs' }],
+      ],
+    }],
   };
 
   switch (env) {

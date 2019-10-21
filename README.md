@@ -55,7 +55,7 @@ Private posts, locked accounts, phrase filtering, muting, blocking and all sorts
 
 **OAuth2 and a straightforward REST API**
 
-Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choice!
+Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choices!
 
 ## Deployment
 

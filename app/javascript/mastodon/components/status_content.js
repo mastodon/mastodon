@@ -55,6 +55,7 @@ export default class StatusContent extends React.PureComponent {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
         link.setAttribute('title', link.href);
+        link.classList.add('unhandled-link');
       }
 
       link.setAttribute('target', '_blank');
@@ -111,7 +112,7 @@ export default class StatusContent extends React.PureComponent {
   }
 
   onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '').toLowerCase();
+    hashtag = hashtag.replace(/^#/, '');
 
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
@@ -215,22 +216,22 @@ export default class StatusContent extends React.PureComponent {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
-            <span dangerouslySetInnerHTML={spoilerContent} lang={status.get('language')} />
+            <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
             <button tabIndex='0' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick}>{toggleText}</button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
 
           {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
         </div>
       );
     } else if (this.props.onClick) {
       const output = [
-        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content'>
+          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
         </div>,
@@ -244,7 +245,7 @@ export default class StatusContent extends React.PureComponent {
     } else {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle}>
-          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
         </div>

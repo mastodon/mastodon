@@ -2,9 +2,14 @@
 nl:
   simple_form:
     hints:
+      account_alias:
+        acct: Vul de gebruikersnaam@domein van het account in, die je wilt verhuizen
+      account_migration:
+        acct: Vul de gebruikersnaam@domein van het account in, waarnaartoe je wilt verhuizen
       account_warning_preset:
         text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags en vermeldingen
       admin_account_action:
+        include_statuses: De gebruiker ziet welke toots verantwoordelijk zijn voor de moderatieactie of waarschuwing
         send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
         text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
@@ -14,8 +19,10 @@ nl:
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
+        current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
+        current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
-        discoverable_html: In de <a href="%{path}" target="_blank">gebruikersgids</a> kunnen mensen andere accounts vinden aan de hand van interesses en activiteit. Dit vereist tenminste %{min_followers} volgers
+        discoverable: De gebruikersgids is een andere manier waarmee jouw account een groter publiek kan bereiken
         email: Je krijgt een bevestigingsmail
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -34,16 +41,24 @@ nl:
         setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
         setting_show_application: De toepassing de je gebruikt om te tooten wordt in de gedetailleerde weergave van de toot getoond
+        setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
+        setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
         username: Jouw gebruikersnaam is uniek op %{domain}
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
+      domain_allow:
+        domain: Dit domein is in staat om gegevens van deze server op te halen, en binnenkomende gegevens worden verwerkt en opgeslagen
       featured_tag:
         name: 'Je wilt misschien een van deze gebruiken:'
+      form_challenge:
+        current_password: Je betreedt een veilige omgeving
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       invite_request:
         text: Dit helpt ons om jouw aanvraag te beoordelen
       sessions:
         otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
+      tag:
+        name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
       user:
         chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
     labels:
@@ -51,9 +66,14 @@ nl:
         fields:
           name: Label
           value: Inhoud
+      account_alias:
+        acct: Mastodonadres van het oude account
+      account_migration:
+        acct: Mastodonadres van het nieuwe account
       account_warning_preset:
         text: Tekst van voorinstelling
       admin_account_action:
+        include_statuses: Gerapporteerde toots aan de e-mail toevoegen
         send_email_notification: Meld dit per e-mail aan de gebruiker
         text: Aangepaste waarschuwing
         type: Actie
@@ -108,7 +128,10 @@ nl:
         setting_show_application: Toepassing onthullen die je voor het verzenden van toots gebruikt
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
         setting_theme: Thema website
+        setting_trends: Trends van vandaag tonen
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
+        setting_use_blurhash: Wazige kleurovergangen voor verborgen media tonen
+        setting_use_pending_items: Langzame modus
         severity: Zwaarte
         type: Importtype
         username: Gebruikersnaam
@@ -120,6 +143,8 @@ nl:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
         must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
+      invite:
+        comment: Opmerking
       invite_request:
         text: Waarom wil jij je aanmelden?
       notification_emails:
@@ -131,6 +156,12 @@ nl:
         pending_account: Een e-mail verzenden wanneer een nieuw account moet worden beoordeeld
         reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
         report: Verstuur een e-mail wanneer een nieuw rapportage is ingediend
+        trending_tag: Een e-mail versturen wanneer een nog niet beoordeelde hashtag trending is
+      tag:
+        listable: Toestaan dat deze hashtag in zoekopdrachten en in de gebruikersgids te zien valt
+        name: Hashtag
+        trendable: Toestaan dat deze hashtag onder trends te zien valt
+        usable: Toestaan dat deze hashtag in toots gebruikt mag worden
     'no': Nee
     recommended: Aanbevolen
     required:

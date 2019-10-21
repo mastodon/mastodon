@@ -84,8 +84,7 @@ class Formatter
   end
 
   def format_field(account, str, **options)
-    return reformat(str).html_safe unless account.local? # rubocop:disable Rails/OutputSafety
-    html = encode_and_link_urls(str, me: true)
+    html = account.local? ? encode_and_link_urls(str, me: true) : reformat(str)
     html = encode_custom_emojis(html, account.emojis, options[:autoplay]) if options[:custom_emojify]
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -294,10 +293,10 @@ class Formatter
   end
 
   def hashtag_html(tag)
-    "<a href=\"#{encode(tag_url(tag.downcase))}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
+    "<a href=\"#{encode(tag_url(tag))}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
   end
 
   def mention_html(account)
-    "<span class=\"h-card\"><a href=\"#{encode(TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
+    "<span class=\"h-card\"><a href=\"#{encode(ActivityPub::TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
   end
 end
