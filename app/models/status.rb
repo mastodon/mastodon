@@ -23,6 +23,7 @@
 #  in_reply_to_account_id :bigint(8)
 #  poll_id                :bigint(8)
 #  deleted_at             :datetime
+#  encrypted              :boolean          default(FALSE), not null
 #
 
 class Status < ApplicationRecord

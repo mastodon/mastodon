@@ -13,6 +13,27 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.text).to eq text
   end
 
+  specify 'statuses are not encrypted by default' do
+    account = Fabricate(:account)
+    text = "test status update"
+
+    status = subject.call(account, text: text)
+
+    expect(status).to be_persisted
+    expect(status.encrypted).to be_falsey
+  end
+
+  it 'can create a new encrypted status' do
+    account = Fabricate(:account)
+    text = "test status update"
+
+    status = subject.call(account, text: text, encrypted: true)
+
+    expect(status).to be_persisted
+    expect(status.text).to eq text
+    expect(status.encrypted).to be_truthy
+  end
+
   it 'creates a new response status' do
     in_reply_to_status = Fabricate(:status)
     account = Fabricate(:account)
