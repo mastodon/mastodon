@@ -592,15 +592,45 @@ id:
     invalid_reset_password_token: Token reset kata sandi tidak valid atau kedaluwarsa. Silakan minta yang baru.
     login: Masuk
     logout: Keluar
+    migrate_account: Pindah ke akun berbeda
+    migrate_account_html: Jika Anda ingin mengalihkan akun ini ke akun lain, Anda dapat <a href="%{path}">mengaturnya di sini</a>.
+    or_log_in_with: Atau masuk dengan
+    providers:
+      cas: CAS
+      saml: SAML
     register: Daftar
+    registration_closed: "%{instance} tidak menerima anggota baru"
     resend_confirmation: Kirim ulang email konfirmasi
     reset_password: Reset kata sandi
     security: Identitas
     set_new_password: Tentukan kata sandi baru
+    setup:
+      email_below_hint_html: Jika alamat surel di bawah tidak benar, Anda dapat menggantinya di sini dan menerima konfirmasi surel baru.
+      email_settings_hint_html: Konfirmasi surel telah dikirim ke %{email}. Jika alamat surel tidak benar, Anda dapat mengubahnya di setelan akun.
+      title: Atur
+    status:
+      account_status: Status akun
+      confirming: Menunggu konfirmasi surel diselesaikan.
+      functional: Akun Anda kini beroperasi penuh.
+      pending: Lamaran Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima sebuah surel jika lamaran Anda diterima.
+      redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
+    trouble_logging_in: Kesulitan masuk?
   authorize_follow:
+    already_following: Anda sudah mengikuti akun ini
     error: Sayangnya, ada error saat melihat akun remote
     follow: Ikuti
+    follow_request: 'Anda telah mengirim permintaan untuk mengikuti ke:'
+    following: 'Berhasil! Anda sekarang mengikuti:'
+    post_follow:
+      close: Atau Anda dapat menutup jendela ini.
+      return: Tampilkan profil pengguna
+      web: Ke web
     title: Mengikuti %{acct}
+  challenge:
+    confirm: Lanjut
+    hint_html: "<strong>Tip:</strong> Kami tidak akan meminta kata sandi Anda lagi untuk beberapa jam ke depan."
+    invalid_password: Kata sandi tidak valid
+    prompt: Konfirmasi kata sandi untuk melanjutkan
   datetime:
     distance_in_words:
       about_x_hours: "%{count}j"
@@ -615,6 +645,9 @@ id:
       x_minutes: "%{count}mnt"
       x_months: "%{count}bln"
       x_seconds: "%{count}dtk"
+  deletes:
+    challenge_not_passed: Informasi yang Anda masukkan salah
+    confirm_password: Masukkan kata sandi sekarang untuk memverifikasi identitas Anda
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Anda tidak mempunyai izin untuk melihat halaman ini.
