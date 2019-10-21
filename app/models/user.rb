@@ -38,6 +38,7 @@
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
 #  approved                  :boolean          default(TRUE), not null
+#  tanker_identity           :string
 #
 
 class User < ApplicationRecord
@@ -97,6 +98,7 @@ class User < ApplicationRecord
 
   before_validation :sanitize_languages
   before_create :set_approved
+  after_create :set_tanker_identity
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -296,6 +298,11 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_tanker_identity
+    self.tanker_identity = TankerIdentity.create(self.id)
+    self.update_attribute :tanker_identity, self.tanker_identity
+  end
 
   def set_approved
     self.approved = open_registrations? || valid_invitation? || external?

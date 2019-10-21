@@ -26,6 +26,12 @@ RSpec.describe AppSignUpService, type: :service do
       expect(user.confirmed?).to be false
     end
 
+    it 'creates a user with a Tanker identity' do
+      access_token = subject.call(app, good_params)
+      user = User.find_by(id: access_token.resource_owner_id)
+      expect(user.tanker_identity).to_not be_nil
+    end
+
     it 'creates access token with the app\'s scopes' do
       access_token = subject.call(app, good_params)
       expect(access_token).to_not be_nil
