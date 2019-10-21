@@ -14,6 +14,7 @@ import NavigationBar from '../compose/components/navigation_bar';
 import Icon from 'mastodon/components/icon';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
 import TrendsContainer from './containers/trends_container';
+import { logOut } from 'mastodon/utils/log_out';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -45,6 +46,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
+  onLogout: () => dispatch(logOut()),
 });
 
 const badgeDisplay = (number, limit) => {
@@ -161,7 +163,7 @@ class GettingStarted extends ImmutablePureComponent {
 
         <div className='getting-started'>
           <div className='getting-started__wrapper' style={{ height }}>
-            {!multiColumn && <NavigationBar account={myAccount} />}
+            {!multiColumn && <NavigationBar account={myAccount} onLogout={this.props.onLogout} />}
             {navItems}
           </div>
 

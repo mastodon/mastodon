@@ -1,6 +1,14 @@
 import Rails from 'rails-ujs';
 
-export const logOut = () => {
+
+export function logOut() {
+  return async (dispatch, getState, { tankerService }) => {
+    await tankerService.stop();
+    logOutImpl();
+  };
+}
+
+const logOutImpl = () => {
   const form = document.createElement('form');
 
   const methodInput = document.createElement('input');

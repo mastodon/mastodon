@@ -123,13 +123,23 @@ export function directCompose(account, routerHistory) {
   };
 };
 
+
 export function submitCompose(routerHistory) {
-  return function (dispatch, getState) {
+  return async function (dispatch, getState, { tankerService }) {
     const status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
 
     if ((!status || !status.length) && media.size === 0) {
       return;
+    }
+
+    let visibility = getState().getIn(['compose', 'privacy']);
+
+    const shouldEncrypt = (visibility === 'direct');
+
+    if (shouldEncrypt) {
+      const encryptedText = await tankerService.encrypt(status);
+      console.log('about to send encrypted text', encryptedText);
     }
 
     dispatch(submitComposeRequest());
@@ -140,7 +150,7 @@ export function submitCompose(routerHistory) {
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
-      visibility: getState().getIn(['compose', 'privacy']),
+      visibility,
       poll: getState().getIn(['compose', 'poll'], null),
     }, {
       headers: {
