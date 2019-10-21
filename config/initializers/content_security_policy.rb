@@ -27,14 +27,18 @@ Rails.application.config.content_security_policy do |p|
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
 
+  allowed_sources = [:self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url]
+  # for @tanker/client-browser
+  allowed_sources += ["wss://api.tanker.io", "https://api.tanker.io"]
   if Rails.env.development?
     webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
-
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
+    allowed_sources += webpacker_urls
+  end
+  p.connect_src *allowed_sources
+  if Rails.env.development?
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
     p.worker_src  :self, :blob, assets_host
   else
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url
     p.script_src  :self, assets_host
     p.worker_src  :self, :blob, assets_host
   end
