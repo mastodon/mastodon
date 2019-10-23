@@ -1154,3 +1154,37 @@ es-AR:
     recovery_codes: Resguardar códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación se regeneraron exitosamente
     recovery_instructions_html: Si alguna vez perdés el acceso a tu dispositivo móvil, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
+    setup: Configurar
+    wrong_code: '¡El código ingresado no es válido! ¿La hora en el dispositivo y en el servidor es correcta?'
+  user_mailer:
+    backup_ready:
+      explanation: Solicitado un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
+      subject: Tu archivo historial está listo para descargar
+      title: Descargar archivo historial
+    warning:
+      explanation:
+        disable: Mientras tu cuenta esté congelada, la información de la misma permanecerá intacta, pero no podés realizar ninguna acción hasta que se desbloquee.
+        silence: Mientras tu cuenta esté limitada, sólo las personas que ya te estén siguiendo verán tus toots en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otras personas pueden seguirte manualmente.
+        suspend: Tu cuenta fue suspendida, y todos tus toots y tus archivos de medios subidos fueron irreversiblemente eliminados de este servidor, y de los servidores en donde tenías seguidores.
+      get_in_touch: Podés responder a esta dirección de correo electrónico para ponerte en contacto con el equipo de %{instance}.
+      review_server_policies: Revisar las políticas del servidor
+      statuses: 'Específicamente, para:'
+      subject:
+        disable: Tu cuenta %{acct} fue congelada
+        none: Advertencia para %{acct}
+        silence: Tu cuenta %{acct} fue limitada
+        suspend: Tu cuenta %{acct} fue suspendida
+      title:
+        disable: Cuenta congelada
+        none: Advertencia
+        silence: Cuenta limitada
+        suspend: Cuenta suspendida
+    welcome:
+      edit_profile_action: Configurar perfil
+      edit_profile_step: Podés personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre para mostrar y más cosas. Si querés revisar a tus nuevos seguidores antes de que se les permita seguirte, podés bloquear tu cuenta.
+      explanation: Aquí hay algunos consejos para empezar
+      final_action: Empezar a tootear
+      final_step: '¡Empezá a tootear! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea temporal local y con etiquetas. Capaz que quieras presentarte al mundo con la etiqueta "#presentación".'
+      full_handle: Tu nombre de usuario completo
+      full_handle_hint: Esto es lo que le dirás a tus contactos para que ellos puedan enviarte mensajes o seguirte desde otro servidor.
+      review_preferences_action: Cambiar configuración
