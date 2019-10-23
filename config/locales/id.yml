@@ -648,25 +648,68 @@ id:
   deletes:
     challenge_not_passed: Informasi yang Anda masukkan salah
     confirm_password: Masukkan kata sandi sekarang untuk memverifikasi identitas Anda
+  directories:
+    directory: Direktori profil
+    explanation: Temukan pengguna berdasarkan minatnya
+    explore_mastodon: Jelajahi %{title}
+  domain_validator:
+    invalid_domain: bukan nama domain yang valid
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Permintaan yang dikirim tidak valid atau cacat.
     '403': Anda tidak mempunyai izin untuk melihat halaman ini.
     '404': Halaman yang anda cari tidak ditemukan
-    '406': This page is not available in the requested format.
+    '406': Halaman ini tidak tersedia dalam format yang diminta.
     '410': Halaman yang anda cari sudah tidak dapat ditemukan lagi.
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal
     '429': Throttled
     '500':
+      content: Maaf, ada sesuatu yang salah pada sistem kami.
+      title: Halaman ini tidak benar
     '503': The page could not be served due to a temporary server failure.
+    noscript_html: Untuk menggunakan aplikasi web Mastodon, tolong aktifkan JavaScript. Sebagai alternatif, cobalah <a href="%{apps_path}">aplikasi murni</a> Mastodon untuk platform Anda.
+  existing_username_validator:
+    not_found: tidak dapat menemukan pengguna lokal dengan nama pengguna tersebut
+    not_found_multiple: tidak dapat menemukan %{usernames}
   exports:
+    archive_takeout:
+      date: Tanggal
+      download: Unduh arsip Anda
+      in_progress: Mengompilasi arsip Anda...
+      request: Meminta arsip Anda
+      size: Ukuran
     blocks: Anda blokir
+    csv: CSV
+    domain_blocks: Blokir domain
     follows: Anda ikuti
+    lists: Daftar
     mutes: Anda bisukan
     storage: Penyimpanan media
+  featured_tags:
+    add_new: Tambah baru
+  filters:
+    contexts:
+      home: Beranda
+      notifications: Notifikasi
+      public: Linimasa publik
+      thread: Percakapan
+    edit:
+      title: Ubah saringan
+    index:
+      delete: Hapus
+      title: Saringan
+    new:
+      title: Tambah saringan baru
+  footer:
+    developers: Pengembang
+    more: Lainnya…
+    resources: Sumber daya
+    trending_now: Sedang tren
   generic:
+    all: Semua
     changes_saved_msg: Perubahan berhasil disimpan!
+    copy: Salin
     save_changes: Simpan perubahan
   imports:
     preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
