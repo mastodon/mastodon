@@ -18,6 +18,7 @@ th:
       confirmation_instructions:
         action: ยืนยันที่อยู่อีเมล
         action_with_app: ยืนยันแล้วกลับไปยัง %{app}
+        explanation: คุณได้สร้างบัญชีใหม่บน %{host} ด้วยที่อยู่อีเมลนี้ เหลืออีกเพียงคลิกเดียวก็สามารถเปิดใช้งานบัญชีได้แล้ว หากไม่ใช่คุณ กรุณาปฏิเสธอีเมลนี้
         extra_html: นอกจากนี้ กรุณาอ่าน<a href="%{terms_path}">กฎของเซิร์ฟเวอร์</a>และ<a href="%{policy_path}">เงื่อนไขการให้บริการ</a>
         subject: 'Mastodon: คำแนะนำการยืนยันสำหรับ %{instance}'
         title: ยืนยันที่อยู่อีเมล
@@ -36,7 +37,8 @@ th:
       reset_password_instructions:
         action: เปลี่ยนรหัสผ่าน
         explanation: คุณได้ขอรหัสผ่านใหม่สำหรับบัญชีของคุณ
-        subject: 'Mastodon: คำแนะนำการรีเซ็ตรหัสผ่าน'
+        subject: 'Mastodon: คำแนะนำการตั้งรหัสผ่านใหม่'
+        title: ตั้งรหัสผ่านใหม่
       two_factor_disabled:
         subject: 'Mastodon: ปิดการยืนยันสองขั้นตอนแล้ว'
         title: ปิดใช้งาน 2FA แล้ว
