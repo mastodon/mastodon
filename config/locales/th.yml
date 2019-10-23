@@ -63,6 +63,7 @@ th:
     unfollow: เลิกติดตาม
   admin:
     account_moderation_notes:
+      create: เขียนข้อความอธิบาย
       created_msg: สร้างหมายเหตุการควบคุมสำเร็จ!
       delete: ลบ
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
@@ -111,7 +112,9 @@ th:
       login_status: สถานะการเข้าสู่ระบบ
       media_attachments: ไฟล์แนบสื่อ
       moderation:
+        active: ใช้งานอยู่
         all: ทั้งหมด
+        pending: รอการยืนยัน
         silenced: เงียบอยู่
         suspended: ระงับอยู่
         title: การควบคุม
@@ -122,6 +125,7 @@ th:
       outbox_url: URL กล่องขาออก
       perform_full_suspension: ระงับ
       profile_url: URL โปรไฟล์
+      promote: เลื่อนตำแหน่ง
       protocol: โปรโตคอล
       public: สาธารณะ
       push_subscription_expires: การบอกรับ PuSH หมดอายุเมื่อ
@@ -152,6 +156,7 @@ th:
       subscribe: บอกรับ
       suspended: ระงับอยู่
       title: บัญชี
+      unconfirmed_email: ยังไม่ได้ยืนยันอีเมล
       undo_silenced: เลิกทำการเงียบ
       undo_suspension: เลิกทำการระงับ
       unsubscribe: เลิกบอกรับ
