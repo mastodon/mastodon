@@ -24,7 +24,7 @@ describe Sanitize::Config do
     end
 
     it 'keep links in lists' do
-      expect(Sanitize.fragment('<p>Check out:</p><ul><li><a href="https://joinmastodon.org" rel="nofollow noopener" target="_blank">joinmastodon.org</a></li><li>Bar</li></ul>', subject)).to eq '<p>Check out:</p><p><a href="https://joinmastodon.org" rel="nofollow noopener" target="_blank">joinmastodon.org</a><br>Bar</p>'
+      expect(Sanitize.fragment('<p>Check out:</p><ul><li><a href="https://joinmastodon.org" rel="nofollow noopener noreferrer" target="_blank">joinmastodon.org</a></li><li>Bar</li></ul>', subject)).to eq '<p>Check out:</p><p><a href="https://joinmastodon.org" rel="nofollow noopener noreferrer" target="_blank">joinmastodon.org</a><br>Bar</p>'
     end
   end
 end

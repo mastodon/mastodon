@@ -6,7 +6,7 @@
     = t('accounts.moved_html', name: content_tag(:bdi, content_tag(:strong, display_name(account, custom_emojify: true), class: :emojify)), new_profile_link: link_to(content_tag(:strong, safe_join(['@', content_tag(:span, moved_to_account.acct)])), ActivityPub::TagManager.instance.url_for(moved_to_account), class: 'mention'))
 
   .moved-account-widget__card
-    = link_to ActivityPub::TagManager.instance.url_for(moved_to_account), class: 'detailed-status__display-name p-author h-card', target: '_blank', rel: 'me noopener' do
+    = link_to ActivityPub::TagManager.instance.url_for(moved_to_account), class: 'detailed-status__display-name p-author h-card', target: '_blank', rel: 'me noopener noreferrer' do
       .detailed-status__display-avatar
         .account__avatar-overlay
           .account__avatar-overlay-base{ style: "background-image: url('#{moved_to_account.avatar.url(:original)}')" }
