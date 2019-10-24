@@ -219,7 +219,7 @@ class Audio extends React.PureComponent {
               </span>
             </div>
 
-            <div className='video-player__buttons'>
+            <div className='video-player__buttons right'>
               <button type='button' aria-label={intl.formatMessage(messages.download)}>
                 <a className='video-player__download__icon' href={this.props.src} download>
                   <Icon id={'download'} fixedWidth />
