@@ -140,7 +140,7 @@ export default class Card extends React.PureComponent {
     const horizontal  = (!compact && card.get('width') > card.get('height') && (card.get('width') + 100 >= width)) || card.get('type') !== 'link' || embedded;
     const interactive = card.get('type') !== 'link';
     const className   = classnames('status-card', { horizontal, compact, interactive });
-    const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
+    const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener noreferrer' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
     const ratio       = card.get('width') / card.get('height');
     const height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);
 
@@ -172,7 +172,7 @@ export default class Card extends React.PureComponent {
             <div className='status-card__actions'>
               <div>
                 <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
-                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener'><Icon id='external-link' /></a>}
+                {horizontal && <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>}
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default class Card extends React.PureComponent {
     }
 
     return (
-      <a href={card.get('url')} className={className} target='_blank' rel='noopener' ref={this.setRef}>
+      <a href={card.get('url')} className={className} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
         {embed}
         {description}
       </a>

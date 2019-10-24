@@ -133,7 +133,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener');
+      link.setAttribute('rel', 'noopener noreferrer');
     }
   }
 
