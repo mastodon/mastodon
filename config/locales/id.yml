@@ -725,7 +725,18 @@ id:
     all: Semua
     changes_saved_msg: Perubahan berhasil disimpan!
     copy: Salin
+    order_by: Urut berdasarkan
     save_changes: Simpan perubahan
+    validation_errors:
+      other: Ada yang belum benar! Silakan tinjau %{count} kesalahan di bawah ini
+  html_validator:
+    invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
+  identity_proofs:
+    active: Aktif
+    i_am_html: Saya adalah %{username} di %{service}.
+    identity: Identitas
+    inactive: Tidak aktif
+    publicize_checkbox: 'Dan toot ini:'
   imports:
     preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
     success: Data anda berhasil diupload dan akan diproses sesegera mungkin
