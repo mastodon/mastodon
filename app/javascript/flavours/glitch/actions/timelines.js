@@ -30,12 +30,14 @@ export function updateTimeline(timeline, status, accept) {
       return;
     }
 
-    const dropRegex = getFiltersRegex(getState(), { contextType: timeline })[0];
+    const filters   = getFiltersRegex(getState(), { contextType: timeline });
+    const dropRegex = filters[0];
+    const regex     = filters[1];
+    const text      = searchTextFromRawStatus(status);
+    let filtered    = false;
 
-    if (dropRegex && status.account.id !== me) {
-      if (dropRegex.test(searchTextFromRawStatus(status))) {
-        return;
-      }
+    if (status.account.id !== me) {
+      filtered = (dropRegex && dropRegex.test(text)) || (regex && regex.test(text));
     }
 
     dispatch(importFetchedStatus(status));
@@ -45,6 +47,7 @@ export function updateTimeline(timeline, status, accept) {
       timeline,
       status,
       usePendingItems: preferPendingItems,
+      filtered
     });
   };
 };
@@ -107,12 +110,8 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
-      const dropRegex = getFiltersRegex(getState(), { contextType: timelineId })[0];
-
-      const statuses = dropRegex ? response.data.filter(status => status.account.id === me || !dropRegex.test(searchTextFromRawStatus(status))) : response.data;
-
-      dispatch(importFetchedStatuses(statuses));
-      dispatch(expandTimelineSuccess(timelineId, statuses, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
+      dispatch(importFetchedStatuses(response.data));
+      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
       done();
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
