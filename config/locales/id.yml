@@ -652,9 +652,15 @@ id:
     proceed: Hapus akun
     success_msg: Akun Anda berhasil dihapus
     warning:
+      before: 'Sebelum melanjutkan, silakan baca catatan ini dengan hati-hati:'
+      caches: Konten yang telah tersimpan di server lain mungkin akan tetap di sana
       data_removal: Kiriman Anda dan data lainnya akan dihapus secara permanen
       email_change_html: Anda dapat <a href="%{path}">mengubah alamat surel Anda</a> tanpa perlu menghapus akun
       email_contact_html: Jika pesan belum diterima, Anda dapat mengirim surel <a href="mailto:%{email}">%{email}</a> sebagai bantuan
+      email_reconfirmation_html: Jika Anda tidak menerima konfirmasi surel, <a href="%{path}">Anda dapat memintanya lagi</a>
+      irreversible: Anda tidak akan bisa lagi mengembalikan atau mengaktifkan kembali akun Anda
+      more_details_html: Lebih detailnya, lihat <a href="%{terms_path}">kebijakan privasi</a>.
+      username_available: Nama pengguna Anda akan tersedia lagi
   directories:
     directory: Direktori profil
     explanation: Temukan pengguna berdasarkan minatnya
