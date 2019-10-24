@@ -490,6 +490,7 @@ class Video extends React.PureComponent {
               <button type='button' aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
               <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
               <div className='video-player__volume' onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
+                &nbsp;
                 <div className='video-player__volume__current' style={{ width: `${volumeWidth}px` }} />
                 <span
                   className={classNames('video-player__volume__handle')}
