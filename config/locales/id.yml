@@ -661,6 +661,7 @@ id:
       irreversible: Anda tidak akan bisa lagi mengembalikan atau mengaktifkan kembali akun Anda
       more_details_html: Lebih detailnya, lihat <a href="%{terms_path}">kebijakan privasi</a>.
       username_available: Nama pengguna Anda akan tersedia lagi
+      username_unavailable: Nama pengguna Anda tetap tidak akan tersedia
   directories:
     directory: Direktori profil
     explanation: Temukan pengguna berdasarkan minatnya
@@ -680,7 +681,7 @@ id:
     '500':
       content: Maaf, ada sesuatu yang salah pada sistem kami.
       title: Halaman ini tidak benar
-    '503': The page could not be served due to a temporary server failure.
+    '503': Halaman ini tidak dapat ditampilkan karena kegagalan server sementara.
     noscript_html: Untuk menggunakan aplikasi web Mastodon, tolong aktifkan JavaScript. Sebagai alternatif, cobalah <a href="%{apps_path}">aplikasi murni</a> Mastodon untuk platform Anda.
   existing_username_validator:
     not_found: tidak dapat menemukan pengguna lokal dengan nama pengguna tersebut
@@ -689,6 +690,7 @@ id:
     archive_takeout:
       date: Tanggal
       download: Unduh arsip Anda
+      hint_html: Anda dapat meminta arsip <strong>toot dan media yang Anda unggah</strong>. Data yang terekspor akan berformat ActivityPub, dapat dibaca dengan perangkat lunak yang mendukungnya. Anda dapat meminta arsip akun setiap 7 hari.
       in_progress: Mengompilasi arsip Anda...
       request: Meminta arsip Anda
       size: Ukuran
