@@ -33,6 +33,14 @@ et:
     status_count_before: Kes omavad
     tagline: Jälgi sõpru ja leia uusi
     terms: Kasutustingimused
+    unavailable_content: Sisu pole saadaval
+    unavailable_content_description:
+      domain: Server
+      reason: Põhjus
+      rejecting_media: 'Meedia failid sellelt serverilt ei töödelda ega salvestata ning mitte ühtegi eelvaadet ei kuvata, mis nõuab manuaalselt vajutust originaalfailile:'
+      silenced: 'Postitused nendelt serveritelt peidetakse avalikes ajajoontes ja vestlustes ning mitte ühtegi teavitust ei tehta nende kasutajate tegevustest, välja arvatud juhul, kui Te neid jälgite:'
+      suspended: 'Mitte mingeid andmeid nendelt serveritelt ei töödelda, salvestata ega vahetata, tehes igasuguse interaktsiooni või kirjavahetuse kasutajatega nendelt serveritelt võimatuks:'
+    unavailable_content_html: Mastodon tavaliselt lubab Teil vaadata sisu ning suhelda kasutajatega üks kõik millisest teisest serverist fediversumis. Need on erandid, mis on paika pandud sellel kindlal serveril.
     user_count_after:
       one: kasutajale
       other: kasutajale
@@ -40,6 +48,8 @@ et:
     what_is_mastodon: Mis on Mastodon?
   accounts:
     choices_html: "%{name}-i valikud:"
+    endorsements_hint: Te saate heaks kiita inimesi, keda jälgite, veebiliidesest ning neid kuvatakse siin.
+    featured_tags_hint: Te saate valida kindlaid silte, mida kuvatakse siin.
     follow: Jälgi
     followers:
       one: Jälgija
@@ -51,6 +61,7 @@ et:
     media: Meedia
     moved_html: "%{name} kolis %{new_profile_link}:"
     network_hidden: Neid andmeid pole saadaval
+    never_active: Mitte kunagi
     nothing_here: Siin pole midagi!
     people_followed_by: Inimesed, keda %{name} jälgib
     people_who_follow: Inimesed, kes jälgivad kasutajat %{name}
@@ -163,6 +174,7 @@ et:
         user: Kasutaja
       salmon_url: Salmoni URL
       search: Otsi
+      search_same_ip: Teised kasutajad, kellel on sama IP
       shared_inbox_url: Jagatud sisendkausta URL
       show:
         created_reports: Loodud teated
@@ -217,17 +229,21 @@ et:
       deleted_status: "(kustutatud staatus)"
       title: Auditilogi
     custom_emojis:
+      assign_category: Määra kategooria
       by_domain: Domeen
       copied_msg: Kohaliku koopia loomine emotikonist õnnestus
       copy: Kopeeri
       copy_failed_msg: Kohaliku koopia loomine sellest emotikonist ebaõnnestus
+      create_new_category: Loo uus kategooria
       created_msg: Emotikoni loomine õnnestus!
       delete: Kustuta
       destroyed_msg: Emotikoni kustutamine õnnestus!
       disable: Keela
+      disabled: Keelatud
       disabled_msg: Selle emotikoni keelamine õnnestus
       emoji: Emotikonid
       enable: Luba
+      enabled: Lubatud
       enabled_msg: Selle emotikoni lubamine õnnestus
       image_hint: PNG kuni 50KB
       listed: Nimekirjastatud
@@ -525,6 +541,8 @@ et:
     checkbox_agreement_without_rules_html: Ma nõustun <a href="%{terms_path}" target="_blank">kasutustingimustega</a>
     delete_account: Kustuta konto
     delete_account_html: Kui Te soovite oma kontot kustutada, võite <a href="%{path}">jätkata siit</a>. Teilt küsitakse kinnitust.
+    description:
+      prefix_invited_by_user: "@%{name} kutsub Teid liituma selle Mastodoni serveriga!"
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
     forgot_password: Unustasid oma salasõna?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
