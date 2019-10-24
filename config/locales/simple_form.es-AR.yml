@@ -31,3 +31,41 @@ es-AR:
         locked: Requiere que manualmente aprobés seguidores
         password: Usá al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un toot
+        scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
+        setting_aggregate_reblogs: No mostrar nuevos retoots de los toots que fueron recientemente retooteados (sólo afecta a los retoots recibidos recientemente)
+        setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
+        setting_display_media_default: Ocultar medios que están marcados como sensibles
+        setting_display_media_hide_all: Siempre ocultar todos los medios
+        setting_display_media_show_all: Siempre mostrar todos los medios que están marcados como sensibles
+        setting_hide_network: A quiénes seguís y tus seguidores no serán mostrados en tu perfil
+        setting_noindex: Afecta a tu perfil público y páginas de estado
+        setting_show_application: La aplicación que usás para tootear se mostrará en la vista detallada de tus toots
+        setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
+        setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
+        username: Tu nombre de usuario será único en %{domain}
+        whole_word: Cuando la palabra clave o frase es sólo alfanumérica, sólo será aplicado si coincide con toda la palabra
+      domain_allow:
+        domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
+      featured_tag:
+        name: 'Puede que quieras usar una de estas:'
+      form_challenge:
+        current_password: Estás ingresando en un área segura
+      imports:
+        data: Archivo CSV exportado desde otro servidor de Mastodon
+      invite_request:
+        text: Esto nos ayudará a revisar tu aplicación
+      sessions:
+        otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación de tu dispositivo móvil, o usá uno de tus códigos de recuperación:'
+      tag:
+        name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
+      user:
+        chosen_languages: Cuando esté marcado, sólo se mostrarán los toots en los idiomas seleccionados en las líneas temporales públicas
+    labels:
+      account:
+        fields:
+          name: Nombre de campo
+          value: Valor de campo
+      account_alias:
+        acct: Alias de la cuenta antigua
+      account_migration:
+        acct: Alias de la cuenta nueva
