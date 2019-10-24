@@ -543,6 +543,8 @@ et:
     delete_account_html: Kui Te soovite oma kontot kustutada, võite <a href="%{path}">jätkata siit</a>. Teilt küsitakse kinnitust.
     description:
       prefix_invited_by_user: "@%{name} kutsub Teid liituma selle Mastodoni serveriga!"
+      prefix_sign_up: Loo Mastodoni konto juba täna!
+      suffix: Kasutajakontoga saate jälgida inimesi, postitada uudiseid ning teha kirjavahetust üks kõik millisest Mastodoni serverist kasutajatega ja muud!
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
     forgot_password: Unustasid oma salasõna?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
@@ -567,7 +569,9 @@ et:
     status:
       account_status: Konto olek
       confirming: Ootan e-posti kinnitust.
+      functional: Teie konto on täiesti töökorras.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
+      redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
     trouble_logging_in: Probleeme sisselogimisega?
   authorize_follow:
     already_following: Te juba jälgite seda kontot
@@ -580,6 +584,11 @@ et:
       return: Näita kasutaja profiili
       web: Mine veebi
     title: Jälgi %{acct}
+  challenge:
+    confirm: Jätka
+    hint_html: "<strong>Nõuanne:</strong> Me ei küsi Teilt uuesti salasõna järgmise tunni jooksul."
+    invalid_password: Vigane salasõna
+    prompt: Jätkamiseks kinnitage salasõna
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -595,9 +604,17 @@ et:
       x_months: "%{count}k"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Informatsioon, mida sisestasite, oli vale
     confirm_password: Sisesta oma praegune salasõna, et kinnitada oma identiteet
+    confirm_username: Sisestage oma kasutajanimi protseduuri kinnitamiseks
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
+    warning:
+      before: 'Enne jätkamist palun lugege neid märkmeid hoolikalt:'
+      caches: Sisu, mis on salvestatud teiste serverite poolt, võib jääda alles
+      data_removal: Teie postitused ning muud andmed kustutatakse jäädavalt
+      email_change_html: Te saate <a href="%{path}">muuta oma e-postiaadressi</a> kontot kustutamata
+      email_contact_html: Kui see ikkagi ei saabu, saatke abi saamiseks kiri aadressile <a href="mailto:%{email}">%{email}</a>
   directories:
     directory: Profiilikataloog
     explanation: Avasta kasutajaid nende huvide põhjal
