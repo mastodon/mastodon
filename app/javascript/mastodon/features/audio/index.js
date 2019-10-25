@@ -12,6 +12,7 @@ const messages = defineMessages({
   pause: { id: 'video.pause', defaultMessage: 'Pause' },
   mute: { id: 'video.mute', defaultMessage: 'Mute sound' },
   unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
+  download: { id: 'video.download', defaultMessage: 'Download file' },
 });
 
 export default @injectIntl
@@ -217,6 +218,14 @@ class Audio extends React.PureComponent {
                 <span className='video-player__time-sep'>/</span>
                 <span className='video-player__time-total'>{formatTime(this.state.duration || Math.floor(this.props.duration))}</span>
               </span>
+            </div>
+
+            <div className='video-player__buttons right'>
+              <button type='button' aria-label={intl.formatMessage(messages.download)}>
+                <a className='video-player__download__icon' href={this.props.src} download>
+                  <Icon id={'download'} fixedWidth />
+                </a>
+              </button>
             </div>
           </div>
         </div>
