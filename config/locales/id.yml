@@ -169,6 +169,7 @@ id:
         user: Pengguna
       salmon_url: URL Salmon
       search: Cari
+      search_same_ip: Pengguna lain dengan IP yang sama
       shared_inbox_url: URL kotak masuk bersama
       show:
         created_reports: Laporan yang dibuat oleh akun ini
@@ -733,26 +734,48 @@ id:
     invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
   identity_proofs:
     active: Aktif
+    authorize_connection_prompt: Izinkan koneksi kriptografi ini?
+    errors:
+      failed: Koneksi kriptografi gagal. Silakan coba lagi dari %{provider}.
+      keybase:
+        verification_failed: Keybase tidak mengenali token ini sebagai tanda tangan pengguna Keybase %{kb_username}. Silakan ulangi lagi dari Keybase.
+      wrong_user: Tidak dapat membuat bukti untuk %{proving} saat masuk sebagai %{current}. Masuk sebagai %{proving} dan coba lagi.
     i_am_html: Saya adalah %{username} di %{service}.
     identity: Identitas
     inactive: Tidak aktif
     publicize_checkbox: 'Dan toot ini:'
+    publicize_toot: 'Terbukti! Saya adalah %{username} di %{service}: %{url}'
+    status: Status verifikasi
+    view_proof: Lihat bukti
   imports:
+    modes:
+      merge: Gabung
+      merge_long: Pertahankan rekaman yang sudah ada dan buat baru
+      overwrite: Timpa
+      overwrite_long: Ganti rekaman sekarang dengan yang baru
     preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
     success: Data anda berhasil diupload dan akan diproses sesegera mungkin
     types:
       blocking: Daftar diblokir
+      domain_blocking: Daftar blokir domain
       following: Daftar diikuti
       muting: Daftar didiamkan
     upload: Unggah
+  in_memoriam_html: Dalam memori.
   invites:
+    delete: Nonaktifkan
+    expired: Kedaluwarsa
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '1800': 30 menit
+      '21600': 6 jam
+      '3600': 1 jam
+      '43200': 12 jam
+      '604800': 1 minggu
+      '86400': 1 hari
+    expires_in_prompt: Tak pernah
+    generate: Buat tautan undangan
+    invited_by: 'Anda diundang oleh:'
+    max_uses_prompt: Tanpa batas
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
