@@ -14,7 +14,6 @@ import BoostModal from './boost_modal';
 import AudioModal from './audio_modal';
 import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
-import 'wicg-inert';
 import {
   MuteModal,
   BlockModal,
