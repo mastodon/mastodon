@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
+import {
+  getScrollbarWidth
+} from 'mastodon/utils/scrollbar';
 import Base from 'mastodon/components/modal_root';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
@@ -12,6 +14,7 @@ import BoostModal from './boost_modal';
 import AudioModal from './audio_modal';
 import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
+import 'wicg-inert';
 import {
   MuteModal,
   BlockModal,
@@ -22,66 +25,116 @@ import {
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
-  'MEDIA': () => Promise.resolve({ default: MediaModal }),
-  'VIDEO': () => Promise.resolve({ default: VideoModal }),
-  'AUDIO': () => Promise.resolve({ default: AudioModal }),
-  'BOOST': () => Promise.resolve({ default: BoostModal }),
-  'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
+  'MEDIA': () => Promise.resolve({
+    default: MediaModal
+  }),
+  'VIDEO': () => Promise.resolve({
+    default: VideoModal
+  }),
+  'AUDIO': () => Promise.resolve({
+    default: AudioModal
+  }),
+  'BOOST': () => Promise.resolve({
+    default: BoostModal
+  }),
+  'CONFIRM': () => Promise.resolve({
+    default: ConfirmationModal
+  }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
   'REPORT': ReportModal,
-  'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
+  'ACTIONS': () => Promise.resolve({
+    default: ActionsModal
+  }),
   'EMBED': EmbedModal,
   'LIST_EDITOR': ListEditor,
-  'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
-  'LIST_ADDER':ListAdder,
+  'FOCAL_POINT': () => Promise.resolve({
+    default: FocalPointModal
+  }),
+  'LIST_ADDER': ListAdder,
 };
 
 export default class ModalRoot extends React.PureComponent {
 
-  static propTypes = {
-    type: PropTypes.string,
-    props: PropTypes.object,
-    onClose: PropTypes.func.isRequired,
-  };
+    static propTypes = {
+      type: PropTypes.string,
+      props: PropTypes.object,
+      onClose: PropTypes.func.isRequired,
+    };
 
-  getSnapshotBeforeUpdate () {
-    return { visible: !!this.props.type };
-  }
-
-  componentDidUpdate (prevProps, prevState, { visible }) {
-    if (visible) {
-      document.body.classList.add('with-modals--active');
-      document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
-    } else {
-      document.body.classList.remove('with-modals--active');
-      document.documentElement.style.marginRight = 0;
+    getSnapshotBeforeUpdate() {
+      return {
+        visible: !!this.props.type
+      };
     }
-  }
 
-  renderLoading = modalId => () => {
-    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
-  }
+    componentDidUpdate(prevProps, prevState, {
+      visible
+    }) {
+      if (visible) {
+        document.body.classList.add('with-modals--active');
+        document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+      } else {
+        document.body.classList.remove('with-modals--active');
+        document.documentElement.style.marginRight = 0;
+      }
+    }
 
-  renderError = (props) => {
-    const { onClose } = this.props;
+    renderLoading = modalId => () => {
+      return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? < ModalLoading / > : null;
+    }
 
-    return <BundleModalError {...props} onClose={onClose} />;
-  }
+    renderError = (props) => {
+      const {
+        onClose
+      } = this.props;
 
-  render () {
-    const { type, props, onClose } = this.props;
-    const visible = !!type;
+      return <BundleModalError {
+        ...props
+      }
+      onClose = {
+        onClose
+      }
+      />;
+    }
 
-    return (
-      <Base onClose={onClose}>
-        {visible && (
-          <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
-            {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
-          </BundleContainer>
-        )}
-      </Base>
-    );
-  }
+    render() {
+      const {
+        type,
+        props,
+        onClose
+      } = this.props;
+      const visible = !!type;
 
-}
+      return ( <
+        Base onClose = {
+          onClose
+        } > {
+          visible && ( <
+            BundleContainer fetchComponent = {
+              MODAL_COMPONENTS[type]
+            }
+            loading = {
+              this.renderLoading(type)
+            }
+            error = {
+              this.renderError
+            }
+            renderDelay = {
+              200
+            } > {
+              (SpecificComponent) => < SpecificComponent {
+                ...props
+              }
+              onClose = {
+                onClose
+              }
+              />} < /
+              BundleContainer >
+            )
+          } <
+          /Base>
+        );
+      }
+
+    }
