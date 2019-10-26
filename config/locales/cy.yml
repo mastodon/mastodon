@@ -692,7 +692,13 @@ cy:
     success_msg: Llwyddwyd i ddileu eich cyfrif
     warning:
       before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
+      caches: Efallai bydd cynnwys sydd wedi'i storio dros dro gan weinyddau eraill yn barhau
+      data_removal: Bydd eich pyst a'ch data arall yn cael ei ddileu am fyth
+      email_change_html: Gallwch <a href="%{path}">newid eich cyfeiriad ebost</a> heb ddileu eich cyfrif
+      email_contact_html: Os nad yw hi'n cyrraedd, gallwch ebostio <a href="mailto:%{email}">%{email}</a> am gymorth
+      email_reconfirmation_html: Os nad ydych yn derbyn yr ebost cadarnhad, gallwch <a href="%{path}">ceisio amdani eto</a>
       irreversible: Ni fyddwch yn gallu adfer nac ail-greu eich cyfrif
+      more_details_html: Am fwy o fanylion, gwelwch y <a href="%{terms_path}">polisi preifatrwydd</a>.
       username_available: Bydd eich enw defnyddiwr ar gael eto
       username_unavailable: Ni fydd eich enw defnyddiwr ar gael
   directories:
@@ -702,10 +708,10 @@ cy:
   domain_validator:
     invalid_domain: ddim yn enw parth dilys
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Roedd y cais wnaethoch cyflwyno yn annilys neu'n gamffurfiedig.
     '403': Nid oes gennych ganiatad i weld y dudalen hon.
     '404': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli.
-    '406': This page is not available in the requested format.
+    '406': Nid yw'r dudalen ar gael yn y fformat ceisiedig.
     '410': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli mwyach.
     '422':
       content: Methwyd i ddilysu diogelwch. A ydych chi'n blocio cwcîs?
