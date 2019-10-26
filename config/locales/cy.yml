@@ -590,12 +590,16 @@ cy:
     add_new: Creu enw arall
     created_msg: Wedi creu enw arall yn llwyddianus. Gallwch nawr dechrau'r symudiad o'r hen gyfrif.
     deleted_msg: Wedi tynnu enw arall yn llwyddianus. Ni fydd symud o'r cyfrif hynny i'r cyfrif hon yn bosib.
+    hint_html: Os hoffech symyd o gyfrif arall i'r cyfrif hon, gallwch creu enw arall fama, sydd yn angenrheidiol cyn i chi dechrau symyd ddilynwyr o'r hen gyfrif i'r cyfrif hon. Mae'r gweithred hon yn <strong>ddiniwed ac yn gildroadwy</strong>. <strong>Caiff symudiad y cyfrif ei dechrau o'r hen gyfrif</strong>.
+    remove: Dadgysylltu'r enw arall
   appearance:
     advanced_web_interface: Rhyngwyneb gwe uwch
     advanced_web_interface_hint: 'Os hoffech gwneud defnydd o gyd o''ch lled sgrin, mae''r rhyngwyneb gwe uwch yn gadael i chi ffurfweddu sawl colofn wahanol i weld cymaint o wybodaeth â hoffech: Catref, hysbysiadau, ffrwd y ffedysawd, unrhyw nifer o rhestrau ac hashnodau.'
     animations_and_accessibility: Animeiddiau ac hygyrchedd
     confirmation_dialogs: Deialog cadarnhau
+    discovery: Darganfyddiad
     sensitive_content: Cynnwys sensitif
+    toot_layout: Gosodiad tŵt
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
     salutation: "%{name},"
@@ -615,8 +619,13 @@ cy:
     apply_for_account: Gofyn am wahoddiad
     change_password: Cyfrinair
     checkbox_agreement_html: Rydw i'n cytuno i'r <a href="%{rules_path}" target="_blank">rheolau'r gweinydd</a> a'r <a href="%{terms_path}" target="_blank">telerau gwasanaeth</a>
+    checkbox_agreement_without_rules_html: Rydw i'n cytuno i <a href="%{terms_path}" target="_blank">Delerau y Gwasanaeth</a>
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
+    description:
+      prefix_invited_by_user: "Mae @%{name} yn eich wahodd i ymuno â'r gweinidd Mastodon hon!"
+      prefix_sign_up: Cofrestru ar Fastodon heddiw!
+      suffix: Gyda cyfrif, byddwch yn gallu dilyn pobl, postio dilysiadau a chyfnewid negeseuon gyda defnyddwyr o unrhyw gweinydd Mastodon ac mwy!
     didnt_get_confirmation: Heb dderbyn cyfarwyddiadau cadarnhau?
     forgot_password: Wedi anghofio'ch cyfrinair?
     invalid_reset_password_token: Tocyn ailosod cyfrinair yn annilys neu wedi dod i ben. Gwnewch gais am un newydd os gwelwch yn dda.
@@ -635,6 +644,8 @@ cy:
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
     setup:
+      email_below_hint_html: Os mae'r ebost isod yn anghywir, gallwch ei newid fama a derbyn ebost cadarnhad newydd.
+      email_settings_hint_html: Caiff yr ebost cadarnhad ei anfon i %{email}. Os nad yw'r ebost hon yn gywir, gallwch ei newid yn ngosodiadau'r cyfrif.
       title: Gosodiad
     status:
       account_status: Statws cyfrif
