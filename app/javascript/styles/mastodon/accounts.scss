@@ -68,6 +68,7 @@
         margin: 0;
         border-radius: 4px;
         background: darken($ui-base-color, 8%);
+        object-fit: cover;
       }
     }
 
@@ -196,7 +197,8 @@
   }
 }
 
-.account-role {
+.account-role,
+.simple_form .recommended {
   display: inline-block;
   padding: 4px 6px;
   cursor: default;
@@ -222,6 +224,7 @@
 }
 
 .account__header__fields {
+  max-width: 100vw;
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
@@ -291,4 +294,30 @@
 
 .directory__tag .trends__item__current {
   width: auto;
+}
+
+.pending-account {
+  &__header {
+    color: $darker-text-color;
+
+    a {
+      color: $ui-secondary-color;
+      text-decoration: none;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
+    strong {
+      color: $primary-text-color;
+      font-weight: 700;
+    }
+  }
+
+  &__body {
+    margin-top: 10px;
+  }
 }

@@ -18,7 +18,7 @@ class AccountIdentityProof < ApplicationRecord
   belongs_to :account
 
   validates :provider, inclusion: { in: ProofProvider::SUPPORTED_PROVIDERS }
-  validates :provider_username, format: { with: /\A[a-z0-9_]+\z/i }, length: { minimum: 2, maximum: 15 }
+  validates :provider_username, format: { with: /\A[a-z0-9_]+\z/i }, length: { minimum: 2, maximum: 30 }
   validates :provider_username, uniqueness: { scope: [:account_id, :provider] }
   validates :token, format: { with: /\A[a-f0-9]+\z/ }, length: { maximum: 66 }
 
@@ -30,11 +30,11 @@ class AccountIdentityProof < ApplicationRecord
 
   delegate :refresh!, :on_success_path, :badge, to: :provider_instance
 
-  private
-
   def provider_instance
     @provider_instance ||= ProofProvider.find(provider, self)
   end
+
+  private
 
   def queue_worker
     provider_instance.worker_class.perform_async(id)

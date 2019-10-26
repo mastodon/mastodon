@@ -4,6 +4,7 @@ import { evictStatus } from '../storage/modifier';
 
 import { deleteFromTimelines } from './timelines';
 import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus } from './importer';
+import { ensureComposeIsVisible } from './compose';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
@@ -131,14 +132,15 @@ export function fetchStatusFail(id, error, skipLoading) {
   };
 };
 
-export function redraft(status) {
+export function redraft(status, raw_text) {
   return {
     type: REDRAFT,
     status,
+    raw_text,
   };
 };
 
-export function deleteStatus(id, router, withRedraft = false) {
+export function deleteStatus(id, routerHistory, withRedraft = false) {
   return (dispatch, getState) => {
     let status = getState().getIn(['statuses', id]);
 
@@ -148,17 +150,14 @@ export function deleteStatus(id, router, withRedraft = false) {
 
     dispatch(deleteStatusRequest(id));
 
-    api(getState).delete(`/api/v1/statuses/${id}`).then(() => {
+    api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
       evictStatus(id);
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
 
       if (withRedraft) {
-        dispatch(redraft(status));
-
-        if (!getState().getIn(['compose', 'mounted'])) {
-          router.push('/statuses/new');
-        }
+        dispatch(redraft(status, response.data.text));
+        ensureComposeIsVisible(getState, routerHistory);
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));

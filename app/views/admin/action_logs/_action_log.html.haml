@@ -6,7 +6,7 @@
       .log-entry__title
         = t("admin.action_logs.actions.#{action_log.action}_#{action_log.target_type.underscore}", name: content_tag(:span, action_log.account.username, class: 'username'), target: content_tag(:span, log_target(action_log), class: 'target')).html_safe
       .log-entry__timestamp
-        %time= l action_log.created_at
+        %time.formatted{ datetime: action_log.created_at.iso8601 }
     .spacer
     .log-entry__icon
       = fa_icon icon_for_log(action_log)

@@ -7,7 +7,6 @@ zh-TW:
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
     administered_by: 管理者：
-    api: API
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
@@ -17,10 +16,6 @@ zh-TW:
     contact_unavailable: 未公開
     discover_users: 探索使用者
     documentation: 文件
-    extended_description_html: |
-      <h3>這裡可以寫一些網站規則</h3>
-      <p>本站點未有詳細介紹</p>
-    generic_description: "%{domain} 是 Mastodon 網路中其中一個站點"
     get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
     learn_more: 了解詳細
@@ -29,13 +24,11 @@ zh-TW:
     server_stats: 伺服器統計：
     source_code: 原始碼
     status_count_after:
-      one: 條嘟文
       other: 條嘟文
     status_count_before: 他們共嘟出了
     tagline: 關注朋友並探索新朋友
     terms: 使用條款
     user_count_after:
-      one: 位使用者
       other: 位使用者
     user_count_before: 註冊使用者數
     what_is_mastodon: 什麼是 Mastodon?
@@ -43,7 +36,6 @@ zh-TW:
     choices_html: "%{name} 的選擇："
     follow: 關注
     followers:
-      one: 關注者
       other: 關注者
     following: 正在關注
     joined: 加入於 %{date}
@@ -56,7 +48,6 @@ zh-TW:
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
     posts:
-      one: 嘟文
       other: 嘟文
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文與回覆
@@ -281,7 +272,6 @@ zh-TW:
         suspend: 已停權
       show:
         affected_accounts:
-          one: 將影響到資料庫中的 1 個帳戶
           other: 將影響到資料庫中的 %{count} 個帳戶
         retroactive:
           silence: 對此站點的所有使用者取消靜音
@@ -407,13 +397,6 @@ zh-TW:
       no_media: 不含媒體檔案
       title: 帳戶嘟文
       with_media: 含有媒體檔案
-    subscriptions:
-      callback_url: 回傳網址
-      confirmed: 已確認
-      expires_in: 期限
-      last_delivery: 最後遞送
-      title: WebSub 訂閱
-      topic: 主題
     title: 管理介面
   admin_mailer:
     new_report:
@@ -436,9 +419,7 @@ zh-TW:
     warning: 警告，不要把它分享給任何人!
     your_token: 你的 token
   auth:
-    agreement_html: 按下下方的「註冊」即代表同意遵守 <a href="%{rules_path}">此伺服器的規則</a> 以及 <a href="%{terms_path}">使用條款</a>。
     change_password: 密碼
-    confirm_email: 確認電子信箱位址
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     didnt_get_confirmation: 沒有收到驗證信?
@@ -449,9 +430,6 @@ zh-TW:
     migrate_account: 轉移到另一個帳戶
     migrate_account_html: 如果你希望引導他人關注另一個帳戶，請<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
-    providers:
-      cas: CAS
-      saml: SAML
     register: 註冊
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
@@ -483,16 +461,14 @@ zh-TW:
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
   deletes:
-    bad_password_msg: 想得美，駭客! 密碼輸入錯誤
     confirm_password: 輸入你現在的密碼來驗證身份
-    description_html: 繼續操作將會<strong>永久地、不可還原地</strong>刪除帳戶中的所有內容，然後凍結帳戶。你的使用者名稱將會被保留，以防有人冒用你的身份。
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
-    warning_html: 我們只能保證本伺服器上的內容將會被徹底刪除。對於已經被廣泛傳播的內容，它們在本伺服器以外的某些地方可能仍然可見。此外，離線伺服器以及停止接收訂閱的伺服器所儲存的資料亦無法刪除。
-    warning_title: 關於已傳播的內容警告
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': 你沒有觀看這個頁面的權限。
     '404': 您所尋找的網頁不存在。
+    '406': This page is not available in the requested format.
     '410': 您所尋找的網頁此處已不存在。
     '422':
       content: 安全驗證失敗。請確定有開啟瀏覽器 Cookies 功能?
@@ -501,6 +477,7 @@ zh-TW:
     '500':
       content: 抱歉，我們的後台出現問題了。
       title: 這個頁面有問題
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
@@ -511,14 +488,12 @@ zh-TW:
       request: 下載存檔
       size: 大小
     blocks: 您封鎖的使用者
-    csv: CSV
     follows: 您關注的使用者
     mutes: 您靜音的使用者
     storage: 儲存空間大小
   generic:
     changes_saved_msg: 已成功儲存修改!
     save_changes: 儲存修改
-    validation_errors: 送出的資料有 %{count} 個問題
   imports:
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
     success: 資料檔上傳成功，正在匯入，請稍候
@@ -541,7 +516,6 @@ zh-TW:
     expires_in_prompt: 永不過期
     generate: 建立邀請連結
     invited_by: 你的邀請人是：
-    max_uses: "%{count} 次"
     max_uses_prompt: 無限制
     prompt: 建立分享連結，邀請他人在本伺服器註冊
     table:
@@ -557,9 +531,6 @@ zh-TW:
       too_many: 無法加入超過 4 個檔案
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
-    currently_redirecting: 目前你的個人資料頁顯示的新帳戶是：
-    proceed: 儲存
-    updated_msg: 帳戶搬遷設定更新成功!
   moderation:
     title: 營運
   notification_mailer:
@@ -567,8 +538,6 @@ zh-TW:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
       mention: "%{name} 在此提及了你:"
-      new_followers_summary: 而且，你不在的時候，有 %{count} 個人關注你了! 好棒!
-      subject: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
@@ -592,37 +561,16 @@ zh-TW:
       body: '你的嘟文被 %{name} 轉嘟:'
       subject: "%{name} 轉嘟了你的嘟文"
       title: 新的轉嘟
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: 較新
     next: 下一頁
     older: 較舊
     prev: 上一頁
-    truncate: ''
-  preferences:
-    languages: 語言
-    other: 其他
-    publishing: 發佈
-    web: 站內
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
     proceed: 下一步
     prompt: '您希望關注:'
-  remote_unfollow:
-    error: 錯誤
-    title: 標題
-    unfollowed: 取消關注
   sessions:
     activity: 最近活動
     browser: 瀏覽器
@@ -648,11 +596,6 @@ zh-TW:
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於你的 Mastodon 帳戶的瀏覽器。
     ip: IP 位址
-    platforms:
-      adobe_air: ''
-      linux: ''
-      mac: ''
-      other: 未知平台
     revoke: 取消
     revoke_success: Session 取消成功
     title: 作業階段
@@ -667,17 +610,12 @@ zh-TW:
     migrate: 帳戶搬遷
     notifications: 通知
     preferences: 偏好設定
-    settings: 設定
     two_factor_authentication: 兩階段認證
-    your_apps: 你的應用程式
   statuses:
     attached:
       description: 附件： %{attached}
-      image: "%{count} 幅圖片"
-      video: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: 內容警告： %{warning}
-    disallowed_hashtags: 包含不允許的標籤： %{tags}
     language_detection: 自動偵測語言
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制
@@ -687,7 +625,6 @@ zh-TW:
       private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
     show_more: 顯示更多
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: 僅關注者
       private_long: 只有關注你的人能看到

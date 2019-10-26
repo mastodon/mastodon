@@ -1,12 +1,12 @@
 import { debounce } from 'lodash';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import LoadGap from './load_gap';
 import ScrollableList from './scrollable_list';
+import RegenerationIndicator from 'mastodon/components/regeneration_indicator';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -46,22 +46,28 @@ export default class StatusList extends ImmutablePureComponent {
 
   handleMoveUp = (id, featured) => {
     const elementIndex = this.getCurrentStatusIndex(id, featured) - 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, true);
   }
 
   handleMoveDown = (id, featured) => {
     const elementIndex = this.getCurrentStatusIndex(id, featured) + 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, false);
   }
 
   handleLoadOlder = debounce(() => {
     this.props.onLoadMore(this.props.statusIds.size > 0 ? this.props.statusIds.last() : undefined);
   }, 300, { leading: true })
 
-  _selectChild (index) {
-    const element = this.node.node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+  _selectChild (index, align_top) {
+    const container = this.node.node;
+    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
 
     if (element) {
+      if (align_top && container.scrollTop > element.offsetTop) {
+        element.scrollIntoView(true);
+      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+        element.scrollIntoView(false);
+      }
       element.focus();
     }
   }
@@ -75,18 +81,7 @@ export default class StatusList extends ImmutablePureComponent {
     const { isLoading, isPartial } = other;
 
     if (isPartial) {
-      return (
-        <div className='regeneration-indicator'>
-          <div>
-            <div className='regeneration-indicator__figure' />
-
-            <div className='regeneration-indicator__label'>
-              <FormattedMessage id='regeneration_indicator.label' tagName='strong' defaultMessage='Loading&hellip;' />
-              <FormattedMessage id='regeneration_indicator.sublabel' defaultMessage='Your home feed is being prepared!' />
-            </div>
-          </div>
-        </div>
-      );
+      return <RegenerationIndicator />;
     }
 
     let scrollableContent = (isLoading || statusIds.size > 0) ? (

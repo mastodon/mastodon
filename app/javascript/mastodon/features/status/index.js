@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { createSelector } from 'reselect';
 import { fetchStatus } from '../../actions/statuses';
 import MissingIndicator from '../../components/missing_indicator';
 import DetailedStatus from './components/detailed_status';
@@ -22,7 +23,6 @@ import {
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
-import { blockAccount } from '../../actions/accounts';
 import {
   muteStatus,
   unmuteStatus,
@@ -31,6 +31,7 @@ import {
   revealStatus,
 } from '../../actions/statuses';
 import { initMuteModal } from '../../actions/mutes';
+import { initBlockModal } from '../../actions/blocks';
 import { initReport } from '../../actions/reports';
 import { makeGetStatus } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
@@ -38,12 +39,12 @@ import ColumnBackButton from '../../components/column_back_button';
 import ColumnHeader from '../../components/column_header';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
-import { textForScreenReader } from '../../components/status';
+import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
@@ -51,17 +52,69 @@ const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
-  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
 });
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
+
+  const getAncestorsIds = createSelector([
+    (_, { id }) => id,
+    state => state.getIn(['contexts', 'inReplyTos']),
+  ], (statusId, inReplyTos) => {
+    let ancestorsIds = Immutable.List();
+    ancestorsIds = ancestorsIds.withMutations(mutable => {
+      let id = statusId;
+
+      while (id) {
+        mutable.unshift(id);
+        id = inReplyTos.get(id);
+      }
+    });
+
+    return ancestorsIds;
+  });
+
+  const getDescendantsIds = createSelector([
+    (_, { id }) => id,
+    state => state.getIn(['contexts', 'replies']),
+    state => state.get('statuses'),
+  ], (statusId, contextReplies, statuses) => {
+    let descendantsIds = [];
+    const ids = [statusId];
+
+    while (ids.length > 0) {
+      let id        = ids.shift();
+      const replies = contextReplies.get(id);
+
+      if (statusId !== id) {
+        descendantsIds.push(id);
+      }
+
+      if (replies) {
+        replies.reverse().forEach(reply => {
+          ids.unshift(reply);
+        });
+      }
+    }
+
+    let insertAt = descendantsIds.findIndex((id) => statuses.get(id).get('in_reply_to_account_id') !== statuses.get(id).get('account'));
+    if (insertAt !== -1) {
+      descendantsIds.forEach((id, idx) => {
+        if (idx > insertAt && statuses.get(id).get('in_reply_to_account_id') === statuses.get(id).get('account')) {
+          descendantsIds.splice(idx, 1);
+          descendantsIds.splice(insertAt, 0, id);
+          insertAt += 1;
+        }
+      });
+    }
+
+    return Immutable.List(descendantsIds);
+  });
 
   const mapStateToProps = (state, props) => {
     const status = getStatus(state, { id: props.params.statusId });
@@ -69,33 +122,8 @@ const makeMapStateToProps = () => {
     let descendantsIds = Immutable.List();
 
     if (status) {
-      ancestorsIds = ancestorsIds.withMutations(mutable => {
-        let id = status.get('in_reply_to_id');
-
-        while (id) {
-          mutable.unshift(id);
-          id = state.getIn(['contexts', 'inReplyTos', id]);
-        }
-      });
-
-      descendantsIds = descendantsIds.withMutations(mutable => {
-        const ids = [status.get('id')];
-
-        while (ids.length > 0) {
-          let id        = ids.shift();
-          const replies = state.getIn(['contexts', 'replies', id]);
-
-          if (status.get('id') !== id) {
-            mutable.push(id);
-          }
-
-          if (replies) {
-            replies.reverse().forEach(reply => {
-              ids.unshift(reply);
-            });
-          }
-        }
-      });
+      ancestorsIds = getAncestorsIds(state, { id: status.get('in_reply_to_id') });
+      descendantsIds = getDescendantsIds(state, { id: status.get('id') });
     }
 
     return {
@@ -126,11 +154,14 @@ class Status extends ImmutablePureComponent {
     descendantsIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
+    multiColumn: PropTypes.bool,
     domain: PropTypes.string.isRequired,
   };
 
   state = {
     fullscreen: false,
+    showMedia: defaultMediaVisibility(this.props.status),
+    loadedStatusId: undefined,
   };
 
   componentWillMount () {
@@ -146,6 +177,14 @@ class Status extends ImmutablePureComponent {
       this._scrolledIntoView = false;
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
+
+    if (nextProps.status && nextProps.status.get('id') !== this.state.loadedStatusId) {
+      this.setState({ showMedia: defaultMediaVisibility(nextProps.status), loadedStatusId: nextProps.status.get('id') });
+    }
+  }
+
+  handleToggleMediaVisibility = () => {
+    this.setState({ showMedia: !this.state.showMedia });
   }
 
   handleFavouriteClick = (status) => {
@@ -255,19 +294,9 @@ class Status extends ImmutablePureComponent {
   }
 
   handleBlockClick = (status) => {
-    const { dispatch, intl } = this.props;
+    const { dispatch } = this.props;
     const account = status.get('account');
-
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockConfirm),
-      onConfirm: () => dispatch(blockAccount(account.get('id'))),
-      secondary: intl.formatMessage(messages.blockAndReport),
-      onSecondary: () => {
-        dispatch(blockAccount(account.get('id')));
-        dispatch(initReport(account, status));
-      },
-    }));
+    dispatch(initBlockModal(account));
   }
 
   handleReport = (status) => {
@@ -312,19 +341,23 @@ class Status extends ImmutablePureComponent {
     this.handleToggleHidden(this.props.status);
   }
 
+  handleHotkeyToggleSensitive = () => {
+    this.handleToggleMediaVisibility();
+  }
+
   handleMoveUp = id => {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
     if (id === status.get('id')) {
-      this._selectChild(ancestorsIds.size - 1);
+      this._selectChild(ancestorsIds.size - 1, true);
     } else {
       let index = ancestorsIds.indexOf(id);
 
       if (index === -1) {
         index = descendantsIds.indexOf(id);
-        this._selectChild(ancestorsIds.size + index);
+        this._selectChild(ancestorsIds.size + index, true);
       } else {
-        this._selectChild(index - 1);
+        this._selectChild(index - 1, true);
       }
     }
   }
@@ -333,23 +366,29 @@ class Status extends ImmutablePureComponent {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
     if (id === status.get('id')) {
-      this._selectChild(ancestorsIds.size + 1);
+      this._selectChild(ancestorsIds.size + 1, false);
     } else {
       let index = ancestorsIds.indexOf(id);
 
       if (index === -1) {
         index = descendantsIds.indexOf(id);
-        this._selectChild(ancestorsIds.size + index + 2);
+        this._selectChild(ancestorsIds.size + index + 2, false);
       } else {
-        this._selectChild(index + 1);
+        this._selectChild(index + 1, false);
       }
     }
   }
 
-  _selectChild (index) {
-    const element = this.node.querySelectorAll('.focusable')[index];
+  _selectChild (index, align_top) {
+    const container = this.node;
+    const element = container.querySelectorAll('.focusable')[index];
 
     if (element) {
+      if (align_top && container.scrollTop > element.offsetTop) {
+        element.scrollIntoView(true);
+      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+        element.scrollIntoView(false);
+      }
       element.focus();
     }
   }
@@ -397,13 +436,13 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl, domain } = this.props;
+    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl, domain, multiColumn } = this.props;
     const { fullscreen } = this.state;
 
     if (status === null) {
       return (
         <Column>
-          <ColumnBackButton />
+          <ColumnBackButton multiColumn={multiColumn} />
           <MissingIndicator />
         </Column>
       );
@@ -426,12 +465,14 @@ class Status extends ImmutablePureComponent {
       mention: this.handleHotkeyMention,
       openProfile: this.handleHotkeyOpenProfile,
       toggleHidden: this.handleHotkeyToggleHidden,
+      toggleSensitive: this.handleHotkeyToggleSensitive,
     };
 
     return (
-      <Column label={intl.formatMessage(messages.detailedStatus)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           showBackButton
+          multiColumn={multiColumn}
           extraButton={(
             <button className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll} aria-pressed={status.get('hidden') ? 'false' : 'true'}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} /></button>
           )}
@@ -449,6 +490,8 @@ class Status extends ImmutablePureComponent {
                   onOpenMedia={this.handleOpenMedia}
                   onToggleHidden={this.handleToggleHidden}
                   domain={domain}
+                  showMedia={this.state.showMedia}
+                  onToggleMediaVisibility={this.handleToggleMediaVisibility}
                 />
 
                 <ActionBar

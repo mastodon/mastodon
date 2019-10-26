@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
-  context_extensions :atom_uri, :conversation, :sensitive,
-                     :hashtag, :emoji, :focal_point
+  context_extensions :atom_uri, :conversation, :sensitive, :voters_count
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
@@ -23,6 +22,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   attribute :end_time, if: :poll_and_expires?
   attribute :closed, if: :poll_and_expired?
+
+  attribute :voters_count, if: :poll_and_voters_count?
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -55,7 +56,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
         type: :unordered,
         part_of: ActivityPub::TagManager.instance.replies_uri_for(object),
         items: replies.map(&:second),
-        next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : nil
+        next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : ActivityPub::TagManager.instance.replies_uri_for(object, page: true, only_other_accounts: true)
       )
     )
   end
@@ -142,6 +143,10 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   alias end_time closed
 
+  def voters_count
+    object.preloadable_poll.voters_count
+  end
+
   def poll_and_expires?
     object.preloadable_poll&.expires_at&.present?
   end
@@ -150,10 +155,16 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     object.preloadable_poll&.expired?
   end
 
+  def poll_and_voters_count?
+    object.preloadable_poll&.voters_count
+  end
+
   class MediaAttachmentSerializer < ActivityPub::Serializer
+    context_extensions :blurhash, :focal_point
+
     include RoutingHelper
 
-    attributes :type, :media_type, :url, :name
+    attributes :type, :media_type, :url, :name, :blurhash
     attribute :focal_point, if: :focal_point?
 
     def type
@@ -198,6 +209,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   class TagSerializer < ActivityPub::Serializer
+    context_extensions :hashtag
+
     include RoutingHelper
 
     attributes :type, :href, :name

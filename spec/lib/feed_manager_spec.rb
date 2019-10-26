@@ -149,6 +149,14 @@ RSpec.describe FeedManager do
           status = Fabricate(:status, text: 'shiitake', account: jeff)
           expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
         end
+
+        it 'returns true if phrase is contained in a poll option' do
+          alice.custom_filters.create!(phrase: 'farts', context: %w(home public), irreversible: true)
+          alice.custom_filters.create!(phrase: 'pop tarts', context: %w(home), irreversible: true)
+          alice.follow!(jeff)
+          status = Fabricate(:status, text: 'what do you prefer', poll: Fabricate(:poll, options: %w(farts POP TARts)), account: jeff)
+          expect(FeedManager.instance.filter?(:home, status, alice.id)).to be true
+        end
       end
     end
 
@@ -168,13 +176,13 @@ RSpec.describe FeedManager do
 
       it 'returns true for status by silenced account who recipient is not following' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
-        alice.update(silenced: true)
+        alice.silence!
         expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be true
       end
 
       it 'returns false for status by followed silenced account' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
-        alice.update(silenced: true)
+        alice.silence!
         bob.follow!(alice)
         expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be false
       end
@@ -237,6 +245,23 @@ RSpec.describe FeedManager do
 
         # The second reblog should be ignored
         expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be false
+      end
+
+      it 'saves a new reblog of a recently-reblogged status when previous reblog has been deleted' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        old_reblog = Fabricate(:status, reblog: reblogged)
+
+        # The first reblog should be accepted
+        expect(FeedManager.instance.push_to_home(account, old_reblog)).to be true
+
+        # The first reblog should be successfully removed
+        expect(FeedManager.instance.unpush_from_home(account, old_reblog)).to be true
+
+        reblog = Fabricate(:status, reblog: reblogged)
+
+        # The second reblog should be accepted
+        expect(FeedManager.instance.push_to_home(account, reblog)).to be true
       end
 
       it 'does not save a new reblog of a multiply-reblogged-then-unreblogged status' do

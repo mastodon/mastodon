@@ -10,7 +10,7 @@ describe ProofProvider::Keybase::Verifier do
       token: '11111111111111111111111111'
     )
 
-    described_class.new('alice', 'cryptoalice', '11111111111111111111111111')
+    described_class.new('alice', 'cryptoalice', '11111111111111111111111111', my_domain)
   end
 
   let(:query_params) do

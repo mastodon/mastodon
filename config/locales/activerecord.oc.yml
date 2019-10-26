@@ -2,8 +2,9 @@
 oc:
   activerecord:
     attributes:
-      status:
-        owned_poll: Sondatge
+      poll:
+        expires_at: Data limita
+        options: Opcions
     errors:
       models:
         account:

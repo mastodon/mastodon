@@ -1,33 +1,23 @@
 # frozen_string_literal: true
 
 class UnblockService < BaseService
+  include Payloadable
+
   def call(account, target_account)
     return unless account.blocking?(target_account)
 
     unblock = account.unblock!(target_account)
-    create_notification(unblock) unless target_account.local?
+    create_notification(unblock) if !target_account.local? && target_account.activitypub?
     unblock
   end
 
   private
 
   def create_notification(unblock)
-    if unblock.target_account.ostatus?
-      NotificationWorker.perform_async(build_xml(unblock), unblock.account_id, unblock.target_account_id)
-    elsif unblock.target_account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(build_json(unblock), unblock.account_id, unblock.target_account.inbox_url)
-    end
+    ActivityPub::DeliveryWorker.perform_async(build_json(unblock), unblock.account_id, unblock.target_account.inbox_url)
   end
 
   def build_json(unblock)
-    ActiveModelSerializers::SerializableResource.new(
-      unblock,
-      serializer: ActivityPub::UndoBlockSerializer,
-      adapter: ActivityPub::Adapter
-    ).to_json
-  end
-
-  def build_xml(block)
-    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unblock_salmon(block))
+    Oj.dump(serialize_payload(unblock, ActivityPub::UndoBlockSerializer))
   end
 end

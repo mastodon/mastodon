@@ -4,13 +4,13 @@
 [![GitHub release](https://img.shields.io/github/release/tootsuite/mastodon.svg)][releases]
 [![Build Status](https://img.shields.io/circleci/project/github/tootsuite/mastodon.svg)][circleci]
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
-[![Translation status](https://weblate.joinmastodon.org/widgets/mastodon/-/svg-badge.svg)][weblate]
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 [![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
 
 [releases]: https://github.com/tootsuite/mastodon/releases
 [circleci]: https://circleci.com/gh/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
-[weblate]: https://weblate.joinmastodon.org/engage/mastodon/
+[crowdin]: https://crowdin.com/project/mastodon
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
 Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable as a federated network, i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
@@ -55,7 +55,7 @@ Private posts, locked accounts, phrase filtering, muting, blocking and all sorts
 
 **OAuth2 and a straightforward REST API**
 
-Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choice!
+Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choices!
 
 ## Deployment
 
@@ -78,7 +78,7 @@ A **Vagrant** configuration is included for development purposes.
 
 ## Contributing
 
-Mastodon is **free, open source software** licensed under **AGPLv3**.
+Mastodon is **free, open-source software** licensed under **AGPLv3**.
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 

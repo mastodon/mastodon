@@ -11,7 +11,7 @@ const mapStateToProps = (state, { intl }) => {
     const value = notification[key];
 
     if (typeof value === 'object') {
-      notification[key] = intl.formatMessage(value);
+      notification[key] = intl.formatMessage(value, notification[`${key}_values`]);
     }
   }));
 

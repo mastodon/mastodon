@@ -29,7 +29,7 @@ const emojify = (str, customEmojis = {}) => {
         // if you want additional emoji handler, add statements below which set replacement and return true.
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          replacement = `<img draggable="false" class="emojione" alt="${shortname}" title="${shortname}" src="${filename}" />`;
+          replacement = `<img draggable="false" class="emojione custom-emoji" alt="${shortname}" title="${shortname}" src="${filename}" data-original="${customEmojis[shortname].url}" data-static="${customEmojis[shortname].static_url}" />`;
           return true;
         }
         return false;
@@ -92,8 +92,11 @@ export const buildCustomEmojis = (customEmojis) => {
       keywords: [name],
       imageUrl: url,
       custom: true,
+      customCategory: emoji.get('category'),
     });
   });
 
   return emojis;
 };
+
+export const categoriesFromEmojis = customEmojis => customEmojis.reduce((set, emoji) => set.add(emoji.get('category') ? `custom-${emoji.get('category')}` : 'custom'), new Set(['custom']));

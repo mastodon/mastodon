@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class ProofProvider::Keybase::Verifier
-  def initialize(local_username, provider_username, token)
+  def initialize(local_username, provider_username, token, domain)
     @local_username    = local_username
     @provider_username = provider_username
     @token             = token
+    @domain            = domain
   end
 
   def valid?
@@ -49,7 +50,7 @@ class ProofProvider::Keybase::Verifier
 
   def query_params
     {
-      domain: ProofProvider::Keybase::DOMAIN,
+      domain: @domain,
       kb_username: @provider_username,
       username: @local_username,
       sig_hash: @token,

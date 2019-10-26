@@ -39,12 +39,12 @@ RSpec.describe NotifyService, type: :service do
   end
 
   it 'does not notify when sender is silenced and not followed' do
-    sender.update(silenced: true)
+    sender.silence!
     is_expected.to_not change(Notification, :count)
   end
 
   it 'does not notify when recipient is suspended' do
-    recipient.update(suspended: true)
+    recipient.suspend!
     is_expected.to_not change(Notification, :count)
   end
 
@@ -105,7 +105,7 @@ RSpec.describe NotifyService, type: :service do
     end
 
     it 'shows reblogs when disabled' do
-      recipient.follow!(sender, reblogs: true)
+      recipient.follow!(sender, reblogs: false)
       is_expected.to change(Notification, :count)
     end
   end

@@ -46,6 +46,15 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       post :update
       expect(response).to have_http_status(200)
     end
+
+    context 'when suspended' do
+      it 'returns http forbidden' do
+        request.env["devise.mapping"] = Devise.mappings[:user]
+        sign_in(Fabricate(:user, account_attributes: { username: 'test', suspended_at: Time.now.utc }), scope: :user)
+        post :update
+        expect(response).to have_http_status(403)
+      end
+    end
   end
 
   describe 'GET #new' do
@@ -94,9 +103,9 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
       end
 
-      it 'redirects to login page' do
+      it 'redirects to setup' do
         subject
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to redirect_to auth_setup_path
       end
 
       it 'creates user' do
@@ -104,6 +113,89 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         user = User.find_by(email: 'test@example.com')
         expect(user).to_not be_nil
         expect(user.locale).to eq(accept_language)
+      end
+    end
+
+    context 'approval-based registrations without invite' do
+      around do |example|
+        registrations_mode = Setting.registrations_mode
+        example.run
+        Setting.registrations_mode = registrations_mode
+      end
+
+      subject do
+        Setting.registrations_mode = 'approved'
+        request.headers["Accept-Language"] = accept_language
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
+      end
+
+      it 'redirects to setup' do
+        subject
+        expect(response).to redirect_to auth_setup_path
+      end
+
+      it 'creates user' do
+        subject
+        user = User.find_by(email: 'test@example.com')
+        expect(user).to_not be_nil
+        expect(user.locale).to eq(accept_language)
+        expect(user.approved).to eq(false)
+      end
+    end
+
+    context 'approval-based registrations with expired invite' do
+      around do |example|
+        registrations_mode = Setting.registrations_mode
+        example.run
+        Setting.registrations_mode = registrations_mode
+      end
+
+      subject do
+        Setting.registrations_mode = 'approved'
+        request.headers["Accept-Language"] = accept_language
+        invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.ago)
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
+      end
+
+      it 'redirects to setup' do
+        subject
+        expect(response).to redirect_to auth_setup_path
+      end
+
+      it 'creates user' do
+        subject
+        user = User.find_by(email: 'test@example.com')
+        expect(user).to_not be_nil
+        expect(user.locale).to eq(accept_language)
+        expect(user.approved).to eq(false)
+      end
+    end
+
+    context 'approval-based registrations with valid invite' do
+      around do |example|
+        registrations_mode = Setting.registrations_mode
+        example.run
+        Setting.registrations_mode = registrations_mode
+      end
+
+      subject do
+        Setting.registrations_mode = 'approved'
+        request.headers["Accept-Language"] = accept_language
+        invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.from_now)
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
+      end
+
+      it 'redirects to setup' do
+        subject
+        expect(response).to redirect_to auth_setup_path
+      end
+
+      it 'creates user' do
+        subject
+        user = User.find_by(email: 'test@example.com')
+        expect(user).to_not be_nil
+        expect(user.locale).to eq(accept_language)
+        expect(user.approved).to eq(true)
       end
     end
 

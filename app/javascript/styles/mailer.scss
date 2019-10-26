@@ -279,6 +279,8 @@ h5 {
 }
 
 .hero-with-button {
+  padding-bottom: 16px;
+
   h1 {
     margin-bottom: 4px;
   }
@@ -286,8 +288,6 @@ h5 {
   p.lead {
     margin-bottom: 32px;
   }
-
-  padding-bottom: 16px;
 }
 
 .header {
@@ -456,6 +456,13 @@ h5 {
 
 .status {
   padding-bottom: 32px;
+
+  &--highlighted {
+    border: 1px solid lighten($ui-base-color, 8%);
+    border-radius: 4px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
 
   .status-header {
     td {
