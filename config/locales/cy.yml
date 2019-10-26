@@ -873,6 +873,11 @@ cy:
       backreference_required: Bydd rhaid i'r cyfrif newydd olgyfeirio at y cyfrif hon yn gyntaf
       before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
       cooldown: Ar ôl symud, bydd yna cyfnod oeriad trwy pa ystod ni fyddwch yn gallu symud eto
+      disabled_account: Ni fydd eich cyfrif presennol yn gwbl ddefyddiedig ar ôl hyn. Er hynny, byddwch dal gyda fynediad at allforiad data ac hefyd ail-actifadu.
+      followers: Bydd y gweithred hon yn symud pob un o'ch dilynwyr o'r cyfrif presennol i'r cyfrif newydd
+      only_redirect_html: Fel arall, gallwch <a href="%{path}">dim ond ychwanegu ailgyfeiriad ar eich proffil</a>.
+      other_data: Ni fydd unrhyw data arall yn cael ei symud yn awtomatig
+      redirect: Bydd proffil eich cyfrif presennol yn cael ei diweddaru gyda hysbysiad ailgyfeirio ac yn cael ei eithrio o chwiliadau
   moderation:
     title: Goruwchwyliad
   notification_mailer:
@@ -1043,6 +1048,8 @@ cy:
     profile: Proffil
     relationships: Dilynion a dilynwyr
     two_factor_authentication: Awdurdodi dau-gam
+  spam_check:
+    spam_detected: Mae hyn yn adrodd awtomatig. Caiff sbam ei ganfod.
   statuses:
     attached:
       description: 'Ynghlwm: %{attached}'
