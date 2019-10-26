@@ -5,6 +5,7 @@ it:
       account_warning_preset:
         text: Puoi usare la sintassi dei toot, come URL, hashtag e menzioni
       admin_account_action:
+        include_statuses: L'utente vedrà quali toot hanno causato l'azione di moderazione o l'avviso
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
         text_html: Opzionale. Puoi usare la sintassi dei toot. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
         type_html: Decidi cosa fare con <strong>%{acct}</strong>
@@ -15,7 +16,6 @@ it:
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
-        discoverable_html: La <a href="%{path}" target="_blank">directory</a> permette alle persone di trovare account in base a determinati interessi o attività. Richiede almeno %{min_followers} seguaci
         email: Ti manderemo una email di conferma
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
         header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
@@ -60,6 +60,7 @@ it:
       account_warning_preset:
         text: Testo preimpostato
       admin_account_action:
+        include_statuses: Includi i toots segnalati nell'email
         send_email_notification: Informa l'utente via email
         text: Avviso personalizzato
         type: Azione
@@ -130,7 +131,7 @@ it:
         must_be_following: Blocca notifiche dalle persone che non segui
         must_be_following_dm: Blocca i messaggi diretti dalle persone che non segui
       invite_request:
-        text: Perchè vuoi unirti?
+        text: Perché vuoi iscriverti?
       notification_emails:
         digest: Invia email riassuntive
         favourite: Invia email quando segna come preferito al tuo stato
@@ -140,8 +141,10 @@ it:
         pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
         reblog: Invia email quando qualcuno da un boost al tuo stato
         report: Manda una mail quando viene inviato un nuovo rapporto
+        trending_tag: Invia e-mail quando un hashtag non controllato è in tendenza
       tag:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
+        name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
         usable: Permetti ai toot di utilizzare questo hashtag
     'no': 'No'

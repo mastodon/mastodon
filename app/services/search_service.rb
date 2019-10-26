@@ -11,7 +11,7 @@ class SearchService < BaseService
 
     default_results.tap do |results|
       if url_query?
-        results.merge!(url_resource_results) unless url_resource.nil?
+        results.merge!(url_resource_results) unless url_resource.nil? || (@options[:type].present? && url_resource_symbol != @options[:type].to_sym)
       elsif @query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
         results[:statuses] = perform_statuses_search! if full_text_searchable?
@@ -60,7 +60,8 @@ class SearchService < BaseService
     TagSearchService.new.call(
       @query,
       limit: @limit,
-      offset: @offset
+      offset: @offset,
+      exclude_unreviewed: @options[:exclude_unreviewed]
     )
   end
 
@@ -69,7 +70,7 @@ class SearchService < BaseService
   end
 
   def url_query?
-    @resolve && @options[:type].blank? && @query =~ /\Ahttps?:\/\//
+    @resolve && @query =~ /\Ahttps?:\/\//
   end
 
   def url_resource_results

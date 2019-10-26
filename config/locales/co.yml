@@ -17,11 +17,7 @@ co:
     contact_unavailable: Micca dispunibule
     discover_users: Scopre utilizatori
     documentation: Ducumentazione
-    extended_description_html: |
-      <h3>Una bona piazza per e regule</h3>
-      <p>A descrizzione stesa ùn hè micca stata riempiuta.</p>
     federation_hint_html: Cù un contu nant'à %{instance} puderete siguità ghjente da tutti i servori Mastodon è ancu più d'altri.
-    generic_description: "%{domain} hè un servore di a rete"
     get_apps: Pruvà un'applicazione di telefuninu
     hosted_on: Mastodon allughjatu nant’à %{domain}
     instance_actor_flash: |
@@ -38,6 +34,14 @@ co:
     status_count_before: chì anu pubblicatu
     tagline: Siguità amichi è scopre ancu di più altri
     terms: Cundizione di u serviziu
+    unavailable_content: Cuntinutu micca dispunibule
+    unavailable_content_description:
+      domain: Servore
+      reason: 'Ragione:'
+      rejecting_media: I fugliali media da stu servore ùn saranu micca arregistrati è e vignette ùn saranu micca affissate, duverete cliccà manualmente per accede à l'altru servore è vedeli.
+      silenced: I statuti da stu servore ùn saranu mai visti tranne nant'a vostra pagina d'accolta s'e voi siguitate l'autore.
+      suspended: Ùn puderete micca siguità qualsiasi nant'à stu servore, i dati versu o da quallà ùn saranu mai accessi, scambiati o arregistrati.
+    unavailable_content_html: Mastodon vi parmette in generale di vede u cuntinutu è interagisce cù l'utilizatori di tutti l'altri servori di u fediversu. Quessi sò l'eccezzione fatte nant'à stu servore in particulare.
     user_count_after:
       one: utilizatore
       other: utilizatori
@@ -58,6 +62,7 @@ co:
     media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
+    never_active: Mai
     nothing_here: Ùn c’hè nunda quì!
     people_followed_by: Seguitati da %{name}
     people_who_follow: Seguitanu %{name}
@@ -224,19 +229,24 @@ co:
       deleted_status: "(statutu sguassatu)"
       title: Ghjurnale d’audit
     custom_emojis:
+      assign_category: Aghjunghje categuria
       by_domain: Duminiu
       copied_msg: Copia lucale di l’emoji creata
       copy: Cupià
       copy_failed_msg: Ùn s’hè micca pussutu creà una copia di l’emoji
+      create_new_category: Creà nova categuria
       created_msg: L’emoji hè stata creata!
       delete: Toglie
       destroyed_msg: L’emoji hè stata tolta!
       disable: Disattivà
+      disabled: Disattivatu
       disabled_msg: L’emoji hè stata disattivata
       emoji: Emoji
       enable: Attivà
+      enabled: Attivate
       enabled_msg: L’emoji hè stata attivata
       image_hint: PNG di 50Ko o menu
+      list: Listà
       listed: Listata
       new:
         title: Aghjunghje una nov’emoji
@@ -244,6 +254,8 @@ co:
       shortcode: Accorta
       shortcode_hint: 2 caratteri o più, solu lettere, numeri è liniette basse
       title: Emoji parsunalizate
+      uncategorized: Micca categurizatu
+      unlist: Slistà
       unlisted: Micca listata
       update_failed_msg: Ùn s’hè micca pussutu mette à ghjornu l’emoji
       updated_msg: L’emoji hè stata messa à ghjornu!
@@ -375,6 +387,7 @@ co:
       pending: In attesa di l'apprubazione di u ripetitore
       save_and_enable: Salvà è attivà
       setup: Creà una cunnessione cù un ripetitore
+      signatures_not_enabled: I ripetitori ùn marchjeranu micca currettamente mentre chì u modu sicurizatu o à lista bianca hè attivatu
       status: Statutu
       title: Ripetitori
     report_notes:
@@ -423,6 +436,9 @@ co:
       custom_css:
         desc_html: Mudificà l'apparenza cù CSS caricatu nant'à ogni pagina
         title: CSS persunalizatu
+      default_noindex:
+        desc_html: Tocca tutti quelli ch'ùn anu micca cambiatu stu parametru
+        title: Ritirà l'utilizatori di l'indicazione nant'à i mutori di ricerca
       domain_blocks:
         all: À tutti
         disabled: À nimu
@@ -490,6 +506,9 @@ co:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
       title: Parametri di u situ
+      trendable_by_default:
+        desc_html: Ùn affetta micca quelli chì sò digià stati ricusati
+        title: Auturizà l'hashtag à esse in tindenze senza verificazione
       trends:
         desc_html: Mustrà à u pubblicu i hashtag chì sò stati digià verificati è chì sò in e tendenze avà
         title: Tendenze di hashtag
@@ -499,6 +518,7 @@ co:
         delete: Toglie
         nsfw_off: Indicà cum’è micca sensibile
         nsfw_on: Indicà cum’è sensibile
+      deleted: Sguassatu
       failed_to_execute: Esecuzione impussibule
       media:
         title: Media
@@ -513,6 +533,10 @@ co:
       context: Cuntestu
       directory: In l'annuariu
       in_directory: "%{count} in l'annuariu"
+      last_active: Ultima attività
+      most_popular: Più pupulari
+      most_recent: Più ricente
+      name: Hashtag
       review: Statutu di verificazione
       reviewed: Verificatu
       title: Hashtag
@@ -538,6 +562,12 @@ co:
     new_trending_tag:
       body: 'U hashtag #%{name} hè in e tendenze oghji, mà ùn hè micca verificatu. Ùn sarà micca mustratu à u pubblicu eccettu s''ellu hè auturizatu, o pudete ancu salvà u furmulariu cusì per ùn mai più avè à ne sente parlà.'
       subject: Novu hashtag in attesa di rivista nant'à %{instance} (#%{name})
+  aliases:
+    add_new: Creà un pseudonimu
+    created_msg: Novu pseudonimu creatu. Pudete avà inizià u trasferimentu da u vechju contu.
+    deleted_msg: U pseudonimu hè statu sguassatu. Ùn si puderà più migrà da questu contu à quellu.
+    hint_html: Per traslucà da un altru contu à questu, quì pudete creà un pseudonimu o "alias", riquisitu per trasferì l'abbunati da u vechju contu à u novu. St'azzione sola <strong>ùn face nunda</strong> è pò esse <strong>annullata senza prublemi</strong>. <strong>A migrazione hè principiata dapoi u vechju contu</strong>.
+    remove: Sguassà u pseudonimu
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: 'S''è voi vulete fà usu di a larghezza sana di u vostru screnu, l''interfaccia web avanzata vi permette di cunfigurà parechje culonne sfarente per vede tutta l''infurmazione chì vulete vede in listessu tempu: Accolta, nutificazione, linea pubblica, è tutti l''hashtag è liste chì vulete.'
@@ -567,6 +597,10 @@ co:
     checkbox_agreement_without_rules_html: Accettu i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
+    description:
+      prefix_invited_by_user: "@%{name} v'invita à raghjunghje stu servore di Mastodon!"
+      prefix_sign_up: Arregistratevi nant'à Mastodon oghji!
+      suffix: Cù un contu, puderete siguità l'altri, pustà statuti è scambià missaghji cù l'utilizatori di tutti i servori Mastodon è ancu di più!
     didnt_get_confirmation: Ùn avete micca ricevutu l’istruzione di cunfirmazione?
     forgot_password: Chjave scurdata?
     invalid_reset_password_token: U ligame di riinizializazione di a chjave d’accessu hè spiratu o ùn hè micca validu. Pudete dumandà un'altru ligame.
@@ -593,6 +627,7 @@ co:
       confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
       functional: U vostru contu hè uperaziunale.
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
+      redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     trouble_logging_in: Difficultà per cunnettavi?
   authorize_follow:
     already_following: Site digià abbunatu·a à stu contu
@@ -605,6 +640,11 @@ co:
       return: Vede u prufile di l’utilizatore
       web: Andà à l’interfaccia web
     title: Siguità %{acct}
+  challenge:
+    confirm: Cuntinuvà
+    hint_html: "<strong>Astuzia:</strong> Ùn avemu micca da dumandavvi stu codice per l'ore chì vene."
+    invalid_password: Chjave d'accessu micca curretta
+    prompt: Cunfirmà a chjave d'accessu per cuntinuvà
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -620,45 +660,33 @@ co:
       x_months: "%{count}Me"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: È nò! Sta chjave ùn hè curretta
+    challenge_not_passed: L'infurmazione entrata ùn era micca curretta
     confirm_password: Entrate a vostra chjave d’accessu attuale per verificà a vostra identità
-    description_html: U contu sarà deattivatu è u cuntenutu sarà sguassatu di manera <strong>permanente è irreversibile</strong>. Ùn sarà micca pussibule piglià stu cugnome torna per evità l’impusture.
+    confirm_username: Entrà u vostru cugnome per cunfirmà a prucedura
     proceed: Sguassà u contu
     success_msg: U vostru contu hè statu sguassatu
-    warning_html: Pudete esse sicuru·a solu chì u cuntenutu sarà sguassatu di stu servore. S’ellu hè statu spartutu in altrò, sarà forse sempre quallà. I servori scunettati è quelli ch'ùn sò più abbunati à e vostre pubblicazione ùn anu micca da mette à ghjornu e so database.
-    warning_title: Dispunibilità di i cuntenuti sparsi
+    warning:
+      before: 'Nanz''à cuntinuà, leghjete ste note attentamente:'
+      caches: U cuntinutu indè u cache di l'altri servori sarà forse cunservatu
+      data_removal: I vostri posti è dati saranu sguassati di manera permanente
+      email_change_html: Pudete <a href="%{path}">cambià u vostr'indirizzu e-mail</a> senza toglie u vostru contu
+      email_contact_html: S'ellu ùn hè sempre micca rimettu, pudete dumandà aiutu à <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: S'e voi ùn ricevete micca l'e-mail di cunfirmazione, pudete <a href="%{path}">richiestà un'altru</a>
+      irreversible: Ùn puderete micca ricuperà o riattivà u vostru contu
+      more_details_html: Per più di ditagli, videte a <a href="%{terms_path}">pulitica di vita privata</a>.
+      username_available: U vostru cugnome riduvinterà dispunibule
+      username_unavailable: U vostru cugnome ùn sarà sempre micca dispunibule
   directories:
     directory: Annuariu di i prufili
-    enabled: Site inscrittu·a indè l'annuariu.
-    enabled_but_waiting: Avete sceltu d'esse inscrittu·a indè l'annuariu, mà ùn avete micca ancu u numeru minimale d'abbunati (%{min_followers}) per esse listatu·a.
     explanation: Scopre utilizatori à partesi di i so centri d'interessu
     explore_mastodon: Scopre à %{title}
-    how_to_enable: Ùn site micca ancu inscrittu·a indè l'annuariu. Pudete inscrive vi quì sottu. Utilizate qualchi hashtag indè a vostra biugrafia per esse listatu·a indè tag specifichi!
-    people:
-      one: "%{count} persona"
-      other: "%{count} persone"
-  domain_blocks:
-    blocked_domains: Lista di dumini bluccati è limitati
-    description: Quessa ghjè a lista di i servori limitati da o cù quelli %{instance} righjetta a federazione.
-    domain: Duminiu
-    media_block: Blucchime di media
-    no_domain_blocks: "(Nisun blucchime di duminiu)"
-    severity: Severità
-    severity_legend:
-      media_block: I fugliali media chì venenu sa stu servore ùn saranu mai ricuperati, cunservati, o affissati à l'utilizatore.
-      silence: I conti nant'à i servori silenzati ponu esse trovi, siguitati è spartuti/favurizati, mà i statuti ùn saranu micca in e linee pubbliche, è l'utilizatori lucali ch'ùn sò micca abbunati à sti conti ùn anu micca da riceve e so nutificazione.
-      suspension: U cuntinutu da i servori suspesi ùn hè mai cunservatu o affissatu, è u cuntinutu di stu servore ùn li hè micca mandatu. L'interazzione da sti servori suspesi sò ignurate.
-      suspension_disclaimer: I servori suspesi ponu ognitantu ricuperà i cuntinuti pubblichi da stu servore.
-      title: Severità
-    show_rationale: Vede ragiò
-    silence: Silenziu
-    suspension: Suspensione
-    title: Lista di servori bluccati da %{instance}
   domain_validator:
     invalid_domain: ùn hè micca un nome di duminiu currettu
   errors:
+    '400': A richiesta mandata ùn era micca valida o curretta.
     '403': Ùn site micca auturizatu·a à vede sta pagina.
     '404': Sta pagina ùn esiste micca quì.
+    '406': A pagina ùn hè micca dispunivule in u furmatu riquisitu.
     '410': Sta pagina ùn esiste più quì.
     '422':
       content: C’hè statu un prublemu cù a verificazione di sicurità. Forse bluccate cookies?
@@ -667,6 +695,7 @@ co:
     '500':
       content: Scusate, mà c’hè statu un prublemu cù u nostru servore.
       title: Sta pagina ùn hè curretta
+    '503': A pagina ùn hè micca stata servita per via di un prublemu timpuraneu di u servore.
     noscript_html: Mastodon nant’à u web hà bisognu di JavaScript per funziunà. Pudete ancu pruvà <a href="%{apps_path}">l’applicazione native</a> per a vostra piattaforma.
   existing_username_validator:
     not_found: ùn si pudeva micca truvà un'utilizatore lucale cù stu cugnome
@@ -716,6 +745,7 @@ co:
     all: Tuttu
     changes_saved_msg: Cambiamenti salvati!
     copy: Cupià
+    no_batch_actions_available: Alcun'azzione di gruppu nant'à sta pagina
     order_by: Urdinà da
     save_changes: Salvà e mudificazione
     validation_errors:
@@ -787,9 +817,34 @@ co:
       too_many: Ùn si pò micca aghjunghje più di 4 fugliali
   migrations:
     acct: cugnome@duminiu di u novu contu
-    currently_redirecting: 'U vostru prufile riindiriza tuttu versu à:'
-    proceed: Salvà
-    updated_msg: I paramettri di migrazione sò stati messi à ghjornu!
+    cancel: Annullà ridirezzione
+    cancel_explanation: L'annullazione di a ridirezzione hà da riattivà stu contu, mà ùn si puderà micca ricuperà l'abbunati chì sò digià stati trasferriti à l'altru contu.
+    cancelled_msg: Ridirezzione annullata.
+    errors:
+      already_moved: hè digià u contu induve avede traslucatu
+      missing_also_known_as: ùn fà micca riferenza à stu contu
+      move_to_self: ùn pò micca esse u contu attuale
+      not_found: ùn hè micca statu trovu
+      on_cooldown: Perioda di ricuperazione
+    followers_count: Abbunati à u mumentu di trasferimentu
+    incoming_migrations: Traslucà da un'altru contu
+    incoming_migrations_html: Per spustà da stu contu à un'altru, primu duvete <a href="%{path}">creà un pseudonimu di contu</a>.
+    moved_msg: Avà u vostru contu riindirizza versu %{acct} è i vostri abbunati sò in corsu di trasferimentu.
+    not_redirecting: U vostru contu ùn riindirizza micca ancu versu un'altru contu.
+    on_cooldown: Avede digià migratu u vostru contu. Sta funzionne sarà torna dispunibule in %{count} ghjorni.
+    past_migrations: Anziane migrazione
+    proceed_with_move: Trasferì l'abbunati
+    redirecting_to: U vostru contu riindirizza versu à %{acct}.
+    set_redirect: Creà ridirezzione
+    warning:
+      backreference_required: U novu contu deve prima esse cunfiguratu per fà rifirenza cù un pseudonimu à quessu contu
+      before: 'Nanz''à cuntinuà, leghjete ste note attentamente:'
+      cooldown: Dopu à a traslucazione, c'hè una perioda di ricuperazione in quella ùn puderete micca cambià torna di contu
+      disabled_account: U contu attuale ùn puderà più esse utilizatu dop'à st'azzione. Però, puderete accede à a spurtazione di dati o riattivà u contu.
+      followers: St'azzione hà da spiazzà tutti l'abbunati di u contu attuale nant'à u novu contu
+      only_redirect_html: Pudete ancu <a href="%{path}">mette solu una ridirezzione nant'à u vostru prufile</a>.
+      other_data: L'altri dati ùn saranu micca autumaticamente trasferiti
+      redirect: U prufile di u vostru contu attuale sarà messu à ghjornu cù una nutificazione di ridirezzione è sarà sclusu di e ricerche
   moderation:
     title: Muderazione
   notification_mailer:
@@ -934,6 +989,7 @@ co:
   settings:
     account: Contu
     account_settings: Parametri di u contu
+    aliases: Pseudonimi di contu
     appearance: Apparenza
     authorized_apps: Applicazione auturizate
     back: Ritornu nant’à Mastodon
@@ -951,8 +1007,6 @@ co:
     profile: Prufile
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
-  spam_check:
-    spam_detected_and_silenced: Quessu ghjè un signalamente autumaticu. Un spam hè statu ditettatu è u speditore hè statu silenzatu. S'ellu era un sbagliu, pudete annullà l'azzione.
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'
@@ -976,6 +1030,9 @@ co:
       private: Ùn pudete micca puntarulà un statutu ch’ùn hè micca pubblicu
       reblog: Ùn pudete micca puntarulà una spartera
     poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} persone"
       total_votes:
         one: "%{count} votu"
         other: "%{count} voti"
@@ -1101,7 +1158,7 @@ co:
     recovery_codes: Codici di ricuperazione
     recovery_codes_regenerated: Codici di ricuperazione ricreati
     recovery_instructions_html: Pudete fà usu di i codici quì sottu per sempre avè accessu à u vostru contu s’ellu hè statu persu u vostru telefuninu. <strong>Guardateli in una piazza sicura</strong>. Per esempiu, stampati è cunservati cù altri ducumenti impurtanti.
-    setup: Installà
+    setup: Attivà
     wrong_code: U codice ùn hè micca currettu! Site sicuru che l’ora di u telefuninu è di u servore sò esatte?
   user_mailer:
     backup_ready:
@@ -1113,7 +1170,9 @@ co:
         disable: Quandu u vostru contu hè ghjacciatu, i vostri dati stannu intatti, mà ùn pudete fà nunda fin'à ch'ellu sia sbluccatu.
         silence: Quandu u vostru contu hè limitatu, solu quelli chì sò digià abbunati à u vostru contu viderenu i vostri statuti nant'à quessu servore, è puderete esse esclusu·a di parechje liste pubbliche. Però, altri conti puderenu sempre seguitavi.
         suspend: U vostru contu hè statu suspesu, è tutti i vo statuti è fugliali media caricati sò stati sguassati di manera irreversibile di stu servore, è di i servori induve aviate abbunati.
+      get_in_touch: Pudete risponde à quest'e-mail per cuntattà a squadra di muderazione di %{instance}.
       review_server_policies: Leghje e pulitiche di u servore
+      statuses: 'Più pricisamente, per:'
       subject:
         disable: U vostru contu %{acct} hè statu ghjacciatu
         none: Avertimentu pè %{acct}

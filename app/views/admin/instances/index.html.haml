@@ -44,15 +44,16 @@
             - if !instance.domain_block.noop?
               = t("admin.domain_blocks.severity.#{instance.domain_block.severity}")
               - first_item = false
-            - if instance.domain_block.reject_media?
-              - unless first_item
-                &bull;
-              = t('admin.domain_blocks.rejecting_media')
-              - first_item = false
-            - if instance.domain_block.reject_reports?
-              - unless first_item
-                &bull;
-              = t('admin.domain_blocks.rejecting_reports')
+            - unless instance.domain_block.suspend?
+              - if instance.domain_block.reject_media?
+                - unless first_item
+                  &bull;
+                = t('admin.domain_blocks.rejecting_media')
+                - first_item = false
+              - if instance.domain_block.reject_reports?
+                - unless first_item
+                  &bull;
+                = t('admin.domain_blocks.rejecting_reports')
           - elsif whitelist_mode?
             = t('admin.accounts.whitelisted')
           - else

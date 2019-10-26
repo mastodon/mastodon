@@ -10,6 +10,7 @@ import { FormattedDate, FormattedNumber } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
+import Audio from '../../audio';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
@@ -107,7 +108,19 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('media_attachments').size > 0) {
-      if (['video', 'audio'].includes(status.getIn(['media_attachments', 0, 'type']))) {
+      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+        const attachment = status.getIn(['media_attachments', 0]);
+
+        media = (
+          <Audio
+            src={attachment.get('url')}
+            alt={attachment.get('description')}
+            duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
+            height={110}
+            preload
+          />
+        );
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const attachment = status.getIn(['media_attachments', 0]);
 
         media = (
@@ -143,7 +156,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
+      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></span>;
     }
 
     if (status.get('visibility') === 'direct') {
@@ -207,7 +220,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           {media}
 
           <div className='detailed-status__meta'>
-            <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
+            <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
               <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
             </a>{applicationLink} · {reblogLink} · {favouriteLink}
           </div>

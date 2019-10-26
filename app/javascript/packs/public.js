@@ -31,10 +31,10 @@ function main() {
   const React = require('react');
   const ReactDOM = require('react-dom');
   const Rellax = require('rellax');
-  const createHistory = require('history').createBrowserHistory;
+  const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
-    const history = createHistory();
+    const history = createBrowserHistory();
     const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
     const location = history.location;
 
@@ -246,6 +246,16 @@ function main() {
     }
 
     input.readonly = oldReadOnly;
+  });
+
+  delegate(document, '.sidebar__toggle__icon', 'click', () => {
+    const target = document.querySelector('.sidebar ul');
+
+    if (target.style.display === 'block') {
+      target.style.display = 'none';
+    } else {
+      target.style.display = 'block';
+    }
   });
 }
 

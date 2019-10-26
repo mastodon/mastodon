@@ -27,4 +27,12 @@ class ActivityPub::Serializer < ActiveModel::Serializer
       _context_extensions[extension_name] = true
     end
   end
+
+  def serializable_hash(adapter_options = nil, options = {}, adapter_instance = self.class.serialization_adapter_instance)
+    unless adapter_options&.fetch(:named_contexts, nil).nil?
+      adapter_options[:named_contexts].merge!(_named_contexts)
+      adapter_options[:context_extensions].merge!(_context_extensions)
+    end
+    super(adapter_options, options, adapter_instance)
+  end
 end

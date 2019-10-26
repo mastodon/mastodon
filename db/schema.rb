@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_003045) do
+ActiveRecord::Schema.define(version: 2019_10_07_013357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_aliases", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "acct", default: "", null: false
+    t.string "uri", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_aliases_on_account_id"
+  end
 
   create_table "account_conversations", force: :cascade do |t|
     t.bigint "account_id"
@@ -49,6 +58,17 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.index ["account_id"], name: "index_account_identity_proofs_on_account_id"
   end
 
+  create_table "account_migrations", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "acct", default: "", null: false
+    t.bigint "followers_count", default: 0, null: false
+    t.bigint "target_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_migrations_on_account_id"
+    t.index ["target_account_id"], name: "index_account_migrations_on_target_account_id"
+  end
+
   create_table "account_moderation_notes", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "account_id", null: false
@@ -77,6 +97,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "last_status_at"
+    t.integer "lock_version", default: 0, null: false
     t.index ["account_id"], name: "index_account_stats_on_account_id", unique: true
   end
 
@@ -366,6 +387,17 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.index ["account_id"], name: "index_lists_on_account_id"
   end
 
+  create_table "markers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "timeline", default: "", null: false
+    t.bigint "last_read_id", default: 0, null: false
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "timeline"], name: "index_markers_on_user_id_and_timeline", unique: true
+    t.index ["user_id"], name: "index_markers_on_user_id"
+  end
+
   create_table "media_attachments", force: :cascade do |t|
     t.bigint "status_id"
     t.string "file_file_name"
@@ -498,6 +530,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lock_version", default: 0, null: false
+    t.bigint "voters_count"
     t.index ["account_id"], name: "index_polls_on_account_id"
     t.index ["status_id"], name: "index_polls_on_status_id"
   end
@@ -646,6 +679,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.bigint "poll_id"
     t.datetime "deleted_at"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
+    t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
@@ -659,18 +693,42 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
+  create_table "stream_entries", force: :cascade do |t|
+    t.bigint "activity_id"
+    t.string "activity_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "hidden", default: false, null: false
+    t.bigint "account_id"
+    t.index ["account_id", "activity_type", "id"], name: "index_stream_entries_on_account_id_and_activity_type_and_id"
+    t.index ["activity_id", "activity_type"], name: "index_stream_entries_on_activity_id_and_activity_type"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "callback_url", default: "", null: false
+    t.string "secret"
+    t.datetime "expires_at"
+    t.boolean "confirmed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "last_successful_delivery_at"
+    t.string "domain"
+    t.bigint "account_id", null: false
+    t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "score"
     t.boolean "usable"
     t.boolean "trendable"
     t.boolean "listable"
     t.datetime "reviewed_at"
     t.datetime "requested_review_at"
     t.datetime "last_status_at"
-    t.datetime "last_trend_at"
+    t.float "max_score"
+    t.datetime "max_score_at"
     t.index "lower((name)::text)", name: "index_tags_on_name_lower", unique: true
   end
 
@@ -731,6 +789,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -755,10 +814,13 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true
   end
 
+  add_foreign_key "account_aliases", "accounts", on_delete: :cascade
   add_foreign_key "account_conversations", "accounts", on_delete: :cascade
   add_foreign_key "account_conversations", "conversations", on_delete: :cascade
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
   add_foreign_key "account_identity_proofs", "accounts", on_delete: :cascade
+  add_foreign_key "account_migrations", "accounts", column: "target_account_id", on_delete: :nullify
+  add_foreign_key "account_migrations", "accounts", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
@@ -790,6 +852,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_003045) do
   add_foreign_key "list_accounts", "follows", on_delete: :cascade
   add_foreign_key "list_accounts", "lists", on_delete: :cascade
   add_foreign_key "lists", "accounts", on_delete: :cascade
+  add_foreign_key "markers", "users", on_delete: :cascade
   add_foreign_key "media_attachments", "accounts", name: "fk_96dd81e81b", on_delete: :nullify
   add_foreign_key "media_attachments", "scheduled_statuses", on_delete: :nullify
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify

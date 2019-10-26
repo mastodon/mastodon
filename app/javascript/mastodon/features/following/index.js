@@ -40,8 +40,10 @@ class Following extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchAccount(this.props.params.accountId));
-    this.props.dispatch(fetchFollowing(this.props.params.accountId));
+    if (!this.props.accountIds) {
+      this.props.dispatch(fetchAccount(this.props.params.accountId));
+      this.props.dispatch(fetchFollowing(this.props.params.accountId));
+    }
   }
 
   componentWillReceiveProps (nextProps) {

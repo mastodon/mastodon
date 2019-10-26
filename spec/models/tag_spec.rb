@@ -62,6 +62,10 @@ RSpec.describe Tag, type: :model do
       expect(subject.match('hello #one·two·three').to_s).to eq ' #one·two·three'
     end
 
+    it 'matches ZWNJ' do
+      expect(subject.match('just add #نرم‌افزار and').to_s).to eq ' #نرم‌افزار'
+    end
+
     it 'does not match middle dots at the start' do
       expect(subject.match('hello #·one·two·three')).to be_nil
     end

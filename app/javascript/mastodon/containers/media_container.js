@@ -2,21 +2,22 @@ import React, { PureComponent, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { getLocale } from '../locales';
-import MediaGallery from '../components/media_gallery';
-import Video from '../features/video';
-import Card from '../features/status/components/card';
+import { List as ImmutableList, fromJS } from 'immutable';
+import { getLocale } from 'mastodon/locales';
+import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
+import MediaGallery from 'mastodon/components/media_gallery';
 import Poll from 'mastodon/components/poll';
 import Hashtag from 'mastodon/components/hashtag';
-import ModalRoot from '../components/modal_root';
-import { getScrollbarWidth } from '../features/ui/components/modal_root';
-import MediaModal from '../features/ui/components/media_modal';
-import { List as ImmutableList, fromJS } from 'immutable';
+import ModalRoot from 'mastodon/components/modal_root';
+import MediaModal from 'mastodon/features/ui/components/media_modal';
+import Video from 'mastodon/features/video';
+import Card from 'mastodon/features/status/components/card';
+import Audio from 'mastodon/features/audio';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag };
+const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
 export default class MediaContainer extends PureComponent {
 

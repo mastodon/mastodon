@@ -36,6 +36,14 @@ class Api::BaseController < ApplicationController
     render json: { error: 'This action is not allowed' }, status: 403
   end
 
+  rescue_from Mastodon::RaceConditionError do
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+  end
+
+  rescue_from ActionController::ParameterMissing do |e|
+    render json: { error: e.to_s }, status: 400
+  end
+
   def doorkeeper_unauthorized_render_options(error: nil)
     { json: { error: (error.try(:description) || 'Not authorized') } }
   end

@@ -23,8 +23,13 @@ class ActionBar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
+    onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
+
+  handleLogout = () => {
+    this.props.onLogout();
+  }
 
   render () {
     const { intl } = this.props;
@@ -44,7 +49,7 @@ class ActionBar extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
     menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.logout), href: '/auth/sign_out', target: null, method: 'delete' });
+    menu.push({ text: intl.formatMessage(messages.logout), action: this.handleLogout });
 
     return (
       <div className='compose__action-bar'>

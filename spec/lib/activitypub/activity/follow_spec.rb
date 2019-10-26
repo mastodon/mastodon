@@ -31,6 +31,36 @@ RSpec.describe ActivityPub::Activity::Follow do
       end
     end
 
+    context 'silenced account following an unlocked account' do
+      before do
+        sender.touch(:silenced_at)
+        subject.perform
+      end
+
+      it 'does not create a follow from sender to recipient' do
+        expect(sender.following?(recipient)).to be false
+      end
+
+      it 'creates a follow request' do
+        expect(sender.requested?(recipient)).to be true
+      end
+    end
+
+    context 'unlocked account muting the sender' do
+      before do
+        recipient.mute!(sender)
+        subject.perform
+      end
+
+      it 'creates a follow from sender to recipient' do
+        expect(sender.following?(recipient)).to be true
+      end
+
+      it 'does not create a follow request' do
+        expect(sender.requested?(recipient)).to be false
+      end
+    end
+
     context 'locked account' do
       before do
         recipient.update(locked: true)

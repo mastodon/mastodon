@@ -12,16 +12,52 @@ id:
       last_attempt: Anda memiliki beberapa kali mencoba sebelum akun anda dikunci.
       locked: Akun anda dikunci.
       not_found_in_database: Ada %{authentication_keys} atau kata sandi yang tidak cocok.
+      pending: Akun Anda masih dalam peninjauan.
       timeout: Sesi anda telah berakhir. Silahkan coba masuk lagi.
       unauthenticated: Anda harus masuk atau mendaftar terlebih dahulu.
       unconfirmed: Anda harus mengkonfirmasi alamat email terlebih dahulu.
     mailer:
       confirmation_instructions:
+        action: Verifikasi alamat surel
+        action_with_app: Konfirmasi dan kembali ke %{app}
+        explanation: Anda membuat akun di %{host} dengan surel ini. Anda hanya perlu satu klik untuk mengaktifkannya. Jika ini bukan Anda, abaikan surel ini.
+        explanation_when_pending: Anda melamar undangan ke %{host} dengan surel ini. Saat Anda mengonfirmasi alamat surel Anda, kami akan meninjaunya. Anda dapat masuk untuk mengubah detail Anda atau menghapus akun Anda, tapi Anda tak dapat mengakses mayoritas fungsi sampai akun disetujui. Jika lamaran anda ditolak, data Anda akan dihapus, tak ada aksi lain yang dilakukan dari Anda. Jika ini bukan Anda, abaikan surel ini.
+        extra_html: Tolong cek juga <a href="%{terms_path}">peraturan server</a> dan <a href="%{policy_path}">ketentuan layanan kami</a>.
         subject: 'Mastodon: Petunjuk mengkonfirmasi untuk %{instance}'
+        title: Verifikasi alamat surel
+      email_changed:
+        explanation: 'Alamat surel akun Anda diubah menjadi:'
+        extra: Jika Anda tak mengganti surel Anda, mungkin seseorang telah mendapatkan akses ke Akun Anda. Mohon ubah kata sandi secepatnya atau hubungi admin server jika Anda dikunci dari akun Anda.
+        subject: 'Mastodon: Surel diganti'
+        title: Alamat surel baru
       password_change:
+        explanation: Kata sandi akun Anda telah diganti.
+        extra: Jika Anda tak mengubah kata sandi Anda, mungkin seseorang telah mendapatkan akses ke akun Anda. Mohon ubah kata sandi secepatnya atau hubungi admin server jika Anda dikunci dari akun Anda.
         subject: 'Mastodon: Kata sandi telah diubah'
+        title: Kata sandi diubah
+      reconfirmation_instructions:
+        explanation: Konfirmasi alamat baru untuk mengubah surel Anda.
+        extra: Jika perubahan ini tidak dimulai dari Anda, abaikan surel ini. Alamat surel untuk akun Mastodon tak berubah sampai Anda mengakses tautan di atas.
+        subject: 'Mastodon: Konfirmasi surel untuk %{instance}'
+        title: Verifikasi alamat surel
       reset_password_instructions:
+        action: Ubah kata sandi
+        explanation: Kata sandi baru yang diminta untuk akun Anda.
+        extra: Jika Anda tak meminta ini, abaikan surel ini. Kata sandi tak berubah sampai Anda mengakses tautan di atas dan membuatnya yang baru.
         subject: 'Mastodon: Petunjuk mereset kata sandi'
+        title: Reset kata sandi
+      two_factor_disabled:
+        explanation: Otentifikasi dua-faktor untuk akun Anda dimatikan. Kini Masuk dapat dilakukan hanya dengan alamat surel dan kata sandi.
+        subject: 'Mastodon: Otentifikasi dua-faktor dimatikan'
+        title: 2FA dimatikan
+      two_factor_enabled:
+        explanation: Otentifikasi dua-faktor telah dimatikan untuk Akun Anda. Token yang dibuat menggunakan aplikasi TOTP berpasangan akan diperlukan untuk masuk.
+        subject: 'Mastodon: Otentifikasi dua-faktor diaktifkan'
+        title: 2FA diaktifkan
+      two_factor_recovery_codes_changed:
+        explanation: Kode pemulihan sebelumnya telah dibatalkan dan yang baru telah dibuat.
+        subject: 'Mastodon: Kode pemulihan dua-faktor dibuat ulang'
+        title: Kode pemulihan 2FA diubah
       unlock_instructions:
         subject: 'Mastodon: Petunjuk membuka'
     omniauth_callbacks:
@@ -38,6 +74,7 @@ id:
       signed_up: Selamat datang! Pendaftaran anda berhasil.
       signed_up_but_inactive: Anda berhasil melakukan pendaftaran. Tetapi kami tidak dapat memasukkan anda karena akun anda belum diaktifkan.
       signed_up_but_locked: Anda berhasil melakukan pendaftaran. Tetapi kami tidak dapat memasukkan anda karena akun anda dikunci.
+      signed_up_but_pending: Pesan dengan tautan konfirmasi telah dikirim ke alamat surel Anda. Setelah Anda mengklik tautan, kami akan meninjau lamaran Anda. Anda akan diberitahu jika diterima.
       signed_up_but_unconfirmed: Sebuah pesan berisi link konfirmasi telah dikirim ke alamat email anda. Silakan ikuti link tersebut untuk mengaktifkan akun anda.
       update_needs_confirmation: Akun anda telah berhasil diubah, tetapi kami harus memverifikasi alamat email anda yang baru. Mohon cek email anda dan ikuti link untuk mengkonfirmasi alamat email anda yang baru.
       updated: Akun anda berhasil diubah.

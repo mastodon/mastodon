@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandNotifications, scrollTopNotifications, loadPending } from '../../actions/notifications';
+import { expandNotifications, scrollTopNotifications, loadPending, mountNotifications, unmountNotifications } from '../../actions/notifications';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
   showFilterBar: state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
-  isUnread: state.getIn(['notifications', 'unread']) > 0,
+  isUnread: state.getIn(['notifications', 'unread']) > 0 || state.getIn(['notifications', 'pendingItems']).size > 0,
   hasMore: state.getIn(['notifications', 'hasMore']),
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
 });
@@ -66,11 +66,16 @@ class Notifications extends React.PureComponent {
     trackScroll: true,
   };
 
+  componentWillMount() {
+    this.props.dispatch(mountNotifications());
+  }
+
   componentWillUnmount () {
     this.handleLoadOlder.cancel();
     this.handleScrollToTop.cancel();
     this.handleScroll.cancel();
     this.props.dispatch(scrollTopNotifications(false));
+    this.props.dispatch(unmountNotifications());
   }
 
   handleLoadGap = (maxId) => {

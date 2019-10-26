@@ -10,11 +10,13 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import IconButton from 'mastodon/components/icon_button';
 import Button from 'mastodon/components/button';
 import Video from 'mastodon/features/video';
+import Audio from 'mastodon/features/audio';
 import Textarea from 'react-textarea-autosize';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import CharacterCounter from 'mastodon/features/compose/components/character_counter';
 import { length } from 'stringz';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
+import GIFV from 'mastodon/components/gifv';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -40,6 +42,36 @@ const removeExtraLineBreaks = str => str.replace(/\n\n/g, '******')
 
 const assetHost = process.env.CDN_HOST || '';
 
+class ImageLoader extends React.PureComponent {
+
+  static propTypes = {
+    src: PropTypes.string.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number,
+  };
+
+  state = {
+    loading: true,
+  };
+
+  componentDidMount() {
+    const image = new Image();
+    image.addEventListener('load', () => this.setState({ loading: false }));
+    image.src = this.props.src;
+  }
+
+  render () {
+    const { loading } = this.state;
+
+    if (loading) {
+      return <canvas width={this.props.width} height={this.props.height} />;
+    } else {
+      return <img {...this.props} alt='' />;
+    }
+  }
+
+}
+
 export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class FocalPointModal extends ImmutablePureComponent {
@@ -59,6 +91,7 @@ class FocalPointModal extends ImmutablePureComponent {
     description: '',
     dirty: false,
     progress: 0,
+    loading: true,
   };
 
   componentWillMount () {
@@ -172,7 +205,17 @@ class FocalPointModal extends ImmutablePureComponent {
         langPath: `${assetHost}/ocr/lang-data`,
       });
 
-      worker.recognize(media.get('url'))
+      let media_url = media.get('file');
+
+      if (window.URL && URL.createObjectURL) {
+        try {
+          media_url = URL.createObjectURL(media.get('file'));
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      worker.recognize(media_url)
         .progress(({ progress }) => this.setState({ progress }))
         .finally(() => worker.terminate())
         .then(({ text }) => this.setState({ description: removeExtraLineBreaks(text), dirty: true, detecting: false }))
@@ -222,17 +265,17 @@ class FocalPointModal extends ImmutablePureComponent {
 
             <div className='setting-text__toolbar'>
               <button disabled={detecting || media.get('type') !== 'image'} className='link-button' onClick={this.handleTextDetection}><FormattedMessage id='upload_modal.detect_text' defaultMessage='Detect text from picture' /></button>
-              <CharacterCounter max={420} text={detecting ? '' : description} />
+              <CharacterCounter max={1500} text={detecting ? '' : description} />
             </div>
 
-            <Button disabled={!dirty || detecting || length(description) > 420} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
+            <Button disabled={!dirty || detecting || length(description) > 1500} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
           </div>
 
           <div className='focal-point-modal__content'>
             {focals && (
               <div className={classNames('focal-point', { dragging })} ref={this.setRef} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart}>
-                {media.get('type') === 'image' && <img src={media.get('url')} width={width} height={height} alt='' />}
-                {media.get('type') === 'gifv' && <video src={media.get('url')} width={width} height={height} loop muted autoPlay />}
+                {media.get('type') === 'image' && <ImageLoader src={media.get('url')} width={width} height={height} alt='' />}
+                {media.get('type') === 'gifv' && <GIFV src={media.get('url')} width={width} height={height} />}
 
                 <div className='focal-point__preview'>
                   <strong><FormattedMessage id='upload_modal.preview_label' defaultMessage='Preview ({ratio})' values={{ ratio: '16:9' }} /></strong>
@@ -244,12 +287,23 @@ class FocalPointModal extends ImmutablePureComponent {
               </div>
             )}
 
-            {['audio', 'video'].includes(media.get('type')) && (
+            {media.get('type') === 'video' && (
               <Video
                 preview={media.get('preview_url')}
                 blurhash={media.get('blurhash')}
                 src={media.get('url')}
                 detailed
+                inline
+                editable
+              />
+            )}
+
+            {media.get('type') === 'audio' && (
+              <Audio
+                src={media.get('url')}
+                duration={media.getIn(['meta', 'original', 'duration'], 0)}
+                height={150}
+                preload
                 editable
               />
             )}

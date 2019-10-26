@@ -6,7 +6,11 @@ require 'sidekiq-scheduler/web'
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
+  root 'home#index'
+
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
+
+  health_check_routes
 
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
@@ -20,9 +24,12 @@ Rails.application.routes.draw do
   end
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+  get '.well-known/nodeinfo', to: 'well_known/nodeinfo#index', as: :nodeinfo, defaults: { format: 'json' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
   get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show'
+
+  get '/nodeinfo/2.0', to: 'well_known/nodeinfo#show', as: :nodeinfo_schema
 
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
@@ -37,6 +44,7 @@ Rails.application.routes.draw do
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
+      resource :challenge, only: [:create], controller: :challenges
     end
   end
 
@@ -129,8 +137,13 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
-    resource :migration, only: [:show, :update]
+    resource :migration, only: [:show, :create]
 
+    namespace :migration do
+      resource :redirect, only: [:new, :create, :destroy]
+    end
+
+    resources :aliases, only: [:index, :create, :destroy]
     resources :sessions, only: [:destroy]
     resources :featured_tags, only: [:index, :create, :destroy]
   end
@@ -238,16 +251,21 @@ Rails.application.routes.draw do
       resource :two_factor_authentication, only: [:destroy]
     end
 
-    resources :custom_emojis, only: [:index, :new, :create, :update, :destroy] do
-      member do
-        post :copy
-        post :enable
-        post :disable
+    resources :custom_emojis, only: [:index, :new, :create] do
+      collection do
+        post :batch
       end
     end
 
     resources :account_moderation_notes, only: [:create, :destroy]
-    resources :tags, only: [:index, :show, :update]
+
+    resources :tags, only: [:index, :show, :update] do
+      collection do
+        post :approve_all
+        post :reject_all
+        post :batch
+      end
+    end
   end
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)
@@ -302,8 +320,6 @@ Rails.application.routes.draw do
         end
       end
 
-      get '/search', to: 'search#index', as: :search
-
       resources :media,        only: [:create, :update]
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
@@ -312,6 +328,7 @@ Rails.application.routes.draw do
       resources :trends,       only: [:index]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
+      resources :markers,      only: [:index, :create]
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
@@ -325,6 +342,7 @@ Rails.application.routes.draw do
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
+      resource :directory, only: [:show]
 
       resources :follow_requests, only: [:index] do
         member do
@@ -373,6 +391,12 @@ Rails.application.routes.draw do
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
+
+      namespace :featured_tags do
+        get :suggestions, to: 'suggestions#index'
+      end
+
+      resources :featured_tags, only: [:index, :create, :destroy]
 
       resources :polls, only: [:create, :show] do
         resources :votes, only: :create, controller: 'polls/votes'
@@ -425,13 +449,8 @@ Rails.application.routes.draw do
 
   get '/about',        to: 'about#show'
   get '/about/more',   to: 'about#more'
-  get '/about/blocks', to: 'about#blocks'
   get '/terms',        to: 'about#terms'
 
-  root 'home#index'
-
-  match '*unmatched_route',
-        via: :all,
-        to: 'application#raise_not_found',
-        format: false
+  match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
+  match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false
 end

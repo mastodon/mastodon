@@ -65,7 +65,7 @@ class Rack::Attack
     req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
   end
 
-  throttle('throttle_media_proxy', limit: (ENV['MEDIA_PROXY_LIMIT'] || 30).to_i, period: 30.minutes) do |req|
+  throttle('throttle_media_proxy', limit: (ENV['MEDIA_PROXY_LIMIT'] || 30).to_i, period: 10.minutes) do |req|
     req.remote_ip if req.path.start_with?('/media_proxy')
   end
 

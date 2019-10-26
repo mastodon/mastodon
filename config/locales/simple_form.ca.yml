@@ -2,9 +2,14 @@
 ca:
   simple_form:
     hints:
+      account_alias:
+        acct: Especifica l'usuari@domini del compte des d'on et vols moure
+      account_migration:
+        acct: Especifica l'usuari@domini del compte al que et vols moure
       account_warning_preset:
         text: Pots utilitzar totes les sintaxi com ara URL, etiquetes i mencions
       admin_account_action:
+        include_statuses: L'usuari veurà quin tuts ha causat l'acció de moderació o avís
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
         text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
@@ -14,8 +19,10 @@ ca:
         avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
         context: Un o diversos contextos on s'ha d'aplicar el filtre
+        current_password: Per motius de seguretat si us plau entra la contrasenya del compte actual
+        current_username: Per a confirmar, si us plau entra el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
-        discoverable_html: El <a href="%{path}" target="_blank">directori</a> permet trobar usuaris en funció dels interessos i activitat. Requereix almenys %{min_followers} seguidors
+        discoverable: El directori de perfils és una altra manera per quin el teu compte pot assolir una audiència més àmplia
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
@@ -38,14 +45,20 @@ ca:
         setting_use_pending_items: Amaga les actualitzacions de la línia de temps després d'un clic en comptes de desplaçar-se automàticament
         username: El teu nom d'usuari serà únic a %{domain}
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
+      domain_allow:
+        domain: Aquest domini podrà obtenir dades d’aquest servidor i les dades entrants d’aquests seran processades i emmagatzemades
       featured_tag:
         name: 'És possible que vulguis utilitzar un d''aquests:'
+      form_challenge:
+        current_password: Estàs entrant en una àrea segura
       imports:
         data: Fitxer CSV exportat des d'un altre servidor de Mastodon
       invite_request:
         text: Això ens ajudarà a revisar la teva petició
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
+      tag:
+        name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
         chosen_languages: Quan estigui marcat, només es mostraran els toots de les llengües seleccionades en les línies de temps públiques
     labels:
@@ -53,9 +66,14 @@ ca:
         fields:
           name: Etiqueta
           value: Contingut
+      account_alias:
+        acct: Nom del compte vell
+      account_migration:
+        acct: Nom del nou compte
       account_warning_preset:
         text: Text predefinit
       admin_account_action:
+        include_statuses: Inclou tuts reportats en el correu electrònic
         send_email_notification: Notifica l'usuari per correu electrònic
         text: Avís personalitzat
         type: Acció
@@ -110,6 +128,7 @@ ca:
         setting_show_application: Desvela l'aplicació utilitzada per enviar toots
         setting_system_font_ui: Utilitza el tipus de lletra predeterminat del sistema
         setting_theme: Tema del lloc
+        setting_trends: Mostra les tendències d'avui
         setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de seguir a algú
         setting_use_blurhash: Mostra degradats de colors per als Mèdia amagats
         setting_use_pending_items: Mode lent
@@ -124,6 +143,8 @@ ca:
         must_be_follower: Blocar les notificacions de persones que no et segueixen
         must_be_following: Bloca les notificacions de persones que no segueixes
         must_be_following_dm: Bloca els missatges directes de persones que no segueixes
+      invite:
+        comment: Comenta
       invite_request:
         text: Per què vols unir-te?
       notification_emails:
@@ -135,6 +156,12 @@ ca:
         pending_account: Envia un correu electrònic quan es necessiti revisar un compte nou
         reblog: Envia un correu electrònic si algú comparteix el teu estat
         report: Envia un correu electrònic quan s'enviï un nou informe
+        trending_tag: Envia un correu quan una etiqueta sense revisar està en tendència
+      tag:
+        listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
+        name: Etiqueta
+        trendable: Permet que aquesta etiqueta aparegui en les tendències
+        usable: Permet als tuts emprar aquesta etiqueta
     'no': 'No'
     recommended: Recomanat
     required:

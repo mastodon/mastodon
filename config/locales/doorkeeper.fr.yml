@@ -114,6 +114,12 @@ fr:
       application:
         title: Autorisation OAuth requise
     scopes:
+      admin:read: lire toutes les données du serveur
+      admin:read:accounts: lire les informations sensibles de tous les comptes
+      admin:read:reports: lire les informations sensibles de tous les signalements et des comptes signalés
+      admin:write: modifier toutes les données sur le serveur
+      admin:write:accounts: effectuer des actions de modération sur les comptes
+      admin:write:reports: effectuer des actions de modération sur les singnalements
       follow: modifier les relations avec les comptes
       push: recevoir vos notifications
       read: lire toutes les données de votre compte

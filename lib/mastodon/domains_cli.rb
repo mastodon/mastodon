@@ -7,13 +7,17 @@ require_relative 'cli_helper'
 
 module Mastodon
   class DomainsCLI < Thor
+    include CLIHelper
+
     def self.exit_on_failure?
       true
     end
 
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
     option :whitelist_mode, type: :boolean
-    desc 'purge [DOMAIN]', 'Remove accounts from a DOMAIN without a trace'
+    desc 'purge [DOMAIN...]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
       records. Unlike a suspension, if the DOMAIN still exists in the wild,
@@ -23,40 +27,36 @@ module Mastodon
       from a single domain, all accounts from domains that are not whitelisted
       are removed from the database.
     LONG_DESC
-    def purge(domain = nil)
-      removed = 0
+    def purge(*domains)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       scope = begin
         if options[:whitelist_mode]
           Account.remote.where.not(domain: DomainAllow.pluck(:domain))
-        elsif domain.present?
-          Account.remote.where(domain: domain)
+        elsif !domains.empty?
+          Account.remote.where(domain: domains)
         else
-          say('No domain given', :red)
+          say('No domain(s) given', :red)
           exit(1)
         end
       end
 
-      scope.find_each do |account|
-        SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
-        removed += 1
-        say('.', :green, false)
+      processed, = parallelize_with_progress(scope) do |account|
+        SuspendAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
       end
 
-      DomainBlock.where(domain: domain).destroy_all unless options[:dry_run]
+      DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]
 
-      say
-      say("Removed #{removed} accounts#{dry_run}", :green)
+      say("Removed #{processed} accounts#{dry_run}", :green)
 
-      custom_emojis = CustomEmoji.where(domain: domain)
+      custom_emojis = CustomEmoji.where(domain: domains)
       custom_emojis_count = custom_emojis.count
       custom_emojis.destroy_all unless options[:dry_run]
+
       say("Removed #{custom_emojis_count} custom emojis", :green)
     end
 
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
-    option :silent, type: :boolean, default: false, aliases: [:s]
     option :format, type: :string, default: 'summary', aliases: [:f]
     option :exclude_suspended, type: :boolean, default: false, aliases: [:x]
     desc 'crawl [START]', 'Crawl all known peers, optionally beginning at START'
@@ -68,8 +68,6 @@ module Mastodon
 
       The --concurrency (-c) option controls the number of threads performing HTTP
       requests at the same time. More threads means the crawl may complete faster.
-
-      The --silent (-s) option controls progress output.
 
       The --format (-f) option controls how the data is displayed at the end. By
       default (`summary`), a summary of the statistics is returned. The other options
@@ -87,6 +85,7 @@ module Mastodon
       start_at        = Time.now.to_f
       seed            = start ? [start] : Account.remote.domains
       blocked_domains = Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$')
+      progress        = create_progress_bar
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
@@ -95,7 +94,6 @@ module Mastodon
         next if options[:exclude_suspended] && domain.match(blocked_domains)
 
         stats[domain] = nil
-        processed.increment
 
         begin
           Request.new(:get, "https://#{domain}/api/v1/instance").perform do |res|
@@ -115,11 +113,11 @@ module Mastodon
             next unless res.code == 200
             stats[domain]['activity'] = Oj.load(res.to_s)
           end
-
-          say('.', :green, false) unless options[:silent]
         rescue StandardError
           failed.increment
-          say('.', :red, false) unless options[:silent]
+        ensure
+          processed.increment
+          progress.increment unless progress.finished?
         end
       end
 
@@ -133,9 +131,8 @@ module Mastodon
       pool.shutdown
       pool.wait_for_termination(20)
     ensure
+      progress.finish
       pool.shutdown
-
-      say unless options[:silent]
 
       case options[:format]
       when 'summary'

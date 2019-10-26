@@ -1,7 +1,7 @@
 ---
 th:
   about:
-    about_hashtag_html: มีโพสต์สาธารณะที่ถูกแท็กด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบได้หากคุณมีบัญชีที่ไหนก็ได้ในเฟดิเวิร์ส
+    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
     about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ กระจายศูนย์เหมือนอีเมล
     about_this: เกี่ยวกับ
     active_count_after: ที่ใช้งาน
@@ -17,13 +17,9 @@ th:
     contact_unavailable: ไม่มี
     discover_users: ค้นพบผู้ใช้
     documentation: เอกสารประกอบ
-    extended_description_html: |
-      <h3>สถานที่ที่ดีสำหรับกฎ</h3>
-      <p>ยังไม่ได้ตั้งคำอธิบายเพิ่มเติม</p>
-    federation_hint_html: เมื่อคุณมีบัญชีที่ %{instance} แล้ว คุณสามารถติดตามผู้คนบนเซิร์ฟเวอร์ Mastodon เซิร์ฟเวอร์ใดก็ได้
-    generic_description: "%{domain} เป็นเซิร์ฟเวอร์หนึ่งในเครือข่าย"
+    federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
     get_apps: ลองแอปสำหรับมือถือ
-    hosted_on: Mastodon ให้บริการบน %{domain}
+    hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
     see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
@@ -31,8 +27,12 @@ th:
     source_code: โค้ดต้นฉบับ
     status_count_after:
       other: สถานะ
-    status_count_before: ผู้ใช้เหล่านั้นได้สร้าง
+    status_count_before: ผู้สร้าง
+    tagline: ติดตามเพื่อน ๆ และค้นพบเพื่อนใหม่ ๆ
     terms: เงื่อนไขการให้บริการ
+    unavailable_content_description:
+      domain: เซิร์ฟเวอร์
+      reason: 'เหตุผล:'
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
@@ -48,6 +48,7 @@ th:
     media: สื่อ
     moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
     network_hidden: ไม่มีข้อมูลนี้
+    never_active: ไม่เลย
     nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
@@ -176,13 +177,16 @@ th:
     custom_emojis:
       by_domain: โดเมน
       copy: คัดลอก
+      create_new_category: สร้างหมวดหมู่ใหม่
       created_msg: สร้างอีโมจิสำเร็จ!
       delete: ลบ
       destroyed_msg: ทำลายอีโมโจสำเร็จ!
       disable: ปิดใช้งาน
+      disabled: ปิดใช้งานอยู่
       disabled_msg: ปิดใช้งานอีโมจินั้นสำเร็จ
       emoji: อีโมจิ
       enable: เปิดใช้งาน
+      enabled: เปิดใช้งานอยู่
       enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
       image_hint: PNG สูงสุด 50KB
       new:
@@ -219,6 +223,7 @@ th:
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
       destroyed_msg: เลิกทำการปิดกั้นโดเมนแล้ว
       domain: โดเมน
+      edit: แก้ไขการปิดกั้นโดเมน
       new:
         create: สร้างการปิดกั้น
         hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมเฉพาะกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
@@ -228,6 +233,8 @@ th:
           silence: เงียบ
           suspend: ระงับ
         title: การปิดกั้นโดเมนใหม่
+      private_comment: ความคิดเห็นส่วนตัว
+      public_comment: ความคิดเห็นสาธารณะ
       reject_media: ปฏิเสธไฟล์สื่อ
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเว็บออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
@@ -243,6 +250,7 @@ th:
         title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
         undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
+      view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
       add_new: เพิ่มใหม่
       delete: ลบ
@@ -258,6 +266,8 @@ th:
         all: ทั้งหมด
         limited: จำกัดอยู่
         title: การควบคุม
+      private_comment: ความคิดเห็นส่วนตัว
+      public_comment: ความคิดเห็นสาธารณะ
       title: การติดต่อกับภายนอก
       total_storage: ไฟล์แนบสื่อ
     invites:
@@ -309,6 +319,8 @@ th:
         username: ชื่อผู้ใช้ในการติดต่อ
       custom_css:
         title: CSS ที่กำหนดเอง
+      domain_blocks:
+        title: แสดงการปิดกั้นโดเมน
       profile_directory:
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
       registrations:
@@ -344,18 +356,26 @@ th:
         desc_html: แสดงเส้นเวลาสาธารณะในหน้าเริ่มต้น
         title: ตัวอย่างเส้นเวลา
       title: การตั้งค่าไซต์
+      trends:
+        title: แฮชแท็กที่กำลังนิยม
     statuses:
       back_to_account: กลับไปที่หน้าบัญชี
       batch:
         delete: ลบ
         nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
         nsfw_on: ทำเครื่องหมายว่าละเอียดอ่อน
+      deleted: ลบแล้ว
       media:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
     tags:
+      context: บริบท
+      directory: ในไดเรกทอรี
+      in_directory: "%{count} ในไดเรกทอรี"
+      name: แฮชแท็ก
       title: แฮชแท็ก
+      trending_right_now: กำลังนิยม
     title: การดูแล
     warning_presets:
       add_new: เพิ่มใหม่
@@ -367,6 +387,7 @@ th:
     advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
     animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
     confirmation_dialogs: กล่องโต้ตอบการยืนยัน
+    discovery: ค้นพบ
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
@@ -381,6 +402,8 @@ th:
   auth:
     apply_for_account: ขอคำเชิญ
     change_password: รหัสผ่าน
+    checkbox_agreement_html: ฉันยอมรับ <a href="%{rules_path}" target="_blank">กฎของเซิร์ฟเวอร์</a> และ <a href="%{terms_path}" target="_blank">เงื่อนไขการให้บริการ</a>
+    checkbox_agreement_without_rules_html: ฉันยอมรับ <a href="%{terms_path}" target="_blank">เงื่อนไขการให้บริการ</a>
     delete_account: ลบบัญชี
     forgot_password: ลืมรหัสผ่านของคุณ?
     login: เข้าสู่ระบบ
@@ -407,6 +430,10 @@ th:
       return: แสดงโปรไฟล์ของผู้ใช้
       web: ไปยังเว็บ
     title: ติดตาม %{acct}
+  challenge:
+    confirm: ดำเนินการต่อ
+    invalid_password: รหัสผ่านไม่ถูกต้อง
+    prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ชั่วโมง"
@@ -428,11 +455,11 @@ th:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
-    people:
-      other: "%{count} คน"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
+    '406': This page is not available in the requested format.
     '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว คุณกำลังปิดกั้นคุกกี้หรือไม่?
@@ -440,6 +467,9 @@ th:
     '429': Throttled
     '500':
       title: หน้านี้ไม่ถูกต้อง
+    '503': The page could not be served due to a temporary server failure.
+  existing_username_validator:
+    not_found_multiple: ไม่พบ %{usernames}
   exports:
     archive_takeout:
       date: วันที่
@@ -472,6 +502,7 @@ th:
     developers: นักพัฒนา
     more: เพิ่มเติม…
     resources: ทรัพยากร
+    trending_now: กำลังนิยม
   generic:
     all: ทั้งหมด
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
@@ -513,7 +544,10 @@ th:
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
     acct: username@domain ของบัญชีใหม่
-    proceed: บันทึก
+    cancel: ยกเลิกการเปลี่ยนเส้นทาง
+    proceed_with_move: ย้ายผู้ติดตาม
+    redirecting_to: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
+    set_redirect: ตั้งการเปลี่ยนเส้นทาง
   moderation:
     title: การควบคุม
   notification_mailer:
@@ -628,6 +662,7 @@ th:
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
+    featured_tags: แฮชแท็กที่แนะนำ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     notifications: การแจ้งเตือน
@@ -643,6 +678,7 @@ th:
       video:
         other: "%{count} วิดีโอ"
     content_warning: 'คำเตือนเนื้อหา: %{warning}'
+    language_detection: ตรวจหาภาษาโดยอัตโนมัติ
     open_in_web: เปิดในเว็บ
     pin_errors:
       reblog: ไม่สามารถปักหมุดการดัน

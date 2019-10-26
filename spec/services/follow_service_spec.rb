@@ -30,6 +30,33 @@ RSpec.describe FollowService, type: :service do
       end
     end
 
+    describe 'unlocked account, from silenced account' do
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+      before do
+        sender.touch(:silenced_at)
+        subject.call(sender, bob.acct)
+      end
+
+      it 'creates a follow request with reblogs' do
+        expect(FollowRequest.find_by(account: sender, target_account: bob, show_reblogs: true)).to_not be_nil
+      end
+    end
+
+    describe 'unlocked account, from a muted account' do
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+      before do
+        bob.mute!(sender)
+        subject.call(sender, bob.acct)
+      end
+
+      it 'creates a following relation with reblogs' do
+        expect(sender.following?(bob)).to be true
+        expect(sender.muting_reblogs?(bob)).to be false
+      end
+    end
+
     describe 'unlocked account' do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 

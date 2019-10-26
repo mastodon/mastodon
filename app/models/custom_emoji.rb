@@ -40,10 +40,11 @@ class CustomEmoji < ApplicationRecord
   validates_attachment :image, content_type: { content_type: IMAGE_MIME_TYPES }, presence: true, size: { less_than: LIMIT }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
 
-  scope :local,      -> { where(domain: nil) }
-  scope :remote,     -> { where.not(domain: nil) }
+  scope :local, -> { where(domain: nil) }
+  scope :remote, -> { where.not(domain: nil) }
   scope :alphabetic, -> { order(domain: :asc, shortcode: :asc) }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
+  scope :listed, -> { local.where(disabled: false).where(visible_in_picker: true) }
 
   remotable_attachment :image, LIMIT
 
@@ -57,6 +58,12 @@ class CustomEmoji < ApplicationRecord
 
   def object_type
     :emoji
+  end
+
+  def copy!
+    copy = self.class.find_or_initialize_by(domain: nil, shortcode: shortcode)
+    copy.image = image
+    copy.tap(&:save!)
   end
 
   class << self

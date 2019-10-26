@@ -2,9 +2,14 @@
 oc:
   simple_form:
     hints:
+      account_alias:
+        acct: Donatz l’utilizaire@domeni del compte que volètz desplaçar
+      account_migration:
+        acct: Donatz l’utilizaire@domeni del compte ont volètz anar
       account_warning_preset:
         text: Podètz utilizar la sintaxi dels tuts, coma las URL, las etiquetas e las mencions
       admin_account_action:
+        include_statuses: L’utilizaire veiràs quals tuts a provocat l’accion de moderacion o avertiment
         send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
         text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
         type_html: Causir de qué far amb <strong>%{acct}</strong>
@@ -14,8 +19,10 @@ oc:
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
         bot: Avisar lo monde qu’aqueste compte es pas d’una persona
         context: Un o mai de contèxtes ont lo filtre deuriá s’aplicar
+        current_password: Per de rasons de seguretat volgatz picar lo senhal del compte actual
+        current_username: Per confirmar, volgatz picar lo nom d’utilizaire del compte actual
         digest: Solament enviat aprèp un long moment d’inactivitat e solament s’avètz recebut de messatges personals pendent vòstra abséncia
-        discoverable_html: L’<a href="%{path}" target="_blank">annuari</a> permet al monde de trobar de comptes segon lor interèsses e activitats. Requerís almens %{min_followers} seguidors
+        discoverable: L’annuari de perfiles es un biais mai per que vòstre compte aja una audiéncia mai granda
         email: Vos mandarem un corrièl de confirmacion
         fields: Podètz far veire cap a 4 elements sus vòstre perfil
         header: PNG, GIF o JPG. Maximum %{size}. Serà retalhada en %{dimensions}px
@@ -38,14 +45,20 @@ oc:
         setting_use_pending_items: Rescondre las actualizacions del flux d’actualitat aprèp un clic allòc de desfilar lo flux automaticament
         username: Vòstre nom d’utilizaire serà unic sus %{domain}
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
+      domain_allow:
+        domain: Aqueste domeni poirà recuperar las donadas d’aqueste servidor estant e las donadas venent d’aqueste domeni seràn tractadas e gardadas
       featured_tag:
         name: 'Benlèu que volètz utilizar una d’aquestas causas :'
+      form_challenge:
+        current_password: Dintratz dins una zòna segura
       imports:
         data: Fichièr CSV exportat d’un autre servidor Mastodon
       invite_request:
         text: Aquò nos ajudarà per validar vòstra demanda
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
+      tag:
+        name: Podètz pas que cambiar la talha de las letras, per exemple, per que sián de melhor legir
       user:
         chosen_languages: Quand seleccionadas, solament los tuts dins las lengas triadas seràn mostrats dins vòstre flux d’actualitat
     labels:
@@ -53,9 +66,14 @@ oc:
         fields:
           name: Nom
           value: Contengut
+      account_alias:
+        acct: Identificant de l’ancian compte
+      account_migration:
+        acct: Identificant del nòu compte
       account_warning_preset:
         text: Tèxt predefinit
       admin_account_action:
+        include_statuses: Inclure los tuts senhalats dins lo corrièl
         send_email_notification: Avisar l’utilizaire per corrièl
         text: Avertiment personalizat
         type: Accions
@@ -125,6 +143,8 @@ oc:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
         must_be_following_dm: Blocar los messatges del monde que seguètz pas
+      invite:
+        comment: Comentari
       invite_request:
         text: Perqué volètz vos marcar ?
       notification_emails:
@@ -136,6 +156,12 @@ oc:
         pending_account: Enviar un corrièl quand cal validar un compte novèl
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
         report: Enviar un corrièl pels nòus senhalaments
+        trending_tag: Enviar un corrièl quand una etiqueta pas repassada es en tendéncia
+      tag:
+        listable: Permetre a aquesta etiqueta d’aparéisser a las recèrcas e a l’annuari de perfils
+        name: Etiqueta
+        trendable: Permetre a aquesta etiqueta d’aparéisser a las tendéncias
+        usable: Permetre als tuts d’utilizar aquesta etiqueta
     'no': Non
     recommended: Recomandat
     required:

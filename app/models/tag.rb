@@ -7,26 +7,27 @@
 #  name                :string           default(""), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  score               :integer
 #  usable              :boolean
 #  trendable           :boolean
 #  listable            :boolean
 #  reviewed_at         :datetime
 #  requested_review_at :datetime
 #  last_status_at      :datetime
-#  last_trend_at       :datetime
+#  max_score           :float
+#  max_score_at        :datetime
 #
 
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
-  has_and_belongs_to_many :sample_accounts, -> { searchable.discoverable.popular.limit(3) }, class_name: 'Account'
+  has_and_belongs_to_many :sample_accounts, -> { local.discoverable.popular.limit(3) }, class_name: 'Account'
 
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_one :account_tag_stat, dependent: :destroy
 
-  HASHTAG_NAME_RE = '([[:word:]_][[:word:]_·]*[[:alpha:]_·][[:word:]_·]*[[:word:]_])|([[:word:]_]*[[:alpha:]][[:word:]_]*)'
-  HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
+  HASHTAG_SEPARATORS = "_\u00B7\u200c"
+  HASHTAG_NAME_RE    = "([[:word:]_][[:word:]#{HASHTAG_SEPARATORS}]*[[:alpha:]#{HASHTAG_SEPARATORS}][[:word:]#{HASHTAG_SEPARATORS}]*[[:word:]_])|([[:word:]_]*[[:alpha:]][[:word:]_]*)"
+  HASHTAG_RE         = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
   validates :name, presence: true, format: { with: /\A(#{HASHTAG_NAME_RE})\z/i }
   validate :validate_name_change, if: -> { !new_record? && name_changed? }
@@ -36,8 +37,10 @@ class Tag < ApplicationRecord
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
   scope :listable, -> { where(listable: [true, nil]) }
+  scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
   scope :discoverable, -> { listable.joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :most_used, ->(account) { joins(:statuses).where(statuses: { account: account }).group(:id).order(Arel.sql('count(*) desc')) }
+  scope :matches_name, ->(value) { where(arel_table[:name].matches("#{value}%")) }
 
   delegate :accounts_count,
            :accounts_count=,
@@ -47,7 +50,7 @@ class Tag < ApplicationRecord
 
   after_save :save_account_tag_stat
 
-  update_index('tags#tag', :self) if Chewy.enabled?
+  update_index('tags#tag', :self)
 
   def account_tag_stat
     super || build_account_tag_stat
@@ -74,7 +77,7 @@ class Tag < ApplicationRecord
   alias listable? listable
 
   def trendable
-    boolean_with_default('trendable', false)
+    boolean_with_default('trendable', Setting.trendable_by_default)
   end
 
   alias trendable? trendable
@@ -122,16 +125,15 @@ class Tag < ApplicationRecord
       end
     end
 
-    def search_for(term, limit = 5, offset = 0)
+    def search_for(term, limit = 5, offset = 0, options = {})
       normalized_term = normalize(term.strip).mb_chars.downcase.to_s
       pattern         = sanitize_sql_like(normalized_term) + '%'
+      query           = Tag.listable.where(arel_table[:name].lower.matches(pattern))
+      query           = query.where(arel_table[:name].lower.eq(normalized_term).or(arel_table[:reviewed_at].not_eq(nil))) if options[:exclude_unreviewed]
 
-      Tag.listable
-         .where(arel_table[:name].lower.matches(pattern))
-         .where(arel_table[:name].lower.eq(normalized_term).or(arel_table[:reviewed_at].not_eq(nil)))
-         .order(Arel.sql('length(name) ASC, name ASC'))
-         .limit(limit)
-         .offset(offset)
+      query.order(Arel.sql('length(name) ASC, name ASC'))
+           .limit(limit)
+           .offset(offset)
     end
 
     def find_normalized(name)

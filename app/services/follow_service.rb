@@ -30,7 +30,7 @@ class FollowService < BaseService
 
     ActivityTracker.increment('activity:interactions')
 
-    if target_account.locked? || target_account.activitypub?
+    if target_account.locked? || source_account.silenced? || target_account.activitypub?
       request_follow(source_account, target_account, reblogs: reblogs)
     elsif target_account.local?
       direct_follow(source_account, target_account, reblogs: reblogs)

@@ -13,6 +13,8 @@ class TagsController < ApplicationController
   before_action :set_body_classes
   before_action :set_instance_presenter
 
+  skip_before_action :require_functional!
+
   def show
     respond_to do |format|
       format.html do

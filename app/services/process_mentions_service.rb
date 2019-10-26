@@ -33,6 +33,7 @@ class ProcessMentionsService < BaseService
     end
 
     status.save!
+    check_for_spam(status)
 
     mentions.each { |mention| create_notification(mention) }
   end
@@ -60,5 +61,9 @@ class ProcessMentionsService < BaseService
 
   def resolve_account_service
     ResolveAccountService.new
+  end
+
+  def check_for_spam(status)
+    SpamCheck.perform(status)
   end
 end

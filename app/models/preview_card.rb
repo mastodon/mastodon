@@ -43,7 +43,13 @@ class PreviewCard < ApplicationRecord
   validates_attachment_size :image, less_than: LIMIT
   remotable_attachment :image, LIMIT
 
+  scope :cached, -> { where.not(image_file_name: [nil, '']) }
+
   before_save :extract_dimensions, if: :link?
+
+  def missing_image?
+    width.present? && height.present? && image_file_name.blank?
+  end
 
   def save_with_optional_image!
     save!

@@ -12,7 +12,18 @@ import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
-import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, ListTimeline } from '../../ui/util/async-components';
+import {
+  Compose,
+  Notifications,
+  HomeTimeline,
+  CommunityTimeline,
+  PublicTimeline,
+  HashtagTimeline,
+  DirectTimeline,
+  FavouritedStatuses,
+  ListTimeline,
+  Directory,
+} from '../../ui/util/async-components';
 import Icon from 'mastodon/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
@@ -30,6 +41,7 @@ const componentMap = {
   'DIRECT': DirectTimeline,
   'FAVOURITES': FavouritedStatuses,
   'LIST': ListTimeline,
+  'DIRECTORY': Directory,
 };
 
 const messages = defineMessages({
@@ -170,7 +182,7 @@ class ColumnsArea extends ImmutablePureComponent {
       const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/statuses/new' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;
 
       const content = columnIndex !== -1 ? (
-        <ReactSwipeableViews key='content' index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
+        <ReactSwipeableViews key='content' hysteresis={0.2} threshold={15} index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
           {links.map(this.renderView)}
         </ReactSwipeableViews>
       ) : (

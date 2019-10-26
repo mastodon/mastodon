@@ -172,8 +172,9 @@ export default class ScrollableList extends PureComponent {
     const someItemInserted = React.Children.count(prevProps.children) > 0 &&
       React.Children.count(prevProps.children) < React.Children.count(this.props.children) &&
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
+    const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
 
-    if (someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
+    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
       return this.getScrollHeight() - this.getScrollTop();
     } else {
       return null;
@@ -198,6 +199,7 @@ export default class ScrollableList extends PureComponent {
     this.clearMouseIdleTimer();
     this.detachScrollListener();
     this.detachIntersectionObserver();
+
     detachFullscreenListener(this.onFullScreenChange);
   }
 
@@ -261,6 +263,13 @@ export default class ScrollableList extends PureComponent {
   handleLoadPending = e => {
     e.preventDefault();
     this.props.onLoadPending();
+    // Prevent the weird scroll-jumping behavior, as we explicitly don't want to
+    // scroll to top, and we know the scroll height is going to change
+    this.scrollToTopOnMouseIdle = false;
+    this.lastScrollWasSynthetic = false;
+    this.clearMouseIdleTimer();
+    this.mouseIdleTimer = setTimeout(this.handleMouseIdle, MOUSE_IDLE_DELAY);
+    this.mouseMovedRecently = true;
   }
 
   render () {

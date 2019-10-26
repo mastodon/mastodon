@@ -2,9 +2,14 @@
 cy:
   simple_form:
     hints:
+      account_alias:
+        acct: Rhowch enwdefnyddiwr@parth y cyfrif rydych chi am symud ohono
+      account_migration:
+        acct: Rhowch enwdefnyddiwr@parth y cyfrif rydych chi am symud iddo
       account_warning_preset:
         text: Gallwch defnyddio cystrawen tŵt, fel URLs, hashnodau a sôniadau
       admin_account_action:
+        include_statuses: Bydd y defnyddiwr yn gweld pa tŵtiau sydd wedi achosi'r weithred gymedroli neu'r rhybudd
         send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
         text_html: Yn ddewisol. Gallwch defnyddio cystrawen tŵt. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
         type_html: Dewis beth i wneud gyda <strong>%{acct}</strong>
@@ -14,8 +19,10 @@ cy:
         avatar: PNG, GIF neu JPG. %{size} ar y mwyaf. Caiff ei israddio i %{dimensions}px
         bot: Mae'r cyfrif hwn yn perfformio gweithredoedd awtomatig yn bennaf ac mae'n bosib nad yw'n cael ei fonitro
         context: Un neu fwy cyd-destun lle dylai'r hidlydd weithio
+        current_password: At ddibenion diogelwch, nodwch gyfrinair y cyfrif cyfredol
+        current_username: I gadarnhau, nodwch enw defnyddiwr y cyfrif cyfredol
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
-        discoverable_html: Mae'r <a href="%{path}" target="_blank">cyfeiriadur</a> yn gadael i bobl ddarganfod cyfrifau wedi'i seilio ar ddiddordebau a gweithgareddau.. Mae hyn angen o leiaf %{min_followers} o ddilynwyr
+        discoverable: Mae'r cyfeirlyfr proffil yn ffordd arall y gall eich cyfrif gyrraedd cynulleidfa ehangach
         email: Byddwch yn derbyn e-bost i gadarnhau
         fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
         header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
@@ -35,16 +42,23 @@ cy:
         setting_noindex: Mae hyn yn effeithio ar eich proffil cyhoeddus a'ch tudalennau statws
         setting_show_application: Bydd y offer frydych yn defnyddio i dŵtio yn cael ei arddangos yn golwg manwl eich tŵtiau
         setting_use_blurhash: Mae graddiannau wedi'u seilio ar liwiau'r delweddau cudd ond maent yn cuddio unrhyw fanylion
+        setting_use_pending_items: Cuddio diweddariadau llinell amser y tu ôl i glic yn lle sgrolio yn awtomatig
         username: Bydd eich enw defnyddiwr yn unigryw ar %{domain}
         whole_word: Os yw'r allweddair neu'r ymadrodd yn alffaniwmerig yn unig, mi fydd ond yn cael ei osod os yw'n cyfateb a'r gair cyfan
+      domain_allow:
+        domain: Bydd y parth hwn yn gallu nôl data o'r gweinydd hwn a bydd data sy'n dod i mewn ohono yn cael ei brosesu a'i storio
       featured_tag:
         name: 'Efallai hoffech defnyddio un o''r rhain:'
+      form_challenge:
+        current_password: Rydych chi'n mynd i mewn i ardal sicr
       imports:
         data: Allforiwyd dogfen CSV o achos Mastodon arall
       invite_request:
         text: Bydd hyn yn helpu ni adolygu eich cais
       sessions:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
+      tag:
+        name: Dim ond er mwyn ei gwneud yn fwy darllenadwy y gallwch chi newid y llythrennau, er enghraifft
       user:
         chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
     labels:
@@ -52,9 +66,14 @@ cy:
         fields:
           name: Label
           value: Cynnwys
+      account_alias:
+        acct: Enw'r hen gyfrif
+      account_migration:
+        acct: Enw'r cyfrif newydd
       account_warning_preset:
         text: Testun rhagosodedig
       admin_account_action:
+        include_statuses: Cynhwyswch tŵtiau yr adroddwyd amdanynt yn yr e-bost
         send_email_notification: Hysbysu'r defnyddiwr trwy e-bost
         text: Rhybudd wedi'i addasu
         type: Gweithredu
@@ -109,8 +128,10 @@ cy:
         setting_show_application: Datguddio'r offer defnyddwyd i anfon tŵtiau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_theme: Thema'r wefan
+        setting_trends: Dangos tueddiadau o heddiw ymlaen
         setting_unfollow_modal: Dangos deialog cadarnhau cyn dad-ddilyn rhywun
         setting_use_blurhash: Dangoswch raddiannau lliwgar ar gyfer cyfryngau cudd
+        setting_use_pending_items: Modd araf
         severity: Difrifoldeb
         type: Modd mewnforio
         username: Enw defnyddiwr
@@ -122,6 +143,8 @@ cy:
         must_be_follower: Blocio hysbysiadau o bobl nad ydynt yn eich dilyn
         must_be_following: Blocio hysbysiadau o bobl nad ydych yn eu dilyn
         must_be_following_dm: Blocio negeseuon uniongyrchol o bobl nad ydych yn eu dilyn
+      invite:
+        comment: Sylw
       invite_request:
         text: Pam hoffech ymuno?
       notification_emails:
@@ -133,6 +156,12 @@ cy:
         pending_account: Anfon ebost pan mae cyfrif newydd angen adolygiad
         reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
         report: Anfon e-bost pan y cyflwynir adroddiad newydd
+        trending_tag: Anfonwch e-bost pan fydd hashnod heb ei adolygu yn tueddu
+      tag:
+        listable: Gadewch i'r hashnod hwn ymddangos mewn chwiliadau ac ar y cyfeiriadur proffil
+        name: Hashnod
+        trendable: Gadewch i'r hashnod hwn ymddangos o dan dueddiadau
+        usable: Caniatáu i tŵtiau ddefnyddio'r hashnod hwn
     'no': Na
     recommended: Argymhellwyd
     required:
