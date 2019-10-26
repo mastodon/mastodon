@@ -720,7 +720,7 @@ cy:
     '500':
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
-    '503': The page could not be served due to a temporary server failure.
+    '503': Ni chaiff y dudalen ei weini oherwydd gwall gweinydd dros dro.
     noscript_html: I ddefnyddio ap gwe Mastodon, galluogwch JavaScript os gwlwch yn dda. Fel arall, gallwch drio un o'r <a href="%{apps_path}">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
   existing_username_validator:
     not_found: ni ddarganfwyd defnyddiwr lleol gyda'r enw cyfrif hynny
@@ -744,6 +744,7 @@ cy:
     add_new: Ychwanegu
     errors:
       limit: Yr ydych yn barod wedi cynnwys yr uchafswm o hashnodau
+    hint_html: "<strong>Beth yw hashnodau nodedig?</strong> Mae'r rhain yn cael ei arddangos yn amlwg ar eich proffil cyhoeddus ac yn gadael i bobl pori eich pyst cyhoeddus o dan y hashnodau rhain yn benodol. Rydynt yn declyn grêt ar gyfer tracio gweithiau creadigol neu brosiectau hir-dymor."
   filters:
     contexts:
       home: Ffrwd gartref
@@ -769,6 +770,7 @@ cy:
     all: Popeth
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
     copy: Copïo
+    no_batch_actions_available: Dim gweithredau llwyth ar gael ar y dudalen hon
     order_by: Trefnu wrth
     save_changes: Cadw newidiadau
     validation_errors:
@@ -849,6 +851,8 @@ cy:
   migrations:
     acct: enwdefnyddiwr@parth y cyfrif newydd
     cancel: Canslo ailgyfeirio
+    cancel_explanation: Bydd diddymu'r ailgyfeiriad yn ail-actifadu eich cyfrif bresennol, ond ni fydd hi'n dychwelyd dilynwyr sydd wedi'i symud i'r cyfrif hynny.
+    cancelled_msg: Wedi diddymu'r ailgyfeiriad yn llwyddiannus.
     errors:
       not_found: ni ellid dod o hyd iddo
     past_migrations: Ymfudiadau yn y gorffennol
