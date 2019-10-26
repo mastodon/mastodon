@@ -190,6 +190,7 @@ cy:
         user: Defnyddiwr
       salmon_url: URL Eog
       search: Chwilio
+      search_same_ip: Defnyddwyr eraill gyda'r un IP
       shared_inbox_url: URL Mewnflwch wedi ei rannu
       show:
         created_reports: Adroddiadau a wnaed
@@ -325,7 +326,9 @@ cy:
           suspend: Atal
         title: Blocio parth newydd
       private_comment: Sylw preifat
+      private_comment_hint: Sylw am gyfyngiadau y barth ar gyfer defnydd mewnol gan y cymedrolwyr.
       public_comment: Sylw cyhoeddus
+      public_comment_hint: Sylw am gyfyngiadau y parth hon ar gyfer y cyhoedd, os mae hysbysu'r rhestr o gyfyngiadau parth wedi'i alluogi.
       reject_media: Gwrthod dogfennau cyfryngau
       reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
       reject_reports: Gwrthod adroddiadau
@@ -408,6 +411,7 @@ cy:
       pending: Aros am gymeradywaeth i'r relái
       save_and_enable: Cadw a galluogi
       setup: Sefydlu cysylltiad relái
+      signatures_not_enabled: Ni fydd cyfnewidau yn gweithio'n iawn pan mae modd diogel neu restr gwyn wedi'i alluogi
       status: Statws
       title: Cyfnewidwyr
     report_notes:
@@ -456,8 +460,14 @@ cy:
       custom_css:
         desc_html: Addasu gwedd gyda CSS wedi lwytho ar bob tudalen
         title: CSS wedi'i addasu
+      default_noindex:
+        desc_html: Yn effeithio pob defnyddwr sydd heb newid y gosodiad ei hun
+        title: Eithrio defnyddwyr o fynegai peiriannau chwilio yn rhagosodiedig
       domain_blocks:
         all: I bawb
+        disabled: I neb
+        title: Dangos rhwystriadau parth
+        users: I ddefnyddwyr lleol mewngofnodadwy
       hero:
         desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia. Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
         title: Delwedd arwr
