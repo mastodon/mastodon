@@ -5,6 +5,7 @@
 
 class ActivityPub::ReplyDistributionWorker
   include Sidekiq::Worker
+  include Payloadable
 
   sidekiq_options queue: 'push'
 
@@ -27,19 +28,7 @@ class ActivityPub::ReplyDistributionWorker
     @inboxes ||= @account.followers.inboxes
   end
 
-  def signed_payload
-    Oj.dump(ActivityPub::LinkedDataSignature.new(unsigned_payload).sign!(@status.account))
-  end
-
-  def unsigned_payload
-    ActiveModelSerializers::SerializableResource.new(
-      @status,
-      serializer: ActivityPub::ActivitySerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json
-  end
-
   def payload
-    @payload ||= @status.distributable? ? signed_payload : Oj.dump(unsigned_payload)
+    @payload ||= Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @status.account))
   end
 end

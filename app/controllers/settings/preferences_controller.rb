@@ -12,13 +12,17 @@ class Settings::PreferencesController < Settings::BaseController
 
     if current_user.update(user_params)
       I18n.locale = current_user.locale
-      redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
+      redirect_to after_update_redirect_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
     end
   end
 
   private
+
+  def after_update_redirect_path
+    settings_preferences_path
+  end
 
   def user_settings
     UserSettingsDecorator.new(current_user)
@@ -49,8 +53,13 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_hide_network,
       :setting_aggregate_reblogs,
       :setting_show_application,
-      notification_emails: %i(follow follow_request reblog favourite mention digest report),
-      interactions: %i(must_be_follower must_be_following)
+      :setting_advanced_layout,
+      :setting_use_blurhash,
+      :setting_use_pending_items,
+      :setting_trends,
+      :setting_crop_images,
+      notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account trending_tag),
+      interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )
   end
 end

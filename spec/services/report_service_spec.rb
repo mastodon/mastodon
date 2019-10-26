@@ -21,6 +21,11 @@ RSpec.describe ReportService, type: :service do
       subject.call(source_account, remote_account, forward: false)
       expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
     end
+
+    it 'has an uri' do
+      report = subject.call(source_account, remote_account, forward: true)
+      expect(report.uri).to_not be_nil
+    end
   end
 
   context 'when other reports already exist for the same target' do

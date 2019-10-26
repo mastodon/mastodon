@@ -9,10 +9,10 @@ nl:
       already_authenticated: Je bent al ingelogd.
       inactive: Jouw account is nog niet geactiveerd.
       invalid: "%{authentication_keys} of wachtwoord ongeldig."
-      invalid_token: Ongeldige bevestigingscode.
       last_attempt: Je hebt nog één poging over voordat jouw account wordt opgeschort.
       locked: Jouw account is opgeschort.
       not_found_in_database: "%{authentication_keys} of wachtwoord ongeldig."
+      pending: Jouw account moet nog steeds worden beoordeeld.
       timeout: Jouw sessie is verlopen, log opnieuw in.
       unauthenticated: Je dient in te loggen of te registreren.
       unconfirmed: Je dient eerst jouw account te bevestigen.
@@ -21,6 +21,7 @@ nl:
         action: E-mailadres verifiëren
         action_with_app: Bevestigen en naar %{app} teruggaan
         explanation: Je hebt een account op %{host} aangemaakt en met één klik kun je deze activeren. Wanneer jij dit account niet hebt aangemaakt, mag je deze e-mail negeren.
+        explanation_when_pending: Je vroeg met dit e-mailadres een uitnodiging aan voor %{host}. Nadat je jouw e-mailadres hebt bevestigd, beoordelen we jouw aanvraag. Je kunt tot dan nog niet inloggen. Wanneer jouw aanvraag wordt afgekeurd, worden jouw gegevens verwijderd en hoef je daarna verder niets meer te doen. Wanneer jij dit niet was, kun je deze e-mail negeren.
         extra_html: Bekijk ook de <a href="%{terms_path}">regels van de Mastodonserver</a> en <a href="%{policy_path}">onze gebruiksvoorwaarden</a>.
         subject: 'Mastodon: E-mail bevestigen voor %{instance}'
         title: E-mailadres verifiëren
@@ -45,6 +46,18 @@ nl:
         extra: Wanneer jij dit niet hebt aangevraagd, mag je deze e-mail negeren. Jouw wachtwoord wordt pas gewijzigd nadat je de link hierboven hebt aangeklikt en een nieuw wachtwoord aanmaakt.
         subject: 'Mastodon: Wachtwoord opnieuw instellen'
         title: Wachtwoord opnieuw instellen
+      two_factor_disabled:
+        explanation: Tweestapsverificatie voor jouw account is uitgeschakeld. Je kunt nu alleen inloggen met een e-mailadres en wachtwoord.
+        subject: 'Mastodon: Tweestapsverificatie uitgeschakeld'
+        title: Tweestapsverificatie uitgeschakeld
+      two_factor_enabled:
+        explanation: Tweestapsverificatie voor jouw account is ingeschakeld. Om te kunnen aanmelden is een door een tweestapsverificatie-app genereerde aanmeldcode nodig.
+        subject: 'Mastodon: Tweestapsverificatie ingeschakeld'
+        title: Tweestapsverificatie ingeschakeld
+      two_factor_recovery_codes_changed:
+        explanation: De vorige herstelcodes zijn ongeldig gemaakt en nieuwe zijn aangemaakt.
+        subject: 'Mastodon: Tweestaps-herstelcodes zijn opnieuw aangemaakt'
+        title: Herstelcodes tweestapsverificatie veranderd
       unlock_instructions:
         subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
     omniauth_callbacks:
@@ -61,6 +74,7 @@ nl:
       signed_up: Je bent geregistreerd.
       signed_up_but_inactive: Je bent geregistreerd. Je kon alleen niet automatisch ingelogd worden omdat jouw account nog niet geactiveerd is.
       signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat jouw account is opgeschort.
+      signed_up_but_pending: Er is een bericht met een bevestigingslink naar jouw e-mailadres verzonden. Nadat je op deze link hebt geklikt nemen we jouw aanvraag in behandeling. Je wordt op de hoogte gesteld wanneer deze wordt goedgekeurd.
       signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je jouw account kunt activeren. Kijk tussen je spam wanneer niks werd ontvangen.
       update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog bevestigen. Controleer jouw e-mail en klik op de link in de mail om jouw e-mailadres te bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
       updated: Jouw accountgegevens zijn opgeslagen.

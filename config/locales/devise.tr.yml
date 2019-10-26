@@ -1,0 +1,98 @@
+---
+tr:
+  devise:
+    confirmations:
+      confirmed: E-posta adresiniz başarıyla onaylandı.
+      send_instructions: Birkaç dakika içinde e-posta adresinizi nasıl onaylayacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      send_paranoid_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinizi birkaç dakika içinde nasıl doğrulayacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+    failure:
+      already_authenticated: Zaten oturum açtınız.
+      inactive: Hesabınız henüz etkinleştirilmedi.
+      invalid: Geçersiz %{authentication_keys} ya da şifre.
+      last_attempt: Hesabınız kilitlenmeden önce bir kez daha denemeniz gerekir.
+      locked: Hesabınız kilitli.
+      not_found_in_database: Geçersiz %{authentication_keys} ya da şifre.
+      pending: Hesabınız hala inceleniyor.
+      timeout: Oturum süreniz sona erdi. Lütfen devam etmek için tekrar giriş yapınız.
+      unauthenticated: Devam etmeden önce oturum açmanız veya kayıt olmanız gerek.
+      unconfirmed: Devam etmeden önce e-posta adresini onaylamanız gerekli.
+    mailer:
+      confirmation_instructions:
+        action: E-posta adresinizi doğrulayın
+        action_with_app: Onayla ve %{app}'a dön
+        explanation: Bu e-posta adresiyle %{host} bir hesap oluşturdunuz. Etkinleştirmekten bir tık uzaktasınız. Bu siz değilseniz, lütfen bu e-postayı dikkate almayın.
+        explanation_when_pending: Bu e-posta adresiyle %{host} adresine bir davetiye için başvuru yaptınız. E-posta adresinizi onayladıktan sonra başvurunuzu inceleyeceğiz. O zamana kadar giriş yapamazsınız. Başvurunuz reddedilirse, verileriniz silinecek, başka bir işlem yapmanız gerekmeyecek. Bu siz değilseniz, lütfen bu e-postayı dikkate almayın.
+        extra_html: Lütfen ayrıca <a href="%{terms_path}">sunucu kurallarını</a> ve <a href="%{policy_path}">hizmet şartlarımızı</a> inceleyin.
+        subject: 'Mastodon: %{instance} için onay talimatları'
+        title: E-posta adresini doğrulayın
+      email_changed:
+        explanation: 'Hesabınızın e-posta adresi şu şekilde değiştirildi:'
+        extra: E-posta adresinizi değiştirmediyseniz, büyük olasılıkla birileri hesabınıza erişti. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
+        subject: 'Mastodon: E-posta değişti'
+        title: Yeni e-posta adresi
+      password_change:
+        explanation: Hesabınızın parolası değiştirildi.
+        extra: Parolanızı değiştirmediyseniz, büyük olasılıkla birileri hesabınıza erişmiş olabilir. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
+        subject: 'Mastodon: Parola değiştirildi'
+        title: Parola değiştirildi
+      reconfirmation_instructions:
+        explanation: E-postanızı değiştirmek için yeni adresi onaylayın.
+        extra: Bu değişiklik sizin tarafınızdan başlatılmadıysa, lütfen bu e-postayı dikkate almayın. Mastodon hesabının e-posta adresi, yukarıdaki bağlantıya erişene kadar değişmez.
+        subject: 'Mastodon: %{instance} için e-postayı onayla'
+        title: E-posta adresinizi doğrulayın
+      reset_password_instructions:
+        action: Parolayı değiştir
+        explanation: Hesabınız için yeni bir parola istediniz.
+        extra: Bunu siz yapmadıysanız, lütfen bu e-postayı dikkate almayın. Parolanız yukarıdaki bağlantıya erişene ve yeni bir tane oluşturuncaya kadar değişmez.
+        subject: 'Mastodon: Parola sıfırlama talimatları'
+        title: Parola sıfırlama
+      two_factor_disabled:
+        explanation: Hesabınız için iki-adımlı kimlik doğrulama devre dışı bırakıldı. Şimdi sadece e-posta adresi ve parola kullanarak giriş yapabilirsiniz.
+        subject: 'Mastodon: İki-adımlı kimlik doğrulama devre dışı bırakıldı'
+        title: 2FA devre dışı bırakıldı
+      two_factor_enabled:
+        explanation: Hesabınız için iki-adımlı kimlik doğrulama etkinleştirildi. Giriş yapmak için eşleştirilmiş TOTP uygulaması tarafından oluşturulan bir belirteç gereklidir.
+        subject: 'Mastodon: İki-adımlı kimlik doğrulama etkinleştirildi'
+        title: 2FA etkinleştirildi
+      two_factor_recovery_codes_changed:
+        explanation: Önceki kurtarma kodları geçersiz kılındı ve yenileri oluşturuldu.
+        subject: 'Mastodon: İki-adımlı kurtarma kodları yeniden oluşturuldu'
+        title: 2FA kurtarma kodları değiştirildi
+      unlock_instructions:
+        subject: 'Mastodon: Engel kaldırma talimatları'
+    omniauth_callbacks:
+      failure: '%{kind}''den kimliğiniz doğrulanamadı çünkü "%{reason}".'
+      success: "%{kind} hesabından başarıyla kimlik doğrulaması yapıldı."
+    passwords:
+      no_token: Bu sayfaya şifre sıfırlama e-postasından gelmeden erişemezsiniz. Şifre sıfırlama e-postasından geliyorsanız lütfen sağlanan tam URL'yi kullandığınızdan emin olun.
+      send_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinize birkaç dakika içinde bir parola kurtarma bağlantısı gönderilir. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      send_paranoid_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinize birkaç dakika içinde bir parola kurtarma bağlantısı gönderilir. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      updated: Parolanız başarıyla değiştirildi. Şuan oturumunuz açıldı.
+      updated_not_active: Parolanız başarıyla değiştirildi.
+    registrations:
+      destroyed: Görüşürüz! hesabın başarıyla iptal edildi. Umarız seni sonra tekrar görürüz.
+      signed_up: Hoş geldiniz! Başarılı bir şekilde oturum açtınız.
+      signed_up_but_inactive: Başarıyla kaydoldun. Ancak, seni içeri alamıyoruz çünkü hesabın henüz aktif değil.
+      signed_up_but_locked: Başarıyla kaydoldun. Ancak, seni içeri alamıyoruz çünkü hesabın kilitli.
+      signed_up_but_pending: Onay bağlantısına sahip bir mesaj e-posta adresinize gönderildi. Bağlantıyı tıkladıktan sonra başvurunuzu inceleyeceğiz. Onaylanması durumunda size bilgi verilecektir.
+      signed_up_but_unconfirmed: Onay bağlantısına sahip bir mesaj e-posta adresinize gönderildi. Lütfen hesabınızı etkinleştirmek için bağlantıyı takip edin. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      update_needs_confirmation: Hesabınızı başarıyla güncellediniz, ancak yeni e-posta adresinizi doğrulamamız gerekiyor. Lütfen e-postanızı kontrol edin ve yeni e-posta adresinizi onaylamak için onay bağlantısını izleyin. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      updated: Hesabınız başarıyla güncellendi.
+    sessions:
+      already_signed_out: Başarıyla çıkış yapıldı.
+      signed_in: Başarıyla giriş yapıldı.
+      signed_out: Başarıyla çıkış yapıldı.
+    unlocks:
+      send_instructions: Hesabınızı birkaç dakika içinde nasıl açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      send_paranoid_instructions: Hesabınız varsa, birkaç dakika içinde nasıl kilidini açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      unlocked: Hesabınızın kilidi başarıyla açıldı. Devam etmek için lütfen oturum açın.
+  errors:
+    messages:
+      already_confirmed: zaten onaylanmış, lütfen tekrar oturum açmayı deneyin
+      confirmation_period_expired: "%{period} içinde onaylanması gerekli, lütfen yeni bir tane talep edin"
+      expired: süresi geçti, lütfen yeni bir tane talep edin
+      not_found: bulunamadı
+      not_locked: kilitlenmemiş
+      not_saved:
+        one: '1 hata bu %{resource} kaydedilmesini önledi:'
+        other: "%{count} hata bu %{resource} kaydedilmesini önledi:"

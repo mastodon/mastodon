@@ -1,13 +1,17 @@
 ---
 th:
   activerecord:
+    attributes:
+      poll:
+        expires_at: กำหนดเวลาสิ้นสุด
+        options: ทางเลือก
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: only letters, numbers and underscores
+              invalid: ตัวอักษร, ตัวเลข และขีดล่างเท่านั้น
         status:
           attributes:
             reblog:
-              taken: of status already exists
+              taken: มีสถานะอยู่แล้ว

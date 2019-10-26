@@ -1,6 +1,10 @@
 ---
 gl:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Caducidade
+        options: Opcións
     errors:
       models:
         account:

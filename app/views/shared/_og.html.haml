@@ -1,5 +1,5 @@
-- thumbnail = @instance_presenter.thumbnail
-- description = strip_tags(@instance_presenter.site_short_description.presence || @instance_presenter.site_description.presence || t('about.about_mastodon_html'))
+- thumbnail     = @instance_presenter.thumbnail
+- description ||= strip_tags(@instance_presenter.site_short_description.presence || t('about.about_mastodon_html'))
 
 %meta{ name: 'description', content: description }/
 
@@ -8,7 +8,7 @@
 = opengraph 'og:type', 'website'
 = opengraph 'og:title', @instance_presenter.site_title
 = opengraph 'og:description', description
-= opengraph 'og:image', full_asset_url(thumbnail&.file&.url || asset_pack_path('preview.jpg', protocol: :request))
+= opengraph 'og:image', full_asset_url(thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg', protocol: :request))
 = opengraph 'og:image:width', thumbnail ? thumbnail.meta['width'] : '1200'
 = opengraph 'og:image:height', thumbnail ? thumbnail.meta['height'] : '630'
 = opengraph 'twitter:card', 'summary_large_image'

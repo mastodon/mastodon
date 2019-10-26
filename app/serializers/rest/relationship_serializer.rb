@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::RelationshipSerializer < ActiveModel::Serializer
-  attributes :id, :following, :showing_reblogs, :followed_by, :blocking,
+  attributes :id, :following, :showing_reblogs, :followed_by, :blocking, :blocked_by,
              :muting, :muting_notifications, :requested, :domain_blocking,
              :endorsed
 
@@ -25,6 +25,10 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
 
   def blocking
     instance_options[:relationships].blocking[object.id] || false
+  end
+
+  def blocked_by
+    instance_options[:relationships].blocked_by[object.id] || false
   end
 
   def muting

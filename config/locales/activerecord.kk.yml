@@ -1,0 +1,17 @@
+---
+kk:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Дедлайн
+        options: Таңдаулар
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: тек әріптер, сандар және асты сызылған таңбалар
+        status:
+          attributes:
+            reblog:
+              taken: жазбасы бұрыннан бар

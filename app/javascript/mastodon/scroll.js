@@ -26,5 +26,7 @@ const scroll = (node, key, target) => {
   };
 };
 
-export const scrollRight = (node, position) => scroll(node, 'scrollLeft', position);
-export const scrollTop = (node) => scroll(node, 'scrollTop', 0);
+const isScrollBehaviorSupported = 'scrollBehavior' in document.documentElement.style;
+
+export const scrollRight = (node, position) => isScrollBehaviorSupported ? node.scrollTo({ left: position, behavior: 'smooth' }) : scroll(node, 'scrollLeft', position);
+export const scrollTop = (node) => isScrollBehaviorSupported ? node.scrollTo({ top: 0, behavior: 'smooth' }) : scroll(node, 'scrollTop', 0);

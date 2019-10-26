@@ -18,14 +18,14 @@
 
   %hr.spacer/
 
-.table-wrapper
-  %table.table
+.table-wrapper.simple_form
+  %table.table.table--invites
     %thead
       %tr
         %th
+        %th
         %th= t('invites.table.uses')
         %th= t('invites.table.expires_at')
-        %th
         %th
     %tbody
       = render @invites

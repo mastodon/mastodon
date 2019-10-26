@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class ActivityPub::ActivitySerializer < ActiveModel::Serializer
+class ActivityPub::ActivitySerializer < ActivityPub::Serializer
   attributes :id, :type, :actor, :published, :to, :cc
 
-  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, unless: :owned_announce?
-  attribute :proper_uri, key: :object, if: :owned_announce?
+  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer, if: :serialize_object?
+
+  attribute :proper_uri, key: :object, unless: :serialize_object?
   attribute :atom_uri, if: :announce?
 
   def id
@@ -43,7 +44,9 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
     object.reblog?
   end
 
-  def owned_announce?
-    announce? && object.account == object.proper.account && object.proper.private_visibility?
+  def serialize_object?
+    return true unless announce?
+    # Serialize private self-boosts of local toots
+    object.account == object.proper.account && object.proper.private_visibility? && object.local?
   end
 end

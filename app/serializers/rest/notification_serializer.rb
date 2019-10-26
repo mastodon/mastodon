@@ -11,6 +11,6 @@ class REST::NotificationSerializer < ActiveModel::Serializer
   end
 
   def status_type?
-    [:favourite, :reblog, :mention].include?(object.type)
+    [:favourite, :reblog, :mention, :poll].include?(object.type)
   end
 end

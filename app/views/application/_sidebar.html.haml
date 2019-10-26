@@ -1,6 +1,16 @@
 .hero-widget
   .hero-widget__img
-    = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+    = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
 
   .hero-widget__text
-    %p= @instance_presenter.site_short_description.html_safe.presence || @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+    %p= @instance_presenter.site_short_description.html_safe.presence || t('about.about_mastodon_html')
+
+- if Setting.trends && !(user_signed_in? && !current_user.setting_trends)
+  - trends = TrendingTags.get(3)
+
+  - unless trends.empty?
+    .endorsements-widget.trends-widget
+      %h4.emojify= t('footer.trending_now')
+
+      - trends.each do |tag|
+        = react_component :hashtag, hashtag: ActiveModelSerializers::SerializableResource.new(tag, serializer: REST::TagSerializer).as_json

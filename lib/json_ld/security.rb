@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 # frozen_string_literal: true
-# This file generated automatically from https://w3id.org/security/v1
+# This file generated automatically from http://w3id.org/security/v1
 require 'json/ld'
 class JSON::LD::Context
-  add_preloaded("https://w3id.org/security/v1") do
+  add_preloaded("http://w3id.org/security/v1") do
     new(processingMode: "json-ld-1.0", term_definitions: {
       "CryptographicKey" => TermDefinition.new("CryptographicKey", id: "https://w3id.org/security#Key", simple: true),
       "EcdsaKoblitzSignature2016" => TermDefinition.new("EcdsaKoblitzSignature2016", id: "https://w3id.org/security#EcdsaKoblitzSignature2016", simple: true),
@@ -47,4 +47,5 @@ class JSON::LD::Context
       "xsd" => TermDefinition.new("xsd", id: "http://www.w3.org/2001/XMLSchema#", simple: true, prefix: true)
     })
   end
+  alias_preloaded("https://w3id.org/security/v1", "http://w3id.org/security/v1")
 end

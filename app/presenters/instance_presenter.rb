@@ -2,23 +2,26 @@
 
 class InstancePresenter
   delegate(
-    :closed_registrations_message,
     :site_contact_email,
-    :open_registrations,
     :site_title,
     :site_short_description,
     :site_description,
     :site_extended_description,
     :site_terms,
+    :closed_registrations_message,
     to: Setting
   )
 
   def contact_account
-    Account.find_local(Setting.site_contact_username.gsub(/\A@/, ''))
+    Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
   end
 
   def user_count
     Rails.cache.fetch('user_count') { User.confirmed.joins(:account).merge(Account.without_suspended).count }
+  end
+
+  def active_user_count(weeks = 4)
+    Rails.cache.fetch("active_user_count/#{weeks}") { Redis.current.pfcount(*(0...weeks).map { |i| "activity:logins:#{i.weeks.ago.utc.to_date.cweek}" }) }
   end
 
   def status_count
@@ -27,6 +30,10 @@ class InstancePresenter
 
   def domain_count
     Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
+  end
+
+  def sample_accounts
+    Rails.cache.fetch('sample_accounts', expires_in: 12.hours) { Account.local.discoverable.popular.limit(3) }
   end
 
   def version_number

@@ -5,35 +5,20 @@ zh-HK:
     about_mastodon_html: Mastodon（萬象）是<em>自由、開源</em>的社交網絡。服務站<em>各自獨立而互連</em>，避免單一商業機構壟斷。找你所信任的服務站，建立帳號，你即可與任何服務站上的用戶溝通，享受無縫的<em>網絡交流</em>。
     about_this: 關於本服務站
     administered_by: 管理者：
-    closed_registrations: 本服務站暫時停止接受登記。
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 未公開
-    extended_description_html: |
-      <h3>這裡可以寫一些網站規則</h3>
-      <p>本站未有詳細介紹</p>
-    features:
-      humane_approach_body: Mastodon 從其他網絡的失敗經驗中汲取教訓，以合乎道德的設計對抗社交媒體的濫用問題。
-      humane_approach_title: 以人為本
-      not_a_product_body: Mastodon 不是商業網絡。沒有廣告，沒有數據挖掘，也沒有中央機構操控。平台完全開放。
-      not_a_product_title: 你是用戶，不是商品
-      real_conversation_body: Mastodon 的字數限制高達 500 字，並支援仔細的媒體警告選項，令你暢所欲言。
-      real_conversation_title: 為真正的交流而生
-      within_reach_body: 簡易的 API 系統，令用戶可以透過不同的 iOS、Android 及其他平台的應用軟件，與朋友保持聯繫。
-      within_reach_title: 無處不在
-    generic_description: "%{domain} 是 Mastodon 網絡中其中一個服務站"
     hosted_on: 在 %{domain} 運作的 Mastodon 服務站
     learn_more: 了解更多
-    other_instances: 其他服務站
     source_code: 源代碼
-    status_count_after: 篇文章
     status_count_before: 他們共發佈了
-    user_count_after: 位使用者
+    tagline: 關注朋友並探索新朋友
     user_count_before: 這裏共註冊有
     what_is_mastodon: Mastodon 是甚麼？
   accounts:
     follow: 關注
-    followers: 關注者
+    followers:
+      other: 關注者
     following: 正在關注
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
@@ -41,7 +26,6 @@ zh-HK:
     nothing_here: 暫時未有內容可以顯示。
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
-    posts: 文章
     posts_with_replies: 文章和回覆
     reserved_username: 此用戶名已被保留
     roles:
@@ -214,7 +198,6 @@ zh-HK:
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
       show:
-        affected_accounts: 資料庫中有%{count}個用戶受影響
         retroactive:
           silence: 對此域名的所有用戶取消靜音
           suspend: 對此域名的所有用戶取消除名
@@ -231,8 +214,12 @@ zh-HK:
         create: 新增網域
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
+    followers:
+      back_to_account: 返回帳戶
+      title: "%{acct} 的關注者"
     instances:
       title: 已知服務站
+      total_followed_by_us: 開始關注你
     invites:
       filter:
         all: 全部
@@ -240,6 +227,8 @@ zh-HK:
         expired: 已失效
         title: 篩選
       title: 邀請用戶
+    relays:
+      description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。"
     report_notes:
       created_msg: 舉報筆記已建立。
       destroyed_msg: 舉報筆記已刪除。
@@ -299,9 +288,6 @@ zh-HK:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
-        open:
-          desc_html: 允許所有人建立帳戶
-          title: 開放註冊
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示跨站文章，否則就只會顯示本站文章。
         title: 在時間軸預覽顯示跨站文章
@@ -337,13 +323,6 @@ zh-HK:
       no_media: 不含媒體檔案
       title: 帳戶文章
       with_media: 含有媒體檔案
-    subscriptions:
-      callback_url: 回傳 URL
-      confirmed: 確定
-      expires_in: 期限
-      last_delivery: 資料最後送抵時間
-      title: PuSH 訂閱
-      topic: 所訂閱資源
     title: 管理
   admin_mailer:
     new_report:
@@ -366,9 +345,7 @@ zh-HK:
     warning: 警告，不要把它分享給任何人！
     your_token: token
   auth:
-    agreement_html: 登記即表示你同意遵守<a href="%{rules_path}">本服務站的規則</a>和<a href="%{terms_path}">使用條款</a>。
     change_password: 密碼
-    confirm_email: 確認電郵
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     didnt_get_confirmation: 沒有收到確認指示電郵？
@@ -378,13 +355,8 @@ zh-HK:
     logout: 登出
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
-    or: 或
     or_log_in_with: 或登入於
-    providers:
-      cas: CAS
-      saml: SAML
     register: 登記
-    register_elsewhere: 在其他服務站登記
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     security: 登入資訊
@@ -415,16 +387,14 @@ zh-HK:
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
   deletes:
-    bad_password_msg: 想得美，黑客！密碼輸入錯誤
     confirm_password: 輸入你現在的密碼來驗證身份
-    description_html: 繼續操作將會<strong>永久地、不可還原地</strong>刪除帳戶中的所有內容，然後凍結帳戶。你的用戶名將會被保留，以防有人冒用你的身份。
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
-    warning_html: 我們只能保證本服務站上的內容將會被徹底刪除。對於已經被廣泛傳播的內容，它們在本服務站以外的某些地方可能仍然可見。此外，失去連接的服務站以及停止接收訂閱的服務站所存儲的數據亦無法刪除。
-    warning_title: 關於已傳播的內容的警告
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': 你沒有觀看本頁的權限。
     '404': 找不到內容。
+    '406': This page is not available in the requested format.
     '410': 內容已被刪除。
     '422':
       content: 無法確認登入資訊。會不會你阻擋了本站使用 Cookies 的權限？
@@ -433,6 +403,7 @@ zh-HK:
     '500':
       content: 抱歉，我們的後台出錯了。
       title: 這個頁面有問題
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
@@ -443,27 +414,13 @@ zh-HK:
       request: 下載檔案
       size: 檔案大小
     blocks: 被你封鎖的用戶
-    csv: CSV
     follows: 你所關注的用戶
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
-  followers:
-    domain: 網域
-    explanation_html: 如果你想確保你的私隱，請留意是甚麼用戶在關注你。<strong>即使你的將文章設定「私人文章」，它仍為會被遞送至你所有關注者的服務站</strong>。如果你不信任某些用戶、或其服務站的管理者會尊重你私隱，請將他們自關注者名單私除。
-    followers_count: 關注者數目
-    lock_link: 將用戶轉為「私人」
-    purge: 私除關注者
-    success:
-      one: 正準備軟性阻擋 1 個網域的關注者……
-      other: 正準備軟性阻擋 %{count} 個網域的關注者……
-    true_privacy_html: 請謹記，唯有<strong>點對點加密方可以真正確保你的私隱</strong>。
-    unlocked_warning_html: 目前任何人都可以看到你的私人文章，若%{lock_link}的話，你將可以審批關注者。
-    unlocked_warning_title: 你的用戶目前為「公共」
   generic:
     changes_saved_msg: 已成功儲存修改。
     save_changes: 儲存修改
     validation_errors:
-      one: 提交的資料有問題
       other: 提交的資料有 %{count} 項問題
   imports:
     preface: 你可以在此匯入你在其他服務站所匯出的資料檔，包括︰你所關注的用戶，被你封鎖的用戶。
@@ -488,7 +445,6 @@ zh-HK:
     generate: 生成邀請連結
     invited_by: 你的邀請人是：
     max_uses:
-      one: 1 次
       other: "%{count} 次"
     max_uses_prompt: 無限制
     prompt: 生成分享連結，邀請他人在本服務站註冊
@@ -505,9 +461,6 @@ zh-HK:
       too_many: 不可以加入超過 4 個檔案
   migrations:
     acct: 新帳戶的 用戶名@域名
-    currently_redirecting: 目前你的個人資料頁顯示的新帳戶是：
-    proceed: 保存
-    updated_msg: 帳戶遷移設置更新成功！
   moderation:
     title: 營運
   notification_mailer:
@@ -516,10 +469,8 @@ zh-HK:
       body: 這是自從你在%{since}使用以後，你錯失了的訊息︰
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
-        one: 你新獲得了 1 位關注者了！恭喜！
         other: 你新獲得了 %{count} 位關注者了！好厲害！
       subject:
-        one: "自從上次登入以來，你收到 1 則新的通知 \U0001F418"
         other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 在你不在的這段時間……
     favourite:
@@ -544,42 +495,24 @@ zh-HK:
       body: 您的文章被 %{name} 轉推：
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: 較新
     next: 下一頁
     older: 較舊
     prev: 上一頁
     truncate: "……"
-  preferences:
-    languages: 語言
-    other: 其他
-    publishing: 發佈
-    web: 站内
+  relationships:
+    remove_selected_followers: 刪除所選選項
   remote_follow:
     acct: 請輸入你的︰用戶名稱@服務點域名
     missing_resource: 無法找到你用戶的轉接網址
     proceed: 下一步
     prompt: 你希望關注︰
-  remote_unfollow:
-    error: 錯誤
-    title: 標題
-    unfollowed: 取消關注
   sessions:
     activity: 最近活動
     browser: 瀏覽器
     browsers:
       alipay: 支付寶
-      blackberry: Blackberry
       chrome: Chrome 瀏覽器
       edge: Microsoft Edge 瀏覽器
       electron: Electron 瀏覽器
@@ -588,30 +521,14 @@ zh-HK:
       ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
-      opera: Opera
       otter: Otter 瀏覽器
-      phantom_js: PhantomJS
       qq: QQ瀏覽器
-      safari: Safari
       uc_browser: UC瀏覽器
       weibo: 新浪微博
     current_session: 目前的作業階段
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
-    platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
-      other: 未知平台
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: 取消
     revoke_success: 作業階段成功取消
     title: 作業階段
@@ -622,27 +539,21 @@ zh-HK:
     development: 開發
     edit_profile: 修改個人資料
     export: 匯出
-    followers: 授權關注
     import: 匯入
     migrate: 帳戶遷移
     notifications: 通知
     preferences: 偏好設定
-    settings: 設定
     two_factor_authentication: 雙重認證
-    your_apps: 你的應用程式
   statuses:
     attached:
       description: 附件： %{attached}
       image:
-        one: "%{count} 幅圖片"
         other: "%{count} 幅圖片"
       video:
-        one: "%{count} 段影片"
         other: "%{count} 段影片"
     boosted_from_html: 轉推自 %{acct_link}
     content_warning: 內容警告： %{warning}
     disallowed_hashtags:
-      one: 包含不允許的標籤： %{tags}
       other: 包含不允許的標籤： %{tags}
     language_detection: 自動偵測語言
     open_in_web: 開啟網頁

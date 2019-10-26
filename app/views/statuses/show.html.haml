@@ -1,0 +1,24 @@
+- content_for :page_title do
+  = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
+
+- content_for :header_tags do
+  - if @account.user&.setting_noindex
+    %meta{ name: 'robots', content: 'noindex, noarchive' }/
+
+  %link{ rel: 'alternate', type: 'application/json+oembed', href: api_oembed_url(url: short_account_status_url(@account, @status), format: 'json') }/
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@status) }/
+
+  = opengraph 'og:site_name', site_title
+  = opengraph 'og:type', 'article'
+  = opengraph 'og:title', "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+  = opengraph 'og:url', short_account_status_url(@account, @status)
+
+  = render 'og_description', activity: @status
+  = render 'og_image', activity: @status, account: @account
+
+.grid
+  .column-0
+    .activity-stream.h-entry
+      = render partial: 'status', locals: { status: @status, include_threads: true }
+  .column-1
+    = render 'application/sidebar'

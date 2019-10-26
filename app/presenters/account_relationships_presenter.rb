@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountRelationshipsPresenter
-  attr_reader :following, :followed_by, :blocking,
+  attr_reader :following, :followed_by, :blocking, :blocked_by,
               :muting, :requested, :domain_blocking,
               :endorsed
 
@@ -12,6 +12,7 @@ class AccountRelationshipsPresenter
     @following       = cached[:following].merge(Account.following_map(@uncached_account_ids, @current_account_id))
     @followed_by     = cached[:followed_by].merge(Account.followed_by_map(@uncached_account_ids, @current_account_id))
     @blocking        = cached[:blocking].merge(Account.blocking_map(@uncached_account_ids, @current_account_id))
+    @blocked_by      = cached[:blocked_by].merge(Account.blocked_by_map(@uncached_account_ids, @current_account_id))
     @muting          = cached[:muting].merge(Account.muting_map(@uncached_account_ids, @current_account_id))
     @requested       = cached[:requested].merge(Account.requested_map(@uncached_account_ids, @current_account_id))
     @domain_blocking = cached[:domain_blocking].merge(Account.domain_blocking_map(@uncached_account_ids, @current_account_id))
@@ -22,6 +23,7 @@ class AccountRelationshipsPresenter
     @following.merge!(options[:following_map] || {})
     @followed_by.merge!(options[:followed_by_map] || {})
     @blocking.merge!(options[:blocking_map] || {})
+    @blocked_by.merge!(options[:blocked_by_map] || {})
     @muting.merge!(options[:muting_map] || {})
     @requested.merge!(options[:requested_map] || {})
     @domain_blocking.merge!(options[:domain_blocking_map] || {})
@@ -37,6 +39,7 @@ class AccountRelationshipsPresenter
       following: {},
       followed_by: {},
       blocking: {},
+      blocked_by: {},
       muting: {},
       requested: {},
       domain_blocking: {},
@@ -64,6 +67,7 @@ class AccountRelationshipsPresenter
         following:       { account_id => following[account_id] },
         followed_by:     { account_id => followed_by[account_id] },
         blocking:        { account_id => blocking[account_id] },
+        blocked_by:      { account_id => blocked_by[account_id] },
         muting:          { account_id => muting[account_id] },
         requested:       { account_id => requested[account_id] },
         domain_blocking: { account_id => domain_blocking[account_id] },

@@ -1,6 +1,10 @@
 ---
 sk:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Trvá do
+        options: Voľby
     errors:
       models:
         account:
@@ -10,4 +14,4 @@ sk:
         status:
           attributes:
             reblog:
-              taken: status už existuje
+              taken: príspevku už existuje

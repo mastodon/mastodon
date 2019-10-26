@@ -4,46 +4,25 @@
     about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
-    closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
-    extended_description_html: |
-      <h3>En god plassering for regler</h3>
-      <p>En utvidet beskrivelse er ikke satt opp ennå.</p>
-    features:
-      humane_approach_body: Mastodon har tatt lærdom fra andre nettverk og har til mål å gjøre etiske designvalg for å bekjempe misbruk av sosiale medier.
-      humane_approach_title: En mer menneskelig tilnærming
-      not_a_product_body: Mastodon er ikke et kommerst nettverk. Ingen reklame, ingen datainnsamling, ingen innhegnede hager. Det finnes ingen sentral myndighet.
-      not_a_product_title: Du er en person, ikke et produkt
-      real_conversation_body: Med 500 tegn til din disposisjon og støtte for granulært innhold og media-advarsler kan du uttrykke deg på den måten du selv vil.
-      real_conversation_title: Laget for ekte samtaler
-      within_reach_body: Takket være et utviklingsvennlig API-økosystem vil flere apper for iOS, Android og andre plattformer la deg holde kontakten med dine venner hvor som helst.
-      within_reach_title: Alltid innen rekkevidde
-    generic_description: "%{domain} er en tjener i nettverket"
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
-    other_instances: Andre instanser
     source_code: Kildekode
-    status_count_after: statuser
     status_count_before: Som skrev
-    user_count_after: brukere
     user_count_before: Her bor
     what_is_mastodon: Hva er Mastodon?
   accounts:
     follow: Følg
-    followers: Følgere
     following: Følger
-    media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
-    posts: Poster
     posts_with_replies: Tuter med svar
     reserved_username: Brukernavnet er reservert
     roles:
-      admin: Admin
       moderator: Moderere
     unfollow: Slutte følge
   admin:
@@ -109,8 +88,6 @@
       resubscribe: Abonner på nytt
       role: Rettigheter
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Personale
         user: Bruker
       salmon_url: Salmon-URL
@@ -127,7 +104,6 @@
       undo_suspension: Angre utvisning
       unsubscribe: Avslutte abonnementet
       username: Brukernavn
-      web: Web
     action_logs:
       actions:
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
@@ -164,7 +140,6 @@
       destroyed_msg: Emojo slettet uten problem!
       disable: Deaktivere
       disabled_msg: Deaktiverte emoji uten problem
-      emoji: Emoji
       enable: Aktivere
       enabled_msg: Aktiverte emojien uten problem
       image_hint: PNG opp til 50KB
@@ -222,7 +197,6 @@
         all: Alle
         available: Tilgjengelig
         expired: Utløpt
-        title: Filter
       title: Invitasjoner
     reports:
       action_taken_by: Handling utført av
@@ -234,7 +208,6 @@
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
-      status: Status
       title: Rapporter
       unresolved: Uløst
     settings:
@@ -260,9 +233,6 @@
         min_invite_role:
           disabled: Ingen
           title: Tillat invitasjoner fra
-        open:
-          desc_html: Tillatt alle å lage seg en konto
-          title: Åpen registrering
       show_staff_badge:
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
@@ -290,18 +260,9 @@
         nsfw_off: NSFW AV
         nsfw_on: NSFW PÅ
       failed_to_execute: Utføring mislyktes
-      media:
-        title: Media
       no_media: Ingen media
       title: Kontostatuser
       with_media: Med media
-    subscriptions:
-      callback_url: Callback-URL
-      confirmed: Bekreftet
-      expires_in: Utløper om
-      last_delivery: Siste levering
-      title: WebSub
-      topic: Emne
     title: Administrasjon
   admin_mailer:
     new_report:
@@ -309,7 +270,6 @@
       subject: Ny rapport for %{instance} (#%{id})
   application_mailer:
     notification_preferences: Endre e-post innstillingene
-    salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     view: 'Se:'
     view_profile: Vis Profil
@@ -323,7 +283,6 @@
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
-    agreement_html: Ved å registrere deg godtar du å følge <a href="%{rules_path}">instansens regler</a> og <a href="%{terms_path}">våre brukervilkår</a>.
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
@@ -363,16 +322,14 @@
       x_months: "%{count} mnd"
       x_seconds: "%{count} sek"
   deletes:
-    bad_password_msg: Godt forsøk, hacker! Feil passord
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
-    description_html: Dette vil <strong>permanent, irreversibelt</strong> fjerne innhold fra din konto og deaktivere den. Ditt brukernavn vil forbli reservert for å forhindre fremtidige etterligninger.
     proceed: Slett konto
     success_msg: Din konto ble slettet
-    warning_html: Kun sletting av innhold fra denne instansen er garantert. Innhold som har blitt delt i stor utstrekning vil sannsynligvis legge igjen spor. Tjenere som er frakoblet og tjenere som ikke abbonerer på dine oppdatereringer vil ikke oppdatere sine databaser.
-    warning_title: Tilgjengelighet av spredt innhold
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tillatelse til å vise denne siden.
     '404': Siden du leter etter finnes ikke.
+    '406': This page is not available in the requested format.
     '410': Siden du leter etter finnes ikke lenger.
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
@@ -381,25 +338,13 @@
     '500':
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   exports:
     blocks: Du blokkerer
-    csv: CSV
     follows: Du følger
     mutes: Du demper
     storage: Medialagring
-  followers:
-    domain: Domene
-    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren på de instansene.
-    followers_count: Antall følgere
-    lock_link: Lås kontoen din
-    purge: Fjern fra følgere
-    success:
-      one: I ferd med å mykblokkere følgere fra ett domene...
-      other: I ferd med å mykblokkere følgere fra %{count} domener...
-    true_privacy_html: Merk deg at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering</strong>.
-    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser. %{lock_link} for å kunne se over og avvise følgere.
-    unlocked_warning_title: Din konto er ikke låst
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
     save_changes: Lagre endringer
@@ -423,6 +368,7 @@
       '21600': 6 timer
       '3600': 1 time
       '43200': 12 timer
+      '604800': 1 week
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Generer
@@ -444,9 +390,6 @@
       too_many: Kan ikke legge ved mer enn 4 filer
   migrations:
     acct: brukernavn@domene til den nye kontoen
-    currently_redirecting: 'Din profil er omdirigert til:'
-    proceed: Lagre
-    updated_msg: Dine innstillinger for kontomigrering er oppdatert!
   moderation:
     title: Moderasjon
   notification_mailer:
@@ -483,26 +426,11 @@
       body: 'Din status ble fremhevd av %{name}:'
       subject: "%{name} fremhevde din status"
       title: Ny fremheving
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: " "
   pagination:
     next: Neste
     prev: Forrige
-    truncate: "&hellip;"
   preferences:
-    languages: Språk
     other: Annet
-    publishing: Publisering
-    web: Web
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
@@ -512,40 +440,13 @@
     activity: Siste aktivitet
     browser: Nettleser
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Ukjent nettleser
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere innlogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: ukjent plattform
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
@@ -556,14 +457,11 @@
     development: Utvikling
     edit_profile: Endre profil
     export: Dataeksport
-    followers: Godkjente følgere
     import: Importér
     migrate: Kontomigrering
     notifications: Varslinger
     preferences: Preferanser
-    settings: Innstillinger
     two_factor_authentication: Tofaktorautentisering
-    your_apps: Dine applikasjoner
   statuses:
     open_in_web: Åpne i nettleser
     over_character_limit: grense på %{max} tegn overskredet
@@ -573,7 +471,6 @@
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
     show_more: Vis mer
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Privat
       private_long: Synlig kun for følgere
@@ -624,7 +521,6 @@
       tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
       tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
-      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
     invalid_email: E-postaddressen er ugyldig

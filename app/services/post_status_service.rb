@@ -15,6 +15,7 @@ class PostStatusService < BaseService
   # @option [String] :spoiler_text
   # @option [String] :language
   # @option [String] :scheduled_at
+  # @option [Hash] :poll Optional poll to attach
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
@@ -48,7 +49,7 @@ class PostStatusService < BaseService
   def preprocess_attributes!
     @text         = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
     @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
-    @visibility   = :unlisted if @visibility == :public && @account.silenced
+    @visibility   = :unlisted if @visibility == :public && @account.silenced?
     @scheduled_at = @options[:scheduled_at]&.to_datetime
     @scheduled_at = nil if scheduled_in_the_past?
   rescue ArgumentError
@@ -69,6 +70,7 @@ class PostStatusService < BaseService
 
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
+
     if status_for_validation.valid?
       status_for_validation.destroy
 
@@ -86,18 +88,18 @@ class PostStatusService < BaseService
   def postprocess_status!
     LinkCrawlWorker.perform_async(@status.id) unless @status.spoiler_text?
     DistributionWorker.perform_async(@status.id)
-    Pubsubhubbub::DistributionWorker.perform_async(@status.stream_entry.id)
     ActivityPub::DistributionWorker.perform_async(@status.id)
+    PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
   end
 
   def validate_media!
     return if @options[:media_ids].blank? || !@options[:media_ids].is_a?(Enumerable)
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 4
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 4 || @options[:poll].present?
 
     @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:video?)
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
   end
 
   def language_from_option(str)
@@ -152,12 +154,13 @@ class PostStatusService < BaseService
       text: @text,
       media_attachments: @media || [],
       thread: @in_reply_to,
+      poll_attributes: poll_attributes,
       sensitive: (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
       language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
       application: @options[:application],
-    }
+    }.compact
   end
 
   def scheduled_status_attributes
@@ -166,6 +169,12 @@ class PostStatusService < BaseService
       media_attachments: @media || [],
       params: scheduled_options,
     }
+  end
+
+  def poll_attributes
+    return if @options[:poll].blank?
+
+    @options[:poll].merge(account: @account, voters_count: 0)
   end
 
   def scheduled_options

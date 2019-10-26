@@ -13,8 +13,6 @@ class StatusFinder
     raise ActiveRecord::RecordNotFound unless TagManager.instance.local_url?(url)
 
     case recognized_params[:controller]
-    when 'stream_entries'
-      StreamEntry.find(recognized_params[:id]).status
     when 'statuses'
       Status.find(recognized_params[:id])
     else

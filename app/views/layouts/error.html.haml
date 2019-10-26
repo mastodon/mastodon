@@ -7,8 +7,11 @@
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
+    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag 'error', integrity: true, crossorigin: 'anonymous'
   %body.error
     .dialog
-      %img{ alt: Setting.default_settings['site_title'], src: '/oops.gif' }/
-      %div
+      .dialog__illustration
+        %img{ alt: Setting.default_settings['site_title'], src: '/oops.png' }/
+      .dialog__message
         %h1= yield :content

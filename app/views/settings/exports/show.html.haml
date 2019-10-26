@@ -37,12 +37,16 @@
         %td= number_with_delimiter @export.total_domain_blocks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
 
+%hr.spacer/
+
 %p.muted-hint= t('exports.archive_takeout.hint_html')
 
 - if policy(:backup).create?
   %p= link_to t('exports.archive_takeout.request'), settings_export_path, class: 'button', method: :post
 
 - unless @backups.empty?
+  %hr.spacer/
+
   .table-wrapper
     %table.table
       %thead

@@ -8,8 +8,10 @@ RSpec.describe AppSignUpService, type: :service do
 
   describe '#call' do
     it 'returns nil when registrations are closed' do
-      Setting.open_registrations = false
+      tmp = Setting.registrations_mode
+      Setting.registrations_mode = 'none'
       expect(subject.call(app, good_params)).to be_nil
+      Setting.registrations_mode = tmp
     end
 
     it 'raises an error when params are missing' do
@@ -36,6 +38,15 @@ RSpec.describe AppSignUpService, type: :service do
       user = User.find_by(id: access_token.resource_owner_id)
       expect(user).to_not be_nil
       expect(user.account).to_not be_nil
+      expect(user.invite_request).to be_nil
+    end
+
+    it 'creates an account with invite request text' do
+      access_token = subject.call(app, good_params.merge(reason: 'Foo bar'))
+      expect(access_token).to_not be_nil
+      user = User.find_by(id: access_token.resource_owner_id)
+      expect(user).to_not be_nil
+      expect(user.invite_request&.text).to eq 'Foo bar'
     end
   end
 end

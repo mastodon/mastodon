@@ -5,11 +5,11 @@
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
   = render partial: 'shared/og'
 
-.grid-3
+.grid-4
   .column-0
     .public-account-header.public-account-header--no-bar
       .public-account-header__image
-        = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title, class: 'parallax'
+        = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title, class: 'parallax'
 
   .column-1
     .landing-page__call-to-action{ dir: 'ltr' }
@@ -25,23 +25,56 @@
             %span= t 'about.status_count_after', count: @instance_presenter.status_count
         .row__mascot
           .landing-page__mascot
-            = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('elephant_ui_plane.svg'), alt: ''
+            = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('media/images/elephant_ui_plane.svg'), alt: ''
 
   .column-2
-    .landing-page__information.contact-widget
-      %p
-        %strong= t 'about.administered_by'
+    .contact-widget
+      %h4= t 'about.administered_by'
 
       = account_link_to(@instance_presenter.contact_account)
 
       - if @instance_presenter.site_contact_email.present?
-        %p.contact-widget__mail
-          %strong
-            = succeed ':' do
-              = t 'about.contact'
-          %br/
-          = mail_to @instance_presenter.site_contact_email, nil, title: @instance_presenter.site_contact_email
+        %h4
+          = succeed ':' do
+            = t 'about.contact'
+
+        = mail_to @instance_presenter.site_contact_email, nil, title: @instance_presenter.site_contact_email
 
   .column-3
-    .box-widget
-      .rich-formatting= @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
+    = render 'application/flashes'
+
+    - if @contents.blank? && (!display_blocks? || @blocks&.empty?)
+      = nothing_here
+    - else
+      .box-widget
+        .rich-formatting
+          = @contents.html_safe
+
+          - if display_blocks? && !@blocks.empty?
+            %h2#unavailable-content= t('about.unavailable_content')
+
+            %p= t('about.unavailable_content_html')
+
+            - if (blocks = @blocks.select(&:reject_media?)) && !blocks.empty?
+              %p= t('about.unavailable_content_description.rejecting_media')
+              = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
+            - if (blocks = @blocks.select(&:silence?)) && !blocks.empty?
+              %p= t('about.unavailable_content_description.silenced')
+              = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
+            - if (blocks = @blocks.select(&:suspend?)) && !blocks.empty?
+              %p= t('about.unavailable_content_description.suspended')
+              = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
+
+  .column-4
+    %ul.table-of-contents
+      - @table_of_contents.each do |item|
+        %li
+          = link_to item.title, "##{item.anchor}"
+
+          - unless item.children.empty?
+            %ul
+              - item.children.each do |sub_item|
+                %li= link_to sub_item.title, "##{sub_item.anchor}"
+
+      - if display_blocks? && !@blocks.empty?
+        %li= link_to t('about.unavailable_content'), '#unavailable-content'

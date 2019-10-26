@@ -12,4 +12,8 @@ require "bundler/setup"
 
 require "webpacker"
 require "webpacker/webpack_runner"
-Webpacker::WebpackRunner.run(ARGV)
+
+APP_ROOT = File.expand_path("..", __dir__)
+Dir.chdir(APP_ROOT) do
+  Webpacker::WebpackRunner.run(ARGV)
+end

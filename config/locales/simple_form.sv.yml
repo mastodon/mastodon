@@ -2,19 +2,32 @@
 sv:
   simple_form:
     hints:
+      account_alias:
+        acct: Ange användarnamn@domän för kontot du flyttar från
+      account_migration:
+        acct: Ange användarnamn@domän för kontot du flyttar till
+      account_warning_preset:
+        text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
+      admin_account_action:
+        include_statuses: Användaren ser de toots som orsakat moderering eller varning
+        send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
+        text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
+        type_html: Välj vad du vill göra med <strong>%{acct}</strong>
+        warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
-        avatar: Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
+        email: Ett konfirmationsmeddelande kommer att skickas till dig via epost
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
-        header: NG, GIF eller JPG. Högst %{size}. Kommer nedskalas till %{dimensions}px
-        locale: Användargränssnittets språk, e-post och push aviseringar
+        header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
+        locale: Användargränssnittets språk, e-post och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
-        setting_default_language: Språket av dina inlägg kan upptäckas automatiskt, men det är inte alltid rätt
+        password: Använd minst 8 tecken
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
-        setting_theme: Påverkar hur Mastodon ser ut oavsett från vilken enhet du är inloggad.
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
@@ -28,13 +41,11 @@ sv:
           value: Innehåll
       defaults:
         autofollow: Bjud in till att följa ditt konto
-        avatar: Avatar
         bot: Detta är ett botkonto
         chosen_languages: Filtrera språk
         confirm_new_password: Bekräfta nytt lösenord
         confirm_password: Bekräfta lösenord
         current_password: Nuvarande lösenord
-        data: Data
         display_name: Visningsnamn
         email: E-postadress
         expires_in: Förfaller efter
@@ -76,6 +87,5 @@ sv:
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
     required:
-      mark: "*"
       text: obligatorisk
     'yes': Ja

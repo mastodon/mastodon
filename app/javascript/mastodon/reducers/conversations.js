@@ -7,7 +7,10 @@ import {
   CONVERSATIONS_FETCH_FAIL,
   CONVERSATIONS_UPDATE,
   CONVERSATIONS_READ,
+  CONVERSATIONS_DELETE_SUCCESS,
 } from '../actions/conversations';
+import { ACCOUNT_BLOCK_SUCCESS, ACCOUNT_MUTE_SUCCESS } from 'mastodon/actions/accounts';
+import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
 import compareId from '../compare_id';
 
 const initialState = ImmutableMap({
@@ -35,7 +38,7 @@ const updateConversation = (state, item) => state.update('items', list => {
   }
 });
 
-const expandNormalizedConversations = (state, conversations, next) => {
+const expandNormalizedConversations = (state, conversations, next, isLoadingRecent) => {
   let items = ImmutableList(conversations.map(conversationToMap));
 
   return state.withMutations(mutable => {
@@ -66,12 +69,16 @@ const expandNormalizedConversations = (state, conversations, next) => {
       });
     }
 
-    if (!next) {
+    if (!next && !isLoadingRecent) {
       mutable.set('hasMore', false);
     }
 
     mutable.set('isLoading', false);
   });
+};
+
+const filterConversations = (state, accountIds) => {
+  return state.update('items', list => list.filterNot(item => item.get('accounts').some(accountId => accountIds.includes(accountId))));
 };
 
 export default function conversations(state = initialState, action) {
@@ -81,7 +88,7 @@ export default function conversations(state = initialState, action) {
   case CONVERSATIONS_FETCH_FAIL:
     return state.set('isLoading', false);
   case CONVERSATIONS_FETCH_SUCCESS:
-    return expandNormalizedConversations(state, action.conversations, action.next);
+    return expandNormalizedConversations(state, action.conversations, action.next, action.isLoadingRecent);
   case CONVERSATIONS_UPDATE:
     return updateConversation(state, action.conversation);
   case CONVERSATIONS_MOUNT:
@@ -96,6 +103,13 @@ export default function conversations(state = initialState, action) {
 
       return item;
     }));
+  case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
+    return filterConversations(state, [action.relationship.id]);
+  case DOMAIN_BLOCK_SUCCESS:
+    return filterConversations(state, action.accounts);
+  case CONVERSATIONS_DELETE_SUCCESS:
+    return state.update('items', list => list.filterNot(item => item.get('id') === action.id));
   default:
     return state;
   }

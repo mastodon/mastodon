@@ -22,14 +22,14 @@ class FetchLinkCardService < BaseService
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         @card = PreviewCard.find_by(url: @url)
-        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago
+        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
       else
         raise Mastodon::RaceConditionError
       end
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
+  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
@@ -38,12 +38,6 @@ class FetchLinkCardService < BaseService
 
   def process_url
     @card ||= PreviewCard.new(url: @url)
-
-    failed = Request.new(:head, @url).perform do |res|
-      res.code != 405 && res.code != 501 && (res.code != 200 || res.mime_type != 'text/html')
-    end
-
-    return if failed
 
     Request.new(:get, @url).perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
@@ -84,13 +78,13 @@ class FetchLinkCardService < BaseService
 
   def mention_link?(a)
     @status.mentions.any? do |mention|
-      a['href'] == TagManager.instance.url_for(mention.account)
+      a['href'] == ActivityPub::TagManager.instance.url_for(mention.account)
     end
   end
 
   def skip_link?(a)
     # Avoid links for hashtags and mentions (microformats)
-    a['rel']&.include?('tag') || a['class']&.include?('u-url') || mention_link?(a)
+    a['rel']&.include?('tag') || a['class']&.match?(/u-url|h-card/) || mention_link?(a)
   end
 
   def attempt_oembed
@@ -165,7 +159,7 @@ class FetchLinkCardService < BaseService
   end
 
   def meta_property(page, property)
-    page.at_xpath("//meta[@property=\"#{property}\"]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
+    page.at_xpath("//meta[contains(concat(' ', normalize-space(@property), ' '), ' #{property} ')]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
   end
 
   def lock_options

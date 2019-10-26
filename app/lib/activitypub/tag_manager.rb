@@ -17,7 +17,7 @@ class ActivityPub::TagManager
 
     case target.object_type
     when :person
-      short_account_url(target)
+      target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       short_account_status_url(target.account, target)
@@ -29,7 +29,7 @@ class ActivityPub::TagManager
 
     case target.object_type
     when :person
-      account_url(target)
+      target.instance_actor? ? instance_actor_url : account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       account_status_url(target.account, target)
@@ -48,6 +48,12 @@ class ActivityPub::TagManager
     activity_account_status_url(target.account, target)
   end
 
+  def replies_uri_for(target, page_params = nil)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    account_status_replies_url(target.account, target, page_params)
+  end
+
   # Primary audience of a status
   # Public statuses go out to primarily the public collection
   # Unlisted and private statuses go out primarily to the followers collection
@@ -59,7 +65,14 @@ class ActivityPub::TagManager
     when 'unlisted', 'private'
       [account_followers_url(status.account)]
     when 'direct', 'limited'
-      status.active_mentions.map { |mention| uri_for(mention.account) }
+      if status.account.silenced?
+        # Only notify followers if the account is locally silenced
+        account_ids = status.active_mentions.pluck(:account_id)
+        to = status.account.followers.where(id: account_ids).map { |account| uri_for(account) }
+        to.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).map { |request| uri_for(request.account) })
+      else
+        status.active_mentions.map { |mention| uri_for(mention.account) }
+      end
     end
   end
 
@@ -80,7 +93,16 @@ class ActivityPub::TagManager
       cc << COLLECTIONS[:public]
     end
 
-    cc.concat(status.active_mentions.map { |mention| uri_for(mention.account) }) unless status.direct_visibility? || status.limited_visibility?
+    unless status.direct_visibility? || status.limited_visibility?
+      if status.account.silenced?
+        # Only notify followers if the account is locally silenced
+        account_ids = status.active_mentions.pluck(:account_id)
+        cc.concat(status.account.followers.where(id: account_ids).map { |account| uri_for(account) })
+        cc.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).map { |request| uri_for(request.account) })
+      else
+        cc.concat(status.active_mentions.map { |mention| uri_for(mention.account) })
+      end
+    end
 
     cc
   end
@@ -97,6 +119,7 @@ class ActivityPub::TagManager
 
   def uri_to_local_id(uri, param = :id)
     path_params = Rails.application.routes.recognize_path(uri)
+    path_params[:username] = Rails.configuration.x.local_domain if path_params[:controller] == 'instance_actors'
     path_params[param]
   end
 

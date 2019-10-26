@@ -5,8 +5,8 @@ class Api::V1::StatusesController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :destroy]
-  before_action :require_user!, except:  [:show, :context, :card]
-  before_action :set_status, only:       [:show, :context, :card]
+  before_action :require_user!, except:  [:show, :context]
+  before_action :set_status, only:       [:show, :context]
 
   respond_to :json
 
@@ -33,16 +33,6 @@ class Api::V1::StatusesController < Api::BaseController
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
   end
 
-  def card
-    @card = @status.preview_cards.first
-
-    if @card.nil?
-      render_empty
-    else
-      render json: @card, serializer: REST::PreviewCardSerializer
-    end
-  end
-
   def create
     @status = PostStatusService.new.call(current_user.account,
                                          text: status_params[:status],
@@ -53,6 +43,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          visibility: status_params[:visibility],
                                          scheduled_at: status_params[:scheduled_at],
                                          application: doorkeeper_token.application,
+                                         poll: status_params[:poll],
                                          idempotency: request.headers['Idempotency-Key'])
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
@@ -62,9 +53,10 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.where(account_id: current_user.account).find(params[:id])
     authorize @status, :destroy?
 
-    RemovalWorker.perform_async(@status.id)
+    @status.discard
+    RemovalWorker.perform_async(@status.id, redraft: true)
 
-    render_empty
+    render json: @status, serializer: REST::StatusSerializer, source_requested: true
   end
 
   private
@@ -73,12 +65,25 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
   end
 
   def status_params
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, :scheduled_at, media_ids: [])
+    params.permit(
+      :status,
+      :in_reply_to_id,
+      :sensitive,
+      :spoiler_text,
+      :visibility,
+      :scheduled_at,
+      media_ids: [],
+      poll: [
+        :multiple,
+        :hide_totals,
+        :expires_in,
+        options: [],
+      ]
+    )
   end
 
   def pagination_params(core_params)

@@ -4,8 +4,8 @@ class ActivityPub::Activity
   include JsonLdHelper
   include Redisable
 
-  SUPPORTED_TYPES = %w(Note).freeze
-  CONVERTED_TYPES = %w(Image Video Article Page).freeze
+  SUPPORTED_TYPES = %w(Note Question).freeze
+  CONVERTED_TYPES = %w(Image Audio Video Article Page).freeze
 
   def initialize(json, account, **options)
     @json    = json
@@ -138,18 +138,27 @@ class ActivityPub::Activity
   def status_from_object
     # If the status is already known, return it
     status = status_from_uri(object_uri)
+
     return status unless status.nil?
 
     # If the boosted toot is embedded and it is a self-boost, handle it like a Create
     unless unsupported_object_type?
-      actor_id = value_or_id(first_of_value(@object['attributedTo'])) || @account.uri
+      actor_id = value_or_id(first_of_value(@object['attributedTo']))
+
       if actor_id == @account.uri
         return ActivityPub::Activity.factory({ 'type' => 'Create', 'actor' => actor_id, 'object' => @object }, @account).perform
       end
     end
 
-    # If the status is not from the actor, try to fetch it
-    return fetch_remote_original_status if value_or_id(first_of_value(@json['attributedTo'])) == @account.uri
+    fetch_remote_original_status
+  end
+
+  def follow_request_from_object
+    @follow_request ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+  end
+
+  def follow_from_object
+    @follow ||= Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
 
   def fetch_remote_original_status
@@ -165,5 +174,22 @@ class ActivityPub::Activity
     yield if redis.set(key, true, nx: true, ex: expire_after)
   ensure
     redis.del(key)
+  end
+
+  def fetch?
+    !@options[:delivery]
+  end
+
+  def followed_by_local_accounts?
+    @account.passive_relationships.exists?
+  end
+
+  def requested_through_relay?
+    @options[:relayed_through_account] && Relay.find_by(inbox_url: @options[:relayed_through_account].inbox_url)&.enabled?
+  end
+
+  def reject_payload!
+    Rails.logger.info("Rejected #{@json['type']} activity #{@json['id']} from #{@account.uri}#{@options[:relayed_through_account] && "via #{@options[:relayed_through_account].uri}"}")
+    nil
   end
 end

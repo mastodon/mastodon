@@ -1,12 +1,16 @@
 ---
 it:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Scadenza
+        options: Scelte
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: solo lettere, numeri e trattino basso
+              invalid: solo lettere, numeri e trattini bassi
         status:
           attributes:
             reblog:

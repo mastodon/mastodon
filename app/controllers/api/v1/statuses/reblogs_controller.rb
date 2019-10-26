@@ -9,7 +9,7 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
   respond_to :json
 
   def create
-    @status = ReblogService.new.call(current_user.account, status_for_reblog)
+    @status = ReblogService.new.call(current_user.account, status_for_reblog, reblog_params)
     render json: @status, serializer: REST::StatusSerializer
   end
 
@@ -18,6 +18,7 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
     @reblogs_map = { @status.id => false }
 
     authorize status_for_destroy, :unreblog?
+    status_for_destroy.discard
     RemovalWorker.perform_async(status_for_destroy.id)
 
     render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, reblogs_map: @reblogs_map)
@@ -30,6 +31,10 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
   end
 
   def status_for_destroy
-    current_user.account.statuses.where(reblog_of_id: params[:status_id]).first!
+    @status_for_destroy ||= current_user.account.statuses.where(reblog_of_id: params[:status_id]).first!
+  end
+
+  def reblog_params
+    params.permit(:visibility)
   end
 end

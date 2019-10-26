@@ -2,11 +2,16 @@
 pt-BR:
   simple_form:
     hints:
+      account_alias:
+        acct: Especifique o usuário@domínio da conta da qual você deseja mover
+      account_migration:
+        acct: Especifique o usuário@domínio da conta para o qual você deseja mover
       account_warning_preset:
         text: Você pode usar a sintaxe de um toot, como URLs, hashtags e menções
       admin_account_action:
+        include_statuses: O usuário verá quais toots causaram o aviso ou ação da moderação
         send_email_notification: O usuário vai receber uma explicação do que aconteceu com a sua conta
-        text_html: Opcional. Você pode usar a sintaxe de toots. Você pode <a href="%{path}">adicionar avisos pré-definidos</a> para ganhar tempo.
+        text_html: Opcional. Você pode usar a sintaxe de toots. Você pode <a href="%{path}">adicionar avisos pré-definidos</a> para ganhar tempo
         type_html: Escolha o que fazer com <strong>%{acct}</strong>
         warning_preset_id: Opcional. Você ainda pode adicionar texto customizado no fim do texto pré-definido
       defaults:
@@ -14,8 +19,9 @@ pt-BR:
         avatar: PNG, GIF or JPG. Arquivos de até %{size}. Eles serão diminuídos para %{dimensions}px
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve ser aplicado
+        current_password: Para fins de segurança digite a senha da conta atual
+        current_username: Para confirmar, por favor, digite o usuário da conta atual
         digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
-        discoverable_html: O <a href="%{path}" target="_blank">diretório</a> permite encontrar contas baseado em seus interesses e atividades. Requer pelo menos %{min_followers} seguidores
         email: Você receberá um email de confirmação
         fields: Você pode ter até 4 itens exibidos em forma de tabela no seu perfil
         header: PNG, GIF or JPG. Arquivos de até %{size}. Eles serão diminuídos para %{dimensions}px
@@ -27,17 +33,25 @@ pt-BR:
         phrase: Vai coincidir, independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
         scopes: Quais APIs a aplicação vai ter permissão de acessar. Se você selecionar um escopo de alto nível, você não precisa selecionar individualmente os outros.
         setting_aggregate_reblogs: Não mostrar novos compartilhamentos para toots que foram compartilhados recentemente (afeta somente novos compartilhamentos recebidos)
-        setting_default_language: O idioma de seus toots pode ser detectado automaticamente, mas isso nem sempre é preciso
+        setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
         setting_display_media_default: Esconder mídia marcada como sensível
         setting_display_media_hide_all: Sempre esconder todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia marcada como sensível
         setting_hide_network: Quem você segue e quem segue você não serão exibidos no seu perfil
         setting_noindex: Afeta seu perfil público e as páginas de suas postagens
-        setting_theme: Afeta a aparência do Mastodon quando em sua conta em qualquer aparelho.
+        setting_show_application: A aplicação que você usar para enviar seus toots vai aparecer na visão detalhada dos seus toots
+        setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer detalhes
+        setting_use_pending_items: Ocultar atualizações de linha de tempo atrás de um clique ao invés de rolar automaticamente o feed
         username: Seu nome de usuário será único em %{domain}
         whole_word: Quando a palavra ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
+      featured_tag:
+        name: 'Você pode querer usar um destes:'
+      form_challenge:
+        current_password: Você está entrando em uma área segura
       imports:
         data: Arquivo CSV exportado de outra instância do Mastodon
+      invite_request:
+        text: Isso vai nos ajudar a revisar sua aplicação
       sessions:
         otp: 'Insira o código de autenticação gerado pelo app no seu celular ou use um dos códigos de recuperação:'
       user:
@@ -50,6 +64,7 @@ pt-BR:
       account_warning_preset:
         text: Texto pré-definido
       admin_account_action:
+        include_statuses: Incluir toots reportados no e-mail
         send_email_notification: Notificar o usuário por e-mail
         text: Aviso customizado
         type: Ação
@@ -61,7 +76,7 @@ pt-BR:
         warning_preset_id: Usar um aviso pré-definido
       defaults:
         autofollow: Convite para seguir a sua conta
-        avatar: Avatar
+        avatar: Imagem de Perfil
         bot: Esta é uma conta-robô
         chosen_languages: Filtros de idioma
         confirm_new_password: Confirmar nova senha
@@ -81,7 +96,7 @@ pt-BR:
         locked: Trancar conta
         max_uses: Número máximo de usos
         new_password: Nova senha
-        note: Bio
+        note: Biografia
         otp_attempt: Código de autenticação em dois passos
         password: Senha
         phrase: Palavra-chave ou frase
@@ -100,6 +115,7 @@ pt-BR:
         setting_hide_network: Esconder as suas redes
         setting_noindex: Não quero ser indexado por mecanismos de busca
         setting_reduce_motion: Reduz movimento em animações
+        setting_show_application: Mostrar o nome da aplicação utilizada para enviar os toots
         setting_system_font_ui: Usar a fonte padrão de seu sistema
         setting_theme: Tema do site
         setting_unfollow_modal: Mostrar diálogo de confirmação antes de deixar de seguir alguém
@@ -108,19 +124,33 @@ pt-BR:
         username: Nome de usuário
         username_or_email: Nome de usuário ou e-mail
         whole_word: Palavra inteira
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que você não segue
         must_be_following_dm: Bloquear mensagens diretas de pessoas que você não segue
+      invite:
+        comment: Comentário
+      invite_request:
+        text: Por que você quer se cadastrar?
       notification_emails:
         digest: Mandar e-mails com relatórios
         favourite: Mandar um e-mail quando alguém favoritar suas postagens
         follow: Mandar um e-mail quando alguém te seguir
         follow_request: Mandar um e-maill quando alguém solicitar ser seu seguidor
         mention: Mandar um e-mail quando alguém te mencionar
+        pending_account: Mandar um -mail quando uma nova conta precisar ser revisada
         reblog: Mandar um e-mail quando alguém compartilhar suas postagens
         report: Mandar um e-mail quando uma nova denúncia é submetida
+        trending_tag: Enviar e-mail quando uma hashtag não revisada estiver em alta
+      tag:
+        listable: Permitir que esta hashtag apareça em pesquisas e no diretório de perfis
+        name: Hashtag
+        trendable: Permitir que esta hashtag apareça em alta
+        usable: Permitir que toots usem esta hastag
     'no': Não
+    recommended: Recomendado
     required:
       mark: "*"
       text: obrigatório

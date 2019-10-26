@@ -12,6 +12,7 @@ co:
       last_attempt: Avete un’ultimu tintativu nanzu chì u vostru contu sia chjosu.
       locked: U vostru contu hè chjosu.
       not_found_in_database: L’ %{authentication_keys} o a chjave d’accessu ùn sò curretti.
+      pending: U vostru contu hè sempre in corsu di rivista.
       timeout: A vostra sezzione hè spirata. Ricunnettatevi pè cuntinuà.
       unauthenticated: Cunnettatevi o arregistratevi pè cuntinuà.
       unconfirmed: Duvete cunfirmà u vostru contu pè cuntinuà.
@@ -20,17 +21,18 @@ co:
         action: Verificà l’indirizzu email
         action_with_app: Cunfirmà è rivene à %{app}
         explanation: Avete creatu un contu nant’à %{host} cù st’indirizzu email. Pudete attivallu cù un clic, o ignurà quessu missaghji s’ellu un era micca voi.
-        extra_html: Pensate à leghje <a href="%{terms_path}">e regule di l’istanza</a> è <a href="%{policy_path}">i termini d’usu</a>.
+        explanation_when_pending: Avete dumandatu un'invitazione à %{host}, cù st'indirizzu e-mail. Una volta ch'ellu hè cunfirmatu, avemu da dà un'ochjata à a vostra dumanda. Ùn pudete micca cunnettavi nanz'à quessa. S'ella hè righjittata a vostra dumanda, i vostri dati saranu sguassati è ùn duverete fà nund'altru. S'ellu ùn era micca voi, pudete ignurà quess'e-mail.
+        extra_html: Pensate à leghje <a href="%{terms_path}">e regule di u servore</a> è <a href="%{policy_path}">i termini d’usu</a>.
         subject: 'Mastodon: Istruzzione di cunfirmazione per %{instance}'
         title: Verificà l’indirizzu email
       email_changed:
         explanation: 'L’indirizzu email di u vostru contu hè stata cambiata per:'
-        extra: S’ellu un era micca voi ch’avete cambiatu u vostru email, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di l’istanza s’ellu ùn hè più pussibule di cunnettavi.
+        extra: S’ellu un era micca voi ch’avete cambiatu u vostru email, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di u servore s’ellu ùn hè più pussibule di cunnettavi.
         subject: 'Mastodon: Email cambiatu'
         title: Novu indirizzu email
       password_change:
         explanation: A chjave d’accessu per u vostru contu hè stata cambiata.
-        extra: S’ellu un era micca voi ch’avete cambiatu a vostra chjave d’accessu, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di l’istanza s’ellu ùn hè più pussibule di cunnettavi.
+        extra: S’ellu un era micca voi ch’avete cambiatu a vostra chjave d’accessu, qualch’un’altru hà accessu à u vostru contu. Duvete cambià a vostra chjave d’accessu o cuntattà l’amministratore di u servore s’ellu ùn hè più pussibule di cunnettavi.
         subject: 'Mastodon: Chjave d’accessu cambiata'
         title: Chjave cambiata
       reconfirmation_instructions:
@@ -44,6 +46,18 @@ co:
         extra: S’ellu ùn era micca voi, ignurate stu missaghju. A chjave d’accessu ùn cambiarà micca s’è voi ùn cliccate micca u ligame.
         subject: 'Mastodon: Cambià a chjave d’accessu'
         title: Cambià a chjave
+      two_factor_disabled:
+        explanation: L'autentificazione à dui fattori per u vostru contu hè stata disattivata. A cunnessione hè avà pussibule cù l'usu solu di u vostru e-mail è di a chjave d'accessu.
+        subject: 'Mastodon: Autentificazione à dui fattori disattivata'
+        title: A2F disattivata
+      two_factor_enabled:
+        explanation: L'autentificazione à dui fattori hè stata attivata per u vostru contu. Un codice, o fiscia, generata da l'applicazione TOTP assuciata sarà dumandata per cunnettavvi.
+        subject: 'Mastodon: Autentificazione à dui fattori attivata'
+        title: A2F attivata
+      two_factor_recovery_codes_changed:
+        explanation: I codici di ricuperazione pricidenti ùn sò più validi è un novu inseme di codici hè statu creatu.
+        subject: 'Mastodon: Rigenerazione di i codici à dui fattori di ricuperazione'
+        title: Cambiamentu di i codici di ricuperazione d'A2F
       unlock_instructions:
         subject: 'Mastodon: Riapre u contu'
     omniauth_callbacks:
@@ -60,6 +74,7 @@ co:
       signed_up: Benvinutu! Site cunnettatu·a.
       signed_up_but_inactive: Site arregistratu·a, mà ùn pudete micca cunnettavi perchè u vostru contu deve esse attivatu.
       signed_up_but_locked: Site arregistratu·a, mà ùn pudete micca cunnettavi perchè u vostru contu hè chjosu.
+      signed_up_but_pending: Un missaghju cù un ligame di cunfirmazione hè statu mandatu à u vostr'indirizzu e-mail. Dop'à avè cliccatu u ligame, avemu da rivede a vostra dumanda - sarete nutificatu·a s'ella hè appruvata.
       signed_up_but_unconfirmed: Un missaghju cù un ligame di cunfirmazione hè statu mandatu à u vostru indirizzu e-mail. Aprite stu ligame pè attivà u vostru contu. Pensate à verificà u cartulare di spam s’ellu ùn c’hè nunda.
       update_needs_confirmation: U vostru contu hè statu messu à ghjornu mà duvemu verificà u vostru novu e-mail. Un missaghju cù un ligame di cunfirmazione hè statu mandatu. Pensate à verificà u cartulare di spam s’ellu ùn c’hè nunda.
       updated: U vostru contu hè statu messu à ghjornu.
