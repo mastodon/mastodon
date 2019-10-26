@@ -583,6 +583,13 @@ cy:
       body: "Mae %{reporter} wedi cwyno am %{target}"
       body_remote: Mae rhywun o %{domain} wedi cwyno am %{target}
       subject: 'Cwyn newydd am %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Mae''r hashnod #%{name} yn tueddu heddiw, ond nid yw''r hashnod wedi''i adolygu''n gynt. Ni fydd o''n cael ei arddangos yn gyhoeddus oni bai bod chi''n ei ganiataú, neu arbedwch y ffurflen fel y mae i fyth clywed amdano eto.'
+      subject: Hashnod newydd i fynnu ar gyfer adolygiad ar %{instance} (%{name})
+  aliases:
+    add_new: Creu enw arall
+    created_msg: Wedi creu enw arall yn llwyddianus. Gallwch nawr dechrau'r symudiad o'r hen gyfrif.
+    deleted_msg: Wedi tynnu enw arall yn llwyddianus. Ni fydd symud o'r cyfrif hynny i'r cyfrif hon yn bosib.
   appearance:
     advanced_web_interface: Rhyngwyneb gwe uwch
     advanced_web_interface_hint: 'Os hoffech gwneud defnydd o gyd o''ch lled sgrin, mae''r rhyngwyneb gwe uwch yn gadael i chi ffurfweddu sawl colofn wahanol i weld cymaint o wybodaeth â hoffech: Catref, hysbysiadau, ffrwd y ffedysawd, unrhyw nifer o rhestrau ac hashnodau.'
