@@ -854,8 +854,20 @@ cy:
     cancel_explanation: Bydd diddymu'r ailgyfeiriad yn ail-actifadu eich cyfrif bresennol, ond ni fydd hi'n dychwelyd dilynwyr sydd wedi'i symud i'r cyfrif hynny.
     cancelled_msg: Wedi diddymu'r ailgyfeiriad yn llwyddiannus.
     errors:
+      already_moved: yw'r un cyfrif rydych barod wedi symud i
+      missing_also_known_as: yn olgyfeirio at y gyfrif hon
+      move_to_self: dim ym gallu bod y cyfrif presennol
       not_found: ni ellid dod o hyd iddo
+      on_cooldown: Rydych ar oeriad
+    followers_count: Dilynwyr at amser y symudiad
+    incoming_migrations: Symud o gyfrif wahanol
+    incoming_migrations_html: I symud o gyfrif arall i'r un hon, yn gyntaf mae'n rhaid i chi greu <a href="%{path}">enw arall ar gyfer y cyfrif</a>.
+    moved_msg: Mae eich cyfrif nawr yn ailgyfeirio at %{acct} ac mae eich dilynwyr yn cael ei symud ar draws.
+    not_redirecting: Nid yw eich cyfrif yn ailgyfeirio at gyfrif arall yn bresennol.
+    on_cooldown: Rydych wedi mudo eich cyfrif yn diweddar. Bydd y swyddogaeth hon ar gael eto mewn %{count} diwrnod.
     past_migrations: Ymfudiadau yn y gorffennol
+    proceed_with_move: Symud dilynwyr
+    redirecting_to: Mae eich cyfrif yn ailgyfeirio at %{acct}.
     warning:
       before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
   moderation:
