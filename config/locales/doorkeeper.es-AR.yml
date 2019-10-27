@@ -1,1 +1,49 @@
 es-AR:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nombre de la aplicación
+        redirect_uri: Dirección web de redireccionamiento
+        scopes: Ámbitos
+        website: Sitio web de la aplicación
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: no puede contener un fragmento.
+              invalid_uri: debe ser una dirección web válida.
+              relative_uri: debe ser una dirección web absoluta.
+              secured_uri: debe ser una dirección web HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruir
+        edit: Editar
+        submit: Enviar
+      confirmations:
+        destroy: '¿Estás seguro?'
+      edit:
+        title: Editar aplicación
+      form:
+        error: '¡Epa! Comprobá tu formulario por posibles errores'
+      help:
+        native_redirect_uri: Usá %{native_redirect_uri} para pruebas locales
+        redirect_uri: Usá una línea por dirección web
+        scopes: Separá los ámbitos con espacios. Dejalo en blanco para usar los ámbitos predeterminados.
+      index:
+        application: Aplicación
+        callback_url: Dirección web de respuesta ("callback")
+        delete: Eliminar
+        name: Nombre
+        new: Nueva aplicación
+        scopes: Ámbitos
+        show: Mostrar
+        title: Tus aplicaciones
+      new:
+        title: Nueva aplicación
+      show:
+        actions: Acciones
+        application_id: Clave del cliente
