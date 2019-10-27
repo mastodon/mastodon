@@ -39,6 +39,9 @@ it:
       domain: Server
       reason: 'Motivo:'
       rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
+      silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
+      suspended: 'Nessun dato da questi server sarà elaborato, memorizzato o scambiato, rendendo impossibile qualsiasi interazione o comunicazione con gli utenti di questi server:'
+    unavailable_content_html: Mastodon generalmente permette di visualizzare i contenuti e interagire con gli utenti di qualsiasi altro server nel fediverse. Queste sono le eccezioni che sono state create su questo specifico server.
     user_count_after:
       one: utente
       other: utenti
@@ -171,6 +174,7 @@ it:
         user: Utente
       salmon_url: URL Salmone
       search: Cerca
+      search_same_ip: Altri utenti con lo stesso IP
       shared_inbox_url: URL Inbox Condiviso
       show:
         created_reports: Rapporti creati da questo account
@@ -235,6 +239,7 @@ it:
       delete: Elimina
       destroyed_msg: Emoji distrutto con successo!
       disable: Disabilita
+      disabled: Disabilitato
       disabled_msg: Questa emoji è stata disabilitata con successo
       emoji: Emoji
       enable: Abilita
