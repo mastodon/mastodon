@@ -49,6 +49,7 @@ it:
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
     choices_html: "Suggerimenti da %{name}:"
+    endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
     followers:
@@ -1027,6 +1028,9 @@ it:
       private: Un toot non pubblico non può essere fissato in cima
       reblog: Un toot condiviso non può essere fissato in cima
     poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} persone"
       total_votes:
         one: "%{count} voto"
         other: "%{count} voti"
