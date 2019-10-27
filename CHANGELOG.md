@@ -3,6 +3,17 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.4] - 2019-05-24
+### Fixed
+
+- Fix delivery not retrying on some inbox errors that should be retriable ([ThibG](https://github.com/tootsuite/mastodon/pull/10812))
+- Fix unnecessary 5 minute cooldowns on signature verifications in some cases ([ThibG](https://github.com/tootsuite/mastodon/pull/10813))
+- Fix possible race condition when processing statuses ([ThibG](https://github.com/tootsuite/mastodon/pull/10815))
+
+### Security
+
+- Require specific OAuth scopes for specific endpoints of the streaming API, instead of merely requiring a token for all endpoints, and allow using WebSockets protocol negotiation to specify the access token instead of using a query string ([ThibG](https://github.com/tootsuite/mastodon/pull/10818))
+
 ## [2.8.3] - 2019-05-19
 ### Added
 
