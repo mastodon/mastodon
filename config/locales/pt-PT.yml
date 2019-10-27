@@ -395,6 +395,8 @@ pt-PT:
         disabled: Para ninguém
         title: Mostrar domínios bloqueados
         users: Para utilizadores locais que se encontrem autenticados
+      domain_blocks_rationale:
+        title: Mostrar motivo
       hero:
         desc_html: Apresentado na primeira página. Pelo menos 600x100px recomendados. Quando não é definido, é apresentado o thumbnail do servidor
         title: Imagem Hero
@@ -420,6 +422,12 @@ pt-PT:
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
+      registrations_mode:
+        modes:
+          approved: Registo sujeito a aprovação
+          none: Ninguém se pode registar
+          open: Qualquer pessoa se pode registar
+        title: Modo de registo
       show_known_fediverse_at_about_page:
         desc_html: Quando comutado, irá mostrar a previsualização de publicações de todo o fediverse conhecido. De outro modo só mostrará publicações locais.
         title: Mostrar o fediverse conhecido na previsualização da cronologia
@@ -439,6 +447,9 @@ pt-PT:
         desc_html: Podes escrever a tua própria política de privacidade, termos de serviço, entre outras coisas. Podes usar tags HTML
         title: Termos de serviço customizados
       site_title: Título do site
+      spam_check_enabled:
+        desc_html: O Mastodon pode reportar automaticamente contas que enviem repetidamente mensagens não solicitadas. Poderão ocorrer alguns falso-positivos.
+        title: Automação anti-spam
       thumbnail:
         desc_html: Usada para visualizações via OpenGraph e API. Recomenda-se 1200x630px
         title: Miniatura da instância
@@ -446,6 +457,9 @@ pt-PT:
         desc_html: Exibir a linha temporal pública na página inicial
         title: Visualização da linha temporal
       title: Preferências do site
+      trendable_by_default:
+        desc_html: Afecta as hashtags que ainda não tenham sido proibidas
+        title: Permitir hashtags em tendência sem revisão prévia
     statuses:
       back_to_account: Voltar para página da conta
       batch:
