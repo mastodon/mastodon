@@ -59,7 +59,7 @@ class FetchLinkCardService < BaseService
       youtube_formats.find { |format| @url =~ format } and $1
       video_id = $1
       if video_id && (video_id.length == 11)
-          @oembed_endpoint_url = "http://www.youtube.com/oembed?url=http%3A//youtube.com/watch%3Fv%3D#{$1}&format=json"
+          @oembed_endpoint_url = "https://www.youtube.com/oembed?url=https%3A//youtube.com/watch%3Fv%3D#{$1}&format=json"
           attempt_oembed
       end
     end
