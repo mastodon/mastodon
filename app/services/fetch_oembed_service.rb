@@ -7,7 +7,13 @@ class FetchOEmbedService
     @url     = url
     @options = options
 
-    discover_endpoint!
+    if @options[:oembed_endpoint_url].nil?
+      discover_endpoint!
+    else
+      @endpoint_url = @options[:oembed_endpoint_url]
+      @format       = :json
+    end
+
     fetch!
   end
 
