@@ -48,9 +48,7 @@ class FetchLinkCardService < BaseService
   end
 
   def try_oembed_endpoint
-
     if Addressable::URI.parse(@url).host == 'youtube.com' || 'www.youtube.com' || 'youtu.be'
-
       youtube_formats = [
         %r(https?://youtu\.be/(.+)),
         %r(https?://www\.youtube\.com/watch\?v=(.*?)(&|#|$)),
@@ -58,7 +56,6 @@ class FetchLinkCardService < BaseService
         %r(https?://www\.youtube\.com/v/(.*?)(#|\?|$)),
         %r(https?://www\.youtube\.com/user/.*?#\w/\w/\w/\w/(.+)\b)
       ]
-
       youtube_formats.find { |format| @url =~ format } and $1
       video_id = $1
       if video_id && (video_id.length == 11)
@@ -69,7 +66,6 @@ class FetchLinkCardService < BaseService
   end
 
   def get_html
-
     Request.new(:get, @url).perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
