@@ -39,6 +39,37 @@ class FetchLinkCardService < BaseService
   def process_url
     @card ||= PreviewCard.new(url: @url)
 
+    try_oembed_endpoint
+
+    if @oembed_endpoint_url.nil?
+      get_html
+    end
+
+  end
+
+  def try_oembed_endpoint
+
+    if Addressable::URI.parse(@url).host == 'youtube.com' || 'www.youtube.com' || 'youtu.be'
+
+      youtube_formats = [
+        %r(https?://youtu\.be/(.+)),
+        %r(https?://www\.youtube\.com/watch\?v=(.*?)(&|#|$)),
+        %r(https?://www\.youtube\.com/embed/(.*?)(\?|$)),
+        %r(https?://www\.youtube\.com/v/(.*?)(#|\?|$)),
+        %r(https?://www\.youtube\.com/user/.*?#\w/\w/\w/\w/(.+)\b)
+      ]
+
+      youtube_formats.find { |format| @url =~ format } and $1
+      video_id = $1
+      unless video_id.nil? || video_id.length != 11
+          @oembed_endpoint_url = "http://www.youtube.com/oembed?url=http%3A//youtube.com/watch%3Fv%3D#{$1}&format=json"
+          attempt_oembed
+      end
+    end
+  end
+
+  def get_html
+
     Request.new(:get, @url).perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
@@ -89,7 +120,11 @@ class FetchLinkCardService < BaseService
 
   def attempt_oembed
     service = FetchOEmbedService.new
-    embed   = service.call(@url, html: @html)
+    if @oembed_endpoint_url.nil?
+      embed   = service.call(@url, html: @html)
+    else
+      embed   = service.call(@url, oembed_endpoint_url: @oembed_endpoint_url)
+    end
     url     = Addressable::URI.parse(service.endpoint_url)
 
     return false if embed.nil?
