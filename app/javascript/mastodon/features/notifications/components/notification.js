@@ -1,13 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusContainer from '../../../containers/status_container';
-import AccountContainer from '../../../containers/account_container';
-import { injectIntl, FormattedMessage } from 'react-intl';
-import Permalink from '../../../components/permalink';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 import { HotKeys } from 'react-hotkeys';
+import PropTypes from 'prop-types';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { me } from 'mastodon/initial_state';
+import StatusContainer from 'mastodon/containers/status_container';
+import AccountContainer from 'mastodon/containers/account_container';
 import Icon from 'mastodon/components/icon';
+import Permalink from 'mastodon/components/permalink';
+
+const messages = defineMessages({
+  favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status' },
+  follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
+  ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
+  poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
+  reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status' },
+});
 
 const notificationForScreenReader = (intl, message, timestamp) => {
   const output = [message];
@@ -107,7 +116,7 @@ class Notification extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={this.getHandlers()}>
-        <div className='notification notification-follow focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.follow', defaultMessage: '{name} followed you' }, { name: account.get('acct') }), notification.get('created_at'))}>
+        <div className='notification notification-follow focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.follow, { name: account.get('acct') }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
               <Icon id='user-plus' fixedWidth />
@@ -146,7 +155,7 @@ class Notification extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={this.getHandlers()}>
-        <div className='notification notification-favourite focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.favourite', defaultMessage: '{name} favourited your status' }, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
+        <div className='notification notification-favourite focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.favourite, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
               <Icon id='star' className='star-icon' fixedWidth />
@@ -178,7 +187,7 @@ class Notification extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={this.getHandlers()}>
-        <div className='notification notification-reblog focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.reblog', defaultMessage: '{name} boosted your status' }, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
+        <div className='notification notification-reblog focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.reblog, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
               <Icon id='retweet' fixedWidth />
@@ -205,25 +214,31 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderPoll (notification) {
+  renderPoll (notification, account) {
     const { intl } = this.props;
+    const ownPoll  = me === account.get('id');
+    const message  = ownPoll ? intl.formatMessage(messages.ownPoll) : intl.formatMessage(messages.poll);
 
     return (
       <HotKeys handlers={this.getHandlers()}>
-        <div className='notification notification-poll focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' }), notification.get('created_at'))}>
+        <div className='notification notification-poll focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, message, notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
               <Icon id='tasks' fixedWidth />
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.poll' defaultMessage='A poll you have voted in has ended' />
+              {ownPoll ? (
+                <FormattedMessage id='notification.ownPoll' defaultMessage='Your poll has ended' />
+              ) : (
+                <FormattedMessage id='notification.poll' defaultMessage='A poll you have voted in has ended' />
+              )}
             </span>
           </div>
 
           <StatusContainer
             id={notification.get('status')}
-            account={notification.get('account')}
+            account={account}
             muted
             withDismiss
             hidden={this.props.hidden}
@@ -253,7 +268,7 @@ class Notification extends ImmutablePureComponent {
     case 'reblog':
       return this.renderReblog(notification, link);
     case 'poll':
-      return this.renderPoll(notification);
+      return this.renderPoll(notification, account);
     }
 
     return null;
