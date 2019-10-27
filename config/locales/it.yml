@@ -385,6 +385,7 @@ it:
       pending: In attesa dell'approvazione del ripetitore
       save_and_enable: Salva e attiva
       setup: Crea una connessione con un ripetitore
+      signatures_not_enabled: I ripetitori non funzionano correttamente se la modalità sicura o la modalità whitelist è attiva
       status: Stato
       title: Ripetitori
     report_notes:
@@ -433,6 +434,9 @@ it:
       custom_css:
         desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
         title: CSS personalizzato
+      default_noindex:
+        desc_html: Interessa tutti gli utenti che non hanno cambiato questa impostazione
+        title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       domain_blocks:
         all: A tutti
         disabled: A nessuno
@@ -500,6 +504,9 @@ it:
         desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
       title: Impostazioni sito
+      trendable_by_default:
+        desc_html: Interessa gli hashtag che non sono stati precedentemente disattivati
+        title: Permetti agli hashtag di comparire nei trend senza prima controllarli
       trends:
         desc_html: Visualizza pubblicamente gli hashtag precedentemente esaminati che sono attualmente in tendenza
         title: Hashtag di tendenza
@@ -531,6 +538,7 @@ it:
       reviewed: Controllato
       title: Hashtag
       trending_right_now: Di tendenza ora
+      unique_uses_today: "%{count} post oggi"
       unreviewed: Non controllato
       updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
@@ -553,12 +561,17 @@ it:
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
   aliases:
     add_new: Crea alias
+    created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
+    deleted_msg: L'alias è stato eliminato. Lo spostamento da quell'account a questo non sarà più possibile.
+    hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i seguaci dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
+    remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     sensitive_content: Contenuto sensibile
+    toot_layout: Layout dei toot
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
@@ -581,6 +594,10 @@ it:
     checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
+    description:
+      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Mastodon!"
+      prefix_sign_up: Iscriviti oggi a Mastodon!
+      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
@@ -606,6 +623,7 @@ it:
       confirming: In attesa che la conferma e-mail sia completata.
       functional: Il tuo account è pienamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
+      redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
     trouble_logging_in: Problemi di accesso?
   authorize_follow:
     already_following: Stai già seguendo questo account
