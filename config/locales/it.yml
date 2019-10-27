@@ -663,6 +663,15 @@ it:
     success_msg: Il tuo account è stato cancellato
     warning:
       before: 'Prima di procedere, per favore leggi attentamente queste note:'
+      caches: Il contenuto che è stato memorizzato in cache da altri server può continuare ad esistere
+      data_removal: I tuoi post e altri dati saranno eliminati definitivamente
+      email_change_html: Puoi <a href="%{path}">cambiare il tuo indirizzo e-mail</a> senza cancellare il tuo account
+      email_contact_html: Se ancora non arriva, puoi mandare una mail a <a href="mailto:%{email}">%{email}</a> per chiedere aiuto
+      email_reconfirmation_html: Se non ricevi l'email di conferma, puoi <a href="%{path}">richiederla nuovamente</a>
+      irreversible: Non potrai ripristinare o riattivare il tuo account
+      more_details_html: Per maggiori dettagli, vedi la <a href="%{terms_path}">politica di privacy</a>.
+      username_available: Il tuo nome utente sarà nuovamente disponibile
+      username_unavailable: Il tuo nome utente rimarrà non disponibile
   directories:
     directory: Directory dei profili
     explanation: Scopri utenti in base ai loro interessi
@@ -670,10 +679,10 @@ it:
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
-    '406': This page is not available in the requested format.
+    '406': Questa pagina non è disponibile nel formato richiesto.
     '410': La pagina che stavi cercando qui non esiste più.
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
@@ -682,7 +691,7 @@ it:
     '500':
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
-    '503': The page could not be served due to a temporary server failure.
+    '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
@@ -732,6 +741,7 @@ it:
     all: Tutto
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
+    no_batch_actions_available: Nessuna azione batch disponibile su questa pagina
     order_by: Ordina per
     save_changes: Salva modifiche
     validation_errors:
@@ -803,6 +813,33 @@ it:
       too_many: Impossibile allegare più di 4 file
   migrations:
     acct: utente@dominio del nuovo account
+    cancel: Annulla ridirezione
+    cancel_explanation: Se annulli il reindirizzamento sarà riattivato il tuo account attuale, ma i seguaci che sono stati spostati all'altro account non saranno riportati indietro.
+    cancelled_msg: Reindirizzamento annullato.
+    errors:
+      already_moved: è lo stesso account su cui ti sei già trasferito
+      missing_also_known_as: non reinvia a questo account
+      move_to_self: non può essere l'account attuale
+      not_found: non trovato
+      on_cooldown: Ti trovi nel periodo di pausa tra un trasferimento e l'altro
+    followers_count: Seguaci al momento dello spostamento
+    incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
+    moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
+    not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
+    on_cooldown: Hai recentemente trasferito il tuo account. Questa funzione sarà nuovamente disponibile tra %{count} giorni.
+    past_migrations: Trasferimenti passati
+    proceed_with_move: Sposta seguaci
+    redirecting_to: Il tuo account sta reindirizzando a %{acct}.
+    set_redirect: Imposta ridirezione
+    warning:
+      backreference_required: Il nuovo account deve essere prima configurato per collegarsi a questo
+      before: 'Prima di procedere, leggi attentamente queste avvertenze:'
+      cooldown: Dopo il trasferimento c'è un periodo di pausa durante il quale non potrai trasferirti di nuovo
+      disabled_account: Il tuo account attuale non sarà più pienamente utilizzabile. Tuttavia, avrai accesso all'esportazione dei dati e alla riattivazione.
+      followers: Questa azione sposterà tutti i seguaci dall'account attuale al nuovo account
+      only_redirect_html: In alternativa, puoi solo <a href="%{path}">impostare un redirect sul tuo profilo</a>.
+      other_data: Nessun altro dato verrà spostato automaticamente
+      redirect: Il profilo del tuo account corrente sarà aggiornato con un avviso di ridirezione e sarà escluso dalle ricerche
   moderation:
     title: Moderazione
   notification_mailer:
@@ -947,6 +984,7 @@ it:
   settings:
     account: Account
     account_settings: Impostazioni dell'account
+    aliases: Alias dell'account
     appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
     back: Torna a Mastodon
@@ -964,6 +1002,8 @@ it:
     profile: Profilo
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
+  spam_check:
+    spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
     attached:
       description: 'Allegato: %{attached}'
