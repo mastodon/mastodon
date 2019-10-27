@@ -10,14 +10,23 @@ pt-PT:
     apps: Aplicações móveis
     apps_platforms: Usar o Mastodon a partir do iOS, Android e outras plataformas
     browse_directory: Navegue pelo directório de perfis e filtre por interesses
+    browse_local_posts: Visualize as publicações públicas deste servidor em tempo real
+    browse_public_posts: Visualize as publicações públicas do Mastodon em tempo real
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
+    discover_users: Descobrir utilizadores
     documentation: Documentação
     federation_hint_html: Ter uma conta em %{instance} permitirá seguir pessoas em qualquer servidor Mastodon.
+    get_apps: Experimente uma aplicação
     hosted_on: Mastodon em %{domain}
+    instance_actor_flash: |
+      Esta conta é um actor virtual usado para representar o próprio servidor e não um utilizador individual.
+      É usada para motivos de federação e não deve ser bloqueada a não ser que que queira bloquear a instância por completo. Se for esse o caso, deverá usar o bloqueio de domínio.
     learn_more: Saber mais
     privacy_policy: Política de privacidade
+    see_whats_happening: Veja o que está a acontecer
+    server_stats: 'Estatísticas do servidor:'
     source_code: Código fonte
     status_count_after:
       one: publicação
@@ -25,6 +34,10 @@ pt-PT:
     status_count_before: Que fizeram
     tagline: Siga os seus amigos e descubra novas amizades
     terms: termos de serviço
+    unavailable_content: Conteúdo indisponível
+    unavailable_content_description:
+      domain: Servidor
+      reason: Motivo
     user_count_after:
       one: utilizador
       other: utilizadores
@@ -294,6 +307,8 @@ pt-PT:
         all: Todas
         limited: Limitadas
         title: Moderação
+      private_comment: Comentários privados
+      public_comment: Comentários públicos
       title: Instâncias conhecidas
       total_blocked_by_us: Bloqueadas por nós
       total_followed_by_them: Seguidas por eles
@@ -308,6 +323,8 @@ pt-PT:
         expired: Expirados
         title: Filtro
       title: Convites
+    pending_accounts:
+      title: Contas pendentes (%{count})
     relays:
       add_new: Adicionar novo repetidor
       delete: Apagar
@@ -321,6 +338,7 @@ pt-PT:
       pending: À espera da aprovação do repetidor
       save_and_enable: Guardar e ativar
       setup: Configurar uma ligação ao repetidor
+      signatures_not_enabled: Relays não funcionarão corretamente enquanto o modo seguro ou o modo whitelist estiver activado
       status: Estado
       title: Retransmissores
     report_notes:
@@ -369,6 +387,14 @@ pt-PT:
       custom_css:
         desc_html: Modificar a aparência com CSS carregado em cada página
         title: CSS personalizado
+      default_noindex:
+        desc_html: Afeta todos os utilizadores que não alteraram esta configuração
+        title: Desactivar, por omissão, a indexação de utilizadores por parte dos motores de pesquisa
+      domain_blocks:
+        all: Para toda a gente
+        disabled: Para ninguém
+        title: Mostrar domínios bloqueados
+        users: Para utilizadores locais que se encontrem autenticados
       hero:
         desc_html: Apresentado na primeira página. Pelo menos 600x100px recomendados. Quando não é definido, é apresentado o thumbnail do servidor
         title: Imagem Hero
