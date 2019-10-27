@@ -1591,6 +1591,20 @@ a.account__display-name {
   color: $gold-star;
 }
 
+.no-reduce-motion .icon-button.star-icon {
+  &.activate {
+    & > .fa-star {
+      animation: spring-rotate-in 1s linear;
+    }
+  }
+
+  &.deactivate {
+    & > .fa-star {
+      animation: spring-rotate-out 1s linear;
+    }
+  }
+}
+
 .notification__display-name {
   color: inherit;
   font-weight: 500;
@@ -3371,6 +3385,50 @@ a.status-card.compact:hover {
 
 .no-reduce-motion .loading-indicator__figure {
   animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes spring-rotate-in {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  30% {
+    transform: rotate(-484.8deg);
+  }
+
+  60% {
+    transform: rotate(-316.7deg);
+  }
+
+  90% {
+    transform: rotate(-375deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes spring-rotate-out {
+  0% {
+    transform: rotate(-360deg);
+  }
+
+  30% {
+    transform: rotate(124.8deg);
+  }
+
+  60% {
+    transform: rotate(-43.27deg);
+  }
+
+  90% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes loader-figure {
@@ -5194,6 +5252,7 @@ a.status-card.compact:hover {
       max-height: 100% !important;
       width: 100% !important;
       height: 100% !important;
+      outline: 0;
     }
   }
 
@@ -5271,6 +5330,10 @@ a.status-card.compact:hover {
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
+
+    .video-player__download__icon {
+      color: inherit;
+    }
   }
 
   &__buttons {

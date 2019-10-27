@@ -50,7 +50,7 @@ class Sanitize
 
       add_attributes: {
         'a' => {
-          'rel' => 'nofollow noopener tag',
+          'rel' => 'nofollow noopener tag noreferrer',
           'target' => '_blank',
         },
       },
