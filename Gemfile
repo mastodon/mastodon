@@ -116,7 +116,7 @@ end
 group :test do
   gem 'capybara', '~> 3.29'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.5'
+  gem 'faker', '~> 2.6'
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
