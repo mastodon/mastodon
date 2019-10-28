@@ -48,7 +48,8 @@ class FetchLinkCardService < BaseService
   end
 
   def try_oembed_endpoint
-    if Addressable::URI.parse(@url).host == 'youtube.com' || 'www.youtube.com' || 'youtu.be'
+    url_domain=Addressable::URI.parse(@url).host
+    if url_domain == 'youtube.com' || url_domain == 'www.youtube.com' || url_domain == 'youtu.be'
       youtube_formats = [
         %r(https?://youtu\.be/(.+)),
         %r(https?://www\.youtube\.com/watch\?v=(.*?)(&|#|$)),
