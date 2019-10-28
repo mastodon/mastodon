@@ -103,7 +103,7 @@ class StatusIcons extends React.PureComponent {
         {collapsible ? (
           <IconButton
             className='status__collapse-button'
-            animate flip
+            animate
             active={collapsed}
             title={
               collapsed ?

@@ -426,6 +426,7 @@
       max-height: 100% !important;
       width: 100% !important;
       height: 100% !important;
+      outline: 0;
     }
   }
 
@@ -503,6 +504,17 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
+
+    .video-player__download__icon {
+      color: inherit;
+
+      .fa,
+      &:active .fa,
+      &:hover .fa,
+      &:focus .fa {
+        color: inherit;
+      }
+    }
   }
 
   &__buttons {

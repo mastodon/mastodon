@@ -56,6 +56,7 @@ export default class StatusHeader extends React.PureComponent {
             target='_blank'
             className='status__avatar'
             onClick={this.handleAccountClick}
+            rel='noopener noreferrer'
           >
             {statusAvatar}
           </a>
@@ -64,6 +65,7 @@ export default class StatusHeader extends React.PureComponent {
             target='_blank'
             className='status__display-name'
             onClick={this.handleAccountClick}
+            rel='noopener noreferrer'
           >
             <DisplayName account={account} others={otherAccounts} />
           </a>

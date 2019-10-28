@@ -42,6 +42,7 @@ class UserSettingsDecorator
     user.settings['use_blurhash']        = use_blurhash_preference if change?('setting_use_blurhash')
     user.settings['use_pending_items']   = use_pending_items_preference if change?('setting_use_pending_items')
     user.settings['trends']              = trends_preference if change?('setting_trends')
+    user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
   end
 
   def merged_notification_emails
@@ -150,6 +151,10 @@ class UserSettingsDecorator
 
   def trends_preference
     boolean_cast_setting 'setting_trends'
+  end
+
+  def crop_images_preference
+    boolean_cast_setting 'setting_crop_images'
   end
 
   def boolean_cast_setting(key)

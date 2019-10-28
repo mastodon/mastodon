@@ -24,7 +24,6 @@ export default class IconButton extends React.PureComponent {
     disabled: PropTypes.bool,
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
-    flip: PropTypes.bool,
     overlay: PropTypes.bool,
     tabIndex: PropTypes.string,
     label: PropTypes.string,
@@ -38,6 +37,21 @@ export default class IconButton extends React.PureComponent {
     overlay: false,
     tabIndex: '0',
   };
+
+  state = {
+    activate: false,
+    deactivate: false,
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.animate) return;
+
+    if (this.props.active && !nextProps.active) {
+      this.setState({ activate: false, deactivate: true });
+    } else if (!this.props.active && nextProps.active) {
+      this.setState({ activate: true, deactivate: false });
+    }
+  }
 
   handleClick = (e) =>  {
     e.preventDefault();
@@ -81,86 +95,49 @@ export default class IconButton extends React.PureComponent {
 
     const {
       active,
-      animate,
       className,
       disabled,
       expanded,
       icon,
       inverted,
-      flip,
       overlay,
       pressed,
       tabIndex,
       title,
     } = this.props;
 
+    const {
+      activate,
+      deactivate,
+    } = this.state;
+
     const classes = classNames(className, 'icon-button', {
       active,
       disabled,
       inverted,
+      activate,
+      deactivate,
       overlayed: overlay,
     });
 
-    const flipDeg = flip ? -180 : -360;
-    const rotateDeg = active ? flipDeg : 0;
-
-    const motionDefaultStyle = {
-      rotate: rotateDeg,
-    };
-
-    const springOpts = {
-      stiffness: this.props.flip ? 60 : 120,
-      damping: 7,
-    };
-    const motionStyle = {
-      rotate: animate ? spring(rotateDeg, springOpts) : 0,
-    };
-
-    if (!animate) {
-      // Perf optimization: avoid unnecessary <Motion> components unless
-      // we actually need to animate.
-      return (
-        <button
-          aria-label={title}
-          aria-pressed={pressed}
-          aria-expanded={expanded}
-          title={title}
-          className={classes}
-          onClick={this.handleClick}
-          onMouseDown={this.handleMouseDown}
-          onKeyDown={this.handleKeyDown}
-          onKeyPress={this.handleKeyPress}
-          style={style}
-          tabIndex={tabIndex}
-          disabled={disabled}
-        >
-          <Icon id={icon} fixedWidth aria-hidden='true' />
-        </button>
-      );
-    }
-
     return (
-      <Motion defaultStyle={motionDefaultStyle} style={motionStyle}>
-        {({ rotate }) =>
-          (<button
-            aria-label={title}
-            aria-pressed={pressed}
-            aria-expanded={expanded}
-            title={title}
-            className={classes}
-            onClick={this.handleClick}
-            onMouseDown={this.handleMouseDown}
-            onKeyDown={this.handleKeyDown}
-            onKeyPress={this.handleKeyPress}
-            style={style}
-            tabIndex={tabIndex}
-            disabled={disabled}
-          >
-            <Icon id={icon} style={{ transform: `rotate(${rotate}deg)` }} fixedWidth aria-hidden='true' />
-            {this.props.label}
-          </button>)
-        }
-      </Motion>
+      <button
+        aria-label={title}
+        aria-pressed={pressed}
+        aria-expanded={expanded}
+        title={title}
+        className={classes}
+        onClick={this.handleClick}
+        onMouseDown={this.handleMouseDown}
+        onKeyDown={this.handleKeyDown}
+        onKeyPress={this.handleKeyPress}
+        style={style}
+        tabIndex={tabIndex}
+        disabled={disabled}
+      >
+        <Icon id={icon} fixedWidth aria-hidden='true' />
+        {this.props.label}
+      </button>
     );
   }
 

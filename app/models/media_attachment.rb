@@ -87,6 +87,7 @@ class MediaAttachment < ApplicationRecord
       convert_options: {
         output: {
           'loglevel' => 'fatal',
+          'map_metadata' => '-1',
           'q:a' => 2,
         },
       },

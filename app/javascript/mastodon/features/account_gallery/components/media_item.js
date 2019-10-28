@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { decode } from 'blurhash';
+import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import { autoPlayGif, displayMedia } from 'mastodon/initial_state';
-import classNames from 'classnames';
-import { decode } from 'blurhash';
 import { isIOS } from 'mastodon/is_mobile';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 export default class MediaItem extends ImmutablePureComponent {
 
@@ -151,7 +151,7 @@ export default class MediaItem extends ImmutablePureComponent {
 
     return (
       <div className='account-gallery__item' style={{ width, height }}>
-        <a className='media-gallery__item-thumbnail' href={status.get('url')} target='_blank' onClick={this.handleClick} title={title}>
+        <a className='media-gallery__item-thumbnail' href={status.get('url')} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
           <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })} />
           {visible && thumbnail}
           {!visible && icon}
