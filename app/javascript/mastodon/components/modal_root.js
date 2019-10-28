@@ -16,8 +16,8 @@ export default class ModalRoot extends React.PureComponent {
   activeElement = this.state.revealed ? document.activeElement : null;
 
   handleKeyUp = (e) => {
-    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) &&
-      !!this.props.children) {
+    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
+         && !!this.props.children) {
       this.props.onClose();
     }
   }
@@ -43,20 +43,18 @@ export default class ModalRoot extends React.PureComponent {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (!!nextProps.children && !this.props.children) {
       this.activeElement = document.activeElement;
 
       this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
     } else if (!nextProps.children) {
-      this.setState({
-        revealed: false
-      });
+      this.setState({ revealed: false });
     }
     if (!nextProps.children && !!this.props.children) {
       this.activeElement.focus();
@@ -64,20 +62,18 @@ export default class ModalRoot extends React.PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     if (!this.props.children && !!prevProps.children) {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
     }
     if (this.props.children) {
       requestAnimationFrame(() => {
-        this.setState({
-          revealed: true
-        });
+        this.setState({ revealed: true });
       });
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
     window.removeEventListener('keydown', this.handleKeyDown);
   }
@@ -90,60 +86,24 @@ export default class ModalRoot extends React.PureComponent {
     this.node = ref;
   }
 
-  render() {
-    const {
-      children,
-      onClose
-    } = this.props;
-    const {
-      revealed
-    } = this.state;
+  render () {
+    const { children, onClose } = this.props;
+    const { revealed } = this.state;
     const visible = !!children;
 
     if (!visible) {
-      return ( <
-        div className = 'modal-root'
-        ref = {
-          this.setRef
-        }
-        style = {
-          {
-            opacity: 0
-          }
-        }
-        />
+      return (
+        <div className='modal-root' ref={this.setRef} style={{ opacity: 0 }} />
       );
     }
 
-    return ( <
-      div className = 'modal-root'
-      ref = {
-        this.setRef
-      }
-      style = {
-        {
-          opacity: revealed ? 1 : 0
-        }
-      } >
-      <
-      div style = {
-        {
-          pointerEvents: visible ? 'auto' : 'none'
-        }
-      } >
-      <
-      div role = 'presentation'
-      className = 'modal-root__overlay'
-      onClick = {
-        onClose
-      }
-      /> <
-      div role = 'dialog'
-      className = 'modal-root__container' > {
-        children
-      } < /div> < /
-      div > <
-      /div>
+    return (
+      <div className='modal-root' ref={this.setRef} style={{ opacity: revealed ? 1 : 0 }}>
+        <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} />
+          <div role='dialog' className='modal-root__container'>{children}</div>
+        </div>
+      </div>
     );
   }
 
