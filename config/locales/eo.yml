@@ -770,9 +770,16 @@ eo:
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
     acct: uzantnomo@domajno de la nova konto
+    cancel: Nuligi alidirekton
     errors:
+      already_moved: estas la saman konton vi jam translokiĝis al
       not_found: ne povis trovi
+      on_cooldown: Vi estas ĉe malvarmiĝi
+    followers_count: Sekvantoj en la momento de moviĝo
+    incoming_migrations: Movi el alian konton
+    past_migrations: Pasintaj translokaj
     proceed_with_move: Translokigi sekvantoj
+    set_redirect: Agordi alidirekton
   moderation:
     title: Kontrolado
   notification_mailer:
@@ -958,6 +965,9 @@ eo:
       private: Mesaĝo nepublika ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
     poll:
+      total_people:
+        one: "%{count} persono"
+        other: "%{count} personoj"
       total_votes:
         one: "%{count} voĉdono"
         other: "%{count} voĉdonoj"
