@@ -507,6 +507,13 @@
 
     .video-player__download__icon {
       color: inherit;
+
+      .fa,
+      &:active .fa,
+      &:hover .fa,
+      &:focus .fa {
+        color: inherit;
+      }
     }
   }
 
