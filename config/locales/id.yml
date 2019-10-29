@@ -799,6 +799,17 @@ id:
     cancel: Batalkan peralihan
     cancel_explanation: Membatalkan peralihan akan mengaktivasi ulang akun sekarang, tetapi tidak akan mengembalikan pengikut yang telah pindah ke akun baru.
     cancelled_msg: Pembatalan peralihan berhasil.
+    errors:
+      already_moved: adalah akun yang sama yang sudah Anda pindahkan ke
+      not_found: tidak dapat ditemukan
+    incoming_migrations: Pindah dari akun berbeda
+    incoming_migrations_html: Untuk pindah dari akun lain ke sini, Anda harus <a href="%{path}">membuat alias akun</a> terlebih dahulu.
+    moved_msg: Akun Anda dialihkan ke %{acct} dan pengikut Anda akan ikut dipindahkan.
+    not_redirecting: Saat ini akun Anda tidak dialihkan ke akun lain.
+    on_cooldown: Anda baru saja memindahkan akun Anda. Fungsi ini akan tersedia kembali %{count} hari lagi.
+    proceed_with_move: Pindahkan pengikut
+    redirecting_to: Akun Anda dialihkan ke %{acct}.
+    set_redirect: Atur peralihan
   notification_mailer:
     digest:
       body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
