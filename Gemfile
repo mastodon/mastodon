@@ -77,7 +77,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
-gem 'rqrcode', '~> 0.10'
+gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
 gem 'sanitize', '~> 5.1'
 gem 'sidekiq', '~> 5.2'
