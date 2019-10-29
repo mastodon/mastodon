@@ -735,12 +735,15 @@ id:
     invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
   identity_proofs:
     active: Aktif
+    authorize: Ya, izinkan
     authorize_connection_prompt: Izinkan koneksi kriptografi ini?
     errors:
       failed: Koneksi kriptografi gagal. Silakan coba lagi dari %{provider}.
       keybase:
+        invalid_token: Token Keybase adalah sandi tanda tangan dan harus berupa 66 karakter hex
         verification_failed: Keybase tidak mengenali token ini sebagai tanda tangan pengguna Keybase %{kb_username}. Silakan ulangi lagi dari Keybase.
       wrong_user: Tidak dapat membuat bukti untuk %{proving} saat masuk sebagai %{current}. Masuk sebagai %{proving} dan coba lagi.
+    explanation_html: Anda dapat mengoneksikan identitas lain secara kriptografi, seperti profil Keybase. Ini mengizinkan orang lain untuk mengirim pesan terenkripsi kepada Anda dan mempercayai konten yang Anda kirim.
     i_am_html: Saya adalah %{username} di %{service}.
     identity: Identitas
     inactive: Tidak aktif
@@ -776,6 +779,8 @@ id:
     expires_in_prompt: Tak pernah
     generate: Buat tautan undangan
     invited_by: 'Anda diundang oleh:'
+    max_uses:
+      other: "%{count} penggunaan"
     max_uses_prompt: Tanpa batas
   media_attachments:
     validations:
