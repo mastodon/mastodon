@@ -782,10 +782,23 @@ id:
     max_uses:
       other: "%{count} penggunaan"
     max_uses_prompt: Tanpa batas
+    prompt: Buat dan bagikan tautan dengan yang lain untuk mendapatkan akses ke server ini
+    table:
+      expires_at: Kedaluwarsa
+      uses: Penggunaan
+    title: Undang orang
+  lists:
+    errors:
+      limit: Daftar Anda telah mencapai jumlah maksimum
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
       too_many: Tidak dapat melampirkan lebih dari 4 file
+  migrations:
+    acct: Pindah ke
+    cancel: Batalkan peralihan
+    cancel_explanation: Membatalkan peralihan akan mengaktivasi ulang akun sekarang, tetapi tidak akan mengembalikan pengikut yang telah pindah ke akun baru.
+    cancelled_msg: Pembatalan peralihan berhasil.
   notification_mailer:
     digest:
       body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
