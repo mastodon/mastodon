@@ -68,7 +68,7 @@ class FetchOEmbedService
       else
         endpoint_hash={"endpoint" => endpoint,"format" => @format}
       end
-      Rails.cache.write('oembed_endpoint_#{url_domain}', endpoint_hash, :expires_in => 24.hours)
+      Rails.cache.write("oembed_endpoint_#{url_domain}", endpoint_hash, :expires_in => 24.hours)
     end
   end
 
