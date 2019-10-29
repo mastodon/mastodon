@@ -97,7 +97,7 @@ class FetchLinkCardService < BaseService
     end
     if embed.nil?
       html
-      return if @html.nil?
+      return false if @html.nil?
       embed = service.call(@url, html: @html)
     end
     
