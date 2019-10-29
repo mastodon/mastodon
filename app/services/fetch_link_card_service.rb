@@ -52,8 +52,6 @@ class FetchLinkCardService < BaseService
         @html_charset = nil
       end
     end
-
-    return if @html.nil?  
   end
 
   def attach_card
@@ -95,7 +93,7 @@ class FetchLinkCardService < BaseService
     url_domain=Addressable::URI.parse(@url).host
     cached_endpoint=Rails.cache.read('oembed_endpoint_#{url_domain}')
     unless cached_endpoint.nil?
-	  embed = service.call(@url, cached_endpoint: cached_endpoint)
+	    embed = service.call(@url, cached_endpoint: cached_endpoint)
     end
     if embed.nil?
       html
