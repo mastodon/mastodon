@@ -39,36 +39,12 @@ class FetchLinkCardService < BaseService
   def process_url
     @card ||= PreviewCard.new(url: @url)
 
-    try_oembed_endpoint
-
-    if @oembed_endpoint_url.nil?
-      get_html
-    end
-
+    attempt_oembed || attempt_opengraph
   end
-
-  def try_oembed_endpoint
-    url_domain=Addressable::URI.parse(@url).host
-    if url_domain == 'youtube.com' || url_domain == 'www.youtube.com' || url_domain == 'youtu.be'
-      youtube_formats = [
-        %r(https?://youtu\.be/(.+)),
-        %r(https?://www\.youtube\.com/watch\?v=(.*?)(&|#|$)),
-        %r(https?://www\.youtube\.com/embed/(.*?)(\?|$)),
-        %r(https?://www\.youtube\.com/v/(.*?)(#|\?|$)),
-        %r(https?://www\.youtube\.com/user/.*?#\w/\w/\w/\w/(.+)\b)
-      ]
-      youtube_formats.find { |format| @url =~ format } and $1
-      video_id = $1
-      if video_id && (video_id.length == 11)
-          @oembed_endpoint_url = "https://www.youtube.com/oembed?url=https%3A//youtube.com/watch%3Fv%3D#{$1}&format=json"
-          attempt_oembed
-      end
-    end
-  end
-
-  def get_html
+  
+  def html
     Request.new(:get, @url).perform do |res|
-      if res.code == 200 && res.mime_type == 'text/html'
+    if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
         @html_charset = res.charset
       else
@@ -77,9 +53,7 @@ class FetchLinkCardService < BaseService
       end
     end
 
-    return if @html.nil?
-
-    attempt_oembed || attempt_opengraph
+    return if @html.nil?  
   end
 
   def attach_card
@@ -117,11 +91,17 @@ class FetchLinkCardService < BaseService
 
   def attempt_oembed
     service = FetchOEmbedService.new
-    if @oembed_endpoint_url.nil?
-      embed   = service.call(@url, html: @html)
-    else
-      embed   = service.call(@url, oembed_endpoint_url: @oembed_endpoint_url)
+    
+    url_domain=Addressable::URI.parse(@url).host
+    cached_endpoint=Rails.cache.read('oembed_endpoint_#{url_domain}')
+    unless cached_endpoint.nil?
+	  embed = service.call(@url, cached_endpoint: cached_endpoint)
     end
+    if embed.nil?
+      html
+      embed = service.call(@url, html: @html)
+    end
+    
     url     = Addressable::URI.parse(service.endpoint_url)
 
     return false if embed.nil?
@@ -161,7 +141,10 @@ class FetchLinkCardService < BaseService
   def attempt_opengraph
     detector = CharlockHolmes::EncodingDetector.new
     detector.strip_tags = true
-
+    
+    if @html.nil?
+      html
+    end
     guess      = detector.detect(@html, @html_charset)
     encoding   = guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
     page       = Nokogiri::HTML(@html, nil, encoding)
