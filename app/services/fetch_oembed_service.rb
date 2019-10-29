@@ -43,14 +43,17 @@ class FetchOEmbedService
   end
   
   def parse_cache_endpoint!
-	cached=@options[:cached_endpoint]
-	return if cached["endpoint"].nil? || cached["format"].nil?
-	url_encoded=URI.encode_www_form_component(@url)
-	if cached["append"].nil?
-	  @endpoint_url = cached["endpoint"]+url_encoded
-	else
-	  @endpoint_url = cached["endpoint"]+url_encoded+"%26format%3D"+cached["append"]
-	end
+    return if @options[:cached_endpoint].nil?
+
+    cached=@options[:cached_endpoint]
+	  return if cached["endpoint"].nil? || cached["format"].nil?
+    
+	  url_encoded=URI.encode_www_form_component(@url)
+	  if cached["append"].nil?
+	    @endpoint_url = cached["endpoint"]+url_encoded
+	  else
+	    @endpoint_url = cached["endpoint"]+url_encoded+"%26format%3D"+cached["append"]
+	  end
     @format = cached["format"]
   end
   
@@ -58,8 +61,8 @@ class FetchOEmbedService
     url_domain=Addressable::URI.parse(@url).host
     endpoint=@endpoint_url.match(/^.*(?=(http[s]?(%3A|:)(\/\/|%2F%2F)))/).to_s
     unless endpoint.nil?
-	  if @endpoint_url.match(/format(=|%3D)json$/)
-		endpoint_hash={"endpoint" => endpoint,"format" => @format,"append" => "json"}
+	    if @endpoint_url.match(/format(=|%3D)json$/)
+		    endpoint_hash={"endpoint" => endpoint,"format" => @format,"append" => "json"}
       elsif @endpoint_url.match(/format(=|%3D)xml$/)
       	endpoint_hash={"endpoint" => endpoint,"format" => @format,"append" => "xml"}
       else
