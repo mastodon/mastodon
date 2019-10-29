@@ -97,6 +97,7 @@ class FetchLinkCardService < BaseService
     end
     if embed.nil?
       html
+      return if @html.nil?
       embed = service.call(@url, html: @html)
     end
     
@@ -142,6 +143,7 @@ class FetchLinkCardService < BaseService
     
     if @html.nil?
       html
+      return if @html.nil?
     end
     guess      = detector.detect(@html, @html_charset)
     encoding   = guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
