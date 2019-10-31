@@ -6,7 +6,7 @@
 #  id         :bigint(8)        not null, primary key
 #  list_id    :bigint(8)        not null
 #  account_id :bigint(8)        not null
-#  follow_id  :bigint(8)        not null
+#  follow_id  :bigint(8)
 #
 
 class ListAccount < ApplicationRecord
@@ -21,6 +21,6 @@ class ListAccount < ApplicationRecord
   private
 
   def set_follow
-    self.follow = Follow.find_by(account_id: list.account_id, target_account_id: account.id)
+    self.follow = Follow.find_by!(account_id: list.account_id, target_account_id: account.id) unless list.account_id == account.id
   end
 end
