@@ -178,8 +178,17 @@ export default class StatusContent extends React.PureComponent {
     }
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const encrypted = status.get('encrypted');
 
-    const content = { __html: status.get('contentHtml') };
+    let contentHtml;
+    if (encrypted) {
+      contentHtml = '<i class="fa fa-lock" aria-hidden="true"></i>&nbsp;' + status.get('contentHtml');
+    } else {
+      contentHtml = status.get('contentHtml');
+    }
+
+    const content = { __html: contentHtml };
+
     const spoilerContent = { __html: status.get('spoilerHtml') };
     const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
