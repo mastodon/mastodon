@@ -126,7 +126,7 @@ export function directCompose(account, routerHistory) {
 
 export function submitCompose(routerHistory) {
   return async function (dispatch, getState, { tankerService }) {
-    const status = getState().getIn(['compose', 'text'], '');
+    let status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
 
     if ((!status || !status.length) && media.size === 0) {
@@ -138,8 +138,7 @@ export function submitCompose(routerHistory) {
     const shouldEncrypt = (visibility === 'direct');
 
     if (shouldEncrypt) {
-      const encryptedText = await tankerService.encrypt(status);
-      console.log('about to send encrypted text', encryptedText);
+      status = await tankerService.encrypt(status);
     }
 
     dispatch(submitComposeRequest());
@@ -152,6 +151,7 @@ export function submitCompose(routerHistory) {
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility,
       poll: getState().getIn(['compose', 'poll'], null),
+      encrypted: shouldEncrypt,
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
