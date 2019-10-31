@@ -12,7 +12,7 @@
 class ListAccount < ApplicationRecord
   belongs_to :list
   belongs_to :account
-  belongs_to :follow
+  belongs_to :follow, optional: true
 
   validates :account_id, uniqueness: { scope: :list_id }
 
