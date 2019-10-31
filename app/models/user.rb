@@ -169,7 +169,7 @@ class User < ApplicationRecord
   end
 
   def functional?
-    confirmed? && approved? && !disabled? && !account.suspended? && account.moved_to_account_id.nil?
+    confirmed? && approved? && !disabled? && !account.suspended?
   end
 
   def unconfirmed_or_pending?
