@@ -1019,6 +1019,11 @@ sk:
       private: Neverejný príspevok nemôže byť pripnutý
       reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
+      total_people:
+        one: "%{count} človek"
+        few: "%{count} ľudí"
+        many: "%{count} ľudia"
+        other: "%{count} ľudí"
       total_votes:
         one: "%{count} hlas"
         few: "%{count} hlasov"
