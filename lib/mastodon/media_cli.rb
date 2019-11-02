@@ -113,5 +113,15 @@ module Mastodon
       say("Imports:\t#{number_to_human_size(Import.sum(:data_file_size))}")
       say("Settings:\t#{number_to_human_size(SiteUpload.sum(:file_file_size))}")
     end
+
+    desc 'lookup', 'Lookup a toot by passing a media URL'
+    def lookup
+      say("Please enter a URL to the media to lookup:")
+      media_url = gets.chomp.gsub("http://", "").split("/")[1]
+      attachment = MediaAttachment.where(file_file_name: media_url)
+      mastodon_hostname=ENV['LOCAL_DOMAIN']
+      status_id = attachment.status_id
+      say("The source toot is: https://#{mastodon_hostname}/web/statuses/#{status_id}")
+    end
   end
 end
