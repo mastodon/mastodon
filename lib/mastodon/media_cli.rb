@@ -116,12 +116,21 @@ module Mastodon
 
     desc 'lookup', 'Lookup a toot by passing a media URL'
     def lookup
-      say("Please enter a URL to the media to lookup:")
-      media_url = gets.chomp.gsub("http://", "").split("/")[1]
-      attachment = MediaAttachment.where(file_file_name: media_url)
-      mastodon_hostname=ENV['LOCAL_DOMAIN']
-      status_id = attachment.status_id
-      say("The source toot is: https://#{mastodon_hostname}/web/statuses/#{status_id}")
+      prompt = TTY::Prompt.new
+
+      exit(1) unless url = prompt.ask('Please enter a URL to the media to lookup:', required: true)
+
+      id = url
+            .split("/")[0..-2]
+            .select {
+              |key|
+              key.scan(/\D/).empty?
+            }
+            .join("")
+
+      attachment = MediaAttachment.find(id)
+
+      prompt.say("The attachment URL is #{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment.status_id}")
     end
   end
 end
