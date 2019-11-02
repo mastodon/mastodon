@@ -118,7 +118,7 @@ module Mastodon
     def lookup
       prompt = TTY::Prompt.new
 
-      exit(1) unless (url = prompt.ask('Please enter a URL to the media to lookup:', required: true))
+      url = prompt.ask('Please enter a URL to the media to lookup:', required: true)
 
       id = url
            .split('/')[0..-2]
@@ -127,10 +127,11 @@ module Mastodon
            end
            .join('')
 
-      attachment = MediaAttachment.find(id)
-
-      prompt.say('The corresponding media object you referenced could not be found, perhaps the toot was deleted?') unless attachment
-      prompt.say("The source toot URL is https://#{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment.status_id}")
+      if attachment = MediaAttachment.find(id)
+        prompt.say("The source toot URL is https://#{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment.status_id}")
+      else
+        prompt.say('The corresponding media object you referenced could not be found, perhaps the toot was deleted?')
+      end      
     end
   end
 end
