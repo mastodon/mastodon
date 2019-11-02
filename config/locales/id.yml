@@ -851,7 +851,7 @@ id:
         units:
           billion: M
           million: Jt
-          quadrillion: RbT
+          quadrillion: Kdt
           thousand: Rb
           trillion: T
   pagination:
@@ -866,11 +866,18 @@ id:
       duplicate_options: berisi item ganda
       duration_too_short: terlalu cepat
       expired: Japat telah berakhir
+      over_character_limit: tidak boleh lebih dari %{max} karakter
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
     proceed: Lanjutkan untuk mengikuti
     prompt: 'Anda akan mengikuti:'
+  remote_interaction:
+    reply:
+      prompt: 'Anda ingin membalas toot ini:'
+  scheduled_statuses:
+    over_daily_limit: Anda telah melampaui batas %{limit} toot terjadwal untuk sehari
+    over_total_limit: Anda telah melampaui batas %{limit} toot terjadwal
   settings:
     authorized_apps: Apl yang diizinkan
     back: Kembali ke Mastodon
