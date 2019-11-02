@@ -166,6 +166,7 @@ class BackupService < BaseService
       end
     end
   rescue Errno::ENOENT
+  rescue Seahorse::Client::NetworkingError
     Rails.logger.warn "Could not backup file #{filename}: file not found"
   end
 end
