@@ -118,7 +118,7 @@ module Mastodon
     def lookup
       prompt = TTY::Prompt.new
 
-      exit(1) unless url = prompt.ask('Please enter a URL to the media to lookup:', required: true)
+      exit(1) unless (url = prompt.ask('Please enter a URL to the media to lookup:', required: true))
 
       id = url
            .split('/')[0..-2]
