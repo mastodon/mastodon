@@ -129,7 +129,11 @@ module Mastodon
 
       attachment = MediaAttachment.find(id)
 
-      prompt.say("The source toot URL is https://#{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment.status_id}")
+      unless !attachment
+        prompt.say("The source toot URL is https://#{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment.status_id}")
+      else
+        prompt.say('The corresponding media object you referenced could not be found, perhaps the toot was deleted?')
+      end
     end
   end
 end
