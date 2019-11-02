@@ -130,7 +130,7 @@ module Mastodon
 
       attachment = MediaAttachment.find(id)
 
-      prompt.say("The attachment URL is #{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment.status_id}")
+      prompt.say("The source toot URL is https://#{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment.status_id}")
     end
   end
 end
