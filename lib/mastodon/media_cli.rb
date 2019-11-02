@@ -125,7 +125,7 @@ module Mastodon
            .select do |key|
              key.scan(/\D/).empty?
            end
-          .join('')
+           .join('')
 
       attachment = MediaAttachment.find(id)
 
