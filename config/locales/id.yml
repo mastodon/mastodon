@@ -810,32 +810,58 @@ id:
     proceed_with_move: Pindahkan pengikut
     redirecting_to: Akun Anda dialihkan ke %{acct}.
     set_redirect: Atur peralihan
+  moderation:
+    title: Moderasi
   notification_mailer:
     digest:
+      action: Lihat semua notifikasi
       body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
       mention: "%{name} menyebut anda di:"
       new_followers_summary:
         other: Anda mendapatkan %{count} pengikut baru! Luar biasa!
       subject:
         other: "%{count} notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
+      title: Saat Anda tidak muncul...
     favourite:
       body: 'Status anda disukai oleh %{name}:'
       subject: "%{name} menyukai status anda"
+      title: Favorit baru
     follow:
       body: "%{name} mengikuti anda!"
       subject: "%{name} menjadi pengikut anda"
+      title: Pengikut baru
     follow_request:
+      action: Kelola permintaan mengikuti
       body: "%{name} meminta untuk mengikuti anda"
       subject: 'Pengikut menunggu: %{name}'
+      title: Permintaan mengikuti baru
     mention:
+      action: Balas
       body: 'Anda disebut oleh %{name} pada:'
       subject: Anda disebut oleh %{name}
+      title: Sebutan baru
     reblog:
       body: 'Status anda di-boost oleh %{name}:'
       subject: "%{name} mem-boost status anda"
+      title: Boost baru
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: M
+          million: Jt
+          thousand: Rb
+          trillion: T
   pagination:
+    newer: Lebih baru
     next: Selanjutnya
+    older: Lebih lama
     prev: Sebelumnya
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Anda sudah mengikuti japat ini
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
