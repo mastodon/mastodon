@@ -121,12 +121,12 @@ module Mastodon
       exit(1) unless url = prompt.ask('Please enter a URL to the media to lookup:', required: true)
 
       id = url
-          .split("/")[0..-2]
-          .select {
+          .split('/')[0..-2]
+          .select do
               |key|
               key.scan(/\D/).empty?
-            }
-          .join("")
+          end
+          .join('')
 
       attachment = MediaAttachment.find(id)
 
