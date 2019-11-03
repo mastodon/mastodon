@@ -121,24 +121,21 @@ module Mastodon
       url = prompt.ask('Please enter a URL to the media to lookup:', required: true)
 
       attachment_id = url
-           .split('/')[0..-2]
-           .select do |key|
-             key.scan(/\D/).empty?
-           end
-           .join('')
+                     .split('/')[0..-2]
+                     .select do |key|
+                      key.scan(/\D/).empty?
+                     end
+                     .join('')
 
-      case url.split('/')[1..3]
-      when ['media_attachments', 'files']
-           if (attachment = MediaAttachment.find(attachment_id))
-             prompt.say("The source toot is: https://#{ENV['LOCAL_DOMAIN']}/web/statuses/#{attachment_id}")
-           else
-             prompt.say('The corresponding media object you referenced could not be found, perhaps the toot was deleted?')
-           end
-      when ['accounts', 'avatars']
-        prompt.say("The source account of this avatar is: https://#{ENV['LOCAL_DOMAIN']}/web/accounts/#{attachment_id}")
-      when ['accounts', 'headers']
-        prompt.say("The source account of this header is: https://#{ENV['LOCAL_DOMAIN']}/web/accounts/#{attachment_id}")
-      end
+      model = case url.split('/').second
+                when 'media_attachments'
+                  MediaAttachment.find(attachment_id).status
+                when 'accounts'
+                  Account.find(attachment_id)
+                else
+                  'Not found.'
+                end
+      prompt.say(ActivityPub::TagManager.instance.url_for(model))
     end
   end
 end
