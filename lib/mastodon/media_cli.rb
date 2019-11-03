@@ -127,10 +127,10 @@ module Mastodon
                       end
                       .join('')
 
-      if url.split('/')[0..-2].include?'media_attachments'
+      if url.split('/')[0..-2].include? 'media_attachments'
         model = MediaAttachment.find(attachment_id).status
         prompt.say(ActivityPub::TagManager.instance.url_for(model))
-      elsif url.split('/')[0..-2].include?'accounts'
+      elsif url.split('/')[0..-2].include? 'accounts'
         model = Account.find(attachment_id)
         prompt.say(ActivityPub::TagManager.instance.url_for(model))
       else
