@@ -122,9 +122,7 @@ module Mastodon
 
       attachment_id = url
                       .split('/')[0..-2]
-                      .select do |key|
-                        key.scan(/\D/).empty?
-                      end
+                      .grep(/\A\d+\z/)
                       .join('')
 
       if url.split('/')[0..-2].include? 'media_attachments'
