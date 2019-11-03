@@ -810,6 +810,8 @@ id:
     proceed_with_move: Pindahkan pengikut
     redirecting_to: Akun Anda dialihkan ke %{acct}.
     set_redirect: Atur peralihan
+    warning:
+      other_data: Tidak akan ada data lagi yang dipindahkan secara otomatis
   moderation:
     title: Moderasi
   notification_mailer:
@@ -867,6 +869,14 @@ id:
       duration_too_short: terlalu cepat
       expired: Japat telah berakhir
       over_character_limit: tidak boleh lebih dari %{max} karakter
+      too_few_options: harus punya lebih dari satu item
+      too_many_options: tidak boleh berisi lebih dari %{max} item
+  preferences:
+    other: Lainnya
+    public_timelines: Linimasa publik
+  relationships:
+    activity: Aktivitas akun
+    last_active: Terakhir aktif
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
