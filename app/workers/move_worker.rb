@@ -21,6 +21,7 @@ class MoveWorker
   def rewrite_follows!
     @source_account.passive_relationships
                    .where(account: Account.local)
+                   .where.not(account_id: @target_account.id)
                    .in_batches
                    .update_all(target_account_id: @target_account.id)
   end
