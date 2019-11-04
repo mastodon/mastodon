@@ -27,6 +27,19 @@ describe MoveWorker do
     let(:target_account) { Fabricate(:user, email: 'alice@example.com', account: Fabricate(:account, username: 'alice')).account }
 
     describe 'perform' do
+      it 'calls UnfollowFollowWorker' do
+        allow(UnfollowFollowWorker).to receive(:push_bulk)
+        subject.perform(source_account.id, target_account.id)
+        expect(UnfollowFollowWorker).to have_received(:push_bulk).with([local_follower.id])
+      end
+    end
+  end
+
+  context 'both target and source accounts are local' do
+    let(:target_account) { Fabricate(:user, email: 'alice@example.com', account: Fabricate(:account, username: 'alice')).account }
+    let(:source_account) { Fabricate(:user, email: 'alice_@example.com', account: Fabricate(:account, username: 'alice_')).account }
+
+    describe 'perform' do
       it 'calls makes local followers follow the target account' do
         subject.perform(source_account.id, target_account.id)
         expect(local_follower.following?(target_account)).to be true

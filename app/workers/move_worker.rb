@@ -7,7 +7,7 @@ class MoveWorker
     @source_account = Account.find(source_account_id)
     @target_account = Account.find(target_account_id)
 
-    if @target_account.local?
+    if @target_account.local? && @source_account.local?
       rewrite_follows!
     else
       queue_follow_unfollows!
@@ -28,8 +28,10 @@ class MoveWorker
   end
 
   def queue_follow_unfollows!
+    bypass_locked = @target_account.local?
+
     @source_account.followers.local.select(:id).find_in_batches do |accounts|
-      UnfollowFollowWorker.push_bulk(accounts.map(&:id)) { |follower_id| [follower_id, @source_account.id, @target_account.id] }
+      UnfollowFollowWorker.push_bulk(accounts.map(&:id)) { |follower_id| [follower_id, @source_account.id, @target_account.id, bypass_locked] }
     end
   end
 end
