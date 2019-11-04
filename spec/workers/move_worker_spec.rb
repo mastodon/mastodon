@@ -32,6 +32,14 @@ describe MoveWorker do
         expect(local_follower.following?(target_account)).to be true
       end
 
+      it 'does not fail when a local user is already following both accounts' do
+        double_follower = Fabricate(:user, email: 'eve@example.com', account: Fabricate(:account, username: 'eve')).account
+        double_follower.follow!(source_account)
+        double_follower.follow!(target_account)
+        subject.perform(source_account.id, target_account.id)
+        expect(local_follower.following?(target_account)).to be true
+      end
+
       it 'does not allow the moved account to follow themselves' do
         source_account.follow!(target_account)
         subject.perform(source_account.id, target_account.id)
