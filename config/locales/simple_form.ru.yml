@@ -8,7 +8,7 @@ ru:
       account_warning_preset:
         text: Вы можете использовать всё, что в обычных постах — ссылки, хэштеги, упоминания и т.д.
       admin_account_action:
-        include_statuses: Пользователь увидит, какие посты вызвали модератоскую активность или предупреждение
+        include_statuses: Пользователь будет видеть к каким постами применялись модераторские действия и выносились предупреждения
         send_email_notification: Пользователь получит сообщение о том, что случилось с его/её аккаунтом
         text_html: (Необязательно) Можно использовать обычный синтаксис. Для экономии времени <a href="%{path}">добавьте шаблоны предупреждений</a>
         type_html: Выберите, что делать с аккаунтом <strong>%{acct}</strong>
@@ -49,7 +49,7 @@ ru:
       featured_tag:
         name: 'Возможно, вы захотите выбрать из них:'
       form_challenge:
-        current_password: Вы входите в зону безопаности
+        current_password: Вы входите в зону безопасности
       imports:
         data: Файл CSV, экспортированный с другого узла Mastodon
       invite_request:
@@ -65,6 +65,10 @@ ru:
         fields:
           name: Пункт
           value: Значение
+      account_alias:
+        acct: Обработчик старой учётной записи
+      account_migration:
+        acct: Обработчик новой учётной записи
       account_warning_preset:
         text: Текст шаблона
       admin_account_action:
