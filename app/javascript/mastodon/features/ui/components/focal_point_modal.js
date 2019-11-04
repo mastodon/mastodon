@@ -184,6 +184,15 @@ class FocalPointModal extends ImmutablePureComponent {
     this.setState({ description: e.target.value, dirty: true });
   }
 
+  handleKeyDown = (e) => {
+    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({ description: e.target.value, dirty: true });
+      this.handleSubmit();
+    }
+  }
+
   handleSubmit = () => {
     this.props.onSave(this.state.description, this.state.focusX, this.state.focusY);
     this.props.onClose();
@@ -254,6 +263,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 className='setting-text light'
                 value={detecting ? '…' : description}
                 onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
                 disabled={detecting}
                 autoFocus
               />
