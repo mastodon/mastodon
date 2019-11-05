@@ -62,6 +62,11 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     it 'returns http success' do
       expect(response).to have_http_status(200)
+      json = body_as_json
+      tanker_public_identity = json[:tanker_public_identity]
+      expect(tanker_public_identity).to_not be_nil
+      # Private identity should be different from the public one!
+      expect(tanker_public_identity).to_not eq(user.tanker_identity)
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'

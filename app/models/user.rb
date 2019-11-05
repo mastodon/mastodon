@@ -151,6 +151,10 @@ class User < ApplicationRecord
     end
   end
 
+  def tanker_public_identity
+    TankerIdentity::get_public_identity tanker_identity
+  end
+
   def confirm!
     new_user      = !confirmed?
     self.approved = true if open_registrations?

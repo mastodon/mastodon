@@ -123,6 +123,8 @@ class Account < ApplicationRecord
            :locale,
            :hides_network?,
            :shows_application?,
+           :tanker_identity,
+           :tanker_public_identity,
            to: :user,
            prefix: true,
            allow_nil: true
