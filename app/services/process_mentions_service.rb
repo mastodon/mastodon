@@ -7,29 +7,38 @@ class ProcessMentionsService < BaseService
   # local mention pointers, send Salmon notifications to mentioned
   # remote users
   # @param [Status] status
-  def call(status)
+  def call(status, options = {})
     return unless status.local?
 
     @status  = status
     mentions = []
 
-    status.text = status.text.gsub(Account::MENTION_RE) do |match|
-      username, domain  = Regexp.last_match(1).split('@')
-      mentioned_account = Account.find_remote(username, domain)
-
-      if mention_undeliverable?(mentioned_account)
-        begin
-          mentioned_account = resolve_account_service.call(Regexp.last_match(1))
-        rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
-          mentioned_account = nil
-        end
+    if @status.encrypted?
+      usernames = options[:usernames] || []
+      # TODO: Make sure username matches a *local* account
+      usernames.each do |username|
+        account = Account.find_by!(username: username)
+        mentions << Mention.create!(status: @status, account:account)
       end
+    else
+      status.text = status.text.gsub(Account::MENTION_RE) do |match|
+        username, domain  = Regexp.last_match(1).split('@')
+        mentioned_account = Account.find_remote(username, domain)
 
-      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
+        if mention_undeliverable?(mentioned_account)
+          begin
+            mentioned_account = resolve_account_service.call(Regexp.last_match(1))
+          rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+            mentioned_account = nil
+          end
+        end
 
-      mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
+        next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
-      "@#{mentioned_account.acct}"
+        mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
+
+        "@#{mentioned_account.acct}"
+      end
     end
 
     status.save!

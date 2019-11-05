@@ -60,6 +60,21 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
     end
 
+    describe 'POST #create encrypted status with mentions' do
+      let(:scopes) { 'write:statuses' }
+      let(:alice) { Fabricate(:user) }
+      let(:bob) { Fabricate(:user) }
+      let(:names) { [alice, bob].map { |user| user.account.username } }
+
+      before do
+        post :create, params: { status: 'Hello world', encrypted: true, mentions: names }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
     describe 'DELETE #destroy' do
       let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }

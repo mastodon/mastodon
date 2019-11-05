@@ -136,12 +136,21 @@ export function submitCompose(routerHistory) {
     let visibility = getState().getIn(['compose', 'privacy']);
 
     const shouldEncrypt = (visibility === 'direct');
+    let mentionsSet = new Set();
 
     if (shouldEncrypt) {
+      // Parse mentions from the status:
+      let regex = /@(\S+)/g;
+      let match;
+      while ((match = regex.exec(status)) !== null) {
+        // We want the first group, without the leading '@'
+        mentionsSet.add(match[1]);
+      }
       status = await tankerService.encrypt(status);
     }
 
     dispatch(submitComposeRequest());
+    const mentions = Array.from(mentionsSet);
 
     api(getState).post('/api/v1/statuses', {
       status,
@@ -152,6 +161,7 @@ export function submitCompose(routerHistory) {
       visibility,
       poll: getState().getIn(['compose', 'poll'], null),
       encrypted: shouldEncrypt,
+      mentions,
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),

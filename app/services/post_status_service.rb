@@ -20,12 +20,14 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @option [Boolean] :encrypted
+  # @option [Array] :mentions list of usernames in case the text is encrypted
   # @return [Status]
   def call(account, options = {})
     @account     = account
     @options     = options
     @text        = @options[:text] || ''
     @encrypted   = @options[:encrypted] || false
+    @mentions    = @options[:mentions] || []
     @in_reply_to = @options[:thread]
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
@@ -67,7 +69,8 @@ class PostStatusService < BaseService
     end
 
     process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
+    options = { usernames: @mentions }
+    process_mentions_service.call(@status, options)
   end
 
   def schedule_status!

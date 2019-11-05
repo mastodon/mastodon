@@ -34,6 +34,23 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.encrypted).to be_truthy
   end
 
+  it 'can create a new encrypted status with a list of mentions' do
+    account = Fabricate(:account)
+    alice =  Fabricate(:user)
+    bob =  Fabricate(:user)
+    text = "base64-encrypted-status"
+
+    usernames = [alice, bob].map { |x| x.account.username }
+    status = subject.call(account, text: text, encrypted: true, mentions: usernames)
+
+
+    expect(status).to be_persisted
+    expect(status.text).to eq text
+    expect(status.encrypted).to be_truthy
+    mentioned_accounts = status.mentions.map(&:account)
+    expect(mentioned_accounts).to eq [alice.account, bob.account]
+  end
+
   it 'creates a new response status' do
     in_reply_to_status = Fabricate(:status)
     account = Fabricate(:account)
@@ -148,7 +165,7 @@ RSpec.describe PostStatusService, type: :service do
     status = subject.call(account, text: "test status update")
 
     expect(ProcessMentionsService).to have_received(:new)
-    expect(mention_service).to have_received(:call).with(status)
+    expect(mention_service).to have_received(:call).with(status, {usernames: []})
   end
 
   it 'processes hashtags' do

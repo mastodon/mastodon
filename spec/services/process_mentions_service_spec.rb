@@ -59,6 +59,21 @@ RSpec.describe ProcessMentionsService, type: :service do
     end
   end
 
+  context 'Enycrypted status' do
+    let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+    let(:recipient) { Fabricate(:user) }
+    let(:encrypted_status)     { Fabricate(:status, account: account, text: "base64-encrypted-status", visibility: :public, encrypted: true) }
+
+    subject { ProcessMentionsService.new }
+
+    it 'kicks a local notification worker' do
+      expect(recipient.account).to be_local
+      subject.call(encrypted_status, {usernames: [recipient.account.username]} )
+      expect(encrypted_status.mentions[0].account_id).to eq recipient.account.id
+      # TODO: write the assertion here!
+    end
+  end
+
   context 'Temporarily-unreachable ActivityPub user' do
     let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox', last_webfingered_at: nil) }
 
