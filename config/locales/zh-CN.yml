@@ -40,6 +40,7 @@ zh-CN:
     what_is_mastodon: Mastodon 是什么？
   accounts:
     choices_html: "%{name} 的推荐："
+    featured_tags_hint: 您可以精选一些话题标签展示在这里。
     follow: 关注
     followers:
       other: 关注者
@@ -421,6 +422,7 @@ zh-CN:
       domain_blocks:
         all: 对所有人
         disabled: 不对任何人
+        title: 查看域名屏蔽
       hero:
         desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
         title: 主题图片
@@ -594,6 +596,9 @@ zh-CN:
       return: 查看用户个人资料
       web: 返回本站
     title: 关注 %{acct}
+  challenge:
+    invalid_password: 无效密码
+    prompt: 确认密码以继续
   datetime:
     distance_in_words:
       about_x_hours: "%{count}时"
@@ -613,6 +618,7 @@ zh-CN:
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
     warning:
+      irreversible: 您将无法恢复或重新激活您的帐户
       username_available: 您的用户名现在又可以使用了
       username_unavailable: 您的用户名仍将无法使用
   directories:
@@ -658,6 +664,7 @@ zh-CN:
     add_new: 添加新条目
     errors:
       limit: 你所推荐的话题标签数已达上限
+    hint_html: "<strong>什么是精选话题标签？</strong> 它们被显示在您的公开个人资料中的突出位置，人们可以在这些标签下浏览您的公共嘟文。 它们是跟踪创作或长期项目的进度的重要工具。"
   filters:
     contexts:
       home: 主页时间轴
@@ -756,7 +763,9 @@ zh-CN:
     cancelled_msg: 成功取消跳转
     errors:
       move_to_self: 不能是当前帐户
+      not_found: 找不到
       on_cooldown: 您正处于冷却状态
+    past_migrations: 迁移记录
     proceed_with_move: 移动关注者
     redirecting_to: 您的帐户被跳转到了 %{acct}。
     set_redirect: 设置跳转
@@ -765,6 +774,7 @@ zh-CN:
       before: '在继续前，请仔细阅读下列说明：'
       cooldown: 移动后会有一个冷却期，在此期间您将无法再次移动
       disabled_account: 此后，您的当前帐户将无法使用。但是，您仍然有权导出数据或者重新激活。
+      followers: 这步操作将把所有关注者从当前账户移动到新账户
   moderation:
     title: 运营
   notification_mailer:
@@ -907,6 +917,7 @@ zh-CN:
   settings:
     account: 账户
     account_settings: 帐户设置
+    aliases: 账户别名
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
@@ -914,7 +925,7 @@ zh-CN:
     development: 开发
     edit_profile: 更改个人资料
     export: 导出
-    featured_tags: 推荐的话题标签
+    featured_tags: 精选的话题标签
     identity_proofs: 身份证明
     import: 导入
     import_and_export: 导入和导出
@@ -924,6 +935,8 @@ zh-CN:
     profile: 个人资料
     relationships: 关注管理
     two_factor_authentication: 双重认证
+  spam_check:
+    spam_detected: 这是一个自动报告。已检测到垃圾信息。
   statuses:
     attached:
       description: '附加媒体：%{attached}'
