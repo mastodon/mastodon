@@ -134,7 +134,6 @@ export function submitCompose(routerHistory) {
     }
 
     let visibility = getState().getIn(['compose', 'privacy']);
-
     const shouldEncrypt = (visibility === 'direct');
     let mentionsSet = new Set();
 
@@ -146,7 +145,19 @@ export function submitCompose(routerHistory) {
         // We want the first group, without the leading '@'
         mentionsSet.add(match[1]);
       }
-      status = await tankerService.encrypt(status);
+
+      // Fetch public identities from the server
+      let identities = [];
+      const knownAccounts = getState().getIn(['accounts']).toJS();
+      for (const id in knownAccounts) {
+        const account = knownAccounts[id];
+        if (mentionsSet.has(account.username)) {
+          identities.push(account.tanker_public_identity);
+        }
+      };
+
+      // Encrypt and share the direct message:
+      status = await tankerService.encrypt(status, { shareWithUsers: identities });
     }
 
     dispatch(submitComposeRequest());

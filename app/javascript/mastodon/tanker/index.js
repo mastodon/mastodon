@@ -10,10 +10,10 @@ export default class TankerService {
     this.verificationUI = new VerificationUI(this.tanker);
   }
 
-  encrypt = async (clearText) => {
+  encrypt = async (clearText, encryptOptions) => {
     await this.lazyStart();
 
-    const encryptedData = await this.tanker.encrypt(clearText);
+    const encryptedData = await this.tanker.encrypt(clearText, encryptOptions);
     const encryptedText = toBase64(encryptedData);
     return encryptedText;
   }
