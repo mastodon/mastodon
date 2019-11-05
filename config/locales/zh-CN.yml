@@ -29,6 +29,11 @@ zh-CN:
     status_count_before: 他们共嘟出了
     tagline: 关注并发现新朋友
     terms: 使用条款
+    unavailable_content: 不可用的内容
+    unavailable_content_description:
+      domain: 服务器
+      reason: 原因
+      rejecting_media: '来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。'
     user_count_after:
       other: 位用户
     user_count_before: 这里共注册有
@@ -45,6 +50,7 @@ zh-CN:
     media: 媒体
     moved_html: "%{name} 已经迁移到 %{new_profile_link}："
     network_hidden: 此信息不可用
+    never_active: 从未活跃
     nothing_here: 这里神马都没有！
     people_followed_by: '%{name} 关注的人'
     people_who_follow: 关注 %{name} 的人
@@ -156,6 +162,7 @@ zh-CN:
         user: 普通用户
       salmon_url: 三文鱼协议网址（Salmon URL）
       search: 搜索
+      search_same_ip: 具有相同IP的其他用户
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
         created_reports: 这个帐户提交的举报
@@ -210,6 +217,7 @@ zh-CN:
       deleted_status: "（嘟文已删除）"
       title: 运营日志
     custom_emojis:
+      assign_category: 指定分类
       by_domain: 域名
       copied_msg: 成功将表情复制到本地
       copy: 复制
@@ -218,11 +226,14 @@ zh-CN:
       delete: 删除
       destroyed_msg: 表情删除成功！
       disable: 停用
+      disabled: 已停用
       disabled_msg: 表情停用成功
       emoji: 表情
       enable: 启用
+      enabled: 已启用
       enabled_msg: 表情启用成功
       image_hint: PNG 格式，最大 50KB
+      list: 列表
       listed: 已显示
       new:
         title: 添加新的自定义表情
@@ -230,11 +241,14 @@ zh-CN:
       shortcode: 短代码
       shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
       title: 自定义表情
+      uncategorized: 未分类
+      unlist: 不公开
       unlisted: 已隐藏
       update_failed_msg: 表情更新失败
       updated_msg: 表情更新成功！
       upload: 上传新表情
     dashboard:
+      authorized_fetch_mode: 安全模式
       backlog: 未处理任务数
       config: 服务器配置
       feature_deletions: 帐户删除
@@ -404,6 +418,9 @@ zh-CN:
       custom_css:
         desc_html: 通过 CSS 代码调整所有页面的显示效果
         title: 自定义 CSS
+      domain_blocks:
+        all: 对所有人
+        disabled: 不对任何人
       hero:
         desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
         title: 主题图片
@@ -484,6 +501,10 @@ zh-CN:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
       directory: 在目录中
+      last_active: 最近活动
+      most_popular: 最热门的
+      most_recent: 最近的
+      name: 话题标签
       review: 审核状态
       reviewed: 已审核
       title: 话题标签
@@ -504,6 +525,8 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
+  aliases:
+    add_new: 创建别名
   appearance:
     advanced_web_interface: 高级 web 界面
     advanced_web_interface_hint: '如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。'
@@ -511,6 +534,7 @@ zh-CN:
     confirmation_dialogs: 确认对话框
     discovery: 发现
     sensitive_content: 敏感内容
+    toot_layout: 嘟文布局
   application_mailer:
     notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
@@ -530,8 +554,12 @@ zh-CN:
     apply_for_account: 请求邀请
     change_password: 密码
     checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">服务器规则</a> 和 <a href="%{terms_path}" target="_blank">服务条款</a>
+    checkbox_agreement_without_rules_html: 我同意 <a href="%{terms_path}" target="_blank">服务条款</a>
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
+    description:
+      prefix_invited_by_user: "@%{name} 邀请您加入这个Mastodon服务器！"
+      prefix_sign_up: 现在就注册 Mastodon！
     didnt_get_confirmation: 没有收到确认邮件？
     forgot_password: 忘记密码？
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
