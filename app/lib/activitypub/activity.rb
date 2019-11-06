@@ -158,7 +158,7 @@ class ActivityPub::Activity
   end
 
   def follow_from_object
-    @follow ||= Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+    @follow ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
 
   def fetch_remote_original_status
