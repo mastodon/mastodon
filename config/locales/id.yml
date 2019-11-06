@@ -876,8 +876,10 @@ id:
     public_timelines: Linimasa publik
   relationships:
     activity: Aktivitas akun
+    dormant: Terbengkalai
     last_active: Terakhir aktif
     most_recent: Terkini
+    moved: Dipindah
     primary: Utama
     relationship: Hubungan
     remove_selected_domains: Hapus semua pengikut dari domain yang dipilih
@@ -889,8 +891,16 @@ id:
     no_account_html: Tidak memiliki akun? Anda dapat <a href='%{sign_up_path}' target='_blank'>mendaftar di sini</a>
     proceed: Lanjutkan untuk mengikuti
     prompt: 'Anda akan mengikuti:'
+    reason_html: "<strong>Mengapa langkah ini penting?</strong> <code>%{instance}</code> mungkin saja bukan tempat Anda mendaftar, sehingga kami perlu mengalihkan Anda ke server beranda lebih dahulu."
   remote_interaction:
+    favourite:
+      proceed: Lanjutkan ke favorit
+      prompt: 'Anda ingin memfavoritkan toot ini:'
+    reblog:
+      proceed: Lanjutkan ke boost
+      prompt: 'Anda ingin mem-boost toot ini:'
     reply:
+      proceed: Lanjutkan ke balasan
       prompt: 'Anda ingin membalas toot ini:'
   scheduled_statuses:
     over_daily_limit: Anda telah melampaui batas %{limit} toot terjadwal untuk sehari
@@ -951,11 +961,30 @@ id:
     featured_tags: Tagar unggulan
     identity_proofs: Bukti identitas
     import: Impor
+    import_and_export: Impor dan ekspor
+    migrate: Pemindahan akun
+    notifications: Notifikasi
     preferences: Pilihan
+    profile: Profil
     two_factor_authentication: Autentikasi Two-factor
+  spam_check:
+    spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
   statuses:
+    attached:
+      description: 'Terlampir: %{attached}'
+      image:
+        other: "%{count} gambar"
+      video:
+        other: "%{count} video"
+    boosted_from_html: Boost dari %{acct_link}
+    content_warning: 'Peringatan konten: %{warning}'
+    disallowed_hashtags:
+      other: 'berisi tagar yang tidak diizinkan: %{tags}'
+    language_detection: Deteksi bahasa secara otomatis
     open_in_web: Buka di web
     over_character_limit: melebihi %{max} karakter
+    pin_errors:
+      limit: Anda sudah mencapai jumlah maksimum toot yang dapat disematkan
     show_more: Tampilkan selengkapnya
     visibilities:
       private: Khusus pengikut
