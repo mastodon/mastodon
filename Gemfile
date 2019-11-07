@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '>= 2.4.0', '< 2.7.0'
 
-gem 'pkg-config', '~> 1.3'
+gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.2'
 gem 'rails', '~> 5.2.3'
@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.48', require: false
+gem 'aws-sdk-s3', '~> 1.52', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -86,7 +86,7 @@ gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.1'
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.1.3'
 gem 'strong_migrations', '~> 0.4'
@@ -109,7 +109,7 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.7'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails', '~> 3.9'
 end
 
 group :production, :test do
@@ -119,7 +119,7 @@ end
 group :test do
   gem 'capybara', '~> 3.29'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.5'
+  gem 'faker', '~> 2.6'
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
@@ -129,8 +129,8 @@ group :test do
 end
 
 group :development do
-  gem 'active_record_query_trace', '~> 1.6'
-  gem 'annotate', '~> 2.7'
+  gem 'active_record_query_trace', '~> 1.7'
+  gem 'annotate', '~> 3.0'
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 6.0'

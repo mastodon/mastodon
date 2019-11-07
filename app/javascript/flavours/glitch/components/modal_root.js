@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'wicg-inert';
 import createHistory from 'history/createBrowserHistory';
 
 export default class ModalRoot extends React.PureComponent {
