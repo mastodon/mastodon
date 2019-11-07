@@ -229,7 +229,7 @@ class Notification extends ImmutablePureComponent {
 
             <span title={notification.get('created_at')}>
               {ownPoll ? (
-                <FormattedMessage id='notification.ownPoll' defaultMessage='Your poll has ended' />
+                <FormattedMessage id='notification.own_poll' defaultMessage='Your poll has ended' />
               ) : (
                 <FormattedMessage id='notification.poll' defaultMessage='A poll you have voted in has ended' />
               )}
