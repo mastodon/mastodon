@@ -46,6 +46,12 @@ $content-width: 840px;
           position: relative;
           bottom: -2px;
         }
+
+        h2 {
+          height: 20px;
+          position: relative;
+          bottom: -2px;
+        }
       }
 
       &__icon {
@@ -68,15 +74,32 @@ $content-width: 840px;
 
     .logo {
       display: block;
-      margin: 40px auto;
-      width: 100px;
+      margin: 60px 0 0 20px;
       height: 100px;
+
+      h2 .brand {
+        color: $primary-text-color;
+        display: block;
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 400;
+        padding-bottom: 40px;
+        border-bottom: 1px solid lighten($ui-base-color, 8%);
+      }
+
     }
 
     @media screen and (max-width: $no-columns-breakpoint) {
       & > a:first-child {
         display: none;
       }
+
+      .logo,
+      .logo h2,
+      .logo h2 .brand {
+        display: none;
+      }
+
     }
 
     ul {
