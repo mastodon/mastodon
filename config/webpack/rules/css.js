@@ -20,7 +20,9 @@ module.exports = {
     {
       loader: 'sass-loader',
       options: {
-        includePaths: ['app/javascript'],
+        sassOptions: {
+          includePaths: ['app/javascript'],
+        },
         implementation: require('sass'),
         sourceMap: true,
       },
