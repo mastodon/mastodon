@@ -5,4 +5,7 @@ const sharedConfig = require('./shared.js');
 
 module.exports = merge(sharedConfig, {
   mode: 'development',
+  optimization: {
+    minimize: false,
+  },
 });
