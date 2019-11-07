@@ -213,7 +213,7 @@ sk:
         destroy_domain_block: "%{name} povolil doménu %{target}"
         destroy_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam povolených"
         destroy_status: "%{name} zmazal status %{target}"
-        disable_2fa_user: "%{name} zakázal 2FA pre používateľa %{target}"
+        disable_2fa_user: "%{name} vypol požiadavku 2FA pre používateľa %{target}"
         disable_custom_emoji: "%{name} zakázal emoji %{target}"
         disable_user: "%{name} zakázal prihlásenie pre používateľa %{target}"
         enable_custom_emoji: "%{name} povolil emoji %{target}"
@@ -990,7 +990,7 @@ sk:
     preferences: Voľby
     profile: Profil
     relationships: Sledovania a následovatelia
-    two_factor_authentication: Dvoj-faktorové overenie
+    two_factor_authentication: Dvojfázové overenie
   statuses:
     attached:
       description: 'Priložené: %{attached}'
@@ -1084,11 +1084,11 @@ sk:
       default: "%b %d, %R, %H:%M"
   two_factor_authentication:
     code_hint: Pre potvrdenie teraz zadaj kód vygenerovaný pomocou tvojej overovacej aplikácie
-    description_html: Ak povolíš <strong> dvoj-faktorové overovanie</strong>, na prihlásenie potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš zadať.
+    description_html: Ak povolíš <strong> dvojfázové overovanie</strong>, na prihlásenie potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš zadať.
     disable: Zakáž
     enable: Povoľ
-    enabled: Dvoj-faktorové overovanie je povolené
-    enabled_success: Dvoj-faktorové overovanie bolo úspešne povolené
+    enabled: Dvojfázové overovanie je povolené
+    enabled_success: Dvojfázové overovanie úspešne povolené
     generate_recovery_codes: Vygeneruj zálohové kódy
     instructions_html: "<strong>Naskenuj tento QR kód do Google Autentikátora, alebo do podobnej TOTP aplikácie pomocou svojho telefónu.</strong> Od tejto chvíle bude táto aplikácia pre teba generovať kódy ktoré musíš zadať aby si sa prihlásil/a."
     lost_recovery_codes: Zálohové kódy ti umožnia dostať sa k svojmu účtu ak stratíš telefón. Pokiaľ si stratila svoje zálohové kódy, môžeš si ich tu znovu vygenerovať. Tvoje staré zálohové kódy budú zneplatnené.
