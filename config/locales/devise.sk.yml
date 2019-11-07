@@ -1,4 +1,3 @@
----
 sk:
   devise:
     confirmations:
@@ -45,6 +44,14 @@ sk:
         extra: Ak si túto akciu nevyžiadal/a, prosím ignoruj tento email. Tvoje heslo nebude zmenené pokiaľ nepostúpiš na adresu uvedenú vyššie a vytvoríš si nové.
         subject: 'Mastodon: Pokyny pre obnovu hesla'
         title: Nastav nové heslo
+      two_factor_disabled:
+        subject: 'Mastodon: Dvojfázové overovanie vypnuté'
+        title: 2FA vypnuté
+      two_factor_enabled:
+        title: 2FA zapnuté
+      two_factor_recovery_codes_changed:
+        explanation: Predošlé obnovovacie kódy boli urobené neplatnými a boli vygenerované nové.
+        title: Obnovovacie kódy 2FA zmenené
       unlock_instructions:
         subject: 'Mastodon: Pokyny na odomknutie účtu'
     omniauth_callbacks:
@@ -81,7 +88,7 @@ sk:
       not_found: nenájdený
       not_locked: nebol zamknutý
       not_saved:
+        one: '1 chyba zabránila uloženiu tohto %{resource}:'
         few: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
         many: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
-        one: '1 chyba zabránila uloženiu tohto %{resource}:'
         other: "%{count} chyby zabránili uloženiu tohto %{resource}:"
