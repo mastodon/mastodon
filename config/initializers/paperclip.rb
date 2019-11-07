@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-Paperclip.options[:read_timeout] = 60
-
 Paperclip.interpolates :filename do |attachment, style|
-  return attachment.original_filename if style == :original
-  [basename(attachment, style), extension(attachment, style)].delete_if(&:blank?).join('.')
+  if style == :original
+    attachment.original_filename
+  else
+    [basename(attachment, style), extension(attachment, style)].delete_if(&:blank?).join('.')
+  end
 end
 
 Paperclip::Attachment.default_options.merge!(
@@ -24,22 +25,27 @@ if ENV['S3_ENABLED'] == 'true'
     storage: :s3,
     s3_protocol: s3_protocol,
     s3_host_name: s3_hostname,
+
     s3_headers: {
       'X-Amz-Multipart-Threshold' => ENV.fetch('S3_MULTIPART_THRESHOLD') { 15.megabytes }.to_i,
       'Cache-Control' => 'public, max-age=315576000, immutable',
     },
+
     s3_permissions: ENV.fetch('S3_PERMISSION') { 'public-read' },
     s3_region: s3_region,
+
     s3_credentials: {
       bucket: ENV['S3_BUCKET'],
       access_key_id: ENV['AWS_ACCESS_KEY_ID'],
       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
     },
+
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
       http_open_timeout: 5,
       http_read_timeout: 5,
       http_idle_timeout: 5,
+      retry_limit: 0,
     }
   )
 
@@ -48,6 +54,7 @@ if ENV['S3_ENABLED'] == 'true'
       endpoint: ENV['S3_ENDPOINT'],
       force_path_style: true
     )
+
     Paperclip::Attachment.default_options[:url] = ':s3_path_url'
   end
 
@@ -73,6 +80,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
     },
+
     fog_directory: ENV['SWIFT_CONTAINER'],
     fog_host: ENV['SWIFT_OBJECT_URL'],
     fog_public: true
@@ -81,7 +89,7 @@ else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
     use_timestamp: true,
-    path: (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename',
-    url: (ENV['PAPERCLIP_ROOT_URL'] || '/system') + '/:class/:attachment/:id_partition/:style/:filename',
+    path: ENV.fetch('PAPERCLIP_ROOT_PATH', ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename',
+    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:class/:attachment/:id_partition/:style/:filename',
   )
 end

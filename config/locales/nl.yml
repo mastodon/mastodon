@@ -18,7 +18,6 @@ nl:
     discover_users: Gebruikers ontdekken
     documentation: Documentatie
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
-    generic_description: "%{domain} is een server in het Mastodonnetwerk"
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
     instance_actor_flash: 'Dit account is een virtuel actor die wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wil blokkeren. In zo''n geval dien je echter een domeinblokkade te gebruiken.
@@ -479,8 +478,8 @@ nl:
           open: Iedereen kan zich registreren
         title: Registratiemodus
       show_known_fediverse_at_about_page:
-        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
-        title: De globale tijdlijn op de voorpagina tonen
+        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdlijn
+        title: De globale tijdlijn op de openbare tijdlijnpagina tonen
       show_staff_badge:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
@@ -504,8 +503,8 @@ nl:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodonserver
       timeline_preview:
-        desc_html: Toon een openbare tijdlijn op de voorpagina
-        title: Tijdlijn op de voorpagina tonen
+        desc_html: Toon een link naar de openbare tijdlijnpagina op de voorpagina en geef de API zonder in te loggen toegang tot de openbare tijdlijn
+        title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
@@ -795,7 +794,7 @@ nl:
       '604800': 1 week
       '86400': 1 dag
     expires_in_prompt: Nooit
-    generate: Genereren
+    generate: Uitnodigingslink genereren
     invited_by: 'Jij bent uitgenodigd door:'
     max_uses:
       one: 1 keer
@@ -1005,8 +1004,6 @@ nl:
     profile: Profiel
     relationships: Volgers en gevolgden
     two_factor_authentication: Tweestapsverificatie
-  spam_check:
-    spam_detected_and_silenced: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd en de verzender hiervan werd automatisch genegeerd. Wanneer dit een vergissing is, kun je het negeren van dit account beter weer ongedaan maken.
   statuses:
     attached:
       description: 'Bijlagen: %{attached}'

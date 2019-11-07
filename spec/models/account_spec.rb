@@ -126,8 +126,8 @@ RSpec.describe Account, type: :model do
       end
 
       it 'sets default avatar, header, avatar_remote_url, and header_remote_url' do
-        expect(account.avatar_remote_url).to eq ''
-        expect(account.header_remote_url).to eq ''
+        expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
+        expect(account.header_remote_url).to eq expectation.header_remote_url
         expect(account.avatar_file_name).to  eq nil
         expect(account.header_file_name).to  eq nil
       end

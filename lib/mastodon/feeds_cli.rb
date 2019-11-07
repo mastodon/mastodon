@@ -27,7 +27,6 @@ module Mastodon
       dry_run = options[:dry_run] ? '(DRY RUN)' : ''
 
       if options[:all] || username.nil?
-
         processed, = parallelize_with_progress(Account.joins(:user).merge(User.active)) do |account|
           PrecomputeFeedService.new.call(account) unless options[:dry_run]
         end

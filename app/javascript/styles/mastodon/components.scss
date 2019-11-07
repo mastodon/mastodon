@@ -3216,27 +3216,22 @@ a.status-card.compact:hover {
   cursor: default;
   display: flex;
   flex: 1 1 auto;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
 
-  & > div {
-    width: 100%;
-    background: transparent;
-    padding-top: 0;
-  }
-
   &__figure {
-    width: 100%;
-    height: 10px;
-    background-size: contain;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    &,
+    img {
+      display: block;
+      width: auto;
+      height: 160px;
+      margin: 0;
+    }
   }
 
-  &.missing-indicator {
+  &--without-header {
     padding-top: 20px + 48px;
   }
 
@@ -6186,7 +6181,8 @@ noscript {
   background: $base-shadow-color;
 
   img,
-  video {
+  video,
+  canvas {
     display: block;
     max-height: 80vh;
     width: 100%;
