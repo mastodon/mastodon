@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandCommunityTimeline } from '../../actions/timelines';
+import { clearTimeline, expandCommunityTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from '../../actions/streaming';
@@ -82,6 +82,12 @@ class CommunityTimeline extends React.PureComponent {
       const { dispatch, onlyMedia, excludeBots } = this.props;
 
       this.disconnect();
+
+      if (prevProps.excludeBots !== excludeBots) {
+        dispatch(clearTimeline('community'));
+        dispatch(clearTimeline('community:media'));
+      }
+
       dispatch(expandCommunityTimeline({ onlyMedia, excludeBots }));
       this.disconnect = dispatch(connectCommunityStream({ onlyMedia, excludeBots }));
     }

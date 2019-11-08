@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandPublicTimeline } from '../../actions/timelines';
+import { clearTimeline, expandPublicTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from '../../actions/streaming';
@@ -81,6 +81,12 @@ class PublicTimeline extends React.PureComponent {
       const { dispatch, onlyMedia, excludeBots } = this.props;
 
       this.disconnect();
+
+      if (prevProps.excludeBots !== excludeBots) {
+        dispatch(clearTimeline('public'));
+        dispatch(clearTimeline('public:media'));
+      }
+
       dispatch(expandPublicTimeline({ onlyMedia, excludeBots }));
       this.disconnect = dispatch(connectPublicStream({ onlyMedia, excludeBots }));
     }
