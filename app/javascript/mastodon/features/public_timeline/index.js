@@ -22,7 +22,7 @@ const mapStateToProps = (state, { columnId }) => {
   const timelineState = state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`]);
 
   return {
-    hasUnread: !!timelineState && (timelineState.get('unread') > 0 || timelineState.get('pendingItems').size > 0),
+    hasUnread: !!timelineState && timelineState.get('unread') > 0,
     onlyMedia,
   };
 };
