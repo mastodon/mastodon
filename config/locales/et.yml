@@ -10,6 +10,7 @@ et:
     apps: Mobiilrakendused
     apps_platforms: Kasuta Mastodoni iOS-is, Androidis ja teistel platvormidel
     browse_directory: Sirvi profiilide kataloogi ja filtreeri huvide alusel
+    browse_local_posts: Sirvi reaalajas voogu avalikest postitustest sellest serverist
     browse_public_posts: Sirvi reaalajas voogu avalikest postitustest Mastodonis
     contact: Kontakt
     contact_missing: Määramata
@@ -201,10 +202,12 @@ et:
         confirm_user: "%{name} kinnitas kasutaja %{target} e-postiaadressi"
         create_account_warning: "%{name} saatis kasutajale %{target} hoiatuse"
         create_custom_emoji: "%{name} laadis üles uue emotikooni %{target}"
+        create_domain_allow: "%{name} lisas domeeni %{target} lubatute nimekirja"
         create_domain_block: "%{name} blokeeris domeeni %{target}"
         create_email_domain_block: "%{name} lisas e-posti domeeni %{target} musta nimekirja"
         demote_user: "%{name} alandas kasutaja %{target}"
         destroy_custom_emoji: "%{name} kustutas emotikooni %{target}"
+        destroy_domain_allow: "%{name} eemaldas domeeni %{target} lubatute nimekirjast"
         destroy_domain_block: "%{name} eemaldas blokeeringu domeenilt %{target}"
         destroy_email_domain_block: "%{name} lisas e-posti domeeni %{target} lubatute nimekirja"
         destroy_status: "%{name} eemaldas %{target} staatuse"
@@ -246,6 +249,7 @@ et:
       enabled: Lubatud
       enabled_msg: Selle emotikoni lubamine õnnestus
       image_hint: PNG kuni 50KB
+      list: Loend
       listed: Nimekirjastatud
       new:
         title: Lisa uus emotikon
@@ -253,6 +257,8 @@ et:
       shortcode: Lühikood
       shortcode_hint: Vähemalt 2 tähemärki, ainult tähted, numbrid ja alakriipsud
       title: Emotikonid
+      uncategorized: Kategoriseerimata
+      unlist: Kirjendamata
       unlisted: Kirjendamata
       update_failed_msg: Ei saanud seda emotikoni uuendada
       updated_msg: Emotikoni uuendamine õnnestus!
@@ -284,6 +290,7 @@ et:
       week_interactions: interaktsioone see nädal
       week_users_active: aktiivne see nädal
       week_users_new: kasutajaid see nädal
+      whitelist_mode: Lubatud
     domain_allows:
       add_new: Luba domeen
       created_msg: Domeeni lubamine õnnestus
@@ -294,6 +301,7 @@ et:
       created_msg: Domeeni blokeeringut töödeldakse
       destroyed_msg: Domeeniblokeering on tagasi võetud
       domain: Domeen
+      edit: Redigeeri domeeniblokeeringut
       existing_domain_block_html: Te olete juba lisanud domeenile %{name} piiranguid, palun <a href="%{unblock_url}">eemaldage blokeering</a> enne jätkamist.
       new:
         create: Loo blokeering
@@ -304,6 +312,10 @@ et:
           silence: Vaigista
           suspend: Peata
         title: Uus domeeniblokeering
+      private_comment: Privaatne kommentaar
+      private_comment_hint: Kommenteeri selle domeeni limiteerimise kohta moderaatoritele.
+      public_comment: Avalik kommentaar
+      public_comment_hint: Kommenteeri selle domeeni limiteerimise kohta avalikkusele, kui domeenilimitatsioonide loend on kõigile nähtav.
       reject_media: Keela meediafailid
       reject_media_hint: Kustutab kohalikult salvestatud meediafailid ja keeldub tulevikus rohkem allalaadimast. Ei puuduta peatamisi
       reject_reports: Lükka teavitused tagasi
