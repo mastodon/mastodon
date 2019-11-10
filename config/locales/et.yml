@@ -335,6 +335,7 @@ et:
         title: Eemalda domeeniblokeering %{domain}
         undo: Võta tagasi
       undo: Võta tagasi domeeniblokeering
+      view: Vaata domeeniblokeeringut
     email_domain_blocks:
       add_new: Lisa uus
       created_msg: E-posti aadressi keelunimekirja lisamine õnnestus
@@ -358,6 +359,8 @@ et:
         all: Kõik
         limited: Piiratud
         title: Moderatsioon
+      private_comment: Privaatne kommentaar
+      public_comment: Avalik kommentaar
       title: Föderatsioon
       total_blocked_by_us: Meie poolt blokeeritud
       total_followed_by_them: Nende poolt jälgitud
@@ -435,6 +438,13 @@ et:
       custom_css:
         desc_html: Muuda kujundust CSSi abil, mis laetakse igal lehel
         title: Kohandatud CSS
+      domain_blocks:
+        all: Kõigile
+        disabled: Mitte kellelegi
+        title: Näita domeeniblokeeringuid
+        users: Sisseloginud kohalikele kasutajatele
+      domain_blocks_rationale:
+        title: Näita põhjendust
       hero:
         desc_html: Kuvatud kodulehel. Vähemalt 600x100px soovitatud. Kui pole seadistatud, kuvatakse serveri pisililt
         title: Maskotipilt
@@ -495,12 +505,18 @@ et:
         desc_html: Kuva avalikku ajajoont esilehel
         title: Ajajoone eelvaade
       title: Lehe seaded
+      trendable_by_default:
+        desc_html: Puudutab silte, mis pole varem keelatud
+        title: Luba siltide trendimine ilma eelneva ülevaatuseta
+      trends:
+        title: Populaarsed sildid praegu
     statuses:
       back_to_account: Tagasi konto lehele
       batch:
         delete: Kustuta
         nsfw_off: Märgi kui mitte tundlik
         nsfw_on: Märgi kui tundlik
+      deleted: Kustutatud
       failed_to_execute: Täitmine ebaõnnestus
       media:
         title: Meedia
@@ -509,7 +525,20 @@ et:
       title: Konto staatused
       with_media: Meediaga
     tags:
+      accounts_today: Unikaalseid kasutusi täna
+      accounts_week: Unikaalseid kasutusi see nädal
+      context: Kontekst
+      last_active: Viimati aktiivne
+      most_popular: Kõige populaarsemad
+      most_recent: Viimased
+      name: Silt
+      review: Staatuse ülevaade
+      reviewed: Ülevaadatud
       title: Sildid
+      trending_right_now: Praegu populaarsed
+      unique_uses_today: "%{count} inimest postitavad täna"
+      unreviewed: Üle vaatamata
+      updated_msg: Sildi sätted edukalt uuendatud
     title: Administreerimine
     warning_presets:
       add_new: Lisa uus
