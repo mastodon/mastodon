@@ -803,6 +803,7 @@ id:
       already_moved: adalah akun yang sama yang sudah Anda pindahkan ke
       move_to_self: tidak boleh akun sekarang
       not_found: tidak dapat ditemukan
+    followers_count: Jumlah pengikut saat migrasi
     incoming_migrations: Pindah dari akun berbeda
     incoming_migrations_html: Untuk pindah dari akun lain ke sini, Anda harus <a href="%{path}">membuat alias akun</a> terlebih dahulu.
     moved_msg: Akun Anda dialihkan ke %{acct} dan pengikut Anda akan ikut dipindahkan.
@@ -812,6 +813,9 @@ id:
     redirecting_to: Akun Anda dialihkan ke %{acct}.
     set_redirect: Atur peralihan
     warning:
+      before: 'Sebelum lanjut, mohon perhatikan catatan ini:'
+      cooldown: Setelah pindah akun adalah masa tenang, masa Anda tidak dapat pindah akun lagi
+      followers: Tindakan ini akan memindah semua pengikut Anda dari akun sekarang ke akun baru
       other_data: Tidak akan ada data lagi yang dipindahkan secara otomatis
   moderation:
     title: Moderasi
@@ -1014,6 +1018,11 @@ id:
     setup: Persiapan
     wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
   user_mailer:
+    warning:
+      review_server_policies: Tinjau kebijakan server
+      statuses: 'Khususnya untuk:'
+      subject:
+        disable: Akun Anda %{acct} telah dibekukan
     welcome:
       edit_profile_action: Siapkan profil
   users:
