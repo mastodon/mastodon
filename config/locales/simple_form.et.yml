@@ -1,9 +1,14 @@
 et:
   simple_form:
     hints:
+      account_alias:
+        acct: Sisesta selle konto kasutajanimi@domeen, millelt soovite kolida
+      account_migration:
+        acct: Sisesta selle konto kasutajanimi@domeen, millele soovite kolida
       account_warning_preset:
         text: Te saate kasutada tuututuse süntaksi, näiteks URLe, silte ja mainimisi
       admin_account_action:
+        include_statuses: Kasutaja näeb, millised tuututused on põhjustanud selle moderaatori tegevuse või hoiatuse
         send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
         text_html: Valikuline. Te saate kasutada tuututuse süntaksi. Te saate <a href="%{path}">lisada hoiatuste eelseadistusi</a> aega säästmiseks
         type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
@@ -13,6 +18,8 @@ et:
         avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         bot: See konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
+        current_password: Turvalisuse huvides palun sisestage praeguse konto salasõna
+        current_username: Kinnitamiseks palun sisestage oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka perioodi tegevusetust ja ainult siis, kui Teile on saadetud privaatseid sõnumeid
         email: Teile saadetakse kinnituskiri e-posti teel
         fields: Te saate oma profiilil tabelina kuvada kuni 4 asja
