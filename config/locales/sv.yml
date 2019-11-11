@@ -56,6 +56,8 @@ sv:
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
+    pin_errors:
+      following: Du måste vara följare av den person du vill godkänna
     posts_tab_heading: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
@@ -106,7 +108,11 @@ sv:
       followers: Följare
       followers_url: Följare URL
       follows: Följs
+      header: Rubrik
       inbox_url: Inkorgs URL
+      invited_by: Inbjuden av
+      ip: IP-adress
+      joined: Gick med
       location:
         all: Alla
         local: Lokal
@@ -116,7 +122,9 @@ sv:
       media_attachments: Media bifogade filer
       memorialize: Förvandla till ett memoriam
       moderation:
+        active: Aktiv
         all: Alla
+        pending: Väntande
         silenced: Tystas
         suspended: Avstängd
         title: Moderering
