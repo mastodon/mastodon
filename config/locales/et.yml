@@ -562,12 +562,23 @@ et:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: 'Uus teavitus %{instance}-ile (#%{id})'
+    new_trending_tag:
+      body: 'Silt %{name} on täna trendikas, aga pole eelnevalt üle vaadatud. Seda ei näidata avalikult, välja arvatud juhul, kui Te ise seda lubate või lihtsalt salvestage vorm nagu see on ning Te ei kuule sellest enam kunagi.'
+      subject: 'Uus silt valmis ülevaatluseks serveril %{instance} (#%{name})'
+  aliases:
+    add_new: Loo teine nimi
+    created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
+    deleted_msg: Edukalt kustutasime teise nime. Kolimine sellelt kontolt praegusele on nüüdsest võimatu.
+    hint_html: Kui Te soovite kolida teiselt kontolt praegusele kontole, saate Te siin luua teise nime, mis on kohustuslik, enne kui saate kolida jälgijaid vanalt kontolt praegusele. See tegevus on iseenesest <strong>kahjutu ja taastatav</strong>. <strong>Konto ületoomine alustatakse vanalt kontolt</strong>.
+    remove: Eemalda teine nimi
   appearance:
     advanced_web_interface: Arenenud veebiliides
     advanced_web_interface_hint: 'Kui soovite kasutada terve ekraani laiust, lubab arenenud veebiliides seadistada mitut erinevat veergu, et näha nii palju informatsiooni samal ajal kui võimalik: Kodu, teavitused, föderatsiooni ajajoon ning mis iganes arv nimekirju ja silte.'
     animations_and_accessibility: Animatsioonid ja ligipääs
     confirmation_dialogs: Kinnitusdialoogid
+    discovery: Avastus
     sensitive_content: Tundlik sisu
+    toot_layout: Tuututuse kujundus
   application_mailer:
     notification_preferences: Muuda e-kirjade eelistusi
     salutation: "%{name},"
@@ -664,6 +675,10 @@ et:
       data_removal: Teie postitused ning muud andmed kustutatakse jäädavalt
       email_change_html: Te saate <a href="%{path}">muuta oma e-postiaadressi</a> kontot kustutamata
       email_contact_html: Kui see ikkagi ei saabu, saatke abi saamiseks kiri aadressile <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Kui Te ei saanud kinnituskirja, saate selle <a href="%{path}">uuesti küsida</a>
+      irreversible: Te ei saa taastada ega taasaktiveerida oma kontot
+      more_details_html: Rohkemate detailide jaoks palun lugege <a href="%{terms_path}">privaatsuspoliitikat</a>.
+      username_available: Teie kasutajanimi muutub uuesti kasutatavaks
   directories:
     directory: Profiilikataloog
     explanation: Avasta kasutajaid nende huvide põhjal
