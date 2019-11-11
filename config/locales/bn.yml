@@ -48,6 +48,8 @@ bn:
     what_is_mastodon: মাস্টাডনটি কি ?
   accounts:
     choices_html: "%{name} বাছাই:"
+    endorsements_hint: আপনি ওয়েব ইন্টারফেস থেকে অনুসরণ করা লোকেদের প্রচার করতে পারেন এবং তারা এখানে প্রদর্শিত হবে।
+    featured_tags_hint: আপনি এখানে নির্দিষ্ট হ্যাশট্যাগগুলি বৈশিষ্ট্যযুক্ত করতে পারেন যেটা এখানে প্রদর্শিত হবে।
     follow: যুক্ত
     followers:
       one: যুক্ত আছে
@@ -59,6 +61,7 @@ bn:
     media: ছবি বা ভিডিও
     moved_html: "%{name} চলে গেছে %{new_profile_link} তে:"
     network_hidden: এই তথ্যটি নেই
+    never_active: কখনও না
     nothing_here: এখানে কিছুই নেই!
     people_followed_by: '%{name} যাদেরকে অনুসরণ করে'
     people_who_follow: যারা %{name} কে অনুসরণ করে
@@ -140,11 +143,33 @@ bn:
       moderation_notes: প্রশাসনের কিছু লেখা
       most_recent_activity: সর্বশেষ কার্যক্রম
       most_recent_ip: সর্বশেষ আইপি(IP)
+      no_account_selected: কোনও অ্যাকাউন্টই নির্বাচন করা হয়নি বলে কোনও অ্যাকাউন্ট পরিবর্তন করা হয়নি
       no_limits_imposed: কোন সীমা আরোপ করা নেই
       not_subscribed: সাবস্ক্রাইব নেই
       outbox_url: চিঠি পাঠানোর বাক্স লিংক
       pending: পয্র্যবেক্ষণের অপেক্ষায় আছে
       perform_full_suspension: বাতিল করা
+      profile_url: প্রোফাইল URL
+      promote: প্রচার
+      protocol: প্রোটোকল
+      public: সর্বজনীন
+      push_subscription_expires: PuSH সাবস্ক্রিপশনের মেয়াদ শেষ হয়ে গেছে
+      redownload: প্রোফাইল সতেজ করুন
+      reject: প্রত্যাখ্যান করুন
+      reject_all: সব প্রত্যাখ্যান করুন
+      remove_avatar: অবতার অপসারণ করুন
+      remove_header: হেডার এর ছবি অপসারণ করুন
+      resend_confirmation:
+        already_confirmed: এই ব্যবহারকারী ইতিমধ্যে নিশ্চিত করা আছে
+        send: নিশ্চিতকরণ ইমেল পুনরায় পাঠান
+        success: নিশ্চিতকরণের ইমেল সফলভাবে পাঠানো হয়েছে!
+      reset: পুনরায় সেট করুন
+      reset_password: পাসওয়ার্ড পুনঃস্থাপন করুন
+      resubscribe: পুনরায় সদস্যতা নিন
+      role: অনুমতিসমূহ
+      roles:
+        admin: পরিচালক
+        moderator: নিয়ামক
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
