@@ -828,6 +828,26 @@ et:
       missing_also_known_as: ei viita tagasi sellele kontole
       move_to_self: ei saa olla praegune konto
       not_found: ei leitud
+      on_cooldown: Te olete hetkel ootel
+    followers_count: Jälgijaid kolimise hetkel
+    incoming_migrations: Kolivad teiselt kontolt
+    incoming_migrations_html: Kui soovite kolida teiselt kontolt praegusele, peate Te esmalt looma <a href="%{path}">kontole teise nime</a>.
+    moved_msg: Teie konto on nüüd ümber suunamas kontole %{acct} ning Teie jälgijaid kolitakse üle.
+    not_redirecting: Teie kontot ei suunata hetkel ümber.
+    on_cooldown: Te olete hiljuti kolinud oma kontot. See funktsioon on jälle kättesaadav %{count} päeva pärast.
+    past_migrations: Eelmiseid kolimisi
+    proceed_with_move: Koli üle jälgijad
+    redirecting_to: Teie konto suunatakse ümber kontole %{acct}.
+    set_redirect: Määra ümbersuunamine
+    warning:
+      backreference_required: Uus konto peab olema esmalt seadistatud tagasi viitama praegusele kontole
+      before: 'Enne jätkamist palun lugege neid märkmeid hoolikalt:'
+      cooldown: Pärast kolimist on ooteperiood, mille kestel ei saa Te uuesti kolida
+      disabled_account: Teie praegune konto ei ole täiesti kasutatav peale seda. Sellest hoolimata on Teil ligipääs andmete ekspordile ja taasaktiveerimisele.
+      followers: See tegevus kolib kõik jälgijad üle praeguselt kontolt uuele kontole
+      only_redirect_html: Alternatiivselt saate Te <a href="%{path}">seadistada ainult ümbersuunamise Teie profiilil</a>.
+      other_data: Muid andmeid ei liigutata automaatselt
+      redirect: Teie praegune konto eemaldatakse otsingutulemustest ning profiilile lisatakse ümbersuunamise märguanne
   moderation:
     title: Moderatsioon
   notification_mailer:
@@ -972,6 +992,7 @@ et:
   settings:
     account: Konto
     account_settings: Kontosätted
+    aliases: Konto teised nimed
     appearance: Välimus
     authorized_apps: Lubatud rakendused
     back: Tagasi Mastodoni
