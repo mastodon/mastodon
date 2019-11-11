@@ -1,4 +1,3 @@
----
 pt-BR:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ pt-BR:
     failure:
       already_authenticated: A sua sessão já está aberta.
       inactive: A sua contra ainda não está ativada.
-      invalid: "%{authentication_keys} ou senha inválida."
+      invalid: '%{authentication_keys} ou senha inválida.'
       last_attempt: Você tem apenas mais uma tentativa sobrando antes que a sua conta seja bloqueada.
       locked: A sua conta está bloqueada.
-      not_found_in_database: "%{authentication_keys} ou senha inválida."
+      not_found_in_database: '%{authentication_keys} ou senha inválida.'
       pending: Sua conta ainda está sendo revisada.
       timeout: A sua sessão expirou. Por favor, entre novamente para continuar.
       unauthenticated: Você precisa entrar ou cadastrar-se antes de continuar.
@@ -46,6 +45,12 @@ pt-BR:
         extra: Se você não fez esse pedido, por favor ignore esse e-mail. Sua senha não irá mudar até que você acesse o link acima e crie uma nova.
         subject: 'Mastodon: Instruções para mudança de senha'
         title: Redefinir a senha
+      two_factor_disabled:
+        explanation: A autenticação de dois fatores para sua conta foi desativada. Agora é possível acessar apenas com seu endereço de e-mail e senha.
+        subject: 'Mastodon: Autenticação de dois fatores desativada'
+        title: 2FA desativada
+      two_factor_enabled:
+        title: 2FA ativada
       unlock_instructions:
         subject: 'Mastodon: Instruções de desbloqueio'
     omniauth_callbacks:
