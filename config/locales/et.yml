@@ -679,15 +679,18 @@ et:
       irreversible: Te ei saa taastada ega taasaktiveerida oma kontot
       more_details_html: Rohkemate detailide jaoks palun lugege <a href="%{terms_path}">privaatsuspoliitikat</a>.
       username_available: Teie kasutajanimi muutub uuesti kasutatavaks
+      username_unavailable: Teie kasutajanimi jääb mitte kasutatavaks
   directories:
     directory: Profiilikataloog
     explanation: Avasta kasutajaid nende huvide põhjal
     explore_mastodon: Avasta %{title}
+  domain_validator:
+    invalid_domain: ei ole sobiv domeeni nimi
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Toiming oli vale või valesti vormindatud.
     '403': Sul puudub õigus seda lehte vaadata.
     '404': Soovitud lehte ei leitud.
-    '406': This page is not available in the requested format.
+    '406': See lehekülg ei ole soovitavas formaadis saadaval.
     '410': Soovitud lehekülge pole enam siin.
     '422':
       content: Turvalisuse kontroll ebaõnnestus. Kas Te blokeerite küpsiseid?
@@ -696,7 +699,7 @@ et:
     '500':
       content: Palume vabandust, midagi läks valesti meie pool.
       title: See lehekülg pole õige
-    '503': The page could not be served due to a temporary server failure.
+    '503': Lehekülge ei saanud serveerida ajutise serveri vea tõttu.
     noscript_html: Et kasutada Mastodoni veebirakendust, palun lubage JavaScript. Alternatiivselt, proovige mõnda <a href="%{apps_path}">rakendust</a> Teie platvormile.
   existing_username_validator:
     not_found: ei suutnud leida kohalikku kasutajat selle kasutajanimega
@@ -720,6 +723,7 @@ et:
     add_new: Lisa uus
     errors:
       limit: Olete jõudnud maksimum lubatud siltide arvuni
+    hint_html: "<strong>Mis on esile toodud sildid?</strong> Need sildid näidatakse nähtavalt Teie avalikul profiilil ning nad aitavad inimestel leida postitusi, millel on antud sildid. Nad on hea viis kuidas näiteks hoida järge loovtöödel või pikaajalistel projektidel."
   filters:
     contexts:
       home: Kodu ajajoon
@@ -740,6 +744,7 @@ et:
     developers: Arendajad
     more: Rohkem…
     resources: Materjalid
+    trending_now: Praegu trendikad
   generic:
     all: Kõik
     changes_saved_msg: Muudatuste salvestamine õnnestus!
@@ -815,6 +820,14 @@ et:
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
     acct: uue konto kasutajanimi@domeen
+    cancel: Tühista ümbersuunamine
+    cancel_explanation: Ümbersuunamise tühistamine taasaktiveerib Teie praeguse konto, kuid ei too tagasi jälgijaid, mis on sellele kontole üle viidud.
+    cancelled_msg: Ümbersuunamise tühistamine õnnestus.
+    errors:
+      already_moved: on sama konto, kuhu Te olete juba kolinud
+      missing_also_known_as: ei viita tagasi sellele kontole
+      move_to_self: ei saa olla praegune konto
+      not_found: ei leitud
   moderation:
     title: Moderatsioon
   notification_mailer:
