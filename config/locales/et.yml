@@ -1,7 +1,7 @@
 et:
   about:
     about_hashtag_html: 'Need on avalikud tuututused sildistatud sildiga <strong>#%{hashtag}</strong>. Te saate suhelda nendega, kui Teil on konto üks kõik kus terves fediversumis.'
-    about_mastodon_html: 'Mastodon on sotsiaalvõrgustik, mis põhineb avatud protokollidel ja avatud lähtekoodiga tarkvaral. See on detsentraliseeritud nagu e-post.'
+    about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
     about_this: Meist
     active_count_after: aktiivne
     active_footnote: Igakuiselt aktiivseid kasutajaid (MAU)
@@ -69,7 +69,7 @@ et:
     pin_errors:
       following: Te peate juba olema selle kasutaja jälgija, keda te heaks kiidate
     posts:
-      one: Tuut
+      one: Tuututus
       other: Tuututused
     posts_tab_heading: Tuututused
     posts_with_replies: Tuututused ja vastused
@@ -749,6 +749,7 @@ et:
     all: Kõik
     changes_saved_msg: Muudatuste salvestamine õnnestus!
     copy: Kopeeri
+    no_batch_actions_available: Komplekttegevused pole sellel lehel saadaval
     order_by: Järjesta
     save_changes: Salvesta muudatused
     validation_errors:
@@ -1010,6 +1011,8 @@ et:
     profile: Profiil
     relationships: Jälgitud ja jälgijad
     two_factor_authentication: Kahesammuline autentimine
+  spam_check:
+    spam_detected: See on automatiseeritud teavitus. Rämpspost on tuvastatud.
   statuses:
     attached:
       description: 'Manused: %{attached}'
@@ -1033,6 +1036,9 @@ et:
       private: Privaatset tuututust ei saa kinnitada
       reblog: Upitust ei saa kinnitada
     poll:
+      total_people:
+        one: "%{count} inimene"
+        other: "%{count} inimest"
       total_votes:
         one: "%{count} hääl"
         other: "%{count} häält"
@@ -1051,6 +1057,8 @@ et:
     pinned: Kinnitatud tuut
     reblogged: upitatud
     sensitive_content: Tundlik sisu
+  tags:
+    does_not_match_previous_name: ei ühti eelmise nimega
   terms:
     title: "%{instance} Kasutustingimused ja Privaatsuspoliitika"
   themes:
@@ -1087,7 +1095,9 @@ et:
         disable: Kuniks Teie konto on lukus, ei saa Te teha sellega ühtegi tegevust kuni see on lukust lahti tehtud.
         silence: Kuniks Teie konto on limiteeritud, ainult need inimesed, kes Teid juba jälgivad, näevad Teie tuututusi sellel serveril ning Teid jäetakse välja avalikest nimekirjadest. Sellest hoolimata võivad inimesed Teid siiski jälgida.
         suspend: Teie konto on peatatud ning kõik Teie tuututused ja üleslaetud meediafailid on jäädavalt kustutatud sellelt serverilt ning serveritelt, kus Teil oli jälgijad.
+      get_in_touch: Te saate sellele e-kirjale vastata, et võtta ühendust %{instance}-i personaliga.
       review_server_policies: Vaadake üle serveri eeskirju
+      statuses: 'Täpsemalt:'
       subject:
         disable: Teie konto %{acct} on lukustatud
         none: Hoiatus kasutajale %{acct}
