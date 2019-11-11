@@ -439,6 +439,9 @@ et:
       custom_css:
         desc_html: Muuda kujundust CSSi abil, mis laetakse igal lehel
         title: Kohandatud CSS
+      default_noindex:
+        desc_html: Mõjutab kõiki kasutajaid, kes pole seda sätet ise muutnud
+        title: Loobu kasutajate otsingumootoritesse indekseerimisest vaikimisi
       domain_blocks:
         all: Kõigile
         disabled: Mitte kellelegi
@@ -510,6 +513,7 @@ et:
         desc_html: Puudutab silte, mis pole varem keelatud
         title: Luba siltide trendimine ilma eelneva ülevaatuseta
       trends:
+        desc_html: Kuva avalikult eelnevalt üle vaadatud sildid, mis on praegu trendikad
         title: Populaarsed sildid praegu
     statuses:
       back_to_account: Tagasi konto lehele
@@ -528,7 +532,10 @@ et:
     tags:
       accounts_today: Unikaalseid kasutusi täna
       accounts_week: Unikaalseid kasutusi see nädal
+      breakdown: Tänane kasutus allikate kohta
       context: Kontekst
+      directory: Kataloogis
+      in_directory: "%{count} kataloogis"
       last_active: Viimati aktiivne
       most_popular: Kõige populaarsemad
       most_recent: Viimased
