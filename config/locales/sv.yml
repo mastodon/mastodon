@@ -181,15 +181,20 @@ sv:
       username: Användarnamn
       warn: Varna
       web: Webb
+      whitelisted: Vitlistad
     action_logs:
       actions:
         assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
         change_email_user: "%{name} bytte e-postadress för användare %{target}"
         confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
+        create_account_warning: "%{name} sände en varning till %{target}"
         create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
+        create_domain_allow: "%{name} vitlistade domän %{target}"
         create_domain_block: "%{name} blockerade domän %{target}"
         create_email_domain_block: "%{name} svartlistade e-postdomän %{target}"
         demote_user: "%{name} degraderade användare %{target}"
+        destroy_custom_emoji: "%{name} förstörde emoji %{target}"
+        destroy_domain_allow: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block: "%{name} avblockerade domän %{target}"
         destroy_email_domain_block: "%{name} vitlistade e-postdomän %{target}"
         destroy_status: "%{name} tog bort status av %{target}"
@@ -211,20 +216,27 @@ sv:
         unsuspend_account: "%{name} aktiverade %{target}s konto"
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
         update_status: "%{name} uppdaterade status för %{target}"
+      deleted_status: "(raderad status)"
       title: Revisionslogg
     custom_emojis:
+      assign_category: Ange kategori
       by_domain: Domän
       copied_msg: Skapade en lokal kopia av emoji utan problem
       copy: Kopia
       copy_failed_msg: Kunde inte skapa en lokal kopia av den emoji
+      create_new_category: Skapa ny kategori
       created_msg: Emoji skapades utan problem!
       delete: Radera
       destroyed_msg: Emojo borttagen utan problem!
       disable: Inaktivera
+      disabled: Inaktiverad
       disabled_msg: Inaktiverade emoji utan problem
+      emoji: Emoji
       enable: Aktivera
+      enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
       image_hint: PNG upp till 50KB
+      list: Lista
       listed: Noterade
       new:
         title: Lägg till ny egen emoji
@@ -232,10 +244,20 @@ sv:
       shortcode: Kortkod
       shortcode_hint: Minst 2 tecken, endast alfanumeriska tecken och understreck
       title: Egentillverkade emojis
+      uncategorized: Okategoriserad / Okategoiserat / Okategoriserade
+      unlist: Avnotera / Tag bort
       unlisted: Olistade
       update_failed_msg: Kunde inte uppdatera emoji
       updated_msg: Emoji uppdaterades utan problem!
       upload: Ladda upp
+    dashboard:
+      authorized_fetch_mode: Säkert läge
+      backlog: återstående jobb
+      config: Konfiguration
+      feature_deletions: Kontoraderingar
+      feature_invites: Inbjudningslänkar
+      feature_profile_directory: Profilkatalog
+      feature_registrations: Registreringar
     domain_blocks:
       add_new: Lägg till ny
       created_msg: Domänblocket behandlas nu
