@@ -497,8 +497,9 @@ zh-CN:
       title: 网站设置
       trendable_by_default:
         desc_html: 影响以前未禁止的话题标签
-        title: 允许在未审批的情况下将话题置为热门
+        title: 允许在未审查的情况下将话题置为热门
       trends:
+        desc_html: 公开显示先前已审查的但当前热门的话题
         title: 热门标签
     statuses:
       back_to_account: 返回帐户信息页
@@ -517,7 +518,9 @@ zh-CN:
     tags:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
+      breakdown: 按来源分类今天的使用情况
       directory: 在目录中
+      in_directory: "目录中 %{count} 条"
       last_active: 最近活动
       most_popular: 最热门的
       most_recent: 最近的
@@ -526,7 +529,9 @@ zh-CN:
       reviewed: 已审核
       title: 话题标签
       trending_right_now: 当前热门
+      unique_uses_today: "今天发布 %{count} 条"
       unreviewed: 未审核
+      updated_msg: 话题设置更新成功
     title: 管理
     warning_presets:
       add_new: 添加新条目
