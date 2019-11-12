@@ -191,10 +191,12 @@ zh-CN:
         confirm_user: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning: "%{name} 向 %{target} 发送了警告"
         create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
+        create_domain_allow: "%{name} 添加了对域名 %{target} 的白名单。"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
         demote_user: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_custom_emoji: "%{name} 销毁了自定义表情 %{target}"
+        destroy_domain_allow: "%{name} 从白名单中移除了域名 %{target}"
         destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
         destroy_status: "%{name} 删除了 %{target} 的嘟文"
@@ -224,6 +226,7 @@ zh-CN:
       copied_msg: 成功将表情复制到本地
       copy: 复制
       copy_failed_msg: 无法将表情复制到本地
+      create_new_category: 新建分类
       created_msg: 表情添加成功！
       delete: 删除
       destroyed_msg: 表情删除成功！
@@ -299,6 +302,7 @@ zh-CN:
           suspend: 自动封禁
         title: 添加域名屏蔽
       private_comment: 私密评论
+      private_comment_hint: 版主只允许内部用户评论此域名
       public_comment: 公开评论
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
@@ -372,6 +376,7 @@ zh-CN:
       pending: 等待中继确认
       save_and_enable: 保存并启用
       setup: 设置中继连接
+      signatures_not_enabled: 安全模式或白名单模式启用时中继将不会正常工作
       status: 状态
       title: 中继
     report_notes:
@@ -420,10 +425,16 @@ zh-CN:
       custom_css:
         desc_html: 通过 CSS 代码调整所有页面的显示效果
         title: 自定义 CSS
+      default_noindex:
+        desc_html: 影响所有尚未更改此设置的用户
+        title: 默认将不会对用户建立索引
       domain_blocks:
         all: 对所有人
         disabled: 不对任何人
         title: 查看域名屏蔽
+        users: 本地已登录用户
+      domain_blocks_rationale:
+        title: 显示原理
       hero:
         desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
         title: 主题图片
@@ -484,6 +495,9 @@ zh-CN:
         desc_html: 在主页显示公共时间轴
         title: 时间轴预览
       title: 网站设置
+      trendable_by_default:
+        desc_html: 影响以前未禁止的话题标签
+        title: 允许在未审批的情况下将话题置为热门
       trends:
         title: 热门标签
     statuses:
