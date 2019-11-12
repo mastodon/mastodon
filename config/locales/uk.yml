@@ -10,6 +10,7 @@ uk:
     apps: Мобільні додатки
     apps_platforms: Користуйтесь Mastodon на iOS, Android та інших платформах
     browse_directory: Переглядайте каталог профілів та фільтруйте за інтересами
+    browse_local_posts: Переглядайте потік публічних постів з цього сервера
     browse_public_posts: Переглядайте потік публічних постів на Mastodon
     contact: Зв'язатися
     contact_missing: Не зазначено
@@ -815,8 +816,12 @@ uk:
     incoming_migrations: Переїзд з іншого облікового запису
     incoming_migrations_html: Щоб переїхати з іншого облікового запису на цей, ви маєте <a href="%{path}">створити псевдонім облікового запису</a>.
     not_redirecting: Наразі ваш обліковий запис не перенаправлений до іншого облікового запису.
+    proceed_with_move: Перемістити підписників
+    redirecting_to: Ваш обліковий запис перенаправляється до %{acct}.
     set_redirect: Встановити перенаправлення
     warning:
+      backreference_required: Спочатку має бути налаштовано зворотне посилання поточного облікового запису на новий обліковий запис
+      before: 'Перш ніж продовжити, уважно прочитайте ці нотатки:'
       cooldown: Після переїзду ви деякий час не можете переїжджати знову
   moderation:
     title: Модерація
@@ -984,6 +989,8 @@ uk:
     profile: Профіль
     relationships: Підписки та підписники
     two_factor_authentication: Двофакторна авторизація
+  spam_check:
+    spam_detected: Це автоматична скарга. Було виявлено спам.
   statuses:
     attached:
       description: 'Прикріплено: %{attached}'
