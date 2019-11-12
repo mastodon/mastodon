@@ -1,7 +1,7 @@
 zh-CN:
   devise:
     confirmations:
-      confirmed: 成功验证你的邮箱地址。
+      confirmed: 已成功确认你的邮箱地址。
       send_instructions: 你的电子邮箱将在几分钟后收到一封确认邮件。如果没有，请检查你的垃圾邮箱。
       send_paranoid_instructions: 如果你的邮箱存在于我们的数据库中，你将收到一封确认注册的邮件。如果没有，请检查你的垃圾邮箱。
     failure:
@@ -55,6 +55,8 @@ zh-CN:
         title: 已启用双重认证
       two_factor_recovery_codes_changed:
         explanation: 之前的恢复码已失效，现已生成了新的恢复码。
+        subject: 'Mastodon：重新生成双重认证的恢复码'
+        title: 双重验证的恢复码已更改
       unlock_instructions:
         subject: 'Mastodon：帐户解锁信息'
     omniauth_callbacks:
