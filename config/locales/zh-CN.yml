@@ -547,6 +547,9 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
+    new_trending_tag:
+      body: '今日的热门话题 #%{name} 之前未审核。直到你允许之前这个话题将不会公开显示，或保持原样让他石沉大海。'
+      subject: '在 %{instance} 有话题 (#%{name}) 待审核'
   aliases:
     add_new: 创建别名
   appearance:
