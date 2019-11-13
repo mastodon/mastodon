@@ -7,7 +7,7 @@ import Column from '../ui/components/column';
 import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import StatusList from '../../components/status_list';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { debounce } from 'lodash';
 
@@ -27,6 +27,7 @@ class Bookmarks extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
     statusIds: ImmutablePropTypes.list.isRequired,
     intl: PropTypes.object.isRequired,
     columnId: PropTypes.string,
@@ -67,11 +68,13 @@ class Bookmarks extends ImmutablePureComponent {
   }, 300, { leading: true })
 
   render () {
-    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
+    const { intl, shouldUpdateScroll, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
+    const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses' defaultMessage="You don't have any bookmarked toots yet. When you bookmark one, it will show up here." />;
+
     return (
-      <Column ref={this.setRef}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
         <ColumnHeader
           icon='bookmark'
           title={intl.formatMessage(messages.heading)}
@@ -90,6 +93,9 @@ class Bookmarks extends ImmutablePureComponent {
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
+          shouldUpdateScroll={shouldUpdateScroll}
+          emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );
