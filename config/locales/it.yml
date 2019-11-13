@@ -11,6 +11,7 @@ it:
     apps: Applicazioni per dispositivi mobili
     apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
     browse_directory: Sfoglia la directory dei profili e filtra per interessi
+    browse_local_posts: Sfoglia il flusso in tempo reale di post pubblici su questo server
     browse_public_posts: Sfoglia il flusso in tempo reale di post pubblici su Mastodon
     contact: Contatti
     contact_missing: Non impostato
@@ -36,8 +37,12 @@ it:
     terms: Termini di Servizio
     unavailable_content: Contenuto non disponibile
     unavailable_content_description:
+      domain: Server
       reason: 'Motivo:'
       rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
+      silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
+      suspended: 'Nessun dato da questi server sarà elaborato, memorizzato o scambiato, rendendo impossibile qualsiasi interazione o comunicazione con gli utenti di questi server:'
+    unavailable_content_html: Mastodon generalmente permette di visualizzare i contenuti e interagire con gli utenti di qualsiasi altro server nel fediverse. Queste sono le eccezioni che sono state create su questo specifico server.
     user_count_after:
       one: utente
       other: utenti
@@ -45,6 +50,7 @@ it:
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
+    endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
     followers:
@@ -170,6 +176,7 @@ it:
         user: Utente
       salmon_url: URL Salmone
       search: Cerca
+      search_same_ip: Altri utenti con lo stesso IP
       shared_inbox_url: URL Inbox Condiviso
       show:
         created_reports: Rapporti creati da questo account
@@ -234,6 +241,7 @@ it:
       delete: Elimina
       destroyed_msg: Emoji distrutto con successo!
       disable: Disabilita
+      disabled: Disabilitato
       disabled_msg: Questa emoji è stata disabilitata con successo
       emoji: Emoji
       enable: Abilita
@@ -379,6 +387,7 @@ it:
       pending: In attesa dell'approvazione del ripetitore
       save_and_enable: Salva e attiva
       setup: Crea una connessione con un ripetitore
+      signatures_not_enabled: I ripetitori non funzionano correttamente se la modalità sicura o la modalità whitelist è attiva
       status: Stato
       title: Ripetitori
     report_notes:
@@ -427,6 +436,9 @@ it:
       custom_css:
         desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
         title: CSS personalizzato
+      default_noindex:
+        desc_html: Interessa tutti gli utenti che non hanno cambiato questa impostazione
+        title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       domain_blocks:
         all: A tutti
         disabled: A nessuno
@@ -494,6 +506,9 @@ it:
         desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
       title: Impostazioni sito
+      trendable_by_default:
+        desc_html: Interessa gli hashtag che non sono stati precedentemente disattivati
+        title: Permetti agli hashtag di comparire nei trend senza prima controllarli
       trends:
         desc_html: Visualizza pubblicamente gli hashtag precedentemente esaminati che sono attualmente in tendenza
         title: Hashtag di tendenza
@@ -525,6 +540,7 @@ it:
       reviewed: Controllato
       title: Hashtag
       trending_right_now: Di tendenza ora
+      unique_uses_today: "%{count} post oggi"
       unreviewed: Non controllato
       updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
@@ -547,6 +563,10 @@ it:
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
   aliases:
     add_new: Crea alias
+    created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
+    deleted_msg: L'alias è stato eliminato. Lo spostamento da quell'account a questo non sarà più possibile.
+    hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i seguaci dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
+    remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: |-
@@ -555,6 +575,7 @@ it:
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     sensitive_content: Contenuto sensibile
+    toot_layout: Layout dei toot
   application_mailer:
     notification_preferences: Cambia preferenze email
     salutation: "%{name},"
@@ -577,6 +598,10 @@ it:
     checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
+    description:
+      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Mastodon!"
+      prefix_sign_up: Iscriviti oggi a Mastodon!
+      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     forgot_password: Hai dimenticato la tua password?
     invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
@@ -602,6 +627,7 @@ it:
       confirming: In attesa che la conferma e-mail sia completata.
       functional: Il tuo account è pienamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
+      redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
     trouble_logging_in: Problemi di accesso?
   authorize_follow:
     already_following: Stai già seguendo questo account
@@ -641,6 +667,15 @@ it:
     success_msg: Il tuo account è stato cancellato
     warning:
       before: 'Prima di procedere, per favore leggi attentamente queste note:'
+      caches: Il contenuto che è stato memorizzato in cache da altri server può continuare ad esistere
+      data_removal: I tuoi post e altri dati saranno eliminati definitivamente
+      email_change_html: Puoi <a href="%{path}">cambiare il tuo indirizzo e-mail</a> senza cancellare il tuo account
+      email_contact_html: Se ancora non arriva, puoi mandare una mail a <a href="mailto:%{email}">%{email}</a> per chiedere aiuto
+      email_reconfirmation_html: Se non ricevi l'email di conferma, puoi <a href="%{path}">richiederla nuovamente</a>
+      irreversible: Non potrai ripristinare o riattivare il tuo account
+      more_details_html: Per maggiori dettagli, vedi la <a href="%{terms_path}">politica di privacy</a>.
+      username_available: Il tuo nome utente sarà nuovamente disponibile
+      username_unavailable: Il tuo nome utente rimarrà non disponibile
   directories:
     directory: Directory dei profili
     explanation: Scopri utenti in base ai loro interessi
@@ -648,10 +683,10 @@ it:
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
-    '406': This page is not available in the requested format.
+    '406': Questa pagina non è disponibile nel formato richiesto.
     '410': La pagina che stavi cercando qui non esiste più.
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
@@ -660,7 +695,7 @@ it:
     '500':
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
-    '503': The page could not be served due to a temporary server failure.
+    '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
@@ -710,6 +745,7 @@ it:
     all: Tutto
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
+    no_batch_actions_available: Nessuna azione batch disponibile su questa pagina
     order_by: Ordina per
     save_changes: Salva modifiche
     validation_errors:
@@ -781,6 +817,33 @@ it:
       too_many: Impossibile allegare più di 4 file
   migrations:
     acct: utente@dominio del nuovo account
+    cancel: Annulla ridirezione
+    cancel_explanation: Se annulli il reindirizzamento sarà riattivato il tuo account attuale, ma i seguaci che sono stati spostati all'altro account non saranno riportati indietro.
+    cancelled_msg: Reindirizzamento annullato.
+    errors:
+      already_moved: è lo stesso account su cui ti sei già trasferito
+      missing_also_known_as: non reinvia a questo account
+      move_to_self: non può essere l'account attuale
+      not_found: non trovato
+      on_cooldown: Ti trovi nel periodo di pausa tra un trasferimento e l'altro
+    followers_count: Seguaci al momento dello spostamento
+    incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
+    moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
+    not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
+    on_cooldown: Hai recentemente trasferito il tuo account. Questa funzione sarà nuovamente disponibile tra %{count} giorni.
+    past_migrations: Trasferimenti passati
+    proceed_with_move: Sposta seguaci
+    redirecting_to: Il tuo account sta reindirizzando a %{acct}.
+    set_redirect: Imposta ridirezione
+    warning:
+      backreference_required: Il nuovo account deve essere prima configurato per collegarsi a questo
+      before: 'Prima di procedere, leggi attentamente queste avvertenze:'
+      cooldown: Dopo il trasferimento c'è un periodo di pausa durante il quale non potrai trasferirti di nuovo
+      disabled_account: Il tuo account attuale non sarà più pienamente utilizzabile. Tuttavia, avrai accesso all'esportazione dei dati e alla riattivazione.
+      followers: Questa azione sposterà tutti i seguaci dall'account attuale al nuovo account
+      only_redirect_html: In alternativa, puoi solo <a href="%{path}">impostare un redirect sul tuo profilo</a>.
+      other_data: Nessun altro dato verrà spostato automaticamente
+      redirect: Il profilo del tuo account corrente sarà aggiornato con un avviso di ridirezione e sarà escluso dalle ricerche
   moderation:
     title: Moderazione
   notification_mailer:
@@ -925,6 +988,7 @@ it:
   settings:
     account: Account
     account_settings: Impostazioni dell'account
+    aliases: Alias dell'account
     appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
     back: Torna a Mastodon
@@ -942,6 +1006,8 @@ it:
     profile: Profilo
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
+  spam_check:
+    spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
     attached:
       description: 'Allegato: %{attached}'
@@ -965,6 +1031,9 @@ it:
       private: Un toot non pubblico non può essere fissato in cima
       reblog: Un toot condiviso non può essere fissato in cima
     poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} persone"
       total_votes:
         one: "%{count} voto"
         other: "%{count} voti"
