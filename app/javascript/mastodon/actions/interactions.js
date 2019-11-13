@@ -200,6 +200,7 @@ export function bookmark(status) {
     dispatch(bookmarkRequest(status));
 
     api(getState).post(`/api/v1/statuses/${status.get('id')}/bookmark`).then(function (response) {
+      dispatch(importFetchedStatus(response.data));
       dispatch(bookmarkSuccess(status, response.data));
     }).catch(function (error) {
       dispatch(bookmarkFail(status, error));
@@ -212,6 +213,7 @@ export function unbookmark(status) {
     dispatch(unbookmarkRequest(status));
 
     api(getState).post(`/api/v1/statuses/${status.get('id')}/unbookmark`).then(response => {
+      dispatch(importFetchedStatus(response.data));
       dispatch(unbookmarkSuccess(status, response.data));
     }).catch(error => {
       dispatch(unbookmarkFail(status, error));
