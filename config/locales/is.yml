@@ -44,6 +44,7 @@ is:
       delete: Eyða
     accounts:
       change_email:
+        label: Breyta tölvupóstfangi
         new_email: Nýr tölvupóstur
         submit: Breyta tölvupóstfangi
         title: Breyta tölvupóstfangi fyrir %{username}
@@ -51,6 +52,7 @@ is:
       confirmed: Staðfest
       confirming: Staðfesti
       deleted: Eytt
+      disable: Gera óvirkt
       disabled: Óvirkt
       display_name: Birtingarnafn
       domain: Lén
@@ -61,9 +63,11 @@ is:
       followers: Fylgjendur
       follows: Fylgist með
       invited_by: Boðið af
+      ip: IP-vistfang
       joined: Gerðist þátttakandi
       location:
         all: Allt
+        local: Staðvært
         remote: Fjartengt
         title: Staðsetning
       login_status: Staða innskráningar
@@ -71,31 +75,122 @@ is:
         active: Virkur
         all: Allt
         pending: Í bið
+      public: Opinber
+      reject: Hafna
+      reject_all: Hafna öllu
+      reset: Endurstilla
+      reset_password: Endurstilla lykilorð
+      role: Heimildir
+      username: Notandanafn
+      warn: Aðvara
+      web: Vefur
+      whitelisted: Á lista yfir leyft
     action_logs:
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
+      by_domain: Lén
+      copy: Afrita
       delete: Eyða
+      disable: Gera óvirkt
+      disabled: Óvirkt
+      enable: Virkja
+      enabled: Virkt
+      image_hint: PNG allt að 50KB
+      list: Listi
+      overwrite: Skrifa yfir
+      upload: Senda inn
     dashboard:
       feature_timeline_preview: Forskoðun tímalínu
+      features: Eiginleikar
+      software: Hugbúnaður
+      title: Stjórnborð
+      total_users: notendur alls
+    domain_blocks:
+      domain: Lén
+      new:
+        severity:
+          noop: Ekkert
+      show:
+        undo: Afturkalla
     email_domain_blocks:
       delete: Eyða
+      domain: Lén
+      new:
+        create: Bæta við léni
+    instances:
+      by_domain: Lén
+      moderation:
+        all: Allt
+    invites:
+      filter:
+        all: Allt
     relays:
       delete: Eyða
+      disable: Gera óvirkt
+      disabled: Óvirkt
+      enable: Virkja
+      enabled: Virkt
+      status: Staða
     reports:
       notes:
         delete: Eyða
+      status: Staða
+      title: Skýrslur
+    settings:
+      site_title: Heiti vefþjóns
     statuses:
       batch:
         delete: Eyða
       deleted: Eytt
+    tags:
+      context: Samhengi
+      name: Myllumerki
+      title: Myllumerki
+    title: Stjórnendur
     warning_presets:
+      add_new: Bæta við nýju
       delete: Eyða
+      edit: Breyta
+  application_mailer:
+    salutation: "%{name},"
+    view: 'Skoða:'
   auth:
+    change_password: Lykilorð
     delete_account: Eyða notandaaðgangi
+    forgot_password: Gleymdirðu lykilorðinu?
+    login: Skrá inn
+    logout: Skrá út
+    or_log_in_with: Eða skráðu inn með
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Nýskrá
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
+    reset_password: Endursetja lykilorð
+    security: Öryggi
+    set_new_password: Stilla nýtt lykilorð
+    setup:
+      title: Uppsetning
   authorize_follow:
+    follow: Fylgja
     post_follow:
       close: Eða að þú getur lokað þessum glugga.
+  challenge:
+    invalid_password: Ógilt lykilorð
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}kl."
+      about_x_months: "%{count}mán"
+      about_x_years: "%{count}ár"
+      almost_x_years: "%{count}ár"
+      half_a_minute: Núna
+      less_than_x_minutes: "%{count}mín"
+      less_than_x_seconds: Núna
+      over_x_years: "%{count}ár"
+      x_days: "%{count}d"
+      x_minutes: "%{count}mín"
+      x_months: "%{count}mán"
+      x_seconds: "%{count}sek"
   deletes:
     proceed: Eyða notandaaðgangi
   errors:
@@ -115,6 +210,7 @@ is:
       date: Dagsetning
       size: Stærð
     csv: CSV
+    follows: Þú fylgist með
     lists: Listar
   filters:
     contexts:
@@ -122,6 +218,10 @@ is:
       public: Opinberar tímalínur
     index:
       delete: Eyða
+      title: Síur
+  footer:
+    more: Meira…
+    resources: Tilföng
   generic:
     all: Allt
     copy: Afrita
