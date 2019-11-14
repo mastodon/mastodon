@@ -546,6 +546,10 @@ ar:
       body: "قام %{reporter} بالإبلاغ عن %{target}"
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: 'تقرير جديد ل%{instance} (#%{id})'
+  aliases:
+    add_new: أنشئ كُنية
+    created_msg: تم إنشاء الكُنية الجديدة بنجاح. يمكنكم الآن الشروع في الإنتقال مِن حسابكم القديم.
+    remove: إلغاء ربط الكنية
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
     animations_and_accessibility: الإتاحة والحركة
@@ -656,7 +660,7 @@ ar:
     '400': The request you submitted was invalid or malformed.
     '403': ليس لك الصلاحيات الكافية لعرض هذه الصفحة.
     '404': إنّ الصفحة التي تبحث عنها لا وجود لها أصلا.
-    '406': This page is not available in the requested format.
+    '406': إنّ هذه الصفحة غير متوفّرة في النسق المطلوب.
     '410': إنّ الصفحة التي تبحث عنها لم تعد موجودة.
     '422':
       content: فشل التحقق الآمن. ربما منعتَ كعكات الكوكيز؟
@@ -668,6 +672,7 @@ ar:
     '503': The page could not be served due to a temporary server failure.
     noscript_html: يرجى تفعيل الجافا سكريبت لاستخدام تطبيق الويب لماستدون، أو عِوض ذلك قوموا بتجريب إحدى <a href="%{apps_path}">التطبيقات الأصلية</a> الدّاعمة لماستدون على منصّتكم.
   existing_username_validator:
+    not_found: لم نتمكّن مِن العثور على مستخدم محلي باسم المستخدم هذا
     not_found_multiple: تعذر العثور على %{usernames}
   exports:
     archive_takeout:
