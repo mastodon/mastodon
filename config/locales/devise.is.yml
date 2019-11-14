@@ -1,13 +1,22 @@
 is:
   devise:
+    failure:
+      invalid: Ógildur %{authentication_keys} eða lykilorð.
+      not_found_in_database: Ógildur %{authentication_keys} eða lykilorð.
     mailer:
       confirmation_instructions:
         action: Staðfestu tölvupóstfang
         title: Staðfestu tölvupóstfang
+      email_changed:
+        title: Nýtt tölvupóstfang
+      password_change:
+        subject: 'Mastodon: Lykilorð breyttist'
+        title: Lykilorð breyttist
       reconfirmation_instructions:
         title: Staðfestu tölvupóstfang
       reset_password_instructions:
         action: Breyta lykilorði
+        title: Endurstilling lykilorðs
   errors:
     messages:
       not_found: fannst ekki
