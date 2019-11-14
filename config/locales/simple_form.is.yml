@@ -1,1 +1,39 @@
 is:
+  simple_form:
+    labels:
+      account:
+        fields:
+          value: Efni
+      admin_account_action:
+        type: Aðgerð
+        types:
+          none: Gera ekkert
+      defaults:
+        chosen_languages: Sía tungumál
+        confirm_new_password: Staðfestu nýja lykilorðið
+        confirm_password: Staðfestu lykilorð
+        current_password: Núverandi lykilorð
+        data: Gögn
+        display_name: Birtingarnafn
+        email: Tölvupóstfang
+        locale: Tungumál viðmóts
+        new_password: Nýtt lykilorð
+        note: Æviágrip
+        otp_attempt: Teggja-þátta kóði
+        password: Lykilorð
+        setting_default_language: Tungumál sem skrifað er á
+        setting_display_media_default: Sjálfgefið
+        setting_display_media_hide_all: Fela allt
+        setting_display_media_show_all: Birta allt
+        setting_theme: Þema vefsvæðis
+        username: Notandanafn
+        username_or_email: Notandanafn eða tölvupóstfang
+        whole_word: Heil orð
+      invite:
+        comment: Athugasemd
+    'no': 'Nei'
+    recommended: Mælt með
+    required:
+      mark: "*"
+      text: nauðsynlegt
+    'yes': 'Já'
