@@ -623,6 +623,8 @@ zh-CN:
       web: 返回本站
     title: 关注 %{acct}
   challenge:
+    confirm: 继续
+    hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求您的密码。"
     invalid_password: 无效密码
     prompt: 确认密码以继续
   datetime:
@@ -640,7 +642,9 @@ zh-CN:
       x_months: "%{count}个月"
       x_seconds: "%{count}秒"
   deletes:
+    challenge_not_passed: 输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
+    confirm_username: 输入您的用户名以继续
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
     warning:
