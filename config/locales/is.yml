@@ -38,7 +38,10 @@ is:
     following: Fylgist með
     joined: Gerðist þátttakandi %{date}
     last_active: síðast virkur
+    posts_with_replies: Tíst og svör
   admin:
+    account_moderation_notes:
+      delete: Eyða
     accounts:
       change_email:
         new_email: Nýr tölvupóstur
@@ -68,6 +71,33 @@ is:
         active: Virkur
         all: Allt
         pending: Í bið
+    action_logs:
+      deleted_status: "(eydd stöðufærsla)"
+    custom_emojis:
+      delete: Eyða
+    dashboard:
+      feature_timeline_preview: Forskoðun tímalínu
+    email_domain_blocks:
+      delete: Eyða
+    relays:
+      delete: Eyða
+    reports:
+      notes:
+        delete: Eyða
+    statuses:
+      batch:
+        delete: Eyða
+      deleted: Eytt
+    warning_presets:
+      delete: Eyða
+  auth:
+    delete_account: Eyða notandaaðgangi
+    registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
+  authorize_follow:
+    post_follow:
+      close: Eða að þú getur lokað þessum glugga.
+  deletes:
+    proceed: Eyða notandaaðgangi
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -78,7 +108,16 @@ is:
     '429': Throttled
     '500':
     '503': The page could not be served due to a temporary server failure.
+  existing_username_validator:
+    not_found_multiple: tókst ekki að finna %{usernames}
+  filters:
+    contexts:
+      home: Heimatímalína
+      public: Opinberar tímalínur
+    index:
+      delete: Eyða
   invites:
+    delete: Gera óvirkt
     expires_in:
       '1800': 30 minutes
       '21600': 6 hours
@@ -89,3 +128,19 @@ is:
   migrations:
     cancel: Hætta við endurbeiningu
     cancelled_msg: Tókst að hætta við endurbeiningu.
+    errors:
+      not_found: fannst ekki
+  notification_mailer:
+    mention:
+      action: Svara
+  pagination:
+    next: Næsta
+    prev: Fyrra
+  preferences:
+    other: Annað
+    public_timelines: Opinberar tímalínur
+  settings:
+    preferences: Kjörstillingar
+  user_mailer:
+    welcome:
+      review_preferences_action: Breyta kjörstillingum
