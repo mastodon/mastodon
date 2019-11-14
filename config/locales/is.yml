@@ -38,11 +38,25 @@ is:
     following: Fylgist með
     joined: Gerðist þátttakandi %{date}
     last_active: síðast virkur
+    never_active: Aldrei
+    posts:
+      one: Tíst
+      other: Tíst
+    posts_tab_heading: Tíst
     posts_with_replies: Tíst og svör
+    reserved_username: Notandanafnið er frátekið
+    roles:
+      admin: Stjóri
+    unfollow: Hætta að fylgja
   admin:
     account_moderation_notes:
       delete: Eyða
     accounts:
+      approve: Samþykkja
+      approve_all: Samþykkja allt
+      are_you_sure: Ertu viss?
+      avatar: Auðkennismynd
+      by_domain: Lén
       change_email:
         label: Breyta tölvupóstfangi
         new_email: Nýr tölvupóstur
@@ -78,14 +92,23 @@ is:
       public: Opinber
       reject: Hafna
       reject_all: Hafna öllu
+      remove_avatar: Fjarlægja auðkennismynd
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       role: Heimildir
+      roles:
+        admin: Stjórnandi
+        moderator: Umsjónarmaður
+        staff: Starfsmaður
+        user: Notandi
+      search: Leita
       username: Notandanafn
       warn: Aðvara
       web: Vefur
       whitelisted: Á lista yfir leyft
     action_logs:
+      actions:
+        remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
       by_domain: Lén
