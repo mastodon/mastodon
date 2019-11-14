@@ -644,7 +644,13 @@ zh-CN:
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
     warning:
+      before: '在删除前，请仔细阅读下列说明：'
+      caches: 已被其他服务器缓存的内容可能还会保留
+      data_removal: 您的帖子和其他数据将被永久删除
+      email_change_html: 您可以 <a href="%{path}">更换邮箱地址</a> 无需删除账号
+      email_reconfirmation_html: 如果您没有收到确认邮件，请点击 <a href="%{path}">重新发送</a> 。
       irreversible: 您将无法恢复或重新激活您的帐户
+      more_details_html: 更多细节，请查看 <a href="%{terms_path}">隐私政策</a> 。
       username_available: 您的用户名现在又可以使用了
       username_unavailable: 您的用户名仍将无法使用
   directories:
