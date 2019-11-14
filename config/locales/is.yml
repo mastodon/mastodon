@@ -17,11 +17,57 @@ is:
     status_count_after:
       one: stöðufærsla
       other: stöðufærslur
+    status_count_before: Sem stóðu fyrir
+    tagline: Fylgstu með vinum og uppgötvaðu nýja
     terms: Þjónustuskilmálar
+    unavailable_content: Ekki tiltækt efni
     unavailable_content_description:
       domain: Vefþjónn
       reason: Ástæða
+    user_count_after:
+      one: notanda
+      other: notendur
     user_count_before: Hýsir
+    what_is_mastodon: Hvað er Mastodon?
+  accounts:
+    choices_html: "%{name} hefur valið:"
+    follow: Fylgja
+    followers:
+      one: fylgjandi
+      other: fylgjendur
+    following: Fylgist með
+    joined: Gerðist þátttakandi %{date}
+    last_active: síðast virkur
+  admin:
+    accounts:
+      change_email:
+        new_email: Nýr tölvupóstur
+        submit: Breyta tölvupóstfangi
+        title: Breyta tölvupóstfangi fyrir %{username}
+      confirm: Staðfesta
+      confirmed: Staðfest
+      confirming: Staðfesti
+      deleted: Eytt
+      disabled: Óvirkt
+      display_name: Birtingarnafn
+      domain: Lén
+      edit: Breyta
+      email: Tölvupóstur
+      enable: Virkja
+      enabled: Virkt
+      followers: Fylgjendur
+      follows: Fylgist með
+      invited_by: Boðið af
+      joined: Gerðist þátttakandi
+      location:
+        all: Allt
+        remote: Fjartengt
+        title: Staðsetning
+      login_status: Staða innskráningar
+      moderation:
+        active: Virkur
+        all: Allt
+        pending: Í bið
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
