@@ -6,8 +6,10 @@ is:
     mailer:
       confirmation_instructions:
         action: Staðfestu tölvupóstfang
+        action_with_app: Staðfestu og snúðu aftur í %{app}
         title: Staðfestu tölvupóstfang
       email_changed:
+        subject: 'Mastodon: Tölvupóstfang breyttist'
         title: Nýtt tölvupóstfang
       password_change:
         subject: 'Mastodon: Lykilorð breyttist'
