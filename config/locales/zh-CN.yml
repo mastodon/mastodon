@@ -35,7 +35,7 @@ zh-CN:
       domain: 服务器
       reason: 原因
       rejecting_media: '来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。'
-      silenced: '来自这些服务器上的帖子将不会出现在公共时间线和会话中，除非你关注了他们，否则他们的动态也不会生成任何通知。'
+      silenced: '来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则他们的互动不会产生通知。'
       suspended: '这些服务器的数据将不会被处理、存储或者交换，与来自于这些服务器的用户也不能进行交互。'
     user_count_after:
       other: 位用户
@@ -807,7 +807,7 @@ zh-CN:
     incoming_migrations_html: 要移动另一个帐号到本帐号，首先你需要 <a href="%{path}">创建一个帐号别名</a> 。
     moved_msg: 您的帐号和关注者当前已被重定向至 %{acct} 。
     not_redirecting: 您的帐号当前未重定向到其他帐户。
-    on_cooldown: 您最近已经迁移过您的帐号。此功能将在 %{count} 天后再次可用。
+    on_cooldown: 您最近已经迁移过您的帐号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
     redirecting_to: 您的帐户被跳转到了 %{acct}。
