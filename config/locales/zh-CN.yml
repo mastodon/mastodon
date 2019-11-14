@@ -17,11 +17,11 @@ zh-CN:
     contact_unavailable: 未公开
     discover_users: 发现用户
     documentation: 文档
-    federation_hint_html: 在%{instance} 上拥有账户后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
+    federation_hint_html: 在%{instance} 上拥有账号后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
     instance_actor_flash: |
-      这个账号是个虚拟账号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
+      这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
     learn_more: 了解详情
     privacy_policy: 隐私政策
     see_whats_happening: 看一看现在在发生什么
@@ -137,7 +137,7 @@ zh-CN:
       moderation_notes: 管理备忘
       most_recent_activity: 最后一次活跃的时间
       most_recent_ip: 最后一次活跃的 IP 地址
-      no_account_selected: 因为没有账户被选择，所以没有更改
+      no_account_selected: 因为没有帐号被选择，所以没有更改
       no_limits_imposed: 无限制
       not_subscribed: 未订阅
       outbox_url: 发件箱（Outbox）URL
@@ -490,7 +490,7 @@ zh-CN:
         title: 自定义使用条款
       site_title: 本站名称
       spam_check_enabled:
-        desc_html: Mastodon可以自动隐藏和举报重复发送垃圾消息的账户。但是本功能有可能误伤无辜。
+        desc_html: Mastodon可以自动隐藏和举报重复发送垃圾消息的帐号。但是本功能有可能误伤无辜。
         title: 自动反垃圾
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
@@ -546,7 +546,7 @@ zh-CN:
   admin_mailer:
     new_pending_account:
       body: 新帐户的详细信息如下。您可以批准或拒绝此申请。
-      subject: 在 %{instance} 上有新账户 ( %{username}) 需要审核
+      subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
     new_report:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
@@ -655,7 +655,7 @@ zh-CN:
       before: '在删除前，请仔细阅读下列说明：'
       caches: 已被其他服务器缓存的内容可能还会保留
       data_removal: 您的帖子和其他数据将被永久删除
-      email_change_html: 您可以 <a href="%{path}">更换邮箱地址</a> 无需删除账号
+      email_change_html: 您可以 <a href="%{path}">更换邮箱地址</a> 无需删除帐号
       email_reconfirmation_html: 如果您没有收到确认邮件，请点击 <a href="%{path}">重新发送</a> 。
       irreversible: 您将无法恢复或重新激活您的帐户
       more_details_html: 更多细节，请查看 <a href="%{terms_path}">隐私政策</a> 。
@@ -804,6 +804,7 @@ zh-CN:
     cancelled_msg: 成功取消跳转
     errors:
       already_moved: 和您已经迁移过的帐号相同
+      missing_also_known_as: 没有引用此帐号
       move_to_self: 不能是当前帐户
       not_found: 找不到
       on_cooldown: 您正处于冷却状态
@@ -818,7 +819,7 @@ zh-CN:
     redirecting_to: 您的帐户被跳转到了 %{acct}。
     set_redirect: 设置跳转
     warning:
-      backreference_required: 新账号必须先引用现在这个账号
+      backreference_required: 新账号必须先引用现在这个帐号
       before: '在继续前，请仔细阅读下列说明：'
       cooldown: 移动后会有一个冷却期，在此期间您将无法再次移动
       disabled_account: 此后，您的当前帐户将无法使用。但是，您仍然有权导出数据或者重新激活。
@@ -890,7 +891,7 @@ zh-CN:
     posting_defaults: 发布默认值
     public_timelines: 公共时间轴
   relationships:
-    activity: 账户活动
+    activity: 帐号活动
     dormant: 休眠
     last_active: 最近活动
     most_recent: 最近的
@@ -965,9 +966,9 @@ zh-CN:
     revoke_success: 会话注销成功
     title: 会话
   settings:
-    account: 账户
+    account: 帐号
     account_settings: 帐户设置
-    aliases: 账户别名
+    aliases: 帐号别名
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
@@ -1154,10 +1155,10 @@ zh-CN:
         silence: 您的帐户 %{acct} 已经受限
         suspend: 您的帐户 %{acct} 已被封禁。
       title:
-        disable: 账户已冻结
+        disable: 账号已冻结
         none: 警示
         silence: 帐户受限
-        suspend: 账户被封禁
+        suspend: 账号被封禁
     welcome:
       edit_profile_action: 设置个人资料
       edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。
