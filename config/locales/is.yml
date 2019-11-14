@@ -278,6 +278,8 @@ is:
       title: Nýtt eftirlæti
     mention:
       action: Svara
+    reblog:
+      title: Ný endurbirting
   number:
     human:
       decimal_units:
@@ -297,6 +299,10 @@ is:
   preferences:
     other: Annað
     public_timelines: Opinberar tímalínur
+  remote_interaction:
+    reblog:
+      proceed: Halda áfram í endurbirtingu
+      prompt: 'Þú ætlar að endurbirta þetta tíst:'
   sessions:
     browser: Vafri
     browsers:
@@ -348,6 +354,9 @@ is:
       video:
         one: "%{count} myndskeið"
         other: "%{count} myndskeið"
+    boosted_from_html: Endurbirt frá %{acct_link}
+    pin_errors:
+      reblog: Ekki er hægt að festa endurbirtingu
     poll:
       total_votes:
         one: "%{count} atkvæði"
@@ -361,6 +370,7 @@ is:
       public_long: Allir geta séð
       unlisted: Óskráð
   stream_entries:
+    reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
   two_factor_authentication:
     setup: Setja upp
