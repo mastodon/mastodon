@@ -789,11 +789,13 @@ ar:
     cancel: ألغِ التوجيه
     cancelled_msg: تم إلغاء التوجيه بنجاح.
     errors:
+      already_moved: هو نفسه نفس الحساب الذي قمت بالإنتقال إليه
       move_to_self: لا يمكنه أن يكون الحساب الحالي
       not_found: تعذر العثور عليه
       on_cooldown: إنّك في مرحلة الجمود
     followers_count: المتابِعين عند الإنتقال
     incoming_migrations: الانتقال مِن حساب آخر
+    incoming_migrations_html: قصد الإنتقال من حساب آخَر إلى هذا يجب عليك أوّلًا <a href="%{path}">إنشاء كُنية حساب</a>.
     not_redirecting: حاليا ، حسابك لا يقوم بالتحويل إلى أي حساب آخر.
     past_migrations: التهجيرات السابقة
     proceed_with_move: انقل مشارِكيك
@@ -801,6 +803,7 @@ ar:
     set_redirect: تعين إعادة التوجيه
     warning:
       before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
+      other_data: لن يتم نقل أية بيانات أخرى تلقائيا
   moderation:
     title: الإشراف
   notification_mailer:
@@ -949,6 +952,7 @@ ar:
   settings:
     account: الحساب
     account_settings: إعدادات الحساب
+    aliases: كُنيات الحساب
     appearance: المظهر
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
