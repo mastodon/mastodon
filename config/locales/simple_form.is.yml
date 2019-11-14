@@ -1,5 +1,8 @@
 is:
   simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
     labels:
       account:
         fields:
@@ -9,6 +12,7 @@ is:
         types:
           none: Gera ekkert
       defaults:
+        avatar: Auðkennismynd
         chosen_languages: Sía tungumál
         confirm_new_password: Staðfestu nýja lykilorðið
         confirm_password: Staðfestu lykilorð
