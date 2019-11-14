@@ -1,6 +1,11 @@
 is:
   devise:
     mailer:
+      confirmation_instructions:
+        action: Staðfestu tölvupóstfang
+        title: Staðfestu tölvupóstfang
+      reconfirmation_instructions:
+        title: Staðfestu tölvupóstfang
       reset_password_instructions:
         action: Breyta lykilorði
   errors:
