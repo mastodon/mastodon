@@ -39,6 +39,8 @@ zh-CN:
         whole_word: 如果关键词只包含字母和数字，就只会在整个词被匹配时才会套用
       featured_tag:
         name: '你可能想要使用以下之一：'
+      form_challenge:
+        current_password: 您正在进入安全区域
       imports:
         data: 从其他 Mastodon 服务器导出的 CSV 文件
       invite_request:
@@ -52,9 +54,14 @@ zh-CN:
         fields:
           name: 标签
           value: 内容
+      account_alias:
+        acct: 处理旧帐号
+      account_migration:
+        acct: 处理新账号
       account_warning_preset:
         text: 预置文本
       admin_account_action:
+        include_statuses: 在电子邮件中包括已举报的嘟文
         send_email_notification: 通过邮件提醒此用户
         text: 内容警告
         type: 动作
@@ -147,5 +154,6 @@ zh-CN:
     'no': '否'
     recommended: 推荐
     required:
+      mark: "*"
       text: 必填
     'yes': '是'
