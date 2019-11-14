@@ -436,7 +436,7 @@ zh-CN:
         all: 对所有人
         disabled: 不对任何人
         title: 查看域名屏蔽
-        users: 本地已登录用户
+        users: 对本地已登录用户
       domain_blocks_rationale:
         title: 显示理由
       hero:
@@ -533,9 +533,9 @@ zh-CN:
       reviewed: 已审核
       title: 话题标签
       trending_right_now: 当前热门
-      unique_uses_today: "今天发布 %{count} 条"
+      unique_uses_today: "今天发布了 %{count} 条"
       unreviewed: 未审核
-      updated_msg: 话题设置更新成功
+      updated_msg: 话题标签设置更新成功
     title: 管理
     warning_presets:
       add_new: 添加新条目
@@ -552,8 +552,8 @@ zh-CN:
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
     new_trending_tag:
-      body: '今日的热门话题 #%{name} 之前未审核。直到你允许之前这个话题将不会公开显示，或保持原样让它石沉大海。'
-      subject: '在 %{instance} 有话题 (#%{name}) 待审核'
+      body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，活着就保持原样让它石沉大海。'
+      subject: '在 %{instance} 有新话题 (#%{name}) 待审核'
   aliases:
     add_new: 创建别名
     created_msg: 成功创建了一个新别名。您现在可以从旧账户开始迁移了。
@@ -628,7 +628,7 @@ zh-CN:
     title: 关注 %{acct}
   challenge:
     confirm: 继续
-    hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求您的密码。"
+    hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求您输入密码。"
     invalid_password: 无效密码
     prompt: 确认密码以继续
   datetime:
@@ -646,7 +646,7 @@ zh-CN:
       x_months: "%{count}个月"
       x_seconds: "%{count}秒"
   deletes:
-    challenge_not_passed: 输入的信息不正确
+    challenge_not_passed: 您输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
     confirm_username: 输入您的用户名以继续
     proceed: 删除帐户
