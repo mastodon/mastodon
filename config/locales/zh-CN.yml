@@ -20,6 +20,8 @@ zh-CN:
     federation_hint_html: 在%{instance} 上拥有账户后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
+    instance_actor_flash: |
+      这个账号是个虚拟账号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
     learn_more: 了解详情
     privacy_policy: 隐私政策
     see_whats_happening: 看一看现在在发生什么
@@ -304,7 +306,7 @@ zh-CN:
           suspend: 自动封禁
         title: 添加域名屏蔽
       private_comment: 私密评论
-      private_comment_hint: 版主只允许内部用户评论此域名
+      private_comment_hint: 给这一域名限制添加备注，供监察员内部使用
       public_comment: 公开评论
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
@@ -378,7 +380,7 @@ zh-CN:
       pending: 等待中继确认
       save_and_enable: 保存并启用
       setup: 设置中继连接
-      signatures_not_enabled: 安全模式或白名单模式启用时中继将不会正常工作
+      signatures_not_enabled: 安全模式或白名单模式启用时，中继将不会正常工作
       status: 状态
       title: 中继
     report_notes:
@@ -429,14 +431,14 @@ zh-CN:
         title: 自定义 CSS
       default_noindex:
         desc_html: 影响所有尚未更改此设置的用户
-        title: 默认将不会对用户建立索引
+        title: 默认不让用户被搜索引擎索引
       domain_blocks:
         all: 对所有人
         disabled: 不对任何人
         title: 查看域名屏蔽
         users: 本地已登录用户
       domain_blocks_rationale:
-        title: 显示原理
+        title: 显示理由
       hero:
         desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
         title: 主题图片
@@ -554,6 +556,8 @@ zh-CN:
       subject: '在 %{instance} 有话题 (#%{name}) 待审核'
   aliases:
     add_new: 创建别名
+    created_msg: 成功创建了一个新别名。您现在可以从旧账户开始迁移了。
+    deleted_msg: 成功移除别名。已经无法从该帐户移动到此帐户了。
     remove: 取消关联别名
   appearance:
     advanced_web_interface: 高级 web 界面
@@ -799,14 +803,15 @@ zh-CN:
     cancel: 取消跳转
     cancelled_msg: 成功取消跳转
     errors:
-      already_moved: 于已经迁移的帐号相同
+      already_moved: 和您已经迁移过的帐号相同
       move_to_self: 不能是当前帐户
       not_found: 找不到
       on_cooldown: 您正处于冷却状态
+    followers_count: 迁移时的关注者
     incoming_migrations: 从其他帐号迁移
-    incoming_migrations_html: 要移动另一个帐号到本帐号，首先你需要 <a href="%{path}">创建一个帐号别名</a> 。
-    moved_msg: 您的帐号和关注者当前已被重定向至 %{acct} 。
-    not_redirecting: 您的帐号当前未重定向到其他帐户。
+    incoming_migrations_html: 要把另一个帐号移动到本帐号，首先您需要 <a href="%{path}">创建一个帐号别名</a> 。
+    moved_msg: 您的帐号现在会跳转到%{acct} ，同时关注者也会迁移过去 。
+    not_redirecting: 您的帐号当前未跳转到其他帐户。
     on_cooldown: 您最近已经迁移过您的帐号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
@@ -819,7 +824,7 @@ zh-CN:
       disabled_account: 此后，您的当前帐户将无法使用。但是，您仍然有权导出数据或者重新激活。
       followers: 这步操作将把所有关注者从当前账户移动到新账户
       other_data: 不会自动移动其他数据
-      redirect: 您当前的帐号资料将会在一个重定向通知后更新并被排除在搜索范围外
+      redirect: 在收到一个跳转通知后，您当前的帐号资料将会更新，并被排除在搜索范围外
   moderation:
     title: 运营
   notification_mailer:
@@ -903,7 +908,7 @@ zh-CN:
     no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
     proceed: 确认关注
     prompt: '你正准备关注：'
-    reason_html: "<strong>为什么需要这个步骤？</strong> <code>%{instance}</code> 可能不是您所注册的服务器，所以我们需要先重定向到您所在的服务器。"
+    reason_html: "<strong>为什么需要这个步骤？</strong> <code>%{instance}</code> 可能不是您所注册的服务器，所以我们需要先跳转到您所在的服务器。"
   remote_interaction:
     favourite:
       proceed: 确认标记为喜欢
@@ -1140,7 +1145,7 @@ zh-CN:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
         silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
-      get_in_touch: 您可回复这个邮件用于和 %{instance} 的工作人员保持联系。
+      get_in_touch: 您可回复该邮件以联系 %{instance} 的工作人员。
       review_server_policies: 查看服务器政策
       statuses: '具体来说，适用于：'
       subject:
