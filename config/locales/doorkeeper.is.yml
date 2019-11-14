@@ -1,1 +1,52 @@
 is:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Heiti forrits
+        redirect_uri: Slóð endurbeiningar
+        website: Vefsvæði forrits
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Heimila
+        cancel: Hætta við
+        destroy: Eyðileggja
+        edit: Breyta
+        submit: Senda inn
+      confirmations:
+        destroy: Ertu viss?
+      edit:
+        title: Breyta forriti
+      index:
+        application: Forrit
+        delete: Eyða
+        name: Heiti
+        new: Nýtt forrit
+        show: Sýna
+        title: Forritin þín
+      new:
+        title: Nýtt forrit
+      show:
+        actions: Aðgerðir
+        title: 'Forrit: %{name}'
+    authorizations:
+      buttons:
+        authorize: Heimila
+        deny: Neita
+      error:
+        title: Villa kom upp
+      new:
+        able_to: Það mun geta
+        title: Auðkenning er nauðsynleg
+    authorized_applications:
+      buttons:
+        revoke: Afturkalla
+      confirmations:
+        revoke: Ertu viss?
+      index:
+        application: Forrit
+        created_at: Heimilað
+        date_format: "%Y-%m-%d %H:%M:%S"
+    scopes:
+      "write:lists": búa til lista
+      "write:statuses": gefa út stöður
