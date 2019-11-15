@@ -5,7 +5,10 @@ is:
     administered_by: 'Stýrt af:'
     api: API-kerfisviðmót
     apps: Farsímaforrit
+    apps_platforms: Notaðu Mastodon frá iOS, Android og öðrum stýrikerfum
     browse_directory: Skoða persónusniðamöppu og sía eftir áhugamálum
+    browse_local_posts: Skoðaðu kvikt streymi af opinberum færslum á þessum vefþjóni
+    browse_public_posts: Skoðaðu kvikt streymi af opinberum færslum á Mastodon
     contact: Hafa samband
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
@@ -15,6 +18,7 @@ is:
     get_apps: Prófaðu farsímaforrit
     learn_more: Kanna nánar
     privacy_policy: Persónuverndarstefna
+    see_whats_happening: Sjáðu hvað er í gangi
     server_stats: 'Tölfræði þjóns:'
     source_code: Grunnkóði
     status_count_after:
@@ -312,6 +316,8 @@ is:
     cancelled_msg: Tókst að hætta við endurbeiningu.
     errors:
       not_found: fannst ekki
+    warning:
+      only_redirect_html: Einnig geturðu <a href="%{path}">einungis sett upp endurbeiningu á persónusniðið þitt</a>.
   notification_mailer:
     favourite:
       title: Nýtt eftirlæti
