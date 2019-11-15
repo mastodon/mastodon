@@ -1,4 +1,3 @@
----
 th:
   devise:
     confirmations:
@@ -8,9 +7,9 @@ th:
     failure:
       already_authenticated: คุณได้ลงชื่อเข้าอยู่แล้ว
       inactive: ยังไม่ได้เปิดใช้งานบัญชีของคุณ
-      invalid: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
+      invalid: '%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง'
       locked: มีการล็อคบัญชีของคุณอยู่
-      not_found_in_database: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
+      not_found_in_database: '%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง'
       pending: บัญชีของคุณยังอยู่ระหว่างการตรวจทาน
       timeout: เซสชันของคุณหมดอายุแล้ว โปรดลงชื่อเข้าอีกครั้งเพื่อดำเนินการต่อ
       unauthenticated: คุณต้องลงชื่อเข้าหรือลงทะเบียนก่อนดำเนินการต่อ
@@ -48,6 +47,8 @@ th:
         title: เปิดใช้งาน 2FA แล้ว
       two_factor_recovery_codes_changed:
         title: เปลี่ยนรหัสกู้คืน 2FA แล้ว
+      unlock_instructions:
+        subject: 'Mastodon: คำแนะนำการปลดล็อค'
     passwords:
       updated: เปลี่ยนรหัสผ่านของคุณสำเร็จ ตอนนี้คุณได้ลงชื่อเข้าแล้ว
       updated_not_active: เปลี่ยนรหัสผ่านของคุณสำเร็จ
