@@ -124,8 +124,10 @@ is:
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
+      assign_category: Úthluta flokki
       by_domain: Lén
       copy: Afrita
+      create_new_category: Búa til nýjan flokk
       delete: Eyða
       disable: Gera óvirkt
       disabled: Óvirkt
@@ -135,6 +137,7 @@ is:
       list: Listi
       overwrite: Skrifa yfir
       shortcode: Stuttkóði
+      uncategorized: Óflokkað
       upload: Senda inn
     dashboard:
       feature_invites: Boðstenglar
@@ -320,10 +323,16 @@ is:
   filters:
     contexts:
       home: Heimatímalína
+      notifications: Tilkynningar
       public: Opinberar tímalínur
+      thread: Samtöl
+    edit:
+      title: Breyta síu
     index:
       delete: Eyða
       title: Síur
+    new:
+      title: Bæta við nýrri síu
   footer:
     more: Meira…
     resources: Tilföng
@@ -392,10 +401,18 @@ is:
     other: Annað
     public_timelines: Opinberar tímalínur
   relationships:
+    activity: Virkni aðgangs
     dormant: Sofandi
     last_active: Síðasta virkni
     most_recent: Nýjast
+    moved: Fært
     mutual: Sameiginlegir
+    primary: Aðal
+    relationship: Vensl
+    remove_selected_domains: Fjarlægja alla fylgjendur frá völdum lénum
+    remove_selected_followers: Fjarlægja valda fylgjendur
+    remove_selected_follows: Hætta að fylgjast með völdum notendum
+    status: Staða aðgangs
   remote_interaction:
     reblog:
       proceed: Halda áfram í endurbirtingu
@@ -450,6 +467,7 @@ is:
     migrate: Yfirfærsla notandaaðgangs
     notifications: Tilkynningar
     preferences: Kjörstillingar
+    relationships: Fylgist með og fylgjendur
   statuses:
     attached:
       image:
