@@ -38,7 +38,7 @@ zh-CN:
       reason: 原因
       rejecting_media: '来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。'
       silenced: '来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则他们的互动不会产生通知。'
-      suspended: '这些服务器的数据将不会被处理、存储或者交换，与来自于这些服务器的用户也不能进行交互。'
+      suspended: '这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。'
     unavailable_content_html: 通常来说，在Mastodon上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是这台服务器上会有一些挟制。
     user_count_after:
       other: 位用户
@@ -506,7 +506,7 @@ zh-CN:
         desc_html: 影响以前未禁止的话题标签
         title: 允许在未审查的情况下将话题置为热门
       trends:
-        desc_html: 公开显示先前已审查的但当前热门的话题
+        desc_html: 公开显示先前已通过审核的当前热门话题
         title: 热门标签
     statuses:
       back_to_account: 返回帐户信息页
@@ -624,7 +624,7 @@ zh-CN:
       confirming: 等待电子邮件确认完成。
       functional: 您的帐号可以正常使用了。
       pending: 工作人员正在审核您的申请。这需要花点时间。在申请被批准后，您将收到一封电子邮件。
-      redirecting_to: 您的帐户无效，它已被迁移至 %{acct}
+      redirecting_to: 您的帐户无效，因为它已被设置为跳转到 %{acct}
     trouble_logging_in: 登录有问题？
   authorize_follow:
     already_following: 你已经在关注此用户了
@@ -665,8 +665,8 @@ zh-CN:
     warning:
       before: '在删除前，请仔细阅读下列说明：'
       caches: 已被其他服务器缓存的内容可能还会保留
-      data_removal: 您的帖子和其他数据将被永久删除
-      email_change_html: 您可以 <a href="%{path}">更换邮箱地址</a> 无需删除帐号
+      data_removal: 您的嘟文和其他数据将被永久删除
+      email_change_html: 您可以 <a href="%{path}">更换邮箱地址</a> 无需删除账号
       email_contact_html: 如果它还没送到，你可以发邮件给 <a href="mailto:%{email}">%{email}</a> 寻求帮助。
       email_reconfirmation_html: 如果您没有收到确认邮件，请点击 <a href="%{path}">重新发送</a> 。
       irreversible: 您将无法恢复或重新激活您的帐户
@@ -829,7 +829,7 @@ zh-CN:
     on_cooldown: 您最近已经迁移过您的帐号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
-    redirecting_to: 您的帐户已迁移至 %{acct}。
+    redirecting_to: 您的帐户被跳转到了 %{acct}。
     set_redirect: 设置跳转
     warning:
       backreference_required: 新账号必须先引用现在这个帐号
