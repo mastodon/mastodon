@@ -133,6 +133,7 @@ is:
       shortcode: Stuttkóði
       upload: Senda inn
     dashboard:
+      feature_invites: Boðstenglar
       feature_profile_directory: Persónusniðamappa
       feature_relay: Sambandsendurvarpi
       feature_timeline_preview: Forskoðun tímalínu
@@ -161,6 +162,10 @@ is:
     invites:
       filter:
         all: Allt
+        available: Tiltækur
+        expired: Útrunnið
+        title: Sía
+      title: Boðsgestir
     relays:
       delete: Eyða
       disable: Gera óvirkt
@@ -187,6 +192,9 @@ is:
       profile_directory:
         desc_html: Leyfa að hægt sé að finna notendur
         title: Virkja persónusniðamöppu
+      registrations:
+        min_invite_role:
+          disabled: Enginn
       site_description:
         title: Lýsing á vefþjóni
       site_terms:
@@ -316,6 +324,7 @@ is:
       overwrite: Skrifa yfir
   invites:
     delete: Gera óvirkt
+    expired: Útrunnið
     expires_in:
       '1800': 30 mínútur
       '21600': 6 klukkustundir
@@ -324,6 +333,10 @@ is:
       '604800': 1 vika
       '86400': 1 dagur
     expires_in_prompt: Aldrei
+    max_uses_prompt: Engin takmörk
+    table:
+      expires_at: Rennur út
+    title: Bjóða fólki
   migrations:
     cancel: Hætta við endurbeiningu
     cancelled_msg: Tókst að hætta við endurbeiningu.
