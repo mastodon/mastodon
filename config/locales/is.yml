@@ -108,6 +108,8 @@ is:
       whitelisted: Á lista yfir leyft
     action_logs:
       actions:
+        create_domain_block: "%{name} útilokaði lénið %{target}"
+        destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
@@ -144,6 +146,7 @@ is:
       by_domain: Lén
       moderation:
         all: Allt
+      total_blocked_by_us: Útilokaðir af okkur
     invites:
       filter:
         all: Allt
@@ -155,11 +158,21 @@ is:
       enabled: Virkt
       status: Staða
     reports:
+      are_you_sure: Ertu viss?
+      comment:
+        none: Ekkert
+      mark_as_resolved: Merkja sem leyst
+      mark_as_unresolved: Merkja sem óleyst
       notes:
         delete: Eyða
+      resolved: Leyst
       status: Staða
       title: Skýrslur
+      unresolved: Óleyst
+      updated_at: Uppfært
     settings:
+      domain_blocks:
+        users: Til innskráðra staðværra notenda
       site_title: Heiti vefþjóns
     statuses:
       batch:
