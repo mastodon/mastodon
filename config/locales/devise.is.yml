@@ -2,6 +2,7 @@ is:
   devise:
     failure:
       invalid: Ógildur %{authentication_keys} eða lykilorð.
+      locked: Notandaaðgangurinn þinn er læstur.
       not_found_in_database: Ógildur %{authentication_keys} eða lykilorð.
     mailer:
       confirmation_instructions:
@@ -22,3 +23,4 @@ is:
   errors:
     messages:
       not_found: fannst ekki
+      not_locked: var ekki læst
