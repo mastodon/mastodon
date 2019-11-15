@@ -3,7 +3,10 @@ is:
     hints:
       defaults:
         avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
+        bot: Þessi aðgangur er aðallega til að framkvæma sjálfvirkar aðgerðir og gæti verið án þess að hann sé vaktaður reglulega
         discoverable: Persónusniðamappan er önnur leið til að láta notandaaðganginn þinn ná til fleiri lesenda
+        locked: Krefst þess að þú samþykkir fylgjendur handvirkt
+        setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er í stað þess að hún skruni streyminu sjálfvirkt
     labels:
       account:
         fields:
@@ -15,26 +18,36 @@ is:
           none: Gera ekkert
       defaults:
         avatar: Auðkennismynd
+        bot: Þetta er aðgangur fyrir róbót
         chosen_languages: Sía tungumál
         confirm_new_password: Staðfestu nýja lykilorðið
         confirm_password: Staðfestu lykilorðið
         current_password: Núverandi lykilorð
         data: Gögn
+        discoverable: Hafa þennan aðgang með í notendaskránni
         display_name: Birtingarnafn
         email: Tölvupóstfang
+        fields: Lýsigögn notandasniðs
         locale: Tungumál viðmóts
         locked: Læsa aðgangi
         new_password: Nýtt lykilorð
         note: Æviágrip
         otp_attempt: Teggja-þátta kóði
         password: Lykilorð
+        setting_advanced_layout: Virkja ítarlegt vefviðmót
         setting_aggregate_reblogs: Hópa endurbirtingar í tímalínum
+        setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
         setting_boost_modal: Sýna staðfestingarglugga fyrir endurbirtingu
+        setting_crop_images: Utansníða myndir í ekki útfelldum tístum í 16x9
         setting_default_language: Tungumál sem skrifað er á
         setting_display_media_default: Sjálfgefið
         setting_display_media_hide_all: Fela allt
         setting_display_media_show_all: Birta allt
+        setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
+        setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_theme: Þema vefsvæðis
+        setting_trends: Birta það sem er efst á baugi í dag
+        setting_use_pending_items: Rólegur hamur
         username: Notandanafn
         username_or_email: Notandanafn eða tölvupóstfang
         whole_word: Heil orð
