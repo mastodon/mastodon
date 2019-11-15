@@ -39,12 +39,14 @@ zh-CN:
       rejecting_media: '来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。'
       silenced: '来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则他们的互动不会产生通知。'
       suspended: '这些服务器的数据将不会被处理、存储或者交换，与来自于这些服务器的用户也不能进行交互。'
+    unavailable_content_html: 通常来说，在Mastodon上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是这台服务器上会有一些挟制。
     user_count_after:
       other: 位用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
     choices_html: "%{name} 的推荐："
+    endorsements_hint: 您可以以在web界面上推荐你关注的人，他们会出现在这里。
     featured_tags_hint: 您可以精选一些话题标签展示在这里。
     follow: 关注
     followers:
@@ -819,7 +821,7 @@ zh-CN:
     on_cooldown: 您最近已经迁移过您的帐号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
-    redirecting_to: 您的帐户被跳转到了 %{acct}。
+    redirecting_to: 您的帐户已迁移至 %{acct}。
     set_redirect: 设置跳转
     warning:
       backreference_required: 新账号必须先引用现在这个帐号
