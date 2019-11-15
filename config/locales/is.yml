@@ -98,6 +98,8 @@ is:
         active: Virkur
         all: Allt
         pending: Í bið
+      most_recent_activity: Allra nýjasta virkni
+      most_recent_ip: Nýjasta IP-vistfang
       public: Opinber
       reject: Hafna
       reject_all: Hafna öllu
@@ -140,6 +142,7 @@ is:
       feature_relay: Sambandsendurvarpi
       feature_timeline_preview: Forskoðun tímalínu
       features: Eiginleikar
+      recent_users: Nýlegir notendur
       software: Hugbúnaður
       title: Stjórnborð
       total_users: notendur alls
@@ -190,6 +193,7 @@ is:
       updated_at: Uppfært
     settings:
       domain_blocks:
+        all: Til allra
         users: Til innskráðra staðværra notenda
       profile_directory:
         desc_html: Leyfa að hægt sé að finna notendur
@@ -219,6 +223,7 @@ is:
     tags:
       context: Samhengi
       last_active: Síðasta virkni
+      most_recent: Nýjast
       name: Myllumerki
       title: Myllumerki
       trending_right_now: Í umræðunni nákvæmlega núna
@@ -387,7 +392,10 @@ is:
     other: Annað
     public_timelines: Opinberar tímalínur
   relationships:
+    dormant: Sofandi
     last_active: Síðasta virkni
+    most_recent: Nýjast
+    mutual: Sameiginlegir
   remote_interaction:
     reblog:
       proceed: Halda áfram í endurbirtingu
