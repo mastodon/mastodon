@@ -47,6 +47,13 @@ is:
         application: Forrit
         created_at: Heimilað
         date_format: "%Y-%m-%d %H:%M:%S"
+    layouts:
+      admin:
+        nav:
+          applications: Forrit
+          oauth2_provider: OAuth þjónusta
+      application:
+        title: Krafist er OAuth auðkenningar
     scopes:
       "read:bookmarks": skoða bókamerki
       "read:lists": skoða listana þína
