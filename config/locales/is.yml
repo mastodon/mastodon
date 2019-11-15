@@ -10,6 +10,8 @@ is:
     contact_unavailable: Ekki til staðar
     discover_users: Uppgötva notendur
     documentation: Hjálparskjöl
+    federation_hint_html: Með notandaaðgangi á %{instance} geturðu fylgst með fólki á hvaða Mastodon-þjóni sem er og reyndar víðar.
+    get_apps: Prófaðu farsímaforrit
     learn_more: Kanna nánar
     privacy_policy: Persónuverndarstefna
     server_stats: 'Tölfræði þjóns:'
@@ -173,7 +175,13 @@ is:
     settings:
       domain_blocks:
         users: Til innskráðra staðværra notenda
+      site_description:
+        title: Lýsing á vefþjóni
+      site_terms:
+        title: Sérsniðnir þjónustuskilmálar
       site_title: Heiti vefþjóns
+      thumbnail:
+        title: Smámynd vefþjóns
     statuses:
       batch:
         delete: Eyða
@@ -188,11 +196,17 @@ is:
       delete: Eyða
       edit: Breyta
   application_mailer:
+    notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
+    settings: 'Breyta kjörstillingum tölvupósts: %{link}'
     view: 'Skoða:'
   auth:
     change_password: Lykilorð
+    checkbox_agreement_html: Ég samþykki <a href="%{rules_path}" target="_blank">reglur vefþjónsins</a> og <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
+    checkbox_agreement_without_rules_html: Ég samþykki <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
     delete_account: Eyða notandaaðgangi
+    description:
+      prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
     forgot_password: Gleymdirðu lykilorðinu?
     login: Skrá inn
     logout: Skrá út
@@ -207,11 +221,14 @@ is:
     set_new_password: Stilla nýtt lykilorð
     setup:
       title: Uppsetning
+    trouble_logging_in: Vandræði við að skrá inn?
   authorize_follow:
     follow: Fylgja
     post_follow:
       close: Eða að þú getur lokað þessum glugga.
+    title: Fylgjast með %{acct}
   challenge:
+    confirm: Halda áfram
     invalid_password: Ógilt lykilorð
   datetime:
     distance_in_words:
@@ -387,10 +404,13 @@ is:
   stream_entries:
     reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
+  terms:
+    title: "%{instance} - Þjónustuskilmálar og persónuverndarstefna"
   two_factor_authentication:
     setup: Setja upp
   user_mailer:
     warning:
+      review_server_policies: Yfirfara reglur vefþjónsins
       title:
         none: Aðvörun
     welcome:
