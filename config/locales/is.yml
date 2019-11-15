@@ -44,7 +44,7 @@ is:
       other: fylgjendur
     following: Fylgist með
     joined: Gerðist þátttakandi %{date}
-    last_active: síðast virkur
+    last_active: síðasta virkni
     never_active: Aldrei
     posts:
       one: Tíst
@@ -191,19 +191,25 @@ is:
       site_title: Heiti vefþjóns
       thumbnail:
         title: Smámynd vefþjóns
+      trends:
+        title: Myllumerki í umræðunni
     statuses:
       batch:
         delete: Eyða
       deleted: Eytt
     tags:
       context: Samhengi
+      last_active: Síðasta virkni
       name: Myllumerki
       title: Myllumerki
+      trending_right_now: Í umræðunni nákvæmlega núna
     title: Stjórnendur
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
       edit: Breyta
+  appearance:
+    discovery: Uppgötvun
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
@@ -259,6 +265,8 @@ is:
       more_details_html: Til að skoða þetta nánar, er gott að líta á <a href="%{terms_path}">persónuverndarstefnuna</a>.
   directories:
     directory: Persónusniðamappa
+    explanation: Leitaðu að notendum eftir áhugamálum þeirra
+    explore_mastodon: Kannaðu %{title}
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -288,6 +296,7 @@ is:
   footer:
     more: Meira…
     resources: Tilföng
+    trending_now: Í umræðunni núna
   generic:
     all: Allt
     copy: Afrita
@@ -346,11 +355,14 @@ is:
   preferences:
     other: Annað
     public_timelines: Opinberar tímalínur
+  relationships:
+    last_active: Síðasta virkni
   remote_interaction:
     reblog:
       proceed: Halda áfram í endurbirtingu
       prompt: 'Þú ætlar að endurbirta þetta tíst:'
   sessions:
+    activity: Síðasta virkni
     browser: Vafri
     browsers:
       alipay: Alipay
@@ -389,6 +401,7 @@ is:
     revoke: Afturkalla
     title: Setur
   settings:
+    authorized_apps: Leyfð forrit
     back: Til baka í Mastodon
     import: Flytja inn
     notifications: Tilkynningar
@@ -433,6 +446,7 @@ is:
       subject: Velkomin í Mastodon
       tips: Ábendingar
   users:
+    invalid_email: Tölvupóstfangið er ógilt
     signed_in_as: 'Skráð inn sem:'
   verification:
     verification: Sannprófun
