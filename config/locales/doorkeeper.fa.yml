@@ -1,4 +1,3 @@
----
 fa:
   activerecord:
     attributes:
@@ -23,6 +22,7 @@ fa:
         cancel: لغو
         destroy: پاک کردن
         edit: ویرایش
+        submit: ثبت
       confirmations:
         destroy: آیا مطمئن هستید؟
       edit:
@@ -45,6 +45,7 @@ fa:
       new:
         title: برنامهٔ تازه
       show:
+        actions: کنش‌ها
         application_id: کلید کلاینت
         callback_urls: نشانی‌های Callabck
         scopes: دامنه‌ها
@@ -70,6 +71,7 @@ fa:
       index:
         application: برنامه
         created_at: مجازشده از
+        date_format: "%Y-%m-%d%H:%M:%S"
         scopes: اجازه‌ها
         title: برنامه‌های مجاز
     errors:
@@ -100,7 +102,28 @@ fa:
       application:
         title: درخواست اجازهٔ OAuth
     scopes:
+      "admin:read": خواندن تمام داده‌ها روی کارساز
+      "admin:write": تغییر تمام داده‌ها روی کارساز
+      "admin:write:accounts": انجام کنش مدیریتی روی حساب‌ها
+      "admin:write:reports": انجام کنش مدیریتی روی گزارش‌ها
       follow: پیگیری، مسدودسازی، لغو مسدودسازی، و لغو پیگیری حساب‌ها
       push: برای حساب خود اعلان‌های لحظه‌ای دریافت کنید
       read: خواندن اطلاعات حساب شما
+      "read:accounts": دیدن اطّلاعات حساب
+      "read:blocks": دیدن انسدادهایتان
+      "read:bookmarks": دیدن نشانک‌هایتان
+      "read:favourites": دیدن برگزیده‌هایتان
+      "read:filters": دیدن پالایه‌هایتان
+      "read:follows": دیدن پی‌گیری‌هایتان
+      "read:lists": دیدن فهرست‌هایتان
+      "read:mutes": دیدن خموشی‌هایتان
+      "read:notifications": دیدن آگاهی‌هایتان
+      "read:reports": دیدن گزارش‌هایتان
+      "read:search": حست‌وجو از سمت خودتان
+      "read:statuses": دیدن همهٔ وضعیت‌ها
       write: انتشار مطالب از طرف شما
+      "write:accounts": تغییر نمایه‌تان
+      "write:blocks": انسداد حساب‌ها و دامنه‌ها
+      "write:bookmarks": نشانک‌گذاری وضعیت‌ها
+      "write:favourites": برگزیدن وضعیت‌ها
+      "write:filters": ایحاد پالایش‌ها
