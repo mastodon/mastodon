@@ -20,6 +20,8 @@ class FeedManager
   def filter?(timeline_type, status, receiver_id)
     if timeline_type == :home
       filter_from_home?(status, receiver_id, build_crutches(receiver_id, [status]))
+    if timeline_type == :list
+      filter_from_list?(status, receiver_id, build_crutches(receiver_id, [status]))
     elsif timeline_type == :mentions
       filter_from_mentions?(status, receiver_id)
     else
@@ -174,10 +176,6 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id, crutches)
-    return false if receiver_id == status.account_id
-    return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    return true  if phrase_filtered?(status, receiver_id, :home)
-
     check_for_blocks = crutches[:active_mentions][status.id] || []
     check_for_blocks.concat([status.account_id])
 
@@ -187,6 +185,14 @@ class FeedManager
     end
 
     return true if check_for_blocks.any? { |target_account_id| crutches[:blocking][target_account_id] || crutches[:muting][target_account_id] }
+
+    return filter_from_list?(status, receiver_id, crutches)
+  end
+
+  def filter_from_list?(status, receiver_id, crutches)
+    return false if receiver_id == status.account_id
+    return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
+    return true  if phrase_filtered?(status, receiver_id, :home)
 
     if status.reply? && !status.in_reply_to_account_id.nil?                                                                      # Filter out if it's a reply
       should_filter   = !crutches[:following][status.in_reply_to_account_id]                                                     # and I'm not following the person it's a reply to
