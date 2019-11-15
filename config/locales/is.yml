@@ -54,6 +54,7 @@ is:
     reserved_username: Notandanafnið er frátekið
     roles:
       admin: Stjóri
+      bot: Róbót
     unfollow: Hætta að fylgja
   admin:
     account_moderation_notes:
@@ -220,7 +221,12 @@ is:
       delete: Eyða
       edit: Breyta
   appearance:
+    advanced_web_interface: Ítarlegt vefviðmót
+    advanced_web_interface_hint: 'Ef þú vilt geta notað alla skjábreiddina gefur ítarlegt vefviðmót þér færi á að stilla marga mismunandi dálka svo hægt sé að sjá eins miklar upplýsingar í einu eins og þér hentar: Heim, tilkynningar, sameiginleg tímalína, ótiltekinn fjöldi lista og myllumerkja.'
+    animations_and_accessibility: Hreyfingar og algilt aðgengi
     discovery: Uppgötvun
+    sensitive_content: Viðkvæmt efni
+    toot_layout: Framsetning tísta
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
@@ -456,6 +462,10 @@ is:
     sensitive_content: Viðkvæmt efni
   terms:
     title: "%{instance} - Þjónustuskilmálar og persónuverndarstefna"
+  themes:
+    contrast: Mastodon (mikil birtuskil)
+    default: Mastodon (dökkt)
+    mastodon-light: Mastodon (ljóst)
   two_factor_authentication:
     setup: Setja upp
   user_mailer:
