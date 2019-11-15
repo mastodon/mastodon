@@ -1,0 +1,17 @@
+---
+vi:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Hạn chót
+        options: Lựa chọn
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: "chỉ chấp nhận chữ cái không dấu, số và dấu dạch dưới"
+        status:
+          attributes:
+            reblog:
+              taken: đã tồn tại
