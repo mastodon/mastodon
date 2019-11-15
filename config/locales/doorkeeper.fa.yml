@@ -4,8 +4,8 @@ fa:
       doorkeeper/application:
         name: نام برنامه
         redirect_uri: نشانی تغییرمسیر
-        scopes: محدوده
-        website: وبگاه برنامه
+        scopes: حوزه‌ها
+        website: پایگاه وب برنامه
     errors:
       models:
         doorkeeper/application:
@@ -77,12 +77,16 @@ fa:
     errors:
       messages:
         access_denied: دارندهٔ منبع یا سرور اجازه دهنده درخواست را نپذیرفت.
+        invalid_scope: حوزهٔ درخواستی نامعتبر، ناشناخته یا دستکاری‌شده است.
         invalid_token:
           expired: کد دسترسی منقضی شده است
           revoked: کد دسترسی فسخ شده است
           unknown: کد دسترسی معتبر نیست
         server_error: خطای پیش‌بینی‌نشده‌ای برای سرور اجازه‌دهنده رخ داد که جلوی اجرای این درخواست را گرفت.
         temporarily_unavailable: سرور اجازه‌دهنده به دلیل بار زیاد یا تعمیرات سرور هم‌اینک نمی‌تواند درخواست شما را بررسی کند.
+        unauthorized_client: کارخواه مجاز نیست این درخواست را با استفاده از این روش انجام دهد.
+        unsupported_grant_type: گونهٔ اعطای تأیید هویت توسّط کارساز تأیید هویتپشتیبانی نمی‌شود.
+        unsupported_response_type: کارساز تأیید هویت این گونه از پاسخ را پشتیبانی نمی‌کند.
     flash:
       applications:
         create:
@@ -103,6 +107,8 @@ fa:
         title: درخواست اجازهٔ OAuth
     scopes:
       "admin:read": خواندن تمام داده‌ها روی کارساز
+      "admin:read:accounts": خواندن اطّلاعات حساس از همهٔ حساب‌ها
+      "admin:read:reports": خواندن اطّلاعات حساس از همهٔ گزارش‌ها و حساب‌های گزارش‌شده
       "admin:write": تغییر تمام داده‌ها روی کارساز
       "admin:write:accounts": انجام کنش مدیریتی روی حساب‌ها
       "admin:write:reports": انجام کنش مدیریتی روی گزارش‌ها
@@ -127,3 +133,10 @@ fa:
       "write:bookmarks": نشانک‌گذاری وضعیت‌ها
       "write:favourites": برگزیدن وضعیت‌ها
       "write:filters": ایحاد پالایش‌ها
+      "write:follows": پی‌گیری افراد
+      "write:lists": ایجاد فهرست‌ها
+      "write:media": بارگذاری پرونده‌های رسانه
+      "write:mutes": خموش کردن افراد و گفت‌وگوها
+      "write:notifications": پام‌سازی آگاهی‌هایتان
+      "write:reports": گزارش دیگر افراد
+      "write:statuses": انتشار وضعیت‌ها
