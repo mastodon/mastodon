@@ -9,10 +9,8 @@ import {
 import {
   reblog,
   favourite,
-  bookmark,
   unreblog,
   unfavourite,
-  unbookmark,
   pin,
   unpin,
 } from '../actions/interactions';
@@ -81,14 +79,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       this.onModalReblog(status);
     } else {
       dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
-    }
-  },
-
-  onBookmark (status) {
-    if (status.get('bookmarked')) {
-      dispatch(unbookmark(status));
-    } else {
-      dispatch(bookmark(status));
     }
   },
 
