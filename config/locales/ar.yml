@@ -499,6 +499,8 @@ ar:
         desc_html: عرض الخيط العمومي على صفحة الاستقبال
         title: مُعاينة الخيط العام
       title: إعدادات الموقع
+      trendable_by_default:
+        title: السماح للوسوم بالظهور على المتداوَلة بدون مراجعة مسبقة
       trends:
         title: الوسوم المتداولة
     statuses:
@@ -582,6 +584,7 @@ ar:
     description:
       prefix_invited_by_user: "يدعوك @%{name} للاتحاق بخادم ماستدون هذا!"
       prefix_sign_up: أنشئ حسابًا على ماستدون اليوم!
+      suffix: بفضل حساب ، ستكون قادرا على متابعة الأشخاص ونشر تحديثات وتبادل رسائل مع مستخدمين مِن أي خادم Mastodon وأكثر!
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
     invalid_reset_password_token: رمز إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية. يرجى طلب واحد جديد.
@@ -600,9 +603,11 @@ ar:
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
     setup:
+      email_below_hint_html: إذا كان عنوان البريد الإلكتروني التالي غير صحيح، فيمكنك تغييره هنا واستلام بريد إلكتروني جديد للتأكيد.
       title: الضبط
     status:
       account_status: حالة الحساب
+      confirming: في انتظار اكتمال تأكيد البريد الإلكتروني.
       functional: حسابك جاهز.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
@@ -1067,6 +1072,7 @@ ar:
       subject: نسخة بيانات حسابك جاهزة للتنزيل
       title: المغادرة بأرشيف الحساب
     warning:
+      get_in_touch: يمكنك الرد على هذا البريد الإلكتروني للاتصال بفريق %{instance}.
       review_server_policies: مراجعة شروط السيرفر
       statuses: 'خصيصا لـ:'
       subject:
