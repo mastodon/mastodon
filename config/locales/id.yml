@@ -1,8 +1,7 @@
----
 id:
   about:
-    about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
-    about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
+    about_hashtag_html: 'Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.'
+    about_mastodon_html: 'Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.'
     about_this: Tentang server ini
     active_count_after: aktif
     active_footnote: Pengguna Aktif Bulanan (PAB)
@@ -21,9 +20,8 @@ id:
     federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
     get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
-    instance_actor_flash: 'Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
-
-'
+    instance_actor_flash: |
+      Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
     learn_more: Pelajari selengkapnya
     privacy_policy: Kebijakan Privasi
     see_whats_happening: Lihat apa yang sedang terjadi
@@ -47,7 +45,7 @@ id:
     user_count_before: Tempat bernaung bagi
     what_is_mastodon: Apa itu Mastodon?
   accounts:
-    choices_html: 'Pilihan %{name}:'
+    choices_html: "Pilihan %{name}:"
     endorsements_hint: Anda dapat mempromosikan orang yang Anda ikuti lewat antar muka web, dan mereka akan muncul di sini.
     featured_tags_hint: Anda dapat mengunggulkan tagar tertentu yang akan ditampilkan di sini.
     follow: Ikuti
@@ -343,7 +341,7 @@ id:
       title: Daftar hitam surel
     followers:
       back_to_account: Kembali Ke Akun
-      title: Pengikut %{acct}
+      title: "Pengikut %{acct}"
     instances:
       by_domain: Domain
       delivery_available: Pengiriman tersedia
@@ -374,7 +372,7 @@ id:
     relays:
       add_new: Tambah relai baru
       delete: Hapus
-      description_html: "<strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot."
+      description_html: <strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot.
       disable: Matikan
       disabled: Dimatikan
       enable: Aktifkan
@@ -550,10 +548,10 @@ id:
     new_report:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
-      subject: Laporan baru untuk %{instance} (#%{id})
+      subject: 'Laporan baru untuk %{instance} (#%{id})'
     new_trending_tag:
       body: 'Tagar #%{name} sedang tren hari ini, tetapi belum ditinjau. Itu tidak akan ditampilkan secara publik kecuali Anda mengizinkannya, atau simpan saja borang sebagaimana mestinya untuk tidak mendengarnya lagi.'
-      subject: Tagar baru muncul untuk ditinjau di %{instance} (#%{name})
+      subject: 'Tagar baru muncul untuk ditinjau di %{instance} (#%{name})'
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
@@ -893,6 +891,7 @@ id:
     relationship: Hubungan
     remove_selected_domains: Hapus semua pengikut dari domain yang dipilih
     remove_selected_followers: Hampus pengikut yang dipilih
+    remove_selected_follows: Batal ikuti pengguna terpilih
     status: Status akun
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
@@ -994,35 +993,63 @@ id:
     over_character_limit: melebihi %{max} karakter
     pin_errors:
       limit: Anda sudah mencapai jumlah maksimum toot yang dapat disematkan
+      ownership: Toot orang lain tidak bisa disematkan
+      private: Toot privat tidak bisa disematkan
+      reblog: Boost tidak bisa disematkan
+    poll:
+      total_people:
+        other: "%{count} orang"
+      total_votes:
+        other: "%{count} memilih"
+      vote: Memilih
     show_more: Tampilkan selengkapnya
+    sign_in_to_participate: Masuk untuk mengikuti percakapan
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Khusus pengikut
       private_long: Hanya tampilkan ke pengikut
       public: Publik
       public_long: Bisa dilihat semua orang
       unlisted: Bisa dilihat semua orang, tapi tidak ditampilkan di linimasa publik
+      unlisted_long: Tidak terdaftar di linimasa publik tetapi siapapun dapat melihat
   stream_entries:
+    pinned: Toot tersemat
     reblogged: di-boost-kan
     sensitive_content: Konten sensitif
+  tags:
+    does_not_match_previous_name: tidak cocok dengan nama sebelumnya
+  terms:
+    title: "%{instance} Ketentuan Layanan dan Kebijakan Privasi"
+  themes:
+    contrast: Mastodon (Kontras tinggi)
+    default: Mastodon (Gelap)
+    mastodon-light: Mastodon (Terang)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Masukkan kode yang dibuat oleh app autentikator sebagai konfirmasi
     description_html: Jika anda menaktifkan ototentikasi dua faktor, saat login anda harus menggunakan telepon anda  untuk membuat token supaya anda bisa masuk.
     disable: Matikan
     enable: Aktifkan
+    enabled: Otentifikasi dua faktor aktif
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
     instructions_html: "<strong>Pindai kode QR ini pada Otentikator Google anda atau aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk login."
     lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
     manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode yang harus dimasukkan:'
+    recovery_codes: Kode pemulihan cadangan
     recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     setup: Persiapan
     wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
   user_mailer:
+    backup_ready:
+      explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
+      subject: Arsip Anda sudah siap diunduh
     warning:
+      get_in_touch: Anda dapat membalas surel ini untuk menghubungi pengurus %{instance}.
       review_server_policies: Tinjau kebijakan server
       statuses: 'Khususnya untuk:'
       subject:
