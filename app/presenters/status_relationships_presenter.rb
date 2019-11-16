@@ -7,6 +7,7 @@ class StatusRelationshipsPresenter
     if current_account_id.nil?
       @reblogs_map    = {}
       @favourites_map = {}
+      @bookmarks_map  = {}
       @mutes_map      = {}
       @pins_map       = {}
     else
@@ -17,6 +18,7 @@ class StatusRelationshipsPresenter
 
       @reblogs_map     = Status.reblogs_map(status_ids, current_account_id).merge(options[:reblogs_map] || {})
       @favourites_map  = Status.favourites_map(status_ids, current_account_id).merge(options[:favourites_map] || {})
+      @bookmarks_map   = Status.bookmarks_map(status_ids, current_account_id).merge(options[:bookmarks_map] || {})
       @mutes_map       = Status.mutes_map(conversation_ids, current_account_id).merge(options[:mutes_map] || {})
       @pins_map        = Status.pins_map(pinnable_status_ids, current_account_id).merge(options[:pins_map] || {})
     end

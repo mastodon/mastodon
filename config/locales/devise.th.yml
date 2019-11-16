@@ -3,42 +3,69 @@ th:
   devise:
     confirmations:
       confirmed: ยืนยันที่อยู่อีเมลของคุณสำเร็จ
-      send_instructions: You will receive an email with instructions for how to confirm your email address in a few minutes.
-      send_paranoid_instructions: If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes.
+      send_instructions: คุณจะได้รับอีเมลพร้อมวิธีการยืนยันที่อยู่อีเมลของคุณในไม่กี่นาที หากคุณไม่ได้รับอีเมล กรุณาตรวจสอบโฟลเดอร์สแปมของคุณ
+      send_paranoid_instructions: หากที่อยู่อีเมลของคุณอยู่ในระบบของเรา คุณจะได้รับอีเมลพร้อมวิธีการยืนยันที่อยู่อีเมลของคุณในไม่กี่นาที หากคุณไม่ได้รับอีเมล กรุณาตรวจสอบโฟลเดอร์สแปมของคุณ
     failure:
       already_authenticated: คุณได้ลงชื่อเข้าอยู่แล้ว
       inactive: ยังไม่ได้เปิดใช้งานบัญชีของคุณ
       invalid: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
-      locked: บัญชีของคุณถูกล็อก
+      locked: มีการล็อคบัญชีของคุณอยู่
       not_found_in_database: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
-      pending: บัญชีของคุณกำลังถูกตรวจสอบ
+      pending: บัญชีของคุณยังอยู่ระหว่างการตรวจทาน
       timeout: เซสชันของคุณหมดอายุแล้ว โปรดลงชื่อเข้าอีกครั้งเพื่อดำเนินการต่อ
+      unauthenticated: คุณต้องลงชื่อเข้าหรือลงทะเบียนก่อนดำเนินการต่อ
+      unconfirmed: คุณต้องยืนยันที่อยู่อีเมลของคุณก่อนดำเนินการต่อ
     mailer:
+      confirmation_instructions:
+        action: ยืนยันที่อยู่อีเมล
+        action_with_app: ยืนยันแล้วกลับไปยัง %{app}
+        explanation: คุณได้สร้างบัญชีใหม่บน %{host} ด้วยที่อยู่อีเมลนี้ เหลืออีกเพียงคลิกเดียวก็สามารถเปิดใช้งานบัญชีได้แล้ว หากไม่ใช่คุณ กรุณาปฏิเสธอีเมลนี้
+        extra_html: นอกจากนี้ กรุณาอ่าน<a href="%{terms_path}">กฎของเซิร์ฟเวอร์</a>และ<a href="%{policy_path}">เงื่อนไขการให้บริการ</a>
+        subject: 'Mastodon: คำแนะนำการยืนยันสำหรับ %{instance}'
+        title: ยืนยันที่อยู่อีเมล
       email_changed:
+        explanation: 'กำลังเปลี่ยนที่อยู่อีเมลสำหรับบัญชีของคุณเป็น:'
+        subject: 'Mastodon: เปลี่ยนอีเมลแล้ว'
         title: ที่อยู่อีเมลใหม่
       password_change:
+        explanation: เปลี่ยนรหัสผ่านสำหรับบัญชีของคุณแล้ว
         subject: 'Mastodon: เปลี่ยนรหัสผ่านแล้ว'
         title: เปลี่ยนรหัสผ่านแล้ว
+      reconfirmation_instructions:
+        explanation: ยืนยันที่อยู่ใหม่เพื่อเปลี่ยนอีเมลของคุณ
+        subject: 'Mastodon: ยืนยันอีเมลสำหรับ %{instance}'
+        title: ยืนยันที่อยู่อีเมล
       reset_password_instructions:
         action: เปลี่ยนรหัสผ่าน
+        explanation: คุณได้ขอรหัสผ่านใหม่สำหรับบัญชีของคุณ
+        subject: 'Mastodon: คำแนะนำการตั้งรหัสผ่านใหม่'
+        title: ตั้งรหัสผ่านใหม่
       two_factor_disabled:
+        subject: 'Mastodon: ปิดการยืนยันสองขั้นตอนแล้ว'
         title: ปิดใช้งาน 2FA แล้ว
       two_factor_enabled:
+        subject: 'Mastodon: เปิดการยืนยันสองขั้นตอนแล้ว'
         title: เปิดใช้งาน 2FA แล้ว
+      two_factor_recovery_codes_changed:
+        title: เปลี่ยนรหัสกู้คืน 2FA แล้ว
     passwords:
-      send_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
-      send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
+      updated: เปลี่ยนรหัสผ่านของคุณสำเร็จ ตอนนี้คุณได้ลงชื่อเข้าแล้ว
+      updated_not_active: เปลี่ยนรหัสผ่านของคุณสำเร็จ
     registrations:
-      signed_up_but_pending: ข้อความที่ได้รับการยืนยันจะถูกส่งไปยังอีเมลของคุณ หลังจากนั้นให้ทำการคลิกลิงก์ เพื่อให้พวกเราตรวจสอบข้อมูลเสร็จเรียบร้อย และหลังจากนั้นคุณจะได้รับการยืนยัน
-      signed_up_but_unconfirmed: A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.
-      update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.
+      destroyed: ลาก่อน! ยกเลิกบัญชีของคุณสำเร็จ เราหวังว่าจะได้พบคุณอีกในเร็ว ๆ นี้
+      signed_up: ยินดีต้อนรับ! คุณได้ลงทะเบียนสำเร็จ
+      signed_up_but_inactive: คุณได้ลงทะเบียนสำเร็จ อย่างไรก็ตามเราไม่สามารถลงชื่อคุณเข้าเนื่องจากยังไม่ได้เปิดใช้งานบัญชีของคุณ
+      signed_up_but_locked: คุณได้ลงทะเบียนสำเร็จ อย่างไรก็ตามเราไม่สามารถลงชื่อคุณเข้าเนื่องจากมีการล็อคบัญชีของคุณอยู่
+      signed_up_but_pending: ส่งข้อความพร้อมลิงก์ยืนยันไปยังที่อยู่อีเมลของคุณแล้ว หลังจากคุณคลิกลิงก์ เราจะตรวจทานใบสมัครของคุณ คุณจะได้รับการแจ้งเตือนหากใบสมัครได้รับการอนุมัติ
+      signed_up_but_unconfirmed: ส่งข้อความพร้อมลิงก์ยืนยันไปยังที่อยู่อีเมลของคุณแล้ว โปรดไปตามลิงก์เพื่อเปิดใช้งานบัญชีของคุณ โปรดตรวจสอบโฟลเดอร์สแปมของคุณหากคุณไม่ได้รับอีเมลนี้
+      updated: อัปเดตบัญชีของคุณสำเร็จ
     sessions:
       already_signed_out: ลงชื่อออกสำเร็จ
       signed_in: ลงชื่อเข้าสำเร็จ
       signed_out: ลงชื่อออกสำเร็จ
     unlocks:
-      send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
-      send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
+      send_instructions: คุณจะได้รับอีเมลพร้อมวิธีการปลดล็อคบัญชีของคุณในไม่กี่นาที หากคุณไม่ได้รับอีเมล กรุณาตรวจสอบโฟลเดอร์สแปมของคุณ
+      unlocked: ปลดล็อคบัญชีของคุณสำเร็จ โปรดลงชื่อเข้าเพื่อดำเนินการต่อ
   errors:
     messages:
       not_found: ไม่พบ

@@ -10,7 +10,8 @@ ko:
     api: API
     apps: 모바일 앱
     apps_platforms: 마스토돈을 iOS, 안드로이드, 다른 플랫폼들에서도 사용하세요
-    browse_directory: 프로필 디렉터리를 둘러보고 관심사 찾기
+    browse_directory: 프로필 디렉토리를 둘러보고 관심사 찾기
+    browse_local_posts: 이 서버의 공개글 실시간 스트림을 둘러보기
     browse_public_posts: 마스토돈의 공개 라이브 스트림을 둘러보기
     contact: 연락처
     contact_missing: 미설정
@@ -171,6 +172,7 @@ ko:
         user: 사용자
       salmon_url: Salmon URL
       search: 검색
+      search_same_ip: 같은 IP의 다른 사용자들
       shared_inbox_url: 공유된 inbox URL
       show:
         created_reports: 이 계정에서 제출된 신고
@@ -215,10 +217,10 @@ ko:
         reopen_report: "%{name}이 리포트 %{target}을 다시 열었습니다"
         reset_password_user: "%{name}이 %{target}의 암호를 초기화했습니다"
         resolve_report: "%{name}이 %{target} 신고를 처리됨으로 변경하였습니다"
-        silence_account: "%{name}이 %{target}의 계정을 뮤트시켰습니다"
+        silence_account: "%{name}이 %{target}의 계정을 침묵시켰습니다"
         suspend_account: "%{name}이 %{target}의 계정을 정지시켰습니다"
         unassigned_report: "%{name}이 리포트 %{target}을 할당 해제했습니다"
-        unsilence_account: "%{name}이 %{target}에 대한 뮤트를 해제했습니다"
+        unsilence_account: "%{name}이 %{target}에 대한 침묵을 해제했습니다"
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
         update_status: "%{name}이 %{target}의 상태를 업데이트 했습니다"
@@ -503,7 +505,7 @@ ko:
         title: 타임라인 프리뷰
       title: 사이트 설정
       trendable_by_default:
-        desc_html: 이전에 비허용 되지 않은 해시태그들에 영향을 미칩니다
+        desc_html: 이전에 거부되지 않은 해시태그들에 영향을 미칩니다
         title: 해시태그가 사전 리뷰 없이 트렌드에 올라갈 수 있도록 허용
       trends:
         desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
@@ -571,6 +573,7 @@ ko:
     confirmation_dialogs: 확인 대화상자
     discovery: 발견하기
     sensitive_content: 민감한 내용
+    toot_layout: 툿 레이아웃
   application_mailer:
     notification_preferences: 메일 설정 변경
     salutation: "%{name} 님,"
@@ -999,6 +1002,8 @@ ko:
     profile: 프로필
     relationships: 팔로잉과 팔로워
     two_factor_authentication: 2단계 인증
+  spam_check:
+    spam_detected: 이것은 자동화 된 신고입니다. 스팸이 감지되었습니다.
   statuses:
     attached:
       description: '첨부: %{attached}'

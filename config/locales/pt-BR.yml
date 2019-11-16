@@ -519,10 +519,13 @@ pt-BR:
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
   appearance:
+    advanced_web_interface: Interface web avançada
+    advanced_web_interface_hint: 'Se você deseja usar toda a sua largura de tela, a interface web avançada permite que você configure muitas colunas diferentes para ver tantas informações ao mesmo tempo quanto você deseja: Início, notificações, linha do tempo federada, qualquer número de listas e hashtags.'
     animations_and_accessibility: Animações e acessibilidade
     confirmation_dialogs: Popups de confirmação
     discovery: Descobrir
     sensitive_content: Conteúdo sensível
+    toot_layout: Layout do Toot
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
     salutation: "%{name},"
@@ -566,6 +569,11 @@ pt-BR:
     reset_password: Redefinir senha
     security: Segurança
     set_new_password: Definir uma nova senha
+    setup:
+      email_below_hint_html: Se o endereço de e-mail abaixo estiver incorreto, você pode alterá-lo aqui e receber um novo e-mail de confirmação.
+      email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
+    status:
+      redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
     trouble_logging_in: Problemas para se conectar?
   authorize_follow:
     already_following: Você já está seguindo esta conta

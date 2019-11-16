@@ -11,6 +11,7 @@ es:
     apps: Aplicaciones móviles
     apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
     browse_directory: Navega por el directorio de perfiles y filtra por intereses
+    browse_local_posts: Explora en vivo los posts públicos de este servidor
     browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
@@ -175,6 +176,7 @@ es:
         user: Usuario
       salmon_url: URL de salmón
       search: Buscar
+      search_same_ip: Otros usuarios con la misma IP
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -201,10 +203,12 @@ es:
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning: "%{name} envió una advertencia a %{target}"
         create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
+        create_domain_allow: "%{name} ha añadido a la lista blanca el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
         demote_user: "%{name} degradó al usuario %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
+        destroy_domain_allow: "%{name} ha eliminado el dominio %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
         destroy_status: "%{name} eliminó el estado de %{target}"
@@ -575,6 +579,7 @@ es:
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
     sensitive_content: Contenido sensible
+    toot_layout: Diseño de los toots
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name},"
@@ -1008,7 +1013,7 @@ es:
     relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
   spam_check:
-    spam_detected: Este es un informe automatizado. Se ha detectado Spam.
+    spam_detected: Este es un informe automatizado. Se ha detectado correo no deseado.
   statuses:
     attached:
       description: 'Adjunto: %{attached}'

@@ -11,6 +11,7 @@ nl:
     apps: Mobiele apps
     apps_platforms: Gebruik Mastodon op iOS, Android en op andere platformen
     browse_directory: Gebruikersgids doorbladeren en op interesses filteren
+    browse_local_posts: Livestream van openbare berichten op deze server bekijken
     browse_public_posts: Livestream van openbare Mastodonberichten bekijken
     contact: Contact
     contact_missing: Niet ingesteld
@@ -175,6 +176,7 @@ nl:
         user: Gebruiker
       salmon_url: Salmon-URL
       search: Zoeken
+      search_same_ip: Andere gebruikers met hetzelfde IP-adres
       shared_inbox_url: Gedeelde inbox-URL
       show:
         created_reports: Aangemaakte rapportages
@@ -506,6 +508,9 @@ nl:
         desc_html: Toon een link naar de openbare tijdlijnpagina op de voorpagina en geef de API zonder in te loggen toegang tot de openbare tijdlijn
         title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
+      trendable_by_default:
+        desc_html: Heeft invloed op hashtags die nog niet eerder niet zijn toegestaan
+        title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
         title: Trending hashtags
@@ -572,6 +577,7 @@ nl:
     confirmation_dialogs: Bevestigingen
     discovery: Ontdekken
     sensitive_content: Gevoelige inhoud
+    toot_layout: Lay-out van toots
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
@@ -1004,6 +1010,8 @@ nl:
     profile: Profiel
     relationships: Volgers en gevolgden
     two_factor_authentication: Tweestapsverificatie
+  spam_check:
+    spam_detected: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd.
   statuses:
     attached:
       description: 'Bijlagen: %{attached}'
