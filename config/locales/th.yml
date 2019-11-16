@@ -552,7 +552,6 @@ th:
     modes:
       merge: ผสาน
       overwrite: เขียนทับ
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
     types:
       blocking: รายการปิดกั้น
       domain_blocking: รายการปิดกั้นโดเมน
@@ -569,7 +568,7 @@ th:
       '604800': 1 สัปดาห์
       '86400': 1 วัน
     expires_in_prompt: ไม่เลย
-    generate: สร้าง
+    generate: สร้างลิงก์เชิญ
     max_uses:
       other: "%{count} การใช้"
     max_uses_prompt: ไม่มีขีดจำกัด
@@ -582,7 +581,7 @@ th:
       images_and_video: ไม่สามารถแนบวิดีโอกับสถานะที่มีภาพอยู่แล้ว
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
-    acct: username@domain ของบัญชีใหม่
+    acct: ย้ายไปยัง
     cancel: ยกเลิกการเปลี่ยนเส้นทาง
     errors:
       move_to_self: ไม่สามารถเป็นบัญชีปัจจุบัน
@@ -596,8 +595,6 @@ th:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
       mention: "%{name} ได้กล่าวถึงคุณใน:"
-      new_followers_summary:
-        other: You have gotten %{count} new followers! Amazing!
       title: เมื่อคุณไม่อยู่...
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
@@ -722,7 +719,7 @@ th:
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
   statuses:
     attached:
-      description: 'แนบ: %{attached}'
+      description: 'แนบอยู่: %{attached}'
       image:
         other: "%{count} ภาพ"
       video:
