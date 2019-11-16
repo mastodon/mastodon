@@ -1,11 +1,11 @@
 .status
   .status__info
-    = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener' do
+    = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
     .p-author.h-card
-      = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name u-url', target: stream_link_target, rel: 'noopener' do
+      = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name u-url', target: stream_link_target, rel: 'noopener noreferrer' do
         .status__avatar
           %div
             - if current_account&.user&.setting_auto_play_gif || autoplay

@@ -19,6 +19,7 @@ const messages = defineMessages({
   close: { id: 'video.close', defaultMessage: 'Close video' },
   fullscreen: { id: 'video.fullscreen', defaultMessage: 'Full screen' },
   exit_fullscreen: { id: 'video.exit_fullscreen', defaultMessage: 'Exit full screen' },
+  download: { id: 'video.download', defaultMessage: 'Download file' },
 });
 
 export const formatTime = secondsNum => {
@@ -470,6 +471,7 @@ class Video extends React.PureComponent {
               <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
               <div className='video-player__volume' onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
+                &nbsp;
                 <div className='video-player__volume__current' style={{ width: `${volumeWidth}px` }} />
                 <span
                   className={classNames('video-player__volume__handle')}
@@ -493,7 +495,13 @@ class Video extends React.PureComponent {
               {(!onCloseVideo && !editable) && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
               {(!fullscreen && onOpenVideo) && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
               {onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
+              <button type='button' aria-label={intl.formatMessage(messages.download)}>
+                <a className='video-player__download__icon' href={this.props.src} download>
+                  <Icon id={'download'} fixedWidth />
+                </a>
+              </button>
               <button type='button' aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
+
             </div>
           </div>
         </div>

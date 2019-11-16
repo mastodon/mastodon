@@ -2,13 +2,13 @@
 th:
   about:
     about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
-    about_mastodon_html: Mastodon เป็นเครือข่ายสังคมที่ทำงานบนโปรโตคอลเว็บแบบเปิดและซอฟต์แวร์เสรีที่เปิดต้นฉบับ กระจายศูนย์เหมือนอีเมล
+    about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา, ไม่มีการสอดแนมโดยองค์กร, การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ที่ใช้งาน
     active_footnote: ผู้ใช้งานรายเดือน (MAU)
     administered_by: 'ดูแลโดย:'
     api: API
-    apps: แอปสำหรับมือถือ
+    apps: แอปมือถือ
     apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
     browse_directory: เรียกดูไดเรกทอรีโปรไฟล์และกรองตามความสนใจ
     browse_public_posts: เรียกดูสตรีมสดของโพสต์สาธารณะใน Mastodon
@@ -18,7 +18,7 @@ th:
     discover_users: ค้นพบผู้ใช้
     documentation: เอกสารประกอบ
     federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
-    get_apps: ลองแอปสำหรับมือถือ
+    get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
@@ -56,6 +56,7 @@ th:
       other: โพสต์
     posts_tab_heading: โพสต์
     posts_with_replies: โพสต์และการตอบกลับ
+    reserved_username: ชื่อผู้ใช้นี้ถูกสงวนไว้
     roles:
       admin: ผู้ดูแล
       bot: บอต
@@ -64,6 +65,7 @@ th:
     unfollow: เลิกติดตาม
   admin:
     account_moderation_notes:
+      create: เขียนข้อความอธิบาย
       created_msg: สร้างหมายเหตุการควบคุมสำเร็จ!
       delete: ลบ
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
@@ -112,7 +114,9 @@ th:
       login_status: สถานะการเข้าสู่ระบบ
       media_attachments: ไฟล์แนบสื่อ
       moderation:
+        active: ใช้งานอยู่
         all: ทั้งหมด
+        pending: รอการยืนยัน
         silenced: เงียบอยู่
         suspended: ระงับอยู่
         title: การควบคุม
@@ -123,6 +127,7 @@ th:
       outbox_url: URL กล่องขาออก
       perform_full_suspension: ระงับ
       profile_url: URL โปรไฟล์
+      promote: เลื่อนตำแหน่ง
       protocol: โปรโตคอล
       public: สาธารณะ
       push_subscription_expires: การบอกรับ PuSH หมดอายุเมื่อ
@@ -153,6 +158,7 @@ th:
       subscribe: บอกรับ
       suspended: ระงับอยู่
       title: บัญชี
+      unconfirmed_email: ยังไม่ได้ยืนยันอีเมล
       undo_silenced: เลิกทำการเงียบ
       undo_suspension: เลิกทำการระงับ
       unsubscribe: เลิกบอกรับ
@@ -169,12 +175,19 @@ th:
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
         destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
         disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        disable_user: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        enable_user: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
+        remove_avatar_user: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
+        reopen_report: "%{name} ได้เปิดรายงาน %{target} ใหม่"
+        suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
+        unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
       title: รายการบันทึกการตรวจสอบ
     custom_emojis:
+      assign_category: กำหนดหมวดหมู่
       by_domain: โดเมน
       copy: คัดลอก
       create_new_category: สร้างหมวดหมู่ใหม่
@@ -189,21 +202,26 @@ th:
       enabled: เปิดใช้งานอยู่
       enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
       image_hint: PNG สูงสุด 50KB
+      list: แสดงรายการ
+      listed: อยู่ในรายการ
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
       overwrite: เขียนทับ
       shortcode: รหัสย่อ
       title: อีโมจิที่กำหนดเอง
+      unlist: เลิกแสดงรายการ
       unlisted: ไม่อยู่ในรายการ
       update_failed_msg: ไม่สามารถอัปเดตอีโมจินั้น
       updated_msg: อัปเดตอีโมจิสำเร็จ!
       upload: อัปโหลด
     dashboard:
+      authorized_fetch_mode: โหมดปลอดภัย
       config: การกำหนดค่า
       feature_deletions: การลบบัญชี
       feature_invites: ลิงก์เชิญ
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
       feature_registrations: การลงทะเบียน
+      feature_spam_check: การป้องกันสแปม
       feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
       open_reports: รายงานที่เปิด
@@ -262,6 +280,8 @@ th:
       title: ผู้ติดตามของ %{acct}
     instances:
       by_domain: โดเมน
+      known_accounts:
+        other: "%{count} บัญชีที่รู้จัก"
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -273,6 +293,8 @@ th:
     invites:
       deactivate_all: ปิดใช้งานทั้งหมด
       title: คำเชิญ
+    pending_accounts:
+      title: บัญชีที่รอดำเนินการ (%{count})
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -293,6 +315,7 @@ th:
         report: รายงาน
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
+      assigned: ผู้ควบคุมที่ได้รับมอบหมาย
       comment:
         none: ไม่มี
       created_at: รายงานเมื่อ
@@ -300,7 +323,10 @@ th:
       mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
       notes:
         create: เพิ่มหมายเหตุ
+        create_and_resolve: แก้ปัญหาโดยมีหมายเหตุ
+        create_and_unresolve: เปิดใหม่โดยมีหมายเหตุ
         delete: ลบ
+      reopen: เปิดรายงานใหม่
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
       reported_by: รายงานโดย
@@ -322,6 +348,7 @@ th:
       domain_blocks:
         title: แสดงการปิดกั้นโดเมน
       profile_directory:
+        desc_html: อนุญาตให้ผู้ใช้สามารถค้นพบได้
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
       registrations:
         closed_message:
@@ -373,6 +400,9 @@ th:
       context: บริบท
       directory: ในไดเรกทอรี
       in_directory: "%{count} ในไดเรกทอรี"
+      last_active: ใช้งานล่าสุด
+      most_popular: ยอดนิยม
+      most_recent: ล่าสุด
       name: แฮชแท็ก
       title: แฮชแท็ก
       trending_right_now: กำลังนิยม
@@ -383,12 +413,16 @@ th:
       edit: แก้ไข
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
+  aliases:
+    add_new: สร้างนามแฝง
+    remove: เลิกเชื่อมโยงนามแฝง
   appearance:
     advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
     animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
     confirmation_dialogs: กล่องโต้ตอบการยืนยัน
     discovery: ค้นพบ
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
+    toot_layout: เค้าโครงโพสต์
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
@@ -399,12 +433,14 @@ th:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
     invalid_url: URL ที่ระบุไม่ถูกต้อง
+    your_token: โทเคนการเข้าถึงของคุณ
   auth:
     apply_for_account: ขอคำเชิญ
     change_password: รหัสผ่าน
     checkbox_agreement_html: ฉันยอมรับ <a href="%{rules_path}" target="_blank">กฎของเซิร์ฟเวอร์</a> และ <a href="%{terms_path}" target="_blank">เงื่อนไขการให้บริการ</a>
     checkbox_agreement_without_rules_html: ฉันยอมรับ <a href="%{terms_path}" target="_blank">เงื่อนไขการให้บริการ</a>
     delete_account: ลบบัญชี
+    didnt_get_confirmation: ไม่ได้รับคำแนะนำการยืนยัน?
     forgot_password: ลืมรหัสผ่านของคุณ?
     login: เข้าสู่ระบบ
     logout: ออกจากระบบ
@@ -414,7 +450,7 @@ th:
       cas: CAS
       saml: SAML
     register: ลงทะเบียน
-    resend_confirmation: ส่งขั้นตอนวิธีการยืนยันใหม่อีกครั้ง
+    resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
@@ -507,6 +543,7 @@ th:
     all: ทั้งหมด
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
+    order_by: เรียงลำดับตาม
     save_changes: บันทึกการเปลี่ยนแปลง
   identity_proofs:
     authorize: ใช่ อนุญาต
@@ -517,6 +554,7 @@ th:
     preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
     types:
       blocking: รายการปิดกั้น
+      domain_blocking: รายการปิดกั้นโดเมน
       following: รายการติดตาม
       muting: รายการปิดเสียง
     upload: อัปโหลด
@@ -545,6 +583,9 @@ th:
   migrations:
     acct: username@domain ของบัญชีใหม่
     cancel: ยกเลิกการเปลี่ยนเส้นทาง
+    errors:
+      move_to_self: ไม่สามารถเป็นบัญชีปัจจุบัน
+      not_found: ไม่พบ
     proceed_with_move: ย้ายผู้ติดตาม
     redirecting_to: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     set_redirect: ตั้งการเปลี่ยนเส้นทาง
@@ -587,6 +628,7 @@ th:
     truncate: "&hellip;"
   polls:
     errors:
+      already_voted: คุณได้ลงคะแนนในโพลนี้อยู่แล้ว
       duplicate_options: มีรายการที่ซ้ำกัน
   preferences:
     other: อื่น ๆ
@@ -595,6 +637,10 @@ th:
   relationships:
     activity: กิจกรรมบัญชี
     last_active: ใช้งานล่าสุด
+    most_recent: ล่าสุด
+    moved: ย้ายแล้ว
+    mutual: ร่วมกัน
+    primary: หลัก
     relationship: ความสัมพันธ์
     remove_selected_domains: เอาผู้ติดตามทั้งหมดออกจากโดเมนที่เลือก
     remove_selected_followers: เอาผู้ติดตามที่เลือกออก
@@ -625,6 +671,7 @@ th:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
+      generic: เบราว์เซอร์ที่ไม่รู้จัก
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -646,6 +693,7 @@ th:
       ios: iOS
       linux: Linux
       mac: Mac
+      other: แพลตฟอร์มที่ไม่รู้จัก
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -665,6 +713,7 @@ th:
     featured_tags: แฮชแท็กที่แนะนำ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
+    migrate: การโยกย้ายบัญชี
     notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์
@@ -683,6 +732,8 @@ th:
     pin_errors:
       reblog: ไม่สามารถปักหมุดการดัน
     poll:
+      total_people:
+        other: "%{count} คน"
       total_votes:
         other: "%{count} การลงคะแนน"
       vote: ลงคะแนน

@@ -44,14 +44,14 @@
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
-    = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
+    = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
     - if status.application && @account.user&.setting_show_application
       - if status.application.website.blank?
         %strong.detailed-status__application= status.application.name
       - else
-        = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
+        = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener noreferrer'
       ·
     = link_to remote_interaction_path(status, type: :reply), class: 'modal-button detailed-status__link' do
       - if status.in_reply_to_id.nil?

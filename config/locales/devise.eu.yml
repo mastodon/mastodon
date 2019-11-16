@@ -47,9 +47,17 @@ eu:
         subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
         title: Pasahitza berrezartzea
       two_factor_disabled:
+        explanation: Bi faktoreetako autentifikazioa desgaitu da zure kontuan. Orain saioa hasi daiteke e-mail helbidea eta pasahitza bakarrik erabilita.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa desgaituta'
         title: 2FA desgaituta
       two_factor_enabled:
+        explanation: Bi faktoreetako autentifikazioa gaitu da zure kontuan. Token bat sortu du lotutako TOTP aplikazioak eta saioa hasteko eskatuko da.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa gaituta'
         title: 2FA gaituta
+      two_factor_recovery_codes_changed:
+        explanation: Aurreko kodeak baliogabetu dira eta berriak sortu dira.
+        subject: 'Mastodon: Bi faktoreetako berreskuratze kodeak birsortuta'
+        title: 2FA berreskuratze kodeak aldatuta
       unlock_instructions:
         subject: 'Mastodon: Desblokeatzeko argibideak'
     omniauth_callbacks:

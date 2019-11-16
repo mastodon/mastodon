@@ -251,7 +251,7 @@ class Formatter
 
   def link_to_url(entity, options = {})
     url        = Addressable::URI.parse(entity[:url])
-    html_attrs = { target: '_blank', rel: 'nofollow noopener' }
+    html_attrs = { target: '_blank', rel: 'nofollow noopener noreferrer' }
 
     html_attrs[:rel] = "me #{html_attrs[:rel]}" if options[:me]
 

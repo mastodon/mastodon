@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '>= 2.4.0', '< 2.7.0'
 
-gem 'pkg-config', '~> 1.3'
+gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.2'
 gem 'rails', '~> 5.2.3'
@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.48', require: false
+gem 'aws-sdk-s3', '~> 1.52', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -67,7 +67,7 @@ gem 'oj', '~> 3.9'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.11'
 gem 'parslet'
-gem 'parallel', '~> 1.17'
+gem 'parallel', '~> 1.18'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
@@ -85,9 +85,9 @@ gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.1'
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
-gem 'stoplight', '~> 2.1.3'
+gem 'stoplight', '~> 2.2.0'
 gem 'strong_migrations', '~> 0.4'
 gem 'tty-command', '~> 0.9', require: false
 gem 'tty-prompt', '~> 0.19', require: false
@@ -102,11 +102,11 @@ gem 'rdf-normalize', '~> 0.3'
 
 group :development, :test do
   gem 'fabrication', '~> 2.20'
-  gem 'fuubar', '~> 2.4'
+  gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.7'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails', '~> 3.9'
 end
 
 group :production, :test do
@@ -116,7 +116,7 @@ end
 group :test do
   gem 'capybara', '~> 3.29'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.5'
+  gem 'faker', '~> 2.7'
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
@@ -126,17 +126,17 @@ group :test do
 end
 
 group :development do
-  gem 'active_record_query_trace', '~> 1.6'
-  gem 'annotate', '~> 2.7'
+  gem 'active_record_query_trace', '~> 1.7'
+  gem 'annotate', '~> 3.0'
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 6.0'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.74', require: false
+  gem 'rubocop', '~> 0.76', require: false
   gem 'rubocop-rails', '~> 2.3', require: false
-  gem 'brakeman', '~> 4.6', require: false
+  gem 'brakeman', '~> 4.7', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
   gem 'capistrano', '~> 3.11'

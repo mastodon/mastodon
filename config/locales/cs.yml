@@ -11,6 +11,7 @@ cs:
     apps: Mobilní aplikace
     apps_platforms: Používejte Mastodon z iOS, Androidu a jiných platforem
     browse_directory: Prozkoumejte adresář profilů a filtrujte dle zájmů
+    browse_local_posts: Prozkoumejte živý proud veřejných příspěvků z tohoto serveru
     browse_public_posts: Prozkoumejte živý proud veřejných příspěvků na Mastodonu
     contact: Kontakt
     contact_missing: Nenastaveno
@@ -151,7 +152,7 @@ cs:
         title: Moderování
       moderation_notes: Moderátorské poznámky
       most_recent_activity: Nejnovější aktivita
-      most_recent_ip: Nejnovější IP
+      most_recent_ip: Nejnovější IP adresa
       no_account_selected: Nebyl změněn žádný účet, neboť žádný nebyl zvolen
       no_limits_imposed: Nejsou nastavena žádná omezení
       not_subscribed: Neodebírá
@@ -183,6 +184,7 @@ cs:
         user: Uživatel
       salmon_url: URL Salmon
       search: Hledat
+      search_same_ip: Další uživatelé se stejnou IP adresou
       shared_inbox_url: URL sdílené příchozí schránky
       show:
         created_reports: Vytvořená nahlášení
@@ -209,10 +211,12 @@ cs:
         confirm_user: "%{name} potvrdil/a e-mailovou adresu uživatele %{target}"
         create_account_warning: "%{name} poslal/a varování uživateli %{target}"
         create_custom_emoji: "%{name} nahrál/a nové emoji %{target}"
+        create_domain_allow: "%{name} přidal/a doménu %{target} na bílou listinu"
         create_domain_block: "%{name} zablokoval/a doménu %{target}"
         create_email_domain_block: "%{name} přidal/a e-mailovou doménu %{target} na černou listinu"
         demote_user: "%{name} degradoval/a uživatele %{target}"
         destroy_custom_emoji: "%{name} zničil/a emoji %{target}"
+        destroy_domain_allow: "%{name} odebral/a doménu %{target} z bílé listiny"
         destroy_domain_block: "%{name} odblokoval/a doménu %{target}"
         destroy_email_domain_block: "%{name} odebral/a e-mailovou doménu %{target} z černé listiny"
         destroy_status: "%{name} odstranil/a toot uživatele %{target}"
@@ -587,6 +591,7 @@ cs:
     confirmation_dialogs: Potvrzovací dialogy
     discovery: Objevování
     sensitive_content: Citlivý obsah
+    toot_layout: Rozložení tootů
   application_mailer:
     notification_preferences: Změnit volby e-mailu
     salutation: "%{name},"

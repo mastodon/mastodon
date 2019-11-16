@@ -11,7 +11,8 @@ co:
     apps: Applicazione per u telefuninu
     apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
     browse_directory: Navigà un'annuariu di i prufili è filtra per interessi
-    browse_public_posts: Navigà un flussu di i statuti publichi nant'à Mastodon
+    browse_local_posts: Navigà un flussu di statuti pubblichi da stu servore
+    browse_public_posts: Navigà un flussu di i statuti pubblichi nant'à Mastodon
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
@@ -50,7 +51,7 @@ co:
   accounts:
     choices_html: "%{name} ricumanda:"
     endorsements_hint: Pudete appughjà i conti chì siguitate dapoi l'interfaccia web, è saranu mustrati quì.
-    featured_tags_hint: Pudete mette in mostra qualchì hashtag chì saranu affissatu quì.
+    featured_tags_hint: Pudete mette in mostra qualchì hashtag chì saranu affissati quì.
     follow: Siguità
     followers:
       one: Abbunatu·a
@@ -175,6 +176,7 @@ co:
         user: Utilizatore
       salmon_url: URL di Salmon
       search: Cercà
+      search_same_ip: Altri utilizatori cù listessa IP
       shared_inbox_url: URL di l’inbox spartuta
       show:
         created_reports: Signalamenti fatti
@@ -201,10 +203,12 @@ co:
         confirm_user: "%{name} hà cunfirmatu l’indirizzu e-mail di %{target}"
         create_account_warning: "%{name} hà mandatu un'avertimentu à %{target}"
         create_custom_emoji: "%{name} hà caricatu una nov’emoji %{target}"
+        create_domain_allow: "%{name} hà messu u duminiu %{target} nant’a lista bianca"
         create_domain_block: "%{name} hà bluccatu u duminiu %{target}"
         create_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
         demote_user: "%{name} hà ritrugradatu l’utilizatore %{target}"
         destroy_custom_emoji: "%{name} hà sguassatu l'emoji %{target}"
+        destroy_domain_allow: "%{name} hà sguassatu u duminiu %{target} da a lista bianca"
         destroy_domain_block: "%{name} hà sbluccatu u duminiu %{target}"
         destroy_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
         destroy_status: "%{name} hà toltu u statutu di %{target}"
@@ -575,6 +579,7 @@ co:
     confirmation_dialogs: Pop-up di cunfirmazione
     discovery: Scuperta
     sensitive_content: Cuntinutu sensibile
+    toot_layout: Urganizazione
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
     salutation: "%{name},"
@@ -1007,6 +1012,8 @@ co:
     profile: Prufile
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
+  spam_check:
+    spam_detected: Quessu ghjè un rapportu automaticu. Un spam hè statu ditettatu.
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'
