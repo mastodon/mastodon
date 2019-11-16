@@ -62,17 +62,18 @@ nn:
         prompt: Applikasjon %{client_name} spør om tilgang til din konto
         title: Autorisasjon nødvendig
       show:
-        title: Kopier denne koden og lim den inn i programmet.
+        title: Kopier denne autorisasjonskoden og lim den inn i applikasjonen.
     authorized_applications:
       buttons:
         revoke: Opphev
       confirmations:
-        revoke: Opphev?
+        revoke: Er du sikker?
       index:
         application: Applikasjon
         created_at: Autorisert
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Omfang
-        title: Dine autoriserte applikasjoner
+        title: Dine autoriserte applikasjonar
     errors:
       messages:
         access_denied: Ressurseieren eller autoriseringstjeneren avviste forespørslen.
