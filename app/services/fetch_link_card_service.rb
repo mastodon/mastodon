@@ -39,8 +39,12 @@ class FetchLinkCardService < BaseService
   def process_url
     @card ||= PreviewCard.new(url: @url)
 
+    attempt_oembed || attempt_opengraph
+  end
+  
+  def html
     Request.new(:get, @url).perform do |res|
-      if res.code == 200 && res.mime_type == 'text/html'
+    if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
         @html_charset = res.charset
       else
@@ -48,10 +52,6 @@ class FetchLinkCardService < BaseService
         @html_charset = nil
       end
     end
-
-    return if @html.nil?
-
-    attempt_oembed || attempt_opengraph
   end
 
   def attach_card
@@ -89,7 +89,18 @@ class FetchLinkCardService < BaseService
 
   def attempt_oembed
     service = FetchOEmbedService.new
-    embed   = service.call(@url, html: @html)
+    
+    url_domain=Addressable::URI.parse(@url).host
+    cached_endpoint=Rails.cache.read("oembed_endpoint_#{url_domain}")
+    unless cached_endpoint.nil?
+	    embed = service.call(@url, cached_endpoint: cached_endpoint)
+    end
+    if embed.nil?
+      html
+      return false if @html.nil?
+      embed = service.call(@url, html: @html)
+    end
+    
     url     = Addressable::URI.parse(service.endpoint_url)
 
     return false if embed.nil?
@@ -129,7 +140,11 @@ class FetchLinkCardService < BaseService
   def attempt_opengraph
     detector = CharlockHolmes::EncodingDetector.new
     detector.strip_tags = true
-
+    
+    if @html.nil?
+      html
+      return if @html.nil?
+    end
     guess      = detector.detect(@html, @html_charset)
     encoding   = guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
     page       = Nokogiri::HTML(@html, nil, encoding)
