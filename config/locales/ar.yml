@@ -38,6 +38,7 @@ ar:
     unavailable_content_description:
       domain: الخادم
       reason: 'السبب:'
+      silenced: 'سيتم إخفاء المنشورات القادمة من هذه الخوادم في الخيوط الزمنية والمحادثات العامة، ولن يتم إنشاء أي إخطارات من جراء تفاعلات مستخدميها، ما لم تُتَابعهم:'
     user_count_after:
       zero: مستخدمين
       one: مستخدم
@@ -49,6 +50,7 @@ ar:
     what_is_mastodon: ما هو ماستدون ؟
   accounts:
     choices_html: "توصيات %{name}:"
+    endorsements_hint: يمكنك التوصية بالأشخاص الذين تتابعهم من واجهة الويب، وسيظهرون هنا.
     follow: اتبع
     followers:
       zero: متابِعون
@@ -181,6 +183,7 @@ ar:
         user: مستخدِم
       salmon_url: عنوان رابط سالمون Salmon
       search: البحث
+      search_same_ip: مستخدِمون آخرون بنفس الـ IP
       shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
       show:
         created_reports: البلاغات التي أنشأها هذا الحساب
@@ -392,6 +395,7 @@ ar:
       pending: في انتظار تسريح المُرحِّل
       save_and_enable: حفظ وتشغيل
       setup: إعداد اتصال بمُرحّل
+      signatures_not_enabled: لن تعمل المُرحِّلات بشكل صحيح إن تم تنشيط الوضع الآمن أو وضع القائمة البيضاء
       status: الحالة
       title: المُرحّلات
     report_notes:
