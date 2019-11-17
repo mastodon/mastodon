@@ -565,6 +565,7 @@ id:
     confirmation_dialogs: Dialog konfirmasi
     discovery: Jelajah
     sensitive_content: Konten sensitif
+    toot_layout: Tata letak toot
   application_mailer:
     notification_preferences: Ubah pilihan email
     salutation: "%{name},"
@@ -715,6 +716,8 @@ id:
       thread: Percakapan
     edit:
       title: Ubah saringan
+    errors:
+      invalid_context: Konteks tidak ada atau invalid
     index:
       delete: Hapus
       title: Saringan
@@ -880,6 +883,7 @@ id:
       too_many_options: tidak boleh berisi lebih dari %{max} item
   preferences:
     other: Lainnya
+    posting_defaults: Kiriman bawaan
     public_timelines: Linimasa publik
   relationships:
     activity: Aktivitas akun
@@ -1065,8 +1069,20 @@ id:
     welcome:
       edit_profile_action: Siapkan profil
       explanation: Beberapa tips sebelum Anda memulai
+      final_action: Mulai mengirim
+      full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
       review_preferences_action: Ubah preferensi
       subject: Selamat datang di Mastodon
+      tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
+      tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
+      tips: Tips
+      title: Selamat datang, %{name}!
   users:
+    follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
     invalid_email: Alamat email tidak cocok
     invalid_otp_token: Kode dua faktor tidak cocok
+    otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
+    seamless_external_login: Anda masuk via layanan eksternal, sehingga setelan kata sandi dan surel tidak tersedia.
+    signed_in_as: 'Masuk sebagai:'
+  verification:
+    verification: Verifikasi
