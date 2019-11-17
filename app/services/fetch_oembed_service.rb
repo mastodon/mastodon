@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
 class FetchOEmbedService
+  ENDPOINT_CACHE_EXPIRES_IN = 24.hours.freeze
+
   attr_reader :url, :options, :format, :endpoint_url
 
   def call(url, options = {})
     @url     = url
     @options = options
 
-    if @options[:html].nil?
-      parse_cache_endpoint!
+    if @options[:cached_endpoint]
+      parse_cached_endpoint!
     else
       discover_endpoint!
     end
+
     fetch!
   end
 
@@ -36,40 +39,30 @@ class FetchOEmbedService
     return if @endpoint_url.blank?
 
     @endpoint_url = (Addressable::URI.parse(@url) + @endpoint_url).to_s
-    
-    cache_endpoint
+
+    cache_endpoint!
   rescue Addressable::URI::InvalidURIError
     @endpoint_url = nil
   end
-  
-  def parse_cache_endpoint!
-    return if @options[:cached_endpoint].nil?
 
-    cached=@options[:cached_endpoint]
-	  return if cached["endpoint"].nil? || cached["format"].nil?
-    
-	  url_encoded=URI.encode_www_form_component(@url)
-	  if cached["append"].nil?
-	    @endpoint_url = cached["endpoint"]+url_encoded
-	  else
-	    @endpoint_url = cached["endpoint"]+url_encoded+"%26format%3D"+cached["append"]
-	  end
-    @format = cached["format"]
+  def parse_cached_endpoint!
+    cached = @options[:cached_endpoint]
+
+    return if cached[:endpoint].nil? || cached[:format].nil?
+
+    @endpoint_url = Addressable::Template.new(cached[:endpoint]).expand(url: @url).to_s
+    @format       = cached[:format]
   end
-  
-  def cache_endpoint
-    url_domain=Addressable::URI.parse(@url).host
-    endpoint=@endpoint_url.match(/^.*(?=(http[s]?(%3A|:)(\/\/|%2F%2F)))/).to_s
-    unless endpoint.nil?
-	    if @endpoint_url.match(/format(=|%3D)json$/)
-		    endpoint_hash={"endpoint" => endpoint,"format" => @format,"append" => "json"}
-      elsif @endpoint_url.match(/format(=|%3D)xml$/)
-      	endpoint_hash={"endpoint" => endpoint,"format" => @format,"append" => "xml"}
-      else
-        endpoint_hash={"endpoint" => endpoint,"format" => @format}
-      end
-      Rails.cache.write("oembed_endpoint_#{url_domain}", endpoint_hash, :expires_in => 24.hours)
-    end
+
+  def cache_endpoint!
+    url_domain = Addressable::URI.parse(@url).normalized_host
+
+    endpoint_hash = {
+      endpoint: @endpoint_url.gsub(URI.encode_www_form_component(@url), '{url}'),
+      format: @format,
+    }
+
+    Rails.cache.write("oembed_endpoint:#{url_domain}", endpoint_hash, expires_in: ENDPOINT_CACHE_EXPIRES_IN)
   end
 
   def fetch!
