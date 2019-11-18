@@ -194,6 +194,7 @@ pt-BR:
       username: Nome de usuário
       warn: Notificar
       web: Web
+      whitelisted: Está na lista branca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
@@ -201,10 +202,12 @@ pt-BR:
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning: "%{name} enviou um aviso para %{target}"
         create_custom_emoji: "%{name} enviou o emoji novo %{target}"
+        create_domain_allow: "%{name} colocou o domínio %{target} na lista branca"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} colocou o domínio de e-mail %{target} na lista negra"
         demote_user: "%{name} rebaixou o usuário %{target}"
         destroy_custom_emoji: "%{name} destruiu emoji %{target}"
+        destroy_domain_allow: "%{name} removeu o domínio %{target} da lista branca"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block: "%{name} retirou o domínio de e-mail %{target} da lista negra"
         destroy_status: "%{name} removeu postagem feita por %{target}"
