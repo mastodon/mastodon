@@ -1,8 +1,7 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.'
     about_this: Sobre
     active_count_after: Ativo
     active_footnote: Usuários ativos mensais (UAM)
@@ -11,6 +10,7 @@ pt-BR:
     apps: Apps
     apps_platforms: Use o Mastodon a partir de iOS, Android e outras plataformas
     browse_directory: Navegue pelo diretório de perfis e filtre por interesses
+    browse_local_posts: Navegue pelas postagens públicas deste servidor em tempo real
     browse_public_posts: Navegue pelos posts públicos sendo postados ao vivo no Mastodon
     contact: Contato
     contact_missing: Não definido
@@ -20,18 +20,26 @@ pt-BR:
     federation_hint_html: Com uma conta em %{instance} você vai poder seguir pessoas em qualquer servidor Mastodon ou outros do fediverso.
     get_apps: Experimente um aplicativo
     hosted_on: Mastodon hospedado em %{domain}
+    instance_actor_flash: |
+      Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
+      É usado para fins de federação e não deve ser bloqueado a menos que você queira bloquear toda a instância, nesse caso você deve usar um bloqueio de domínio.
     learn_more: Saiba mais
     privacy_policy: Política de Privacidade
     see_whats_happening: Veja o que está acontecendo
     server_stats: 'Estatísticas do servidor:'
     source_code: Código-fonte
+    status_count_after:
+      one: publicação
+      other: status
     status_count_before: Autores de
     tagline: Siga amigos e encontre novos
     terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
+      domain: Servidor
       reason: 'Motivo:'
-      suspended: Você não será capaz de seguir ninguém deste servidor, e nenhum dado dele será processado ou armazenado, e nenhum dado trocado.
+      rejecting_media: 'Arquivos de mídia destes servidores não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o usuário clique a abra o arquivo original manualmente:'
+      suspended: 'Você não será capaz de seguir ninguém deste servidor, e nenhum dado dele será processado ou armazenado, e nenhum dado trocado.'
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outro servidor no fediverso. Estas são as exceções deste servidor específico.
     user_count_after:
       one: usuário
@@ -39,7 +47,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Escolhas de %{name}:'
+    choices_html: "Escolhas de %{name}:"
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
     followers:
@@ -282,7 +290,7 @@ pt-BR:
         create: Criar bloqueio
         hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai reatroativa e automaticamente aplicar métodos específicos de moderação nestas contas.
         severity:
-          desc_html: O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia.
+          desc_html: "O <strong>Silêncio</strong> fará com que as postagens da conta fiquem invisíveis para qualquer um que não a esteja seguindo. A <strong>Suspensão</strong> removerá todo o conteúdo da conta, mídia e dados de perfil. Use <strong>Nenhum</strong> se você apenas deseja rejeitar arquivos de mídia."
           noop: Nenhum
           silence: Silêncio
           suspend: Suspensão
@@ -321,7 +329,7 @@ pt-BR:
       title: Bloqueio de Domínio de E-mail
     followers:
       back_to_account: Voltar para a conta
-      title: Pessoas que seguem %{acct}
+      title: "Pessoas que seguem %{acct}"
     instances:
       by_domain: Domínio
       delivery_available: Entrega está disponível
@@ -363,6 +371,8 @@ pt-BR:
       pending: Esperando pela aprovação do repetidor
       save_and_enable: Salvar e habilitar
       setup: Configurar uma conexão de repetidor
+      signatures_not_enabled: Relays não funcionarão corretamente enquanto o modo seguro ou o modo whitelist estiver activado
+      status: Estado
       title: Repetidores
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
@@ -392,6 +402,7 @@ pt-BR:
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
+      status: Estado
       title: Denúncias
       unassign: Desatribuir
       unresolved: Não resolvido
@@ -411,6 +422,7 @@ pt-BR:
         title: CSS customizado
       default_noindex:
         desc_html: Afeta qualquer usuário que não tenha modificado esta configuração manualmente
+        title: Desactivar, por omissão, a indexação de utilizadores por parte dos motores de pesquisa
       domain_blocks:
         all: Para todo mundo
         disabled: Para ninguém
@@ -469,6 +481,7 @@ pt-BR:
         title: Termos de serviço customizados
       site_title: Nome da instância
       spam_check_enabled:
+        desc_html: O Mastodon pode reportar automaticamente contas que enviem repetidamente mensagens não solicitadas. Poderão ocorrer alguns falso-positivos.
         title: Automação anti-spam
       thumbnail:
         desc_html: Usada para prévias via OpenGraph e API. Recomenda-se 1200x630px
@@ -477,6 +490,9 @@ pt-BR:
         desc_html: Exibir a timeline pública na página inicial
         title: Prévia da timeline
       title: Configurações do site
+      trendable_by_default:
+        desc_html: Afecta as hashtags que ainda não tenham sido proibidas
+        title: Permitir hashtags em tendência sem revisão prévia
       trends:
         title: Hashtags em alta
     statuses:
@@ -517,7 +533,7 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
   appearance:
     advanced_web_interface: Interface web avançada
     advanced_web_interface_hint: 'Se você deseja usar toda a sua largura de tela, a interface web avançada permite que você configure muitas colunas diferentes para ver tantas informações ao mesmo tempo quanto você deseja: Início, notificações, linha do tempo federada, qualquer número de listas e hashtags.'
@@ -907,6 +923,8 @@ pt-BR:
     profile: Perfil
     relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação em dois passos
+  spam_check:
+    spam_detected: Este é um relatório automatizado. Foi detectado spam.
   statuses:
     attached:
       description: 'Anexado: %{attached}'
