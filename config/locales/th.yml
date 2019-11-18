@@ -491,10 +491,15 @@ th:
   deletes:
     proceed: ลบบัญชี
     success_msg: ลบบัญชีของคุณสำเร็จ
+    warning:
+      email_change_html: คุณสามารถ <a href="%{path}">เปลี่ยนที่อยู่อีเมลของคุณ</a> โดยไม่ต้องลบบัญชีของคุณ
+      email_reconfirmation_html: หากคุณไม่ได้รับอีเมลยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
   directories:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
+  domain_validator:
+    invalid_domain: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
