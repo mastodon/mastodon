@@ -39,6 +39,7 @@ pt-BR:
       domain: Servidor
       reason: 'Motivo:'
       rejecting_media: 'Arquivos de mídia destes servidores não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o usuário clique a abra o arquivo original manualmente:'
+      silenced: 'Postagens destes servidores serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus usuários, a menos que você os esteja seguindo:'
       suspended: 'Você não será capaz de seguir ninguém deste servidor, e nenhum dado dele será processado ou armazenado, e nenhum dado trocado.'
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outro servidor no fediverso. Estas são as exceções deste servidor específico.
     user_count_after:
@@ -48,6 +49,7 @@ pt-BR:
     what_is_mastodon: O que é Mastodon?
   accounts:
     choices_html: "Escolhas de %{name}:"
+    endorsements_hint: Você pode endossar pela interface web pessoas que você segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
     followers:
@@ -173,6 +175,7 @@ pt-BR:
         user: Usuário
       salmon_url: URL Salmon
       search: Pesquisar
+      search_same_ip: Outros usuários com o mesmo IP
       shared_inbox_url: URL da caixa de entrada compartilhada
       show:
         created_reports: Denúncias criadas por esta conta
