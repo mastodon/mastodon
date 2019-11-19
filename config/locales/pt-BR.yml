@@ -677,17 +677,20 @@ pt-BR:
       email_contact_html: Se você ainda não recebeu, você pode enviar um e-mail pedindo ajuda para <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Se você não está recebendo o e-mail de confirmação, você pode <a href="%{path}">solicitá-lo novamente</a>
       irreversible: Você não conseguirá restaurar ou reativar a sua conta
+      more_details_html: Para mais detalhes, consulte a <a href="%{terms_path}">política de privacidade</a>.
       username_available: Seu nome de usuário ficará disponível novamente
       username_unavailable: Seu nome de usuário permanecerá indisponível
   directories:
     directory: Diretório de perfis
     explanation: Descobrir usuários baseado em seus interesses
     explore_mastodon: Explorar %{title}
+  domain_validator:
+    invalid_domain: não é um nome de domínio válido
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': O pedido que você enviou é inválido ou incorreto.
     '403': Você não tem permissão para ver esta página.
     '404': A página pela qual você está procurando não existe.
-    '406': This page is not available in the requested format.
+    '406': Esta página não está disponível no formato solicitado.
     '410': A página pela qual você está procurando não existe mais.
     '422':
       content: A verificação de segurança falhou. Você desativou o uso de cookies?
@@ -696,7 +699,7 @@ pt-BR:
     '500':
       content: Desculpe, algo deu errado.
       title: Esta página não está certa
-    '503': The page could not be served due to a temporary server failure.
+    '503': A página não pôde ser carregada devido a uma falha temporária do servidor.
     noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon em sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um usuário local com esse nome de usuário
@@ -720,6 +723,7 @@ pt-BR:
     add_new: Adicionar uma nova hashtag
     errors:
       limit: Você atingiu o limite de hashtags em destaque
+    hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas de forma proeminente no seu perfil público e permitem que as pessoas acessem suas postagens públicas que contenham especificamente essas hashtags. São um excelente instrumento para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
       home: Página inicial
@@ -740,10 +744,12 @@ pt-BR:
     developers: Desenvolvedores
     more: Mais…
     resources: Recursos
+    trending_now: Em tendência agora
   generic:
     all: Tudo
     changes_saved_msg: Mudanças salvas com sucesso!
     copy: Copiar
+    no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Salvar mudanças
     validation_errors:
@@ -815,6 +821,7 @@ pt-BR:
       too_many: Não é possível anexar mais de 4 imagens
   migrations:
     acct: username@domain da nova conta
+    cancel: Cancelar redirecionamento
     incoming_migrations: Migrando de outra conta
     moved_msg: Agora sua conta está redirecionando para %{acct} e seus seguidores estão sendo movidos.
     not_redirecting: Sua conta não está redirecionando para nenhuma outra conta atualmente.
