@@ -530,13 +530,21 @@ pt-BR:
       title: Postagens da conta
       with_media: Com mídia
     tags:
+      accounts_today: Usos únicos de hoje
+      accounts_week: Usos únicos desta semana
+      breakdown: Descrição do consumo atual por fonte
       context: Contexto
       directory: No diretório
+      in_directory: "%{count} no diretório"
+      last_active: Última atividade
       most_popular: Mais populares
       most_recent: Mais recentes
       name: Hashtag
+      review: Status da revisão
+      reviewed: Revisado
       title: Hashtags
       trending_right_now: Em alta no momento
+      unique_uses_today: "%{count} publicando hoje"
       unreviewed: Não revisadas
       updated_msg: Configurações de hashtag atualizadas com sucesso
     title: Administração
@@ -554,6 +562,13 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: 'Nova denúncia sobre %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'A hashtag #%{name} está em tendência hoje, mas não foi previamente revisada. Ela não será exibida publicamente a menos que você a permita, ou apenas salve o formulário do jeito que está para nunca mais ouvir falar dele.'
+      subject: 'Nova hashtag disponível para revisão em %{instance} (#%{name})'
+  aliases:
+    add_new: Criar alias
+    created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
+    deleted_msg: Alias removido com sucesso. Não será mais possível mudar da outra conta para essa.
   appearance:
     advanced_web_interface: Interface web avançada
     advanced_web_interface_hint: 'Se você deseja usar toda a sua largura de tela, a interface web avançada permite que você configure muitas colunas diferentes para ver tantas informações ao mesmo tempo quanto você deseja: Início, notificações, linha do tempo federada, qualquer número de listas e hashtags.'
