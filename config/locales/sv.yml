@@ -300,8 +300,11 @@ sv:
           silence: Tysta ner
           suspend: Suspendera
         title: Nytt domänblock
+      private_comment: Privat kommentar
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
+      severity:
+        suspend: avstängd
       show:
         affected_accounts:
           one: Ett konto i databasen drabbades
@@ -325,6 +328,8 @@ sv:
     followers:
       back_to_account: Tillbaka till konto
     instances:
+      by_domain: Domän
+      private_comment: Privat kommentar
       title: Kända instanser
     invites:
       filter:
@@ -333,6 +338,10 @@ sv:
         expired: Utgångna
         title: Filtrera
       title: Inbjudningar
+    relays:
+      delete: Radera
+      disable: Inaktivera
+      status: Status
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
@@ -361,6 +370,7 @@ sv:
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
+      status: Status
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
@@ -375,6 +385,8 @@ sv:
       contact_information:
         email: Företag E-post
         username: Användarnamn för kontakt
+      custom_css:
+        title: Anpassad CSS
       hero:
         desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
         title: Hjältebild
@@ -420,6 +432,7 @@ sv:
         delete: Radera
         nsfw_off: Markera som ej känslig
         nsfw_on: Markera som känslig
+      deleted: Raderad
       failed_to_execute: Misslyckades att utföra
       no_media: Ingen media
       title: Kontostatus
@@ -427,15 +440,24 @@ sv:
     tags:
       accounts_today: Unika användare idag
       accounts_week: Unika användare den här veckan
+      last_active: Senast aktiv
+    warning_presets:
+      add_new: Lägg till ny
+      delete: Radera
+      edit: Redigera
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: 'Ny rapport för %{instance} (#%{id})'
+  aliases:
+    add_new: Skapa alias
+    remove: Avlänka alias
   appearance:
     advanced_web_interface: Avancerat webbgränssnitt
     animations_and_accessibility: Animationer och tillgänglighet
     discovery: Upptäck
+    sensitive_content: Känsligt innehåll
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     settings: 'Ändra e-postinställningar: %{link}'
@@ -454,7 +476,7 @@ sv:
     change_password: Lösenord
     delete_account: Ta bort konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
-    didnt_get_confirmation: Fick inte instruktioner om bekräftelse?
+    didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
     login: Logga in
@@ -483,6 +505,10 @@ sv:
       return: Visa användarens profil
       web: Gå till webb
     title: Följ %{acct}
+  challenge:
+    confirm: Fortsätt
+    invalid_password: Ogiltigt lösenord
+    prompt: Bekräfta lösenord för att fortsätta
   datetime:
     distance_in_words:
       about_x_hours: "%{count}tim"
@@ -499,7 +525,9 @@ sv:
   deletes:
     confirm_password: Ange ditt lösenord för att verifiera din identitet
     proceed: Ta bort konto
-    success_msg: Ditt konto har tagits bort
+    success_msg: Ditt konto har raderats
+  domain_validator:
+    invalid_domain: är inte ett giltigt domännamn
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Du har inte behörighet att visa den här sidan.
@@ -526,8 +554,11 @@ sv:
     blocks: Du blockerar
     csv: CSV
     follows: Du följer
+    lists: Listor
     mutes: Du tystar
     storage: Medialagring
+  featured_tags:
+    add_new: Lägg till ny
   filters:
     contexts:
       notifications: Aviseringar
@@ -539,6 +570,9 @@ sv:
       title: Filter
     new:
       title: Lägg till nytt filter
+  footer:
+    developers: Utvecklare
+    more: Mer…
   generic:
     all: Alla
     changes_saved_msg: Ändringar sparades framgångsrikt!
@@ -818,9 +852,9 @@ sv:
     generate_recovery_codes: Generera återställningskoder
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app på din telefon </strong>. Från och med nu genererar den appen tokens som du måste ange när du loggar in."
     lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt konto om du förlorar din telefon. Om du har förlorat dina återställningskoder kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
-    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den manuellt, här är den enkla texten:'
+    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den manuellt, här är den hemliga nyckeln i ren text:'
     recovery_codes: Backup återställningskod
-    recovery_codes_regenerated: Återställningskoder regenererades framgångsrikt
+    recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
     setup: Ställ in
     wrong_code: Den angivna koden var ogiltig! Är servertid och enhetstid korrekt?
@@ -847,7 +881,7 @@ sv:
       title: Välkommen ombord, %{name}!
   users:
     invalid_email: E-postadressen är ogiltig
-    invalid_otp_token: Ogiltig tvåfaktorkod
+    invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
