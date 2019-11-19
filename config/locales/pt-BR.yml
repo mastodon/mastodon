@@ -625,7 +625,12 @@ pt-BR:
     setup:
       email_below_hint_html: Se o endereço de e-mail abaixo estiver incorreto, você pode alterá-lo aqui e receber um novo e-mail de confirmação.
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
+      title: Configurações
     status:
+      account_status: Status da conta
+      confirming: Aguardando conclusão da confirmação por e-mail.
+      functional: Sua conta está totalmente operacional.
+      pending: Seu pedido está com revisão pendente por parte da nossa equipe. Isso pode levar algum tempo. Você receberá um e-mail se seu pedido for aprovado.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
     trouble_logging_in: Problemas para se conectar?
   authorize_follow:
@@ -640,6 +645,7 @@ pt-BR:
       web: Voltar para a página inicial
     title: Seguir %{acct}
   challenge:
+    confirm: Continuar
     invalid_password: Senha inválida
     prompt: Confirme sua senha para continuar
   datetime:
