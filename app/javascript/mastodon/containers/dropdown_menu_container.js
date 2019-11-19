@@ -14,7 +14,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { status, items }) => ({
   onOpen(id, onItemClick, dropdownPlacement, keyboard) {
-    dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
+    if (status) {
+      dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
+    }
 
     dispatch(isUserTouching() ? openModal('ACTIONS', {
       status,
