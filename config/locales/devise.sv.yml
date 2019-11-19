@@ -35,7 +35,7 @@ sv:
         explanation: Bekräfta den nya adressen för att ändra din e-postadress.
         extra: Om den här ändringen inte initierades av dig kan du ignorerar det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du kommer åt länken ovan.
         subject: 'Mastodon: Bekräfta e-post för %{instance}'
-        title: Verifiera e-postadressen
+        title: Verifiera e-postadress
       reset_password_instructions:
         action: Ändra lösenord
         explanation: Du begärde ett nytt lösenord för ditt konto.
@@ -45,10 +45,13 @@ sv:
       two_factor_disabled:
         explanation: Tvåfaktorsautentisering för ditt konto har inaktiverats. Det är nu möjligt att logga in med enbart e-postadress och lösenord.
         subject: 'Mastodon: Tvåfaktorsautentisering inaktiverad'
+        title: 2FA inaktiverad
       two_factor_enabled:
         subject: 'Mastodon: Tvåfaktorsautentisering aktiverad'
+        title: 2FA aktiverad
       two_factor_recovery_codes_changed:
-        explanation: De tidigare återställningskoderna har invaliderats och nya har genererats.
+        explanation: De tidigare återställningskoderna har ogiltigförklarats och nya har genererats.
+        subject: 'Mastodon Tvåfaktors-återställningskoder genererades på nytt'
         title: 2FA-återställningskoder ändrades
       unlock_instructions:
         subject: 'Mastodon: Lås upp instruktioner'
