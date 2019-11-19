@@ -45,6 +45,9 @@ sv:
     endorsements_hint: Från webbgränssnittet kan du rekommendera följare, som sedan visas här.
     featured_tags_hint: Du kan använda fyrkanter som visas här.
     follow: Följa
+    followers:
+      one: Följare
+      other: Följare
     following: Följer
     joined: Gick med %{date}
     last_active: senast aktiv
@@ -198,7 +201,7 @@ sv:
         destroy_domain_block: "%{name} avblockerade domän %{target}"
         destroy_email_domain_block: "%{name} vitlistade e-postdomän %{target}"
         destroy_status: "%{name} tog bort status av %{target}"
-        disable_2fa_user: "%{name} inaktiverade tvåstegsautentiseringskrav för användare %{target}"
+        disable_2fa_user: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användare %{target}"
         disable_custom_emoji: "%{name} inaktiverade emoji %{target}"
         disable_user: "%{name} inaktiverade inloggning för användare %{target}"
         enable_custom_emoji: "%{name} aktiverade emoji %{target}"
@@ -319,6 +322,8 @@ sv:
         create: Skapa domän
         title: Ny E-postdomänblocklistningsinmatning
       title: E-postdomänblock
+    followers:
+      back_to_account: Tillbaka till konto
     instances:
       title: Kända instanser
     invites:
@@ -419,6 +424,9 @@ sv:
       no_media: Ingen media
       title: Kontostatus
       with_media: med media
+    tags:
+      accounts_today: Unika användare idag
+      accounts_week: Unika användare den här veckan
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
@@ -427,6 +435,7 @@ sv:
   appearance:
     advanced_web_interface: Avancerat webbgränssnitt
     animations_and_accessibility: Animationer och tillgänglighet
+    discovery: Upptäck
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     settings: 'Ändra e-postinställningar: %{link}'
@@ -461,6 +470,8 @@ sv:
     reset_password: Återställ lösenord
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
+    status:
+      account_status: Kontostatus
   authorize_follow:
     already_following: Du följer redan detta konto
     error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
@@ -517,7 +528,19 @@ sv:
     follows: Du följer
     mutes: Du tystar
     storage: Medialagring
+  filters:
+    contexts:
+      notifications: Aviseringar
+      thread: Konversationer
+    edit:
+      title: Redigera filter
+    index:
+      delete: Radera
+      title: Filter
+    new:
+      title: Lägg till nytt filter
   generic:
+    all: Alla
     changes_saved_msg: Ändringar sparades framgångsrikt!
     save_changes: Spara ändringar
     validation_errors:
@@ -563,11 +586,12 @@ sv:
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
+    incoming_migrations: Flyttar från ett annat konto
   moderation:
     title: Moderera
   notification_mailer:
     digest:
-      action: Visa alla notifieringar
+      action: Visa alla aviseringar
       body: Här är en kort sammanfattning av de meddelanden du missade sedan ditt senaste besök på %{since}
       mention: "%{name} nämnde dig i:"
       new_followers_summary:
@@ -606,6 +630,9 @@ sv:
     prev: Tidigare
   preferences:
     other: Annat
+  relationships:
+    activity: Kontoaktivitet
+    status: Kontostatus
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
@@ -644,6 +671,9 @@ sv:
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
   settings:
+    account: Konto
+    account_settings: Kontoinställningar
+    aliases: Kontoalias
     appearance: Utseende
     authorized_apps: Godkända appar
     back: Tillbaka till Mastodon
@@ -651,10 +681,13 @@ sv:
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
+    import_and_export: Import och export
     migrate: Kontoflytt
-    notifications: Meddelanden
+    notifications: Aviseringar
     preferences: Inställningar
-    two_factor_authentication: Tvåstegsautentisering
+    profile: Profil
+    relationships: Följer och följare
+    two_factor_authentication: Tvåfaktorsautentisering
   spam_check:
     spam_detected: Det här är en automatisk rapport. Spam har upptäckts.
   statuses:
@@ -777,11 +810,11 @@ sv:
     mastodon-light: Mastodon (ljust)
   two_factor_authentication:
     code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
-    description_html: Om du aktiverar <strong>tvåstegsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att uppge.
-    disable: Avaktivera
+    description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att ange.
+    disable: Inaktivera
     enable: Aktivera
     enabled: Tvåfaktorsautentisering är aktiverad
-    enabled_success: Tvåfaktors autentisering aktiverad
+    enabled_success: Tvåfaktorsautentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app på din telefon </strong>. Från och med nu genererar den appen tokens som du måste ange när du loggar in."
     lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt konto om du förlorar din telefon. Om du har förlorat dina återställningskoder kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
@@ -810,7 +843,7 @@ sv:
       tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket. Men det inkluderar bara människor som dina grannar följer, så det är inte komplett.
       tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
       tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
-      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon till ditt hemskärm kan du få push-meddelanden. Det fungerar som en inbyggd app på många sätt!
+      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
       title: Välkommen ombord, %{name}!
   users:
     invalid_email: E-postadressen är ogiltig
