@@ -102,7 +102,7 @@ module Mastodon
       :tr,
       :uk,
       :ur,
-	  :vi,
+      :vi,
       :'zh-CN',
       :'zh-HK',
       :'zh-TW',
