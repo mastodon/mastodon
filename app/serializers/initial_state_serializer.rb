@@ -24,23 +24,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     }
 
     if object.current_account
-      store[:me]                = object.current_account.id.to_s
-      store[:unfollow_modal]    = object.current_account.user.setting_unfollow_modal
-      store[:boost_modal]       = object.current_account.user.setting_boost_modal
-      store[:delete_modal]      = object.current_account.user.setting_delete_modal
-      store[:auto_play_gif]     = object.current_account.user.setting_auto_play_gif
-      store[:display_media]     = object.current_account.user.setting_display_media
-      store[:expand_spoilers]   = object.current_account.user.setting_expand_spoilers
-      store[:reduce_motion]     = object.current_account.user.setting_reduce_motion
-      store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
-      store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
-      store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:is_staff]          = object.current_account.user.staff?
-      store[:trends]            = Setting.trends && object.current_account.user.setting_trends
-      store[:crop_images]       = object.current_account.user.setting_crop_images
-      store[:email]             = object.current_account.user.email
-      store[:tanker_identity]   = object.current_account.user.tanker_identity
-      store[:tanker_app_id]     = ENV["TANKER_APP_ID"]
+      configure_meta_with_account(store, object.current_account)
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -81,5 +65,25 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
+  end
+
+  def configure_meta_with_account(meta, account)
+    meta[:me]                = account.id.to_s
+    meta[:unfollow_modal]    = account.user.setting_unfollow_modal
+    meta[:boost_modal]       = account.user.setting_boost_modal
+    meta[:delete_modal]      = account.user.setting_delete_modal
+    meta[:auto_play_gif]     = account.user.setting_auto_play_gif
+    meta[:display_media]     = account.user.setting_display_media
+    meta[:expand_spoilers]   = account.user.setting_expand_spoilers
+    meta[:reduce_motion]     = account.user.setting_reduce_motion
+    meta[:advanced_layout]   = account.user.setting_advanced_layout
+    meta[:use_blurhash]      = account.user.setting_use_blurhash
+    meta[:use_pending_items] = account.user.setting_use_pending_items
+    meta[:is_staff]          = account.user.staff?
+    meta[:trends]            = Setting.trends && account.user.setting_trends
+    meta[:crop_images]       = account.user.setting_crop_images
+    meta[:email]             = account.user.email
+    meta[:tanker_identity]   = account.user.tanker_identity
+    meta[:tanker_app_id]     = ENV['TANKER_APP_ID']
   end
 end

@@ -152,7 +152,7 @@ class User < ApplicationRecord
   end
 
   def tanker_public_identity
-    TankerIdentity::get_public_identity tanker_identity
+    TankerIdentity.get_public_identity tanker_identity
   end
 
   def confirm!
@@ -304,8 +304,8 @@ class User < ApplicationRecord
   private
 
   def set_tanker_identity
-    self.tanker_identity = TankerIdentity.create(self.id)
-    self.update_attribute :tanker_identity, self.tanker_identity
+    self.tanker_identity = TankerIdentity.create(id)
+    update_attribute :tanker_identity, tanker_identity
   end
 
   def set_approved

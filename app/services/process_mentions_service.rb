@@ -18,7 +18,7 @@ class ProcessMentionsService < BaseService
       # TODO: Make sure username matches a *local* account
       usernames.each do |username|
         account = Account.find_by!(username: username)
-        mentions << Mention.create!(status: @status, account:account)
+        mentions << Mention.create!(status: @status, account: account)
       end
     else
       status.text = status.text.gsub(Account::MENTION_RE) do |match|
