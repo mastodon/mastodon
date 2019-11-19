@@ -19,7 +19,7 @@ sv:
     documentation: Dokumentation
     federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
     get_apps: Prova en mobilapp
-    hosted_on: Mastodon värd på %{domain}
+    hosted_on: Mastodon-värd på %{domain}
     instance_actor_flash: |
       Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas.
     learn_more: Lär dig mer
@@ -424,6 +424,9 @@ sv:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: 'Ny rapport för %{instance} (#%{id})'
+  appearance:
+    advanced_web_interface: Avancerat webbgränssnitt
+    animations_and_accessibility: Animationer och tillgänglighet
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     settings: 'Ändra e-postinställningar: %{link}'
@@ -641,6 +644,7 @@ sv:
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
   settings:
+    appearance: Utseende
     authorized_apps: Godkända appar
     back: Tillbaka till Mastodon
     delete: Konto radering
