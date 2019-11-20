@@ -24,7 +24,7 @@ module ActiveRecord
           # We have a set of allowed duplicates. Keep the migrated one, if any.
           non_migrated = duplicates.reject { |m| migrated.include?(m.version.to_i) }
 
-          if duplicates.length == non_migrated.length
+          if duplicates.length == non_migrated.length || non_migrated.length == 0
             # There weren't any migrated one, so we have to pick one “canonical” migration
             migrations = migrations - duplicates[1..-1]
           else
