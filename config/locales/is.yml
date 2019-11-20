@@ -1,7 +1,9 @@
 is:
   about:
+    about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
+    active_footnote: Mánaðarlega virkir notendur (MAU)
     administered_by: 'Stýrt af:'
     api: API-kerfisviðmót
     apps: Farsímaforrit
@@ -16,6 +18,7 @@ is:
     documentation: Hjálparskjöl
     federation_hint_html: Með notandaaðgangi á %{instance} geturðu fylgst með fólki á hvaða Mastodon-þjóni sem er og reyndar víðar.
     get_apps: Prófaðu farsímaforrit
+    hosted_on: Mastodon hýst á %{domain}
     learn_more: Kanna nánar
     privacy_policy: Persónuverndarstefna
     see_whats_happening: Sjáðu hvað er í gangi
@@ -47,6 +50,9 @@ is:
     last_active: síðasta virkni
     media: Myndskrár
     never_active: Aldrei
+    nothing_here: Það er ekkert hér!
+    people_followed_by: Fólk sem %{name} fylgist með
+    people_who_follow: Fólk sem fylgist með %{name}
     posts:
       one: Tíst
       other: Tíst
@@ -58,6 +64,8 @@ is:
       bot: Róbót
     unfollow: Hætta að fylgja
   admin:
+    account_actions:
+      action: Framkvæma aðgerð
     account_moderation_notes:
       delete: Eyða
     accounts:
@@ -67,6 +75,7 @@ is:
       avatar: Auðkennismynd
       by_domain: Lén
       change_email:
+        current_email: Núverandi tölvupóstfang
         label: Breyta tölvupóstfangi
         new_email: Nýr tölvupóstur
         submit: Breyta tölvupóstfangi
@@ -75,16 +84,20 @@ is:
       confirmed: Staðfest
       confirming: Staðfesti
       deleted: Eytt
+      demote: Lækka í tign
       disable: Gera óvirkt
+      disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
       disabled: Óvirkt
       display_name: Birtingarnafn
       domain: Lén
       edit: Breyta
       email: Tölvupóstur
+      email_status: Staða tölvupósts
       enable: Virkja
       enabled: Virkt
       followers: Fylgjendur
       follows: Fylgist með
+      header: Haus
       invited_by: Boðið af
       ip: IP-vistfang
       joined: Gerðist þátttakandi
@@ -100,10 +113,12 @@ is:
         pending: Í bið
       most_recent_activity: Allra nýjasta virkni
       most_recent_ip: Nýjasta IP-vistfang
+      protocol: Samskiptamáti
       public: Opinber
       reject: Hafna
       reject_all: Hafna öllu
       remove_avatar: Fjarlægja auðkennismynd
+      remove_header: Fjarlægja haus
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       role: Heimildir
@@ -113,6 +128,7 @@ is:
         staff: Starfsmaður
         user: Notandi
       search: Leita
+      time_in_queue: Bíður í biðröð %{time}
       username: Notandanafn
       warn: Aðvara
       web: Vefur
@@ -121,6 +137,7 @@ is:
       actions:
         create_domain_block: "%{name} útilokaði lénið %{target}"
         destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
+        disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
@@ -138,11 +155,17 @@ is:
       overwrite: Skrifa yfir
       shortcode: Stuttkóði
       uncategorized: Óflokkað
+      unlist: Afskrá
+      unlisted: Óskráð
       upload: Senda inn
     dashboard:
+      config: Stillingar
+      feature_deletions: Eyðingar notandaaðganga
       feature_invites: Boðstenglar
       feature_profile_directory: Persónusniðamappa
+      feature_registrations: Nýskráningar
       feature_relay: Sambandsendurvarpi
+      feature_spam_check: Ruslpóstvarnir
       feature_timeline_preview: Forskoðun tímalínu
       features: Eiginleikar
       recent_users: Nýlegir notendur
@@ -157,17 +180,22 @@ is:
       show:
         undo: Afturkalla
     email_domain_blocks:
+      add_new: Bæta við nýju
       delete: Eyða
       domain: Lén
       new:
         create: Bæta við léni
+    followers:
+      title: "Fylgjast með %{acct}"
     instances:
       by_domain: Lén
       moderation:
         all: Allt
+        limited: Takmarkað
       title: Samband
       total_blocked_by_us: Útilokaðir af okkur
     invites:
+      deactivate_all: Gera allt óvirkt
       filter:
         all: Allt
         available: Tiltækur
@@ -175,12 +203,15 @@ is:
         title: Sía
       title: Boðsgestir
     relays:
+      add_new: Bæta við nýjum endurvarpa
       delete: Eyða
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
       enabled: Virkt
+      save_and_enable: Vista og virkja
       status: Staða
+      title: Endurvarpar
     reports:
       are_you_sure: Ertu viss?
       comment:
