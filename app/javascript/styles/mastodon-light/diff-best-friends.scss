@@ -1,0 +1,21 @@
+.announcements {
+  li {
+    border: solid 1px lighten($ui-base-color, 8%);
+  }
+  
+  .announcements__body {
+    color: $lighter-text-color;
+    .links {
+      a {
+        border-color: $lighter-text-color;
+        color: $lighter-text-color;
+      }
+    }
+  }
+}
+
+.compose__extra__header {
+  &__icon {
+    color: $black;
+  }
+}
