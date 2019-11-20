@@ -1,3 +1,17 @@
+# Some migrations have been present in glitch-soc for a long time and have then
+# been merged in upstream Mastodon, under a different version number.
+#
+# This puts us in an uneasy situation in which if we remove upstream's
+# migration file, people migrating from upstream will end up having a conflict
+# with their already-ran migration.
+#
+# On the other hand, if we keep upstream's migration and remove our own,
+# any current glitch-soc user will have a conflict during migration.
+#
+# For lack of a better solution, as those migrations are indeed identical,
+# we decided monkey-patching Rails' Migrator to completely ignore the duplicate,
+# keeping only the one that has run, or an arbitrary one.
+
 ALLOWED_DUPLICATES = [20180410220657, 20180831171112].freeze
 
 module ActiveRecord

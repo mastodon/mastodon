@@ -1,3 +1,6 @@
+# This migration is a duplicate of 20180410220657 and may get ignored, see
+# config/initializers/0_duplicate_migrations.rb
+
 class CreateBookmarks < ActiveRecord::Migration[5.1]
   def change
     create_table :bookmarks do |t|
