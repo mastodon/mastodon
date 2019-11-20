@@ -49,6 +49,7 @@ is:
     joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
     media: Myndskrár
+    network_hidden: Þessar upplýsingar ekki tiltækar
     never_active: Aldrei
     nothing_here: Það er ekkert hér!
     people_followed_by: Fólk sem %{name} fylgist með
@@ -62,11 +63,13 @@ is:
     roles:
       admin: Stjóri
       bot: Róbót
+    unavailable: Notandasnið ekki tiltækt
     unfollow: Hætta að fylgja
   admin:
     account_actions:
       action: Framkvæma aðgerð
     account_moderation_notes:
+      create: Skilja eftir minnispunkt
       delete: Eyða
     accounts:
       approve: Samþykkja
@@ -113,8 +116,10 @@ is:
         pending: Í bið
       most_recent_activity: Allra nýjasta virkni
       most_recent_ip: Nýjasta IP-vistfang
+      perform_full_suspension: Setja í bið
       protocol: Samskiptamáti
       public: Opinber
+      redownload: Endurlesa notandaaðgang
       reject: Hafna
       reject_all: Hafna öllu
       remove_avatar: Fjarlægja auðkennismynd
@@ -128,7 +133,10 @@ is:
         staff: Starfsmaður
         user: Notandi
       search: Leita
+      subscribe: Gerast áskrifandi
       time_in_queue: Bíður í biðröð %{time}
+      title: Notandaaðgangar
+      unsubscribe: Taka úr áskrift
       username: Notandanafn
       warn: Aðvara
       web: Vefur
@@ -186,9 +194,13 @@ is:
       new:
         create: Bæta við léni
     followers:
+      back_to_account: Til baka í notandaaðgang
       title: "Fylgjast með %{acct}"
     instances:
       by_domain: Lén
+      known_accounts:
+        one: "%{count} þekktur notandaaðgangur"
+        other: "%{count} þekktir notendaaðgangar"
       moderation:
         all: Allt
         limited: Takmarkað
@@ -213,12 +225,17 @@ is:
       status: Staða
       title: Endurvarpar
     reports:
+      account:
+        note: minnispunktur
       are_you_sure: Ertu viss?
       comment:
         none: Ekkert
       mark_as_resolved: Merkja sem leyst
       mark_as_unresolved: Merkja sem óleyst
       notes:
+        create: Bæta við minnispunkti
+        create_and_resolve: Leysa með minnispunkti
+        create_and_unresolve: Enduropna með minnispunkti
         delete: Eyða
       resolved: Leyst
       status: Staða
@@ -253,6 +270,7 @@ is:
       media:
         title: Myndskrár
       no_media: Engar myndir
+      title: Staða notendaaðganga
       with_media: Með myndum
     tags:
       context: Samhengi
@@ -271,6 +289,7 @@ is:
     advanced_web_interface: Ítarlegt vefviðmót
     advanced_web_interface_hint: 'Ef þú vilt geta notað alla skjábreiddina gefur ítarlegt vefviðmót þér færi á að stilla marga mismunandi dálka svo hægt sé að sjá eins miklar upplýsingar í einu eins og þér hentar: Heim, tilkynningar, sameiginleg tímalína, ótiltekinn fjöldi lista og myllumerkja.'
     animations_and_accessibility: Hreyfingar og algilt aðgengi
+    confirmation_dialogs: Staðfestingargluggar
     discovery: Uppgötvun
     sensitive_content: Viðkvæmt efni
     toot_layout: Framsetning tísta
@@ -303,6 +322,7 @@ is:
     setup:
       title: Uppsetning
     status:
+      account_status: Staða notandaaðgangs
       functional: Notandaaðgangurinn þinn er með fulla virkni.
     trouble_logging_in: Vandræði við að skrá inn?
   authorize_follow:
@@ -330,6 +350,7 @@ is:
   deletes:
     proceed: Eyða notandaaðgangi
     warning:
+      before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       more_details_html: Til að skoða þetta nánar, er gott að líta á <a href="%{terms_path}">persónuverndarstefnuna</a>.
   directories:
     directory: Persónusniðamappa
@@ -406,6 +427,7 @@ is:
     errors:
       not_found: fannst ekki
     warning:
+      before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       only_redirect_html: Einnig geturðu <a href="%{path}">einungis sett upp endurbeiningu á persónusniðið þitt</a>.
   notification_mailer:
     favourite:
@@ -452,6 +474,10 @@ is:
     reblog:
       proceed: Halda áfram í endurbirtingu
       prompt: 'Þú ætlar að endurbirta þetta tíst:'
+    reply:
+      prompt: 'Þú ætlar að svaraa þessu tísti:'
+  scheduled_statuses:
+    too_soon: Áætluð dagsetning verður að vera í framtíðinni
   sessions:
     activity: Síðasta virkni
     browser: Vafri
@@ -491,21 +517,28 @@ is:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Afturkalla
+    revoke_success: Tókst að afturkalla setu
     title: Setur
   settings:
     account: Notandaaðgangur
     account_settings: Stillingar notandaaðgangs
     aliases: Samheiti notandaaðgangs
+    appearance: Útlit
     authorized_apps: Leyfð forrit
     back: Til baka í Mastodon
     delete: Eyðing notandaaðgangs
+    edit_profile: Breyta notandasniði
+    export: Útflutningur gagna
     import: Flytja inn
     migrate: Yfirfærsla notandaaðgangs
     notifications: Tilkynningar
     preferences: Kjörstillingar
+    profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    two_factor_authentication: Teggja-þátta auðkenning
   statuses:
     attached:
+      description: 'Viðhengt: %{attached}'
       image:
         one: "%{count} mynd"
         other: "%{count} myndir"
@@ -513,6 +546,8 @@ is:
         one: "%{count} myndskeið"
         other: "%{count} myndskeið"
     boosted_from_html: Endurbirt frá %{acct_link}
+    content_warning: 'Viðvörun vegna efnis: %{warning}'
+    open_in_web: Opna í vafra
     pin_errors:
       reblog: Ekki er hægt að festa endurbirtingu
     poll:
@@ -527,7 +562,9 @@ is:
       public: Opinber
       public_long: Allir geta séð
       unlisted: Óskráð
+      unlisted_long: Allir geta séð en er ekki talið upp á opinberum tímalínum
   stream_entries:
+    pinned: Fest tíst
     reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
   terms:
@@ -536,17 +573,31 @@ is:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
     mastodon-light: Mastodon (ljóst)
+  time:
+    formats:
+      default: "%d. %b, %Y, %H:%M"
   two_factor_authentication:
+    disable: Gera óvirkt
+    enable: Virkja
+    enabled: Tveggja-þátta auðkenning er virk
+    enabled_success: Það tókst að virkja tveggja-þátta auðkenningu
+    generate_recovery_codes: Útbúa endurheimtukóða
     setup: Setja upp
   user_mailer:
     warning:
       review_server_policies: Yfirfara reglur vefþjónsins
+      subject:
+        disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
       title:
+        disable: Notandaaðgangur frystur
         none: Aðvörun
+        silence: Notandaaðgangur takmarkaður
+        suspend: Notandaaðgangur í bið
     welcome:
       review_preferences_action: Breyta kjörstillingum
       subject: Velkomin í Mastodon
       tips: Ábendingar
+      title: Velkomin/n um borð, %{name}!
   users:
     invalid_email: Tölvupóstfangið er ógilt
     signed_in_as: 'Skráð inn sem:'
