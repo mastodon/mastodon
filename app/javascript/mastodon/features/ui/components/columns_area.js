@@ -21,6 +21,7 @@ import {
   HashtagTimeline,
   DirectTimeline,
   FavouritedStatuses,
+  BookmarkedStatuses,
   ListTimeline,
   Directory,
 } from '../../ui/util/async-components';
@@ -40,6 +41,7 @@ const componentMap = {
   'HASHTAG': HashtagTimeline,
   'DIRECT': DirectTimeline,
   'FAVOURITES': FavouritedStatuses,
+  'BOOKMARKS': BookmarkedStatuses,
   'LIST': ListTimeline,
   'DIRECTORY': Directory,
 };
