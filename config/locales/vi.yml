@@ -645,8 +645,17 @@ vi:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
+      about_x_months: "%{count}th"
+      about_x_years: "%{count}n"
+      almost_x_years: "%{count}n"
       half_a_minute: Vừa nãy
+      less_than_x_minutes: "%{count}p"
       less_than_x_seconds: Vừa nãy
+      over_x_years: "%{count}n"
+      x_days: "%{count}n"
+      x_minutes: "%{count}p"
+      x_months: "%{count}th"
+      x_seconds: "%{count}g"
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
     confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh danh tính của bạn
@@ -697,6 +706,7 @@ vi:
       request: Yêu cầu kho lưu trữ của bạn
       size: Kích thước
     blocks: Bạn chặn
+    csv: CSV
     domain_blocks: Khối miền
     follows: Bạn làm theo
     lists: Danh sách
@@ -864,6 +874,16 @@ vi:
       body: 'Trạng thái của bạn đã được loan tin bởi %{name}:'
       subject: "%{name} đã loan tin trạng thái của bạn"
       title: Tăng mới
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: Mới hơn
     next: Kế tiếp
@@ -881,6 +901,7 @@ vi:
       too_few_options: phải có nhiều hơn một mục
       too_many_options: không thể chứa nhiều hơn %{max}
   preferences:
+    other: Khác
     posting_defaults: Đăng mặc định
     public_timelines: Mốc thời gian công cộng
   relationships:
@@ -921,20 +942,37 @@ vi:
     activity: Hoạt động cuối
     browser: Trình duyệt
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
       electron: Điện tử
+      firefox: Firefox
       generic: Trình duyệt không xác định
       ie: trình duyệt web IE
       micro_messenger: MicroMes hành khách
       nokia: Trình duyệt Nokia S40 Ovi
+      opera: Opera
       otter: Rái cá
+      phantom_js: PhantomJS
       qq: Trình duyệt QQ
       safari: cuộc đi săn, cuộc hành trình
       uc_browser: Trình duyệt UC
+      weibo: Weibo
     current_session: Phiên hiện tại
     description: "%{browser} trên %{platform}"
     explanation: Đây là các trình duyệt web hiện đang đăng nhập vào tài khoản Mastodon của bạn.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
       firefox_os: Hệ điều hành Firefox
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: chưa rõ nền tảng
       windows: các cửa sổ
       windows_mobile: Windows di động
       windows_phone: Điện thoại Windows
