@@ -16,9 +16,7 @@ ALLOWED_DUPLICATES = [20180410220657, 20180831171112].freeze
 
 module ActiveRecord
   class Migrator
-    old_initialize = instance_method(:initialize)
-
-    define_method(:initialize) do |direction, migrations, target_version|
+    def self.new(direction, migrations, target_version = nil)
       migrated = Set.new(Base.connection.migration_context.get_all_versions)
 
       migrations.group_by(&:name).each do |name, duplicates|
@@ -36,7 +34,7 @@ module ActiveRecord
         end
       end
 
-      old_initialize.bind(self).(direction, migrations, target_version)
+      super(direction, migrations, target_version)
     end
   end
 end
