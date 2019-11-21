@@ -56,6 +56,7 @@ pt-PT:
     media: Média
     moved_html: "%{name} mudou-se para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
+    never_active: Nunca
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas seguidas por %{name}
     people_who_follow: Pessoas que seguem %{name}
@@ -71,6 +72,7 @@ pt-PT:
       admin: Administrador
       bot: Robô
       moderator: Moderador
+    unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
     account_actions:
@@ -82,7 +84,10 @@ pt-PT:
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
+      approve: Aprovar
+      approve_all: Aprovar todos
       are_you_sure: Tens a certeza?
+      avatar: Imagem de Perfil
       by_domain: Domínio
       change_email:
         changed_msg: E-mail da conta alterado com sucesso!
@@ -113,9 +118,11 @@ pt-PT:
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
+      ip: IP
       joined: Aderiu
       location:
         all: Todos
+        local: Local
         remote: Remoto
         title: Local
       login_status: Estado de início de sessão
@@ -124,15 +131,18 @@ pt-PT:
       moderation:
         active: Activo
         all: Todos
+        pending: Pendente
         silenced: Silenciados
         suspended: Supensos
         title: Moderação
       moderation_notes: Notas de moderação
       most_recent_activity: Actividade mais recente
       most_recent_ip: IP mais recente
+      no_account_selected: Nenhuma conta foi alterada porque nenhuma foi selecionada
       no_limits_imposed: Sem limites impostos
       not_subscribed: Não inscrito
       outbox_url: URL da caixa de saída
+      pending: Pendente de revisão
       perform_full_suspension: Fazer suspensão completa
       profile_url: URL do perfil
       promote: Promover
@@ -140,6 +150,8 @@ pt-PT:
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar avatar
+      reject: Rejeitar
+      reject_all: Rejeitar todas
       remove_avatar: Remover o avatar
       remove_header: Remover o cabeçalho
       resend_confirmation:
@@ -157,6 +169,7 @@ pt-PT:
         user: Utilizador
       salmon_url: URL Salmon
       search: Pesquisar
+      search_same_ip: Outros utilizadores com o mesmo IP
       shared_inbox_url: URL da caixa de entrada compartilhada
       show:
         created_reports: Relatórios gerados por esta conta
@@ -166,6 +179,7 @@ pt-PT:
       statuses: Status
       subscribe: Inscrever-se
       suspended: Suspensa
+      time_in_queue: Aguardando na fila %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Desfazer silenciar
@@ -467,6 +481,7 @@ pt-PT:
         delete: Eliminar
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
+      deleted: Apagado
       failed_to_execute: Falhou ao executar
       media:
         title: Média
@@ -474,6 +489,11 @@ pt-PT:
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       title: Estado das contas
       with_media: Com media
+    tags:
+      reviewed: Revista
+      trending_right_now: Tendências agora
+      unique_uses_today: "%{count} publicando hoje"
+      unreviewed: Não revista
     title: Administração
     warning_presets:
       add_new: Adicionar novo
