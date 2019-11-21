@@ -24,6 +24,12 @@ class ResolveURLService < BaseService
       status = FetchRemoteStatusService.new.call(resource_url, body, protocol)
       authorize_with @on_behalf_of, status, :show? unless status.nil?
       status
+    elsif fetched_resource.nil? && @on_behalf_of.present?
+      # It may happen that the resource is a private toot, and thus not fetchable,
+      # but we can return the toot if we already know about it.
+      status = Status.find_by(uri: @url) || Status.find_by(url: @url)
+      authorize_with @on_behalf_of, status, :show? unless status.nil?
+      status
     end
   end
 

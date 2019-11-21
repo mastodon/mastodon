@@ -1,3 +1,6 @@
+# This migration is a duplicate of 20180831171112 and may get ignored, see
+# config/initializers/0_duplicate_migrations.rb
+
 class CreateBookmarks < ActiveRecord::Migration[5.1]
   def change
     create_table :bookmarks do |t|
@@ -7,8 +10,11 @@ class CreateBookmarks < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    safety_assured { add_foreign_key :bookmarks, :accounts, column: :account_id, on_delete: :cascade }
-    safety_assured { add_foreign_key :bookmarks, :statuses, column: :status_id, on_delete: :cascade }
+    safety_assured do
+      add_foreign_key :bookmarks, :accounts, column: :account_id, on_delete: :cascade
+      add_foreign_key :bookmarks, :statuses, column: :status_id, on_delete: :cascade
+    end
+
     add_index :bookmarks, [:account_id, :status_id], unique: true
   end
 end

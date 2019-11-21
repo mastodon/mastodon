@@ -3,11 +3,11 @@
 #
 # Table name: bookmarks
 #
-#  id         :bigint(8)        not null, primary key
-#  account_id :bigint(8)        not null
-#  status_id  :bigint(8)        not null
+#  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  account_id :integer          not null
+#  status_id  :integer          not null
 #
 
 class Bookmark < ApplicationRecord

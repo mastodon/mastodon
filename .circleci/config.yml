@@ -9,7 +9,6 @@ aliases:
           DB_HOST: localhost
           DB_USER: root
           RAILS_ENV: test
-          NODE_ENV: test
           PARALLEL_TEST_PROCESSORS: 4
           ALLOW_NOPAM: true
           CONTINUOUS_INTEGRATION: true
@@ -122,10 +121,7 @@ jobs:
     steps:
       - *attach_workspace
       - *install_system_dependencies
-      - run:
-          name: Precompile assets
-          command: ./bin/rails assets:precompile
-          no_output_timeout: 40m
+      - run: ./bin/rails assets:precompile
       - persist_to_workspace:
           root: ~/projects/
           paths:

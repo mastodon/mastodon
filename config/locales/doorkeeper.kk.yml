@@ -72,6 +72,7 @@ kk:
       index:
         application: Қосымша
         created_at: Авторизацияланды
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Scopеs
         title: Your authorized applicаtions
     errors:
@@ -113,6 +114,12 @@ kk:
       application:
         title: OAuth authorizatiоn required
     scopes:
+      admin:read: сервердегі барлық деректерді оқыңыз
+      admin:read:accounts: барлық аккаунттардың құпия ақпаратын оқыңыз
+      admin:read:reports: барлық есептер мен есептік жазбалардың құпия ақпаратын оқыңыз
+      admin:write: сервердегі барлық деректерді өзгертіңіз
+      admin:write:accounts: аккаунттардағы модерациялық әрекеттерді орындау
+      admin:write:reports: есептер бойынша модерация әрекеттерін орындау
       follow: modify accоunt relationships
       push: receive your push nоtifications
       read: read all your accоunt's data

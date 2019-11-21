@@ -26,8 +26,14 @@ sv:
         locale: Användargränssnittets språk, e-post och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
+        setting_display_media_default: Dölj media markerad som känslig
+        setting_display_media_hide_all: Dölj alltid all media
+        setting_display_media_show_all: Visa alltid media markerad som känslig
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
+        username: Ditt användarnamn måste vara unikt på %{domain}
+      featured_tag:
+        name: 'Du kan vilja använda en av dessa:'
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
@@ -58,17 +64,22 @@ sv:
         note: Biografi
         otp_attempt: Tvåstegslösenord
         password: Lösenord
+        phrase: Nyckelord eller fras
         setting_auto_play_gif: Auto-play animerade GIF-filer
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
         setting_default_language: Språk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
+        setting_display_media: Mediavisning
+        setting_display_media_hide_all: Dölj alla
+        setting_display_media_show_all: Visa alla
         setting_hide_network: Göm ditt nätverk
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
         setting_theme: Sidans tema
+        setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
         severity: Strikthet
         type: Importtyp
@@ -78,6 +89,10 @@ sv:
         must_be_follower: Blockera meddelanden från icke-följare
         must_be_following: Blockera meddelanden från personer du inte följer
         must_be_following_dm: Blockera direktmeddelanden från personer du inte följer
+      invite:
+        comment: Kommentar
+      invite_request:
+        text: Varför vill du gå med?
       notification_emails:
         digest: Skicka sammandrag via e-post
         favourite: Skicka e-post när någon favoriserar din status
@@ -86,6 +101,8 @@ sv:
         mention: Skicka e-post när någon nämner dig
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
+    recommended: Rekommenderad
     required:
+      mark: "*"
       text: obligatorisk
     'yes': Ja

@@ -93,6 +93,7 @@ zh-CN:
         setting_aggregate_reblogs: 在时间轴中合并转嘟
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
+        setting_crop_images: 裁剪未展开嘟文的图片到 16x9
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
@@ -108,6 +109,7 @@ zh-CN:
         setting_show_application: 展示你用来发嘟的应用
         setting_system_font_ui: 使用系统默认字体
         setting_theme: 站点主题
+        setting_trends: 显示今日热门
         setting_unfollow_modal: 在取消关注前询问我
         setting_use_blurhash: 将隐藏媒体显示为彩色渐变
         severity: 级别
@@ -121,19 +123,25 @@ zh-CN:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
         must_be_following_dm: 屏蔽来自我未关注的用户的私信
+      invite:
+        comment: 评论
       invite_request:
         text: 你为什么想要加入？
       notification_emails:
         digest: 发送摘要邮件
-        favourite: 当有用户收藏了我的嘟文时，发送电子邮件提醒我
+        favourite: 当有用户喜欢了我的嘟文时，发送电子邮件提醒我
         follow: 当有用户关注我时，发送电子邮件提醒我
         follow_request: 当有用户向我发送关注请求时，发送电子邮件提醒我
         mention: 当有用户在嘟文中提及我时，发送电子邮件提醒我
         pending_account: 在有账户需要审核时，发送电子邮件提醒我
         reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
         report: 在提交新举报时，发送电子邮件提醒我
+        trending_tag: 当未经审核的话题当前热门时邮件提醒
       tag:
         listable: 允许这个话题标签在用户目录中显示
+        name: 话题标签
+        trendable: 允许在热门下显示此话题
+        usable: 允许嘟文使用此话题
     'no': 否
     recommended: 推荐
     required:

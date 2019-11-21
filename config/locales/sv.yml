@@ -4,22 +4,53 @@ sv:
     about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
+    active_count_after: aktiv
+    active_footnote: Månatligen Aktiva användare (MAU)
     administered_by: 'Administreras av:'
     api: API
+    apps: Mobilappar
+    apps_platforms: Använd Mastodon från iOS, Android och andra plattformar
+    browse_directory: Titta på en profilkatalog och filtrera enligt intressen
+    browse_local_posts: Titta på strömmande publika inlägg från denna server
+    browse_public_posts: Titta på strömmande publika inlägg på Mastodon
     contact: Kontakt
     contact_missing: Inte inställd
+    contact_unavailable: Ej tillämplig
+    discover_users: Upptäck användare
+    documentation: Dokumentation
+    federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
+    get_apps: Prova en mobilapp
     hosted_on: Mastodon värd på %{domain}
+    instance_actor_flash: 'Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas.
+
+'
     learn_more: Lär dig mer
+    privacy_policy: Integritetspolicy
+    see_whats_happening: Se vad som händer
+    server_stats: 'Serverstatistik:'
     source_code: Källkod
     status_count_before: Som skapat
+    tagline: Följ vänner och upptäck nya
     terms: Användarvillkor
+    unavailable_content: Otillgängligt innehåll
+    unavailable_content_description:
+      domain: Server
+      reason: Anledning
+      rejecting_media: 'Mediafiler från dessa servers kommer inte hanteras eller lagras, och inga miniatyrer kammer att visas, utan manuell klickning erfordras på originalfilen:'
+      silenced: 'Poster från dessa servers kommer att döljas i publika tidslinjer och konversationer, och meddelanden kommer inte att genereras från deras användares handlingar, förutom om du följer dem:'
+      suspended: 'Ingen data från dessa serverdatorer kommer bearbetas, lagras eller bytas ut vilket omöjliggör kommunikation med användare från dessa serverdatorer:'
+    unavailable_content_html: Mastodon låter dig se material från, och interagera med, andra användare i servernätverket. Det är undantag som gjorts på denna serverdator.
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
   accounts:
+    choices_html: "%{name}s val:"
+    endorsements_hint: Från webbgränssnittet kan du rekommendera följare, som sedan visas här.
+    featured_tags_hint: Du kan använda fyrkanter som visas här.
     follow: Följa
     following: Följer
     joined: Gick med %{date}
     last_active: senast aktiv
+    link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
@@ -27,6 +58,8 @@ sv:
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
+    pin_errors:
+      following: Du måste vara följare av den person du vill godkänna
     posts_tab_heading: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
@@ -77,7 +110,11 @@ sv:
       followers: Följare
       followers_url: Följare URL
       follows: Följs
+      header: Rubrik
       inbox_url: Inkorgs URL
+      invited_by: Inbjuden av
+      ip: IP-adress
+      joined: Gick med
       location:
         all: Alla
         local: Lokal
@@ -87,15 +124,20 @@ sv:
       media_attachments: Media bifogade filer
       memorialize: Förvandla till ett memoriam
       moderation:
+        active: Aktiv
         all: Alla
+        pending: Väntande
         silenced: Tystas
         suspended: Avstängd
         title: Moderering
       moderation_notes: Moderation anteckning
       most_recent_activity: Senaste aktivitet
       most_recent_ip: Senaste IP
+      no_account_selected: Inga konton har ändrats och inget har valts
+      no_limits_imposed: Inga begränsningar har införts
       not_subscribed: Inte prenumererat
       outbox_url: Utkorg URL
+      pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
       profile_url: Profil URL
       promote: Befordra
@@ -103,7 +145,10 @@ sv:
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera avatar
+      reject: Förkasta
+      reject_all: Förkasta allt / Avvisa alla
       remove_avatar: Ta bort avatar
+      remove_header: Ta bort rubrik
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
         send: Skicka om e-postbekräftelse
@@ -114,33 +159,44 @@ sv:
       role: Behörigheter
       roles:
         admin: Administratör
+        moderator: Moderator
         staff: Personal
         user: Användare
       salmon_url: Lax URL
       search: Sök
+      search_same_ip: Annan användare med samma IP-adress
       shared_inbox_url: Delad inkorg URL
       show:
         created_reports: Anmälningar som skapats av det här kontot
         targeted_reports: Anmälningar gjorda om detta konto
       silence: Tystnad
+      silenced: Tystad / Tystat
       statuses: Status
       subscribe: Prenumerera
+      suspended: Avstängd / Avstängt
+      time_in_queue: Väntar i kö %{time}
       title: Konton
       unconfirmed_email: Obekräftad E-postadress
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
       unsubscribe: Avsluta prenumeration
       username: Användarnamn
+      warn: Varna
       web: Webb
+      whitelisted: Vitlistad
     action_logs:
       actions:
         assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
         change_email_user: "%{name} bytte e-postadress för användare %{target}"
         confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
+        create_account_warning: "%{name} sände en varning till %{target}"
         create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
+        create_domain_allow: "%{name} vitlistade domän %{target}"
         create_domain_block: "%{name} blockerade domän %{target}"
         create_email_domain_block: "%{name} svartlistade e-postdomän %{target}"
         demote_user: "%{name} degraderade användare %{target}"
+        destroy_custom_emoji: "%{name} förstörde emoji %{target}"
+        destroy_domain_allow: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block: "%{name} avblockerade domän %{target}"
         destroy_email_domain_block: "%{name} vitlistade e-postdomän %{target}"
         destroy_status: "%{name} tog bort status av %{target}"
@@ -162,20 +218,27 @@ sv:
         unsuspend_account: "%{name} aktiverade %{target}s konto"
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
         update_status: "%{name} uppdaterade status för %{target}"
+      deleted_status: "(raderad status)"
       title: Revisionslogg
     custom_emojis:
+      assign_category: Ange kategori
       by_domain: Domän
       copied_msg: Skapade en lokal kopia av emoji utan problem
       copy: Kopia
       copy_failed_msg: Kunde inte skapa en lokal kopia av den emoji
+      create_new_category: Skapa ny kategori
       created_msg: Emoji skapades utan problem!
       delete: Radera
       destroyed_msg: Emojo borttagen utan problem!
       disable: Inaktivera
+      disabled: Inaktiverad
       disabled_msg: Inaktiverade emoji utan problem
+      emoji: Emoji
       enable: Aktivera
+      enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
       image_hint: PNG upp till 50KB
+      list: Lista
       listed: Noterade
       new:
         title: Lägg till ny egen emoji
@@ -183,10 +246,29 @@ sv:
       shortcode: Kortkod
       shortcode_hint: Minst 2 tecken, endast alfanumeriska tecken och understreck
       title: Egentillverkade emojis
+      uncategorized: Okategoriserad / Okategoiserat / Okategoriserade
+      unlist: Avnotera / Tag bort
       unlisted: Olistade
       update_failed_msg: Kunde inte uppdatera emoji
       updated_msg: Emoji uppdaterades utan problem!
       upload: Ladda upp
+    dashboard:
+      authorized_fetch_mode: Säkert läge
+      backlog: återstående jobb
+      config: Konfiguration
+      feature_deletions: Kontoraderingar
+      feature_invites: Inbjudningslänkar
+      feature_profile_directory: Profilkatalog
+      feature_registrations: Registreringar
+      feature_relay: Förbundsmöte
+      feature_spam_check: Anti-skräp
+      feature_timeline_preview: Förhandsgranskning av tidslinje
+      features: Funktioner
+      hidden_service: Sammanslutning med gömda tjänster
+      open_reports: öppna rapporter
+      pending_tags: hashtags som inväntar granskning
+      pending_users: användare som inväntar granskning
+      recent_users: Senaste användare
     domain_blocks:
       add_new: Lägg till ny
       created_msg: Domänblocket behandlas nu
