@@ -1,1 +1,72 @@
 nn:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        locked: Krever at du manuelt godkjenner følgere
+        setting_noindex: Påvirker din offentlige profil og statussider
+      imports:
+        data: CSV-fil eksportert fra en annen Mastodon-instans
+      sessions:
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
+    labels:
+      account:
+        fields:
+          value: Innhald
+      admin_account_action:
+        types:
+          silence: Togn
+      defaults:
+        avatar: Bilete
+        confirm_new_password: Stadfest nytt passord
+        confirm_password: Stadfest passord
+        current_password: Noverande passord
+        data: Data
+        display_name: Visningsnavn
+        email: E-post-adresse
+        expires_in: Utløper etter
+        header: Overskrift
+        locale: Språk
+        locked: Lås konto
+        max_uses: Maksimalt antall bruk
+        new_password: Nytt passord
+        note: Om meg
+        otp_attempt: Tofaktorkode
+        password: Passord
+        phrase: Nykelord eller frase
+        setting_auto_play_gif: Autoavspill animert GIF-filer
+        setting_boost_modal: Vis bekreftelse før fremheving
+        setting_default_language: Språk på innlegg
+        setting_default_privacy: Privatliv
+        setting_default_sensitive: Marker alltid media som sensitivt
+        setting_delete_modal: Vis bekreftelse før du sletter en tut
+        setting_display_media_default: Standard
+        setting_display_media_hide_all: Gøym alle
+        setting_display_media_show_all: Vis alle
+        setting_hide_network: Skjul nettverket ditt
+        setting_noindex: Ikke delta i søkemotorsindeksering
+        setting_reduce_motion: Reduser bevegelser i animasjoner
+        setting_system_font_ui: Bruk systemets standardfont
+        setting_theme: Sidens tema
+        setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
+        severity: Alvorlighetsgrad
+        type: Importeringstype
+        username: Brukernavn
+      interactions:
+        must_be_follower: Blokker varslinger fra ikke-følgere
+        must_be_following: Blokker varslinger fra personer du ikke følger
+        must_be_following_dm: Blokker direkte meldinger fra personer du ikke følger
+      notification_emails:
+        digest: Send sammendrag på e-post
+        favourite: Send e-post når nokon merkjer statusen din som favoritt
+        follow: Send e-post når nokon fylgjer deg
+        follow_request: Send e-post når nokon spør om å fylgja deg
+        mention: Send e-post når nokon nemner deg
+        pending_account: Send e-post når nokon når ein ny konto treng gjennomgang
+        reblog: Send e-post når noen fremhever din status
+    'no': 'Nei'
+    required:
+      text: obligatorisk
+    'yes': 'Ja'
