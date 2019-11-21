@@ -840,6 +840,7 @@ pt-BR:
     redirecting_to: Sua conta está redirecionando para %{acct}.
     set_redirect: Definir redirecionamento
     warning:
+      backreference_required: A nova conta deve primeiro ser configurada para que esta seja referenciada
       before: 'Antes de prosseguir, por favor leia com cuidado:'
   moderation:
     title: Moderação
@@ -877,6 +878,13 @@ pt-BR:
       body: 'Sua postagem foi compartilhada por %{name}:'
       subject: "%{name} compartilhou a sua postagem"
       title: Novo compartilhamento
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: bi
+          million: mi
+          thousand: mil
   pagination:
     newer: Mais novo
     next: Próximo
