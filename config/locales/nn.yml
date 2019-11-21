@@ -40,7 +40,7 @@ nn:
     unfollow: Slutt å fylgja
   admin:
     account_moderation_notes:
-      create: Lag
+      create: Legg igjen merknad
       created_msg: Moderasjonsnotat laget uten problem!
       delete: Slett
       destroyed_msg: Moderasjonsnotat slettet uten problem!
@@ -181,6 +181,7 @@ nn:
       enabled: Slege på
       enabled_msg: Aktiverte emojien uten problem
       image_hint: PNG opp til 50 kB
+      list: Oppfør
       listed: Oppført
       new:
         title: Legg til ny egen emoji
@@ -250,6 +251,7 @@ nn:
         expired: Utløpt
       title: Invitasjoner
     relays:
+      delete: Slett
       save_and_enable: Lagr og slå på
     reports:
       action_taken_by: Handling utført av
@@ -443,8 +445,28 @@ nn:
     storage: Medielagring
   featured_tags:
     add_new: Legg til ny
+    errors:
+      limit: Du har allereie så mange emneknaggar som det går an å ha
+  filters:
+    contexts:
+      home: Heimeside
+      notifications: Varsel
+      public: Offentlege tidsliner
+      thread: Samtalar
+    edit:
+      title: Endr filter
+    index:
+      delete: Slett
+      title: Filter
+    new:
+      title: Legg til nytt filter
+  footer:
+    developers: Utviklarar
+    more: Meir…
+    resources: Ressursar
   generic:
-    changes_saved_msg: Vellykket lagring av endringer!
+    changes_saved_msg: Alle endringane vart lagra!
+    copy: Kopier
     save_changes: Lagre endringer
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
@@ -459,7 +481,7 @@ nn:
     upload: Opplastning
   in_memoriam_html: Til minne.
   invites:
-    delete: Deaktiver
+    delete: Slå av
     expired: Utløpt
     expires_in:
       '1800': 30 minutter
