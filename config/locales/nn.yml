@@ -111,26 +111,33 @@ nn:
         send: Send stadfestings-e-posten på nytt
         success: Stadfestings-e-post send!
       reset: Attstill
-      reset_password: Nullstill passord
-      resubscribe: Abonner på nytt
-      role: Rettigheter
+      reset_password: Attstill passord
+      resubscribe: Ting på nytt
+      role: Løyve
       roles:
-        staff: Personale
-        user: Bruker
+        admin: Administrator
+        moderator: Moderator
+        staff: Personell
+        user: Brukar
       salmon_url: Salmon-URL
       search: Søk
+      search_same_ip: Andre brukarar med same IP
       shared_inbox_url: Delt Innboks URL
       show:
         created_reports: Rapporter laget av denne kontoen
-        targeted_reports: Rapporter laget om denne kontoen
-      silence: Målbind
-      statuses: Statuser
-      subscribe: Abonnere
-      title: Kontoer
+        targeted_reports: Rapportert av andre
+      silence: Togn
+      silenced: Dempa
+      statuses: Statusar
+      subscribe: Ting
+      title: Kontoar
+      unconfirmed_email: E-post utan stadfesting
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
-      unsubscribe: Avslutte abonnementet
-      username: Brukernavn
+      unsubscribe: Avmeld
+      username: Brukarnamn
+      warn: Åtvar
+      web: Nett
     action_logs:
       actions:
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
@@ -160,16 +167,20 @@ nn:
     custom_emojis:
       by_domain: Domene
       copied_msg: Laget en lokal kopi av emoji uten problem
-      copy: Kopiere
-      copy_failed_msg: Kunne ikke lage en lokal kopi av den emojien
+      copy: Kopier
+      copy_failed_msg: Klarte ikkje å kopiera emojien
+      create_new_category: Lag ny kategori
       created_msg: Emoji laget uten problem!
       delete: Slett
       destroyed_msg: Emojo slettet uten problem!
-      disable: Deaktivere
+      disable: Slå av
+      disabled: Slege av
       disabled_msg: Deaktiverte emoji uten problem
-      enable: Aktivere
+      emoji: Emoji
+      enable: Slå på
+      enabled: Slege på
       enabled_msg: Aktiverte emojien uten problem
-      image_hint: PNG opp til 50KB
+      image_hint: PNG opp til 50 kB
       listed: Oppførte
       new:
         title: Legg til ny egen emoji
