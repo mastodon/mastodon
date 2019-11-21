@@ -322,30 +322,39 @@ nn:
         delete: Slett
         nsfw_off: NSFW AV
         nsfw_on: NSFW PÅ
-      failed_to_execute: Utføring mislyktes
+      deleted: Sletta
+      failed_to_execute: Lét seg ikkje gjera
       no_media: Ingen media
       title: Kontostatuser
       with_media: Med media
+    tags:
+      context: Kontekst
     title: Administrasjon
+    warning_presets:
+      add_new: Legg til ny
+      delete: Slett
+      edit: Rediger
   admin_mailer:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
   application_mailer:
-    notification_preferences: Endre e-post innstillingene
-    settings: 'Endre foretrukne e-postinnstillinger: %{link}'
-    view: 'Se:'
-    view_profile: Vis Profil
-    view_status: Vis status
+    notification_preferences: Endr e-post-innstillingane
+    salutation: "%{name},"
+    settings: 'Endr e-post-innstillingar: %{link}'
+    view: 'Sjå:'
+    view_profile: Sjå profil
+    view_status: Sjå status
   applications:
     created: Søknaden ble vellykket oppretttet
     destroyed: Søknaden ble vellykket slettet
-    invalid_url: Den oppgitte URLen er ugyldig
+    invalid_url: Denne lenkja er ugyldig
     regenerate_token: Regenerer tilgangsnøkkel
     token_regenerated: Tilgangsnøkkel vellykket regenerert
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
+    change_password: Passord
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
@@ -355,11 +364,19 @@ nn:
     logout: Logg ut
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
-    register: Bli med
-    resend_confirmation: Send bekreftelsesinstruksjoner på nytt
-    reset_password: Nullstill passord
-    security: Sikkerhet
-    set_new_password: Sett nytt passord
+    register: Registrer deg
+    registration_closed: "%{instance} tek ikkje imot nye medlemmar"
+    resend_confirmation: Send stadfestingsinstruksjonar på nytt
+    reset_password: Attstill passord
+    security: Tryggleik
+    set_new_password: Lag nytt passord
+    setup:
+      email_below_hint_html: Om e-posten nedfor ikkje er rett, kan du endra han her og få ein ny stadfestings-e-post.
+      title: Oppsett
+    status:
+      account_status: Kontostatus
+      functional: Kontoen din er oppe og går.
+    trouble_logging_in: Får du ikkje logga inn?
   authorize_follow:
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Følg
