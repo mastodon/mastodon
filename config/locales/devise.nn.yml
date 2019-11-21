@@ -14,11 +14,11 @@ nn:
       pending: Kontoen din er fortsatt under gjennomgang.
       timeout: Økten din løp ut på tid. Logg inn på nytt for å fortsette.
       unauthenticated: Du må logge inn eller registrere deg før du kan fortsette.
-      unconfirmed: Du må bekrefte e-postadressen din før du kan fortsette.
+      unconfirmed: Du må stadfesta e-postadressa di før du kan gå vidare.
     mailer:
       confirmation_instructions:
         action: Stadfest e-postadresse
-        action_with_app: Bekreft og gå tilbake til %{app}
+        action_with_app: Stadfest og gå tilbake til %{app}
         explanation: Du har laget en konto på %{host} med denne e-postadressen. Du er ett klikk unna å aktivere den. Hvis dette ikke var deg, vennligst se bort fra denne e-posten.
         extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
         subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse %{instance}'
@@ -65,18 +65,18 @@ nn:
       updated: Passordet ditt er endra. No er du logga inn.
       updated_not_active: Passordet ditt er endra.
     registrations:
-      destroyed: Adjø! Kontoen din er slettet. På gjensyn.
+      destroyed: Ha det! Kontoen din er sletta. Vi vonar å sjå deg igjen snart.
       signed_up: Velkomen! No er du registrert.
-      signed_up_but_inactive: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din ennå ikke har blitt aktivert.
-      signed_up_but_locked: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din har blitt låst.
-      signed_up_but_pending: En melding med en bekreftelseslink er sendt til din e-postadresse. Etter at du har klikket på koblingen, vil vi gjennomgå søknaden din. Du vil bli varslet hvis den er godkjent.
+      signed_up_but_inactive: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er ikkje aktivert enno.
+      signed_up_but_locked: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er låst.
+      signed_up_but_pending: Ei melding med ei stadfestingslenkje er vorten send til e-postadressa di. Når du klikkar på lenkja skal vi sjå gjennom søknaden din. Du får ei melding om han vert godkjend.
       signed_up_but_unconfirmed: En e-post med en bekreftelseslenke har blitt sendt til din innboks. Klikk på lenken i e-posten for å aktivere kontoen din.
       update_needs_confirmation: Du har oppdatert kontoen din, men vi må bekrefte din nye e-postadresse. Sjekk e-posten din og følg bekreftelseslenken for å bekrefte din nye e-postadresse.
       updated: Kontoen din ble oppdatert.
     sessions:
-      already_signed_out: Logget ut.
-      signed_in: Logget inn.
-      signed_out: Logget ut.
+      already_signed_out: Logga ut.
+      signed_in: Logga inn.
+      signed_out: Logga ut.
     unlocks:
       send_instructions: Du vil motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
       send_paranoid_instructions: Hvis kontoen din eksisterer vil du motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
