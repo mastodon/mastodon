@@ -1,4 +1,6 @@
 kab:
+  about:
+    privacy_policy: Tasertit tabaḍnit
   accounts:
     follow: Ḍfeṛ
   admin:
@@ -9,8 +11,22 @@ kab:
       email: Imayl
       followers: Imeḍfaṛen
       title: Imiḍan
+    custom_emojis:
+      delete: Kkes
+    email_domain_blocks:
+      delete: Kkes
     followers:
       title: "Imeḍfaṛen n %{acct}"
+    relays:
+      delete: Kkes
+    reports:
+      notes:
+        delete: Kkes
+    statuses:
+      batch:
+        delete: Kkes
+    warning_presets:
+      delete: Kkes
   auth:
     change_password: Awal uffir
     delete_account: Kkes amiḍan
@@ -26,6 +42,11 @@ kab:
     '429': Throttled
     '500':
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    index:
+      delete: Kkes
+  generic:
+    save_changes: Sekles ibeddilen
   invites:
     expires_in:
       '1800': 30 minutes
