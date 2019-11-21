@@ -6,7 +6,9 @@ nn:
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
+        setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
         setting_noindex: Påvirker din offentlige profil og statussider
+        username: Brukarnamnet ditt vert unikt på %{domain}
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
@@ -14,12 +16,16 @@ nn:
     labels:
       account:
         fields:
+          name: Merkelapp
           value: Innhald
       admin_account_action:
+        type: Handling
         types:
+          none: Gjer inkje
           silence: Togn
       defaults:
         avatar: Bilete
+        chosen_languages: Filtermål
         confirm_new_password: Stadfest nytt passord
         confirm_password: Stadfest passord
         current_password: Noverande passord
@@ -42,6 +48,7 @@ nn:
         setting_default_privacy: Privatliv
         setting_default_sensitive: Marker alltid media som sensitivt
         setting_delete_modal: Vis bekreftelse før du sletter en tut
+        setting_display_media: Medievisning
         setting_display_media_default: Standard
         setting_display_media_hide_all: Gøym alle
         setting_display_media_show_all: Vis alle
@@ -49,15 +56,21 @@ nn:
         setting_noindex: Ikke delta i søkemotorsindeksering
         setting_reduce_motion: Reduser bevegelser i animasjoner
         setting_system_font_ui: Bruk systemets standardfont
-        setting_theme: Sidens tema
+        setting_theme: Sidetema
         setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
         severity: Alvorlighetsgrad
         type: Importeringstype
-        username: Brukernavn
+        username: Brukarnamn
+        username_or_email: Brukarnman eller E-post
+        whole_word: Heilt ord
+      featured_tag:
+        name: Emneknagg
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
         must_be_following_dm: Blokker direkte meldinger fra personer du ikke følger
+      invite_request:
+        text: Kvifor vil du verta med?
       notification_emails:
         digest: Send sammendrag på e-post
         favourite: Send e-post når nokon merkjer statusen din som favoritt
