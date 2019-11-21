@@ -471,27 +471,38 @@ nn:
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
+  identity_proofs:
+    active: Aktiv
+    authorize: Ja, stadfest
+    identity: Identitet
+    inactive: Uaktiv
+    publicize_checkbox: 'Og tut dette:'
+    view_proof: Sjå prov
   imports:
+    modes:
+      merge: Set saman
+      overwrite: Skriv over
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
       blocking: Blokkeringsliste
-      following: Følgeliste
+      following: Fylgjeliste
       muting: Dempeliste
-    upload: Opplastning
+    upload: Last opp
   in_memoriam_html: Til minne.
   invites:
     delete: Slå av
-    expired: Utløpt
+    expired: Utgått
     expires_in:
-      '1800': 30 minutter
-      '21600': 6 timer
+      '1800': 30 minutt
+      '21600': 6 timar
       '3600': 1 time
-      '43200': 12 timer
-      '604800': 1 week
+      '43200': 12 timar
+      '604800': 1 veke
       '86400': 1 dag
     expires_in_prompt: Aldri
-    generate: Generer
+    generate: Lag innbydingslenkje
+    invited_by: 'Du vart invitert av:'
     max_uses:
       one: 1 uke
       other: "%{count} bruk"
@@ -514,7 +525,7 @@ nn:
     title: Moderasjon
   notification_mailer:
     digest:
-      action: Vis alle varslinger
+      action: Sjå alle varsel
       body: Her er en kort oppsummering av hva du har gått glipp av siden du sist logget inn den %{since}
       mention: "%{name} nevnte deg i:"
       new_followers_summary:
