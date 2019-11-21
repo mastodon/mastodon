@@ -379,14 +379,18 @@ nn:
     trouble_logging_in: Får du ikkje logga inn?
   authorize_follow:
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
-    follow: Følg
+    follow: Fylg
     follow_request: 'Du har sendt en følgeforespørsel til:'
     following: 'Suksess! Nå følger du:'
     post_follow:
       close: Eller så kan du lukke dette vinduet.
-      return: Gå tilbake til brukerens profil
+      return: Vis brukarprofilen
       web: Gå til nettsiden
     title: Følg %{acct}
+  challenge:
+    confirm: Hald fram
+    invalid_password: Ugyldig passord
+    prompt: Stadfest passord for å halda fram
   datetime:
     distance_in_words:
       about_x_hours: "%{count} timer"
@@ -402,9 +406,13 @@ nn:
       x_months: "%{count} mnd"
       x_seconds: "%{count} sek"
   deletes:
-    confirm_password: Skriv inn ditt passord for å verifisere din identitet
+    challenge_not_passed: Det du skreiv var ikkje rett
+    confirm_password: Skriv det noverande passordet ditt for å stadfesta identiteten din
+    confirm_username: Skriv inn brukarnamnet ditt for å stadfesta
     proceed: Slett konto
-    success_msg: Din konto ble slettet
+    success_msg: Kontoen din er sletta
+    warning:
+      before: 'Ver venleg og les desse punkta nøye før du held fram:'
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tillatelse til å vise denne siden.
@@ -420,11 +428,21 @@ nn:
       title: Denne siden er ikke korrekt
     '503': The page could not be served due to a temporary server failure.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
+  existing_username_validator:
+    not_found: fann ingen lokalbrukar med det namnet
+    not_found_multiple: fann ikkje %{usernames}
   exports:
+    archive_takeout:
+      date: Dato
+      download: Last ned arkivet ditt
+      size: Storleik
     blocks: Du blokkerer
-    follows: Du følger
-    mutes: Du demper
-    storage: Medialagring
+    follows: Du fylgjer
+    lists: Lister
+    mutes: Du dempar
+    storage: Medielagring
+  featured_tags:
+    add_new: Legg til ny
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
     save_changes: Lagre endringer
