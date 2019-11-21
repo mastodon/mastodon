@@ -340,6 +340,8 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
+  appearance:
+    toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
     salutation: "%{name},"
@@ -580,6 +582,10 @@ nn:
     proceed: Hald fram med å fylgja
     prompt: 'Du kjem til å fylgja:'
   remote_interaction:
+    favourite:
+      prompt: 'Du vil merkja dette tutet som favoritt:'
+    reblog:
+      prompt: 'Du vil framheva dette tutet:'
     reply:
       prompt: 'Du vil svara på dette tutet:'
   sessions:
@@ -688,13 +694,17 @@ nn:
     setup: Sett opp
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
+    warning:
+      title:
+        none: Åtvaring
+        silence: Konto avgrensa
     welcome:
       edit_profile_action: Sett opp profil
       edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
       explanation: Her er noen tips for å komme i gang
-      final_action: Start postingen
-      final_step: 'Start å poste! Selv uten følgere kan dine offentlige meldinger bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introductions.'
-      full_handle: Ditt fullstendige brukernavn
+      final_action: Kom i gang med å leggja ut
+      final_step: 'Byrj å skriva innlegg! Sjølv utan fylgjarar kan andre sjå dei offentlege meldingane dine, til dømes på den lokale tidslina og i emneknaggar. Du har kanskje lyst til å introdusera deg med emneknaggen #introductions.'
+      full_handle: Det fulle brukarnamnet ditt
       full_handle_hint: Dette er hva du forteller venner slik at de kan sende melding eller følge deg fra en annen instanse.
       review_preferences_action: Endre innstillinger
       review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
