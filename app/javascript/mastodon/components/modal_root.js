@@ -61,8 +61,14 @@ export default class ModalRoot extends React.PureComponent {
   componentDidUpdate (prevProps) {
     if (!this.props.children && !!prevProps.children) {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
-      this.activeElement.focus();
-      this.activeElement = null;
+
+      // Because of the wicg-inert polyfill, the activeElement may not be
+      // immediately selectable, we have to wait for observers to run, as
+      // described in https://github.com/WICG/inert#performance-and-gotchas
+      Promise.resolve().then(() => {
+        this.activeElement.focus();
+        this.activeElement = null;
+      });
     }
     if (this.props.children) {
       requestAnimationFrame(() => {
