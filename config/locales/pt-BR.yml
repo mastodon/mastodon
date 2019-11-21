@@ -822,13 +822,23 @@ pt-BR:
   migrations:
     acct: username@domain da nova conta
     cancel: Cancelar redirecionamento
+    cancel_explanation: Cancelar o redirecionamento reativará a sua conta atual, mas não trará de volta os seguidores que não foram migrados para aquela conta.
+    cancelled_msg: Redirecionamento cancelado com sucesso.
+    errors:
+      already_moved: é a mesma conta para a qual você já migrou
+      missing_also_known_as: não está referenciando esta conta
+      move_to_self: não pode ser conta atual
+      not_found: não pôde ser encontrado
+    followers_count: Seguidores no momento da mudança
     incoming_migrations: Migrando de outra conta
+    incoming_migrations_html: Para mover de outra conta para esta, você precisa <a href="%{path}">criar um alias</a>.
     moved_msg: Agora sua conta está redirecionando para %{acct} e seus seguidores estão sendo movidos.
     not_redirecting: Sua conta não está redirecionando para nenhuma outra conta atualmente.
     on_cooldown: Você migrou recentemente sua conta. Esta função ficará disponível novamente em %{count} dias.
     past_migrations: Migrações passadas
     proceed_with_move: Migrar seguidores
     redirecting_to: Sua conta está redirecionando para %{acct}.
+    set_redirect: Definir redirecionamento
     warning:
       before: 'Antes de prosseguir, por favor leia com cuidado:'
   moderation:
