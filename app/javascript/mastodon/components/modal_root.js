@@ -68,6 +68,8 @@ export default class ModalRoot extends React.PureComponent {
       Promise.resolve().then(() => {
         this.activeElement.focus();
         this.activeElement = null;
+      }).catch((error) => {
+        console.error(error);
       });
     }
     if (this.props.children) {
