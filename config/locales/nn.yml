@@ -584,15 +584,41 @@ nn:
       prompt: 'Du vil svara på dette tutet:'
   sessions:
     activity: Siste aktivitet
-    browser: Nettleser
+    browser: Nettlesar
     browsers:
-      generic: Ukjent nettleser
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Ukjend lesar
+      ie: Internet Explorer
+      micro_messenger: Micromessenger
+      nokia: Nokia S40 Ovi-lesar
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ-lesar
+      safari: Safari
+      uc_browser: UC-lesar
+      weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
-    explanation: Dette er nettlesere innlogget på din Mastodon-konto akkurat nå.
-    ip: IP-adresse
+    explanation: Desse nettlesarane er logga inn på Mastodon-kontoen din.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: IOS
+      linux: Linux
+      mac: Mac
       other: ukjent plattform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
@@ -616,16 +642,26 @@ nn:
       ownership: Kun egne tuter kan festes
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
-    show_more: Vis mer
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} folk"
+      total_votes:
+        one: "%{count} røyst"
+        other: "%{count} røyster"
+      vote: Røyst
+    show_more: Vis meir
+    sign_in_to_participate: Logg inn for å verta med i samtalen
+    title: '%{name}: «%{quote}»'
     visibilities:
-      private: Privat
-      private_long: Synlig kun for følgere
-      public: Offentlig
-      public_long: Synlig for alle
-      unlisted: Uoppført
-      unlisted_long: Synlig for alle, men ikke på offentlige tidslinjer
+      private: Berre fylgjarar
+      private_long: Vis berre til fylgjarar
+      public: Offentleg
+      public_long: Alle kan sjå
+      unlisted: Ikkje oppført
+      unlisted_long: Alle kan sjå, men ikkje oppført på offentlege tidsliner
   stream_entries:
-    pinned: Festet tut
+    pinned: Festa tut
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   terms:
