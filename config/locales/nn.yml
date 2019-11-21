@@ -243,23 +243,31 @@ nn:
         limited: Avgrensa
       title: Kjente instanser
     invites:
+      deactivate_all: Slå av alle
       filter:
         all: Alle
-        available: Tilgjengelig
+        available: Tilgjengeleg
         expired: Utløpt
       title: Invitasjoner
+    relays:
+      save_and_enable: Lagr og slå på
     reports:
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
       comment:
         none: Ingen
+      created_at: Rapportert
       mark_as_resolved: Merk som løst
+      notes:
+        delete: Slett
       report: 'Rapportér #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
-      title: Rapporter
+      status: Status
+      title: Rapportar
       unresolved: Uløst
+      updated_at: Oppdatert
     settings:
       activity_api_enabled:
         desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
@@ -270,6 +278,11 @@ nn:
       contact_information:
         email: Skriv en offentlig e-postadresse
         username: Skriv brukernavn
+      domain_blocks:
+        all: Til alle
+        disabled: Til ingen
+      domain_blocks_rationale:
+        title: Vis kvifor
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
@@ -295,7 +308,7 @@ nn:
       site_terms:
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
         title: Skreddersydde bruksvilkår
-      site_title: Nettstedstittel
+      site_title: Tenarnamn
       thumbnail:
         desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
         title: Miniatyrbilde for instans
