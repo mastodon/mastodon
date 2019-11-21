@@ -29,7 +29,7 @@ pt-BR:
     server_stats: 'Estatísticas do servidor:'
     source_code: Código-fonte
     status_count_after:
-      one: publicação
+      one: status
       other: status
     status_count_before: Autores de
     tagline: Siga amigos e encontre novos
@@ -829,6 +829,7 @@ pt-BR:
       missing_also_known_as: não está referenciando esta conta
       move_to_self: não pode ser conta atual
       not_found: não pôde ser encontrado
+      on_cooldown: Você está no período de espera
     followers_count: Seguidores no momento da mudança
     incoming_migrations: Migrando de outra conta
     incoming_migrations_html: Para mover de outra conta para esta, você precisa <a href="%{path}">criar um alias</a>.
@@ -842,6 +843,7 @@ pt-BR:
     warning:
       backreference_required: A nova conta deve primeiro ser configurada para que esta seja referenciada
       before: 'Antes de prosseguir, por favor leia com cuidado:'
+      cooldown: Depois de se mudar, há um período de espera no qual você não poderá efetuar uma nova mudança
       disabled_account: Sua conta não estará totalmente funcional ao término deste processo. Entretanto, você terá acesso à exportação de dados bem como à reativação.
       followers: Esta ação moverá todos os seguidores da conta atual para a nova conta
       only_redirect_html: Alternativamente, você pode <a href="%{path}">apenas colocar um redirecionamento no seu perfil</a>.
@@ -1010,7 +1012,7 @@ pt-BR:
     relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação em dois passos
   spam_check:
-    spam_detected: Este é um relatório automatizado. Foi detectado spam.
+    spam_detected: Este é um relatório automático. Spam foi detectado.
   statuses:
     attached:
       description: 'Anexado: %{attached}'
@@ -1034,6 +1036,9 @@ pt-BR:
       private: Toot não-público não pode ser fixado
       reblog: Um compartilhamento não pode ser fixado
     poll:
+      total_people:
+        one: "%{count} pessoa"
+        other: "%{count} pessoas"
       total_votes:
         one: "%{count} voto"
         other: "%{count} votos"
@@ -1143,6 +1148,7 @@ pt-BR:
     mastodon-light: Mastodon (claro)
   time:
     formats:
+      default: "%H:%M em %d de %b de %Y"
       month: "%B de %Y"
   two_factor_authentication:
     code_hint: Insira o código gerado pelo seu aplicativo auteticador para confirmar
@@ -1172,6 +1178,7 @@ pt-BR:
         suspend: Sua conta está suspensa e todos os seus toots e mídias foram irreversivelmente removidas desse servidor e de servidores onde você tinha seguidores.
       get_in_touch: Você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
       review_server_policies: Revisar as políticas do servidor
+      statuses: 'Especificamente, para:'
       subject:
         disable: Sua conta %{acct} foi congelada
         none: Aviso para %{acct}
