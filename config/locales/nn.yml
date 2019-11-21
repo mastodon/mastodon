@@ -181,10 +181,10 @@ nn:
       enabled: Slege på
       enabled_msg: Aktiverte emojien uten problem
       image_hint: PNG opp til 50 kB
-      listed: Oppførte
+      listed: Oppført
       new:
         title: Legg til ny egen emoji
-      overwrite: Overskrive
+      overwrite: Skriv over
       shortcode: Kortkode
       shortcode_hint: Minst 2 tegn, kun alfanumeriske tegn og understrek
       title: Egenoppførte emojier
@@ -192,6 +192,12 @@ nn:
       update_failed_msg: Kunne ikke oppdatere emojien
       updated_msg: Emoji oppdatert uten problemer!
       upload: Last opp
+    dashboard:
+      feature_spam_check: Søppelvern
+      features: Eigenskapar
+      software: Programvare
+      space: Lagrinsplass nytta
+      total_users: brukarar til saman
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -203,11 +209,12 @@ nn:
         severity:
           desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
           noop: Ingen
-          silence: Målbind
+          silence: Togn
           suspend: Utvis
         title: Ny domeneblokkering
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
+      reject_reports: Avvis rapportar
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -221,14 +228,19 @@ nn:
     email_domain_blocks:
       add_new: Lag ny
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
-      delete: Fjern
+      delete: Slett
       destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
       title: Blokkering av e-postdomene
+    followers:
+      back_to_account: Tilbake til konto
     instances:
+      by_domain: Domene
+      moderation:
+        limited: Avgrensa
       title: Kjente instanser
     invites:
       filter:
