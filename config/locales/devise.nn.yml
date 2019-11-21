@@ -8,8 +8,8 @@ nn:
       already_authenticated: Du er allereie logga inn.
       inactive: Kontoen din er ikkje aktiv enno.
       invalid: Ugyldig %{authentication_keys} eller passord.
-      last_attempt: Du har ett forsøk igjen før kontoen din låses.
-      locked: Din konto er låst.
+      last_attempt: Du har eitt forsøk igjen før kontoen din vert låst.
+      locked: Kontoen din er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller passord.
       pending: Kontoen din er fortsatt under gjennomgang.
       timeout: Økten din løp ut på tid. Logg inn på nytt for å fortsette.
@@ -17,12 +17,12 @@ nn:
       unconfirmed: Du må bekrefte e-postadressen din før du kan fortsette.
     mailer:
       confirmation_instructions:
-        action: Bekreft e-postadresse
+        action: Stadfest e-post-adressa
         action_with_app: Bekreft og gå tilbake til %{app}
         explanation: Du har laget en konto på %{host} med denne e-postadressen. Du er ett klikk unna å aktivere den. Hvis dette ikke var deg, vennligst se bort fra denne e-posten.
         extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
         subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse %{instance}'
-        title: Bekreft e-postadresse
+        title: Stadfest e-postadressa
       email_changed:
         explanation: 'E-postadressen til din konto endres til:'
         extra: Hvis du ikke endret din e-postadresse, er det sannsynlig at noen har fått tilgang til din konto. Vennligst endre ditt passord umiddelbart eller kontakt instansens administrator dersom du er utestengt fra kontoen din.
