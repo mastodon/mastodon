@@ -260,10 +260,15 @@ nn:
       title: Dashbord
       total_users: brukarar til saman
       trends: Populært
+      week_interactions: samhandlingar denne veka
       week_users_active: aktive denne veka
       week_users_new: brukarar denne veka
+      whitelist_mode: Kvitlistemodus
     domain_allows:
       add_new: Kvitlist domene
+      created_msg: Domene er vorte kvitlista
+      destroyed_msg: Domene er fjerna frå kvitlista
+      undo: Fjern frå kvitliste
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -278,10 +283,12 @@ nn:
           silence: Togn
           suspend: Utvis
         title: Ny domeneblokkering
+      private_comment: Privat kommentar
       public_comment: Offentleg kommentar
       reject_media: Avvis mediefiler
-      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
+      reject_media_hint: Fjernar mediefiler som er lagra lokalt og nektar å lasta ned andre i framtida. Har ikkje noko å seia for utvisingar
       reject_reports: Avvis rapportar
+      reject_reports_hint: Ignorer alle rapportar frå dette domenet. Har ikkje noko å seia for utvisingar
       severity:
         silence: dempa
         suspend: utvist
