@@ -512,6 +512,9 @@ pt-PT:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
       subject: 'Novo relatório sobre %{instance} (#%{id})'
+  aliases:
+    add_new: Criar pseudónimo
+    remove: Desvincular pseudónimo
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     settings: 'Alterar preferências de email: %{link}'
@@ -772,6 +775,7 @@ pt-PT:
     revoke_success: Sessão revogada com sucesso
     title: Sessões
   settings:
+    aliases: Pseudónimos da conta
     authorized_apps: Aplicativos autorizados
     back: Voltar ao Mastodon
     delete: Eliminação da conta
