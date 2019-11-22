@@ -187,6 +187,7 @@ pt-PT:
       unsubscribe: Cancelar inscrição
       username: Usuário
       warn: Aviso
+      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} atribuiu o relatório %{target} a si próprios"
@@ -199,7 +200,7 @@ pt-PT:
         demote_user: "%{name} rebaixou o utilizador %{target}"
         destroy_custom_emoji: "%{name} destruiu o emoji %{target}"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
-        destroy_email_domain_block: "%{name} adicionou na lista branca o domínio de correio electrónico %{target}"
+        destroy_email_domain_block: "%{name} adicionou na lista branca o domínio de correio eletrónico %{target}"
         destroy_status: "%{name} removeu o publicação feita por %{target}"
         disable_2fa_user: "%{name} desactivou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji: "%{name} desabilitou o emoji %{target}"
@@ -535,6 +536,8 @@ pt-PT:
   aliases:
     add_new: Criar pseudónimo
     remove: Desvincular pseudónimo
+  appearance:
+    toot_layout: Disposição do Toot
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     settings: 'Alterar preferências de email: %{link}'
