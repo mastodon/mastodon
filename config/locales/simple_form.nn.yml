@@ -1,14 +1,19 @@
 nn:
   simple_form:
     hints:
+      admin_account_action:
+        warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       defaults:
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
+        password: Nytt minst 8 teikn
         setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
         setting_noindex: Påvirker din offentlige profil og statussider
         username: Brukarnamnet ditt vert unikt på %{domain}
+      featured_tag:
+        name: 'Kanskje du vil nytta ein av desse:'
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
@@ -18,19 +23,26 @@ nn:
         fields:
           name: Merkelapp
           value: Innhald
+      account_warning_preset:
+        text: Føreåtstekst
       admin_account_action:
+        text: Eigen åtvaring
         type: Handling
         types:
+          disable: Slå av innlogging
           none: Gjer inkje
           silence: Togn
       defaults:
+        autofollow: Bed om å fylgja kontoen din
         avatar: Bilete
+        bot: Dette er ein bot-konto
         chosen_languages: Filtermål
         confirm_new_password: Stadfest nytt passord
         confirm_password: Stadfest passord
+        context: Filtrer kontekstar
         current_password: Noverande passord
         data: Data
-        display_name: Visningsnavn
+        display_name: Synleg namn
         email: E-post-adresse
         expires_in: Utløper etter
         header: Overskrift
@@ -39,10 +51,10 @@ nn:
         max_uses: Maksimalt antall bruk
         new_password: Nytt passord
         note: Om meg
-        otp_attempt: Tofaktorkode
+        otp_attempt: Tostegskode
         password: Passord
         phrase: Nykelord eller frase
-        setting_auto_play_gif: Autoavspill animert GIF-filer
+        setting_auto_play_gif: Spel av animerte GIF-ar automatisk
         setting_boost_modal: Vis bekreftelse før fremheving
         setting_default_language: Språk på innlegg
         setting_default_privacy: Privatliv
@@ -57,7 +69,9 @@ nn:
         setting_reduce_motion: Reduser bevegelser i animasjoner
         setting_system_font_ui: Bruk systemets standardfont
         setting_theme: Sidetema
+        setting_trends: Vis kva som er populært i dag
         setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
+        setting_use_pending_items: Saktemodus
         severity: Alvorlighetsgrad
         type: Importeringstype
         username: Brukarnamn
@@ -82,6 +96,7 @@ nn:
         report: Send e-post når nokon rapporterer noko
       tag:
         name: Emneknagg
+        usable: Gje tut lov til å nytta denne emneknaggen
     'no': 'Nei'
     recommended: Tilrådt
     required:
