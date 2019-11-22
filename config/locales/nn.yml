@@ -492,7 +492,7 @@ nn:
     created: Søknaden ble vellykket oppretttet
     destroyed: Søknaden ble vellykket slettet
     invalid_url: Denne lenkja er ugyldig
-    regenerate_token: Regenerer tilgangsnøkkel
+    regenerate_token: Lag tilgangsnykel på nytt
     token_regenerated: Tilgangsnøkkel vellykket regenerert
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
@@ -501,7 +501,10 @@ nn:
     change_password: Passord
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
-    didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
+    description:
+      prefix_sign_up: Meld deg på Mastodon i dag!
+      suffix: Med ein konto kan du fylgja folk, skriva innlegg og veksla meldingar med brukarar frå kva som helst annan Mastodon-tenar og meir!
+    didnt_get_confirmation: Fekk du ikkje stadfestingsinstruksjonar?
     forgot_password: Har du gløymt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
     login: Innlogging
@@ -520,16 +523,20 @@ nn:
     set_new_password: Lag nytt passord
     setup:
       email_below_hint_html: Om e-posten nedfor ikkje er rett, kan du endra han her og få ein ny stadfestings-e-post.
+      email_settings_hint_html: Stadfestings-e-posten vart send til %{email}. Om den e-postadressa ikkje er rett, kan du byta adresse i kontoinnstillingane.
       title: Oppsett
     status:
       account_status: Kontostatus
+      confirming: Ventar på stadfesting av e-post.
       functional: Kontoen din er oppe og går.
+      pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
     trouble_logging_in: Får du ikkje logga inn?
   authorize_follow:
+    already_following: Du fylgjer allereie denne kontoen
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Fylg
-    follow_request: 'Du har sendt en følgeforespørsel til:'
-    following: 'Suksess! Nå følger du:'
+    follow_request: 'Du har sendt ein fylgjeførespurnad til:'
+    following: 'Suksess! No fylgjer du:'
     post_follow:
       close: Eller så kan du berre lukka att dette vindauget.
       return: Vis brukarprofilen
