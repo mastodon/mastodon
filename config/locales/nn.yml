@@ -2,20 +2,35 @@ nn:
   about:
     about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
     about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
-    about_this: Om denne instansen
+    about_this: Om oss
+    active_count_after: aktiv
+    administered_by: 'Administrert av:'
+    apps: Mobilappar
     contact: Kontakt
-    contact_missing: Ikke innstilt
-    contact_unavailable: Ikke tilgjengelig
+    contact_missing: Ikkje sett
+    contact_unavailable: I/T
+    get_apps: Prøv ein mobilapp
     hosted_on: Mastodon driftet på %{domain}
-    learn_more: Lær mer
-    source_code: Kildekode
-    status_count_before: Som skrev
+    learn_more: Lær meir
+    see_whats_happening: Sjå kva som skjer
+    server_stats: 'Tenarstatistikk:'
+    source_code: Kjeldekode
+    status_count_after:
+      one: status
+      other: statusar
+    status_count_before: Som skreiv
+    tagline: Fylg vener og oppdag nye
+    unavailable_content: Utilgjengeleg innhald
+    unavailable_content_description:
+      domain: Sørvar
+      reason: Grunn
     user_count_after:
       one: brukar
       other: brukarar
     user_count_before: Her bur
     what_is_mastodon: Kva er Mastodon?
   accounts:
+    choices_html: "%{name} sine val:"
     follow: Fylg
     followers:
       one: Fylgjar
@@ -23,7 +38,9 @@ nn:
     following: Fylgjer
     joined: Vart med %{date}
     last_active: sist aktiv
+    media: Media
     moved_html: "%{name} har flytta til %{new_profile_link}:"
+    network_hidden: Denne informasjonen er ikkje tilgjengeleg
     never_active: Aldri
     nothing_here: Her er det ingenting!
     people_followed_by: Folk som %{name} fylgjer
@@ -35,6 +52,7 @@ nn:
     posts_with_replies: Tut og svar
     reserved_username: Dette brukarnamnet er oppteke
     roles:
+      admin: Administrator
       moderator: Moderator
     unavailable: Profil ikkje tilgjengeleg
     unfollow: Slutt å fylgja
