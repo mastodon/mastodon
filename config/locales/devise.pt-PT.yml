@@ -1,4 +1,3 @@
----
 pt-PT:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ pt-PT:
     failure:
       already_authenticated: A tua sessão já está aberta.
       inactive: A tua conta ainda não está ativada.
-      invalid: "%{authentication_keys} ou palavra-passe inválida."
+      invalid: '%{authentication_keys} ou palavra-passe inválida.'
       last_attempt: Tens mais uma tentativa antes de a tua conta ficar bloqueada.
       locked: A tua conta está bloqueada.
-      not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
+      not_found_in_database: '%{authentication_keys} ou palavra-passe inválida.'
       timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
       unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
       unconfirmed: Tens de confirmar o teu endereço de email antes de continuar.
@@ -44,6 +43,12 @@ pt-PT:
         extra: Se não fizeste este pedido, por favor ignora este e-mail. A tua palavra-passe não irá mudar se não acederes ao link acima e criares uma nova.
         subject: 'Mastodon: Instruções para alterar a palavra-passe'
         title: Solicitar nova palavra-passe
+      two_factor_disabled:
+        title: 2FA desativado
+      two_factor_enabled:
+        title: 2FA ativado
+      two_factor_recovery_codes_changed:
+        title: Códigos de recuperação 2FA alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções para desbloquear a tua conta'
     omniauth_callbacks:
