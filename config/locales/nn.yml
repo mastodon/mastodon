@@ -288,22 +288,23 @@ nn:
       save_and_enable: Lagr og slå på
     reports:
       account:
-        report: meld
-      action_taken_by: Handling utført av
+        report: rapporter
+      action_taken_by: Handling gjort av
       are_you_sure: Er du sikker?
       comment:
         none: Ingen
       created_at: Rapportert
       mark_as_resolved: Merk som løst
       notes:
+        create: Sett inn merknad
         delete: Slett
       report: 'Rapportér #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
-      resolved: Løst
+      resolved: Oppløyst
       status: Status
       title: Rapportar
-      unresolved: Uløst
+      unresolved: Uløyst
       updated_at: Oppdatert
     settings:
       activity_api_enabled:
@@ -320,6 +321,10 @@ nn:
         disabled: Til ingen
       domain_blocks_rationale:
         title: Vis kvifor
+      hero:
+        title: Heltebilete
+      mascot:
+        title: Maskotbilete
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
@@ -333,6 +338,10 @@ nn:
         min_invite_role:
           disabled: Ingen
           title: Tillat invitasjoner fra
+      registrations_mode:
+        modes:
+          none: Ingen kan melda seg inn
+          open: Kven som helst kan melda seg inn
       show_staff_badge:
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
@@ -352,7 +361,7 @@ nn:
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Forhandsvis tidslinjen
-      title: Nettstedsinnstillinger
+      title: Sideinnstillingar
     statuses:
       back_to_account: Tilbake til kontosiden
       batch:
