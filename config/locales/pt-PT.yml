@@ -38,6 +38,7 @@ pt-PT:
     unavailable_content_description:
       domain: Servidor
       reason: Motivo
+      rejecting_media: 'Arquivos de média destes servidores não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
     user_count_after:
       one: utilizador
       other: utilizadores
@@ -203,7 +204,7 @@ pt-PT:
         destroy_custom_emoji: "%{name} destruiu o emoji %{target}"
         destroy_domain_allow: "%{name} removeu o domínio %{target} da lista branca"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
-        destroy_email_domain_block: "%{name} adicionou na lista branca o domínio de correio eletrónico %{target}"
+        destroy_email_domain_block: "%{name} retirou o domínio de e-mail %{target} da lista negra"
         destroy_status: "%{name} removeu o publicação feita por %{target}"
         disable_2fa_user: "%{name} desactivou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji: "%{name} desabilitou o emoji %{target}"
@@ -282,8 +283,9 @@ pt-PT:
       week_users_new: utilizadores nesta semana
       whitelist_mode: Modo lista branca
     domain_allows:
+      add_new: Colocar domínio na lista branca
       created_msg: Domínio foi adicionado à lista branca com sucesso
-      destroyed_msg: O domínio foi removido da lista branca
+      destroyed_msg: Domínio foi removido da lista branca
       undo: Remover da lista branca
     domain_blocks:
       add_new: Adicionar novo
