@@ -222,10 +222,12 @@ pt-PT:
       deleted_status: "(apagou a publicação)"
       title: Registo de auditoria
     custom_emojis:
+      assign_category: Atribuir categoria
       by_domain: Domínio
       copied_msg: Cópia local do emoji criada com sucesso
       copy: Copiar
       copy_failed_msg: Não foi possível criar uma cópia local deste emoji
+      create_new_category: Criar nova categoria
       created_msg: Emoji criado com sucesso!
       delete: Apagar
       destroyed_msg: Emoji destruído com sucesso!
@@ -259,12 +261,14 @@ pt-PT:
       feature_profile_directory: Directório de perfil
       feature_registrations: Registos
       feature_relay: Repetidor da federação
+      feature_spam_check: Anti-spam
       features: Componentes
       hidden_service: Federação com serviços escondidos
       open_reports: relatórios abertos
       recent_users: Utilizadores recentes
       search: Pesquisa com texto completo
       single_user_mode: Modo de utilizador único
+      software: Software
       space: Utilização do espaço
       title: Painel de controlo
       total_users: total de utilizadores
@@ -496,10 +500,20 @@ pt-PT:
       title: Estado das contas
       with_media: Com media
     tags:
+      context: Contexto
+      directory: No diretório
+      in_directory: "%{count} no diretório"
+      last_active: Última actividade
+      most_popular: Mais popular
+      most_recent: Mais recente
+      name: Hashtag
+      review: Estado da revisão
       reviewed: Revista
+      title: Hashtags
       trending_right_now: Tendências agora
       unique_uses_today: "%{count} publicando hoje"
       unreviewed: Não revista
+      updated_msg: Definições de hashtags actualizadas com sucesso
     title: Administração
     warning_presets:
       add_new: Adicionar novo
@@ -508,10 +522,16 @@ pt-PT:
       edit_preset: Editar o aviso predefinido
       title: Gerir os avisos predefinidos
   admin_mailer:
+    new_pending_account:
+      body: Em baixo, estão os detalhes da nova conta. Pode aprovar ou rejeitar esta inscrição.
+      subject: Nova conta para revisão em %{instance} (%{username})
     new_report:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
       subject: 'Novo relatório sobre %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'A hashtag #%{name} está hoje a destacar-se, mas não foi anteriormente revista. Ela não será exibida publicamente a menos que você o permita, ou limite-se a salvar o formulário tal como está, para nunca mais ouvir falar dela.'
+      subject: 'Nova hashtag para revisão em %{instance} (#%{name})'
   aliases:
     add_new: Criar pseudónimo
     remove: Desvincular pseudónimo
