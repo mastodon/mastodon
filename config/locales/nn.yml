@@ -105,15 +105,19 @@ nn:
       media_attachments: Mediavedlegg
       memorialize: Gjør om til et minne
       moderation:
+        active: Aktiv
         all: Alle
-        silenced: Målbundet
+        pending: Ventar på svar
+        silenced: Dempa
         suspended: Utvist
         title: Moderasjon
-      moderation_notes: Moderasjonsnotater
+      moderation_notes: Moderasjonsmerknader
       most_recent_activity: Nyligste aktivitet
       most_recent_ip: Nyligste IP
-      not_subscribed: Ikke abonnért
+      no_limits_imposed: Ingen grenser sett
+      not_subscribed: Ikkje tinga
       outbox_url: Utboks URL
+      pending: Ventar på gjennomgang
       perform_full_suspension: Utfør full utvisning
       profile_url: Profil-URL
       promote: Oppgradere
@@ -143,7 +147,7 @@ nn:
       shared_inbox_url: Delt Innboks URL
       show:
         created_reports: Rapporter laget av denne kontoen
-        targeted_reports: Rapportert av andre
+        targeted_reports: Meldt av andre
       silence: Togn
       silenced: Dempa
       statuses: Statusar
@@ -207,16 +211,19 @@ nn:
       shortcode: Kortkode
       shortcode_hint: Minst 2 tegn, kun alfanumeriske tegn og understrek
       title: Egenoppførte emojier
-      unlisted: Unoterte
+      unlisted: Ikkje oppført
       update_failed_msg: Kunne ikke oppdatere emojien
       updated_msg: Emoji oppdatert uten problemer!
       upload: Last opp
     dashboard:
+      feature_invites: Innbydingar
       feature_spam_check: Søppelvern
       features: Eigenskapar
       software: Programvare
       space: Lagrinsplass nytta
+      title: Dashbord
       total_users: brukarar til saman
+      week_users_new: brukarar denne veka
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -234,6 +241,8 @@ nn:
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       reject_reports: Avvis rapportar
+      severity:
+        silence: dempa
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -242,7 +251,7 @@ nn:
           silence: Avmålbind alle eksisterende kontoer fre dette domenet
           suspend: Avutvis alle eksisterende kontoer fra dette domenet
         title: Angre domeneblokkering for %{domain}
-        undo: Angre
+        undo: Angr
       undo: Angre
     email_domain_blocks:
       add_new: Lag ny
@@ -259,19 +268,27 @@ nn:
     instances:
       by_domain: Domene
       moderation:
+        all: Alle
         limited: Avgrensa
+        title: Moderasjon
       title: Kjente instanser
     invites:
       deactivate_all: Slå av alle
       filter:
         all: Alle
         available: Tilgjengeleg
-        expired: Utløpt
-      title: Invitasjoner
+        expired: Utgått
+        title: Filter
+      title: Innbydingar
     relays:
       delete: Slett
+      disable: Slå av
+      disabled: Slege av
+      enable: Slå på
       save_and_enable: Lagr og slå på
     reports:
+      account:
+        report: meld
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
       comment:
