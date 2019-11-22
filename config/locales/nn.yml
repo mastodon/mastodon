@@ -42,6 +42,7 @@ nn:
   accounts:
     choices_html: "%{name} sine val:"
     endorsements_hint: Du kan fremja folk dy fylgjer frå grensesnittet på nettet, og då visast dei her.
+    featured_tags_hint: Du kan velja emneknaggar som skal visast her.
     follow: Fylg
     followers:
       one: Fylgjar
@@ -49,6 +50,7 @@ nn:
     following: Fylgjer
     joined: Vart med %{date}
     last_active: sist aktiv
+    link_verified_on: Eigarskap for denne lenkja vart sist sjekka %{date}
     media: Media
     moved_html: "%{name} har flytta til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikkje tilgjengeleg
@@ -56,6 +58,8 @@ nn:
     nothing_here: Her er det ingenting!
     people_followed_by: Folk som %{name} fylgjer
     people_who_follow: Folk som fylgjer %{name}
+    pin_errors:
+      following: Du må allereie fylgja personen du vil fremja
     posts:
       one: Tut
       other: Tut
@@ -70,9 +74,9 @@ nn:
   admin:
     account_moderation_notes:
       create: Legg igjen merknad
-      created_msg: Moderasjonsnotat laget uten problem!
+      created_msg: Moderatormerknad er laga!
       delete: Slett
-      destroyed_msg: Moderasjonsnotat slettet uten problem!
+      destroyed_msg: Moderatormerknad er utsletta!
     accounts:
       approve: Godtak
       approve_all: Godtak alle
@@ -92,7 +96,7 @@ nn:
       deleted: Sletta
       demote: Degrader
       disable: Slå av
-      disable_two_factor_authentication: Skru av 2FA
+      disable_two_factor_authentication: Slå av 2FA
       disabled: Slege av
       display_name: Synleg namn
       domain: Domene
@@ -116,7 +120,7 @@ nn:
         remote: Fjernt
         title: Stad
       login_status: Innlogginsstatus
-      media_attachments: Mediavedlegg
+      media_attachments: Medievedlegg
       memorialize: Gjør om til et minne
       moderation:
         active: Aktiv
@@ -127,14 +131,15 @@ nn:
         title: Moderasjon
       moderation_notes: Moderasjonsmerknader
       most_recent_activity: Nyligste aktivitet
-      most_recent_ip: Nyligste IP
+      most_recent_ip: Nyast IP
+      no_account_selected: Ingen kontoar vart endra sidan ingen var valde
       no_limits_imposed: Ingen grenser sett
       not_subscribed: Ikkje tinga
       outbox_url: Utboks URL
       pending: Ventar på gjennomgang
       perform_full_suspension: Utvis
-      profile_url: Profil-URL
-      promote: Oppgradere
+      profile_url: Lenkje til profil
+      promote: Frem
       protocol: Protokoll
       public: Offentleg
       push_subscription_expires: PuSH-abonnent utløper
