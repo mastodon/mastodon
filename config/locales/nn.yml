@@ -5,6 +5,7 @@ nn:
     about_this: Om oss
     active_count_after: aktiv
     administered_by: 'Administrert av:'
+    api: API
     apps: Mobilappar
     contact: Kontakt
     contact_missing: Ikkje sett
@@ -106,7 +107,7 @@ nn:
         local: Lokalt
         remote: Fjernt
         title: Stad
-      login_status: Innloggingsstatus
+      login_status: Innlogginsstatus
       media_attachments: Mediavedlegg
       memorialize: Gjør om til et minne
       moderation:
@@ -123,7 +124,7 @@ nn:
       not_subscribed: Ikkje tinga
       outbox_url: Utboks URL
       pending: Ventar på gjennomgang
-      perform_full_suspension: Utfør full utvisning
+      perform_full_suspension: Utvis
       profile_url: Profil-URL
       promote: Oppgradere
       protocol: Protokoll
@@ -133,6 +134,7 @@ nn:
       reject: Avvis
       reject_all: Avvis alle
       remove_avatar: Fjern bilete
+      remove_header: Fjern overskrift
       resend_confirmation:
         already_confirmed: Denne brukaren er allereie stadfesta
         send: Send stadfestings-e-posten på nytt
@@ -157,6 +159,7 @@ nn:
       silenced: Dempa
       statuses: Statusar
       subscribe: Ting
+      suspended: Utvist
       title: Kontoar
       unconfirmed_email: E-post utan stadfesting
       undo_silenced: Angr målbinding
@@ -186,14 +189,15 @@ nn:
         reset_password_user: "%{name} nullstilte passordet til bruker %{target}"
         resolve_report: "%{name} avviste rapporten %{target}"
         silence_account: "%{name} forstummet %{target}s konto"
-        suspend_account: "%{name} suspendert %{target}s konto"
+        suspend_account: "%{name} utviste %{target} sin konto"
         unsilence_account: "%{name} fjernet forstummingen av %{target}s konto"
-        unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
+        unsuspend_account: "%{name} utviste %{target} sin konto"
         update_custom_emoji: "%{name} oppdaterte emoji %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(sletta status)"
       title: Revisionslogg
     custom_emojis:
+      assign_category: Vel kategori
       by_domain: Domene
       copied_msg: Laget en lokal kopi av emoji uten problem
       copy: Kopier
@@ -213,7 +217,7 @@ nn:
       list: Oppfør
       listed: Oppført
       new:
-        title: Legg til ny egen emoji
+        title: Legg til eige kjensleteikn
       overwrite: Skriv over
       shortcode: Stuttkode
       shortcode_hint: Minst 2 teikn, berre tal, bokstavar og understrek
@@ -221,8 +225,8 @@ nn:
       uncategorized: Ukategorisert
       unlist: Uoppfør
       unlisted: Ikkje oppført
-      update_failed_msg: Kunne ikke oppdatere emojien
-      updated_msg: Emoji oppdatert uten problemer!
+      update_failed_msg: Klarte ikkje å oppdatera emojien
+      updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
     dashboard:
       feature_invites: Innbydingar
@@ -238,7 +242,10 @@ nn:
       title: Dashbord
       total_users: brukarar til saman
       trends: Populært
+      week_users_active: aktive denne veka
       week_users_new: brukarar denne veka
+    domain_allows:
+      add_new: Kvitlist domene
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -253,11 +260,13 @@ nn:
           silence: Togn
           suspend: Utvis
         title: Ny domeneblokkering
+      public_comment: Offentleg kommentar
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       reject_reports: Avvis rapportar
       severity:
         silence: dempa
+        suspend: utvist
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -287,7 +296,11 @@ nn:
         all: Alle
         limited: Avgrensa
         title: Moderasjon
-      title: Kjente instanser
+      title: Samling
+      total_blocked_by_us: Blokkert av oss
+      total_followed_by_them: Fylgd av dei
+      total_followed_by_us: Fylgd av oss
+      total_reported: Rapportar om dei
       total_storage: Medievedlegg
     invites:
       deactivate_all: Slå av alle
@@ -297,12 +310,16 @@ nn:
         expired: Utgått
         title: Filter
       title: Innbydingar
+    pending_accounts:
+      title: Kontoar som ventar (%{count})
     relays:
       delete: Slett
       disable: Slå av
       disabled: Slege av
       enable: Slå på
+      enabled: Skrudd på
       save_and_enable: Lagr og slå på
+      status: Status
     reports:
       account:
         note: merknad
@@ -371,10 +388,14 @@ nn:
       site_description_extended:
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
         title: Utvidet nettstedsinformasjon
+      site_short_description:
+        title: Stutt om tenaren
       site_terms:
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
         title: Eigne brukarvilkår
       site_title: Tenarnamn
+      spam_check_enabled:
+        title: Nettsøppelvern
       thumbnail:
         desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
         title: Miniatyrbilde for instans
@@ -537,6 +558,7 @@ nn:
       request: Bed om arkivet ditt
       size: Storleik
     blocks: Du blokkerer
+    csv: CSV
     follows: Du fylgjer
     lists: Lister
     mutes: Du dempar
@@ -562,6 +584,7 @@ nn:
     developers: Utviklarar
     more: Meir…
     resources: Ressursar
+    trending_now: Populært no
   generic:
     all: Alle
     changes_saved_msg: Alle endringane vart lagra!
@@ -574,6 +597,7 @@ nn:
   identity_proofs:
     active: Aktiv
     authorize: Ja, stadfest
+    i_am_html: Eg er %{username} på %{service}.
     identity: Identitet
     inactive: Uaktiv
     publicize_checkbox: 'Og tut dette:'
@@ -760,17 +784,20 @@ nn:
     back: Tilbake til Mastodon
     delete: Kontosletting
     development: Utvikling
-    edit_profile: Endre profil
+    edit_profile: Endr profil
     export: Dataeksport
-    import: Importér
-    migrate: Kontomigrering
+    identity_proofs: Identitetsprov
+    import: Hent inn
+    import_and_export: Importer og eksporter
+    migrate: Kontoflytting
     notifications: Varsel
     preferences: Innstillingar
     profile: Profil
     relationships: Fylgjar og fylgjarar
-    two_factor_authentication: Tofaktorautentisering
+    two_factor_authentication: Tostegsautorisering
   statuses:
     attached:
+      description: 'Vedlagt: %{attached}'
       image:
         one: "%{count} bilete"
         other: "%{count} bilete"
@@ -810,10 +837,12 @@ nn:
   terms:
     title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
-    default: Mastodon
+    default: Mastodon (Mørkt)
+    mastodon-light: Mastodon (Lyst)
   time:
     formats:
-      default: "%-d. %b %Y, %H:%M"
+      default: "%d.%b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
     description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
@@ -835,8 +864,9 @@ nn:
       title:
         none: Åtvaring
         silence: Konto avgrensa
+        suspend: Konto utvist
     welcome:
-      edit_profile_action: Sett opp profil
+      edit_profile_action: Lag til profil
       edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
       explanation: Her er nokre tips for å koma i gang
       final_action: Kom i gang med å leggja ut
@@ -855,7 +885,7 @@ nn:
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
     invalid_email: E-mailadressa er ugyldig
-    invalid_otp_token: Ugyldig to-faktorkode
+    invalid_otp_token: Ugyldig tostegskode
     signed_in_as: 'Logga inn som:'
   verification:
     verification: Stadfesting
