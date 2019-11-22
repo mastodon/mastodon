@@ -601,6 +601,8 @@ nn:
     identity: Identitet
     inactive: Uaktiv
     publicize_checkbox: 'Og tut dette:'
+    publicize_toot: 'Det er prova! Eg er %{username} på %{service}: %{url}'
+    status: Stadfestingsstatus
     view_proof: Sjå prov
   imports:
     modes:
@@ -628,7 +630,7 @@ nn:
     generate: Lag innbydingslenkje
     invited_by: 'Du vart invitert av:'
     max_uses:
-      one: 1 uke
+      one: 1 bruk
       other: "%{count} bruk"
     max_uses_prompt: Inga grense
     prompt: Generer og del lenker med andre for å gi tilgang til denne instansen
@@ -664,7 +666,7 @@ nn:
         other: "%{count} nye varsel sidan siste gong du var innom \U0001F418"
       title: Mens du var borte...
     favourite:
-      body: 'Statusen din ble likt av %{name}:'
+      body: 'Statusen din vart merkt som favoritt av %{name}:'
       subject: "%{name} merkte statusen din som favoritt"
       title: Nye favorittar
     follow:
@@ -714,6 +716,7 @@ nn:
   preferences:
     other: Anna
   relationships:
+    activity: Kontoaktivitet
     dormant: I dvale
     last_active: Sist aktiv
     most_recent: Sist
@@ -723,6 +726,7 @@ nn:
     relationship: Forhold
     remove_selected_domains: Fjern alle fylgjarar frå dei valde domena
     remove_selected_followers: Fjern valde fylgjarar
+    remove_selected_follows: Slutt å fylgja desse brukarane
     status: Kontostatus
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
@@ -731,6 +735,7 @@ nn:
     prompt: 'Du kjem til å fylgja:'
   remote_interaction:
     favourite:
+      proceed: Merk som favoritt
       prompt: 'Du vil merkja dette tutet som favoritt:'
     reblog:
       prompt: 'Du vil framheva dette tutet:'
@@ -740,6 +745,7 @@ nn:
     activity: Siste aktivitet
     browser: Nettlesar
     browsers:
+      alipay: Alipay
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
@@ -756,7 +762,7 @@ nn:
       safari: Safari
       uc_browser: UC-lesar
       weibo: Weibo
-    current_session: Nåværende økt
+    current_session: Noverande økt
     description: "%{browser} på %{platform}"
     explanation: Desse nettlesarane er logga inn på Mastodon-kontoen din.
     ip: IP
