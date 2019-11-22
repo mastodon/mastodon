@@ -583,8 +583,8 @@ nn:
     '400': Søknaden du sende var ugyldig eller sett opp feil.
     '403': Du har ikkje løyve til å sjå denne sida.
     '404': Sida du leitar etter finst ikkje.
-    '406': This page is not available in the requested format.
-    '410': Siden du leter etter finnes ikke lenger.
+    '406': Denne sida er ikkje tilgjengeleg i dette oppsettet.
+    '410': Sida du leitar etter finst ikkje her lenger.
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
       title: Sikkerhetsverifisering feilet
@@ -655,10 +655,11 @@ nn:
     modes:
       merge: Set saman
       overwrite: Skriv over
-    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
-    success: Dine data ble mottatt og vil bli behandlet så fort som mulig
+    preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
+    success: Dataa dine vart lasta opp og vert no handsama så fort som mogeleg
     types:
       blocking: Blokkeringsliste
+      domain_blocking: Liste over blokkerte domene
       following: Fylgjeliste
       muting: Dempeliste
     upload: Last opp
@@ -687,15 +688,18 @@ nn:
     title: By folk inn
   lists:
     errors:
-      limit: Du har nådd det maksimale antall lister
+      limit: Du har nådd grensa for kor mange lister du kan ha
   media_attachments:
     validations:
-      images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
+      images_and_video: Kan ikkje leggja ved video til status som allereie inneheld bilete
       too_many: Kan ikkje leggja til meir enn 4 filer
   migrations:
     acct: Flytta til
     errors:
+      already_moved: er den same kontoen som du allereie har flytta til
+      move_to_self: kan ikkje vera denne kontoen
       not_found: fann ikkje
+    followers_count: Fylgjarar då kontoen vart flytta
     past_migrations: Tidlegare vandringar
     proceed_with_move: Flytt fylgjarar
   moderation:
