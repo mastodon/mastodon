@@ -817,7 +817,7 @@ nn:
       limit: Du har allerede festet det maksimale antall tuter
       ownership: Kun egne tuter kan festes
       private: Kun offentlige tuter kan festes
-      reblog: En fremheving kan ikke festes
+      reblog: Ei framheving kan ikkje festast
     poll:
       total_people:
         one: "%{count} person"
@@ -838,11 +838,14 @@ nn:
       unlisted_long: Alle kan sjå, men ikkje oppført på offentlege tidsliner
   stream_entries:
     pinned: Festa tut
-    reblogged: fremhevde
+    reblogged: framheva
     sensitive_content: Følsomt innhold
+  tags:
+    does_not_match_previous_name: stemmar ikkje med det førre namnet
   terms:
     title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
+    contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)
     mastodon-light: Mastodon (Lyst)
   time:
@@ -854,7 +857,7 @@ nn:
     description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Slå av
     enable: Slå på
-    enabled: To-faktor autentisering er aktivert
+    enabled: Tostegsinnlogging er slege på
     enabled_success: Aktivering av tofaktorautentisering vellykket
     generate_recovery_codes: Generér gjenopprettingskoder
     instructions_html: "<strong>Scan denne QR-koden med Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging."
@@ -867,7 +870,10 @@ nn:
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
     warning:
+      subject:
+        suspend: Kontoen din, %{acct}, er vorten utvist
       title:
+        disable: Konto frosen
         none: Åtvaring
         silence: Konto avgrensa
         suspend: Konto utvist
@@ -883,7 +889,7 @@ nn:
       review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkomen til Mastodon
       tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer på, så den er ikke komplett.
-      tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
+      tip_following: Du fylgjer automatisk tenaradministrator(ane). For å finna fleire forvitnelege folk kan du sjekka den lokale og fødererte tidslina.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
       tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
       tips: Tips
