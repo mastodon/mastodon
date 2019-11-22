@@ -39,6 +39,9 @@ pt-PT:
       domain: Servidor
       reason: Motivo
       rejecting_media: 'Arquivos de média destes servidores não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
+      silenced: 'Publicações destes servidores serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus utilizadores, a menos que você os esteja a seguir:'
+      suspended: 'Nenhum dado desses servidores será processado, armazenado ou trocado, tornando qualquer interação ou comunicação com os utilizadores desses servidores impossível:'
+    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outro servidor no fediverso. Estas são as exceções deste servidor específico.
     user_count_after:
       one: utilizador
       other: utilizadores
@@ -46,6 +49,8 @@ pt-PT:
     what_is_mastodon: O que é o Mastodon?
   accounts:
     choices_html: "escolhas de %{name}:"
+    endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
+    featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
     followers:
       one: Seguidor
