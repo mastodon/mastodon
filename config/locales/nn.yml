@@ -246,6 +246,7 @@ nn:
       config: Oppsett
       feature_deletions: Kontoslettingar
       feature_invites: Innbydingar
+      feature_registrations: Registreringar
       feature_spam_check: Søppelvern
       feature_timeline_preview: Førehandsvisning av tidsline
       features: Eigenskapar
@@ -323,6 +324,8 @@ nn:
         all: Alle
         limited: Avgrensa
         title: Moderasjon
+      private_comment: Privat kommentar
+      public_comment: Offentleg kommentar
       title: Samling
       total_blocked_by_us: Blokkert av oss
       total_followed_by_them: Fylgd av dei
@@ -347,6 +350,9 @@ nn:
       enabled: Skrudd på
       save_and_enable: Lagr og slå på
       status: Status
+    report_notes:
+      created_msg: Rapportmerknad laga!
+      destroyed_msg: Rapportmerknad sletta!
     reports:
       account:
         note: merknad
@@ -361,6 +367,7 @@ nn:
       notes:
         create: Sett inn merknad
         create_and_resolve: Løys med merknad
+        create_and_unresolve: Opn på nytt med merknad
         delete: Slett
       reopen: Opn rapport igjen
       report: 'Rapporter #%{id}'
