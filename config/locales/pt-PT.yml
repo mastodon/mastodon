@@ -188,6 +188,7 @@ pt-PT:
       username: Usuário
       warn: Aviso
       web: Web
+      whitelisted: Está na lista branca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} atribuiu o relatório %{target} a si próprios"
@@ -195,10 +196,12 @@ pt-PT:
         confirm_user: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning: "%{name} enviou um aviso para %{target}"
         create_custom_emoji: "%{name} enviado emoji novo %{target}"
+        create_domain_allow: "%{name} colocou o domínio %{target} na lista branca"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} adicionou na lista negra o domínio de correio electrónico %{target}"
         demote_user: "%{name} rebaixou o utilizador %{target}"
         destroy_custom_emoji: "%{name} destruiu o emoji %{target}"
+        destroy_domain_allow: "%{name} removeu o domínio %{target} da lista branca"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block: "%{name} adicionou na lista branca o domínio de correio eletrónico %{target}"
         destroy_status: "%{name} removeu o publicação feita por %{target}"
@@ -277,6 +280,11 @@ pt-PT:
       week_interactions: interacções desta semana
       week_users_active: activo esta semana
       week_users_new: utilizadores nesta semana
+      whitelist_mode: Modo lista branca
+    domain_allows:
+      created_msg: Domínio foi adicionado à lista branca com sucesso
+      destroyed_msg: O domínio foi removido da lista branca
+      undo: Remover da lista branca
     domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio do domínio está a ser processado
@@ -364,7 +372,7 @@ pt-PT:
       pending: À espera da aprovação do repetidor
       save_and_enable: Guardar e ativar
       setup: Configurar uma ligação ao repetidor
-      signatures_not_enabled: Relays não funcionarão corretamente enquanto o modo seguro ou o modo whitelist estiver activado
+      signatures_not_enabled: Relays não funcionarão corretamente enquanto o modo seguro ou o modo lista branca estiverem ativados
       status: Estado
       title: Retransmissores
     report_notes:
