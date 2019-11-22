@@ -12,6 +12,7 @@ nn:
     get_apps: Prøv ein mobilapp
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær meir
+    privacy_policy: Personvernsreglar
     see_whats_happening: Sjå kva som skjer
     server_stats: 'Tenarstatistikk:'
     source_code: Kjeldekode
@@ -20,6 +21,7 @@ nn:
       other: statusar
     status_count_before: Som skreiv
     tagline: Fylg vener og oppdag nye
+    terms: Brukarvilkår
     unavailable_content: Utilgjengeleg innhald
     unavailable_content_description:
       domain: Sørvar
@@ -83,24 +85,27 @@ nn:
       disable: Slå av
       disable_two_factor_authentication: Skru av 2FA
       disabled: Slege av
-      display_name: Visningsnavn
+      display_name: Synleg namn
       domain: Domene
-      edit: Redigér
+      edit: Rediger
       email: E-post
       email_status: E-poststatus
-      enable: Aktiver
+      enable: Slå på
       enabled: Aktivert
       feed_url: Feed-URL
-      followers: Følgere
+      followers: Fylgjarar
       followers_url: Følgere URL
-      follows: Følginger
+      follows: Fylgje
+      header: Overskrift
       inbox_url: Innboks URL
-      ip: IP-adresse
+      invited_by: Innboden av
+      ip: IP
+      joined: Vart med
       location:
         all: Alle
         local: Lokalt
         remote: Fjernt
-        title: Sted
+        title: Stad
       login_status: Innloggingsstatus
       media_attachments: Mediavedlegg
       memorialize: Gjør om til et minne
@@ -154,12 +159,13 @@ nn:
       subscribe: Ting
       title: Kontoar
       unconfirmed_email: E-post utan stadfesting
-      undo_silenced: Angre målbinding
+      undo_silenced: Angr målbinding
       undo_suspension: Angre utvisning
       unsubscribe: Avmeld
       username: Brukarnamn
       warn: Åtvar
       web: Nett
+      whitelisted: Kvitlista
     action_logs:
       actions:
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
@@ -185,6 +191,7 @@ nn:
         unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
         update_custom_emoji: "%{name} oppdaterte emoji %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
+      deleted_status: "(sletta status)"
       title: Revisionslogg
     custom_emojis:
       by_domain: Domene
@@ -208,9 +215,11 @@ nn:
       new:
         title: Legg til ny egen emoji
       overwrite: Skriv over
-      shortcode: Kortkode
-      shortcode_hint: Minst 2 tegn, kun alfanumeriske tegn og understrek
-      title: Egenoppførte emojier
+      shortcode: Stuttkode
+      shortcode_hint: Minst 2 teikn, berre tal, bokstavar og understrek
+      title: Eigne kjensleteikn
+      uncategorized: Ukategorisert
+      unlist: Uoppfør
       unlisted: Ikkje oppført
       update_failed_msg: Kunne ikke oppdatere emojien
       updated_msg: Emoji oppdatert uten problemer!
@@ -219,6 +228,8 @@ nn:
       feature_invites: Innbydingar
       feature_spam_check: Søppelvern
       features: Eigenskapar
+      open_reports: opne rapportar
+      pending_tags: emneknaggar som ventar på gjennomgang
       software: Programvare
       space: Lagrinsplass nytta
       title: Dashbord
