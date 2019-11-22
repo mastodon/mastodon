@@ -230,10 +230,14 @@ nn:
       features: Eigenskapar
       open_reports: opne rapportar
       pending_tags: emneknaggar som ventar på gjennomgang
+      pending_users: brukarar som ventar på gjennomgang
+      recent_users: Nylege brukarar
+      search: Fulltekstsøking
       software: Programvare
       space: Lagrinsplass nytta
       title: Dashbord
       total_users: brukarar til saman
+      trends: Populært
       week_users_new: brukarar denne veka
     domain_blocks:
       add_new: Lag ny
@@ -273,9 +277,10 @@ nn:
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
-      title: Blokkering av e-postdomene
+      title: Blokkerte e-postadresser
     followers:
       back_to_account: Tilbake til konto
+      title: "%{acct} sine fylgjarar"
     instances:
       by_domain: Domene
       moderation:
@@ -283,6 +288,7 @@ nn:
         limited: Avgrensa
         title: Moderasjon
       title: Kjente instanser
+      total_storage: Medievedlegg
     invites:
       deactivate_all: Slå av alle
       filter:
@@ -299,15 +305,18 @@ nn:
       save_and_enable: Lagr og slå på
     reports:
       account:
+        note: merknad
         report: rapporter
       action_taken_by: Handling gjort av
       are_you_sure: Er du sikker?
       comment:
         none: Ingen
       created_at: Rapportert
-      mark_as_resolved: Merk som løst
+      mark_as_resolved: Merk som løyst
+      mark_as_unresolved: Merk som uløyst
       notes:
         create: Sett inn merknad
+        create_and_resolve: Løys med merknad
         delete: Slett
       report: 'Rapportér #%{id}'
       reported_account: Rapportert konto
@@ -325,7 +334,7 @@ nn:
         desc_html: Separer flere brukernavn med komma. Kun lokale og ulåste kontoer vil kunne brukes. Dersom tomt er standarden alle lokale administratorer.
         title: Standard følgere for nye brukere
       contact_information:
-        email: Skriv en offentlig e-postadresse
+        email: Offentleg e-postadresse
         username: Skriv brukernavn
       domain_blocks:
         all: Til alle
