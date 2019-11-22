@@ -353,7 +353,7 @@ nn:
           desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
           title: Melding for lukket registrering
         deletion:
-          desc_html: Tillat alle å slette sin konto
+          desc_html: Tillat alle å sletta kontoen sin
           title: Åpne kontosletting
         min_invite_role:
           disabled: Ingen
@@ -367,13 +367,13 @@ nn:
         title: Vis personalemerke
       site_description:
         desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
-        title: Nettstedsbeskrivelse
+        title: Tenarskilding
       site_description_extended:
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
         title: Utvidet nettstedsinformasjon
       site_terms:
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
-        title: Skreddersydde bruksvilkår
+        title: Eigne brukarvilkår
       site_title: Tenarnamn
       thumbnail:
         desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
@@ -403,7 +403,9 @@ nn:
       context: Kontekst
       last_active: Sist aktiv
       most_popular: Mest populær
+      most_recent: Nyast
       name: Emneknagg
+      review: Sjå gjennom status
       reviewed: Gjennomgått
       title: Emneknaggar
       trending_right_now: Populært no
@@ -422,6 +424,7 @@ nn:
   aliases:
     add_new: Lag psevdonym
   appearance:
+    discovery: Oppdaging
     toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
@@ -444,7 +447,7 @@ nn:
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
-    forgot_password: Har du glemt passordet ditt?
+    forgot_password: Har du gløymt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
     login: Innlogging
     logout: Logg ut
@@ -483,18 +486,18 @@ nn:
     prompt: Stadfest passord for å halda fram
   datetime:
     distance_in_words:
-      about_x_hours: "%{count} timer"
-      about_x_months: "%{count} mnd"
+      about_x_hours: "%{count}t"
+      about_x_months: "%{count}md."
       about_x_years: "%{count} år"
       almost_x_years: "%{count} år"
       half_a_minute: No nettopp
-      less_than_x_minutes: "%{count} min"
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: No nettopp
       over_x_years: "%{count} år"
-      x_days: "%{count} dager"
-      x_minutes: "%{count} min"
-      x_months: "%{count} mnd"
-      x_seconds: "%{count} sek"
+      x_days: "%{count}d"
+      x_minutes: "%{count}min"
+      x_months: "%{count}md"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Det du skreiv var ikkje rett
     confirm_password: Skriv det noverande passordet ditt for å stadfesta identiteten din
@@ -504,13 +507,14 @@ nn:
     warning:
       before: 'Ver venleg og les desse punkta nøye før du held fram:'
   directories:
+    directory: Profilkatalog
     explore_mastodon: Utforsk %{title}
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tillatelse til å vise denne siden.
-    '404': Siden du leter etter finnes ikke.
+    '404': Sida du leitar etter finst ikkje.
     '406': This page is not available in the requested format.
     '410': Siden du leter etter finnes ikke lenger.
     '422':
@@ -518,8 +522,8 @@ nn:
       title: Sikkerhetsverifisering feilet
     '429': Overfyllt
     '500':
-      content: Beklager men noe gikk galt ved vår ende.
-      title: Denne siden er ikke korrekt
+      content: Orsak. Vi har gjort noko feil.
+      title: Denne sida er ikkje rett
     '503': The page could not be served due to a temporary server failure.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   existing_username_validator:
@@ -529,6 +533,8 @@ nn:
     archive_takeout:
       date: Dato
       download: Last ned arkivet ditt
+      in_progress: Samlar arkivet ditt...
+      request: Bed om arkivet ditt
       size: Storleik
     blocks: Du blokkerer
     follows: Du fylgjer
@@ -605,7 +611,7 @@ nn:
     table:
       expires_at: Utløper
       uses: Bruk
-    title: Inviter personer
+    title: By folk inn
   lists:
     errors:
       limit: Du har nådd det maksimale antall lister
@@ -617,6 +623,7 @@ nn:
     acct: Flytta til
     errors:
       not_found: fann ikkje
+    past_migrations: Tidlegare vandringar
     proceed_with_move: Flytt fylgjarar
   moderation:
     title: Moderasjon
@@ -634,14 +641,14 @@ nn:
       title: Mens du var borte...
     favourite:
       body: 'Statusen din ble likt av %{name}:'
-      subject: "%{name} likte statusen din"
+      subject: "%{name} merkte statusen din som favoritt"
       title: Nye favorittar
     follow:
-      body: "%{name} følger deg!"
-      subject: "%{name} følger deg"
+      body: "%{name} fylgjer deg!"
+      subject: "%{name} fylgjer deg"
       title: Ny fylgjar
     follow_request:
-      action: Behandle følgerforespørsler
+      action: Gå gjennom førespurnader
       body: "%{name} har bedt om å fylgja deg"
       subject: 'Ventande fylgjar: %{name}'
       title: Ny fylgjeførespurnad
@@ -651,12 +658,13 @@ nn:
       subject: Du vart nemnd av %{name}
       title: Ny nemning
     reblog:
-      body: 'Din status ble fremhevd av %{name}:'
-      subject: "%{name} fremhevde din status"
-      title: Ny fremheving
+      body: 'Statusen din vart framheva av %{name}:'
+      subject: "%{name} framheva statusen din"
+      title: Ny framheving
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: Mrd
           million: Mil
@@ -672,10 +680,13 @@ nn:
   polls:
     errors:
       already_voted: Du har allereie røysta i denne rundspørjinga
+      duplicate_options: inneheld like element
       duration_too_long: er for langt fram i tid
       duration_too_short: er for snart
       expired: Denne rundspørjinga er allereie ferdig
       over_character_limit: kan ikkje vera lengre enn %{max} teikn kvar
+      too_few_options: må ha meir enn eitt element
+      too_many_options: kan ikkje ha meir enn %{max} element
   preferences:
     other: Anna
   relationships:
@@ -742,7 +753,10 @@ nn:
     revoke_success: Økt tilbakekalt
     title: Økter
   settings:
-    authorized_apps: Autoriserte applikasjoner
+    account: Konto
+    account_settings: Kontoinnstillingar
+    appearance: Utsjånad
+    authorized_apps: Godkjende appar
     back: Tilbake til Mastodon
     delete: Kontosletting
     development: Utvikling
