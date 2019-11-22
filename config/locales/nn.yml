@@ -592,9 +592,12 @@ nn:
   media_attachments:
     validations:
       images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
-      too_many: Kan ikke legge ved mer enn 4 filer
+      too_many: Kan ikkje leggja til meir enn 4 filer
   migrations:
     acct: Flytta til
+    errors:
+      not_found: fann ikkje
+    proceed_with_move: Flytt fylgjarar
   moderation:
     title: Moderasjon
   notification_mailer:
@@ -646,8 +649,26 @@ nn:
     older: Eldre
     prev: Førre
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Du har allereie røysta i denne rundspørjinga
+      duration_too_long: er for langt fram i tid
+      duration_too_short: er for snart
+      expired: Denne rundspørjinga er allereie ferdig
+      over_character_limit: kan ikkje vera lengre enn %{max} teikn kvar
   preferences:
-    other: Annet
+    other: Anna
+  relationships:
+    dormant: I dvale
+    last_active: Sist aktiv
+    most_recent: Sist
+    moved: Flytta
+    mutual: Felles
+    primary: Primært
+    relationship: Forhold
+    remove_selected_domains: Fjern alle fylgjarar frå dei valde domena
+    remove_selected_followers: Fjern valde fylgjarar
+    status: Kontostatus
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
