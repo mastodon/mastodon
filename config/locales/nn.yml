@@ -544,6 +544,7 @@ nn:
     title: Fylg %{acct}
   challenge:
     confirm: Hald fram
+    hint_html: "<strong>Tips:</strong> Vi skal ikkje spørja deg om passordet ditt igjen i laupet av den neste timen."
     invalid_password: Ugyldig passord
     prompt: Stadfest passord for å halda fram
   datetime:
@@ -568,14 +569,19 @@ nn:
     success_msg: Kontoen din er sletta
     warning:
       before: 'Ver venleg og les desse punkta nøye før du held fram:'
+      data_removal: Innlegga dine og andre data vert fjerna for alltid
+      email_change_html: Du kan <a href="%{path}">byta e-postadressa di</a> utan å sletta kontoen din
+      irreversible: Du kjem ikkje til å kunna gjenoppretta eller aktivera kontoen din på nytt
+      username_available: Brukarnamnet ditt vert tilgjengeleg igjen
+      username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
   directories:
     directory: Profilkatalog
     explore_mastodon: Utforsk %{title}
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': Du har ikke tillatelse til å vise denne siden.
+    '400': Søknaden du sende var ugyldig eller sett opp feil.
+    '403': Du har ikkje løyve til å sjå denne sida.
     '404': Sida du leitar etter finst ikkje.
     '406': This page is not available in the requested format.
     '410': Siden du leter etter finnes ikke lenger.
