@@ -646,6 +646,9 @@ pt-PT:
     title: Seguir %{acct}
   challenge:
     confirm: Continuar
+    hint_html: "<strong>Dica:</strong> Não vamos pedir novamente a sua senha durante a próxima hora."
+    invalid_password: Senha inválida
+    prompt: Confirme a sua senha para continuar
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -661,9 +664,13 @@ pt-PT:
       x_months: "%{count} meses"
       x_seconds: "%{count} segundos"
   deletes:
+    challenge_not_passed: A informação que introduziu não estava correta
     confirm_password: Introduz a palavra-passe atual para verificar a tua identidade
+    confirm_username: Introduza o seu nome de utilizador para confirmar o procedimento
     proceed: Eliminar conta
     success_msg: A tua conta foi eliminada com sucesso
+    warning:
+      before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
   directories:
     directory: Dirétorio de perfil
     explanation: Descobre utilizadores com base nos seus interesses
