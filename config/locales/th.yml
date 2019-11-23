@@ -231,6 +231,8 @@ th:
       feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
       open_reports: รายงานที่เปิด
+      pending_tags: แฮชแท็กที่กำลังรอการตรวจทาน
+      pending_users: ผู้ใช้ที่กำลังรอการตรวจทาน
       recent_users: ผู้ใช้ล่าสุด
       search: การค้นหาข้อความแบบเต็ม
       single_user_mode: โหมดผู้ใช้เดี่ยว
@@ -308,6 +310,10 @@ th:
       total_storage: ไฟล์แนบสื่อ
     invites:
       deactivate_all: ปิดใช้งานทั้งหมด
+      filter:
+        available: พร้อมใช้งาน
+        expired: หมดอายุแล้ว
+        title: ตัวกรอง
       title: คำเชิญ
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
@@ -319,6 +325,7 @@ th:
       enable: เปิดใช้งาน
       enabled: เปิดใช้งานอยู่
       inbox_url: URL รีเลย์
+      pending: กำลังรอการอนุมัติของรีเลย์
       save_and_enable: บันทึกแล้วเปิดใช้งาน
       status: สถานะ
       title: รีเลย์
