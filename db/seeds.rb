@@ -1,6 +1,6 @@
 Doorkeeper::Application.create!(name: 'Web', superapp: true, redirect_uri: Doorkeeper.configuration.native_redirect_uri, scopes: 'read write follow push')
 
-domain = ENV['LOCAL_DOMAIN'] || Rails.configuration.x.local_domain
+domain = (ENV['LOCAL_DOMAIN'] || Rails.configuration.x.local_domain).gsub(/:\d*/, '')
 account = Account.find_or_initialize_by(id: -99, actor_type: 'Application', locked: true, username: domain)
 account.save!
 
