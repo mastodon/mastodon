@@ -457,8 +457,11 @@ nn:
         title: Småbilete for tenaren
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
-        title: Forhandsvis tidslinjen
+        title: Tillat uautentisert tilgang til offentleg tidsline
       title: Sideinnstillingar
+      trendable_by_default:
+        desc_html: Påverkar emneknaggar som ikkje har vore tillatne tidlegare
+        title: Tillat emneknaggar å verta populære utan gjennomgang på førehand
       trends:
         title: Populære emneknaggar
     statuses:
@@ -477,6 +480,7 @@ nn:
       with_media: Med media
     tags:
       accounts_today: Ulike brukarar i dag
+      breakdown: Oversyn over bruk i dag etter kjelde
       context: Kontekst
       last_active: Sist aktiv
       most_popular: Mest populær
@@ -486,6 +490,7 @@ nn:
       reviewed: Gjennomgått
       title: Emneknaggar
       trending_right_now: Populært no
+      unique_uses_today: "%{count} legg ut i dag"
       unreviewed: Ikkje gjennomgått
       updated_msg: Emneknagginnstillingane er oppdaterte
     title: Leiing
@@ -511,19 +516,22 @@ nn:
     view_profile: Sjå profil
     view_status: Sjå status
   applications:
-    created: Søknaden ble vellykket oppretttet
-    destroyed: Søknaden ble vellykket slettet
+    created: Søknad laga
+    destroyed: Søknad sletta
     invalid_url: Denne lenkja er ugyldig
     regenerate_token: Lag tilgangsnykel på nytt
-    token_regenerated: Tilgangsnøkkel vellykket regenerert
-    warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
-    your_token: Din tilgangsnøkkel
+    token_regenerated: Tilgangsnykel laga på nytt
+    warning: Ver varsam med dette datumet. Aldri del det med nokon!
+    your_token: Tilgangsnykelen din
   auth:
     apply_for_account: Bed om innbyding
     change_password: Passord
+    checkbox_agreement_html: Eg godtek <a href="%{rules_path}" target="_blank">tenarreglane</a> og <a href="%{terms_path}" target="_blank">tenestevilkåra</a>
+    checkbox_agreement_without_rules_html: Eg godtek <a href="%{terms_path}" target="_blank">tenestevilkåra</a>
     delete_account: Slett konto
-    delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
+    delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
     description:
+      prefix_invited_by_user: "@%{name} spør deg om å verta med i ein Mastodon-tenar!"
       prefix_sign_up: Meld deg på Mastodon i dag!
       suffix: Med ein konto kan du fylgja folk, skriva innlegg og veksla meldingar med brukarar frå kva som helst annan Mastodon-tenar og meir!
     didnt_get_confirmation: Fekk du ikkje stadfestingsinstruksjonar?
