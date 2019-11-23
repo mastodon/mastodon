@@ -165,6 +165,7 @@ th:
       username: ชื่อผู้ใช้
       warn: เตือน
       web: เว็บ
+      whitelisted: ขึ้นบัญชีขาวแล้ว
     action_logs:
       actions:
         change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
@@ -172,9 +173,11 @@ th:
         create_account_warning: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         create_domain_allow: "%{name} ได้ขึ้นบัญชีขาวโดเมน %{target}"
         create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
+        create_email_domain_block: "%{name} ได้ขึ้นบัญชีดำโดเมนอีเมล %{target}"
         destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
         destroy_domain_allow: "%{name} ได้เอาโดเมน %{target} ออกจากบัญชีขาว"
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
+        destroy_email_domain_block: "%{name} ได้ขึ้นบัญชีขาวโดเมนอีเมล %{target}"
         destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
         disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
         disable_user: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
@@ -240,6 +243,11 @@ th:
       week_users_active: ใช้งานอยู่ในสัปดาห์นี้
       week_users_new: ผู้ใช้ในสัปดาห์นี้
       whitelist_mode: โหมดบัญชีขาว
+    domain_allows:
+      add_new: ขึ้นบัญชีขาวโดเมน
+      created_msg: ขึ้นบัญชีขาวโดเมนสำเร็จ
+      destroyed_msg: เอาโดเมนออกจากบัญชีขาวแล้ว
+      undo: เอาออกจากบัญชีขาว
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -279,6 +287,7 @@ th:
       domain: โดเมน
       new:
         create: เพิ่มโดเมน
+      title: บัญชีดำอีเมล
     followers:
       back_to_account: กลับไปที่บัญชี
       title: "ผู้ติดตามของ %{acct}"
