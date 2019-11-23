@@ -623,9 +623,13 @@ pt-PT:
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
     setup:
+      email_below_hint_html: Se o endereço de e-mail abaixo estiver incorreto, pode alterá-lo aqui e receber um novo e-mail de confirmação.
+      email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correcto, pode alterá-lo nas definições da conta.
       title: Configuração
     status:
       account_status: Estado da conta
+      confirming: A aguardar que conclua a confirmação do e-mail.
+      functional: A sua conta está totalmente operacional.
   authorize_follow:
     already_following: Tu já estás a seguir esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
@@ -637,8 +641,11 @@ pt-PT:
       return: Voltar ao perfil do utilizador
       web: Voltar à página inicial
     title: Seguir %{acct}
+  challenge:
+    confirm: Continuar
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count} meses"
       about_x_years: "%{count} anos"
       almost_x_years: "%{count} anos"
