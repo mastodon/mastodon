@@ -20,15 +20,15 @@ nn:
       buttons:
         authorize: Autoriser
         cancel: Avbryt
-        destroy: Ødelegg
+        destroy: Utslett
         edit: Rediger
         submit: Send inn
       confirmations:
         destroy: Er du sikker?
       edit:
-        title: Endre applikasjon
+        title: Rediger søknad
       form:
-        error: Oops! Sjekk skjemaet ditt for mulige feil
+        error: Oi sann! Sjekk skjemaet for eventuelle mistak
       help:
         native_redirect_uri: Bruk %{native_redirect_uri} for lokale testar
         redirect_uri: Bruk ei linjer per URI
@@ -45,7 +45,7 @@ nn:
       new:
         title: Ny applikasjon
       show:
-        actions: Operasjoner
+        actions: Handlingar
         application_id: Klientnøkkel
         callback_urls: Callback-URLer
         scopes: Omfang
@@ -97,22 +97,43 @@ nn:
     flash:
       applications:
         create:
-          notice: Applikasjon opprettet.
+          notice: App laga.
         destroy:
           notice: Appen er sletta.
         update:
-          notice: Applikasjon oppdatert.
+          notice: App oppdatert.
       authorized_applications:
         destroy:
-          notice: Applikasjon opphevet.
+          notice: App avvist.
     layouts:
       admin:
         nav:
-          applications: Applikasjoner
+          applications: Appar
           oauth2_provider: OAuth2-tilbyder
       application:
         title: OAuth-autorisering påkrevet
     scopes:
       follow: følg, blokkér, avblokkér, avfølg brukere
       read: lese dine data
+      "read:bookmarks": sjå bokmerka dine
+      "read:favourites": sjå favorittane dine
+      "read:filters": sjå filtera dine
+      "read:follows": sjå fylgjarane dine
+      "read:lists": sjå listene dine
+      "read:mutes": sjå kven du har målbunde
+      "read:notifications": sjå varsla dine
+      "read:reports": sjå rapportane dine
+      "read:statuses": sjå alle statusar
       write: poste på dine vegne
+      "write:accounts": rediger profilen din
+      "write:blocks": blokker kontoar og domene
+      "write:bookmarks": bokmerk statusar
+      "write:favourites": merk statusar som favoritt
+      "write:filters": lag filter
+      "write:follows": fylg folk
+      "write:lists": lag lister
+      "write:media": last opp mediefiler
+      "write:mutes": målbind folk og samtalar
+      "write:notifications": tøm varsla dine
+      "write:reports": rapporter andre folk
+      "write:statuses": legg ut statusar
