@@ -401,7 +401,7 @@ nn:
         title: Standard fylgjer for nye brukarar
       contact_information:
         email: Offentleg e-postadresse
-        username: Skriv brukernavn
+        username: Brukarnamn for kontakt
       custom_css:
         title: Eigen CSS
       default_noindex:
@@ -409,6 +409,7 @@ nn:
       domain_blocks:
         all: Til alle
         disabled: Til ingen
+        users: Til lokale brukarar som er logga inn
       domain_blocks_rationale:
         title: Vis kvifor
       hero:
@@ -417,7 +418,9 @@ nn:
         title: Maskotbilete
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
-        title: Publiser liste over oppdagede instanser
+        title: Publiser liste over oppdaga tenarar
+      profile_directory:
+        desc_html: Gjer at brukarar kan oppdagast
       registrations:
         closed_message:
           desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
@@ -433,13 +436,13 @@ nn:
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
       show_staff_badge:
-        desc_html: Vis personalemerke på brukersiden
+        desc_html: Vis personalmerke på ei brukarside
         title: Vis personalmerke
       site_description:
         desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Tenarskilding
       site_description_extended:
-        desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
+        desc_html: Ein god stad å setja reglar for åtferdskode, reglar, rettningsliner og andre ting som skil din tenar frå andre. Du kan nytta HTML-taggar
         title: Utvidet nettstedsinformasjon
       site_short_description:
         title: Stutt om tenaren
@@ -451,7 +454,7 @@ nn:
         title: Nettsøppelvern
       thumbnail:
         desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
-        title: Miniatyrbilde for instans
+        title: Småbilete for tenaren
       timeline_preview:
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Forhandsvis tidslinjen
