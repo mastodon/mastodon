@@ -753,12 +753,18 @@ pt-PT:
   html_validator:
     invalid_markup: 'contém marcação HTML inválida: %{error}'
   identity_proofs:
+    active: Ativo
     authorize: Sim, autorizar
     authorize_connection_prompt: Autorizar esta conexão criptográfica?
     errors:
       failed: A conexão criptográfica falhou. Por favor, tente novamente a partir de %{provider}.
     i_am_html: Sou %{username} em %{service}.
     identity: Identidade
+    inactive: Inativo
+    publicize_checkbox: 'E publique isso:'
+    publicize_toot: 'Está provado! Eu sou %{username} em %{service}: %{url}'
+    status: Estado da verificação
+    view_proof: Ver prova
   imports:
     modes:
       merge: Juntar
@@ -805,6 +811,8 @@ pt-PT:
       too_many: Não é possível anexar mais de 4 arquivos
   migrations:
     acct: username@domain da nova conta
+    cancel: Cancelar redirecionamento
+    cancel_explanation: Cancelar o redirecionamento irá reativar a sua conta atual, mas não trará de volta os seguidores que foram migrados para essa conta.
   moderation:
     title: Moderação
   notification_mailer:
@@ -844,6 +852,7 @@ pt-PT:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: MM
           million: M
@@ -871,7 +880,18 @@ pt-PT:
     posting_defaults: Padrões de publicação
     public_timelines: Cronologias públicas
   relationships:
+    activity: Atividade da conta
+    dormant: Inativo
+    last_active: Última atividade
+    most_recent: Mais recente
+    moved: Mudou-se
+    mutual: Mútuo
+    primary: Primário
+    relationship: Relação
     remove_selected_domains: Remover todos os seguidores dos domínios selecionados
+    remove_selected_followers: Remover seguidores selecionados
+    remove_selected_follows: Deixar de seguir os utilizadores selecionados
+    status: Estado da conta
   remote_follow:
     acct: Entre seu usuário@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
