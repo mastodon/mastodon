@@ -933,7 +933,10 @@ pt-PT:
     revoke_success: Sessão revogada com sucesso
     title: Sessões
   settings:
+    account: Conta
+    account_settings: Definições da conta
     aliases: Pseudónimos da conta
+    appearance: Aspecto
     authorized_apps: Aplicativos autorizados
     back: Voltar ao Mastodon
     delete: Eliminação da conta
@@ -941,10 +944,14 @@ pt-PT:
     edit_profile: Editar perfil
     export: Exportar dados
     featured_tags: Hashtags destacadas
+    identity_proofs: Provas de identidade
     import: Importar
+    import_and_export: Importar e exportar
     migrate: Migração de conta
     notifications: Notificações
     preferences: Preferências
+    profile: Perfil
+    relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação em dois passos
   spam_check:
     spam_detected: Este é um relatório automatizado. Foi detectado spam.
@@ -971,12 +978,16 @@ pt-PT:
       private: Post não-público não pode ser fixado
       reblog: Não podes fixar uma partilha
     poll:
+      total_people:
+        one: "%{count} pessoa"
+        other: "%{count} pessoas"
       total_votes:
         one: "%{count} voto"
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar mais
     sign_in_to_participate: Inicie a sessão para participar na conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Mostrar apenas para seguidores
       private_long: Mostrar apenas para seguidores
@@ -988,6 +999,8 @@ pt-PT:
     pinned: Toot fixado
     reblogged: partilhado
     sensitive_content: Conteúdo sensível
+  tags:
+    does_not_match_previous_name: não coincide com o nome anterior
   terms:
     body_html: |
       <h2>Política de privacidade</h2>
@@ -1075,6 +1088,10 @@ pt-PT:
     contrast: Mastodon (Elevado contraste)
     default: Mastodon
     mastodon-light: Mastodon (Leve)
+  time:
+    formats:
+      default: "%H:%M em %d de %b de %Y"
+      month: "%b de %Y"
   two_factor_authentication:
     code_hint: Entre o código gerado pelo seu aplicativo para confirmar
     description_html: Se ativar a <strong>autenticação em dois passos</strong>, quando logar será necessário o seu telefone que vai gerar os tokens para validação.
