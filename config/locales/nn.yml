@@ -508,8 +508,12 @@ nn:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
       subject: 'Ny rapport for %{instance} (#%{id})'
+    new_trending_tag:
+      subject: 'Ny emneknagg ventar gjennomgang på %{instance} (#%{name})'
   aliases:
     add_new: Lag psevdonym
+    created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
+    deleted_msg: Fjerna kallenamnet. No vert det ikkje lenger mogeleg å flytta frå den andre kontoen til denne.
   appearance:
     discovery: Oppdaging
     toot_layout: Tutoppsett
