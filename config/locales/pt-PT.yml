@@ -841,11 +841,21 @@ pt-PT:
       body: 'O teu post foi partilhado por %{name}:'
       subject: "%{name} partilhou o teu post"
       title: Nova partilha
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: MM
+          million: M
+          quadrillion: Q
+          thousand: mil
+          trillion: T
   pagination:
     newer: Mais nova
     next: Seguinte
     older: Mais velha
     prev: Anterior
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Tu já votaste nesta sondagem
