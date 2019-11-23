@@ -1,13 +1,15 @@
 nn:
   about:
     about_hashtag_html: 'Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.'
-    about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
+    about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     about_this: Om oss
     active_count_after: aktiv
     active_footnote: Månadlege aktive brukarar (MAB)
     administered_by: 'Administrert av:'
     api: API
     apps: Mobilappar
+    apps_platforms: Bruk Mastodon på iOS, Android og andre plattformer
+    browse_public_posts: Sjå ei direktesending av offentlege innlegg på Mastodon
     contact: Kontakt
     contact_missing: Ikkje sett
     contact_unavailable: I/T
@@ -107,10 +109,10 @@ nn:
       enabled: Aktivert
       feed_url: Feed-URL
       followers: Fylgjarar
-      followers_url: Følgere URL
+      followers_url: Fylgjarlenkje
       follows: Fylgje
       header: Overskrift
-      inbox_url: Innboks URL
+      inbox_url: Innbokslenkje
       invited_by: Innboden av
       ip: IP
       joined: Vart med
@@ -135,7 +137,7 @@ nn:
       no_account_selected: Ingen kontoar vart endra sidan ingen var valde
       no_limits_imposed: Ingen grenser sett
       not_subscribed: Ikkje tinga
-      outbox_url: Utboks URL
+      outbox_url: Utbokslenkje
       pending: Ventar på gjennomgang
       perform_full_suspension: Utvis
       profile_url: Lenkje til profil
@@ -143,7 +145,7 @@ nn:
       protocol: Protokoll
       public: Offentleg
       push_subscription_expires: PuSH-abonnent utløper
-      redownload: Oppdater avatar
+      redownload: Last inn profil på nytt
       reject: Avvis
       reject_all: Avvis alle
       remove_avatar: Fjern bilete
@@ -166,17 +168,18 @@ nn:
       search_same_ip: Andre brukarar med same IP
       shared_inbox_url: Delt Innboks URL
       show:
-        created_reports: Rapporter laget av denne kontoen
+        created_reports: Rapportar frå denne kontoen
         targeted_reports: Meldt av andre
       silence: Togn
       silenced: Dempa
       statuses: Statusar
       subscribe: Ting
       suspended: Utvist
+      time_in_queue: Ventar i kø %{time}
       title: Kontoar
       unconfirmed_email: E-post utan stadfesting
       undo_silenced: Angr målbinding
-      undo_suspension: Angre utvisning
+      undo_suspension: Angr utvising
       unsubscribe: Avmeld
       username: Brukarnamn
       warn: Åtvar
@@ -184,10 +187,13 @@ nn:
       whitelisted: Kvitlista
     action_logs:
       actions:
-        confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
-        create_custom_emoji: "%{name} lastet opp ny emoji %{target}"
+        change_email_user: "%{name} endra e-postadressa til brukaren %{target}"
+        confirm_user: "%{name} stadfesta e-postadressa til brukaren %{target}"
+        create_account_warning: "%{name} sende ei åtvaring til %{target}"
+        create_custom_emoji: "%{name} lasta opp eit nytt kjensleteikn %{target}"
+        create_domain_allow: "%{name} kvitlista domenet %{target}"
         create_domain_block: "%{name} blokkerte domenet %{target}"
-        create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
+        create_email_domain_block: "%{name} svartelista e-postdomenet %{target}"
         demote_user: "%{name} degraderte bruker %{target}"
         destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
         destroy_email_domain_block: "%{name} hvitelistet e-postdomenet %{target}"
