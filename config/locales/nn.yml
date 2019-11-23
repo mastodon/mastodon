@@ -330,6 +330,9 @@ nn:
       title: "%{acct} sine fylgjarar"
     instances:
       by_domain: Domene
+      known_accounts:
+        one: "%{count} kjend konto"
+        other: "%{count} kjende kontoar"
       moderation:
         all: Alle
         limited: Avgrensa
@@ -498,6 +501,8 @@ nn:
       add_new: Legg til ny
       delete: Slett
       edit: Rediger
+      edit_preset: Endr åtvaringsoppsett
+      title: Handsam åtvaringsoppsett
   admin_mailer:
     new_report:
       body: "%{reporter} har rapportert %{target}"
