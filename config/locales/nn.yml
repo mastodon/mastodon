@@ -812,6 +812,7 @@ nn:
       too_many_options: kan ikkje ha meir enn %{max} element
   preferences:
     other: Anna
+    public_timelines: Offentlege tidsliner
   relationships:
     activity: Kontoaktivitet
     dormant: I dvale
@@ -977,6 +978,8 @@ nn:
   user_mailer:
     warning:
       subject:
+        none: Åtvaring for %{acct}
+        silence: Kontoen din, %{acct}, er vorten avgrensa
         suspend: Kontoen din, %{acct}, er vorten utvist
       title:
         disable: Konto frosen
@@ -990,7 +993,7 @@ nn:
       final_action: Kom i gang med å leggja ut
       final_step: 'Byrj å skriva innlegg! Sjølv utan fylgjarar kan andre sjå dei offentlege meldingane dine, til dømes på den lokale tidslina og i emneknaggar. Du har kanskje lyst til å introdusera deg med emneknaggen #introductions.'
       full_handle: Det fulle brukarnamnet ditt
-      full_handle_hint: Dette er hva du forteller venner slik at de kan sende melding eller følge deg fra en annen instanse.
+      full_handle_hint: Dette er det du fortel venene dine for at dei skal kunna senda deg meldingar eller fylgja deg frå ein annan tenar.
       review_preferences_action: Endr innstillingar
       review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkomen til Mastodon
