@@ -512,6 +512,9 @@ pt-PT:
       trendable_by_default:
         desc_html: Afecta as hashtags que ainda não tenham sido proibidas
         title: Permitir hashtags em tendência sem revisão prévia
+      trends:
+        desc_html: Exibir publicamente hashtags atualmente em destaque que já tenham sido revistas anteriormente
+        title: Hashtags em destaque
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -527,6 +530,9 @@ pt-PT:
       title: Estado das contas
       with_media: Com media
     tags:
+      accounts_today: Usos únicos hoje
+      accounts_week: Usos únicos desta semana
+      breakdown: Descrição do consumo atual por fonte
       context: Contexto
       directory: No diretório
       in_directory: "%{count} no diretório"
@@ -561,11 +567,21 @@ pt-PT:
       subject: 'Nova hashtag para revisão em %{instance} (#%{name})'
   aliases:
     add_new: Criar pseudónimo
+    created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
+    deleted_msg: Removido o pseudónimo com sucesso. Migrar dessa conta para esta não será mais possível.
+    hint_html: Se quiser mudar de outra conta para esta, pode criar aqui um pseudónimo, que é necessário antes de poder prosseguir com a migração de seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada a partir da conta antiga</strong>.
     remove: Desvincular pseudónimo
   appearance:
+    advanced_web_interface: Interface web avançada
+    advanced_web_interface_hint: 'Se quiser utilizar toda a largura do seu ecrã, a interface web avançada permite-lhe configurar várias colunas diferentes para ver tanta informação ao mesmo tempo quanto quiser: Página inicial, notificações, cronologia federada, qualquer número de listas e hashtags.'
+    animations_and_accessibility: Animações e acessibilidade
+    confirmation_dialogs: Caixas de confirmação
+    discovery: Descobrir
+    sensitive_content: Conteúdo sensível
     toot_layout: Disposição do Toot
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
+    salutation: "%{name},"
     settings: 'Alterar preferências de email: %{link}'
     view: 'Ver:'
     view_profile: Ver perfil
@@ -579,9 +595,15 @@ pt-PT:
     warning: Cuidado com estes dados. Não partilhar com ninguém!
     your_token: O teu token de acesso
   auth:
+    apply_for_account: Solicitar um convite
     change_password: Palavra-passe
+    checkbox_agreement_html: Concordo com as <a href="%{rules_path}" target="_blank">regras do servidor</a> e com os <a href="%{terms_path}" target="_blank">termos de serviço</a>
+    checkbox_agreement_without_rules_html: Concordo com os <a href="%{terms_path}" target="_blank">termos do serviço</a>
     delete_account: Eliminar conta
     delete_account_html: Se desejas eliminar a conta, podes <a href="%{path}">continua aqui</a>. Uma confirmação será pedida.
+    description:
+      prefix_invited_by_user: "@%{name} convidou-o a juntar-se a este servidor do Mastodon!"
+      prefix_sign_up: Inscreva-se hoje no Mastodon!
     didnt_get_confirmation: Não recebeu o email de confirmação?
     forgot_password: Esqueceste a palavra-passe?
     invalid_reset_password_token: Token de modificação da palavra-passe é inválido ou expirou. Por favor, solicita um novo.
