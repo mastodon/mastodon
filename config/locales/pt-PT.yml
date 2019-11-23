@@ -675,6 +675,9 @@ pt-PT:
       data_removal: As suas publicações e outros dados serão removidos permanentemente
       email_change_html: Pode <a href="%{path}">alterar o seu endereço de e-mail</a> sem eliminar a sua conta
       email_contact_html: Se ainda não chegou, pode enviar um e-mail a <a href="mailto:%{email}">%{email}</a> para obter ajuda
+      email_reconfirmation_html: Se não recebeu o e-mail de confirmação, pode <a href="%{path}">pedi-lo novamente</a>
+      irreversible: Não será possível restaurar ou reativar sua conta
+      more_details_html: Para mais detalhes, leia a <a href="%{terms_path}">política de privacidade</a>.
       username_available: O seu nome de utilizador ficará novamente disponível
       username_unavailable: O seu nome de utilizador permanecerá indisponível
   directories:
@@ -814,6 +817,9 @@ pt-PT:
     cancel: Cancelar redirecionamento
     cancel_explanation: Cancelar o redirecionamento irá reativar a sua conta atual, mas não trará de volta os seguidores que foram migrados para essa conta.
     errors:
+      already_moved: é a mesma conta para a qual já migrou
+      missing_also_known_as: não está a referenciar esta conta
+      move_to_self: não pode ser conta atual
       not_found: não pode ser encontrado
       on_cooldown: Você está no período de espera
     followers_count: Seguidores no momento da migração
@@ -830,6 +836,11 @@ pt-PT:
       backreference_required: A nova conta deve primeiro ser configurada para que esta seja referenciada
       before: 'Antes de continuar, leia cuidadosamente estas notas:'
       cooldown: Após a migração, há um período de tempo de espera durante o qual não poderá voltar a migrar
+      disabled_account: Posteriormente, a sua conta atual não será totalmente utilizável. No entanto, continuará a ter acesso à exportação de dados, bem como à reativação.
+      followers: Esta ação irá migrar todos os seguidores da conta atual para a nova conta
+      only_redirect_html: Em alternativa, pode <a href="%{path}">apenas colocar um redireccionamento no seu perfil</a>.
+      other_data: Nenhum outro dado será migrado automaticamente
+      redirect: O perfil da sua conta atual será atualizado com um aviso de redirecionamento e será excluído das pesquisas
   moderation:
     title: Moderação
   notification_mailer:
