@@ -723,6 +723,7 @@ pt-PT:
     add_new: Adicionar nova
     errors:
       limit: Já atingiste o limite máximo de hashtags
+    hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas de forma bem visível no seu perfil público e permitem que as pessoas consultem as suas publicações públicas especificamente sob essas hashtags. São uma ótima ferramenta para manter o controlo de trabalhos criativos ou projetos de longo prazo."
   filters:
     contexts:
       home: Cronologia inicial
@@ -748,6 +749,7 @@ pt-PT:
     all: Tudo
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
+    no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Guardar alterações
     validation_errors:
@@ -761,6 +763,10 @@ pt-PT:
     authorize_connection_prompt: Autorizar esta conexão criptográfica?
     errors:
       failed: A conexão criptográfica falhou. Por favor, tente novamente a partir de %{provider}.
+      keybase:
+        invalid_token: Os tokens Keybase são hashes de assinaturas e devem conter 66 caracteres hexadecimais
+        verification_failed: O Keybase não reconhece este token como uma assinatura do utilizador do Keybase %{kb_username}. Por favor, tente novamente a partir do Keybase.
+      wrong_user: Não é possível criar uma prova para %{proving} enquanto estiver conetado como %{current}. Inicie sessão como %{proving} e tente novamente.
     i_am_html: Sou %{username} em %{service}.
     identity: Identidade
     inactive: Inativo
