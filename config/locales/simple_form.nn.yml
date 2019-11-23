@@ -5,17 +5,22 @@ nn:
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       defaults:
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        email: Du får snart ein stadfestings-e-post
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
         password: Nytt minst 8 teikn
+        setting_display_media_hide_all: Alltid skjul alt media
         setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
         setting_noindex: Påvirker din offentlige profil og statussider
         username: Brukarnamnet ditt vert unikt på %{domain}
       featured_tag:
         name: 'Kanskje du vil nytta ein av desse:'
       imports:
-        data: CSV-fil eksportert fra en annen Mastodon-instans
+        data: CSV-fil eksportert frå ein annan Mastodon-tenar
+      invite_request:
+        text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
       sessions:
         otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
     labels:
@@ -26,12 +31,14 @@ nn:
       account_warning_preset:
         text: Føreåtstekst
       admin_account_action:
+        send_email_notification: Varsl brukaren med e-post
         text: Eigen åtvaring
         type: Handling
         types:
           disable: Slå av innlogging
           none: Gjer inkje
           silence: Togn
+          suspend: Utvis og slett kontodata for godt
         warning_preset_id: Bruk åtvaringsoppsett
       defaults:
         autofollow: Bed om å fylgja kontoen din
@@ -45,7 +52,7 @@ nn:
         data: Data
         display_name: Synleg namn
         email: E-post-adresse
-        expires_in: Utløper etter
+        expires_in: Vert ugyldig etter
         header: Overskrift
         locale: Språk
         locked: Lås konto
