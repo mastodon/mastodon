@@ -206,15 +206,16 @@ nn:
         enable_custom_emoji: "%{name} aktiverte emojien %{target}"
         enable_user: "%{name} aktiverte innlogging for brukaren %{target}"
         memorialize_account: "%{name} endret %{target}s konto til en minneside"
-        promote_user: "%{name} oppgraderte bruker %{target}"
+        promote_user: "%{name} fremja brukaren %{target}"
         remove_avatar_user: "%{name} fjerna %{target} sitt profilbilete"
-        reset_password_user: "%{name} nullstilte passordet til bruker %{target}"
-        resolve_report: "%{name} avviste rapporten %{target}"
-        silence_account: "%{name} forstummet %{target}s konto"
+        reopen_report: "%{name} opna rapporten %{target} på nytt"
+        reset_password_user: "%{name} nullstilte passordet til brukaren %{target}"
+        resolve_report: "%{name} løyste ein rapport %{target}"
+        silence_account: "%{name} målbatt %{target} sin konto"
         suspend_account: "%{name} utviste %{target} sin konto"
         unsilence_account: "%{name} fjernet forstummingen av %{target}s konto"
         unsuspend_account: "%{name} utviste %{target} sin konto"
-        update_custom_emoji: "%{name} oppdaterte emoji %{target}"
+        update_custom_emoji: "%{name} oppdaterte kjensleteiknet %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(sletta status)"
       title: Revisionslogg
@@ -251,6 +252,7 @@ nn:
       updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
     dashboard:
+      authorized_fetch_mode: Trygg modus
       config: Oppsett
       feature_deletions: Kontoslettingar
       feature_invites: Innbydingar
@@ -358,6 +360,7 @@ nn:
       enabled: Skrudd på
       save_and_enable: Lagr og slå på
       status: Status
+      title: Vidaresendingar
     report_notes:
       created_msg: Rapportmerknad laga!
       destroyed_msg: Rapportmerknad sletta!
@@ -367,6 +370,7 @@ nn:
         report: rapporter
       action_taken_by: Handling gjort av
       are_you_sure: Er du sikker?
+      assigned: Tilsett moderator
       comment:
         none: Ingen
       created_at: Rapportert
@@ -394,7 +398,7 @@ nn:
         title: Publiser samlet statistikk om brukeraktiviteter
       bootstrap_timeline_accounts:
         desc_html: Separer flere brukernavn med komma. Kun lokale og ulåste kontoer vil kunne brukes. Dersom tomt er standarden alle lokale administratorer.
-        title: Standard følgere for nye brukere
+        title: Standard fylgjer for nye brukarar
       contact_information:
         email: Offentleg e-postadresse
         username: Skriv brukernavn
