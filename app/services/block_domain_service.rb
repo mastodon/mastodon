@@ -20,13 +20,13 @@ class BlockDomainService < BaseService
   end
 
   def process_domain_block!
-    clear_media! if domain_block.reject_media?
-
     if domain_block.silence?
       silence_accounts!
     elsif domain_block.suspend?
       suspend_accounts!
     end
+
+    clear_media! if domain_block.reject_media?
   end
 
   def invalidate_association_caches!
