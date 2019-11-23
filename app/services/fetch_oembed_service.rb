@@ -58,7 +58,7 @@ class FetchOEmbedService
     url_domain = Addressable::URI.parse(@url).normalized_host
 
     endpoint_hash = {
-      endpoint: @endpoint_url.gsub(URI.encode_www_form_component(@url), '{url}'),
+      endpoint: @endpoint_url.gsub(/(=(http[s]?(%3A|:)(\/\/|%2F%2F)))([^&]*)/i, '={url}'),
       format: @format,
     }
 
