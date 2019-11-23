@@ -311,6 +311,7 @@ th:
     invites:
       deactivate_all: ปิดใช้งานทั้งหมด
       filter:
+        all: ทั้งหมด
         available: พร้อมใช้งาน
         expired: หมดอายุแล้ว
         title: ตัวกรอง
@@ -583,6 +584,8 @@ th:
     copy: คัดลอก
     order_by: เรียงลำดับตาม
     save_changes: บันทึกการเปลี่ยนแปลง
+  html_validator:
+    invalid_markup: 'มีมาร์กอัป HTML ที่ไม่ถูกต้อง: %{error}'
   identity_proofs:
     active: ใช้งานอยู่
     authorize: ใช่ อนุญาต
@@ -668,6 +671,7 @@ th:
     errors:
       already_voted: คุณได้ลงคะแนนในโพลนี้อยู่แล้ว
       duplicate_options: มีรายการที่ซ้ำกัน
+      too_many_options: ไม่สามารถมีมากกว่า %{max} รายการ
   preferences:
     other: อื่น ๆ
     posting_defaults: ค่าเริ่มต้นการโพสต์
