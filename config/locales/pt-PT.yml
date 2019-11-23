@@ -264,6 +264,7 @@ pt-PT:
       updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
     dashboard:
+      authorized_fetch_mode: Modo seguro
       backlog: trabalhos atrasados
       config: Configuração
       feature_deletions: Eliminações da conta
@@ -272,9 +273,12 @@ pt-PT:
       feature_registrations: Registos
       feature_relay: Repetidor da federação
       feature_spam_check: Anti-spam
+      feature_timeline_preview: Pré-visualização da cronologia
       features: Componentes
       hidden_service: Federação com serviços escondidos
       open_reports: relatórios abertos
+      pending_tags: hashtags a aguardar revisão
+      pending_users: utilizadores a aguardar revisão
       recent_users: Utilizadores recentes
       search: Pesquisa com texto completo
       single_user_mode: Modo de utilizador único
@@ -297,6 +301,8 @@ pt-PT:
       created_msg: Bloqueio do domínio está a ser processado
       destroyed_msg: Bloqueio de domínio está a ser removido
       domain: Domínio
+      edit: Editar bloqueio de domínio
+      existing_domain_block_html: Você já impôs limites mais restritivos a %{name}, é necessário primeiro <a href="%{unblock_url}">desbloqueá-lo</a>.
       new:
         create: Criar bloqueio
         hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
@@ -306,6 +312,10 @@ pt-PT:
           silence: Silenciar
           suspend: Suspender
         title: Novo bloqueio de domínio
+      private_comment: Comentário privado
+      private_comment_hint: Comentário sobre essa limitação de domínio para uso interno pelos moderadores.
+      public_comment: Comentário público
+      public_comment_hint: Comentário sobre essa limitação de domínio para o público geral, se ativada a divulgação da lista de limitações de domínio.
       reject_media: Rejeitar ficheiros de media
       reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer guardar novos no futuro. Irrelevante na suspensão
       reject_reports: Rejeitar relatórios
@@ -325,6 +335,7 @@ pt-PT:
         title: Remover o bloqueio de domínio de %{domain}
         undo: Anular
       undo: Anular
+      view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
       created_msg: Bloqueio de domínio de email criado com sucesso
