@@ -604,6 +604,7 @@ pt-PT:
     description:
       prefix_invited_by_user: "@%{name} convidou-o a juntar-se a este servidor do Mastodon!"
       prefix_sign_up: Inscreva-se hoje no Mastodon!
+      suffix: Com uma conta, poderá seguir pessoas, publicar atualizações e trocar mensagens com utilizadores de qualquer servidor Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu o email de confirmação?
     forgot_password: Esqueceste a palavra-passe?
     invalid_reset_password_token: Token de modificação da palavra-passe é inválido ou expirou. Por favor, solicita um novo.
@@ -612,6 +613,9 @@ pt-PT:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se desejas redirecionar esta conta para uma outra podes<a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou iniciar sessão com
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registar
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
