@@ -536,7 +536,7 @@ nn:
       suffix: Med ein konto kan du fylgja folk, skriva innlegg og veksla meldingar med brukarar frå kva som helst annan Mastodon-tenar og meir!
     didnt_get_confirmation: Fekk du ikkje stadfestingsinstruksjonar?
     forgot_password: Har du gløymt passordet ditt?
-    invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
+    invalid_reset_password_token: Tilgangsnykelen er ugyldig eller utgått. Ver venleg å beda om ein ny ein.
     login: Innlogging
     logout: Logg ut
     migrate_account: Flytt til ein annan konto
@@ -602,10 +602,12 @@ nn:
       data_removal: Innlegga dine og andre data vert fjerna for alltid
       email_change_html: Du kan <a href="%{path}">byta e-postadressa di</a> utan å sletta kontoen din
       irreversible: Du kjem ikkje til å kunna gjenoppretta eller aktivera kontoen din på nytt
+      more_details_html: For fleire detaljar, sjå <a href="%{terms_path}">personvernsvilkåra</a>.
       username_available: Brukarnamnet ditt vert tilgjengeleg igjen
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
   directories:
     directory: Profilkatalog
+    explanation: Leit fram brukarar etter interessa deira
     explore_mastodon: Utforsk %{title}
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
@@ -713,7 +715,7 @@ nn:
     max_uses_prompt: Inga grense
     prompt: Generer og del lenker med andre for å gi tilgang til denne instansen
     table:
-      expires_at: Utløper
+      expires_at: Vert ugyldig
       uses: Bruk
     title: By folk inn
   lists:
@@ -730,6 +732,8 @@ nn:
       move_to_self: kan ikkje vera denne kontoen
       not_found: fann ikkje
     followers_count: Fylgjarar då kontoen vart flytta
+    incoming_migrations: Flyttar frå ein annan konto
+    incoming_migrations_html: For å flytta frå ein annnan konto til denne må du fyrst <a href="%{path}">laga eit kallenamn til kontoen</a>.
     past_migrations: Tidlegare vandringar
     proceed_with_move: Flytt fylgjarar
   moderation:
@@ -812,6 +816,7 @@ nn:
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
+    no_account_html: Har du ikkje konto? Du kan <a href='%{sign_up_path}' target='_blank'>melda deg inn her</a>
     proceed: Hald fram med å fylgja
     prompt: 'Du kjem til å fylgja:'
   remote_interaction:
@@ -819,8 +824,10 @@ nn:
       proceed: Merk som favoritt
       prompt: 'Du vil merkja dette tutet som favoritt:'
     reblog:
+      proceed: Framhev
       prompt: 'Du vil framheva dette tutet:'
     reply:
+      proceed: Svar
       prompt: 'Du vil svara på dette tutet:'
   sessions:
     activity: Siste aktivitet
