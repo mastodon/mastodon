@@ -28,6 +28,7 @@ kab:
         redirect_uri: Seqdec yiwen n ujerrid i yal URL
       index:
         application: Asnas
+        callback_url: URL n tririt n wawal
         delete: Kkes
         name: Isem
         new: Asnas amaynut
@@ -37,15 +38,24 @@ kab:
         title: Asnas amaynut
       show:
         actions: Tigawin
+        application_id: ID n usnas
+        callback_urls: URL n tririt n wawal
         title: 'Asnas: %{name}'
     authorizations:
       buttons:
+        authorize: Ssireg
         deny: Agi
       error:
         title: Tella-d tuccḍa
       new:
         able_to: Asnas-agi yezmer
         prompt: Eǧǧ i %{client_name} ad yekcem ɣer umiḍan-ik
+      show:
+        title: Nɣel tangalt n wurag sakkin senteḍ-itt deg usnas.
     authorized_applications:
       confirmations:
         revoke: Tetḥaq-eḍ?
+      index:
+        application: Asnas
+        created_at: Yettussireg
+        date_format: "%d-%m-%Y %H:%M:%S"
