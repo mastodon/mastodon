@@ -11,10 +11,16 @@ kab:
             redirect_uri:
               fragment_present: ur yezmir ad yegber afrur.
               invalid_uri: ilaq ad tili d tansa URL tameɣtut.
+              secured_uri: ilaq URI ad yili HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
+        authorize: Ssireg
+        cancel: Semmet
+        edit: Ẓreg
         submit: Azen
+      confirmations:
+        destroy: Tetḥeqqeḍ?
       edit:
         title: Ẓreg asnas
       help:
