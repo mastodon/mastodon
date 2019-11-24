@@ -16,7 +16,7 @@ module LdapAuthenticable
     def ldap_get_user(attributes = {})
       safe_username = attributes[Devise.ldap_uid.to_sym].first
       # tootsuite/mastodon#12021: Convert LDAP username to valid format
-      if Devise.ldap_uid_conversion_enabled?
+      if (Devise.ldap_uid_conversion_enabled)
         keys = Regexp.union(Devise.ldap_uid_conversion_search.chars)
         replacement = Devise.ldap_uid_conversion_replace
 
