@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
-  moved: state.getIn(['accounts', me, 'moved']),
+  moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved']), 'acct']),
 });
 
 const keyMap = {
@@ -255,7 +255,7 @@ class UI extends React.Component {
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
-    moved: PropTypes.bool,
+    moved: PropTypes.string,
   };
 
   state = {
@@ -586,7 +586,7 @@ class UI extends React.Component {
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           {moved && (<div className='flash-message alert'>
-            <FormattedMessage id='moved_to_warning' defaultMessage='This account is marked as moved to another account, and may thus not accept new follows.' />
+            <FormattedMessage id='moved_to_warning' defaultMessage='This account is marked as moved to {moved_to}, and may thus not accept new follows.' values={{ moved_to: moved }} />
           </div>)}
           <SwitchingColumnsArea location={location} layout={layout} navbarUnder={navbarUnder} onLayoutChange={this.handleLayoutChange}>
             {children}
