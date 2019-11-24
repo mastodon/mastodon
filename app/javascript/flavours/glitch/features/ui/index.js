@@ -51,7 +51,7 @@ import {
 } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me } from 'flavours/glitch/util/initial_state';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -72,6 +72,7 @@ const mapStateToProps = state => ({
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
+  moved: state.getIn(['accounts', me, 'moved']),
 });
 
 const keyMap = {
@@ -254,6 +255,7 @@ class UI extends React.Component {
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
+    moved: PropTypes.bool,
   };
 
   state = {
@@ -539,7 +541,7 @@ class UI extends React.Component {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, layout, isWide, navbarUnder, location, dropdownMenuIsOpen } = this.props;
+    const { children, layout, isWide, navbarUnder, location, dropdownMenuIsOpen, moved } = this.props;
 
     const columnsClass = layout => {
       switch (layout) {
@@ -583,6 +585,9 @@ class UI extends React.Component {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
+          {moved && (<div className='flash-message alert'>
+            <FormattedMessage id='moved_to_warning' defaultMessage='This account is marked as moved to another account, and may thus not accept new follows.' />
+          </div>)}
           <SwitchingColumnsArea location={location} layout={layout} navbarUnder={navbarUnder} onLayoutChange={this.handleLayoutChange}>
             {children}
           </SwitchingColumnsArea>
