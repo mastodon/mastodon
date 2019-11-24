@@ -2438,6 +2438,11 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
+check-types@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/check-types/-/check-types-7.4.0.tgz#0378ec1b9616ec71f774931a3c6516fad8c152f4"
+  integrity sha512-YbulWHdfP99UfZ73NcUDlNJhEIDgm9Doq9GhpyXbF+7Aegi3CVV7qqMCKTTqJxlvEvnQBp9IA+dxsGN6xK/nSg==
+
 check-types@^8.0.3:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-8.0.3.tgz#3356cca19c889544f2d7a95ed49ce508a0ecf552"
@@ -4362,10 +4367,10 @@ file-loader@^4.2.0:
     loader-utils "^1.2.3"
     schema-utils "^2.0.0"
 
-file-type@^12.3.0:
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/file-type/-/file-type-12.4.0.tgz#a9a399459e1940d9f34b3973039958f1f36a565e"
-  integrity sha512-WTvyKq8yjtNmUtVAD8LGcTkvtCdJglM6ks2HTqEClm6+65XTqM6MoZYA1Vtra50DLRWLiM38fEs1y56f5VhnUA==
+file-type@^10.5.0:
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/file-type/-/file-type-10.11.0.tgz#2961d09e4675b9fb9a3ee6b69e9cd23f43fd1890"
+  integrity sha512-uzk64HRpUZyTGZtVuvrjP0FYxzQrBf4rojot6J65YMEbwBLB0CWm0CLojVpwpmFmxcE/lkvYICgfcGozbBq6rw==
 
 filesize@^3.6.1:
   version "3.6.1"
@@ -5181,7 +5186,7 @@ icss-utils@^4.0.0, icss-utils@^4.1.1:
   dependencies:
     postcss "^7.0.14"
 
-idb-keyval@^3.2.0:
+idb-keyval@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-3.2.0.tgz#cbbf354deb5684b6cdc84376294fc05932845bd6"
   integrity sha512-slx8Q6oywCCSfKgPgL0sEsXtPVnSbTLWpyiDcu6msHOyKOLari1TD1qocXVCft80umnkk3/Qqh3lwoFt8T/BPQ==
@@ -5772,6 +5777,11 @@ is-url@1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.2.tgz#498905a593bf47cc2d9e7f738372bbf7696c7f26"
   integrity sha1-SYkFpZO/R8wtnn9zg3K792lsfyY=
+
+is-url@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
+  integrity sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==
 
 is-windows@^1.0.1, is-windows@^1.0.2:
   version "1.0.2"
@@ -9033,10 +9043,10 @@ regenerator-runtime@^0.12.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
   integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
 
-regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.3:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
-  integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
+regenerator-runtime@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
+  integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
 
 regenerator-transform@^0.14.0:
   version "0.14.0"
@@ -10233,26 +10243,35 @@ terser@^4.1.2, terser@^4.3.9:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-tesseract.js-core@^2.0.0-beta.13:
+tesseract.js-core@^2.0.0-beta.12:
   version "2.0.0-beta.13"
   resolved "https://registry.yarnpkg.com/tesseract.js-core/-/tesseract.js-core-2.0.0-beta.13.tgz#a21d798e88098898a9bdd935d0553215e03274f8"
   integrity sha512-GboWV/aV5h+Whito6L6Q3WCFZ2+lgxZGgjY84wSpWbTLEkkZgHsU+dz1or+3rWSABH/nuzHDco1bZRk5+f94mw==
 
-tesseract.js@^2.0.0-beta.2:
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/tesseract.js/-/tesseract.js-2.0.0-beta.2.tgz#a05b998279fe6b45baae87f032bc9c5366f9c0dd"
-  integrity sha512-vbBqWOzr2UNrac8vhtwvsMABumwhLw8ILdWRp0XqcwVYrc8Ay6IDG9/riq16XQF0uETwcbuACSv3JEj2bYfDhA==
+tesseract.js-utils@^1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/tesseract.js-utils/-/tesseract.js-utils-1.0.0-beta.8.tgz#d1ef25c12609a337c3e0ac12a33f9903f3145a68"
+  integrity sha512-qjHBfWfzo2o1ZY9XI0Wh2hmpp38+mIgCMOk60W5Yyie/pBl421VLBKOZUEwQgpbLnOJ24VU6Q8yXsVgtFFHcFg==
   dependencies:
     axios "^0.18.0"
     bmp-js "^0.1.0"
-    file-type "^12.3.0"
-    idb-keyval "^3.2.0"
+    file-type "^10.5.0"
+    idb-keyval "^3.1.0"
+    is-url "^1.2.4"
+    zlibjs "^0.3.1"
+
+tesseract.js@^2.0.0-alpha.16:
+  version "2.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/tesseract.js/-/tesseract.js-2.0.0-alpha.16.tgz#1e17717234a1464481abe12283f2c3ac79603d2e"
+  integrity sha512-8g3je2Kl8rkAFtpmwilGGj+8rCiPClNQaCjW6IafOPNn7hzFnVdL6fU6rG1Xsrc4Twv0HOa75kbpx5u70/WbTA==
+  dependencies:
+    axios "^0.18.0"
+    check-types "^7.4.0"
     is-url "1.2.2"
     opencollective-postinstall "^2.0.2"
-    regenerator-runtime "^0.13.3"
     resolve-url "^0.2.1"
-    tesseract.js-core "^2.0.0-beta.13"
-    zlibjs "^0.3.1"
+    tesseract.js-core "^2.0.0-beta.12"
+    tesseract.js-utils "^1.0.0-beta.8"
 
 test-exclude@^5.0.0:
   version "5.1.0"
