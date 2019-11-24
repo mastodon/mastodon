@@ -39,7 +39,8 @@ class Poll extends ImmutablePureComponent {
 
   static getDerivedStateFromProps (props, state) {
     const { poll, intl } = props;
-    const expired = poll.get('expired') || (new Date(poll.get('expires_at'))).getTime() < intl.now();
+    const expires_at = poll.get('expires_at');
+    const expired = poll.get('expired') || expires_at !== null && (new Date(expires_at)).getTime() < intl.now();
     return (expired === state.expired) ? null : { expired };
   }
 

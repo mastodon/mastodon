@@ -11,6 +11,7 @@ el:
     apps: Εφαρμογές κινητών
     apps_platforms: Χρησιμοποίησε το Mastodon από το iOS, το Android και αλλού
     browse_directory: Ξεφύλλισε τον κατάλογο χρηστών και ψάξε ανά ενδιαφέροντα
+    browse_local_posts: Ξεφύλλισε τη ζωντανή ροή αυτού του διακομιστή
     browse_public_posts: Ξεφύλλισε τη ζωντανή ροή του Mastodon
     contact: Επικοινωνία
     contact_missing: Δεν έχει οριστεί
@@ -175,6 +176,7 @@ el:
         user: Χρήστης
       salmon_url: URL Salmon
       search: Αναζήτηση
+      search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
       shared_inbox_url: URL κοινόχρηστων εισερχομένων
       show:
         created_reports: Αναφορές από αυτόν το λογαριασμό
@@ -201,10 +203,12 @@ el:
         confirm_user: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
         create_account_warning: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
         create_custom_emoji: Ο/Η %{name} ανέβασε νέο emoji %{target}
+        create_domain_allow: Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα
         create_domain_block: Ο/Η %{name} μπλόκαρε τον τομέα %{target}
         create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα
         demote_user: Ο/Η %{name} υποβίβασε το χρήστη %{target}
         destroy_custom_emoji: Ο/Η %{name} κατέστρεψε το emoji %{target}
+        destroy_domain_allow: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από λίστα εγκρίσεων
         destroy_domain_block: Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}
         destroy_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα
         destroy_status: Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}
@@ -566,6 +570,7 @@ el:
     add_new: Δημιουργία ψευδώνυμου
     created_msg: Δημιουργήθηκε νέο ψευδώνυμο. Τώρα μπορείς να ξεκινήσεις τη μεταφορά από τον παλιό λογαριασμό.
     deleted_msg: Αφαιρέθηκε το ψευδώνυμο. Η μεταφορά από εκείνον τον λογαριασμό σε αυτόν εδώ δε θα είναι πλέον δυνατή.
+    hint_html: Αν θέλεις να μετακομίσεις από έναν άλλο λογαριασμό σε αυτόν εδώ, μπορείς εδώ να δημιουργήσεις ένα ψευδώνυμο, πράγμα που απαιτείται πριν προχωρήσεις για να μεταφέρεις τους ακολούθους σου από τον παλιό λογαριασμό σε αυτόν εδώ. Η ενέργεια αυτή είναι <strong>ακίνδυνη και αναστρέψιμη</strong>.<strong>Η μετακόμιση του λογαριασμού ξεκινάει από τον παλιό λογαριασμό</strong>.
     remove: Αφαίρεση ψευδώνυμου
   appearance:
     advanced_web_interface: Προηγμένη λειτουργία χρήσης
@@ -574,6 +579,7 @@ el:
     confirmation_dialogs: Ερωτήσεις επιβεβαίωσης
     discovery: Εξερεύνηση
     sensitive_content: Ευαίσθητο περιεχόμενο
+    toot_layout: Διαρρύθμιση τουτ
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
     salutation: "%{name},"
@@ -626,6 +632,7 @@ el:
       confirming: Αναμονή για ολοκλήρωση επιβεβαίωσης του email.
       functional: Ο λογαριασμός σου είναι πανέτοιμος.
       pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
+      redirecting_to: Ο λογαριασμός σου είναι ανενεργός γιατί επί του παρόντος ανακατευθύνει στον %{acct}.
     trouble_logging_in: Πρόβλημα σύνδεσης;
   authorize_follow:
     already_following: Ήδη ακολουθείς αυτό το λογαριασμό
@@ -640,6 +647,7 @@ el:
     title: Ακολούθησε %{acct}
   challenge:
     confirm: Συνέχεια
+    hint_html: "<strong>Συμβουλή:</strong> Δεν θα σου ζητήσουμε τον κωδικό ασφαλείας σου ξανά για την επόμενη ώρα."
     invalid_password: Μη έγκυρο συνθηματικό
     prompt: Επιβεβαίωση συνθηματικού για συνέχεια
   datetime:
@@ -815,12 +823,20 @@ el:
   migrations:
     acct: ΌνομαΧρήστη@Τομέας του νέου λογαριασμού
     cancel: Ακύρωση ανακατεύθυνσης
+    cancel_explanation: Ακυρώνοντας την ανακατεύθυνση θα ενεργοποιήσει ξανά τον τρέχοντα λογαριασμό σου, αλλά δεν θα φέρει πίσω τους ακόλουθους που έχουν μεταφερθεί σε εκείνον το λογαριασμό.
+    cancelled_msg: Η ανακατεύθυνση ακυρώθηκε επιτυχώς.
     errors:
+      already_moved: είναι ο ίδιος λογαριασμός στον οποίο έχεις ήδη μεταφερθεί
+      missing_also_known_as: δεν αναφέρει αυτόν τον λογαριασμό
       move_to_self: δεν επιτρέπεται να είναι ο τρέχων λογαριασμός
       not_found: δεν βρέθηκε
       on_cooldown: Είσαι σε περίοδο προσαρμογής
     followers_count: Ακόλουθοι τη στιγμή της μεταφοράς
     incoming_migrations: Μεταφορά από διαφορετικό λογαριασμό
+    incoming_migrations_html: Για να μετακομίσεις από έναν άλλο λογαριασμό σε αυτόν εδώ, πρώτα πρέπει να <a href="%{path}">δημιουργήσεις ένα ψευδώνυμο λογαριασμού</a>.
+    moved_msg: Ο λογαριασμός σου πλέον ανακατευθύνει στον %{acct} και οι ακόλουθοί σου μεταφέρονται εκεί.
+    not_redirecting: Ο λογαριασμός σου δεν ανακατευθύνει σε κανέναν άλλο προς το παρόν.
+    on_cooldown: Έχεις μετακομίσει το λογαριασμό σου πρόσφατα. Η δυνατότητα αυτή θα γίνει πάλι διαθέσιμη σε %{count} μέρες.
     past_migrations: Προηγούμενες μετακινήσεις
     proceed_with_move: Μετακίνηση ακολούθων
     redirecting_to: Ο λογαριασμός σου ανακατευθύνει στο %{acct}.
@@ -996,6 +1012,8 @@ el:
     profile: Προφίλ
     relationships: Ακολουθεί και ακολουθείται
     two_factor_authentication: Πιστοποίηση 2 παραγόντων (2FA)
+  spam_check:
+    spam_detected: Αυτή είναι μια αυτόματη αναφορά. Εντοπίστηκε ανεπιθύμητο υλικό (spam).
   statuses:
     attached:
       description: 'Συνημμένα: %{attached}'

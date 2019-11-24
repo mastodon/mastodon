@@ -4,35 +4,36 @@ gl:
     about_hashtag_html: Estas son mensaxes públicas etiquetadas con <strong>#%{hashtag}</strong>. Podes interactuar con elas se tes unha conta nalgures do fediverso.
     about_mastodon_html: Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.
     about_this: Acerca de
-    active_count_after: activo
+    active_count_after: activas
     active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
     api: API
     apps: Apps móbiles
-    apps_platforms: Utilice Mastodon desde iOS, Android e outras plataformas
-    browse_directory: Navegue no directorio de perfís e filtre por intereses
+    apps_platforms: Utiliza Mastodon desde iOS, Android e outras plataformas
+    browse_directory: Olla o directorio de perfís e filtra por intereses
+    browse_local_posts: Ler en directo o fluxo das publicacións públicas deste servidor
     browse_public_posts: Vexa o fluxo de comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: N/A
-    discover_users: Descubra usuarias
+    discover_users: Descubre usuarias
     documentation: Documentación
-    federation_hint_html: Con unha conta en %{instance} poderá seguir a outras persoas en calquera dos servidores Mastodon e incluso máis.
-    get_apps: Probe cunha app móbil
+    federation_hint_html: Con unha conta en %{instance} poderás seguir a outras persoas en calquera dos servidores Mastodon e incluso máis.
+    get_apps: Proba cunha app móbil
     hosted_on: Mastodon aloxado en %{domain}
     instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queira bloquear a toda a instancia, en tal caso debería utilizar o bloqueo do dominio.
 
 '
-    learn_more: Coñeza máis
+    learn_more: Saber máis
     privacy_policy: Política de intimidade
-    see_whats_happening: Mire o que acontece
+    see_whats_happening: Mira o que acontece
     server_stats: 'Estatísticas:'
     source_code: Código fonte
     status_count_after:
       one: estado
       other: estados
     status_count_before: Que publicaron
-    tagline: Siga as amizades e faga outras novas
+    tagline: Conecta coas amizades e fai outras novas
     terms: Termos do servizo
     unavailable_content: Contido non dispoñible
     unavailable_content_description:
@@ -175,6 +176,7 @@ gl:
         user: Usuaria
       salmon_url: URL Salmon
       search: Busca
+      search_same_ip: Outros usuarios co mesmo IP
       shared_inbox_url: URL da caixa de entrada compartida
       show:
         created_reports: Informes creados
@@ -553,7 +555,7 @@ gl:
       title: Xestionar avisos preestablecidos
   admin_mailer:
     new_pending_account:
-      body: Abaixo están os detalles da conta. Pode aprobar ou rexeitar esta solicitude.
+      body: Abaixo están os detalles da conta. Podes aprobar ou rexeitar esta solicitude.
       subject: Hai unha conta nova para revisar en %{instance} (%{username})
     new_report:
       body: "%{reporter} informou sobre %{target}"
@@ -565,8 +567,8 @@ gl:
   aliases:
     add_new: Crear alcume
     created_msg: Creou un novo alcume correctamente. Pode iniciar o movemento desde a conta antiga.
-    deleted_msg: Eliminou correctamente o alias. Xa non será posible mover desde esa conta a esta.
-    hint_html: Se quere mudarse desde outra conta a esta nova, aquí pode crear un alcume, que é requerido antes de poder proceder a mover os seguidores da conta antiga a esta nova. Esta acción por si mesma é <strong>inocua e reversible</strong>. <strong>A migración da conta iníciase desde a conta antiga</strong>.
+    deleted_msg: Eliminou correctamente o alcume. Xa non será posible mover desde esa conta a esta.
+    hint_html: Se queres mudarte desde outra conta a esta nova, aquí podes crear un alcume, que é requerido antes de poder proceder a mover os seguidores da conta antiga a esta nova. Esta acción por si mesma é <strong>inocua e reversible</strong>. <strong>A migración da conta iníciase desde a conta antiga</strong>.
     remove: Desligar alcume
   appearance:
     advanced_web_interface: Interface web avanzada
@@ -575,6 +577,7 @@ gl:
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
     sensitive_content: Contido sensible
+    toot_layout: Disposición do toot
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
     salutation: "%{name},"
@@ -626,7 +629,7 @@ gl:
       account_status: Estado da conta
       confirming: Agardando a confirmación do correo enviado.
       functional: A súa conta está totalmente operativa.
-      pending: A súa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirá un correo se a aplicación está aprobada.
+      pending: A túa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a aplicación está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
     trouble_logging_in: Problemas para conectar?
   authorize_follow:
@@ -678,7 +681,7 @@ gl:
       username_unavailable: O nome de usuario non estará dispoñible
   directories:
     directory: Directorio de perfil
-    explanation: Descubra usuarias según o seu interese
+    explanation: Descubre usuarias según o teu interese
     explore_mastodon: Explorar %{title}
   domain_validator:
     invalid_domain: non é un nome de dominio válido
@@ -762,7 +765,7 @@ gl:
       keybase:
         invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres hexadecimais
         verification_failed: Keybase non recoñece este testemuño como firma da usuaria de Keybase %{kb_username}. Por favor inténteo desde Keybase.
-      wrong_user: Non se puido crear a proba para %{proving} mentras está conectada como %{current}. Conéctese como %{proving} e inténteo de novo.
+      wrong_user: Non se puido crear a proba para %{proving} mentras está conectada como %{current}. Conéctate como %{proving} e inténtao de novo.
     explanation_html: Aquí pódese conectar criptográficamente as suas outras identidades, como a un perfil Keybase. Esto permitelle a outras persoas enviarlle mensaxes cifradas e confiar no contido que vostede lle envía.
     i_am_html: Eu son %{username} en %{service}.
     identity: Identidade
@@ -828,7 +831,7 @@ gl:
       on_cooldown: Estas no período de calma
     followers_count: Seguidoras no momento da migración
     incoming_migrations: Movendo desde unha conta diferente
-    incoming_migrations_html: Para migrar doutra conta cara esta, primeiro debes <a href="%{path}">crear un alias da conta</a>.
+    incoming_migrations_html: Para migrar doutra conta cara esta, primeiro debes <a href="%{path}">crear un alcume da conta</a>.
     moved_msg: A túa conta está redirixindo agora a %{acct} e os teus seguidores movéronse alí.
     not_redirecting: Neste momento a túa conta non está redirixindo cara a ningunha outra.
     on_cooldown: Migraches recentemente a conta. Esta función estará dispoñible de novo en %{count} días.
@@ -983,8 +986,8 @@ gl:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Revocar
-    revoke_success: A sesión revocouse con éxito
+    revoke: Revogar
+    revoke_success: A sesión revogouse con éxito
     title: Sesións
   settings:
     account: Conta
@@ -1007,6 +1010,8 @@ gl:
     profile: Perfil
     relationships: Seguindo e seguidoras
     two_factor_authentication: Validar Dobre Factor
+  spam_check:
+    spam_detected: Esto é un informe automatizado. Detectouse Spam.
   statuses:
     attached:
       description: 'Axenado: %{attached}'
@@ -1195,7 +1200,7 @@ gl:
       review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon
       tip_federated_timeline: A liña temporal federada é unha visión ampla da rede Mastodon. Pero so inclúe xente a que segue xente que vostede segue, así que non é completa.
-      tip_following: Por omisión vostede segue ao Admin do seu servidor. Para atopar máis xente interesante, mire nas liñas temporais local e federada.
+      tip_following: Por omisión segues a Admin no teu servidor. Para atopar máis xente interesante, mira nas liñas temporais local e federada.
       tip_local_timeline: A liña temporal local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
       tip_mobile_webapp: Si o navegador móbil lle ofrece engadir Mastodon a pantalla de inicio, pode recibir notificacións push. En moitos aspectos comportarase como un aplicativo nativo!
       tips: Consellos

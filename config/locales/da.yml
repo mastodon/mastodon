@@ -149,6 +149,7 @@ da:
         user: Bruger
       salmon_url: Salmon-URL
       search: Søg
+      search_same_ip: Andre brugere med den samme IP-adresse
       shared_inbox_url: Link til delt indbakke
       show:
         created_reports: Anmeldelser oprettet
@@ -173,9 +174,11 @@ da:
         confirm_user: "%{name} bekræftede %{target}s email adresse"
         create_account_warning: "%{name} sendte en advarsel til %{target}"
         create_custom_emoji: "%{name} uploadede humørikonet %{target}"
+        create_domain_allow: "%{name} godkendte domænet %{target}"
         create_domain_block: "%{name} blokerede domænet %{target}"
         create_email_domain_block: "%{name} sortlistede email domænet %{target}"
         demote_user: "%{name} degraderede %{target}"
+        destroy_domain_allow: "%{name} fjernede godkendelsen af domænet %{target}"
         destroy_domain_block: "%{name} fjernede blokeringen af domænet %{target}"
         destroy_email_domain_block: "%{name} hvid-listede email domænet %{target}"
         destroy_status: "%{name} fjernede statussen fra %{target}"
@@ -209,9 +212,11 @@ da:
       delete: Slet
       destroyed_msg: Emojo succesfuldt destrueret!
       disable: Deaktiver
+      disabled: Deaktiveret
       disabled_msg: Succesfuldt deaktiverede det humørikon
       emoji: Humørikon
       enable: Aktiver
+      enabled: Aktiveret
       enabled_msg: Succesfuldt aktiverede det humørikon
       image_hint: PNG op til 50KB
       listed: Listet
@@ -440,6 +445,9 @@ da:
       accounts_today: Unikke brug i dag
       accounts_week: Unikke brug denne uge
       context: Kontekst
+      last_active: Sidst aktiv
+      most_popular: Mest populære
+      most_recent: Seneste
     warning_presets:
       delete: Slet
       edit: Rediger
@@ -501,6 +509,10 @@ da:
       return: Vis brugerens profil
       web: Gå til web
     title: Følg %{acct}
+  challenge:
+    confirm: Fortsæt
+    invalid_password: Ugyldig adgangskode
+    prompt: Bekræft din adgangskode for at fortsætte
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -628,6 +640,9 @@ da:
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
     acct: username@domain af den nye konto
+    errors:
+      not_found: kunne ikke bive fundet
+    proceed_with_move: Flyt følgere
   moderation:
     title: Moderatering
   notification_mailer:
@@ -678,6 +693,7 @@ da:
     truncate: "...&hellip;"
   polls:
     errors:
+      already_voted: Du har allerede stemt i denne afstemning
       duration_too_long: er for langt ude i fremtiden
       duration_too_short: er for tidligy
       expired: Denne afstemning er allerede afsluttet
@@ -685,10 +701,14 @@ da:
     other: Andet
     public_timelines: Offentlige tidslinjer
   relationships:
+    activity: Aktivitet for konto
     last_active: Sidst aktiv
+    most_recent: Seneste
     moved: Flyttet
     mutual: Fælles
     primary: Primær
+    relationship: Relation
+    status: Status for konto
   remote_follow:
     acct: Indtast dit brugernavn@domæne du vil handle fra
     missing_resource: Kunne ikke finde det påkrævede omdirigerings link for din konto

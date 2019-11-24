@@ -70,11 +70,14 @@ th:
       index:
         application: แอปพลิเคชัน
         created_at: อนุญาตเมื่อ
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: ขอบเขต
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
+        invalid_token:
+          unknown: โทเคนการเข้าถึงไม่ถูกต้อง
     flash:
       applications:
         create:
@@ -94,6 +97,8 @@ th:
       application:
         title: ต้องมีการอนุญาต OAuth
     scopes:
+      admin:read: อ่านข้อมูลทั้งหมดในเซิร์ฟเวอร์
+      admin:write: แก้ไขข้อมูลทั้งหมดในเซิร์ฟเวอร์
       follow: ปรับเปลี่ยนความสัมพันธ์ของบัญชี
       push: รับการแจ้งเตือนแบบผลักของคุณ
       read: อ่านข้อมูลบัญชีทั้งหมดของคุณ

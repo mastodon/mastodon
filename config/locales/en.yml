@@ -11,6 +11,7 @@ en:
     apps: Mobile apps
     apps_platforms: Use Mastodon from iOS, Android and other platforms
     browse_directory: Browse a profile directory and filter by interests
+    browse_local_posts: Browse a live stream of public posts from this server
     browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
     contact_missing: Not set
@@ -175,6 +176,7 @@ en:
         user: User
       salmon_url: Salmon URL
       search: Search
+      search_same_ip: Other users with the same IP
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
@@ -201,10 +203,12 @@ en:
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
         create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
+        create_domain_allow: "%{name} whitelisted domain %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
+        destroy_domain_allow: "%{name} removed domain %{target} from whitelist"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
@@ -575,6 +579,7 @@ en:
     confirmation_dialogs: Confirmation dialogs
     discovery: Discovery
     sensitive_content: Sensitive content
+    toot_layout: Toot layout
   application_mailer:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"

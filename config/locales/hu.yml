@@ -11,6 +11,9 @@ hu:
     apps: Mobil appok
     apps_platforms: Használd a Mastodont iOS-ről, Androidról vagy más platformról
     browse_directory: Böngészd a profilokat és szűrj érdeklődési körre
+    browse_local_posts: 'Nézz bele a szerver publikus, élő adatfolyamába
+
+'
     browse_public_posts: Nézz bele a Mastodon élő adatfolyamába
     contact: Kapcsolat
     contact_missing: Nincs megadva
@@ -145,7 +148,7 @@ hu:
       most_recent_activity: Legutóbbi tevékenységek
       most_recent_ip: Legutóbbi IP-cím
       no_account_selected: Nem változott meg egy fiók sem, mert semmi sem volt kiválasztva
-      no_limits_imposed: Nem állítottunk be határértéket
+      no_limits_imposed: Nincs korlátozás
       not_subscribed: Nincs feliratkozás
       outbox_url: Kimenő üzenetek URL
       pending: Engedélyezés alatt
@@ -175,6 +178,7 @@ hu:
         user: Felhasználó
       salmon_url: Salmon URL
       search: Keresés
+      search_same_ip: Más felhasználók ugyanezzel az IP-vel
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -201,10 +205,12 @@ hu:
         confirm_user: "%{name} megerősítette e-mail címét: %{target}"
         create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
         create_custom_emoji: "%{name} új emojit töltött fel: %{target}"
+        create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
         destroy_custom_emoji: "%{name} törölte az emojit: %{target}"
+        destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
         destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
@@ -506,6 +512,9 @@ hu:
         desc_html: Nyilvános idővonal megjelenítése a főoldalon
         title: Idővonal előnézete
       title: Webhely beállításai
+      trendable_by_default:
+        desc_html: Azokra a hashtagekere hat, melyet előzőleg nem tiltottak le
+        title: Hashtagek trendiségének engedélyezése előzetes ellenőrzés nélkül
       trends:
         desc_html: Előzetesen engedélyezett és most trendi hashtagek nyilvános mutatása
         title: Trendi hashtagek
@@ -572,6 +581,7 @@ hu:
     confirmation_dialogs: Megerősítő párbeszédablakok
     discovery: Felfedezés
     sensitive_content: Szenzitív tartalom
+    toot_layout: Tülkök megjelenése
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
     salutation: "%{name}!"
@@ -1004,6 +1014,8 @@ hu:
     profile: Profil
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős azonosítás
+  spam_check:
+    spam_detected: Ez egy automatikus jelentés. Spamet érzékeltünk.
   statuses:
     attached:
       description: 'Csatolva: %{attached}'

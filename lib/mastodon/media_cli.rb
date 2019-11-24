@@ -113,5 +113,27 @@ module Mastodon
       say("Imports:\t#{number_to_human_size(Import.sum(:data_file_size))}")
       say("Settings:\t#{number_to_human_size(SiteUpload.sum(:file_file_size))}")
     end
+
+    desc 'lookup', 'Lookup where media is displayed by passing a media URL'
+    def lookup
+      prompt = TTY::Prompt.new
+
+      url = prompt.ask('Please enter a URL to the media to lookup:', required: true)
+
+      attachment_id = url
+                      .split('/')[0..-2]
+                      .grep(/\A\d+\z/)
+                      .join('')
+
+      if url.split('/')[0..-2].include? 'media_attachments'
+        model = MediaAttachment.find(attachment_id).status
+        prompt.say(ActivityPub::TagManager.instance.url_for(model))
+      elsif url.split('/')[0..-2].include? 'accounts'
+        model = Account.find(attachment_id)
+        prompt.say(ActivityPub::TagManager.instance.url_for(model))
+      else
+        prompt.say('Not found')
+      end
+    end
   end
 end

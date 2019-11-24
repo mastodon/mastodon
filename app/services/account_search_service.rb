@@ -127,7 +127,7 @@ class AccountSearchService < BaseService
   end
 
   def following_ids
-    @following_ids ||= account.active_relationships.pluck(:target_account_id)
+    @following_ids ||= account.active_relationships.pluck(:target_account_id) + [account.id]
   end
 
   def limit_for_non_exact_results

@@ -429,12 +429,14 @@ class Account < ApplicationRecord
             SELECT target_account_id
             FROM follows
             WHERE account_id = ?
+            UNION ALL
+            SELECT ?
           )
           SELECT
             accounts.*,
             (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
           FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?)
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND #{query} @@ #{textsearch}
             AND accounts.suspended_at IS NULL
