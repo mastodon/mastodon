@@ -1,8 +1,33 @@
 kab:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Isem n usnas
+        website: Asmel web n usnas
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              invalid_uri: ilaq ad tili d tansa URL tameɣtut.
   doorkeeper:
     applications:
+      buttons:
+        submit: Azen
+      edit:
+        title: Ẓreg asnas
+      help:
+        native_redirect_uri: Seqdec %{native_redirect_uri} i yisekyaden idiganen
+        redirect_uri: Seqdec yiwen n ujerrid i yal URL
       index:
+        application: Asnas
         delete: Kkes
+        name: Isem
+        new: Asnas amaynut
+        show: Ẓer
+        title: Isnasen-ik
+      new:
+        title: Asnas amaynut
     authorized_applications:
       confirmations:
         revoke: Tetḥaq-eḍ?
