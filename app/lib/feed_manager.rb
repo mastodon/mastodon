@@ -20,7 +20,7 @@ class FeedManager
   def filter?(timeline_type, status, receiver_id)
     if timeline_type == :home
       filter_from_home?(status, receiver_id, build_crutches(receiver_id, [status]))
-    if timeline_type == :list
+    elsif timeline_type == :list
       filter_from_list?(status, receiver_id, build_crutches(receiver_id, [status]))
     elsif timeline_type == :mentions
       filter_from_mentions?(status, receiver_id)
