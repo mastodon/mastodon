@@ -186,7 +186,7 @@ class FeedManager
 
     return true if check_for_blocks.any? { |target_account_id| crutches[:blocking][target_account_id] || crutches[:muting][target_account_id] }
 
-    return filter_from_list?(status, receiver_id, crutches)
+    filter_from_list?(status, receiver_id, crutches)
   end
 
   def filter_from_list?(status, receiver_id, crutches)
