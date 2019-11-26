@@ -115,7 +115,7 @@ is:
         remote: Fjartengt
         title: Staðsetning
       login_status: Staða innskráningar
-      media_attachments: Gagnaviðhengi
+      media_attachments: Myndaviðhengi
       moderation:
         active: Virkur
         all: Allt
@@ -202,6 +202,8 @@ is:
       new:
         severity:
           noop: Ekkert
+      reject_media: Hafna myndskrám
+      rejecting_media: hafna myndskrám
       show:
         undo: Afturkalla
     email_domain_blocks:
@@ -223,6 +225,7 @@ is:
         limited: Takmarkað
       title: Samband
       total_blocked_by_us: Útilokaðir af okkur
+      total_storage: Myndaviðhengi
     invites:
       deactivate_all: Gera allt óvirkt
       filter:
@@ -263,6 +266,8 @@ is:
       domain_blocks:
         all: Til allra
         users: Til innskráðra staðværra notenda
+      preview_sensitive_media:
+        title: Birta viðkvæmar myndir í OpenGraph-forskoðun
       profile_directory:
         desc_html: Leyfa að hægt sé að finna notendur
         title: Virkja persónusniðamöppu
@@ -438,6 +443,9 @@ is:
     table:
       expires_at: Rennur út
     title: Bjóða fólki
+  media_attachments:
+    validations:
+      too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
     cancel: Hætta við endurbeiningu
     cancelled_msg: Tókst að hætta við endurbeiningu.
