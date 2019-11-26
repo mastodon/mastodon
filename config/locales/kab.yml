@@ -99,8 +99,27 @@ kab:
   auth:
     change_password: Awal uffir
     delete_account: Kkes amiḍan
+    description:
+      prefix_sign_up: Zeddi di Masṭudun assa!
+    login: Qqen
+    logout: Ffeγ
+    security: Taγellist
+  authorize_follow:
+    follow: Ḍfeṛ
+  datetime:
+    distance_in_words:
+      about_x_months: "%{count}ug"
+      about_x_years: "%{count}i"
+      almost_x_years: "%{count}i"
+      half_a_minute: Tura kan
+      less_than_x_seconds: Tura kan
+      over_x_years: "%{count}i"
+      x_minutes: "%{count}t"
+      x_months: "%{count}ug"
   deletes:
     proceed: Kkes amiḍan
+  directories:
+    explore_mastodon: Snirem %{title}
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -111,27 +130,68 @@ kab:
     '429': Throttled
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Azemz
+    lists: Tibdarin
+  featured_tags:
+    add_new: Rnu amaynut
   filters:
     index:
       delete: Kkes
+  footer:
+    developers: Ineflayen
+    more: Ugar…
   generic:
+    all: Akk
+    copy: Nγel
     save_changes: Sekles ibeddilen
   identity_proofs:
     i_am_html: Nekki d %{username} deg %{service}.
   invites:
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '1800': 30 n tisdatin
+      '21600': 6 n isragen
+      '3600': 1 asrag
+      '43200': 12 n isragen
+      '604800': 1 umalas
+      '86400': 1 wass
+    expires_in_prompt: Werǧin
   preferences:
     other: Wiyaḍ
+  sessions:
+    browser: Iminig
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
   settings:
     account: Amiḍan
     account_settings: Iγewwaṛen n umiḍan
+    appearance: Udem
+    back: Uγal γer Masṭudun
+    development: Taneflit
     preferences: Imenyafen
+  statuses:
+    attached:
+      image:
+        one: "%{count} tugna"
+        other: "%{count} tugniwin"
+      video:
+        one: "%{count} n tbidyutt"
+        other: "%{count} n tbidyutin"
+    open_in_web: Ldi deg Web
+  themes:
+    contrast: Masṭudun (agnil awriran)
+    default: Masṭudun (Aberkan)
+    mastodon-light: Masṭudun (Aceɛlal)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     disable: Gdel
     enable: Rmed
