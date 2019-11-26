@@ -49,6 +49,7 @@ is:
     joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
     media: Myndskrár
+    moved_html: "%{name} hefur verið færður í %{new_profile_link}:"
     network_hidden: Þessar upplýsingar ekki tiltækar
     never_active: Aldrei
     nothing_here: Það er ekkert hér!
@@ -78,6 +79,7 @@ is:
       avatar: Auðkennismynd
       by_domain: Lén
       change_email:
+        changed_msg: Tölvupóstfangi notandaaðgangsins hefur verið breytt!
         current_email: Núverandi tölvupóstfang
         label: Breyta tölvupóstfangi
         new_email: Nýr tölvupóstur
@@ -98,9 +100,12 @@ is:
       email_status: Staða tölvupósts
       enable: Virkja
       enabled: Virkt
+      feed_url: Slóð á streymi
       followers: Fylgjendur
+      followers_url: Slóð á fylgjendur
       follows: Fylgist með
       header: Haus
+      inbox_url: Slóð á innhólf
       invited_by: Boðið af
       ip: IP-vistfang
       joined: Gerðist þátttakandi
@@ -110,20 +115,32 @@ is:
         remote: Fjartengt
         title: Staðsetning
       login_status: Staða innskráningar
+      media_attachments: Gagnaviðhengi
       moderation:
         active: Virkur
         all: Allt
         pending: Í bið
+        silenced: Þaggaður
+        suspended: Í bið
       most_recent_activity: Allra nýjasta virkni
       most_recent_ip: Nýjasta IP-vistfang
+      no_limits_imposed: Engra takmarka krafist
+      not_subscribed: Ekki í áskrift
+      outbox_url: Slóð á úthólf
+      pending: Bíður eftir yfirlestri
       perform_full_suspension: Setja í bið
+      profile_url: Slóð á notandasnið
       protocol: Samskiptamáti
       public: Opinber
-      redownload: Endurlesa notandaaðgang
+      redownload: Endurlesa notandasnið
       reject: Hafna
       reject_all: Hafna öllu
       remove_avatar: Fjarlægja auðkennismynd
       remove_header: Fjarlægja haus
+      resend_confirmation:
+        already_confirmed: Þessi notandi hefur þegar verið staðfestur
+        send: Senda staðfestingartölvupóst aftur
+        success: Það tókst að senda staðfestingartölvupóst!
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       role: Heimildir
@@ -454,6 +471,12 @@ is:
     older: Eldra
     prev: Fyrra
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Þú hefur þegar greitt atkvæði í þessari könnun
+      duplicate_options: innihalda tvítekin atriði
+      duration_too_long: er of langt inn í framtíðina
+      duration_too_short: er of snemma
   preferences:
     other: Annað
     public_timelines: Opinberar tímalínur
@@ -475,7 +498,7 @@ is:
       proceed: Halda áfram í endurbirtingu
       prompt: 'Þú ætlar að endurbirta þetta tíst:'
     reply:
-      prompt: 'Þú ætlar að svaraa þessu tísti:'
+      prompt: 'Þú ætlar að svara þessu tísti:'
   scheduled_statuses:
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
   sessions:
