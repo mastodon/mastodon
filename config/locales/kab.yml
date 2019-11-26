@@ -45,10 +45,13 @@ kab:
         submit: Beddel imayl
         title: Beddel imayl-ik s %{username}
       deleted: Yettwakkes
+      disable: Gdel
+      disable_two_factor_authentication: Gdel 2FA
       domain: Taɣult
       edit: Ẓreg
       email: Imayl
       email_status: Addad n imayl
+      enable: Rmed
       followers: Imeḍfaṛen
       ip: Tansa IP
       location:
@@ -71,12 +74,19 @@ kab:
       username: Isem n useqdac
     custom_emojis:
       delete: Kkes
+      disable: Gdel
+      enable: Rmed
+    dashboard:
+      features: Timahaltin
+      software: Aseγẓan
     email_domain_blocks:
       delete: Kkes
     followers:
       title: "Imeḍfaṛen n %{acct}"
     relays:
       delete: Kkes
+      disable: Gdel
+      enable: Rmed
     reports:
       notes:
         delete: Kkes
@@ -84,6 +94,7 @@ kab:
       batch:
         delete: Kkes
     warning_presets:
+      add_new: Rnu amaynut
       delete: Kkes
   auth:
     change_password: Awal uffir
@@ -105,6 +116,8 @@ kab:
       delete: Kkes
   generic:
     save_changes: Sekles ibeddilen
+  identity_proofs:
+    i_am_html: Nekki d %{username} deg %{service}.
   invites:
     expires_in:
       '1800': 30 minutes
@@ -119,6 +132,9 @@ kab:
     account: Amiḍan
     account_settings: Iγewwaṛen n umiḍan
     preferences: Imenyafen
+  two_factor_authentication:
+    disable: Gdel
+    enable: Rmed
   user_mailer:
     welcome:
       review_preferences_action: Beddel imenyafen
