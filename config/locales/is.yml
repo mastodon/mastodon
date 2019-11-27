@@ -577,7 +577,8 @@ is:
         one: "%{count} myndskeið"
         other: "%{count} myndskeið"
     boosted_from_html: Endurbirt frá %{acct_link}
-    content_warning: 'Viðvörun vegna efnis: %{warning}'
+    content_warning: 'Viðvörun vegna efnis (CW): %{warning}'
+    language_detection: Greina tungumál sjálfvirkt
     open_in_web: Opna í vafra
     pin_errors:
       reblog: Ekki er hægt að festa endurbirtingu
@@ -593,7 +594,7 @@ is:
       public: Opinber
       public_long: Allir geta séð
       unlisted: Óskráð
-      unlisted_long: Allir geta séð en er ekki talið upp á opinberum tímalínum
+      unlisted_long: Allir geta skoðað, en er ekki talið upp á opinberum tímalínum
   stream_entries:
     pinned: Fest tíst
     reblogged: endurbirt
