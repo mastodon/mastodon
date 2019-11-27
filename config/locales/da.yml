@@ -41,6 +41,7 @@ da:
       rejecting_media: 'Medie filer fra disse servere vil ikke blive behandlet eller gemt, og ingen miniaturebilleder vil blive vist, som kræver tilgang til den originale fil:'
       silenced: 'Posteringer fra disse servere vil være skjulte i den offentlige tidslinje feed eller beskeder og ingen notifikationer vil blive genereret fra brugere du ikke følger:'
       suspended: 'Ingen date fra disse servere vil blive behandlet, gemt eller udvekslet, at interagere eller kommunikere med brugere fra disse servere er ikke muligt:'
+    unavailable_content_html: Mastodon tillader dig generelt at se indhold og interagere med brugere fra enhver anden server i fediverset. Dette er undtagelser der er foretaget på netop denne server.
     user_count_after:
       one: bruger
       other: brugere
@@ -48,6 +49,7 @@ da:
     what_is_mastodon: Hvad er Mastodon?
   accounts:
     choices_html: "%{name}s valg:"
+    featured_tags_hint: Du kan tilføje specifikke hashtags der vil blive vist her.
     follow: Følg
     followers:
       one: Følger
@@ -80,6 +82,7 @@ da:
   admin:
     account_actions:
       action: Udfør handling
+      title: Udfør moderator handlinger på %{acct}
     account_moderation_notes:
       create: Læg en note
       created_msg: Moderator notat succesfuldt oprettet!
@@ -109,12 +112,15 @@ da:
       display_name: Visningsnavn
       domain: Domæne
       edit: Rediger
+      email: Email
+      email_status: Email status
       enable: Aktiver
       enabled: Aktiveret
       feed_url: Link til feed
       followers: Følgere
       followers_url: Link til følgere
       follows: Følger
+      header: Overskrift/billede
       inbox_url: Link til indbakke
       invited_by: Inviteret af
       ip: IP-adresse
@@ -137,8 +143,11 @@ da:
       moderation_notes: Moderator notater
       most_recent_activity: Seneste aktivitet
       most_recent_ip: Senest IP
+      no_account_selected: Ingen konti blev ændret da ingen var valgt
+      no_limits_imposed: Ingen ændringer gennemført
       not_subscribed: Ikke abonneret
       outbox_url: Link til udgående
+      pending: Afventende anmeldelser
       perform_full_suspension: Udeluk
       profile_url: Link til profil
       promote: Forfrem
@@ -149,6 +158,7 @@ da:
       reject: Afvis
       reject_all: Afvis alle
       remove_avatar: Fjern profilbillede
+      remove_header: Fjern overskrift/billede
       resend_confirmation:
         already_confirmed: Denne bruger er allerede blevet bekræftet
         send: Gensend bekræftelsesmail
