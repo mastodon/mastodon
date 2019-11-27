@@ -174,12 +174,12 @@
   dependencies:
     "@babel/types" "^7.7.0"
 
-"@babel/helper-module-imports@^7.0.0", "@babel/helper-module-imports@^7.0.0-beta.49", "@babel/helper-module-imports@^7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.7.0.tgz#99c095889466e5f7b6d66d98dffc58baaf42654d"
-  integrity sha512-Dv3hLKIC1jyfTkClvyEkYP2OlkzNvWs5+Q8WgPbxM5LMeorons7iPP91JM+DU7tRbhqA1ZeooPaMFvQrn23RHw==
+"@babel/helper-module-imports@^7.0.0", "@babel/helper-module-imports@^7.0.0-beta.49", "@babel/helper-module-imports@^7.7.0", "@babel/helper-module-imports@^7.7.4":
+  version "7.7.4"
+  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.7.4.tgz#e5a92529f8888bf319a6376abfbd1cebc491ad91"
+  integrity sha512-dGcrX6K9l8258WFjyDLJwuVKxR4XZfU0/vTUgOQYWEnRD8mgr+p4d6fCUMq/ys0h4CCt/S5JhbvtyErjWouAUQ==
   dependencies:
-    "@babel/types" "^7.7.0"
+    "@babel/types" "^7.7.4"
 
 "@babel/helper-module-transforms@^7.1.0":
   version "7.4.4"
@@ -686,12 +686,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-transform-runtime@^7.5.5":
-  version "7.5.5"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.5.5.tgz#a6331afbfc59189d2135b2e09474457a8e3d28bc"
-  integrity sha512-6Xmeidsun5rkwnGfMOp6/z9nSzWpHFNVr2Jx7kwoq4mVatQfQx5S56drBgEHF+XQbKOdIaOiMIINvp/kAwMN+w==
+"@babel/plugin-transform-runtime@^7.7.4":
+  version "7.7.4"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.7.4.tgz#51fe458c1c1fa98a8b07934f4ed38b6cd62177a6"
+  integrity sha512-O8kSkS5fP74Ad/8pfsCMGa8sBRdLxYoSReaARRNSz3FbFQj3z/QUvoUmJ28gn9BO93YfnXc3j+Xyaqe8cKDNBQ==
   dependencies:
-    "@babel/helper-module-imports" "^7.0.0"
+    "@babel/helper-module-imports" "^7.7.4"
     "@babel/helper-plugin-utils" "^7.0.0"
     resolve "^1.8.1"
     semver "^5.5.1"
@@ -858,6 +858,15 @@
   version "7.7.2"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.7.2.tgz#550b82e5571dcd174af576e23f0adba7ffc683f7"
   integrity sha512-YTf6PXoh3+eZgRCBzzP25Bugd2ngmpQVrk7kXX0i5N9BO7TFBtIgZYs7WtxtOGs8e6A4ZI7ECkbBCEHeXocvOA==
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.13"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.7.4":
+  version "7.7.4"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.7.4.tgz#516570d539e44ddf308c07569c258ff94fde9193"
+  integrity sha512-cz5Ji23KCi4T+YIE/BolWosrJuSmoZeN1EFnRtBwF+KKLi8GG/Z2c2hOJJeCXPk4mwk4QFvTmwIodJowXgttRA==
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.13"
