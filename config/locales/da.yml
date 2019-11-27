@@ -184,6 +184,7 @@ da:
       statuses: Statusser
       subscribe: Abonner
       suspended: Udelukket
+      time_in_queue: Venter i køen %{time}
       title: Konti
       unconfirmed_email: Ikke-bekræftet email
       undo_silenced: Fortryd dæmpning
@@ -191,6 +192,7 @@ da:
       unsubscribe: Abonner ikke længere
       username: Brugernavn
       warn: Advar
+      web: Web
       whitelisted: Hvidlistet
     action_logs:
       actions:
@@ -203,6 +205,7 @@ da:
         create_domain_block: "%{name} blokerede domænet %{target}"
         create_email_domain_block: "%{name} sortlistede email domænet %{target}"
         demote_user: "%{name} degraderede %{target}"
+        destroy_custom_emoji: "%{name} fjernede emoji %{target}"
         destroy_domain_allow: "%{name} fjernede godkendelsen af domænet %{target}"
         destroy_domain_block: "%{name} fjernede blokeringen af domænet %{target}"
         destroy_email_domain_block: "%{name} hvid-listede email domænet %{target}"
@@ -228,6 +231,7 @@ da:
       deleted_status: "(slettet status)"
       title: Revisionslog
     custom_emojis:
+      assign_category: Vælg kategori
       by_domain: Domæne
       copied_msg: Succesfuldt oprettede en lokal kopi af humørikonet
       copy: Kopier
@@ -244,6 +248,7 @@ da:
       enabled: Aktiveret
       enabled_msg: Succesfuldt aktiverede det humørikon
       image_hint: PNG op til 50KB
+      list: Listet
       listed: Listet
       new:
         title: Tilføj nyt brugerdefineret humørikon
@@ -251,11 +256,14 @@ da:
       shortcode: Kortkode
       shortcode_hint: Mindst 2 tegn, kun alfabetiske tegn og understreger
       title: Brugerdefinerede humørikoner
+      uncategorized: Uden kategori
+      unlist: Ulistet
       unlisted: Ikke listet
       update_failed_msg: Kunne ikke opdatere det humørikon
       updated_msg: Humørikon succesfuldt opdateret!
       upload: Læg op
     dashboard:
+      authorized_fetch_mode: Sikker tilstand
       backlog: ophobede jobs
       config: Konfiguration
       feature_deletions: Konto sletninger
@@ -263,12 +271,17 @@ da:
       feature_profile_directory: Profilliste
       feature_registrations: Registreringer
       feature_relay: Føderations relæ
+      feature_spam_check: Anti-spam
+      feature_timeline_preview: Tidslinje eksempelvisning
       features: Funktioner
       hidden_service: Føderation med skjulte tjenester
       open_reports: åbne anmeldelser
+      pending_tags: hastags der afventer gennemgang
+      pending_users: brugere der afventer gennemgang
       recent_users: Seneste brugere
       search: Søg på fuld tekst
       single_user_mode: Enkelt bruger mode
+      software: Software
       space: Brugt lagerplads
       title: Betjeningspanel
       total_users: samlede antal brugere
@@ -276,7 +289,11 @@ da:
       week_interactions: interaktioner denne uge
       week_users_active: aktive denne uge
       week_users_new: brugere denne uge
+      whitelist_mode: Whitelist tilstand
     domain_allows:
+      add_new: Whitelist domæne
+      created_msg: Domænet er tilføjet whitelist
+      destroyed_msg: Domænet er fjernet fra whitelist
       undo: Fjern fra hvidliste
     domain_blocks:
       add_new: Tilføj ny domain block
