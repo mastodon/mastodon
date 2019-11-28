@@ -341,17 +341,26 @@ is:
       with_media: Með myndum
     tags:
       context: Samhengi
+      directory: Í möppunni
+      in_directory: "%{count} í möppunni"
       last_active: Síðasta virkni
+      most_popular: Vinsælast
       most_recent: Nýjast
       name: Myllumerki
+      review: Yfirfara stöðufærslu
+      reviewed: Yfirfarið
       title: Myllumerki
       trending_right_now: Í umræðunni nákvæmlega núna
       unique_uses_today: "%{count} færslur í dag"
+      unreviewed: Ekki yfirfarið
     title: Stjórnendur
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
       edit: Breyta
+  aliases:
+    add_new: Búa til samnefni
+    remove: Aftengja samnefni
   appearance:
     advanced_web_interface: Ítarlegt vefviðmót
     advanced_web_interface_hint: 'Ef þú vilt geta notað alla skjábreiddina gefur ítarlegt vefviðmót þér færi á að stilla marga mismunandi dálka svo hægt sé að sjá eins miklar upplýsingar í einu eins og þér hentar: Heim, tilkynningar, sameiginleg tímalína, ótiltekinn fjöldi lista og myllumerkja.'
@@ -365,6 +374,8 @@ is:
     salutation: "%{name},"
     settings: 'Breyta kjörstillingum tölvupósts: %{link}'
     view: 'Skoða:'
+    view_profile: Skoða notandasnið
+    view_status: Skoða stöðufærslu
   auth:
     change_password: Lykilorð
     checkbox_agreement_html: Ég samþykki <a href="%{rules_path}" target="_blank">reglur vefþjónsins</a> og <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
@@ -423,6 +434,8 @@ is:
     directory: Persónusniðamappa
     explanation: Leitaðu að notendum eftir áhugamálum þeirra
     explore_mastodon: Kannaðu %{title}
+  domain_validator:
+    invalid_domain: er ekki leyfilegt nafn á léni
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -439,10 +452,15 @@ is:
     archive_takeout:
       date: Dagsetning
       size: Stærð
+    blocks: Þú útilokar
     csv: CSV
+    domain_blocks: Útilokanir á lénum
     follows: Þú fylgist með
     lists: Listar
+    mutes: Þú þaggar
     storage: Geymsla myndefnis
+  featured_tags:
+    add_new: Bæta við nýju
   filters:
     contexts:
       home: Heimatímalína
@@ -457,11 +475,13 @@ is:
     new:
       title: Bæta við nýrri síu
   footer:
+    developers: Forritarar
     more: Meira…
     resources: Tilföng
     trending_now: Í umræðunni núna
   generic:
     all: Allt
+    changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
     order_by: Raða eftir
     save_changes: Vista breytingar
@@ -492,6 +512,7 @@ is:
     validations:
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
+    acct: Fært í
     cancel: Hætta við endurbeiningu
     cancelled_msg: Tókst að hætta við endurbeiningu.
     errors:
@@ -504,6 +525,8 @@ is:
   notification_mailer:
     favourite:
       title: Nýtt eftirlæti
+    follow:
+      title: Nýr fylgjandi
     mention:
       action: Svara
     reblog:
@@ -605,9 +628,12 @@ is:
     authorized_apps: Leyfð forrit
     back: Til baka í Mastodon
     delete: Eyðing notandaaðgangs
+    development: Þróun
     edit_profile: Breyta notandasniði
     export: Útflutningur gagna
+    featured_tags: Myllumerki í umræðunni
     import: Flytja inn
+    import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
     notifications: Tilkynningar
     preferences: Kjörstillingar
@@ -630,11 +656,15 @@ is:
     pin_errors:
       reblog: Ekki er hægt að festa endurbirtingu
     poll:
+      total_people:
+        one: "%{count} aðili"
+        other: "%{count} aðilar"
       total_votes:
         one: "%{count} atkvæði"
         other: "%{count} atkvæði"
       vote: Greiða atkvæði
     show_more: Sýna meira
+    title: '%{name}: „%{quote}‟'
     visibilities:
       private: Einungis fylgjendur
       private_long: Aðeins birt fylgjendum
