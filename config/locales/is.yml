@@ -151,17 +151,21 @@ is:
         success: Það tókst að senda staðfestingartölvupóst!
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
+      resubscribe: Gerast áskrifandi aftur
       role: Heimildir
       roles:
         admin: Stjórnandi
         moderator: Umsjónarmaður
         staff: Starfsmaður
         user: Notandi
+      salmon_url: Salmon URL-slóð
       search: Leita
+      search_same_ip: Aðrir notendur með sama IP-vistfang
       subscribe: Gerast áskrifandi
       suspended: Í bið
       time_in_queue: Bíður í biðröð %{time}
       title: Notandaaðgangar
+      unconfirmed_email: Óstaðfestur tölvupóstur
       unsubscribe: Taka úr áskrift
       username: Notandanafn
       warn: Aðvara
@@ -186,6 +190,7 @@ is:
       enabled: Virkt
       image_hint: PNG allt að 50KB
       list: Listi
+      listed: Skráð
       overwrite: Skrifa yfir
       shortcode: Stuttkóði
       uncategorized: Óflokkað
@@ -193,6 +198,7 @@ is:
       unlisted: Óskráð
       upload: Senda inn
     dashboard:
+      authorized_fetch_mode: Öruggur hamur
       config: Stillingar
       feature_deletions: Eyðingar notandaaðganga
       feature_invites: Boðstenglar
@@ -202,7 +208,10 @@ is:
       feature_spam_check: Ruslpóstvarnir
       feature_timeline_preview: Forskoðun tímalínu
       features: Eiginleikar
+      open_reports: opnar skýrslur
       recent_users: Nýlegir notendur
+      search: Leit í öllum texta
+      single_user_mode: Eins-notandahamur
       software: Hugbúnaður
       space: Notkun geymslurýmis
       title: Stjórnborð
@@ -212,18 +221,25 @@ is:
       week_users_active: virkir í þessari viku
       week_users_new: notendur þessari viku
     domain_blocks:
+      add_new: Bæta við nýrri útilokun á léni
       domain: Lén
       edit: Breyta útilokunum léna
       new:
+        create: Búa til útilokun
         severity:
           noop: Ekkert
           suspend: Setja í bið
+        title: Ný útilokun á léni
+      private_comment: Einkaathugasemd
+      public_comment: Opinber athugasemd
       reject_media: Hafna myndskrám
       rejecting_media: hafna myndskrám
       severity:
         suspend: í bið
       show:
         undo: Afturkalla
+      undo: Afturkalla útilokun á léni
+      view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
       delete: Eyða
@@ -260,6 +276,7 @@ is:
       disabled: Óvirkt
       enable: Virkja
       enabled: Virkt
+      inbox_url: Slóð endurvarpa
       save_and_enable: Vista og virkja
       status: Staða
       title: Endurvarpar
@@ -267,6 +284,7 @@ is:
       account:
         note: minnispunktur
       are_you_sure: Ertu viss?
+      assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       comment:
         none: Ekkert
@@ -283,8 +301,14 @@ is:
       unresolved: Óleyst
       updated_at: Uppfært
     settings:
+      contact_information:
+        email: Fyrirtækistölvupóstur
+        username: Notandanafn tengiliðar
+      custom_css:
+        title: Sérsniðið CSS
       domain_blocks:
         all: Til allra
+        title: Birta útilokanir á lénum
         users: Til innskráðra staðværra notenda
       preview_sensitive_media:
         title: Birta viðkvæmar myndir í OpenGraph-forskoðun
@@ -301,6 +325,7 @@ is:
       site_title: Heiti vefþjóns
       thumbnail:
         title: Smámynd vefþjóns
+      title: Stillingar vefsvæðis
       trends:
         title: Myllumerki í umræðunni
     statuses:
