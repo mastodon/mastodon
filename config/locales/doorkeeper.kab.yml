@@ -3,6 +3,7 @@ kab:
     attributes:
       doorkeeper/application:
         name: Isem n usnas
+        redirect_uri: URI n uwelleh
         website: Asmel web n usnas
     errors:
       models:
@@ -11,18 +12,22 @@ kab:
             redirect_uri:
               fragment_present: ur yezmir ad yegber afrur.
               invalid_uri: ilaq ad tili d tansa URL tameɣtut.
+              relative_uri: ilaq ad yili d URI amagdaz.
               secured_uri: ilaq URI ad yili HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
         authorize: Ssireg
         cancel: Semmet
+        destroy: Hudd
         edit: Ẓreg
         submit: Azen
       confirmations:
         destroy: Tetḥeqqeḍ?
       edit:
         title: Ẓreg asnas
+      form:
+        error: Ay ay! Senqed tiferkit-inek ma ulac deg-s tuccḍiwin
       help:
         native_redirect_uri: Seqdec %{native_redirect_uri} i yisekyaden idiganen
         redirect_uri: Seqdec yiwen n ujerrid i yal URL
@@ -44,7 +49,7 @@ kab:
     authorizations:
       buttons:
         authorize: Ssireg
-        deny: Agi
+        deny: Ggami
       error:
         title: Tella-d tuccḍa
       new:
