@@ -48,6 +48,7 @@ is:
     following: Fylgist með
     joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
+    link_verified_on: Eignarhald á þessum tengli var athugað þann {date}
     media: Myndskrár
     moved_html: "%{name} hefur verið færður í %{new_profile_link}:"
     network_hidden: Þessar upplýsingar ekki tiltækar
@@ -64,14 +65,18 @@ is:
     roles:
       admin: Stjóri
       bot: Róbót
+      moderator: Umsjón
     unavailable: Notandasnið ekki tiltækt
     unfollow: Hætta að fylgja
   admin:
     account_actions:
       action: Framkvæma aðgerð
+      title: Framkvæma umsjónaraðgerð á %{acct}
     account_moderation_notes:
       create: Skilja eftir minnispunkt
+      created_msg: Tókst að útbúa minnispunkt umsjónarmanns!
       delete: Eyða
+      destroyed_msg: Tókst að eyða minnispunkti umsjónarmanns!
     accounts:
       approve: Samþykkja
       approve_all: Samþykkja allt
@@ -122,6 +127,8 @@ is:
         pending: Í bið
         silenced: Þaggaður
         suspended: Í bið
+        title: Umsjón
+      moderation_notes: Minnispunktar umsjónarmanna
       most_recent_activity: Allra nýjasta virkni
       most_recent_ip: Nýjasta IP-vistfang
       no_limits_imposed: Engra takmarka krafist
@@ -132,6 +139,7 @@ is:
       profile_url: Slóð á notandasnið
       protocol: Samskiptamáti
       public: Opinber
+      push_subscription_expires: PuSH-áskrift rennur út
       redownload: Endurlesa notandasnið
       reject: Hafna
       reject_all: Hafna öllu
@@ -151,6 +159,7 @@ is:
         user: Notandi
       search: Leita
       subscribe: Gerast áskrifandi
+      suspended: Í bið
       time_in_queue: Bíður í biðröð %{time}
       title: Notandaaðgangar
       unsubscribe: Taka úr áskrift
@@ -195,15 +204,24 @@ is:
       features: Eiginleikar
       recent_users: Nýlegir notendur
       software: Hugbúnaður
+      space: Notkun geymslurýmis
       title: Stjórnborð
       total_users: notendur alls
+      trends: Tilhneiging
+      week_interactions: aðgerðir í þessari viku
+      week_users_active: virkir í þessari viku
+      week_users_new: notendur þessari viku
     domain_blocks:
       domain: Lén
+      edit: Breyta útilokunum léna
       new:
         severity:
           noop: Ekkert
+          suspend: Setja í bið
       reject_media: Hafna myndskrám
       rejecting_media: hafna myndskrám
+      severity:
+        suspend: í bið
       show:
         undo: Afturkalla
     email_domain_blocks:
@@ -223,6 +241,7 @@ is:
       moderation:
         all: Allt
         limited: Takmarkað
+        title: Umsjón
       title: Samband
       total_blocked_by_us: Útilokaðir af okkur
       total_storage: Myndaviðhengi
@@ -248,6 +267,7 @@ is:
       account:
         note: minnispunktur
       are_you_sure: Ertu viss?
+      assigned: Úthlutaður umsjónarmaður
       comment:
         none: Ekkert
       mark_as_resolved: Merkja sem leyst
@@ -454,6 +474,8 @@ is:
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       only_redirect_html: Einnig geturðu <a href="%{path}">einungis sett upp endurbeiningu á persónusniðið þitt</a>.
+  moderation:
+    title: Umsjón
   notification_mailer:
     favourite:
       title: Nýtt eftirlæti
