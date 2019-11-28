@@ -67,7 +67,16 @@ kab:
     errors:
       messages:
         invalid_redirect_uri: URI n uwelleh mačči d ameɣtu.
+    flash:
+      applications:
+        destroy:
+          notice: Asnan yettwakkes.
+        update:
+          notice: Asnan yettwalqem.
     layouts:
       admin:
         nav:
           applications: Isnasen
+    scopes:
+      "admin:read": ɣeṛ meṛṛa isefka ɣef uqeddac
+      "admin:write": ẓreg meṛṛa isefka ɣef uqeddac
