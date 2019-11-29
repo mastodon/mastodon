@@ -237,6 +237,7 @@ is:
       severity:
         suspend: í bið
       show:
+        title: Afturkalla útilokun á léni fyrir %{domain}
         undo: Afturkalla
       undo: Afturkalla útilokun á léni
       view: Skoða útilokun á léni
@@ -265,10 +266,12 @@ is:
       deactivate_all: Gera allt óvirkt
       filter:
         all: Allt
-        available: Tiltækur
+        available: Tiltækt
         expired: Útrunnið
         title: Sía
       title: Boðsgestir
+    pending_accounts:
+      title: Notendaaðgangar í bið (%{count})
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
@@ -277,17 +280,21 @@ is:
       enable: Virkja
       enabled: Virkt
       inbox_url: Slóð endurvarpa
+      pending: Bíð eftir samþykki endurvarpa
       save_and_enable: Vista og virkja
+      setup: Setja upp endurvarpatengingu
       status: Staða
       title: Endurvarpar
     reports:
       account:
         note: minnispunktur
+        report: skýrsla
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       comment:
         none: Ekkert
+      created_at: Tilkynnt
       mark_as_resolved: Merkja sem leyst
       mark_as_unresolved: Merkja sem óleyst
       notes:
@@ -295,12 +302,20 @@ is:
         create_and_resolve: Leysa með minnispunkti
         create_and_unresolve: Enduropna með minnispunkti
         delete: Eyða
+      report: 'Skýrsla #%{id}'
+      reported_by: Tilkynnt af
       resolved: Leyst
+      resolved_msg: Það tókst að leysa skýrsluna!
       status: Staða
       title: Skýrslur
+      unassign: Aftengja úthlutun
       unresolved: Óleyst
       updated_at: Uppfært
     settings:
+      activity_api_enabled:
+        title: Birta samantektartölfræði um virkni notanda
+      bootstrap_timeline_accounts:
+        title: Sjálfgefnar fylgnistillingar fyrir nýja notendur
       contact_information:
         email: Fyrirtækistölvupóstur
         username: Notandanafn tengiliðar
@@ -308,33 +323,65 @@ is:
         title: Sérsniðið CSS
       domain_blocks:
         all: Til allra
+        disabled: Til engra
         title: Birta útilokanir á lénum
         users: Til innskráðra staðværra notenda
+      domain_blocks_rationale:
+        title: Birta röksemdafærslu
+      hero:
+        desc_html: Birt á forsíðunni. Mælt með að hún sé a.m.k. 600×100 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
+        title: Aðalmynd
+      mascot:
+        desc_html: Birt á ýmsum síðum. Mælt með að hún sé a.m.k. 293×205 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
+        title: Mynd af lukkudýri
+      peers_api_enabled:
+        title: Birta lista yfir uppgötvaða netþjóna
       preview_sensitive_media:
         title: Birta viðkvæmar myndir í OpenGraph-forskoðun
       profile_directory:
         desc_html: Leyfa að hægt sé að finna notendur
         title: Virkja notandasniðamöppu
       registrations:
+        deletion:
+          desc_html: Leyfa öllum að eyða aðgangnum sínum
         min_invite_role:
           disabled: Enginn
+          title: Lefa boð frá
+      registrations_mode:
+        modes:
+          approved: Krafist er samþykkt nýskráningar
+          none: Enginn getur nýskráð sig
+          open: Allir geta nýskráð sig
+        title: Nýskráningarhamur
+      show_staff_badge:
+        desc_html: Sýna starfsmannamerki á síðu notandans
+        title: Sýna starfsmannamerki
       site_description:
         title: Lýsing á vefþjóni
+      site_description_extended:
+        title: Sérsniðnar ítarlegar upplýsingar
+      site_short_description:
+        title: Stutt lýsing á netþjóninum
       site_terms:
         desc_html: Þú getur skrifað þína eigin persónuverndarstefnu, þjónustuskilmála eða annað lagatæknilegt. Þú getur notað HTML-einindi
         title: Sérsniðnir þjónustuskilmálar
       site_title: Heiti vefþjóns
+      spam_check_enabled:
+        title: Sjálfvirkar ruslpóstvarnir
       thumbnail:
+        desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
         title: Smámynd vefþjóns
       title: Stillingar vefsvæðis
       trends:
         title: Myllumerki í umræðunni
     statuses:
+      back_to_account: Fara aftur á síðu notandaaðgangsins
       batch:
         delete: Eyða
         nsfw_off: Merkja gögn sem ekki viðkvæm
         nsfw_on: Merkja sem viðkvæmt
       deleted: Eytt
+      failed_to_execute: Mistókst að keyra
       media:
         title: Myndskrár
       no_media: Engar myndir
@@ -535,6 +582,10 @@ is:
       body: '%{name} endurbirti stöðufærsluna þína:'
       subject: "%{name} endurbirti stöðufærsluna þína"
       title: Ný endurbirting
+  notifications:
+    email_events: Atburðir fyrir tilkynningar í tölvupósti
+    email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
+    other_settings: Aðrar stillingar varðandi tilkynningar
   number:
     human:
       decimal_units:
