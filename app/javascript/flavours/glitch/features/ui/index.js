@@ -107,6 +107,7 @@ const keyMap = {
   bookmark: 'd',
   toggleCollapse: 'shift+x',
   toggleSensitive: 'h',
+  openMedia: 'e',
 };
 
 class SwitchingColumnsArea extends React.PureComponent {

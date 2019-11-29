@@ -376,6 +376,22 @@ class Status extends ImmutablePureComponent {
     this.props.onOpenVideo(media, startTime);
   }
 
+  handleHotkeyOpenMedia = e => {
+    const { status, onOpenMedia, onOpenVideo } = this.props;
+
+    e.preventDefault();
+
+    if (status.get('media_attachments').size > 0) {
+      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+        // TODO: toggle play/paused?
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        onOpenVideo(status.getIn(['media_attachments', 0]), 0);
+      } else {
+        onOpenMedia(status.get('media_attachments'), 0);
+      }
+    }
+  }
+
   handleHotkeyReply = e => {
     e.preventDefault();
     this.props.onReply(this.props.status, this.context.router.history);
@@ -503,6 +519,7 @@ class Status extends ImmutablePureComponent {
       bookmark: this.handleHotkeyBookmark,
       toggleCollapse: this.handleHotkeyCollapse,
       toggleSensitive: this.handleHotkeyToggleSensitive,
+      openMedia: this.handleHotkeyOpenMedia,
     };
 
     if (hidden) {
