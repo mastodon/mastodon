@@ -1,27 +1,35 @@
 is:
   simple_form:
     hints:
+      admin_account_action:
+        type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
       defaults:
         avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         bot: Þessi aðgangur er aðallega til að framkvæma sjálfvirkar aðgerðir og gæti verið án þess að hann sé vaktaður reglulega
         discoverable: Persónusniðamappan er önnur leið til að láta notandaaðganginn þinn ná til fleiri lesenda
         email: Þú munt fá sendan staðfestingarpóst
+        locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
         setting_display_media_default: Fela myndir sem merktar eru viðkvæmar
         setting_display_media_hide_all: Alltaf fela allar myndir
         setting_display_media_show_all: Alltaf birta myndir sem merktar eru viðkvæmar
+        setting_noindex: Hefur áhrip á opinbera notandasniðið þitt og stöðusíður
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er í stað þess að hún skruni streyminu sjálfvirkt
     labels:
       account:
         fields:
+          name: Skýring
           value: Efni
       admin_account_action:
+        send_email_notification: Láta notanda vita með tölvupósti
+        text: Sérsniðin aðvörun
         type: Aðgerð
         types:
           disable: Gera innskráningu óvirka
           none: Gera ekkert
+        warning_preset_id: Nota forstillta aðvörun
       defaults:
         avatar: Auðkennismynd
         bot: Þetta er aðgangur fyrir róbót
@@ -38,6 +46,7 @@ is:
         fields: Lýsigögn notandasniðs
         locale: Tungumál viðmóts
         locked: Læsa aðgangi
+        max_uses: Hamárksfjöldi afnota
         new_password: Nýtt lykilorð
         note: Æviágrip
         otp_attempt: Teggja-þátta kóði
@@ -51,11 +60,13 @@ is:
         setting_default_language: Tungumál sem skrifað er á
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndir sem viðkvæmar
+        setting_delete_modal: Birta staðfestingarglugga áður en tísti er eytt
         setting_display_media: Birting mynda
         setting_display_media_default: Sjálfgefið
         setting_display_media_hide_all: Fela allt
         setting_display_media_show_all: Birta allt
         setting_expand_spoilers: Alltaf útfella tíst sem eru með aðvörun vegna efnisins
+        setting_hide_network: Fela netkerfið þitt
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_theme: Þema vefsvæðis
