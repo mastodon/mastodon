@@ -52,6 +52,8 @@ uk:
     what_is_mastodon: Що таке Mastodon?
   accounts:
     choices_html: "Вподобання %{name}:"
+    endorsements_hint: У веб-інтерфейсі ви можете рекомендувати людей, на яких підписані, і вони з'являться тут.
+    featured_tags_hint: Ви можете вказати хештеги, які будуть відображатись тут.
     follow: Підписатися
     followers:
       one: Підписник
@@ -180,6 +182,7 @@ uk:
         user: Користувач
       salmon_url: Salmon URL
       search: Пошук
+      search_same_ip: Інші користувачі з тим самим IP
       shared_inbox_url: URL спільного вхідного кошика
       show:
         created_reports: Скарги, створені цим аккаунтом
@@ -206,10 +209,12 @@ uk:
         confirm_user: "%{name} підтвердив(-ла) статус поштової адреси користувача %{target}"
         create_account_warning: "%{name} надіслав попередження до %{target}"
         create_custom_emoji: "%{name} вивантажив(-ла) нове емодзі %{target}"
+        create_domain_allow: "%{name} додав(-ла) домен %{target} до білого списку"
         create_domain_block: "%{name} заблокував(-ла) домен %{target}"
         create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
         demote_user: "%{name} понизив(-ла) %{target}"
         destroy_custom_emoji: "%{name} знищив(-ла) емодзі %{target}"
+        destroy_domain_allow: "%{name} видалив(-ла) домен %{target} з білого списку"
         destroy_domain_block: "%{name} розблокував(-ла) домен %{target}"
         destroy_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до білого списку"
         destroy_status: "%{name} видалив(-ла) статус користувача %{target}"
@@ -450,6 +455,7 @@ uk:
         all: Всi
         disabled: Нікого
         title: Показати, які домени заблоковані
+        users: Для авторизованих локальних користувачів
       domain_blocks_rationale:
         title: Обґрунтування
       hero:
@@ -495,6 +501,7 @@ uk:
         desc_html: Відображається на сторінці додаткової информації<br>Можна використовувати HTML-теги
         title: Розширений опис сайту
       site_short_description:
+        desc_html: Відображається в бічній панелі та мета-тегах. Опишіть, що таке Mastodon і що робить цей сервер особливим, в одному абзаці.
         title: Короткий опис сервера
       site_terms:
         desc_html: "Ви можене написати власну політику приватності, умови використанні та інші законні штуки<br>\nМожете використовувати HTML теги"
@@ -510,6 +517,9 @@ uk:
         desc_html: Показувати публічну стрічку на головній сторінці
         title: Передпоказ фіду
       title: Налаштування сайту
+      trendable_by_default:
+        desc_html: Впливає на хештеги, які не були заборонені раніше
+        title: Дозволити хештегам потрапляти в тренди без попереднього перегляду
       trends:
         desc_html: Відображати розглянуті хештеґи, які популярні зараз
         title: Популярні хештеги
