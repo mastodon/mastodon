@@ -4,7 +4,7 @@ ru:
       doorkeeper/application:
         name: Название
         redirect_uri: URI перенаправления
-        scopes: Права
+        scopes: Разрешения
         website: Веб-сайт приложения
     errors:
       models:
@@ -39,7 +39,7 @@ ru:
         delete: Удалить
         name: Название
         new: Новое приложение
-        scopes: Права
+        scopes: Разрешения
         show: Показывать
         title: Ваши приложения
       new:
@@ -129,21 +129,21 @@ ru:
       "read:filters": видеть ваши фильтры
       "read:follows": видеть, на кого вы подписаны
       "read:lists": видеть ваши списки
-      "read:mutes": видеть список заглушенных
+      "read:mutes": видеть список игнорируемых
       "read:notifications": видеть ваши уведомления
       "read:reports": видеть ваши жалобы
       "read:search": использовать поиск
-      "read:statuses": видеть все статусы
+      "read:statuses": видеть все посты
       write: изменять все данные вашей учётной записи
       "write:accounts": редактировать ваш профиль
       "write:blocks": блокировать учётные записи и домены
       "write:bookmarks": добавлять посты в закладки
-      "write:favourites": отмечать статусы как избранные
+      "write:favourites": отмечать посты как избранные
       "write:filters": создавать фильтры
       "write:follows": подписываться на людей
       "write:lists": создавать списки
-      "write:media": выкладывать медиаконтент
-      "write:mutes": заглушать людей и обсуждения
+      "write:media": загружать файлы
+      "write:mutes": добавлять в игнорируемое людей и обсуждения
       "write:notifications": очищать список уведомлений
       "write:reports": отправлять жалобы на других
-      "write:statuses": публиковать статусы
+      "write:statuses": публиковать посты
