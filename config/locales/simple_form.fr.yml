@@ -1,4 +1,3 @@
----
 fr:
   simple_form:
     hints:
@@ -32,7 +31,7 @@ fr:
         locked: Vous devrez approuver chaque abonné⋅e et vos statuts ne s’afficheront qu’à vos abonné⋅es
         password: Utilisez au moins 8 caractères
         phrase: Sera trouvé sans que la case ou l’avertissement de contenu du pouet soit pris en compte
-        scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez un périmètre de haut-niveau, vous n’avez pas besoin de sélectionner les individuels.
+        scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
         setting_aggregate_reblogs: Ne pas afficher de nouveaux repartagés pour les pouets qui ont été récemment repartagés (n’affecte que les repartagés nouvellement reçus)
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
@@ -163,9 +162,9 @@ fr:
         name: Hashtag
         trendable: Autoriser ce hashtag à apparaître sous les tendances du jour
         usable: Autoriser les pouets à utiliser ce hashtag
-    'no': Non
+    'no': 'Non'
     recommended: Recommandé
     required:
       mark: "*"
       text: Champs requis
-    'yes': Oui
+    'yes': 'Oui'
