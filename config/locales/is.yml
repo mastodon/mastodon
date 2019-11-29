@@ -572,10 +572,23 @@ is:
   moderation:
     title: Umsjón
   notification_mailer:
+    digest:
+      body: Hér er stutt yfirlit yfir þau skilaboð sem þú gætir hafa misst af síðan þú leist inn síðast %{since}
+      mention: "%{name} minntist á þig í:"
+      title: Á meðan þú varst fjarverandi...
     favourite:
+      body: 'Stöðufærslan þín var sett í eftirlæti af %{name}:'
+      subject: "%{name} setti stöðufærslu þína í eftirlæti"
       title: Nýtt eftirlæti
     follow:
+      body: "%{name} er núna að fylgjast með þér!"
+      subject: "%{name} er núna að fylgjast með þér"
       title: Nýr fylgjandi
+    follow_request:
+      action: Sýsla með fylgjendabeiðnir
+      body: "%{name} hefur beðið um að fylgjast með þér"
+      subject: 'Fylgjandi í bið: %{name}'
+      title: Ný beiðni um að fylgjast með
     mention:
       action: Svara
     reblog:
@@ -827,22 +840,32 @@ is:
     generate_recovery_codes: Útbúa endurheimtukóða
     setup: Setja upp
   user_mailer:
+    backup_ready:
+      subject: Safnskráin þín er tilbúin til niðurhals
+      title: Taka út í safnskrá
     warning:
       review_server_policies: Yfirfara reglur vefþjónsins
+      statuses: 'Sérstaklega fyrir:'
       subject:
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
+        silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
+        suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
         disable: Notandaaðgangur frystur
         none: Aðvörun
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í bið
     welcome:
+      edit_profile_action: Setja upp notandasnið
+      explanation: Hér eru nokkrar ábendingar til að koma þér í gang
       review_preferences_action: Breyta kjörstillingum
       subject: Velkomin í Mastodon
       tips: Ábendingar
       title: Velkomin/n um borð, %{name}!
   users:
+    follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
     invalid_email: Tölvupóstfangið er ógilt
+    invalid_otp_token: Ógildur tveggja-þátta kóði
     signed_in_as: 'Skráð inn sem:'
   verification:
     verification: Sannprófun
