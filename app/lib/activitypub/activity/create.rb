@@ -73,6 +73,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @mentions = []
     @params   = {}
 
+    process_quote
     process_status_params
     process_tags
     process_audience
@@ -510,6 +511,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def quote
     @quote ||= quote_from_url(@object['quoteUrl'] || @object['_misskey_quote'])
+  end
+
+  def process_quote
+    if quote.nil? && md = @object['content']&.match(/QT:\s*\[<a href=\"([^\"]+).*?\]/)
+      @quote = quote_from_url(md[1])
+      @object['content'] = @object['content'].sub(/QT:\s*\[.*?\]/, '<span class="quote-inline"><br/>\1</span>')
+    end
   end
 
   def quote_from_url(url)
