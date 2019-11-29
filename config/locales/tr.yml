@@ -885,6 +885,10 @@ tr:
       body: '%{name} durumunuzu boost etti:'
       subject: "%{name} durumunuzu boost etti"
       title: Yeni gönderi
+  notifications:
+    email_events: E-posta bildirimi gönderilecek etkinlikler
+    email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
+    other_settings: Diğer bildirim ayarları
   number:
     human:
       decimal_units:
