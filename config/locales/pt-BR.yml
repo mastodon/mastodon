@@ -19,7 +19,7 @@ pt-BR:
     documentation: Documentação
     federation_hint_html: Com uma conta em %{instance} você vai poder seguir pessoas em qualquer servidor Mastodon ou outros do fediverso.
     get_apps: Experimente um aplicativo
-    hosted_on: Mastodon hospedado em %{domain}
+    hosted_on: Instância Mastodon em %{domain}
     instance_actor_flash: |
       Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
       É usado para fins de federação e não deve ser bloqueado a menos que você queira bloquear toda a instância, nesse caso você deve usar um bloqueio de domínio.
@@ -121,7 +121,7 @@ pt-BR:
       followers: Seguidores
       followers_url: Link de seguidores
       follows: Seguindo
-      header: Cabeçalho
+      header: Capa
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
       ip: IP
@@ -158,11 +158,11 @@ pt-BR:
       redownload: Atualizar perfil
       reject: Rejeitar
       reject_all: Rejeitar tudo
-      remove_avatar: Remover avatar
-      remove_header: Remover cabeçalho
+      remove_avatar: Remover imagem de perfil
+      remove_header: Remover capa
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
-        send: Re-enviar o e-mail de confirmação
+        send: Reenviar o e-mail de confirmação
         success: E-mail de confirmação enviado com sucesso!
       reset: Redefinir
       reset_password: Redefinir senha
@@ -173,7 +173,7 @@ pt-BR:
         moderator: Moderador
         staff: Equipe
         user: Usuário
-      salmon_url: URL Salmon
+      salmon_url: Link Salmon
       search: Pesquisar
       search_same_ip: Outros usuários com o mesmo IP
       shared_inbox_url: URL da caixa de entrada compartilhada
@@ -888,6 +888,7 @@ pt-BR:
   notifications:
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos que deseja receber notificações:'
+    other_settings: Outras opções para notificações
   number:
     human:
       decimal_units:
@@ -1194,7 +1195,7 @@ pt-BR:
         suspend: Conta suspensa
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Você pode customizar o seu perfil enviando um avatar, uma imagem de topo, mudando seu nome de exibição, dentre outros. Se você gostaria de aprovar novos seguidores antes que eles possam seguir você, você pode trancar a sua conta.
+      edit_profile_step: Você pode personalizar o seu perfil enviando uma imagem de perfil, uma capa, alterando seu nome de exibição e etc. Se você preferir aprovar seus novos seguidores antes de eles verem seus toots, você pode trancar a sua conta.
       explanation: Aqui estão algumas dicas para te ajudar a começar
       final_action: Comece a postar
       final_step: 'Comece a postar! Mesmo sem seguidores, suas mensagens públicas podem ser vistas por outros, por exemplo nas timelines locais e buscando hashtags. Você pode querer fazer uma introdução usando a hashtag #introduções, ou em inglês usando a hashtag #introductions.'
