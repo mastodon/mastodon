@@ -1,14 +1,14 @@
 pt-BR:
   about:
     about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
-    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos e software gratuito e de código aberto. É descentralizada como e-mail.'
+    about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
     active_count_after: ativo
-    active_footnote: Usuários ativos mensais (UAM)
+    active_footnote: Usuários Ativos Mensalmente (UAM)
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicativos
-    apps_platforms: Use o Mastodon a partir de iOS, Android e outras plataformas
+    apps_platforms: Use o Mastodon a partir do iOS, Android e outras plataformas
     browse_directory: Navegue pelo diretório de perfis e filtre por interesses
     browse_local_posts: Navegue pelas postagens públicas deste servidor em tempo real
     browse_public_posts: Navegue pelos posts públicos sendo postados ao vivo no Mastodon
@@ -29,26 +29,26 @@ pt-BR:
     server_stats: 'Estatísticas da instância:'
     source_code: Código-fonte
     status_count_after:
-      one: status
-      other: status
+      one: toot
+      other: toots
     status_count_before: Autores de
-    tagline: Siga amigos e encontre novos
+    tagline: Siga seus amigos e faça novas amizades
     terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
-      domain: Servidor
+      domain: Instância
       reason: 'Motivo:'
       rejecting_media: 'Arquivos de mídia destes servidores não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o usuário clique a abra o arquivo original manualmente:'
       silenced: 'Postagens destes servidores serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus usuários, a menos que você os esteja seguindo:'
       suspended: 'Você não será capaz de seguir ninguém deste servidor, e nenhum dado dele será processado ou armazenado, e nenhum dado trocado.'
-    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outro servidor no fediverso. Estas são as exceções deste servidor específico.
+    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
     user_count_after:
       one: usuário
       other: usuários
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: "Escolhas de %{name}:"
+    choices_html: "Sugestões de %{name}:"
     endorsements_hint: Você pode endossar pela interface web pessoas que você segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
@@ -56,7 +56,7 @@ pt-BR:
       one: Seguidor
       other: Seguidores
     following: Seguindo
-    joined: Participa desde %{date}
+    joined: Entrou em %{date}
     last_active: última atividade
     link_verified_on: O link foi verificado em %{date}
     media: Mídia
@@ -67,13 +67,13 @@ pt-BR:
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
     pin_errors:
-      following: Você tem que estar seguindo a pessoa que você quer sugerir
+      following: Você deve estar seguindo a pessoa que você deseja sugerir
     posts:
       one: Toot
       other: Toots
     posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
-    reserved_username: Este usuário está reservado
+    reserved_username: Nome de usuário reservado
     roles:
       admin: Admin
       bot: Robô
@@ -96,12 +96,12 @@ pt-BR:
       avatar: Imagem de perfil
       by_domain: Domínio
       change_email:
-        changed_msg: E-mail da conta modificado com sucesso!
+        changed_msg: E-mail da conta alterado com sucesso!
         current_email: E-mail atual
-        label: Mudar e-mail
+        label: Alterar e-mail
         new_email: Novo e-mail
-        submit: Mudar e-mail
-        title: Mudar e-mail para %{username}
+        submit: Alterar e-mail
+        title: Alterar e-mail para %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -114,18 +114,18 @@ pt-BR:
       domain: Domínio
       edit: Editar
       email: E-mail
-      email_status: Estado do e-mail
+      email_status: Status do e-mail
       enable: Ativar
       enabled: Ativada
-      feed_url: URL do feed
+      feed_url: Link da linha
       followers: Seguidores
-      followers_url: URL de seguidores
-      follows: Segue
+      followers_url: Link de seguidores
+      follows: Seguindo
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
       ip: IP
-      joined: Se cadastrou
+      joined: Entrou
       location:
         all: Todos
         local: Local
@@ -146,11 +146,11 @@ pt-BR:
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi modificada, pois nenhuma conta foi selecionada
       no_limits_imposed: Nenhum limite imposto
-      not_subscribed: Não está inscrito
-      outbox_url: URL da caixa de saída
-      pending: Esperando revisão
-      perform_full_suspension: Suspender
-      profile_url: URL do perfil
+      not_subscribed: Não inscrito
+      outbox_url: Link da caixa de saída
+      pending: Revisão pendente
+      perform_full_suspension: Banir
+      profile_url: Link do perfil
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -273,7 +273,7 @@ pt-BR:
       feature_registrations: Cadastros
       feature_relay: Repetidor da federação
       feature_spam_check: Anti-spam
-      feature_timeline_preview: pré-visualização da timeline
+      feature_timeline_preview: Prévia da linha
       features: Funcionalidades
       hidden_service: Federação com serviços onion
       open_reports: Denúncias em aberto
@@ -506,8 +506,8 @@ pt-BR:
         desc_html: Usada para prévias via OpenGraph e API. Recomenda-se 1200x630px
         title: Miniatura da instância
       timeline_preview:
-        desc_html: Exibir a timeline pública na página inicial
-        title: Prévia da timeline
+        desc_html: Mostra a linha do tempo pública na página inicial e permite acesso da API à mesma sem autenticação
+        title: Permitir acesso não autenticado à linha pública
       title: Configurações do site
       trendable_by_default:
         desc_html: Afeta as hashtags que não foram proibidas anteriormente
@@ -518,16 +518,16 @@ pt-BR:
     statuses:
       back_to_account: Voltar para página da conta
       batch:
-        delete: Deletar
-        nsfw_off: Marcar como não-sensível
+        delete: Excluir
+        nsfw_off: Desmarcar como sensível
         nsfw_on: Marcar como sensível
       deleted: Excluídos
-      failed_to_execute: Falha em executar
+      failed_to_execute: Falha ao executar
       media:
         title: Mídia
-      no_media: Não há mídia
+      no_media: Sem mídia
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
-      title: Postagens da conta
+      title: Toots da conta
       with_media: Com mídia
     tags:
       accounts_today: Usos únicos de hoje
@@ -602,7 +602,7 @@ pt-BR:
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir a sua conta, você pode <a href="%{path}">prosseguir para cá</a>. Uma confirmação será requisitada.
     description:
-      prefix_invited_by_user: "@%{name} convidou você para entrar neste servidor do Mastodon!"
+      prefix_invited_by_user: "@%{name} convidou você para entrar nesta instância Mastodon!"
       prefix_sign_up: Cadastre-se no Mastodon hoje!
       suffix: Com uma conta, você poderá seguir pessoas, postar atualizações, trocar mensagens com usuários de qualquer servidor Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu instruções de confirmação?
@@ -728,7 +728,7 @@ pt-BR:
     contexts:
       home: Página inicial
       notifications: Notificações
-      public: Timelines públicas
+      public: Linhas públicas
       thread: Conversas
     edit:
       title: Editar filtro
@@ -885,6 +885,9 @@ pt-BR:
       body: 'Sua postagem foi compartilhada por %{name}:'
       subject: "%{name} compartilhou a sua postagem"
       title: Novo compartilhamento
+  notifications:
+    email_events: Eventos para notificações por e-mail
+    email_events_hint: 'Selecione os eventos que deseja receber notificações:'
   number:
     human:
       decimal_units:
@@ -914,7 +917,7 @@ pt-BR:
   preferences:
     other: Outro
     posting_defaults: Padrões de postagem
-    public_timelines: Linhas do tempo públicas
+    public_timelines: Linhas públicas
   relationships:
     activity: Atividade da conta
     dormant: Inativo
@@ -1023,18 +1026,18 @@ pt-BR:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
     boosted_from_html: Compartilhada de %{acct_link}
-    content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warning: 'Aviso de Conteúdo: %{warning}'
     disallowed_hashtags:
-      one: 'continha a hashtag não permitida: %{tags}'
-      other: 'continha as hashtags não permitidas: %{tags}'
+      one: 'continha hashtag não permitida: %{tags}'
+      other: 'continha hashtags não permitidas: %{tags}'
     language_detection: Detectar idioma automaticamente
-    open_in_web: Abrir na web
+    open_in_web: Abrir no navegador
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
-      limit: Você já fixou a quantidade máxima de toots
-      ownership: Toots de outras pessoas não podem ser fixados
-      private: Toot não-público não pode ser fixado
-      reblog: Um compartilhamento não pode ser fixado
+      limit: Quantidade máxima de toots excedida
+      ownership: Toots dos outros não podem ser fixados
+      private: Toots não-públicos não podem ser fixados
+      reblog: Boosts não podem ser fixados
     poll:
       total_people:
         one: "%{count} pessoa"
@@ -1047,12 +1050,12 @@ pt-BR:
     sign_in_to_participate: Entre para participar dessa conversa
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Apenas seguidores
-      private_long: Mostrar apenas para seguidores
+      private: Privado
+      private_long: Posta apenas para seguidores
       public: Público
-      public_long: Todos podem ver
-      unlisted: Não listado
-      unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
+      public_long: Posta em linhas públicas
+      unlisted: Não-listado
+      unlisted_long: Não posta em linhas públicas
   stream_entries:
     pinned: Toot fixado
     reblogged: compartilhou
