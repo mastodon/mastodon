@@ -77,7 +77,7 @@ pt-BR:
     errors:
       messages:
         access_denied: O proprietário ou servidor de autorização negou a solicitação.
-        credential_flow_not_configured: Credenciais da Senha do Proprietário do Recurso falhou devido ao Doorkeeper.configure.resource_owner_from_credentials ser desconfigurado.
+        credential_flow_not_configured: Cadeira de Credenciais de Senha do Proprietário falhou porque Doorkeeper.configure.resource_owner_from_credentials não foram configuradas.
         invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação foi incluído ou o método de autenticação não é suportado.
         invalid_grant: A garantia de autorização está inválida, expirou ou foi revogada, não é equivalente ao link de redirecionamento usado na solicitação de autorização ou foi emitido por outro cliente.
         invalid_redirect_uri: O link de redirecionamento não é válido.
@@ -85,9 +85,9 @@ pt-BR:
         invalid_resource_owner: As credenciais do proprietário informadas não são válidas ou o proprietário não pôde ser encontrado
         invalid_scope: A autorização requirida é inválida, desconhecida ou está mal formatada.
         invalid_token:
-          expired: O token de acesso expirou
-          revoked: O token de acesso foi revogado
-          unknown: O token de acesso é inválido
+          expired: O código de acesso expirou
+          revoked: O código de acesso foi revogado
+          unknown: O código de acesso é inválido
         resource_owner_authenticator_not_configured: A procura pelo Proprietário do Recurso falhou porque Doorkeeper.configure.resource_owner_authenticator não foi configurado.
         server_error: O servidor de autorização encontrou uma condição inesperada que preveniu a solicitação de ser respondida.
         temporarily_unavailable: O servidor de autorização é incapaz de lidar com a solicitação no momento devido à múltiplas requisições ou manutenção programada.
