@@ -541,9 +541,14 @@ is:
     confirm_password: Settu inn núverandi lykilorð þitt til að staðfesta auðkennin þín
     confirm_username: Skrifaðu inn notandanafnið þitt til að halda áfram með ferlið
     proceed: Eyða notandaaðgangi
+    success_msg: Það tókst að eyða notandaaðgangnum þínum
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
+      caches: Efni sem aðrir netþjónar hafa sett í skyndiminni gæti verið til staðar áfram
+      irreversible: Þú munt ekki getað endurheimt eða endurvirkjað aðganginn þinn
       more_details_html: Til að skoða þetta nánar, er gott að líta á <a href="%{terms_path}">persónuverndarstefnuna</a>.
+      username_available: Notandanafnið þitt mun verða tiltækt aftur
+      username_unavailable: Notandanafnið þitt mun verða áfram ótiltækt
   directories:
     directory: Notandasniðamappa
     explanation: Leitaðu að notendum eftir áhugamálum þeirra
@@ -551,20 +556,28 @@ is:
   domain_validator:
     invalid_domain: er ekki leyfilegt nafn á léni
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': Beiðnin sem þú sendir er ógild eða rangt uppsett.
+    '403': Þú hefur ekki heimildir til að skoða þessari síðu.
+    '404': Síðan sem þú leitar að er ekki þarna.
+    '406': Þessi síða er ekki tiltæk á umbeðna sniðinu.
+    '410': Síðan sem þú leitar að er ekki lengur til hérna.
     '422':
+      content: Öryggisprófun mistókst. Ertu að loka á vefkökur/fótspor?
+      title: Öryggisprófun mistókst
     '429': Throttled
     '500':
+      content: Því miður, en eitthvað fór úrskeiðis á okkar enda.
+      title: Þessi síða er ekki rétt
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
+    not_found: Fann ekki staðværan notanda með þetta notandanafn
     not_found_multiple: tókst ekki að finna %{usernames}
   exports:
     archive_takeout:
       date: Dagsetning
+      download: Náðu í safnskrána þína
+      in_progress: Set saman safnskrána þína...
+      request: Biddu um safnskrána þína
       size: Stærð
     blocks: Þú útilokar
     csv: CSV
@@ -585,6 +598,8 @@ is:
       thread: Samtöl
     edit:
       title: Breyta síu
+    errors:
+      invalid_context: Ekkert eða ógilt samhengi var gefið
     index:
       delete: Eyða
       title: Síur
@@ -605,6 +620,11 @@ is:
     active: Virkur
     i_am_html: Ég er %{username} á %{service}.
     identity: Auðkenni
+    inactive: Óvirkt
+    publicize_checkbox: 'Og tísti þetta:'
+    publicize_toot: 'Það er búið að sanna þetta! Ég er %{username} á %{service}: %{url}'
+    status: Staða sannvottunar
+    view_proof: Skoða sönnun
   imports:
     modes:
       merge: Sameina
