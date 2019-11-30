@@ -236,7 +236,7 @@ export function uploadCompose(files) {
             dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
           },
         }).then(({ data }) => dispatch(uploadComposeSuccess(data, f)));
-      }).catch(error => dispatch(uploadComposeFail(error, true)));
+      }).catch(error => dispatch(uploadComposeFail(error)));
     };
   };
 };
@@ -267,11 +267,10 @@ export function changeUploadComposeSuccess(media) {
   };
 };
 
-export function changeUploadComposeFail(error, decrement = false) {
+export function changeUploadComposeFail(error) {
   return {
     type: COMPOSE_UPLOAD_CHANGE_FAIL,
     error: error,
-    decrement: decrement,
     skipLoading: true,
   };
 };
