@@ -249,6 +249,7 @@ it:
       enabled: Abilitato
       enabled_msg: Questa emoji è stata abilitata con successo
       image_hint: PNG fino a 50 KB
+      list: Includi nell'elenco
       listed: Elencato
       new:
         title: Aggiungi nuovo emoji personalizzato
@@ -257,6 +258,7 @@ it:
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
       title: Emoji personalizzate
       uncategorized: Nessuna categoria
+      unlist: Escludi dall'elenco
       unlisted: Non elencato
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
@@ -402,6 +404,7 @@ it:
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
+      by_target_domain: Dominio dell'account segnalato
       comment:
         none: Nessuno
       created_at: Segnalato
@@ -827,6 +830,7 @@ it:
       not_found: non trovato
       on_cooldown: Ti trovi nel periodo di pausa tra un trasferimento e l'altro
     followers_count: Seguaci al momento dello spostamento
+    incoming_migrations: In arrivo da un altro account
     incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
     moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
     not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
@@ -880,6 +884,10 @@ it:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
+  notifications:
+    email_events: Eventi per notifiche via email
+    email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
+    other_settings: Altre impostazioni per le notifiche
   number:
     human:
       decimal_units:
