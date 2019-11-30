@@ -447,18 +447,32 @@ body.admin {
 
 .admin-wrapper .sidebar ul a.selected {
   background: $purple;
+  border-bottom: 1px solid $purple;
 }
 
 .admin-wrapper .sidebar ul a:hover {
   background: lighten($blue, 8%);
+  border-bottom: 1px solid lighten($blue, 8%);
+}
+
+.admin-wrapper .sidebar ul a.selected:hover {
+  background: lighten($purple, 4%);
+  border-bottom: 1px solid lighten($purple, 4%);
 }
 
 .selected ul li a {
   background: $blue;
+  border-bottom: 1px solid $blue;
 }
 
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
   background: $blueberry;
+  border-bottom: 1px solid $blueberry;
+}
+
+.admin-wrapper .sidebar ul .simple-navigation-active-leaf a:hover {
+  background: lighten($blueberry, 4%);
+  border-bottom: 1px solid lighten($blueberry, 4%);
 }
 
 .dashboard__counters > div > div,
@@ -856,8 +870,8 @@ body.admin {
   }
 
   .public-account-bio {
-    background: $blue;
-    border: 1px solid lighten($blue, 4%);
+    background: $purple;
+    border: 1px solid lighten($purple, 4%);
   }
 
   .header {
@@ -923,7 +937,7 @@ body.admin {
       }
 
       .public-account-bio .account__header__fields {
-        border-color: lighten($ui-base-color, 8%);
+        border-color: lighten($purple, 8%);
       }
     }
   }
@@ -968,19 +982,20 @@ body {
 }
 
 .public-layout .public-account-header__bar .avatar img {
-  border: 4px solid $purple;
+  border: 4px solid $blue;
 }
 
 .public-layout .public-account-header__bar:before {
-  background: $purple;
+  background: $blue;
+  border: 1px solid lighten($blue, 8%);
 }
 
 .public-layout .public-account-header__tabs__tabs .counter {
-  border-right: 1px solid lighten($purple, 8%);
+  border-right: 1px solid lighten($blue, 8%);
 }
 
 .public-layout .public-account-header__tabs__tabs .counter::after {
-  border-bottom: 4px solid lighten($purple, 8%);
+  border-bottom: 4px solid lighten($blue, 12%);
 }
 
 .public-layout .public-account-header__image {
@@ -1038,6 +1053,10 @@ a.status-card.compact:hover {
   border-bottom: 1px solid lighten($purple, 8%);
 }
 
+.public-account-bio .account__header__fields {
+  border-bottom: 1px solid lighten($purple, 8%);
+}
+
 .account__header__fields dl {
   border-bottom: 1px solid lighten($purple, 8%);
 }
@@ -1048,7 +1067,12 @@ a.status-card.compact:hover {
   }
 
   .public-layout .public-account-header__extra .public-account-bio .account__header__fields {
-    border-color: lighten($blue, 8%);
+    border-color: lighten($purple, 8%);
+    background: $purple;
+  }
+
+  .admin-wrapper .sidebar ul a, .admin-wrapper .sidebar ul ul a {
+    border-bottom: 1px solid $blue;
   }
 }
 
