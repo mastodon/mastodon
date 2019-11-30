@@ -593,6 +593,7 @@ th:
     active: ใช้งานอยู่
     authorize: ใช่ อนุญาต
     inactive: ไม่ได้ใช้งาน
+    status: สถานะการตรวจสอบ
   imports:
     modes:
       merge: ผสาน
@@ -664,6 +665,8 @@ th:
       body: 'สถานะของคุณได้รับการดันโดย %{name}:'
       subject: "%{name} ได้ดันสถานะของคุณ"
       title: การดันใหม่
+  notifications:
+    other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
   pagination:
     newer: ใหม่กว่า
     next: ถัดไป
