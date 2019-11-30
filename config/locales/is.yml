@@ -162,6 +162,7 @@ is:
       salmon_url: Salmon URL-slóð
       search: Leita
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      shared_inbox_url: Slóð á sameiginlegt innhólf
       subscribe: Gerast áskrifandi
       suspended: Í bið
       time_in_queue: Bíður í biðröð %{time}
@@ -178,25 +179,39 @@ is:
         destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
         disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
+        reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
       assign_category: Úthluta flokki
       by_domain: Lén
+      copied_msg: Það tókst að búa til afrit af tjáningartákninu
       copy: Afrita
+      copy_failed_msg: Ekki tókst að gera staðvært afrit af tjáningartákninu
       create_new_category: Búa til nýjan flokk
+      created_msg: Tókst að búa til tjáningartákn!
       delete: Eyða
+      destroyed_msg: Tókst að eyða tjáningartákni!
       disable: Gera óvirkt
       disabled: Óvirkt
+      disabled_msg: Tókst að gera þetta tjáningartákn óvirkt
+      emoji: Tjáningartákn
       enable: Virkja
       enabled: Virkt
+      enabled_msg: Tókst að gera þetta tjáningartákn virkt
       image_hint: PNG allt að 50KB
       list: Listi
       listed: Skráð
+      new:
+        title: Bæta við nýju sérsniðnu tjáningartákni
       overwrite: Skrifa yfir
       shortcode: Stuttkóði
+      shortcode_hint: Að minnsta kosti 2 stafir, einungis tölu- og bókstafir ásamt undirstrikum
+      title: Sérsniðin tjáningartákn
       uncategorized: Óflokkað
       unlist: Afskrá
       unlisted: Óskráð
+      update_failed_msg: Gat ekki uppfært þetta tjáningartákn
+      updated_msg: Tókst að uppfæra tjáningartákn!
       upload: Senda inn
     dashboard:
       authorized_fetch_mode: Öruggur hamur
@@ -235,7 +250,9 @@ is:
       public_comment: Opinber athugasemd
       reject_media: Hafna myndskrám
       rejecting_media: hafna myndskrám
+      rejecting_reports: hafna skýrslum
       severity:
+        silence: þaggað
         suspend: í bið
       show:
         title: Afturkalla útilokun á léni fyrir %{domain}
@@ -248,11 +265,13 @@ is:
       domain: Lén
       new:
         create: Bæta við léni
+      title: Bannlisti yfir tölvupóstföng
     followers:
       back_to_account: Til baka í notandaaðgang
       title: "Fylgjast með %{acct}"
     instances:
       by_domain: Lén
+      delivery_available: Afhending er til taks
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
         other: "%{count} þekktir notendaaðgangar"
@@ -260,8 +279,13 @@ is:
         all: Allt
         limited: Takmarkað
         title: Umsjón
+      private_comment: Einkaathugasemd
+      public_comment: Opinber athugasemd
       title: Samband
       total_blocked_by_us: Útilokaðir af okkur
+      total_followed_by_them: Fylgt af þeim
+      total_followed_by_us: Fylgt af okkur
+      total_reported: Skýrslur um þá
       total_storage: Myndaviðhengi
     invites:
       deactivate_all: Gera allt óvirkt
@@ -290,6 +314,7 @@ is:
       account:
         note: minnispunktur
         report: skýrsla
+      action_taken_by: Aðgerð framkvæmd af
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
@@ -321,7 +346,11 @@ is:
         email: Fyrirtækistölvupóstur
         username: Notandanafn tengiliðar
       custom_css:
+        desc_html: Breyttu útlitinu með CSS-skilgreiningum sem hlaðið er inn á hverri síðu
         title: Sérsniðið CSS
+      default_noindex:
+        desc_html: Hefur áhrif á alla þá notendur sem ekki hafa breytt þessum stillingum sjálfir
+        title: Sjálfgefið láta notendur afþakka atriðaskráningu í leitarvélum
       domain_blocks:
         all: Til allra
         disabled: Til engra
@@ -344,6 +373,9 @@ is:
         desc_html: Leyfa að hægt sé að finna notendur
         title: Virkja notandasniðamöppu
       registrations:
+        closed_message:
+          desc_html: Birt á forsíðu þegar lokað er fyrir nýskráningar. Þú getur notað HTML-einindi
+          title: Skilaboð vegna lokunar á nýskráningu
         deletion:
           desc_html: Leyfa öllum að eyða aðgangnum sínum
           title: Opna eyðingu á notandaaðgangi
@@ -362,6 +394,7 @@ is:
       site_description:
         title: Lýsing á vefþjóni
       site_description_extended:
+        desc_html: góður staður fyrir siðareglur, almennt regluverk, leiðbeiningar og annað sem gerir netþjóninni þinn sérstakann. Þú getur notað HTML-einindi
         title: Sérsniðnar ítarlegar upplýsingar
       site_short_description:
         title: Stutt lýsing á netþjóninum
@@ -412,7 +445,11 @@ is:
       add_new: Bæta við nýju
       delete: Eyða
       edit: Breyta
+      edit_preset: Breyta forstilltri aðvörun
+      title: Sýsla með forstilltar aðvaranir
   admin_mailer:
+    new_pending_account:
+      subject: Nýr notandaaðgangur er kominn til yfirferðar á %{instance} (%{username})
     new_trending_tag:
       subject: 'Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})'
   aliases:
@@ -433,7 +470,14 @@ is:
     view: 'Skoða:'
     view_profile: Skoða notandasnið
     view_status: Skoða stöðufærslu
+  applications:
+    invalid_url: Slóðin sem þú gafst upp er ógild
+    regenerate_token: Endurgera aðgangsteikn
+    token_regenerated: Það tókst að endurgera aðgangsteiknið
+    warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!
+    your_token: Aðgangsteiknið þitt
   auth:
+    apply_for_account: Beiðni um boð
     change_password: Lykilorð
     checkbox_agreement_html: Ég samþykki <a href="%{rules_path}" target="_blank">reglur vefþjónsins</a> og <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
     checkbox_agreement_without_rules_html: Ég samþykki <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
@@ -445,12 +489,14 @@ is:
     forgot_password: Gleymdirðu lykilorðinu?
     login: Skrá inn
     logout: Skrá út
+    migrate_account: Færa á annan notandaaðgang
     or_log_in_with: Eða skráðu inn með
     providers:
       cas: CAS
       saml: SAML
     register: Nýskrá
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
+    resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
     reset_password: Endursetja lykilorð
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
@@ -458,17 +504,24 @@ is:
       title: Uppsetning
     status:
       account_status: Staða notandaaðgangs
+      confirming: Bíð eftir að staðfestingu tölvupósts sé lokið.
       functional: Notandaaðgangurinn þinn er með fulla virkni.
     trouble_logging_in: Vandræði við að skrá inn?
   authorize_follow:
+    already_following: Þú ert að þegar fylgjast með þessum aðgangi
     follow: Fylgja
+    follow_request: 'Þú sendir beiðni um að fylgjast með til:'
+    following: 'Tókst! Þú ert núna að fylgjast með:'
     post_follow:
       close: Eða að þú getur lokað þessum glugga.
       return: Birta notandasnið notandans
+      web: Fara á vefinn
     title: Fylgjast með %{acct}
   challenge:
     confirm: Halda áfram
+    hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
     invalid_password: Ógilt lykilorð
+    prompt: Staðfestu lykilorðið til að halda áfram
   datetime:
     distance_in_words:
       about_x_hours: "%{count}kl."
@@ -484,6 +537,9 @@ is:
       x_months: "%{count}mán"
       x_seconds: "%{count}sek"
   deletes:
+    challenge_not_passed: Upplýsingarnar sem þú settir inn eru ekki réttar
+    confirm_password: Settu inn núverandi lykilorð þitt til að staðfesta auðkennin þín
+    confirm_username: Skrifaðu inn notandanafnið þitt til að halda áfram með ferlið
     proceed: Eyða notandaaðgangi
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
