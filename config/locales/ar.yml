@@ -210,10 +210,12 @@ ar:
         confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_account_warning: "قام %{name} بإرسال تحذير إلى %{target}"
         create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
+        create_domain_allow: "قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
         create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
         demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
         destroy_custom_emoji: "قام %{name} بحذف الإيموجي %{target}"
+        destroy_domain_allow: "قام %{name} بإزالة النطاق %{target} مِن القائمة البيضاء"
         destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
         destroy_email_domain_block: "قام %{name} بإضافة نطاق البريد الإلكتروني %{target} إلى اللائحة البيضاء"
         destroy_status: "لقد قام %{name} بحذف منشور %{target}"
@@ -444,8 +446,11 @@ ar:
       custom_css:
         desc_html: يقوم بتغيير المظهر بواسطة سي أس أس يُحمَّل على كافة الصفحات
         title: سي أس أس مخصص
+      default_noindex:
+        title: عدم السماح مبدئيا لمحركات البحث بفهرسة الملفات التعريفية للمستخدمين
       domain_blocks:
         all: للجميع
+        disabled: لا أحد
         title: اظهر خاصية حجب النطاقات
       domain_blocks_rationale:
         title: اظهر السبب
@@ -859,6 +864,8 @@ ar:
       subject: "قام %{name} بترقية منشورك"
       title: ترقية جديدة
   notifications:
+    email_events: الأحداث للإشعارات عبر البريد الإلكتروني
+    email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
     other_settings: إعدادات أخرى للإشعارات
   number:
     human:
@@ -1085,6 +1092,7 @@ ar:
       subject:
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
+        silence: إنّ حسابك %{acct} محدود
         suspend: لقد تم تعليق حسابك %{acct}
       title:
         disable: الحساب مُجمَّد
