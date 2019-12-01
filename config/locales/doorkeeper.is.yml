@@ -4,6 +4,7 @@ is:
       doorkeeper/application:
         name: Heiti forrits
         redirect_uri: Slóð endurbeiningar
+        scopes: Gildissvið
         website: Vefsvæði forrits
   doorkeeper:
     applications:
@@ -17,17 +18,24 @@ is:
         destroy: Ertu viss?
       edit:
         title: Breyta forriti
+      form:
+        error: Úbbs! Athugaðu með mögulegar villur í útfyllingarreitum
+      help:
+        redirect_uri: Nota eina línu á hverja URI-slóð
+        scopes: Aðgreindu gildissviðin með bilum. Skildu þetta eftir autt til að nota sjálfgefin gildissvið.
       index:
         application: Forrit
         delete: Eyða
         name: Heiti
         new: Nýtt forrit
+        scopes: Gildissvið
         show: Sýna
         title: Forritin þín
       new:
         title: Nýtt forrit
       show:
         actions: Aðgerðir
+        scopes: Gildissvið
         title: 'Forrit: %{name}'
     authorizations:
       buttons:
@@ -37,7 +45,10 @@ is:
         title: Villa kom upp
       new:
         able_to: Það mun geta
+        prompt: Forritið %{client_name} biður um aðgang að notandaaðgangnum þínum
         title: Auðkenning er nauðsynleg
+      show:
+        title: Afritaðu þennan auðkenningarkóða og límdu hann inn hjá forritinu.
     authorized_applications:
       buttons:
         revoke: Afturkalla
@@ -48,6 +59,10 @@ is:
         created_at: Heimilað
         date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Gildissvið
+        title: Heimiluðu forritin þín
+    errors:
+      messages:
+        invalid_scope: Umbeðið gildissvið er ógilt, óþekkt eða rangt uppsett.
     flash:
       applications:
         create:
