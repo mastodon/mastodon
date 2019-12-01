@@ -122,6 +122,7 @@ is:
         title: Staðsetning
       login_status: Staða innskráningar
       media_attachments: Myndaviðhengi
+      memorialize: Breya í minningargrein
       moderation:
         active: Virkur
         all: Allt
@@ -178,6 +179,7 @@ is:
         create_domain_block: "%{name} útilokaði lénið %{target}"
         destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
         disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
+        memorialize_account: "%{name} breytti notandaaðganginum %{target} í minningargreinarsíðu"
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
         reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
       deleted_status: "(eydd stöðufærsla)"
@@ -635,6 +637,13 @@ is:
       merge_long: Halda fyrirliggjandi færslum og bæta við nýjum
       overwrite: Skrifa yfir
       overwrite_long: Skipta út fyrirliggjandi færslum með þeim nýju
+    types:
+      blocking: Listi yfir útilokanir
+      domain_blocking: Listi yfir útilokanir léna
+      following: Listi yfir fylgjendur
+      muting: Listi yfir þagganir
+    upload: Senda inn
+  in_memoriam_html: Minning.
   invites:
     delete: Gera óvirkt
     expired: Útrunnið
@@ -646,10 +655,15 @@ is:
       '604800': 1 vika
       '86400': 1 dagur
     expires_in_prompt: Aldrei
+    generate: Útbúa boðstengil
+    invited_by: 'Þér var boðið af:'
     max_uses_prompt: Engin takmörk
     table:
       expires_at: Rennur út
     title: Bjóða fólki
+  lists:
+    errors:
+      limit: Þú hefur náð hámarksfjölda lista
   media_attachments:
     validations:
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
@@ -720,6 +734,8 @@ is:
   relationships:
     activity: Virkni aðgangs
     dormant: Sofandi
+    followers: Fylgjendur
+    following: Fylgist með
     last_active: Síðasta virkni
     most_recent: Nýjast
     moved: Fært
@@ -925,6 +941,7 @@ is:
   time:
     formats:
       default: "%d. %b, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     disable: Gera óvirkt
     enable: Virkja
