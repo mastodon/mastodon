@@ -741,6 +741,7 @@ is:
       duration_too_short: er of snemma
   preferences:
     other: Annað
+    posting_defaults: Sjálfgefin gildi við gerð færslna
     public_timelines: Opinberar tímalínur
   relationships:
     activity: Virkni aðgangs
@@ -757,11 +758,19 @@ is:
     remove_selected_followers: Fjarlægja valda fylgjendur
     remove_selected_follows: Hætta að fylgjast með völdum notendum
     status: Staða aðgangs
+  remote_follow:
+    no_account_html: Ertu ekki með aðgang? Þú getur <a href='%{sign_up_path}' target='_blank'>nýskráð þig hér</a>
+    proceed: Halda áfram í að fylgja
+    prompt: 'Þú ætlar að fara að fylgjast með:'
   remote_interaction:
+    favourite:
+      proceed: Halda áfram í að setja í eftirlæti
+      prompt: 'Þú ætlar að setja þetta tíst í eftirlæti:'
     reblog:
       proceed: Halda áfram í endurbirtingu
       prompt: 'Þú ætlar að endurbirta þetta tíst:'
     reply:
+      proceed: Halda áfram í að svara
       prompt: 'Þú ætlar að svara þessu tísti:'
   scheduled_statuses:
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
@@ -841,6 +850,7 @@ is:
     content_warning: 'Aðvörun vegna efnis (CW): %{warning}'
     language_detection: Greina tungumál sjálfvirkt
     open_in_web: Opna í vafra
+    over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
       reblog: Ekki er hægt að festa endurbirtingu
     poll:
@@ -864,6 +874,8 @@ is:
     pinned: Fest tíst
     reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
+  tags:
+    does_not_match_previous_name: samsvarar ekki fyrra nafni
   terms:
     body_html: |
       <h2>Persónuverndarstefna </h2>
