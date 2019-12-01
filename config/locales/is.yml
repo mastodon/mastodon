@@ -616,8 +616,12 @@ is:
     copy: Afrita
     order_by: Raða eftir
     save_changes: Vista breytingar
+  html_validator:
+    invalid_markup: 'inniheldur ógildar HTML-merkingar: %{error}'
   identity_proofs:
     active: Virkur
+    authorize: Já, heimila
+    authorize_connection_prompt: Auðkenna dulkóðaða tengingu?
     i_am_html: Ég er %{username} á %{service}.
     identity: Auðkenni
     inactive: Óvirkt
@@ -628,7 +632,9 @@ is:
   imports:
     modes:
       merge: Sameina
+      merge_long: Halda fyrirliggjandi færslum og bæta við nýjum
       overwrite: Skrifa yfir
+      overwrite_long: Skipta út fyrirliggjandi færslum með þeim nýju
   invites:
     delete: Gera óvirkt
     expired: Útrunnið
