@@ -20,16 +20,11 @@ class AccountAuthorize extends ImmutablePureComponent {
     account: ImmutablePropTypes.map.isRequired,
     onAuthorize: PropTypes.func.isRequired,
     onReject: PropTypes.func.isRequired,
-    withNote: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
-  static defaultProps = {
-    showNote: true,
-  };
-
   render () {
-    const { intl, account, onAuthorize, onReject, withNote } = this.props;
+    const { intl, account, onAuthorize, onReject } = this.props;
     const content = { __html: account.get('note_emojified') };
 
     return (
@@ -40,7 +35,7 @@ class AccountAuthorize extends ImmutablePureComponent {
             <DisplayName account={account} />
           </Permalink>
 
-          {withNote && <div className='account__header__content' dangerouslySetInnerHTML={content} />}
+          <div className='account__header__content' dangerouslySetInnerHTML={content} />
         </div>
 
         <div className='account--panel'>
