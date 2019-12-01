@@ -14,10 +14,18 @@ module LdapAuthenticable
     end
 
     def ldap_get_user(attributes = {})
-      resource = joins(:account).find_by(accounts: { username: attributes[Devise.ldap_uid.to_sym].first })
+      safe_username = attributes[Devise.ldap_uid.to_sym].first
+      if Devise.ldap_uid_conversion_enabled
+        keys = Regexp.union(Devise.ldap_uid_conversion_search.chars)
+        replacement = Devise.ldap_uid_conversion_replace
+
+        safe_username = safe_username.gsub(keys, replacement)
+      end
+
+      resource = joins(:account).find_by(accounts: { username: safe_username })
 
       if resource.blank?
-        resource = new(email: attributes[:mail].first, agreement: true, account_attributes: { username: attributes[Devise.ldap_uid.to_sym].first }, admin: false, external: true, confirmed_at: Time.now.utc)
+        resource = new(email: attributes[:mail].first, agreement: true, account_attributes: { username: safe_username }, admin: false, external: true, confirmed_at: Time.now.utc)
         resource.save!
       end
 

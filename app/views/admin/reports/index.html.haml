@@ -8,6 +8,20 @@
       %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
       %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
 
+= form_tag admin_reports_url, method: 'GET', class: 'simple_form' do
+  .fields-group
+    - Admin::FilterHelper::REPORT_FILTERS.each do |key|
+      - if params[key].present?
+        = hidden_field_tag key, params[key]
+
+    - %i(by_target_domain).each do |key|
+      .input.string.optional
+        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.reports.#{key}")
+
+    .actions
+      %button= t('admin.accounts.search')
+      = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button negative'
+
 - @reports.group_by(&:target_account_id).each do |target_account_id, reports|
   - target_account = reports.first.target_account
   .report-card
