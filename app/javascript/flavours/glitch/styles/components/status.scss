@@ -232,7 +232,9 @@
 }
 
 .notif-cleaning {
-  .status, .notification-follow {
+  .status,
+  .notification-follow,
+  .notification-follow-request {
     padding-right: ($dismiss-overlay-width + 0.5rem);
   }
 }
@@ -256,7 +258,8 @@
   position: absolute;
 }
 
-.notification-follow {
+.notification-follow,
+.notification-follow-request {
   position: relative;
 
   // same like Status
