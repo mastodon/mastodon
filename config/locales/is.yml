@@ -139,6 +139,7 @@ is:
       pending: Bíður eftir yfirlestri
       perform_full_suspension: Setja í bið
       profile_url: Slóð á notandasnið
+      promote: Hækka í tign
       protocol: Samskiptamáti
       public: Opinber
       push_subscription_expires: PuSH-áskrift rennur út
@@ -183,6 +184,7 @@ is:
         destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
         disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
         memorialize_account: "%{name} breytti notandaaðganginum %{target} í minningargreinarsíðu"
+        promote_user: "%{name} hækkaði notandann %{target} í tign"
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
         reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
       deleted_status: "(eydd stöðufærsla)"
@@ -677,12 +679,14 @@ is:
       limit: Þú hefur náð hámarksfjölda lista
   media_attachments:
     validations:
+      images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
     acct: Fært í
     cancel: Hætta við endurbeiningu
     cancelled_msg: Tókst að hætta við endurbeiningu.
     errors:
+      move_to_self: getur ekki verið núverandi aðgangur
       not_found: fannst ekki
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
@@ -739,6 +743,10 @@ is:
       duplicate_options: innihalda tvítekin atriði
       duration_too_long: er of langt inn í framtíðina
       duration_too_short: er of snemma
+      expired: Könnuninni er þegar lokið
+      over_character_limit: geta ekki verið lengri en %{max} stafir hvert
+      too_few_options: verður að vera með fleiri en eitt atriði
+      too_many_options: getur ekki innihaldið meira en %{max} atriði
   preferences:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
@@ -759,9 +767,11 @@ is:
     remove_selected_follows: Hætta að fylgjast með völdum notendum
     status: Staða aðgangs
   remote_follow:
+    acct: Settu inn notandanafn@lén þaðan sem þú vilt vera virk/ur
     no_account_html: Ertu ekki með aðgang? Þú getur <a href='%{sign_up_path}' target='_blank'>nýskráð þig hér</a>
     proceed: Halda áfram í að fylgja
     prompt: 'Þú ætlar að fara að fylgjast með:'
+    reason_html: "<strong>Hvers vegna er þetta skref nauðsynlegt?</strong> <code>%{instance}</code> er ekki endilega netþjónninn þar sem þú ert skráð/ur, þannig að við verðum að endurbeina þér á heimaþjóninn þinn fyrst."
   remote_interaction:
     favourite:
       proceed: Halda áfram í að setja í eftirlæti
@@ -773,6 +783,8 @@ is:
       proceed: Halda áfram í að svara
       prompt: 'Þú ætlar að svara þessu tísti:'
   scheduled_statuses:
+    over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst fyrir þennan dag
+    over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
   sessions:
     activity: Síðasta virkni
@@ -852,6 +864,8 @@ is:
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
+      limit: Þú hefur þegar fest leyfilegan hámarksfjölda tísta
+      ownership: Tíst frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
     poll:
       total_people:
