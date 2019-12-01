@@ -6,7 +6,7 @@ module LdapAuthenticable
   class_methods do
     def authenticate_with_ldap(params = {})
       ldap   = Net::LDAP.new(ldap_options)
-      filter = format(Devise.ldap_search_filter, uid: Devise.ldap_uid, email: params[:email])
+      filter = format(Devise.ldap_search_filter, uid: Devise.ldap_uid, mail: Devise.ldap_mail, email: params[:email])
 
       if (user_info = ldap.bind_as(base: Devise.ldap_base, filter: filter, password: params[:password]))
         ldap_get_user(user_info.first)
@@ -25,7 +25,7 @@ module LdapAuthenticable
       resource = joins(:account).find_by(accounts: { username: safe_username })
 
       if resource.blank?
-        resource = new(email: attributes[:mail].first, agreement: true, account_attributes: { username: safe_username }, admin: false, external: true, confirmed_at: Time.now.utc)
+        resource = new(email: attributes[Devise.ldap_mail.to_sym].first, agreement: true, account_attributes: { username: safe_username }, admin: false, external: true, confirmed_at: Time.now.utc)
         resource.save!
       end
 
