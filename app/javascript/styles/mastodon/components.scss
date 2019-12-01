@@ -6517,6 +6517,16 @@ noscript {
     flex: 0 0 auto;
     padding: 10px;
     padding-top: 12px;
+    position: relative;
+  }
+
+  &__unread {
+    display: inline-block;
+    background: $highlight-text-color;
+    border-radius: 50%;
+    width: 0.625rem;
+    height: 0.625rem;
+    margin: -.1ex .15em .1ex;
   }
 
   &__content {
@@ -6562,6 +6572,22 @@ noscript {
 
     a {
       word-break: break-word;
+    }
+  }
+
+  &--unread {
+    background: lighten($ui-base-color, 2%);
+
+    &:focus {
+      background: lighten($ui-base-color, 4%);
+    }
+
+    .conversation__content__info {
+      font-weight: 700;
+    }
+
+    .conversation__content__relative-time {
+      color: $primary-text-color;
     }
   }
 }
