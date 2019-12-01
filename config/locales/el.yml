@@ -404,6 +404,7 @@ el:
       are_you_sure: Σίγουρα;
       assign_to_self: Ανάθεση σε μένα
       assigned: Αρμόδιος συντονιστής
+      by_target_domain: Κόμβος του λογαριασμού υπό καταγγελία
       comment:
         none: Κανένα
       created_at: Καταγγέλθηκε
@@ -886,6 +887,8 @@ el:
       subject: "Ο/Η %{name} προώθησε την κατάστασή σου"
       title: Νέα προώθηση
   notifications:
+    email_events: Συμβάντα για ειδοποιήσεις μέσω email
+    email_events_hint: 'Επέλεξε συμβάντα για τα οποία θέλεις να λαμβάνεις ειδοποιήσεις μέσω email:'
     other_settings: Άλλες ρυθμίσεις ειδοποιήσεων
   number:
     human:
@@ -920,6 +923,8 @@ el:
   relationships:
     activity: Δραστηριότητα λογαριασμού
     dormant: Αδρανής
+    followers: Ακόλουθοι
+    following: Ακολουθηθείς
     last_active: Τελευταία δραστηριότητα
     most_recent: Πιο πρόσφατα
     moved: Μετακόμισε
