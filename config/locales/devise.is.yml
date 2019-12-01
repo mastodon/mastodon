@@ -1,6 +1,9 @@
 is:
   devise:
+    confirmations:
+      confirmed: Tölvupóstfang þitt hefur verið staðfest.
     failure:
+      already_authenticated: Þú ert nú þegar skráð(ur) inn.
       invalid: Ógildur %{authentication_keys} eða lykilorð.
       locked: Notandaaðgangurinn þinn er læstur.
       not_found_in_database: Ógildur %{authentication_keys} eða lykilorð.
@@ -14,6 +17,7 @@ is:
         subject: 'Mastodon: Tölvupóstfang breyttist'
         title: Nýtt tölvupóstfang
       password_change:
+        explanation: Lykilorðinu á notandaaðgangnum þínum hefur verið breytt.
         subject: 'Mastodon: Lykilorð breyttist'
         title: Lykilorð breyttist
       reconfirmation_instructions:
@@ -21,6 +25,7 @@ is:
         title: Staðfestu tölvupóstfang
       reset_password_instructions:
         action: Breyta lykilorði
+        explanation: Þú baðst um nýtt lykilorð fyrir notandaaðganginn þinn.
         title: Endurstilling lykilorðs
       two_factor_disabled:
         title: 2FA tveggja-þátta auðkenning er óvirk
