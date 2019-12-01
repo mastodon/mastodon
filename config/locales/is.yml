@@ -164,6 +164,9 @@ is:
       search: Leita
       search_same_ip: Aðrir notendur með sama IP-vistfang
       shared_inbox_url: Slóð á sameiginlegt innhólf
+      show:
+        created_reports: Gerðar kærur
+        targeted_reports: Kært af öðrum
       subscribe: Gerast áskrifandi
       suspended: Í bið
       time_in_queue: Bíður í biðröð %{time}
@@ -226,7 +229,7 @@ is:
       feature_spam_check: Ruslpóstvarnir
       feature_timeline_preview: Forskoðun tímalínu
       features: Eiginleikar
-      open_reports: opnar skýrslur
+      open_reports: opnar kærur
       recent_users: Nýlegir notendur
       search: Leit í öllum texta
       single_user_mode: Eins-notandahamur
@@ -251,8 +254,9 @@ is:
       private_comment: Einkaathugasemd
       public_comment: Opinber athugasemd
       reject_media: Hafna myndskrám
+      reject_reports: Hafna kærum
       rejecting_media: hafna myndskrám
-      rejecting_reports: hafna skýrslum
+      rejecting_reports: hafna kærum
       severity:
         silence: þaggað
         suspend: í bið
@@ -287,7 +291,7 @@ is:
       total_blocked_by_us: Útilokaðir af okkur
       total_followed_by_them: Fylgt af þeim
       total_followed_by_us: Fylgt af okkur
-      total_reported: Skýrslur um þá
+      total_reported: Kærur um þá
       total_storage: Myndaviðhengi
     invites:
       deactivate_all: Gera allt óvirkt
@@ -315,7 +319,7 @@ is:
     reports:
       account:
         note: minnispunktur
-        report: skýrsla
+        report: kæra
       action_taken_by: Aðgerð framkvæmd af
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
@@ -330,12 +334,15 @@ is:
         create_and_resolve: Leysa með minnispunkti
         create_and_unresolve: Enduropna með minnispunkti
         delete: Eyða
-      report: 'Skýrsla #%{id}'
-      reported_by: Tilkynnt af
+        placeholder: Lýstu til hvaða aðgerða hefur verið gripið eða uppfærðu inn aðrar tengdar upplýsingar...
+      reopen: Enduropna kæru
+      report: 'Kæra #%{id}'
+      reported_account: Kærður notandaaðgangur
+      reported_by: Kært af
       resolved: Leyst
-      resolved_msg: Það tókst að leysa skýrsluna!
+      resolved_msg: Það tókst að leysa kæruna!
       status: Staða
-      title: Skýrslur
+      title: Kærur
       unassign: Aftengja úthlutun
       unresolved: Óleyst
       updated_at: Uppfært
@@ -452,6 +459,10 @@ is:
   admin_mailer:
     new_pending_account:
       subject: Nýr notandaaðgangur er kominn til yfirferðar á %{instance} (%{username})
+    new_report:
+      body: "%{reporter} hefur kært %{target}"
+      body_remote: Einhver frá %{domain} hefur kært %{target}
+      subject: 'Ný kæra vegna %{instance} (#%{id})'
     new_trending_tag:
       subject: 'Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})'
   aliases:
@@ -815,6 +826,8 @@ is:
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
     two_factor_authentication: Teggja-þátta auðkenning
+  spam_check:
+    spam_detected: Þetta er sjálfvirk kæra. Ruslpóstur hefur fundist.
   statuses:
     attached:
       description: 'Viðhengt: %{attached}'
