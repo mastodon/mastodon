@@ -87,9 +87,9 @@ class Poll extends ImmutablePureComponent {
     this._toggleOption(value);
   };
 
-  handleOptionKeyPress = (optionIndex, e) => {
+  handleOptionKeyPress = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      this._toggleOption(optionIndex);
+      this._toggleOption(e.target.getAttribute('data-index'));
       e.stopPropagation();
       e.preventDefault();
     }
@@ -150,9 +150,10 @@ class Poll extends ImmutablePureComponent {
               className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
               tabIndex='0'
               role={poll.get('multiple') ? 'checkbox' : 'radio'}
-              onKeyPress={this.handleOptionKeyPress.bind(this, optionIndex)}
+              onKeyPress={this.handleOptionKeyPress}
               aria-checked={active}
               aria-label={option.get('title')}
+              data-index={optionIndex}
             />
           )}
           {showResults && <span className='poll__number'>
