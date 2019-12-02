@@ -1012,7 +1012,9 @@ is:
     enabled: Tveggja-þátta auðkenning er virk
     enabled_success: Það tókst að virkja tveggja-þátta auðkenningu
     generate_recovery_codes: Útbúa endurheimtukóða
+    recovery_codes: Kóðar fyrir endurheimtingu öryggisafrits
     setup: Setja upp
+    wrong_code: Kóðinn sem þú settir inn er ógildur! Eru klukkur netþjónsins og tækisins réttar?
   user_mailer:
     backup_ready:
       subject: Safnskráin þín er tilbúin til niðurhals
@@ -1022,6 +1024,7 @@ is:
       statuses: 'Sérstaklega fyrir:'
       subject:
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
+        none: Aðvörun fyrir %{acct}
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
