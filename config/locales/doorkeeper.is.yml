@@ -6,6 +6,15 @@ is:
         redirect_uri: Slóð endurbeiningar
         scopes: Gildissvið
         website: Vefsvæði forrits
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: má ekki innihalda brot.
+              invalid_uri: verður að vera gild URI-slóð.
+              relative_uri: verður að vera algild URI-slóð.
+              secured_uri: verður að vera HTTPS/SSL URI-slóð.
   doorkeeper:
     applications:
       buttons:
@@ -35,7 +44,9 @@ is:
         title: Nýtt forrit
       show:
         actions: Aðgerðir
+        application_id: Lykill biðlara
         scopes: Gildissvið
+        secret: Leynilykill biðlara
         title: 'Forrit: %{name}'
     authorizations:
       buttons:
