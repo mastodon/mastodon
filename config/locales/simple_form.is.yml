@@ -10,12 +10,14 @@ is:
       defaults:
         avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         bot: Þessi aðgangur er aðallega til að framkvæma sjálfvirkar aðgerðir og gæti verið án þess að hann sé vaktaður reglulega
+        current_password: Í öryggisskyni skaltu setja inn lykiloðið fyrir þennan notandaaðgang
         discoverable: Persónusniðamappan er önnur leið til að láta notandaaðganginn þinn ná til fleiri lesenda
         email: Þú munt fá sendan staðfestingarpóst
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
+        setting_default_sensitive: Viðkvæmar myndir eru sjálfgefið faldar og er hægt að birta með smelli
         setting_display_media_default: Fela myndir sem merktar eru viðkvæmar
         setting_display_media_hide_all: Alltaf fela allar myndir
         setting_display_media_show_all: Alltaf birta myndir sem merktar eru viðkvæmar
@@ -24,6 +26,10 @@ is:
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er í stað þess að hún skruni streyminu sjálfvirkt
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
+      imports:
+        data: CSV-skrá sem flutt hefur verið út af öðrum Mastodon-þjóni
+      invite_request:
+        text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
     labels:
       account:
         fields:
@@ -41,6 +47,7 @@ is:
           suspend: Setja í bið og eyða endanlega gögnum notandaaðgangsins
         warning_preset_id: Nota forstillta aðvörun
       defaults:
+        autofollow: Bjóða að fylgjast með aðgangnum þínum
         avatar: Auðkennismynd
         bot: Þetta er aðgangur fyrir róbót
         chosen_languages: Sía tungumál
@@ -54,6 +61,8 @@ is:
         email: Tölvupóstfang
         expires_in: Rennur út eftir
         fields: Lýsigögn notandasniðs
+        header: Síðuhaus
+        irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
         locked: Læsa aðgangi
         max_uses: Hamárksfjöldi afnota
@@ -79,6 +88,7 @@ is:
         setting_hide_network: Fela netkerfið þitt
         setting_noindex: Afþakka atriðaskráningu í leitarvélum
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
+        setting_show_application: Upplýsa um forrit sem er til að senda tíst
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_theme: Þema vefsvæðis
         setting_trends: Birta það sem er efst á baugi í dag
@@ -92,19 +102,29 @@ is:
         whole_word: Heil orð
       featured_tag:
         name: Myllumerki
+      interactions:
+        must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
+        must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
+        must_be_following_dm: Loka á bein skilaboð frá þeim sem þú fylgist ekki með
       invite:
         comment: Athugasemd
+      invite_request:
+        text: Hvers vegna viltu taka þátt?
       notification_emails:
+        digest: Senda uppsafnaðan tölvupóst
         favourite: Einhver setti stöðufærslu þína í eftirlæti
         follow: Einhver fylgist núna með þér
         follow_request: Einhver hefur beðið um að fylgjast með þér
         mention: Einhver minntist á þig
+        pending_account: Nýr notandaaðgangur þarfnast yfirferðar
         reblog: Einhver endurbirti stöðufærslu þína
         report: Ný kæra hefur verið send inn
         trending_tag: Óyfirfarið myllumerki er í umræðunni
       tag:
+        listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki
         trendable: Leyfa þessu myllumerki að birtast undir tilhneigingum
+        usable: Leyfa tístum að nota þetta myllumerki
     'no': 'Nei'
     recommended: Mælt með
     required:
