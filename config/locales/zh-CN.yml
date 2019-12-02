@@ -397,6 +397,7 @@ zh-CN:
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
+      by_target_domain: 被举报账户的域名
       comment:
         none: 没有
       created_at: 举报时间
@@ -874,6 +875,10 @@ zh-CN:
       body: '你的嘟文被 %{name} 转嘟了：'
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
+  notifications:
+    email_events: 电子邮件通知事件
+    email_events_hint: '选择你想要收到通知的事件：'
+    other_settings: 其它通知设置
   number:
     human:
       decimal_units:
@@ -907,6 +912,8 @@ zh-CN:
   relationships:
     activity: 帐号活动
     dormant: 休眠
+    followers: 关注者
+    following: 正在关注
     last_active: 最近活动
     most_recent: 最近的
     moved: 已迁移
