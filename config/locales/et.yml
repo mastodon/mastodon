@@ -404,6 +404,7 @@ et:
       are_you_sure: Olete kindel?
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
+      by_target_domain: Teavitatud konto domeen
       comment:
         none: Pole
       created_at: Teavitatud
@@ -885,6 +886,10 @@ et:
       body: '%{name} upitas Teie staatust:'
       subject: "%{name} upitas su staatust"
       title: Uus upitus
+  notifications:
+    email_events: E-posti teadete sündmused
+    email_events_hint: 'Valige sündmused, millest soovite teavitusi:'
+    other_settings: Muud teadete sätted
   number:
     human:
       decimal_units:
@@ -918,6 +923,8 @@ et:
   relationships:
     activity: Konto tegevus
     dormant: Seisev
+    followers: Jälgijad
+    following: Jälgib
     last_active: Viimati aktiivne
     most_recent: Viimased
     moved: Kolinud
