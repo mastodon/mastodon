@@ -1,6 +1,8 @@
 is:
   simple_form:
     hints:
+      account_migration:
+        acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast til
       admin_account_action:
         type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
       defaults:
@@ -33,6 +35,8 @@ is:
         types:
           disable: Gera innskráningu óvirka
           none: Gera ekkert
+          silence: Hylja
+          suspend: Setja í bið og eyða endanlega gögnum notandaaðgangsins
         warning_preset_id: Nota forstillta aðvörun
       defaults:
         avatar: Auðkennismynd
