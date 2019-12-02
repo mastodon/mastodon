@@ -77,11 +77,13 @@ is:
     errors:
       messages:
         access_denied: Eigandi tilfangs eða auðkenningarþjónn höfnuðu beininni.
+        invalid_redirect_uri: Endurbeiningarslóðin sem fylgdi er ekki gild.
         invalid_scope: Umbeðið gildissvið er ógilt, óþekkt eða rangt uppsett.
         invalid_token:
           expired: Auðkenningarteiknið er útrunnið
           revoked: Auðkenningarteiknið var aturkallað
           unknown: Auðkenningarteiknið er ógilt
+        unsupported_response_type: Auðkenningarþjónninn styður ekki þessa tegund svars.
     flash:
       applications:
         create:
