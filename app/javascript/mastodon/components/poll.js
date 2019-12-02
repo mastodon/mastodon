@@ -149,7 +149,7 @@ class Poll extends ImmutablePureComponent {
             <span
               className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
               tabIndex='0'
-              role={ poll.get('multiple') ? 'checkbox' : 'radio' }
+              role={poll.get('multiple') ? 'checkbox' : 'radio'}
               onKeyPress={this.handleOptionKeyPress.bind(this, optionIndex)}
               aria-checked={active}
               aria-label={option.get('title')}
