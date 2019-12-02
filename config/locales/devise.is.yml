@@ -19,6 +19,8 @@ is:
       confirmation_instructions:
         action: Staðfestu tölvupóstfang
         action_with_app: Staðfestu og snúðu aftur í %{app}
+        explanation: Þú hefur búið til notandaaðgang á %{host} með þessu tölvupóstfangi. Þú ert einn smell frá því að virkja hann. Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst.
+        explanation_when_pending: Þú sóttir um að vera boðinn á %{host} með þessu tölvupóstfangi. Þegar þú hefur staðfest tölvupóstfangið, munum við fara yfir umsóknina þína. Þú getur skrá þig inn og breytt ýmsum upplýsingum um þig eða jafnvel eytt aðgangnum þínum, en þú getur hinsvegar ekki nýtt þér flesta eiginleika hans fyrr en búið er að samþykkja aðganginn. Ef umsókninni er hafnað, verður öllum gögnum um þig eytt, þannig að ekki verður krafist frekari aðgerða af þinni hálfu. Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst.
         extra_html: Skoðaðu líka <a href="%{terms_path}">gildandi reglur vefþjónsins</a> og <a href="%{policy_path}">þjónustuskilmálana okkar</a>.
         subject: 'Mastodon: Leiðbeiningar vegna staðfestingar á %{instance}'
         title: Staðfestu tölvupóstfang
@@ -66,6 +68,7 @@ is:
       updated: Það tókst að breyta lykilorðinu þínu. Þú ert núna skráð/ur inn.
       updated_not_active: Það tókst að breyta lykilorðinu þínu.
     registrations:
+      destroyed: Bless! Hætt hefur verið við notandaaðganginn þinn. Við vonumst samt eftir að sjá þig fljótt aftur.
       signed_up: Velkonin/n! Það tókst að nýskrá þig.
       signed_up_but_inactive: Þér hefur tekist að nýskrá þig. Hinsvegar gátum við ekki skráð þig inn því notandaaðgangurinn þinn hefur ekki enn verið virkjaður.
       signed_up_but_locked: Þér hefur tekist að nýskrá þig. Hinsvegar gátum við ekki skráð þig inn því notandaaðgangurinn þinn er læstur.
