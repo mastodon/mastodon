@@ -67,8 +67,12 @@ is:
       updated_not_active: Það tókst að breyta lykilorðinu þínu.
     registrations:
       signed_up: Velkonin/n! Það tókst að nýskrá þig.
+      signed_up_but_inactive: Þér hefur tekist að nýskrá þig. Hinsvegar gátum við ekki skráð þig inn því notandaaðgangurinn þinn hefur ekki enn verið virkjaður.
+      signed_up_but_locked: Þér hefur tekist að nýskrá þig. Hinsvegar gátum við ekki skráð þig inn því notandaaðgangurinn þinn er læstur.
       signed_up_but_pending: Skilaboð með staðfestingartengli hafa verið send á tölvupóstfangið þitt. Þegar þú smellir á þennan tengil munum við yfirfara og staðfesta umsóknina þína. Þú færð svo að vita hvort hún verður samþykkt.
       signed_up_but_unconfirmed: Skilaboð með staðfestingartengli hafa verið send á tölvupóstfangið þitt. Smelltu á þennan tengil til að virkja notandaaðganginn þinn. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þessi skilaboð.
+      update_needs_confirmation: Þú uppfærðir notandaaðganginn þinn, en við þurfum að sannreyna nýja tölvupóstfangið þitt. Skoðaðu tölvupóstinn þinn og fylgdu tenglinum sem þangað á að berast til að staðfesta tölvupóstfangið þitt. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      updated: Það tókst að uppfæra notandaaðganginn þinn.
     sessions:
       already_signed_out: Tókst að skrá út.
       signed_in: Tókst að skrá inn.
@@ -76,7 +80,11 @@ is:
     unlocks:
       send_instructions: Þú munt innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að aflæsa notandaaðgangnum þínum. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
       send_paranoid_instructions: Ef notandaaðgangurinn þinn er til, munt þú innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að aflæsa honum. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      unlocked: Það tókst að aflæsa notandaaðgangnum þínum. Skráðu þig inn til að halda áfram.
   errors:
     messages:
+      already_confirmed: var þegar staðfest, prófaðu að skrá þig inn
+      confirmation_period_expired: þarf að staðfesta inna %{period}, biddu um nýtt
+      expired: er útrunnið, biddu um nýtt
       not_found: fannst ekki
       not_locked: var ekki læst
