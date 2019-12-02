@@ -30,10 +30,12 @@ is:
       form:
         error: Úbbs! Athugaðu með mögulegar villur í útfyllingarreitum
       help:
+        native_redirect_uri: Notaðu %{native_redirect_uri} fyrir staðværar prófanir
         redirect_uri: Nota eina línu á hverja URI-slóð
         scopes: Aðgreindu gildissviðin með bilum. Skildu þetta eftir autt til að nota sjálfgefin gildissvið.
       index:
         application: Forrit
+        callback_url: URL-slóð baksvörunar (callback)
         delete: Eyða
         name: Heiti
         new: Nýtt forrit
@@ -45,6 +47,7 @@ is:
       show:
         actions: Aðgerðir
         application_id: Lykill biðlara
+        callback_urls: URL-slóðir baksvörunar (callback)
         scopes: Gildissvið
         secret: Leynilykill biðlara
         title: 'Forrit: %{name}'
@@ -73,7 +76,12 @@ is:
         title: Heimiluðu forritin þín
     errors:
       messages:
+        access_denied: Eigandi tilfangs eða auðkenningarþjónn höfnuðu beininni.
         invalid_scope: Umbeðið gildissvið er ógilt, óþekkt eða rangt uppsett.
+        invalid_token:
+          expired: Auðkenningarteiknið er útrunnið
+          revoked: Auðkenningarteiknið var aturkallað
+          unknown: Auðkenningarteiknið er ógilt
     flash:
       applications:
         create:
