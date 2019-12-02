@@ -13,6 +13,6 @@
       .dialog__illustration
         %h1
           = link_to root_url, class: 'brand' do
-            = site_title
+            = Setting.default_settings['site_title']
       .dialog__message
         %h1= yield :content
