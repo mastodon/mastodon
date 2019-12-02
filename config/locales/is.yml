@@ -127,7 +127,7 @@ is:
         active: Virkur
         all: Allt
         pending: Í bið
-        silenced: Þaggaður
+        silenced: Hulið
         suspended: Í bið
         title: Umsjón
       moderation_notes: Minnispunktar umsjónarmanna
@@ -168,11 +168,14 @@ is:
       show:
         created_reports: Gerðar kærur
         targeted_reports: Kært af öðrum
+      silence: Hylja
+      silenced: Hulið
       subscribe: Gerast áskrifandi
       suspended: Í bið
       time_in_queue: Bíður í biðröð %{time}
       title: Notandaaðgangar
       unconfirmed_email: Óstaðfestur tölvupóstur
+      undo_silenced: Hætta að hylja
       unsubscribe: Taka úr áskrift
       username: Notandanafn
       warn: Aðvara
@@ -187,6 +190,10 @@ is:
         promote_user: "%{name} hækkaði notandann %{target} í tign"
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
         reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
+        silence_account: "%{name} gerði notandaaðganginn %{target} hulinn"
+        suspend_account: "%{name} setti notandaaðganginn %{target} í bið"
+        unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
+        unsuspend_account: "%{name} tók notandaaðganginn {target} úr bið"
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
       assign_category: Úthluta flokki
@@ -245,12 +252,16 @@ is:
       week_users_new: notendur þessari viku
     domain_blocks:
       add_new: Bæta við nýrri útilokun á léni
+      created_msg: Útilokun léns er núna í vinnslu
+      destroyed_msg: Útilokun léns hefur verið aflétt
       domain: Lén
-      edit: Breyta útilokunum léna
+      edit: Breyta útilokun léns
       new:
         create: Búa til útilokun
         severity:
+          desc_html: "<strong>Hylja</strong> mun gera færslur á notandaaðgangnum ósýnilegar öllum þeim sem ekki eru að fylgjast með þeim. <strong>Setja í bið</strong> mun fjarlægja allt efni á notandaaðgangnum, myndgögn og gögn á notandasniði. Notaðu <strong>Ekkert</strong> ef þú ætlar bara að hafna margmiðlunarskrám."
           noop: Ekkert
+          silence: Hylja
           suspend: Setja í bið
         title: Ný útilokun á léni
       private_comment: Einkaathugasemd
@@ -260,9 +271,12 @@ is:
       rejecting_media: hafna myndskrám
       rejecting_reports: hafna kærum
       severity:
-        silence: þaggað
+        silence: hulið
         suspend: í bið
       show:
+        retroactive:
+          silence: Hætta að hylja viðkomandi notendaaðganga frá þessu léni
+          suspend: Taka úr bið viðkomandi notendaaðganga frá þessu léni
         title: Afturkalla útilokun á léni fyrir %{domain}
         undo: Afturkalla
       undo: Afturkalla útilokun á léni
@@ -686,15 +700,22 @@ is:
       images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
-    acct: Fært í
+    acct: Færði í
     cancel: Hætta við endurbeiningu
     cancelled_msg: Tókst að hætta við endurbeiningu.
     errors:
       move_to_self: getur ekki verið núverandi aðgangur
       not_found: fannst ekki
+      on_cooldown: Þú ert í kælingu
+    followers_count: Fylgjendur þegar flutningur átti sér stað
+    past_migrations: Fyrri yfirfærslur
+    proceed_with_move: Færa fylgjendur
+    redirecting_to: Notandaaðgangurinn þinn endurbeinist á %{acct}.
+    set_redirect: Stilla endurbeiningu
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       only_redirect_html: Einnig geturðu <a href="%{path}">einungis sett upp endurbeiningu á notandasniðið þitt</a>.
+      other_data: Engin önnur gögn munu flytjast sjálfvirkt
   moderation:
     title: Umsjón
   notification_mailer:
