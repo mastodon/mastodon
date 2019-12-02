@@ -486,6 +486,8 @@ is:
     view_profile: Skoða notandasnið
     view_status: Skoða stöðufærslu
   applications:
+    created: Það tókst að búa til forrit
+    destroyed: Það tókst að eyða forriti
     invalid_url: Slóðin sem þú gafst upp er ógild
     regenerate_token: Endurgera aðgangsteikn
     token_regenerated: Það tókst að endurgera aðgangsteiknið
@@ -497,11 +499,13 @@ is:
     checkbox_agreement_html: Ég samþykki <a href="%{rules_path}" target="_blank">reglur vefþjónsins</a> og <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
     checkbox_agreement_without_rules_html: Ég samþykki <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
     delete_account: Eyða notandaaðgangi
+    delete_account_html: Ef þú vilt eyða notandaaðgangnum þínum, þá geturðu <a href="%{path}">farið í það hér</a>. Þú verður beðin/n um staðfestingu.
     description:
       prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
     didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
     forgot_password: Gleymdirðu lykilorðinu?
+    invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eðaútrunnið. Biddu um nýtt.
     login: Skrá inn
     logout: Skrá út
     migrate_account: Færa á annan notandaaðgang
