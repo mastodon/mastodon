@@ -88,16 +88,28 @@ kab:
       username: Isem n useqdac
       web: Web
     custom_emojis:
+      by_domain: Taγult
       delete: Kkes
       disable: Gdel
       enable: Rmed
     dashboard:
       features: Timahaltin
       software: Aseγẓan
+    domain_blocks:
+      domain: Taγult
+      new:
+        severity:
+          silence: Sgugem
     email_domain_blocks:
+      add_new: Rnu amaynut
       delete: Kkes
+      domain: Taγult
+      new:
+        create: Rnu taγult
     followers:
       title: "Imeḍfaṛen n %{acct}"
+    instances:
+      by_domain: Taγult
     relays:
       delete: Kkes
       disable: Gdel
@@ -116,6 +128,7 @@ kab:
     delete_account: Kkes amiḍan
     description:
       prefix_sign_up: Zeddi di Masṭudun assa!
+    forgot_password: Tettud awal-ik uffir?
     login: Qqen
     logout: Ffeγ
     security: Taγellist
@@ -175,6 +188,9 @@ kab:
     expires_in_prompt: Werǧin
   preferences:
     other: Wiyaḍ
+  relationships:
+    followers: Imeḍfaṛen
+    following: Yeṭafaṛ
   sessions:
     browser: Iminig
     browsers:
@@ -184,12 +200,14 @@ kab:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
+    ip: IP
   settings:
     account: Amiḍan
     account_settings: Iγewwaṛen n umiḍan
     appearance: Udem
     back: Uγal γer Masṭudun
     development: Taneflit
+    notifications: Tilγa
     preferences: Imenyafen
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
   statuses:
@@ -201,6 +219,10 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     open_in_web: Ldi deg Web
+    show_more: Sken-ed ugar
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Imeḍfaṛen kan
   themes:
     contrast: Masṭudun (agnil awriran)
     default: Masṭudun (Aberkan)
