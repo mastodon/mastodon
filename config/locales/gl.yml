@@ -403,6 +403,7 @@ gl:
       are_you_sure: Está segura?
       assign_to_self: Asignarmo
       assigned: Moderador asignado
+      by_target_domain: Dominio da conta sobre a que informa
       comment:
         none: Nada
       created_at: Reportado
@@ -884,6 +885,10 @@ gl:
       body: 'O seu estado foi promocionado por %{name}:'
       subject: "%{name} promoveu o seu estado"
       title: Nova promoción
+  notifications:
+    email_events: Eventos para os correos de notificación
+    email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
+    other_settings: Outros axustes das notificacións
   number:
     human:
       decimal_units:
@@ -917,6 +922,8 @@ gl:
   relationships:
     activity: Actividade da conta
     dormant: En repouso
+    followers: Seguidoras
+    following: Seguindo
     last_active: Último activo
     most_recent: Máis recente
     moved: Movida
