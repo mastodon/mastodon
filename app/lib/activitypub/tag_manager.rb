@@ -68,10 +68,19 @@ class ActivityPub::TagManager
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
         account_ids = status.active_mentions.pluck(:account_id)
-        to = status.account.followers.where(id: account_ids).map { |account| uri_for(account) }
-        to.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).map { |request| uri_for(request.account) })
+        to = status.account.followers.where(id: account_ids).each_with_object([]) do |account, result|
+          result << uri_for(account)
+          result << account.followers_url if account.group?
+        end
+        to.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).each_with_object([]) do |request, result|
+          result << uri_for(request.account)
+          result << request.account.followers_url if request.account.group?
+        end)
       else
-        status.active_mentions.map { |mention| uri_for(mention.account) }
+        status.active_mentions.each_with_object([]) do |mention, result|
+          result << uri_for(mention.account)
+          result << mention.account.followers_url if mention.account.group?
+        end
       end
     end
   end
@@ -97,10 +106,19 @@ class ActivityPub::TagManager
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
         account_ids = status.active_mentions.pluck(:account_id)
-        cc.concat(status.account.followers.where(id: account_ids).map { |account| uri_for(account) })
-        cc.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).map { |request| uri_for(request.account) })
+        cc.concat(status.account.followers.where(id: account_ids).each_with_object([]) do |account, result|
+          result << uri_for(account)
+          result << account.followers_url if account.group?
+        end)
+        cc.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).each_with_object([]) do |request, result|
+          result << uri_for(request.account)
+          result << request.account.followers_url if request.account.group?
+        end)
       else
-        cc.concat(status.active_mentions.map { |mention| uri_for(mention.account) })
+        cc.concat(status.active_mentions.each_with_object([]) do |mention, result|
+          result << uri_for(mention.account)
+          result << mention.account.followers_url if mention.account.group?
+        end)
       end
     end
 
