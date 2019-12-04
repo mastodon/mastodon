@@ -177,6 +177,10 @@
     button,
     select {
       flex: 1 1 50%;
+
+      &:focus {
+        border-color: $highlight-text-color;
+      }
     }
   }
 
