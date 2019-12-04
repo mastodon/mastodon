@@ -326,9 +326,9 @@ ar:
         affected_accounts:
           few: "%{count} حسابات معنية في قاعدة البيانات"
           many: "%{count} حسابات معنية في قاعدة البيانات"
-          one: حساب واحد معني في قاعدة البيانات
+          one: حساب واحد %{count} معني في قاعدة البيانات
           other: "%{count} حسابات معنية في قاعدة البيانات"
-          two: "%{count} حسابات معنية في قاعدة البيانات"
+          two: حسابين %{count} معنيين في قاعدة البيانات
           zero: "%{count} حسابات معنية في قاعدة البيانات"
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
@@ -517,6 +517,8 @@ ar:
       title: منشورات الحساب
       with_media: تحتوي على وسائط
     tags:
+      accounts_today: استخدامات هذا اليوم
+      accounts_week: استخدامات هذا الأسبوع
       context: السياق
       directory: في دليل حسابات المستخدمين
       in_directory: "%{count} في سجل حسابات المستخدمين"
@@ -551,10 +553,12 @@ ar:
     confirmation_dialogs: نوافذ التأكيد
     discovery: استكشاف
     sensitive_content: محتوى حساس
+    toot_layout: تصميم التبويق
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
     settings: 'تغيير تفضيلات البريد الإلكتروني: %{link}'
+    view: 'اعرض:'
     view_profile: اعرض الصفحة التعريفية
     view_status: عرض المنشور
   applications:
@@ -670,8 +674,8 @@ ar:
       date: التاريخ
       download: تنزيل نسخة لحسابك
       hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة تبويقاتك و الوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق. يُمكنك طلب نسخة كل 7 أيام.
-      in_progress: عملية جمع نسخة لبيانات حسابك جارية...
-      request: طلب نسخة لحسابك
+      in_progress: جارٍ انشاء نسخة لبيانات حسابك…
+      request: اطلب نسخة مِن حسابك
       size: الحجم
     blocks: قمت بحظر
     csv: CSV
@@ -993,6 +997,13 @@ ar:
       private: لا يمكن تدبيس تبويق لم يُنشر للعامة
       reblog: لا يمكن تثبيت ترقية
     poll:
+      total_people:
+        few: "%{count} أشخاص"
+        many: "%{count} أشخاص"
+        one: "%{count} شخص واحد"
+        other: "%{count} شخصا"
+        two: "%{count} شخصين"
+        zero: "%{count} شخص"
       total_votes:
         few: "%{count} أصوات"
         many: "%{count} أصوات"

@@ -252,6 +252,7 @@ eo:
       updated_msg: Emoĝio sukcese ĝisdatigita!
       upload: Alŝuti
     dashboard:
+      authorized_fetch_mode: Sekura reĝimo
       backlog: postigitaj taskoj
       config: Agordado
       feature_deletions: Forigo de kontoj
@@ -506,7 +507,7 @@ eo:
       context: Kunteksto
       directory: En la adresaro
       in_directory: "%{count} en adresaro"
-      last_active: Lasta aktiva
+      last_active: Laste aktiva
       most_popular: La plej populara
       most_recent: Plej lasta
       name: Kradvorto
@@ -547,6 +548,7 @@ eo:
     confirmation_dialogs: Konfirmaj fenestroj
     discovery: Eltrovo
     sensitive_content: Tikla enhavo
+    toot_layout: Mesaĝo aranĝo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
     salutation: "%{name},"
@@ -771,7 +773,16 @@ eo:
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
     acct: uzantnomo@domajno de la nova konto
+    cancel: Nuligi alidirekton
+    errors:
+      already_moved: estas la saman konton vi jam translokiĝis al
+      not_found: ne povis trovi
+      on_cooldown: Vi estas ĉe malvarmiĝi
+    followers_count: Sekvantoj en la momento de moviĝo
+    incoming_migrations: Movi el alian konton
+    past_migrations: Pasintaj translokaj
     proceed_with_move: Translokigi sekvantoj
+    set_redirect: Agordi alidirekton
   moderation:
     title: Kontrolado
   notification_mailer:
@@ -839,9 +850,9 @@ eo:
     posting_defaults: Afiŝadoj defaŭltoj
     public_timelines: Publikaj templinioj
   relationships:
-    activity: Konto aktiveco
+    activity: Konta aktiveco
     dormant: Dormanta
-    last_active: Lasta aktiva
+    last_active: Laste aktiva
     most_recent: Plej lasta
     moved: Moviĝita
     mutual: Reciproka
@@ -849,7 +860,7 @@ eo:
     relationship: Rilato
     remove_selected_domains: Forigi ĉiuj sekvantojn el la selektitajn domajnojn
     remove_selected_followers: Forigi selektitajn sekvantojn
-    remove_selected_follows: Malsekvi selektitajn uzantojn
+    remove_selected_follows: Ne plu sekvi elektitajn uzantojn
     status: Statuso de la konto
   remote_follow:
     acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
@@ -957,6 +968,9 @@ eo:
       private: Mesaĝo nepublika ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
     poll:
+      total_people:
+        one: "%{count} persono"
+        other: "%{count} personoj"
       total_votes:
         one: "%{count} voĉdono"
         other: "%{count} voĉdonoj"

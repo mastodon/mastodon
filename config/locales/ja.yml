@@ -11,6 +11,7 @@ ja:
     apps: アプリ
     apps_platforms: iOSやAndroidなど、各種環境から利用できます
     browse_directory: ディレクトリから気になる人を探しましょう
+    browse_local_posts: このサーバーの公開タイムラインをご覧ください
     browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
@@ -171,6 +172,7 @@ ja:
         user: ユーザー
       salmon_url: Salmon URL
       search: 検索
+      search_same_ip: 同じ IP のユーザーを検索
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
@@ -197,10 +199,12 @@ ja:
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_allow: "%{name} さんがドメイン %{target} をドメイン用ホワイトリストに追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
         demote_user: "%{name} さんが %{target} さんを降格しました"
         destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
+        destroy_domain_allow: "%{name} さんがドメイン %{target} をドメイン用ホワイトリストから外しました"
         destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
         destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
         destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
@@ -569,6 +573,7 @@ ja:
     confirmation_dialogs: 確認ダイアログ
     discovery: 見つける
     sensitive_content: 閲覧注意コンテンツ
+    toot_layout: トゥートレイアウト
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name} さん"
@@ -1134,7 +1139,7 @@ ja:
   two_factor_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
-    disable: 無効
+    disable: 無効化
     enable: 有効
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
@@ -1161,10 +1166,10 @@ ja:
       review_server_policies: サーバーのポリシーを確認
       statuses: '特に次のトゥート:'
       subject:
-        disable: あなたのアカウント %{acct} は凍結されています
+        disable: あなたのアカウント %{acct} は凍結されました
         none: "%{acct} に対する警告"
-        silence: あなたのアカウント %{acct} はサイレンスにされています
-        suspend: あなたのアカウント %{acct} は停止されています
+        silence: あなたのアカウント %{acct} はサイレンスにされました
+        suspend: あなたのアカウント %{acct} は停止されました
       title:
         disable: アカウントが凍結されました
         none: 警告

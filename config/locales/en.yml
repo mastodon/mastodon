@@ -11,6 +11,7 @@ en:
     apps: Mobile apps
     apps_platforms: Use Mastodon from iOS, Android and other platforms
     browse_directory: Browse a profile directory and filter by interests
+    browse_local_posts: Browse a live stream of public posts from this server
     browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
     contact_missing: Not set
@@ -203,10 +204,12 @@ en:
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
         create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
+        create_domain_allow: "%{name} whitelisted domain %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
+        destroy_domain_allow: "%{name} removed domain %{target} from whitelist"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
@@ -403,6 +406,7 @@ en:
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
+      by_target_domain: Domain of reported account
       comment:
         none: None
       created_at: Reported
@@ -884,6 +888,10 @@ en:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
       title: New boost
+  notifications:
+    email_events: Events for e-mail notifications
+    email_events_hint: 'Select events that you want to receive notifications for:'
+    other_settings: Other notifications settings
   number:
     human:
       decimal_units:
@@ -918,6 +926,8 @@ en:
   relationships:
     activity: Account activity
     dormant: Dormant
+    followers: Followers
+    following: Following
     last_active: Last active
     most_recent: Most recent
     moved: Moved
