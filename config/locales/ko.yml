@@ -80,12 +80,12 @@ ko:
   admin:
     account_actions:
       action: 조치 취하기
-      title: '%{acct} 계정에 조정 취하기'
+      title: '%{acct} 계정에 중재 취하기'
     account_moderation_notes:
       create: 모더레이션 노트 작성하기
-      created_msg: 모더레이션 기록이 성공적으로 작성되었습니다!
+      created_msg: 중재 기록이 성공적으로 작성되었습니다!
       delete: 삭제
-      destroyed_msg: 모더레이션 기록이 성공적으로 삭제되었습니다!
+      destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
     accounts:
       approve: 승인
       approve_all: 모두 승인
@@ -137,8 +137,8 @@ ko:
         pending: 대기중
         silenced: 침묵 중
         suspended: 정지 중
-        title: 모더레이션
-      moderation_notes: 모더레이션 기록
+        title: 중재
+      moderation_notes: 중재 기록
       most_recent_activity: 최근 활동
       most_recent_ip: 최근 IP
       no_account_selected: 아무 계정도 선택 되지 않아 아무 것도 변경 되지 않았습니다
@@ -167,7 +167,7 @@ ko:
       role: 권한
       roles:
         admin: 관리자
-        moderator: 모더레이터
+        moderator: 중재자
         staff: 스태프
         user: 사용자
       salmon_url: Salmon URL
@@ -302,7 +302,7 @@ ko:
       existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
       new:
         create: 차단 추가
-        hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 모더레이션을 적용하게 할 수 있습니다.
+        hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 중재 규칙을 적용하게 할 수 있습니다.
         severity:
           desc_html: "<strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 툿을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다.\n미디어 파일만을 거부하고 싶다면 <strong>없음</strong>으로 두세요."
           noop: 없음
@@ -310,7 +310,7 @@ ko:
           suspend: 정지
         title: 새로운 도메인 차단
       private_comment: 비공개 주석
-      private_comment_hint: 이 도메인 제한에 대한 주석은 모더레이터를 위해 내부적으로 사용 됩니다.
+      private_comment_hint: 이 도메인 제한에 대한 주석은 중재자를 위해 내부적으로 사용 됩니다.
       public_comment: 공개 주석
       public_comment_hint: 이 도메인 제한에 대한 공개적인 주석, 도메인 제한 공개를 활성화 한 경우 보여집니다.
       reject_media: 미디어 파일 거부하기
@@ -353,7 +353,7 @@ ko:
       moderation:
         all: 모두
         limited: 제한됨
-        title: 모더레이션
+        title: 중재
       private_comment: 비공개 주석
       public_comment: 공개 주석
       title: 연합
@@ -398,7 +398,7 @@ ko:
       action_taken_by: 신고 처리자
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
-      assigned: 할당 된 모더레이터
+      assigned: 할당 된 중재자
       by_target_domain: 신고된 계정의 도메인
       comment:
         none: 없음
@@ -844,7 +844,7 @@ ko:
       other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
       redirect: 현재 계정 프로필은 리다이렉트 알림과 함께 업데이트 되며 검색에서 제외 됩니다
   moderation:
-    title: 모더레이션
+    title: 중재
   notification_mailer:
     digest:
       action: 모든 알림 보기
@@ -1072,7 +1072,7 @@ ko:
 
       <ul>
       <li>마스토돈의 주요 기능 제공. 다른 사람의 게시물에 상호작용 하거나 자신의 게시물을 작성하기 위해서는 로그인을 해야 합니다. 예를 들어, 다른 사람의 게시물을 자신만의 홈 타임라인에서 모아 보기 위해 팔로우를 할 수 있습니다.</li>
-      <li>커뮤니티의 모더레이션을 위해, 예를 들어 당신의 IP 주소와 기타 사항을 비교하여 금지를 우회하거나 다른 규칙을 위반하는지 판단하는 데에 사용할 수 있습니다.</li>
+      <li>커뮤니티의 중재를 위해, 예를 들어 당신의 IP 주소와 기타 사항을 비교하여 금지를 우회하거나 다른 규칙을 위반하는지 판단하는 데에 사용할 수 있습니다.</li>
       <li>당신이 제공한 이메일 주소를 통해 정보, 다른 사람들의 반응이나 받은 메시지에 대한 알림, 기타 요청 등에 관한 응답 요청 등을 보내는 데에 활용됩니다.</li>
       </ul>
 
