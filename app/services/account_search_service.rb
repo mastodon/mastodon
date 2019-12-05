@@ -5,7 +5,7 @@ class AccountSearchService < BaseService
 
   def call(query, account = nil, options = {})
     @acct_hint = query&.start_with?('@')
-    @query     = query&.strip.gsub(/\A@/, '')
+    @query     = query&.strip&.gsub(/\A@/, '')
     @limit     = options[:limit].to_i
     @offset    = options[:offset].to_i
     @options   = options
