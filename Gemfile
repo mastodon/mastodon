@@ -5,7 +5,7 @@ ruby '>= 2.4.0', '< 2.7.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 4.2'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 5.2.3'
 gem 'thor', '~> 0.20'
 
