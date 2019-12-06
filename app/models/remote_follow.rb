@@ -3,6 +3,7 @@
 class RemoteFollow
   include ActiveModel::Validations
   include RoutingHelper
+  include WebfingerHelper
 
   attr_accessor :acct, :addressable_template
 
@@ -71,7 +72,7 @@ class RemoteFollow
   end
 
   def acct_resource
-    @acct_resource ||= Goldfinger.finger("acct:#{acct}")
+    @acct_resource ||= webfinger!("acct:#{acct}")
   rescue Goldfinger::Error, HTTP::ConnectionError
     nil
   end
