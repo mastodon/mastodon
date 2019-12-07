@@ -131,14 +131,22 @@ kab:
       new:
         create: Rnu taγult
     followers:
+      back_to_account: Uγal γer umiḍan
       title: "Imeḍfaṛen n %{acct}"
     instances:
       by_domain: Taγult
+      moderation:
+        all: Akk
+    invites:
+      filter:
+        all: Akk
     relays:
       delete: Kkes
       disable: Gdel
       enable: Rmed
     reports:
+      comment:
+        none: Ula yiwen
       notes:
         delete: Kkes
     statuses:
@@ -147,6 +155,8 @@ kab:
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
+  application_mailer:
+    salutation: "%{name},"
   auth:
     change_password: Awal uffir
     delete_account: Kkes amiḍan
@@ -158,6 +168,9 @@ kab:
     security: Taγellist
   authorize_follow:
     follow: Ḍfeṛ
+    post_follow:
+      web: Ddu γer Web
+    title: Ḍfeṛ %{acct}
   datetime:
     distance_in_words:
       about_x_months: "%{count}ug"
@@ -185,11 +198,15 @@ kab:
   exports:
     archive_takeout:
       date: Azemz
+      size: Teγzi
+    csv: CSV
     follows: Teṭafareḍ
     lists: Tibdarin
   featured_tags:
     add_new: Rnu amaynut
   filters:
+    contexts:
+      notifications: Tilγa
     index:
       delete: Kkes
   footer:
@@ -200,6 +217,7 @@ kab:
     copy: Nγel
     save_changes: Sekles ibeddilen
   identity_proofs:
+    authorize: Ih, ssireg
     i_am_html: Nekki d %{username} deg %{service}.
   invites:
     expires_in:
@@ -210,6 +228,9 @@ kab:
       '604800': 1 umalas
       '86400': 1 wass
     expires_in_prompt: Werǧin
+  notification_mailer:
+    follow:
+      title: Ameḍfaṛ amaynut
   preferences:
     other: Wiyaḍ
   relationships:
@@ -225,6 +246,17 @@ kab:
       electron: Electron
       firefox: Firefox
     ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      windows: Windows
+      windows_mobile: Windows Mobile
   settings:
     account: Amiḍan
     account_settings: Iγewwaṛen n umiḍan
@@ -233,6 +265,7 @@ kab:
     development: Taneflit
     notifications: Tilγa
     preferences: Imenyafen
+    profile: Ameγnu
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
   statuses:
     attached:
@@ -259,9 +292,14 @@ kab:
     disable: Gdel
     enable: Rmed
   user_mailer:
+    warning:
+      title:
+        none: Γur-wat
     welcome:
       review_preferences_action: Beddel imenyafen
       subject: Ansuf γer Masṭudun
       title: Ansuf yessek·em, %{name}!
+  users:
+    signed_in_as: 'Teqqneḍ amzun d:'
   verification:
     verification: Asenqed
