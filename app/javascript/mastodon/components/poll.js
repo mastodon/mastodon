@@ -67,9 +67,7 @@ class Poll extends ImmutablePureComponent {
     }
   }
 
-  handleOptionChange = e => {
-    const { target: { value } } = e;
-
+  _toggleOption = value => {
     if (this.props.poll.get('multiple')) {
       const tmp = { ...this.state.selected };
       if (tmp[value]) {
@@ -83,7 +81,19 @@ class Poll extends ImmutablePureComponent {
       tmp[value] = true;
       this.setState({ selected: tmp });
     }
+  }
+
+  handleOptionChange = ({ target: { value } }) => {
+    this._toggleOption(value);
   };
+
+  handleOptionKeyPress = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this._toggleOption(e.target.getAttribute('data-index'));
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
 
   handleVote = () => {
     if (this.props.disabled) {
@@ -135,7 +145,17 @@ class Poll extends ImmutablePureComponent {
             disabled={disabled}
           />
 
-          {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
+          {!showResults && (
+            <span
+              className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
+              tabIndex='0'
+              role={poll.get('multiple') ? 'checkbox' : 'radio'}
+              onKeyPress={this.handleOptionKeyPress}
+              aria-checked={active}
+              aria-label={option.get('title')}
+              data-index={optionIndex}
+            />
+          )}
           {showResults && <span className='poll__number'>
             {!!voted && <Icon id='check' className='poll__vote__mark' title={intl.formatMessage(messages.voted)} />}
             {Math.round(percent)}%

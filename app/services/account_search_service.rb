@@ -4,8 +4,8 @@ class AccountSearchService < BaseService
   attr_reader :query, :limit, :offset, :options, :account
 
   def call(query, account = nil, options = {})
-    @acct_hint = query.start_with?('@')
-    @query     = query.strip.gsub(/\A@/, '')
+    @acct_hint = query&.start_with?('@')
+    @query     = query&.strip&.gsub(/\A@/, '')
     @limit     = options[:limit].to_i
     @offset    = options[:offset].to_i
     @options   = options

@@ -282,7 +282,7 @@ class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyOpenMedia = e => {
-    const { status } = this.props;
+    const status = this._properStatus();
 
     e.preventDefault();
 

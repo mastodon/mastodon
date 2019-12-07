@@ -91,6 +91,23 @@
       border-color: $valid-value-color;
       background: $valid-value-color;
     }
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-width: 4px;
+      background: none;
+    }
+
+    &::-moz-focus-inner {
+      outline: 0 !important;
+      border: 0;
+    }
+
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
   }
 
   &__number {
@@ -160,6 +177,10 @@
     button,
     select {
       flex: 1 1 50%;
+
+      &:focus {
+        border-color: $highlight-text-color;
+      }
     }
   }
 
