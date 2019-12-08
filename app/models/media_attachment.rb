@@ -287,7 +287,7 @@ class MediaAttachment < ApplicationRecord
       width:  width,
       height: height,
       size: "#{width}x#{height}",
-      aspect: width.to_f / height.to_f,
+      aspect: width.to_f / height,
     }
   end
 

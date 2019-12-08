@@ -120,9 +120,9 @@ class ActionBar extends React.PureComponent {
     const account = status.get('account');
 
     if (relationship && relationship.get('blocking')) {
-      onBlock(status);
-    } else {
       onUnblock(account);
+    } else {
+      onBlock(status);
     }
   }
 

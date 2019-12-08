@@ -1,6 +1,66 @@
 class MigrateAccountConversations < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
+  class Mention < ApplicationRecord
+    belongs_to :account, inverse_of: :mentions
+    belongs_to :status, -> { unscope(where: :deleted_at) }
+
+    delegate(
+      :username,
+      :acct,
+      to: :account,
+      prefix: true
+    )
+  end
+
+  class Notification < ApplicationRecord
+    belongs_to :account, optional: true
+    belongs_to :activity, polymorphic: true, optional: true
+
+    belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id', optional: true
+    belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id', optional: true
+
+    def target_status
+      mention&.status
+    end
+  end
+
+  class AccountConversation < ApplicationRecord
+    belongs_to :account
+    belongs_to :conversation
+    belongs_to :last_status, -> { unscope(where: :deleted_at) }, class_name: 'Status'
+
+    before_validation :set_last_status
+
+    class << self
+      def add_status(recipient, status)
+        conversation = find_or_initialize_by(account: recipient, conversation_id: status.conversation_id, participant_account_ids: participants_from_status(recipient, status))
+
+        return conversation if conversation.status_ids.include?(status.id)
+
+        conversation.status_ids << status.id
+        conversation.unread = status.account_id != recipient.id
+        conversation.save
+        conversation
+      rescue ActiveRecord::StaleObjectError
+        retry
+      end
+
+      private
+
+      def participants_from_status(recipient, status)
+        ((status.active_mentions.pluck(:account_id) + [status.account_id]).uniq - [recipient.id]).sort
+      end
+    end
+
+    private
+
+    def set_last_status
+      self.status_ids     = status_ids.sort
+      self.last_status_id = status_ids.last
+    end
+  end
+
   def up
     say ''
     say 'WARNING: This migration may take a *long* time for large instances'

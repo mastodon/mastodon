@@ -5,7 +5,7 @@ import Video from 'flavours/glitch/features/video';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import Icon from 'flavours/glitch/components/icon';
 
 export default class VideoModal extends ImmutablePureComponent {
 
