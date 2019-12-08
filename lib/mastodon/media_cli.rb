@@ -67,7 +67,15 @@ module Mastodon
         last_key           = options[:start_after]
 
         loop do
-          objects = bucket.objects(start_after: last_key, prefix: 'media_attachments/files/').limit(1000).map { |x| x }
+          objects = begin
+            begin
+              bucket.objects(start_after: last_key, prefix: 'media_attachments/files/').limit(1000).map { |x| x }
+            rescue => e
+              progress.log(pastel.red("Error fetching list of files: #{e}"))
+              progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+              break
+            end
+          end
 
           break if objects.empty?
 
@@ -82,10 +90,16 @@ module Mastodon
 
             next unless attachments_map[attachment_id].nil? || !attachments_map[attachment_id].variant?(filename)
 
-            reclaimed_bytes += object.size
-            removed += 1
-            object.delete unless options[:dry_run]
-            progress.log("Found and removed orphan: #{object.key}")
+            begin
+              object.delete unless options[:dry_run]
+
+              reclaimed_bytes += object.size
+              removed += 1
+
+              progress.log("Found and removed orphan: #{object.key}")
+            rescue => e
+              progress.log(pastel.red("Error processing #{object.key}: #{e}"))
+            end
           end
         end
       when :fog
@@ -108,10 +122,18 @@ module Mastodon
 
           next unless attachment.nil? || !attachment.variant?(filename)
 
-          reclaimed_bytes += File.size(path)
-          removed += 1
-          File.delete(path) unless options[:dry_run]
-          progress.log("Found and removed orphan: #{key}")
+          begin
+            size = File.size(path)
+
+            File.delete(path) unless options[:dry_run]
+
+            reclaimed_bytes += size
+            removed += 1
+
+            progress.log("Found and removed orphan: #{key}")
+          rescue => e
+            progress.log(pastel.red("Error processing #{key}: #{e}"))
+          end
         end
       end
 
