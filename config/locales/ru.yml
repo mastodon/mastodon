@@ -783,13 +783,13 @@ ru:
         invalid_token: Токены Keybase — это хэши от подписей и должны быть по длине в 66 hex-символов
         verification_failed: Keybase не распознаёт этот токен как подпись пользователя %{kb_username}. Пожалуйста, повторите на Keybase.
       wrong_user: Невозможно подтвердить пользователя %{proving}, будучи залогиненным как %{current}. Выполните вход как %{proving} и попробуйте ещё раз.
-    explanation_html: На этой странице отображаются криптографически подтверждённые личности — например, привязанный профиль Keybase. Это позволяет людям отправлять вам зашифрованные сообщения, а также доверять вашим постам.
+    explanation_html: На этой странице отображаются криптографически подтверждённые идентификаторы — например, привязанный профиль Keybase. Это позволяет людям отправлять вам зашифрованные сообщения, а также доверять вашим постам.
     i_am_html: Я %{username} на %{service}.
     identity: Идентификатор
     inactive: Неактивно
     publicize_checkbox: 'И опубликуйте текст:'
     publicize_toot: 'Подтверждено! Я %{username} на %{service}: %{url}'
-    status: Статус подтверждения
+    status: Статус
     view_proof: Посмотреть подтверждение
   imports:
     modes:
@@ -1000,7 +1000,7 @@ ru:
       weibo: Weibo
     current_session: Текущая сессия
     description: "%{browser} на %{platform}"
-    explanation: Это веб-браузеры, в которых на данный момент выполнен вход в Вашу учётную запись Mastodon.
+    explanation: Здесь отображаются все веб-браузеры, в которых выполнен вход в вашу учётную запись. Авторизованные приложения отображаются в другой секции.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1020,17 +1020,17 @@ ru:
     title: Сессии
   settings:
     account: Учётная запись
-    account_settings: Настройки учётной записи
+    account_settings: Управление учётной записью
     aliases: Псевдонимы учётной записи
     appearance: Внешний вид
-    authorized_apps: Авторизованные приложения
+    authorized_apps: Приложения
     back: Назад в Mastodon
     delete: Удаление учётной записи
     development: Разработка
     edit_profile: Изменить профиль
     export: Экспорт данных
     featured_tags: Особенные хэштеги
-    identity_proofs: Подтверждение личности
+    identity_proofs: Идентификаторы
     import: Импорт
     import_and_export: Импорт и экспорт
     migrate: Миграция учётной записи
@@ -1038,7 +1038,7 @@ ru:
     preferences: Настройки
     profile: Профиль
     relationships: Подписки и подписчики
-    two_factor_authentication: Двухфакторная аутентификация
+    two_factor_authentication: Подтверждение входа
   spam_check:
     spam_detected: Это автоматический отчет. Обнаружен спам.
   statuses:
