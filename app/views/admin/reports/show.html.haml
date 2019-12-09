@@ -25,16 +25,16 @@
       %tr
         %th= t('admin.reports.reported_account')
         %td= admin_account_link_to @report.target_account
-        %td= table_link_to 'flag', pluralize(@report.target_account.targeted_reports.count, t('admin.reports.account.report')), admin_reports_path(target_account_id: @report.target_account.id)
-        %td= table_link_to 'file', pluralize(@report.target_account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.target_account.id)
+        %td= table_link_to 'flag', t('admin.reports.account.reports', count: @report.target_account.targeted_reports.count), admin_reports_path(target_account_id: @report.target_account.id)
+        %td= table_link_to 'file', t('admin.reports.account.notes', count: @report.target_account.targeted_moderation_notes.count), admin_reports_path(target_account_id: @report.target_account.id)
       %tr
         %th= t('admin.reports.reported_by')
         - if @report.account.instance_actor?
           %td{ colspan: 3 }= site_hostname
         - elsif @report.account.local?
           %td= admin_account_link_to @report.account
-          %td= table_link_to 'flag', pluralize(@report.account.targeted_reports.count, t('admin.reports.account.report')), admin_reports_path(target_account_id: @report.account.id)
-          %td= table_link_to 'file', pluralize(@report.account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.account.id)
+          %td= table_link_to 'flag', t('admin.reports.account.reports', count: @report.account.targeted_reports.count), admin_reports_path(target_account_id: @report.account.id)
+          %td= table_link_to 'file', t('admin.reports.account.notes', count: @report.account.targeted_moderation_notes.count), admin_reports_path(target_account_id: @report.account.id)
         - else
           %td{ colspan: 3 }= @report.account.domain
       %tr

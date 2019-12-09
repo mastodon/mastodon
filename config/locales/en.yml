@@ -400,8 +400,12 @@ en:
       destroyed_msg: Report note successfully deleted!
     reports:
       account:
-        note: note
-        report: report
+        notes:
+          one: "%{count} note"
+          other: "%{count} notes"
+        reports:
+          one: "%{count} report"
+          other: "%{count} reports"
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
