@@ -222,9 +222,9 @@ ru:
         destroy_status: "%{name} удалил(а) пост пользователя %{target}"
         disable_2fa_user: "%{name} отключил(а) двухэтапную авторизацию у пользователя %{target}"
         disable_custom_emoji: "%{name} отключил(а) эмодзи %{target}"
-        disable_user: "%{name} запретил(а) вход пользователя %{target}"
+        disable_user: "%{name} заморозил(а) пользователя %{target}"
         enable_custom_emoji: "%{name} включил(а) эмодзи %{target}"
-        enable_user: "%{name} включил(а) вход пользователя %{target}"
+        enable_user: "%{name} разморозил(а) пользователя %{target}"
         memorialize_account: "%{name} перевел(а) учётную запись пользователя %{target} в режим памятника"
         promote_user: "%{name} повысил(а) пользователя %{target}"
         remove_avatar_user: "%{name} убрал(а) аватарку пользователя %{target}"
@@ -320,7 +320,7 @@ ru:
           noop: Ничего
           silence: Скрытие
           suspend: Блокировка
-        title: Новая доменная блокировка
+        title: Новая блокировка e-mail домена
       private_comment: Приватный комментарий
       private_comment_hint: Комментарий к доменной блокировке для внутреннего использования модераторами.
       public_comment: Публичный комментарий
@@ -349,14 +349,14 @@ ru:
       view: Посмотреть доменные блокировки
     email_domain_blocks:
       add_new: Добавить новую
-      created_msg: Доменная блокировка еmail успешно создана
+      created_msg: E-mail домен внесён в список блокировки
       delete: Удалить
-      destroyed_msg: Доменная блокировка еmail успешно удалена
+      destroyed_msg: Домен убран из списка e-mail блокировки
       domain: Домен
       new:
         create: Создать блокировку
-        title: Новая доменная блокировка еmail
-      title: Доменная блокировка email
+        title: Новая блокировка по домену
+      title: Блокировка e-mail
     followers:
       back_to_account: Вернуться к учётной записи
       title: "Подписчики пользователя %{acct}"
@@ -374,7 +374,7 @@ ru:
         title: Модерация
       private_comment: Приватный комментарий
       public_comment: Публичный комментарий
-      title: Известные узлы
+      title: Федерация
       total_blocked_by_us: Заблокировано нами
       total_followed_by_them: Их подписчиков
       total_followed_by_us: Наших подписчиков
@@ -496,7 +496,7 @@ ru:
         title: Режим регистраций
       show_known_fediverse_at_about_page:
         desc_html: Если включено, показывает посты со всех известных узлов в предпросмотре ленты. В противном случае отображаются только локальные посты.
-        title: Показывать известные узлы в предпросмотре ленты
+        title: Показывать контент со всей федерации в публичной ленте неавторизованным пользователям
       show_staff_badge:
         desc_html: Показывать метку персонала на странице пользователя
         title: Показывать метку персонала
