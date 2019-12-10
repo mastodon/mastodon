@@ -8,7 +8,7 @@ cs:
     administered_by: 'Server spravuje:'
     api: API
     apps: Mobilní aplikace
-    apps_platforms: Používejte Mastodon z iOS, Androidu a jiných platforem
+    apps_platforms: Používejte Mastodon na iOS, Androidu a dalších platformách
     browse_directory: Prozkoumejte adresář profilů a filtrujte dle zájmů
     browse_local_posts: Prozkoumejte živý proud veřejných příspěvků z tohoto serveru
     browse_public_posts: Prozkoumejte živý proud veřejných příspěvků na Mastodonu
@@ -17,14 +17,14 @@ cs:
     contact_unavailable: Neuvedeno
     discover_users: Objevujte uživatele
     documentation: Dokumentace
-    federation_hint_html: S účtem na %{instance} můžete sledovat lidi na jakémkoliv serveru Mastodon a jiných službách.
+    federation_hint_html: S účtem na serveru %{instance} můžete sledovat lidi na jakémkoliv ze serverů Mastodon a dalších službách.
     get_apps: Vyzkoušejte mobilní aplikaci
-    hosted_on: Mastodon na adrese %{domain}
+    hosted_on: Mastodon na doméně %{domain}
     instance_actor_flash: |
-      Tento účet je virtuální aktér, který představuje server samotný a ne jedotlivého uživatele.
-      Používá se pro účely federace a nesmí být blokován, pokud nechcete blokovat celý server. V tomto případě použijte doménovou blokaci.
+      Tento účet je virtuální aktér, který představuje server samotný, nikoliv účet jednotlivého uživatele.
+      Používá se pro účely federace a nesmí být blokován, pokud nechcete blokovat celý server. V takovém případě použijte blokaci domény.
     learn_more: Zjistit více
-    privacy_policy: Zásady soukromí
+    privacy_policy: Zásady ochrany osobních údajů
     see_whats_happening: Podívejte se, co se děje
     server_stats: 'Statistika serveru:'
     source_code: Zdrojový kód
@@ -510,7 +510,7 @@ cs:
         desc_html: Zobrazen v postranním panelu a meta značkách. Popište, co je Mastodon a díky čemu je tento server zvláštní, v jediném odstavci.
         title: Krátký popis serveru
       site_terms:
-        desc_html: Můžete si napsat vlastní zásady soukromí, podmínky používání či jiné legality. Můžete použít HTML značky
+        desc_html: Můžete si napsat vlastní zásady ochrany osobních údajů, podmínky používání či jiné právní dokumenty. Můžete použít HTML značky
         title: Vlastní podmínky používání
       site_title: Název serveru
       spam_check_enabled:
@@ -691,7 +691,7 @@ cs:
       email_contact_html: Pokud stále nepřijde, můžete požádat o pomoc zasláním e-mailu na <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Pokud neobdržíte potvrzovací e-mail, můžete si ho <a href="%{path}">vyžádat znovu</a>
       irreversible: Nebudete moci obnovit nebo znovu aktivovat váš účet
-      more_details_html: Více detailů najdete v <a href="%{terms_path}">zásadách soukromí</a>.
+      more_details_html: Podrobnosti najdete v <a href="%{terms_path}">zásadách ochrany osobních údajů</a>.
       username_available: Vaše uživatelské jméno bude opět dostupné
       username_unavailable: Vaše uživatelské jméno zůstane nedostupným
   directories:
@@ -1179,7 +1179,7 @@ cs:
       <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 7. března 2018.</p>
 
       <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad soukromí Discourse</a>.</p>
-    title: "Podmínky používání a zásady soukromí %{instance}"
+    title: "Podmínky používání a zásady ochrany osobních údajů na serveru %{instance}"
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)
