@@ -147,7 +147,7 @@ cs:
         active: Aktivní
         all: Vše
         pending: Čekající
-        silenced: Uživatel utišen
+        silenced: Uživatel ztišen
         suspended: Uživatel pozastaven
         title: Moderování
       moderation_notes: Moderátorské poznámky
@@ -187,17 +187,17 @@ cs:
       search_same_ip: Další uživatelé se stejnou IP adresou
       shared_inbox_url: URL sdílené příchozí schránky
       show:
-        created_reports: Vytvořená nahlášení
+        created_reports: Vytvořená hlášení
         targeted_reports: Nahlášeni ostatními
-      silence: Utišit
-      silenced: Uživatel utišen
+      silence: Ztišit
+      silenced: Uživatel ztišen
       statuses: Tooty
       subscribe: Odebírat
       suspended: Uživatel pozastaven
       time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
-      undo_silenced: Zrušit utišení
+      undo_silenced: Zrušit ztišení
       undo_suspension: Zrušit pozastavení
       unsubscribe: Přestat odebírat
       username: Uživatelské jméno
@@ -231,10 +231,10 @@ cs:
         reopen_report: "Uživatel %{name} znovu otevřel hlášení %{target}"
         reset_password_user: "Uživatel %{name} obnovil heslo uživatele %{target}"
         resolve_report: "Uživatel %{name} vyřešil hlášení %{target}"
-        silence_account: "Uživatel %{name} utišil účet uživatele %{target}"
+        silence_account: "Uživatel %{name} ztišil uživatele %{target}"
         suspend_account: "Uživatel %{name} pozastavil účet uživatele %{target}"
         unassigned_report: "Uživatel %{name} odebral hlášení %{target}"
-        unsilence_account: "Uživatel %{name} odtišil účet uživatele %{target}"
+        unsilence_account: "Uživatel %{name} zrušil ztišení uživatele %{target}"
         unsuspend_account: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
         update_custom_emoji: "Uživatel %{name} aktualizoval emoji %{target}"
         update_status: "Uživatel %{name} aktualizoval toot uživatele %{target}"
@@ -316,23 +316,23 @@ cs:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
-          desc_html: "Funkce <strong>Utišit</strong> zneviditelní příspěvky z účtu komukoliv, kdo jej nesleduje. Funkce <strong>Pozastavit</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>."
+          desc_html: "<strong>Ztišení</strong> skryje příspěvky z účtu komukoliv, kdo jej nesleduje. <strong>Pozastavení</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>."
           noop: Žádné
-          silence: Utišit
+          silence: Ztišit
           suspend: Pozastavit
-        title: Nová doménová blokace
+        title: Nová blokace domény
       private_comment: Soukromý komentář
       private_comment_hint: Komentář o tomto omezení domény pro vnitřní použití moderátory.
       public_comment: Veřejný komentář
-      public_comment_hint: Komentář o tomto omezení domény pro obecnou veřejnost, pokud je povoleno zobrazování seznamu omezení domén.
+      public_comment_hint: Komentář o tomto omezení domény pro obecnou veřejnost, pokud je povoleno zobrazování seznamu omezených domén.
       reject_media: Odmítat mediální soubory
       reject_media_hint: Odstraní lokálně uložené mediální soubory a odmítne jejich stahování v budoucnosti. Nepodstatné pro pozastavení
-      reject_reports: Odmítat nahlášení
-      reject_reports_hint: Ignorovat všechna nahlášení pocházející z této domény. Nepodstatné pro pozastavení
+      reject_reports: Odmítat hlášení
+      reject_reports_hint: Ignorovat všechna hlášení pocházející z této domény. Nepodstatné pro pozastavení
       rejecting_media: odmítají se mediální soubory
-      rejecting_reports: odmítají se nahlášení
+      rejecting_reports: odmítají se hlášení
       severity:
-        silence: utišeno
+        silence: ztišeno
         suspend: pozastaveno
       show:
         affected_accounts:
@@ -341,14 +341,14 @@ cs:
           many: "%{count} účtů v databázi bylo ovlivněno"
           other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
-          silence: Odtišit existující ovlivněné účty z této domény
+          silence: Zrušit ztišení existujících ovlivněných účtů z této domény
           suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
         title: Zrušit blokaci domény %{domain}
         undo: Odvolat
       undo: Odvolat blokaci domény
-      view: Zobrazit doménovou blokaci
+      view: Zobrazit blokaci domény
     email_domain_blocks:
-      add_new: Přidat nový
+      add_new: Přidat
       created_msg: E-mailová doména úspěšně přidána na černou listinu
       delete: Smazat
       destroyed_msg: E-mailová doména úspěšně odstraněna z černé listiny
@@ -378,14 +378,14 @@ cs:
       total_blocked_by_us: Blokované námi
       total_followed_by_them: Sledované jimi
       total_followed_by_us: Sledované námi
-      total_reported: Nahlášení o nich
+      total_reported: Hlášení o nich
       total_storage: Mediální přílohy
     invites:
       deactivate_all: Deaktivovat vše
       filter:
         all: Všechny
         available: Dostupné
-        expired: Vypršelé
+        expired: Vypršené
         title: Filtrovat
       title: Pozvánky
     pending_accounts:
@@ -393,7 +393,7 @@ cs:
     relays:
       add_new: Přidat nový most
       delete: Smazat
-      description_html: <strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech.
+      description_html: <strong>Federovací most</strong> je přechodový server, který vyměňuje velká množství veřejných tootů mezi servery, které je z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech.
       disable: Zakázat
       disabled: Zakázáno
       enable: Povolit
@@ -407,12 +407,12 @@ cs:
       status: Stav
       title: Mosty
     report_notes:
-      created_msg: Poznámka o nahlášení úspěšně vytvořena!
-      destroyed_msg: Poznámka o nahlášení úspěšně smazána!
+      created_msg: Poznámka o hlášení úspěšně vytvořena!
+      destroyed_msg: Poznámka o hlášení úspěšně smazána!
     reports:
       account:
         note: poznámka
-        report: nahlášení
+        report: hlášení
       action_taken_by: Akci vykonal/a
       are_you_sure: Jste si jistý/á?
       assign_to_self: Přidělit ke mně
@@ -429,14 +429,14 @@ cs:
         create_and_unresolve: Znovu otevřít s poznámkou
         delete: Smazat
         placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související aktuality…
-      reopen: Znovu otevřít nahlášení
+      reopen: Znovu otevřít hlášení
       report: 'Nahlásit #%{id}'
       reported_account: Nahlášený účet
       reported_by: Nahlášeno uživatelem
       resolved: Vyřešeno
-      resolved_msg: Nahlášení úspěšně vyřešeno!
+      resolved_msg: Hlášení úspěšně vyřešeno!
       status: Stav
-      title: Nahlášení
+      title: Hlášení
       unassign: Odebrat
       unresolved: Nevyřešeno
       updated_at: Aktualizováno
@@ -575,7 +575,7 @@ cs:
     new_report:
       body: "%{reporter} nahlásil/a uživatele %{target}"
       body_remote: Někdo z %{domain} nahlásil uživatele %{target}
-      subject: 'Nové nahlášení pro %{instance} (#%{id})'
+      subject: 'Nové hlášení pro %{instance} (#%{id})'
     new_trending_tag:
       body: 'Hashtag #%{name} je dnes populární, nebyl však dříve schválen. Nebude zobrazen veřejně, pokud to nedovolíte. Můžete také pouze uložit formulář tak, jak je, a nikdy o něm opět neslyšet.'
       subject: 'Nový hashtag ke schválení na %{instance} (#%{name})'
@@ -1040,7 +1040,7 @@ cs:
     relationships: Sledovaní a sledující
     two_factor_authentication: Dvoufázové ověřování
   spam_check:
-    spam_detected: Tohle je automatizované nahlášení. Byl detekován spam.
+    spam_detected: Tohle je automatizované hlášení. Byl detekován spam.
   statuses:
     attached:
       description: 'Přiloženo: %{attached}'
