@@ -76,7 +76,7 @@ cs:
         title: Vaše autorizované aplikace
     errors:
       messages:
-        access_denied: Vlastník zdroje či autorizační server zamítl požadavek.
+        access_denied: Vlastník zdroje či autorizační server žádost zamítl.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
         invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo zamítnuto, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
