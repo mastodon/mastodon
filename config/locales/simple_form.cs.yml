@@ -2,26 +2,26 @@ cs:
   simple_form:
     hints:
       account_alias:
-        acct: Zadejte přezdívku@doménu účtu, ze kterého se chcete přesunout
+        acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
-        acct: Zadejte přezdívku@doménu účtu, na který se chcete přesunout
+        acct: Zadejte svůj účet, na který se chcete přesunout, ve formátu přezdívka@doména
       account_warning_preset:
         text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
       admin_account_action:
         include_statuses: Uživatel uvidí, které tooty způsobily moderátorskou akci nebo varování
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
         text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
-        type_html: Vyberte, co chcete udělat s účtem <strong>%{acct}</strong>
-        warning_preset_id: Volitelné. Můžete stále vložit na konec předlohy vlastní text
+        type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
+        warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
       defaults:
-        autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
+        autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
         context: Jeden či více kontextů, ve kterých má být filtr uplatněn
-        current_password: Z bezpečnostních důvodů prosím zadejte heslo aktuálního účtu
-        current_username: Prosím potvrďte zadáním uživatelského jména aktuálního účtu
-        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
-        discoverable: Adresář profilů je další způsob, díky kterému se může váš účet dostat k širšímu publiku
+        current_password: Z bezpečnostních důvodů prosím zadejte heslo současného účtu
+        current_username: Potvrďte prosím tuto akci zadáním uživatelského jména aktuálního účtu
+        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdrželi osobní zprávy
+        discoverable: Adresář profilů je další způsob, jak se může váš účet dostat k širšímu publiku
         email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
