@@ -570,7 +570,7 @@ cs:
       title: Spravovat předlohy pro varování
   admin_mailer:
     new_pending_account:
-      body: Detaily nového účtu jsou uvedeny níže. Můžete tento požadavek schválit nebo zamítnout.
+      body: Detaily nového účtu jsou uvedeny níže. Tuto žádost můžete schválit nebo zamítnout.
       subject: Nový účet čekající na posouzení na %{instance} (%{username})
     new_report:
       body: "%{reporter} nahlásil/a uživatele %{target}"
@@ -644,14 +644,14 @@ cs:
       account_status: Stav účtu
       confirming: Čekám na dokončení potvrzení e-mailu.
       functional: Váš účet je zcela funkční.
-      pending: Váš požadavek čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
+      pending: Vaše žádost čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože právě přesměrovává na účet %{acct}.
     trouble_logging_in: Problémy s přihlašováním?
   authorize_follow:
     already_following: Tento účet již sledujete
     error: Při hledání vzdáleného účtu bohužel nastala chyba
     follow: Sledovat
-    follow_request: 'Poslal/a jste požadavek o sledování uživateli:'
+    follow_request: 'Poslali jste žádost o sledování uživateli:'
     following: 'Podařilo se! Nyní sledujete uživatele:'
     post_follow:
       close: Nebo můžete toto okno klidně zavřít.
@@ -701,7 +701,7 @@ cs:
   domain_validator:
     invalid_domain: není platné doménové jméno
   errors:
-    '400': Požadavek, který jste odeslal/a, byl neplatný nebo poškozený.
+    '400': Žádost, kterou jste odeslali, byla neplatná nebo poškozená.
     '403': Nemáte povolení zobrazit tuto stránku.
     '404': Stránka, kterou hledáte, tu není.
     '406': Tato stránka není dostupná v požadovaném formátu.
@@ -897,7 +897,7 @@ cs:
       action: Spravovat požadavky o sledování
       body: "%{name} požádal/a o povolení vás sledovat"
       subject: 'Čekající sledující: %{name}'
-      title: Nový požadavek o sledování
+      title: Nová žádost o sledování
     mention:
       action: Odpovědět
       body: 'Byl/a jste zmíněn/a uživatelem %{name} v:'
