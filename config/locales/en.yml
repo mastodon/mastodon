@@ -11,7 +11,7 @@ en:
     apps: Mobile apps
     apps_platforms: Use Mastodon from iOS, Android and other platforms
     browse_directory: Browse a profile directory and filter by interests
-    browse_local_posts: Browse a live stream of public posts from this server
+    browse_local_posts: Browse a live stream of public posts from this instance
     browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
     contact_missing: Not set
@@ -22,16 +22,16 @@ en:
     get_apps: Try a mobile app
     hosted_on: Mastodon hosted on %{domain}
     instance_actor_flash: |
-      This account is a virtual actor used to represent the server itself and not any individual user.
+      This account is a virtual actor used to represent the instance itself and not any individual user.
       It is used for federation purposes and should not be blocked unless you want to block the whole instance, in which case you should use a domain block.
     learn_more: Learn more
     privacy_policy: Privacy policy
     see_whats_happening: See what's happening
-    server_stats: 'Server stats:'
+    server_stats: 'Instance stats:'
     source_code: Source code
     status_count_after:
-      one: status
-      other: statuses
+      one: toot
+      other: toots
     status_count_before: Who authored
     tagline: Follow friends and discover new ones
     terms: Terms of service
@@ -184,7 +184,7 @@ en:
         targeted_reports: Reported by others
       silence: Silence
       silenced: Silenced
-      statuses: Statuses
+      statuses: Toots
       subscribe: Subscribe
       suspended: Suspended
       time_in_queue: Waiting in queue %{time}
@@ -212,7 +212,7 @@ en:
         destroy_domain_allow: "%{name} removed domain %{target} from whitelist"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
-        destroy_status: "%{name} removed status by %{target}"
+        destroy_status: "%{name} removed toot by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
         disable_user: "%{name} disabled login for user %{target}"
@@ -230,8 +230,8 @@ en:
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_custom_emoji: "%{name} updated emoji %{target}"
-        update_status: "%{name} updated status by %{target}"
-      deleted_status: "(deleted status)"
+        update_status: "%{name} updated toot by %{target}"
+      deleted_status: "(deleted toot)"
       title: Audit log
     custom_emojis:
       assign_category: Assign category
@@ -431,7 +431,7 @@ en:
       updated_at: Updated
     settings:
       activity_api_enabled:
-        desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
+        desc_html: Counts of locally posted toots, active users, and new registrations in weekly buckets
         title: Publish aggregate statistics about user activity
       bootstrap_timeline_accounts:
         desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
@@ -453,14 +453,14 @@ en:
       domain_blocks_rationale:
         title: Show rationale
       hero:
-        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
         title: Hero image
       mascot:
         desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
       peers_api_enabled:
-        desc_html: Domain names this server has encountered in the fediverse
-        title: Publish list of discovered servers
+        desc_html: Domain names this instance has encountered in the fediverse
+        title: Publish list of discovered instances
       preview_sensitive_media:
         desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
         title: Show sensitive media in OpenGraph previews
@@ -490,24 +490,24 @@ en:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
       site_description:
-        desc_html: Introductory paragraph on the API. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Server description
+        desc_html: Introductory paragraph on the API. Describe what makes this Mastodon Instance special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Instance description
       site_description_extended:
-        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your server apart. You can use HTML tags
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your Instance apart. You can use HTML tags
         title: Custom extended information
       site_short_description:
-        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
-        title: Short server description
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this Instance special in a single paragraph.
+        title: Short instance description
       site_terms:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
-      site_title: Server name
+      site_title: Instance name
       spam_check_enabled:
         desc_html: Mastodon can auto-report accounts that send repeated unsolicited messages. There may be false positives.
         title: Anti-spam automation
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
-        title: Server thumbnail
+        title: Instance thumbnail
       timeline_preview:
         desc_html: Display link to public timeline on landing page and allow API access to the public timeline without authentication
         title: Allow unauthenticated access to public timeline
@@ -529,8 +529,8 @@ en:
       media:
         title: Media
       no_media: No media
-      no_status_selected: No statuses were changed as none were selected
-      title: Account statuses
+      no_status_selected: No toots were changed as none were selected
+      title: Account toots
       with_media: With media
     tags:
       accounts_today: Unique uses today
@@ -543,7 +543,7 @@ en:
       most_popular: Most popular
       most_recent: Most recent
       name: Hashtag
-      review: Review status
+      review: Review toot
       reviewed: Reviewed
       title: Hashtags
       trending_right_now: Trending right now
@@ -588,7 +588,7 @@ en:
     settings: 'Change e-mail preferences: %{link}'
     view: 'View:'
     view_profile: View profile
-    view_status: View status
+    view_status: View toot
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
@@ -600,14 +600,14 @@ en:
   auth:
     apply_for_account: Request an invite
     change_password: Password
-    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">instance rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     checkbox_agreement_without_rules_html: I agree to the <a href="%{terms_path}" target="_blank">terms of service</a>
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     description:
-      prefix_invited_by_user: "@%{name} invites you to join this server of Mastodon!"
+      prefix_invited_by_user: "@%{name} invites you to join this instance of Mastodon!"
       prefix_sign_up: Sign up on Mastodon today!
-      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
+      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon instance and more!
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
@@ -784,7 +784,7 @@ en:
       merge_long: Keep existing records and add new ones
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
-    preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
+    preface: You can import data that you have exported from another instance, such as a list of the people you are following or blocking.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
@@ -810,7 +810,7 @@ en:
       one: 1 use
       other: "%{count} uses"
     max_uses_prompt: No limit
-    prompt: Generate and share links with others to grant access to this server
+    prompt: Generate and share links with others to grant access to this instance
     table:
       expires_at: Expires
       uses: Uses
@@ -820,7 +820,7 @@ en:
       limit: You have reached the maximum amount of lists
   media_attachments:
     validations:
-      images_and_video: Cannot attach a video to a status that already contains images
+      images_and_video: Cannot attach a video to a toot that already contains images
       too_many: Cannot attach more than 4 files
   migrations:
     acct: Moved to
@@ -867,8 +867,8 @@ en:
         other: "%{count} new notifications since your last visit \U0001F418"
       title: In your absence...
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      body: 'Your toot was favourited by %{name}:'
+      subject: "%{name} favourited your toot!"
       title: New favourite
     follow:
       body: "%{name} is now following you!"
@@ -885,8 +885,8 @@ en:
       subject: You were mentioned by %{name}
       title: New mention
     reblog:
-      body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      body: 'Your toot was boosted by %{name}:'
+      subject: "%{name} boosted your toot"
       title: New boost
   notifications:
     email_events: Events for e-mail notifications
@@ -897,11 +897,11 @@ en:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
+          thoudand: K
           million: M
-          quadrillion: Q
-          thousand: K
+          billion: B
           trillion: T
+          quadrillion: Q
           unit: ''
   pagination:
     newer: Newer
@@ -944,7 +944,7 @@ en:
     no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
-    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
+    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the instance where you are registered, so we need to redirect you to your home instance first."
   remote_interaction:
     favourite:
       proceed: Proceed to favourite
@@ -1075,7 +1075,7 @@ en:
       <h3 id="collect">What information do we collect?</h3>
 
       <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+        <li><em>Basic account information</em>: If you register on this instance, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
         <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
         <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
         <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
@@ -1136,11 +1136,11 @@ en:
 
       <h3 id="children">Site usage by children</h3>
 
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+      <p>If this instance is hosted in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
 
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+      <p>If this instance is hosted in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
 
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+      <p>Law requirements can be different if this instance is hosted in another jurisdiction.</p>
 
       <hr class="spacer" />
 
@@ -1184,10 +1184,10 @@ en:
     warning:
       explanation:
         disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+        silence: While your account is limited, only people who are already following you will see your toots on this instance, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this instance, and instances where you had followers.
       get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
-      review_server_policies: Review server policies
+      review_server_policies: Review instance policies
       statuses: 'Specifically, for:'
       subject:
         disable: Your account %{acct} has been frozen
@@ -1206,12 +1206,12 @@ en:
       final_action: Start posting
       final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Your full handle
-      full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
+      full_handle_hint: This is what you would tell your friends so they can message or follow you from another instance.
       review_preferences_action: Change preferences
       review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
       subject: Welcome to Mastodon
       tip_federated_timeline: The federated timeline is a firehose view of the Mastodon network. But it only includes people your neighbours are subscribed to, so it's not complete.
-      tip_following: You follow your server's admin(s) by default. To find more interesting people, check the local and federated timelines.
+      tip_following: You follow your instance's admin(s) by default. To find more interesting people, check the local and federated timelines.
       tip_local_timeline: The local timeline is a firehose view of people on %{instance}. These are your immediate neighbours!
       tip_mobile_webapp: If your mobile browser offers you to add Mastodon to your homescreen, you can receive push notifications. It acts like a native app in many ways!
       tips: Tips
