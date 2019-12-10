@@ -397,13 +397,13 @@ cs:
       disable: Zakázat
       disabled: Zakázáno
       enable: Povolit
-      enable_hint: Je-li tohle povoleno, začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
+      enable_hint: Po zapnutí začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
       enabled: Povoleno
       inbox_url: URL mostu
-      pending: Čekám na souhlas mostu
+      pending: Čeká na souhlas mostu
       save_and_enable: Uložit a povolit
       setup: Nastavit připojení k mostu
-      signatures_not_enabled: Mosty nebudou fungovat správně, dokud je povolen zabezpečený režim nebo režim bílé listiny
+      signatures_not_enabled: Dokud je povolen zabezpečený režim nebo režim bílé listiny, nebudou mosty správně fungovat
       status: Stav
       title: Mosty
     report_notes:
@@ -413,8 +413,8 @@ cs:
       account:
         note: poznámka
         report: hlášení
-      action_taken_by: Akci vykonal/a
-      are_you_sure: Jste si jistý/á?
+      action_taken_by: Akci vykonal uživatel
+      are_you_sure: Opravu?
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
       by_target_domain: Doména nahlášeného účtu
@@ -445,21 +445,21 @@ cs:
         desc_html: Počty lokálně publikovaných tootů, aktivních uživatelů a nových registrací, v týdenních intervalech
         title: Publikovat hromadné statistiky o uživatelské aktivitě
       bootstrap_timeline_accounts:
-        desc_html: Je-li uživatelských jmen více, oddělujte je čárkami. Lze zadat pouze místní a odemknuté účty. Je-li tohle prázdné, jsou výchozí hodnotou všichni místní administrátoři.
+        desc_html: Je-li uživatelských jmen více, oddělte je čárkami. Lze zadat pouze místní a odemčené účty. Je-li seznam prázdný, jsou výchozí hodnotou všichni místní administrátoři.
         title: Výchozí sledovaní pro nové uživatele
       contact_information:
         email: Pracovní e-mail
         username: Uživatelské jméno pro kontaktování
       custom_css:
-        desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
+        desc_html: Pozměnit vzhled pomocí CSS šablony načítané na každé stránce
         title: Vlastní CSS
       default_noindex:
         desc_html: Ovlivňuje všechny uživatele, kteří toto nastavení sami nezměnili
-        title: Odhlásit uživatele z indexování vyhledávačemi ve výchozím stavu
+        title: Ve výchozím stavu odhlásit uživatele z indexování vyhledávači
       domain_blocks:
         all: Všem
         disabled: Nikomu
-        title: Zobrazit doménové blokace
+        title: Zobrazit blokované domény
         users: Přihlášeným místním uživatelům
       domain_blocks_rationale:
         title: Zobrazit odůvodnění
