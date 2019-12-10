@@ -52,7 +52,7 @@ if ENV['S3_ENABLED'] == 'true'
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
       endpoint: ENV['S3_ENDPOINT'],
-      force_path_style: true
+      force_path_style: ENV['S3_OVERRIDE_PATH_STYLE'] != 'true',
     )
 
     Paperclip::Attachment.default_options[:url] = ':s3_path_url'
