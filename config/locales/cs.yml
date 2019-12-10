@@ -134,7 +134,7 @@ cs:
       inbox_url: URL příchozí schránky
       invited_by: Pozván/a uživatelem
       ip: IP adresa
-      joined: Připojil/a se
+      joined: Uživatelem od
       location:
         all: Všechny
         local: Místní
@@ -190,10 +190,10 @@ cs:
         created_reports: Vytvořená nahlášení
         targeted_reports: Nahlášeni ostatními
       silence: Utišit
-      silenced: Utišen/a
+      silenced: Uživatel utišen
       statuses: Tooty
       subscribe: Odebírat
-      suspended: Pozastaven/a
+      suspended: Uživatel pozastaven
       time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
@@ -206,46 +206,46 @@ cs:
       whitelisted: Na bílé listině
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} přidělil/a hlášení %{target} sobě"
-        change_email_user: "%{name} změnil/a e-mailovou adresu uživatele %{target}"
-        confirm_user: "%{name} potvrdil/a e-mailovou adresu uživatele %{target}"
-        create_account_warning: "%{name} poslal/a varování uživateli %{target}"
-        create_custom_emoji: "%{name} nahrál/a nové emoji %{target}"
-        create_domain_allow: "%{name} přidal/a doménu %{target} na bílou listinu"
-        create_domain_block: "%{name} zablokoval/a doménu %{target}"
-        create_email_domain_block: "%{name} přidal/a e-mailovou doménu %{target} na černou listinu"
-        demote_user: "%{name} degradoval/a uživatele %{target}"
-        destroy_custom_emoji: "%{name} zničil/a emoji %{target}"
-        destroy_domain_allow: "%{name} odebral/a doménu %{target} z bílé listiny"
-        destroy_domain_block: "%{name} odblokoval/a doménu %{target}"
-        destroy_email_domain_block: "%{name} odebral/a e-mailovou doménu %{target} z černé listiny"
-        destroy_status: "%{name} odstranil/a toot uživatele %{target}"
-        disable_2fa_user: "%{name} vypnul/a dvoufázové ověřování pro uživatele %{target}"
-        disable_custom_emoji: "%{name} zakázal/a emoji %{target}"
-        disable_user: "%{name} zakázal/a přihlašování pro uživatele %{target}"
-        enable_custom_emoji: "%{name} povolil/a emoji %{target}"
-        enable_user: "%{name} povolil/a přihlašování pro uživatele %{target}"
-        memorialize_account: "%{name} změnil/a účet %{target} na stránku „in memoriam“"
-        promote_user: "%{name} povýšil/a uživatele %{target}"
-        remove_avatar_user: "%{name} odstranil/a avatar uživatele %{target}"
-        reopen_report: "%{name} znovuotevřel/a nahlášení %{target}"
-        reset_password_user: "%{name} obnovil/a heslo uživatele %{target}"
-        resolve_report: "%{name} vyřešil/a nahlášení %{target}"
-        silence_account: "%{name} utišil/a účet uživatele %{target}"
-        suspend_account: "%{name} pozastavil/a účet uživatele %{target}"
-        unassigned_report: "%{name} odebral/a nahlášení %{target}"
-        unsilence_account: "%{name} odtišil/a účet uživatele %{target}"
-        unsuspend_account: "%{name} zrušil/a pozastavení účtu uživatele %{target}"
-        update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
-        update_status: "%{name} aktualizoval/a toot uživatele %{target}"
+        assigned_to_self_report: "Uživatel %{name} si přidělil hlášení %{target}"
+        change_email_user: "Uživatel %{name} změnil e-mailovou adresu uživatele %{target}"
+        confirm_user: "Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}"
+        create_account_warning: "Uživatel %{name} poslal varování uživateli %{target}"
+        create_custom_emoji: "Uživatel %{name} nahrál nové emoji %{target}"
+        create_domain_allow: "Uživatel %{name} přidal doménu %{target} na bílou listinu"
+        create_domain_block: "Uživatel %{name} zablokoval doménu %{target}"
+        create_email_domain_block: "Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu"
+        demote_user: "Uživatel %{name} degradoval uživatele %{target}"
+        destroy_custom_emoji: "Uživatel %{name} zničil emoji %{target}"
+        destroy_domain_allow: "Uživatel %{name} odebral doménu %{target} z bílé listiny"
+        destroy_domain_block: "Uživatel %{name} odblokoval doménu %{target}"
+        destroy_email_domain_block: "Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny"
+        destroy_status: "Uživatel %{name} odstranil toot uživatele %{target}"
+        disable_2fa_user: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
+        disable_custom_emoji: "Uživatel %{name} zakázal emoji %{target}"
+        disable_user: "Uživatel %{name} zakázal přihlašování pro uživatele %{target}"
+        enable_custom_emoji: "Uživatel %{name} povolil emoji %{target}"
+        enable_user: "Uživatel %{name} povolil přihlašování pro uživatele %{target}"
+        memorialize_account: "Uživatel %{name} změnil účet %{target} na „in memoriam“ stránku"
+        promote_user: "Uživatel %{name} povýšil uživatele %{target}"
+        remove_avatar_user: "Uživatel %{name} odstranil avatar uživatele %{target}"
+        reopen_report: "Uživatel %{name} znovu otevřel hlášení %{target}"
+        reset_password_user: "Uživatel %{name} obnovil heslo uživatele %{target}"
+        resolve_report: "Uživatel %{name} vyřešil hlášení %{target}"
+        silence_account: "Uživatel %{name} utišil účet uživatele %{target}"
+        suspend_account: "Uživatel %{name} pozastavil účet uživatele %{target}"
+        unassigned_report: "Uživatel %{name} odebral hlášení %{target}"
+        unsilence_account: "Uživatel %{name} odtišil účet uživatele %{target}"
+        unsuspend_account: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
+        update_custom_emoji: "Uživatel %{name} aktualizoval emoji %{target}"
+        update_status: "Uživatel %{name} aktualizoval toot uživatele %{target}"
       deleted_status: "(smazaný toot)"
-      title: Záznam auditu
+      title: Auditovací protokol
     custom_emojis:
       assign_category: Přiřadit kategorii
       by_domain: Doména
       copied_msg: Místní kopie emoji byla úspěšně vytvořena
       copy: Kopírovat
-      copy_failed_msg: Nebylo možné vytvořit místní kopii tohoto emoji
+      copy_failed_msg: Místní kopii tohoto emoji nebylo možné vytvořit
       create_new_category: Vytvořit novou kategorii
       created_msg: Emoji úspěšně vytvořeno!
       delete: Smazat
@@ -266,15 +266,15 @@ cs:
       shortcode: Zkratka
       shortcode_hint: Alespoň 2 znaky, pouze alfanumerické znaky a podtržítka
       title: Vlastní emoji
-      uncategorized: Nezařazená
+      uncategorized: Nezařazeno
       unlist: Neuvést
       unlisted: Neuvedeno
-      update_failed_msg: Nebylo možné aktualizovat toto emoji
+      update_failed_msg: Toto emoji nebylo možné aktualizovat
       updated_msg: Emoji úspěšně aktualizováno!
       upload: Nahrát
     dashboard:
       authorized_fetch_mode: Zabezpečený režim
-      backlog: opožděné úlohy
+      backlog: nevyřízené úlohy
       config: Konfigurace
       feature_deletions: Smazání účtů
       feature_invites: Odkazy pozvánek
@@ -286,8 +286,8 @@ cs:
       features: Vlastnosti
       hidden_service: Federace se skrytými službami
       open_reports: otevřená hlášení
-      pending_tags: hashtagů čeká na posouzení
-      pending_users: uživatelů
+      pending_tags: hashtagy čekající na posouzení
+      pending_users: uživatelé čekající na posouzení
       recent_users: Nedávní uživatelé
       search: Fulltextové vyhledávání
       single_user_mode: Režim jednoho uživatele
@@ -311,7 +311,7 @@ cs:
       destroyed_msg: Blokace domény byla zrušena
       domain: Doména
       edit: Upravit doménovou blokaci
-      existing_domain_block_html: Pro účet %{name} jste již nastavil/a přísnější omezení, musíte jej nejdříve <a href="%{unblock_url}">odblokovat</a>.
+      existing_domain_block_html: Pro účet %{name} jste už nastavili přísnější omezení, nejprve jej <a href="%{unblock_url}">odblokujte</a>.
       new:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
