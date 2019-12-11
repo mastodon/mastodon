@@ -3,9 +3,11 @@
     about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
     about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
     about_this: Om denne instansen
+    apps: Mobilapper
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
+    get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
     source_code: Kildekode
@@ -14,7 +16,11 @@
     what_is_mastodon: Hva er Mastodon?
   accounts:
     follow: Følg
+    followers:
+      one: Følger
+      other: Følgere
     following: Følger
+    joined: Ble med den %{date}
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
@@ -53,6 +59,7 @@
       follows: Følginger
       inbox_url: Innboks URL
       ip: IP-adresse
+      joined: Ble med den
       location:
         all: Alle
         local: Lokalt
@@ -153,6 +160,8 @@
       update_failed_msg: Kunne ikke oppdatere emojien
       updated_msg: Emoji oppdatert uten problemer!
       upload: Last opp
+    dashboard:
+      feature_profile_directory: Profilmappe
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -189,6 +198,9 @@
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
       title: Blokkering av e-postdomene
+    followers:
+      back_to_account: Tilbake til kontoen
+      title: "%{acct} sine følgere"
     instances:
       title: Kjente instanser
     invites:
@@ -222,6 +234,8 @@
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
+      profile_directory:
+        title: Skru på profilmappen
       registrations:
         closed_message:
           desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
@@ -262,6 +276,8 @@
       no_media: Ingen media
       title: Kontostatuser
       with_media: Med media
+    tags:
+      trending_right_now: Trender akkurat nå
     title: Administrasjon
   admin_mailer:
     new_report:
@@ -324,6 +340,8 @@
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
     proceed: Slett konto
     success_msg: Din konto ble slettet
+  directories:
+    directory: Profilmappe
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tillatelse til å vise denne siden.
@@ -344,7 +362,10 @@
     follows: Du følger
     mutes: Du demper
     storage: Medialagring
+  footer:
+    trending_now: Trender nå
   generic:
+    all: Alle
     changes_saved_msg: Vellykket lagring av endringer!
     save_changes: Lagre endringer
     validation_errors:
@@ -430,6 +451,9 @@
     prev: Forrige
   preferences:
     other: Annet
+  relationships:
+    followers: Følgere
+    remove_selected_followers: Fjern de valgte følgerne
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
@@ -460,6 +484,7 @@
     migrate: Kontomigrering
     notifications: Varslinger
     preferences: Preferanser
+    relationships: Følginger og følgere
     two_factor_authentication: Tofaktorautentisering
   statuses:
     open_in_web: Åpne i nettleser
