@@ -3,6 +3,7 @@
     about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
     about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
     about_this: Om denne instansen
+    active_count_after: aktive
     administered_by: 'Administrert av:'
     apps: Mobilapper
     apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
@@ -19,10 +20,14 @@
     learn_more: Lær mer
     privacy_policy: Privatlivsretningslinjer
     see_whats_happening: Se hva som skjer
+    server_stats: 'Tjenerstatistikker:'
     source_code: Kildekode
     status_count_before: Som skrev
     tagline: Følg venner og oppdag nye
     terms: Bruksvilkår
+    user_count_after:
+      one: bruker
+      other: brukere
     user_count_before: Her bor
     what_is_mastodon: Hva er Mastodon?
   accounts:
@@ -33,6 +38,7 @@
     following: Følger
     joined: Ble med den %{date}
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
+    never_active: Aldri
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
@@ -81,6 +87,7 @@
       media_attachments: Mediavedlegg
       memorialize: Gjør om til et minne
       moderation:
+        active: Aktive
         all: Alle
         silenced: Målbundet
         suspended: Utvist
@@ -328,6 +335,7 @@
     reset_password: Nullstill passord
     security: Sikkerhet
     set_new_password: Sett nytt passord
+    trouble_logging_in: Har du problemer med å logge på?
   authorize_follow:
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Følg
@@ -390,6 +398,9 @@
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
+  identity_proofs:
+    active: Aktive
+    inactive: Inaktive
   imports:
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
@@ -407,7 +418,7 @@
       '21600': 6 timer
       '3600': 1 time
       '43200': 12 timer
-      '604800': 1 week
+      '604800': 1 uke
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Generer
@@ -474,6 +485,7 @@
     other: Annet
   relationships:
     followers: Følgere
+    last_active: Senest aktiv
     remove_selected_followers: Fjern de valgte følgerne
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
@@ -551,6 +563,9 @@
     setup: Sett opp
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
+    warning:
+      title:
+        none: Advarsel
     welcome:
       edit_profile_action: Sett opp profil
       edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
@@ -566,6 +581,7 @@
       tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
       tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
+      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
     invalid_email: E-postaddressen er ugyldig
