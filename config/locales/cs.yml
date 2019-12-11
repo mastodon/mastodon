@@ -1190,57 +1190,57 @@ cs:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Pro potvrzení zadejte kód vygenerovaný vaší ověřovací aplikací
-    description_html: Povolíte-li <strong>dvoufázové ověřování</strong>, budete při přihlášení potřebovat telefon, který vám vygeneruje přístupové tokeny, které musíte zadat.
-    disable: Zakázat
-    enable: Povolit
-    enabled: Dvoufázové ověřování je povoleno
-    enabled_success: Dvoufázové ověřování bylo úspěšně povoleno
+    description_html: Zapnete-li <strong>dvoufázové ověřování</strong>, budete pro přihlašování potřebovat telefon, který vám vygeneruje přístupové tokeny, které musíte zadat.
+    disable: Vypnout
+    enable: Zapnout
+    enabled: Dvoufázové ověřování je zapnuto
+    enabled_success: Dvoufázové ověřování bylo úspěšně zapnuto
     generate_recovery_codes: Vygenerovat záložní kódy
-    instructions_html: "<strong>Naskenujte tento QR kód Google Authenticatorem nebo jinou TOTP aplikací na vašem telefonu</strong>. Od teď bude tato aplikace generovat tokeny, které budete muset zadat při přihlášení."
+    instructions_html: "<strong>Naskenujte tento QR kód Google Authenticatorem nebo jinou TOTP aplikací na svém telefonu</strong>. Od teď bude tato aplikace generovat tokeny, které budete muset zadat při přihlášení."
     lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré záložní kódy budou zneplatněny.
-    manual_instructions: 'Nemůžete-li oskenovat QR kód a je potřeba ho zadat ručně, zde je tajemství v prostém textu:'
+    manual_instructions: 'Nemůžete-li QR kód naskenovat a je potřeba ho zadat ručně, zde je secret v prostém textu:'
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
-    recovery_instructions_html: Ztratíte-li někdy přístup k vašemu telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovávejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
+    recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
     setup: Nastavit
     wrong_code: Zadaný kód byl neplatný! Je čas na serveru a na zařízení správný?
   user_mailer:
     backup_ready:
-      explanation: Vyžádal/a jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
+      explanation: Vyžádali jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
       subject: Váš archiv je připraven ke stažení
       title: Stažení archivu
     warning:
       explanation:
-        disable: Zatímco je váš účet zmražen, zůstávají data vašeho účtu nedotčená, ale nemůžete vykonávat žádné akce, dokud nebude odemčen.
-        silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučen/a z různých veřejných výpisů. Ostatní vás však pořád mohou manuálně sledovat.
-        suspend: Váš účet byl pozastaven a všechny vaše tooty a vaše nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měl/a sledující.
+        disable: Zatímco je váš účet zmrazen, zůstávají data vašeho účtu nedotčena. Dokud ale nebude odemčen, nemůžete vykonávat žádné akce.
+        silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučeni z různých veřejných seznamů. Ostatní vás však pořád mohou manuálně sledovat.
+        suspend: Váš účet byl pozastaven a všechny vaše tooty a nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měli sledující.
       get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
-      review_server_policies: Posoudit politiku serveru
+      review_server_policies: Zkontrolujte pravidla serveru
       statuses: 'Konkrétně kvůli:'
       subject:
-        disable: Váš účet %{acct} byl zmražen
+        disable: Váš účet %{acct} byl zmrazen
         none: Varování pro uživatele %{acct}
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
       title:
-        disable: Účet zmražen
+        disable: Účet zmrazen
         none: Varování
         silence: Účet omezen
         suspend: Účet pozastaven
     welcome:
       edit_profile_action: Nastavit profil
-      edit_profile_step: Můžete si přizpůsobit svůj profil nahráním avataru a obrázku záhlaví, změnou zobrazovaného jména a dalších. Chcete-li posoudit nové sledující předtím, než vás mohou sledovat, můžete svůj účet uzamknout.
-      explanation: Zde je pár tipů na začátek
+      edit_profile_step: Svůj profil si můžete přizpůsobit nahráním avataru a obrázku záhlaví, změnou zobrazovaného jména a další. Chcete-li posoudit nové sledující předtím, než vás mohou sledovat, můžete svůj účet uzamknout.
+      explanation: Zde je pár tipů do začátku
       final_action: Začít psát
       final_step: 'Začněte psát! I když nemáte sledující, mohou vaše zprávy vidět jiní lidé, například na místní časové ose a v hashtazích. Můžete se ostatním představit pomocí hashtagu #introductions.'
       full_handle: Vaše celá adresa profilu
-      full_handle_hint: Tohle je, co byste řekl/a svým přátelům, aby vám mohli posílat zprávy nebo vás sledovat z jiného serveru.
-      review_preferences_action: Změnit nastavení
-      review_preferences_step: Nezapomeňte si nastavit své volby, například jaké e-maily chcete přijímat či jak soukromé mají být vaše příspěvky ve výchozím stavu. Nemáte-li epilepsii, můžete si nastavit automatické přehrávání obrázků GIF.
+      full_handle_hint: Tohle je, co byste řekli svým přátelům, aby vám mohli posílat zprávy nebo vás sledovat z jiného serveru.
+      review_preferences_action: Změnit předvolby
+      review_preferences_step: Nezapomeňte si nastavit například jaké e-maily chcete přijímat či jak soukromé mají ve výchozím stavu být vaše příspěvky. Nemáte-li epilepsii, můžete si nastavit automatické přehrávání obrázků GIF.
       subject: Vítejte na Mastodonu
       tip_federated_timeline: Federovaná časová osa je náhled celé sítě Mastodon. Zahrnuje ovšem pouze lidi, které sledují vaši sousedé, takže není úplná.
-      tip_following: Administrátora/y serveru sledujete automaticky. Chcete-li najít další zajímavé lidi, podívejte se na místní a federované časové osy.
-      tip_local_timeline: Místní časová osa je náhled lidí na %{instance}. Tohle jsou vaši nejbližší sousedé!
+      tip_following: Administrátory serveru sledujete automaticky. Chcete-li najít další zajímavé lidi, podívejte se do místní a federované časové osy.
+      tip_local_timeline: Místní časová osa je náhled lidí na serveru %{instance}. Jsou to vaši nejbližší sousedé!
       tip_mobile_webapp: Pokud vám váš mobilní prohlížeč nabídne přidat si Mastodon na vaši domovskou obrazovku, můžete dostávat oznámení. V mnoha ohledech to funguje jako nativní aplikace!
       tips: Tipy
       title: Vítejte na palubě, %{name}!
@@ -1248,9 +1248,9 @@ cs:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
     invalid_email: E-mailová adresa je neplatná
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
-    otp_lost_help_html: Pokud jste ztratil/a přístup k oběma, můžete se spojit %{email}
-    seamless_external_login: Jste přihlášen/a přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
-    signed_in_as: 'Přihlášen/a jako:'
+    otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
+    seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
+    signed_in_as: 'Přihlášeni jako:'
   verification:
     explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
