@@ -16,6 +16,6 @@ class VoteValidator < ActiveModel::Validator
   private
 
   def invalid_choice?(vote)
-    vote.choice < 0 || vote.choice >= vote.poll.options.size
+    vote.choice.negative? || vote.choice >= vote.poll.options.size
   end
 end
