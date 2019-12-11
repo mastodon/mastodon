@@ -185,17 +185,31 @@ is:
       whitelisted: Á lista yfir leyft
     action_logs:
       actions:
+        change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
+        confirm_user: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
+        create_account_warning: "%{name} sendi aðvörun til %{target}"
+        create_custom_emoji: "%{name} sendi inn nýtt tjáningartákn %{target}"
         create_domain_block: "%{name} útilokaði lénið %{target}"
+        demote_user: "%{name} lækkaði notandann %{target} í tign"
+        destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
         destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
+        destroy_status: "%{name} fjarlægði stöðufærslu frá %{target}"
         disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
-        memorialize_account: "%{name} breytti notandaaðganginum %{target} í minningargreinarsíðu"
+        disable_custom_emoji: "%{name} gerði tjáningartáknið %{target} óvirkt"
+        disable_user: "%{name} gerðir innskráningu óvirka fyrir notandann %{target}"
+        enable_custom_emoji: "%{name} gerði tjáningartáknið %{target} virkt"
+        enable_user: "%{name} gerðir innskráningu virka fyrir notandann %{target}"
+        memorialize_account: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user: "%{name} hækkaði notandann %{target} í tign"
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
+        reopen_report: "%{name} enduropnaði skýrslu %{target}"
         reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
         silence_account: "%{name} gerði notandaaðganginn %{target} hulinn"
         suspend_account: "%{name} setti notandaaðganginn %{target} í bið"
         unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account: "%{name} tók notandaaðganginn {target} úr bið"
+        update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
+        update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
     custom_emojis:
       assign_category: Úthluta flokki
@@ -241,6 +255,8 @@ is:
       feature_timeline_preview: Forskoðun tímalínu
       features: Eiginleikar
       open_reports: opnar kærur
+      pending_tags: myllumerki bíða eftir yfirferð
+      pending_users: notendur bíða eftir yfirferð
       recent_users: Nýlegir notendur
       search: Leit í öllum texta
       single_user_mode: Eins-notandahamur
