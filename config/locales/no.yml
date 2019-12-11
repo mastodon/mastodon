@@ -3,15 +3,26 @@
     about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
     about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
     about_this: Om denne instansen
+    administered_by: 'Administrert av:'
     apps: Mobilapper
+    apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
+    browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
+    browse_local_posts: Bla i en sanntidsstrøm av offentlige innlegg fra denne tjeneren
+    browse_public_posts: Bla i en sanntidsstrøm av offentlige innlegg på Mastodon
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
+    discover_users: Oppdag brukere
+    documentation: Dokumentasjon
     get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
+    privacy_policy: Privatlivsretningslinjer
+    see_whats_happening: Se hva som skjer
     source_code: Kildekode
     status_count_before: Som skrev
+    tagline: Følg venner og oppdag nye
+    terms: Bruksvilkår
     user_count_before: Her bor
     what_is_mastodon: Hva er Mastodon?
   accounts:
@@ -25,6 +36,7 @@
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
+    posts_tab_heading: Tuter
     posts_with_replies: Tuter med svar
     reserved_username: Brukernavnet er reservert
     roles:
@@ -283,6 +295,8 @@
     new_report:
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
+  appearance:
+    discovery: Oppdagelse
   application_mailer:
     notification_preferences: Endre e-post innstillingene
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
@@ -298,6 +312,8 @@
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
+    checkbox_agreement_html: Jeg godtar <a href="%{rules_path}" target="_blank">tjenerens regler</a> og <a href="%{terms_path}" target="_blank">bruksvilkår</a>
+    checkbox_agreement_without_rules_html: Jeg godtar <a href="%{terms_path}" target="_blank">bruksvilkårene</a>
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette din konto kan du <a href="%{path}">fortsette her</a>. Du vil bli spurt om bekreftelse.
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
@@ -363,6 +379,9 @@
     mutes: Du demper
     storage: Medialagring
   footer:
+    developers: Utviklere
+    more: Mer…
+    resources: Ressurser
     trending_now: Trender nå
   generic:
     all: Alle
@@ -447,7 +466,9 @@
       subject: "%{name} fremhevde din status"
       title: Ny fremheving
   pagination:
+    newer: Nyere
     next: Neste
+    older: Eldre
     prev: Forrige
   preferences:
     other: Annet
