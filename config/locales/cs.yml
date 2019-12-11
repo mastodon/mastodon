@@ -925,18 +925,18 @@ cs:
     newer: Novější
     next: Další
     older: Starší
-    prev: Před
+    prev: Předchozí
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: V této anketě jste již hlasoval/a
+      already_voted: V této anketě jste již hlasovali
       duplicate_options: obsahuje duplicitní položky
       duration_too_long: je příliš daleko v budoucnosti
       duration_too_short: je příliš brzy
       expired: Anketa již skončila
-      over_character_limit: nesmí být každá delší než %{max} znaků
+      over_character_limit: nesmí být žádná delší než %{max} znaků
       too_few_options: musí mít více než jednu položku
-      too_many_options: nesmí obsahovat více než %{max} položky
+      too_many_options: nesmí obsahovat více než %{max} položek
   preferences:
     other: Ostatní
     posting_defaults: Výchozí možnosti psaní
@@ -946,23 +946,23 @@ cs:
     dormant: Nečinné
     followers: Sledující
     following: Sledovaní
-    last_active: Naposledy aktivních
-    most_recent: Naposledy přidaných
+    last_active: Naposledy aktivní
+    most_recent: Nejnovější
     moved: Přesunuté
     mutual: Vzájemné
     primary: Primární
     relationship: Vztah
-    remove_selected_domains: Odstranit všechny sledující ze zvolených domén
-    remove_selected_followers: Odstranit zvolené sledující
-    remove_selected_follows: Přestat sledovat zvolené uživatele
+    remove_selected_domains: Odstranit všechny sledující z vybraných domén
+    remove_selected_followers: Odstranit vybrané sledující
+    remove_selected_follows: Přestat sledovat vybrané uživatele
     status: Stav účtu
   remote_follow:
     acct: Napište svou přezdívku@doménu, ze které chcete jednat
-    missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
-    no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat zde</a>
+    missing_resource: Nemůžeme najít požadovanou přesměrovávací URL adresu pro váš účet
+    no_account_html: Ještě nemáte účet? Tady se můžete <a href='%{sign_up_path}' target='_blank'>zaregistrovat</a>
     proceed: Pokračovat ke sledování
     prompt: 'Budete sledovat:'
-    reason_html: "<strong>Proč je tento krok nutný?</strong> <code>%{instance}</code> nemusí být serverem, na kterém jste registrován/a, proto vás musíme nejdříve přesměrovat na váš domovský server."
+    reason_html: "<strong>Proč je tento krok nutný?</strong> <code>%{instance}</code> nemusí být serverem, na kterém jste registrováni, a proto vás musíme nejdříve přesměrovat na váš domovský server."
   remote_interaction:
     favourite:
       proceed: Pokračovat k oblíbení
@@ -971,11 +971,11 @@ cs:
       proceed: Pokračovat k boostnutí
       prompt: 'Chcete boostnout tento toot:'
     reply:
-      proceed: Pokračovat k odpovězení
+      proceed: Pokračovat k odpovědi
       prompt: 'Chcete odpovědět na tento toot:'
   scheduled_statuses:
-    over_daily_limit: Překročil/a jste limit %{limit} plánovaných tootů pro tento den
-    over_total_limit: Překročil/a jste limit %{limit} plánovaných tootů
+    over_daily_limit: Překročili jste limit %{limit} tootů naplánovaných na tento den
+    over_total_limit: Překročili jste limit %{limit} naplánovaných tootů
     too_soon: Plánované datum musí být v budoucnosti
   sessions:
     activity: Nejnovější aktivita
@@ -999,24 +999,24 @@ cs:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: Aktuální relace
-    description: "%{browser} na %{platform}"
+    description: "%{browser} na systému %{platform}"
     explanation: Tohle jsou webové prohlížeče aktuálně přihlášené na váš účet Mastodon.
     ip: IP adresa
     platforms:
       adobe_air: Adobe Air
-      android: Androidu
+      android: Android
       blackberry: Blackberry
       chrome_os: Chrome OS
       firefox_os: Firefox OS
       ios: iOS
-      linux: Linuxu
-      mac: Macu
-      other: neznámé platformě
+      linux: Linux
+      mac: Mac
+      other: neznámá platforma
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Zamítnout
-    revoke_success: Relace úspěšně zamítnuta
+    revoke: Zrušit
+    revoke_success: Relace úspěšně zrušena
     title: Relace
   settings:
     account: Účet
@@ -1063,12 +1063,12 @@ cs:
       other: 'obsahoval nepovolené hashtagy: %{tags}'
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
-    over_character_limit: limit %{max} znaků byl překročen
+    over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
-      limit: Už jste si připnul/a maximální počet tootů
+      limit: Už jste si připnuli maximální počet tootů
       ownership: Nelze připnout toot někoho jiného
-      private: Nelze připnout neveřejné tooty
-      reblog: Nelze připnout boost
+      private: Neveřejné tooty nelze připnout
+      reblog: Boosty nelze připnout
     poll:
       total_people:
         one: "%{count} člověk"
@@ -1082,15 +1082,15 @@ cs:
         other: "%{count} hlasů"
       vote: Hlasovat
     show_more: Zobrazit více
-    sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
+    sign_in_to_participate: Chcete-li se zúčastnit této konverzace, přihlaste se
     title: '%{name}: „%{quote}“'
     visibilities:
       private: Pouze pro sledující
       private_long: Zobrazit pouze sledujícím
       public: Veřejné
-      public_long: Všichni mohou vidět
+      public_long: Uvidí kdokoliv
       unlisted: Neuvedené
-      unlisted_long: Všichni mohou vidět, ale nebudou zahrnuty ve veřejných časových osách
+      unlisted_long: Uvidí kdokoliv, ale nebude zahrnut ve veřejných časových osách
   stream_entries:
     pinned: Připnutý toot
     reblogged: boostnul/a
