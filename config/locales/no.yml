@@ -448,6 +448,12 @@
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
     proceed: Slett konto
     success_msg: Din konto ble slettet
+    warning:
+      before: 'Før du fortsetter, vennligst les disse notisene nøye:'
+      caches: Innhold som har blitt mellomlagret av andre tjenere kan kanskje fortsette å eksistere
+      data_removal: Dine innlegg og andre data vil bli permanent fjernet
+      irreversible: Du vil ikke kunne gjenopprette eller reaktivere kontoen din
+      username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
   directories:
     directory: Profilmappe
     explanation: Oppdag brukere basert på deres interesser
@@ -559,6 +565,8 @@
     acct: brukernavn@domene til den nye kontoen
     incoming_migrations: Flytte fra en annen konto
     incoming_migrations_html: For å flytte fra en annen konto til denne, må du først <a href="%{path}">sette opp et kontoalias</a>.
+    warning:
+      before: 'Før du fortsetter, vennligst les disse notisene nøye:'
   moderation:
     title: Moderasjon
   notification_mailer:
