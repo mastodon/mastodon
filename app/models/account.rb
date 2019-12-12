@@ -46,8 +46,7 @@
 #  silenced_at             :datetime
 #  suspended_at            :datetime
 #  trust_level             :integer
-#  hide_followers          :boolean
-#  hide_following          :boolean
+#  hide_collections        :boolean
 #
 
 class Account < ApplicationRecord
@@ -325,11 +324,11 @@ class Account < ApplicationRecord
   end
 
   def hides_followers?
-    hide_followers || user_hides_network?
+    hide_collections || user_hides_network?
   end
 
   def hides_following?
-    hide_following || user_hides_network?
+    hide_collections || user_hides_network?
   end
 
   def object_type

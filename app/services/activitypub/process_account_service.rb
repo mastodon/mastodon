@@ -94,8 +94,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
-    @account.hide_following    = following_private?
-    @account.hide_followers    = followers_private?
+    @account.hide_collections  = following_private? || followers_private?
     @account.moved_to_account  = @json['movedTo'].present? ? moved_account : nil
   end
 
