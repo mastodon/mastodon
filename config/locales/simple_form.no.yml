@@ -4,9 +4,12 @@
       defaults:
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        email: Du vil bli tilsendt en bekreftelses-E-post
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
+        password: Bruk minst 8 tegn
         setting_noindex: Påvirker din offentlige profil og statussider
+        username: Brukernavnet ditt vil være unikt på %{domain}
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
