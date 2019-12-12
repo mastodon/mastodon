@@ -3,8 +3,11 @@
     hints:
       defaults:
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
         email: Du vil bli tilsendt en bekreftelses-E-post
+        fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
         password: Bruk minst 8 tegn
@@ -19,6 +22,8 @@
         setting_use_blurhash: Gradientene er basert på fargene til de skjulte visualitetene, men gjør alle detaljer uklare
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
         username: Brukernavnet ditt vil være unikt på %{domain}
+      featured_tag:
+        name: 'Du vil kanskje ønske å bruke en av disse:'
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
@@ -26,14 +31,21 @@
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun tuter i de valgte språkene bli vist i de offentlige tidslinjene
     labels:
+      account:
+        fields:
+          name: Etikett
+          value: Innhold
       defaults:
+        bot: Dette er en botkonto
         chosen_languages: Filtrer språk
         confirm_new_password: Bekreft nytt passord
         confirm_password: Bekreft passord
         current_password: Nåværende passord
+        discoverable: Før opp denne kontoen i mappen
         display_name: Visningsnavn
         email: E-postadresse
         expires_in: Utløper etter
+        fields: Profilmetadata
         header: Overskrift
         locale: Språk
         locked: Lås konto
@@ -66,6 +78,8 @@
         severity: Alvorlighetsgrad
         type: Importeringstype
         username: Brukernavn
+      featured_tag:
+        name: Emneknagg
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
