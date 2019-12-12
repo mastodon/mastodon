@@ -357,6 +357,7 @@
     tags:
       context: Sammenheng
       last_active: Senest aktiv
+      most_recent: Nyligst
       name: Emneknagg
       title: Emneknagger
       trending_right_now: Trender akkurat nå
@@ -401,7 +402,7 @@
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
     forgot_password: Har du glemt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
-    login: Innlogging
+    login: Logg på
     logout: Logg ut
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
@@ -469,9 +470,12 @@
   exports:
     archive_takeout:
       date: Dato
+      hint_html: Du kan be om et arkiv med dine <strong>tuter og opplastede media</strong>. Den eksporterte dataen vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
+      request: Be om ditt arkiv
       size: Størrelse
     blocks: Du blokkerer
     csv: CSV
+    domain_blocks: Domeneblokkeringer
     follows: Du følger
     lists: Lister
     mutes: Du demper
@@ -536,7 +540,7 @@
     generate: Generer
     invited_by: 'Du ble invitert av:'
     max_uses:
-      one: 1 uke
+      one: 1 bruk
       other: "%{count} bruk"
     max_uses_prompt: Ubegrenset
     prompt: Generer og del lenker med andre for å gi tilgang til denne instansen
@@ -616,14 +620,18 @@
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlige tidslinjer
   relationships:
+    activity: Kontoaktivitet
+    dormant: Dormende
     followers: Følgere
     following: Følginger
     last_active: Senest aktiv
     most_recent: Nyligst
+    moved: Flyttet
     mutual: Gjensidig
     primary: Primær
     relationship: Forhold
     remove_selected_followers: Fjern de valgte følgerne
+    remove_selected_follows: Avfølg de valgte brukerne
     status: Kontostatus
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
@@ -653,7 +661,7 @@
       weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
-    explanation: Dette er nettlesere innlogget på din Mastodon-konto akkurat nå.
+    explanation: Dette er nettlesere som er pålogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
       adobe_air: Adobe Air
