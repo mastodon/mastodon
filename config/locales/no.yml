@@ -22,6 +22,9 @@
     see_whats_happening: Se hva som skjer
     server_stats: 'Tjenerstatistikker:'
     source_code: Kildekode
+    status_count_after:
+      one: status
+      other: statuser
     status_count_before: Som skrev
     tagline: Følg venner og oppdag nye
     terms: Bruksvilkår
@@ -37,6 +40,7 @@
       other: Følgere
     following: Følger
     joined: Ble med den %{date}
+    last_active: senest aktiv
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     never_active: Aldri
     nothing_here: Det er ingenting her!
@@ -228,6 +232,8 @@
         available: Tilgjengelig
         expired: Utløpt
       title: Invitasjoner
+    relays:
+      status: Status
     reports:
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
@@ -238,6 +244,7 @@
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
+      status: Status
       title: Rapporter
       unresolved: Uløst
     settings:
@@ -291,11 +298,15 @@
         delete: Slett
         nsfw_off: NSFW AV
         nsfw_on: NSFW PÅ
+      deleted: Slettet
       failed_to_execute: Utføring mislyktes
+      media:
+        title: Media
       no_media: Ingen media
       title: Kontostatuser
       with_media: Med media
     tags:
+      last_active: Senest aktiv
       trending_right_now: Trender akkurat nå
     title: Administrasjon
   admin_mailer:
@@ -306,6 +317,7 @@
     discovery: Oppdagelse
   application_mailer:
     notification_preferences: Endre e-post innstillingene
+    salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     view: 'Se:'
     view_profile: Vis Profil
@@ -366,6 +378,8 @@
     success_msg: Din konto ble slettet
   directories:
     directory: Profilmappe
+    explanation: Oppdag brukere basert på deres interesser
+    explore_mastodon: Utforsk %{title}
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tillatelse til å vise denne siden.
@@ -476,6 +490,10 @@
       body: 'Din status ble fremhevd av %{name}:'
       subject: "%{name} fremhevde din status"
       title: Ny fremheving
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
   pagination:
     newer: Nyere
     next: Neste
@@ -497,6 +515,7 @@
     browser: Nettleser
     browsers:
       generic: Ukjent nettleser
+      ie: Internet Explorer
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere innlogget på din Mastodon-konto akkurat nå.
@@ -546,6 +565,7 @@
   time:
     formats:
       default: "%-d. %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
     description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
