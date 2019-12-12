@@ -410,6 +410,17 @@ ru:
       created_msg: Примечание жалобы создано!
       destroyed_msg: Примечание жалобы удалено!
     reports:
+      account:
+        notes:
+          one: "%{count} заметка"
+          few: "%{count} заметки"
+          many: "%{count} заметок"
+          other: "%{count} заметки"
+        reports:
+          one: "%{count} жалоба"
+          few: "%{count} жалобы"
+          many: "%{count} жалоб"
+          other: "%{count} жалобы"
       action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
       assign_to_self: Назначить себе
@@ -427,7 +438,7 @@ ru:
         delete: Удалить
         placeholder: Опишите, какие действия были приняты, или любые другие подробности…
       reopen: Переоткрыть жалобу
-      report: 'Жалоба #%{id}'
+      report: 'Жалоба №%{id}'
       reported_account: Учётная запись нарушителя
       reported_by: Отправитель жалобы
       resolved: Разрешенные
@@ -572,7 +583,7 @@ ru:
     new_report:
       body: "%{reporter} подал(а) жалобу на %{target}"
       body_remote: Кто-то с узла %{domain} пожаловался на %{target}
-      subject: 'Новая жалоба, узел %{instance} (#%{id})'
+      subject: Новая жалоба, узел %{instance} (№%{id})
     new_trending_tag:
       body: 'Хэштег #%{name} актуален сегодня, но не был проверен. Он не будет отображаться публично, если вы не одобрите его, или просто сохраните эту форму как есть, чтоб никогда больше о нём не слышать.'
       subject: 'Новый хэштег для проверки на %{instance} (#%{name})'
