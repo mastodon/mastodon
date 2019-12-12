@@ -212,6 +212,6 @@ class ApplicationController < ActionController::Base
 
   def respond_with_error(code)
     use_pack 'error'
-    render "errors/#{code}", layout: 'error', status: code
+    render "errors/#{code}", layout: 'error', status: code, formats: [:html]
   end
 end
