@@ -20,7 +20,7 @@ module Mastodon
       by someone locally but no longer are.
 
       This is a computationally heavy procedure that creates extra database
-      indicides before commencing, and removes them afterward.
+      indices before commencing, and removes them afterward.
     LONG_DESC
     def remove
       say('Creating temporary database indices...')
