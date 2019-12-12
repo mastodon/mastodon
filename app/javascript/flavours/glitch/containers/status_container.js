@@ -214,7 +214,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
                         title={intl.formatMessage(messages.editFilter)}
                         href={filterEditLink(filter.get('id'))}
                       >
-                        <Icon icon='pencil' />
+                        <Icon id='pencil' />
                       </a>
                     )}
                   </li>
