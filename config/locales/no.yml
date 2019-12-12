@@ -5,6 +5,7 @@
     about_this: Om denne instansen
     active_count_after: aktive
     administered_by: 'Administrert av:'
+    api: API
     apps: Mobilapper
     apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
     browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
@@ -28,6 +29,9 @@
     status_count_before: Som skrev
     tagline: Følg venner og oppdag nye
     terms: Bruksvilkår
+    unavailable_content_description:
+      domain: Tjener
+      reason: Årsak
     user_count_after:
       one: bruker
       other: brukere
@@ -41,15 +45,22 @@
     following: Følger
     joined: Ble med den %{date}
     last_active: senest aktiv
+    media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     never_active: Aldri
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
+    posts:
+      one: Tut
+      other: Tuter
     posts_tab_heading: Tuter
     posts_with_replies: Tuter med svar
     reserved_username: Brukernavnet er reservert
     roles:
+      admin: Administrator
+      bot: Bot
+      group: Gruppe
       moderator: Moderere
     unfollow: Slutte følge
   admin:
@@ -60,10 +71,12 @@
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
       are_you_sure: Er du sikker?
+      avatar: Profilbilde
       by_domain: Domene
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
+      deleted: Slettet
       demote: Degrader
       disable: Deaktiver
       disable_two_factor_authentication: Skru av 2FA
@@ -80,6 +93,7 @@
       followers_url: Følgere URL
       follows: Følginger
       inbox_url: Innboks URL
+      invited_by: Invitert av
       ip: IP-adresse
       joined: Ble med den
       location:
@@ -128,6 +142,7 @@
       silence: Målbind
       statuses: Statuser
       subscribe: Abonnere
+      suspended: Suspendert
       title: Kontoer
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
@@ -160,16 +175,21 @@
         update_status: "%{name} oppdaterte status for %{target}"
       title: Revisionslogg
     custom_emojis:
+      assign_category: Tilegn kategori
       by_domain: Domene
       copied_msg: Laget en lokal kopi av emoji uten problem
       copy: Kopiere
       copy_failed_msg: Kunne ikke lage en lokal kopi av den emojien
+      create_new_category: Opprett ny kategori
       created_msg: Emoji laget uten problem!
       delete: Slett
       destroyed_msg: Emojo slettet uten problem!
       disable: Deaktivere
+      disabled: Skrudd av
       disabled_msg: Deaktiverte emoji uten problem
+      emoji: Emoji
       enable: Aktivere
+      enabled: Skrudd på
       enabled_msg: Aktiverte emojien uten problem
       image_hint: PNG opp til 50KB
       listed: Oppførte
@@ -179,12 +199,23 @@
       shortcode: Kortkode
       shortcode_hint: Minst 2 tegn, kun alfanumeriske tegn og understrek
       title: Egenoppførte emojier
+      uncategorized: Ukategorisert
       unlisted: Unoterte
       update_failed_msg: Kunne ikke oppdatere emojien
       updated_msg: Emoji oppdatert uten problemer!
       upload: Last opp
     dashboard:
+      config: Oppsett
+      feature_deletions: Kontoslettinger
+      feature_invites: Invitasjonslenker
       feature_profile_directory: Profilmappe
+      feature_registrations: Registreringer
+      feature_spam_check: Anti-spam
+      features: Egenskaper
+      recent_users: Nylige brukere
+      software: Programvare
+      title: Kontrollpanel
+      trends: Trender
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -199,6 +230,8 @@
           silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
+      private_comment: Privat kommentar
+      public_comment: Offentlig kommentar
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       show:
@@ -233,13 +266,22 @@
         expired: Utløpt
       title: Invitasjoner
     relays:
+      delete: Slett
+      disable: Skru av
+      disabled: Skrudd av
+      enable: Skru på
+      enabled: Skrudd på
       status: Status
     reports:
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
       comment:
         none: Ingen
+      created_at: Rapportert
       mark_as_resolved: Merk som løst
+      notes:
+        create: Legg til notat
+        delete: Slett
       report: 'Rapporter #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
@@ -247,6 +289,7 @@
       status: Status
       title: Rapporter
       unresolved: Uløst
+      updated_at: Oppdatert
     settings:
       activity_api_enabled:
         desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
@@ -257,6 +300,11 @@
       contact_information:
         email: Skriv en offentlig e-postadresse
         username: Skriv brukernavn
+      custom_css:
+        title: Egendefinert CSS
+      domain_blocks:
+        all: Til alle
+        disabled: Til ingen
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
@@ -306,17 +354,25 @@
       title: Kontostatuser
       with_media: Med media
     tags:
+      context: Sammenheng
       last_active: Senest aktiv
+      name: Emneknagg
+      title: Emneknagger
       trending_right_now: Trender akkurat nå
     title: Administrasjon
+    warning_presets:
+      add_new: Legg til ny
+      delete: Slett
+      edit: Rediger
   admin_mailer:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
   appearance:
     discovery: Oppdagelse
+    sensitive_content: Sensitivt innhold
   application_mailer:
-    notification_preferences: Endre e-post innstillingene
+    notification_preferences: Endre E-postinnstillingene
     salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     view: 'Se:'
@@ -331,6 +387,7 @@
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
+    change_password: Passord
     checkbox_agreement_html: Jeg godtar <a href="%{rules_path}" target="_blank">tjenerens regler</a> og <a href="%{terms_path}" target="_blank">bruksvilkår</a>
     checkbox_agreement_without_rules_html: Jeg godtar <a href="%{terms_path}" target="_blank">bruksvilkårene</a>
     delete_account: Slett konto
@@ -347,6 +404,8 @@
     reset_password: Nullstill passord
     security: Sikkerhet
     set_new_password: Sett nytt passord
+    setup:
+      email_settings_hint_html: Bekreftelses-E-posten ble sendt til %{email}. Dersom den E-postadressen ikke var riktig, kan du endre den i kontoinnstillingene.
     trouble_logging_in: Har du problemer med å logge på?
   authorize_follow:
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
@@ -358,6 +417,9 @@
       return: Gå tilbake til brukerens profil
       web: Gå til nettsiden
     title: Følg %{acct}
+  challenge:
+    confirm: Fortsett
+    invalid_password: Ugyldig passord
   datetime:
     distance_in_words:
       about_x_hours: "%{count} timer"
@@ -396,10 +458,29 @@
     '503': The page could not be served due to a temporary server failure.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   exports:
+    archive_takeout:
+      date: Dato
+      size: Størrelse
     blocks: Du blokkerer
+    csv: CSV
     follows: Du følger
+    lists: Lister
     mutes: Du demper
     storage: Medialagring
+  featured_tags:
+    add_new: Legg til ny
+  filters:
+    contexts:
+      notifications: Varslinger
+      public: Offentlige tidslinjer
+      thread: Samtaler
+    edit:
+      title: Rediger filter
+    index:
+      delete: Slett
+      title: Filtre
+    new:
+      title: Legg til nytt filter
   footer:
     developers: Utviklere
     more: Mer…
@@ -408,14 +489,21 @@
   generic:
     all: Alle
     changes_saved_msg: Vellykket lagring av endringer!
+    copy: Kopier
+    order_by: Sorter etter
     save_changes: Lagre endringer
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   identity_proofs:
     active: Aktive
+    authorize: Ja, autoriser
+    identity: Identitet
     inactive: Inaktive
   imports:
+    modes:
+      merge: Slå sammen
+      overwrite: Overskriv
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
@@ -436,6 +524,7 @@
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Generer
+    invited_by: 'Du ble invitert av:'
     max_uses:
       one: 1 uke
       other: "%{count} bruk"
@@ -494,16 +583,25 @@
     human:
       decimal_units:
         format: "%n %u"
+        units:
+          billion: Mrd
+          million: Mln
+          quadrillion: Kvd
+          thousand: T
+          trillion: Trl
   pagination:
     newer: Nyere
     next: Neste
     older: Eldre
     prev: Forrige
+    truncate: "&hellip;"
   preferences:
     other: Annet
   relationships:
     followers: Følgere
+    following: Følger
     last_active: Senest aktiv
+    most_recent: Nyligst
     remove_selected_followers: Fjern de valgte følgerne
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
@@ -514,18 +612,48 @@
     activity: Siste aktivitet
     browser: Nettleser
     browsers:
+      alipay: AliPay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Ukjent nettleser
       ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi-nettleser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere innlogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: ukjent plattform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
   settings:
+    account: Konto
+    account_settings: Kontoinnstillinger
+    aliases: Kontoaliaser
+    appearance: Utseende
     authorized_apps: Autoriserte applikasjoner
     back: Tilbake til Mastodon
     delete: Kontosletting
@@ -533,12 +661,22 @@
     edit_profile: Endre profil
     export: Dataeksport
     import: Importér
+    import_and_export: Importer og eksporter
     migrate: Kontomigrering
     notifications: Varslinger
     preferences: Preferanser
+    profile: Profil
     relationships: Følginger og følgere
     two_factor_authentication: Tofaktorautentisering
   statuses:
+    attached:
+      image:
+        one: "%{count} bilde"
+        other: "%{count} bilder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoer"
+    language_detection: Oppdag språk automatisk
     open_in_web: Åpne i nettleser
     over_character_limit: grense på %{max} tegn overskredet
     pin_errors:
@@ -607,3 +745,5 @@
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
     signed_in_as: 'Innlogget som:'
+  verification:
+    verification: Bekreftelse
