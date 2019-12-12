@@ -57,6 +57,8 @@ is:
     nothing_here: Það er ekkert hér!
     people_followed_by: Fólk sem %{name} fylgist með
     people_who_follow: Fólk sem fylgist með %{name}
+    pin_errors:
+      following: Þú þarft að vera þegar að fylgjast með þeim sem þú ætlar að mæla með
     posts:
       one: Tíst
       other: Tíst
@@ -134,6 +136,7 @@ is:
       moderation_notes: Minnispunktar umsjónarmanna
       most_recent_activity: Allra nýjasta virkni
       most_recent_ip: Nýjasta IP-vistfang
+      no_account_selected: Engum aðgöngum var breytt þar sem engir voru valdir
       no_limits_imposed: Engra takmarka krafist
       not_subscribed: Ekki í áskrift
       outbox_url: Slóð á úthólf
@@ -185,14 +188,19 @@ is:
       whitelisted: Á lista yfir leyft
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} úthlutaði skýrslu %{target} til sín"
         change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
         confirm_user: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
         create_account_warning: "%{name} sendi aðvörun til %{target}"
         create_custom_emoji: "%{name} sendi inn nýtt tjáningartákn %{target}"
+        create_domain_allow: "%{name} setti lén %{target} á lista yfir leyft"
         create_domain_block: "%{name} útilokaði lénið %{target}"
+        create_email_domain_block: "%{name} setti póstlén %{target} á lista yfir bannað"
         demote_user: "%{name} lækkaði notandann %{target} í tign"
         destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
+        destroy_domain_allow: "%{name} fjarlægði lén %{target} af lista yfir leyft"
         destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
+        destroy_email_domain_block: "%{name} setti póstlén %{target} á lista yfir leyft"
         destroy_status: "%{name} fjarlægði stöðufærslu frá %{target}"
         disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
         disable_custom_emoji: "%{name} gerði tjáningartáknið %{target} óvirkt"
@@ -204,8 +212,10 @@ is:
         remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
         reopen_report: "%{name} enduropnaði skýrslu %{target}"
         reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
+        resolve_report: "%{name} leysti skýrslu %{target}"
         silence_account: "%{name} gerði notandaaðganginn %{target} hulinn"
         suspend_account: "%{name} setti notandaaðganginn %{target} í bið"
+        unassigned_report: "%{name} fjarlægði úthlutun af skýrslu %{target}"
         unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account: "%{name} tók notandaaðganginn {target} úr bið"
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
@@ -254,6 +264,7 @@ is:
       feature_spam_check: Ruslpóstvarnir
       feature_timeline_preview: Forskoðun tímalínu
       features: Eiginleikar
+      hidden_service: Skýjasamband með faldar þjónustur
       open_reports: opnar kærur
       pending_tags: myllumerki bíða eftir yfirferð
       pending_users: notendur bíða eftir yfirferð
@@ -268,6 +279,12 @@ is:
       week_interactions: aðgerðir í þessari viku
       week_users_active: virkir í þessari viku
       week_users_new: notendur þessari viku
+      whitelist_mode: Hamur til að leyfa (whitelist)
+    domain_allows:
+      add_new: Setja lén á lista yfir leyft
+      created_msg: Það tókst að setja lénið á lista yfir leyft
+      destroyed_msg: Lénið hefur verið fjarlægt af lista yfir leyft
+      undo: Fjarlægja af lista yfir leyft
     domain_blocks:
       add_new: Bæta við nýrri útilokun á léni
       created_msg: Útilokun léns er núna í vinnslu
@@ -292,6 +309,9 @@ is:
         silence: hulið
         suspend: í bið
       show:
+        affected_accounts:
+          one: Einn notandaaðgangur í gagnagrunninum kemur við sögu
+          other: "%{count} notendaaðgangar í gagnagrunninum koma við sögu"
         retroactive:
           silence: Hætta að hylja viðkomandi notendaaðganga frá þessu léni
           suspend: Taka úr bið viðkomandi notendaaðganga frá þessu léni
@@ -301,10 +321,13 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
+      created_msg: Tókst að bæta póstléni á lista yfir bannað
       delete: Eyða
+      destroyed_msg: Tókst að eyða póstléni af lista yfir bannað
       domain: Lén
       new:
         create: Bæta við léni
+        title: Ný færsla á bannlista fyrir tölvupóstföng
       title: Bannlisti yfir tölvupóstföng
     followers:
       back_to_account: Til baka í notandaaðgang
@@ -667,6 +690,9 @@ is:
     copy: Afrita
     order_by: Raða eftir
     save_changes: Vista breytingar
+    validation_errors:
+      one: Ennþá er ekk alvegi allt í lagi! Skoðaðu vel villuna hér fyrir neðan
+      other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
   html_validator:
     invalid_markup: 'inniheldur ógildar HTML-merkingar: %{error}'
   identity_proofs:
@@ -706,9 +732,13 @@ is:
     expires_in_prompt: Aldrei
     generate: Útbúa boðstengil
     invited_by: 'Þér var boðið af:'
+    max_uses:
+      one: 1 afnot
+      other: "%{count} afnot"
     max_uses_prompt: Engin takmörk
     table:
       expires_at: Rennur út
+      uses: Afnot
     title: Bjóða fólki
   lists:
     errors:
@@ -740,6 +770,9 @@ is:
     digest:
       body: Hér er stutt yfirlit yfir þau skilaboð sem þú gætir hafa misst af síðan þú leist inn síðast %{since}
       mention: "%{name} minntist á þig í:"
+      subject:
+        one: "1 ný tilkynning síðan þú leist inn síðast \U0001F418"
+        other: "%{count} nýjar tilkynningar síðan þú leist inn síðast \U0001F418"
       title: Á meðan þú varst fjarverandi...
     favourite:
       body: 'Stöðufærslan þín var sett í eftirlæti af %{name}:'
@@ -903,6 +936,9 @@ is:
         other: "%{count} myndskeið"
     boosted_from_html: Endurbirt frá %{acct_link}
     content_warning: 'Aðvörun vegna efnis (CW): %{warning}'
+    disallowed_hashtags:
+      one: 'innihélt óleyfilegt myllumerki: %{tags}'
+      other: 'innihélt óleyfilegu myllumerkin: %{tags}'
     language_detection: Greina tungumál sjálfvirkt
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
@@ -1055,6 +1091,7 @@ is:
     welcome:
       edit_profile_action: Setja upp notandasnið
       explanation: Hér eru nokkrar ábendingar til að koma þér í gang
+      final_action: Byrjaðu að skrifa
       review_preferences_action: Breyta kjörstillingum
       subject: Velkomin í Mastodon
       tips: Ábendingar
