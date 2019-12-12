@@ -8,15 +8,26 @@
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         locked: Krever at du manuelt godkjenner følgere
         password: Bruk minst 8 tegn
+        setting_aggregate_reblogs: Ikke vis nye fremhevinger for tuter som nylig har blitt fremhever (Påvirker kun nylige fremhevinger)
+        setting_default_sensitive: Sensitivt media blir skjult som standard og kan bli vist med et klikk
+        setting_display_media_default: Skjul media som er merket som sensitivt
+        setting_display_media_hide_all: Skjul alltid all media
+        setting_display_media_show_all: Alltid vis media som er merket som sensitivt
+        setting_hide_network: De som du følger, og de som følger deg, vil ikke bli vist på profilen din
         setting_noindex: Påvirker din offentlige profil og statussider
+        setting_show_application: Appen du brukte til å tute vil bli vist i den detaljerte visningen til tutene dine
+        setting_use_blurhash: Gradientene er basert på fargene til de skjulte visualitetene, men gjør alle detaljer uklare
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
         username: Brukernavnet ditt vil være unikt på %{domain}
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
         otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
+      user:
+        chosen_languages: Hvis noen av dem er valgt, vil kun tuter i de valgte språkene bli vist i de offentlige tidslinjene
     labels:
       defaults:
+        chosen_languages: Filtrer språk
         confirm_new_password: Bekreft nytt passord
         confirm_password: Bekreft passord
         current_password: Nåværende passord
@@ -32,18 +43,25 @@
         otp_attempt: Tofaktorkode
         password: Passord
         setting_advanced_layout: Skru på det avanserte nettgrensesnittet
+        setting_aggregate_reblogs: Gruppefremhevinger i tidslinjer
         setting_auto_play_gif: Autoavspill animert GIF-filer
         setting_boost_modal: Vis bekreftelse før fremheving
         setting_crop_images: Klipp bilder i ikke-utvidede tuter til 16:9
+        setting_default_language: Innleggsspråk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Marker alltid media som sensitivt
         setting_delete_modal: Vis bekreftelse før du sletter en tut
-        setting_noindex: Ikke delta i søkemotorsindeksering
+        setting_display_media: Mediavisning
+        setting_expand_spoilers: Utvid alltid tuter som er merket med innholdsadvarsler
+        setting_hide_network: Skjul nettverket ditt
+        setting_noindex: Avmeld fra søkemotorindeksering
         setting_reduce_motion: Reduser bevegelser i animasjoner
+        setting_show_application: Skryt av appen som ble brukt til å sende tuter
         setting_system_font_ui: Bruk systemets standardfont
         setting_theme: Sidens tema
         setting_trends: Vis dagens trender
         setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
+        setting_use_blurhash: Vis fargerike gradienter for skjulte media
         setting_use_pending_items: Saktemodus
         severity: Alvorlighetsgrad
         type: Importeringstype
