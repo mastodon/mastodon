@@ -370,8 +370,13 @@
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
   appearance:
+    advanced_web_interface: Avansert nettgrensesnitt
+    advanced_web_interface_hint: 'Hvis du ønsker å bruke hele skjermbredden din, lar det avanserte nettgrensesnittet deg sette opp mange forskjellige kolonner for å se så mye informasjon på én gang som du vil: Hjem, varslinger, fellestidslinjen, og ethvert antall lister og emneknagger.'
+    animations_and_accessibility: Animasjoner og tilgjengelighet
+    confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdagelse
     sensitive_content: Sensitivt innhold
+    toot_layout: Tut-utseende
   application_mailer:
     notification_preferences: Endre E-postinnstillingene
     salutation: "%{name},"
@@ -701,7 +706,9 @@
   terms:
     title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
+    contrast: Mastodon (Høykontrast)
     default: Mastodon
+    mastodon-light: Mastodon (Lyst)
   time:
     formats:
       default: "%-d. %b %Y, %H:%M"
