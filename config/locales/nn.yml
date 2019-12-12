@@ -9,6 +9,8 @@ nn:
     api: API
     apps: Mobilappar
     apps_platforms: Bruk Mastodon på iOS, Android og andre plattformer
+    browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
+    browse_local_posts: Bla i en sanntidsstrøm av offentlige innlegg fra denne tjeneren
     browse_public_posts: Sjå ei direktesending av offentlege innlegg på Mastodon
     contact: Kontakt
     contact_missing: Ikkje sett
@@ -71,6 +73,7 @@ nn:
     roles:
       admin: Administrator
       bot: Robot
+      group: Gruppe
       moderator: Moderator
     unavailable: Profil ikkje tilgjengeleg
     unfollow: Slutt å fylgja
@@ -259,6 +262,7 @@ nn:
       config: Oppsett
       feature_deletions: Kontoslettingar
       feature_invites: Innbydingar
+      feature_profile_directory: Profilmappe
       feature_registrations: Registreringar
       feature_spam_check: Søppelvern
       feature_timeline_preview: Førehandsvisning av tidsline
@@ -371,9 +375,6 @@ nn:
       created_msg: Rapportmerknad laga!
       destroyed_msg: Rapportmerknad sletta!
     reports:
-      account:
-        note: merknad
-        report: rapporter
       action_taken_by: Handling gjort av
       are_you_sure: Er du sikker?
       assigned: Tilsett moderator
@@ -427,6 +428,7 @@ nn:
         title: Publiser liste over oppdaga tenarar
       profile_directory:
         desc_html: Gjer at brukarar kan oppdagast
+        title: Skru på profilmappen
       registrations:
         closed_message:
           desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
@@ -518,7 +520,12 @@ nn:
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
     deleted_msg: Fjerna kallenamnet. No vert det ikkje lenger mogeleg å flytta frå den andre kontoen til denne.
   appearance:
+    advanced_web_interface: Avansert nettgrensesnitt
+    advanced_web_interface_hint: 'Hvis du ønsker å bruke hele skjermbredden din, lar det avanserte nettgrensesnittet deg sette opp mange forskjellige kolonner for å se så mye informasjon på én gang som du vil: Hjem, varslinger, fellestidslinjen, og ethvert antall lister og emneknagger.'
+    animations_and_accessibility: Animasjoner og tilgjengelighet
+    confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdaging
+    sensitive_content: Sensitivt innhold
     toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
@@ -611,6 +618,7 @@ nn:
     success_msg: Kontoen din er sletta
     warning:
       before: 'Ver venleg og les desse punkta nøye før du held fram:'
+      caches: Innhold som har blitt mellomlagret av andre tjenere kan kanskje fortsette å eksistere
       data_removal: Innlegga dine og andre data vert fjerna for alltid
       email_change_html: Du kan <a href="%{path}">byta e-postadressa di</a> utan å sletta kontoen din
       irreversible: Du kjem ikkje til å kunna gjenoppretta eller aktivera kontoen din på nytt
@@ -645,11 +653,13 @@ nn:
     archive_takeout:
       date: Dato
       download: Last ned arkivet ditt
+      hint_html: Du kan be om et arkiv med dine <strong>tuter og opplastede media</strong>. Den eksporterte dataen vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
       in_progress: Samlar arkivet ditt...
       request: Bed om arkivet ditt
       size: Storleik
     blocks: Du blokkerer
     csv: CSV
+    domain_blocks: Domeneblokkeringer
     follows: Du fylgjer
     lists: Lister
     mutes: Du dempar
@@ -658,6 +668,7 @@ nn:
     add_new: Legg til ny
     errors:
       limit: Du har allereie så mange emneknaggar som det går an å ha
+    hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
       home: Heimeside
@@ -748,6 +759,8 @@ nn:
     incoming_migrations_html: For å flytta frå ein annnan konto til denne må du fyrst <a href="%{path}">laga eit kallenamn til kontoen</a>.
     past_migrations: Tidlegare vandringar
     proceed_with_move: Flytt fylgjarar
+    warning:
+      before: 'Før du fortsetter, vennligst les disse notisene nøye:'
   moderation:
     title: Moderasjon
   notification_mailer:
@@ -784,6 +797,10 @@ nn:
       body: 'Statusen din vart framheva av %{name}:'
       subject: "%{name} framheva statusen din"
       title: Ny framheving
+  notifications:
+    email_events: E-postvarslinger for hendelser
+    email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
+    other_settings: Andre varslingsinnstillinger
   number:
     human:
       decimal_units:
@@ -812,10 +829,13 @@ nn:
       too_many_options: kan ikkje ha meir enn %{max} element
   preferences:
     other: Anna
+    posting_defaults: Innleggsstandarder
     public_timelines: Offentlege tidsliner
   relationships:
     activity: Kontoaktivitet
     dormant: I dvale
+    followers: Følgere
+    following: Følginger
     last_active: Sist aktiv
     most_recent: Sist
     moved: Flytta
@@ -894,6 +914,7 @@ nn:
     development: Utvikling
     edit_profile: Endr profil
     export: Dataeksport
+    featured_tags: Utvalgte emneknagger
     identity_proofs: Identitetsprov
     import: Hent inn
     import_and_export: Importer og eksporter
@@ -1009,4 +1030,5 @@ nn:
     invalid_otp_token: Ugyldig tostegskode
     signed_in_as: 'Logga inn som:'
   verification:
+    explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Stadfesting
