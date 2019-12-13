@@ -35,7 +35,10 @@
     unavailable_content_description:
       domain: Tjener
       reason: Årsak
+      rejecting_media: 'Mediafiler fra disse tjenerne vil ikke bli behandlet eller lagret, og ingen miniatyrbilder vil bli vist, noe som vil kreve manuell klikking for å besøke den opprinnelige filen:'
       silenced: 'Innlegg fra disse tjenerne vil bli skjult fra offentlige tidslinjer og samtaler, og ingen varslinger vil bli generert fra disse brukernes samhandlinger, med mindre du følger dem:'
+      suspended: 'Ingen data fra disse tjenerne vil bli behandlet, lagret, eller utvekslet, noe som vil gjøre enhver samhandling eller kommunikasjon med brukere fra disse tjenerne umulig:'
+    unavailable_content_html: Mastodon lar deg vanligvis se innhold fra og samhandle med brukere fra enhver annen tjener i strømiverset. Dette er unntakene som har blitt gjort på denne spesifikke tjeneren.
     user_count_after:
       one: bruker
       other: brukere
@@ -278,6 +281,7 @@
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
+      existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
@@ -352,6 +356,7 @@
       disable: Skru av
       disabled: Skrudd av
       enable: Skru på
+      enable_hint: Når dette har blitt skrudd på, vil tjeneren din abonnere på alle offentlige tuter fra denne overgangen, og vil begynne å sende denne tjenerens offentlige tuter til den.
       enabled: Skrudd på
       inbox_url: Overførings-URL
       save_and_enable: Lagre og skru på
@@ -408,6 +413,7 @@
       domain_blocks_rationale:
         title: Vis grunnlaget
       hero:
+        desc_html: Vises på forsiden. Minst 600×100px er anbefalt. Dersom dette ikke er valgt, faller det tilbake på tjenerens miniatyrbilde
         title: Heltebilde
       mascot:
         desc_html: Vist på flere sider. Minst 293×205px er anbefalt. Dersom det ikke er valgt, faller det tilbake til standardmaskoten
@@ -437,6 +443,7 @@
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
         title: Utvidet nettstedsinformasjon
       site_short_description:
+        desc_html: Vist i sidelinjen og i metastempler. Beskriv hva Mastodon er og hva som gjør denne tjeneren spesiell i én enkelt paragraf.
         title: Kort tjenerbeskrivelse
       site_terms:
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
@@ -551,6 +558,7 @@
     status:
       account_status: Kontostatus
       functional: Kontoen din er fullt operativt.
+      pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
     trouble_logging_in: Har du problemer med å logge på?
   authorize_follow:
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
@@ -665,6 +673,10 @@
   identity_proofs:
     active: Aktive
     authorize: Ja, autoriser
+    errors:
+      keybase:
+        verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
+      wrong_user: Kan ikke lage et bevis for %{proving} mens du er logget på som %{current}. Logg på som %{proving} og prøv igjen.
     explanation_html: Her kan du kryptografisk koble til dine andre enheter, f.eks. en Keybase-profil. Dette lar andre folk sende deg krypterte meldinger og stole på innhold som du sender dem.
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
@@ -718,6 +730,7 @@
   migrations:
     acct: brukernavn@domene til den nye kontoen
     cancel: Avbryt omdirigeringen
+    cancel_explanation: Å avbryte omdirigeringen vil reaktivere din nåværende konto, men vil ikke bringe tilbake følgere som har blitt flyttet til den kontoen.
     errors:
       move_to_self: kan ikke være den nåværende kontoen
       not_found: ble ikke funnet
@@ -728,6 +741,7 @@
     set_redirect: Bestem omdirigering
     warning:
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
+      disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
   moderation:
     title: Moderasjon
   notification_mailer:
@@ -1043,6 +1057,7 @@
       subject: Arkivet ditt er klart til å lastes ned
     warning:
       explanation:
+        disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
         silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
         suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
       get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
