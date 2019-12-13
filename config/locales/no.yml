@@ -191,6 +191,7 @@
         create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
         demote_user: "%{name} degraderte bruker %{target}"
         destroy_custom_emoji: "%{name} ødela emojien %{target}"
+        destroy_domain_allow: "%{name} fjernet domenet %{target} fra hvitelisten"
         destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
         destroy_email_domain_block: "%{name} hvitelistet e-postdomenet %{target}"
         destroy_status: "%{name} fjernet status av %{target}"
@@ -353,6 +354,7 @@
       inbox_url: Overførings-URL
       save_and_enable: Lagre og skru på
       setup: Sett opp en overgangsforbindelse
+      signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
       status: Status
       title: Overganger
     reports:
@@ -581,6 +583,7 @@
       caches: Innhold som har blitt mellomlagret av andre tjenere kan kanskje fortsette å eksistere
       data_removal: Dine innlegg og andre data vil bli permanent fjernet
       irreversible: Du vil ikke kunne gjenopprette eller reaktivere kontoen din
+      more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
   directories:
@@ -657,6 +660,7 @@
     identity: Identitet
     inactive: Inaktive
     publicize_checkbox: 'Og tut ut dette:'
+    publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
     status: Verifiseringsstatus
     view_proof: Se bevis
   imports:
@@ -1028,6 +1032,7 @@
     backup_ready:
       subject: Arkivet ditt er klart til å lastes ned
     warning:
+      get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
       statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
