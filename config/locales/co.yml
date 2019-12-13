@@ -319,7 +319,7 @@ co:
       public_comment_hint: Cummentariu nant'à a limitazione di stu duminiu per u pubblicu generale, s'ella hè attivata a rivelazione di a lista di limitazione di duminiu.
       reject_media: Righjittà i fugliali media
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
-      reject_reports: Righjittà i rapporti
+      reject_reports: Righjittà i riporti
       reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
       rejecting_media: righjettu di i fugliali media
       rejecting_reports: righjettu di i signalamenti
@@ -366,7 +366,7 @@ co:
       total_blocked_by_us: Bluccati da noi
       total_followed_by_them: Siguitati da elli
       total_followed_by_us: Siguitati da noi
-      total_reported: Rapporti nant'à elli
+      total_reported: Riporti nant'à elli
       total_storage: Media aghjunti
     invites:
       deactivate_all: Disattivà tuttu
@@ -398,6 +398,13 @@ co:
       created_msg: Nota di signalamentu creata!
       destroyed_msg: Nota di signalamentu sguassata!
     reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} note"
+        reports:
+          one: "%{count} riportu"
+          other: "%{count} riporti"
       action_taken_by: Intervenzione di
       are_you_sure: Site sicuru·a?
       assign_to_self: Assignallu à mè
@@ -1017,7 +1024,7 @@ co:
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
   spam_check:
-    spam_detected: Quessu ghjè un rapportu automaticu. Un spam hè statu ditettatu.
+    spam_detected: Quessu ghjè un riportu automaticu. Un spam hè statu ditettatu.
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'
