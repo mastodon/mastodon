@@ -17,6 +17,7 @@
     contact_unavailable: Ikke tilgjengelig
     discover_users: Oppdag brukere
     documentation: Dokumentasjon
+    federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
     get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
     learn_more: Lær mer
@@ -34,6 +35,7 @@
     unavailable_content_description:
       domain: Tjener
       reason: Årsak
+      silenced: 'Innlegg fra disse tjenerne vil bli skjult fra offentlige tidslinjer og samtaler, og ingen varslinger vil bli generert fra disse brukernes samhandlinger, med mindre du følger dem:'
     user_count_after:
       one: bruker
       other: brukere
@@ -408,6 +410,7 @@
       hero:
         title: Heltebilde
       mascot:
+        desc_html: Vist på flere sider. Minst 293×205px er anbefalt. Dersom det ikke er valgt, faller det tilbake til standardmaskoten
         title: Maskotbilde
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
@@ -487,8 +490,11 @@
     new_report:
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
   aliases:
     add_new: Lag et alias
+    hint_html: Dersom du vil flytte fra en annen konto til den, kan du lage et alias her, som er påkrevd før du kan gå videre med å flytte følgere fra den gamle kontoen til den nye. Handlingen i seg selv er <strong>harmløs og reversibel</strong>. <strong>Kontoflyttingen har blitt satt i gang fra den gamle kontoen</strong>.
     remove: Fjern aliaslenking
   appearance:
     advanced_web_interface: Avansert nettgrensesnitt
@@ -522,6 +528,7 @@
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
       prefix_sign_up: Meld deg opp på Mastodon i dag!
+      suffix: Med en konto, vil kunne følge folk, legge ut oppdateringer, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
     forgot_password: Har du glemt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
@@ -582,6 +589,8 @@
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
       caches: Innhold som har blitt mellomlagret av andre tjenere kan kanskje fortsette å eksistere
       data_removal: Dine innlegg og andre data vil bli permanent fjernet
+      email_change_html: Du kan <a href="%{path}">endre E-postadressen din</a> uten å måtte slette kontoen din
+      email_contact_html: Dersom det fortsatt ikke kommer, kan du sende en E-post til <a href="mailto:%{email}">%{email}</a> og be om hjelp
       irreversible: Du vil ikke kunne gjenopprette eller reaktivere kontoen din
       more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
@@ -656,6 +665,7 @@
   identity_proofs:
     active: Aktive
     authorize: Ja, autoriser
+    explanation_html: Her kan du kryptografisk koble til dine andre enheter, f.eks. en Keybase-profil. Dette lar andre folk sende deg krypterte meldinger og stole på innhold som du sender dem.
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     inactive: Inaktive
@@ -1032,6 +1042,9 @@
     backup_ready:
       subject: Arkivet ditt er klart til å lastes ned
     warning:
+      explanation:
+        silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
+        suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
       get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
       statuses: 'Spesifikt for å:'
       subject:
