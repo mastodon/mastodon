@@ -4,6 +4,7 @@
     about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
     about_this: Om denne instansen
     active_count_after: aktive
+    active_footnote: Månedlige aktive brukere (MAU)
     administered_by: 'Administrert av:'
     api: API
     apps: Mobilapper
@@ -49,6 +50,7 @@
     last_active: senest aktiv
     media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
+    network_hidden: Denne informasjonen er ikke tilgjengelig
     never_active: Aldri
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
@@ -64,6 +66,7 @@
       bot: Bot
       group: Gruppe
       moderator: Moderere
+    unavailable: Profilen er utilgjengelig
     unfollow: Slutt å følge
   admin:
     account_actions:
@@ -176,10 +179,13 @@
     action_logs:
       actions:
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
+        create_account_warning: "%{name} sendte en advarsel til %{target}"
         create_custom_emoji: "%{name} lastet opp ny emoji %{target}"
+        create_domain_allow: "%{name} hvitelistet domenet %{target}"
         create_domain_block: "%{name} blokkerte domenet %{target}"
         create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
         demote_user: "%{name} degraderte bruker %{target}"
+        destroy_custom_emoji: "%{name} ødela emojien %{target}"
         destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
         destroy_email_domain_block: "%{name} hvitelistet e-postdomenet %{target}"
         destroy_status: "%{name} fjernet status av %{target}"
@@ -190,6 +196,8 @@
         enable_user: "%{name} aktiverte innlogging for bruker %{target}"
         memorialize_account: "%{name} endret %{target}s konto til en minneside"
         promote_user: "%{name} oppgraderte bruker %{target}"
+        remove_avatar_user: "%{name} fjernet %{target} sitt profilbilde"
+        reopen_report: "%{name} gjenåpnet rapporten %{target}"
         reset_password_user: "%{name} nullstilte passordet til bruker %{target}"
         resolve_report: "%{name} avviste rapporten %{target}"
         silence_account: "%{name} forstummet %{target}s konto"
@@ -254,6 +262,7 @@
       whitelist_mode: Hvitelistemodus
     domain_allows:
       add_new: Hvitelist domene
+      undo: Fjern fra hvitelisten
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -273,6 +282,7 @@
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       reject_reports: Avslå rapporter
+      rejecting_media: avviser mediafiler
       severity:
         silence: stilnet
         suspend: suspendert
@@ -301,6 +311,9 @@
       title: "%{acct} sine følgere"
     instances:
       by_domain: Domene
+      known_accounts:
+        one: "%{count} kjent konto"
+        other: "%{count} kjente kontoer"
       moderation:
         all: Alt
         limited: Begrenset
@@ -348,6 +361,7 @@
         none: Ingen
       created_at: Rapportert
       mark_as_resolved: Merk som løst
+      mark_as_unresolved: Merk som uoppklart
       notes:
         create: Legg til notat
         delete: Slett
@@ -435,6 +449,7 @@
     tags:
       context: Sammenheng
       directory: I mappen
+      in_directory: "%{count} i mappen"
       last_active: Senest aktiv
       most_popular: Mest populært
       most_recent: Nyligst
@@ -443,6 +458,7 @@
       reviewed: Gjennomgått
       title: Emneknagger
       trending_right_now: Trender akkurat nå
+      unique_uses_today: "%{count} legger ut om det i dag"
       unreviewed: Ikke gjennomgått
     title: Administrasjon
     warning_presets:
@@ -486,6 +502,8 @@
     checkbox_agreement_without_rules_html: Jeg godtar <a href="%{terms_path}" target="_blank">bruksvilkårene</a>
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
+    description:
+      prefix_sign_up: Meld deg opp på Mastodon i dag!
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
     forgot_password: Har du glemt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
@@ -567,6 +585,7 @@
   exports:
     archive_takeout:
       date: Dato
+      download: Last ned arkivet ditt
       hint_html: Du kan be om et arkiv med dine <strong>tuter og opplastede media</strong>. Den eksporterte dataen vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
       request: Be om ditt arkiv
       size: Størrelse
@@ -610,9 +629,11 @@
   identity_proofs:
     active: Aktive
     authorize: Ja, autoriser
+    i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     inactive: Inaktive
     publicize_checkbox: 'Og tut ut dette:'
+    status: Verifiseringsstatus
     view_proof: Se bevis
   imports:
     modes:
@@ -660,6 +681,7 @@
     acct: brukernavn@domene til den nye kontoen
     cancel: Avbryt omdirigeringen
     errors:
+      move_to_self: kan ikke være den nåværende kontoen
       not_found: ble ikke funnet
     incoming_migrations: Flytte fra en annen konto
     incoming_migrations_html: For å flytte fra en annen konto til denne, må du først <a href="%{path}">sette opp et kontoalias</a>.
@@ -750,6 +772,8 @@
     proceed: Fortsett med følging
     prompt: 'Du vil følge:'
   remote_interaction:
+    favourite:
+      proceed: Fortsett til likingen
     reblog:
       proceed: Fortsett til fremhevingen
     reply:
@@ -818,6 +842,7 @@
     two_factor_authentication: Tofaktorautentisering
   statuses:
     attached:
+      description: 'Vedlagt: %{attached}'
       image:
         one: "%{count} bilde"
         other: "%{count} bilder"
@@ -841,6 +866,7 @@
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mer
+    title: '%{name}: «%{quote}»'
     visibilities:
       private: Privat
       private_long: Synlig kun for følgere
@@ -852,6 +878,8 @@
     pinned: Festet tut
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
+  tags:
+    does_not_match_previous_name: samsvarer ikke med det forrige navnet
   terms:
     title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
@@ -879,7 +907,12 @@
     setup: Sett opp
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
+    backup_ready:
+      subject: Arkivet ditt er klart til å lastes ned
     warning:
+      statuses: 'Spesifikt for å:'
+      subject:
+        none: Advarsel for %{acct}
       title:
         disable: Kontoen er fryst
         none: Advarsel
