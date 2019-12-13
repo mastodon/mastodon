@@ -36,14 +36,21 @@
         fields:
           name: Etikett
           value: Innhold
+      admin_account_action:
+        type: Handling
+        types:
+          none: Ikke gjør noe
+          silence: Stilne
       defaults:
         autofollow: Inviter til å følge kontoen din
+        avatar: Profilbilde
         bot: Dette er en botkonto
         chosen_languages: Filtrer språk
         confirm_new_password: Bekreft nytt passord
         confirm_password: Bekreft passord
         context: Filtersammenhenger
         current_password: Nåværende passord
+        data: Data
         discoverable: Før opp denne kontoen i mappen
         display_name: Visningsnavn
         email: E-postadresse
@@ -68,6 +75,9 @@
         setting_default_sensitive: Marker alltid media som sensitivt
         setting_delete_modal: Vis bekreftelse før du sletter en tut
         setting_display_media: Mediavisning
+        setting_display_media_default: Standard
+        setting_display_media_hide_all: Skjul alle
+        setting_display_media_show_all: Vis alle
         setting_expand_spoilers: Utvid alltid tuter som er merket med innholdsadvarsler
         setting_hide_network: Skjul nettverket ditt
         setting_noindex: Avmeld fra søkemotorindeksering
@@ -82,12 +92,15 @@
         severity: Alvorlighetsgrad
         type: Importeringstype
         username: Brukernavn
+        whole_word: Hele ord
       featured_tag:
         name: Emneknagg
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
         must_be_following_dm: Blokker direkte meldinger fra personer du ikke følger
+      invite:
+        comment: Kommentar
       notification_emails:
         digest: Send sammendrag på e-post
         favourite: Send e-post når noen setter din status som favoritt
@@ -95,8 +108,11 @@
         follow_request: Send e-post når noen ber om å få følge deg
         mention: Send e-post når noen nevner deg
         reblog: Send e-post når noen fremhever din status
+      tag:
+        name: Emneknagg
     'no': 'Nei'
     recommended: Anbefalt
     required:
+      mark: "*"
       text: obligatorisk
     'yes': 'Ja'
