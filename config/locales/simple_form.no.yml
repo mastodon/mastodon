@@ -36,9 +36,13 @@
         fields:
           name: Etikett
           value: Innhold
+      account_warning_preset:
+        text: Forhåndsvalgt tekst
       admin_account_action:
+        text: Tilpasset advarsel
         type: Handling
         types:
+          disable: Deaktiver pålogging
           none: Ikke gjør noe
           silence: Stilne
       defaults:
@@ -92,6 +96,7 @@
         severity: Alvorlighetsgrad
         type: Importeringstype
         username: Brukernavn
+        username_or_email: Brukernavn eller E-post
         whole_word: Hele ord
       featured_tag:
         name: Emneknagg
