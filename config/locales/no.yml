@@ -71,9 +71,12 @@
       delete: Slett
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
+      approve: Godkjenn
       are_you_sure: Er du sikker?
       avatar: Profilbilde
       by_domain: Domene
+      change_email:
+        new_email: Ny E-post
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
@@ -93,6 +96,7 @@
       followers: Følgere
       followers_url: Følgere URL
       follows: Følginger
+      header: Overskrift
       inbox_url: Innboks URL
       invited_by: Invitert av
       ip: IP-adresse
@@ -108,6 +112,7 @@
       moderation:
         active: Aktive
         all: Alle
+        pending: Avventer
         silenced: Målbundet
         suspended: Utvist
         title: Moderasjon
@@ -123,6 +128,8 @@
       public: Offentlig
       push_subscription_expires: PuSH-abonnent utløper
       redownload: Oppdater avatar
+      reject: Avslå
+      reject_all: Avslå alle
       resend_confirmation:
         already_confirmed: Denne brukeren er allerede bekreftet
         send: Send bekreftelses-epost på nytt
@@ -132,6 +139,7 @@
       resubscribe: Abonner på nytt
       role: Rettigheter
       roles:
+        moderator: Moderator
         staff: Personale
         user: Bruker
       salmon_url: Salmon-URL
@@ -141,6 +149,7 @@
         created_reports: Rapporter laget av denne kontoen
         targeted_reports: Rapporter laget om denne kontoen
       silence: Målbind
+      silenced: Stilnet
       statuses: Statuser
       subscribe: Abonnere
       suspended: Suspendert
@@ -149,6 +158,8 @@
       undo_suspension: Angre utvisning
       unsubscribe: Avslutt abonnementet
       username: Brukernavn
+      warn: Advar
+      web: Nett
     action_logs:
       actions:
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
@@ -193,6 +204,7 @@
       enabled: Skrudd på
       enabled_msg: Aktiverte emojien uten problem
       image_hint: PNG opp til 50KB
+      list: Før opp
       listed: Oppførte
       new:
         title: Legg til ny egen emoji
@@ -201,6 +213,7 @@
       shortcode_hint: Minst 2 tegn, kun alfanumeriske tegn og understrek
       title: Egenoppførte emojier
       uncategorized: Ukategorisert
+      unlist: Fjern oppføring
       unlisted: Unoterte
       update_failed_msg: Kunne ikke oppdatere emojien
       updated_msg: Emoji oppdatert uten problemer!
@@ -235,6 +248,9 @@
       public_comment: Offentlig kommentar
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
+      severity:
+        silence: stilnet
+        suspend: suspendert
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -259,12 +275,18 @@
       back_to_account: Tilbake til kontoen
       title: "%{acct} sine følgere"
     instances:
+      by_domain: Domene
+      moderation:
+        all: Alt
+        limited: Begrenset
+        title: Moderasjon
       title: Kjente instanser
     invites:
       filter:
         all: Alle
         available: Tilgjengelig
         expired: Utløpt
+        title: Filtrer
       title: Invitasjoner
     relays:
       delete: Slett
@@ -272,7 +294,9 @@
       disabled: Skrudd av
       enable: Skru på
       enabled: Skrudd på
+      inbox_url: Overførings-URL
       status: Status
+      title: Overganger
     reports:
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
@@ -306,6 +330,8 @@
       domain_blocks:
         all: Til alle
         disabled: Til ingen
+      hero:
+        title: Heltebilde
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
@@ -359,6 +385,7 @@
       last_active: Senest aktiv
       most_recent: Nyligst
       name: Emneknagg
+      reviewed: Gjennomgått
       title: Emneknagger
       trending_right_now: Trender akkurat nå
     title: Administrasjon
@@ -407,6 +434,9 @@
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg på med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Bli med
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
     reset_password: Nullstill passord
@@ -414,6 +444,7 @@
     set_new_password: Sett nytt passord
     setup:
       email_settings_hint_html: Bekreftelses-E-posten ble sendt til %{email}. Dersom den E-postadressen ikke var riktig, kan du endre den i kontoinnstillingene.
+      title: Innstillinger
     status:
       account_status: Kontostatus
     trouble_logging_in: Har du problemer med å logge på?
@@ -520,6 +551,7 @@
     authorize: Ja, autoriser
     identity: Identitet
     inactive: Inaktive
+    view_proof: Se bevis
   imports:
     modes:
       merge: Slå sammen
@@ -723,6 +755,8 @@
       ownership: Kun egne tuter kan festes
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
+    poll:
+      vote: Stem
     show_more: Vis mer
     visibilities:
       private: Privat
