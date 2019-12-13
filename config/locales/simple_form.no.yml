@@ -1,17 +1,23 @@
 "no":
   simple_form:
     hints:
+      admin_account_action:
+        include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
+        type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
+        current_username: For å bekrefte, vennligst skriv inn brukernavnet til den nåværende kontoen
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
         email: Du vil bli tilsendt en bekreftelses-E-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        irreversible: Filtrerte tuter vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
         locked: Krever at du manuelt godkjenner følgere
         password: Bruk minst 8 tegn
+        phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
         setting_aggregate_reblogs: Ikke vis nye fremhevinger for tuter som nylig har blitt fremhever (Påvirker kun nylige fremhevinger)
         setting_default_sensitive: Sensitivt media blir skjult som standard og kan bli vist med et klikk
         setting_display_media_default: Skjul media som er merket som sensitivt
