@@ -71,6 +71,7 @@
   admin:
     account_actions:
       action: Utfør handling
+      title: Utfør moderatorhandling på %{acct}
     account_moderation_notes:
       create: Lag
       created_msg: Moderasjonsnotat laget uten problem!
@@ -83,6 +84,7 @@
       avatar: Profilbilde
       by_domain: Domene
       change_email:
+        changed_msg: Konto-E-postadressen ble vellykket endret!
         current_email: Nåværende E-post
         label: Endre e-post
         new_email: Ny E-post
@@ -130,6 +132,7 @@
       moderation_notes: Moderasjonsnotater
       most_recent_activity: Nyligste aktivitet
       most_recent_ip: Nyligste IP
+      no_limits_imposed: Ingen grenser er tatt i bruk
       not_subscribed: Ikke abonnért
       outbox_url: Utboks URL
       pending: Avventer gjennomgang
@@ -260,6 +263,7 @@
       title: Kontrollpanel
       total_users: brukere totalt
       trends: Trender
+      week_interactions: samhandlinger denne uken
       week_users_active: aktiv denne uken
       week_users_new: brukere denne uken
       whitelist_mode: Hvitelistemodus
@@ -427,6 +431,8 @@
       site_description_extended:
         desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
         title: Utvidet nettstedsinformasjon
+      site_short_description:
+        title: Kort tjenerbeskrivelse
       site_terms:
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
         title: Skreddersydde bruksvilkår
@@ -456,6 +462,7 @@
       title: Kontostatuser
       with_media: Med media
     tags:
+      accounts_week: Unike brukstilfeller denne uken
       context: Sammenheng
       directory: I mappen
       in_directory: "%{count} i mappen"
@@ -534,6 +541,7 @@
       title: Innstillinger
     status:
       account_status: Kontostatus
+      functional: Kontoen din er fullt operativt.
     trouble_logging_in: Har du problemer med å logge på?
   authorize_follow:
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
@@ -565,6 +573,7 @@
       x_seconds: "%{count} sek"
   deletes:
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
+    confirm_username: Skriv inn brukernavnet ditt for å bekrefte prosedyren
     proceed: Slett konto
     success_msg: Din konto ble slettet
     warning:
@@ -572,6 +581,7 @@
       caches: Innhold som har blitt mellomlagret av andre tjenere kan kanskje fortsette å eksistere
       data_removal: Dine innlegg og andre data vil bli permanent fjernet
       irreversible: Du vil ikke kunne gjenopprette eller reaktivere kontoen din
+      username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
   directories:
     directory: Profilmappe
@@ -762,6 +772,7 @@
     truncate: "&hellip;"
   polls:
     errors:
+      already_voted: Du har allerede stemt i denne avstemningen
       duration_too_long: er for langt frem i tid
       duration_too_short: er for snart
       expired: Denne avstemningen er allerede ferdig
