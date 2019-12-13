@@ -231,6 +231,8 @@ kab:
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
+  appearance:
+    sensitive_content: Agbur amḥulfu
   application_mailer:
     salutation: "%{name},"
   auth:
@@ -242,11 +244,15 @@ kab:
     login: Qqen
     logout: Ffeγ
     security: Taγellist
+    trouble_logging_in: Γur-k uguren n tuqqna?
   authorize_follow:
     follow: Ḍfeṛ
     post_follow:
       web: Ddu γer Web
     title: Ḍfeṛ %{acct}
+  challenge:
+    confirm: Kemmel
+    invalid_password: Yir awal uffir
   datetime:
     distance_in_words:
       about_x_months: "%{count}ug"
@@ -304,6 +310,8 @@ kab:
       '604800': 1 umalas
       '86400': 1 wass
     expires_in_prompt: Werǧin
+  migrations:
+    acct: Ibeddel γer
   notification_mailer:
     follow:
       title: Ameḍfaṛ amaynut
@@ -321,6 +329,13 @@ kab:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
+      opera: Opera
+      otter: Otter
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Tiγimit tamirant
+    description: "%{browser} s %{platform}"
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -356,6 +371,8 @@ kab:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Imeḍfaṛen kan
+  stream_entries:
+    sensitive_content: Agbur amḥulfu
   themes:
     contrast: Masṭudun (agnil awriran)
     default: Masṭudun (Aberkan)
@@ -372,6 +389,7 @@ kab:
       title:
         none: Γur-wat
     welcome:
+      full_handle: Tansa umiḍan-ik takemmalit
       review_preferences_action: Beddel imenyafen
       subject: Ansuf γer Masṭudun
       title: Ansuf yessek·em, %{name}!
