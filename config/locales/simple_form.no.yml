@@ -25,6 +25,8 @@
         username: Brukernavnet ditt vil være unikt på %{domain}
       featured_tag:
         name: 'Du vil kanskje ønske å bruke en av disse:'
+      form_challenge:
+        current_password: Du går inn i et sikkert område
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
@@ -118,6 +120,7 @@
         reblog: Send e-post når noen fremhever din status
       tag:
         name: Emneknagg
+        usable: Tillat tuter å bruke denne emneknaggen
     'no': 'Nei'
     recommended: Anbefalt
     required:
