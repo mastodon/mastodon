@@ -29,6 +29,7 @@
     status_count_before: Som skrev
     tagline: Følg venner og oppdag nye
     terms: Bruksvilkår
+    unavailable_content: Utilgjengelig innhold
     unavailable_content_description:
       domain: Tjener
       reason: Årsak
@@ -65,6 +66,8 @@
       moderator: Moderere
     unfollow: Slutt å følge
   admin:
+    account_actions:
+      action: Utfør handling
     account_moderation_notes:
       create: Lag
       created_msg: Moderasjonsnotat laget uten problem!
@@ -72,11 +75,15 @@
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
       approve: Godkjenn
+      approve_all: Godkjenn alle
       are_you_sure: Er du sikker?
       avatar: Profilbilde
       by_domain: Domene
       change_email:
+        current_email: Nåværende E-post
+        label: Endre e-post
         new_email: Ny E-post
+        submit: Endre e-post
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
@@ -121,6 +128,7 @@
       most_recent_ip: Nyligste IP
       not_subscribed: Ikke abonnért
       outbox_url: Utboks URL
+      pending: Avventer gjennomgang
       perform_full_suspension: Utfør full utvisning
       profile_url: Profil-URL
       promote: Oppgradere
@@ -130,6 +138,8 @@
       redownload: Oppdater avatar
       reject: Avslå
       reject_all: Avslå alle
+      remove_avatar: Fjern profilbilde
+      remove_header: Fjern overskrift
       resend_confirmation:
         already_confirmed: Denne brukeren er allerede bekreftet
         send: Send bekreftelses-epost på nytt
@@ -139,6 +149,7 @@
       resubscribe: Abonner på nytt
       role: Rettigheter
       roles:
+        admin: Administrator
         moderator: Moderator
         staff: Personale
         user: Bruker
@@ -154,12 +165,14 @@
       subscribe: Abonnere
       suspended: Suspendert
       title: Kontoer
+      unconfirmed_email: Ubekreftet E-postadresse
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
       unsubscribe: Avslutt abonnementet
       username: Brukernavn
       warn: Advar
       web: Nett
+      whitelisted: Hvitelistet
     action_logs:
       actions:
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
@@ -185,6 +198,7 @@
         unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
         update_custom_emoji: "%{name} oppdaterte emoji %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
+      deleted_status: "(statusen er slettet)"
       title: Revisionslogg
     custom_emojis:
       assign_category: Tilegn kategori
@@ -219,17 +233,27 @@
       updated_msg: Emoji oppdatert uten problemer!
       upload: Last opp
     dashboard:
+      authorized_fetch_mode: Sikkermodus
       config: Oppsett
       feature_deletions: Kontoslettinger
       feature_invites: Invitasjonslenker
       feature_profile_directory: Profilmappe
       feature_registrations: Registreringer
       feature_spam_check: Anti-spam
+      feature_timeline_preview: Tidslinje-forhåndsvisning
       features: Egenskaper
+      open_reports: åpne rapporter
       recent_users: Nylige brukere
       software: Programvare
+      space: Plassbruk
       title: Kontrollpanel
+      total_users: brukere totalt
       trends: Trender
+      week_users_active: aktiv denne uken
+      week_users_new: brukere denne uken
+      whitelist_mode: Hvitelistemodus
+    domain_allows:
+      add_new: Hvitelist domene
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
@@ -248,6 +272,7 @@
       public_comment: Offentlig kommentar
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
+      reject_reports: Avslå rapporter
       severity:
         silence: stilnet
         suspend: suspendert
@@ -280,8 +305,16 @@
         all: Alt
         limited: Begrenset
         title: Moderasjon
+      private_comment: Privat kommentar
+      public_comment: Offentlig kommentar
       title: Kjente instanser
+      total_blocked_by_us: Blokkert av oss
+      total_followed_by_them: Fulgt av dem
+      total_followed_by_us: Fulgt av oss
+      total_reported: Rapporter om dem
+      total_storage: Mediavedlegg
     invites:
+      deactivate_all: Deaktiver alle
       filter:
         all: Alle
         available: Tilgjengelig
@@ -289,17 +322,28 @@
         title: Filtrer
       title: Invitasjoner
     relays:
+      add_new: Legg til ny overgang
       delete: Slett
       disable: Skru av
       disabled: Skrudd av
       enable: Skru på
       enabled: Skrudd på
       inbox_url: Overførings-URL
+      save_and_enable: Lagre og skru på
       status: Status
       title: Overganger
     reports:
+      account:
+        notes:
+          one: "%{count} notis"
+          other: "%{count} notiser"
+        reports:
+          one: "%{count} rapport"
+          other: "%{count} rapporter"
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
+      assign_to_self: Tilegn til meg
+      assigned: Tilegnet moderator
       comment:
         none: Ingen
       created_at: Rapportert
@@ -307,12 +351,14 @@
       notes:
         create: Legg til notat
         delete: Slett
+      reopen: Gjenåpne rapporten
       report: 'Rapporter #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
       status: Status
       title: Rapporter
+      unassign: Fjern tilegning
       unresolved: Uløst
       updated_at: Oppdatert
     settings:
@@ -330,8 +376,12 @@
       domain_blocks:
         all: Til alle
         disabled: Til ingen
+      domain_blocks_rationale:
+        title: Vis grunnlaget
       hero:
         title: Heltebilde
+      mascot:
+        title: Maskotbilde
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
@@ -367,6 +417,8 @@
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Forhandsvis tidslinjen
       title: Nettstedsinnstillinger
+      trends:
+        title: Trendende emneknagger
     statuses:
       back_to_account: Tilbake til kontosiden
       batch:
@@ -382,12 +434,16 @@
       with_media: Med media
     tags:
       context: Sammenheng
+      directory: I mappen
       last_active: Senest aktiv
+      most_popular: Mest populært
       most_recent: Nyligst
       name: Emneknagg
+      review: Gjennomgangsstatus
       reviewed: Gjennomgått
       title: Emneknagger
       trending_right_now: Trender akkurat nå
+      unreviewed: Ikke gjennomgått
     title: Administrasjon
     warning_presets:
       add_new: Legg til ny
@@ -397,6 +453,9 @@
     new_report:
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
+  aliases:
+    add_new: Lag et alias
+    remove: Fjern aliaslenking
   appearance:
     advanced_web_interface: Avansert nettgrensesnitt
     advanced_web_interface_hint: 'Hvis du ønsker å bruke hele skjermbredden din, lar det avanserte nettgrensesnittet deg sette opp mange forskjellige kolonner for å se så mye informasjon på én gang som du vil: Hjem, varslinger, fellestidslinjen, og ethvert antall lister og emneknagger.'
@@ -421,6 +480,7 @@
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
+    apply_for_account: Be om en invitasjon
     change_password: Passord
     checkbox_agreement_html: Jeg godtar <a href="%{rules_path}" target="_blank">tjenerens regler</a> og <a href="%{terms_path}" target="_blank">bruksvilkår</a>
     checkbox_agreement_without_rules_html: Jeg godtar <a href="%{terms_path}" target="_blank">bruksvilkårene</a>
@@ -522,6 +582,7 @@
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
+      home: Hjemmetidslinje
       notifications: Varslinger
       public: Offentlige tidslinjer
       thread: Samtaler
@@ -551,6 +612,7 @@
     authorize: Ja, autoriser
     identity: Identitet
     inactive: Inaktive
+    publicize_checkbox: 'Og tut ut dette:'
     view_proof: Se bevis
   imports:
     modes:
@@ -560,6 +622,7 @@
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
       blocking: Blokkeringsliste
+      domain_blocking: Domeneblokkeringsliste
       following: Følgeliste
       muting: Dempeliste
     upload: Opplastning
@@ -595,8 +658,13 @@
       too_many: Kan ikke legge ved mer enn 4 filer
   migrations:
     acct: brukernavn@domene til den nye kontoen
+    cancel: Avbryt omdirigeringen
+    errors:
+      not_found: ble ikke funnet
     incoming_migrations: Flytte fra en annen konto
     incoming_migrations_html: For å flytte fra en annen konto til denne, må du først <a href="%{path}">sette opp et kontoalias</a>.
+    proceed_with_move: Flytt følgere
+    set_redirect: Bestem omdirigering
     warning:
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
   moderation:
@@ -655,6 +723,9 @@
     older: Eldre
     prev: Forrige
     truncate: "&hellip;"
+  polls:
+    errors:
+      duration_too_short: er for snart
   preferences:
     other: Annet
     posting_defaults: Innleggsstandarder
@@ -678,6 +749,11 @@
     missing_resource: Kunne ikke finne URLen for din konto
     proceed: Fortsett med følging
     prompt: 'Du vil følge:'
+  remote_interaction:
+    reblog:
+      proceed: Fortsett til fremhevingen
+    reply:
+      proceed: Fortsett til svaret
   sessions:
     activity: Siste aktivitet
     browser: Nettleser
@@ -731,6 +807,7 @@
     edit_profile: Endre profil
     export: Dataeksport
     featured_tags: Utvalgte emneknagger
+    identity_proofs: Identitetsbevis
     import: Importér
     import_and_export: Importer og eksporter
     migrate: Kontomigrering
@@ -756,6 +833,12 @@
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
+      total_votes:
+        one: "%{count} stemme"
+        other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mer
     visibilities:
@@ -798,7 +881,10 @@
   user_mailer:
     warning:
       title:
+        disable: Kontoen er fryst
         none: Advarsel
+        silence: Kontoen er begrenset
+        suspend: Kontoen er suspendert
     welcome:
       edit_profile_action: Sett opp profil
       edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
