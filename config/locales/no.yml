@@ -421,6 +421,8 @@
       peers_api_enabled:
         desc_html: Domenenavn denne instansen har truffet på i fediverset
         title: Publiser liste over oppdagede instanser
+      preview_sensitive_media:
+        desc_html: Lenkeforhåndsvisninger på andre nettsteder vil vise et miniatyrbilde selv dersom mediet er merket som sensitivt
       profile_directory:
         title: Skru på profilmappen
       registrations:
@@ -450,6 +452,7 @@
         title: Skreddersydde bruksvilkår
       site_title: Nettstedstittel
       spam_check_enabled:
+        desc_html: Mastodon kan auto-rapportere kontoer som sender gjentatte uforespurte meldinger. Det kan oppstå falske positive treff.
         title: Anti-spam-automatisering
       thumbnail:
         desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
@@ -553,6 +556,7 @@
     security: Sikkerhet
     set_new_password: Sett nytt passord
     setup:
+      email_below_hint_html: Dersom E-postadressen nedenfor er feil, kan du endre det her og motta en ny bekreftelses-E-post.
       email_settings_hint_html: Bekreftelses-E-posten ble sendt til %{email}. Dersom den E-postadressen ikke var riktig, kan du endre den i kontoinnstillingene.
       title: Innstillinger
     status:
@@ -599,6 +603,7 @@
       data_removal: Dine innlegg og andre data vil bli permanent fjernet
       email_change_html: Du kan <a href="%{path}">endre E-postadressen din</a> uten å måtte slette kontoen din
       email_contact_html: Dersom det fortsatt ikke kommer, kan du sende en E-post til <a href="mailto:%{email}">%{email}</a> og be om hjelp
+      email_reconfirmation_html: Dersom du ikke mottar bekreftelses-E-posten, kan du <a href="%{path}">be om den igjen</a>
       irreversible: Du vil ikke kunne gjenopprette eller reaktivere kontoen din
       more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
