@@ -71,6 +71,7 @@
       index:
         application: Applikasjon
         created_at: Autorisert
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Omfang
         title: Dine autoriserte applikasjoner
     errors:
@@ -112,8 +113,16 @@
       application:
         title: OAuth-autorisering påkrevet
     scopes:
+      "admin:read": lese alle data på tjeneren
+      "admin:read:accounts": lese sensitiv informasjon om alle kontoer
+      "admin:read:reports": lese sensitiv informasjon om alle rapporter og rapporterte kontoer
+      "admin:write": modifisere alle data på tjeneren
+      "admin:write:accounts": utføre moderatorhandlinger på kontoer
+      "admin:write:reports": utføre moderatorhandlinger på rapporter
       follow: følg, blokkér, avblokkér, avfølg brukere
+      push: motta dine varsler
       read: lese dine data
+      "read:accounts": se informasjon om kontoer
       "read:blocks": se dine blokkeringer
       "read:bookmarks": se dine bokmerker
       "read:favourites": se dine likinger
@@ -127,9 +136,14 @@
       "read:statuses": se alle statuser
       write: poste på dine vegne
       "write:accounts": endre på profilen din
+      "write:blocks": blokkere kontoer og domener
+      "write:bookmarks": bokmerke statuser
+      "write:favourites": like statuser
       "write:filters": opprett filtre
       "write:follows": følg personer
       "write:lists": opprett lister
       "write:media": last opp mediafiler
+      "write:mutes": dempe folk og samtaler
+      "write:notifications": tømme dine varsler
       "write:reports": rapportere andre folk
       "write:statuses": legg ut statuser
