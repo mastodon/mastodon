@@ -748,6 +748,9 @@
   polls:
     errors:
       duration_too_short: er for snart
+      expired: Denne avstemningen er allerede ferdig
+      too_few_options: må ha mer enn én gjenstand
+      too_many_options: kan ikke ha mer enn %{max} gjenstander
   preferences:
     other: Annet
     posting_defaults: Innleggsstandarder
@@ -763,21 +766,27 @@
     mutual: Gjensidig
     primary: Primær
     relationship: Forhold
+    remove_selected_domains: Fjern alle følgere fra de valgte domenene
     remove_selected_followers: Fjern de valgte følgerne
     remove_selected_follows: Avfølg de valgte brukerne
     status: Kontostatus
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
+    no_account_html: Har du ikke en konto? Da kan du <a href='%{sign_up_path}' target='_blank'>lage en konto her</a>
     proceed: Fortsett med følging
     prompt: 'Du vil følge:'
+    reason_html: "<strong>Hvorfor dette trinnet er nødvendig?</strong><code>%{instance}</code> er kanskje ikke tjeneren som du er registrert på, så vi må omdirigere deg til hjemmetjeneren din først."
   remote_interaction:
     favourite:
       proceed: Fortsett til likingen
+      prompt: 'Du ønsker å like denne tuten:'
     reblog:
       proceed: Fortsett til fremhevingen
+      prompt: 'Du ønsker å fremheve denne tuten:'
     reply:
       proceed: Fortsett til svaret
+      prompt: 'Du ønsker å svare på denne tuten:'
   sessions:
     activity: Siste aktivitet
     browser: Nettleser
@@ -912,7 +921,10 @@
     warning:
       statuses: 'Spesifikt for å:'
       subject:
+        disable: Kontoen din, %{acct}, har blitt fryst
         none: Advarsel for %{acct}
+        silence: Kontoen din, %{acct}, har blitt begrenset
+        suspend: Kontoen din, %{acct}, har blitt suspendert
       title:
         disable: Kontoen er fryst
         none: Advarsel
