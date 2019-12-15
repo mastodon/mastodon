@@ -4,6 +4,12 @@
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
+- content_for :page_heading_actions do
+  - if @report.unresolved?
+    = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
+  - else
+    = link_to t('admin.reports.mark_as_unresolved'), reopen_admin_report_path(@report), method: :post, class: 'button'
+
 %div{ style: 'overflow: hidden; margin-bottom: 20px' }
   - if @report.unresolved?
     %div{ style: 'float: right' }
@@ -12,10 +18,6 @@
         = link_to t('admin.accounts.disable'), new_admin_account_action_path(@report.target_account_id, type: 'disable', report_id: @report.id), class: 'button button--destructive'
       = link_to t('admin.accounts.silence'), new_admin_account_action_path(@report.target_account_id, type: 'silence', report_id: @report.id), class: 'button button--destructive'
       = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@report.target_account_id, type: 'suspend', report_id: @report.id), class: 'button button--destructive'
-    %div{ style: 'float: left' }
-      = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
-  - else
-    = link_to t('admin.reports.mark_as_unresolved'), reopen_admin_report_path(@report), method: :post, class: 'button'
 
 %hr.spacer
 
