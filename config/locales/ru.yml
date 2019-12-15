@@ -116,7 +116,7 @@ ru:
       confirming: Подтверждение
       deleted: Удалён
       demote: Разжаловать
-      disable: Отключить
+      disable: Заморозка
       disable_two_factor_authentication: Отключить 2FA
       disabled: Отключено
       display_name: Отображаемое имя
@@ -158,7 +158,7 @@ ru:
       not_subscribed: Не подписаны
       outbox_url: URL исходящих
       pending: Ожидает рассмотрения
-      perform_full_suspension: Полная блокировка
+      perform_full_suspension: Блокировка
       profile_url: URL профиля
       promote: Повысить
       protocol: Протокол
@@ -189,7 +189,7 @@ ru:
       show:
         created_reports: Жалобы, отправленные с этой учётной записи
         targeted_reports: Жалобы на эту учётную запись
-      silence: Скрыть
+      silence: Скрытие
       silenced: Заглушен
       statuses: Посты
       subscribe: Подписаться
@@ -201,7 +201,7 @@ ru:
       undo_suspension: Снять блокировку
       unsubscribe: Отписаться
       username: Имя пользователя
-      warn: ПРЕД
+      warn: Предупреждение
       web: Веб
       whitelisted: В белом списке
     action_logs:
@@ -429,8 +429,8 @@ ru:
       comment:
         none: Нет
       created_at: Создана
-      mark_as_resolved: Отметить как разрешенную
-      mark_as_unresolved: Отметить как неразрешённую
+      mark_as_resolved: Отметить как решённую
+      mark_as_unresolved: Отметить как нерешённую
       notes:
         create: Добавить заметку
         create_and_resolve: Разрешить с примечанием
@@ -441,12 +441,12 @@ ru:
       report: 'Жалоба №%{id}'
       reported_account: Учётная запись нарушителя
       reported_by: Отправитель жалобы
-      resolved: Разрешенные
-      resolved_msg: Жалоба успешно обработана!
+      resolved: Решённые
+      resolved_msg: Жалоба обработана, спасибо!
       status: Статус
       title: Жалобы
       unassign: Снять назначение
-      unresolved: Неразрешенные
+      unresolved: Нерешённые
       updated_at: Обновлена
     settings:
       activity_api_enabled:
@@ -973,7 +973,7 @@ ru:
     reason_html: "<strong>Почему это необходимо?</strong> Возможно, <code>%{instance}</code> не является узлом, на котором вы зарегистрированы, поэтому нам сперва нужно перенаправить вас на домашний узел."
   remote_interaction:
     favourite:
-      proceed: Отметить как "нравится"
+      proceed: Добавить в избранное
       prompt: 'Вы собираетесь поставить отметку "нравится" этому посту:'
     reblog:
       proceed: Продвинуть пост
