@@ -82,8 +82,8 @@ class Option extends React.PureComponent {
             onKeyPress={this.handleCheckboxKeypress}
             role='button'
             tabIndex='0'
-            title={intl.formatMessage(isPollMultiple ? messages.switchToMultiple : messages.switchToSingle)}
-            aria-label={intl.formatMessage(isPollMultiple ? messages.switchToMultiple : messages.switchToSingle)}
+            title={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
+            aria-label={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
           />
 
           <AutosuggestInput
