@@ -77,6 +77,7 @@ it:
     roles:
       admin: Amministratore
       bot: Bot
+      group: Gruppo
       moderator: Moderatore
     unavailable: Profilo non disponibile
     unfollow: Non seguire più
@@ -397,6 +398,10 @@ it:
       created_msg: Nota rapporto creata!
       destroyed_msg: Nota rapporto cancellata!
     reports:
+      account:
+        reports:
+          one: "%{count} rapporto"
+          other: "%{count} rapporti"
       action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
