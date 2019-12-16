@@ -77,6 +77,7 @@ pt-BR:
     roles:
       admin: Admin
       bot: Robô
+      group: Grupo
       moderator: Mod
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
@@ -397,6 +398,13 @@ pt-BR:
       created_msg: Nota de denúncia criada com sucesso!
       destroyed_msg: Nota de denúncia excluída com sucesso!
     reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+        reports:
+          one: "%{count} denúncia"
+          other: "%{count} denúncias"
       action_taken_by: Atitude tomada por
       are_you_sure: Você tem certeza?
       assign_to_self: Acatado por mim
