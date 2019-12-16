@@ -2,6 +2,8 @@ nn:
   simple_form:
     hints:
       admin_account_action:
+        include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
+        type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
@@ -13,8 +15,11 @@ nn:
         email: Du får snart ein stadfestings-e-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        irreversible: Filtrerte tuter vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
         locked: Krever at du manuelt godkjenner følgere
         password: Nytt minst 8 teikn
+        phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
+        scopes: Hvilke API-er programmet vil bli gitt tilgang til. Dersom du velger et toppnivåomfang, trenger du ikke å velge individuelle API-er.
         setting_aggregate_reblogs: Ikke vis nye fremhevinger for tuter som nylig har blitt fremhever (Påvirker kun nylige fremhevinger)
         setting_default_sensitive: Sensitivt media blir skjult som standard og kan bli vist med et klikk
         setting_display_media_default: Skjul media som er merket som sensitivt
@@ -26,8 +31,11 @@ nn:
         setting_use_blurhash: Gradientene er basert på fargene til de skjulte visualitetene, men gjør alle detaljer uklare
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
         username: Brukarnamnet ditt vert unikt på %{domain}
+        whole_word: Når søkeordet eller setningen bare er alfanumerisk, aktiveres det bare hvis det samsvarer med hele ordet
       featured_tag:
         name: 'Kanskje du vil nytta ein av desse:'
+      form_challenge:
+        current_password: Du går inn i et sikkert område
       imports:
         data: CSV-fil eksportert frå ein annan Mastodon-tenar
       invite_request:
@@ -112,6 +120,8 @@ nn:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
         must_be_following_dm: Blokker direkte meldinger fra personer du ikke følger
+      invite:
+        comment: Kommentar
       invite_request:
         text: Kvifor vil du verta med?
       notification_emails:
