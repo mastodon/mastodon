@@ -77,6 +77,7 @@ pt-PT:
     roles:
       admin: Administrador
       bot: Robô
+      group: Grupo
       moderator: Moderador
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
@@ -397,6 +398,13 @@ pt-PT:
       created_msg: Relatório criado com sucesso!
       destroyed_msg: Relatório apagado com sucesso!
     reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+        reports:
+          one: "%{count} relatório"
+          other: "%{count} relatórios"
       action_taken_by: Ação tomada por
       are_you_sure: Tens a certeza?
       assign_to_self: Atribuí-me a mim
@@ -416,11 +424,11 @@ pt-PT:
       reopen: Reabrir relatório
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
-      reported_by: Denúnciada por
+      reported_by: Reportado por
       resolved: Resolvido
       resolved_msg: Relatório resolvido com sucesso!
       status: Estado
-      title: Denúncias
+      title: Relatórios
       unassign: Não atribuir
       unresolved: Por resolver
       updated_at: Atualizado
@@ -447,6 +455,8 @@ pt-PT:
         users: Para utilizadores locais que se encontrem autenticados
       domain_blocks_rationale:
         title: Mostrar motivo
+      enable_bootstrap_timeline_accounts:
+        title: Habilitar seguidores predefinidos para novos utilizadores
       hero:
         desc_html: Apresentado na primeira página. Pelo menos 600x100px recomendados. Quando não é definido, é apresentado o thumbnail do servidor
         title: Imagem Hero
