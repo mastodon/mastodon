@@ -352,7 +352,7 @@ class Status extends ImmutablePureComponent {
 
   handleBlockDomainClick = domain => {
     this.props.dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
+      message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Blocking means you will not see content from {domain} in any public timelines or your notifications. Any followers from {domain} will also be removed.' values={{ domain: <strong>{domain}</strong> }} />,
       confirm: this.props.intl.formatMessage(messages.blockDomainConfirm),
       onConfirm: () => this.props.dispatch(blockDomain(domain)),
     }));
