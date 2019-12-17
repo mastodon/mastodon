@@ -72,6 +72,7 @@ zh-CN:
     roles:
       admin: 管理员
       bot: 机器人
+      group: 群组
       moderator: 监察员
     unavailable: 个人资料不可用
     unfollow: 取消关注
@@ -390,6 +391,11 @@ zh-CN:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
     reports:
+      account:
+        notes:
+          other: "%{count} 条笔记"
+        reports:
+          other: "%{count} 个报告"
       action_taken_by: 操作执行者
       are_you_sure: 你确定吗？
       assign_to_self: 接管
