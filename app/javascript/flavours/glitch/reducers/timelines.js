@@ -71,7 +71,7 @@ const updateTimeline = (state, timeline, status, usePendingItems, filtered) => {
     state = state.update(timeline, initialTimeline, map => map.update('pendingItems', list => list.unshift(status.get('id'))));
 
     if (!filtered) {
-      state = state.update('unread', unread => unread + 1);
+      state = state.updateIn([timeline, 'unread'], unread => unread + 1);
     }
 
     return state;
