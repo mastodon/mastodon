@@ -378,6 +378,28 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with hashtags invalid name' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            tag: [
+              {
+                type: 'Hashtag',
+                href: 'http://example.com/blah',
+                name: 'foo, #eh !',
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+        end
+      end
+
       context 'with emojis' do
         let(:object_json) do
           {
