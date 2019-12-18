@@ -114,6 +114,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  static getStatusURL(status) {
+    return `/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`;
+  }
+
   handleToggleMediaVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
   }
@@ -128,8 +132,7 @@ class Status extends ImmutablePureComponent {
       return;
     }
 
-    const { status } = this.props;
-    this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    this.context.router.history.push(this.constructor.getStatusURL(this.props.status));
   }
 
   handleExpandClick = (e) => {
@@ -143,8 +146,7 @@ class Status extends ImmutablePureComponent {
         return;
       }
 
-      const { status } = this.props;
-      this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+      this.context.router.history.push(this.constructor.getStatusURL(this.props.status));
     }
   }
 
@@ -421,7 +423,7 @@ class Status extends ImmutablePureComponent {
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted, read: unread === false })} data-id={status.get('id')}>
             <div className='status__expand' onClick={this.handleExpandClick} role='presentation' />
             <div className='status__info'>
-              <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+              <a href={this.constructor.getStatusURL(status)} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
               <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
                 <div className='status__avatar'>
