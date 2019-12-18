@@ -21,7 +21,12 @@
 
     .content-wrapper
       .content
-        %h2= yield :page_title
+        .content-heading
+          %h2= yield :page_title
+
+          - if :page_heading_actions
+            .content-heading-actions
+              = yield :page_heading_actions
 
         = render 'application/flashes'
 

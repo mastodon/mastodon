@@ -3,8 +3,8 @@ FROM ubuntu:18.04 as build-dep
 # Use bash for the shell
 SHELL ["bash", "-c"]
 
-# Install Node
-ENV NODE_VER="12.11.1"
+# Install Node v12 (LTS)
+ENV NODE_VER="12.13.1"  
 RUN	echo "Etc/UTC" > /etc/localtime && \
 	apt update && \
 	apt -y install wget python && \

@@ -7,6 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from 'mastodon/initial_state';
 import StatusContainer from 'mastodon/containers/status_container';
 import AccountContainer from 'mastodon/containers/account_container';
+import FollowRequestContainer from '../containers/follow_request_container';
 import Icon from 'mastodon/components/icon';
 import Permalink from 'mastodon/components/permalink';
 
@@ -127,7 +128,29 @@ class Notification extends ImmutablePureComponent {
             </span>
           </div>
 
-          <AccountContainer id={account.get('id')} withNote={false} hidden={this.props.hidden} />
+          <AccountContainer id={account.get('id')} hidden={this.props.hidden} />
+        </div>
+      </HotKeys>
+    );
+  }
+
+  renderFollowRequest (notification, account, link) {
+    const { intl } = this.props;
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className='notification notification-follow-request focusable' tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage({ id: 'notification.follow_request', defaultMessage: '{name} has requested to follow you' }, { name: account.get('acct') }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <div className='notification__favourite-icon-wrapper'>
+              <Icon id='user' fixedWidth />
+            </div>
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.follow_request' defaultMessage='{name} has requested to follow you' values={{ name: link }} />
+            </span>
+          </div>
+
+          <FollowRequestContainer id={account.get('id')} withNote={false} hidden={this.props.hidden} />
         </div>
       </HotKeys>
     );
@@ -261,6 +284,8 @@ class Notification extends ImmutablePureComponent {
     switch(notification.get('type')) {
     case 'follow':
       return this.renderFollow(notification, account, link);
+    case 'follow_request':
+      return this.renderFollowRequest(notification, account, link);
     case 'mention':
       return this.renderMention(notification);
     case 'favourite':

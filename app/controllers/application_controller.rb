@@ -136,6 +136,6 @@ class ApplicationController < ActionController::Base
   end
 
   def respond_with_error(code)
-    render "errors/#{code}", layout: 'error', status: code
+    render "errors/#{code}", layout: 'error', status: code, formats: [:html]
   end
 end
