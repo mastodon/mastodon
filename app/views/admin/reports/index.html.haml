@@ -28,7 +28,7 @@
     .report-card__profile
       = account_link_to target_account, '', size: 36, path: admin_account_path(target_account.id)
       .report-card__profile__stats
-        = link_to pluralize(target_account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_account_path(target_account.id)
+        = link_to t('admin.reports.account.notes', count: target_account.targeted_moderation_notes.count), admin_account_path(target_account.id)
         %br/
         - if target_account.suspended?
           %span.red= t('admin.accounts.suspended')

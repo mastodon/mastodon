@@ -7,7 +7,7 @@
 #  user_id           :bigint(8)
 #  dump_file_name    :string
 #  dump_content_type :string
-#  dump_file_size    :integer
+#  dump_file_size    :bigint
 #  dump_updated_at   :datetime
 #  processed         :boolean          default(FALSE), not null
 #  created_at        :datetime         not null

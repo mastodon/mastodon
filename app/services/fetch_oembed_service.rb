@@ -93,7 +93,7 @@ class FetchOEmbedService
   def html
     return @html if defined?(@html)
 
-    @html = @options[:html] || Request.new(:get, @url).perform do |res|
+    @html = @options[:html] || Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
       res.code != 200 || res.mime_type != 'text/html' ? nil : res.body_with_limit
     end
   end

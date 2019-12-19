@@ -104,6 +104,26 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       end
     end
 
+    context 'with Event object' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://#{valid_domain}/@foo/1234",
+          type: 'Event',
+          name: "Let's change the world",
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender)
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq "https://#{valid_domain}/@foo/1234"
+        expect(strip_tags(status.text)).to eq "Let's change the world https://#{valid_domain}/@foo/1234"
+      end
+    end
+
     context 'with wrong id' do
       let(:note) do
         {

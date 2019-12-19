@@ -47,7 +47,25 @@ const onDomainBlockSeverityChange = (target) => {
 
 delegate(document, '#domain_block_severity', 'change', ({ target }) => onDomainBlockSeverityChange(target));
 
+const onEnableBootstrapTimelineAccountsChange = (target) => {
+  const bootstrapTimelineAccountsField = document.querySelector('#form_admin_settings_bootstrap_timeline_accounts');
+
+  if (bootstrapTimelineAccountsField) {
+    bootstrapTimelineAccountsField.disabled = !target.checked;
+    if (target.checked) {
+      bootstrapTimelineAccountsField.parentElement.classList.remove('disabled');
+    } else {
+      bootstrapTimelineAccountsField.parentElement.classList.add('disabled');
+    }
+  }
+};
+
+delegate(document, '#form_admin_settings_enable_bootstrap_timeline_accounts', 'change', ({ target }) => onEnableBootstrapTimelineAccountsChange(target));
+
 ready(() => {
-  const input = document.getElementById('domain_block_severity');
-  if (input) onDomainBlockSeverityChange(input);
+  const domainBlockSeverityInput = document.getElementById('domain_block_severity');
+  if (domainBlockSeverityInput) onDomainBlockSeverityChange(domainBlockSeverityInput);
+
+  const enableBootstrapTimelineAccounts = document.getElementById('form_admin_settings_enable_bootstrap_timeline_accounts');
+  if (enableBootstrapTimelineAccounts) onEnableBootstrapTimelineAccountsChange(enableBootstrapTimelineAccounts);
 });
