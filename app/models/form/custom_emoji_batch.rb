@@ -40,7 +40,7 @@ class Form::CustomEmojiBatch
       if category_id.present?
         CustomEmojiCategory.find(category_id)
       elsif category_name.present?
-        CustomEmojiCategory.create!(name: category_name)
+        CustomEmojiCategory.find_or_create_by!(name: category_name)
       end
     end
 
