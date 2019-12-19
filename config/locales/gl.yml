@@ -157,7 +157,7 @@ gl:
       remove_avatar: Eliminar avatar
       remove_header: Eliminar cabeceira
       resend_confirmation:
-        already_confirmed: Este usuario xa está confirmado
+        already_confirmed: Este usuaria xa está confirmado
         send: Reenviar el correo electrónico de confirmación
         success: '¡Correo electrónico de confirmación enviado con éxito!'
       reset: Restablecer
@@ -170,7 +170,7 @@ gl:
         staff: Membresía
         user: Usuaria
       search: Busca
-      search_same_ip: Outros usuarios co mesmo IP
+      search_same_ip: Outras usuarias co mesmo IP
       shared_inbox_url: URL da caixa de entrada compartida
       show:
         created_reports: Informes creados
@@ -276,7 +276,7 @@ gl:
       pending_users: usuarias agardando revisión
       recent_users: Usuarias recentes
       search: Busca de texto completo
-      single_user_mode: Modo de usuario individual
+      single_user_mode: Modo de usuaria individual
       software: Software
       space: Uso de espazo
       title: Taboleiro
@@ -606,7 +606,7 @@ gl:
     login: Conectar
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
-    migrate_account_html: Se desexa redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
+    migrate_account_html: Se queres redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or_log_in_with: ou conectar con
     providers:
       cas: CAS
@@ -673,8 +673,8 @@ gl:
       email_reconfirmation_html: Se non recibes o correo de confirmación, podes <a href="%{path}">solicitalo de novo</a>
       irreversible: Non poderás restaurar ou reactivar a conta
       more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de intimidade</a>.
-      username_available: O nome de usuario estará dispoñible novamente
-      username_unavailable: O nome de usuario non estará dispoñible
+      username_available: O nome de usuaria estará dispoñible novamente
+      username_unavailable: O nome de usuaria non estará dispoñible
   directories:
     directory: Directorio de perfil
     explanation: Descubre usuarias según o teu interese
@@ -762,7 +762,7 @@ gl:
         invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres hexadecimais
         verification_failed: Keybase non recoñece este testemuño como firma da usuaria de Keybase %{kb_username}. Por favor inténteo desde Keybase.
       wrong_user: Non se puido crear a proba para %{proving} mentras está conectada como %{current}. Conéctate como %{proving} e inténtao de novo.
-    explanation_html: Aquí pódese conectar criptográficamente as suas outras identidades, como a un perfil Keybase. Esto permitelle a outras persoas enviarlle mensaxes cifradas e confiar no contido que vostede lle envía.
+    explanation_html: Aquí podes conectar criptográficamente as tuas outras identidades, como a un perfil Keybase. Esto permítelle a outras persoas enviarche mensaxes cifradas e confiar no contido que ti lles envías.
     i_am_html: Eu son %{username} en %{service}.
     identity: Identidade
     inactive: Inactiva
@@ -797,7 +797,7 @@ gl:
       '86400': 1 día
     expires_in_prompt: Nunca
     generate: Xerar
-    invited_by: 'Vostede foi convidada por:'
+    invited_by: 'Convidoute:'
     max_uses:
       one: 1 uso
       other: "%{count} usos"
@@ -874,7 +874,7 @@ gl:
     mention:
       action: Respostar
       body: 'Foi mencionada por %{name} en:'
-      subject: Vostede foi mencionada por %{name}
+      subject: Foches mencionada por %{name}
       title: Nova mención
     reblog:
       body: 'O seu estado foi promocionado por %{name}:'
@@ -934,18 +934,18 @@ gl:
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
     no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
     proceed: Proceda para seguir
-    prompt: 'Vostede vai seguir:'
+    prompt: 'Vas seguir a:'
     reason_html: "<strong>Por que é necesario este paso?</strong><code>%{instance}</code> podería non ser o servidor onde se rexistrou, así que precisamo redirixila primeiro ao seu servidor de orixe."
   remote_interaction:
     favourite:
       proceed: Darlle a favorito
-      prompt: 'Vostede quere favorecer este toot:'
+      prompt: 'Queres favorecer este toot:'
     reblog:
       proceed: Darlle a promocionar
-      prompt: 'Vostede quere promocionar este toot:'
+      prompt: 'Queres promocionar este toot:'
     reply:
       proceed: Respostar
-      prompt: 'Vostede quere respostar a este toot:'
+      prompt: 'Queres respostar a este toot:'
   scheduled_statuses:
     over_daily_limit: Excedeu o límite de %{limit} toots programados para ese día
     over_total_limit: Excedeu o límite de %{limit} toots programados
@@ -1159,7 +1159,7 @@ gl:
     enabled: A autenticación de dobre-factor está activada
     enabled_success: Activouse con éxito a autenticación de dobre-factor
     generate_recovery_codes: Xerar códigos de recuperación
-    instructions_html: "<strong>Escanee este código QR en Google Authenticator ou aplicativo TOTP similar no seu teléfono</strong>. Desde agora, este aplicativo xerará testemuños que vostede deberá introducir ao conectarse."
+    instructions_html: "<strong>Escanea este código QR en Google Authenticator ou aplicación TOTP no teu teléfono</strong>. Desde agora, esta aplicación proporcionará testemuños que debes introducir ao conectarte."
     lost_recovery_codes: Os códigos de recuperación permítenlle recuperar o acceso a súa conta si perde o teléfono. Si perde os códigos de recuperación, pode restauralos aquí. Os seus códigos de recuperación anteriores serán invalidados.
     manual_instructions: 'Si non pode escanear o código QR e precisa introducilo manualmente, aquí está o testemuño secreto en texto plano:'
     recovery_codes: Códigos de recuperación do respaldo
@@ -1175,7 +1175,7 @@ gl:
     warning:
       explanation:
         disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
-        silence: Mentras a conta está limitada, só a xente que actualmente a segue verá os seus toots en este servidor, e vostede podería estar excluída de varias listas públicas. Porén, outras persoas poderíana seguila de xeito manual.
+        silence: Mentras a conta está limitada, só a xente que actualmente te segue verá os teus toots en este servidor, e poderías estar excluída de varias listaxes públicas. Porén, outras persoas poderíante seguir de xeito manual.
         suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
       get_in_touch: Pode responder a este correo para contactar coa administración de %{instance}.
       review_server_policies: Revisar políticas do servidor
@@ -1192,7 +1192,7 @@ gl:
         suspend: Conta suspendida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Vostede pode personalizar o seu perfil subindo un avatar, cabeceira, cambiar o seu nome público e aínda máis. Si restrinxe a súa conta pode revisar a conta das persoas que solicitan seguilas antes de permitirlles o acceso aos seus toots.
+      edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a tua conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
       explanation: Aquí ten alunhas endereitas para ir aprendendo
       final_action: Comece a publicar
       final_step: 'Publique! Incluso sin seguidoras as súas mensaxes serán vistas por outras, por exemplo na liña temporal local e nas etiquetas. Podería presentarse no #fediverso utilizando a etiqueta #introductions.'
@@ -1201,8 +1201,8 @@ gl:
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon
-      tip_federated_timeline: A liña temporal federada é unha visión ampla da rede Mastodon. Pero so inclúe xente a que segue xente que vostede segue, así que non é completa.
-      tip_following: Por omisión segues a Admin no teu servidor. Para atopar máis xente interesante, mira nas liñas temporais local e federada.
+      tip_federated_timeline: A liña temporal federada é unha visión ampla da rede Mastodon. Pero so inclúe xente a que segue xente que ti segues, así que non é completa.
+      tip_following: Por omisión segues a Admin(s) no teu servidor. Para atopar máis xente interesante, mira nas liñas temporais local e federada.
       tip_local_timeline: A liña temporal local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
       tip_mobile_webapp: Si o navegador móbil lle ofrece engadir Mastodon a pantalla de inicio, pode recibir notificacións push. En moitos aspectos comportarase como un aplicativo nativo!
       tips: Consellos
@@ -1215,5 +1215,5 @@ gl:
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
   verification:
-    explanation_html: 'Pode <strong>validarse a vostede mesma como a dona das ligazóns nos metadatos do seu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí ten un exemplo:'
+    explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do teu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí tes un exemplo:'
     verification: Validación
