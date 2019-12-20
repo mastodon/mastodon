@@ -1,6 +1,6 @@
 ast:
   about:
-    about_mastodon_html: 'Mastodon ye una rede social basada en protocolos abiertos y software de códigu llibre. Ye descentralizada, como''l corréu electrónicu.'
+    about_mastodon_html: 'La rede social del futuru: ¡ensin anuncios nin vixilancia, con un diseñu éticu y descentralizáu! Controla los tos datos con Mastodon.'
     about_this: Tocante a
     administered_by: 'Alministráu por:'
     api: API
@@ -9,7 +9,7 @@ ast:
     contact_unavailable: N/D
     documentation: Documentación
     hosted_on: Mastodon ta agospiáu en %{domain}
-    learn_more: Deprendi más
+    learn_more: Deprender más
     source_code: Códigu fonte
     status_count_before: Que crearon
     terms: Términos del serviciu
@@ -20,7 +20,7 @@ ast:
     what_is_mastodon: '¿Qué ye Mastodon?'
   accounts:
     followers:
-      one: Xente que te sigue
+      one: Siguidor
       other: Siguidores
     joined: Xunióse en %{date}
     moved_html: "%{name} mudóse a %{new_profile_link}:"
@@ -53,11 +53,14 @@ ast:
       statuses: Estaos
       title: Cuentes
       username: Nome d'usuariu
+      web: Web
     action_logs:
       actions:
+        create_account_warning: "%{name} unvió una alvertencia a %{target}"
         create_domain_block: "%{name} bloquió'l dominiu %{target}"
         disable_custom_emoji: "%{name} desactivó'l fustaxe %{target}"
         disable_user: "%{name} desactivó l'aniciu de sesión del usuariu %{target}"
+        suspend_account: "%{name} suspendió la cuenta de %{target}"
     custom_emojis:
       by_domain: Dominiu
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
@@ -68,8 +71,10 @@ ast:
       feature_registrations: Rexistros
       features: Carauterístiques
       hidden_service: Federación con servicios anubríos
-      recent_users: Usuarios recientes
+      recent_users: Usuarios de recién
+      software: Software
       total_users: usuarios en total
+      trends: Tendencies
       week_interactions: interaiciones d'esta selmana
       week_users_new: usuarios d'esta selmana
     domain_blocks:
@@ -77,7 +82,8 @@ ast:
     email_domain_blocks:
       domain: Dominiu
     instances:
-      title: Instancies conocíes
+      by_domain: Dominiu
+      title: Federación
     invites:
       filter:
         available: Disponible
@@ -85,6 +91,7 @@ ast:
       title: Invitaciones
     relays:
       save_and_enable: Guardar y activar
+      status: Estáu
     reports:
       are_you_sure: '¿De xuru?'
       status: Estáu
@@ -98,6 +105,11 @@ ast:
       title: Axustes del sitiu
     statuses:
       failed_to_execute: Fallu al executar
+    tags:
+      context: Contestu
+      most_recent: Lo más recién
+      name: Etiqueta
+      title: Etiquetes
     title: Alministración
   admin_mailer:
     new_report:
@@ -113,6 +125,9 @@ ast:
     login: Aniciar sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rexistrase
     security: Seguranza
   authorize_follow:
@@ -148,6 +163,7 @@ ast:
       request: Solicitar l'archivu
       size: Tamañu
     blocks: Xente que bloquiesti
+    csv: CSV
     mutes: Xente que silenciesti
   filters:
     contexts:
@@ -158,9 +174,17 @@ ast:
       title: Peñeres
     new:
       title: Amestar una peñera nueva
+  footer:
+    developers: Desendolcadores
+    more: Más…
+    resources: Recursos
   generic:
     changes_saved_msg: '¡Los cambeos guardáronse con ésitu!'
     save_changes: Guardar cambeos
+  identity_proofs:
+    authorize: Sí, autorizar
+    i_am_html: Soi %{username} de %{service}.
+    identity: Identidá
   imports:
     preface: Pues importar los datos qu'esportares dende otra instancia, como por exemplu la llista de persones que bloquiares o tuvieres siguiendo.
     types:
@@ -215,6 +239,11 @@ ast:
       title: Compartición nueva de toot
   pagination:
     next: Siguiente
+  polls:
+    errors:
+      already_voted: Yá votesti nesta encuesta
+  preferences:
+    public_timelines: Llinies temporales públiques
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer
     no_account_html: '¿Nun tienes una cuenta? Pues <a href=''%{sign_up_path}'' target=''_blank''>rexistrate equí</a>'
@@ -223,20 +252,52 @@ ast:
   sessions:
     browser: Restolador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Restolador desconocíu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
       other: plataforma desconocida
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     title: Sesiones
   settings:
+    account: Account
+    appearance: Aspeutu
     authorized_apps: Aplicaciones autorizaes
     back: Volver a Mastodon
+    development: Desendolcu
     edit_profile: Editar el perfil
     export: Esportación de datos
     import: Importación
+    import_and_export: Importación y esportación
     notifications: Avisos
     preferences: Preferencies
+    profile: Perfil
     two_factor_authentication: Autenticación en dos pasos
   statuses:
     attached:
@@ -253,6 +314,13 @@ ast:
       ownership: Nun pue fixase'l toot d'otra persona
       private: Nun puen fixase los toots que nun seyan públicos
       reblog: Nun pue fixase un toot compartíu
+    poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} persones"
+      total_votes:
+        one: "%{count} votu"
+        other: "%{count} votos"
     show_more: Amosar más
     title: '%{name}: «%{quote}»'
     visibilities:
@@ -260,6 +328,8 @@ ast:
   stream_entries:
     reblogged: compartióse
     sensitive_content: Conteníu sensible
+  tags:
+    does_not_match_previous_name: nun concasa col nome anterior
   themes:
     default: Mastodon
   two_factor_authentication:
@@ -273,6 +343,9 @@ ast:
     recovery_codes: Códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación rexeneráronse con ésitu
   user_mailer:
+    warning:
+      title:
+        none: Alvertencia
     welcome:
       full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
       subject: Afáyate en Mastodon
