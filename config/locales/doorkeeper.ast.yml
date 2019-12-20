@@ -3,6 +3,7 @@ ast:
     attributes:
       doorkeeper/application:
         name: Nome de l'aplicación
+        scopes: Ámbitos
         website: Sitiu web de l'aplicación
     errors:
       models:
@@ -18,10 +19,14 @@ ast:
         destroy: Destruyir
         edit: Editar
         submit: Unviar
+      confirmations:
+        destroy: '¿De xuru?'
       index:
         name: Nome
+        scopes: Ámbitos
       show:
         actions: Aiciones
+        scopes: Ámbitos
         title: 'Aplicación: %{name}'
     authorizations:
       error:
@@ -30,12 +35,15 @@ ast:
         able_to: Va ser a
         prompt: L'aplicación %{client_name} solicitó l'accesu a la to cuenta
       show:
-        title: Copia esti códigu d'autorización y apégalu na aplicación.
+        title: Copia esti códigu d'autorización y apiégalu na aplicación.
     authorized_applications:
       buttons:
         revoke: Revocar
+      confirmations:
+        revoke: '¿De xuru?'
       index:
         date_format: "%H:%M:%S %d-%m-%Y"
+        scopes: Ámbitos
         title: Les aplicaciones qu'autoricesti
     errors:
       messages:
@@ -51,13 +59,21 @@ ast:
           applications: Aplicaciones
           oauth2_provider: Fornidor d'OAuth2
     scopes:
+      "admin:read": lleer tolos datos del sirvidor
+      "admin:read:accounts": lleer la información sensible de toles cuentes
+      "admin:read:reports": lleer la información sensible de tolos informe y cuentes informaes
+      "admin:write": modificar tolos datos del sirvidor
+      read: lleer tolos datos de la to cuenta
       "read:accounts": ver información de cuentes
       "read:blocks": ver quién bloquies
+      "read:bookmarks": ver los tos marcadores
+      "read:favourites": ver los tos favoritos
       "read:filters": ver les tos peñeres
       "read:follows": ver quién sigues
       "read:lists": ver les tos llistes
       "read:mutes": ver quién silencies
       "read:notifications": ver los tos avisos
+      "read:reports": ver los tos informes
       "read:statuses": ver tolos estaos
       write: modificar los datos de la to cuenta
       "write:accounts": modificar el to perfil
