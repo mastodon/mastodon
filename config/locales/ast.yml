@@ -10,9 +10,13 @@ ast:
     documentation: Documentación
     hosted_on: Mastodon ta agospiáu en %{domain}
     learn_more: Deprender más
+    privacy_policy: Política de privacidá
+    server_stats: 'Estadístiques del sirvidor:'
     source_code: Códigu fonte
     status_count_before: Que crearon
     terms: Términos del serviciu
+    unavailable_content_description:
+      domain: Sirvidor
     user_count_after:
       one: usuariu
       other: usuarios
@@ -25,6 +29,7 @@ ast:
     joined: Xunióse en %{date}
     moved_html: "%{name} mudóse a %{new_profile_link}:"
     network_hidden: Esta información nun ta disponible
+    never_active: Enxamás
     nothing_here: '¡Equí nun hai nada!'
     people_followed_by: Persones a les que sigue %{name}
     people_who_follow: Persones que siguen a %{name}
@@ -35,10 +40,12 @@ ast:
   admin:
     accounts:
       are_you_sure: '¿De xuru?'
+      avatar: Avatar
       by_domain: Dominiu
       domain: Dominiu
       email: Corréu
       followers: Siguidores
+      ip: IP
       location:
         local: Llocal
         title: Allugamientu
@@ -60,6 +67,13 @@ ast:
         create_domain_block: "%{name} bloquió'l dominiu %{target}"
         disable_custom_emoji: "%{name} desactivó'l fustaxe %{target}"
         disable_user: "%{name} desactivó l'aniciu de sesión del usuariu %{target}"
+        enable_custom_emoji: "%{name} activó'l fustaxe %{target}"
+        promote_user: "%{name} ascendió al usuariu %{target}"
+        remove_avatar_user: "%{name} desanició l'avatar de %{target}"
+        reopen_report: "%{name} reabrió l'informe de %{target}"
+        reset_password_user: "%{name} reafitó la contraseña del usuariu %{target}"
+        resolve_report: "%{name} resolvió l'informe de %{target}"
+        silence_account: "%{name} silenció la cuenta de %{target}"
         suspend_account: "%{name} suspendió la cuenta de %{target}"
     custom_emojis:
       by_domain: Dominiu
@@ -326,7 +340,7 @@ ast:
     visibilities:
       private: Namái siguidores
   stream_entries:
-    reblogged: compartióse
+    reblogged: compartió
     sensitive_content: Conteníu sensible
   tags:
     does_not_match_previous_name: nun concasa col nome anterior
