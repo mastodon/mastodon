@@ -4,7 +4,7 @@ ast:
       defaults:
         autofollow: La xente que se rexistre pente la invitación va siguite automáticamente
         bot: Esta cuenta fai principalmente aiciones automatizaes y podría nun supervisase
-        digest: Namái s'unvia tres un periodu llargu d'inactividá y namái si recibiesti cualesquier mensaxe personal na to ausencia
+        digest: Namái s'unvia dempués d'un periodu llargu d'inactividá y namái si recibiesti cualesquier mensaxe personal na to ausencia
         email: Vamos unviate un corréu de confirmación
         irreversible: Los toots peñeraos van desapaecer de mou irreversible, magar que se desanicie la peñera dempués
         password: Usa 8 caráuteres polo menos
@@ -25,12 +25,12 @@ ast:
         data: Datos
         display_name: Nome a amosar
         email: Direición de corréu
-        expires_in: Caduca tres
-        fields: Datos meta del perfil
+        expires_in: Caduca dempués de
+        fields: Metadatos del perfil
         header: Testera
         irreversible: Escartar en cuentes d'anubrir
         locale: Llingua de la interfaz
-        locked: Bloquiar cuenta
+        locked: Bloquiar la cuenta
         max_uses: Númberu máximu d'usos
         new_password: Contraseña nueva
         otp_attempt: Códigu de verificación en dos pasos
@@ -41,21 +41,31 @@ ast:
         setting_default_privacy: Privacidá d'espublizaciones
         setting_delete_modal: Amosar el diálogu de confirmación enantes de desaniciar un toot
         setting_system_font_ui: Usar la fonte predeterminada del sistema
+        setting_theme: Estilu del sitiu
         setting_unfollow_modal: Amosar el diálogu de confirmación enantes de dexar de siguir a daquién
         severity: Severidá
         type: Triba de la importación
         username: Nome d'usuariu
         username_or_email: Nome d'usuariu o corréu
+        whole_word: La pallabra entera
+      featured_tag:
+        name: Etiqueta
       interactions:
-        must_be_follower: Bloquiar avisos de persones que nun son siguidores
-        must_be_following: Bloquiar avisos de persones que nun sigues
-        must_be_following_dm: Bloquiar mensaxes direutos de persones que nun sigues
+        must_be_follower: Bloquiar los avisos de persones que nun son siguidores
+        must_be_following: Bloquiar los avisos de persones que nun sigues
+        must_be_following_dm: Bloquiar los mensaxes direutos de persones que nun sigues
+      invite_request:
+        text: '¿Por qué quies xunite?'
       notification_emails:
-        favourite: Unviar un corréu cuando daquién conseñe como favoritu los tos estaos
-        follow: Unviar un corréu cuando daquién te siga
-        follow_request: Unviar un corréu cuando daquién solicite siguite
-        mention: Unviar un corréu cuando daquién te mente
+        favourite: Daquién marcó como favoritu un estáu de to
+        follow: Daquién te siga
+        follow_request: Daquién solicitó siguite
+        mention: Daquién te mentó
+      tag:
+        name: Etiqueta
     'no': 'Non'
+    recommended: Aconséyase
     required:
+      mark: "*"
       text: ríquese
     'yes': 'Sí'
