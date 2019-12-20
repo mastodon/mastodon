@@ -3,13 +3,16 @@
 module ProfileStories
   attr_reader :bob, :alice, :alice_bio
 
-  def as_a_logged_in_user
+  def as_a_registered_user
     @bob = Fabricate(
       :user,
       email: email, password: password, confirmed_at: confirmed_at,
       account: Fabricate(:account, username: 'bob')
     )
+  end
 
+  def as_a_logged_in_user
+    as_a_registered_user
     visit new_user_session_path
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password

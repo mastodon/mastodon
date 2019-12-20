@@ -3,12 +3,10 @@
 require 'rails_helper'
 
 feature 'Log in' do
-  given(:email)        { 'test@example.com' }
-  given(:password)     { 'password' }
-  given(:confirmed_at) { Time.zone.now }
+  include ProfileStories
 
   background do
-    Fabricate(:user, email: email, password: password, confirmed_at: confirmed_at)
+    as_a_registered_user
     visit new_user_session_path
   end
 
