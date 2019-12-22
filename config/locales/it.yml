@@ -394,6 +394,9 @@ it:
       destroyed_msg: Nota rapporto cancellata!
     reports:
       account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} note"
         reports:
           one: "%{count} rapporto"
           other: "%{count} rapporti"
@@ -447,6 +450,8 @@ it:
         users: Agli utenti locali connessi
       domain_blocks_rationale:
         title: Mostra motivazione
+      enable_bootstrap_timeline_accounts:
+        title: Abilita seguiti predefiniti per i nuovi utenti
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
