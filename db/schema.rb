@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_003415) do
+ActiveRecord::Schema.define(version: 2020_01_13_125135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,15 +196,36 @@ ActiveRecord::Schema.define(version: 2019_12_12_003415) do
     t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
   end
 
+  create_table "announcement_mutes", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "announcement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "announcement_id"], name: "index_announcement_mutes_on_account_id_and_announcement_id", unique: true
+    t.index ["account_id"], name: "index_announcement_mutes_on_account_id"
+    t.index ["announcement_id"], name: "index_announcement_mutes_on_announcement_id"
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.text "text", default: "", null: false
+    t.boolean "published", default: false, null: false
+    t.boolean "all_day", default: false, null: false
+    t.datetime "scheduled_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "backups", force: :cascade do |t|
     t.bigint "user_id"
     t.string "dump_file_name"
     t.string "dump_content_type"
-    t.bigint "dump_file_size"
     t.datetime "dump_updated_at"
     t.boolean "processed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "dump_file_size"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -817,6 +838,8 @@ ActiveRecord::Schema.define(version: 2019_12_12_003415) do
   add_foreign_key "account_warnings", "accounts", on_delete: :nullify
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
+  add_foreign_key "announcement_mutes", "accounts", on_delete: :cascade
+  add_foreign_key "announcement_mutes", "announcements", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade

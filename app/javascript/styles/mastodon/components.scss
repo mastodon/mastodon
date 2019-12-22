@@ -859,6 +859,44 @@
   }
 }
 
+.announcements__item__content {
+  word-wrap: break-word;
+
+  .emojione {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0;
+  }
+
+  p {
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.mention {
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
 .status__content.status__content--collapsed {
   max-height: 20px * 15; // 15 lines is roughly above 500 characters
 }
@@ -6580,4 +6618,61 @@ noscript {
       color: $primary-text-color;
     }
   }
+}
+
+.announcements {
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid $ui-base-color;
+  font-size: 13px;
+  display: flex;
+  align-items: flex-end;
+
+  &__mastodon {
+    width: 124px;
+
+    @media screen and (max-width: 124px + 300px) {
+      display: none;
+    }
+  }
+
+  &__container {
+    flex: 1 1 0%;
+  }
+
+  &__item {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    padding-right: 15px + 18px;
+    position: relative;
+
+    &__range {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    &__dismiss-icon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+  }
+
+  &__pagination {
+    padding: 12px;
+    padding-top: 3px;
+    color: $darker-text-color;
+
+    &__domain {
+      display: block;
+      color: $darker-text-color;
+      float: right;
+      padding: 0 3px;
+    }
+  }
+}
+
+.layout-multiple-columns .announcements__mastodon {
+  display: none;
 }

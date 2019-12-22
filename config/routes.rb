@@ -317,6 +317,12 @@ Rails.application.routes.draw do
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
       resources :preferences, only: [:index]
 
+      resources :announcements, only: [:index] do
+        member do
+          post :dismiss
+        end
+      end
+
       resources :conversations, only: [:index, :destroy] do
         member do
           post :read

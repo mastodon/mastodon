@@ -8,6 +8,7 @@ import {
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
+import { updateAnnouncements } from './announcements';
 import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
 
@@ -43,6 +44,9 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
           break;
         case 'filters_changed':
           dispatch(fetchFilters());
+          break;
+        case 'announcement':
+          dispatch(updateAnnouncements(JSON.parse(data.payload)));
           break;
         }
       },
