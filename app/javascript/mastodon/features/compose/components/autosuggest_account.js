@@ -5,20 +5,20 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 export default class AutosuggestAccount extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
   };
 
-  render () {
+  render() {
     const { account } = this.props;
 
     return (
-      <div className='autosuggest-account' title={account.get('acct')}>
-        <div className='autosuggest-account-icon'><Avatar account={account} size={18} /></div>
+      <div className="autosuggest-account" title={account.get('acct')}>
+        <div className="autosuggest-account-icon">
+          <Avatar account={account} size={18} />
+        </div>
         <DisplayName account={account} />
       </div>
     );
   }
-
 }

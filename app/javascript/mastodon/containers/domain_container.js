@@ -6,7 +6,10 @@ import Domain from '../components/domain';
 import { openModal } from '../actions/modal';
 
 const messages = defineMessages({
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
+  blockDomainConfirm: {
+    id: 'confirmations.domain_block.confirm',
+    defaultMessage: 'Hide entire domain',
+  },
 });
 
 const makeMapStateToProps = () => {
@@ -16,17 +19,27 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
-  onBlockDomain (domain) {
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.' values={{ domain: <strong>{domain}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockDomainConfirm),
-      onConfirm: () => dispatch(blockDomain(domain)),
-    }));
+  onBlockDomain(domain) {
+    dispatch(
+      openModal('CONFIRM', {
+        message: (
+          <FormattedMessage
+            id="confirmations.domain_block.message"
+            defaultMessage="Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable."
+            values={{ domain: <strong>{domain}</strong> }}
+          />
+        ),
+        confirm: intl.formatMessage(messages.blockDomainConfirm),
+        onConfirm: () => dispatch(blockDomain(domain)),
+      }),
+    );
   },
 
-  onUnblockDomain (domain) {
+  onUnblockDomain(domain) {
     dispatch(unblockDomain(domain));
   },
 });
 
-export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Domain));
+export default injectIntl(
+  connect(makeMapStateToProps, mapDispatchToProps)(Domain),
+);

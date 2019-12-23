@@ -9,20 +9,46 @@ import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import classNames from 'classnames';
 
 const messages = defineMessages({
-  option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },
-  add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
-  remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
-  poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
-  switchToMultiple: { id: 'compose_form.poll.switch_to_multiple', defaultMessage: 'Change poll to allow multiple choices' },
-  switchToSingle: { id: 'compose_form.poll.switch_to_single', defaultMessage: 'Change poll to allow for a single choice' },
-  minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
-  hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
-  days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
+  option_placeholder: {
+    id: 'compose_form.poll.option_placeholder',
+    defaultMessage: 'Choice {number}',
+  },
+  add_option: {
+    id: 'compose_form.poll.add_option',
+    defaultMessage: 'Add a choice',
+  },
+  remove_option: {
+    id: 'compose_form.poll.remove_option',
+    defaultMessage: 'Remove this choice',
+  },
+  poll_duration: {
+    id: 'compose_form.poll.duration',
+    defaultMessage: 'Poll duration',
+  },
+  switchToMultiple: {
+    id: 'compose_form.poll.switch_to_multiple',
+    defaultMessage: 'Change poll to allow multiple choices',
+  },
+  switchToSingle: {
+    id: 'compose_form.poll.switch_to_single',
+    defaultMessage: 'Change poll to allow for a single choice',
+  },
+  minutes: {
+    id: 'intervals.full.minutes',
+    defaultMessage: '{number, plural, one {# minute} other {# minutes}}',
+  },
+  hours: {
+    id: 'intervals.full.hours',
+    defaultMessage: '{number, plural, one {# hour} other {# hours}}',
+  },
+  days: {
+    id: 'intervals.full.days',
+    defaultMessage: '{number, plural, one {# day} other {# days}}',
+  },
 });
 
 @injectIntl
 class Option extends React.PureComponent {
-
   static propTypes = {
     title: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
@@ -45,7 +71,6 @@ class Option extends React.PureComponent {
     this.props.onRemove(this.props.index);
   };
 
-
   handleToggleMultiple = e => {
     this.props.onToggleMultiple();
     e.preventDefault();
@@ -56,38 +81,52 @@ class Option extends React.PureComponent {
     if (e.key === 'Enter' || e.key === ' ') {
       this.handleToggleMultiple(e);
     }
-  }
+  };
 
   onSuggestionsClearRequested = () => {
     this.props.onClearSuggestions();
-  }
+  };
 
-  onSuggestionsFetchRequested = (token) => {
+  onSuggestionsFetchRequested = token => {
     this.props.onFetchSuggestions(token);
-  }
+  };
 
   onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
-  }
+    this.props.onSuggestionSelected(tokenStart, token, value, [
+      'poll',
+      'options',
+      this.props.index,
+    ]);
+  };
 
-  render () {
+  render() {
     const { isPollMultiple, title, index, intl } = this.props;
 
     return (
       <li>
-        <label className='poll__text editable'>
+        <label className="poll__text editable">
           <span
             className={classNames('poll__input', { checkbox: isPollMultiple })}
             onClick={this.handleToggleMultiple}
             onKeyPress={this.handleCheckboxKeypress}
-            role='button'
-            tabIndex='0'
-            title={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
-            aria-label={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
+            role="button"
+            tabIndex="0"
+            title={intl.formatMessage(
+              isPollMultiple
+                ? messages.switchToSingle
+                : messages.switchToMultiple,
+            )}
+            aria-label={intl.formatMessage(
+              isPollMultiple
+                ? messages.switchToSingle
+                : messages.switchToMultiple,
+            )}
           />
 
           <AutosuggestInput
-            placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
+            placeholder={intl.formatMessage(messages.option_placeholder, {
+              number: index + 1,
+            })}
             maxLength={25}
             value={title}
             onChange={this.handleOptionTitleChange}
@@ -99,19 +138,22 @@ class Option extends React.PureComponent {
           />
         </label>
 
-        <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
+        <div className="poll__cancel">
+          <IconButton
+            disabled={index <= 1}
+            title={intl.formatMessage(messages.remove_option)}
+            icon="times"
+            onClick={this.handleOptionRemove}
+          />
         </div>
       </li>
     );
   }
-
 }
 
 export default
 @injectIntl
 class PollForm extends ImmutablePureComponent {
-
   static propTypes = {
     options: ImmutablePropTypes.list,
     expiresIn: PropTypes.number,
@@ -139,34 +181,72 @@ class PollForm extends ImmutablePureComponent {
     this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
   };
 
-  render () {
-    const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl, ...other } = this.props;
+  render() {
+    const {
+      options,
+      expiresIn,
+      isMultiple,
+      onChangeOption,
+      onRemoveOption,
+      intl,
+      ...other
+    } = this.props;
 
     if (!options) {
       return null;
     }
 
     return (
-      <div className='compose-form__poll-wrapper'>
+      <div className="compose-form__poll-wrapper">
         <ul>
-          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} {...other} />)}
+          {options.map((title, i) => (
+            <Option
+              title={title}
+              key={i}
+              index={i}
+              onChange={onChangeOption}
+              onRemove={onRemoveOption}
+              isPollMultiple={isMultiple}
+              onToggleMultiple={this.handleToggleMultiple}
+              {...other}
+            />
+          ))}
         </ul>
 
-        <div className='poll__footer'>
-          <button disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
+        <div className="poll__footer">
+          <button
+            disabled={options.size >= 4}
+            className="button button-secondary"
+            onClick={this.handleAddOption}
+          >
+            <Icon id="plus" /> <FormattedMessage {...messages.add_option} />
+          </button>
 
           <select value={expiresIn} onChange={this.handleSelectDuration}>
-            <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
-            <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
-            <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
-            <option value={21600}>{intl.formatMessage(messages.hours, { number: 6 })}</option>
-            <option value={86400}>{intl.formatMessage(messages.days, { number: 1 })}</option>
-            <option value={259200}>{intl.formatMessage(messages.days, { number: 3 })}</option>
-            <option value={604800}>{intl.formatMessage(messages.days, { number: 7 })}</option>
+            <option value={300}>
+              {intl.formatMessage(messages.minutes, { number: 5 })}
+            </option>
+            <option value={1800}>
+              {intl.formatMessage(messages.minutes, { number: 30 })}
+            </option>
+            <option value={3600}>
+              {intl.formatMessage(messages.hours, { number: 1 })}
+            </option>
+            <option value={21600}>
+              {intl.formatMessage(messages.hours, { number: 6 })}
+            </option>
+            <option value={86400}>
+              {intl.formatMessage(messages.days, { number: 1 })}
+            </option>
+            <option value={259200}>
+              {intl.formatMessage(messages.days, { number: 3 })}
+            </option>
+            <option value={604800}>
+              {intl.formatMessage(messages.days, { number: 7 })}
+            </option>
           </select>
         </div>
       </div>
     );
   }
-
 }

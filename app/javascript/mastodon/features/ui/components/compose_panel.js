@@ -5,7 +5,7 @@ import NavigationContainer from 'mastodon/features/compose/containers/navigation
 import LinkFooter from './link_footer';
 
 const ComposePanel = () => (
-  <div className='compose-panel'>
+  <div className="compose-panel">
     <SearchContainer openInRoute />
     <NavigationContainer />
     <ComposeFormContainer singleColumn />

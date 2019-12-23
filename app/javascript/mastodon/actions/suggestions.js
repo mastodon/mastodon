@@ -3,7 +3,7 @@ import { importFetchedAccounts } from './importer';
 
 export const SUGGESTIONS_FETCH_REQUEST = 'SUGGESTIONS_FETCH_REQUEST';
 export const SUGGESTIONS_FETCH_SUCCESS = 'SUGGESTIONS_FETCH_SUCCESS';
-export const SUGGESTIONS_FETCH_FAIL    = 'SUGGESTIONS_FETCH_FAIL';
+export const SUGGESTIONS_FETCH_FAIL = 'SUGGESTIONS_FETCH_FAIL';
 
 export const SUGGESTIONS_DISMISS = 'SUGGESTIONS_DISMISS';
 
@@ -11,19 +11,22 @@ export function fetchSuggestions() {
   return (dispatch, getState) => {
     dispatch(fetchSuggestionsRequest());
 
-    api(getState).get('/api/v1/suggestions').then(response => {
-      dispatch(importFetchedAccounts(response.data));
-      dispatch(fetchSuggestionsSuccess(response.data));
-    }).catch(error => dispatch(fetchSuggestionsFail(error)));
+    api(getState)
+      .get('/api/v1/suggestions')
+      .then(response => {
+        dispatch(importFetchedAccounts(response.data));
+        dispatch(fetchSuggestionsSuccess(response.data));
+      })
+      .catch(error => dispatch(fetchSuggestionsFail(error)));
   };
-};
+}
 
 export function fetchSuggestionsRequest() {
   return {
     type: SUGGESTIONS_FETCH_REQUEST,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsSuccess(accounts) {
   return {
@@ -31,7 +34,7 @@ export function fetchSuggestionsSuccess(accounts) {
     accounts,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsFail(error) {
   return {
@@ -40,7 +43,7 @@ export function fetchSuggestionsFail(error) {
     skipLoading: true,
     skipAlert: true,
   };
-};
+}
 
 export const dismissSuggestion = accountId => (dispatch, getState) => {
   dispatch({

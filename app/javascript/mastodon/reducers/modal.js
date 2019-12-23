@@ -6,12 +6,15 @@ const initialState = {
 };
 
 export default function modal(state = initialState, action) {
-  switch(action.type) {
-  case MODAL_OPEN:
-    return { modalType: action.modalType, modalProps: action.modalProps };
-  case MODAL_CLOSE:
-    return (action.modalType === undefined || action.modalType === state.modalType) ? initialState : state;
-  default:
-    return state;
+  switch (action.type) {
+    case MODAL_OPEN:
+      return { modalType: action.modalType, modalProps: action.modalProps };
+    case MODAL_CLOSE:
+      return action.modalType === undefined ||
+        action.modalType === state.modalType
+        ? initialState
+        : state;
+    default:
+      return state;
   }
-};
+}

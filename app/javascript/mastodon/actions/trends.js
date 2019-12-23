@@ -2,7 +2,7 @@ import api from '../api';
 
 export const TRENDS_FETCH_REQUEST = 'TRENDS_FETCH_REQUEST';
 export const TRENDS_FETCH_SUCCESS = 'TRENDS_FETCH_SUCCESS';
-export const TRENDS_FETCH_FAIL    = 'TRENDS_FETCH_FAIL';
+export const TRENDS_FETCH_FAIL = 'TRENDS_FETCH_FAIL';
 
 export const fetchTrends = () => (dispatch, getState) => {
   dispatch(fetchTrendsRequest());

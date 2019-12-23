@@ -18,15 +18,24 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   open: { id: 'conversation.open', defaultMessage: 'View conversation' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  markAsRead: { id: 'conversation.mark_as_read', defaultMessage: 'Mark as read' },
+  markAsRead: {
+    id: 'conversation.mark_as_read',
+    defaultMessage: 'Mark as read',
+  },
   delete: { id: 'conversation.delete', defaultMessage: 'Delete conversation' },
-  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
-  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
+  muteConversation: {
+    id: 'status.mute_conversation',
+    defaultMessage: 'Mute conversation',
+  },
+  unmuteConversation: {
+    id: 'status.unmute_conversation',
+    defaultMessage: 'Unmute conversation',
+  },
 });
 
-export default @injectIntl
+export default
+@injectIntl
 class Conversation extends ImmutablePureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -35,7 +44,7 @@ class Conversation extends ImmutablePureComponent {
     conversationId: PropTypes.string.isRequired,
     accounts: ImmutablePropTypes.list.isRequired,
     lastStatus: ImmutablePropTypes.map,
-    unread:PropTypes.bool.isRequired,
+    unread: PropTypes.bool.isRequired,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     markRead: PropTypes.func.isRequired,
@@ -43,7 +52,7 @@ class Conversation extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  _updateEmojis () {
+  _updateEmojis() {
     const node = this.namesNode;
 
     if (!node || autoPlayGif) {
@@ -64,21 +73,21 @@ class Conversation extends ImmutablePureComponent {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this._updateEmojis();
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this._updateEmojis();
   }
 
   handleEmojiMouseEnter = ({ target }) => {
     target.src = target.getAttribute('data-original');
-  }
+  };
 
   handleEmojiMouseLeave = ({ target }) => {
     target.src = target.getAttribute('data-static');
-  }
+  };
 
   handleClick = () => {
     if (!this.context.router) {
@@ -92,41 +101,41 @@ class Conversation extends ImmutablePureComponent {
     }
 
     this.context.router.history.push(`/statuses/${lastStatus.get('id')}`);
-  }
+  };
 
   handleMarkAsRead = () => {
     this.props.markRead();
-  }
+  };
 
   handleReply = () => {
     this.props.reply(this.props.lastStatus, this.context.router.history);
-  }
+  };
 
   handleDelete = () => {
     this.props.delete();
-  }
+  };
 
   handleHotkeyMoveUp = () => {
     this.props.onMoveUp(this.props.conversationId);
-  }
+  };
 
   handleHotkeyMoveDown = () => {
     this.props.onMoveDown(this.props.conversationId);
-  }
+  };
 
   handleConversationMute = () => {
     this.props.onMute(this.props.lastStatus);
-  }
+  };
 
   handleShowMore = () => {
     this.props.onToggleHidden(this.props.lastStatus);
-  }
+  };
 
-  setNamesRef = (c) => {
+  setNamesRef = c => {
     this.namesNode = c;
-  }
+  };
 
-  render () {
+  render() {
     const { accounts, lastStatus, unread, intl } = this.props;
 
     if (lastStatus === null) {
@@ -138,16 +147,45 @@ class Conversation extends ImmutablePureComponent {
       null,
     ];
 
-    menu.push({ text: intl.formatMessage(lastStatus.get('muted') ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMute });
+    menu.push({
+      text: intl.formatMessage(
+        lastStatus.get('muted')
+          ? messages.unmuteConversation
+          : messages.muteConversation,
+      ),
+      action: this.handleConversationMute,
+    });
 
     if (unread) {
-      menu.push({ text: intl.formatMessage(messages.markAsRead), action: this.handleMarkAsRead });
+      menu.push({
+        text: intl.formatMessage(messages.markAsRead),
+        action: this.handleMarkAsRead,
+      });
       menu.push(null);
     }
 
-    menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDelete });
+    menu.push({
+      text: intl.formatMessage(messages.delete),
+      action: this.handleDelete,
+    });
 
-    const names = accounts.map(a => <Permalink to={`/accounts/${a.get('id')}`} href={a.get('url')} key={a.get('id')} title={a.get('acct')}><bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi></Permalink>).reduce((prev, cur) => [prev, ', ', cur]);
+    const names = accounts
+      .map(a => (
+        <Permalink
+          to={`/accounts/${a.get('id')}`}
+          href={a.get('url')}
+          key={a.get('id')}
+          title={a.get('acct')}
+        >
+          <bdi>
+            <strong
+              className="display-name__html"
+              dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
+            />
+          </bdi>
+        </Permalink>
+      ))
+      .reduce((prev, cur) => [prev, ', ', cur]);
 
     const handlers = {
       reply: this.handleReply,
@@ -159,19 +197,32 @@ class Conversation extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('conversation focusable muted', { 'conversation--unread': unread })} tabIndex='0'>
-          <div className='conversation__avatar'>
+        <div
+          className={classNames('conversation focusable muted', {
+            'conversation--unread': unread,
+          })}
+          tabIndex="0"
+        >
+          <div className="conversation__avatar">
             <AvatarComposite accounts={accounts} size={48} />
           </div>
 
-          <div className='conversation__content'>
-            <div className='conversation__content__info'>
-              <div className='conversation__content__relative-time'>
-                {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
+          <div className="conversation__content">
+            <div className="conversation__content__info">
+              <div className="conversation__content__relative-time">
+                {unread && <span className="conversation__unread" />}{' '}
+                <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
               </div>
 
-              <div className='conversation__content__names' ref={this.setNamesRef}>
-                <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
+              <div
+                className="conversation__content__names"
+                ref={this.setNamesRef}
+              >
+                <FormattedMessage
+                  id="conversation.with"
+                  defaultMessage="With {names}"
+                  values={{ names: <span>{names}</span> }}
+                />
               </div>
             </div>
 
@@ -190,11 +241,23 @@ class Conversation extends ImmutablePureComponent {
               />
             )}
 
-            <div className='status__action-bar'>
-              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
+            <div className="status__action-bar">
+              <IconButton
+                className="status__action-bar-button"
+                title={intl.formatMessage(messages.reply)}
+                icon="reply"
+                onClick={this.handleReply}
+              />
 
-              <div className='status__action-bar-dropdown'>
-                <DropdownMenuContainer status={lastStatus} items={menu} icon='ellipsis-h' size={18} direction='right' title={intl.formatMessage(messages.more)} />
+              <div className="status__action-bar-dropdown">
+                <DropdownMenuContainer
+                  status={lastStatus}
+                  items={menu}
+                  icon="ellipsis-h"
+                  size={18}
+                  direction="right"
+                  title={intl.formatMessage(messages.more)}
+                />
               </div>
             </div>
           </div>
@@ -202,5 +265,4 @@ class Conversation extends ImmutablePureComponent {
       </HotKeys>
     );
   }
-
 }

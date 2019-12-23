@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'mastodon/actions/columns';
+import {
+  addColumn,
+  removeColumn,
+  moveColumn,
+  changeColumnParams,
+} from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
 import { List as ImmutableList } from 'immutable';
 import AccountCard from './components/account_card';
@@ -16,22 +21,31 @@ import { ScrollContainer } from 'react-router-scroll-4';
 
 const messages = defineMessages({
   title: { id: 'column.directory', defaultMessage: 'Browse profiles' },
-  recentlyActive: { id: 'directory.recently_active', defaultMessage: 'Recently active' },
+  recentlyActive: {
+    id: 'directory.recently_active',
+    defaultMessage: 'Recently active',
+  },
   newArrivals: { id: 'directory.new_arrivals', defaultMessage: 'New arrivals' },
   local: { id: 'directory.local', defaultMessage: 'From {domain} only' },
-  federated: { id: 'directory.federated', defaultMessage: 'From known fediverse' },
+  federated: {
+    id: 'directory.federated',
+    defaultMessage: 'From known fediverse',
+  },
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'directory', 'items'], ImmutableList()),
+  accountIds: state.getIn(
+    ['user_lists', 'directory', 'items'],
+    ImmutableList(),
+  ),
   isLoading: state.getIn(['user_lists', 'directory', 'isLoading'], true),
   domain: state.getIn(['meta', 'domain']),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class Directory extends React.PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -64,40 +78,43 @@ class Directory extends React.PureComponent {
     } else {
       dispatch(addColumn('DIRECTORY', this.getParams(this.props, this.state)));
     }
-  }
+  };
 
   getParams = (props, state) => ({
-    order: state.order === null ? (props.params.order || 'active') : state.order,
-    local: state.local === null ? (props.params.local || false) : state.local,
+    order: state.order === null ? props.params.order || 'active' : state.order,
+    local: state.local === null ? props.params.local || false : state.local,
   });
 
   handleMove = dir => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchDirectory(this.getParams(this.props, this.state)));
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const { dispatch } = this.props;
     const paramsOld = this.getParams(prevProps, prevState);
     const paramsNew = this.getParams(this.props, this.state);
 
-    if (paramsOld.order !== paramsNew.order || paramsOld.local !== paramsNew.local) {
+    if (
+      paramsOld.order !== paramsNew.order ||
+      paramsOld.local !== paramsNew.local
+    ) {
       dispatch(fetchDirectory(paramsNew));
     }
   }
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleChangeOrder = e => {
     const { dispatch, columnId } = this.props;
@@ -107,7 +124,7 @@ class Directory extends React.PureComponent {
     } else {
       this.setState({ order: e.target.value });
     }
-  }
+  };
 
   handleChangeLocal = e => {
     const { dispatch, columnId } = this.props;
@@ -117,34 +134,68 @@ class Directory extends React.PureComponent {
     } else {
       this.setState({ local: e.target.value === '1' });
     }
-  }
+  };
 
   handleLoadMore = () => {
     const { dispatch } = this.props;
     dispatch(expandDirectory(this.getParams(this.props, this.state)));
-  }
+  };
 
-  render () {
-    const { isLoading, accountIds, intl, columnId, multiColumn, domain, shouldUpdateScroll } = this.props;
-    const { order, local }  = this.getParams(this.props, this.state);
+  render() {
+    const {
+      isLoading,
+      accountIds,
+      intl,
+      columnId,
+      multiColumn,
+      domain,
+      shouldUpdateScroll,
+    } = this.props;
+    const { order, local } = this.getParams(this.props, this.state);
     const pinned = !!columnId;
 
     const scrollableArea = (
-      <div className='scrollable' style={{ background: 'transparent' }}>
-        <div className='filter-form'>
-          <div className='filter-form__column' role='group'>
-            <RadioButton name='order' value='active' label={intl.formatMessage(messages.recentlyActive)} checked={order === 'active'} onChange={this.handleChangeOrder} />
-            <RadioButton name='order' value='new' label={intl.formatMessage(messages.newArrivals)} checked={order === 'new'} onChange={this.handleChangeOrder} />
+      <div className="scrollable" style={{ background: 'transparent' }}>
+        <div className="filter-form">
+          <div className="filter-form__column" role="group">
+            <RadioButton
+              name="order"
+              value="active"
+              label={intl.formatMessage(messages.recentlyActive)}
+              checked={order === 'active'}
+              onChange={this.handleChangeOrder}
+            />
+            <RadioButton
+              name="order"
+              value="new"
+              label={intl.formatMessage(messages.newArrivals)}
+              checked={order === 'new'}
+              onChange={this.handleChangeOrder}
+            />
           </div>
 
-          <div className='filter-form__column' role='group'>
-            <RadioButton name='local' value='1' label={intl.formatMessage(messages.local, { domain })} checked={local} onChange={this.handleChangeLocal} />
-            <RadioButton name='local' value='0' label={intl.formatMessage(messages.federated)} checked={!local} onChange={this.handleChangeLocal} />
+          <div className="filter-form__column" role="group">
+            <RadioButton
+              name="local"
+              value="1"
+              label={intl.formatMessage(messages.local, { domain })}
+              checked={local}
+              onChange={this.handleChangeLocal}
+            />
+            <RadioButton
+              name="local"
+              value="0"
+              label={intl.formatMessage(messages.federated)}
+              checked={!local}
+              onChange={this.handleChangeLocal}
+            />
           </div>
         </div>
 
         <div className={classNames('directory__list', { loading: isLoading })}>
-          {accountIds.map(accountId => <AccountCard id={accountId} key={accountId} />)}
+          {accountIds.map(accountId => (
+            <AccountCard id={accountId} key={accountId} />
+          ))}
         </div>
 
         <LoadMore onClick={this.handleLoadMore} visible={!isLoading} />
@@ -152,9 +203,13 @@ class Directory extends React.PureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.title)}
+      >
         <ColumnHeader
-          icon='address-book-o'
+          icon="address-book-o"
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}
@@ -163,9 +218,17 @@ class Directory extends React.PureComponent {
           multiColumn={multiColumn}
         />
 
-        {multiColumn && !pinned ? <ScrollContainer scrollKey='directory' shouldUpdateScroll={shouldUpdateScroll}>{scrollableArea}</ScrollContainer> : scrollableArea}
+        {multiColumn && !pinned ? (
+          <ScrollContainer
+            scrollKey="directory"
+            shouldUpdateScroll={shouldUpdateScroll}
+          >
+            {scrollableArea}
+          </ScrollContainer>
+        ) : (
+          scrollableArea
+        )}
       </Column>
     );
   }
-
 }

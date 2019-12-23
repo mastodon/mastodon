@@ -8,7 +8,6 @@ import DisplayName from '../../../components/display_name';
 import Icon from 'mastodon/components/icon';
 
 export default class MovedNote extends ImmutablePureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -25,25 +24,46 @@ export default class MovedNote extends ImmutablePureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
-  render () {
+  render() {
     const { from, to } = this.props;
     const displayNameHtml = { __html: from.get('display_name_html') };
 
     return (
-      <div className='account__moved-note'>
-        <div className='account__moved-note__message'>
-          <div className='account__moved-note__icon-wrapper'><Icon id='suitcase' className='account__moved-note__icon' fixedWidth /></div>
-          <FormattedMessage id='account.moved_to' defaultMessage='{name} has moved to:' values={{ name: <bdi><strong dangerouslySetInnerHTML={displayNameHtml} /></bdi> }} />
+      <div className="account__moved-note">
+        <div className="account__moved-note__message">
+          <div className="account__moved-note__icon-wrapper">
+            <Icon
+              id="suitcase"
+              className="account__moved-note__icon"
+              fixedWidth
+            />
+          </div>
+          <FormattedMessage
+            id="account.moved_to"
+            defaultMessage="{name} has moved to:"
+            values={{
+              name: (
+                <bdi>
+                  <strong dangerouslySetInnerHTML={displayNameHtml} />
+                </bdi>
+              ),
+            }}
+          />
         </div>
 
-        <a href={to.get('url')} onClick={this.handleAccountClick} className='detailed-status__display-name'>
-          <div className='detailed-status__display-avatar'><AvatarOverlay account={to} friend={from} /></div>
+        <a
+          href={to.get('url')}
+          onClick={this.handleAccountClick}
+          className="detailed-status__display-name"
+        >
+          <div className="detailed-status__display-avatar">
+            <AvatarOverlay account={to} friend={from} />
+          </div>
           <DisplayName account={to} />
         </a>
       </div>
     );
   }
-
 }

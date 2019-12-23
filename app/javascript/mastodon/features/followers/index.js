@@ -20,14 +20,27 @@ import MissingIndicator from 'mastodon/components/missing_indicator';
 
 const mapStateToProps = (state, props) => ({
   isAccount: !!state.getIn(['accounts', props.params.accountId]),
-  accountIds: state.getIn(['user_lists', 'followers', props.params.accountId, 'items']),
-  hasMore: !!state.getIn(['user_lists', 'followers', props.params.accountId, 'next']),
-  blockedBy: state.getIn(['relationships', props.params.accountId, 'blocked_by'], false),
+  accountIds: state.getIn([
+    'user_lists',
+    'followers',
+    props.params.accountId,
+    'items',
+  ]),
+  hasMore: !!state.getIn([
+    'user_lists',
+    'followers',
+    props.params.accountId,
+    'next',
+  ]),
+  blockedBy: state.getIn(
+    ['relationships', props.params.accountId, 'blocked_by'],
+    false,
+  ),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 class Followers extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -39,26 +52,40 @@ class Followers extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchAccount(this.props.params.accountId));
       this.props.dispatch(fetchFollowers(this.props.params.accountId));
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.params.accountId !== this.props.params.accountId &&
+      nextProps.params.accountId
+    ) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
       this.props.dispatch(fetchFollowers(nextProps.params.accountId));
     }
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFollowers(this.props.params.accountId));
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandFollowers(this.props.params.accountId));
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount, multiColumn } = this.props;
+  render() {
+    const {
+      shouldUpdateScroll,
+      accountIds,
+      hasMore,
+      blockedBy,
+      isAccount,
+      multiColumn,
+    } = this.props;
 
     if (!isAccount) {
       return (
@@ -76,28 +103,41 @@ class Followers extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' /> : <FormattedMessage id='account.followers.empty' defaultMessage='No one follows this user yet.' />;
+    const emptyMessage = blockedBy ? (
+      <FormattedMessage
+        id="empty_column.account_unavailable"
+        defaultMessage="Profile unavailable"
+      />
+    ) : (
+      <FormattedMessage
+        id="account.followers.empty"
+        defaultMessage="No one follows this user yet."
+      />
+    );
 
     return (
       <Column>
         <ColumnBackButton multiColumn={multiColumn} />
 
         <ScrollableList
-          scrollKey='followers'
+          scrollKey="followers"
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={shouldUpdateScroll}
-          prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
+          prepend={
+            <HeaderContainer accountId={this.props.params.accountId} hideTabs />
+          }
           alwaysPrepend
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
-          {blockedBy ? [] : accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />
-          )}
+          {blockedBy
+            ? []
+            : accountIds.map(id => (
+                <AccountContainer key={id} id={id} withNote={false} />
+              ))}
         </ScrollableList>
       </Column>
     );
   }
-
 }

@@ -21,17 +21,17 @@ const normalizeLists = (state, lists) => {
 };
 
 export default function lists(state = initialState, action) {
-  switch(action.type) {
-  case LIST_FETCH_SUCCESS:
-  case LIST_CREATE_SUCCESS:
-  case LIST_UPDATE_SUCCESS:
-    return normalizeList(state, action.list);
-  case LISTS_FETCH_SUCCESS:
-    return normalizeLists(state, action.lists);
-  case LIST_DELETE_SUCCESS:
-  case LIST_FETCH_FAIL:
-    return state.set(action.id, false);
-  default:
-    return state;
+  switch (action.type) {
+    case LIST_FETCH_SUCCESS:
+    case LIST_CREATE_SUCCESS:
+    case LIST_UPDATE_SUCCESS:
+      return normalizeList(state, action.list);
+    case LISTS_FETCH_SUCCESS:
+      return normalizeLists(state, action.lists);
+    case LIST_DELETE_SUCCESS:
+    case LIST_FETCH_FAIL:
+      return state.set(action.id, false);
+    default:
+      return state;
   }
-};
+}

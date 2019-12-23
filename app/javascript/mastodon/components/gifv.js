@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class GIFV extends React.PureComponent {
-
   static propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
@@ -17,9 +16,9 @@ export default class GIFV extends React.PureComponent {
 
   handleLoadedData = () => {
     this.setState({ loading: false });
-  }
+  };
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.src !== this.props.src) {
       this.setState({ loading: true });
     }
@@ -32,20 +31,20 @@ export default class GIFV extends React.PureComponent {
       e.stopPropagation();
       onClick();
     }
-  }
+  };
 
-  render () {
+  render() {
     const { src, width, height, alt } = this.props;
     const { loading } = this.state;
 
     return (
-      <div className='gifv' style={{ position: 'relative' }}>
+      <div className="gifv" style={{ position: 'relative' }}>
         {loading && (
           <canvas
             width={width}
             height={height}
-            role='button'
-            tabIndex='0'
+            role="button"
+            tabIndex="0"
             aria-label={alt}
             title={alt}
             onClick={this.handleClick}
@@ -56,8 +55,8 @@ export default class GIFV extends React.PureComponent {
           src={src}
           width={width}
           height={height}
-          role='button'
-          tabIndex='0'
+          role="button"
+          tabIndex="0"
           aria-label={alt}
           title={alt}
           muted
@@ -71,5 +70,4 @@ export default class GIFV extends React.PureComponent {
       </div>
     );
   }
-
 }

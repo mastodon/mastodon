@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { autoPlayGif } from '../initial_state';
 
 export default class AvatarOverlay extends React.PureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     friend: ImmutablePropTypes.map.isRequired,
@@ -19,19 +18,22 @@ export default class AvatarOverlay extends React.PureComponent {
     const { account, friend, animate } = this.props;
 
     const baseStyle = {
-      backgroundImage: `url(${account.get(animate ? 'avatar' : 'avatar_static')})`,
+      backgroundImage: `url(${account.get(
+        animate ? 'avatar' : 'avatar_static',
+      )})`,
     };
 
     const overlayStyle = {
-      backgroundImage: `url(${friend.get(animate ? 'avatar' : 'avatar_static')})`,
+      backgroundImage: `url(${friend.get(
+        animate ? 'avatar' : 'avatar_static',
+      )})`,
     };
 
     return (
-      <div className='account__avatar-overlay'>
-        <div className='account__avatar-overlay-base' style={baseStyle} />
-        <div className='account__avatar-overlay-overlay' style={overlayStyle} />
+      <div className="account__avatar-overlay">
+        <div className="account__avatar-overlay-base" style={baseStyle} />
+        <div className="account__avatar-overlay-overlay" style={overlayStyle} />
       </div>
     );
   }
-
 }

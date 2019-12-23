@@ -3,7 +3,9 @@
 // can at least log in using KaiOS devices).
 
 function importArrowKeyNavigation() {
-  return import(/* webpackChunkName: "arrow-key-navigation" */ 'arrow-key-navigation');
+  return import(
+    /* webpackChunkName: "arrow-key-navigation" */ 'arrow-key-navigation'
+  );
 }
 
 export default function loadKeyboardExtensions() {

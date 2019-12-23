@@ -22,34 +22,33 @@ import {
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
-  'MEDIA': () => Promise.resolve({ default: MediaModal }),
-  'VIDEO': () => Promise.resolve({ default: VideoModal }),
-  'AUDIO': () => Promise.resolve({ default: AudioModal }),
-  'BOOST': () => Promise.resolve({ default: BoostModal }),
-  'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
-  'MUTE': MuteModal,
-  'BLOCK': BlockModal,
-  'REPORT': ReportModal,
-  'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
-  'EMBED': EmbedModal,
-  'LIST_EDITOR': ListEditor,
-  'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
-  'LIST_ADDER':ListAdder,
+  MEDIA: () => Promise.resolve({ default: MediaModal }),
+  VIDEO: () => Promise.resolve({ default: VideoModal }),
+  AUDIO: () => Promise.resolve({ default: AudioModal }),
+  BOOST: () => Promise.resolve({ default: BoostModal }),
+  CONFIRM: () => Promise.resolve({ default: ConfirmationModal }),
+  MUTE: MuteModal,
+  BLOCK: BlockModal,
+  REPORT: ReportModal,
+  ACTIONS: () => Promise.resolve({ default: ActionsModal }),
+  EMBED: EmbedModal,
+  LIST_EDITOR: ListEditor,
+  FOCAL_POINT: () => Promise.resolve({ default: FocalPointModal }),
+  LIST_ADDER: ListAdder,
 };
 
 export default class ModalRoot extends React.PureComponent {
-
   static propTypes = {
     type: PropTypes.string,
     props: PropTypes.object,
     onClose: PropTypes.func.isRequired,
   };
 
-  getSnapshotBeforeUpdate () {
+  getSnapshotBeforeUpdate() {
     return { visible: !!this.props.type };
   }
 
-  componentDidUpdate (prevProps, prevState, { visible }) {
+  componentDidUpdate(prevProps, prevState, { visible }) {
     if (visible) {
       document.body.classList.add('with-modals--active');
       document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
@@ -60,28 +59,38 @@ export default class ModalRoot extends React.PureComponent {
   }
 
   renderLoading = modalId => () => {
-    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
-  }
+    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(
+      modalId,
+    ) === -1 ? (
+      <ModalLoading />
+    ) : null;
+  };
 
-  renderError = (props) => {
+  renderError = props => {
     const { onClose } = this.props;
 
     return <BundleModalError {...props} onClose={onClose} />;
-  }
+  };
 
-  render () {
+  render() {
     const { type, props, onClose } = this.props;
     const visible = !!type;
 
     return (
       <Base onClose={onClose}>
         {visible && (
-          <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
-            {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
+          <BundleContainer
+            fetchComponent={MODAL_COMPONENTS[type]}
+            loading={this.renderLoading(type)}
+            error={this.renderError}
+            renderDelay={200}
+          >
+            {SpecificComponent => (
+              <SpecificComponent {...props} onClose={onClose} />
+            )}
           </BundleContainer>
         )}
       </Base>
     );
   }
-
 }

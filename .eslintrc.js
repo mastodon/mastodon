@@ -14,12 +14,9 @@ module.exports = {
 
   parser: 'babel-eslint',
 
-  plugins: [
-    'react',
-    'jsx-a11y',
-    'import',
-    'promise',
-  ],
+  extends: ['plugin:prettier/recommended', 'prettier/babel', 'prettier/react'],
+
+  plugins: ['react', 'jsx-a11y', 'import', 'promise'],
 
   parserOptions: {
     sourceType: 'module',
@@ -34,13 +31,8 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/extensions': [
-      '.js',
-    ],
-    'import/ignore': [
-      'node_modules',
-      '\\.(css|scss|json)$',
-    ],
+    'import/extensions': ['.js'],
+    'import/ignore': ['node_modules', '\\.(css|scss|json)$'],
     'import/resolver': {
       node: {
         paths: ['app/javascript'],
@@ -50,7 +42,6 @@ module.exports = {
 
   rules: {
     'brace-style': 'warn',
-    'comma-dangle': ['error', 'always-multiline'],
     'comma-spacing': [
       'warn',
       {
@@ -62,17 +53,12 @@ module.exports = {
     'consistent-return': 'error',
     'dot-notation': 'error',
     eqeqeq: 'error',
-    indent: ['warn', 2],
-    'jsx-quotes': ['error', 'prefer-single'],
     'no-catch-shadow': 'error',
     'no-cond-assign': 'error',
     'no-console': [
       'warn',
       {
-        allow: [
-          'error',
-          'warn',
-        ],
+        allow: ['error', 'warn'],
       },
     ],
     'no-fallthrough': 'error',
@@ -92,13 +78,6 @@ module.exports = {
       },
     ],
     'object-curly-spacing': ['error', 'always'],
-    'padded-blocks': [
-      'error',
-      {
-        classes: 'always',
-      },
-    ],
-    quotes: ['error', 'single'],
     semi: 'error',
     strict: 'off',
     'valid-typeof': 'error',
@@ -108,7 +87,6 @@ module.exports = {
     'react/jsx-curly-spacing': 'error',
     'react/jsx-equals-spacing': 'error',
     'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-    'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
     'react/jsx-no-duplicate-props': 'error',
     'react/jsx-no-undef': 'error',
@@ -127,18 +105,9 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': [
       'warn',
       {
-        components: [
-          'Link',
-          'NavLink',
-        ],
-        specialLink: [
-          'to',
-        ],
-        aspect: [
-          'noHref',
-          'invalidHref',
-          'preferButton',
-        ],
+        components: ['Link', 'NavLink'],
+        specialLink: ['to'],
+        aspect: ['noHref', 'invalidHref', 'preferButton'],
       },
     ],
     'jsx-a11y/aria-activedescendant-has-tabindex': 'warn',
@@ -158,9 +127,7 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': [
       'warn',
       {
-        handlers: [
-          'onClick',
-        ],
+        handlers: ['onClick'],
       },
     ],
     'jsx-a11y/no-onchange': 'warn',
@@ -168,9 +135,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': [
       'warn',
       {
-        handlers: [
-          'onClick',
-        ],
+        handlers: ['onClick'],
       },
     ],
     'jsx-a11y/role-has-required-aria-props': 'warn',

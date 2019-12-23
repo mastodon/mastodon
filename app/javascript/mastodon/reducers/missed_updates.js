@@ -8,14 +8,14 @@ const initialState = ImmutableMap({
 });
 
 export default function missed_updates(state = initialState, action) {
-  switch(action.type) {
-  case APP_FOCUS:
-    return state.set('focused', true).set('unread', 0);
-  case APP_UNFOCUS:
-    return state.set('focused', false);
-  case NOTIFICATIONS_UPDATE:
-    return state.get('focused') ? state : state.update('unread', x => x + 1);
-  default:
-    return state;
+  switch (action.type) {
+    case APP_FOCUS:
+      return state.set('focused', true).set('unread', 0);
+    case APP_UNFOCUS:
+      return state.set('focused', false);
+    case NOTIFICATIONS_UPDATE:
+      return state.get('focused') ? state : state.update('unread', x => x + 1);
+    default:
+      return state;
   }
-};
+}

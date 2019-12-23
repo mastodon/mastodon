@@ -8,7 +8,6 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 export default class Header extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map,
     identity_proofs: ImmutablePropTypes.list,
@@ -33,31 +32,31 @@ export default class Header extends ImmutablePureComponent {
 
   handleFollow = () => {
     this.props.onFollow(this.props.account);
-  }
+  };
 
   handleBlock = () => {
     this.props.onBlock(this.props.account);
-  }
+  };
 
   handleMention = () => {
     this.props.onMention(this.props.account, this.context.router.history);
-  }
+  };
 
   handleDirect = () => {
     this.props.onDirect(this.props.account, this.context.router.history);
-  }
+  };
 
   handleReport = () => {
     this.props.onReport(this.props.account);
-  }
+  };
 
   handleReblogToggle = () => {
     this.props.onReblogToggle(this.props.account);
-  }
+  };
 
   handleMute = () => {
     this.props.onMute(this.props.account);
-  }
+  };
 
   handleBlockDomain = () => {
     const domain = this.props.account.get('acct').split('@')[1];
@@ -65,7 +64,7 @@ export default class Header extends ImmutablePureComponent {
     if (!domain) return;
 
     this.props.onBlockDomain(domain);
-  }
+  };
 
   handleUnblockDomain = () => {
     const domain = this.props.account.get('acct').split('@')[1];
@@ -73,17 +72,17 @@ export default class Header extends ImmutablePureComponent {
     if (!domain) return;
 
     this.props.onUnblockDomain(domain);
-  }
+  };
 
   handleEndorseToggle = () => {
     this.props.onEndorseToggle(this.props.account);
-  }
+  };
 
   handleAddToList = () => {
     this.props.onAddToList(this.props.account);
-  }
+  };
 
-  render () {
+  render() {
     const { account, hideTabs, identity_proofs } = this.props;
 
     if (account === null) {
@@ -91,8 +90,10 @@ export default class Header extends ImmutablePureComponent {
     }
 
     return (
-      <div className='account-timeline__header'>
-        {account.get('moved') && <MovedNote from={account} to={account.get('moved')} />}
+      <div className="account-timeline__header">
+        {account.get('moved') && (
+          <MovedNote from={account} to={account.get('moved')} />
+        )}
 
         <InnerHeader
           account={account}
@@ -112,14 +113,22 @@ export default class Header extends ImmutablePureComponent {
         />
 
         {!hideTabs && (
-          <div className='account__section-headline'>
-            <NavLink exact to={`/accounts/${account.get('id')}`}><FormattedMessage id='account.posts' defaultMessage='Toots' /></NavLink>
-            <NavLink exact to={`/accounts/${account.get('id')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Toots and replies' /></NavLink>
-            <NavLink exact to={`/accounts/${account.get('id')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
+          <div className="account__section-headline">
+            <NavLink exact to={`/accounts/${account.get('id')}`}>
+              <FormattedMessage id="account.posts" defaultMessage="Toots" />
+            </NavLink>
+            <NavLink exact to={`/accounts/${account.get('id')}/with_replies`}>
+              <FormattedMessage
+                id="account.posts_with_replies"
+                defaultMessage="Toots and replies"
+              />
+            </NavLink>
+            <NavLink exact to={`/accounts/${account.get('id')}/media`}>
+              <FormattedMessage id="account.media" defaultMessage="Media" />
+            </NavLink>
           </div>
         )}
       </div>
     );
   }
-
 }

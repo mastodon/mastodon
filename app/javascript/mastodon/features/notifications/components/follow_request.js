@@ -13,9 +13,9 @@ const messages = defineMessages({
   reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
-export default @injectIntl
+export default
+@injectIntl
 class FollowRequest extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     onAuthorize: PropTypes.func.isRequired,
@@ -23,7 +23,7 @@ class FollowRequest extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  render () {
+  render() {
     const { intl, hidden, account, onAuthorize, onReject } = this.props;
 
     if (!account) {
@@ -40,20 +40,35 @@ class FollowRequest extends ImmutablePureComponent {
     }
 
     return (
-      <div className='account'>
-        <div className='account__wrapper'>
-          <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/accounts/${account.get('id')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+      <div className="account">
+        <div className="account__wrapper">
+          <Permalink
+            key={account.get('id')}
+            className="account__display-name"
+            title={account.get('acct')}
+            href={account.get('url')}
+            to={`/accounts/${account.get('id')}`}
+          >
+            <div className="account__avatar-wrapper">
+              <Avatar account={account} size={36} />
+            </div>
             <DisplayName account={account} />
           </Permalink>
 
-          <div className='account__relationship'>
-            <IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} />
-            <IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} />
+          <div className="account__relationship">
+            <IconButton
+              title={intl.formatMessage(messages.authorize)}
+              icon="check"
+              onClick={onAuthorize}
+            />
+            <IconButton
+              title={intl.formatMessage(messages.reject)}
+              icon="times"
+              onClick={onReject}
+            />
           </div>
         </div>
       </div>
     );
   }
-
 }

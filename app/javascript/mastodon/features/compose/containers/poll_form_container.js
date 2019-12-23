@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 import PollForm from '../components/poll_form';
-import { addPollOption, removePollOption, changePollOption, changePollSettings } from '../../../actions/compose';
+import {
+  addPollOption,
+  removePollOption,
+  changePollOption,
+  changePollSettings,
+} from '../../../actions/compose';
 import {
   clearComposeSuggestions,
   fetchComposeSuggestions,
@@ -31,18 +36,17 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changePollSettings(expiresIn, isMultiple));
   },
 
-  onClearSuggestions () {
+  onClearSuggestions() {
     dispatch(clearComposeSuggestions());
   },
 
-  onFetchSuggestions (token) {
+  onFetchSuggestions(token) {
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected (position, token, accountId, path) {
+  onSuggestionSelected(position, token, accountId, path) {
     dispatch(selectComposeSuggestion(position, token, accountId, path));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PollForm);

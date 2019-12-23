@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { autoPlayGif } from '../initial_state';
 
 export default class AvatarComposite extends React.PureComponent {
-
   static propTypes = {
     accounts: ImmutablePropTypes.list.isRequired,
     animate: PropTypes.bool,
@@ -15,15 +14,15 @@ export default class AvatarComposite extends React.PureComponent {
     animate: autoPlayGif,
   };
 
-  renderItem (account, size, index) {
+  renderItem(account, size, index) {
     const { animate } = this.props;
 
-    let width  = 50;
+    let width = 50;
     let height = 100;
-    let top    = 'auto';
-    let left   = 'auto';
+    let top = 'auto';
+    let left = 'auto';
     let bottom = 'auto';
-    let right  = 'auto';
+    let right = 'auto';
 
     if (size === 1) {
       width = 100;
@@ -75,28 +74,34 @@ export default class AvatarComposite extends React.PureComponent {
       width: `${width}%`,
       height: `${height}%`,
       backgroundSize: 'cover',
-      backgroundImage: `url(${account.get(animate ? 'avatar' : 'avatar_static')})`,
+      backgroundImage: `url(${account.get(
+        animate ? 'avatar' : 'avatar_static',
+      )})`,
     };
 
-    return (
-      <div key={account.get('id')} style={style} />
-    );
+    return <div key={account.get('id')} style={style} />;
   }
 
   render() {
     const { accounts, size } = this.props;
 
     return (
-      <div className='account__avatar-composite' style={{ width: `${size}px`, height: `${size}px` }}>
-        {accounts.take(4).map((account, i) => this.renderItem(account, Math.min(accounts.size, 4), i))}
+      <div
+        className="account__avatar-composite"
+        style={{ width: `${size}px`, height: `${size}px` }}
+      >
+        {accounts
+          .take(4)
+          .map((account, i) =>
+            this.renderItem(account, Math.min(accounts.size, 4), i),
+          )}
 
         {accounts.size > 4 && (
-          <span className='account__avatar-composite__label'>
+          <span className="account__avatar-composite__label">
             +{accounts.size - 4}
           </span>
         )}
       </div>
     );
   }
-
 }

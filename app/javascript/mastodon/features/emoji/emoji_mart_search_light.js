@@ -30,7 +30,7 @@ for (let emoji in data.emojis) {
 }
 
 function clearCustomEmojis(pool) {
-  customEmojisList.forEach((emoji) => {
+  customEmojisList.forEach(emoji => {
     let emojiId = emoji.id || emoji.short_names[0];
 
     delete pool[emojiId];
@@ -41,7 +41,7 @@ function clearCustomEmojis(pool) {
 function addCustomToPool(custom, pool) {
   if (customEmojisList.length) clearCustomEmojis(pool);
 
-  custom.forEach((emoji) => {
+  custom.forEach(emoji => {
     let emojiId = emoji.id || emoji.short_names[0];
 
     if (emojiId && !pool[emojiId]) {
@@ -54,10 +54,12 @@ function addCustomToPool(custom, pool) {
   index = {};
 }
 
-function search(value, { emojisToShowFilter, maxResults, include, exclude, custom } = {}) {
+function search(
+  value,
+  { emojisToShowFilter, maxResults, include, exclude, custom } = {},
+) {
   if (custom !== undefined) {
-    if (customEmojisList !== custom)
-      addCustomToPool(custom, originalPool);
+    if (customEmojisList !== custom) addCustomToPool(custom, originalPool);
   } else {
     custom = [];
   }
@@ -85,25 +87,35 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       pool = {};
 
       data.categories.forEach(category => {
-        let isIncluded = include && include.length ? include.indexOf(category.name.toLowerCase()) > -1 : true;
-        let isExcluded = exclude && exclude.length ? exclude.indexOf(category.name.toLowerCase()) > -1 : false;
+        let isIncluded =
+          include && include.length
+            ? include.indexOf(category.name.toLowerCase()) > -1
+            : true;
+        let isExcluded =
+          exclude && exclude.length
+            ? exclude.indexOf(category.name.toLowerCase()) > -1
+            : false;
         if (!isIncluded || isExcluded) {
           return;
         }
 
-        category.emojis.forEach(emojiId => pool[emojiId] = data.emojis[emojiId]);
+        category.emojis.forEach(
+          emojiId => (pool[emojiId] = data.emojis[emojiId]),
+        );
       });
 
       if (custom.length) {
-        let customIsIncluded = include && include.length ? include.indexOf('custom') > -1 : true;
-        let customIsExcluded = exclude && exclude.length ? exclude.indexOf('custom') > -1 : false;
+        let customIsIncluded =
+          include && include.length ? include.indexOf('custom') > -1 : true;
+        let customIsExcluded =
+          exclude && exclude.length ? exclude.indexOf('custom') > -1 : false;
         if (customIsIncluded && !customIsExcluded) {
           addCustomToPool(custom, pool);
         }
       }
     }
 
-    const searchValue = (value) => {
+    const searchValue = value => {
       let aPool = pool,
         aIndex = index,
         length = 0;
@@ -171,7 +183,9 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
   if (results) {
     if (emojisToShowFilter) {
-      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id]));
+      results = results.filter(result =>
+        emojisToShowFilter(data.emojis[result.id]),
+      );
     }
 
     if (results && results.length > maxResults) {

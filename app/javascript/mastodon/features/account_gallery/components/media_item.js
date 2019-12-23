@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 export default class MediaItem extends ImmutablePureComponent {
-
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
     displayWidth: PropTypes.number.isRequired,
@@ -17,28 +16,35 @@ export default class MediaItem extends ImmutablePureComponent {
   };
 
   state = {
-    visible: displayMedia !== 'hide_all' && !this.props.attachment.getIn(['status', 'sensitive']) || displayMedia === 'show_all',
+    visible:
+      (displayMedia !== 'hide_all' &&
+        !this.props.attachment.getIn(['status', 'sensitive'])) ||
+      displayMedia === 'show_all',
     loaded: false,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.attachment.get('blurhash')) {
       this._decode();
     }
   }
 
-  componentDidUpdate (prevProps) {
-    if (prevProps.attachment.get('blurhash') !== this.props.attachment.get('blurhash') && this.props.attachment.get('blurhash')) {
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.attachment.get('blurhash') !==
+        this.props.attachment.get('blurhash') &&
+      this.props.attachment.get('blurhash')
+    ) {
       this._decode();
     }
   }
 
-  _decode () {
-    const hash   = this.props.attachment.get('blurhash');
+  _decode() {
+    const hash = this.props.attachment.get('blurhash');
     const pixels = decode(hash, 32, 32);
 
     if (pixels) {
-      const ctx       = this.canvas.getContext('2d');
+      const ctx = this.canvas.getContext('2d');
       const imageData = new ImageData(pixels, 32, 32);
 
       ctx.putImageData(imageData, 0, 0);
@@ -47,27 +53,30 @@ export default class MediaItem extends ImmutablePureComponent {
 
   setCanvasRef = c => {
     this.canvas = c;
-  }
+  };
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   handleMouseEnter = e => {
     if (this.hoverToPlay()) {
       e.target.play();
     }
-  }
+  };
 
   handleMouseLeave = e => {
     if (this.hoverToPlay()) {
       e.target.pause();
       e.target.currentTime = 0;
     }
-  }
+  };
 
-  hoverToPlay () {
-    return !autoPlayGif && ['gifv', 'video'].indexOf(this.props.attachment.get('type')) !== -1;
+  hoverToPlay() {
+    return (
+      !autoPlayGif &&
+      ['gifv', 'video'].indexOf(this.props.attachment.get('type')) !== -1
+    );
   }
 
   handleClick = e => {
@@ -80,13 +89,13 @@ export default class MediaItem extends ImmutablePureComponent {
         this.setState({ visible: true });
       }
     }
-  }
+  };
 
-  render () {
+  render() {
     const { attachment, displayWidth } = this.props;
     const { visible, loaded } = this.state;
 
-    const width  = `${Math.floor((displayWidth - 4) / 3) - 4}px`;
+    const width = `${Math.floor((displayWidth - 4) / 3) - 4}px`;
     const height = width;
     const status = attachment.get('status');
     const title = status.get('spoiler_text') || attachment.get('description');
@@ -98,15 +107,15 @@ export default class MediaItem extends ImmutablePureComponent {
       // Skip
     } else if (attachment.get('type') === 'audio') {
       thumbnail = (
-        <span className='account-gallery__item__icons'>
-          <Icon id='music' />
+        <span className="account-gallery__item__icons">
+          <Icon id="music" />
         </span>
       );
     } else if (attachment.get('type') === 'image') {
       const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
       const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
-      const x      = ((focusX /  2) + .5) * 100;
-      const y      = ((focusY / -2) + .5) * 100;
+      const x = (focusX / 2 + 0.5) * 100;
+      const y = (focusY / -2 + 0.5) * 100;
 
       thumbnail = (
         <img
@@ -119,15 +128,18 @@ export default class MediaItem extends ImmutablePureComponent {
       );
     } else if (['gifv', 'video'].indexOf(attachment.get('type')) !== -1) {
       const autoPlay = !isIOS() && autoPlayGif;
-      const label    = attachment.get('type') === 'video' ? <Icon id='play' /> : 'GIF';
+      const label =
+        attachment.get('type') === 'video' ? <Icon id="play" /> : 'GIF';
 
       thumbnail = (
-        <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
+        <div
+          className={classNames('media-gallery__gifv', { autoplay: autoPlay })}
+        >
           <video
-            className='media-gallery__item-gifv-thumbnail'
+            className="media-gallery__item-gifv-thumbnail"
             aria-label={attachment.get('description')}
             title={attachment.get('description')}
-            role='application'
+            role="application"
             src={attachment.get('url')}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
@@ -136,28 +148,41 @@ export default class MediaItem extends ImmutablePureComponent {
             muted
           />
 
-          <span className='media-gallery__gifv__label'>{label}</span>
+          <span className="media-gallery__gifv__label">{label}</span>
         </div>
       );
     }
 
     if (!visible) {
       icon = (
-        <span className='account-gallery__item__icons'>
-          <Icon id='eye-slash' />
+        <span className="account-gallery__item__icons">
+          <Icon id="eye-slash" />
         </span>
       );
     }
 
     return (
-      <div className='account-gallery__item' style={{ width, height }}>
-        <a className='media-gallery__item-thumbnail' href={status.get('url')} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
-          <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })} />
+      <div className="account-gallery__item" style={{ width, height }}>
+        <a
+          className="media-gallery__item-thumbnail"
+          href={status.get('url')}
+          onClick={this.handleClick}
+          title={title}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <canvas
+            width={32}
+            height={32}
+            ref={this.setCanvasRef}
+            className={classNames('media-gallery__preview', {
+              'media-gallery__preview--hidden': visible && loaded,
+            })}
+          />
           {visible && thumbnail}
           {!visible && icon}
         </a>
       </div>
     );
   }
-
 }

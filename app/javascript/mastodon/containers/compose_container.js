@@ -21,12 +21,11 @@ if (initialState) {
 store.dispatch(fetchCustomEmojis());
 
 export default class TimelineContainer extends React.PureComponent {
-
   static propTypes = {
     locale: PropTypes.string.isRequired,
   };
 
-  render () {
+  render() {
     const { locale } = this.props;
 
     return (
@@ -37,5 +36,4 @@ export default class TimelineContainer extends React.PureComponent {
       </IntlProvider>
     );
   }
-
 }

@@ -6,8 +6,14 @@ import { changeComposeSensitivity } from 'mastodon/actions/compose';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 const messages = defineMessages({
-  marked: { id: 'compose_form.sensitive.marked', defaultMessage: 'Media is marked as sensitive' },
-  unmarked: { id: 'compose_form.sensitive.unmarked', defaultMessage: 'Media is not marked as sensitive' },
+  marked: {
+    id: 'compose_form.sensitive.marked',
+    defaultMessage: 'Media is marked as sensitive',
+  },
+  unmarked: {
+    id: 'compose_form.sensitive.unmarked',
+    defaultMessage: 'Media is not marked as sensitive',
+  },
 });
 
 const mapStateToProps = state => ({
@@ -16,15 +22,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
-  onClick () {
+  onClick() {
     dispatch(changeComposeSensitivity());
   },
-
 });
 
 class SensitiveButton extends React.PureComponent {
-
   static propTypes = {
     active: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -32,15 +35,20 @@ class SensitiveButton extends React.PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  render () {
+  render() {
     const { active, disabled, onClick, intl } = this.props;
 
     return (
-      <div className='compose-form__sensitive-button'>
-        <label className={classNames('icon-button', { active })} title={intl.formatMessage(active ? messages.marked : messages.unmarked)}>
+      <div className="compose-form__sensitive-button">
+        <label
+          className={classNames('icon-button', { active })}
+          title={intl.formatMessage(
+            active ? messages.marked : messages.unmarked,
+          )}
+        >
           <input
-            name='mark-sensitive'
-            type='checkbox'
+            name="mark-sensitive"
+            type="checkbox"
             checked={active}
             onChange={onClick}
             disabled={disabled}
@@ -48,12 +56,17 @@ class SensitiveButton extends React.PureComponent {
 
           <span className={classNames('checkbox', { active })} />
 
-          <FormattedMessage id='compose_form.sensitive.hide' defaultMessage='Mark media as sensitive' />
+          <FormattedMessage
+            id="compose_form.sensitive.hide"
+            defaultMessage="Mark media as sensitive"
+          />
         </label>
       </div>
     );
   }
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SensitiveButton));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(SensitiveButton));

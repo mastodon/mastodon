@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { fetchFavouritedStatuses, expandFavouritedStatuses } from '../../actions/favourites';
+import {
+  fetchFavouritedStatuses,
+  expandFavouritedStatuses,
+} from '../../actions/favourites';
 import Column from '../ui/components/column';
 import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
@@ -21,10 +24,10 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class Favourites extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
@@ -36,7 +39,7 @@ class Favourites extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.dispatch(fetchFavouritedStatuses());
   }
 
@@ -48,35 +51,56 @@ class Favourites extends ImmutablePureComponent {
     } else {
       dispatch(addColumn('FAVOURITES', {}));
     }
-  }
+  };
 
-  handleMove = (dir) => {
+  handleMove = dir => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandFavouritedStatuses());
-  }, 300, { leading: true })
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandFavouritedStatuses());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { intl, shouldUpdateScroll, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
+  render() {
+    const {
+      intl,
+      shouldUpdateScroll,
+      statusIds,
+      columnId,
+      multiColumn,
+      hasMore,
+      isLoading,
+    } = this.props;
     const pinned = !!columnId;
 
-    const emptyMessage = <FormattedMessage id='empty_column.favourited_statuses' defaultMessage="You don't have any favourite toots yet. When you favourite one, it will show up here." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id="empty_column.favourited_statuses"
+        defaultMessage="You don't have any favourite toots yet. When you favourite one, it will show up here."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.heading)}
+      >
         <ColumnHeader
-          icon='star'
+          icon="star"
           title={intl.formatMessage(messages.heading)}
           onPin={this.handlePin}
           onMove={this.handleMove}
@@ -100,5 +124,4 @@ class Favourites extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }

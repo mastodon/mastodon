@@ -14,11 +14,9 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = dispatch => ({
-
-  onCancel () {
+  onCancel() {
     dispatch(cancelReplyCompose());
   },
-
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(ReplyIndicator);

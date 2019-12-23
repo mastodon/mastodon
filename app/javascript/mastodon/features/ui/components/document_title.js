@@ -7,14 +7,14 @@ const mapStateToProps = state => ({
   unread: state.getIn(['missed_updates', 'unread']),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 class DocumentTitle extends PureComponent {
-
   static propTypes = {
     unread: PropTypes.number.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     this._sideEffects();
   }
 
@@ -22,7 +22,7 @@ class DocumentTitle extends PureComponent {
     this._sideEffects();
   }
 
-  _sideEffects () {
+  _sideEffects() {
     const { unread } = this.props;
 
     if (unread > 99) {
@@ -34,8 +34,7 @@ class DocumentTitle extends PureComponent {
     }
   }
 
-  render () {
+  render() {
     return null;
   }
-
 }

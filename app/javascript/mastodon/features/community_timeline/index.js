@@ -18,8 +18,14 @@ const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
-  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']);
-  const timelineState = state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`]);
+  const onlyMedia =
+    columnId && index >= 0
+      ? columns.get(index).getIn(['params', 'other', 'onlyMedia'])
+      : state.getIn(['settings', 'community', 'other', 'onlyMedia']);
+  const timelineState = state.getIn([
+    'timelines',
+    `community${onlyMedia ? ':media' : ''}`,
+  ]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
@@ -27,10 +33,10 @@ const mapStateToProps = (state, { columnId }) => {
   };
 };
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class CommunityTimeline extends React.PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -57,25 +63,25 @@ class CommunityTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
     }
-  }
+  };
 
-  handleMove = (dir) => {
+  handleMove = dir => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch, onlyMedia } = this.props;
 
     dispatch(expandCommunityTimeline({ onlyMedia }));
     this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.onlyMedia !== this.props.onlyMedia) {
       const { dispatch, onlyMedia } = this.props;
 
@@ -85,7 +91,7 @@ class CommunityTimeline extends React.PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
@@ -94,22 +100,33 @@ class CommunityTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     const { dispatch, onlyMedia } = this.props;
 
     dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
-  }
+  };
 
-  render () {
-    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
+  render() {
+    const {
+      intl,
+      shouldUpdateScroll,
+      hasUnread,
+      columnId,
+      multiColumn,
+      onlyMedia,
+    } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.title)}
+      >
         <ColumnHeader
-          icon='users'
+          icon="users"
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
@@ -126,12 +143,16 @@ class CommunityTimeline extends React.PureComponent {
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          emptyMessage={
+            <FormattedMessage
+              id="empty_column.community"
+              defaultMessage="The local timeline is empty. Write something publicly to get the ball rolling!"
+            />
+          }
           shouldUpdateScroll={shouldUpdateScroll}
           bindToDocument={!multiColumn}
         />
       </Column>
     );
   }
-
 }

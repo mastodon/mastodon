@@ -16,11 +16,14 @@ const getOrderedLists = createSelector([state => state.get('lists')], lists => {
     return lists;
   }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  return lists
+    .toList()
+    .filter(item => !!item)
+    .sort((a, b) => a.get('title').localeCompare(b.get('title')));
 });
 
 const mapStateToProps = state => ({
-  listIds: getOrderedLists(state).map(list=>list.get('id')),
+  listIds: getOrderedLists(state).map(list => list.get('id')),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -28,10 +31,10 @@ const mapDispatchToProps = dispatch => ({
   onReset: () => dispatch(resetListAdder()),
 });
 
-export default @connect(mapStateToProps, mapDispatchToProps)
+export default
+@connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class ListAdder extends ImmutablePureComponent {
-
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -41,33 +44,33 @@ class ListAdder extends ImmutablePureComponent {
     listIds: ImmutablePropTypes.list.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { onInitialize, accountId } = this.props;
     onInitialize(accountId);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     const { onReset } = this.props;
     onReset();
   }
 
-  render () {
+  render() {
     const { accountId, listIds } = this.props;
 
     return (
-      <div className='modal-root__modal list-adder'>
-        <div className='list-adder__account'>
+      <div className="modal-root__modal list-adder">
+        <div className="list-adder__account">
           <Account accountId={accountId} />
         </div>
 
         <NewListForm />
 
-
-        <div className='list-adder__lists'>
-          {listIds.map(ListId => <List key={ListId} listId={ListId} />)}
+        <div className="list-adder__lists">
+          {listIds.map(ListId => (
+            <List key={ListId} listId={ListId} />
+          ))}
         </div>
       </div>
     );
   }
-
 }

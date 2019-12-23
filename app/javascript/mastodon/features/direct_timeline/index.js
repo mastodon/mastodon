@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { mountConversations, unmountConversations, expandConversations } from '../../actions/conversations';
+import {
+  mountConversations,
+  unmountConversations,
+  expandConversations,
+} from '../../actions/conversations';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connectDirectStream } from '../../actions/streaming';
@@ -13,10 +17,10 @@ const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Direct messages' },
 });
 
-export default @connect()
+export default
+@connect()
 @injectIntl
 class DirectTimeline extends React.PureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
@@ -34,18 +38,18 @@ class DirectTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn('DIRECT', {}));
     }
-  }
+  };
 
-  handleMove = (dir) => {
+  handleMove = dir => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
 
     dispatch(mountConversations());
@@ -53,7 +57,7 @@ class DirectTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectDirectStream());
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.dispatch(unmountConversations());
 
     if (this.disconnect) {
@@ -64,20 +68,30 @@ class DirectTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandConversations({ maxId }));
-  }
+  };
 
-  render () {
-    const { intl, hasUnread, columnId, multiColumn, shouldUpdateScroll } = this.props;
+  render() {
+    const {
+      intl,
+      hasUnread,
+      columnId,
+      multiColumn,
+      shouldUpdateScroll,
+    } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.title)}
+      >
         <ColumnHeader
-          icon='envelope'
+          icon="envelope"
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
@@ -90,13 +104,17 @@ class DirectTimeline extends React.PureComponent {
         <ConversationsListContainer
           trackScroll={!pinned}
           scrollKey={`direct_timeline-${columnId}`}
-          timelineId='direct'
+          timelineId="direct"
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
+          emptyMessage={
+            <FormattedMessage
+              id="empty_column.direct"
+              defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here."
+            />
+          }
           shouldUpdateScroll={shouldUpdateScroll}
         />
       </Column>
     );
   }
-
 }

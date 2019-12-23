@@ -7,12 +7,20 @@ const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 
-const localesJsonPath = path.join(__dirname, '../../app/javascript/mastodon/locales');
-const locales = fs.readdirSync(localesJsonPath).filter(filename => {
-  return /\.json$/.test(filename) &&
-    !/defaultMessages/.test(filename) &&
-    !/whitelist/.test(filename);
-}).map(filename => filename.replace(/\.json$/, ''));
+const localesJsonPath = path.join(
+  __dirname,
+  '../../app/javascript/mastodon/locales',
+);
+const locales = fs
+  .readdirSync(localesJsonPath)
+  .filter(filename => {
+    return (
+      /\.json$/.test(filename) &&
+      !/defaultMessages/.test(filename) &&
+      !/whitelist/.test(filename)
+    );
+  })
+  .map(filename => filename.replace(/\.json$/, ''));
 
 const outPath = path.join(__dirname, '../../tmp/packs');
 
@@ -31,7 +39,8 @@ locales.forEach(locale => {
     `../../app/javascript/mastodon/locales/locale-data/${baseLocale}.js`,
     // fall back to English (this is what react-intl does anyway)
     '../../node_modules/react-intl/locale-data/en.js',
-  ].filter(filename => fs.existsSync(path.join(outPath, filename)))
+  ]
+    .filter(filename => fs.existsSync(path.join(outPath, filename)))
     .map(filename => filename.replace(/..\/..\/node_modules\//, ''))[0];
 
   const localeContent = `//
@@ -48,5 +57,3 @@ setLocale({messages, localeData});
 });
 
 module.exports = outPaths;
-
-

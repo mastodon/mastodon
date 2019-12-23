@@ -10,15 +10,15 @@
 // U+FB50  to U+FDFF  - Arabic presentation forms A
 // U+FE70  to U+FEFF  - Arabic presentation forms B
 
-const rtlChars = /[\u0590-\u083F]|[\u08A0-\u08FF]|[\uFB1D-\uFDFF]|[\uFE70-\uFEFF]/mg;
+const rtlChars = /[\u0590-\u083F]|[\u08A0-\u08FF]|[\uFB1D-\uFDFF]|[\uFE70-\uFEFF]/gm;
 
 export function isRtl(text) {
   if (text.length === 0) {
     return false;
   }
 
-  text = text.replace(/(?:^|[^\/\w])@([a-z0-9_]+(@[a-z0-9\.\-]+)?)/ig, '');
-  text = text.replace(/(?:^|[^\/\w])#([\S]+)/ig, '');
+  text = text.replace(/(?:^|[^\/\w])@([a-z0-9_]+(@[a-z0-9\.\-]+)?)/gi, '');
+  text = text.replace(/(?:^|[^\/\w])#([\S]+)/gi, '');
   text = text.replace(/\s+/g, '');
   text = text.replace(/(\w\S+\.\w{2,}\S*)/g, '');
 
@@ -29,4 +29,4 @@ export function isRtl(text) {
   }
 
   return matches.length / text.length > 0.3;
-};
+}

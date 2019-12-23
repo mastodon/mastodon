@@ -10,7 +10,6 @@ import Icon from 'mastodon/components/icon';
 export const previewState = 'previewVideoModal';
 
 export default class VideoModal extends ImmutablePureComponent {
-
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     status: ImmutablePropTypes.map,
@@ -22,7 +21,7 @@ export default class VideoModal extends ImmutablePureComponent {
     router: PropTypes.object,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.context.router) {
       const history = this.context.router.history;
 
@@ -34,7 +33,7 @@ export default class VideoModal extends ImmutablePureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.context.router) {
       this.unlistenHistory();
 
@@ -47,16 +46,18 @@ export default class VideoModal extends ImmutablePureComponent {
   handleStatusClick = e => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
+      this.context.router.history.push(
+        `/statuses/${this.props.status.get('id')}`,
+      );
     }
-  }
+  };
 
-  render () {
+  render() {
     const { media, status, time, onClose } = this.props;
 
     return (
-      <div className='modal-root__modal video-modal'>
-        <div className='video-modal__container'>
+      <div className="modal-root__modal video-modal">
+        <div className="video-modal__container">
           <Video
             preview={media.get('preview_url')}
             blurhash={media.get('blurhash')}
@@ -70,11 +71,16 @@ export default class VideoModal extends ImmutablePureComponent {
 
         {status && (
           <div className={classNames('media-modal__meta')}>
-            <a href={status.get('url')} onClick={this.handleStatusClick}><Icon id='comments' /> <FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
+            <a href={status.get('url')} onClick={this.handleStatusClick}>
+              <Icon id="comments" />{' '}
+              <FormattedMessage
+                id="lightbox.view_context"
+                defaultMessage="View context"
+              />
+            </a>
           </div>
         )}
       </div>
     );
   }
-
 }

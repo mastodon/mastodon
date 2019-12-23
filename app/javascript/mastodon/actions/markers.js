@@ -1,9 +1,14 @@
 export const submitMarkers = () => (dispatch, getState) => {
   const accessToken = getState().getIn(['meta', 'access_token'], '');
-  const params      = {};
+  const params = {};
 
-  const lastHomeId         = getState().getIn(['timelines', 'home', 'items', 0]);
-  const lastNotificationId = getState().getIn(['notifications', 'items', 0, 'id']);
+  const lastHomeId = getState().getIn(['timelines', 'home', 'items', 0]);
+  const lastNotificationId = getState().getIn([
+    'notifications',
+    'items',
+    0,
+    'id',
+  ]);
 
   if (lastHomeId) {
     params.home = {

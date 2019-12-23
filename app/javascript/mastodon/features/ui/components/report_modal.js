@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeReportComment, changeReportForward, submitReport } from '../../../actions/reports';
+import {
+  changeReportComment,
+  changeReportForward,
+  submitReport,
+} from '../../../actions/reports';
 import { expandAccountTimeline } from '../../../actions/timelines';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -15,7 +19,10 @@ import IconButton from '../../../components/icon_button';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
-  placeholder: { id: 'report.placeholder', defaultMessage: 'Additional comments' },
+  placeholder: {
+    id: 'report.placeholder',
+    defaultMessage: 'Additional comments',
+  },
   submit: { id: 'report.submit', defaultMessage: 'Submit' },
 });
 
@@ -30,17 +37,23 @@ const makeMapStateToProps = () => {
       account: getAccount(state, accountId),
       comment: state.getIn(['reports', 'new', 'comment']),
       forward: state.getIn(['reports', 'new', 'forward']),
-      statusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
+      statusIds: OrderedSet(
+        state.getIn([
+          'timelines',
+          `account:${accountId}:with_replies`,
+          'items',
+        ]),
+      ).union(state.getIn(['reports', 'new', 'status_ids'])),
     };
   };
 
   return mapStateToProps;
 };
 
-export default @connect(makeMapStateToProps)
+export default
+@connect(makeMapStateToProps)
 @injectIntl
 class ReportModal extends ImmutablePureComponent {
-
   static propTypes = {
     isSubmitting: PropTypes.bool,
     account: ImmutablePropTypes.map,
@@ -53,34 +66,50 @@ class ReportModal extends ImmutablePureComponent {
 
   handleCommentChange = e => {
     this.props.dispatch(changeReportComment(e.target.value));
-  }
+  };
 
   handleForwardChange = e => {
     this.props.dispatch(changeReportForward(e.target.checked));
-  }
+  };
 
   handleSubmit = () => {
     this.props.dispatch(submitReport());
-  }
+  };
 
   handleKeyDown = e => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
+  };
+
+  componentDidMount() {
+    this.props.dispatch(
+      expandAccountTimeline(this.props.account.get('id'), {
+        withReplies: true,
+      }),
+    );
   }
 
-  componentDidMount () {
-    this.props.dispatch(expandAccountTimeline(this.props.account.get('id'), { withReplies: true }));
-  }
-
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.account !== nextProps.account && nextProps.account) {
-      this.props.dispatch(expandAccountTimeline(nextProps.account.get('id'), { withReplies: true }));
+      this.props.dispatch(
+        expandAccountTimeline(nextProps.account.get('id'), {
+          withReplies: true,
+        }),
+      );
     }
   }
 
-  render () {
-    const { account, comment, intl, statusIds, isSubmitting, forward, onClose } = this.props;
+  render() {
+    const {
+      account,
+      comment,
+      intl,
+      statusIds,
+      isSubmitting,
+      forward,
+      onClose,
+    } = this.props;
 
     if (!account) {
       return null;
@@ -89,18 +118,33 @@ class ReportModal extends ImmutablePureComponent {
     const domain = account.get('acct').split('@')[1];
 
     return (
-      <div className='modal-root__modal report-modal'>
-        <div className='report-modal__target'>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          <FormattedMessage id='report.target' defaultMessage='Report {target}' values={{ target: <strong>{account.get('acct')}</strong> }} />
+      <div className="modal-root__modal report-modal">
+        <div className="report-modal__target">
+          <IconButton
+            className="media-modal__close"
+            title={intl.formatMessage(messages.close)}
+            icon="times"
+            onClick={onClose}
+            size={16}
+          />
+          <FormattedMessage
+            id="report.target"
+            defaultMessage="Report {target}"
+            values={{ target: <strong>{account.get('acct')}</strong> }}
+          />
         </div>
 
-        <div className='report-modal__container'>
-          <div className='report-modal__comment'>
-            <p><FormattedMessage id='report.hint' defaultMessage='The report will be sent to your server moderators. You can provide an explanation of why you are reporting this account below:' /></p>
+        <div className="report-modal__container">
+          <div className="report-modal__comment">
+            <p>
+              <FormattedMessage
+                id="report.hint"
+                defaultMessage="The report will be sent to your server moderators. You can provide an explanation of why you are reporting this account below:"
+              />
+            </p>
 
             <textarea
-              className='setting-text light'
+              className="setting-text light"
               placeholder={intl.formatMessage(messages.placeholder)}
               value={comment}
               onChange={this.handleCommentChange}
@@ -111,26 +155,54 @@ class ReportModal extends ImmutablePureComponent {
 
             {domain && (
               <div>
-                <p><FormattedMessage id='report.forward_hint' defaultMessage='The account is from another server. Send an anonymized copy of the report there as well?' /></p>
+                <p>
+                  <FormattedMessage
+                    id="report.forward_hint"
+                    defaultMessage="The account is from another server. Send an anonymized copy of the report there as well?"
+                  />
+                </p>
 
-                <div className='setting-toggle'>
-                  <Toggle id='report-forward' checked={forward} disabled={isSubmitting} onChange={this.handleForwardChange} />
-                  <label htmlFor='report-forward' className='setting-toggle__label'><FormattedMessage id='report.forward' defaultMessage='Forward to {target}' values={{ target: domain }} /></label>
+                <div className="setting-toggle">
+                  <Toggle
+                    id="report-forward"
+                    checked={forward}
+                    disabled={isSubmitting}
+                    onChange={this.handleForwardChange}
+                  />
+                  <label
+                    htmlFor="report-forward"
+                    className="setting-toggle__label"
+                  >
+                    <FormattedMessage
+                      id="report.forward"
+                      defaultMessage="Forward to {target}"
+                      values={{ target: domain }}
+                    />
+                  </label>
                 </div>
               </div>
             )}
 
-            <Button disabled={isSubmitting} text={intl.formatMessage(messages.submit)} onClick={this.handleSubmit} />
+            <Button
+              disabled={isSubmitting}
+              text={intl.formatMessage(messages.submit)}
+              onClick={this.handleSubmit}
+            />
           </div>
 
-          <div className='report-modal__statuses'>
+          <div className="report-modal__statuses">
             <div>
-              {statusIds.map(statusId => <StatusCheckBox id={statusId} key={statusId} disabled={isSubmitting} />)}
+              {statusIds.map(statusId => (
+                <StatusCheckBox
+                  id={statusId}
+                  key={statusId}
+                  disabled={isSubmitting}
+                />
+              ))}
             </div>
           </div>
         </div>
       </div>
     );
   }
-
 }

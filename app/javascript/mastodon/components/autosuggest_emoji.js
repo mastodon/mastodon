@@ -5,19 +5,20 @@ import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
 const assetHost = process.env.CDN_HOST || '';
 
 export default class AutosuggestEmoji extends React.PureComponent {
-
   static propTypes = {
     emoji: PropTypes.object.isRequired,
   };
 
-  render () {
+  render() {
     const { emoji } = this.props;
     let url;
 
     if (emoji.custom) {
       url = emoji.imageUrl;
     } else {
-      const mapping = unicodeMapping[emoji.native] || unicodeMapping[emoji.native.replace(/\uFE0F$/, '')];
+      const mapping =
+        unicodeMapping[emoji.native] ||
+        unicodeMapping[emoji.native.replace(/\uFE0F$/, '')];
 
       if (!mapping) {
         return null;
@@ -27,9 +28,9 @@ export default class AutosuggestEmoji extends React.PureComponent {
     }
 
     return (
-      <div className='autosuggest-emoji'>
+      <div className="autosuggest-emoji">
         <img
-          className='emojione'
+          className="emojione"
           src={url}
           alt={emoji.native || emoji.colons}
         />
@@ -38,5 +39,4 @@ export default class AutosuggestEmoji extends React.PureComponent {
       </div>
     );
   }
-
 }

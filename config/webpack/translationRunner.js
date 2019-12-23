@@ -1,19 +1,29 @@
 const fs = require('fs');
 const path = require('path');
-const { default: manageTranslations } = require('react-intl-translations-manager');
+const {
+  default: manageTranslations,
+} = require('react-intl-translations-manager');
 
 const RFC5646_REGEXP = /^[a-z]{2,3}(?:-(?:x|[A-Za-z]{2,4}))*$/;
 
 const rootDirectory = path.resolve(__dirname, '..', '..');
-const translationsDirectory = path.resolve(rootDirectory, 'app', 'javascript', 'mastodon', 'locales');
+const translationsDirectory = path.resolve(
+  rootDirectory,
+  'app',
+  'javascript',
+  'mastodon',
+  'locales',
+);
 const messagesDirectory = path.resolve(rootDirectory, 'build', 'messages');
-const availableLanguages = fs.readdirSync(translationsDirectory).reduce((languages, filename) => {
-  const basename = path.basename(filename, '.json');
-  if (RFC5646_REGEXP.test(basename)) {
-    languages.push(basename);
-  }
-  return languages;
-}, []);
+const availableLanguages = fs
+  .readdirSync(translationsDirectory)
+  .reduce((languages, filename) => {
+    const basename = path.basename(filename, '.json');
+    if (RFC5646_REGEXP.test(basename)) {
+      languages.push(basename);
+    }
+    return languages;
+  }, []);
 
 const testRFC5646 = language => {
   if (!RFC5646_REGEXP.test(language)) {
@@ -40,7 +50,9 @@ const validateLanguages = (languages, validators) => {
   if (invalidLanguages.length > 0) {
     console.error(`
 Error: Specified invalid LANGUAGES:
-${invalidLanguages.map(({ language, error }) => `* ${language}: ${error.message}`).join('\n')}
+${invalidLanguages
+  .map(({ language, error }) => `* ${language}: ${error.message}`)
+  .join('\n')}
 
 Use yarn "manage:translations -- --help" for usage information
 `);
@@ -78,13 +90,13 @@ Try to run "yarn build:development" first`);
 }
 
 // determine the languages list
-const languages = (argv._.length > 0) ? argv._ : availableLanguages;
+const languages = argv._.length > 0 ? argv._ : availableLanguages;
 
 // validate languages
-validateLanguages(languages, [
-  testRFC5646,
-  !argv.force && testAvailability,
-].filter(Boolean));
+validateLanguages(
+  languages,
+  [testRFC5646, !argv.force && testAvailability].filter(Boolean),
+);
 
 // manage translations
 manageTranslations({

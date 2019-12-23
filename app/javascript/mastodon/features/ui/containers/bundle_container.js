@@ -2,16 +2,20 @@ import { connect } from 'react-redux';
 
 import Bundle from '../components/bundle';
 
-import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from '../../../actions/bundles';
+import {
+  fetchBundleRequest,
+  fetchBundleSuccess,
+  fetchBundleFail,
+} from '../../../actions/bundles';
 
 const mapDispatchToProps = dispatch => ({
-  onFetch () {
+  onFetch() {
     dispatch(fetchBundleRequest());
   },
-  onFetchSuccess () {
+  onFetchSuccess() {
     dispatch(fetchBundleSuccess());
   },
-  onFetchFail (error) {
+  onFetchFail(error) {
     dispatch(fetchBundleFail(error));
   },
 });

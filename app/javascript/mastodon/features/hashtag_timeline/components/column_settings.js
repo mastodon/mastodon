@@ -6,13 +6,19 @@ import Toggle from 'react-toggle';
 import AsyncSelect from 'react-select/async';
 
 const messages = defineMessages({
-  placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },
-  noOptions: { id: 'hashtag.column_settings.select.no_options_message', defaultMessage: 'No suggestions found' },
+  placeholder: {
+    id: 'hashtag.column_settings.select.placeholder',
+    defaultMessage: 'Enter hashtags…',
+  },
+  noOptions: {
+    id: 'hashtag.column_settings.select.no_options_message',
+    defaultMessage: 'No suggestions found',
+  },
 });
 
-export default @injectIntl
+export default
+@injectIntl
 class ColumnSettings extends React.PureComponent {
-
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -24,11 +30,13 @@ class ColumnSettings extends React.PureComponent {
     open: this.hasTags(),
   };
 
-  hasTags () {
-    return ['all', 'any', 'none'].map(mode => this.tags(mode).length > 0).includes(true);
+  hasTags() {
+    return ['all', 'any', 'none']
+      .map(mode => this.tags(mode).length > 0)
+      .includes(true);
   }
 
-  tags (mode) {
+  tags(mode) {
     let tags = this.props.settings.getIn(['tags', mode]) || [];
 
     if (tags.toJSON) {
@@ -36,7 +44,7 @@ class ColumnSettings extends React.PureComponent {
     } else {
       return tags;
     }
-  };
+  }
 
   onSelect = mode => value => this.props.onChange(['tags', mode], value);
 
@@ -50,12 +58,10 @@ class ColumnSettings extends React.PureComponent {
 
   noOptionsMessage = () => this.props.intl.formatMessage(messages.noOptions);
 
-  modeSelect (mode) {
+  modeSelect(mode) {
     return (
-      <div className='column-settings__row'>
-        <span className='column-settings__section'>
-          {this.modeLabel(mode)}
-        </span>
+      <div className="column-settings__row">
+        <span className="column-settings__section">{this.modeLabel(mode)}</span>
 
         <AsyncSelect
           isMulti
@@ -63,9 +69,9 @@ class ColumnSettings extends React.PureComponent {
           value={this.tags(mode)}
           onChange={this.onSelect(mode)}
           loadOptions={this.props.onLoad}
-          className='column-select__container'
-          classNamePrefix='column-select'
-          name='tags'
+          className="column-select__container"
+          classNamePrefix="column-select"
+          name="tags"
           placeholder={this.props.intl.formatMessage(messages.placeholder)}
           noOptionsMessage={this.noOptionsMessage}
         />
@@ -73,34 +79,56 @@ class ColumnSettings extends React.PureComponent {
     );
   }
 
-  modeLabel (mode) {
-    switch(mode) {
-    case 'any':
-      return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
-    case 'all':
-      return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
-    case 'none':
-      return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
-    default:
-      return '';
+  modeLabel(mode) {
+    switch (mode) {
+      case 'any':
+        return (
+          <FormattedMessage
+            id="hashtag.column_settings.tag_mode.any"
+            defaultMessage="Any of these"
+          />
+        );
+      case 'all':
+        return (
+          <FormattedMessage
+            id="hashtag.column_settings.tag_mode.all"
+            defaultMessage="All of these"
+          />
+        );
+      case 'none':
+        return (
+          <FormattedMessage
+            id="hashtag.column_settings.tag_mode.none"
+            defaultMessage="None of these"
+          />
+        );
+      default:
+        return '';
     }
-  };
+  }
 
-  render () {
+  render() {
     return (
       <div>
-        <div className='column-settings__row'>
-          <div className='setting-toggle'>
-            <Toggle id='hashtag.column_settings.tag_toggle' onChange={this.onToggle} checked={this.state.open} />
+        <div className="column-settings__row">
+          <div className="setting-toggle">
+            <Toggle
+              id="hashtag.column_settings.tag_toggle"
+              onChange={this.onToggle}
+              checked={this.state.open}
+            />
 
-            <span className='setting-toggle__label'>
-              <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />
+            <span className="setting-toggle__label">
+              <FormattedMessage
+                id="hashtag.column_settings.tag_toggle"
+                defaultMessage="Include additional tags in this column"
+              />
             </span>
           </div>
         </div>
 
         {this.state.open && (
-          <div className='column-settings__hashtags'>
+          <div className="column-settings__hashtags">
             {this.modeSelect('any')}
             {this.modeSelect('all')}
             {this.modeSelect('none')}
@@ -109,5 +137,4 @@ class ColumnSettings extends React.PureComponent {
       </div>
     );
   }
-
 }

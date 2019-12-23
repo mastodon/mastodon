@@ -11,20 +11,23 @@ export function fetchPinnedStatuses() {
   return (dispatch, getState) => {
     dispatch(fetchPinnedStatusesRequest());
 
-    api(getState).get(`/api/v1/accounts/${me}/statuses`, { params: { pinned: true } }).then(response => {
-      dispatch(importFetchedStatuses(response.data));
-      dispatch(fetchPinnedStatusesSuccess(response.data, null));
-    }).catch(error => {
-      dispatch(fetchPinnedStatusesFail(error));
-    });
+    api(getState)
+      .get(`/api/v1/accounts/${me}/statuses`, { params: { pinned: true } })
+      .then(response => {
+        dispatch(importFetchedStatuses(response.data));
+        dispatch(fetchPinnedStatusesSuccess(response.data, null));
+      })
+      .catch(error => {
+        dispatch(fetchPinnedStatusesFail(error));
+      });
   };
-};
+}
 
 export function fetchPinnedStatusesRequest() {
   return {
     type: PINNED_STATUSES_FETCH_REQUEST,
   };
-};
+}
 
 export function fetchPinnedStatusesSuccess(statuses, next) {
   return {
@@ -32,11 +35,11 @@ export function fetchPinnedStatusesSuccess(statuses, next) {
     statuses,
     next,
   };
-};
+}
 
 export function fetchPinnedStatusesFail(error) {
   return {
     type: PINNED_STATUSES_FETCH_FAIL,
     error,
   };
-};
+}

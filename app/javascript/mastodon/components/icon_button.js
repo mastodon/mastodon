@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
 export default class IconButton extends React.PureComponent {
-
   static propTypes = {
     className: PropTypes.string,
     title: PropTypes.string.isRequired,
@@ -38,9 +37,9 @@ export default class IconButton extends React.PureComponent {
   state = {
     activate: false,
     deactivate: false,
-  }
+  };
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (!nextProps.animate) return;
 
     if (this.props.active && !nextProps.active) {
@@ -50,33 +49,33 @@ export default class IconButton extends React.PureComponent {
     }
   }
 
-  handleClick = (e) =>  {
+  handleClick = e => {
     e.preventDefault();
 
     if (!this.props.disabled) {
       this.props.onClick(e);
     }
-  }
+  };
 
-  handleKeyPress = (e) => {
+  handleKeyPress = e => {
     if (this.props.onKeyPress && !this.props.disabled) {
       this.props.onKeyPress(e);
     }
-  }
+  };
 
-  handleMouseDown = (e) => {
+  handleMouseDown = e => {
     if (!this.props.disabled && this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
-  }
+  };
 
-  handleKeyDown = (e) => {
+  handleKeyDown = e => {
     if (!this.props.disabled && this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
-  }
+  };
 
-  render () {
+  render() {
     const style = {
       fontSize: `${this.props.size}px`,
       width: `${this.props.size * 1.28571429}px`,
@@ -99,10 +98,7 @@ export default class IconButton extends React.PureComponent {
       title,
     } = this.props;
 
-    const {
-      activate,
-      deactivate,
-    } = this.state;
+    const { activate, deactivate } = this.state;
 
     const classes = classNames(className, 'icon-button', {
       active,
@@ -128,9 +124,8 @@ export default class IconButton extends React.PureComponent {
         tabIndex={tabIndex}
         disabled={disabled}
       >
-        <Icon id={icon} fixedWidth aria-hidden='true' />
+        <Icon id={icon} fixedWidth aria-hidden="true" />
       </button>
     );
   }
-
 }

@@ -18,11 +18,15 @@ const mapDispatchToProps = (dispatch, { status, items }) => ({
       dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
     }
 
-    dispatch(isUserTouching() ? openModal('ACTIONS', {
-      status,
-      actions: items,
-      onClick: onItemClick,
-    }) : openDropdownMenu(id, dropdownPlacement, keyboard));
+    dispatch(
+      isUserTouching()
+        ? openModal('ACTIONS', {
+            status,
+            actions: items,
+            onClick: onItemClick,
+          })
+        : openDropdownMenu(id, dropdownPlacement, keyboard),
+    );
   },
 
   onClose(id) {

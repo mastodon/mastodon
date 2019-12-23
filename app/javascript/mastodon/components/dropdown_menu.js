@@ -7,11 +7,12 @@ import Motion from '../features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import detectPassiveEvents from 'detect-passive-events';
 
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+const listenerOptions = detectPassiveEvents.hasSupport
+  ? { passive: true }
+  : false;
 let id = 0;
 
 class DropdownMenu extends React.PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -39,85 +40,93 @@ class DropdownMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('keydown', this.handleKeyDown, false);
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.addEventListener(
+      'touchend',
+      this.handleDocumentClick,
+      listenerOptions,
+    );
     if (this.focusedItem && this.props.openedViaKeyboard) {
       this.focusedItem.focus();
     }
     this.setState({ mounted: true });
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     document.removeEventListener('click', this.handleDocumentClick, false);
     document.removeEventListener('keydown', this.handleKeyDown, false);
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.removeEventListener(
+      'touchend',
+      this.handleDocumentClick,
+      listenerOptions,
+    );
   }
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   setFocusRef = c => {
     this.focusedItem = c;
-  }
+  };
 
   handleKeyDown = e => {
     const items = Array.from(this.node.getElementsByTagName('a'));
     const index = items.indexOf(document.activeElement);
     let element;
 
-    switch(e.key) {
-    case 'ArrowDown':
-      element = items[index+1];
-      if (element) {
-        element.focus();
-      }
-      break;
-    case 'ArrowUp':
-      element = items[index-1];
-      if (element) {
-        element.focus();
-      }
-      break;
-    case 'Tab':
-      if (e.shiftKey) {
-        element = items[index-1] || items[items.length-1];
-      } else {
-        element = items[index+1] || items[0];
-      }
-      if (element) {
-        element.focus();
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      break;
-    case 'Home':
-      element = items[0];
-      if (element) {
-        element.focus();
-      }
-      break;
-    case 'End':
-      element = items[items.length-1];
-      if (element) {
-        element.focus();
-      }
-      break;
-    case 'Escape':
-      this.props.onClose();
-      break;
+    switch (e.key) {
+      case 'ArrowDown':
+        element = items[index + 1];
+        if (element) {
+          element.focus();
+        }
+        break;
+      case 'ArrowUp':
+        element = items[index - 1];
+        if (element) {
+          element.focus();
+        }
+        break;
+      case 'Tab':
+        if (e.shiftKey) {
+          element = items[index - 1] || items[items.length - 1];
+        } else {
+          element = items[index + 1] || items[0];
+        }
+        if (element) {
+          element.focus();
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        break;
+      case 'Home':
+        element = items[0];
+        if (element) {
+          element.focus();
+        }
+        break;
+      case 'End':
+        element = items[items.length - 1];
+        if (element) {
+          element.focus();
+        }
+        break;
+      case 'Escape':
+        this.props.onClose();
+        break;
     }
-  }
+  };
 
   handleItemKeyPress = e => {
     if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick(e);
     }
-  }
+  };
 
   handleClick = e => {
     const i = Number(e.currentTarget.getAttribute('data-index'));
@@ -132,50 +141,81 @@ class DropdownMenu extends React.PureComponent {
       e.preventDefault();
       this.context.router.history.push(to);
     }
-  }
+  };
 
-  renderItem (option, i) {
+  renderItem(option, i) {
     if (option === null) {
-      return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
+      return <li key={`sep-${i}`} className="dropdown-menu__separator" />;
     }
 
     const { text, href = '#', target = '_blank', method } = option;
 
     return (
-      <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+      <li className="dropdown-menu__item" key={`${text}-${i}`}>
+        <a
+          href={href}
+          target={target}
+          data-method={method}
+          rel="noopener noreferrer"
+          role="button"
+          tabIndex="0"
+          ref={i === 0 ? this.setFocusRef : null}
+          onClick={this.handleClick}
+          onKeyPress={this.handleItemKeyPress}
+          data-index={i}
+        >
           {text}
         </a>
       </li>
     );
   }
 
-  render () {
-    const { items, style, placement, arrowOffsetLeft, arrowOffsetTop } = this.props;
+  render() {
+    const {
+      items,
+      style,
+      placement,
+      arrowOffsetLeft,
+      arrowOffsetTop,
+    } = this.props;
     const { mounted } = this.state;
 
     return (
-      <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
+      <Motion
+        defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }}
+        style={{
+          opacity: spring(1, { damping: 35, stiffness: 400 }),
+          scaleX: spring(1, { damping: 35, stiffness: 400 }),
+          scaleY: spring(1, { damping: 35, stiffness: 400 }),
+        }}
+      >
         {({ opacity, scaleX, scaleY }) => (
           // It should not be transformed when mounting because the resulting
           // size will be used to determine the coordinate of the menu by
           // react-overlays
-          <div className={`dropdown-menu ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
-            <div className={`dropdown-menu__arrow ${placement}`} style={{ left: arrowOffsetLeft, top: arrowOffsetTop }} />
+          <div
+            className={`dropdown-menu ${placement}`}
+            style={{
+              ...style,
+              opacity: opacity,
+              transform: mounted ? `scale(${scaleX}, ${scaleY})` : null,
+            }}
+            ref={this.setRef}
+          >
+            <div
+              className={`dropdown-menu__arrow ${placement}`}
+              style={{ left: arrowOffsetLeft, top: arrowOffsetTop }}
+            />
 
-            <ul>
-              {items.map((option, i) => this.renderItem(option, i))}
-            </ul>
+            <ul>{items.map((option, i) => this.renderItem(option, i))}</ul>
           </div>
         )}
       </Motion>
     );
   }
-
 }
 
 export default class Dropdown extends React.PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -210,9 +250,14 @@ export default class Dropdown extends React.PureComponent {
     } else {
       const { top } = target.getBoundingClientRect();
       const placement = top * 2 < innerHeight ? 'bottom' : 'top';
-      this.props.onOpen(this.state.id, this.handleItemClick, placement, type !== 'click');
+      this.props.onOpen(
+        this.state.id,
+        this.handleItemClick,
+        placement,
+        type !== 'click',
+      );
     }
-  }
+  };
 
   handleClose = () => {
     if (this.activeElement) {
@@ -220,33 +265,33 @@ export default class Dropdown extends React.PureComponent {
       this.activeElement = null;
     }
     this.props.onClose(this.state.id);
-  }
+  };
 
   handleMouseDown = () => {
     if (!this.state.open) {
       this.activeElement = document.activeElement;
     }
-  }
+  };
 
-  handleButtonKeyDown = (e) => {
-    switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleMouseDown();
-      break;
+  handleButtonKeyDown = e => {
+    switch (e.key) {
+      case ' ':
+      case 'Enter':
+        this.handleMouseDown();
+        break;
     }
-  }
+  };
 
-  handleKeyPress = (e) => {
-    switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleClick(e);
-      e.stopPropagation();
-      e.preventDefault();
-      break;
+  handleKeyPress = e => {
+    switch (e.key) {
+      case ' ':
+      case 'Enter':
+        this.handleClick(e);
+        e.stopPropagation();
+        e.preventDefault();
+        break;
     }
-  }
+  };
 
   handleItemClick = e => {
     const i = Number(e.currentTarget.getAttribute('data-index'));
@@ -261,24 +306,33 @@ export default class Dropdown extends React.PureComponent {
       e.preventDefault();
       this.context.router.history.push(to);
     }
-  }
+  };
 
   setTargetRef = c => {
     this.target = c;
-  }
+  };
 
   findTarget = () => {
     return this.target;
-  }
+  };
 
   componentWillUnmount = () => {
     if (this.state.id === this.props.openDropdownId) {
       this.handleClose();
     }
-  }
+  };
 
-  render () {
-    const { icon, items, size, title, disabled, dropdownPlacement, openDropdownId, openedViaKeyboard } = this.props;
+  render() {
+    const {
+      icon,
+      items,
+      size,
+      title,
+      disabled,
+      dropdownPlacement,
+      openDropdownId,
+      openedViaKeyboard,
+    } = this.props;
     const open = this.state.id === openDropdownId;
 
     return (
@@ -296,11 +350,18 @@ export default class Dropdown extends React.PureComponent {
           onKeyPress={this.handleKeyPress}
         />
 
-        <Overlay show={open} placement={dropdownPlacement} target={this.findTarget}>
-          <DropdownMenu items={items} onClose={this.handleClose} openedViaKeyboard={openedViaKeyboard} />
+        <Overlay
+          show={open}
+          placement={dropdownPlacement}
+          target={this.findTarget}
+        >
+          <DropdownMenu
+            items={items}
+            onClose={this.handleClose}
+            openedViaKeyboard={openedViaKeyboard}
+          />
         </Overlay>
       </div>
     );
   }
-
 }

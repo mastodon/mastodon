@@ -24,17 +24,20 @@ const getOrderedLists = createSelector([state => state.get('lists')], lists => {
     return lists;
   }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  return lists
+    .toList()
+    .filter(item => !!item)
+    .sort((a, b) => a.get('title').localeCompare(b.get('title')));
 });
 
 const mapStateToProps = state => ({
   lists: getOrderedLists(state),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class Lists extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -43,11 +46,11 @@ class Lists extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.dispatch(fetchLists());
   }
 
-  render () {
+  render() {
     const { intl, shouldUpdateScroll, lists, multiColumn } = this.props;
 
     if (!lists) {
@@ -58,27 +61,42 @@ class Lists extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id="empty_column.lists"
+        defaultMessage="You don't have any lists yet. When you create one, it will show up here."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} icon='list-ul' heading={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        icon="list-ul"
+        heading={intl.formatMessage(messages.heading)}
+      >
         <ColumnBackButtonSlim />
 
         <NewListForm />
 
         <ScrollableList
-          scrollKey='lists'
+          scrollKey="lists"
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
-          prepend={<ColumnSubheading text={intl.formatMessage(messages.subheading)} />}
+          prepend={
+            <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
+          }
           bindToDocument={!multiColumn}
         >
-          {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
-          )}
+          {lists.map(list => (
+            <ColumnLink
+              key={list.get('id')}
+              to={`/timelines/list/${list.get('id')}`}
+              icon="list-ul"
+              text={list.get('title')}
+            />
+          ))}
         </ScrollableList>
       </Column>
     );
   }
-
 }

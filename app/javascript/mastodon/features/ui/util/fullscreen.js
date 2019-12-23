@@ -1,7 +1,8 @@
 // APIs for normalizing fullscreen operations. Note that Edge uses
 // the WebKit-prefixed APIs currently (as of Edge 16).
 
-export const isFullscreen = () => document.fullscreenElement ||
+export const isFullscreen = () =>
+  document.fullscreenElement ||
   document.webkitFullscreenElement ||
   document.mozFullScreenElement;
 
@@ -25,7 +26,7 @@ export const requestFullscreen = el => {
   }
 };
 
-export const attachFullscreenListener = (listener) => {
+export const attachFullscreenListener = listener => {
   if ('onfullscreenchange' in document) {
     document.addEventListener('fullscreenchange', listener);
   } else if ('onwebkitfullscreenchange' in document) {
@@ -35,7 +36,7 @@ export const attachFullscreenListener = (listener) => {
   }
 };
 
-export const detachFullscreenListener = (listener) => {
+export const detachFullscreenListener = listener => {
   if ('onfullscreenchange' in document) {
     document.removeEventListener('fullscreenchange', listener);
   } else if ('onwebkitfullscreenchange' in document) {

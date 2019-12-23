@@ -6,21 +6,21 @@ import PropTypes from 'prop-types';
 
 const stylesToKeep = ['opacity', 'backgroundOpacity'];
 
-const extractValue = (value) => {
+const extractValue = value => {
   // This is either an object with a "val" property or it's a number
-  return (typeof value === 'object' && value && 'val' in value) ? value.val : value;
+  return typeof value === 'object' && value && 'val' in value
+    ? value.val
+    : value;
 };
 
 class ReducedMotion extends React.Component {
-
   static propTypes = {
     defaultStyle: PropTypes.object,
     style: PropTypes.object,
     children: PropTypes.func,
-  }
+  };
 
   render() {
-
     const { style, defaultStyle, children } = this.props;
 
     Object.keys(style).forEach(key => {
@@ -38,7 +38,6 @@ class ReducedMotion extends React.Component {
       </Motion>
     );
   }
-
 }
 
 export default ReducedMotion;

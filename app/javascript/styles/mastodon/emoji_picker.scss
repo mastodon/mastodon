@@ -46,7 +46,7 @@
   text-align: center;
   padding: 12px 4px;
   overflow: hidden;
-  transition: color .1s ease-out;
+  transition: color 0.1s ease-out;
   cursor: pointer;
 
   &:hover {
@@ -142,7 +142,7 @@
 
   &:hover::before {
     z-index: 0;
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -191,7 +191,7 @@
   }
 
   .emoji-mart-no-results-label {
-    margin-top: .2em;
+    margin-top: 0.2em;
   }
 
   .emoji-mart-emoji:hover::before {

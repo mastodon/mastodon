@@ -12,12 +12,12 @@ const clearHeights = () => {
 };
 
 export default function statuses(state = initialState, action) {
-  switch(action.type) {
-  case HEIGHT_CACHE_SET:
-    return setHeight(state, action.key, action.id, action.height);
-  case HEIGHT_CACHE_CLEAR:
-    return clearHeights();
-  default:
-    return state;
+  switch (action.type) {
+    case HEIGHT_CACHE_SET:
+      return setHeight(state, action.key, action.id, action.height);
+    case HEIGHT_CACHE_CLEAR:
+      return clearHeights();
+    default:
+      return state;
   }
-};
+}

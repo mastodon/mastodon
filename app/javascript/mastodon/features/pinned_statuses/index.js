@@ -18,10 +18,10 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['status_lists', 'pins', 'next']),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class PinnedStatuses extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
@@ -31,27 +31,38 @@ class PinnedStatuses extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.dispatch(fetchPinnedStatuses());
   }
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
-  render () {
-    const { intl, shouldUpdateScroll, statusIds, hasMore, multiColumn } = this.props;
+  render() {
+    const {
+      intl,
+      shouldUpdateScroll,
+      statusIds,
+      hasMore,
+      multiColumn,
+    } = this.props;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='thumb-tack' heading={intl.formatMessage(messages.heading)} ref={this.setRef}>
+      <Column
+        bindToDocument={!multiColumn}
+        icon="thumb-tack"
+        heading={intl.formatMessage(messages.heading)}
+        ref={this.setRef}
+      >
         <ColumnBackButtonSlim />
         <StatusList
           statusIds={statusIds}
-          scrollKey='pinned_statuses'
+          scrollKey="pinned_statuses"
           hasMore={hasMore}
           shouldUpdateScroll={shouldUpdateScroll}
           bindToDocument={!multiColumn}
@@ -59,5 +70,4 @@ class PinnedStatuses extends ImmutablePureComponent {
       </Column>
     );
   }
-
 }

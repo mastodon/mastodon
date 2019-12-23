@@ -4,7 +4,8 @@ import { start } from '../mastodon/common';
 start();
 
 function loaded() {
-  const ComposeContainer = require('../mastodon/containers/compose_container').default;
+  const ComposeContainer = require('../mastodon/containers/compose_container')
+    .default;
   const React = require('react');
   const ReactDOM = require('react-dom');
   const mountNode = document.getElementById('mastodon-compose');
@@ -20,6 +21,8 @@ function main() {
   ready(loaded);
 }
 
-loadPolyfills().then(main).catch(error => {
-  console.error(error);
-});
+loadPolyfills()
+  .then(main)
+  .catch(error => {
+    console.error(error);
+  });

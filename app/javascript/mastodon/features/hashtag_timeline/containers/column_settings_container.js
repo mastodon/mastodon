@@ -5,7 +5,7 @@ import api from '../../../api';
 
 const mapStateToProps = (state, { columnId }) => {
   const columns = state.getIn(['settings', 'columns']);
-  const index   = columns.findIndex(c => c.get('uuid') === columnId);
+  const index = columns.findIndex(c => c.get('uuid') === columnId);
 
   if (!(columnId && index >= 0)) {
     return {};
@@ -15,16 +15,18 @@ const mapStateToProps = (state, { columnId }) => {
 };
 
 const mapDispatchToProps = (dispatch, { columnId }) => ({
-  onChange (key, value) {
+  onChange(key, value) {
     dispatch(changeColumnParams(columnId, key, value));
   },
 
-  onLoad (value) {
-    return api().get('/api/v2/search', { params: { q: value, type: 'hashtags' } }).then(response => {
-      return (response.data.hashtags || []).map((tag) => {
-        return { value: tag.name, label: `#${tag.name}` };
+  onLoad(value) {
+    return api()
+      .get('/api/v2/search', { params: { q: value, type: 'hashtags' } })
+      .then(response => {
+        return (response.data.hashtags || []).map(tag => {
+          return { value: tag.name, label: `#${tag.name}` };
+        });
       });
-    });
   },
 });
 

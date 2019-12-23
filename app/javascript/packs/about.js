@@ -4,10 +4,11 @@ import { start } from '../mastodon/common';
 start();
 
 function loaded() {
-  const TimelineContainer = require('../mastodon/containers/timeline_container').default;
-  const React             = require('react');
-  const ReactDOM          = require('react-dom');
-  const mountNode         = document.getElementById('mastodon-timeline');
+  const TimelineContainer = require('../mastodon/containers/timeline_container')
+    .default;
+  const React = require('react');
+  const ReactDOM = require('react-dom');
+  const mountNode = document.getElementById('mastodon-timeline');
 
   if (mountNode !== null) {
     const props = JSON.parse(mountNode.getAttribute('data-props'));
@@ -20,6 +21,8 @@ function main() {
   ready(loaded);
 }
 
-loadPolyfills().then(main).catch(error => {
-  console.error(error);
-});
+loadPolyfills()
+  .then(main)
+  .catch(error => {
+    console.error(error);
+  });

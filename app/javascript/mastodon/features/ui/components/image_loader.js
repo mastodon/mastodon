@@ -5,7 +5,6 @@ import { LoadingBar } from 'react-redux-loading-bar';
 import ZoomableImage from './zoomable_image';
 
 export default class ImageLoader extends React.PureComponent {
-
   static propTypes = {
     alt: PropTypes.string,
     src: PropTypes.string.isRequired,
@@ -13,7 +12,7 @@ export default class ImageLoader extends React.PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     onClick: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     alt: '',
@@ -25,7 +24,7 @@ export default class ImageLoader extends React.PureComponent {
     loading: true,
     error: false,
     width: null,
-  }
+  };
 
   removers = [];
   canvas = null;
@@ -38,27 +37,29 @@ export default class ImageLoader extends React.PureComponent {
     return this._canvasContext;
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.loadImage(this.props);
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.src !== nextProps.src) {
       this.loadImage(nextProps);
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.removeEventListeners();
   }
 
-  loadImage (props) {
+  loadImage(props) {
     this.removeEventListeners();
     this.setState({ loading: true, error: false });
-    Promise.all([
-      props.previewSrc && this.loadPreviewCanvas(props),
-      this.hasSize() && this.loadOriginalImage(props),
-    ].filter(Boolean))
+    Promise.all(
+      [
+        props.previewSrc && this.loadPreviewCanvas(props),
+        this.hasSize() && this.loadOriginalImage(props),
+      ].filter(Boolean),
+    )
       .then(() => {
         this.setState({ loading: false, error: false });
         this.clearPreviewCanvas();
@@ -66,58 +67,60 @@ export default class ImageLoader extends React.PureComponent {
       .catch(() => this.setState({ loading: false, error: true }));
   }
 
-  loadPreviewCanvas = ({ previewSrc, width, height }) => new Promise((resolve, reject) => {
-    const image = new Image();
-    const removeEventListeners = () => {
-      image.removeEventListener('error', handleError);
-      image.removeEventListener('load', handleLoad);
-    };
-    const handleError = () => {
-      removeEventListeners();
-      reject();
-    };
-    const handleLoad = () => {
-      removeEventListeners();
-      this.canvasContext.drawImage(image, 0, 0, width, height);
-      resolve();
-    };
-    image.addEventListener('error', handleError);
-    image.addEventListener('load', handleLoad);
-    image.src = previewSrc;
-    this.removers.push(removeEventListeners);
-  })
+  loadPreviewCanvas = ({ previewSrc, width, height }) =>
+    new Promise((resolve, reject) => {
+      const image = new Image();
+      const removeEventListeners = () => {
+        image.removeEventListener('error', handleError);
+        image.removeEventListener('load', handleLoad);
+      };
+      const handleError = () => {
+        removeEventListeners();
+        reject();
+      };
+      const handleLoad = () => {
+        removeEventListeners();
+        this.canvasContext.drawImage(image, 0, 0, width, height);
+        resolve();
+      };
+      image.addEventListener('error', handleError);
+      image.addEventListener('load', handleLoad);
+      image.src = previewSrc;
+      this.removers.push(removeEventListeners);
+    });
 
-  clearPreviewCanvas () {
+  clearPreviewCanvas() {
     const { width, height } = this.canvas;
     this.canvasContext.clearRect(0, 0, width, height);
   }
 
-  loadOriginalImage = ({ src }) => new Promise((resolve, reject) => {
-    const image = new Image();
-    const removeEventListeners = () => {
-      image.removeEventListener('error', handleError);
-      image.removeEventListener('load', handleLoad);
-    };
-    const handleError = () => {
-      removeEventListeners();
-      reject();
-    };
-    const handleLoad = () => {
-      removeEventListeners();
-      resolve();
-    };
-    image.addEventListener('error', handleError);
-    image.addEventListener('load', handleLoad);
-    image.src = src;
-    this.removers.push(removeEventListeners);
-  });
+  loadOriginalImage = ({ src }) =>
+    new Promise((resolve, reject) => {
+      const image = new Image();
+      const removeEventListeners = () => {
+        image.removeEventListener('error', handleError);
+        image.removeEventListener('load', handleLoad);
+      };
+      const handleError = () => {
+        removeEventListeners();
+        reject();
+      };
+      const handleLoad = () => {
+        removeEventListeners();
+        resolve();
+      };
+      image.addEventListener('error', handleError);
+      image.addEventListener('load', handleLoad);
+      image.src = src;
+      this.removers.push(removeEventListeners);
+    });
 
-  removeEventListeners () {
+  removeEventListeners() {
     this.removers.forEach(listeners => listeners());
     this.removers = [];
   }
 
-  hasSize () {
+  hasSize() {
     const { width, height } = this.props;
     return typeof width === 'number' && typeof height === 'number';
   }
@@ -125,9 +128,9 @@ export default class ImageLoader extends React.PureComponent {
   setCanvasRef = c => {
     this.canvas = c;
     if (c) this.setState({ width: c.offsetWidth });
-  }
+  };
 
-  render () {
+  render() {
     const { alt, src, width, height, onClick } = this.props;
     const { loading } = this.state;
 
@@ -138,23 +141,22 @@ export default class ImageLoader extends React.PureComponent {
 
     return (
       <div className={className}>
-        <LoadingBar loading={loading ? 1 : 0} className='loading-bar' style={{ width: this.state.width || width }} />
+        <LoadingBar
+          loading={loading ? 1 : 0}
+          className="loading-bar"
+          style={{ width: this.state.width || width }}
+        />
         {loading ? (
           <canvas
-            className='image-loader__preview-canvas'
+            className="image-loader__preview-canvas"
             ref={this.setCanvasRef}
             width={width}
             height={height}
           />
         ) : (
-          <ZoomableImage
-            alt={alt}
-            src={src}
-            onClick={onClick}
-          />
+          <ZoomableImage alt={alt} src={src} onClick={onClick} />
         )}
       </div>
     );
   }
-
 }

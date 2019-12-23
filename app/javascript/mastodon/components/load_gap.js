@@ -7,9 +7,9 @@ const messages = defineMessages({
   load_more: { id: 'status.load_more', defaultMessage: 'Load more' },
 });
 
-export default @injectIntl
+export default
+@injectIntl
 class LoadGap extends React.PureComponent {
-
   static propTypes = {
     disabled: PropTypes.bool,
     maxId: PropTypes.string,
@@ -19,16 +19,20 @@ class LoadGap extends React.PureComponent {
 
   handleClick = () => {
     this.props.onClick(this.props.maxId);
-  }
+  };
 
-  render () {
+  render() {
     const { disabled, intl } = this.props;
 
     return (
-      <button className='load-more load-gap' disabled={disabled} onClick={this.handleClick} aria-label={intl.formatMessage(messages.load_more)}>
-        <Icon id='ellipsis-h' />
+      <button
+        className="load-more load-gap"
+        disabled={disabled}
+        onClick={this.handleClick}
+        aria-label={intl.formatMessage(messages.load_more)}
+      >
+        <Icon id="ellipsis-h" />
       </button>
     );
   }
-
 }

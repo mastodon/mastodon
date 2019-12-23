@@ -27,21 +27,24 @@ store.dispatch(hydrateAction);
 store.dispatch(fetchCustomEmojis());
 
 const mapStateToProps = state => ({
-  showIntroduction: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
+  showIntroduction:
+    state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
 });
 
 @connect(mapStateToProps)
 class MastodonMount extends React.PureComponent {
-
   static propTypes = {
     showIntroduction: PropTypes.bool,
   };
 
-  shouldUpdateScroll (_, { location }) {
-    return location.state !== previewMediaState && location.state !== previewVideoState;
+  shouldUpdateScroll(_, { location }) {
+    return (
+      location.state !== previewMediaState &&
+      location.state !== previewVideoState
+    );
   }
 
-  render () {
+  render() {
     const { showIntroduction } = this.props;
 
     if (showIntroduction) {
@@ -49,18 +52,16 @@ class MastodonMount extends React.PureComponent {
     }
 
     return (
-      <BrowserRouter basename='/web'>
+      <BrowserRouter basename="/web">
         <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-          <Route path='/' component={UI} />
+          <Route path="/" component={UI} />
         </ScrollContext>
       </BrowserRouter>
     );
   }
-
 }
 
 export default class Mastodon extends React.PureComponent {
-
   static propTypes = {
     locale: PropTypes.string.isRequired,
   };
@@ -69,14 +70,14 @@ export default class Mastodon extends React.PureComponent {
     this.disconnect = store.dispatch(connectUserStream());
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
     }
   }
 
-  render () {
+  render() {
     const { locale } = this.props;
 
     return (
@@ -89,5 +90,4 @@ export default class Mastodon extends React.PureComponent {
       </IntlProvider>
     );
   }
-
 }

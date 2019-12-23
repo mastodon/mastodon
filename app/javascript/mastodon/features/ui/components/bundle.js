@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const emptyComponent = () => null;
-const noop = () => { };
+const noop = () => {};
 
 class Bundle extends React.PureComponent {
-
   static propTypes = {
     fetchComponent: PropTypes.func.isRequired,
     loading: PropTypes.func,
@@ -15,7 +14,7 @@ class Bundle extends React.PureComponent {
     onFetch: PropTypes.func,
     onFetchSuccess: PropTypes.func,
     onFetchFail: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     loading: emptyComponent,
@@ -24,14 +23,14 @@ class Bundle extends React.PureComponent {
     onFetch: noop,
     onFetchSuccess: noop,
     onFetchFail: noop,
-  }
+  };
 
-  static cache = new Map
+  static cache = new Map();
 
   state = {
     mod: undefined,
     forceRender: false,
-  }
+  };
 
   componentWillMount() {
     this.load(this.props);
@@ -43,14 +42,20 @@ class Bundle extends React.PureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
   }
 
-  load = (props) => {
-    const { fetchComponent, onFetch, onFetchSuccess, onFetchFail, renderDelay } = props || this.props;
+  load = props => {
+    const {
+      fetchComponent,
+      onFetch,
+      onFetchSuccess,
+      onFetchFail,
+      renderDelay,
+    } = props || this.props;
     const cachedMod = Bundle.cache.get(fetchComponent);
 
     if (fetchComponent === undefined) {
@@ -70,28 +75,36 @@ class Bundle extends React.PureComponent {
 
     if (renderDelay !== 0) {
       this.timestamp = new Date();
-      this.timeout = setTimeout(() => this.setState({ forceRender: true }), renderDelay);
+      this.timeout = setTimeout(
+        () => this.setState({ forceRender: true }),
+        renderDelay,
+      );
     }
 
     return fetchComponent()
-      .then((mod) => {
+      .then(mod => {
         Bundle.cache.set(fetchComponent, mod);
         this.setState({ mod: mod.default });
         onFetchSuccess();
       })
-      .catch((error) => {
+      .catch(error => {
         this.setState({ mod: null });
         onFetchFail(error);
       });
-  }
+  };
 
   render() {
-    const { loading: Loading, error: Error, children, renderDelay } = this.props;
+    const {
+      loading: Loading,
+      error: Error,
+      children,
+      renderDelay,
+    } = this.props;
     const { mod, forceRender } = this.state;
-    const elapsed = this.timestamp ? (new Date() - this.timestamp) : renderDelay;
+    const elapsed = this.timestamp ? new Date() - this.timestamp : renderDelay;
 
     if (mod === undefined) {
-      return (elapsed >= renderDelay || forceRender) ? <Loading /> : null;
+      return elapsed >= renderDelay || forceRender ? <Loading /> : null;
     }
 
     if (mod === null) {
@@ -100,7 +113,6 @@ class Bundle extends React.PureComponent {
 
     return children(mod);
   }
-
 }
 
 export default Bundle;

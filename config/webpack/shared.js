@@ -20,18 +20,22 @@ module.exports = {
     packPaths.reduce((map, entry) => {
       const localMap = map;
       const namespace = relative(join(entryPath), dirname(entry));
-      localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry);
+      localMap[join(namespace, basename(entry, extname(entry)))] = resolve(
+        entry,
+      );
       return localMap;
     }, {}),
     localePackPaths.reduce((map, entry) => {
       const localMap = map;
-      localMap[basename(entry, extname(entry, extname(entry)))] = resolve(entry);
+      localMap[basename(entry, extname(entry, extname(entry)))] = resolve(
+        entry,
+      );
       return localMap;
     }, {}),
     Object.keys(themes).reduce((themePaths, name) => {
       themePaths[name] = resolve(join(settings.source_path, themes[name]));
       return themePaths;
-    }, {})
+    }, {}),
   ),
 
   output: {
@@ -68,13 +72,11 @@ module.exports = {
 
   plugins: [
     new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
-    new webpack.NormalModuleReplacementPlugin(
-      /^history\//, (resource) => {
-        // temporary fix for https://github.com/ReactTraining/react-router/issues/5576
-        // to reduce bundle size
-        resource.request = resource.request.replace(/^history/, 'history/es');
-      }
-    ),
+    new webpack.NormalModuleReplacementPlugin(/^history\//, resource => {
+      // temporary fix for https://github.com/ReactTraining/react-router/issues/5576
+      // to reduce bundle size
+      resource.request = resource.request.replace(/^history/, 'history/es');
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[contenthash:8].css',
       chunkFilename: 'css/[name]-[contenthash:8].chunk.css',
@@ -87,16 +89,16 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: 'node_modules/tesseract.js/dist/worker.min.js', to: 'ocr' },
-      { from: 'node_modules/tesseract.js-core/tesseract-core.wasm.js', to: 'ocr' },
+      {
+        from: 'node_modules/tesseract.js-core/tesseract-core.wasm.js',
+        to: 'ocr',
+      },
     ]),
   ],
 
   resolve: {
     extensions: settings.extensions,
-    modules: [
-      resolve(settings.source_path),
-      'node_modules',
-    ],
+    modules: [resolve(settings.source_path), 'node_modules'],
   },
 
   resolveLoader: {

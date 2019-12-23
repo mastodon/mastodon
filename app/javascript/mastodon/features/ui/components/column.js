@@ -6,7 +6,6 @@ import { scrollTop } from '../../../scroll';
 import { isMobile } from '../../../is_mobile';
 
 export default class Column extends React.PureComponent {
-
   static propTypes = {
     heading: PropTypes.string,
     icon: PropTypes.string,
@@ -23,9 +22,9 @@ export default class Column extends React.PureComponent {
     }
 
     this._interruptScrollAnimation = scrollTop(scrollable);
-  }
+  };
 
-  scrollTop () {
+  scrollTop() {
     const scrollable = this.node.querySelector('.scrollable');
 
     if (!scrollable) {
@@ -35,32 +34,40 @@ export default class Column extends React.PureComponent {
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
 
-
   handleScroll = debounce(() => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();
     }
-  }, 200)
+  }, 200);
 
-  setRef = (c) => {
+  setRef = c => {
     this.node = c;
-  }
+  };
 
-  render () {
+  render() {
     const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
-    const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
+    const showHeading =
+      heading &&
+      (!hideHeadingOnMobile ||
+        (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
     const columnHeaderId = showHeading && heading.replace(/ /g, '-');
     const header = showHeading && (
-      <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} />
+      <ColumnHeader
+        icon={icon}
+        active={active}
+        type={heading}
+        onClick={this.handleHeaderClick}
+        columnHeaderId={columnHeaderId}
+      />
     );
     return (
       <div
         ref={this.setRef}
-        role='region'
+        role="region"
         aria-labelledby={columnHeaderId}
-        className='column'
+        className="column"
         onScroll={this.handleScroll}
       >
         {header}
@@ -68,5 +75,4 @@ export default class Column extends React.PureComponent {
       </div>
     );
   }
-
 }

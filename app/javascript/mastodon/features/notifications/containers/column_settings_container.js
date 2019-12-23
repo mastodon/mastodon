@@ -8,8 +8,15 @@ import { changeAlerts as changePushNotifications } from '../../../actions/push_n
 import { openModal } from '../../../actions/modal';
 
 const messages = defineMessages({
-  clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
-  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
+  clearMessage: {
+    id: 'notifications.clear_confirmation',
+    defaultMessage:
+      'Are you sure you want to permanently clear all your notifications?',
+  },
+  clearConfirm: {
+    id: 'notifications.clear',
+    defaultMessage: 'Clear notifications',
+  },
 });
 
 const mapStateToProps = state => ({
@@ -18,8 +25,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
-
-  onChange (path, checked) {
+  onChange(path, checked) {
     if (path[0] === 'push') {
       dispatch(changePushNotifications(path.slice(1), checked));
     } else if (path[0] === 'quickFilter') {
@@ -30,14 +36,17 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onClear () {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.clearMessage),
-      confirm: intl.formatMessage(messages.clearConfirm),
-      onConfirm: () => dispatch(clearNotifications()),
-    }));
+  onClear() {
+    dispatch(
+      openModal('CONFIRM', {
+        message: intl.formatMessage(messages.clearMessage),
+        confirm: intl.formatMessage(messages.clearConfirm),
+        onConfirm: () => dispatch(clearNotifications()),
+      }),
+    );
   },
-
 });
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(ColumnSettings));
+export default injectIntl(
+  connect(mapStateToProps, mapDispatchToProps)(ColumnSettings),
+);

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default class Button extends React.PureComponent {
-
   static propTypes = {
     text: PropTypes.node,
     onClick: PropTypes.func,
@@ -21,21 +20,21 @@ export default class Button extends React.PureComponent {
     size: 36,
   };
 
-  handleClick = (e) => {
+  handleClick = e => {
     if (!this.props.disabled) {
       this.props.onClick(e);
     }
-  }
+  };
 
-  setRef = (c) => {
+  setRef = c => {
     this.node = c;
-  }
+  };
 
   focus() {
     this.node.focus();
   }
 
-  render () {
+  render() {
     const style = {
       padding: `0 ${this.props.size / 2.25}px`,
       height: `${this.props.size}px`,
@@ -61,5 +60,4 @@ export default class Button extends React.PureComponent {
       </button>
     );
   }
-
 }

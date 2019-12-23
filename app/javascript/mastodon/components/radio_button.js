@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default class RadioButton extends React.PureComponent {
-
   static propTypes = {
     value: PropTypes.string.isRequired,
     checked: PropTypes.bool,
@@ -12,14 +11,14 @@ export default class RadioButton extends React.PureComponent {
     label: PropTypes.node.isRequired,
   };
 
-  render () {
+  render() {
     const { name, value, checked, onChange, label } = this.props;
 
     return (
-      <label className='radio-button'>
+      <label className="radio-button">
         <input
           name={name}
-          type='radio'
+          type="radio"
           value={value}
           checked={checked}
           onChange={onChange}
@@ -31,5 +30,4 @@ export default class RadioButton extends React.PureComponent {
       </label>
     );
   }
-
 }

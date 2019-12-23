@@ -29,7 +29,7 @@ function loadPolyfills() {
     window.IntersectionObserverEntry &&
     'isIntersecting' in IntersectionObserverEntry.prototype &&
     window.requestIdleCallback &&
-    'object-fit' in (new Image()).style
+    'object-fit' in new Image().style
   );
 
   return Promise.all([

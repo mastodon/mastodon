@@ -6,12 +6,13 @@ const makeMapStateToProps = (state, props) => ({
   cachedHeight: state.getIn(['height_cache', props.saveHeightKey, props.id]),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-  onHeightChange (key, id, height) {
+const mapDispatchToProps = dispatch => ({
+  onHeightChange(key, id, height) {
     dispatch(setHeight(key, id, height));
   },
-
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(IntersectionObserverArticle);
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps,
+)(IntersectionObserverArticle);

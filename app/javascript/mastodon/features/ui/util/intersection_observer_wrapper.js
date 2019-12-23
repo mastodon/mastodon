@@ -6,13 +6,12 @@
 // https://developers.google.com/web/updates/2016/04/intersectionobserver
 
 class IntersectionObserverWrapper {
-
   callbacks = {};
   observerBacklog = [];
   observer = null;
 
-  connect (options) {
-    const onIntersection = (entries) => {
+  connect(options) {
+    const onIntersection = entries => {
       entries.forEach(entry => {
         const id = entry.target.getAttribute('data-id');
         if (this.callbacks[id]) {
@@ -22,36 +21,35 @@ class IntersectionObserverWrapper {
     };
 
     this.observer = new IntersectionObserver(onIntersection, options);
-    this.observerBacklog.forEach(([ id, node, callback ]) => {
+    this.observerBacklog.forEach(([id, node, callback]) => {
       this.observe(id, node, callback);
     });
     this.observerBacklog = null;
   }
 
-  observe (id, node, callback) {
+  observe(id, node, callback) {
     if (!this.observer) {
-      this.observerBacklog.push([ id, node, callback ]);
+      this.observerBacklog.push([id, node, callback]);
     } else {
       this.callbacks[id] = callback;
       this.observer.observe(node);
     }
   }
 
-  unobserve (id, node) {
+  unobserve(id, node) {
     if (this.observer) {
       delete this.callbacks[id];
       this.observer.unobserve(node);
     }
   }
 
-  disconnect () {
+  disconnect() {
     if (this.observer) {
       this.callbacks = {};
       this.observer.disconnect();
       this.observer = null;
     }
   }
-
 }
 
 export default IntersectionObserverWrapper;

@@ -19,10 +19,10 @@ const mapStateToProps = state => ({
   isPartial: state.getIn(['timelines', 'home', 'isPartial']),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class HomeTimeline extends React.PureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
@@ -41,38 +41,38 @@ class HomeTimeline extends React.PureComponent {
     } else {
       dispatch(addColumn('HOME', {}));
     }
-  }
+  };
 
-  handleMove = (dir) => {
+  handleMove = dir => {
     const { columnId, dispatch } = this.props;
     dispatch(moveColumn(columnId, dir));
-  }
+  };
 
   handleHeaderClick = () => {
     this.column.scrollTop();
-  }
+  };
 
   setRef = c => {
     this.column = c;
-  }
+  };
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandHomeTimeline({ maxId }));
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     this._checkIfReloadNeeded(false, this.props.isPartial);
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     this._checkIfReloadNeeded(prevProps.isPartial, this.props.isPartial);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this._stopPolling();
   }
 
-  _checkIfReloadNeeded (wasPartial, isPartial) {
+  _checkIfReloadNeeded(wasPartial, isPartial) {
     const { dispatch } = this.props;
 
     if (wasPartial === isPartial) {
@@ -86,21 +86,31 @@ class HomeTimeline extends React.PureComponent {
     }
   }
 
-  _stopPolling () {
+  _stopPolling() {
     if (this.polling) {
       clearInterval(this.polling);
       this.polling = null;
     }
   }
 
-  render () {
-    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn } = this.props;
+  render() {
+    const {
+      intl,
+      shouldUpdateScroll,
+      hasUnread,
+      columnId,
+      multiColumn,
+    } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column
+        bindToDocument={!multiColumn}
+        ref={this.setRef}
+        label={intl.formatMessage(messages.title)}
+      >
         <ColumnHeader
-          icon='home'
+          icon="home"
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
@@ -116,13 +126,27 @@ class HomeTimeline extends React.PureComponent {
           trackScroll={!pinned}
           scrollKey={`home_timeline-${columnId}`}
           onLoadMore={this.handleLoadMore}
-          timelineId='home'
-          emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Visit {public} or use search to get started and meet other users.' values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />}
+          timelineId="home"
+          emptyMessage={
+            <FormattedMessage
+              id="empty_column.home"
+              defaultMessage="Your home timeline is empty! Visit {public} or use search to get started and meet other users."
+              values={{
+                public: (
+                  <Link to="/timelines/public">
+                    <FormattedMessage
+                      id="empty_column.home.public_timeline"
+                      defaultMessage="the public timeline"
+                    />
+                  </Link>
+                ),
+              }}
+            />
+          }
           shouldUpdateScroll={shouldUpdateScroll}
           bindToDocument={!multiColumn}
         />
       </Column>
     );
   }
-
 }

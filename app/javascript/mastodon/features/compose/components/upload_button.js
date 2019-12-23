@@ -7,14 +7,20 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
-  upload: { id: 'upload_button.label', defaultMessage: 'Add media ({formats})' },
+  upload: {
+    id: 'upload_button.label',
+    defaultMessage: 'Add media ({formats})',
+  },
 });
 
 const SUPPORTED_FORMATS = 'JPEG, PNG, GIF, WebM, MP4, MOV, OGG, WAV, MP3, FLAC';
 
 const makeMapStateToProps = () => {
   const mapStateToProps = state => ({
-    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']),
+    acceptContentTypes: state.getIn([
+      'media_attachments',
+      'accept_content_types',
+    ]),
   });
 
   return mapStateToProps;
@@ -25,10 +31,10 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-export default @connect(makeMapStateToProps)
+export default
+@connect(makeMapStateToProps)
 @injectIntl
 class UploadButton extends ImmutablePureComponent {
-
   static propTypes = {
     disabled: PropTypes.bool,
     unavailable: PropTypes.bool,
@@ -39,36 +45,57 @@ class UploadButton extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     if (e.target.files.length > 0) {
       this.props.onSelectFile(e.target.files);
     }
-  }
+  };
 
   handleClick = () => {
     this.fileElement.click();
-  }
+  };
 
-  setRef = (c) => {
+  setRef = c => {
     this.fileElement = c;
-  }
+  };
 
-  render () {
-    const { intl, resetFileKey, unavailable, disabled, acceptContentTypes } = this.props;
+  render() {
+    const {
+      intl,
+      resetFileKey,
+      unavailable,
+      disabled,
+      acceptContentTypes,
+    } = this.props;
 
     if (unavailable) {
       return null;
     }
 
     return (
-      <div className='compose-form__upload-button'>
-        <IconButton icon='paperclip' title={intl.formatMessage(messages.upload, { formats: SUPPORTED_FORMATS })} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
+      <div className="compose-form__upload-button">
+        <IconButton
+          icon="paperclip"
+          title={intl.formatMessage(messages.upload, {
+            formats: SUPPORTED_FORMATS,
+          })}
+          disabled={disabled}
+          onClick={this.handleClick}
+          className="compose-form__upload-button-icon"
+          size={18}
+          inverted
+          style={iconStyle}
+        />
         <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.upload, { formats: SUPPORTED_FORMATS })}</span>
+          <span style={{ display: 'none' }}>
+            {intl.formatMessage(messages.upload, {
+              formats: SUPPORTED_FORMATS,
+            })}
+          </span>
           <input
             key={resetFileKey}
             ref={this.setRef}
-            type='file'
+            type="file"
             multiple
             accept={acceptContentTypes.toArray().join(',')}
             onChange={this.handleChange}
@@ -79,5 +106,4 @@ class UploadButton extends ImmutablePureComponent {
       </div>
     );
   }
-
 }

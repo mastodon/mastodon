@@ -21,10 +21,10 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['user_lists', 'mutes', 'next']),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class Mutes extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -35,16 +35,26 @@ class Mutes extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.dispatch(fetchMutes());
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandMutes());
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandMutes());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { intl, shouldUpdateScroll, hasMore, accountIds, multiColumn } = this.props;
+  render() {
+    const {
+      intl,
+      shouldUpdateScroll,
+      hasMore,
+      accountIds,
+      multiColumn,
+    } = this.props;
 
     if (!accountIds) {
       return (
@@ -54,25 +64,33 @@ class Mutes extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
+    const emptyMessage = (
+      <FormattedMessage
+        id="empty_column.mutes"
+        defaultMessage="You haven't muted any users yet."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} icon='volume-off' heading={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        icon="volume-off"
+        heading={intl.formatMessage(messages.heading)}
+      >
         <ColumnBackButtonSlim />
         <ScrollableList
-          scrollKey='mutes'
+          scrollKey="mutes"
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
-          {accountIds.map(id =>
+          {accountIds.map(id => (
             <AccountContainer key={id} id={id} />
-          )}
+          ))}
         </ScrollableList>
       </Column>
     );
   }
-
 }

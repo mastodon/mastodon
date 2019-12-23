@@ -7,15 +7,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
-  onChange (key, checked) {
+  onChange(key, checked) {
     dispatch(changeSetting(['home', ...key], checked));
   },
 
-  onSave () {
+  onSave() {
     dispatch(saveSettings());
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColumnSettings);

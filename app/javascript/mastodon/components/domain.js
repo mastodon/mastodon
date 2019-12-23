@@ -5,12 +5,15 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
+  unblockDomain: {
+    id: 'account.unblock_domain',
+    defaultMessage: 'Unhide {domain}',
+  },
 });
 
-export default @injectIntl
+export default
+@injectIntl
 class Account extends ImmutablePureComponent {
-
   static propTypes = {
     domain: PropTypes.string,
     onUnblockDomain: PropTypes.func.isRequired,
@@ -19,24 +22,28 @@ class Account extends ImmutablePureComponent {
 
   handleDomainUnblock = () => {
     this.props.onUnblockDomain(this.props.domain);
-  }
+  };
 
-  render () {
+  render() {
     const { domain, intl } = this.props;
 
     return (
-      <div className='domain'>
-        <div className='domain__wrapper'>
-          <span className='domain__domain-name'>
+      <div className="domain">
+        <div className="domain__wrapper">
+          <span className="domain__domain-name">
             <strong>{domain}</strong>
           </span>
 
-          <div className='domain__buttons'>
-            <IconButton active icon='unlock' title={intl.formatMessage(messages.unblockDomain, { domain })} onClick={this.handleDomainUnblock} />
+          <div className="domain__buttons">
+            <IconButton
+              active
+              icon="unlock"
+              title={intl.formatMessage(messages.unblockDomain, { domain })}
+              onClick={this.handleDomainUnblock}
+            />
           </div>
         </div>
       </div>
     );
   }
-
 }

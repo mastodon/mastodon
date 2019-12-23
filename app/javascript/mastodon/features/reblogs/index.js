@@ -17,13 +17,17 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'reblogged_by', props.params.statusId]),
+  accountIds: state.getIn([
+    'user_lists',
+    'reblogged_by',
+    props.params.statusId,
+  ]),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class Reblogs extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -33,23 +37,26 @@ class Reblogs extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchReblogs(this.props.params.statusId));
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
+    if (
+      nextProps.params.statusId !== this.props.params.statusId &&
+      nextProps.params.statusId
+    ) {
       this.props.dispatch(fetchReblogs(nextProps.params.statusId));
     }
   }
 
   handleRefresh = () => {
     this.props.dispatch(fetchReblogs(this.props.params.statusId));
-  }
+  };
 
-  render () {
+  render() {
     const { intl, shouldUpdateScroll, accountIds, multiColumn } = this.props;
 
     if (!accountIds) {
@@ -60,30 +67,41 @@ class Reblogs extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='status.reblogs.empty' defaultMessage='No one has boosted this toot yet. When someone does, they will show up here.' />;
+    const emptyMessage = (
+      <FormattedMessage
+        id="status.reblogs.empty"
+        defaultMessage="No one has boosted this toot yet. When someone does, they will show up here."
+      />
+    );
 
     return (
       <Column bindToDocument={!multiColumn}>
         <ColumnHeader
           showBackButton
           multiColumn={multiColumn}
-          extraButton={(
-            <button className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' /></button>
-          )}
+          extraButton={
+            <button
+              className="column-header__button"
+              title={intl.formatMessage(messages.refresh)}
+              aria-label={intl.formatMessage(messages.refresh)}
+              onClick={this.handleRefresh}
+            >
+              <Icon id="refresh" />
+            </button>
+          }
         />
 
         <ScrollableList
-          scrollKey='reblogs'
+          scrollKey="reblogs"
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
-          {accountIds.map(id =>
+          {accountIds.map(id => (
             <AccountContainer key={id} id={id} withNote={false} />
-          )}
+          ))}
         </ScrollableList>
       </Column>
     );
   }
-
 }

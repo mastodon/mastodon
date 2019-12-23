@@ -16,29 +16,34 @@ import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 import compareId from 'mastodon/compare_id';
 import { searchTextFromRawStatus } from 'mastodon/actions/importer/normalizer';
 
-export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
+export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
-export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
+export const NOTIFICATIONS_EXPAND_FAIL = 'NOTIFICATIONS_EXPAND_FAIL';
 
 export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
-export const NOTIFICATIONS_CLEAR        = 'NOTIFICATIONS_CLEAR';
-export const NOTIFICATIONS_SCROLL_TOP   = 'NOTIFICATIONS_SCROLL_TOP';
+export const NOTIFICATIONS_CLEAR = 'NOTIFICATIONS_CLEAR';
+export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 
-export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
+export const NOTIFICATIONS_MOUNT = 'NOTIFICATIONS_MOUNT';
 export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
 
 defineMessages({
-  mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
+  mention: {
+    id: 'notification.mention',
+    defaultMessage: '{name} mentioned you',
+  },
   group: { id: 'notifications.group', defaultMessage: '{count} notifications' },
 });
 
 const fetchRelatedRelationships = (dispatch, notifications) => {
-  const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
+  const accountIds = notifications
+    .filter(item => item.type === 'follow')
+    .map(item => item.account.id);
 
   if (accountIds.length > 0) {
     dispatch(fetchRelationships(accountIds));
@@ -51,16 +56,27 @@ export const loadPending = () => ({
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const showInColumn = getState().getIn(['settings', 'notifications', 'shows', notification.type], true);
-    const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
-    const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
-    const filters      = getFiltersRegex(getState(), { contextType: 'notifications' });
+    const showInColumn = getState().getIn(
+      ['settings', 'notifications', 'shows', notification.type],
+      true,
+    );
+    const showAlert = getState().getIn(
+      ['settings', 'notifications', 'alerts', notification.type],
+      true,
+    );
+    const playSound = getState().getIn(
+      ['settings', 'notifications', 'sounds', notification.type],
+      true,
+    );
+    const filters = getFiltersRegex(getState(), {
+      contextType: 'notifications',
+    });
 
     let filtered = false;
 
     if (notification.type === 'mention') {
-      const dropRegex   = filters[0];
-      const regex       = filters[1];
+      const dropRegex = filters[0];
+      const regex = filters[1];
       const searchIndex = searchTextFromRawStatus(notification.status);
 
       if (dropRegex && dropRegex.test(searchIndex)) {
@@ -81,7 +97,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         type: NOTIFICATIONS_UPDATE,
         notification,
         usePendingItems: preferPendingItems,
-        meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
+        meta: playSound && !filtered ? { sound: 'boop' } : undefined,
       });
 
       fetchRelatedRelationships(dispatch, [notification]);
@@ -94,10 +110,27 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && showAlert && !filtered) {
-      const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
-      const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
+      const title = new IntlMessageFormat(
+        intlMessages[`notification.${notification.type}`],
+        intlLocale,
+      ).format({
+        name:
+          notification.account.display_name.length > 0
+            ? notification.account.display_name
+            : notification.account.username,
+      });
+      const body =
+        notification.status && notification.status.spoiler_text.length > 0
+          ? notification.status.spoiler_text
+          : unescapeHTML(
+              notification.status ? notification.status.content : '',
+            );
 
-      const notify = new Notification(title, { body, icon: notification.account.avatar, tag: notification.id });
+      const notify = new Notification(title, {
+        body,
+        icon: notification.account.avatar,
+        tag: notification.id,
+      });
 
       notify.addEventListener('click', () => {
         window.focus();
@@ -105,12 +138,24 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       });
     }
   };
-};
+}
 
-const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
+const excludeTypesFromSettings = state =>
+  state
+    .getIn(['settings', 'notifications', 'shows'])
+    .filter(enabled => !enabled)
+    .keySeq()
+    .toJS();
 
 const excludeTypesFromFilter = filter => {
-  const allTypes = ImmutableList(['follow', 'follow_request', 'favourite', 'reblog', 'mention', 'poll']);
+  const allTypes = ImmutableList([
+    'follow',
+    'follow_request',
+    'favourite',
+    'reblog',
+    'mention',
+    'poll',
+  ]);
   return allTypes.filterNot(item => item === filter).toJS();
 };
 
@@ -118,7 +163,12 @@ const noOp = () => {};
 
 export function expandNotifications({ maxId } = {}, done = noOp) {
   return (dispatch, getState) => {
-    const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
+    const activeFilter = getState().getIn([
+      'settings',
+      'notifications',
+      'quickFilter',
+      'active',
+    ]);
     const notifications = getState().get('notifications');
     const isLoadingMore = !!maxId;
 
@@ -129,12 +179,18 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
     const params = {
       max_id: maxId,
-      exclude_types: activeFilter === 'all'
-        ? excludeTypesFromSettings(getState())
-        : excludeTypesFromFilter(activeFilter),
+      exclude_types:
+        activeFilter === 'all'
+          ? excludeTypesFromSettings(getState())
+          : excludeTypesFromFilter(activeFilter),
     };
 
-    if (!params.max_id && (notifications.get('items', ImmutableList()).size + notifications.get('pendingItems', ImmutableList()).size) > 0) {
+    if (
+      !params.max_id &&
+      notifications.get('items', ImmutableList()).size +
+        notifications.get('pendingItems', ImmutableList()).size >
+        0
+    ) {
       const a = notifications.getIn(['pendingItems', 0, 'id']);
       const b = notifications.getIn(['items', 0, 'id']);
 
@@ -149,30 +205,53 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
     dispatch(expandNotificationsRequest(isLoadingMore));
 
-    api(getState).get('/api/v1/notifications', { params }).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
+    api(getState)
+      .get('/api/v1/notifications', { params })
+      .then(response => {
+        const next = getLinks(response).refs.find(link => link.rel === 'next');
 
-      dispatch(importFetchedAccounts(response.data.map(item => item.account)));
-      dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+        dispatch(
+          importFetchedAccounts(response.data.map(item => item.account)),
+        );
+        dispatch(
+          importFetchedStatuses(
+            response.data.map(item => item.status).filter(status => !!status),
+          ),
+        );
 
-      dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
-      fetchRelatedRelationships(dispatch, response.data);
-      done();
-    }).catch(error => {
-      dispatch(expandNotificationsFail(error, isLoadingMore));
-      done();
-    });
+        dispatch(
+          expandNotificationsSuccess(
+            response.data,
+            next ? next.uri : null,
+            isLoadingMore,
+            isLoadingRecent,
+            isLoadingRecent && preferPendingItems,
+          ),
+        );
+        fetchRelatedRelationships(dispatch, response.data);
+        done();
+      })
+      .catch(error => {
+        dispatch(expandNotificationsFail(error, isLoadingMore));
+        done();
+      });
   };
-};
+}
 
 export function expandNotificationsRequest(isLoadingMore) {
   return {
     type: NOTIFICATIONS_EXPAND_REQUEST,
     skipLoading: !isLoadingMore,
   };
-};
+}
 
-export function expandNotificationsSuccess(notifications, next, isLoadingMore, isLoadingRecent, usePendingItems) {
+export function expandNotificationsSuccess(
+  notifications,
+  next,
+  isLoadingMore,
+  isLoadingRecent,
+  usePendingItems,
+) {
   return {
     type: NOTIFICATIONS_EXPAND_SUCCESS,
     notifications,
@@ -181,7 +260,7 @@ export function expandNotificationsSuccess(notifications, next, isLoadingMore, i
     usePendingItems,
     skipLoading: !isLoadingMore,
   };
-};
+}
 
 export function expandNotificationsFail(error, isLoadingMore) {
   return {
@@ -189,7 +268,7 @@ export function expandNotificationsFail(error, isLoadingMore) {
     error,
     skipLoading: !isLoadingMore,
   };
-};
+}
 
 export function clearNotifications() {
   return (dispatch, getState) => {
@@ -199,16 +278,16 @@ export function clearNotifications() {
 
     api(getState).post('/api/v1/notifications/clear');
   };
-};
+}
 
 export function scrollTopNotifications(top) {
   return {
     type: NOTIFICATIONS_SCROLL_TOP,
     top,
   };
-};
+}
 
-export function setFilter (filterType) {
+export function setFilter(filterType) {
   return dispatch => {
     dispatch({
       type: NOTIFICATIONS_FILTER_SET,
@@ -218,7 +297,7 @@ export function setFilter (filterType) {
     dispatch(expandNotifications());
     dispatch(saveSettings());
   };
-};
+}
 
 export const mountNotifications = () => ({
   type: NOTIFICATIONS_MOUNT,

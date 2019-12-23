@@ -14,17 +14,22 @@ window.addEventListener('message', e => {
   }
 
   ready(() => {
-    window.parent.postMessage({
-      type: 'setHeight',
-      id: data.id,
-      height: document.getElementsByTagName('html')[0].scrollHeight,
-    }, '*');
+    window.parent.postMessage(
+      {
+        type: 'setHeight',
+        id: data.id,
+        height: document.getElementsByTagName('html')[0].scrollHeight,
+      },
+      '*',
+    );
   });
 });
 
 function main() {
   const IntlMessageFormat = require('intl-messageformat').default;
-  const { timeAgoString } = require('../mastodon/components/relative_timestamp');
+  const {
+    timeAgoString,
+  } = require('../mastodon/components/relative_timestamp');
   const { delegate } = require('rails-ujs');
   const emojify = require('../mastodon/features/emoji/emoji').default;
   const { getLocale } = require('../mastodon/locales');
@@ -36,16 +41,24 @@ function main() {
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
-    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
+    const detailedStatuses = document.querySelectorAll(
+      '.public-layout .detailed-status',
+    );
     const location = history.location;
 
-    if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
+    if (
+      detailedStatuses.length === 1 &&
+      (!location.state || !location.state.scrolledToDetailedStatus)
+    ) {
       detailedStatuses[0].scrollIntoView();
-      history.replace(location.pathname, { ...location.state, scrolledToDetailedStatus: true });
+      history.replace(location.pathname, {
+        ...location.state,
+        scrolledToDetailedStatus: true,
+      });
     }
   };
 
-  const getEmojiAnimationHandler = (swapTo) => {
+  const getEmojiAnimationHandler = swapTo => {
     return ({ target }) => {
       target.src = target.getAttribute(swapTo);
     };
@@ -62,11 +75,11 @@ function main() {
       minute: 'numeric',
     });
 
-    [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
+    [].forEach.call(document.querySelectorAll('.emojify'), content => {
       content.innerHTML = emojify(content.innerHTML);
     });
 
-    [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
+    [].forEach.call(document.querySelectorAll('time.formatted'), content => {
       const datetime = new Date(content.getAttribute('datetime'));
       const formattedDate = dateTimeFormat.format(datetime);
 
@@ -74,31 +87,46 @@ function main() {
       content.textContent = formattedDate;
     });
 
-    [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
+    [].forEach.call(document.querySelectorAll('time.time-ago'), content => {
       const datetime = new Date(content.getAttribute('datetime'));
-      const now      = new Date();
+      const now = new Date();
 
       content.title = dateTimeFormat.format(datetime);
-      content.textContent = timeAgoString({
-        formatMessage: ({ id, defaultMessage }, values) => (new IntlMessageFormat(messages[id] || defaultMessage, locale)).format(values),
-        formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
-      }, datetime, now, now.getFullYear());
+      content.textContent = timeAgoString(
+        {
+          formatMessage: ({ id, defaultMessage }, values) =>
+            new IntlMessageFormat(
+              messages[id] || defaultMessage,
+              locale,
+            ).format(values),
+          formatDate: (date, options) =>
+            new Intl.DateTimeFormat(locale, options).format(date),
+        },
+        datetime,
+        now,
+        now.getFullYear(),
+      );
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');
 
     if (reactComponents.length > 0) {
-      import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
+      import(
+        /* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container'
+      )
         .then(({ default: MediaContainer }) => {
-          [].forEach.call(reactComponents, (component) => {
-            [].forEach.call(component.children, (child) => {
+          [].forEach.call(reactComponents, component => {
+            [].forEach.call(component.children, child => {
               component.removeChild(child);
             });
           });
 
           const content = document.createElement('div');
 
-          ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
+          ReactDOM.render(
+            <MediaContainer locale={locale} components={reactComponents} />,
+            content,
+          );
           document.body.appendChild(content);
           scrollToDetailedStatus();
         })
@@ -112,12 +140,22 @@ function main() {
 
     const parallaxComponents = document.querySelectorAll('.parallax');
 
-    if (parallaxComponents.length > 0 ) {
+    if (parallaxComponents.length > 0) {
       new Rellax('.parallax', { speed: -1 });
     }
 
-    delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-    delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
+    delegate(
+      document,
+      '.custom-emoji',
+      'mouseover',
+      getEmojiAnimationHandler('data-original'),
+    );
+    delegate(
+      document,
+      '.custom-emoji',
+      'mouseout',
+      getEmojiAnimationHandler('data-static'),
+    );
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
@@ -148,7 +186,9 @@ function main() {
     const classList = this.firstElementChild.classList;
     classList.toggle('fa-chevron-down');
     classList.toggle('fa-chevron-up');
-    this.parentElement.parentElement.nextElementSibling.classList.toggle('hidden');
+    this.parentElement.parentElement.nextElementSibling.classList.toggle(
+      'hidden',
+    );
   });
 
   delegate(document, '.modal-button', 'click', e => {
@@ -162,7 +202,11 @@ function main() {
       href = e.target.href;
     }
 
-    window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
+    window.open(
+      href,
+      'mastodon-intent',
+      'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes',
+    );
   });
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
@@ -171,7 +215,9 @@ function main() {
       if (target.value) {
         name.innerHTML = emojify(escapeTextContentForBrowser(target.value));
       } else {
-        name.textContent = document.querySelector('#default_account_display_name').textContent;
+        name.textContent = document.querySelector(
+          '#default_account_display_name',
+        ).textContent;
       }
     }
   });
@@ -184,20 +230,33 @@ function main() {
     avatar.src = url;
   });
 
-  const getProfileAvatarAnimationHandler = (swapTo) => {
+  const getProfileAvatarAnimationHandler = swapTo => {
     //animate avatar gifs on the profile page when moused over
     return ({ target }) => {
       const swapSrc = target.getAttribute(swapTo);
       //only change the img source if autoplay is off and the image src is actually different
-      if(target.getAttribute('data-autoplay') !== 'true' && target.src !== swapSrc) {
+      if (
+        target.getAttribute('data-autoplay') !== 'true' &&
+        target.src !== swapSrc
+      ) {
         target.src = swapSrc;
       }
     };
   };
 
-  delegate(document, 'img#profile_page_avatar', 'mouseover', getProfileAvatarAnimationHandler('data-original'));
+  delegate(
+    document,
+    'img#profile_page_avatar',
+    'mouseover',
+    getProfileAvatarAnimationHandler('data-original'),
+  );
 
-  delegate(document, 'img#profile_page_avatar', 'mouseout', getProfileAvatarAnimationHandler('data-static'));
+  delegate(
+    document,
+    'img#profile_page_avatar',
+    'mouseout',
+    getProfileAvatarAnimationHandler('data-static'),
+  );
 
   delegate(document, '#account_header', 'change', ({ target }) => {
     const header = document.querySelector('.card .card__img img');

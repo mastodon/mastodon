@@ -8,17 +8,17 @@ import BundleContainer from '../containers/bundle_container';
 
 // Small wrapper to pass multiColumn to the route components
 export class WrappedSwitch extends React.PureComponent {
-
-  render () {
+  render() {
     const { multiColumn, children } = this.props;
 
     return (
       <Switch>
-        {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
+        {React.Children.map(children, child =>
+          React.cloneElement(child, { multiColumn }),
+        )}
       </Switch>
     );
   }
-
 }
 
 WrappedSwitch.propTypes = {
@@ -30,7 +30,6 @@ WrappedSwitch.propTypes = {
 // them to the rendered component, together with the content to
 // be rendered inside (the children)
 export class WrappedRoute extends React.Component {
-
   static propTypes = {
     component: PropTypes.func.isRequired,
     content: PropTypes.node,
@@ -46,24 +45,35 @@ export class WrappedRoute extends React.Component {
     const { component, content, multiColumn, componentParams } = this.props;
 
     return (
-      <BundleContainer fetchComponent={component} loading={this.renderLoading} error={this.renderError}>
-        {Component => <Component params={match.params} multiColumn={multiColumn} {...componentParams}>{content}</Component>}
+      <BundleContainer
+        fetchComponent={component}
+        loading={this.renderLoading}
+        error={this.renderError}
+      >
+        {Component => (
+          <Component
+            params={match.params}
+            multiColumn={multiColumn}
+            {...componentParams}
+          >
+            {content}
+          </Component>
+        )}
       </BundleContainer>
     );
-  }
+  };
 
   renderLoading = () => {
     return <ColumnLoading />;
-  }
+  };
 
-  renderError = (props) => {
+  renderError = props => {
     return <BundleColumnError {...props} />;
-  }
+  };
 
-  render () {
+  render() {
     const { component: Component, content, ...rest } = this.props;
 
     return <Route {...rest} render={this.renderComponent} />;
   }
-
 }

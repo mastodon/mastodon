@@ -6,21 +6,51 @@ import Permalink from './permalink';
 import { shortNumberFormat } from '../utils/numbers';
 
 const Hashtag = ({ hashtag }) => (
-  <div className='trends__item'>
-    <div className='trends__item__name'>
-      <Permalink href={hashtag.get('url')} to={`/timelines/tag/${hashtag.get('name')}`}>
+  <div className="trends__item">
+    <div className="trends__item__name">
+      <Permalink
+        href={hashtag.get('url')}
+        to={`/timelines/tag/${hashtag.get('name')}`}
+      >
         #<span>{hashtag.get('name')}</span>
       </Permalink>
 
-      <FormattedMessage id='trends.count_by_accounts' defaultMessage='{count} {rawCount, plural, one {person} other {people}} talking' values={{ rawCount: hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1, count: <strong>{shortNumberFormat(hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1)}</strong> }} />
+      <FormattedMessage
+        id="trends.count_by_accounts"
+        defaultMessage="{count} {rawCount, plural, one {person} other {people}} talking"
+        values={{
+          rawCount:
+            hashtag.getIn(['history', 0, 'accounts']) * 1 +
+            hashtag.getIn(['history', 1, 'accounts']) * 1,
+          count: (
+            <strong>
+              {shortNumberFormat(
+                hashtag.getIn(['history', 0, 'accounts']) * 1 +
+                  hashtag.getIn(['history', 1, 'accounts']) * 1,
+              )}
+            </strong>
+          ),
+        }}
+      />
     </div>
 
-    <div className='trends__item__current'>
-      {shortNumberFormat(hashtag.getIn(['history', 0, 'uses']) * 1 + hashtag.getIn(['history', 1, 'uses']) * 1)}
+    <div className="trends__item__current">
+      {shortNumberFormat(
+        hashtag.getIn(['history', 0, 'uses']) * 1 +
+          hashtag.getIn(['history', 1, 'uses']) * 1,
+      )}
     </div>
 
-    <div className='trends__item__sparkline'>
-      <Sparklines width={50} height={28} data={hashtag.get('history').reverse().map(day => day.get('uses')).toArray()}>
+    <div className="trends__item__sparkline">
+      <Sparklines
+        width={50}
+        height={28}
+        data={hashtag
+          .get('history')
+          .reverse()
+          .map(day => day.get('uses'))
+          .toArray()}
+      >
         <SparklinesCurve style={{ fill: 'none' }} />
       </Sparklines>
     </div>

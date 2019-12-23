@@ -10,14 +10,20 @@ import { debounce } from 'lodash';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 
 const mapStateToProps = (state, { hashtag }) => ({
-  statusIds: state.getIn(['timelines', `hashtag:${hashtag}`, 'items'], ImmutableList()),
-  isLoading: state.getIn(['timelines', `hashtag:${hashtag}`, 'isLoading'], false),
+  statusIds: state.getIn(
+    ['timelines', `hashtag:${hashtag}`, 'items'],
+    ImmutableList(),
+  ),
+  isLoading: state.getIn(
+    ['timelines', `hashtag:${hashtag}`, 'isLoading'],
+    false,
+  ),
   hasMore: state.getIn(['timelines', `hashtag:${hashtag}`, 'hasMore'], false),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 class HashtagTimeline extends React.PureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
@@ -26,7 +32,7 @@ class HashtagTimeline extends React.PureComponent {
     hashtag: PropTypes.string.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch, hashtag } = this.props;
 
     dispatch(expandHashtagTimeline(hashtag));
@@ -38,11 +44,11 @@ class HashtagTimeline extends React.PureComponent {
     if (maxId) {
       this.props.dispatch(expandHashtagTimeline(this.props.hashtag, { maxId }));
     }
-  }
+  };
 
   setRef = c => {
     this.masonry = c;
-  }
+  };
 
   handleHeightChange = debounce(() => {
     if (!this.masonry) {
@@ -50,9 +56,9 @@ class HashtagTimeline extends React.PureComponent {
     }
 
     this.masonry.forcePack();
-  }, 50)
+  }, 50);
 
-  render () {
+  render() {
     const { statusIds, hasMore, isLoading } = this.props;
 
     const sizes = [
@@ -63,22 +69,35 @@ class HashtagTimeline extends React.PureComponent {
       { mq: '1255px', columns: 3, gutter: 10 },
     ];
 
-    const loader = (isLoading && statusIds.isEmpty()) ? <LoadingIndicator key={0} /> : undefined;
+    const loader =
+      isLoading && statusIds.isEmpty() ? (
+        <LoadingIndicator key={0} />
+      ) : (
+        undefined
+      );
 
     return (
-      <Masonry ref={this.setRef} className='statuses-grid' hasMore={hasMore} loadMore={this.handleLoadMore} sizes={sizes} loader={loader}>
-        {statusIds.map(statusId => (
-          <div className='statuses-grid__item' key={statusId}>
-            <DetailedStatusContainer
-              id={statusId}
-              compact
-              measureHeight
-              onHeightChange={this.handleHeightChange}
-            />
-          </div>
-        )).toArray()}
+      <Masonry
+        ref={this.setRef}
+        className="statuses-grid"
+        hasMore={hasMore}
+        loadMore={this.handleLoadMore}
+        sizes={sizes}
+        loader={loader}
+      >
+        {statusIds
+          .map(statusId => (
+            <div className="statuses-grid__item" key={statusId}>
+              <DetailedStatusContainer
+                id={statusId}
+                compact
+                measureHeight
+                onHeightChange={this.handleHeightChange}
+              />
+            </div>
+          ))
+          .toArray()}
       </Masonry>
     );
   }
-
 }

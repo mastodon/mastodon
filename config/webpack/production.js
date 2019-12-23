@@ -14,9 +14,12 @@ let attachmentHost;
 
 if (process.env.S3_ENABLED === 'true') {
   if (process.env.S3_ALIAS_HOST || process.env.S3_CLOUDFRONT_HOST) {
-    attachmentHost = process.env.S3_ALIAS_HOST || process.env.S3_CLOUDFRONT_HOST;
+    attachmentHost =
+      process.env.S3_ALIAS_HOST || process.env.S3_CLOUDFRONT_HOST;
   } else {
-    attachmentHost = process.env.S3_HOSTNAME || `s3-${process.env.S3_REGION || 'us-east-1'}.amazonaws.com`;
+    attachmentHost =
+      process.env.S3_HOSTNAME ||
+      `s3-${process.env.S3_REGION || 'us-east-1'}.amazonaws.com`;
   }
 } else if (process.env.SWIFT_ENABLED === 'true') {
   const { host } = new URL(process.env.SWIFT_OBJECT_URL);
@@ -47,7 +50,8 @@ module.exports = merge(sharedConfig, {
       cache: true,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
     }),
-    new BundleAnalyzerPlugin({ // generates report.html
+    new BundleAnalyzerPlugin({
+      // generates report.html
       analyzerMode: 'static',
       openAnalyzer: false,
       logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
@@ -87,7 +91,14 @@ module.exports = merge(sharedConfig, {
         '**/*.woff',
       ],
       ServiceWorker: {
-        entry: `imports-loader?ATTACHMENT_HOST=>${encodeURIComponent(JSON.stringify(attachmentHost))}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
+        entry: `imports-loader?ATTACHMENT_HOST=>${encodeURIComponent(
+          JSON.stringify(attachmentHost),
+        )}!${encodeURI(
+          path.join(
+            __dirname,
+            '../../app/javascript/mastodon/service_worker/entry.js',
+          ),
+        )}`,
         cacheName: 'mastodon',
         output: '../assets/sw.js',
         publicPath: '/sw.js',

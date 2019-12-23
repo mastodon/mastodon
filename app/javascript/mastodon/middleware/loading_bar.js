@@ -5,7 +5,7 @@ const defaultTypeSuffixes = ['PENDING', 'FULFILLED', 'REJECTED'];
 export default function loadingBarMiddleware(config = {}) {
   const promiseTypeSuffixes = config.promiseTypeSuffixes || defaultTypeSuffixes;
 
-  return ({ dispatch }) => next => (action) => {
+  return ({ dispatch }) => next => action => {
     if (action.type && !action.skipLoading) {
       const [PENDING, FULFILLED, REJECTED] = promiseTypeSuffixes;
 
@@ -15,11 +15,14 @@ export default function loadingBarMiddleware(config = {}) {
 
       if (action.type.match(isPending)) {
         dispatch(showLoading());
-      } else if (action.type.match(isFulfilled) || action.type.match(isRejected)) {
+      } else if (
+        action.type.match(isFulfilled) ||
+        action.type.match(isRejected)
+      ) {
         dispatch(hideLoading());
       }
     }
 
     return next(action);
   };
-};
+}

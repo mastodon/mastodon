@@ -6,7 +6,7 @@ import { Map as ImmutableMap } from 'immutable';
 import { useEmoji } from '../../../actions/emojis';
 
 const perLine = 8;
-const lines   = 2;
+const lines = 2;
 
 const DEFAULTS = [
   '+1',
@@ -27,38 +27,45 @@ const DEFAULTS = [
   'ok_hand',
 ];
 
-const getFrequentlyUsedEmojis = createSelector([
-  state => state.getIn(['settings', 'frequentlyUsedEmojis'], ImmutableMap()),
-], emojiCounters => {
-  let emojis = emojiCounters
-    .keySeq()
-    .sort((a, b) => emojiCounters.get(a) - emojiCounters.get(b))
-    .reverse()
-    .slice(0, perLine * lines)
-    .toArray();
+const getFrequentlyUsedEmojis = createSelector(
+  [state => state.getIn(['settings', 'frequentlyUsedEmojis'], ImmutableMap())],
+  emojiCounters => {
+    let emojis = emojiCounters
+      .keySeq()
+      .sort((a, b) => emojiCounters.get(a) - emojiCounters.get(b))
+      .reverse()
+      .slice(0, perLine * lines)
+      .toArray();
 
-  if (emojis.length < DEFAULTS.length) {
-    let uniqueDefaults = DEFAULTS.filter(emoji => !emojis.includes(emoji));
-    emojis = emojis.concat(uniqueDefaults.slice(0, DEFAULTS.length - emojis.length));
-  }
+    if (emojis.length < DEFAULTS.length) {
+      let uniqueDefaults = DEFAULTS.filter(emoji => !emojis.includes(emoji));
+      emojis = emojis.concat(
+        uniqueDefaults.slice(0, DEFAULTS.length - emojis.length),
+      );
+    }
 
-  return emojis;
-});
+    return emojis;
+  },
+);
 
-const getCustomEmojis = createSelector([
-  state => state.get('custom_emojis'),
-], emojis => emojis.filter(e => e.get('visible_in_picker')).sort((a, b) => {
-  const aShort = a.get('shortcode').toLowerCase();
-  const bShort = b.get('shortcode').toLowerCase();
+const getCustomEmojis = createSelector(
+  [state => state.get('custom_emojis')],
+  emojis =>
+    emojis
+      .filter(e => e.get('visible_in_picker'))
+      .sort((a, b) => {
+        const aShort = a.get('shortcode').toLowerCase();
+        const bShort = b.get('shortcode').toLowerCase();
 
-  if (aShort < bShort) {
-    return -1;
-  } else if (aShort > bShort ) {
-    return 1;
-  } else {
-    return 0;
-  }
-}));
+        if (aShort < bShort) {
+          return -1;
+        } else if (aShort > bShort) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }),
+);
 
 const mapStateToProps = state => ({
   custom_emojis: getCustomEmojis(state),
@@ -80,4 +87,7 @@ const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmojiPickerDropdown);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EmojiPickerDropdown);

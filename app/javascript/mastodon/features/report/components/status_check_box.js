@@ -8,7 +8,6 @@ import { MediaGallery, Video } from '../../ui/util/async-components';
 import Bundle from '../../ui/components/bundle';
 
 export default class StatusCheckBox extends React.PureComponent {
-
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     checked: PropTypes.bool,
@@ -16,7 +15,7 @@ export default class StatusCheckBox extends React.PureComponent {
     disabled: PropTypes.bool,
   };
 
-  render () {
+  render() {
     const { status, checked, onToggle, disabled } = this.props;
     let media = null;
 
@@ -25,13 +24,19 @@ export default class StatusCheckBox extends React.PureComponent {
     }
 
     if (status.get('media_attachments').size > 0) {
-      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
-
+      if (
+        status
+          .get('media_attachments')
+          .some(item => item.get('type') === 'unknown')
+      ) {
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         const video = status.getIn(['media_attachments', 0]);
 
         media = (
-          <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
+          <Bundle
+            fetchComponent={Video}
+            loading={this.renderLoadingVideoPlayer}
+          >
             {Component => (
               <Component
                 preview={video.get('preview_url')}
@@ -49,25 +54,34 @@ export default class StatusCheckBox extends React.PureComponent {
         );
       } else {
         media = (
-          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={noop} />}
+          <Bundle
+            fetchComponent={MediaGallery}
+            loading={this.renderLoadingMediaGallery}
+          >
+            {Component => (
+              <Component
+                media={status.get('media_attachments')}
+                sensitive={status.get('sensitive')}
+                height={110}
+                onOpenMedia={noop}
+              />
+            )}
           </Bundle>
         );
       }
     }
 
     return (
-      <div className='status-check-box'>
-        <div className='status-check-box__status'>
+      <div className="status-check-box">
+        <div className="status-check-box__status">
           <StatusContent status={status} />
           {media}
         </div>
 
-        <div className='status-check-box-toggle'>
+        <div className="status-check-box-toggle">
           <Toggle checked={checked} onChange={onToggle} disabled={disabled} />
         </div>
       </div>
     );
   }
-
 }

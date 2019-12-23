@@ -7,19 +7,26 @@ import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import { FormattedMessage } from 'react-intl';
 
 export default class UploadForm extends ImmutablePureComponent {
-
   static propTypes = {
     mediaIds: ImmutablePropTypes.list.isRequired,
   };
 
-  render () {
+  render() {
     const { mediaIds } = this.props;
 
     return (
-      <div className='compose-form__upload-wrapper'>
-        <UploadProgressContainer icon='upload' message={<FormattedMessage id='upload_progress.label' defaultMessage='Uploading…' />} />
+      <div className="compose-form__upload-wrapper">
+        <UploadProgressContainer
+          icon="upload"
+          message={
+            <FormattedMessage
+              id="upload_progress.label"
+              defaultMessage="Uploading…"
+            />
+          }
+        />
 
-        <div className='compose-form__uploads-wrapper'>
+        <div className="compose-form__uploads-wrapper">
           {mediaIds.map(id => (
             <UploadContainer id={id} key={id} />
           ))}
@@ -29,5 +36,4 @@ export default class UploadForm extends ImmutablePureComponent {
       </div>
     );
   }
-
 }

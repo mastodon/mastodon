@@ -1,4 +1,4 @@
-export const MODAL_OPEN  = 'MODAL_OPEN';
+export const MODAL_OPEN = 'MODAL_OPEN';
 export const MODAL_CLOSE = 'MODAL_CLOSE';
 
 export function openModal(type, props) {
@@ -7,11 +7,11 @@ export function openModal(type, props) {
     modalType: type,
     modalProps: props,
   };
-};
+}
 
 export function closeModal(type) {
   return {
     type: MODAL_CLOSE,
     modalType: type,
   };
-};
+}

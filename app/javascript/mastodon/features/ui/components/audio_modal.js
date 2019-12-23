@@ -9,7 +9,6 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
 export default class AudioModal extends ImmutablePureComponent {
-
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     status: ImmutablePropTypes.map,
@@ -20,7 +19,7 @@ export default class AudioModal extends ImmutablePureComponent {
     router: PropTypes.object,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.context.router) {
       const history = this.context.router.history;
 
@@ -32,7 +31,7 @@ export default class AudioModal extends ImmutablePureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.context.router) {
       this.unlistenHistory();
 
@@ -45,16 +44,18 @@ export default class AudioModal extends ImmutablePureComponent {
   handleStatusClick = e => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
+      this.context.router.history.push(
+        `/statuses/${this.props.status.get('id')}`,
+      );
     }
-  }
+  };
 
-  render () {
+  render() {
     const { media, status } = this.props;
 
     return (
-      <div className='modal-root__modal audio-modal'>
-        <div className='audio-modal__container'>
+      <div className="modal-root__modal audio-modal">
+        <div className="audio-modal__container">
           <Audio
             src={media.get('url')}
             alt={media.get('description')}
@@ -66,11 +67,16 @@ export default class AudioModal extends ImmutablePureComponent {
 
         {status && (
           <div className={classNames('media-modal__meta')}>
-            <a href={status.get('url')} onClick={this.handleStatusClick}><Icon id='comments' /> <FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
+            <a href={status.get('url')} onClick={this.handleStatusClick}>
+              <Icon id="comments" />{' '}
+              <FormattedMessage
+                id="lightbox.view_context"
+                defaultMessage="View context"
+              />
+            </a>
           </div>
         )}
       </div>
     );
   }
-
 }

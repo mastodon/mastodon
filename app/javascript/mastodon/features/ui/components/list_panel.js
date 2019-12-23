@@ -13,28 +13,32 @@ const getOrderedLists = createSelector([state => state.get('lists')], lists => {
     return lists;
   }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title'))).take(4);
+  return lists
+    .toList()
+    .filter(item => !!item)
+    .sort((a, b) => a.get('title').localeCompare(b.get('title')))
+    .take(4);
 });
 
 const mapStateToProps = state => ({
   lists: getOrderedLists(state),
 });
 
-export default @withRouter
+export default
+@withRouter
 @connect(mapStateToProps)
 class ListPanel extends ImmutablePureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     lists: ImmutablePropTypes.list,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchLists());
   }
 
-  render () {
+  render() {
     const { lists } = this.props;
 
     if (!lists || lists.isEmpty()) {
@@ -46,10 +50,17 @@ class ListPanel extends ImmutablePureComponent {
         <hr />
 
         {lists.map(list => (
-          <NavLink key={list.get('id')} className='column-link column-link--transparent' strict to={`/timelines/list/${list.get('id')}`}><Icon className='column-link__icon' id='list-ul' fixedWidth />{list.get('title')}</NavLink>
+          <NavLink
+            key={list.get('id')}
+            className="column-link column-link--transparent"
+            strict
+            to={`/timelines/list/${list.get('id')}`}
+          >
+            <Icon className="column-link__icon" id="list-ul" fixedWidth />
+            {list.get('title')}
+          </NavLink>
         ))}
       </div>
     );
   }
-
 }

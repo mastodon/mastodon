@@ -10,10 +10,7 @@ import {
   pinAccount,
   unpinAccount,
 } from '../../../actions/accounts';
-import {
-  mentionCompose,
-  directCompose,
-} from '../../../actions/compose';
+import { mentionCompose, directCompose } from '../../../actions/compose';
 import { initMuteModal } from '../../../actions/mutes';
 import { initBlockModal } from '../../../actions/blocks';
 import { initReport } from '../../../actions/reports';
@@ -24,8 +21,14 @@ import { unfollowModal } from '../../../initial_state';
 import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
-  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
+  unfollowConfirm: {
+    id: 'confirmations.unfollow.confirm',
+    defaultMessage: 'Unfollow',
+  },
+  blockDomainConfirm: {
+    id: 'confirmations.domain_block.confirm',
+    defaultMessage: 'Hide entire domain',
+  },
 });
 
 const makeMapStateToProps = () => {
@@ -34,22 +37,35 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
     domain: state.getIn(['meta', 'domain']),
-    identity_proofs: state.getIn(['identity_proofs', accountId], ImmutableList()),
+    identity_proofs: state.getIn(
+      ['identity_proofs', accountId],
+      ImmutableList(),
+    ),
   });
 
   return mapStateToProps;
 };
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
-
-  onFollow (account) {
-    if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
+  onFollow(account) {
+    if (
+      account.getIn(['relationship', 'following']) ||
+      account.getIn(['relationship', 'requested'])
+    ) {
       if (unfollowModal) {
-        dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.unfollowConfirm),
-          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-        }));
+        dispatch(
+          openModal('CONFIRM', {
+            message: (
+              <FormattedMessage
+                id="confirmations.unfollow.message"
+                defaultMessage="Are you sure you want to unfollow {name}?"
+                values={{ name: <strong>@{account.get('acct')}</strong> }}
+              />
+            ),
+            confirm: intl.formatMessage(messages.unfollowConfirm),
+            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+          }),
+        );
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
@@ -58,7 +74,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onBlock (account) {
+  onBlock(account) {
     if (account.getIn(['relationship', 'blocking'])) {
       dispatch(unblockAccount(account.get('id')));
     } else {
@@ -66,15 +82,15 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onMention (account, router) {
+  onMention(account, router) {
     dispatch(mentionCompose(account, router));
   },
 
-  onDirect (account, router) {
+  onDirect(account, router) {
     dispatch(directCompose(account, router));
   },
 
-  onReblogToggle (account) {
+  onReblogToggle(account) {
     if (account.getIn(['relationship', 'showing_reblogs'])) {
       dispatch(followAccount(account.get('id'), false));
     } else {
@@ -82,7 +98,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onEndorseToggle (account) {
+  onEndorseToggle(account) {
     if (account.getIn(['relationship', 'endorsed'])) {
       dispatch(unpinAccount(account.get('id')));
     } else {
@@ -90,11 +106,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onReport (account) {
+  onReport(account) {
     dispatch(initReport(account));
   },
 
-  onMute (account) {
+  onMute(account) {
     if (account.getIn(['relationship', 'muting'])) {
       dispatch(unmuteAccount(account.get('id')));
     } else {
@@ -102,24 +118,35 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onBlockDomain (domain) {
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockDomainConfirm),
-      onConfirm: () => dispatch(blockDomain(domain)),
-    }));
+  onBlockDomain(domain) {
+    dispatch(
+      openModal('CONFIRM', {
+        message: (
+          <FormattedMessage
+            id="confirmations.domain_block.message"
+            defaultMessage="Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed."
+            values={{ domain: <strong>{domain}</strong> }}
+          />
+        ),
+        confirm: intl.formatMessage(messages.blockDomainConfirm),
+        onConfirm: () => dispatch(blockDomain(domain)),
+      }),
+    );
   },
 
-  onUnblockDomain (domain) {
+  onUnblockDomain(domain) {
     dispatch(unblockDomain(domain));
   },
 
-  onAddToList(account){
-    dispatch(openModal('LIST_ADDER', {
-      accountId: account.get('id'),
-    }));
+  onAddToList(account) {
+    dispatch(
+      openModal('LIST_ADDER', {
+        accountId: account.get('id'),
+      }),
+    );
   },
-
 });
 
-export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Header));
+export default injectIntl(
+  connect(makeMapStateToProps, mapDispatchToProps)(Header),
+);

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export default class SettingText extends React.PureComponent {
-
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
     settingKey: PropTypes.array.isRequired,
@@ -11,18 +10,18 @@ export default class SettingText extends React.PureComponent {
     onChange: PropTypes.func.isRequired,
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.props.onChange(this.props.settingKey, e.target.value);
-  }
+  };
 
-  render () {
+  render() {
     const { settings, settingKey, label } = this.props;
 
     return (
       <label>
         <span style={{ display: 'none' }}>{label}</span>
         <input
-          className='setting-text'
+          className="setting-text"
           value={settings.getIn(settingKey)}
           onChange={this.handleChange}
           placeholder={label}
@@ -30,5 +29,4 @@ export default class SettingText extends React.PureComponent {
       </label>
     );
   }
-
 }

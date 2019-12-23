@@ -5,7 +5,6 @@ import Icon from 'mastodon/components/icon';
 import { createPortal } from 'react-dom';
 
 export default class ColumnBackButton extends React.PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -20,15 +19,19 @@ export default class ColumnBackButton extends React.PureComponent {
     } else {
       this.context.router.history.goBack();
     }
-  }
+  };
 
-  render () {
+  render() {
     const { multiColumn } = this.props;
 
     const component = (
-      <button onClick={this.handleClick} className='column-back-button'>
-        <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
-        <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
+      <button onClick={this.handleClick} className="column-back-button">
+        <Icon
+          id="chevron-left"
+          className="column-back-button__icon"
+          fixedWidth
+        />
+        <FormattedMessage id="column_back_button.label" defaultMessage="Back" />
       </button>
     );
 
@@ -50,5 +53,4 @@ export default class ColumnBackButton extends React.PureComponent {
       }
     }
   }
-
 }

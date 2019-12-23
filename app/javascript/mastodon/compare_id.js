@@ -1,4 +1,4 @@
-export default function compareId (id1, id2) {
+export default function compareId(id1, id2) {
   if (id1 === id2) {
     return 0;
   }
@@ -8,4 +8,4 @@ export default function compareId (id1, id2) {
   } else {
     return id1.length > id2.length ? 1 : -1;
   }
-};
+}

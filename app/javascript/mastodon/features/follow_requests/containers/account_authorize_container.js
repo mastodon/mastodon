@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import { makeGetAccount } from '../../../selectors';
 import AccountAuthorize from '../components/account_authorize';
-import { authorizeFollowRequest, rejectFollowRequest } from '../../../actions/accounts';
+import {
+  authorizeFollowRequest,
+  rejectFollowRequest,
+} from '../../../actions/accounts';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -14,13 +17,16 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { id }) => ({
-  onAuthorize () {
+  onAuthorize() {
     dispatch(authorizeFollowRequest(id));
   },
 
-  onReject () {
+  onReject() {
     dispatch(rejectFollowRequest(id));
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(AccountAuthorize);
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps,
+)(AccountAuthorize);

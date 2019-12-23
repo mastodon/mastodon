@@ -9,12 +9,18 @@ import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import DomainContainer from '../../containers/domain_container';
-import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
+import {
+  fetchDomainBlocks,
+  expandDomainBlocks,
+} from '../../actions/domain_blocks';
 import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
   heading: { id: 'column.domain_blocks', defaultMessage: 'Hidden domains' },
-  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
+  unblockDomain: {
+    id: 'account.unblock_domain',
+    defaultMessage: 'Unhide {domain}',
+  },
 });
 
 const mapStateToProps = state => ({
@@ -22,10 +28,10 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['domain_lists', 'blocks', 'next']),
 });
 
-export default @connect(mapStateToProps)
+export default
+@connect(mapStateToProps)
 @injectIntl
 class Blocks extends ImmutablePureComponent {
-
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -36,16 +42,26 @@ class Blocks extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.dispatch(fetchDomainBlocks());
   }
 
-  handleLoadMore = debounce(() => {
-    this.props.dispatch(expandDomainBlocks());
-  }, 300, { leading: true });
+  handleLoadMore = debounce(
+    () => {
+      this.props.dispatch(expandDomainBlocks());
+    },
+    300,
+    { leading: true },
+  );
 
-  render () {
-    const { intl, domains, shouldUpdateScroll, hasMore, multiColumn } = this.props;
+  render() {
+    const {
+      intl,
+      domains,
+      shouldUpdateScroll,
+      hasMore,
+      multiColumn,
+    } = this.props;
 
     if (!domains) {
       return (
@@ -55,25 +71,33 @@ class Blocks extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no hidden domains yet.' />;
+    const emptyMessage = (
+      <FormattedMessage
+        id="empty_column.domain_blocks"
+        defaultMessage="There are no hidden domains yet."
+      />
+    );
 
     return (
-      <Column bindToDocument={!multiColumn} icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
+      <Column
+        bindToDocument={!multiColumn}
+        icon="minus-circle"
+        heading={intl.formatMessage(messages.heading)}
+      >
         <ColumnBackButtonSlim />
         <ScrollableList
-          scrollKey='domain_blocks'
+          scrollKey="domain_blocks"
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
-          {domains.map(domain =>
+          {domains.map(domain => (
             <DomainContainer key={domain} domain={domain} />
-          )}
+          ))}
         </ScrollableList>
       </Column>
     );
   }
-
 }

@@ -20,7 +20,6 @@ addLocaleData(localeData);
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
 export default class MediaContainer extends PureComponent {
-
   static propTypes = {
     locale: PropTypes.string.isRequired,
     components: PropTypes.object.isRequired,
@@ -37,7 +36,7 @@ export default class MediaContainer extends PureComponent {
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
     this.setState({ media, index });
-  }
+  };
 
   handleOpenVideo = (video, time) => {
     const media = ImmutableList([video]);
@@ -46,16 +45,16 @@ export default class MediaContainer extends PureComponent {
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
     this.setState({ media, time });
-  }
+  };
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
     document.documentElement.style.marginRight = 0;
 
     this.setState({ media: null, index: null, time: null });
-  }
+  };
 
-  render () {
+  render() {
     const { locale, components } = this.props;
 
     return (
@@ -64,19 +63,23 @@ export default class MediaContainer extends PureComponent {
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');
             const Component = MEDIA_COMPONENTS[componentName];
-            const { media, card, poll, hashtag, ...props } = JSON.parse(component.getAttribute('data-props'));
+            const { media, card, poll, hashtag, ...props } = JSON.parse(
+              component.getAttribute('data-props'),
+            );
 
             Object.assign(props, {
-              ...(media   ? { media:   fromJS(media)   } : {}),
-              ...(card    ? { card:    fromJS(card)    } : {}),
-              ...(poll    ? { poll:    fromJS(poll)    } : {}),
+              ...(media ? { media: fromJS(media) } : {}),
+              ...(card ? { card: fromJS(card) } : {}),
+              ...(poll ? { poll: fromJS(poll) } : {}),
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
-              ...(componentName === 'Video' ? {
-                onOpenVideo: this.handleOpenVideo,
-              } : {
-                onOpenMedia: this.handleOpenMedia,
-              }),
+              ...(componentName === 'Video'
+                ? {
+                    onOpenVideo: this.handleOpenVideo,
+                  }
+                : {
+                    onOpenMedia: this.handleOpenMedia,
+                  }),
             });
 
             return ReactDOM.createPortal(
@@ -99,5 +102,4 @@ export default class MediaContainer extends PureComponent {
       </IntlProvider>
     );
   }
-
 }

@@ -12,12 +12,14 @@ describe('<Avatar />', () => {
     avatar_static: '/static/alice.jpg',
   });
 
-  const size     = 100;
+  const size = 100;
 
   describe('Autoplay', () => {
     it('renders a animated avatar', () => {
-      const component = renderer.create(<Avatar account={account} animate size={size} />);
-      const tree      = component.toJSON();
+      const component = renderer.create(
+        <Avatar account={account} animate size={size} />,
+      );
+      const tree = component.toJSON();
 
       expect(tree).toMatchSnapshot();
     });
@@ -25,8 +27,10 @@ describe('<Avatar />', () => {
 
   describe('Still', () => {
     it('renders a still avatar', () => {
-      const component = renderer.create(<Avatar account={account} size={size} />);
-      const tree      = component.toJSON();
+      const component = renderer.create(
+        <Avatar account={account} size={size} />,
+      );
+      const tree = component.toJSON();
 
       expect(tree).toMatchSnapshot();
     });

@@ -5,16 +5,14 @@ import LoadingBarContainer from '../../ui/containers/loading_bar_container';
 import ModalContainer from '../../ui/containers/modal_container';
 
 export default class Compose extends React.PureComponent {
-
-  render () {
+  render() {
     return (
       <div>
         <ComposeFormContainer />
         <NotificationsContainer />
         <ModalContainer />
-        <LoadingBarContainer className='loading-bar' />
+        <LoadingBarContainer className="loading-bar" />
       </div>
     );
   }
-
 }

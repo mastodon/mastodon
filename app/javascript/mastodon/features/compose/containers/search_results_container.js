@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import SearchResults from '../components/search_results';
-import { fetchSuggestions, dismissSuggestion } from 'mastodon/actions/suggestions';
+import {
+  fetchSuggestions,
+  dismissSuggestion,
+} from 'mastodon/actions/suggestions';
 import { expandSearch } from 'mastodon/actions/search';
 
 const mapStateToProps = state => ({

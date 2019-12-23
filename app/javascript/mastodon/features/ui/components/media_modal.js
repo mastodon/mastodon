@@ -19,9 +19,9 @@ const messages = defineMessages({
 
 export const previewState = 'previewMediaModal';
 
-export default @injectIntl
+export default
+@injectIntl
 class MediaModal extends ImmutablePureComponent {
-
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     status: ImmutablePropTypes.map,
@@ -39,39 +39,42 @@ class MediaModal extends ImmutablePureComponent {
     navigationHidden: false,
   };
 
-  handleSwipe = (index) => {
+  handleSwipe = index => {
     this.setState({ index: index % this.props.media.size });
-  }
+  };
 
   handleNextClick = () => {
     this.setState({ index: (this.getIndex() + 1) % this.props.media.size });
-  }
+  };
 
   handlePrevClick = () => {
-    this.setState({ index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size });
-  }
+    this.setState({
+      index:
+        (this.props.media.size + this.getIndex() - 1) % this.props.media.size,
+    });
+  };
 
-  handleChangeIndex = (e) => {
+  handleChangeIndex = e => {
     const index = Number(e.currentTarget.getAttribute('data-index'));
     this.setState({ index: index % this.props.media.size });
-  }
+  };
 
-  handleKeyDown = (e) => {
-    switch(e.key) {
-    case 'ArrowLeft':
-      this.handlePrevClick();
-      e.preventDefault();
-      e.stopPropagation();
-      break;
-    case 'ArrowRight':
-      this.handleNextClick();
-      e.preventDefault();
-      e.stopPropagation();
-      break;
+  handleKeyDown = e => {
+    switch (e.key) {
+      case 'ArrowLeft':
+        this.handlePrevClick();
+        e.preventDefault();
+        e.stopPropagation();
+        break;
+      case 'ArrowRight':
+        this.handleNextClick();
+        e.preventDefault();
+        e.stopPropagation();
+        break;
     }
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown, false);
 
     if (this.context.router) {
@@ -85,7 +88,7 @@ class MediaModal extends ImmutablePureComponent {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
 
     if (this.context.router) {
@@ -97,7 +100,7 @@ class MediaModal extends ImmutablePureComponent {
     }
   }
 
-  getIndex () {
+  getIndex() {
     return this.state.index !== null ? this.state.index : this.props.index;
   }
 
@@ -110,19 +113,39 @@ class MediaModal extends ImmutablePureComponent {
   handleStatusClick = e => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
+      this.context.router.history.push(
+        `/statuses/${this.props.status.get('id')}`,
+      );
     }
-  }
+  };
 
-  render () {
+  render() {
     const { media, status, intl, onClose } = this.props;
     const { navigationHidden } = this.state;
 
     const index = this.getIndex();
     let pagination = [];
 
-    const leftNav  = media.size > 1 && <button tabIndex='0' className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
-    const rightNav = media.size > 1 && <button tabIndex='0' className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
+    const leftNav = media.size > 1 && (
+      <button
+        tabIndex="0"
+        className="media-modal__nav media-modal__nav--left"
+        onClick={this.handlePrevClick}
+        aria-label={intl.formatMessage(messages.previous)}
+      >
+        <Icon id="chevron-left" fixedWidth />
+      </button>
+    );
+    const rightNav = media.size > 1 && (
+      <button
+        tabIndex="0"
+        className="media-modal__nav  media-modal__nav--right"
+        onClick={this.handleNextClick}
+        aria-label={intl.formatMessage(messages.next)}
+      >
+        <Icon id="chevron-right" fixedWidth />
+      </button>
+    );
 
     if (media.size > 1) {
       pagination = media.map((item, i) => {
@@ -130,58 +153,71 @@ class MediaModal extends ImmutablePureComponent {
         if (i === index) {
           classes.push('media-modal__button--active');
         }
-        return (<li className='media-modal__page-dot' key={i}><button tabIndex='0' className={classes.join(' ')} onClick={this.handleChangeIndex} data-index={i}>{i + 1}</button></li>);
+        return (
+          <li className="media-modal__page-dot" key={i}>
+            <button
+              tabIndex="0"
+              className={classes.join(' ')}
+              onClick={this.handleChangeIndex}
+              data-index={i}
+            >
+              {i + 1}
+            </button>
+          </li>
+        );
       });
     }
 
-    const content = media.map((image) => {
-      const width  = image.getIn(['meta', 'original', 'width']) || null;
-      const height = image.getIn(['meta', 'original', 'height']) || null;
+    const content = media
+      .map(image => {
+        const width = image.getIn(['meta', 'original', 'width']) || null;
+        const height = image.getIn(['meta', 'original', 'height']) || null;
 
-      if (image.get('type') === 'image') {
-        return (
-          <ImageLoader
-            previewSrc={image.get('preview_url')}
-            src={image.get('url')}
-            width={width}
-            height={height}
-            alt={image.get('description')}
-            key={image.get('url')}
-            onClick={this.toggleNavigation}
-          />
-        );
-      } else if (image.get('type') === 'video') {
-        const { time } = this.props;
+        if (image.get('type') === 'image') {
+          return (
+            <ImageLoader
+              previewSrc={image.get('preview_url')}
+              src={image.get('url')}
+              width={width}
+              height={height}
+              alt={image.get('description')}
+              key={image.get('url')}
+              onClick={this.toggleNavigation}
+            />
+          );
+        } else if (image.get('type') === 'video') {
+          const { time } = this.props;
 
-        return (
-          <Video
-            preview={image.get('preview_url')}
-            blurhash={image.get('blurhash')}
-            src={image.get('url')}
-            width={image.get('width')}
-            height={image.get('height')}
-            startTime={time || 0}
-            onCloseVideo={onClose}
-            detailed
-            alt={image.get('description')}
-            key={image.get('url')}
-          />
-        );
-      } else if (image.get('type') === 'gifv') {
-        return (
-          <GIFV
-            src={image.get('url')}
-            width={width}
-            height={height}
-            key={image.get('preview_url')}
-            alt={image.get('description')}
-            onClick={this.toggleNavigation}
-          />
-        );
-      }
+          return (
+            <Video
+              preview={image.get('preview_url')}
+              blurhash={image.get('blurhash')}
+              src={image.get('url')}
+              width={image.get('width')}
+              height={image.get('height')}
+              startTime={time || 0}
+              onCloseVideo={onClose}
+              detailed
+              alt={image.get('description')}
+              key={image.get('url')}
+            />
+          );
+        } else if (image.get('type') === 'gifv') {
+          return (
+            <GIFV
+              src={image.get('url')}
+              width={width}
+              height={height}
+              key={image.get('preview_url')}
+              alt={image.get('description')}
+              onClick={this.toggleNavigation}
+            />
+          );
+        }
 
-      return null;
-    }).toArray();
+        return null;
+      })
+      .toArray();
 
     // you can't use 100vh, because the viewport height is taller
     // than the visible part of the document in some mobile
@@ -201,10 +237,10 @@ class MediaModal extends ImmutablePureComponent {
     });
 
     return (
-      <div className='modal-root__modal media-modal'>
+      <div className="modal-root__modal media-modal">
         <div
-          className='media-modal__closer'
-          role='presentation'
+          className="media-modal__closer"
+          role="presentation"
           onClick={onClose}
         >
           <ReactSwipeableViews
@@ -219,23 +255,36 @@ class MediaModal extends ImmutablePureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+          <IconButton
+            className="media-modal__close"
+            title={intl.formatMessage(messages.close)}
+            icon="times"
+            onClick={onClose}
+            size={40}
+          />
 
           {leftNav}
           {rightNav}
 
           {status && (
-            <div className={classNames('media-modal__meta', { 'media-modal__meta--shifted': media.size > 1 })}>
-              <a href={status.get('url')} onClick={this.handleStatusClick}><Icon id='comments' /> <FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
+            <div
+              className={classNames('media-modal__meta', {
+                'media-modal__meta--shifted': media.size > 1,
+              })}
+            >
+              <a href={status.get('url')} onClick={this.handleStatusClick}>
+                <Icon id="comments" />{' '}
+                <FormattedMessage
+                  id="lightbox.view_context"
+                  defaultMessage="View context"
+                />
+              </a>
             </div>
           )}
 
-          <ul className='media-modal__pagination'>
-            {pagination}
-          </ul>
+          <ul className="media-modal__pagination">{pagination}</ul>
         </div>
       </div>
     );
   }
-
 }

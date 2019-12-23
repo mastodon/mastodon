@@ -9,89 +9,106 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-export default @injectIntl
+export default
+@injectIntl
 class EmbedModal extends ImmutablePureComponent {
-
   static propTypes = {
     url: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-  }
+  };
 
   state = {
     loading: false,
     oembed: null,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { url } = this.props;
 
     this.setState({ loading: true });
 
-    api().post('/api/web/embed', { url }).then(res => {
-      this.setState({ loading: false, oembed: res.data });
+    api()
+      .post('/api/web/embed', { url })
+      .then(res => {
+        this.setState({ loading: false, oembed: res.data });
 
-      const iframeDocument = this.iframe.contentWindow.document;
+        const iframeDocument = this.iframe.contentWindow.document;
 
-      iframeDocument.open();
-      iframeDocument.write(res.data.html);
-      iframeDocument.close();
+        iframeDocument.open();
+        iframeDocument.write(res.data.html);
+        iframeDocument.close();
 
-      iframeDocument.body.style.margin = 0;
-      this.iframe.width  = iframeDocument.body.scrollWidth;
-      this.iframe.height = iframeDocument.body.scrollHeight;
-    }).catch(error => {
-      this.props.onError(error);
-    });
+        iframeDocument.body.style.margin = 0;
+        this.iframe.width = iframeDocument.body.scrollWidth;
+        this.iframe.height = iframeDocument.body.scrollHeight;
+      })
+      .catch(error => {
+        this.props.onError(error);
+      });
   }
 
-  setIframeRef = c =>  {
+  setIframeRef = c => {
     this.iframe = c;
-  }
+  };
 
-  handleTextareaClick = (e) => {
+  handleTextareaClick = e => {
     e.target.select();
-  }
+  };
 
-  render () {
+  render() {
     const { intl, onClose } = this.props;
     const { oembed } = this.state;
 
     return (
-      <div className='modal-root__modal report-modal embed-modal'>
-        <div className='report-modal__target'>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          <FormattedMessage id='status.embed' defaultMessage='Embed' />
+      <div className="modal-root__modal report-modal embed-modal">
+        <div className="report-modal__target">
+          <IconButton
+            className="media-modal__close"
+            title={intl.formatMessage(messages.close)}
+            icon="times"
+            onClick={onClose}
+            size={16}
+          />
+          <FormattedMessage id="status.embed" defaultMessage="Embed" />
         </div>
 
-        <div className='report-modal__container embed-modal__container' style={{ display: 'block' }}>
-          <p className='hint'>
-            <FormattedMessage id='embed.instructions' defaultMessage='Embed this status on your website by copying the code below.' />
+        <div
+          className="report-modal__container embed-modal__container"
+          style={{ display: 'block' }}
+        >
+          <p className="hint">
+            <FormattedMessage
+              id="embed.instructions"
+              defaultMessage="Embed this status on your website by copying the code below."
+            />
           </p>
 
           <input
-            type='text'
-            className='embed-modal__html'
+            type="text"
+            className="embed-modal__html"
             readOnly
-            value={oembed && oembed.html || ''}
+            value={(oembed && oembed.html) || ''}
             onClick={this.handleTextareaClick}
           />
 
-          <p className='hint'>
-            <FormattedMessage id='embed.preview' defaultMessage='Here is what it will look like:' />
+          <p className="hint">
+            <FormattedMessage
+              id="embed.preview"
+              defaultMessage="Here is what it will look like:"
+            />
           </p>
 
           <iframe
-            className='embed-modal__iframe'
-            frameBorder='0'
+            className="embed-modal__iframe"
+            frameBorder="0"
             ref={this.setIframeRef}
-            sandbox='allow-same-origin'
-            title='preview'
+            sandbox="allow-same-origin"
+            title="preview"
           />
         </div>
       </div>
     );
   }
-
 }

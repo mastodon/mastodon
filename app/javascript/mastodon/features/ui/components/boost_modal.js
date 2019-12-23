@@ -12,13 +12,16 @@ import Icon from 'mastodon/components/icon';
 import AttachmentList from 'mastodon/components/attachment_list';
 
 const messages = defineMessages({
-  cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
+  cancel_reblog: {
+    id: 'status.cancel_reblog_private',
+    defaultMessage: 'Unboost',
+  },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
 });
 
-export default @injectIntl
+export default
+@injectIntl
 class BoostModal extends ImmutablePureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -37,35 +40,50 @@ class BoostModal extends ImmutablePureComponent {
   handleReblog = () => {
     this.props.onReblog(this.props.status);
     this.props.onClose();
-  }
+  };
 
-  handleAccountClick = (e) => {
+  handleAccountClick = e => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.props.onClose();
-      this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+      this.context.router.history.push(
+        `/accounts/${this.props.status.getIn(['account', 'id'])}`,
+      );
     }
-  }
+  };
 
-  setRef = (c) => {
+  setRef = c => {
     this.button = c;
-  }
+  };
 
-  render () {
+  render() {
     const { status, intl } = this.props;
-    const buttonText = status.get('reblogged') ? messages.cancel_reblog : messages.reblog;
+    const buttonText = status.get('reblogged')
+      ? messages.cancel_reblog
+      : messages.reblog;
 
     return (
-      <div className='modal-root__modal boost-modal'>
-        <div className='boost-modal__container'>
-          <div className='status light'>
-            <div className='boost-modal__status-header'>
-              <div className='boost-modal__status-time'>
-                <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+      <div className="modal-root__modal boost-modal">
+        <div className="boost-modal__container">
+          <div className="status light">
+            <div className="boost-modal__status-header">
+              <div className="boost-modal__status-time">
+                <a
+                  href={status.get('url')}
+                  className="status__relative-time"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <RelativeTimestamp timestamp={status.get('created_at')} />
+                </a>
               </div>
 
-              <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name'>
-                <div className='status__avatar'>
+              <a
+                onClick={this.handleAccountClick}
+                href={status.getIn(['account', 'url'])}
+                className="status__display-name"
+              >
+                <div className="status__avatar">
                   <Avatar account={status.get('account')} size={48} />
                 </div>
 
@@ -76,20 +94,32 @@ class BoostModal extends ImmutablePureComponent {
             <StatusContent status={status} />
 
             {status.get('media_attachments').size > 0 && (
-              <AttachmentList
-                compact
-                media={status.get('media_attachments')}
-              />
+              <AttachmentList compact media={status.get('media_attachments')} />
             )}
           </div>
         </div>
 
-        <div className='boost-modal__action-bar'>
-          <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} /></div>
-          <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} ref={this.setRef} />
+        <div className="boost-modal__action-bar">
+          <div>
+            <FormattedMessage
+              id="boost_modal.combo"
+              defaultMessage="You can press {combo} to skip this next time"
+              values={{
+                combo: (
+                  <span>
+                    Shift + <Icon id="retweet" />
+                  </span>
+                ),
+              }}
+            />
+          </div>
+          <Button
+            text={intl.formatMessage(buttonText)}
+            onClick={this.handleReblog}
+            ref={this.setRef}
+          />
         </div>
       </div>
     );
   }
-
 }

@@ -20,7 +20,9 @@ import { Map as ImmutableMap, fromJS } from 'immutable';
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 
 const importStatuses = (state, statuses) =>
-  state.withMutations(mutable => statuses.forEach(status => importStatus(mutable, status)));
+  state.withMutations(mutable =>
+    statuses.forEach(status => importStatus(mutable, status)),
+  );
 
 const deleteStatus = (state, id, references) => {
   references.forEach(ref => {
@@ -33,49 +35,60 @@ const deleteStatus = (state, id, references) => {
 const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
-  switch(action.type) {
-  case STATUS_IMPORT:
-    return importStatus(state, action.status);
-  case STATUSES_IMPORT:
-    return importStatuses(state, action.statuses);
-  case FAVOURITE_REQUEST:
-    return state.setIn([action.status.get('id'), 'favourited'], true);
-  case UNFAVOURITE_SUCCESS:
-    const favouritesCount = action.status.get('favourites_count');
-    return state.setIn([action.status.get('id'), 'favourites_count'], favouritesCount - 1);
-  case FAVOURITE_FAIL:
-    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'favourited'], false);
-  case BOOKMARK_REQUEST:
-    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], true);
-  case BOOKMARK_FAIL:
-    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], false);
-  case REBLOG_REQUEST:
-    return state.setIn([action.status.get('id'), 'reblogged'], true);
-  case REBLOG_FAIL:
-    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'reblogged'], false);
-  case STATUS_MUTE_SUCCESS:
-    return state.setIn([action.id, 'muted'], true);
-  case STATUS_UNMUTE_SUCCESS:
-    return state.setIn([action.id, 'muted'], false);
-  case STATUS_REVEAL:
-    return state.withMutations(map => {
-      action.ids.forEach(id => {
-        if (!(state.get(id) === undefined)) {
-          map.setIn([id, 'hidden'], false);
-        }
+  switch (action.type) {
+    case STATUS_IMPORT:
+      return importStatus(state, action.status);
+    case STATUSES_IMPORT:
+      return importStatuses(state, action.statuses);
+    case FAVOURITE_REQUEST:
+      return state.setIn([action.status.get('id'), 'favourited'], true);
+    case UNFAVOURITE_SUCCESS:
+      const favouritesCount = action.status.get('favourites_count');
+      return state.setIn(
+        [action.status.get('id'), 'favourites_count'],
+        favouritesCount - 1,
+      );
+    case FAVOURITE_FAIL:
+      return state.get(action.status.get('id')) === undefined
+        ? state
+        : state.setIn([action.status.get('id'), 'favourited'], false);
+    case BOOKMARK_REQUEST:
+      return state.get(action.status.get('id')) === undefined
+        ? state
+        : state.setIn([action.status.get('id'), 'bookmarked'], true);
+    case BOOKMARK_FAIL:
+      return state.get(action.status.get('id')) === undefined
+        ? state
+        : state.setIn([action.status.get('id'), 'bookmarked'], false);
+    case REBLOG_REQUEST:
+      return state.setIn([action.status.get('id'), 'reblogged'], true);
+    case REBLOG_FAIL:
+      return state.get(action.status.get('id')) === undefined
+        ? state
+        : state.setIn([action.status.get('id'), 'reblogged'], false);
+    case STATUS_MUTE_SUCCESS:
+      return state.setIn([action.id, 'muted'], true);
+    case STATUS_UNMUTE_SUCCESS:
+      return state.setIn([action.id, 'muted'], false);
+    case STATUS_REVEAL:
+      return state.withMutations(map => {
+        action.ids.forEach(id => {
+          if (!(state.get(id) === undefined)) {
+            map.setIn([id, 'hidden'], false);
+          }
+        });
       });
-    });
-  case STATUS_HIDE:
-    return state.withMutations(map => {
-      action.ids.forEach(id => {
-        if (!(state.get(id) === undefined)) {
-          map.setIn([id, 'hidden'], true);
-        }
+    case STATUS_HIDE:
+      return state.withMutations(map => {
+        action.ids.forEach(id => {
+          if (!(state.get(id) === undefined)) {
+            map.setIn([id, 'hidden'], true);
+          }
+        });
       });
-    });
-  case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.references);
-  default:
-    return state;
+    case TIMELINE_DELETE:
+      return deleteStatus(state, action.id, action.references);
+    default:
+      return state;
   }
-};
+}

@@ -4,15 +4,16 @@ import detectPassiveEvents from 'detect-passive-events';
 import { scrollTop } from '../scroll';
 
 export default class Column extends React.PureComponent {
-
   static propTypes = {
     children: PropTypes.node,
     label: PropTypes.string,
     bindToDocument: PropTypes.bool,
   };
 
-  scrollTop () {
-    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
+  scrollTop() {
+    const scrollable = this.props.bindToDocument
+      ? document.scrollingElement
+      : this.node.querySelector('.scrollable');
 
     if (!scrollable) {
       return;
@@ -27,21 +28,29 @@ export default class Column extends React.PureComponent {
     }
 
     this._interruptScrollAnimation();
-  }
+  };
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.bindToDocument) {
-      document.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+      document.addEventListener(
+        'wheel',
+        this.handleWheel,
+        detectPassiveEvents.hasSupport ? { passive: true } : false,
+      );
     } else {
-      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+      this.node.addEventListener(
+        'wheel',
+        this.handleWheel,
+        detectPassiveEvents.hasSupport ? { passive: true } : false,
+      );
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.props.bindToDocument) {
       document.removeEventListener('wheel', this.handleWheel);
     } else {
@@ -49,14 +58,18 @@ export default class Column extends React.PureComponent {
     }
   }
 
-  render () {
+  render() {
     const { label, children } = this.props;
 
     return (
-      <div role='region' aria-label={label} className='column' ref={this.setRef}>
+      <div
+        role="region"
+        aria-label={label}
+        className="column"
+        ref={this.setRef}
+      >
         {children}
       </div>
     );
   }
-
 }

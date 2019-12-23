@@ -9,35 +9,56 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 export default class NavigationBar extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     onLogout: PropTypes.func.isRequired,
     onClose: PropTypes.func,
   };
 
-  render () {
+  render() {
     return (
-      <div className='navigation-bar'>
-        <Permalink href={this.props.account.get('url')} to={`/accounts/${this.props.account.get('id')}`}>
-          <span style={{ display: 'none' }}>{this.props.account.get('acct')}</span>
+      <div className="navigation-bar">
+        <Permalink
+          href={this.props.account.get('url')}
+          to={`/accounts/${this.props.account.get('id')}`}
+        >
+          <span style={{ display: 'none' }}>
+            {this.props.account.get('acct')}
+          </span>
           <Avatar account={this.props.account} size={48} />
         </Permalink>
 
-        <div className='navigation-bar__profile'>
-          <Permalink href={this.props.account.get('url')} to={`/accounts/${this.props.account.get('id')}`}>
-            <strong className='navigation-bar__profile-account'>@{this.props.account.get('acct')}</strong>
+        <div className="navigation-bar__profile">
+          <Permalink
+            href={this.props.account.get('url')}
+            to={`/accounts/${this.props.account.get('id')}`}
+          >
+            <strong className="navigation-bar__profile-account">
+              @{this.props.account.get('acct')}
+            </strong>
           </Permalink>
 
-          <a href='/settings/profile' className='navigation-bar__profile-edit'><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
+          <a href="/settings/profile" className="navigation-bar__profile-edit">
+            <FormattedMessage
+              id="navigation_bar.edit_profile"
+              defaultMessage="Edit profile"
+            />
+          </a>
         </div>
 
-        <div className='navigation-bar__actions'>
-          <IconButton className='close' title='' icon='close' onClick={this.props.onClose} />
-          <ActionBar account={this.props.account} onLogout={this.props.onLogout} />
+        <div className="navigation-bar__actions">
+          <IconButton
+            className="close"
+            title=""
+            icon="close"
+            onClick={this.props.onClose}
+          />
+          <ActionBar
+            account={this.props.account}
+            onLogout={this.props.onLogout}
+          />
         </div>
       </div>
     );
   }
-
 }

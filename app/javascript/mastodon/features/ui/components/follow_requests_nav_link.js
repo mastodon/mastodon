@@ -8,32 +8,49 @@ import { List as ImmutableList } from 'immutable';
 import { FormattedMessage } from 'react-intl';
 
 const mapStateToProps = state => ({
-  count: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
+  count: state.getIn(
+    ['user_lists', 'follow_requests', 'items'],
+    ImmutableList(),
+  ).size,
 });
 
-export default @withRouter
+export default
+@withRouter
 @connect(mapStateToProps)
 class FollowRequestsNavLink extends React.Component {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     count: PropTypes.number.isRequired,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
 
     dispatch(fetchFollowRequests());
   }
 
-  render () {
+  render() {
     const { count } = this.props;
 
     if (count === 0) {
       return null;
     }
 
-    return <NavLink className='column-link column-link--transparent' to='/follow_requests'><IconWithBadge className='column-link__icon' id='user-plus' count={count} /><FormattedMessage id='navigation_bar.follow_requests' defaultMessage='Follow requests' /></NavLink>;
+    return (
+      <NavLink
+        className="column-link column-link--transparent"
+        to="/follow_requests"
+      >
+        <IconWithBadge
+          className="column-link__icon"
+          id="user-plus"
+          count={count}
+        />
+        <FormattedMessage
+          id="navigation_bar.follow_requests"
+          defaultMessage="Follow requests"
+        />
+      </NavLink>
+    );
   }
-
 }

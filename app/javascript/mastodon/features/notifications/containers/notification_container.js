@@ -9,10 +9,7 @@ import {
   unreblog,
   unfavourite,
 } from '../../../actions/interactions';
-import {
-  hideStatus,
-  revealStatus,
-} from '../../../actions/statuses';
+import { hideStatus, revealStatus } from '../../../actions/statuses';
 import { boostModal } from '../../../initial_state';
 
 const makeMapStateToProps = () => {
@@ -20,10 +17,16 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, props) => {
-    const notification = getNotification(state, props.notification, props.accountId);
+    const notification = getNotification(
+      state,
+      props.notification,
+      props.accountId,
+    );
     return {
       notification: notification,
-      status: notification.get('status') ? getStatus(state, { id: notification.get('status') }) : null,
+      status: notification.get('status')
+        ? getStatus(state, { id: notification.get('status') })
+        : null,
     };
   };
 
@@ -35,11 +38,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(mentionCompose(account, router));
   },
 
-  onModalReblog (status) {
+  onModalReblog(status) {
     dispatch(reblog(status));
   },
 
-  onReblog (status, e) {
+  onReblog(status, e) {
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
@@ -51,7 +54,7 @@ const mapDispatchToProps = dispatch => ({
     }
   },
 
-  onFavourite (status) {
+  onFavourite(status) {
     if (status.get('favourited')) {
       dispatch(unfavourite(status));
     } else {
@@ -59,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
     }
   },
 
-  onToggleHidden (status) {
+  onToggleHidden(status) {
     if (status.get('hidden')) {
       dispatch(revealStatus(status.get('id')));
     } else {

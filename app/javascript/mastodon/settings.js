@@ -1,5 +1,4 @@
 export default class Settings {
-
   constructor(keyBase = null) {
     this.keyBase = keyBase;
   }
@@ -35,13 +34,13 @@ export default class Settings {
       const key = this.generateKey(id);
       try {
         localStorage.removeItem(key);
-      } catch (e) {
-      }
+      } catch (e) {}
     }
     return data;
   }
-
 }
 
-export const pushNotificationsSetting = new Settings('mastodon_push_notification_data');
+export const pushNotificationsSetting = new Settings(
+  'mastodon_push_notification_data',
+);
 export const tagHistory = new Settings('mastodon_tag_history');

@@ -7,18 +7,23 @@ import { getAlerts } from '../../../selectors';
 const mapStateToProps = (state, { intl }) => {
   const notifications = getAlerts(state);
 
-  notifications.forEach(notification => ['title', 'message'].forEach(key => {
-    const value = notification[key];
+  notifications.forEach(notification =>
+    ['title', 'message'].forEach(key => {
+      const value = notification[key];
 
-    if (typeof value === 'object') {
-      notification[key] = intl.formatMessage(value, notification[`${key}_values`]);
-    }
-  }));
+      if (typeof value === 'object') {
+        notification[key] = intl.formatMessage(
+          value,
+          notification[`${key}_values`],
+        );
+      }
+    }),
+  );
 
   return { notifications };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     onDismiss: alert => {
       dispatch(dismissAlert(alert));
@@ -26,4 +31,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(NotificationStack));
+export default injectIntl(
+  connect(mapStateToProps, mapDispatchToProps)(NotificationStack),
+);

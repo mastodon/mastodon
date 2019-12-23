@@ -23,44 +23,43 @@ const mapStateToProps = state => ({
   isSubmitting: state.getIn(['compose', 'is_submitting']),
   isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
   isUploading: state.getIn(['compose', 'is_uploading']),
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
+  showSearch:
+    state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-  onChange (text) {
+const mapDispatchToProps = dispatch => ({
+  onChange(text) {
     dispatch(changeCompose(text));
   },
 
-  onSubmit (router) {
+  onSubmit(router) {
     dispatch(submitCompose(router));
   },
 
-  onClearSuggestions () {
+  onClearSuggestions() {
     dispatch(clearComposeSuggestions());
   },
 
-  onFetchSuggestions (token) {
+  onFetchSuggestions(token) {
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected (position, token, suggestion, path) {
+  onSuggestionSelected(position, token, suggestion, path) {
     dispatch(selectComposeSuggestion(position, token, suggestion, path));
   },
 
-  onChangeSpoilerText (checked) {
+  onChangeSpoilerText(checked) {
     dispatch(changeComposeSpoilerText(checked));
   },
 
-  onPaste (files) {
+  onPaste(files) {
     dispatch(uploadCompose(files));
   },
 
-  onPickEmoji (position, data, needsSpace) {
+  onPickEmoji(position, data, needsSpace) {
     dispatch(insertEmojiCompose(position, data, needsSpace));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);

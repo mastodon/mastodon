@@ -2,113 +2,144 @@ import EXIF from 'exif-js';
 
 const MAX_IMAGE_PIXELS = 1638400; // 1280x1280px
 
-const getImageUrl = inputFile => new Promise((resolve, reject) => {
-  if (window.URL && URL.createObjectURL) {
-    try {
-      resolve(URL.createObjectURL(inputFile));
-    } catch (error) {
-      reject(error);
+const getImageUrl = inputFile =>
+  new Promise((resolve, reject) => {
+    if (window.URL && URL.createObjectURL) {
+      try {
+        resolve(URL.createObjectURL(inputFile));
+      } catch (error) {
+        reject(error);
+      }
+      return;
     }
-    return;
-  }
 
-  const reader = new FileReader();
-  reader.onerror = (...args) => reject(...args);
-  reader.onload  = ({ target }) => resolve(target.result);
+    const reader = new FileReader();
+    reader.onerror = (...args) => reject(...args);
+    reader.onload = ({ target }) => resolve(target.result);
 
-  reader.readAsDataURL(inputFile);
-});
-
-const loadImage = inputFile => new Promise((resolve, reject) => {
-  getImageUrl(inputFile).then(url => {
-    const img = new Image();
-
-    img.onerror = (...args) => reject(...args);
-    img.onload  = () => resolve(img);
-
-    img.src = url;
-  }).catch(reject);
-});
-
-const getOrientation = (img, type = 'image/png') => new Promise(resolve => {
-  if (type !== 'image/jpeg') {
-    resolve(1);
-    return;
-  }
-
-  EXIF.getData(img, () => {
-    const orientation = EXIF.getTag(img, 'Orientation');
-    resolve(orientation);
+    reader.readAsDataURL(inputFile);
   });
-});
 
-const processImage = (img, { width, height, orientation, type = 'image/png' }) => new Promise(resolve => {
-  const canvas  = document.createElement('canvas');
+const loadImage = inputFile =>
+  new Promise((resolve, reject) => {
+    getImageUrl(inputFile)
+      .then(url => {
+        const img = new Image();
 
-  if (4 < orientation && orientation < 9) {
-    canvas.width  = height;
-    canvas.height = width;
-  } else {
-    canvas.width  = width;
-    canvas.height = height;
-  }
+        img.onerror = (...args) => reject(...args);
+        img.onload = () => resolve(img);
 
-  const context = canvas.getContext('2d');
+        img.src = url;
+      })
+      .catch(reject);
+  });
 
-  switch (orientation) {
-  case 2: context.transform(-1, 0, 0, 1, width, 0); break;
-  case 3: context.transform(-1, 0, 0, -1, width, height); break;
-  case 4: context.transform(1, 0, 0, -1, 0, height); break;
-  case 5: context.transform(0, 1, 1, 0, 0, 0); break;
-  case 6: context.transform(0, 1, -1, 0, height, 0); break;
-  case 7: context.transform(0, -1, -1, 0, height, width); break;
-  case 8: context.transform(0, -1, 1, 0, 0, width); break;
-  }
+const getOrientation = (img, type = 'image/png') =>
+  new Promise(resolve => {
+    if (type !== 'image/jpeg') {
+      resolve(1);
+      return;
+    }
 
-  context.drawImage(img, 0, 0, width, height);
+    EXIF.getData(img, () => {
+      const orientation = EXIF.getTag(img, 'Orientation');
+      resolve(orientation);
+    });
+  });
 
-  // The Tor Browser and maybe other browsers may prevent reading from canvas
-  // and return an all-white image instead. Assume reading failed if the resized
-  // image is perfectly white.
-  const imageData = context.getImageData(0, 0, width, height);
-  if (imageData.data.every(value => value === 255)) {
-    throw 'Failed to read from canvas';
-  }
+const processImage = (
+  img,
+  { width, height, orientation, type = 'image/png' },
+) =>
+  new Promise(resolve => {
+    const canvas = document.createElement('canvas');
 
-  canvas.toBlob(resolve, type);
-});
+    if (4 < orientation && orientation < 9) {
+      canvas.width = height;
+      canvas.height = width;
+    } else {
+      canvas.width = width;
+      canvas.height = height;
+    }
 
-const resizeImage = (img, type = 'image/png') => new Promise((resolve, reject) => {
-  const { width, height } = img;
+    const context = canvas.getContext('2d');
 
-  const newWidth  = Math.round(Math.sqrt(MAX_IMAGE_PIXELS * (width / height)));
-  const newHeight = Math.round(Math.sqrt(MAX_IMAGE_PIXELS * (height / width)));
+    switch (orientation) {
+      case 2:
+        context.transform(-1, 0, 0, 1, width, 0);
+        break;
+      case 3:
+        context.transform(-1, 0, 0, -1, width, height);
+        break;
+      case 4:
+        context.transform(1, 0, 0, -1, 0, height);
+        break;
+      case 5:
+        context.transform(0, 1, 1, 0, 0, 0);
+        break;
+      case 6:
+        context.transform(0, 1, -1, 0, height, 0);
+        break;
+      case 7:
+        context.transform(0, -1, -1, 0, height, width);
+        break;
+      case 8:
+        context.transform(0, -1, 1, 0, 0, width);
+        break;
+    }
 
-  getOrientation(img, type)
-    .then(orientation => processImage(img, {
-      width: newWidth,
-      height: newHeight,
-      orientation,
-      type,
-    }))
-    .then(resolve)
-    .catch(reject);
-});
+    context.drawImage(img, 0, 0, width, height);
 
-export default inputFile => new Promise((resolve, reject) => {
-  if (!inputFile.type.match(/image.*/) || inputFile.type === 'image/gif') {
-    resolve(inputFile);
-    return;
-  }
+    // The Tor Browser and maybe other browsers may prevent reading from canvas
+    // and return an all-white image instead. Assume reading failed if the resized
+    // image is perfectly white.
+    const imageData = context.getImageData(0, 0, width, height);
+    if (imageData.data.every(value => value === 255)) {
+      throw 'Failed to read from canvas';
+    }
 
-  loadImage(inputFile).then(img => {
-    if (img.width * img.height < MAX_IMAGE_PIXELS) {
+    canvas.toBlob(resolve, type);
+  });
+
+const resizeImage = (img, type = 'image/png') =>
+  new Promise((resolve, reject) => {
+    const { width, height } = img;
+
+    const newWidth = Math.round(Math.sqrt(MAX_IMAGE_PIXELS * (width / height)));
+    const newHeight = Math.round(
+      Math.sqrt(MAX_IMAGE_PIXELS * (height / width)),
+    );
+
+    getOrientation(img, type)
+      .then(orientation =>
+        processImage(img, {
+          width: newWidth,
+          height: newHeight,
+          orientation,
+          type,
+        }),
+      )
+      .then(resolve)
+      .catch(reject);
+  });
+
+export default inputFile =>
+  new Promise((resolve, reject) => {
+    if (!inputFile.type.match(/image.*/) || inputFile.type === 'image/gif') {
       resolve(inputFile);
       return;
     }
 
-    resizeImage(img, inputFile.type)
-      .then(resolve)
-      .catch(() => resolve(inputFile));
-  }).catch(reject);
-});
+    loadImage(inputFile)
+      .then(img => {
+        if (img.width * img.height < MAX_IMAGE_PIXELS) {
+          resolve(inputFile);
+          return;
+        }
+
+        resizeImage(img, inputFile.type)
+          .then(resolve)
+          .catch(() => resolve(inputFile));
+      })
+      .catch(reject);
+  });

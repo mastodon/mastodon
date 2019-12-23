@@ -12,7 +12,6 @@ import { autoPlayGif } from 'mastodon/initial_state';
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
 export default class StatusContent extends React.PureComponent {
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -30,7 +29,7 @@ export default class StatusContent extends React.PureComponent {
     collapsed: null, //  `collapsed: null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
   };
 
-  _updateStatusLinks () {
+  _updateStatusLinks() {
     const node = this.node;
 
     if (!node) {
@@ -46,13 +45,30 @@ export default class StatusContent extends React.PureComponent {
       }
       link.classList.add('status-link');
 
-      let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      let mention = this.props.status
+        .get('mentions')
+        .find(item => link.href === item.get('url'));
 
       if (mention) {
-        link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
+        link.addEventListener(
+          'click',
+          this.onMentionClick.bind(this, mention),
+          false,
+        );
         link.setAttribute('title', mention.get('acct'));
-      } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
-        link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+      } else if (
+        link.textContent[0] === '#' ||
+        (link.previousSibling &&
+          link.previousSibling.textContent &&
+          link.previousSibling.textContent[
+            link.previousSibling.textContent.length - 1
+          ] === '#')
+      ) {
+        link.addEventListener(
+          'click',
+          this.onHashtagClick.bind(this, link.text),
+          false,
+        );
       } else {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
@@ -63,17 +79,17 @@ export default class StatusContent extends React.PureComponent {
     }
 
     if (
-      this.props.collapsable
-      && this.props.onClick
-      && this.state.collapsed === null
-      && node.clientHeight > MAX_HEIGHT
-      && this.props.status.get('spoiler_text').length === 0
+      this.props.collapsable &&
+      this.props.onClick &&
+      this.state.collapsed === null &&
+      node.clientHeight > MAX_HEIGHT &&
+      this.props.status.get('spoiler_text').length === 0
     ) {
       this.setState({ collapsed: true });
     }
   }
 
-  _updateStatusEmojis () {
+  _updateStatusEmojis() {
     const node = this.node;
 
     if (!node || autoPlayGif) {
@@ -94,12 +110,12 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this._updateStatusLinks();
     this._updateStatusEmojis();
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this._updateStatusLinks();
     this._updateStatusEmojis();
   }
@@ -109,7 +125,7 @@ export default class StatusContent extends React.PureComponent {
       e.preventDefault();
       this.context.router.history.push(`/accounts/${mention.get('id')}`);
     }
-  }
+  };
 
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '');
@@ -118,31 +134,38 @@ export default class StatusContent extends React.PureComponent {
       e.preventDefault();
       this.context.router.history.push(`/timelines/tag/${hashtag}`);
     }
-  }
+  };
 
   handleEmojiMouseEnter = ({ target }) => {
     target.src = target.getAttribute('data-original');
-  }
+  };
 
   handleEmojiMouseLeave = ({ target }) => {
     target.src = target.getAttribute('data-static');
-  }
+  };
 
-  handleMouseDown = (e) => {
+  handleMouseDown = e => {
     this.startXY = [e.clientX, e.clientY];
-  }
+  };
 
-  handleMouseUp = (e) => {
+  handleMouseUp = e => {
     if (!this.startXY) {
       return;
     }
 
-    const [ startX, startY ] = this.startXY;
-    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
+    const [startX, startY] = this.startXY;
+    const [deltaX, deltaY] = [
+      Math.abs(e.clientX - startX),
+      Math.abs(e.clientY - startY),
+    ];
 
     let element = e.target;
     while (element) {
-      if (element.localName === 'button' || element.localName === 'a' || element.localName === 'label') {
+      if (
+        element.localName === 'button' ||
+        element.localName === 'a' ||
+        element.localName === 'label'
+      ) {
         return;
       }
       element = element.parentNode;
@@ -153,9 +176,9 @@ export default class StatusContent extends React.PureComponent {
     }
 
     this.startXY = null;
-  }
+  };
 
-  handleSpoilerClick = (e) => {
+  handleSpoilerClick = e => {
     e.preventDefault();
 
     if (this.props.onExpandedToggle) {
@@ -164,20 +187,22 @@ export default class StatusContent extends React.PureComponent {
     } else {
       this.setState({ hidden: !this.state.hidden });
     }
-  }
+  };
 
-  setRef = (c) => {
+  setRef = c => {
     this.node = c;
-  }
+  };
 
-  render () {
+  render() {
     const { status } = this.props;
 
     if (status.get('content').length === 0) {
       return null;
     }
 
-    const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const hidden = this.props.onExpandedToggle
+      ? !this.props.expanded
+      : this.state.hidden;
 
     const content = { __html: status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -193,47 +218,108 @@ export default class StatusContent extends React.PureComponent {
     }
 
     const readMoreButton = (
-      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
-        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
+      <button
+        className="status__content__read-more-button"
+        onClick={this.props.onClick}
+        key="read-more"
+      >
+        <FormattedMessage id="status.read_more" defaultMessage="Read more" />
+        <Icon id="angle-right" fixedWidth />
       </button>
     );
 
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
 
-      const mentionLinks = status.get('mentions').map(item => (
-        <Permalink to={`/accounts/${item.get('id')}`} href={item.get('url')} key={item.get('id')} className='mention'>
-          @<span>{item.get('username')}</span>
-        </Permalink>
-      )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
+      const mentionLinks = status
+        .get('mentions')
+        .map(item => (
+          <Permalink
+            to={`/accounts/${item.get('id')}`}
+            href={item.get('url')}
+            key={item.get('id')}
+            className="mention"
+          >
+            @<span>{item.get('username')}</span>
+          </Permalink>
+        ))
+        .reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+      const toggleText = hidden ? (
+        <FormattedMessage id="status.show_more" defaultMessage="Show more" />
+      ) : (
+        <FormattedMessage id="status.show_less" defaultMessage="Show less" />
+      );
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
-            <span dangerouslySetInnerHTML={spoilerContent} />
-            {' '}
-            <button tabIndex='0' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick}>{toggleText}</button>
+        <div
+          className={classNames}
+          ref={this.setRef}
+          tabIndex="0"
+          style={directionStyle}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+        >
+          <p
+            style={{
+              marginBottom:
+                hidden && status.get('mentions').isEmpty() ? '0px' : null,
+            }}
+          >
+            <span dangerouslySetInnerHTML={spoilerContent} />{' '}
+            <button
+              tabIndex="0"
+              className={`status__content__spoiler-link ${
+                hidden
+                  ? 'status__content__spoiler-link--show-more'
+                  : 'status__content__spoiler-link--show-less'
+              }`}
+              onClick={this.handleSpoilerClick}
+            >
+              {toggleText}
+            </button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
+          <div
+            tabIndex={!hidden ? 0 : null}
+            className={`status__content__text ${
+              !hidden ? 'status__content__text--visible' : ''
+            }`}
+            style={directionStyle}
+            dangerouslySetInnerHTML={content}
+          />
 
-          {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+          {!hidden && !!status.get('poll') && (
+            <PollContainer pollId={status.get('poll')} />
+          )}
         </div>
       );
     } else if (this.props.onClick) {
       const output = [
-        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content'>
-          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} />
+        <div
+          className={classNames}
+          ref={this.setRef}
+          tabIndex="0"
+          style={directionStyle}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          key="status-content"
+        >
+          <div
+            className="status__content__text status__content__text--visible"
+            style={directionStyle}
+            dangerouslySetInnerHTML={content}
+          />
 
-          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+          {!!status.get('poll') && (
+            <PollContainer pollId={status.get('poll')} />
+          )}
         </div>,
       ];
 
@@ -244,13 +330,23 @@ export default class StatusContent extends React.PureComponent {
       return output;
     } else {
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle}>
-          <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} />
+        <div
+          className={classNames}
+          ref={this.setRef}
+          tabIndex="0"
+          style={directionStyle}
+        >
+          <div
+            className="status__content__text status__content__text--visible"
+            style={directionStyle}
+            dangerouslySetInnerHTML={content}
+          />
 
-          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+          {!!status.get('poll') && (
+            <PollContainer pollId={status.get('poll')} />
+          )}
         </div>
       );
     }
   }
-
 }

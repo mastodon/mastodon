@@ -5,24 +5,40 @@ import { expandSpoilers } from '../../initial_state';
 
 const domParser = new DOMParser();
 
-const makeEmojiMap = record => record.emojis.reduce((obj, emoji) => {
-  obj[`:${emoji.shortcode}:`] = emoji;
-  return obj;
-}, {});
+const makeEmojiMap = record =>
+  record.emojis.reduce((obj, emoji) => {
+    obj[`:${emoji.shortcode}:`] = emoji;
+    return obj;
+  }, {});
 
-export function searchTextFromRawStatus (status) {
-  const spoilerText   = status.spoiler_text || '';
-  const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-  return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+export function searchTextFromRawStatus(status) {
+  const spoilerText = status.spoiler_text || '';
+  const searchContent = [spoilerText, status.content]
+    .concat(
+      status.poll && status.poll.options
+        ? status.poll.options.map(option => option.title)
+        : [],
+    )
+    .join('\n\n')
+    .replace(/<br\s*\/?>/g, '\n')
+    .replace(/<\/p><p>/g, '\n\n');
+  return domParser.parseFromString(searchContent, 'text/html').documentElement
+    .textContent;
 }
 
 export function normalizeAccount(account) {
   account = { ...account };
 
   const emojiMap = makeEmojiMap(account);
-  const displayName = account.display_name.trim().length === 0 ? account.username : account.display_name;
+  const displayName =
+    account.display_name.trim().length === 0
+      ? account.username
+      : account.display_name;
 
-  account.display_name_html = emojify(escapeTextContentForBrowser(displayName), emojiMap);
+  account.display_name_html = emojify(
+    escapeTextContentForBrowser(displayName),
+    emojiMap,
+  );
   account.note_emojified = emojify(account.note, emojiMap);
 
   if (account.fields) {
@@ -42,7 +58,7 @@ export function normalizeAccount(account) {
 }
 
 export function normalizeStatus(status, normalOldStatus) {
-  const normalStatus   = { ...status };
+  const normalStatus = { ...status };
   normalStatus.account = status.account.id;
 
   if (status.reblog && status.reblog.id) {
@@ -61,14 +77,30 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
     normalStatus.hidden = normalOldStatus.get('hidden');
   } else {
-    const spoilerText   = normalStatus.spoiler_text || '';
-    const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-    const emojiMap      = makeEmojiMap(normalStatus);
+    const spoilerText = normalStatus.spoiler_text || '';
+    const searchContent = [spoilerText, status.content]
+      .concat(
+        status.poll && status.poll.options
+          ? status.poll.options.map(option => option.title)
+          : [],
+      )
+      .join('\n\n')
+      .replace(/<br\s*\/?>/g, '\n')
+      .replace(/<\/p><p>/g, '\n\n');
+    const emojiMap = makeEmojiMap(normalStatus);
 
-    normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-    normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
-    normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
-    normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
+    normalStatus.search_index = domParser.parseFromString(
+      searchContent,
+      'text/html',
+    ).documentElement.textContent;
+    normalStatus.contentHtml = emojify(normalStatus.content, emojiMap);
+    normalStatus.spoilerHtml = emojify(
+      escapeTextContentForBrowser(spoilerText),
+      emojiMap,
+    );
+    normalStatus.hidden = expandSpoilers
+      ? false
+      : spoilerText.length > 0 || normalStatus.sensitive;
   }
 
   return normalStatus;
@@ -82,7 +114,10 @@ export function normalizePoll(poll) {
   normalPoll.options = poll.options.map((option, index) => ({
     ...option,
     voted: poll.own_votes && poll.own_votes.includes(index),
-    title_emojified: emojify(escapeTextContentForBrowser(option.title), emojiMap),
+    title_emojified: emojify(
+      escapeTextContentForBrowser(option.title),
+      emojiMap,
+    ),
   }));
 
   return normalPoll;

@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { autoPlayGif } from '../initial_state';
 
 export default class Avatar extends React.PureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     size: PropTypes.number.isRequired,
@@ -26,14 +25,14 @@ export default class Avatar extends React.PureComponent {
   handleMouseEnter = () => {
     if (this.props.animate) return;
     this.setState({ hovering: true });
-  }
+  };
 
   handleMouseLeave = () => {
     if (this.props.animate) return;
     this.setState({ hovering: false });
-  }
+  };
 
-  render () {
+  render() {
     const { account, size, animate, inline } = this.props;
     const { hovering } = this.state;
 
@@ -68,5 +67,4 @@ export default class Avatar extends React.PureComponent {
       />
     );
   }
-
 }
