@@ -108,14 +108,6 @@ class Status extends ImmutablePureComponent {
     this.didShowCard = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
   }
 
-  getSnapshotBeforeUpdate () {
-    if (this.props.getScrollPosition) {
-      return this.props.getScrollPosition();
-    } else {
-      return null;
-    }
-  }
-
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.status && nextProps.status.get('id') !== prevState.statusId) {
       return {
