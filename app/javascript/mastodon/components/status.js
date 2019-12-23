@@ -134,17 +134,6 @@ class Status extends ImmutablePureComponent {
     }
   }
 
-  componentWillUnmount() {
-    if (this.node && this.props.getScrollPosition) {
-      const position = this.props.getScrollPosition();
-      if (position !== null && this.node.offsetTop < position.top) {
-        requestAnimationFrame(() => {
-          this.props.updateScrollBottom(position.height - position.top);
-        });
-      }
-    }
-  }
-
   handleToggleMediaVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
   }
