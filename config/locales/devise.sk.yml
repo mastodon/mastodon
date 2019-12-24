@@ -1,4 +1,3 @@
----
 sk:
   devise:
     confirmations:
@@ -46,9 +45,11 @@ sk:
         subject: 'Mastodon: Pokyny pre obnovu hesla'
         title: Nastav nové heslo
       two_factor_disabled:
+        explanation: Dvojfázové overovanie tvojho účtu bolo vypnuté. Teraz sa môžeš prihlásiť len pomocou emailu a hesla.
         subject: 'Mastodon: Dvojfázové overovanie vypnuté'
         title: 2FA vypnuté
       two_factor_enabled:
+        explanation: Dvojfázové overovanie bolo zapnuté pre tvoj účet. Pre prihlásenie budeš potrebovať token vygenerovaný pre TOTP aplikáciu, ktorá je spárovaná.
         subject: 'Mastodon: Dvojfázové overovanie zapnuté'
         title: 2FA zapnuté
       two_factor_recovery_codes_changed:
@@ -91,7 +92,7 @@ sk:
       not_found: nenájdený
       not_locked: nebol zamknutý
       not_saved:
+        one: '1 chyba zabránila uloženiu tohto %{resource}:'
         few: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
         many: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
-        one: '1 chyba zabránila uloženiu tohto %{resource}:'
         other: "%{count} chyby zabránili uloženiu tohto %{resource}:"
