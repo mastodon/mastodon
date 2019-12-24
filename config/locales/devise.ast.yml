@@ -9,7 +9,7 @@ ast:
       unauthenticated: Precises aniciar sesión o rexistrate enantes de siguir.
     mailer:
       confirmation_instructions:
-        explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un calcu d'activala. Si nun fuisti tu, inora esti corréu.
+        explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un clic d'activala. Si nun fuisti tu, inora esti corréu.
       email_changed:
         title: Direición nueva de corréu
       reset_password_instructions:
@@ -31,3 +31,6 @@ ast:
     messages:
       already_confirmed: yá se confirmó, volvi aniciar sesión
       not_found: nun s'alcontró
+      not_saved:
+        one: '1 fallu torgó que %{resource} se guardare:'
+        other: "%{count} fallos torgó que %{resource} se guardaren:"
