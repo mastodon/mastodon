@@ -9,6 +9,7 @@ import {
   TIMELINE_CONNECT,
   TIMELINE_DISCONNECT,
   TIMELINE_LOAD_PENDING,
+  CURRENTLY_VIEWING,
 } from '../actions/timelines';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -28,6 +29,7 @@ const initialTimeline = ImmutableMap({
   hasMore: true,
   pendingItems: ImmutableList(),
   items: ImmutableList(),
+  currentlyViewing: -1,
 });
 
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent, usePendingItems) => {
@@ -168,6 +170,8 @@ export default function timelines(state = initialState, action) {
       initialTimeline,
       map => map.set('online', false).update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items)
     );
+  case CURRENTLY_VIEWING:
+    return state.update(action.timeline, initialTimeline, map => map.set('currentlyViewing', action.id));
   default:
     return state;
   }

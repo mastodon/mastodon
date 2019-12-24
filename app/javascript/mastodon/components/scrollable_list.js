@@ -36,6 +36,8 @@ export default class ScrollableList extends PureComponent {
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
     bindToDocument: PropTypes.bool,
+    currentlyViewing: PropTypes.number,
+    updateCurrentlyViewing: PropTypes.func,
   };
 
   static defaultProps = {
@@ -309,6 +311,8 @@ export default class ScrollableList extends PureComponent {
                 listLength={childrenCount}
                 intersectionObserverWrapper={this.intersectionObserverWrapper}
                 saveHeightKey={trackScroll ? `${this.context.router.route.location.key}:${scrollKey}` : null}
+                currentlyViewing={this.props.currentlyViewing}
+                updateCurrentlyViewing={this.props.updateCurrentlyViewing}
               >
                 {React.cloneElement(child, {
                   getScrollPosition: this.getScrollPosition,

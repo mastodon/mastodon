@@ -20,6 +20,8 @@ export default class IntersectionObserverArticle extends React.Component {
     cachedHeight: PropTypes.number,
     onHeightChange: PropTypes.func,
     children: PropTypes.node,
+    currentlyViewing: PropTypes.number,
+    updateCurrentlyViewing: PropTypes.func,
   };
 
   state = {
@@ -48,6 +50,8 @@ export default class IntersectionObserverArticle extends React.Component {
     );
 
     this.componentMounted = true;
+
+    if(id === this.props.currentlyViewing) this.node.scrollIntoView();
   }
 
   componentWillUnmount () {
@@ -59,6 +63,8 @@ export default class IntersectionObserverArticle extends React.Component {
 
   handleIntersection = (entry) => {
     this.entry = entry;
+
+    if(entry.intersectionRatio > 0.75 && this.props.updateCurrentlyViewing) this.props.updateCurrentlyViewing(this.id);
 
     scheduleIdleTask(this.calculateHeight);
     this.setState(this.updateStateAfterIntersection);
