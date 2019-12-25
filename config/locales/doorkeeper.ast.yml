@@ -56,10 +56,13 @@ ast:
         title: Les aplicaciones qu'autoricesti
     errors:
       messages:
+        access_denied: El dueñu del recursu o'l sirvidor d'autorización ñegó la solicitú.
         invalid_token:
           expired: Caducó'l pase d'accesu
           revoked: Revocóse'l pase d'accesu
           unknown: El pase d'accesu nun ye válidu
+        server_error: El sirvidor d'autorizaciones alcontró una condición inesperada qu'evitó que cumpliera la solicitú.
+        temporarily_unavailable: Anguaño'l sirvidor d'autorizaciones nun ye a remanar la solicitú pola mor d'una sobrecarga temporal o caltenimientu del sirvidor.
         unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú usando esti métodu.
         unsupported_response_type: El sirvidor d'autorización nun sofita esta triba de rempuesta.
     layouts:
