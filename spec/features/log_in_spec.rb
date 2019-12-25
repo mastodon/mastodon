@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "Log in" do
-  given(:email)        { "test@examle.com" }
+  given(:email)        { "test@example.com" }
   given(:password)     { "password" }
   given(:confirmed_at) { Time.zone.now }
 

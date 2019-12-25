@@ -9,8 +9,8 @@ module Paperclip
         min_side = [@current_geometry.width, @current_geometry.height].min.to_i
         options[:geometry] = "#{min_side}x#{min_side}#" if @target_geometry.square? && min_side < @target_geometry.width
       elsif options[:pixels]
-        width  = Math.sqrt(options[:pixels] * (@current_geometry.width.to_f / @current_geometry.height.to_f)).round.to_i
-        height = Math.sqrt(options[:pixels] * (@current_geometry.height.to_f / @current_geometry.width.to_f)).round.to_i
+        width  = Math.sqrt(options[:pixels] * (@current_geometry.width.to_f / @current_geometry.height)).round.to_i
+        height = Math.sqrt(options[:pixels] * (@current_geometry.height.to_f / @current_geometry.width)).round.to_i
         options[:geometry] = "#{width}x#{height}>"
       end
 

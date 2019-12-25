@@ -42,7 +42,7 @@ if ENV['S3_ENABLED'] == 'true'
 
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
-      http_open_timeout: 5,
+      http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT'){ '5' }.to_i,
       http_read_timeout: 5,
       http_idle_timeout: 5,
       retry_limit: 0,
@@ -52,7 +52,7 @@ if ENV['S3_ENABLED'] == 'true'
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
       endpoint: ENV['S3_ENDPOINT'],
-      force_path_style: true
+      force_path_style: ENV['S3_OVERRIDE_PATH_STYLE'] != 'true',
     )
 
     Paperclip::Attachment.default_options[:url] = ':s3_path_url'
@@ -89,7 +89,7 @@ else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
     use_timestamp: true,
-    path: ENV.fetch('PAPERCLIP_ROOT_PATH', ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename',
+    path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':class', ':attachment', ':id_partition', ':style', ':filename'),
     url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:class/:attachment/:id_partition/:style/:filename',
   )
 end
