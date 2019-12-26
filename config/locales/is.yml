@@ -368,11 +368,22 @@ is:
       setup: Setja upp endurvarpatengingu
       status: Staða
       title: Endurvarpar
+    report_notes:
+      created_msg: Tókst að útbúa minnispunkt skýrslu!
+      destroyed_msg: Tókst að eyða minnispunkti skýrslu!
     reports:
+      account:
+        notes:
+          one: "%{count} minnispunktur"
+          other: "%{count} minnispunktar"
+        reports:
+          one: "%{count} skýrsla"
+          other: "%{count} skýrslur"
       action_taken_by: Aðgerð framkvæmd af
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
+      by_target_domain: Lén kærða notandaaðgangsins
       comment:
         none: Ekkert
       created_at: Tilkynnt
@@ -485,6 +496,8 @@ is:
       title: Staða notendaaðganga
       with_media: Með myndum
     tags:
+      accounts_today: Einstök afnot í dag
+      accounts_week: Einstök afnot í þessari viku
       context: Samhengi
       directory: Í möppunni
       in_directory: "%{count} í möppunni"
@@ -679,6 +692,7 @@ is:
     all: Allt
     changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
+    no_batch_actions_available: Engar magnvinnsluaðgerðir tiltækar á þessari síðu
     order_by: Raða eftir
     save_changes: Vista breytingar
     validation_errors:
@@ -759,6 +773,7 @@ is:
     title: Umsjón
   notification_mailer:
     digest:
+      action: Skoða allar tilkynningar
       body: Hér er stutt yfirlit yfir þau skilaboð sem þú gætir hafa misst af síðan þú leist inn síðast %{since}
       mention: "%{name} minntist á þig í:"
       subject:
