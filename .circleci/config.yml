@@ -3,7 +3,7 @@ version: 2
 aliases:
   - &defaults
     docker:
-      - image: circleci/ruby:2.6-stretch-node
+      - image: circleci/ruby:2.6-buster-node
         environment: &ruby_environment
           BUNDLE_APP_CONFIG: ./.bundle/
           DB_HOST: localhost
@@ -105,14 +105,14 @@ jobs:
   install-ruby2.5:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.5-stretch-node
+      - image: circleci/ruby:2.5-buster-node
         environment: *ruby_environment
     <<: *install_ruby_dependencies
 
   install-ruby2.4:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.4-stretch-node
+      - image: circleci/ruby:2.4-buster-node
         environment: *ruby_environment
     <<: *install_ruby_dependencies
 
@@ -131,7 +131,7 @@ jobs:
   test-ruby2.6:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.6-stretch-node
+      - image: circleci/ruby:2.6-buster-node
         environment: *ruby_environment
       - image: circleci/postgres:10.6-alpine
         environment:
@@ -142,7 +142,7 @@ jobs:
   test-ruby2.5:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.5-stretch-node
+      - image: circleci/ruby:2.5-buster-node
         environment: *ruby_environment
       - image: circleci/postgres:10.6-alpine
         environment:
@@ -153,7 +153,7 @@ jobs:
   test-ruby2.4:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.4-stretch-node
+      - image: circleci/ruby:2.4-buster-node
         environment: *ruby_environment
       - image: circleci/postgres:10.6-alpine
         environment:
@@ -164,7 +164,7 @@ jobs:
   test-webui:
     <<: *defaults
     docker:
-      - image: circleci/node:12.9-stretch
+      - image: circleci/node:12.14-buster
     steps:
       - *attach_workspace
       - run: ./bin/retry yarn test:jest
