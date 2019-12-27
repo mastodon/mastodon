@@ -57,7 +57,7 @@ aliases:
         name: Install system dependencies
         command: |
           sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
+          sudo apt-get install -y libicu63 libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
 
   - &install_ruby_dependencies
       steps:
@@ -67,7 +67,6 @@ aliases:
 
         - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
         - *restore_ruby_dependencies
-        - run: bundle config build.charlock_holmes --with-icu-dir=/usr/local
         - run: bundle install --clean --jobs 16 --path ./vendor/bundle/ --retry 3 --with pam_authentication --without development production && bundle clean
         - save_cache:
             key: v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
