@@ -322,9 +322,10 @@ export function revealStatus(ids) {
   };
 };
 
-export function toggleStatusCollapse(id) {
+export function toggleStatusCollapse(id, isCollapsed) {
   return {
     type: STATUS_COLLAPSE,
     id,
+    isCollapsed,
   };
 }

@@ -180,8 +180,8 @@ class Status extends ImmutablePureComponent {
     this.props.onToggleHidden(this._properStatus());
   }
 
-  handleCollapsedToggle = () => {
-    this.props.onToggleCollapsed(this._properStatus());
+  handleCollapsedToggle = isCollapsed => {
+    this.props.onToggleCollapsed(this._properStatus(), isCollapsed);
   }
 
   renderLoadingMediaGallery () {
@@ -452,7 +452,7 @@ class Status extends ImmutablePureComponent {
               </a>
             </div>
 
-        <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable onCollapsedToggle={this.handleCollapsedToggle} />
+            <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} collapsable onCollapsedToggle={this.handleCollapsedToggle} />
 
             {media}
 

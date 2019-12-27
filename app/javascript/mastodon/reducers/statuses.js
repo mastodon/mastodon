@@ -75,7 +75,7 @@ export default function statuses(state = initialState, action) {
       });
     });
   case STATUS_COLLAPSE:
-    return state.updateIn([action.id, 'collapsed'], old => !old);
+    return state.setIn([action.id, 'collapsed'], action.isCollapsed);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   default:

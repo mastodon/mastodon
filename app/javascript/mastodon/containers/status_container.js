@@ -191,8 +191,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onToggleCollapsed (status) {
-    dispatch(toggleStatusCollapse(status.get('id')));
+  onToggleCollapsed (status, isCollapsed) {
+    dispatch(toggleStatusCollapse(status.get('id'), isCollapsed));
   },
 
   onBlockDomain (domain) {

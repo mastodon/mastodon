@@ -69,15 +69,7 @@ export default class StatusContent extends React.PureComponent {
           && node.clientHeight > MAX_HEIGHT
           && this.props.status.get('spoiler_text').length === 0;
 
-      if(this.props.onCollapsedToggle) {
-        if(collapsed) {
-          this.props.onCollapsedToggle();
-        } else {
-          //toggle twice, to go from null→true→false
-          this.props.onCollapsedToggle();
-          this.props.onCollapsedToggle();
-        }
-      }
+      if(this.props.onCollapsedToggle) this.props.onCollapsedToggle(collapsed);
 
       this.props.status.set('collapsed', collapsed);
     }
