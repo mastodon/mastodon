@@ -58,7 +58,8 @@ aliases:
         command: |
           sudo apt-get update
           sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
-          sudo dpkg -i http://deb.debian.org/debian/pool/main/i/icu/icu_57.1-6+deb9u3.debian.tar.xz  # TODO testing
+          sudo wget http://deb.debian.org/debian/pool/main/i/icu/icu_57.1-6+deb9u3.debian.tar.xz
+          sudo dpkg -i icu_57.1-6+deb9u3.debian.tar.xz  # TODO testing
 
   - &install_ruby_dependencies
       steps:
