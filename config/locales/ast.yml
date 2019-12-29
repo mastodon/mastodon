@@ -245,13 +245,16 @@ ast:
       '604800': 1 selmana
       '86400': 1 día
     expires_in_prompt: Enxamás
+    generate: Xenerar un enllaz d'invitación
     invited_by: 'Convidóte:'
     max_uses:
       one: 1 usu
       other: "%{count} usos"
+    prompt: Xenera y comparti enllaces con otros pa da-yos accesu a esti sirividor
     table:
       expires_at: Data de caducidá
       uses: Usos
+    title: Convidar a persones
   lists:
     errors:
       limit: Algamesti la cantidá máxima de llistes
@@ -373,6 +376,10 @@ ast:
     title: '%{name}: «%{quote}»'
     visibilities:
       private: Namái siguidores
+      private_long: Namái s'amuesen a los siguidores
+      public_long: Tol mundu los puen ver
+      unlisted: Nun llistar
+      unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
   stream_entries:
     reblogged: compartió
     sensitive_content: Conteníu sensible
