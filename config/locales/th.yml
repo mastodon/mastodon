@@ -178,6 +178,7 @@ th:
         create_domain_allow: "%{name} ได้ขึ้นบัญชีขาวโดเมน %{target}"
         create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
         create_email_domain_block: "%{name} ได้ขึ้นบัญชีดำโดเมนอีเมล %{target}"
+        demote_user: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
         destroy_domain_allow: "%{name} ได้เอาโดเมน %{target} ออกจากบัญชีขาว"
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
@@ -693,6 +694,8 @@ th:
     public_timelines: เส้นเวลาสาธารณะ
   relationships:
     activity: กิจกรรมบัญชี
+    followers: ผู้ติดตาม
+    following: กำลังติดตาม
     last_active: ใช้งานล่าสุด
     most_recent: ล่าสุด
     moved: ย้ายแล้ว
