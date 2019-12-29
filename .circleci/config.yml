@@ -39,7 +39,6 @@ aliases:
     steps:
       - checkout
       - *attach_workspace
-
       - restore_cache:
           keys:
             - v1-node-dependencies-{{ checksum "yarn.lock" }}
@@ -49,7 +48,6 @@ aliases:
           key: v1-node-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules/
-
       - *persist_to_workspace
 
   - &install_system_dependencies
