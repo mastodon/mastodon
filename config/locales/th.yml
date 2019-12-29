@@ -34,7 +34,7 @@ th:
     unavailable_content_description:
       domain: เซิร์ฟเวอร์
       reason: 'เหตุผล:'
-      rejecting_media: 'ไฟล์สื่อจากเซิร์ฟเวอร์เหล่านี้จะไม่ได้รับการประมวลผลหรือจัดเก็บ และไม่แสดงภาพขนาดย่อ ซึ่งต้องมีการคลิกไปไฟล์ต้นฉบับด้วยตนเอง:'
+      rejecting_media: 'ไฟล์สื่อจากเซิร์ฟเวอร์เหล่านี้จะไม่ได้รับการประมวลผลหรือจัดเก็บ และจะไม่แสดงภาพขนาดย่อ ต้องมีการคลิกไปยังไฟล์ต้นฉบับด้วยตนเอง:'
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
@@ -151,6 +151,7 @@ th:
         staff: พนักงาน
         user: ผู้ใช้
       search: ค้นหา
+      shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
         created_reports: รายงานที่สร้าง
         targeted_reports: รายงานโดยผู้อื่น
@@ -159,6 +160,7 @@ th:
       statuses: สถานะ
       subscribe: บอกรับ
       suspended: ระงับอยู่
+      time_in_queue: กำลังรออยู่ในคิว %{time}
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
       undo_silenced: เลิกทำการเงียบ
