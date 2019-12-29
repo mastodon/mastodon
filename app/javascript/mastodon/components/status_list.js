@@ -26,6 +26,8 @@ export default class StatusList extends ImmutablePureComponent {
     emptyMessage: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
     timelineId: PropTypes.string,
+    currentlyViewing: PropTypes.number,
+    updateCurrentlyViewing: PropTypes.func,
   };
 
   static defaultProps = {
@@ -58,6 +60,12 @@ export default class StatusList extends ImmutablePureComponent {
     this.props.onLoadMore(this.props.statusIds.size > 0 ? this.props.statusIds.last() : undefined);
   }, 300, { leading: true })
 
+  updateCurrentlyViewingWithCache = (id) => {
+    if(this.cachedCurrentlyViewing === id) return;
+    this.cachedCurrentlyViewing = id;
+    this.props.updateCurrentlyViewing(id);
+  }
+
   _selectChild (index, align_top) {
     const container = this.node.node;
     const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
@@ -79,6 +87,7 @@ export default class StatusList extends ImmutablePureComponent {
   render () {
     const { statusIds, featuredStatusIds, shouldUpdateScroll, onLoadMore, timelineId, ...other }  = this.props;
     const { isLoading, isPartial } = other;
+    other.updateCurrentlyViewing = this.updateCurrentlyViewingWithCache;
 
     if (isPartial) {
       return <RegenerationIndicator />;

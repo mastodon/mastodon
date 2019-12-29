@@ -5,6 +5,10 @@ require 'rails_helper'
 feature 'Log in' do
   include ProfileStories
 
+  given(:email)        { "test@example.com" }
+  given(:password)     { "password" }
+  given(:confirmed_at) { Time.zone.now }
+
   background do
     as_a_registered_user
     visit new_user_session_path

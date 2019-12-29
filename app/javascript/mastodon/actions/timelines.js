@@ -17,6 +17,14 @@ export const TIMELINE_LOAD_PENDING = 'TIMELINE_LOAD_PENDING';
 export const TIMELINE_DISCONNECT   = 'TIMELINE_DISCONNECT';
 export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
+export const CURRENTLY_VIEWING = 'CURRENTLY_VIEWING';
+
+export const updateCurrentlyViewing = (timeline, id) => ({
+  type: CURRENTLY_VIEWING,
+  timeline,
+  id,
+});
+
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
   timeline,
