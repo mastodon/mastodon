@@ -7,7 +7,7 @@ class RefollowWorker
 
   def perform(target_account_id)
     target_account = Account.find(target_account_id)
-    return unless target_account.protocol == :activitypub
+    return unless target_account.activitypub?
 
     target_account.passive_relationships.where(account: Account.where(domain: nil)).includes(:account).reorder(nil).find_each do |follow|
       reblogs = follow.show_reblogs?
