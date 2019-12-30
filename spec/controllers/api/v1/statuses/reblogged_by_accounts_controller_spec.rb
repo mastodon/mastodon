@@ -31,15 +31,14 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController, type: :controll
       it 'returns accounts who reblogged the status' do
         get :index, params: { status_id: status.id, limit: 2 }
         expect(body_as_json.size).to eq 2
-        expect(body_as_json[0][:id]).to eq alice.id
-        expect(body_as_json[1][:id]).to eq bob.id
+      expect([body_as_json[0][:id], body_as_json[1][:id]]).to match_array([alice.id.to_s, bob.id.to_s])
       end
 
       it 'does not return blocked users' do
         user.account.block!(bob)
         get :index, params: { status_id: status.id, limit: 2 }
         expect(body_as_json.size).to eq 1
-        expect(body_as_json[0][:id]).to eq alice.id
+        expect(body_as_json[0][:id]).to eq alice.id.to_s
       end
     end
   end
