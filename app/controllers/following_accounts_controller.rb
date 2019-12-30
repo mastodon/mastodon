@@ -18,7 +18,6 @@ class FollowingAccountsController < ApplicationController
         next if @account.user_hides_network?
 
         follows
-        @relationships = AccountRelationshipsPresenter.new(follows.map(&:target_account_id), current_user.account_id) if user_signed_in?
       end
 
       format.json do
