@@ -399,6 +399,10 @@
         "id": "status.favourite"
       },
       {
+        "defaultMessage": "Bookmark",
+        "id": "status.bookmark"
+      },
+      {
         "defaultMessage": "Expand this status",
         "id": "status.open"
       },
@@ -796,6 +800,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/blocks/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Bookmarks",
+        "id": "column.bookmarks"
+      },
+      {
+        "defaultMessage": "You don't have any bookmarked toots yet. When you bookmark one, it will show up here.",
+        "id": "empty_column.bookmarked_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/bookmarked_statuses/index.json"
   },
   {
     "descriptors": [
@@ -1529,6 +1546,10 @@
         "id": "navigation_bar.direct"
       },
       {
+        "defaultMessage": "Bookmarks",
+        "id": "navigation_bar.bookmarks"
+      },
+      {
         "defaultMessage": "Preferences",
         "id": "navigation_bar.preferences"
       },
@@ -2205,6 +2226,10 @@
         "id": "status.favourite"
       },
       {
+        "defaultMessage": "Bookmark",
+        "id": "status.bookmark"
+      },
+      {
         "defaultMessage": "Mute @{name}",
         "id": "status.mute"
       },
@@ -2619,6 +2644,10 @@
       {
         "defaultMessage": "Favourites",
         "id": "navigation_bar.favourites"
+      },
+      {
+        "defaultMessage": "Bookmarks",
+        "id": "navigation_bar.bookmarks"
       },
       {
         "defaultMessage": "Lists",
