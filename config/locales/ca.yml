@@ -29,8 +29,8 @@ ca:
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
-      one: toot
-      other: toots
+      one: estat
+      other: estats
     status_count_before: Que han escrit
     tagline: Segueix els teus amics i descobreix-ne de nous
     terms: Termes del servei
@@ -225,7 +225,7 @@ ca:
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
         update_status: "%{name} estat actualitzat per %{target}"
-      deleted_status: "(toot suprimit)"
+      deleted_status: "(estat esborrat)"
       title: Registre d'auditoria
     custom_emojis:
       assign_category: Assigna una categoria
@@ -711,7 +711,7 @@ ca:
     archive_takeout:
       date: Data
       download: Baixa l’arxiu
-      hint_html: Pots sol·licitar un arxiu dels teus <strong>toots i dels fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
+      hint_html: Pots sol·licitar un arxiu de les teves <strong>barritades i dels fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: S'està compilant el teu arxiu...
       request: Sol·licita el teu arxiu
       size: Tamany
@@ -773,7 +773,7 @@ ca:
     i_am_html: Sóc %{username} a %{service}.
     identity: Identitat
     inactive: Inactiu
-    publicize_checkbox: 'I tooteja això:'
+    publicize_checkbox: 'I barrita això:'
     publicize_toot: 'Està provat! Sóc %{username} a %{service}: %{url}'
     status: Estat de verificació
     view_proof: Veure la prova
@@ -946,16 +946,16 @@ ca:
   remote_interaction:
     favourite:
       proceed: Procedir a afavorir
-      prompt: 'Vols marcar com a favorit aquest toot:'
+      prompt: 'Vols marcar com a favorit aquesta barritada:'
     reblog:
       proceed: Procedir a impulsar
-      prompt: 'Vols impulsar aquest toot:'
+      prompt: 'Vols impulsar aquesta barritada:'
     reply:
       proceed: Procedir a respondre
-      prompt: 'Vols respondre a aquest toot:'
+      prompt: 'Vols respondre a aquesta barritada:'
   scheduled_statuses:
-    over_daily_limit: Has superat el límit de %{limit} toots programats per a aquell dia
-    over_total_limit: Has superat el limit de %{limit} toots programats
+    over_daily_limit: Has superat el límit de %{limit} barritades programades per a aquell dia
+    over_total_limit: Has superat el limit de %{limit} barritades programades
     too_soon: La data programada ha de ser futura
   sessions:
     activity: Última activitat
@@ -1039,9 +1039,9 @@ ca:
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
-      limit: Ja has fixat el màxim nombre de toots
-      ownership: No es pot fixar el toot d'algú altre
-      private: No es pot fixar el toot no públic
+      limit: Ja has fixat el màxim nombre de barritades
+      ownership: No es pot fixar la barritada d'altra persona
+      private: No es pot fixar la barritada no pública
       reblog: No es pot fixar un impuls
     poll:
       total_people:
@@ -1062,7 +1062,7 @@ ca:
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en la història federada
   stream_entries:
-    pinned: Toot fixat
+    pinned: Barritada fixada
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
   tags:
@@ -1183,7 +1183,7 @@ ca:
       explanation:
         disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
         silence: Mentre el teu compte estigui limitat només les persones que ja et segueixen veuen les teves dades en aquest servidor i pots ser exclòs de diverses llistes públiques. No obstant això, d'altres encara poden seguir-te manualment.
-        suspend: El teu compte s'ha suspès i tots els teus toots i fitxers multimèdia penjats s'han eliminat irreversiblement d'aquest servidor i dels servidors on tenies seguidors.
+        suspend: El teu compte s'ha suspès i totes les teves barritades i fitxers multimèdia penjats s'han eliminat irreversiblement d'aquest servidor i dels servidors on tenies seguidores.
       get_in_touch: Pots respondre a aquest correu electrònic per a contactar amb el personal de %{instance}.
       review_server_policies: Revisa les polítiques del servidor
       statuses: 'Concretament, per:'
