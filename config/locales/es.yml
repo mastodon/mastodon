@@ -269,7 +269,7 @@ es:
       feature_registrations: Registros
       feature_relay: Relés de federación
       feature_spam_check: Contra-spam
-      feature_timeline_preview: Vista previa de la línea de tiempo
+      feature_timeline_preview: Vista previa de la cronología
       features: Características
       hidden_service: Federación con servicios ocultos
       open_reports: informes abiertos
@@ -509,8 +509,8 @@ es:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
         title: Portada de instancia
       timeline_preview:
-        desc_html: Mostrar línea de tiempo pública en la portada
-        title: Previsualización
+        desc_html: Mostrar cronología pública en la portada
+        title: Permita acceso no autentificado a la cronología pública
       title: Ajustes del sitio
       trendable_by_default:
         desc_html: Afecta a etiquetas que no han sido previamente rechazadas
@@ -576,7 +576,7 @@ es:
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
+    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, ristra temporal federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -724,13 +724,13 @@ es:
   featured_tags:
     add_new: Añadir nuevo
     errors:
-      limit: Ya has alcanzado la cantidad máxima de hashtags
-    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
+      limit: Alcanzaste el máximo de etiquetados
+    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a las personas usuarias navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de obras creativas o proyectos a largo plazo."
   filters:
     contexts:
-      home: Timeline propio
+      home: Cronología propia
       notifications: Notificaciones
-      public: Timeline público
+      public: Cronología pública
       thread: Conversaciones
     edit:
       title: Editar filtro
@@ -748,7 +748,7 @@ es:
     resources: Recursos
     trending_now: Tendencia ahora
   generic:
-    all: Todos
+    all: Todas
     changes_saved_msg: '¡Cambios guardados con éxito!'
     copy: Copiar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
@@ -920,7 +920,7 @@ es:
   preferences:
     other: Otros
     posting_defaults: Configuración por defecto de publicaciones
-    public_timelines: Líneas de tiempo públicas
+    public_timelines: Cronologías públicas
   relationships:
     activity: Actividad de la cuenta
     dormant: Inactivo
@@ -1009,7 +1009,7 @@ es:
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar información
-    featured_tags: Hashtags destacados
+    featured_tags: Etiquetas destacadas
     identity_proofs: Pruebas de identidad
     import: Importar
     import_and_export: Importar y exportar
@@ -1202,15 +1202,15 @@ es:
       edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezar a publicar
-      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
+      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la ristra teporal local y con "etiquetas". Podrías querer presentarte con la "etiqueta" #presentaciones o #nuevascuentas.'
       full_handle: Su sobrenombre completo
       full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
       subject: Bienvenido a Mastodon
-      tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
+      tip_federated_timeline: La cronología federada es una vista de la red de Mastodonte. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
-      tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
+      tip_local_timeline: La cronología local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
       tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
