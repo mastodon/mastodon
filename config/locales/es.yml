@@ -432,8 +432,8 @@ es:
         desc_html: Conteo de estados publicados localmente, usuarios activos, y nuevos registros en  periodos semanales
         title: Publicar estadísticas locales acerca de actividad de usuario
       bootstrap_timeline_accounts:
-        desc_html: Separa con comas los nombres de usuario. Solo funcionará para cuentas locales desbloqueadas. Si se deja vacío, se tomará como valor por defecto a todos los administradores locales.
-        title: Seguimientos predeterminados para usuarios nuevos
+        desc_html: Separa con comas los nombres de usuaria. Solo funcionará para cuentas locales desbloqueadas. Si se deja vacia, se tomará como valor por defecto a todas las administradoras locales.
+        title: Seguimientos predeterminados para usuarias nuevas
       contact_information:
         email: Correo de trabajo
         username: Nombre de usuario
@@ -451,7 +451,7 @@ es:
       domain_blocks_rationale:
         title: Mostrar la razón de ser
       enable_bootstrap_timeline_accounts:
-        title: Habilitar seguimientos predeterminados para usuarios nuevos
+        title: Habilitar seguimientos predeterminados para nuevas usuarias
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -484,8 +484,8 @@ es:
           open: Cualquiera puede registrarse
         title: Modo de registros
       show_known_fediverse_at_about_page:
-        desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
-        title: Mostrar fediverso conocido en la vista previa de la historia
+        desc_html: Cuando esté desactivado, mostrará solamente la cronología local, y no la federada
+        title: Mostrar fediverso conocido en la vista previa de la cronología
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
         title: Mostrar parche de staff
@@ -576,7 +576,7 @@ es:
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, ristra temporal federada, cualquier número de listas y etiquetas.'
+    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, cronología federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -1060,7 +1060,7 @@ es:
       public: Público
       public_long: Todos pueden ver
       unlisted: Público, pero no mostrar en la historia federada
-      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+      unlisted_long: Todos pueden ver, pero no está listado en las cronologías públicas
   stream_entries:
     pinned: Toot fijado
     reblogged: retooteado
