@@ -69,10 +69,10 @@ es:
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
     posts:
-      one: Toot
+      one: Barritar
       other: Toots
-    posts_tab_heading: Toots
-    posts_with_replies: Toots con respuestas
+    posts_tab_heading: Bramidos
+    posts_with_replies: Bramidos con respuestas
     reserved_username: El nombre de usuario está reservado
     roles:
       admin: Administrador
@@ -380,7 +380,7 @@ es:
       disable: Deshabilitar
       disabled: Deshabilitado
       enable: Hablitar
-      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los toots públicos de este relés, y comenzará a enviar los toots públicos de este servidor hacia él.
+      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los bramidos públicos de este relés, y comenzará a enviar los bramidos públicos de este servidor hacia él.
       enabled: Habilitado
       inbox_url: URL del relés
       pending: Esperando la aprobación del relés
@@ -711,7 +711,7 @@ es:
     archive_takeout:
       date: Fecha
       download: Descargar tu archivo
-      hint_html: Puedes solicitar un archivo de tus <strong>toots y materiales subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      hint_html: Puedes solicitar un archivo de tus <strong>bramidos y materiales subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier programa compatible.
       in_progress: Recopilando tu archivo...
       request: Solicitar tu archivo
       size: Tamaño
@@ -773,7 +773,7 @@ es:
     i_am_html: Soy %{username} en %{service}.
     identity: Identidad
     inactive: Inactivo
-    publicize_checkbox: 'Y tootee esto:'
+    publicize_checkbox: 'Y barrite esto:'
     publicize_toot: '¡Comprobado! Soy %{username} en %{service}: %{url}'
     status: Estado de la verificación
     view_proof: Ver prueba
@@ -884,8 +884,8 @@ es:
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
     reblog:
-      body: '%{name} ha retooteado tu estado:'
-      subject: "%{name} ha retooteado tu estado"
+      body: '%{name} ha rebarritado tu estado:'
+      subject: "%{name} ha rebarritado tu estado"
       title: Nueva difusión
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
@@ -946,16 +946,16 @@ es:
   remote_interaction:
     favourite:
       proceed: Proceder a marcar como favorito
-      prompt: 'Quieres marcar como favorito este toot:'
+      prompt: 'Quieres marcar como favorito este bramido:'
     reblog:
-      proceed: Proceder a retootear
-      prompt: 'Quieres retootear este toot:'
+      proceed: Proceder a rebarritar
+      prompt: 'Quieres rebarritar este bramido:'
     reply:
       proceed: Proceder a responder
-      prompt: 'Quieres responder a este toot:'
+      prompt: 'Quieres responder a este bramido:'
   scheduled_statuses:
-    over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
-    over_total_limit: Ha superado el límite de %{limit} toots programados
+    over_daily_limit: Ha superado el límite de %{limit} bramidos programados para ese día
+    over_total_limit: Ha superado el límite de %{limit} bramidos programados
     too_soon: La fecha programada debe estar en el futuro
   sessions:
     activity: Última actividad
@@ -1039,9 +1039,9 @@ es:
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
-      limit: Ya has fijado el número máximo de publicaciones
-      ownership: El toot de alguien más no puede fijarse
-      private: Los toots no-públicos no pueden fijarse
+      limit: Ya has fijado el número máximo de bramidos
+      ownership: El bramido de alguien más no puede fijarse
+      private: Los bramidos no-públicos no pueden fijarse
       reblog: Un boost no puede fijarse
     poll:
       total_people:
@@ -1062,8 +1062,8 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las cronologías públicas
   stream_entries:
-    pinned: Toot fijado
-    reblogged: retooteado
+    pinned: Bramido fijado
+    reblogged: rebarritado
     sensitive_content: Contenido sensible
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
@@ -1182,8 +1182,8 @@ es:
     warning:
       explanation:
         disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
-        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
-        suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
+        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus bramidos en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
+        suspend: Su cuenta ha sido suspendida, y todos tus bramidos y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
       get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
       review_server_policies: Revisar las políticas del servidor
       statuses: 'Específicamente, para:'
