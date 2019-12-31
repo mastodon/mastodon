@@ -273,7 +273,7 @@ es:
       features: Características
       hidden_service: Federación con servicios ocultos
       open_reports: informes abiertos
-      pending_tags: hashtags esperando revisión
+      pending_tags: etiquetas esperando revisión
       pending_users: usuarios esperando por revisión
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
@@ -516,8 +516,8 @@ es:
         desc_html: Afecta a etiquetas que no han sido previamente rechazadas
         title: Permitir que las etiquetas sean tendencia sin revisión previa
       trends:
-        desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
-        title: Hashtags de tendencia
+        desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia
+        title: Etiquetas que son tendencia
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -542,14 +542,14 @@ es:
       last_active: Última actividad
       most_popular: Más popular
       most_recent: Más reciente
-      name: Hashtag
+      name: Etiqueta
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
       trending_right_now: En tendencia ahora mismo
       unique_uses_today: "%{count} publicando hoy"
       unreviewed: No revisado
-      updated_msg: Hashtags actualizados exitosamente
+      updated_msg: Etiquetas actualizadas con éxito
     title: Administración
     warning_presets:
       add_new: Añadir nuevo
@@ -566,7 +566,7 @@ es:
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
     new_trending_tag:
-      body: 'El hashtag #%{name} está en tendencia hoy, pero no ha sido revisado previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario como para no volver a ver esto.'
+      body: 'La etiqueta #%{name} es tendencia hoy, pero no ha sido revisada previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario evitando volver a ver este mensaje.'
       subject: 'Nuevo hashtag para revisión en %{instance} (#%{name})'
   aliases:
     add_new: Crear alias
@@ -581,7 +581,7 @@ es:
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
     sensitive_content: Contenido sensible
-    toot_layout: Diseño de los toots
+    toot_layout: Diseño para barritar
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name},"
@@ -1033,8 +1033,8 @@ es:
     boosted_from_html: Impulsado desde %{acct_link}
     content_warning: 'Alerta de contenido: %{warning}'
     disallowed_hashtags:
-      one: 'contenía un hashtag no permitido: %{tags}'
-      other: 'contenía los hashtags no permitidos: %{tags}'
+      one: 'contenía una etiqueta no permitida: %{tags}'
+      other: 'contenía las etiquetas no permitidas: %{tags}'
     language_detection: Detección automática de idioma
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
