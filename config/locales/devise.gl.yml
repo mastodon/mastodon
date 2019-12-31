@@ -1,14 +1,13 @@
----
 gl:
   devise:
     confirmations:
-      confirmed: O seu enderezo de email foi confirmado con éxito.
-      send_instructions: Nuns minutos recibirá un correo electrónico con instruccións sobre como confirmar o seu enderezo de correo.  Comprobe por favor o cartafol de spam se non recibe este correo.
-      send_paranoid_instructions: Si o seu enderezo existe na nosa base de datos, recibirá nuns minutos un correo con instruccións sobre como confirmar o enderezo de correo. Por favor comprobe o cartafol de spam si non recibe este correo.
+      confirmed: O teu enderezo de email foi confirmado.
+      send_instructions: Vas recibir un email coas instrucións para confirmar o teu enderezo de email dentro dalgúns minutos. Por favor, comproba o cartafol de spam se non recibiches o correo.
+      send_paranoid_instructions: Se o teu enderezo de email xa existira na nosa base de datos, vas recibir un correo coas instrucións de confirmación dentro dalgúns minutos. Por favor, comproba o cartafol de spam se non recibiches o correo.
     failure:
-      already_authenticated: Xa está conectada.
-      inactive: A súa conta aínda non foi activada.
-      invalid: Contrasinal ou %{authentication_keys} non válidos.
+      already_authenticated: Xa estás rexistrado.
+      inactive: A túa conta aínda non está activada.
+      invalid: '%{authentication_keys} ou contrasinal non validos.'
       last_attempt: Quédalle un intento antes de que a conta sexa bloqueada.
       locked: A súa conta foi bloqueada.
       not_found_in_database: Contrasinal ou %{authentication_keys} non válidos.
@@ -36,9 +35,9 @@ gl:
         subject: 'Mastodon: contrasinal cambiado'
         title: Contrainal cambiado
       reconfirmation_instructions:
-        explanation: Confirme o novo enderezo para cambiar o correo-e.
+        explanation: Confirma o novo enderezo para cambiar o correo-e.
         extra: Si vostede non fixo esta petición, ignore este correo por favor. Este enderezo de correo-e para a conta Mastodon non cambiará ate que acceda a ligazón superior.
-        subject: 'Mastodon: Confirme email para %{instance}'
+        subject: 'Mastodon: Confirma email para %{instance}'
         title: Verificación do enderezo de correo-e
       reset_password_instructions:
         action: Cambiar contrasinal
