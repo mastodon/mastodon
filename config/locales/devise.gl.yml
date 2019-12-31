@@ -8,20 +8,20 @@ gl:
       already_authenticated: Xa estás rexistrado.
       inactive: A túa conta aínda non está activada.
       invalid: '%{authentication_keys} ou contrasinal non validos.'
-      last_attempt: Quédalle un intento antes de que a conta sexa bloqueada.
-      locked: A súa conta foi bloqueada.
-      not_found_in_database: Contrasinal ou %{authentication_keys} non válidos.
-      pending: A súa conta está en proceso de revisión.
-      timeout: Caducou a sesión. Por favor conéctese de novo para seguir.
-      unauthenticated: Precisa rexistrarse ou conectarse para continuar.
-      unconfirmed: Debe confirmar o seu enderezo de correo antes de continuar.
+      last_attempt: Tes máis dun intento antes de que a túa conta fique bloqueada.
+      locked: A túa conta está bloqueada.
+      not_found_in_database: '%{authentication_keys} ou contrasinal non válidos.'
+      pending: A túa conta aínda está baixo revisión.
+      timeout: A túa sesión expirou. Por favor, entra de novo para continuares.
+      unauthenticated: Precisas de entrar na túa conta ou rexistrarte antes de continuar.
+      unconfirmed: Tes que confirmar o teu enderezo de email antes de continuar.
     mailer:
       confirmation_instructions:
-        action: Validar enderezo de correo-e
+        action: Verificar o enderezo de email
         action_with_app: Confirmar e voltar a %{app}
-        explanation: Creou unha conta en %{host} con este enderezo de correo. Está a punto de activalo, si non foi vostede quen fixo a petición, por favor ignore este correo.
-        explanation_when_pending: Vostede solicitou un convite para %{host} con este enderezo de correo. Unha vez confirme o enderezo de correo revisaremos a solicitude. Non pode conectarse ata entón. Si a solicitude fose rexeitada, os seus datos eliminaranse, así que non precisaría facer nada máis. Se non fixo vostede unha solicitude por favor ignore este correo.
-        extra_html: Por favor, lea tamén <a href="%{terms_path}">as normas do sevidor</a> e <a href="%{policy_path}">os termos do servizo</a>.
+        explanation: Creaches unha conta en %{host} con este enderezo de email. Estás a un clic de activala. Se non foches ti o que fixeches este rexisto, por favor ignora esta mensaxe.
+        explanation_when_pending: Solicitaches un convite para %{host} com este enderezo de email. Logo de que confirmes o teu enderezo de email, imos revisar a túa inscrición. Podes iniciar sesión para mudar os teus datos ou eliminar a túa conta, mais non poderás aceder á meirande parte das funcións até que a túa conta sexa aprobada. Se a túa inscrición for rexeitada, os teus datos serán eliminados, polo que non será necesaria calquera acción adicional da túa parte. Se non solicitaches este convite, por favor, ignora este correo.
+        extra_html: Por favor, le <a href="%{terms_path}">as regras do servidor</a> e os <a href="%{policy_path}">nosos termos do servizo</a>.
         subject: 'Mastodon: Instruccións de confirmación para %{instance}'
         title: Verificar enderezo de correo-e
       email_changed:
