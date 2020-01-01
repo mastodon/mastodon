@@ -93,6 +93,7 @@ cy:
     roles:
       admin: Gweinyddwr
       bot: Bot
+      group: Grŵp
       moderator: Safonwr
     unavailable: Proffil ddim ar gael
     unfollow: Dad-ddilyn
@@ -416,6 +417,21 @@ cy:
       created_msg: Llwyddwyd i greu nodyn adroddiad!
       destroyed_msg: Llwyddwyd i ddileu nodyn adroddiad!
     reports:
+      account:
+        notes:
+          zero: "%{count} nodyn"
+          one: "%{count} nodyn"
+          two: "%{count} o nodiadau"
+          few: "%{count} o nodiadau"
+          many: "%{count} o nodiadau"
+          other: "%{count} o nodiadau"
+        reports:
+          zero: "%{count} adroddiad"
+          one: "%{count} adroddiad"
+          two: "%{count} o adroddiadau"
+          few: "%{count} o adroddiadau"
+          many: "%{count} o adroddiadau"
+          other: "%{count} o adroddiadau"
       action_taken_by: Gwnaethpwyd hyn gan
       are_you_sure: Ydych chi'n sicr?
       assign_to_self: Aseinio i mi
@@ -466,6 +482,8 @@ cy:
         users: I ddefnyddwyr lleol mewngofnodadwy
       domain_blocks_rationale:
         title: Dangos rhesymwaith
+      enable_bootstrap_timeline_accounts:
+        title: Alluogi dilyn diofyn i ddefnyddwyr newydd
       hero:
         desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia. Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
         title: Delwedd arwr
