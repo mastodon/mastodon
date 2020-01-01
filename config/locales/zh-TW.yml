@@ -448,6 +448,8 @@ zh-TW:
     migrate_account: 轉移到另一個帳戶
     migrate_account_html: 如果你希望引導他人關注另一個帳戶，請<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
+    providers:
+      saml: SAML
     register: 註冊
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
@@ -507,11 +509,15 @@ zh-TW:
       size: 大小
     blocks: 您封鎖的使用者
     csv: CSV
+    lists: 列表
     mutes: 您靜音的使用者
     storage: 儲存空間大小
+  footer:
+    more: 更多......
   generic:
     all: 全部
     changes_saved_msg: 已成功儲存修改!
+    copy: 複製
     save_changes: 儲存修改
   imports:
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
@@ -583,6 +589,7 @@ zh-TW:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -655,6 +662,8 @@ zh-TW:
       ownership: 不能置頂他人的嘟文
       private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
+    poll:
+      vote: 投票
     show_more: 顯示更多
     visibilities:
       private: 僅關注者
