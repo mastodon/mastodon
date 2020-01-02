@@ -68,7 +68,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     context 'with a poll' do
       describe 'POST #create' do
         let(:scopes) { 'write:statuses' }
-  
+
         before do
           post :create, params: { status: 'Hello world', poll: { options: %w(Sakura Izumi Ako) } }
         end
