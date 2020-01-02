@@ -5,11 +5,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
+import PollButtonContainer from '../containers/poll_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
+import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { isMobile } from '../../../is_mobile';
@@ -204,11 +206,13 @@ class ComposeForm extends ImmutablePureComponent {
 
         <div className='compose-form__modifiers'>
           <UploadFormContainer />
+          <PollFormContainer />
         </div>
 
         <div className='compose-form__buttons-wrapper'>
           <div className='compose-form__buttons'>
             <UploadButtonContainer />
+            <PollButtonContainer />
             <PrivacyDropdownContainer />
             <SpoilerButtonContainer />
           </div>
