@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StatusList from '../../../components/status_list';
-import { scrollTopTimeline, loadPending, updateCurrentlyViewing } from '../../../actions/timelines';
+import { scrollTopTimeline, loadPending } from '../../../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
@@ -39,7 +39,6 @@ const makeMapStateToProps = () => {
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
     numPending: getPendingStatusIds(state, { type: timelineId }).size,
-    currentlyViewing: state.getIn(['timelines', timelineId, 'currentlyViewing'], -1),
   });
 
   return mapStateToProps;
@@ -57,7 +56,6 @@ const mapDispatchToProps = (dispatch, { timelineId }) => ({
 
   onLoadPending: () => dispatch(loadPending(timelineId)),
 
-  updateCurrentlyViewing: id => dispatch(updateCurrentlyViewing(timelineId, id)),
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(StatusList);
