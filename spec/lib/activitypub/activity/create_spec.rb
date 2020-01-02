@@ -421,7 +421,6 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(status).to_not be_nil
         end
       end
-    end
 
       context 'with poll' do
         let(:object_json) do
@@ -505,6 +504,7 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(poll.votes.first).to be_nil
         end
       end
+    end
 
     context 'when sender is followed by local users' do
       subject { described_class.new(json, sender, delivery: true) }
