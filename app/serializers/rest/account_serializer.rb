@@ -24,6 +24,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
+  def acct
+    object.pretty_acct
+  end
+
   def note
     Formatter.instance.simplified_format(object)
   end

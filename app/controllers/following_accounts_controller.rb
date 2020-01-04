@@ -19,7 +19,6 @@ class FollowingAccountsController < ApplicationController
         next if @account.user_hides_network?
 
         follows
-        @relationships = AccountRelationshipsPresenter.new(follows.map(&:target_account_id), current_user.account_id) if user_signed_in?
       end
 
       format.json do
@@ -38,7 +37,11 @@ class FollowingAccountsController < ApplicationController
   private
 
   def follows
-    @follows ||= Follow.where(account: @account).recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:target_account)
+    return @follows if defined?(@follows)
+
+    scope = Follow.where(account: @account)
+    scope = scope.where.not(target_account_id: current_account.excluded_from_timeline_account_ids) if user_signed_in?
+    @follows = scope.recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:target_account)
   end
 
   def page_requested?
