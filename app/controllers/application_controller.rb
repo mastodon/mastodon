@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
   rescue_from ActionController::UnknownFormat, with: :not_acceptable
   rescue_from ActionController::ParameterMissing, with: :bad_request
+  rescue_from Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from Mastodon::NotPermittedError, with: :forbidden
   rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
