@@ -13,7 +13,7 @@ module AccountsHelper
     if account.local?
       "@#{account.acct}@#{Rails.configuration.x.local_domain}"
     else
-      "@#{account.acct}"
+      "@#{account.pretty_acct}"
     end
   end
 

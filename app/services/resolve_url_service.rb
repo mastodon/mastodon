@@ -12,6 +12,8 @@ class ResolveURLService < BaseService
       process_local_url
     elsif !fetched_resource.nil?
       process_url
+    elsif @on_behalf_of.present?
+      process_url_from_db
     end
   end
 
@@ -24,13 +26,17 @@ class ResolveURLService < BaseService
       status = FetchRemoteStatusService.new.call(resource_url, body)
       authorize_with @on_behalf_of, status, :show? unless status.nil?
       status
-    elsif fetched_resource.nil? && @on_behalf_of.present?
-      # It may happen that the resource is a private toot, and thus not fetchable,
-      # but we can return the toot if we already know about it.
-      status = Status.find_by(uri: @url) || Status.find_by(url: @url)
-      authorize_with @on_behalf_of, status, :show? unless status.nil?
-      status
     end
+  end
+
+  def process_url_from_db
+    # It may happen that the resource is a private toot, and thus not fetchable,
+    # but we can return the toot if we already know about it.
+    status = Status.find_by(uri: @url) || Status.find_by(url: @url)
+    authorize_with @on_behalf_of, status, :show? unless status.nil?
+    status
+  rescue Mastodon::NotPermittedError
+    nil
   end
 
   def fetched_resource

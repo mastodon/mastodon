@@ -202,10 +202,14 @@ class MediaAttachment < ApplicationRecord
   end
 
   after_commit :reset_parent_cache, on: :update
+
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
+
   before_post_process :set_type_and_extension
+
   after_post_process :set_file_extensions
+
   before_save :set_meta
 
   class << self

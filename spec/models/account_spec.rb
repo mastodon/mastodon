@@ -823,4 +823,5 @@ RSpec.describe Account, type: :model do
   end
 
   include_examples 'AccountAvatar', :account
+  include_examples 'AccountHeader', :account
 end
