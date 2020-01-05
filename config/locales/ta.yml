@@ -40,6 +40,7 @@ ta:
     what_is_mastodon: மச்டொடன் என்றால் என்ன?
   accounts:
     choices_html: "%{name}-இன் தேர்வுகள்:"
+    featured_tags_hint: குறிப்பிட்ட சிட்டைகளை இங்கு நீங்கள் காட்சிப்படுத்தலாம்.
     follow: பின்தொடர்
     followers:
       one: பின்தொடர்பவர்
@@ -151,10 +152,15 @@ ta:
       show:
         created_reports: உறுவாக்கிய அறிக்கைகள்
         targeted_reports: மற்றவர்களால் அறிவிக்கப்பட்டது
+      silence: அணை
+      silenced: அணைக்கப்பட்டது
+      statuses: பதிவுகள்
       suspended: இடைநீக்கப்பட்டது
       time_in_queue: வரிசையில் காத்திருக்கிறது %{time}
       title: கணக்குகள்
       username: பயனர் பெயர்
+      warn: எச்சரி
+      whitelisted: அனுமதிப்பட்டியல்
     custom_emojis:
       uncategorized: வகைப்படுத்தப்படாதவை
       unlist: பட்டியலில் இருந்து அகற்றுக
@@ -192,6 +198,10 @@ ta:
           other: "%{count} புகார்கள்"
       comment:
         none: எதுவுமில்லை
+  appearance:
+    localization:
+      body: மாஸ்டோடான் தன்னார்வலர்களால் மொழிபெயர்க்கப்படுகிறது.
+      guide_link_text: அனைவரும் பங்களிக்கலாம்.
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
