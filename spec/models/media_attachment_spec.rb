@@ -133,6 +133,24 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.file.meta["small"]["height"]).to eq 327
       expect(media.file.meta["small"]["aspect"]).to eq 490.0 / 327
     end
+
+    it 'gives the file a random name' do
+      expect(media.file_file_name).to_not eq 'attachment.jpg'
+    end
+  end
+
+  describe 'base64-encoded jpeg' do
+    let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
+    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: base64_attachment) }
+
+    it 'saves media attachment' do
+      expect(media.persisted?).to be true
+      expect(media.file).to_not be_nil
+    end
+
+    it 'gives the file a file name' do
+      expect(media.file_file_name).to_not be_blank
+    end
   end
 
   describe 'descriptions for remote attachments' do

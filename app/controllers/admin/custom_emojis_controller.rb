@@ -2,10 +2,6 @@
 
 module Admin
   class CustomEmojisController < BaseController
-    include ObfuscateFilename
-
-    obfuscate_filename [:custom_emoji, :image]
-
     def index
       authorize :custom_emoji, :index?
 
