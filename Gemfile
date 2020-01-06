@@ -11,6 +11,7 @@ gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
 
 gem 'thwait', '~> 0.1.0'
+gem 'e2mmap', '~> 0.1.0'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
