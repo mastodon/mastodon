@@ -3,7 +3,7 @@
 module AccountsHelper
   def display_name(account, **options)
     if options[:custom_emojify]
-      Formatter.instance.format_display_name(account, options)
+      Formatter.instance.format_display_name(account, **options)
     else
       account.display_name.presence || account.username
     end
