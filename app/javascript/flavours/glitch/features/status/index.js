@@ -568,6 +568,7 @@ class Status extends ImmutablePureComponent {
             <HotKeys handlers={handlers}>
               <div className='focusable' tabIndex='0' aria-label={textForScreenReader(intl, status, false, !status.get('hidden'))}>
                 <DetailedStatus
+                  key={`details-${status.get('id')}`}
                   status={status}
                   settings={settings}
                   onOpenVideo={this.handleOpenVideo}
@@ -580,6 +581,7 @@ class Status extends ImmutablePureComponent {
                 />
 
                 <ActionBar
+                  key={`action-bar-${status.get('id')}`}
                   status={status}
                   onReply={this.handleReplyClick}
                   onFavourite={this.handleFavouriteClick}
