@@ -16,7 +16,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.4'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.59', require: false
+gem 'aws-sdk-s3', '~> 1.60', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -118,7 +118,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.29'
+  gem 'capybara', '~> 3.30'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.10'
   gem 'microformats', '~> 4.2'
@@ -134,7 +134,7 @@ group :development do
   gem 'annotate', '~> 3.0'
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
-  gem 'bullet', '~> 6.0'
+  gem 'bullet', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
