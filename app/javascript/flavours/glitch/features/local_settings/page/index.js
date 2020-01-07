@@ -168,6 +168,14 @@ class LocalSettingsPage extends React.PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
+          item={['prepend_cw_re']}
+          id='mastodon-settings--prepend_cw_re'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.prepend_cw_re' defaultMessage='Prepend “re: ” to content warnings when replying' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['preselect_on_reply']}
           id='mastodon-settings--preselect_on_reply'
           onChange={onChange}

@@ -91,9 +91,11 @@ export function cycleElefriendCompose() {
 
 export function replyCompose(status, routerHistory) {
   return (dispatch, getState) => {
+    const prependCWRe = getState().getIn(['local_settings', 'prepend_cw_re']);
     dispatch({
       type: COMPOSE_REPLY,
       status: status,
+      prependCWRe: prependCWRe,
     });
 
     ensureComposeIsVisible(getState, routerHistory);
