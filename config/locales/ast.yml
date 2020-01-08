@@ -150,9 +150,9 @@ ast:
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrición
     localization:
-      body: Mastodon tradúcenlu voluntarios.
+      body: Mastodon tradúcenlu voluntarios,
       guide_link: https://crowdin.com/project/mastodon
-      guide_link_text: Tol mundu pue collaborar.
+      guide_link_text: tol mundu pue collaborar.
     toot_layout: Distribución de los barritos
   applications:
     invalid_url: La URL apurrida nun ye válida
@@ -190,6 +190,7 @@ ast:
   deletes:
     confirm_password: Introduz la contraseña pa verificar la to identidá
     warning:
+      email_contact_html: Si entá nun aportó, pues unviar un corréu a<a href="mailto:%{email}">%{email}</a> pa más ayuda
       more_details_html: Pa más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   errors:
     '400': The request you submitted was invalid or malformed.
@@ -274,6 +275,8 @@ ast:
       too_many: Nun puen axuntase más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
+    warning:
+      followers: Esta aición va mover tolos siguidores de la cuenta actual a la nueva
   notification_mailer:
     digest:
       body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l %{since}
@@ -313,6 +316,11 @@ ast:
     no_account_html: '¿Nun tienes una cuenta? Pues <a href=''%{sign_up_path}'' target=''_blank''>rexistrate equí</a>'
     proceed: Siguir
     prompt: 'Vas siguir a:'
+  remote_interaction:
+    reblog:
+      prompt: 'Quies compartir esti barritu:'
+    reply:
+      prompt: 'Quies responder a esti barritu:'
   sessions:
     browser: Restolador
     browsers:
@@ -395,6 +403,7 @@ ast:
       unlisted: Nun llistar
       unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
   stream_entries:
+    pinned: Barritu fixáu
     reblogged: compartió
     sensitive_content: Conteníu sensible
   tags:
@@ -413,8 +422,13 @@ ast:
     recovery_codes_regenerated: Los códigos de recuperación rexeneráronse con ésitu
   user_mailer:
     warning:
+      explanation:
+        suspend: La to cuenta suspendióse y tolos espublizamientos qu'espublizares desaniciáronse de mou irreversible d'esti sirvidor y sirvidores onde teníes siguidores.
+      subject:
+        suspend: Suspendióse la cuenta %{acct}
       title:
         none: Alvertencia
+        suspend: Cuenta suspendida
     welcome:
       full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
       subject: Afáyate en Mastodon
