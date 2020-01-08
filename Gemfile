@@ -7,7 +7,7 @@ gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.3'
 gem 'rails', '~> 5.2.4'
-gem 'sprockets', '~> 3.7'
+gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
 
 gem 'hamlit-rails', '~> 0.2'
@@ -16,7 +16,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.4'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.59', require: false
+gem 'aws-sdk-s3', '~> 1.60', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -31,7 +31,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
-gem 'cld3', '~> 3.2.4'
+gem 'cld3', '~> 3.2.6'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
@@ -60,7 +60,7 @@ gem 'httplog', '~> 1.3'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
-gem 'mime-types', '~> 3.3', require: 'mime/types/columnar'
+gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
 gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
@@ -115,10 +115,10 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.29'
+  gem 'capybara', '~> 3.30'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.10'
-  gem 'microformats', '~> 4.1'
+  gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.17', require: false
@@ -131,7 +131,7 @@ group :development do
   gem 'annotate', '~> 3.0'
   gem 'better_errors', '~> 2.5'
   gem 'binding_of_caller', '~> 0.7'
-  gem 'bullet', '~> 6.0'
+  gem 'bullet', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.3'
   gem 'memory_profiler'
