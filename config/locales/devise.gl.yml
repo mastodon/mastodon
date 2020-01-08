@@ -84,14 +84,14 @@ gl:
     unlocks:
       send_instructions: Vas recibir un email coas instrucións para desbloquear a túa conta dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
       send_paranoid_instructions: Se a túa conta existe, vas recibir un email coas instrucións detalladas de como desbloqueala dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
-      unlocked: A súa conta foi desbloqueada correctamente. Por favor, conéctese para continuar.
+      unlocked: A túa conta foi desbloqueada. Por favor, inicia a sesión para continuar.
   errors:
     messages:
-      already_confirmed: xa foi confirmada, por favor intente conectarse
-      confirmation_period_expired: precisa ser confirmada en %{period}, por favor solicite unha nova
-      expired: caducou, por favor solicite unha nova
-      not_found: non se atopou
+      already_confirmed: xa confirmado, tenta iniciar a sesión
+      confirmation_period_expired: ten que ser confirmado dentro de %{period}, solicita unha nova
+      expired: expirou, solicita unha nova
+      not_found: non atopado
       not_locked: non foi bloqueada
       not_saved:
-        one: '1 erro evitou que %{resource} fose gardada:'
-        other: "%{count} erros evitaron que %{resource} fose gardada:"
+        one: '1 erro impediu este %{resource} de ser gardado:'
+        other: "%{count} erros impediron este %{resource} de ser gardado:"
