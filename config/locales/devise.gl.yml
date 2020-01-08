@@ -63,11 +63,11 @@ gl:
       failure: Non foi posíbel autenticar %{kind} porque "%{reason}".
       success: Autenticado con éxito na conta %{kind}.
     passwords:
-      no_token: Non pode acceder a esta páxina vindo desde un correo de restablecemento de contrasinal. Si vostede chega desde un correo de restablecemento de contrasinal, por favor asegúrese de que utiliza o URL completo proporcionado.
-      send_instructions: Si o seu enderezo de correo existe na nosa base de datos,  nuns minutos recibirá unha ligazón para recuperar o contrasinal. Por favor comprobe o seu cartafol de spam si non recibe este correo.
-      send_paranoid_instructions: Si o seu enderezo de correo existe na nosa base de datos, recibirá nuns minutos unha ligazón para recuperar o contrasinal. Por favor comprobe o seu cartafol de spam si non recibe este correo.
-      updated: Cambiou o contrasinal con éxito. Agora xa está conectada.
-      updated_not_active: Cambiouse o seu contrasinal correctamente.
+      no_token: Non podes acceder a esta páxina se non vés a través da ligazón enviada por email para o mudado do teu contrasinal. Se empregaches esa ligazón para chegar aquí, por favor verifica que o enderezo URL actual é o mesmo do que foi enviado no email.
+      send_instructions: Se o teu enderezo de email existe na nosa base de datos, vas recibir un email coas instrucións para mudar o contrasinal dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o email.
+      send_paranoid_instructions: Se o teu enderezo de email existe na nosa base de datos, vas recibir unha ligazón para recuperar o contrasinal dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o email.
+      updated: O teu contrasinal foi mudado. Estás xa autenticado na túa conta.
+      updated_not_active: O teu contrasinal foi mudado de xeito correcto.
     registrations:
       destroyed: Adeus! A súa conta cancelouse con éxito. Agardamos vela de novo.
       signed_up: Ben vida! Rexistrouse con éxito.
