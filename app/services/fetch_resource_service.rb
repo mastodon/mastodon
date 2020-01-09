@@ -3,7 +3,7 @@
 class FetchResourceService < BaseService
   include JsonLdHelper
 
-  ACCEPT_HEADER = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", text/html'
+  ACCEPT_HEADER = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", text/html;q=0.1'
 
   def call(url)
     return if url.blank?
