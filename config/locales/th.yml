@@ -380,6 +380,8 @@ th:
         title: CSS ที่กำหนดเอง
       domain_blocks:
         title: แสดงการปิดกั้นโดเมน
+      domain_blocks_rationale:
+        title: แสดงคำชี้แจงเหตุผล
       enable_bootstrap_timeline_accounts:
         title: เปิดใช้งานการติดตามเริ่มต้นสำหรับผู้ใช้ใหม่
       hero:
@@ -695,6 +697,7 @@ th:
     errors:
       already_voted: คุณได้ลงคะแนนในการสำรวจความคิดเห็นนี้อยู่แล้ว
       duplicate_options: มีรายการที่ซ้ำกัน
+      too_few_options: ต้องมีมากกว่าหนึ่งรายการ
       too_many_options: ไม่สามารถมีมากกว่า %{max} รายการ
   preferences:
     other: อื่น ๆ
@@ -818,6 +821,8 @@ th:
   stream_entries:
     pinned: โพสต์ที่ปักหมุด
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
+  terms:
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
@@ -831,6 +836,7 @@ th:
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
     enabled_success: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     generate_recovery_codes: สร้างรหัสกู้คืน
+    recovery_codes: รหัสกู้คืนข้อมูลสำรอง
     setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   user_mailer:
@@ -844,6 +850,7 @@ th:
       subject: ยินดีต้อนรับสู่ Mastodon
       tips: เคล็ดลับ
   users:
+    follow_limit_reached: คุณไม่สามารถติดตามมากกว่า %{limit} คน
     invalid_email: ที่อยู่อีเมลไม่ถูกต้อง
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
     signed_in_as: 'ลงชื่อเข้าเป็น:'
