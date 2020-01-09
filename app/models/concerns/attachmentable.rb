@@ -8,6 +8,8 @@ module Attachmentable
   MAX_MATRIX_LIMIT = 16_777_216 # 4096x4096px or approx. 16MB
   GIF_MATRIX_LIMIT = 921_600    # 1280x720px
 
+  BOGUS_MIME_TYPES = %w(application/x-font-gdos).freeze
+
   included do
     before_post_process :obfuscate_file_name
     before_post_process :set_file_extensions
@@ -63,7 +65,12 @@ module Attachmentable
   end
 
   def calculated_content_type(attachment)
-    content_type = Paperclip.run('file', '-b --mime :file', file: attachment.queued_for_write[:original].path).split(/[:;\s]+/).first.chomp
+    content_types  = Paperclip.run('file', '-b -k -r --mime :file', file: attachment.queued_for_write[:original].path).split("\n- ")
+    content_types -= BOGUS_MIME_TYPES
+
+    return '' if content_types.empty?
+
+    content_type = content_types.first.split(/[:;\s]+/).first.chomp
     content_type = 'video/mp4' if content_type == 'video/x-m4v'
     content_type
   rescue Terrapin::CommandLineError
