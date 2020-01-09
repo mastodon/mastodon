@@ -9,6 +9,6 @@ class FetchRemoteStatusService < BaseService
       resource_options = { prefetched_body: prefetched_body }
     end
 
-    ActivityPub::FetchRemoteStatusService.new.call(resource_url, **resource_options)
+    ActivityPub::FetchRemoteStatusService.new.call(resource_url, **resource_options) unless resource_url.nil?
   end
 end

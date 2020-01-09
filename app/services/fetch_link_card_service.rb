@@ -45,7 +45,7 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    Request.new(:get, @url).perform do |res|
+    Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
         @html_charset = res.charset

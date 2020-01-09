@@ -3,6 +3,8 @@
 require 'rubygems/package'
 
 class BackupService < BaseService
+  include Payloadable
+
   attr_reader :account, :backup, :collection
 
   def call(backup)
@@ -20,7 +22,7 @@ class BackupService < BaseService
 
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
       statuses.each do |status|
-        item = serialize(status, ActivityPub::ActivitySerializer)
+        item = serialize_payload(status, ActivityPub::ActivitySerializer, signer: @account)
         item.delete(:'@context')
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
@@ -163,7 +165,7 @@ class BackupService < BaseService
         io.write(buffer)
       end
     end
-  rescue Errno::ENOENT
+  rescue Errno::ENOENT, Seahorse::Client::NetworkingError
     Rails.logger.warn "Could not backup file #{filename}: file not found"
   end
 end
