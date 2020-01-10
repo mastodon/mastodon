@@ -135,6 +135,25 @@ jobs:
               - ./mastodon/public/assets
               - ./mastodon/public/packs-test/
 
+  test-migrations:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.7-buster-node
+        environment: *ruby_environment
+      - image: circleci/postgres:10.6-alpine
+        environment:
+          POSTGRES_USER: root
+      - image: circleci/redis:5-alpine
+    steps:
+      - *attach_workspace
+      - *install_system_dependencies
+      - run:
+          name: Create database
+          command: ./bin/rails parallel:create
+      - run:
+          name: Run migrations
+          command: ./bin/rails parallel:migrate
+
   test-ruby2.7:
     <<: *defaults
     docker:
@@ -218,6 +237,9 @@ workflows:
             - install
             - install-ruby2.7
       - build:
+          requires:
+            - install-ruby2.7
+      - test-migrations:
           requires:
             - install-ruby2.7
       - test-ruby2.7:
