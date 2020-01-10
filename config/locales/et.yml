@@ -380,7 +380,7 @@ et:
       disable: Keela
       disabled: Keelatud
       enable: Luba
-      enable_hint: Kui lubatud, siis sinu server tellib kõik avalikud tuututused sellelt releelt, ning hakkab ka enda avalikke tuututusi sellele saatma.
+      enable_hint: Kui lubatud, siis Teie server tellib kõik avalikud tuututused sellelt releelt ning hakkab ka enda avalikke tuututusi sellele saatma.
       enabled: Lubatud
       inbox_url: Relee URL
       pending: Ootab relee nõusolekut
@@ -573,6 +573,10 @@ et:
     animations_and_accessibility: Animatsioonid ja ligipääs
     confirmation_dialogs: Kinnitusdialoogid
     discovery: Avastus
+    localization:
+      body: Mastodon on tõlgitud vabatahtlike poolt.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Igaüks võib panustada.
     sensitive_content: Tundlik sisu
     toot_layout: Tuututuse kujundus
   application_mailer:
@@ -589,7 +593,7 @@ et:
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
     warning: Olge nende andmetega ettevaatlikud. Ärge jagage neid kellegagi!
-    your_token: Sinu access token
+    your_token: Teie access token
   auth:
     apply_for_account: Taotle kutse
     change_password: Salasõna
@@ -732,6 +736,7 @@ et:
       invalid_irreversible: Taastamatu filter töötab ainult kodu või teavituste kontekstis
     index:
       delete: Kustuta
+      empty: Teil pole filtreid.
       title: Filterid
     new:
       title: Lisa uus filter
@@ -850,7 +855,7 @@ et:
     digest:
       action: Vaata kõiki teateid
       body: Siin on kiire ülevaade sellest, mis sõnumeid Te ei näinud pärast Teie viimast külastust %{since}
-      mention: "%{name} mainis sind postituses:"
+      mention: "%{name} mainis Teid postituses:"
       new_followers_summary:
         one: Ja veel, Te saite ühe uue jälgija kui Te olite eemal! Jee!
         other: Ja veel, Te saite %{count} uut jälgijat kui Te olite eemal! Hämmastav!
@@ -973,7 +978,7 @@ et:
       weibo: Weibo
     current_session: Praegune seanss
     description: "%{browser} platvormil %{platform}"
-    explanation: Need on praegused veebilehitsejad, mis on sisse logitud sinu Mastodoni kontosse.
+    explanation: Need on praegused veebilehitsejad, mis on sisse logitud Teie Mastodoni kontosse.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1115,7 +1120,7 @@ et:
       explanation: Siin on mõned nõuanded, mis aitavad sul alustada
       final_action: Alusa postitamist
       final_step: 'Alusta postitamist! Isegi ilma jälgijateta näevad teised Teie avalikke postitusi, näiteks kohalikul ajajoonel ning siltidest. Te võite ennast tutvustada kasutades silti #introductions.'
-      full_handle: Sinu täisnimi
+      full_handle: Teie täisnimi
       full_handle_hint: See on mida oma sõpradega jagada, et nad saaksid Teile sõnumeid saata ning Teid jälgida teiselt serverilt.
       review_preferences_action: Muuda eelistusi
       review_preferences_step: Kindlasti seadistage oma sätted Teie maitse järgi, näiteks e-kirju, mida soovite saada, või millist privaatsustaset Te soovite vaikimisi. Kui Teil pole merehaigust, võite Te näiteks lubada GIFide automaatse mängimise.
