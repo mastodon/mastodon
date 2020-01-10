@@ -102,7 +102,7 @@ gem 'webpush'
 
 gem 'json-ld', git: 'https://github.com/ruby-rdf/json-ld.git', ref: 'e742697a0906e74e8bb777ef98137bc3955d981d'
 gem 'json-ld-preloaded', '~> 3.0'
-gem 'rdf-normalize', '~> 0.3'
+gem 'rdf-normalize', '~> 0.4'
 
 group :development, :test do
   gem 'fabrication', '~> 2.21'
