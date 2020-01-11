@@ -191,7 +191,9 @@ th:
         promote_user: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
         remove_avatar_user: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report: "%{name} ได้เปิดรายงาน %{target} ใหม่"
+        resolve_report: "%{name} ได้แก้ปัญหารายงาน %{target}"
         suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
+        unassigned_report: "%{name} ได้เลิกมอบหมายรายงาน %{target}"
         unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
@@ -295,6 +297,7 @@ th:
       delete: ลบ
       destroyed_msg: ลบโดเมนอีเมลออกจากบัญชีดำสำเร็จ
       domain: โดเมน
+      empty: ไม่มีโดเมนอีเมลที่ขึ้นบัญชีดำอยู่
       new:
         create: เพิ่มโดเมน
         title: รายการบัญชีดำอีเมลใหม่
@@ -624,6 +627,7 @@ th:
       following: รายการติดตาม
       muting: รายการปิดเสียง
     upload: อัปโหลด
+  in_memoriam_html: เพื่อระลึกถึง
   invites:
     delete: ปิดใช้งาน
     expires_in:
@@ -687,6 +691,7 @@ th:
       subject: "%{name} ได้ดันสถานะของคุณ"
       title: การดันใหม่
   notifications:
+    email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
   pagination:
     newer: ใหม่กว่า
