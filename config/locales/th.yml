@@ -411,6 +411,7 @@ th:
           title: อนุญาตคำเชิญโดย
       registrations_mode:
         modes:
+          approved: ต้องมีการอนุมัติสำหรับการลงทะเบียน
           none: ไม่มีใครสามารถลงทะเบียน
           open: ใครก็ตามสามารถลงทะเบียน
         title: โหมดการลงทะเบียน
@@ -810,7 +811,10 @@ th:
         other: "%{count} ภาพ"
       video:
         other: "%{count} วิดีโอ"
+    boosted_from_html: ดันจาก %{acct_link}
     content_warning: 'คำเตือนเนื้อหา: %{warning}'
+    disallowed_hashtags:
+      other: 'มีแฮชแท็กที่ไม่อนุญาต: %{tags}'
     language_detection: ตรวจหาภาษาโดยอัตโนมัติ
     open_in_web: เปิดในเว็บ
     pin_errors:
@@ -847,6 +851,7 @@ th:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     disable: ปิดใช้งาน
     enable: เปิดใช้งาน
@@ -858,6 +863,8 @@ th:
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   user_mailer:
     warning:
+      subject:
+        none: คำเตือนสำหรับ %{acct}
       title:
         none: คำเตือน
         silence: จำกัดบัญชีอยู่
