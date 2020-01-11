@@ -47,6 +47,7 @@ th:
     following: กำลังติดตาม
     joined: เข้าร่วมเมื่อ %{date}
     last_active: ใช้งานล่าสุด
+    link_verified_on: ตรวจสอบความเป็นเจ้าของของลิงก์นี้เมื่อ %{date}
     media: สื่อ
     moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
     network_hidden: ไม่มีข้อมูลนี้
@@ -116,6 +117,7 @@ th:
         title: ตำแหน่งที่ตั้ง
       login_status: สถานะการเข้าสู่ระบบ
       media_attachments: ไฟล์แนบสื่อ
+      memorialize: เปลี่ยนเป็นระลึกถึง
       moderation:
         active: ใช้งานอยู่
         all: ทั้งหมด
@@ -467,7 +469,9 @@ th:
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
   admin_mailer:
     new_report:
+      body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
   aliases:
     add_new: สร้างนามแฝง
     remove: เลิกเชื่อมโยงนามแฝง
@@ -832,6 +836,8 @@ th:
   stream_entries:
     pinned: โพสต์ที่ปักหมุด
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
+  tags:
+    does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
     title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
