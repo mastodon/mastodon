@@ -38,7 +38,7 @@ is:
     unavailable_content_description:
       domain: Vefþjónn
       reason: Ástæða
-      rejecting_media: 'Margmiðlunarskrár frá þessum vefþjónum verða hvorki birtar né geymdar og engar smámyndir frá þeim birtar, sem krefst þess að smellt sé handvirkt til að nálgast upprunalegu skrárnar:'
+      rejecting_media: 'Myndefnisskrár frá þessum vefþjónum verða hvorki birtar né geymdar og engar smámyndir frá þeim birtar, sem krefst þess að smellt sé handvirkt til að nálgast upprunalegu skrárnar:'
       silenced: 'Færslur frá þessum vefþjónum verða faldar í opinberum tímalínum og samtölum, auk þess sem engar tilkynningar verða til þvið aðgerðir notendanna, nema ef þú fylgist með þeim:'
       suspended: 'Engin gögn frá þessum vefþjónum verða unnin, geymd eða skipst á, sem gerir samskipti við notendur frá þessum vefþjónum ómöguleg:'
     unavailable_content_html: Mastodon leyfir þér almennt að skoða og eiga við efni frá notendum frá hvaða vefþjóni sem er í vefþjónasambandinu. Þetta eru þær undantekningar sem hafa verið gerðar á þessum tiltekna vefþjóni.
@@ -313,7 +313,7 @@ is:
       public_comment: Opinber athugasemd
       public_comment_hint: Athugasemd um þessa útilokun á léni til almennings, ef virkt er að auglýsa listann með lénatakmörkunum.
       reject_media: Hafna myndskrám
-      reject_media_hint: Fjarlægir staðværar myndskrár úr geymslu og neitar framvegis að sækja neinar slíkar. Skiptir ekki máli fyrir biðstöður
+      reject_media_hint: Fjarlægir staðværar myndefnisskrár úr geymslu og neitar framvegis að sækja neinar slíkar. Skiptir ekki máli fyrir biðstöður
       reject_reports: Hafna kærum
       reject_reports_hint: Hunsa allar kærur frá þessu léni. Skiptir ekki máli fyrir biðstöður
       rejecting_media: hafna myndskrám
@@ -461,7 +461,8 @@ is:
         desc_html: Lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu (samtengdum vefþjónum - fediverse)
         title: Birta lista yfir uppgötvaða netþjóna
       preview_sensitive_media:
-        title: Birta viðkvæmar myndir í OpenGraph-forskoðun
+        desc_html: Forskoðun tengla á önnur vefsvæði mun birta smámynd jafnvel þótt myndefnið sé merkt sem viðkvæmt
+        title: Birta viðkvæmt myndefni í OpenGraph-forskoðun
       profile_directory:
         desc_html: Leyfa að hægt sé að finna notendur
         title: Virkja notandasniðamöppu
@@ -485,17 +486,20 @@ is:
         desc_html: Sýna starfsmannamerki á síðu notandans
         title: Sýna starfsmannamerki
       site_description:
+        desc_html: Kynningarmálsgrein í API. Lýstu því hvað það er sem geri þennan Mastodon-þjón sérstakan, auk annarra mikilvægra upplýsinga. Þú getur notað HTML-einindi, sér í lagi <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Lýsing á vefþjóni
       site_description_extended:
         desc_html: góður staður fyrir siðareglur, almennt regluverk, leiðbeiningar og annað sem gerir netþjóninni þinn sérstakann. Þú getur notað HTML-einindi
         title: Sérsniðnar ítarlegar upplýsingar
       site_short_description:
+        desc_html: Birt á hliðarspjaldi og í lýsigögnum. Lýstu því hvað Mastodon gerir og hvað það er sem geri þennan vefþjón sérstakan, í einni málsgrein.
         title: Stutt lýsing á netþjóninum
       site_terms:
         desc_html: Þú getur skrifað þína eigin persónuverndarstefnu, þjónustuskilmála eða annað lagatæknilegt. Þú getur notað HTML-einindi
         title: Sérsniðnir þjónustuskilmálar
       site_title: Heiti vefþjóns
       spam_check_enabled:
+        desc_html: Mastodon getur tilkynnt sjálfvirkt um aðganga sem senda ítrekað óumbeðin skilaboð. Mögulega geta verið rangar slíkar tilkynningar.
         title: Sjálfvirkar ruslpóstvarnir
       thumbnail:
         desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
@@ -515,10 +519,10 @@ is:
       deleted: Eytt
       failed_to_execute: Mistókst að keyra
       media:
-        title: Myndskrár
-      no_media: Engar myndir
+        title: Myndefni
+      no_media: Ekkert myndefni
       title: Staða notendaaðganga
-      with_media: Með myndum
+      with_media: Með myndefni
     tags:
       accounts_today: Einstök afnot í dag
       accounts_week: Einstök afnot í þessari viku
@@ -683,6 +687,7 @@ is:
     archive_takeout:
       date: Dagsetning
       download: Náðu í safnskrána þína
+      hint_html: Þú getur beðið um safnskrá með <strong>tístunum þínum og innsendu myndefni</strong>. Útfluttu gögnin verða á ActivityPub-sniði, sem allur samhæfður hugbúnaður á að geta lesið. Þú getur beðið um safnskrá á 7 daga fresti.
       in_progress: Set saman safnskrána þína...
       request: Biddu um safnskrána þína
       size: Stærð
@@ -1113,6 +1118,8 @@ is:
       subject: Safnskráin þín er tilbúin til niðurhals
       title: Taka út í safnskrá
     warning:
+      explanation:
+        suspend: Aðgangurinn þinn hefur verið settur í biðstöðu, öll þín tíst og innsent myndefni hafa verið óafturkræft fjarlægð af þessum vefþjóni, sem og af þeim vefþjónum þar sem þú áttir þér fylgjendur.
       review_server_policies: Yfirfara reglur vefþjónsins
       statuses: 'Sérstaklega fyrir:'
       subject:
@@ -1131,6 +1138,7 @@ is:
       final_action: Byrjaðu að skrifa
       review_preferences_action: Breyta kjörstillingum
       subject: Velkomin í Mastodon
+      tip_local_timeline: Staðværa tímalínan er færibandasýn á allt fólkið á %{instance}. Þetta eru þínir næstu nágrannar!
       tips: Ábendingar
       title: Velkomin/n um borð, %{name}!
   users:
