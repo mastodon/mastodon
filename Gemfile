@@ -68,7 +68,6 @@ gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.10'
-gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.11'
 gem 'parslet'
 gem 'parallel', '~> 1.19'
