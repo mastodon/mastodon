@@ -1,5 +1,6 @@
 is:
   about:
+    about_hashtag_html: 'Þetta eru opinber tíst sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -19,6 +20,9 @@ is:
     federation_hint_html: Með notandaaðgangi á %{instance} geturðu fylgst með fólki á hvaða Mastodon-þjóni sem er og reyndar víðar.
     get_apps: Prófaðu farsímaforrit
     hosted_on: Mastodon hýst á %{domain}
+    instance_actor_flash: |
+      Þessi aðgangur er sýndarnotandi sem er notaður til að tákna sjálfan vefþjóninn en ekki neinn einstakan notanda.
+      Tilgangur hans tengist virkni vefþjónasambandsins og ætti alls ekki að loka á hann nema að þú viljir útiloka allan viðkomandi vefþjón, en þá ætti frekar að útiloka sjálft lénið.
     learn_more: Kanna nánar
     privacy_policy: Persónuverndarstefna
     see_whats_happening: Sjáðu hvað er í gangi
@@ -34,6 +38,10 @@ is:
     unavailable_content_description:
       domain: Vefþjónn
       reason: Ástæða
+      rejecting_media: 'Margmiðlunarskrár frá þessum vefþjónum verða hvorki birtar né geymdar og engar smámyndir frá þeim birtar, sem krefst þess að smellt sé handvirkt til að nálgast upprunalegu skrárnar:'
+      silenced: 'Færslur frá þessum vefþjónum verða faldar í opinberum tímalínum og samtölum, auk þess sem engar tilkynningar verða til þvið aðgerðir notendanna, nema ef þú fylgist með þeim:'
+      suspended: 'Engin gögn frá þessum vefþjónum verða unnin, geymd eða skipst á, sem gerir samskipti við notendur frá þessum vefþjónum ómöguleg:'
+    unavailable_content_html: Mastodon leyfir þér almennt að skoða og eiga við efni frá notendum frá hvaða vefþjóni sem er í vefþjónasambandinu. Þetta eru þær undantekningar sem hafa verið gerðar á þessum tiltekna vefþjóni.
     user_count_after:
       one: notanda
       other: notendur
@@ -41,6 +49,7 @@ is:
     what_is_mastodon: Hvað er Mastodon?
   accounts:
     choices_html: "%{name} hefur valið:"
+    endorsements_hint: Þú getur auglýst efni frá fólki sem þú fylgir í vefviðmótinu og mun það birtast hér.
     featured_tags_hint: Þú getur gefið sérstökum myllumerkjum aukið vægi og birtast þau þá hér.
     follow: Fylgja
     followers:
@@ -176,6 +185,7 @@ is:
       title: Notandaaðgangar
       unconfirmed_email: Óstaðfestur tölvupóstur
       undo_silenced: Hætta að hylja
+      undo_suspension: Taka úr bið
       unsubscribe: Taka úr áskrift
       username: Notandanafn
       warn: Aðvara
@@ -216,6 +226,7 @@ is:
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
+      title: Atvikaskrá
     custom_emojis:
       assign_category: Úthluta flokki
       by_domain: Lén
@@ -250,6 +261,7 @@ is:
       upload: Senda inn
     dashboard:
       authorized_fetch_mode: Öruggur hamur
+      backlog: bakskráð verk
       config: Stillingar
       feature_deletions: Eyðingar notandaaðganga
       feature_invites: Boðstenglar
@@ -708,6 +720,8 @@ is:
     active: Virkur
     authorize: Já, heimila
     authorize_connection_prompt: Auðkenna dulkóðaða tengingu?
+    errors:
+      failed: Dulrituð tenging mistókst, endilega reyndu aftur frá %{provider}.
     i_am_html: Ég er %{username} á %{service}.
     identity: Auðkenni
     inactive: Óvirkt
@@ -925,6 +939,7 @@ is:
     edit_profile: Breyta notandasniði
     export: Útflutningur gagna
     featured_tags: Myllumerki í umræðunni
+    identity_proofs: Sannanir á auðkenni
     import: Flytja inn
     import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
