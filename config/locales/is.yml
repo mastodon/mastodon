@@ -204,7 +204,7 @@ is:
         demote_user: "%{name} lækkaði notandann %{target} í tign"
         destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
         destroy_domain_allow: "%{name} fjarlægði lén %{target} af lista yfir leyft"
-        destroy_domain_block: "%{name} afturkallaði útilokun á léninu %{target}"
+        destroy_domain_block: "%{name} aflétti útilokun af léninu %{target}"
         destroy_email_domain_block: "%{name} setti póstlén %{target} á lista yfir leyft"
         destroy_status: "%{name} fjarlægði stöðufærslu frá %{target}"
         disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
@@ -298,8 +298,10 @@ is:
       destroyed_msg: Útilokun léns hefur verið aflétt
       domain: Lén
       edit: Breyta útilokun léns
+      existing_domain_block_html: Þú ert þegar búin/n að setja strangari takmörk á %{name}, þú þarft fyrst að <a href="%{unblock_url}">aflétta útilokun</a> á því.
       new:
         create: Búa til útilokun
+        hint: Útilokun lénsins mun ekki koma í veg fyrir gerð aðgangsfærslna í gagnagrunninum, en mun afturvirkt og sjálfvirkt beita sérstökum umsjónaraðferðum á þessa aðganga.
         severity:
           desc_html: "<strong>Hylja</strong> mun gera færslur á notandaaðgangnum ósýnilegar öllum þeim sem ekki eru að fylgjast með þeim. <strong>Setja í bið</strong> mun fjarlægja allt efni á notandaaðgangnum, myndgögn og gögn á notandasniði. Notaðu <strong>Ekkert</strong> ef þú ætlar bara að hafna margmiðlunarskrám."
           noop: Ekkert
@@ -307,9 +309,13 @@ is:
           suspend: Setja í bið
         title: Ný útilokun á léni
       private_comment: Einkaathugasemd
+      private_comment_hint: Athugasemd um þessa útilokun á léni til innanhússnotkunar fyrir umsjónarmenn.
       public_comment: Opinber athugasemd
+      public_comment_hint: Athugasemd um þessa útilokun á léni til almennings, ef virkt er að auglýsa listann með lénatakmörkunum.
       reject_media: Hafna myndskrám
+      reject_media_hint: Fjarlægir staðværar myndskrár úr geymslu og neitar framvegis að sækja neinar slíkar. Skiptir ekki máli fyrir biðstöður
       reject_reports: Hafna kærum
+      reject_reports_hint: Hunsa allar kærur frá þessu léni. Skiptir ekki máli fyrir biðstöður
       rejecting_media: hafna myndskrám
       rejecting_reports: hafna kærum
       severity:
@@ -332,6 +338,7 @@ is:
       delete: Eyða
       destroyed_msg: Tókst að eyða póstléni af lista yfir bannað
       domain: Lén
+      empty: Engin tölvupóstlén eru á bannlista.
       new:
         create: Bæta við léni
         title: Ný færsla á bannlista fyrir tölvupóstföng
@@ -370,14 +377,17 @@ is:
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
+      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra tísta við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
+      enable_hint: Ef þetta er einu sinni virkjað, mun vefþjónninn þinn gerast áskrifandi að öllum opinberum tístum frá þessum endurvarpa og byrja að senda sín eigin opinberu tíst til hans.
       enabled: Virkt
       inbox_url: Slóð endurvarpa
       pending: Bíð eftir samþykki endurvarpa
       save_and_enable: Vista og virkja
       setup: Setja upp endurvarpatengingu
+      signatures_not_enabled: Endurvarpar munu ekki virka rétt þegar verið er í öryggisham eða þegar  hamur til að leyfa (whitelist mode) er virkur
       status: Staða
       title: Endurvarpar
     report_notes:
@@ -420,8 +430,10 @@ is:
       updated_at: Uppfært
     settings:
       activity_api_enabled:
+        desc_html: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
         title: Birta samantektartölfræði um virkni notanda
       bootstrap_timeline_accounts:
+        desc_html: Aðskildu mörg notendanöfn með kommum. Einungis staðværir og ólæstir aðgangar virka. Þegar þetta er autt er sjálgefið miðað við alla staðværa stjórnendur.
         title: Sjálfgefnar fylgnistillingar fyrir nýja notendur
       contact_information:
         email: Fyrirtækistölvupóstur
