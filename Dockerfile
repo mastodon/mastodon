@@ -100,6 +100,13 @@ ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini /tin
 RUN echo "$TINI_SUM tini" | sha256sum -c -
 RUN chmod +x /tini
 
+# Install Flodgatt
+ENV FG_VER="v0.4.7"
+ENV FG_SUM="e7ebbcb3ffe52d969bc0dff3fa1140f3bbb42006270054c5fe8a94925de738a9"
+ADD --chown=mastodon:mastodon https://github.com/tootsuite/flodgatt/releases/download/$FG_VER/flodgatt /opt/mastodon/flodgatt
+RUN echo "$FG_SUM /opt/mastodon/flodgatt" | sha256sum -c -
+RUN chmod +x /opt/mastodon/flodgatt  # TODO: Broken?
+
 # Copy over mastodon source, and dependencies from building, and set permissions
 COPY --chown=mastodon:mastodon . /opt/mastodon
 COPY --from=build-dep --chown=mastodon:mastodon /opt/mastodon /opt/mastodon
