@@ -308,22 +308,22 @@ gl:
           suspend: Suspender
         title: Novo bloqueo de dominio
       private_comment: Comentario privado
-      private_comment_hint: Comentar entre moderadores para uso interno as limitacións de este dominio.
+      private_comment_hint: Comentar sobre esta limitación de dominio para uso interno polos moderadores.
       public_comment: Comentario público
-      public_comment_hint: Comentar sobre as limitacións de este dominio para o interese público, se o aviso da lista de dominios limitados está activado.
-      reject_media: Rexeitar ficheiros de medios
-      reject_media_hint: Eliminar ficheiros de medios almacenados localmente e rexeita descargalos no futuro. Irrelevante para as suspensións
-      reject_reports: Rexeitar informes
-      reject_reports_hint: Ignorar todos os informes procedentes de este dominio. Irrelevante para as suspensións
-      rejecting_media: rexeitando ficheiros de medios
-      rejecting_reports: rexeitando informes
+      public_comment_hint: Comentar sobre esta limitación de dominio para o público xeral, se está activado o aviso da listaxe de limitacións de dominio.
+      reject_media: Rexeitar ficheiros multimedia
+      reject_media_hint: Eliminar ficheiros multimedia almacenados de xeito local e rexeita descargalos no futuro. Irrelevante para as suspensións
+      reject_reports: Rexeitar denuncias
+      reject_reports_hint: Ignorar todas as denuncias procedentes deste dominio. Irrelevante para as suspensións
+      rejecting_media: rexeitando ficheiros multimedia
+      rejecting_reports: rexeitando denuncias
       severity:
-        silence: acalado
+        silence: silenciado
         suspend: suspendido
       show:
         affected_accounts:
-          one: Afectoulle a unha conta na base de datos
-          other: "Afectoulle a %{count} contas na base de datos"
+          one: Unha conta na base de datos afectada
+          other: "%{count} contas na base de datos afectadas"
         retroactive:
           silence: Non silenciar todas as contas existentes de este dominio
           suspend: Non suspender todas as contas existentes de este dominio
