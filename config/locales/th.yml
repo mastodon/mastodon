@@ -184,6 +184,7 @@ th:
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
         destroy_email_domain_block: "%{name} ได้ขึ้นบัญชีขาวโดเมนอีเมล %{target}"
         destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
+        disable_2fa_user: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
         disable_user: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
@@ -391,6 +392,8 @@ th:
         title: ภาพแบนเนอร์หลัก
       mascot:
         title: ภาพมาสคอต
+      peers_api_enabled:
+        title: เผยแพร่รายการเซิร์ฟเวอร์ที่ค้นพบ
       profile_directory:
         desc_html: อนุญาตให้ผู้ใช้สามารถค้นพบได้
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
@@ -825,6 +828,7 @@ th:
       public: สาธารณะ
       public_long: ทุกคนสามารถเห็น
       unlisted: ไม่อยู่ในรายการ
+      unlisted_long: ทุกคนสามารถเห็น แต่ไม่แสดงรายการในเส้นเวลาสาธารณะ
   stream_entries:
     pinned: โพสต์ที่ปักหมุด
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
