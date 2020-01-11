@@ -164,7 +164,7 @@ ru:
       reject: Отклонить
       reject_all: Отклонить все
       remove_avatar: Удалить аватар
-      remove_header: Удалить шапку
+      remove_header: Убрать шапку
       resend_confirmation:
         already_confirmed: Этот пользователь уже подтвержден
         send: Повторно отправить подтверждение по электронной почте
@@ -227,10 +227,10 @@ ru:
         reset_password_user: "%{name} сбросил(а) пароль пользователя %{target}"
         resolve_report: "%{name} решил(а) жалобу %{target}"
         silence_account: "%{name} наложил(а) ограничения на видимость постов учётной записи %{target}"
-        suspend_account: "%{name} заморозил(а) учётную запись %{target}"
+        suspend_account: "%{name} заблокировал(а) учётную запись %{target}"
         unassigned_report: "%{name} сняла назначение жалобы %{target}"
         unsilence_account: "%{name} снял ограничения видимости постов пользователя %{target}"
-        unsuspend_account: "%{name} разморозил(а) учётную запись %{target}"
+        unsuspend_account: "%{name} снял(а) блокировку с пользователя %{target}"
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
         update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
@@ -861,7 +861,7 @@ ru:
     incoming_migrations: Переезд с другой учётной записи
     incoming_migrations_html: Переезжаете с другой учётной записи? <a href="%{path}">Настройте псевдоним</a> для переноса подписчиков.
     moved_msg: Теперь ваша учётная запись перенаправляет к %{acct}, туда же перемещаются подписчики.
-    not_redirecting: Ваша учётная запись пока что не перенаправляется на какую-либо иную.
+    not_redirecting: Для вашей учётной записи пока не настроено перенаправление.
     on_cooldown: Вы уже недавно переносили свою учётную запись. Эта возможность будет снова доступна через %{count} дн.
     past_migrations: Прошлые переезды
     proceed_with_move: Перенести подписчиков
