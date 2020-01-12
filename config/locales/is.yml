@@ -834,12 +834,16 @@ is:
     incoming_migrations_html: Til að flytjast af öðrum notandaaðgangi yfir á þennan, þarftu fyrst að <a href="%{path}">útbúa samnefni fyrir aðgang</a>.
     moved_msg: Notandaaðgangurinn þinn endurbeinist núna á %{acct} og er verið að yfirfæra fylgjendurna þína.
     not_redirecting: Notandaaðgangurinn þinn er ekki að endurbeinast á neinn annan aðgang.
+    on_cooldown: Þú hefur nýverið yfirfært aðganginn þinn. Þessi aðgerð verður tiltæk aftur eftir %{count} daga.
     past_migrations: Fyrri yfirfærslur
     proceed_with_move: Færa fylgjendur
     redirecting_to: Notandaaðgangurinn þinn endurbeinist á %{acct}.
     set_redirect: Stilla endurbeiningu
     warning:
+      backreference_required: Það verður fyrst að stilla nýja aðganginn til að bakvísa á þennan aðgang
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
+      cooldown: Eftir yfirfærslu/flutning kemur kælingartímabil á meðan þú getur ekki flutt þig aftur
+      followers: Þessi aðgerð mun flytja alla fylgjendur af núverandi aðgangi yfir á nýja aðganginn
       only_redirect_html: Einnig geturðu <a href="%{path}">einungis sett upp endurbeiningu á notandasniðið þitt</a>.
       other_data: Engin önnur gögn munu flytjast sjálfvirkt
   moderation:
