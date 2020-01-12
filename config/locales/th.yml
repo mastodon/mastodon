@@ -553,11 +553,14 @@ th:
       x_months: "%{count} เดือน"
       x_seconds: "%{count} วินาที"
   deletes:
+    confirm_username: ป้อนชื่อผู้ใช้ของคุณเพื่อยืนยันกระบวนงาน
     proceed: ลบบัญชี
     success_msg: ลบบัญชีของคุณสำเร็จ
     warning:
+      data_removal: จะเอาโพสต์และข้อมูลอื่น ๆ ของคุณออกโดยถาวร
       email_change_html: คุณสามารถ <a href="%{path}">เปลี่ยนที่อยู่อีเมลของคุณ</a> โดยไม่ต้องลบบัญชีของคุณ
       email_reconfirmation_html: หากคุณไม่ได้รับอีเมลยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
+      more_details_html: สำหรับรายละเอียดเพิ่มเติม ดู <a href="%{terms_path}">นโยบายความเป็นส่วนตัว</a>
   directories:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
