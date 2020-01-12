@@ -4,7 +4,7 @@
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
-- content_for :page_heading_actions do
+- content_for :heading_actions do
   - if @report.unresolved?
     = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
   - else

@@ -72,9 +72,16 @@ module Mastodon
       say("Imported #{imported}, skipped #{skipped}, failed to import #{failed}", color(imported, skipped, failed))
     end
 
+    option :remote_only, type: :boolean
     desc 'purge', 'Remove all custom emoji'
+    long_desc <<-LONG_DESC
+      Removes all custom emoji.
+
+      With the --remote-only option, only remote emoji will be deleted.
+    LONG_DESC
     def purge
-      CustomEmoji.in_batches.destroy_all
+      scope = options[:remote_only] ? CustomEmoji.remote : CustomEmoji
+      scope.in_batches.destroy_all
       say('OK', :green)
     end
 

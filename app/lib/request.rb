@@ -59,7 +59,7 @@ class Request
     begin
       response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
-      raise e.class, "#{e.message} on #{@url}", e.backtrace
+      raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
 
     begin
@@ -73,6 +73,8 @@ class Request
       response.body_with_limit if http_client.persistent?
 
       yield response if block_given?
+    rescue => e
+      raise e.class, e.message, e.backtrace[0]
     ensure
       http_client.close unless http_client.persistent?
     end
@@ -94,7 +96,7 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).timeout(:per_operation, TIMEOUT.dup).follow(max_hops: 2)
+      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 2)
     end
   end
 

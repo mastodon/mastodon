@@ -1,12 +1,11 @@
 - content_for :page_title do
   = t('filters.index.title')
 
-- content_for :page_heading_actions do
+- content_for :heading_actions do
   = link_to t('filters.new.title'), new_filter_path, class: 'button'
 
 - if @filters.count == 0
-  %div{ style: 'display: flex; justify-content: center' }
-    %div.muted-hint= t 'filters.index.empty'
+  %div.muted-hint.center-text= t 'filters.index.empty'
 - else
   .table-wrapper
     %table.table

@@ -12,7 +12,7 @@ zh-CN:
       last_attempt: 你还有最后一次尝试机会，再次失败你的帐户将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
-      pending: 你的账户仍在审核中。
+      pending: 你的帐号仍在审核中。
       timeout: 你已登录超时，请重新登录。
       unauthenticated: 继续操作前请注册或者登录。
       unconfirmed: 继续操作前请先确认你的帐户。
@@ -47,12 +47,12 @@ zh-CN:
         subject: Mastodon：重置密码信息
         title: 重置密码
       two_factor_disabled:
-        explanation: 账户的双重认证已禁用。现在仅使用邮箱和密码登录即可登录。
+        explanation: 帐号的双重认证已禁用。现在仅使用邮箱和密码登录即可登录。
         subject: Mastodon：双重认证已禁用。
-        title: 双重认证禁用
+        title: 双重认证已禁用
       two_factor_enabled:
-        explanation: 账户双重认证已启用。登录时将需要来自已配对的 TOTP 应用生成的验证码。
-        subject: 'Mastodon: 双重验证已开启'
+        explanation: 账号双重认证已启用。登录时将需要来自已配对的 TOTP 应用生成的验证码。
+        subject: Mastodon：双重验证已开启
         title: 已启用双重认证
       two_factor_recovery_codes_changed:
         explanation: 之前的恢复码已失效，现已生成了新的恢复码。

@@ -78,6 +78,7 @@ de:
     roles:
       admin: Administrator
       bot: Bot
+      group: Gruppe
       moderator: Moderator
     unavailable: Profil nicht verfügbar
     unfollow: Entfolgen
@@ -198,10 +199,12 @@ de:
         confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_account_warning: "%{name} hat eine Warnung an %{target} gesendet"
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
+        create_domain_allow: "%{name} hat die Domain %{target} gewhitelistet"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
         demote_user: "%{name} stufte Benutzer_in %{target} herunter"
         destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
+        destroy_domain_allow: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
         destroy_status: "%{name} hat einen Beitrag von %{target} entfernt"
@@ -336,6 +339,7 @@ de:
       delete: Löschen
       destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
       domain: Domain
+      empty: Keine E-Mail-Domains sind momentan auf der Blacklist.
       new:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
@@ -391,10 +395,18 @@ de:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
     reports:
+      account:
+        notes:
+          one: "%{count} Notiz"
+          other: "%{count} Notizen"
+        reports:
+          one: "%{count} Bericht"
+          other: "%{count} Berichte"
       action_taken_by: Maßnahme ergriffen durch
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesener Moderator
+      by_target_domain: Domain des gemeldeten Kontos
       comment:
         none: Kein
       created_at: Gemeldet
@@ -440,6 +452,8 @@ de:
         users: Für angemeldete lokale Benutzer
       domain_blocks_rationale:
         title: Rationale anzeigen
+      enable_bootstrap_timeline_accounts:
+        title: Aktiviere die Option "Konten, denen Neu-Angemeldete automatisch folgen"
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
         title: Bild für Einstiegsseite
@@ -568,6 +582,10 @@ de:
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
+    localization:
+      body: Mastodon wurde von Freiwilligen übersetzt.
+      guide_link: https://de.crowdin.com/project/mastodon
+      guide_link_text: Jeder kann etwas dazu beitragen.
     sensitive_content: Heikle Inhalte
     toot_layout: Beitragslayout
   application_mailer:
@@ -706,7 +724,6 @@ de:
     blocks: Du hast blockiert
     csv: CSV
     domain_blocks: Domainblockaden
-    follows: Du folgst
     lists: Listen
     mutes: Du hast stummgeschaltet
     storage: Medienspeicher
@@ -728,6 +745,7 @@ de:
       invalid_irreversible: Unwiderrufliche Filterung funktioniert nur mit Heim- oder Benachrichtigungskontext
     index:
       delete: Löschen
+      empty: Du hast keine Filter.
       title: Filter
     new:
       title: Neuen Filter hinzufügen
@@ -876,6 +894,10 @@ de:
       body: "%{name} hat deinen Beitrag geteilt:"
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
+  notifications:
+    email_events: Ereignisse für E-Mail-Benachrichtigungen
+    email_events_hint: 'Wähle Ereignisse, für die du Benachrichtigungen erhalten möchtest:'
+    other_settings: Weitere Benachrichtigungseinstellungen
   number:
     human:
       decimal_units:
@@ -909,6 +931,8 @@ de:
   relationships:
     activity: Kontoaktivität
     dormant: Inaktiv
+    followers: Folgende
+    following: Folgt
     last_active: Zuletzt aktiv
     most_recent: Neuste
     moved: Umgezogen

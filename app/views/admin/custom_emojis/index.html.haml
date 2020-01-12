@@ -4,6 +4,9 @@
 - content_for :header_tags do
   = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
 
+- content_for :heading_actions do
+  = link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
+
 .filters
   .filter-subset
     %strong= t('admin.accounts.location.title')
@@ -81,6 +84,3 @@
 
 = paginate @custom_emojis
 
-%hr.spacer/
-
-= link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
