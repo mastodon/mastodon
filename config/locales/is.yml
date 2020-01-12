@@ -1,7 +1,6 @@
----
 is:
   about:
-    about_hashtag_html: Þetta eru opinber tíst sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
+    about_hashtag_html: 'Þetta eru opinber tíst sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -346,7 +345,7 @@ is:
       title: Bannlisti yfir tölvupóstföng
     followers:
       back_to_account: Til baka í notandaaðgang
-      title: Fylgjast með %{acct}
+      title: "Fylgjast með %{acct}"
     instances:
       by_domain: Lén
       delivery_available: Afhending er til taks
@@ -378,7 +377,7 @@ is:
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
-      description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra tísta við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
+      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra tísta við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
@@ -553,9 +552,9 @@ is:
     new_report:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
-      subject: Ný kæra vegna %{instance} (#%{id})
+      subject: 'Ný kæra vegna %{instance} (#%{id})'
     new_trending_tag:
-      subject: Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})
+      subject: 'Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})'
   aliases:
     add_new: Búa til samnefni
     remove: Aftengja samnefni
@@ -832,7 +831,7 @@ is:
     mention:
       action: Svara
     reblog:
-      body: "%{name} endurbirti stöðufærsluna þína:"
+      body: '%{name} endurbirti stöðufærsluna þína:'
       subject: "%{name} endurbirti stöðufærsluna þína"
       title: Ný endurbirting
   notifications:
@@ -1000,7 +999,7 @@ is:
       vote: Greiða atkvæði
     show_more: Sýna meira
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
-    title: "%{name}: „%{quote}‟"
+    title: '%{name}: „%{quote}‟'
     visibilities:
       private: Einungis fylgjendur
       private_long: Aðeins birt fylgjendum
