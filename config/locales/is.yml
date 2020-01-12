@@ -636,6 +636,8 @@ is:
       account_status: Staða notandaaðgangs
       confirming: Bíð eftir að staðfestingu tölvupósts sé lokið.
       functional: Notandaaðgangurinn þinn er með fulla virkni.
+      pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
+      redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
     trouble_logging_in: Vandræði við að skrá inn?
   authorize_follow:
     already_following: Þú ert að þegar fylgjast með þessum aðgangi
@@ -676,6 +678,10 @@ is:
     warning:
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       caches: Efni sem aðrir netþjónar hafa sett í skyndiminni gæti verið til staðar áfram
+      data_removal: Færslurnar þínar og önnur gögn verða endanlega fjarlægð
+      email_change_html: Þú getur <a href="%{path}">breytt tölvupóstfanginu þínu</a> án þess að eyða aðgangnum þínum
+      email_contact_html: Ef hann berst ekki geturðu sent póst á <a href="mailto:%{email}">%{email}</a> til að fá aðstoð
+      email_reconfirmation_html: Ef staðfestingarpósturinn berst ekki geturðu <a href="%{path}">beðið um hann aftur</a>
       irreversible: Þú munt ekki getað endurheimt eða endurvirkjað aðganginn þinn
       more_details_html: Til að skoða þetta nánar, er gott að líta á <a href="%{terms_path}">persónuverndarstefnuna</a>.
       username_available: Notandanafnið þitt mun verða tiltækt aftur
@@ -695,11 +701,12 @@ is:
     '422':
       content: Öryggisprófun mistókst. Ertu að loka á vefkökur/fótspor?
       title: Öryggisprófun mistókst
-    '429': Throttled
+    '429': Í hægagangi
     '500':
       content: Því miður, en eitthvað fór úrskeiðis á okkar enda.
       title: Þessi síða er ekki rétt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Ekki var hægt að afgreiða síðuna vegna tímabundinnar bilunar á vefþjóni.
+    noscript_html: Til að nota vefútgáfu Mastodon þarftu að virkja JavaScript. Þú getur líka prófað eitt af Mastodon <a href="%{apps_path}">forritunum</a> fyrir stýrikerfið þitt.
   existing_username_validator:
     not_found: Fann ekki staðværan notanda með þetta notandanafn
     not_found_multiple: tókst ekki að finna %{usernames}
@@ -733,6 +740,7 @@ is:
       invalid_context: Ekkert eða ógilt samhengi var gefið
     index:
       delete: Eyða
+      empty: Þú ert ekki með neinar síur.
       title: Síur
     new:
       title: Bæta við nýrri síu
