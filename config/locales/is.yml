@@ -451,6 +451,8 @@ is:
         users: Til innskráðra staðværra notenda
       domain_blocks_rationale:
         title: Birta röksemdafærslu
+      enable_bootstrap_timeline_accounts:
+        title: Virkja sjálfgefnar fylgnistillingar fyrir nýja notendur
       hero:
         desc_html: Birt á forsíðunni. Mælt með að hún sé a.m.k. 600×100 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
         title: Aðalmynd
@@ -804,6 +806,7 @@ is:
       one: 1 afnot
       other: "%{count} afnot"
     max_uses_prompt: Engin takmörk
+    prompt: Útbúðu og deildu tenglum með öðrum til að veita aðgang að þessum vefþjóni
     table:
       expires_at: Rennur út
       uses: Afnot
@@ -818,13 +821,19 @@ is:
   migrations:
     acct: Færði í
     cancel: Hætta við endurbeiningu
+    cancel_explanation: Sé hætt við endurbeiningu verður núverandi aðgangur þinn endurvirkjaður, en það mun ekki ná til baka þeim fylgjendum sem hafa verið fluttir á þann aðgang.
     cancelled_msg: Tókst að hætta við endurbeiningu.
     errors:
+      already_moved: er sami aðgangur og þú hefur þegar flutt þig á
+      missing_also_known_as: er ekki að bakvísa í þennan aðgang
       move_to_self: getur ekki verið núverandi aðgangur
       not_found: fannst ekki
       on_cooldown: Þú ert í kælingu
     followers_count: Fylgjendur þegar flutningur átti sér stað
+    incoming_migrations: Flytjast frá öðrum aðgangi
     incoming_migrations_html: Til að flytjast af öðrum notandaaðgangi yfir á þennan, þarftu fyrst að <a href="%{path}">útbúa samnefni fyrir aðgang</a>.
+    moved_msg: Notandaaðgangurinn þinn endurbeinist núna á %{acct} og er verið að yfirfæra fylgjendurna þína.
+    not_redirecting: Notandaaðgangurinn þinn er ekki að endurbeinast á neinn annan aðgang.
     past_migrations: Fyrri yfirfærslur
     proceed_with_move: Færa fylgjendur
     redirecting_to: Notandaaðgangurinn þinn endurbeinist á %{acct}.
