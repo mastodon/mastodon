@@ -96,16 +96,20 @@ RSpec.describe Status, type: :model do
 
     context 'unless destroyed?' do
       context 'if reblog?' do
-        it 'returns "#{account.acct} shared a status by #{reblog.account.acct}"' do
+        it 'returns "#{account.acct} shared #{reblog.account.acct}\'s: #{preview}"' do
           reblog = subject.reblog = other
-          expect(subject.title).to eq "#{account.acct} shared a status by #{reblog.account.acct}"
+          preview = subject.text.slice(0, 10).split("\n")[0]
+          expect(subject.title).to(
+            eq "#{account.acct} shared #{reblog.account.acct}'s: #{preview}"
+          )
         end
       end
 
       context 'unless reblog?' do
-        it 'returns "New status by #{account.acct}"' do
+        it 'returns "#{account.acct}: #{preview}"' do
           subject.reblog = nil
-          expect(subject.title).to eq "New status by #{account.acct}"
+          preview = subject.text.slice(0, 20).split("\n")[0]
+          expect(subject.title).to eq "#{account.acct}: #{preview}"
         end
       end
     end

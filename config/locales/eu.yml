@@ -78,6 +78,7 @@ eu:
     roles:
       admin: Administratzailea
       bot: Bot-a
+      group: Taldea
       moderator: Moderatzailea
     unavailable: Profila ez dago eskuragarri
     unfollow: Utzi jarraitzeari
@@ -338,6 +339,7 @@ eu:
       delete: Ezabatu
       destroyed_msg: Ongi ezabatu da e-mail domeinua zerrenda beltzetik
       domain: Domeinua
+      empty: Ez dago e-mail domeinurik zerrenda beltzean.
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
@@ -393,10 +395,18 @@ eu:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
     reports:
+      account:
+        notes:
+          one: Ohar %{count}
+          other: "%{count} ohar"
+        reports:
+          one: Txosten %{count}
+          other: "%{count} txosten"
       action_taken_by: Neurrien hartzailea
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
       assigned: Esleitutako moderatzailea
+      by_target_domain: Jakinarazitako kontuaren domeinua
       comment:
         none: Bat ere ez
       created_at: Salatua
@@ -442,6 +452,8 @@ eu:
         users: Saioa hasita duten erabiltzaile lokalei
       domain_blocks_rationale:
         title: Erakutsi arrazoia
+      enable_bootstrap_timeline_accounts:
+        title: Gaitu lehenetsitako jarraipena erabiltzaile berrientzat
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
         title: Azaleko irudia
@@ -570,6 +582,10 @@ eu:
     animations_and_accessibility: Animazioak eta irisgarritasuna
     confirmation_dialogs: Berrespen dialogoak
     discovery: Aurkitzea
+    localization:
+      body: Mastodon boluntarioek itzultzen dute.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Edonork lagundu dezake.
     sensitive_content: Eduki hunkigarria
     toot_layout: Toot disposizioa
   application_mailer:
@@ -644,7 +660,7 @@ eu:
     prompt: Berretsi pasahitza jarraitzeko
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}o"
+      about_x_hours: "%{count}h"
       about_x_months: "%{count} hilabete"
       about_x_years: "%{count} urte"
       almost_x_years: "%{count} urte"
@@ -708,7 +724,6 @@ eu:
     blocks: Zuk blokeatutakoak
     csv: CSV
     domain_blocks: Domeinuen blokeoak
-    follows: Zuk jarraitutakoak
     lists: Zerrendak
     mutes: Zuk mututukoak
     storage: Multimedia biltegiratzea
@@ -730,6 +745,7 @@ eu:
       invalid_irreversible: Behin betiko iragazketa hasiera edo jakinarazpenen testuinguruan besterik ez dabil
     index:
       delete: Ezabatu
+      empty: Ez duzu iragazkirik.
       title: Iragazkiak
     new:
       title: Gehitu iragazki berria
@@ -878,6 +894,10 @@ eu:
       body: "%{name}(e)k bultzada eman dio zure mezuari:"
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
+  notifications:
+    email_events: Gertaerak helbide elektronikoko jakinarazpenentzat
+    email_events_hint: 'Hautatu jaso nahi dituzun gertaeren jakinarazpenak:'
+    other_settings: Bezte jakinarazpen konfigurazioak
   number:
     human:
       decimal_units:
@@ -911,6 +931,8 @@ eu:
   relationships:
     activity: Kontuaren aktibitatea
     dormant: Ez aktiboa
+    followers: Jarraitzaileak
+    following: Jarraitzen
     last_active: Azkenekoz aktiboa
     most_recent: Azkenak
     moved: Lekuz aldatua

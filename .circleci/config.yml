@@ -3,7 +3,7 @@ version: 2
 aliases:
   - &defaults
     docker:
-      - image: circleci/ruby:2.6-buster-node
+      - image: circleci/ruby:2.7-buster-node
         environment: &ruby_environment
           BUNDLE_APP_CONFIG: ./.bundle/
           DB_HOST: localhost
@@ -98,8 +98,15 @@ jobs:
     <<: *defaults
     <<: *install_steps
 
+  install-ruby2.7:
+    <<: *defaults
+    <<: *install_ruby_dependencies
+
   install-ruby2.6:
     <<: *defaults
+    docker:
+      - image: circleci/ruby:2.6-buster-node
+        environment: *ruby_environment
     <<: *install_ruby_dependencies
 
   install-ruby2.5:
@@ -127,6 +134,36 @@ jobs:
           paths:
               - ./mastodon/public/assets
               - ./mastodon/public/packs-test/
+
+  test-migrations:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.7-buster-node
+        environment: *ruby_environment
+      - image: circleci/postgres:10.6-alpine
+        environment:
+          POSTGRES_USER: root
+      - image: circleci/redis:5-alpine
+    steps:
+      - *attach_workspace
+      - *install_system_dependencies
+      - run:
+          name: Create database
+          command: ./bin/rails parallel:create
+      - run:
+          name: Run migrations
+          command: ./bin/rails parallel:migrate
+
+  test-ruby2.7:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.7-buster-node
+        environment: *ruby_environment
+      - image: circleci/postgres:10.6-alpine
+        environment:
+          POSTGRES_USER: root
+      - image: circleci/redis:5-alpine
+    <<: *test_steps
 
   test-ruby2.6:
     <<: *defaults
@@ -184,20 +221,31 @@ workflows:
   build-and-test:
     jobs:
       - install
+      - install-ruby2.7:
+          requires:
+            - install
       - install-ruby2.6:
           requires:
             - install
+            - install-ruby2.7
       - install-ruby2.5:
           requires:
             - install
-            - install-ruby2.6
+            - install-ruby2.7
       - install-ruby2.4:
           requires:
             - install
-            - install-ruby2.6
+            - install-ruby2.7
       - build:
           requires:
-            - install-ruby2.6
+            - install-ruby2.7
+      - test-migrations:
+          requires:
+            - install-ruby2.7
+      - test-ruby2.7:
+          requires:
+            - install-ruby2.7
+            - build
       - test-ruby2.6:
           requires:
             - install-ruby2.6
@@ -215,4 +263,4 @@ workflows:
             - install
       - check-i18n:
           requires:
-            - install-ruby2.6
+            - install-ruby2.7
