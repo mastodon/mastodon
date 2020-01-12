@@ -482,6 +482,9 @@ is:
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
         title: Nýskráningarhamur
+      show_known_fediverse_at_about_page:
+        desc_html: Þegar þetta er óvirkt, takmarkast opinbera tímalínan sem tengt er í af upphafssíðunni við að birta einungis staðvært efni (af sama vefþjóni)
+        title: Hafa með efni úr skýjasambandi á síðu fyrir óauðkennda opinbera tímalínu
       show_staff_badge:
         desc_html: Sýna starfsmannamerki á síðu notandans
         title: Sýna starfsmannamerki
@@ -504,11 +507,15 @@ is:
       thumbnail:
         desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
         title: Smámynd vefþjóns
+      timeline_preview:
+        desc_html: Birta tengil í opinbera tímalínu á upphafssíðu og leyfa aðgang API-kerfisviðmóts að opinberri tímalínu án auðkenningar
+        title: Leyfa óauðkenndan aðgang að opinberri tímalínu
       title: Stillingar vefsvæðis
       trendable_by_default:
         desc_html: Hefur áhrif á myllumerki sem ekki hafa áður verið gerð óleyfileg
         title: Leyfa myllumerkjum að fara í umræðuna án þess að þau séu fyrst yfirfarin
       trends:
+        desc_html: Birta opinberlega þau áður yfirförnu myllumerki sem eru núna í umræðunni
         title: Myllumerki í umræðunni
     statuses:
       back_to_account: Fara aftur á síðu notandaaðgangsins
@@ -521,11 +528,13 @@ is:
       media:
         title: Myndefni
       no_media: Ekkert myndefni
+      no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
       title: Staða notendaaðganga
       with_media: Með myndefni
     tags:
       accounts_today: Einstök afnot í dag
       accounts_week: Einstök afnot í þessari viku
+      breakdown: Samantekt á notkun dagsins eftir uppruna
       context: Samhengi
       directory: Í möppunni
       in_directory: "%{count} í möppunni"
@@ -539,6 +548,7 @@ is:
       trending_right_now: Í umræðunni nákvæmlega núna
       unique_uses_today: "%{count} færslur í dag"
       unreviewed: Ekki yfirfarið
+      updated_msg: Það tókst að uppfæra stillingar myllumerkja
     title: Stjórnendur
     warning_presets:
       add_new: Bæta við nýju
@@ -548,15 +558,20 @@ is:
       title: Sýsla með forstilltar aðvaranir
   admin_mailer:
     new_pending_account:
+      body: Nákvæmari upplýsingar um nýja notandaaðganginn eru hér fyrir neðan. Þú getur samþykkt eða hafnað þessari umsókn.
       subject: Nýr notandaaðgangur er kominn til yfirferðar á %{instance} (%{username})
     new_report:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
       subject: 'Ný kæra vegna %{instance} (#%{id})'
     new_trending_tag:
+      body: 'Myllumerkið #%{name} er í umræðunni í dag, en hefur ekki verið yfirfarið áður. Það mun ekki verða birt opinberlega nema að þú samþykkir það, annars geturðu vistað eyðublaðið óbreytt og aldrei heyrt á þetta minnst framar.'
       subject: 'Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})'
   aliases:
-    add_new: Búa til samnefni
+    add_new: Búa til samnefni (alias)
+    created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
+    deleted_msg: Tókst að fjarlægja samnefnið. Flutningur af þeim notandaaðgangi yfir á þennan er ekki lengur mögulegur.
+    hint_html: Ef þú vilt flytjast af öðrum notandaaðgangi yfir á þennan, þá geturðu búið hér til samnefni, sem er nauðsynlegt áður en þú getur haldið áfram við að flytja fylgjendur af gamla notandaaðgangnum yfir á þennan aðgang. Þessi aðgerð er í sjálfu sér <strong>skaðlaus og afturkræf</strong>. <strong>Yfirfærsla notandaaðgangsins er síðan ræst á gamla notandaaðgangnum</strong>.
     remove: Aftengja samnefni
   appearance:
     advanced_web_interface: Ítarlegt vefviðmót
@@ -595,12 +610,14 @@ is:
     description:
       prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
+      suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn stöðufærslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
     didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
     forgot_password: Gleymdirðu lykilorðinu?
-    invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eðaútrunnið. Biddu um nýtt.
+    invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eða útrunnið. Biddu um nýtt teikn.
     login: Skrá inn
     logout: Skrá út
     migrate_account: Færa á annan notandaaðgang
+    migrate_account_html: Ef þú vilt endurbeina þessum aðgangi á einhvern annan, geturðu <a href="%{path}">stillt það hér</a>.
     or_log_in_with: Eða skráðu inn með
     providers:
       cas: CAS
@@ -612,6 +629,8 @@ is:
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
+      email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
+      email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
       title: Uppsetning
     status:
       account_status: Staða notandaaðgangs
@@ -620,6 +639,7 @@ is:
     trouble_logging_in: Vandræði við að skrá inn?
   authorize_follow:
     already_following: Þú ert að þegar fylgjast með þessum aðgangi
+    error: Því miður, það kom upp villa við að fletta upp fjartengda notandaaðgangnum
     follow: Fylgja
     follow_request: 'Þú sendir beiðni um að fylgjast með til:'
     following: 'Tókst! Þú ert núna að fylgjast með:'
@@ -796,6 +816,7 @@ is:
       not_found: fannst ekki
       on_cooldown: Þú ert í kælingu
     followers_count: Fylgjendur þegar flutningur átti sér stað
+    incoming_migrations_html: Til að flytjast af öðrum notandaaðgangi yfir á þennan, þarftu fyrst að <a href="%{path}">útbúa samnefni fyrir aðgang</a>.
     past_migrations: Fyrri yfirfærslur
     proceed_with_move: Færa fylgjendur
     redirecting_to: Notandaaðgangurinn þinn endurbeinist á %{acct}.
