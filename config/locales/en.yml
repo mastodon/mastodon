@@ -78,6 +78,7 @@ en:
     roles:
       admin: Admin
       bot: Bot
+      group: Group
       moderator: Mod
     unavailable: Profile unavailable
     unfollow: Unfollow
@@ -338,6 +339,7 @@ en:
       delete: Delete
       destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
+      empty: No e-mail domains currently blacklisted.
       new:
         create: Add domain
         title: New e-mail blacklist entry
@@ -394,12 +396,17 @@ en:
       destroyed_msg: Report note successfully deleted!
     reports:
       account:
-        note: note
-        report: report
+        notes:
+          one: "%{count} note"
+          other: "%{count} notes"
+        reports:
+          one: "%{count} report"
+          other: "%{count} reports"
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
+      by_target_domain: Domain of reported account
       comment:
         none: None
       created_at: Reported
@@ -445,6 +452,8 @@ en:
         users: To logged-in local users
       domain_blocks_rationale:
         title: Show rationale
+      enable_bootstrap_timeline_accounts:
+        title: Enable default follows for new users
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
@@ -573,6 +582,10 @@ en:
     animations_and_accessibility: Animations and accessibility
     confirmation_dialogs: Confirmation dialogs
     discovery: Discovery
+    localization:
+      body: Mastodon is translated by volunteers.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Everyone can contribute.
     sensitive_content: Sensitive content
     toot_layout: Toot layout
   application_mailer:
@@ -711,7 +724,6 @@ en:
     blocks: You block
     csv: CSV
     domain_blocks: Domain blocks
-    follows: You follow
     lists: Lists
     mutes: You mute
     storage: Media storage
@@ -733,6 +745,7 @@ en:
       invalid_irreversible: Irreversible filtering only works with home or notifications context
     index:
       delete: Delete
+      empty: You have no filters.
       title: Filters
     new:
       title: Add new filter
@@ -881,6 +894,10 @@ en:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
       title: New boost
+  notifications:
+    email_events: Events for e-mail notifications
+    email_events_hint: 'Select events that you want to receive notifications for:'
+    other_settings: Other notifications settings
   number:
     human:
       decimal_units:
@@ -905,6 +922,7 @@ en:
       duration_too_long: is too far into the future
       duration_too_short: is too soon
       expired: The poll has already ended
+      invalid_choice: The chosen vote option does not exist
       over_character_limit: cannot be longer than %{max} characters each
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
@@ -915,6 +933,8 @@ en:
   relationships:
     activity: Account activity
     dormant: Dormant
+    followers: Followers
+    following: Following
     last_active: Last active
     most_recent: Most recent
     moved: Moved

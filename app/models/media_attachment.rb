@@ -167,6 +167,18 @@ class MediaAttachment < ApplicationRecord
     audio? || video?
   end
 
+  def variant?(other_file_name)
+    return true if file_file_name == other_file_name
+
+    formats = file.styles.values.map(&:format).compact
+
+    return false if formats.empty?
+
+    extension = File.extname(other_file_name)
+
+    formats.include?(extension.delete('.')) && File.basename(other_file_name, extension) == File.basename(file_file_name, File.extname(file_file_name))
+  end
+
   def to_param
     shortcode
   end
@@ -190,9 +202,12 @@ class MediaAttachment < ApplicationRecord
   end
 
   after_commit :reset_parent_cache, on: :update
+
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
+
   before_post_process :set_type_and_extension
+
   before_save :set_meta
 
   class << self
@@ -287,7 +302,7 @@ class MediaAttachment < ApplicationRecord
       width:  width,
       height: height,
       size: "#{width}x#{height}",
-      aspect: width.to_f / height.to_f,
+      aspect: width.to_f / height,
     }
   end
 

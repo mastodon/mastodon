@@ -64,7 +64,7 @@ RSpec.describe Api::V1::BookmarksController, type: :controller do
           get :index, params: { limit: 1 }
 
           expect(response.headers['Link'].find_link(['rel', 'next']).href).to eq "http://test.host/api/v1/bookmarks?limit=1&max_id=#{bookmark.id}"
-          expect(response.headers['Link'].find_link(['rel', 'prev']).href).to eq "http://test.host/api/v1/bookmarks?limit=1&since_id=#{bookmark.id}"
+          expect(response.headers['Link'].find_link(['rel', 'prev']).href).to eq "http://test.host/api/v1/bookmarks?limit=1&min_id=#{bookmark.id}"
         end
 
         it 'does not add pagination headers if not necessary' do

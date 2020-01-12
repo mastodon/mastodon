@@ -245,8 +245,9 @@ class Formatter
     end
 
     standard = Extractor.extract_entities_with_indices(text, options)
+    xmpp = Extractor.extract_xmpp_uris_with_indices(text, options)
 
-    Extractor.remove_overlapping_entities(special + standard)
+    Extractor.remove_overlapping_entities(special + standard + xmpp)
   end
 
   def link_to_url(entity, options = {})
@@ -284,7 +285,7 @@ class Formatter
 
   def link_html(url)
     url    = Addressable::URI.parse(url).to_s
-    prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
+    prefix = url.match(/\A(https?:\/\/(www\.)?|xmpp:)/).to_s
     text   = url[prefix.length, 30]
     suffix = url[prefix.length + 30..-1]
     cutoff = url[prefix.length..-1].length > 30

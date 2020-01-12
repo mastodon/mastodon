@@ -214,7 +214,7 @@ class FocalPointModal extends ImmutablePureComponent {
         langPath: `${assetHost}/ocr/lang-data`,
       });
 
-      let media_url = media.get('file');
+      let media_url = media.get('url');
 
       if (window.URL && URL.createObjectURL) {
         try {
@@ -244,6 +244,16 @@ class FocalPointModal extends ImmutablePureComponent {
     const previewWidth  = 200;
     const previewHeight = previewWidth / previewRatio;
 
+    let descriptionLabel = null;
+
+    if (media.get('type') === 'audio') {
+      descriptionLabel = <FormattedMessage id='upload_form.audio_description' defaultMessage='Describe for people with hearing loss' />;
+    } else if (media.get('type') === 'video') {
+      descriptionLabel = <FormattedMessage id='upload_form.video_description' defaultMessage='Describe for people with hearing loss or visual impairment' />;
+    } else {
+      descriptionLabel = <FormattedMessage id='upload_form.description' defaultMessage='Describe for the visually impaired' />;
+    }
+
     return (
       <div className='modal-root__modal report-modal' style={{ maxWidth: 960 }}>
         <div className='report-modal__target'>
@@ -255,7 +265,9 @@ class FocalPointModal extends ImmutablePureComponent {
           <div className='report-modal__comment'>
             {focals && <p><FormattedMessage id='upload_modal.hint' defaultMessage='Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.' /></p>}
 
-            <label className='setting-text-label' htmlFor='upload-modal__description'><FormattedMessage id='upload_form.description' defaultMessage='Describe for the visually impaired' /></label>
+            <label className='setting-text-label' htmlFor='upload-modal__description'>
+              {descriptionLabel}
+            </label>
 
             <div className='setting-text__wrapper'>
               <Textarea
