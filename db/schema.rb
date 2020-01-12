@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_003415) do
+ActiveRecord::Schema.define(version: 2020_01_12_170923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,15 +196,26 @@ ActiveRecord::Schema.define(version: 2019_12_12_003415) do
     t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
   end
 
+  create_table "announcements", force: :cascade do |t|
+    t.text "text", default: "", null: false
+    t.boolean "published", default: false, null: false
+    t.boolean "all_day", default: false, null: false
+    t.datetime "scheduled_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "backups", force: :cascade do |t|
     t.bigint "user_id"
     t.string "dump_file_name"
     t.string "dump_content_type"
-    t.bigint "dump_file_size"
     t.datetime "dump_updated_at"
     t.boolean "processed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "dump_file_size"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -612,6 +623,16 @@ ActiveRecord::Schema.define(version: 2019_12_12_003415) do
     t.jsonb "params"
     t.index ["account_id"], name: "index_scheduled_statuses_on_account_id"
     t.index ["scheduled_at"], name: "index_scheduled_statuses_on_scheduled_at"
+  end
+
+  create_table "secure_account_summaries", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "encrypted_summary", default: "", null: false
+    t.string "encrypted_summary_iv", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_secure_account_summaries_on_account_id"
+    t.index ["encrypted_summary_iv"], name: "index_secure_account_summaries_on_encrypted_summary_iv", unique: true
   end
 
   create_table "session_activations", force: :cascade do |t|

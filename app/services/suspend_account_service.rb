@@ -42,6 +42,7 @@ class SuspendAccountService < BaseService
   # @option [Boolean] :reserve_username Keep account record
   # @option [Boolean] :skip_side_effects Side effects are ActivityPub and streaming API payloads
   # @option [Time]    :suspended_at Only applicable when :reserve_username is true
+  # @option [Boolean] :summarize_account Create a secure summary of access, network and media data
   def call(account, **options)
     @account = account
     @options = { reserve_username: true, reserve_email: true }.merge(options)
@@ -52,6 +53,7 @@ class SuspendAccountService < BaseService
       @options[:skip_side_effects] = true
     end
 
+    summarize_account!
     reject_follows!
     purge_user!
     purge_profile!
@@ -59,6 +61,12 @@ class SuspendAccountService < BaseService
   end
 
   private
+
+  def summarize_account!
+    return unless @account.local? && @options[:summarize_account]
+
+    SummarizeAccountService.new.call(@account)
+  end
 
   def reject_follows!
     return if @account.local? || !@account.activitypub?

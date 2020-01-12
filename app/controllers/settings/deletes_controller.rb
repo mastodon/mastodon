@@ -46,7 +46,7 @@ class Settings::DeletesController < Settings::BaseController
 
   def destroy_account!
     current_account.suspend!
-    Admin::SuspensionWorker.perform_async(current_user.account_id, true)
+    Admin::SuspensionWorker.perform_async(current_user.account_id, reserve_email: false)
     sign_out
   end
 end

@@ -30,7 +30,7 @@ module Admin
     end
 
     def resource_params
-      params.require(:admin_account_action).permit(:type, :report_id, :warning_preset_id, :text, :send_email_notification, :include_statuses)
+      params.require(:admin_account_action).permit(:type, :report_id, :warning_preset_id, :text, :send_email_notification, :include_statuses, :create_account_summary)
     end
   end
 end

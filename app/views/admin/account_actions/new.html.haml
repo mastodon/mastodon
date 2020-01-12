@@ -1,6 +1,9 @@
 - content_for :page_title do
   = t('admin.account_actions.title', acct: @account.acct)
 
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
 = simple_form_for @account_action, url: admin_account_action_path(@account.id) do |f|
   = f.input :report_id, as: :hidden
 
@@ -9,6 +12,9 @@
 
   - if @account.local?
     %hr.spacer/
+
+    .fields-group
+      = f.input :create_account_summary, as: :boolean, wrapper: :with_label
 
     .fields-group
       = f.input :send_email_notification, as: :boolean, wrapper: :with_label

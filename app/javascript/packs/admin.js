@@ -60,10 +60,23 @@ const onEnableBootstrapTimelineAccountsChange = (target) => {
 
 delegate(document, '#form_admin_settings_enable_bootstrap_timeline_accounts', 'change', ({ target }) => onEnableBootstrapTimelineAccountsChange(target));
 
+const onAccountActionSeverityChange = (target) => {
+  const createAccountSummaryDiv = document.querySelector('.input.with_label.admin_account_action_create_account_summary');
+
+  if (createAccountSummaryDiv) {
+    createAccountSummaryDiv.style.display = (target.value === 'suspend') ? 'block' : 'none';
+  }
+};
+
+delegate(document, '#admin_account_action_type', 'change', ({ target }) => onAccountActionSeverityChange(target));
+
 ready(() => {
   const domainBlockSeverityInput = document.getElementById('domain_block_severity');
   if (domainBlockSeverityInput) onDomainBlockSeverityChange(domainBlockSeverityInput);
 
   const enableBootstrapTimelineAccounts = document.getElementById('form_admin_settings_enable_bootstrap_timeline_accounts');
   if (enableBootstrapTimelineAccounts) onEnableBootstrapTimelineAccountsChange(enableBootstrapTimelineAccounts);
+
+  const accountActionSeverityInput = document.getElementById('admin_account_action_type');
+  if (accountActionSeverityInput) onAccountActionSeverityChange(accountActionSeverityInput);
 });

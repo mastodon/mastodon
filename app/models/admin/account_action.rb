@@ -19,7 +19,10 @@ class Admin::AccountAction
                 :report_id,
                 :warning_preset_id
 
-  attr_reader :warning, :send_email_notification, :include_statuses
+  attr_reader :warning,
+              :send_email_notification,
+              :include_statuses,
+              :create_account_summary
 
   def send_email_notification=(value)
     @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
@@ -27,6 +30,10 @@ class Admin::AccountAction
 
   def include_statuses=(value)
     @include_statuses = ActiveModel::Type::Boolean.new.cast(value)
+  end
+
+  def create_account_summary=(value)
+    @create_account_summary = ActiveModel::Type::Boolean.new.cast(value)
   end
 
   def save!
@@ -138,7 +145,7 @@ class Admin::AccountAction
   end
 
   def queue_suspension_worker!
-    Admin::SuspensionWorker.perform_async(target_account.id)
+    Admin::SuspensionWorker.perform_async(target_account.id, summarize_account: create_account_summary)
   end
 
   def process_queue!
