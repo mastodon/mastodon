@@ -68,7 +68,6 @@ gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.10'
-gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.11'
 gem 'parslet'
 gem 'parallel', '~> 1.19'
@@ -81,7 +80,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
-gem 'rqrcode', '~> 0.10'
+gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
 gem 'sanitize', '~> 5.1'
 gem 'sidekiq', '~> 6.0'
@@ -102,7 +101,7 @@ gem 'webpush'
 
 gem 'json-ld', git: 'https://github.com/ruby-rdf/json-ld.git', ref: 'e742697a0906e74e8bb777ef98137bc3955d981d'
 gem 'json-ld-preloaded', '~> 3.0'
-gem 'rdf-normalize', '~> 0.3'
+gem 'rdf-normalize', '~> 0.4'
 
 group :development, :test do
   gem 'fabrication', '~> 2.21'
