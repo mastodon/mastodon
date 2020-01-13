@@ -17,6 +17,7 @@ is:
         email: Þú munt fá sendan staðfestingarpóst
         fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
+        irreversible: Síuð tíst munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
@@ -37,6 +38,8 @@ is:
         data: CSV-skrá sem flutt hefur verið út af öðrum Mastodon-þjóni
       invite_request:
         text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
+      user:
+        chosen_languages: Þegar merkt er við þetta, birtast einungis tíst á völdum tungumálum á opinberum tímalínum
     labels:
       account:
         fields:
@@ -44,6 +47,8 @@ is:
           value: Efni
       account_alias:
         acct: Auðkenni gamla aðgangsins
+      account_migration:
+        acct: Auðkenni nýja aðgangsins
       admin_account_action:
         include_statuses: Innifela kærð tíst í tölvupóstinum
         send_email_notification: Láta notanda vita með tölvupósti
