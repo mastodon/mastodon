@@ -24,7 +24,7 @@ ca:
       Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
       S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
     learn_more: Més informació
-    privacy_policy: Política de privacitat
+    privacy_policy: Política de privadesa
     see_whats_happening: Mira què està passant
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
@@ -70,9 +70,9 @@ ca:
       following: Has d'estar seguint la persona que vulguis avalar
     posts:
       one: Barrita
-      other: Barritadas
-    posts_tab_heading: Barritadas
-    posts_with_replies: Barritades i respostes
+      other: Tuts
+    posts_tab_heading: Tuts
+    posts_with_replies: Tuts i respostes
     reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
@@ -97,12 +97,12 @@ ca:
       avatar: Avatar
       by_domain: Domini
       change_email:
-        changed_msg: El correu electrònic del compte s'ha canviat correctament!
-        current_email: Correu electrònic actual
-        label: Canviar l'adreça de correu
-        new_email: Nova adreça de correu
-        submit: Canviar adreça de correu
-        title: Canviar adreça de correu de %{username}
+        changed_msg: L'adreça electrònica del compte s'ha canviat correctament!
+        current_email: Adreça electrònica actual
+        label: Canvia l'adreça electrònica
+        new_email: Adreça electrònica nova
+        submit: Canvia l'adreça electrònica
+        title: Canvia l'adreça electrònica de %{username}
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
@@ -111,11 +111,11 @@ ca:
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
-      display_name: Nom de visualització
+      display_name: Nom visible
       domain: Domini
       edit: Edita
-      email: Correu electrònic
-      email_status: Estat del correu electrònic
+      email: Adreça electrònica
+      email_status: Estat de l'adreça electrònica
       enable: Habilita
       enabled: Habilitat
       followers: Seguidors
@@ -344,7 +344,7 @@ ca:
         title: Nova adreça de correu en la llista negra
       title: Llista negra de correus electrònics
     followers:
-      back_to_account: Tornar al compte
+      back_to_account: Torna al compte
       title: "Seguidors de %{acct}"
     instances:
       by_domain: Domini
@@ -410,14 +410,14 @@ ca:
         none: Cap
       created_at: Reportat
       mark_as_resolved: Marca com a resolt
-      mark_as_unresolved: Marcar sense resoldre
+      mark_as_unresolved: Marcar com a sense resoldre
       notes:
-        create: Afegir nota
-        create_and_resolve: Resoldre amb nota
-        create_and_unresolve: Reobrir amb nota
-        delete: Esborrar
+        create: Afegeix una nota
+        create_and_resolve: Resol amb una nota
+        create_and_unresolve: Reobre amb una nota
+        delete: Esborra
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
-      reopen: Reobrir informe
+      reopen: Reobre l'informe
       report: 'Informe #%{id}'
       reported_account: Compte reportat
       reported_by: Reportat per
@@ -425,25 +425,25 @@ ca:
       resolved_msg: Informe resolt amb èxit!
       status: Estat
       title: Informes
-      unassign: Treure assignació
+      unassign: Treu l'assignació
       unresolved: No resolt
       updated_at: Actualitzat
     settings:
       activity_api_enabled:
-        desc_html: Compte d'estatus publicats localment, usuaris actius i registres nous en períodes setmanals
+        desc_html: Nombre d'estats publicats localment, usuaris actius i registres nous en períodes setmanals
         title: Publica estadístiques agregades sobre l'activitat de l'usuari
       bootstrap_timeline_accounts:
         desc_html: Separa diversos noms d'usuari amb comes. Només funcionaran els comptes locals i desblocats. El valor predeterminat quan està buit és tots els administradors locals.
         title: El seguiment per defecte per als usuaris nous
       contact_information:
-        email: Introdueix una adreça de correu electrònic pública
+        email: Adreça electrònica d'empresa
         username: Nom d'usuari del contacte
       custom_css:
         desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
         title: CSS personalitzat
       default_noindex:
         desc_html: Afecta a tots els usuaris que no han canviat aquest ajustament ells mateixos
-        title: Configurar per defecte als usuaris fora de l'indexació dels motor de cerca
+        title: Configura per defecte als usuaris fora de la indexació del motor de cerca
       domain_blocks:
         all: Per a tothom
         disabled: Per a ningú
