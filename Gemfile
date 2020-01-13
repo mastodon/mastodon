@@ -147,7 +147,6 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
 
-  gem 'derailed_benchmarks'
   gem 'stackprof'
 end
 
