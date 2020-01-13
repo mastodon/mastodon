@@ -87,6 +87,10 @@ is:
           revoked: Auðkenningarteiknið var aturkallað
           unknown: Auðkenningarteiknið er ógilt
         resource_owner_authenticator_not_configured: Leit að eiganda tilfangs (Resource Owner) brást vegna þess að Doorkeeper.configure.resource_owner_authenticator er óskilgreint.
+        server_error: Auðkenningarþjónninn rakst á óvænt skilyrði sem kom í veg fyrir að hægt væri að uppfylla beiðnina.
+        temporarily_unavailable: Auðkenningarþjónninn hefur ekki tök á að meðhöndla beiðnina vegna of mikils tímabundins álags eða viðhalds á vefþvóninum.
+        unauthorized_client: Biðlaraforritið hefur ekki heimild til að framkvæma beiðnina með þessari aðferð.
+        unsupported_grant_type: Þessi gerð auðkenningaraðferðar er ekki studd af auðkenningarþjóninum.
         unsupported_response_type: Auðkenningarþjónninn styður ekki þessa tegund svars.
     flash:
       applications:
