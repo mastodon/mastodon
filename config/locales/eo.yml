@@ -652,6 +652,7 @@ eo:
     success_msg: Via konto estis sukcese forigita
     warning:
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
+      more_details_html: Por pli da detaloj, vidi la <a href="%{terms_path}">privatecan politikon</a>.
       username_available: Via uzantnomo iĝos denove disponebla
       username_unavailable: Via uzantnomo restos nedisponebla
   directories:
@@ -850,6 +851,7 @@ eo:
       title: Nova diskonigo
   notifications:
     email_events: Eventoj por retpoŝtaj sciigoj
+    email_events_hint: 'Elekti la eventojn pri kioj vi volas ricevi sciigojn:'
     other_settings: Aliaj agordoj de sciigoj
   number:
     human:
@@ -874,6 +876,7 @@ eo:
       duration_too_long: estas tro for en la estonteco
       duration_too_short: estas tro frue
       expired: La enketo jam finiĝis
+      invalid_choice: La elektita voĉdono ne ekzistas
       over_character_limit: ne povas esti po pli longa ol %{max} signoj
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
@@ -1023,6 +1026,8 @@ eo:
     pinned: Alpinglita
     reblogged: diskonigita
     sensitive_content: Tikla enhavo
+  tags:
+    does_not_match_previous_name: ne kongruas kun la antaŭa nomo
   terms:
     title: Uzkondiĉoj kaj privateca politiko de %{instance}
   themes:

@@ -70,10 +70,10 @@ es:
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
     posts:
-      one: Barritar
+      one: Toot
       other: Toots
-    posts_tab_heading: Bramidos
-    posts_with_replies: Bramidos con respuestas
+    posts_tab_heading: Toots
+    posts_with_replies: Toots con respuestas
     reserved_username: El nombre de usuario está reservado
     roles:
       admin: Administrador
@@ -382,7 +382,7 @@ es:
       disable: Deshabilitar
       disabled: Deshabilitado
       enable: Hablitar
-      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los bramidos públicos de este relés, y comenzará a enviar los bramidos públicos de este servidor hacia él.
+      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los toots públicos de este relés, y comenzará a enviar los toots públicos de este servidor hacia él.
       enabled: Habilitado
       inbox_url: URL del relés
       pending: Esperando la aprobación del relés
@@ -717,7 +717,7 @@ es:
     archive_takeout:
       date: Fecha
       download: Descargar tu archivo
-      hint_html: Puedes solicitar un archivo de tus <strong>bramidos y materiales subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier programa compatible.
+      hint_html: Puedes solicitar un archivo de tus <strong>toots y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
       in_progress: Recopilando tu archivo...
       request: Solicitar tu archivo
       size: Tamaño
@@ -891,8 +891,8 @@ es:
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
     reblog:
-      body: "%{name} ha rebarritado tu estado:"
-      subject: "%{name} ha rebarritado tu estado"
+      body: "%{name} ha retooteado tu estado:"
+      subject: "%{name} ha retooteado tu estado"
       title: Nueva difusión
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
@@ -1047,9 +1047,9 @@ es:
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
-      limit: Ya has fijado el número máximo de bramidos
-      ownership: El bramido de alguien más no puede fijarse
-      private: Los bramidos no-públicos no pueden fijarse
+      limit: Ya has fijado el número máximo de publicaciones
+      ownership: El toot de alguien más no puede fijarse
+      private: Los toots no-públicos no pueden fijarse
       reblog: Un boost no puede fijarse
     poll:
       total_people:
@@ -1070,8 +1070,8 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las cronologías públicas
   stream_entries:
-    pinned: Bramido fijado
-    reblogged: rebramido
+    pinned: Toot fijado
+    reblogged: retooteado
     sensitive_content: Contenido sensible
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior

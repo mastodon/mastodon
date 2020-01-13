@@ -25,7 +25,7 @@ ca:
       Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
       S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
     learn_more: Més informació
-    privacy_policy: Política de privacitat
+    privacy_policy: Política de privadesa
     see_whats_happening: Mira què està passant
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
@@ -71,9 +71,9 @@ ca:
       following: Has d'estar seguint la persona que vulguis avalar
     posts:
       one: Barrita
-      other: Barritadas
-    posts_tab_heading: Barritadas
-    posts_with_replies: Barritades i respostes
+      other: Tuts
+    posts_tab_heading: Tuts
+    posts_with_replies: Tuts i respostes
     reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
@@ -98,12 +98,12 @@ ca:
       avatar: Avatar
       by_domain: Domini
       change_email:
-        changed_msg: El correu electrònic del compte s'ha canviat correctament!
-        current_email: Correu electrònic actual
-        label: Canviar l'adreça de correu
-        new_email: Nova adreça de correu
-        submit: Canviar adreça de correu
-        title: Canviar adreça de correu de %{username}
+        changed_msg: L'adreça electrònica del compte s'ha canviat correctament!
+        current_email: Adreça electrònica actual
+        label: Canvia l'adreça electrònica
+        new_email: Adreça electrònica nova
+        submit: Canvia l'adreça electrònica
+        title: Canvia l'adreça electrònica de %{username}
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
@@ -112,11 +112,11 @@ ca:
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
-      display_name: Nom de visualització
+      display_name: Nom visible
       domain: Domini
       edit: Edita
-      email: Correu electrònic
-      email_status: Estat del correu electrònic
+      email: Adreça electrònica
+      email_status: Estat de l'adreça electrònica
       enable: Habilita
       enabled: Habilitat
       followers: Seguidors
@@ -345,7 +345,7 @@ ca:
         title: Nova adreça de correu en la llista negra
       title: Llista negra de correus electrònics
     followers:
-      back_to_account: Tornar al compte
+      back_to_account: Torna al compte
       title: Seguidors de %{acct}
     instances:
       by_domain: Domini
@@ -411,14 +411,14 @@ ca:
         none: Cap
       created_at: Reportat
       mark_as_resolved: Marca com a resolt
-      mark_as_unresolved: Marcar sense resoldre
+      mark_as_unresolved: Marcar com a sense resoldre
       notes:
-        create: Afegir nota
-        create_and_resolve: Resoldre amb nota
-        create_and_unresolve: Reobrir amb nota
-        delete: Esborrar
+        create: Afegeix una nota
+        create_and_resolve: Resol amb una nota
+        create_and_unresolve: Reobre amb una nota
+        delete: Esborra
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
-      reopen: Reobrir informe
+      reopen: Reobre l'informe
       report: 'Informe #%{id}'
       reported_account: Compte reportat
       reported_by: Reportat per
@@ -426,25 +426,25 @@ ca:
       resolved_msg: Informe resolt amb èxit!
       status: Estat
       title: Informes
-      unassign: Treure assignació
+      unassign: Treu l'assignació
       unresolved: No resolt
       updated_at: Actualitzat
     settings:
       activity_api_enabled:
-        desc_html: Compte d'estatus publicats localment, usuaris actius i registres nous en períodes setmanals
+        desc_html: Nombre d'estats publicats localment, usuaris actius i registres nous en períodes setmanals
         title: Publica estadístiques agregades sobre l'activitat de l'usuari
       bootstrap_timeline_accounts:
         desc_html: Separa diversos noms d'usuari amb comes. Només funcionaran els comptes locals i desblocats. El valor predeterminat quan està buit és tots els administradors locals.
         title: El seguiment per defecte per als usuaris nous
       contact_information:
-        email: Introdueix una adreça de correu electrònic pública
+        email: Adreça electrònica d'empresa
         username: Nom d'usuari del contacte
       custom_css:
         desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
         title: CSS personalitzat
       default_noindex:
         desc_html: Afecta a tots els usuaris que no han canviat aquest ajustament ells mateixos
-        title: Configurar per defecte als usuaris fora de l'indexació dels motor de cerca
+        title: Configura per defecte als usuaris fora de la indexació del motor de cerca
       domain_blocks:
         all: Per a tothom
         disabled: Per a ningú
@@ -554,7 +554,7 @@ ca:
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
     title: Administració
     warning_presets:
-      add_new: Afegir nou
+      add_new: Afegeix-ne un de nou
       delete: Esborra
       edit: Edita
       edit_preset: Edita l'avís predeterminat
@@ -571,11 +571,11 @@ ca:
       body: 'La etiqueta #%{name} està actualment en tendència però no s''ha revisat prèviament. No es mostrarà públicament tret que ho permetis o guardis el formulari tal com està per a no tornar a escoltar res al respecte.'
       subject: Nova etiqueta pendent de revisió a %{instance} (#%{name})
   aliases:
-    add_new: Crear àlies
+    add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
     deleted_msg: Àlies eliminat amb èxit. Moure't des d'aquell compte a aquests ja no serà possible.
     hint_html: Si et vols moure des d'un altre compte a aquest, aquí pots crear un àlies, el qual és requerit abans que puguis procedir a moure els seguidors del compte vell a aquest. Aquesta acció és per si mateixa <strong>inofensiva i reversible</strong>. <strong>La migració del compte és iniciada des de'l compte vell</strong>.
-    remove: Desvincular l'àlies
+    remove: Desvincula l'àlies
   appearance:
     advanced_web_interface: Interfície web avançada
     advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, cronología federada i qualsevol número de llistes i etiquetes.'
@@ -587,7 +587,7 @@ ca:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
-    toot_layout: Disseny de la barritada
+    toot_layout: Disseny del tut
   application_mailer:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
@@ -618,7 +618,7 @@ ca:
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
     login: Inicia sessió
-    logout: Tanca sessió
+    logout: Surt
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
@@ -720,7 +720,7 @@ ca:
       hint_html: Pots sol·licitar un arxiu de les teves <strong>barritades i dels fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: S'està compilant el teu arxiu...
       request: Sol·licita el teu arxiu
-      size: Tamany
+      size: Mida
     blocks: Persones que has blocat
     csv: CSV
     domain_blocks: Bloquejos de dominis
@@ -748,7 +748,7 @@ ca:
       empty: No hi tens cap filtre.
       title: Filtres
     new:
-      title: Afegir nou filtre
+      title: Afegeix un filtre
   footer:
     developers: Desenvolupadors
     more: Més…
@@ -862,7 +862,7 @@ ca:
     title: Moderació
   notification_mailer:
     digest:
-      action: Veure totes les notificacions
+      action: Mostra totes les notificacions
       body: Un resum del que et vas perdre desde la darrera visita el %{since}
       mention: "%{name} t'ha mencionat en:"
       new_followers_summary:
@@ -921,6 +921,7 @@ ca:
       duration_too_long: està massa lluny en el futur
       duration_too_short: és massa aviat
       expired: L'enquesta ja ha finalitzat
+      invalid_choice: L’opció de vot escollida no existeix
       over_character_limit: no pot ser superior a %{max} caràcters cadascun
       too_few_options: ha de tenir més d'una opció
       too_many_options: no pot contenir més de %{max} opcions
@@ -1009,12 +1010,12 @@ ca:
     account: Compte
     account_settings: Ajustos del compte
     aliases: Àlies de compte
-    appearance: Aparènça
+    appearance: Aparença
     authorized_apps: Aplicacions autoritzades
     back: Torna a Mastodont
     delete: Eliminació del compte
     development: Desenvolupament
-    edit_profile: Editar perfil
+    edit_profile: Edita el perfil
     export: Exportació de dades
     featured_tags: Etiquetes destacades
     identity_proofs: Proves d'identitat
@@ -1058,7 +1059,7 @@ ca:
         one: "%{count} vot"
         other: "%{count} vots"
       vote: Vota
-    show_more: Mostrar més
+    show_more: Mostra'n més
     sign_in_to_participate: Inicia la sessió per participar a la conversa
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1069,7 +1070,7 @@ ca:
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en la cronología federada
   stream_entries:
-    pinned: Barritada fixada
+    pinned: Tut fixat
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
   tags:
@@ -1158,9 +1159,9 @@ ca:
       <p>Originalment adaptat des del <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
-    contrast: Mastodont (Alt contrast)
-    default: Mastodont (Fosc)
-    mastodon-light: Mastodont (Clar)
+    contrast: Mastodon (alt contrast)
+    default: Mastodon (fosc)
+    mastodon-light: Mastodon (clar)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1205,7 +1206,7 @@ ca:
         silence: Compte limitat
         suspend: Compte suspès
     welcome:
-      edit_profile_action: Configurar perfil
+      edit_profile_action: Configura el perfil
       edit_profile_step: Pots personalitzar el teu perfil penjant un avatar, un encapçalament, canviant el teu nom de visualització i molt més. Si prefereixes revisar els seguidors nous abans de que et puguin seguir, pots blocar el teu compte.
       explanation: Aquests són alguns consells per a començar
       final_action: Comença a publicar
@@ -1214,7 +1215,7 @@ ca:
       full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'un altre servidor.
       review_preferences_action: Canviar preferències
       review_preferences_step: Assegura't d'establir les teves preferències, com ara els correus electrònics que vols rebre o el nivell de privadesa per defecte que t'agradaria que tinguin les teves entrades. Si no tens malaltia de moviment, pots optar per habilitar la reproducció automàtica de GIF.
-      subject: Benvingut/da a Mastodont
+      subject: Et donem la benvinguda a Mastodont
       tip_federated_timeline: La cronología federada és el cabal principal de la xarxa Mastodont. Però només inclou les persones a les quals els teus veïns estan subscrits, de manera que no està complet.
       tip_following: Per defecte segueixes als administradors del servidor. Per trobar més persones interessants, consulta les línies de temps local i federada.
       tip_local_timeline: La línia de temps local és la vista del flux de publicacions dels usuaris de %{instance}. Aquests usuaris són els teus veïns més propers!
