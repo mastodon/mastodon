@@ -1,0 +1,171 @@
+---
+vi:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Chỉ định tên_người_dùng@tênmiền của tài khoản bạn muốn chuyển từ
+      account_migration:
+        acct: Chỉ định tênngườidùng@tênmiền của tài khoản bạn muốn chuyển đến
+      account_warning_preset:
+        text: Bạn có thể sử dụng cú pháp mã thông báo, chẳng hạn như URL, hashtag và đề cập
+      admin_account_action:
+        include_statuses: Người dùng sẽ thấy các toots nào đã gây ra hành động kiểm duyệt hoặc cảnh báo
+        send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì đã xảy ra với tài khoản của họ
+        text_html: Không bắt buộc. Bạn có thể sử dụng cú pháp thổi còi. Bạn có thể <a href="%{path}">thêm các cài đặt trước cảnh báo</a> để tiết kiệm thời gian
+        type_html: Chọn làm gì với <strong>%{acct}</strong>
+        warning_preset_id: Không bắt buộc. Bạn vẫn có thể thêm văn bản tùy chỉnh vào cuối cài đặt trước
+      defaults:
+        autofollow: Những người đăng ký thông qua lời mời sẽ tự động theo dõi bạn
+        avatar: PNG, GIF hoặc JPG. Nhiều nhất là %{size}. Sẽ bị hạ thấp xuống %{dimensions}px
+        bot: Tài khoản này chủ yếu thực hiện các hành động tự động và có thể không được theo dõi
+        context: Một hoặc nhiều bối cảnh nơi bộ lọc nên áp dụng
+        current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
+        current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
+        digest: Chỉ được gửi sau một thời gian dài không hoạt động và chỉ khi bạn đã nhận được bất kỳ tin nhắn cá nhân nào khi bạn vắng mặt
+        discoverable: Thư mục hồ sơ là một cách khác để tài khoản của bạn có thể tiếp cận đối tượng rộng hơn
+        email: Bạn sẽ được gửi một email xác nhận
+        fields: Bạn có thể có tối đa 4 mục được hiển thị dưới dạng bảng trên hồ sơ của bạn
+        header: PNG, GIF hoặc JPG. Nhiều nhất là %{size}. Sẽ bị hạ thấp xuống %{dimensions}px
+        inbox_url: Sao chép URL từ frontpage của rơle bạn muốn sử dụng
+        irreversible: Các toots được lọc sẽ biến mất không thể đảo ngược, ngay cả khi bộ lọc sau đó bị xóa
+        locale: Ngôn ngữ của giao diện người dùng, e-mail và thông báo đẩy
+        locked: Yêu cầu bạn chấp thuận thủ công người theo dõi
+        password: Sử dụng ít nhất 8 ký tự
+        phrase: Sẽ được kết hợp bất kể vỏ bọc trong văn bản hoặc cảnh báo nội dung của một toot
+        scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn phạm vi cấp cao nhất, bạn không cần chọn từng phạm vi.
+        setting_aggregate_reblogs: Không hiển thị các mức tăng mới cho các mã thông báo đã được tăng gần đây (chỉ ảnh hưởng đến các lần tăng mới nhận được)
+        setting_default_sensitive: Phương tiện nhạy cảm được ẩn theo mặc định và có thể được tiết lộ bằng một cú nhấp chuột
+        setting_display_media_default: Ẩn phương tiện được đánh dấu là nhạy cảm
+        setting_display_media_hide_all: Luôn ẩn tất cả các phương tiện truyền thông
+        setting_display_media_show_all: Luôn hiển thị phương tiện được đánh dấu là nhạy cảm
+        setting_hide_network: Ai bạn theo dõi và ai theo dõi bạn sẽ không được hiển thị trên hồ sơ của bạn
+        setting_noindex: Ảnh hưởng đến hồ sơ công khai và trang trạng thái của bạn
+        setting_show_application: Ứng dụng bạn sử dụng để mã thông báo sẽ được hiển thị trong chế độ xem chi tiết các mã thông báo của bạn
+        setting_use_blurhash: Các lớp được dựa trên màu sắc của hình ảnh ẩn nhưng che giấu bất kỳ chi tiết nào
+        setting_use_pending_items: Ẩn các cập nhật dòng thời gian đằng sau một nhấp chuột thay vì tự động cuộn nguồn cấp dữ liệu
+        username: Tên người dùng của bạn sẽ là duy nhất trên %{domain}
+        whole_word: Khi từ khóa hoặc cụm từ chỉ là chữ và số, nó sẽ chỉ được áp dụng nếu nó phù hợp với toàn bộ từ
+      domain_allow:
+        domain: Tên miền này sẽ có thể tìm nạp dữ liệu từ máy chủ này và dữ liệu đến từ nó sẽ được xử lý và lưu trữ
+      featured_tag:
+        name: 'Bạn có thể muốn sử dụng một trong những điều sau đây:'
+      form_challenge:
+        current_password: Bạn đang vào một khu vực an toàn
+      imports:
+        data: Tệp CSV được xuất từ máy chủ Mastodon khác
+      invite_request:
+        text: Điều này sẽ giúp chúng tôi xem xét ứng dụng của bạn
+      sessions:
+        otp: 'Nhập mã hai yếu tố được tạo bởi ứng dụng điện thoại của bạn hoặc sử dụng một trong các mã khôi phục của bạn:'
+      tag:
+        name: Bạn chỉ có thể thay đổi vỏ của các chữ cái, ví dụ, để dễ đọc hơn
+      user:
+        chosen_languages: Khi được chọn, chỉ các toots trong các ngôn ngữ được chọn sẽ được hiển thị theo các mốc thời gian công khai
+    labels:
+      account:
+        fields:
+          name: Nhãn
+          value: Nội dung
+      account_alias:
+        acct: Xử lý tài khoản cũ
+      account_migration:
+        acct: Xử lý tài khoản mới
+      account_warning_preset:
+        text: Văn bản cài sẵn
+      admin_account_action:
+        include_statuses: Bao gồm các mã thông báo được báo cáo trong e-mail
+        send_email_notification: Thông báo cho người dùng mỗi email
+        text: Cảnh báo tùy chỉnh
+        type: Hoạt động
+        types:
+          disable: Vô hiệu hóa
+          none: Không làm gì cả
+          silence: khoảng lặng
+          suspend: Đình chỉ và xóa dữ liệu tài khoản
+        warning_preset_id: Sử dụng cài đặt trước cảnh báo
+      defaults:
+        autofollow: Mời theo dõi tài khoản của bạn
+        avatar: hình đại diện
+        bot: Đây là tài khoản bot
+        chosen_languages: Ngôn ngữ bộ lọc
+        confirm_new_password: Xác nhận mật khẩu mới
+        confirm_password: Xác nhận mật khẩu
+        context: Bối cảnh bộ lọc
+        current_password: Mật khẩu hiện tại
+        data: Dữ liệu
+        discoverable: Liệt kê tài khoản này trên thư mục
+        display_name: Tên hiển thị
+        email: Địa chỉ email
+        expires_in: Hết hạn sau
+        fields: Hồ sơ siêu dữ liệu
+        header: Tiêu đề
+        inbox_url: URL của hộp thư đến chuyển tiếp
+        irreversible: Thả thay vì trốn
+        locale: Ngôn ngữ giao diện
+        locked: Khóa tài khoản
+        max_uses: Số lần sử dụng tối đa
+        new_password: Mật khẩu mới
+        note: Sinh học
+        otp_attempt: Mã hai yếu tố
+        password: Mật khẩu
+        phrase: Từ khóa hoặc cụm từ
+        setting_advanced_layout: Kích hoạt giao diện web nâng cao
+        setting_aggregate_reblogs: Nhóm tăng thời gian
+        setting_auto_play_gif: Tự động phát GIF động
+        setting_boost_modal: Hiển thị hộp thoại xác nhận trước khi tăng
+        setting_crop_images: Cắt bớt ảnh trong những tút không thể mở rộng về 16x9
+        setting_default_language: Ngôn ngữ đăng
+        setting_default_privacy: Đăng quyền riêng tư
+        setting_default_sensitive: Luôn đánh dấu phương tiện là nhạy cảm
+        setting_delete_modal: Hiển thị hộp thoại xác nhận trước khi xóa mã thông báo
+        setting_display_media: Hiển thị đa phương tiện
+        setting_display_media_default: Mặc định
+        setting_display_media_hide_all: Giấu tất cả
+        setting_display_media_show_all: Hiển thị tất cả
+        setting_expand_spoilers: Luôn mở rộng các thẻ được đánh dấu bằng cảnh báo nội dung
+        setting_hide_network: Ẩn mạng của bạn
+        setting_noindex: Từ chối lập chỉ mục công cụ tìm kiếm
+        setting_reduce_motion: Giảm chuyển động trong hình ảnh động
+        setting_show_application: Tiết lộ ứng dụng được sử dụng để gửi toots
+        setting_system_font_ui: Sử dụng phông chữ mặc định của hệ thống
+        setting_theme: Chủ đề trang web
+        setting_trends: Hiển thị xu hướng ngày nay
+        setting_unfollow_modal: Hiển thị hộp thoại xác nhận trước khi hủy theo dõi ai đó
+        setting_use_blurhash: Hiển thị độ dốc đầy màu sắc cho phương tiện ẩn
+        setting_use_pending_items: Chế độ chậm
+        severity: Mức độ nghiêm trọng
+        type: Nhập khẩu
+        username: tên tài khoản
+        username_or_email: Tên người dùng hoặc email
+        whole_word: Cả từ
+      featured_tag:
+        name: Dấu thăng
+      interactions:
+        must_be_follower: Chặn thông báo từ những người không theo dõi
+        must_be_following: Chặn thông báo từ những người bạn không theo dõi
+        must_be_following_dm: Chặn tin nhắn trực tiếp từ những người bạn không theo dõi
+      invite:
+        comment: Bình luận
+      invite_request:
+        text: Tại sao bạn muốn tham gia?
+      notification_emails:
+        digest: Gửi e-mail tiêu hóa
+        favourite: Gửi e-mail khi ai đó yêu thích trạng thái của bạn
+        follow: Gửi e-mail khi ai đó theo dõi bạn
+        follow_request: Gửi e-mail khi ai đó yêu cầu theo dõi bạn
+        mention: Gửi e-mail khi ai đó nhắc đến bạn
+        pending_account: Gửi e-mail khi một tài khoản mới cần xem xét
+        reblog: Gửi e-mail khi ai đó tăng trạng thái của bạn
+        report: Gửi e-mail khi một báo cáo mới được gửi
+        trending_tag: Gửi e-mail khi một hashtag chưa được xem xét đang là xu hướng
+      tag:
+        listable: Cho phép hashtag này xuất hiện trong các tìm kiếm và trên thư mục hồ sơ
+        name: Dấu thăng
+        trendable: Cho phép hashtag này xuất hiện theo xu hướng
+        usable: Cho phép các toots sử dụng hashtag này
+    'no': Không
+    recommended: Đề xuất
+    required:
+      mark: "*"
+      text: cần thiết
+    'yes': Đúng
