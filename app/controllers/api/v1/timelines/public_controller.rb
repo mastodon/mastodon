@@ -26,9 +26,22 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   end
 
   def public_statuses
+    options = params_slice(:max_id, :since_id, :min_id)
+
+    unless current_user&.functional?
+      # Limit how far back unauthenticated users can read the public timeline
+      cutoff = (2.hours.ago.utc.to_i * 1000) << 16
+
+      # we're supposed to return toots immediately after `min_id`, but it's
+      # too far back, return nothing instead
+      return [] if (options[:min_id] || cutoff) < cutoff
+
+      options[:since_id] = [cutoff, options[:since_id] || 0].max if options[:max_id].present?
+    end
+
     statuses = public_timeline_statuses.paginate_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
-      params_slice(:max_id, :since_id, :min_id)
+      options
     )
 
     if truthy_param?(:only_media)
