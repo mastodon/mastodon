@@ -31,16 +31,21 @@ is:
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
         phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í tísti
+        scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
+        setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á tístum sem hafa nýlega verið endurbirt (hefur bara áhrif á ný-mótteknar endurbirtingar)
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
         setting_hide_network: Hverjum þú fylgist með og hverjir fylgjast með þér verður ekki birt á notandasniðinu þínu
-        setting_noindex: Hefur áhrip á opinbera notandasniðið þitt og stöðusíður
+        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og stöðusíður
         setting_show_application: Nafnið á forritinu sem þú notar til að tísta mun birtast í ítarlegri sýn á tístunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
-        setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er í stað þess að hún skruni streyminu sjálfvirkt
+        setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
         username: Notandanafnið þitt verður einstakt á %{domain}
+        whole_word: Þegar stikkorð eða frasi er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
+      domain_allow:
+        domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
       form_challenge:
@@ -64,6 +69,8 @@ is:
         acct: Auðkenni gamla aðgangsins
       account_migration:
         acct: Auðkenni nýja aðgangsins
+      account_warning_preset:
+        text: Forstilltur texti
       admin_account_action:
         include_statuses: Innifela kærð tíst í tölvupóstinum
         send_email_notification: Láta notanda vita með tölvupósti
@@ -91,6 +98,7 @@ is:
         expires_in: Rennur út eftir
         fields: Lýsigögn notandasniðs
         header: Síðuhaus
+        inbox_url: URL-slóð á innhólf endurvarpa
         irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
         locked: Læsa aðgangi
