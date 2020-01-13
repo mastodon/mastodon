@@ -78,6 +78,8 @@ is:
       messages:
         access_denied: Eigandi tilfangs eða auðkenningarþjónn höfnuðu beininni.
         credential_flow_not_configured: Flæði á lykilorðsauðkennum eiganda tilfangs (Resource Owner) brást vegna þess að Doorkeeper.configure.resource_owner_from_credentials er óskilgreint.
+        invalid_client: Auðkenning á biðlara brást vegna þess að biðlarinn er óþekktur, að auðkenning biðlarans fylgdi ekki með, eða að notuð var óstudd auðkenningaraðferð.
+        invalid_grant: Uppgefin auðkenningarheimild er ógild, útrunnin, afturkölluð, samsvarar ekki endurbirtingarslóðinni í auðkenningarbeiðninni, eða var gefin út til annars biðlara.
         invalid_redirect_uri: Endurbeiningarslóðin sem fylgdi er ekki gild.
         invalid_request: Í beiðnina vantar nauðsynlega færibreytu, hún inniheldur óleyfilegt gildi á færibreytu, eða er gölluð á einhvern annan hátt.
         invalid_resource_owner: Uppgefin auðkenni eiganda tilfangs eru ekki gild, eða að eigandi tilfangs finnst ekki
