@@ -77,12 +77,16 @@ is:
     errors:
       messages:
         access_denied: Eigandi tilfangs eða auðkenningarþjónn höfnuðu beininni.
+        credential_flow_not_configured: Flæði á lykilorðsauðkennum eiganda tilfangs (Resource Owner) brást vegna þess að Doorkeeper.configure.resource_owner_from_credentials er óskilgreint.
         invalid_redirect_uri: Endurbeiningarslóðin sem fylgdi er ekki gild.
+        invalid_request: Í beiðnina vantar nauðsynlega færibreytu, hún inniheldur óleyfilegt gildi á færibreytu, eða er gölluð á einhvern annan hátt.
+        invalid_resource_owner: Uppgefin auðkenni eiganda tilfangs eru ekki gild, eða að eigandi tilfangs finnst ekki
         invalid_scope: Umbeðið gildissvið er ógilt, óþekkt eða rangt uppsett.
         invalid_token:
           expired: Auðkenningarteiknið er útrunnið
           revoked: Auðkenningarteiknið var aturkallað
           unknown: Auðkenningarteiknið er ógilt
+        resource_owner_authenticator_not_configured: Leit að eiganda tilfangs (Resource Owner) brást vegna þess að Doorkeeper.configure.resource_owner_authenticator er óskilgreint.
         unsupported_response_type: Auðkenningarþjónninn styður ekki þessa tegund svars.
     flash:
       applications:
