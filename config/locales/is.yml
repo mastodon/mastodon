@@ -1,7 +1,6 @@
----
 is:
   about:
-    about_hashtag_html: Þetta eru opinber tíst sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
+    about_hashtag_html: 'Þetta eru opinber tíst sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -346,7 +345,7 @@ is:
       title: Bannlisti yfir tölvupóstföng
     followers:
       back_to_account: Til baka í notandaaðgang
-      title: Fylgjast með %{acct}
+      title: "Fylgjast með %{acct}"
     instances:
       by_domain: Lén
       delivery_available: Afhending er til taks
@@ -378,7 +377,7 @@ is:
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
-      description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra tísta við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
+      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra tísta við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
@@ -566,10 +565,10 @@ is:
     new_report:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
-      subject: Ný kæra vegna %{instance} (#%{id})
+      subject: 'Ný kæra vegna %{instance} (#%{id})'
     new_trending_tag:
       body: 'Myllumerkið #%{name} er í umræðunni í dag, en hefur ekki verið yfirfarið áður. Það mun ekki verða birt opinberlega nema að þú samþykkir það, annars geturðu vistað eyðublaðið óbreytt og aldrei heyrt á þetta minnst framar.'
-      subject: Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})
+      subject: 'Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})'
   aliases:
     add_new: Búa til samnefni (alias)
     created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
@@ -731,6 +730,7 @@ is:
     add_new: Bæta við nýju
     errors:
       limit: Þú ert þegar búin/n að gefa hámarksfjölda myllumerkja aukið vægi
+    hint_html: "<strong>Hvað eru myllumerki með aukið vægi?</strong> Þau eru birt áberandi á opinbera notandasniðinu þínu og gera fólki kleift að fletta í gegnum opinberu færslurnar þínar sérstaklega undir þessum myllumerkjum. Þau eru frábær aðferð við að halda utan um skapandi vinnu eða langtíma verkefni."
   filters:
     contexts:
       home: Heimatímalína
@@ -770,6 +770,10 @@ is:
     authorize_connection_prompt: Auðkenna dulkóðaða tengingu?
     errors:
       failed: Dulrituð tenging mistókst, endilega reyndu aftur frá %{provider}.
+      keybase:
+        invalid_token: Keybase-teikn eru tætigildi undirritana og verða að vera 66 hex-stafir
+        verification_failed: Keybase skilur þetta teikn ekki sem undirritun Keybase-notandans %{kb_username}. Prófaðu aftur í Keybase.
+    explanation_html: Hér geturðu tengt dulritað önnur auðkenni þín, eins og t.d. Keybase-notandasnið. Þetta gerir öðru fólki kleift að senda þér dulrituð skilaboð og að treysta efni sem þú sendir þeim.
     i_am_html: Ég er %{username} á %{service}.
     identity: Auðkenni
     inactive: Óvirkt
@@ -783,6 +787,8 @@ is:
       merge_long: Halda fyrirliggjandi færslum og bæta við nýjum
       overwrite: Skrifa yfir
       overwrite_long: Skipta út fyrirliggjandi færslum með þeim nýju
+    preface: Þú getur flutt inn gögn sem þú hefur flutt út frá öðrum vefþjóni, svo sem lista yfir fólk sem þú fylgist með eða útilokar.
+    success: Það tókst að senda inn gögnin þín og verður unnið með þau þegar færi gefst
     types:
       blocking: Listi yfir útilokanir
       domain_blocking: Listi yfir útilokanir léna
@@ -844,9 +850,11 @@ is:
       backreference_required: Það verður fyrst að stilla nýja aðganginn til að bakvísa á þennan aðgang
       before: 'Áður en haldið er áfram, skaltu lesa þessa minnispunkta gaumgæfilega:'
       cooldown: Eftir yfirfærslu/flutning kemur kælingartímabil á meðan þú getur ekki flutt þig aftur
+      disabled_account: Núverandi aðgangur þinn verður ekki nothæfur að fullu eftir þetta. Hinsvegar muntu geta flutt út gögn af honum og einnig endurvirkjað hann.
       followers: Þessi aðgerð mun flytja alla fylgjendur af núverandi aðgangi yfir á nýja aðganginn
       only_redirect_html: Einnig geturðu <a href="%{path}">einungis sett upp endurbeiningu á notandasniðið þitt</a>.
       other_data: Engin önnur gögn munu flytjast sjálfvirkt
+      redirect: Notandasnið aðgangsins verður uppfært með athugasemd um endurbeininguna og verður undanþegið frá leitum
   moderation:
     title: Umsjón
   notification_mailer:
@@ -873,8 +881,11 @@ is:
       title: Ný beiðni um að fylgjast með
     mention:
       action: Svara
+      body: '%{name} minntist á þig í:'
+      subject: '%{name} minntist á þig'
+      title: Ný tilvísun
     reblog:
-      body: "%{name} endurbirti stöðufærsluna þína:"
+      body: '%{name} endurbirti stöðufærsluna þína:'
       subject: "%{name} endurbirti stöðufærsluna þína"
       title: Ný endurbirting
   notifications:
@@ -928,6 +939,7 @@ is:
     status: Staða aðgangs
   remote_follow:
     acct: Settu inn notandanafn@lén þaðan sem þú vilt vera virk/ur
+    missing_resource: Gat ekki fundið endurbeiningarslóðina fyrir notandaaðganginn þinn
     no_account_html: Ertu ekki með aðgang? Þú getur <a href='%{sign_up_path}' target='_blank'>nýskráð þig hér</a>
     proceed: Halda áfram í að fylgja
     prompt: 'Þú ætlar að fara að fylgjast með:'
@@ -998,7 +1010,7 @@ is:
     development: Þróun
     edit_profile: Breyta notandasniði
     export: Útflutningur gagna
-    featured_tags: Myllumerki í umræðunni
+    featured_tags: Myllumerki með aukið vægi
     identity_proofs: Sannanir á auðkenni
     import: Flytja inn
     import_and_export: Inn- og útflutningur
@@ -1042,7 +1054,7 @@ is:
       vote: Greiða atkvæði
     show_more: Sýna meira
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
-    title: "%{name}: „%{quote}‟"
+    title: '%{name}: „%{quote}‟'
     visibilities:
       private: Einungis fylgjendur
       private_long: Aðeins birt fylgjendum
