@@ -1180,6 +1180,7 @@ is:
     warning:
       explanation:
         suspend: Aðgangurinn þinn hefur verið settur í biðstöðu, öll þín tíst og innsent myndefni hafa verið óafturkræft fjarlægð af þessum vefþjóni, sem og af þeim vefþjónum þar sem þú áttir þér fylgjendur.
+      get_in_touch: Þú getur svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
       review_server_policies: Yfirfara reglur vefþjónsins
       statuses: 'Sérstaklega fyrir:'
       subject:
@@ -1194,11 +1195,15 @@ is:
         suspend: Notandaaðgangur í bið
     welcome:
       edit_profile_action: Setja upp notandasnið
+      edit_profile_step: Þú getur sérsniðið notandasniðið þitt með því að senda inn auðkennismynd, síðuhaus, breytt birtingarnafninu þínu og ýmislegt fleira. Ef þú vilt yfirfara nýja fylgjendur áður en þeim er leyft að fylgjast með þér geturðu læst aðgangnum þínum.
       explanation: Hér eru nokkrar ábendingar til að koma þér í gang
       final_action: Byrjaðu að skrifa
+      final_step: 'Byrjaðu að tjá þig! Jafnvel án fylgjenda geta aðrir séð opinberar færslur frá þér, til dæmis á staðværu tímalínunni og í myllumerkjum. Þú gætir jafnvel viljað kynna þig með myllumerkinu #introductions.'
+      full_handle: Fullt auðkenni þitt
+      full_handle_hint: Þetta er það sem þú myndir gefa upp við vini þína svo þeir geti sent þér skilaboð eða fylgst með þér af öðrum netþjóni.
       review_preferences_action: Breyta kjörstillingum
       subject: Velkomin í Mastodon
-      tip_federated_timeline: Skýjasambands tímalínan er færibandasýn á Mastodon netkerfið. En hún inniheldur bara fólk sem nágrannar þínir eru áskrifendur að, þannig að hún er ekki tæmandi.
+      tip_federated_timeline: Skýjasambands-tímalínan er færibandasýn á Mastodon netkerfið. En hún inniheldur bara fólk sem nágrannar þínir eru áskrifendur að, þannig að hún er ekki tæmandi.
       tip_local_timeline: Staðværa tímalínan er færibandasýn á allt fólkið á %{instance}. Þetta eru þínir næstu nágrannar!
       tip_mobile_webapp: Ef farsímavafrinn býður þér að bæta Mastodon á heimaskjáinn þinn, muntu geta tekið á móti ýti-tilkynningum. Það virkar á ýmsa vegu eins og um uppsett forrit sé að ræða!
       tips: Ábendingar
@@ -1207,6 +1212,8 @@ is:
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
     invalid_email: Tölvupóstfangið er ógilt
     invalid_otp_token: Ógildur tveggja-þátta kóði
+    otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
+    seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:
     verification: Sannprófun
