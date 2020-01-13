@@ -10,12 +10,14 @@ is:
       admin_account_action:
         include_statuses: Notandinn mun sjá hvaða tíst hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
         send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
+        text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir tíst. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
         type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
         warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
       defaults:
         autofollow: Fólk sem skráir sig í gegnum boðið mun sjálfkrafa fylgjast með þér
         avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         bot: Þessi aðgangur er aðallega til að framkvæma sjálfvirkar aðgerðir og gæti verið án þess að hann sé vaktaður reglulega
+        context: Eitt eða fleiri samhengi þar sem sían ætti að gilda
         current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
         current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
         digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
@@ -28,6 +30,7 @@ is:
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
+        phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í tísti
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
