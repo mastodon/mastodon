@@ -1,8 +1,7 @@
----
 gl:
   about:
-    about_hashtag_html: Estes son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Podes interactuar con eles se tes unha conta nalgures do fediverso.
-    about_mastodon_html: O Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada coma o correo electrónico!
+    about_hashtag_html: 'Estes son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Podes interactuar con eles se tes unha conta nalgures do fediverso.'
+    about_mastodon_html: 'O Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada coma o correo electrónico!'
     about_this: Acerca de
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuais (UAM)
@@ -21,9 +20,8 @@ gl:
     federation_hint_html: Cunha conta en %{instance} poderás seguir ás persoas en calquera servidor do Mastodon e alén.
     get_apps: Probar unha aplicación móbil
     hosted_on: O Mastodon está aloxado en %{domain}
-    instance_actor_flash: 'Esta conta é un actor virtual empregado para representar ó servidor e non a un usuario individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías empregar o bloqueo de dominio.
-
-'
+    instance_actor_flash: |
+      Esta conta é un actor virtual empregado para representar ó servidor e non a un usuario individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías empregar o bloqueo de dominio.
     learn_more: Saber máis
     privacy_policy: Política de privacidade
     see_whats_happening: Ver o que está a acontecer
@@ -49,7 +47,7 @@ gl:
     user_count_before: Fogar de
     what_is_mastodon: Que é o Mastodon?
   accounts:
-    choices_html: 'Suxestións de %{name}:'
+    choices_html: "Suxestións de %{name}:"
     endorsements_hint: Podes suxerir a persoas que segues dende a interface web, e amosaranse aquí.
     featured_tags_hint: Podes destacar determinados cancelos (hashtags) que se amosarán aquí.
     follow: Seguir
@@ -346,7 +344,7 @@ gl:
       title: Listaxe negra de email
     followers:
       back_to_account: Voltar á conta
-      title: Seguidores de %{acct}
+      title: "Seguidores de %{acct}"
     instances:
       by_domain: Dominio
       delivery_available: Entrega dispoñíbel
@@ -378,63 +376,63 @@ gl:
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
-      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
+      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se subscriban e publiquen nel. <strong>Podes axudar a servidores pequenos e medios a descobrir contido no fediverso</strong>, o que doutro xeito precisaría que os usuarios locais seguisen a outras persoas en servidores remotos.
       disable: Desactivar
-      disabled: Desactivada
+      disabled: Desactivado
       enable: Activar
-      enable_hint: Unha vez activado, o seu servidor suscribirase a todos os toots públicos de este servidor, e tamén comezará a eviar a el os toots públicos do servidor.
-      enabled: Activada
+      enable_hint: Unha vez activado, o teu servidor subscribirase a todos os toots públicos deste repetidor, e tamén comezará a enviar a el os toots públicos do servidor.
+      enabled: Activado
       inbox_url: URL do repetidor
-      pending: Agardando polo permiso do repetidor
+      pending: Agardando pola aprobación do repetidor
       save_and_enable: Gardar e activar
-      setup: Configurar a conexión ao repetidor
-      signatures_not_enabled: Os repetidores non funcionarán correctamente se o modo seguro ou lista branca están activados
+      setup: Configurar unha conexión ó repetidor
+      signatures_not_enabled: Os repetidores non funcionarán de xeito correcto se o modo seguro ou listaxe branca están activados
       status: Estado
       title: Repetidores
     report_notes:
-      created_msg: Creouse correctamente a nota do informe!
-      destroyed_msg: Nota do informe eliminouse con éxito!
+      created_msg: A nota da denuncia creouse de xeito correcto!
+      destroyed_msg: A nota da denuncia borrouse de xeito correcto!
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
         reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
+          one: "%{count} denuncia"
+          other: "%{count} denuncias"
       action_taken_by: Acción tomada por
-      are_you_sure: Está segura?
-      assign_to_self: Asignarmo
+      are_you_sure: Estás seguro?
+      assign_to_self: Asignarme
       assigned: Moderador asignado
-      by_target_domain: Dominio da conta sobre a que informa
+      by_target_domain: Dominio da conta denunciada
       comment:
-        none: Nada
-      created_at: Reportado
+        none: Ningún
+      created_at: Denunciado
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
       notes:
         create: Engadir nota
-        create_and_resolve: Resolver con nota
-        create_and_unresolve: Voltar a abrir con nota
+        create_and_resolve: Resolver cunha nota
+        create_and_unresolve: Reabrir cunha nota
         delete: Eliminar
-        placeholder: Describe qué medidas foron tomadas, ou calquer outra información relacionada...
-      reopen: Voltar a abrir o informe
-      report: 'Informe #%{id}'
-      reported_account: Conta reportada
-      reported_by: Reportada por
+        placeholder: Describir que accións foron tomadas ou calquera outra novidade sobre esta denuncia...
+      reopen: Reabrir denuncia
+      report: 'Denuncia #%{id}'
+      reported_account: Conta denunciada
+      reported_by: Denunciado por
       resolved: Resolto
-      resolved_msg: Resolveuse con éxito o informe!
+      resolved_msg: Resolveuse con éxito a denuncia!
       status: Estado
-      title: Informes
+      title: Denuncias
       unassign: Non asignar
       unresolved: Non resolto
       updated_at: Actualizado
     settings:
       activity_api_enabled:
-        desc_html: Conta de estados publicados localmente, usuarias activas, e novos rexistros por semana
-        title: Publicar estatísticas agregadas sobre a actividade da usuaria
+        desc_html: Conta de estados publicados de xeito local, usuarios activos, e novos rexistros en períodos semanais
+        title: Publicar estatísticas acerca da actividade do usuario
       bootstrap_timeline_accounts:
-        desc_html: Separar múltiples nomes de usuaria con vírgulas. Só funcionarán as contas locais non bloqueadas. Si baldeiro, por omisión son todos os local admin.
+        desc_html: Separar os múltiples nomes de usuario con vírgulas. Só funcionarán as contas locais non bloqueadas. Se fica baleiro, serán todos os administradores locais.
         title: Seguimentos por omisión para novas usuarias
       contact_information:
         email: e-mail de traballo
@@ -566,10 +564,10 @@ gl:
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
-      subject: Novo informe sobre %{instance} (#%{id})
+      subject: 'Novo informe sobre %{instance} (#%{id})'
     new_trending_tag:
       body: 'A etiqueta #%{name} é tendencia hoxe, pero non foi previamente revisada. Non se mostrará publicamente a menos que ti o permitas, ou gardes o formulario para facer que non se che consulte de novo.'
-      subject: Unha nova etiqueta que revisar en %{instance} (#%{name})
+      subject: 'Unha nova etiqueta que revisar en %{instance} (#%{name})'
   aliases:
     add_new: Crear alcume
     created_msg: Creou un novo alcume correctamente. Pode iniciar o movemento desde a conta antiga.
@@ -578,7 +576,7 @@ gl:
     remove: Desligar alcume
   appearance:
     advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se quere utilizar todo o ancho da súa pantalla, a interface web avanzada permítelle configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, liña temporal federada, calquera número de listas e etiquetas.
+    advanced_web_interface_hint: 'Se quere utilizar todo o ancho da súa pantalla, a interface web avanzada permítelle configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, liña temporal federada, calquera número de listas e etiquetas.'
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -877,8 +875,8 @@ gl:
       subject: "%{name} marcou favorito o teu estado"
       title: Nova favorita
     follow:
-      body: Agora %{name} séguete!
-      subject: Agora %{name} séguete
+      body: "Agora %{name} séguete!"
+      subject: "Agora %{name} séguete"
       title: Nova seguidora
     follow_request:
       action: Xestionar peticións de seguimento
