@@ -8,6 +8,8 @@ import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import DetailedStatusContainer from 'mastodon/features/status/containers/detailed_status_container';
 import { debounce } from 'lodash';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { me } from 'mastodon/initial_state';
+import { FormattedMessage } from 'react-intl';
 
 const mapStateToProps = (state, { local }) => {
   const timeline = state.getIn(['timelines', local ? 'community' : 'public'], ImmutableMap());
@@ -80,8 +82,8 @@ class PublicTimeline extends React.PureComponent {
 
     const loader = (isLoading && statusIds.isEmpty()) ? <LoadingIndicator key={0} /> : undefined;
 
-    return (
-      <Masonry ref={this.setRef} className='statuses-grid' hasMore={hasMore} loadMore={this.handleLoadMore} sizes={sizes} loader={loader}>
+    let contents = [
+      <Masonry ref={this.setRef} className='statuses-grid' hasMore={hasMore} loadMore={this.handleLoadMore} sizes={sizes} loader={loader} key='masonry'>
         {statusIds.map(statusId => (
           <div className='statuses-grid__item' key={statusId}>
             <DetailedStatusContainer
@@ -92,8 +94,20 @@ class PublicTimeline extends React.PureComponent {
             />
           </div>
         )).toArray()}
-      </Masonry>
-    );
+      </Masonry>,
+    ];
+
+    if (me === undefined && !statusIds.isEmpty() && !hasMore) {
+      contents.push(
+        <div key='log-in-warning' className='page-footer'>
+          <a href='/auth/sign-in' className='load-more'>
+            <FormattedMessage id='public_timeline.sign_in_to_see_more' defaultMessage='Sign in to see older toots' />
+          </a>
+        </div>
+      );
+    }
+
+    return contents;
   }
 
 }
