@@ -2,7 +2,7 @@
 co:
   about:
     about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.
-    about_mastodon_html: Mastodon ghjè una rete suciale custruita incù prutucolli web aperti è lugiziali liberi. Hè decentralizatu cumu l’e-mail.
+    about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
     about_this: À prupositu
     active_count_after: attivi
     active_footnote: Utilizatori Attivi Mensili (UAM)
@@ -78,6 +78,7 @@ co:
     roles:
       admin: Amministratore
       bot: Bot
+      group: Gruppu
       moderator: Muderatore
     unavailable: Prufile micca dispunibule
     unfollow: Ùn siguità più
@@ -314,7 +315,7 @@ co:
       public_comment_hint: Cummentariu nant'à a limitazione di stu duminiu per u pubblicu generale, s'ella hè attivata a rivelazione di a lista di limitazione di duminiu.
       reject_media: Righjittà i fugliali media
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
-      reject_reports: Righjittà i rapporti
+      reject_reports: Righjittà i riporti
       reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
       rejecting_media: righjettu di i fugliali media
       rejecting_reports: righjettu di i signalamenti
@@ -338,6 +339,7 @@ co:
       delete: Toglie
       destroyed_msg: U blucchime di u duminiu d’e-mail ùn hè più attivu
       domain: Duminiu
+      empty: Ùn c'hè manc'un duminiu d'email in lista nera.
       new:
         create: Creà un blucchime
         title: Nova iscrizzione nant’a lista nera e-mail
@@ -361,7 +363,7 @@ co:
       total_blocked_by_us: Bluccati da noi
       total_followed_by_them: Siguitati da elli
       total_followed_by_us: Siguitati da noi
-      total_reported: Rapporti nant'à elli
+      total_reported: Riporti nant'à elli
       total_storage: Media aghjunti
     invites:
       deactivate_all: Disattivà tuttu
@@ -393,10 +395,18 @@ co:
       created_msg: Nota di signalamentu creata!
       destroyed_msg: Nota di signalamentu sguassata!
     reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} note"
+        reports:
+          one: "%{count} riportu"
+          other: "%{count} riporti"
       action_taken_by: Intervenzione di
       are_you_sure: Site sicuru·a?
       assign_to_self: Assignallu à mè
       assigned: Muderatore assignatu
+      by_target_domain: Duminiu di u contu signalatu
       comment:
         none: Nisunu
       created_at: Palisatu
@@ -442,6 +452,8 @@ co:
         users: À l'utilizatori lucali cunnettati
       domain_blocks_rationale:
         title: Vede ragiò
+      enable_bootstrap_timeline_accounts:
+        title: Attivà l'abbunamenti predefiniti per l'utilizatori novi
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di u servore sarà usata
         title: Ritrattu di cuprendula
@@ -570,6 +582,10 @@ co:
     animations_and_accessibility: Animazione è accessibilità
     confirmation_dialogs: Pop-up di cunfirmazione
     discovery: Scuperta
+    localization:
+      body: Mastodon hè tradottu da una squadra di vuluntari.
+      guide_link: https://fr.crowdin.com/project/mastodon
+      guide_link_text: Tuttu u mondu pò participà.
     sensitive_content: Cuntinutu sensibile
     toot_layout: Urganizazione
   application_mailer:
@@ -708,7 +724,6 @@ co:
     blocks: Bluccate
     csv: CSV
     domain_blocks: Blucchime di duminiu
-    follows: Seguitate
     lists: Liste
     mutes: Piattate
     storage: I vostri media
@@ -730,6 +745,7 @@ co:
       invalid_irreversible: A filtrazione irreversibile marchja solu per l'accolta è e nutificazione
     index:
       delete: Toglie
+      empty: Ùn avete manc'un filtru.
       title: Filtri
     new:
       title: Aghjunghje un novu filtru
@@ -878,6 +894,10 @@ co:
       body: 'U vostru statutu hè statu spartutu da %{name}:'
       subject: "%{name} hà spartutu u vostru statutu"
       title: Nova spartera
+  notifications:
+    email_events: Avvenimenti da nutificà cù l'e-mail
+    email_events_hint: 'Selezziunate l''avvenimenti per quelli vulete riceve nutificazione:'
+    other_settings: Altri parametri di nutificazione
   number:
     human:
       decimal_units:
@@ -901,6 +921,7 @@ co:
       duration_too_long: hè troppu luntanu indè u futuru
       duration_too_short: hè troppu prossimu
       expired: U scandagliu hè digià finitu
+      invalid_choice: L'uzzione di votu scelta ùn esista micca
       over_character_limit: ùn ponu micca esse più longhi chè %{max} caratteri
       too_few_options: deve avè più d'un'uzzione
       too_many_options: ùn pò micca avè più di %{max} uzzione
@@ -911,6 +932,8 @@ co:
   relationships:
     activity: Attività di u contu
     dormant: Inattivu
+    followers: Abbunati
+    following: Abbunamenti
     last_active: Ultima attività
     most_recent: Più ricente
     moved: Spiazzatu
@@ -1005,7 +1028,7 @@ co:
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
   spam_check:
-    spam_detected: Quessu ghjè un rapportu automaticu. Un spam hè statu ditettatu.
+    spam_detected: Quessu ghjè un riportu automaticu. Un spam hè statu ditettatu.
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'

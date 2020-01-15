@@ -19,11 +19,11 @@ sv:
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
-        email: Ett konfirmationsmeddelande kommer att skickas till dig via epost
+        email: Du kommer att få ett bekräftelsemeddelande via e-post
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
-        locale: Användargränssnittets språk, e-post och push-aviseringar
+        locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
         setting_display_media_default: Dölj media markerad som känslig
@@ -45,6 +45,9 @@ sv:
         fields:
           name: Etikett
           value: Innehåll
+      admin_account_action:
+        types:
+          none: Gör ingenting
       defaults:
         autofollow: Bjud in till att följa ditt konto
         bot: Detta är ett botkonto
@@ -62,10 +65,11 @@ sv:
         max_uses: Högst antal  användningar
         new_password: Nytt lösenord
         note: Biografi
-        otp_attempt: Tvåstegslösenord
+        otp_attempt: Tvåfaktorskod
         password: Lösenord
         phrase: Nyckelord eller fras
-        setting_auto_play_gif: Auto-play animerade GIF-filer
+        setting_advanced_layout: Aktivera avancerat webbgränssnitt
+        setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
         setting_default_language: Språk
         setting_default_privacy: Postintegritet
@@ -86,8 +90,8 @@ sv:
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
       interactions:
-        must_be_follower: Blockera meddelanden från icke-följare
-        must_be_following: Blockera meddelanden från personer du inte följer
+        must_be_follower: Blockera aviseringar från icke-följare
+        must_be_following: Blockera aviseringar från personer du inte följer
         must_be_following_dm: Blockera direktmeddelanden från personer du inte följer
       invite:
         comment: Kommentar

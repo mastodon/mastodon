@@ -74,6 +74,7 @@ ja:
     roles:
       admin: Admin
       bot: Bot
+      group: Group
       moderator: Mod
     unavailable: プロフィールは利用できません
     unfollow: フォロー解除
@@ -333,6 +334,7 @@ ja:
       delete: 消去
       destroyed_msg: ブラックリストから外しました
       domain: ドメイン
+      empty: メールブラックリストに登録されたドメインはありません
       new:
         create: ドメインを追加
         title: メールアドレス用ブラックリスト新規追加
@@ -387,10 +389,16 @@ ja:
       created_msg: 通報メモを書き込みました！
       destroyed_msg: 通報メモを削除しました！
     reports:
+      account:
+        notes:
+          other: "%{count} 件のメモ"
+        reports:
+          other: "%{count} 件の通報"
       action_taken_by: 通報処理者
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
       assigned: 担当者
+      by_target_domain: ドメイン
       comment:
         none: なし
       created_at: 通報日時
@@ -436,6 +444,8 @@ ja:
         users: ログイン済みローカルユーザーのみ許可
       domain_blocks_rationale:
         title: コメントを表示
+      enable_bootstrap_timeline_accounts:
+        title: 新規ユーザーの自動フォローを有効にする
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
         title: ヒーローイメージ
@@ -564,6 +574,10 @@ ja:
     animations_and_accessibility: アニメーションとアクセシビリティー
     confirmation_dialogs: 確認ダイアログ
     discovery: 見つける
+    localization:
+      body: Mastodonは有志によって翻訳されています。
+      guide_link: https://ja.crowdin.com/project/mastodon
+      guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
     toot_layout: トゥートレイアウト
   application_mailer:
@@ -702,7 +716,6 @@ ja:
     blocks: ブロック
     csv: CSV
     domain_blocks: 非表示にしたドメイン
-    follows: フォロー
     lists: リスト
     mutes: ミュート
     storage: メディア
@@ -724,6 +737,7 @@ ja:
       invalid_irreversible: この機能はホームタイムラインまたは通知と一緒に指定する場合のみ機能します
     index:
       delete: 削除
+      empty: フィルターはありません。
       title: フィルター
     new:
       title: 新規フィルターを追加
@@ -868,6 +882,10 @@ ja:
       body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
+  notifications:
+    email_events: メールによる通知
+    email_events_hint: '受信する通知を選択:'
+    other_settings: その他の通知設定
   number:
     human:
       decimal_units:
@@ -901,6 +919,8 @@ ja:
   relationships:
     activity: 活動
     dormant: 非アクティブ
+    followers: フォロワー
+    following: フォロー中
     last_active: 最後の活動
     most_recent: 新着
     moved: 引っ越し済み
