@@ -7,6 +7,8 @@ class Api::OEmbedController < Api::BaseController
 
   def show
     @status = status_finder.status
+    raise ActiveRecord::RecordNotFound if @status.hidden?
+
     render json: @status, serializer: OEmbedSerializer, width: maxwidth_or_default, height: maxheight_or_default
   end
 
