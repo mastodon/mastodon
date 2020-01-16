@@ -4,10 +4,14 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import IconButton from 'mastodon/components/icon_button';
-import { defineMessages, injectIntl, FormattedDate } from 'react-intl';
+import Icon from 'mastodon/components/icon';
+import { defineMessages, injectIntl, FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl';
 import { autoPlayGif } from 'mastodon/initial_state';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'mastodon/initial_state';
+import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
+import classNames from 'classnames';
+import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_picker_dropdown_container';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -135,11 +139,146 @@ class Content extends ImmutablePureComponent {
 
 }
 
+const assetHost = process.env.CDN_HOST || '';
+
+class Emoji extends React.PureComponent {
+
+  static propTypes = {
+    emoji: PropTypes.string.isRequired,
+    emojiMap: PropTypes.object.isRequired,
+    hovered: PropTypes.bool.isRequired,
+  };
+
+  render () {
+    const { emoji, emojiMap, hovered } = this.props;
+
+    if (unicodeMapping[emoji]) {
+      const { filename, shortCode } = unicodeMapping[this.props.emoji];
+      const title = shortCode ? `:${shortCode}:` : '';
+
+      return (
+        <img
+          draggable='false'
+          className='emojione'
+          alt={emoji}
+          title={title}
+          src={`${assetHost}/emoji/${filename}.svg`}
+        />
+      );
+    } else if (emojiMap[emoji]) {
+      const filename  = (autoPlayGif || hovered) ? emojiMap[emoji].url : emojiMap[emoji].static_url;
+      const shortCode = `:${emoji}:`;
+
+      return (
+        <img
+          draggable='false'
+          class='emojione custom-emoji'
+          alt={shortCode}
+          title={shortCode}
+          src={filename}
+        />
+      );
+    } else {
+      return null;
+    }
+  }
+
+}
+
+class Reaction extends ImmutablePureComponent {
+
+  static propTypes = {
+    announcementId: PropTypes.string.isRequired,
+    reaction: ImmutablePropTypes.map.isRequired,
+    addReaction: PropTypes.func.isRequired,
+    removeReaction: PropTypes.func.isRequired,
+    emojiMap: PropTypes.object.isRequired,
+  };
+
+  state = {
+    hovered: false,
+  };
+
+  handleClick = () => {
+    const { reaction, announcementId, addReaction, removeReaction } = this.props;
+
+    if (reaction.get('me')) {
+      removeReaction(announcementId, reaction.get('name'));
+    } else {
+      addReaction(announcementId, reaction.get('name'));
+    }
+  }
+
+  handleMouseEnter = () => this.setState({ hovered: true })
+
+  handleMouseLeave = () => this.setState({ hovered: false })
+
+  render () {
+    const { reaction } = this.props;
+
+    let shortCode = reaction.get('name');
+
+    if (unicodeMapping[shortCode]) {
+      shortCode = unicodeMapping[shortCode].shortCode;
+    }
+
+    return (
+      <button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`}>
+        <span className='reactions-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} /></span>
+        <span className='reactions-bar__item__count'><FormattedNumber value={reaction.get('count')} /></span>
+      </button>
+    );
+  }
+
+}
+
+class ReactionsBar extends ImmutablePureComponent {
+
+  static propTypes = {
+    announcementId: PropTypes.string.isRequired,
+    reactions: ImmutablePropTypes.list.isRequired,
+    addReaction: PropTypes.func.isRequired,
+    removeReaction: PropTypes.func.isRequired,
+    emojiMap: PropTypes.object.isRequired,
+  };
+
+  handleEmojiPick = data => {
+    const { addReaction, announcementId } = this.props;
+    addReaction(announcementId, data.native);
+  }
+
+  render () {
+    const { reactions } = this.props;
+    const visibleReactions = reactions.filter(x => x.get('count') > 0);
+
+    return (
+      <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
+        {visibleReactions.map(reaction => (
+          <Reaction
+            key={reaction.get('name')}
+            reaction={reaction}
+            announcementId={this.props.announcementId}
+            addReaction={this.props.addReaction}
+            removeReaction={this.props.removeReaction}
+            emojiMap={this.props.emojiMap}
+          />
+        ))}
+
+        <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' />} />
+      </div>
+    );
+  }
+
+}
+
 class Announcement extends ImmutablePureComponent {
 
   static propTypes = {
     announcement: ImmutablePropTypes.map.isRequired,
+    emojiMap: PropTypes.object.isRequired,
     dismissAnnouncement: PropTypes.func.isRequired,
+    addReaction: PropTypes.func.isRequired,
+    removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -158,10 +297,28 @@ class Announcement extends ImmutablePureComponent {
     const skipEndDate = hasTimeRange && startsAt.getDate() === endsAt.getDate() && startsAt.getMonth() === endsAt.getMonth() && startsAt.getFullYear() === endsAt.getFullYear();
     const skipTime = announcement.get('all_day');
 
+    let title;
+
+    if (hasTimeRange) {
+      title = <strong className='announcements__item__range'><FormattedDate value={startsAt} hour12={false} year={(skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month='short' day='2-digit' hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /> - <FormattedDate value={endsAt} hour12={false} year={(skipYear || endsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month={skipEndDate ? undefined : 'short'} day={skipEndDate ? undefined : '2-digit'} hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} second={skipTime ? undefined : ''} /></strong>;
+    } else {
+      title = <strong className='announcements__item__range'><FormattedMessage id='announcement.generic_update' defaultMessage='Update' /></strong>;
+    }
+
     return (
       <div className='announcements__item'>
-        {hasTimeRange && <strong className='announcements__item__range'><FormattedDate value={startsAt} hour12={false} year={(skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month='short' day='2-digit' hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /> - <FormattedDate value={endsAt} hour12={false} year={(skipYear || endsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month={skipEndDate ? undefined : 'short'} day={skipEndDate ? undefined : '2-digit'} hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} second={skipTime ? undefined : ''} /></strong>}
+        {title}
+
         <Content announcement={announcement} />
+
+        <ReactionsBar
+          reactions={announcement.get('reactions')}
+          announcementId={announcement.get('id')}
+          addReaction={this.props.addReaction}
+          removeReaction={this.props.removeReaction}
+          emojiMap={this.props.emojiMap}
+        />
+
         <IconButton title={intl.formatMessage(messages.close)} icon='times' className='announcements__item__dismiss-icon' onClick={this.handleDismissClick} />
       </div>
     );
@@ -174,9 +331,11 @@ class Announcements extends ImmutablePureComponent {
 
   static propTypes = {
     announcements: ImmutablePropTypes.list,
+    emojiMap: PropTypes.object,
     fetchAnnouncements: PropTypes.func.isRequired,
     dismissAnnouncement: PropTypes.func.isRequired,
-    domain: PropTypes.string.isRequired,
+    addReaction: PropTypes.func.isRequired,
+    removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -202,7 +361,7 @@ class Announcements extends ImmutablePureComponent {
   }
 
   render () {
-    const { announcements, domain, intl } = this.props;
+    const { announcements, intl } = this.props;
     const { index } = this.state;
 
     if (announcements.isEmpty()) {
@@ -219,15 +378,16 @@ class Announcements extends ImmutablePureComponent {
               <Announcement
                 key={announcement.get('id')}
                 announcement={announcement}
+                emojiMap={this.props.emojiMap}
                 dismissAnnouncement={this.props.dismissAnnouncement}
+                addReaction={this.props.addReaction}
+                removeReaction={this.props.removeReaction}
                 intl={intl}
               />
             ))}
           </ReactSwipeableViews>
 
           <div className='announcements__pagination'>
-            <span className='announcements__pagination__domain'>{domain}</span>
-
             <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.previous)} icon='chevron-left' onClick={this.handlePrevClick} size={13} />
             <span>{index + 1} / {announcements.size}</span>
             <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.next)} icon='chevron-right' onClick={this.handleNextClick} size={13} />

@@ -6,6 +6,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
   has_many :mentions
   has_many :tags, serializer: REST::StatusSerializer::TagSerializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
+  has_many :reactions, serializer: REST::ReactionSerializer
 
   def id
     object.id.to_s
@@ -13,6 +14,10 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
 
   def content
     Formatter.instance.linkify(object.text)
+  end
+
+  def reactions
+    object.reactions(current_user&.account)
   end
 
   class AccountSerializer < ActiveModel::Serializer

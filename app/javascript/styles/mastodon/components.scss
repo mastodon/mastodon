@@ -6637,6 +6637,7 @@ noscript {
 
   &__container {
     flex: 1 1 0%;
+    position: relative;
   }
 
   &__item {
@@ -6660,19 +6661,126 @@ noscript {
   }
 
   &__pagination {
-    padding: 12px;
-    padding-top: 3px;
+    padding: 15px;
     color: $darker-text-color;
-
-    &__domain {
-      display: block;
-      color: $darker-text-color;
-      float: right;
-      padding: 0 3px;
-    }
+    position: absolute;
+    bottom: 3px;
+    right: 0;
   }
 }
 
 .layout-multiple-columns .announcements__mastodon {
   display: none;
+}
+
+.reactions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 15px;
+  margin-left: -2px;
+  width: calc(100% - (90px - 33px));
+
+  &__item {
+    flex-shrink: 0;
+    background: lighten($ui-base-color, 12%);
+    border: 0;
+    border-radius: 3px;
+    margin: 2px;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    transition: all 100ms ease-in;
+    transition-property: background-color, color;
+
+    &__emoji {
+      display: block;
+      margin: 3px 0;
+      width: 16px;
+      height: 16px;
+
+      img {
+        display: block;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        min-width: auto;
+        min-height: auto;
+        vertical-align: bottom;
+        object-fit: contain;
+      }
+    }
+
+    &__count {
+      display: block;
+      min-width: 9px;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      margin-left: 6px;
+      color: $darker-text-color;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 16%);
+      transition: all 200ms ease-out;
+      transition-property: background-color, color;
+
+      &__count {
+        color: lighten($darker-text-color, 4%);
+      }
+    }
+
+    &.active {
+      transition: all 100ms ease-in;
+      transition-property: background-color, color;
+      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 90%);
+
+      .reactions-bar__item__count {
+        color: $highlight-text-color;
+      }
+    }
+  }
+
+  .emoji-picker-dropdown {
+    margin: 2px;
+  }
+
+  &:hover .emoji-button {
+    opacity: 0.85;
+  }
+
+  .emoji-button {
+    color: $darker-text-color;
+    margin: 0;
+    font-size: 16px;
+    width: auto;
+    flex-shrink: 0;
+    padding: 0 6px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+    transition: all 100ms ease-in;
+    transition-property: background-color, color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 1;
+      color: lighten($darker-text-color, 4%);
+      transition: all 200ms ease-out;
+      transition-property: background-color, color;
+    }
+  }
+
+  &--empty {
+    .emoji-button {
+      padding: 0;
+    }
+  }
 }

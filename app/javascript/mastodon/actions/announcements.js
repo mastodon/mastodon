@@ -7,6 +7,16 @@ export const ANNOUNCEMENTS_FETCH_FAIL    = 'ANNOUNCEMENTS_FETCH_FAIL';
 export const ANNOUNCEMENTS_UPDATE        = 'ANNOUNCEMENTS_UPDATE';
 export const ANNOUNCEMENTS_DISMISS       = 'ANNOUNCEMENTS_DISMISS';
 
+export const ANNOUNCEMENTS_REACTION_ADD_REQUEST = 'ANNOUNCEMENTS_REACTION_ADD_REQUEST';
+export const ANNOUNCEMENTS_REACTION_ADD_SUCCESS = 'ANNOUNCEMENTS_REACTION_ADD_SUCCESS';
+export const ANNOUNCEMENTS_REACTION_ADD_FAIL    = 'ANNOUNCEMENTS_REACTION_ADD_FAIL';
+
+export const ANNOUNCEMENTS_REACTION_REMOVE_REQUEST = 'ANNOUNCEMENTS_REACTION_REMOVE_REQUEST';
+export const ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS = 'ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS';
+export const ANNOUNCEMENTS_REACTION_REMOVE_FAIL    = 'ANNOUNCEMENTS_REACTION_REMOVE_FAIL';
+
+export const ANNOUNCEMENTS_REACTION_UPDATE = 'ANNOUNCEMENTS_REACTION_UPDATE';
+
 export const fetchAnnouncements = () => (dispatch, getState) => {
   dispatch(fetchAnnouncementsRequest());
 
@@ -47,3 +57,72 @@ export const dismissAnnouncement = announcementId => (dispatch, getState) => {
 
   api(getState).post(`/api/v1/announcements/${announcementId}/dismiss`);
 };
+
+export const addReaction = (announcementId, name) => (dispatch, getState) => {
+  dispatch(addReactionRequest(announcementId, name));
+
+  api(getState).put(`/api/v1/announcements/${announcementId}/reactions/${name}`).then(() => {
+    dispatch(addReactionSuccess(announcementId, name));
+  }).catch(err => {
+    dispatch(addReactionFail(announcementId, name, err));
+  });
+};
+
+export const addReactionRequest = (announcementId, name) => ({
+  type: ANNOUNCEMENTS_REACTION_ADD_REQUEST,
+  id: announcementId,
+  name,
+  skipLoading: true,
+});
+
+export const addReactionSuccess = (announcementId, name) => ({
+  type: ANNOUNCEMENTS_REACTION_ADD_SUCCESS,
+  id: announcementId,
+  name,
+  skipLoading: true,
+});
+
+export const addReactionFail = (announcementId, name, error) => ({
+  type: ANNOUNCEMENTS_REACTION_ADD_FAIL,
+  id: announcementId,
+  name,
+  error,
+  skipLoading: true,
+});
+
+export const removeReaction = (announcementId, name) => (dispatch, getState) => {
+  dispatch(removeReactionRequest(announcementId, name));
+
+  api(getState).delete(`/api/v1/announcements/${announcementId}/reactions/${name}`).then(() => {
+    dispatch(removeReactionSuccess(announcementId, name));
+  }).catch(err => {
+    dispatch(removeReactionFail(announcementId, name, err));
+  });
+};
+
+export const removeReactionRequest = (announcementId, name) => ({
+  type: ANNOUNCEMENTS_REACTION_REMOVE_REQUEST,
+  id: announcementId,
+  name,
+  skipLoading: true,
+});
+
+export const removeReactionSuccess = (announcementId, name) => ({
+  type: ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS,
+  id: announcementId,
+  name,
+  skipLoading: true,
+});
+
+export const removeReactionFail = (announcementId, name, error) => ({
+  type: ANNOUNCEMENTS_REACTION_REMOVE_FAIL,
+  id: announcementId,
+  name,
+  error,
+  skipLoading: true,
+});
+
+export const updateReaction = reaction => ({
+  type: ANNOUNCEMENTS_REACTION_UPDATE,
+  reaction,
+});

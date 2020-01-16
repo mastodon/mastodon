@@ -318,6 +318,10 @@ Rails.application.routes.draw do
       resources :preferences, only: [:index]
 
       resources :announcements, only: [:index] do
+        scope module: :announcements do
+          resources :reactions, only: [:update, :destroy]
+        end
+
         member do
           post :dismiss
         end

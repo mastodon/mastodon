@@ -17,6 +17,8 @@ class InlineRenderer
       serializer = REST::ConversationSerializer
     when :announcement
       serializer = REST::AnnouncementSerializer
+    when :reaction
+      serializer = REST::ReactionSerializer
     else
       return
     end

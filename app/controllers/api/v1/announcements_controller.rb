@@ -2,7 +2,7 @@
 
 class Api::V1::AnnouncementsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: :dismiss
-  before_action :require_user!, except: :index
+  before_action :require_user!
   before_action :set_announcements, only: :index
   before_action :set_announcement, except: :index
 
