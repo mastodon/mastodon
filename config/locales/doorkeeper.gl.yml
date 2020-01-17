@@ -2,10 +2,10 @@ gl:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nome do aplicativo
+        name: 'Aplicación: %{name}'
         redirect_uri: URI a redireccionar
         scopes: Permisos
-        website: Sitio web do aplicativo
+        website: Sitio web da aplicación
     errors:
       models:
         doorkeeper/application:
@@ -37,6 +37,7 @@ gl:
         application: Aplicativo
         callback_url: URL de chamada
         delete: Eliminar
+        empty: Non tes aplicacións.
         name: Nome
         new: Novo aplicativo
         scopes: Permisos
