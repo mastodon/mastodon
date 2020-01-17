@@ -72,7 +72,7 @@ gl:
       other: Toots
     posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
-    reserved_username: O nome de usuario está reservado
+    reserved_username: O nome de usuaria está reservado
     roles:
       admin: Administrador
       bot: Bot
@@ -168,9 +168,9 @@ gl:
         admin: Administrador
         moderator: Moderador
         staff: Persoal (staff)
-        user: Usuario
+        user: Usuaria
       search: Procurar
-      search_same_ip: Outros usuarios co mesmo IP
+      search_same_ip: Outras usuarias co mesmo IP
       shared_inbox_url: URL da caixa de entrada compartida
       show:
         created_reports: Denuncias feitas
@@ -186,36 +186,36 @@ gl:
       undo_silenced: Desfacer silencio
       undo_suspension: Desfacer suspensión
       unsubscribe: Desbotar a subscrición
-      username: Nome de usuario
+      username: Nome de usuaria
       warn: Aviso
       web: Web
       whitelisted: Listaxe branca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} atribuíu a denuncia %{target} a el mesmo"
-        change_email_user: "%{name} mudou o enderezo de email do usuario %{target}"
-        confirm_user: "%{name} confirmou o enderezo de email do usuario %{target}"
+        change_email_user: "%{name} cambiou o enderezo de correo-e da usuaria %{target}"
+        confirm_user: "%{name} comfirmou o enderezo de correo da usuaria %{target}"
         create_account_warning: "%{name} enviou un aviso a %{target}"
         create_custom_emoji: "%{name} subiu unha nova emoticona %{target}"
         create_domain_allow: "%{name} engadiu á listaxe branca o dominio %{target}"
         create_domain_block: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block: "%{name} engadiu á listaxe negra o dominio de email %{target}"
-        demote_user: "%{name} rebaixou ó usuario %{target}"
+        demote_user: "%{name} degradou a usuaria %{target}"
         destroy_custom_emoji: "%{name} eliminou a emoticona %{target}"
         destroy_domain_allow: "%{name} eliminou o dominio %{target} da listaxe branca"
         destroy_domain_block: "%{name} desbloqueou o dominio %{target}"
         destroy_email_domain_block: "%{name} engadiu á lista branca o dominio de email %{target}"
         destroy_status: "%{name} eliminou o estado de %{target}"
-        disable_2fa_user: "%{name} desactivou o requirimento de dobre factor para o usuario %{target}"
+        disable_2fa_user: "%{name} desactivou o requirimento de dobre factor para a usuaria %{target}"
         disable_custom_emoji: "%{name} desactivou a emoticona %{target}"
-        disable_user: "%{name} desactivou o acceso á conta para o usuario %{target}"
+        disable_user: "%{name} desactivou o acceso á conta para a usuaria %{target}"
         enable_custom_emoji: "%{name} activou a emoticona %{target}"
-        enable_user: "%{name} activou o acceso á conta para o usuario %{target}"
+        enable_user: "%{name} activou o acceso á conta para a usuaria %{target}"
         memorialize_account: "%{name} converteu a conta de %{target} nunha páxina para a lembranza"
-        promote_user: "%{name} promocionou o usuario %{target}"
+        promote_user: "%{name} promoveu a usuaria %{target}"
         remove_avatar_user: "%{name} eliminou a imaxe de perfil de %{target}"
         reopen_report: "%{name} reabriu a denuncia %{target}"
-        reset_password_user: "%{name} restabeleceu o contrasinal do usuario %{target}"
+        reset_password_user: "%{name} restableceu o contrasinal da usuaria %{target}"
         resolve_report: "%{name} resolveu a denuncia %{target}"
         silence_account: "%{name} silenciou a conta de %{target}"
         suspend_account: "%{name} suspendeu a conta de %{target}"
@@ -273,18 +273,18 @@ gl:
       hidden_service: Federación con servizos agochados
       open_reports: denuncias abertas
       pending_tags: cancelos agardando revisión
-      pending_users: usuarios agardando revisión
-      recent_users: Usuarios recentes
+      pending_users: usuarias agardando revisión
+      recent_users: Usuarias recentes
       search: Procura por texto completo
-      single_user_mode: Modo de usuario único
+      single_user_mode: Modo de usuaria única
       software: Software
       space: Uso de almacenamento
       title: Taboleiro
-      total_users: usuarios en total
+      total_users: usuarias en total
       trends: Tendencias
       week_interactions: interaccións desta semana
       week_users_active: activos desta semana
-      week_users_new: usuarios desta semana
+      week_users_new: usuarias esta semana
       whitelist_mode: Modo de listaxe branca
     domain_allows:
       add_new: Engadir dominio á listaxe branca
@@ -376,7 +376,7 @@ gl:
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
-      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se subscriban e publiquen nel. <strong>Podes axudar a servidores pequenos e medios a descobrir contido no fediverso</strong>, o que doutro xeito precisaría que os usuarios locais seguisen a outras persoas en servidores remotos.
+      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
       disable: Desactivar
       disabled: Desactivado
       enable: Activar
@@ -429,29 +429,29 @@ gl:
       updated_at: Actualizado
     settings:
       activity_api_enabled:
-        desc_html: Conta de estados publicados de xeito local, usuarios activos, e novos rexistros en períodos semanais
-        title: Publicar estatísticas acerca da actividade do usuario
+        desc_html: Conta de estados publicados de xeito local, usuarias activas, e novos rexistros en períodos semanais
+        title: Publicar estatísticas agregadas sobre a actividade da usuaria
       bootstrap_timeline_accounts:
-        desc_html: Separar os múltiples nomes de usuario con vírgulas. Só funcionarán as contas locais non bloqueadas. Se fica baleiro, serán todos os administradores locais.
+        desc_html: Separar os múltiples nomes de usuaria con vírgulas. Só funcionarán as contas locais non bloqueadas. Se fica baleiro, serán todos os administradores locais.
         title: Seguimentos por defecto para novas contas
       contact_information:
         email: Email de negocios
-        username: Nome de usuario de contacto
+        username: Nome de usuaria de contacto
       custom_css:
         desc_html: Modificar a aparencia con CSS cargado en cada páxina
         title: CSS personalizado
       default_noindex:
-        desc_html: Afecta a todos os usuarios que non mudaron esta configuración por eles mesmos
-        title: Escoller os usuarios de fóra da indexación dos motores de procura por defecto
+        desc_html: Aféctalle a todas as usuarias que non cambiaron os axustes elas mesmas
+        title: Por omisión exclúe as usuarias do indexado por servidores de busca
       domain_blocks:
         all: Para todos
         disabled: Para ninguén
         title: Amosar dominios bloqueados
-        users: Para usuarios locais conectados
+        users: Para usuarias locais conectadas
       domain_blocks_rationale:
         title: Amosar motivo
       enable_bootstrap_timeline_accounts:
-        title: Activar seguimentos por defecto para novos usuarios
+        title: Activar seguimentos por omisión para novas usuarias
       hero:
         desc_html: Amosado na páxina principal. Polo menos 600x100px recomendados. Se non está definido, estará por defecto a miniatura do servidor
         title: Imaxe do heroe
