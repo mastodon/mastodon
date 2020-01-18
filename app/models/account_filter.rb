@@ -1,6 +1,21 @@
 # frozen_string_literal: true
 
 class AccountFilter
+  KEYS = %i(
+    local
+    remote
+    by_domain
+    active
+    pending
+    silenced
+    suspended
+    username
+    display_name
+    email
+    ip
+    staff
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)

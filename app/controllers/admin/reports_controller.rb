@@ -52,12 +52,7 @@ module Admin
     end
 
     def filter_params
-      params.permit(
-        :account_id,
-        :resolved,
-        :target_account_id,
-        :by_target_domain
-      )
+      params.slice(*ReportFilter::KEYS).permit(*ReportFilter::KEYS)
     end
 
     def set_report
