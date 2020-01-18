@@ -8,7 +8,7 @@ import {
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
-import { updateAnnouncements, updateReaction as updateAnnouncementsReaction } from './announcements';
+import { fetchAnnouncements, updateAnnouncements, updateReaction as updateAnnouncementsReaction } from './announcements';
 import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
 
@@ -58,7 +58,9 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
 }
 
 const refreshHomeTimelineAndNotification = (dispatch, done) => {
-  dispatch(expandHomeTimeline({}, () => dispatch(expandNotifications({}, done))));
+  dispatch(expandHomeTimeline({}, () =>
+    dispatch(expandNotifications({}, () =>
+      dispatch(fetchAnnouncements(done))))));
 };
 
 export const connectUserStream      = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);

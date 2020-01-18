@@ -17,13 +17,17 @@ export const ANNOUNCEMENTS_REACTION_REMOVE_FAIL    = 'ANNOUNCEMENTS_REACTION_REM
 
 export const ANNOUNCEMENTS_REACTION_UPDATE = 'ANNOUNCEMENTS_REACTION_UPDATE';
 
-export const fetchAnnouncements = () => (dispatch, getState) => {
+const noOp = () => {};
+
+export const fetchAnnouncements = (done = noOp) => (dispatch, getState) => {
   dispatch(fetchAnnouncementsRequest());
 
   api(getState).get('/api/v1/announcements').then(response => {
     dispatch(fetchAnnouncementsSuccess(response.data.map(x => normalizeAnnouncement(x))));
   }).catch(error => {
     dispatch(fetchAnnouncementsFail(error));
+  }).finally(() => {
+    done();
   });
 };
 
@@ -42,6 +46,7 @@ export const fetchAnnouncementsFail= error => ({
   type: ANNOUNCEMENTS_FETCH_FAIL,
   error,
   skipLoading: true,
+  skipAlert: true,
 });
 
 export const updateAnnouncements = announcement => ({
