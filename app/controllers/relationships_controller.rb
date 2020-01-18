@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 class RelationshipsController < ApplicationController
-  FILTER_PARAMS = %i(
-    relationship
-    status
-    by_domain
-    activity
-    order
-  ).freeze
-
   layout 'admin'
 
   before_action :authenticate_user!
@@ -93,7 +85,7 @@ class RelationshipsController < ApplicationController
   end
 
   def current_params
-    params.slice(:page, *FILTER_PARAMS).permit(:page, *FILTER_PARAMS)
+    params.slice(:page, *RelationshipFilter::KEYS).permit(:page, *RelationshipFilter::KEYS)
   end
 
   def action_from_button

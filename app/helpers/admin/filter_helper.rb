@@ -8,7 +8,7 @@ module Admin::FilterHelper
     TagFilter::KEYS,
     InstanceFilter::KEYS,
     InviteFilter::KEYS,
-    RelationshipsController::FILTER_PARAMS,
+    RelationshipFilter::KEYS,
   ].flatten.freeze
 
   def filter_link_to(text, link_to_params, link_class_params = link_to_params)
