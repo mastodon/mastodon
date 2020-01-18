@@ -58,8 +58,10 @@
           = fa_icon 'reply-all fw'
       .status__action-bar__counter__label= obscured_counter status.replies_count
     = link_to remote_interaction_path(status, type: :reblog), class: 'status__action-bar-button icon-button modal-button' do
-      - if status.distributable?
+      - if status.public_visibility?
         = fa_icon 'retweet fw'
+      - elsif status.unlisted_visibility?
+        = fa_icon 'unlock fw'
       - elsif status.private_visibility? || status.limited_visibility?
         = fa_icon 'lock fw'
       - else

@@ -69,7 +69,10 @@
         = fa_icon('lock')
     - else
       = link_to remote_interaction_path(status, type: :reblog), class: 'modal-button detailed-status__link' do
-        = fa_icon('retweet')
+        - if status.public_visibility?
+          = fa_icon('retweet')
+        - else
+          = fa_icon('unlock')
         %span.detailed-status__reblogs>= number_to_human status.reblogs_count, strip_insignificant_zeros: true
         = " "
     ·
