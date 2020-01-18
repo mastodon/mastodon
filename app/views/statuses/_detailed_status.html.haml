@@ -1,4 +1,4 @@
-.detailed-status.detailed-status--flex
+.detailed-status.detailed-status--flex{ class: "detailed-status-#{status.visibility}" }
   .p-author.h-card
     = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'detailed-status__display-name u-url', target: stream_link_target, rel: 'noopener' do
       .detailed-status__display-avatar

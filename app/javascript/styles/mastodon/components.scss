@@ -1052,6 +1052,29 @@
       }
     }
   }
+
+  &-unlisted .status__relative-time::before,
+  &-private .status__relative-time::before,
+  &-direct .status__relative-time::before {
+      display: inline-block;
+      text-align: center;
+      width: 14px;
+      height: 14px;
+      font: 14px/1 FontAwesome;
+      margin-right: 4px;
+  }
+
+  &-unlisted .status__relative-time::before {
+      content: "\f09C";
+  }
+
+  &-private .status__relative-time::before {
+      content: "\F023";
+  }
+
+  &-direct .status__relative-time::before {
+      content: "\F0E0";
+  }
 }
 
 .notification-favourite {
@@ -1186,6 +1209,7 @@
 .detailed-status {
   background: lighten($ui-base-color, 4%);
   padding: 14px 10px;
+  position: relative;
 
   &--flex {
     display: flex;
@@ -1197,6 +1221,37 @@
     .detailed-status__meta {
       flex: 100%;
     }
+  }
+
+  &-unlisted::before,
+  &-private::before,
+  &-direct::before {
+    display: block;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 10px;
+    top: 20px;
+    font: 14px/1 FontAwesome;
+    color: #606984;
+  }
+
+  &-unlisted .display-name,
+  &-private .display-name,
+  &-direct .display-name {
+    padding-right: 18px;
+  }
+
+  &-unlisted::before {
+      content: "\f09C";
+  }
+
+  &-private::before {
+      content: "\F023";
+  }
+
+  &-direct::before {
+      content: "\F0E0";
   }
 
   .status__content {
@@ -1555,6 +1610,7 @@ a.account__display-name {
 }
 
 .detailed-status .button.logo-button {
+  margin-right: 18px;
   margin-bottom: 15px;
 }
 
