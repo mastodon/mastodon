@@ -4,7 +4,7 @@
 - content_for :heading_actions do
   = link_to t('doorkeeper.applications.index.new'), new_settings_application_path, class: 'button'
 
-- if @applications.count == 0
+- if @applications.empty?
   %div.muted-hint.center-text=t 'doorkeeper.applications.index.empty'
 - else
   .table-wrapper
