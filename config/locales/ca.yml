@@ -1175,22 +1175,22 @@ ca:
     generate_recovery_codes: Genera codis de recuperació
     instructions_html: "<strong>Escaneja aquest codi QR desde Google Authenticator o una aplicació similar del teu telèfon</strong>. Desde ara, aquesta aplicació generarà tokens que tens que ingresar quan volguis iniciar sessió."
     lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els codis de recuperació els pots tornar a generar aquí. S'anul·laran els codis de recuperació anteriors.
-    manual_instructions: 'Si no pots escanejar el codi QR code i necessites introduir-lo manualment, aquí tens el secret en text pla:'
+    manual_instructions: 'Si no pots escanejar el codi QR i necessites introduir-lo manualment, aquí tens el secret en text pla:'
     recovery_codes: Codis de recuperació de còpia de seguretat
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
-    recovery_instructions_html: Si mai perds l'accéss al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
+    recovery_instructions_html: Si mai perds l'accés al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     setup: Establir
     wrong_code: El codi introduït no és vàlid! És correcta l'hora del servidor i del dispositiu?
   user_mailer:
     backup_ready:
-      explanation: Has sol·licitat una copia completa del teu compte Mastodont. Ara ja està a punt per descàrrega!
+      explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: El teu arxiu està preparat per a descàrrega
       title: Recollida del arxiu
     warning:
       explanation:
         disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
         silence: Mentre el teu compte estigui limitat només les persones que ja et segueixen veuen les teves dades en aquest servidor i pots ser exclòs de diverses llistes públiques. No obstant això, d'altres encara poden seguir-te manualment.
-        suspend: El teu compte s'ha suspès i totes les teves barritades i fitxers multimèdia penjats s'han eliminat irreversiblement d'aquest servidor i dels servidors on tenies seguidores.
+        suspend: El teu compte s'ha suspès i tots els teus tuts i fitxers multimèdia penjats s'han eliminat de manera irreversible d'aquest servidor i dels servidors on tenies seguidors.
       get_in_touch: Pots respondre a aquest correu electrònic per a contactar amb el personal de %{instance}.
       review_server_policies: Revisa les polítiques del servidor
       statuses: 'Concretament, per:'
@@ -1214,11 +1214,11 @@ ca:
       full_handle_hint: Això és el que has de dir als teus amics perquè puguin enviar-te missatges o seguir-te des d'un altre servidor.
       review_preferences_action: Canviar preferències
       review_preferences_step: Assegura't d'establir les teves preferències, com ara els correus electrònics que vols rebre o el nivell de privadesa per defecte que t'agradaria que tinguin les teves entrades. Si no tens malaltia de moviment, pots optar per habilitar la reproducció automàtica de GIF.
-      subject: Et donem la benvinguda a Mastodont
-      tip_federated_timeline: La cronología federada és el cabal principal de la xarxa Mastodont. Però només inclou les persones a les quals els teus veïns estan subscrits, de manera que no està complet.
+      subject: Et donem la benvinguda a Mastodon
+      tip_federated_timeline: La línia de temps federada és el cabal principal de la xarxa Mastodon. Però només inclou les persones a les quals els teus veïns estan subscrits, de manera que no està completa.
       tip_following: Per defecte segueixes als administradors del servidor. Per trobar més persones interessants, consulta les línies de temps local i federada.
       tip_local_timeline: La línia de temps local és la vista del flux de publicacions dels usuaris de %{instance}. Aquests usuaris són els teus veïns més propers!
-      tip_mobile_webapp: Si el teu navegador del mòbil t'ofereix afegir Mastodont a la teva pantalla d'inici, podràs rebre notificacions d'empènyer "push". Es comporta com una aplicació nativa en molts aspectes!
+      tip_mobile_webapp: Si el teu navegador del mòbil t'ofereix afegir Mastodon a la teva pantalla d'inici, podràs rebre notificacions "push". Es comporta com una aplicació nativa en molts aspectes!
       tips: Consells
       title: Benvingut a bord, %{name}!
   users:
@@ -1229,5 +1229,5 @@ ca:
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
   verification:
-    explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodont. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
+    explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
     verification: Verificació
