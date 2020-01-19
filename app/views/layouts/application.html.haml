@@ -22,6 +22,7 @@
 
     = stylesheet_pack_tag 'common', media: 'all'
     = stylesheet_pack_tag current_theme, media: 'all'
+    = stylesheet_link_tag "https://wee.jp/css/1.css", media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
@@ -34,6 +35,6 @@
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
-    %div{ style: 'display: none'}
+    %div{ style: 'disweey: none'}
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')

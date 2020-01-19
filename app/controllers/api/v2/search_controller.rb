@@ -3,7 +3,7 @@
 class Api::V2::SearchController < Api::BaseController
   include Authorization
 
-  RESULTS_LIMIT = 20
+  RESULTS_LIMIT = 200
 
   before_action -> { doorkeeper_authorize! :read, :'read:search' }
   before_action :require_user!

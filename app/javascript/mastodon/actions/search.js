@@ -14,6 +14,8 @@ export const SEARCH_EXPAND_REQUEST = 'SEARCH_EXPAND_REQUEST';
 export const SEARCH_EXPAND_SUCCESS = 'SEARCH_EXPAND_SUCCESS';
 export const SEARCH_EXPAND_FAIL    = 'SEARCH_EXPAND_FAIL';
 
+export const RESULTS_LIMIT      = 200;
+
 export function changeSearch(value) {
   return {
     type: SEARCH_CHANGE,
@@ -41,7 +43,7 @@ export function submitSearch() {
       params: {
         q: value,
         resolve: true,
-        limit: 5,
+        limit: RESULTS_LIMIT,
       },
     }).then(response => {
       if (response.data.accounts) {
