@@ -961,8 +961,8 @@ ca:
       proceed: Procedir a respondre
       prompt: 'Vols respondre a aquest tut:'
   scheduled_statuses:
-    over_daily_limit: Has superat el límit de %{limit} barritades programades per a aquell dia
-    over_total_limit: Has superat el limit de %{limit} barritades programades
+    over_daily_limit: Has superat el límit de %{limit} tuts programats per a aquell dia
+    over_total_limit: Has superat el limit de %{limit} tuts programats
     too_soon: La data programada ha de ser futura
   sessions:
     activity: Última activitat
@@ -987,7 +987,7 @@ ca:
       weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
-    explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodont.
+    explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1011,7 +1011,7 @@ ca:
     aliases: Àlies de compte
     appearance: Aparença
     authorized_apps: Aplicacions autoritzades
-    back: Torna a Mastodont
+    back: Torna a Mastodon
     delete: Eliminació del compte
     development: Desenvolupament
     edit_profile: Edita el perfil
@@ -1046,9 +1046,9 @@ ca:
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
-      limit: Ja has fixat el màxim nombre de barritades
-      ownership: No es pot fixar la barritada d'altra persona
-      private: No es pot fixar la barritada no pública
+      limit: Ja has fixat el màxim nombre de tuts
+      ownership: No es pot fixar el tut d'algú altre
+      private: No es pot fixar un tut no públic
       reblog: No es pot fixar un impuls
     poll:
       total_people:
@@ -1067,7 +1067,7 @@ ca:
       public: Públic
       public_long: Tothom pot veure-ho
       unlisted: No llistat
-      unlisted_long: Tothom ho pot veure, però no es mostra en la cronología federada
+      unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
   stream_entries:
     pinned: Tut fixat
     reblogged: ha impulsat
@@ -1174,7 +1174,7 @@ ca:
     enabled_success: Autenticació de dos factors activada correctament
     generate_recovery_codes: Genera codis de recuperació
     instructions_html: "<strong>Escaneja aquest codi QR desde Google Authenticator o una aplicació similar del teu telèfon</strong>. Desde ara, aquesta aplicació generarà tokens que tens que ingresar quan volguis iniciar sessió."
-    lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els codis de recuperació els pots tornar a generar aquí. Els codis de recuperació anteriors s'anul·laran.
+    lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els codis de recuperació els pots tornar a generar aquí. S'anul·laran els codis de recuperació anteriors.
     manual_instructions: 'Si no pots escanejar el codi QR code i necessites introduir-lo manualment, aquí tens el secret en text pla:'
     recovery_codes: Codis de recuperació de còpia de seguretat
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
