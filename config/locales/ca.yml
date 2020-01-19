@@ -779,7 +779,7 @@ ca:
     i_am_html: Sóc %{username} a %{service}.
     identity: Identitat
     inactive: Inactiu
-    publicize_checkbox: 'I barrita això:'
+    publicize_checkbox: 'I envia un tut d''això:'
     publicize_toot: 'Està provat! Sóc %{username} a %{service}: %{url}'
     status: Estat de verificació
     view_proof: Veure la prova
@@ -828,7 +828,7 @@ ca:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
       too_many: No es poden adjuntar més de 4 fitxers
   migrations:
-    acct: usuari@domini del nou compte
+    acct: Mogut a
     cancel: Cancel·la redirecció
     cancel_explanation: Cancel·lant la redirecció reactivará el teu compte actual però no recuperarà els seguidors que han estat moguts a aquell compte.
     cancelled_msg: Redirecció cancel·lada amb èxit.
@@ -837,7 +837,7 @@ ca:
       missing_also_known_as: no fa referencia a aquest compte
       move_to_self: no pot ser el compte actual
       not_found: podria no ser trobat
-      on_cooldown: Estàs en temps de recuperació
+      on_cooldown: Estàs en temps de refredament
     followers_count: Seguidors en el moment del moviment
     incoming_migrations: Movent des d'un compte diferent
     incoming_migrations_html: Per a moure't des d'un altre compte a aquest, primer necessites <a href="%{path}">crear un àlies de compte</a>.
@@ -862,7 +862,7 @@ ca:
   notification_mailer:
     digest:
       action: Mostra totes les notificacions
-      body: Un resum del que et vas perdre desde la darrera visita el %{since}
+      body: Un resum del que et vas perdre des de la darrera visita el %{since}
       mention: "%{name} t'ha mencionat en:"
       new_followers_summary:
         one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
@@ -927,7 +927,7 @@ ca:
   preferences:
     other: Altre
     posting_defaults: Valors predeterminats de publicació
-    public_timelines: Cronologíes públiques
+    public_timelines: Línies de temps públiques
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
@@ -945,7 +945,7 @@ ca:
     status: Estat del compte
   remote_follow:
     acct: Escriu el teu usuari@domini des del qual vols seguir
-    missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per al compte
+    missing_resource: No s'ha pogut trobar la URL de redirecció necessària per al compte
     no_account_html: No tens cap compte? Pots <a href='%{sign_up_path}' target='_blank'>registrar-te aquí</a>
     proceed: Comença a seguir
     prompt: 'Seguiràs a:'
@@ -953,13 +953,13 @@ ca:
   remote_interaction:
     favourite:
       proceed: Procedir a afavorir
-      prompt: 'Vols marcar com a favorit aquesta barritada:'
+      prompt: 'Vols marcar com a favorit aquest tut:'
     reblog:
       proceed: Procedir a impulsar
-      prompt: 'Vols impulsar aquesta barritada:'
+      prompt: 'Vols impulsar aquest tut:'
     reply:
       proceed: Procedir a respondre
-      prompt: 'Vols respondre a aquesta barritada:'
+      prompt: 'Vols respondre a aquest tut:'
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} barritades programades per a aquell dia
     over_total_limit: Has superat el limit de %{limit} barritades programades
