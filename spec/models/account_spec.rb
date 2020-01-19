@@ -215,13 +215,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#subscription' do
-    it 'returns an OStatus subscription' do
-      account = Fabricate(:account)
-      expect(account.subscription('')).to be_instance_of OStatus2::Subscription
-    end
-  end
-
   describe '#object_type' do
     it 'is always a person' do
       account = Fabricate(:account)
@@ -823,4 +816,5 @@ RSpec.describe Account, type: :model do
   end
 
   include_examples 'AccountAvatar', :account
+  include_examples 'AccountHeader', :account
 end

@@ -3,6 +3,8 @@
 class Api::OEmbedController < Api::BaseController
   respond_to :json
 
+  skip_before_action :require_authenticated_user!
+
   def show
     @status = status_finder.status
     render json: @status, serializer: OEmbedSerializer, width: maxwidth_or_default, height: maxheight_or_default

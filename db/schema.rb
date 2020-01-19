@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_013357) do
+ActiveRecord::Schema.define(version: 2019_12_12_003415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.bigint "user_id"
     t.string "dump_file_name"
     t.string "dump_content_type"
-    t.integer "dump_file_size"
+    t.bigint "dump_file_size"
     t.datetime "dump_updated_at"
     t.boolean "processed", default: false, null: false
     t.datetime "created_at", null: false
@@ -215,6 +215,16 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.string "uri"
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_blocks_on_target_account_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
+    t.index ["account_id"], name: "index_bookmarks_on_account_id"
+    t.index ["status_id"], name: "index_bookmarks_on_status_id"
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
@@ -373,7 +383,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
   create_table "list_accounts", force: :cascade do |t|
     t.bigint "list_id", null: false
     t.bigint "account_id", null: false
-    t.bigint "follow_id", null: false
+    t.bigint "follow_id"
     t.index ["account_id", "list_id"], name: "index_list_accounts_on_account_id_and_list_id", unique: true
     t.index ["follow_id"], name: "index_list_accounts_on_follow_id"
     t.index ["list_id", "account_id"], name: "index_list_accounts_on_list_id_and_account_id"
@@ -693,30 +703,6 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
-  create_table "stream_entries", force: :cascade do |t|
-    t.bigint "activity_id"
-    t.string "activity_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "hidden", default: false, null: false
-    t.bigint "account_id"
-    t.index ["account_id", "activity_type", "id"], name: "index_stream_entries_on_account_id_and_activity_type_and_id"
-    t.index ["activity_id", "activity_type"], name: "index_stream_entries_on_activity_id_and_activity_type"
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string "callback_url", default: "", null: false
-    t.string "secret"
-    t.datetime "expires_at"
-    t.boolean "confirmed", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_successful_delivery_at"
-    t.string "domain"
-    t.bigint "account_id", null: false
-    t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
@@ -834,6 +820,8 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
   add_foreign_key "backups", "users", on_delete: :nullify
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
+  add_foreign_key "bookmarks", "accounts", on_delete: :cascade
+  add_foreign_key "bookmarks", "statuses", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade

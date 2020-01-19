@@ -1,6 +1,10 @@
 ---
 'no':
   activerecord:
+    attributes:
+      poll:
+        expires_at: Tidsfrist
+        options: Valg
     errors:
       models:
         account:

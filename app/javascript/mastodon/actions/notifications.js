@@ -14,6 +14,7 @@ import { unescapeHTML } from '../utils/html';
 import { getFiltersRegex } from '../selectors';
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 import compareId from 'mastodon/compare_id';
+import { searchTextFromRawStatus } from 'mastodon/actions/importer/normalizer';
 
 export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
@@ -60,7 +61,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     if (notification.type === 'mention') {
       const dropRegex   = filters[0];
       const regex       = filters[1];
-      const searchIndex = notification.status.spoiler_text + '\n' + unescapeHTML(notification.status.content);
+      const searchIndex = searchTextFromRawStatus(notification.status);
 
       if (dropRegex && dropRegex.test(searchIndex)) {
         return;
@@ -109,7 +110,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
 const excludeTypesFromFilter = filter => {
-  const allTypes = ImmutableList(['follow', 'favourite', 'reblog', 'mention', 'poll']);
+  const allTypes = ImmutableList(['follow', 'follow_request', 'favourite', 'reblog', 'mention', 'poll']);
   return allTypes.filterNot(item => item === filter).toJS();
 };
 

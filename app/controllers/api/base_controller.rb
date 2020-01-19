@@ -20,6 +20,10 @@ class Api::BaseController < ApplicationController
     render json: { error: e.to_s }, status: 422
   end
 
+  rescue_from ActiveRecord::RecordNotUnique do
+    render json: { error: 'Duplicate record' }, status: 422
+  end
+
   rescue_from ActiveRecord::RecordNotFound do
     render json: { error: 'Record not found' }, status: 404
   end

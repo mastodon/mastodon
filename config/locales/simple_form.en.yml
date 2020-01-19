@@ -78,7 +78,7 @@ en:
         text: Custom warning
         type: Action
         types:
-          disable: Disable
+          disable: Disable login
           none: Do nothing
           silence: Silence
           suspend: Suspend and irreversibly delete account data
@@ -113,6 +113,7 @@ en:
         setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Show confirmation dialog before boosting
+        setting_crop_images: Crop images in non-expanded toots to 16x9
         setting_default_language: Posting language
         setting_default_privacy: Posting privacy
         setting_default_sensitive: Always mark media as sensitive
@@ -149,14 +150,14 @@ en:
         text: Why do you want to join?
       notification_emails:
         digest: Send digest e-mails
-        favourite: Send e-mail when someone favourites your status
-        follow: Send e-mail when someone follows you
-        follow_request: Send e-mail when someone requests to follow you
-        mention: Send e-mail when someone mentions you
-        pending_account: Send e-mail when a new account needs review
-        reblog: Send e-mail when someone boosts your status
-        report: Send e-mail when a new report is submitted
-        trending_tag: Send e-mail when an unreviewed hashtag is trending
+        favourite: Someone favourited your status
+        follow: Someone followed you
+        follow_request: Someone requested to follow you
+        mention: Someone mentioned you
+        pending_account: New account needs review
+        reblog: Someone boosted your status
+        report: New report is submitted
+        trending_tag: An unreviewed hashtag is trending
       tag:
         listable: Allow this hashtag to appear in searches and on the profile directory
         name: Hashtag

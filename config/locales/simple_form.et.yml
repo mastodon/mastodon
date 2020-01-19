@@ -2,9 +2,14 @@
 et:
   simple_form:
     hints:
+      account_alias:
+        acct: Sisesta selle konto kasutajanimi@domeen, millelt soovite kolida
+      account_migration:
+        acct: Sisesta selle konto kasutajanimi@domeen, millele soovite kolida
       account_warning_preset:
         text: Te saate kasutada tuututuse süntaksi, näiteks URLe, silte ja mainimisi
       admin_account_action:
+        include_statuses: Kasutaja näeb, millised tuututused on põhjustanud selle moderaatori tegevuse või hoiatuse
         send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
         text_html: Valikuline. Te saate kasutada tuututuse süntaksi. Te saate <a href="%{path}">lisada hoiatuste eelseadistusi</a> aega säästmiseks
         type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
@@ -14,7 +19,10 @@ et:
         avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         bot: See konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
+        current_password: Turvalisuse huvides palun sisestage praeguse konto salasõna
+        current_username: Kinnitamiseks palun sisestage oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka perioodi tegevusetust ja ainult siis, kui Teile on saadetud privaatseid sõnumeid
+        discoverable: Profiilikataloog on veel üks viis, kuidas Teie konto saab jõuda laiema publikuni
         email: Teile saadetakse kinnituskiri e-posti teel
         fields: Te saate oma profiilil tabelina kuvada kuni 4 asja
         header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
@@ -41,6 +49,8 @@ et:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
       featured_tag:
         name: 'Äkki soovite kasutada mõnda neist:'
+      form_challenge:
+        current_password: Te sisenete turvalisele alale
       imports:
         data: CSV fail eksporditi teisest Mastodoni serverist
       invite_request:
@@ -56,9 +66,14 @@ et:
         fields:
           name: Nimetus
           value: Sisu
+      account_alias:
+        acct: Vana konto täisnimi
+      account_migration:
+        acct: Uue konto täisnimi
       account_warning_preset:
         text: Eelseadistatud tekst
       admin_account_action:
+        include_statuses: Kaasa teavitatud tuututused selles e-kirjas
         send_email_notification: Teavita kasutajat e-posti teel
         text: Hoiatus
         type: Tegevus
@@ -98,6 +113,7 @@ et:
         setting_aggregate_reblogs: Grupita upitused ajajoontes
         setting_auto_play_gif: Mängi GIF-e automaatselt
         setting_boost_modal: Näita kinnitusdialoogi enne upitamist
+        setting_crop_images: Kärbi suurendamata tuututuste pildid resolutsiooni 16x9
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse privaatsus
         setting_default_sensitive: Alati märgista meedia tundlikuks
@@ -128,6 +144,8 @@ et:
         must_be_follower: Keela teavitused mittejälgijatelt
         must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi
         must_be_following_dm: Keela privaatsõnumid kasutajatelt, keda sa ei jälgi
+      invite:
+        comment: Kommenteerima
       invite_request:
         text: Miks Te soovite liituda?
       notification_emails:
@@ -142,6 +160,7 @@ et:
         trending_tag: Saada e-kiri, kui ülevaatamata silt trendib
       tag:
         listable: Luba sellel sildil ilmuda profiilide kataloogis
+        name: Silt
         trendable: Luba sellel sildil trendida
         usable: Luba tuututustel seda silti kasutada
     'no': Ei

@@ -3,7 +3,7 @@ hu:
   about:
     about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> hashtag-gel ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
     about_mastodon_html: A Mastodon egy szabad webes protokollokat használó, nyílt forráskódú szociális háló. Decentralizált, akár az e-mail.
-    about_this: Rólunk
+    about_this: Névjegy
     active_count_after: aktív
     active_footnote: Havonta aktív felhasználók
     administered_by: 'Adminisztrátor:'
@@ -11,6 +11,9 @@ hu:
     apps: Mobil appok
     apps_platforms: Használd a Mastodont iOS-ről, Androidról vagy más platformról
     browse_directory: Böngészd a profilokat és szűrj érdeklődési körre
+    browse_local_posts: 'Nézz bele a szerver publikus, élő adatfolyamába
+
+'
     browse_public_posts: Nézz bele a Mastodon élő adatfolyamába
     contact: Kapcsolat
     contact_missing: Nincs megadva
@@ -77,6 +80,7 @@ hu:
     roles:
       admin: Adminisztrátor
       bot: Bot
+      group: Csoport
       moderator: Moderátor
     unavailable: Nincs ilyen profil
     unfollow: Követés vége
@@ -117,9 +121,7 @@ hu:
       email_status: E-mail állapot
       enable: Bekapcsolás
       enabled: Bekapcsolva
-      feed_url: Hírcsatorna URL
       followers: Követő
-      followers_url: Követő URL
       follows: Követett
       header: Fejléc
       inbox_url: Beérkezett üzenetek URL
@@ -145,12 +147,10 @@ hu:
       most_recent_activity: Legutóbbi tevékenységek
       most_recent_ip: Legutóbbi IP-cím
       no_account_selected: Nem változott meg egy fiók sem, mert semmi sem volt kiválasztva
-      no_limits_imposed: Nem állítottunk be határértéket
+      no_limits_imposed: Nincs korlátozás
       not_subscribed: Nincs feliratkozás
-      outbox_url: Kimenő üzenetek URL
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
-      profile_url: Profil URL
       promote: Előléptetés
       protocol: Protokoll
       public: Nyilvános
@@ -173,8 +173,8 @@ hu:
         moderator: Moderátor
         staff: Stáb
         user: Felhasználó
-      salmon_url: Salmon URL
       search: Keresés
+      search_same_ip: Más felhasználók ugyanezzel az IP-vel
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -201,10 +201,12 @@ hu:
         confirm_user: "%{name} megerősítette e-mail címét: %{target}"
         create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
         create_custom_emoji: "%{name} új emojit töltött fel: %{target}"
+        create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
         destroy_custom_emoji: "%{name} törölte az emojit: %{target}"
+        destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
         destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
@@ -395,12 +397,17 @@ hu:
       destroyed_msg: Bejelentési feljegyzés törölve!
     reports:
       account:
-        note: feljegyzés
-        report: bejelentés
+        notes:
+          one: "%{count} feljegyzés"
+          other: "%{count} feljegyzés"
+        reports:
+          one: "%{count} bejelentés"
+          other: "%{count} bejelentés"
       action_taken_by: 'Kezelte:'
       are_you_sure: Biztos vagy benne?
       assign_to_self: Magamhoz rendelés
       assigned: Hozzárendelt moderátor
+      by_target_domain: A bejelentett fiók domainje
       comment:
         none: Egyik sem
       created_at: Jelentve
@@ -446,6 +453,8 @@ hu:
         users: Bejelentkezett helyi felhasználóknak
       domain_blocks_rationale:
         title: Mutasd meg az indokolást
+      enable_bootstrap_timeline_accounts:
+        title: Alapértelmezett követés engedélyezése új felhasználóknak
       hero:
         desc_html: A kezdőoldalon látszik. Legalább 600x100px méret javasolt. Ha nincs beállítva, a szerver bélyegképet használjuk
         title: Hősi kép
@@ -506,6 +515,9 @@ hu:
         desc_html: Nyilvános idővonal megjelenítése a főoldalon
         title: Idővonal előnézete
       title: Webhely beállításai
+      trendable_by_default:
+        desc_html: Azokra a hashtagekere hat, melyet előzőleg nem tiltottak le
+        title: Hashtagek trendiségének engedélyezése előzetes ellenőrzés nélkül
       trends:
         desc_html: Előzetesen engedélyezett és most trendi hashtagek nyilvános mutatása
         title: Trendi hashtagek
@@ -571,7 +583,12 @@ hu:
     animations_and_accessibility: Animáció és akadálymentesítés
     confirmation_dialogs: Megerősítő párbeszédablakok
     discovery: Felfedezés
+    localization:
+      body: A Mastodont önkéntesek fordítják.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Bárki közreműködhet.
     sensitive_content: Szenzitív tartalom
+    toot_layout: Tülkök megjelenése
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
     salutation: "%{name}!"
@@ -708,7 +725,6 @@ hu:
     blocks: Tiltólistádon
     csv: CSV
     domain_blocks: Tiltott domainjeid
-    follows: Követettjeid
     lists: Listáid
     mutes: Némításaid
     storage: Médiatároló
@@ -730,6 +746,7 @@ hu:
       invalid_irreversible: Visszafordíthatatlan szűrést csak saját idővonalon vagy értesítéseken lehet végezni
     index:
       delete: Törlés
+      empty: Nincs szűrés.
       title: Szűrők
     new:
       title: Új szűrő hozzáadása
@@ -878,6 +895,10 @@ hu:
       body: 'A tülködet %{name} megtolta:'
       subject: "%{name} megtolta a tülködet"
       title: Új megtolás
+  notifications:
+    email_events: Események email értesítésekhez
+    email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
+    other_settings: Értesítések egyéb beállításai
   number:
     human:
       decimal_units:
@@ -901,6 +922,7 @@ hu:
       duration_too_long: túl távoli időpont
       duration_too_short: túl közeli időpont
       expired: A szavazásnak már vége
+      invalid_choice: A kiválasztott szavazási lehetőség nem létezik
       over_character_limit: egyik sem lehet %{max} karakternél hosszabb
       too_few_options: több, mint egy opciónak kell lennie
       too_many_options: nem lehet több, mint %{max} opció
@@ -911,6 +933,8 @@ hu:
   relationships:
     activity: Fiók aktivitás
     dormant: Elhagyott
+    followers: Követők
+    following: Követve
     last_active: Utoljára aktív
     most_recent: Legutóbbi
     moved: Átköltöztetve
@@ -1004,6 +1028,8 @@ hu:
     profile: Profil
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős azonosítás
+  spam_check:
+    spam_detected: Ez egy automatikus jelentés. Spamet érzékeltünk.
   statuses:
     attached:
       description: 'Csatolva: %{attached}'

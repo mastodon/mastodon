@@ -153,7 +153,7 @@ class FeedManager
       crutches = build_crutches(account.id, statuses)
 
       statuses.each do |status|
-        next if filter_from_home?(status, account, crutches)
+        next if filter_from_home?(status, account.id, crutches)
 
         add_to_feed(:home, account.id, status, aggregate)
       end

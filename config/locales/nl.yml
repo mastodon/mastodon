@@ -11,6 +11,7 @@ nl:
     apps: Mobiele apps
     apps_platforms: Gebruik Mastodon op iOS, Android en op andere platformen
     browse_directory: Gebruikersgids doorbladeren en op interesses filteren
+    browse_local_posts: Livestream van openbare berichten op deze server bekijken
     browse_public_posts: Livestream van openbare Mastodonberichten bekijken
     contact: Contact
     contact_missing: Niet ingesteld
@@ -77,6 +78,7 @@ nl:
     roles:
       admin: Beheerder
       bot: Bot
+      group: Groep
       moderator: Moderator
     unavailable: Profiel niet beschikbaar
     unfollow: Ontvolgen
@@ -117,9 +119,7 @@ nl:
       email_status: E-mailstatus
       enable: Inschakelen
       enabled: Ingeschakeld
-      feed_url: Feed-URL
       followers: Volgers
-      followers_url: Volgers-URL
       follows: Volgt
       header: Omslagfoto
       inbox_url: Inbox-URL
@@ -147,10 +147,8 @@ nl:
       no_account_selected: Er zijn geen accounts veranderd, omdat er geen een was geselecteerd
       no_limits_imposed: Geen limieten ingesteld
       not_subscribed: Niet geabonneerd
-      outbox_url: Outbox-URL
       pending: Moet nog beoordeeld worden
       perform_full_suspension: Opschorten
-      profile_url: Profiel-URL
       promote: Promoveren
       protocol: Protocol
       public: Openbaar
@@ -173,8 +171,8 @@ nl:
         moderator: Moderator
         staff: Medewerkers
         user: Gebruiker
-      salmon_url: Salmon-URL
       search: Zoeken
+      search_same_ip: Andere gebruikers met hetzelfde IP-adres
       shared_inbox_url: Gedeelde inbox-URL
       show:
         created_reports: Aangemaakte rapportages
@@ -201,10 +199,12 @@ nl:
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
+        create_domain_allow: "%{name} heeft het domein %{target} aan de witte lijst toegevoegd"
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
+        destroy_domain_allow: "%{name} heeft het domein %{target} van de witte lijst verwijderd"
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
         destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
         destroy_status: Toot van %{target} is door %{name} verwijderd
@@ -395,12 +395,17 @@ nl:
       destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
     reports:
       account:
-        note: opmerking
-        report: rapportage
+        notes:
+          one: "%{count} opmerking"
+          other: "%{count} opmerkingen"
+        reports:
+          one: "%{count} rapportage"
+          other: "%{count} rapportages"
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
+      by_target_domain: Domein van gerapporteerde account
       comment:
         none: Geen
       created_at: Gerapporteerd op
@@ -446,6 +451,8 @@ nl:
         users: Naar ingelogde lokale gebruikers
       domain_blocks_rationale:
         title: Motivering tonen
+      enable_bootstrap_timeline_accounts:
+        title: Standaard te volgen accounts voor nieuwe gebruikers inschakelen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -506,6 +513,9 @@ nl:
         desc_html: Toon een link naar de openbare tijdlijnpagina op de voorpagina en geef de API zonder in te loggen toegang tot de openbare tijdlijn
         title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
+      trendable_by_default:
+        desc_html: Heeft invloed op hashtags die nog niet eerder niet zijn toegestaan
+        title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
         title: Trending hashtags
@@ -572,6 +582,7 @@ nl:
     confirmation_dialogs: Bevestigingen
     discovery: Ontdekken
     sensitive_content: Gevoelige inhoud
+    toot_layout: Lay-out van toots
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
@@ -708,7 +719,6 @@ nl:
     blocks: Jij blokkeert
     csv: CSV
     domain_blocks: Domeinblokkades
-    follows: Jij volgt
     lists: Lijsten
     mutes: Jij negeert
     storage: Mediaopslag
@@ -878,6 +888,10 @@ nl:
       body: 'Jouw toot werd door %{name} geboost:'
       subject: "%{name} boostte jouw toot"
       title: Nieuwe boost
+  notifications:
+    email_events: E-mailmeldingen voor gebeurtenissen
+    email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
+    other_settings: Andere meldingsinstellingen
   number:
     human:
       decimal_units:
@@ -911,6 +925,8 @@ nl:
   relationships:
     activity: Accountactiviteit
     dormant: Sluimerend
+    followers: Volgers
+    following: Volgend
     last_active: Laatst actief
     most_recent: Recentelijk gevolgd
     moved: Verhuisd
@@ -1004,6 +1020,8 @@ nl:
     profile: Profiel
     relationships: Volgers en gevolgden
     two_factor_authentication: Tweestapsverificatie
+  spam_check:
+    spam_detected: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd.
   statuses:
     attached:
       description: 'Bijlagen: %{attached}'

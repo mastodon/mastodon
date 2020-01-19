@@ -1,6 +1,7 @@
 .batch-table__row
-  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
-    = f.check_box :tag_ids, { multiple: true, include_hidden: false }, tag.id
+  - if batch_available
+    %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+      = f.check_box :tag_ids, { multiple: true, include_hidden: false }, tag.id
 
   .directory__tag
     = link_to admin_tag_path(tag.id) do

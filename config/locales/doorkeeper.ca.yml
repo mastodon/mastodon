@@ -63,18 +63,18 @@ ca:
         prompt: L'aplicació %{client_name} sol⋅licita tenir accés al teu compte
         title: Cal autorizació
       show:
-        title: Copia aquest coddi d'autorització i enganxa'l en l'aplicació.
+        title: Copia aquest codi d'autorització i enganxa'l en l'aplicació.
     authorized_applications:
       buttons:
         revoke: Revoca
       confirmations:
-        revoke: Estàs segur?
+        revoke: N'estàs segur?
       index:
         application: Aplicació
         created_at: Creat el
         date_format: "%A-%m-%d %H:%M:%S"
         scopes: Àmbits
-        title: Les teves aplicacions autoritzades
+        title: Les aplicacions autoritzades
     errors:
       messages:
         access_denied: El propietari del recurs o servidor d'autorizació ha denegat la petició.
@@ -124,7 +124,8 @@ ca:
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
       read:accounts: veure informació dels comptes
-      read:blocks: veure els teus bloqueijos
+      read:blocks: veure els teus bloqueigs
+      read:bookmarks: veure els teus marcadors
       read:favourites: veure els teus favorits
       read:filters: veure els teus filtres
       read:follows: veure els teus seguiments
@@ -133,11 +134,12 @@ ca:
       read:notifications: veure les teves notificacions
       read:reports: veure els teus informes
       read:search: cerca en nom teu
-      read:statuses: veure tots els toots
+      read:statuses: veure tots els tuts
       write: publicar en el teu nom
       write:accounts: modifica el teu perfil
       write:blocks: bloqueja comptes i dominis
-      write:favourites: afavoreix toots
+      write:bookmarks: publicacions a marcadors
+      write:favourites: afavoreix tuts
       write:filters: crear filtres
       write:follows: seguir usuaris
       write:lists: crear llistes
@@ -145,4 +147,4 @@ ca:
       write:mutes: silencia usuaris i converses
       write:notifications: esborra les teves notificacions
       write:reports: informe d’altres persones
-      write:statuses: publicar toots
+      write:statuses: publicar tuts

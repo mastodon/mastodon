@@ -143,12 +143,15 @@
             %th= t('admin.accounts.most_recent_ip')
             %td= @account.user_current_sign_in_ip
             %td
+              - if @account.user_current_sign_in_ip
+                = table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: @account.user_current_sign_in_ip)
 
           %tr
             %th= t('admin.accounts.most_recent_activity')
             %td
               - if @account.user_current_sign_in_at
                 %time.formatted{ datetime: @account.user_current_sign_in_at.iso8601, title: l(@account.user_current_sign_in_at) }= l @account.user_current_sign_in_at
+            %td
 
           - if @account.user&.invited?
             %tr

@@ -60,16 +60,15 @@ deploy.config:
     - touch /app/log/production.log
   before_live:
     web.web:
+      - bin/tootctl cache clear
       - bundle exec rake db:migrate:setup
+  after_live:
+    worker.sidekiq:
       - |-
           if [[ "${ES_ENABLED}" != "false" ]]
           then
             bin/tootctl search deploy
           fi
-      - bin/tootctl cache clear
-  after_live:
-    worker.sidekiq:
-      - bin/tootctl search deploy
 
 
 web.web:
