@@ -344,7 +344,7 @@ class ScrollableList extends PureComponent {
           {footer}
         </Scrollable>
       );
-    } else if (isLoading || childrenCount > 0 || hasMore || !emptyMessage) {
+    } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
         <Scrollable fullscreen={fullscreen} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           {prepend}
