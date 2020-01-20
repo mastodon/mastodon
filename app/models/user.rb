@@ -290,6 +290,21 @@ class User < ApplicationRecord
     setting_display_media == 'hide_all'
   end
 
+  def recent_ips
+    @recent_ips ||= begin
+      arr = []
+
+      session_activations.each do |session_activation|
+        arr << [session_activation.updated_at, session_activation.ip]
+      end
+
+      arr << [current_sign_in_at, current_sign_in_ip] if current_sign_in_ip.present?
+      arr << [last_sign_in_at, last_sign_in_ip] if last_sign_in_ip.present?
+
+      arr.sort_by(&:first).uniq(&:last).reverse!
+    end
+  end
+
   protected
 
   def send_devise_notification(notification, *args)
