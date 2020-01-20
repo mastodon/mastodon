@@ -3256,6 +3256,11 @@ csstype@^2.5.7:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
   integrity sha512-RpFbQGUE74iyPgvr46U9t1xoQBM8T4BL8SxrN66Le2xYAPSaDJJKeztV3awugusb3g3G9iL8StmkBBXhcbbXhg==
 
+csstype@^2.6.7:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.8.tgz#0fb6fc2417ffd2816a418c9336da74d7f07db431"
+  integrity sha512-msVS9qTuMT5zwAGCVm4mxfrZ18BNc6Csd0oJAtiFMZ1FAx1CCvy2+5MDmYoix63LM/6NDbNtodCiGYGmFgO0dA==
+
 cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
@@ -3537,6 +3542,14 @@ dom-helpers@^3.2.1, dom-helpers@^3.3.1:
   integrity sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
   dependencies:
     "@babel/runtime" "^7.1.2"
+
+dom-helpers@^5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.1.3.tgz#7233248eb3a2d1f74aafca31e52c5299cc8ce821"
+  integrity sha512-nZD1OtwfWGRBWlpANxacBEZrEuLa16o1nh7YopFWeoF68Zt8GGEmzHu6Xv4F3XaFIC+YXtTLrzgqKxFgLEe4jw==
+  dependencies:
+    "@babel/runtime" "^7.6.3"
+    csstype "^2.6.7"
 
 dom-serializer@0:
   version "0.1.0"
@@ -8885,10 +8898,10 @@ react-swipeable-views-core@^0.13.1:
     "@babel/runtime" "7.0.0"
     warning "^4.0.1"
 
-react-swipeable-views-utils@^0.13.3:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.3.tgz#c234d8d836bb085803631a9fef0adb2f9597221f"
-  integrity sha512-CZkJwiNQPISkyTsPMUPiJgwJBrUVd7NC3WSUvx30uwvPb0Sy2w2+tpU51qeYc6YwIhex0s5Eu5YPjK3PDBh+gA==
+react-swipeable-views-utils@^0.13.4:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.4.tgz#809fe408e55ed80f84eea508074387c23febf0ab"
+  integrity sha512-C6Ppq7Z5JIn4l8gKuRzzoGcm5Yiu57HBribjZ0T8DIeLisvIvk8A+Wysb1JhP0hsnJ9hIozlEZ8oJi4eBUTRXg==
   dependencies:
     "@babel/runtime" "7.0.0"
     fbjs "^0.8.4"
@@ -8897,16 +8910,16 @@ react-swipeable-views-utils@^0.13.3:
     react-event-listener "^0.6.0"
     react-swipeable-views-core "^0.13.1"
 
-react-swipeable-views@^0.13.3:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/react-swipeable-views/-/react-swipeable-views-0.13.3.tgz#2ad886767c6b2de88000606a14bedde12156e6d0"
-  integrity sha512-LBHRA5ZouipmoLLwi0cqB8qc7NHLskbXmT1I+ZztC9JfmgKrfichw5R+7q4igQ+5VbaP6jL1vn8BtHW96WYNFQ==
+react-swipeable-views@^0.13.4:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/react-swipeable-views/-/react-swipeable-views-0.13.4.tgz#ebbe50a8592b185dbedf9e0060eaee09cf6b2c67"
+  integrity sha512-Qwmaj8LASEgxp3i4FBEgs1LM/Yqk7mFRp0fRgXH515NIEePUcjrrkuwvvmvwNQLDbN6PNv4QAuosEaTRyjEOUA==
   dependencies:
     "@babel/runtime" "7.0.0"
-    dom-helpers "^3.2.1"
+    dom-helpers "^5.1.3"
     prop-types "^15.5.4"
     react-swipeable-views-core "^0.13.1"
-    react-swipeable-views-utils "^0.13.3"
+    react-swipeable-views-utils "^0.13.4"
     warning "^4.0.1"
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.12.0:
