@@ -25,7 +25,7 @@
 
 = form_tag admin_custom_emojis_url, method: 'GET', class: 'simple_form' do
   .fields-group
-    - Admin::FilterHelper::CUSTOM_EMOJI_FILTERS.each do |key|
+    - CustomEmojiFilter::KEYS.each do |key|
       = hidden_field_tag key, params[key] if params[key].present?
 
     - %i(shortcode by_domain).each do |key|
@@ -39,7 +39,7 @@
 = form_for(@form, url: batch_admin_custom_emojis_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
 
-  - Admin::FilterHelper::CUSTOM_EMOJI_FILTERS.each do |key|
+  - CustomEmojiFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 
   .batch-table

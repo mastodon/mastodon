@@ -28,7 +28,7 @@
 
 = form_tag admin_tags_url, method: 'GET', class: 'simple_form' do
   .fields-group
-    - Admin::FilterHelper::TAGS_FILTERS.each do |key|
+    - TagFilter::KEYS.each do |key|
       = hidden_field_tag key, params[key] if params[key].present?
 
     - %i(name).each do |key|
@@ -43,9 +43,8 @@
 
 = form_for(@form, url: batch_admin_tags_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
-  = hidden_field_tag :name, params[:name] if params[:name].present?
 
-  - Admin::FilterHelper::TAGS_FILTERS.each do |key|
+  - TagFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 
   .batch-table.optional

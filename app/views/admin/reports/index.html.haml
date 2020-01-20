@@ -10,9 +10,8 @@
 
 = form_tag admin_reports_url, method: 'GET', class: 'simple_form' do
   .fields-group
-    - Admin::FilterHelper::REPORT_FILTERS.each do |key|
-      - if params[key].present?
-        = hidden_field_tag key, params[key]
+    - ReportFilter::KEYS.each do |key|
+      = hidden_field_tag key, params[key] if params[key].present?
 
     - %i(by_target_domain).each do |key|
       .input.string.optional
