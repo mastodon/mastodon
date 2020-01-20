@@ -65,7 +65,7 @@ class AccountFilter
     when 'email'
       accounts_with_users.merge User.matches_email(value)
     when 'ip'
-      valid_ip?(value) ? accounts_with_users.where('users.current_sign_in_ip <<= ?', value) : Account.none
+      valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value)) : Account.none
     when 'staff'
       accounts_with_users.merge User.staff
     else
