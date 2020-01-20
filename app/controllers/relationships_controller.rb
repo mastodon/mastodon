@@ -86,7 +86,7 @@ class RelationshipsController < ApplicationController
   end
 
   def current_params
-    params.slice(:page, :status, :relationship, :by_domain, :activity, :order).permit(:page, :status, :relationship, :by_domain, :activity, :order)
+    params.slice(:page, *RelationshipFilter::KEYS).permit(:page, *RelationshipFilter::KEYS)
   end
 
   def action_from_button

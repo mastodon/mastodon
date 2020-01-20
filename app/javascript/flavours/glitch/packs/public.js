@@ -97,15 +97,6 @@ function main() {
 
     delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
     delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
-
-    delegate(document, '.blocks-table button.icon-button', 'click', function(e) {
-      e.preventDefault();
-
-      const classList = this.firstElementChild.classList;
-      classList.toggle('fa-chevron-down');
-      classList.toggle('fa-chevron-up');
-      this.parentElement.parentElement.nextElementSibling.classList.toggle('hidden');
-    });
   });
 
   delegate(document, '.sidebar__toggle__icon', 'click', () => {

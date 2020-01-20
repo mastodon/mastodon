@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class ReportFilter
+  KEYS = %i(
+    resolved
+    account_id
+    target_account_id
+    by_target_domain
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)

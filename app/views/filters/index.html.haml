@@ -4,7 +4,7 @@
 - content_for :heading_actions do
   = link_to t('filters.new.title'), new_filter_path, class: 'button'
 
-- if @filters.count == 0
+- if @filters.empty?
   %div.muted-hint.center-text= t 'filters.index.empty'
 - else
   .table-wrapper
