@@ -296,7 +296,7 @@ export default class ScrollableList extends PureComponent {
           </div>
         </div>
       );
-    } else if (isLoading || childrenCount > 0 || hasMore || !emptyMessage) {
+    } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>

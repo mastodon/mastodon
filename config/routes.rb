@@ -233,7 +233,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resource :role do
+      resource :role, only: [] do
         member do
           post :promote
           post :demote
