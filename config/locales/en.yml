@@ -344,9 +344,6 @@ en:
         create: Add domain
         title: New e-mail blacklist entry
       title: E-mail blacklist
-    followers:
-      back_to_account: Back To Account
-      title: "%{acct}'s Followers"
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
@@ -375,6 +372,8 @@ en:
       title: Invites
     pending_accounts:
       title: Pending accounts (%{count})
+    relationships:
+      title: "%{acct}'s relationships"
     relays:
       add_new: Add new relay
       delete: Delete
@@ -935,6 +934,7 @@ en:
     dormant: Dormant
     followers: Followers
     following: Following
+    invited: Invited
     last_active: Last active
     most_recent: Most recent
     moved: Moved
