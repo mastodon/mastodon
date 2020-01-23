@@ -20,12 +20,12 @@ class RelationshipFilter
   end
 
   def results
-    scope = scope_for('relationship', params['relationship'])
+    scope = scope_for('relationship', params['relationship'].to_s.strip)
 
     params.each do |key, value|
       next if key.to_s == 'page'
 
-      scope.merge!(scope_for(key, value)) if value.present?
+      scope.merge!(scope_for(key.to_s, value.to_s.strip)) if value.present?
     end
 
     scope
@@ -39,7 +39,7 @@ class RelationshipFilter
   end
 
   def scope_for(key, value)
-    case key.to_s
+    case key
     when 'relationship'
       relationship_scope(value)
     when 'by_domain'
@@ -58,7 +58,7 @@ class RelationshipFilter
   end
 
   def relationship_scope(value)
-    case value.to_s
+    case value
     when 'following'
       account.following.eager_load(:account_stat).reorder(nil)
     when 'followed_by'
@@ -73,11 +73,11 @@ class RelationshipFilter
   end
 
   def by_domain_scope(value)
-    Account.where(domain: value.to_s)
+    Account.where(domain: value)
   end
 
   def location_scope(value)
-    case value.to_s
+    case value
     when 'local'
       Account.local
     when 'remote'
@@ -88,7 +88,7 @@ class RelationshipFilter
   end
 
   def status_scope(value)
-    case value.to_s
+    case value
     when 'moved'
       Account.where.not(moved_to_account_id: nil)
     when 'primary'
@@ -99,18 +99,18 @@ class RelationshipFilter
   end
 
   def order_scope(value)
-    case value.to_s
+    case value
     when 'active'
       Account.by_recent_status
     when 'recent'
-      Follow.recent
+      params[:relationship] == 'invited' ? Account.recent : Follow.recent
     else
       raise "Unknown order: #{value}"
     end
   end
 
   def activity_scope(value)
-    case value.to_s
+    case value
     when 'dormant'
       AccountStat.where(last_status_at: nil).or(AccountStat.where(AccountStat.arel_table[:last_status_at].lt(1.month.ago)))
     else
