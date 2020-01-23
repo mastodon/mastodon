@@ -19,7 +19,7 @@ module Admin
     end
 
     def filter_params
-      params.slice(RelationshipFilter::KEYS).permit(RelationshipFilter::KEYS)
+      params.slice(*RelationshipFilter::KEYS).permit(*RelationshipFilter::KEYS)
     end
   end
 end
