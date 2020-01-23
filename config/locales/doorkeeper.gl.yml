@@ -1,3 +1,4 @@
+---
 gl:
   activerecord:
     attributes:
@@ -114,37 +115,37 @@ gl:
       application:
         title: Precisa autorización OAuth
     scopes:
-      "admin:read": ler todos os datos no servidor
-      "admin:read:accounts": ler información sensible de todas as contas
-      "admin:read:reports": ler información sensible de todos os informes e contas reportadas
-      "admin:write": modificar todos os datos no servidor
-      "admin:write:accounts": executar accións de moderación nas contas
-      "admin:write:reports": executar accións de moderación nos informes
+      admin:read: ler todos os datos no servidor
+      admin:read:accounts: ler información sensible de todas as contas
+      admin:read:reports: ler información sensible de todos os informes e contas reportadas
+      admin:write: modificar todos os datos no servidor
+      admin:write:accounts: executar accións de moderación nas contas
+      admin:write:reports: executar accións de moderación nos informes
       follow: modificar as relacións da conta
       push: recibir notificacións push
       read: ler todos os datos da súa conta
-      "read:accounts": ver información das contas
-      "read:blocks": ver a quen bloquea
-      "read:bookmarks": aquí tes os marcadores
-      "read:favourites": ver as súas favoritas
-      "read:filters": ver os seus filtros
-      "read:follows": ver a quen segue
-      "read:lists": ver as súas listas
-      "read:mutes": ver a quen ten acalado
-      "read:notifications": ver as notificacións
-      "read:reports": ver os seus informes
-      "read:search": buscar no seu nome
-      "read:statuses": ver todos os estados
+      read:accounts: ver información das contas
+      read:blocks: ver a quen bloquea
+      read:bookmarks: aquí tes os marcadores
+      read:favourites: ver as súas favoritas
+      read:filters: ver os seus filtros
+      read:follows: ver a quen segue
+      read:lists: ver as súas listas
+      read:mutes: ver a quen ten acalado
+      read:notifications: ver as notificacións
+      read:reports: ver os seus informes
+      read:search: buscar no seu nome
+      read:statuses: ver todos os estados
       write: modificar todos os datos da súa conta
-      "write:accounts": modificar o seu perfil
-      "write:blocks": bloquear contas e dominios
-      "write:bookmarks": marca os estados
-      "write:favourites": estados favoritos
-      "write:filters": crear filtros
-      "write:follows": seguir usuarias
-      "write:lists": crear listas
-      "write:media": subir ficheiros de medios
-      "write:mutes": acalar usuarias e conversas
-      "write:notifications": eliminar as notificacións
-      "write:reports": informe a outras usuarias
-      "write:statuses": publicar estados
+      write:accounts: modificar o seu perfil
+      write:blocks: bloquear contas e dominios
+      write:bookmarks: marca os estados
+      write:favourites: estados favoritos
+      write:filters: crear filtros
+      write:follows: seguir usuarias
+      write:lists: crear listas
+      write:media: subir ficheiros de medios
+      write:mutes: acalar usuarias e conversas
+      write:notifications: eliminar as notificacións
+      write:reports: informe a outras usuarias
+      write:statuses: publicar estados
