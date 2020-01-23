@@ -306,9 +306,6 @@ th:
         create: เพิ่มโดเมน
         title: รายการบัญชีดำอีเมลใหม่
       title: บัญชีดำอีเมล
-    followers:
-      back_to_account: กลับไปที่บัญชี
-      title: ผู้ติดตามของ %{acct}
     instances:
       by_domain: โดเมน
       known_accounts:
@@ -386,7 +383,10 @@ th:
       custom_css:
         title: CSS ที่กำหนดเอง
       domain_blocks:
+        all: ให้กับทุกคน
+        disabled: ให้กับไม่มีใคร
         title: แสดงการปิดกั้นโดเมน
+        users: ให้กับผู้ใช้ในเว็บที่เข้าสู่ระบบ
       domain_blocks_rationale:
         title: แสดงคำชี้แจงเหตุผล
       enable_bootstrap_timeline_accounts:

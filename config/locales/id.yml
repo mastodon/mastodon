@@ -308,6 +308,7 @@ id:
       private_comment: Komentar pribadi
       private_comment_hint: Komentar tentang pembatasan domain ini untuk penggunaan internal oleh moderator.
       public_comment: Komentar publik
+      public_comment_hint: Komentar tentang pembatasan domain ini untuk publik umum, jika mengiklankan daftar pembatasan domain diaktifkan.
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       reject_reports: Tolak laporan
@@ -338,9 +339,6 @@ id:
         create: Tambah domain
         title: Entri daftar hitam surel baru
       title: Daftar hitam surel
-    followers:
-      back_to_account: Kembali Ke Akun
-      title: Pengikut %{acct}
     instances:
       by_domain: Domain
       delivery_available: Pengiriman tersedia
@@ -440,6 +438,9 @@ id:
         all: Kepada semua orang
         disabled: Tidak kepada siapa pun
         title: Lihat blokir domain
+        users: Ke pengguna lokal yang sudah login
+      domain_blocks_rationale:
+        title: Tampilkan alasan
       enable_bootstrap_timeline_accounts:
         title: Aktifkan opsi ikuti otomatis untuk pengguna baru
       hero:
