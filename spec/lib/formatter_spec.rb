@@ -258,6 +258,14 @@ RSpec.describe Formatter do
         is_expected.to include 'href="xmpp:muc@instance.com?join"'
       end
     end
+
+    context 'given text containing a magnet: URI' do
+      let(:text) { 'wikipedia gives this example of a magnet uri: magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a' }
+
+      it 'matches the full URI' do
+        is_expected.to include 'href="magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a"'
+      end
+    end
   end
 
   describe '#format_spoiler' do
