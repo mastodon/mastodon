@@ -112,6 +112,7 @@ class AccountTimeline extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />}
           bindToDocument={!multiColumn}
+          timelineId='account'
         />
       </Column>
     );
