@@ -196,11 +196,13 @@ gl:
         change_email_user: "%{name} cambiou o enderezo de correo-e da usuaria %{target}"
         confirm_user: "%{name} comfirmou o enderezo de correo da usuaria %{target}"
         create_account_warning: "%{name} enviou un aviso a %{target}"
+        create_announcement: "%{name} creou un novo anuncio %{target}"
         create_custom_emoji: "%{name} subiu unha nova emoticona %{target}"
         create_domain_allow: "%{name} engadiu á listaxe branca o dominio %{target}"
         create_domain_block: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block: "%{name} engadiu á listaxe negra o dominio de email %{target}"
         demote_user: "%{name} degradou a usuaria %{target}"
+        destroy_announcement: "%{name} eliminou o anuncio %{target}"
         destroy_custom_emoji: "%{name} eliminou a emoticona %{target}"
         destroy_domain_allow: "%{name} eliminou o dominio %{target} da listaxe branca"
         destroy_domain_block: "%{name} desbloqueou o dominio %{target}"
@@ -222,10 +224,16 @@ gl:
         unassigned_report: "%{name} deixou de atribuír a denuncia %{target}"
         unsilence_account: "%{name} deixou de silenciar a conta de %{target}"
         unsuspend_account: "%{name} desactivou a suspensión da conta de %{target}"
+        update_announcement: "%{name} actualizou o anuncio %{target}"
         update_custom_emoji: "%{name} actualizou a emoticona %{target}"
         update_status: "%{name} actualizou o estado de %{target}"
       deleted_status: "(estado eliminado)"
       title: Rexistro de auditoría
+    announcements:
+      edit:
+        title: Editar anuncio
+      empty: Ningún anuncio atopado.
+      live: Ao vivo
     custom_emojis:
       assign_category: Atribuír categoría
       by_domain: Dominio
