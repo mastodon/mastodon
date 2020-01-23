@@ -32,6 +32,6 @@ class AnnouncementReaction < ApplicationRecord
   end
 
   def queue_publish
-    PublishAnnouncementReactionWorker.perform_async(announcement_id, name)
+    PublishAnnouncementReactionWorker.perform_async(announcement_id, name) unless announcement.destroyed?
   end
 end

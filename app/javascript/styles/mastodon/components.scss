@@ -6629,6 +6629,7 @@ noscript {
 
   &__mastodon {
     width: 124px;
+    flex: 0 0 auto;
 
     @media screen and (max-width: 124px + 300px) {
       display: none;
@@ -6636,8 +6637,13 @@ noscript {
   }
 
   &__container {
-    flex: 1 1 0%;
+    width: calc(100% - 124px);
+    flex: 0 0 auto;
     position: relative;
+
+    @media screen and (max-width: 124px + 300px) {
+      width: 100%;
+    }
   }
 
   &__item {
@@ -6671,6 +6677,10 @@ noscript {
 
 .layout-multiple-columns .announcements__mastodon {
   display: none;
+}
+
+.layout-multiple-columns .announcements__container {
+  width: 100%;
 }
 
 .reactions-bar {

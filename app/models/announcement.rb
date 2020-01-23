@@ -30,6 +30,7 @@ class Announcement < ApplicationRecord
   validates :starts_at, presence: true, if: -> { ends_at.present? }
   validates :ends_at, presence: true, if: -> { starts_at.present? }
 
+  before_validation :set_all_day
   before_validation :set_starts_at, on: :create
   before_validation :set_ends_at, on: :create
 
@@ -65,6 +66,10 @@ class Announcement < ApplicationRecord
   end
 
   private
+
+  def set_all_day
+    self.all_day = false if starts_at.blank? || ends_at.blank?
+  end
 
   def set_starts_at
     self.starts_at = starts_at.change(hour: 0, min: 0, sec: 0) if all_day? && starts_at.present?

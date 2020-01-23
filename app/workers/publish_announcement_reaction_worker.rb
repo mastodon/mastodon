@@ -16,5 +16,7 @@ class PublishAnnouncementReactionWorker
     Account.joins(:user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).find_each do |account|
       redis.publish("timeline:#{account.id}", payload) if redis.exists("subscribed:timeline:#{account.id}")
     end
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end
