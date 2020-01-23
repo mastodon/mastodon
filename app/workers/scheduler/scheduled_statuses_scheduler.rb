@@ -38,6 +38,6 @@ class Scheduler::ScheduledStatusesScheduler
   end
 
   def expired_announcements
-    Announcement.published.where('ends_at IS NOT NULL AND ends_at >= ?', Time.now.utc)
+    Announcement.published.where('ends_at IS NOT NULL AND ends_at <= ?', Time.now.utc)
   end
 end
