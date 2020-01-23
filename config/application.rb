@@ -7,7 +7,6 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 require_relative '../app/lib/exceptions'
-require_relative '../app/middleware/handle_bad_encoding_middleware'
 require_relative '../lib/paperclip/lazy_thumbnail'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/video_transcoder'
@@ -120,7 +119,6 @@ module Mastodon
 
     config.active_job.queue_adapter = :sidekiq
 
-    config.middleware.insert_before Rack::Runtime, HandleBadEncodingMiddleware
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
