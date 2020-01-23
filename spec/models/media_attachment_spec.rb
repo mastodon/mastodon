@@ -31,14 +31,6 @@ RSpec.describe MediaAttachment, type: :model do
     context 'file is blank' do
       let(:file) { nil }
 
-      context 'remote_url is blank' do
-        let(:remote_url) { '' }
-
-        it 'returns false' do
-          is_expected.to be false
-        end
-      end
-
       context 'remote_url is present' do
         let(:remote_url) { 'remote_url' }
 
@@ -151,6 +143,11 @@ RSpec.describe MediaAttachment, type: :model do
     it 'gives the file a file name' do
       expect(media.file_file_name).to_not be_blank
     end
+  end
+
+  it 'is invalid without file' do
+    media = MediaAttachment.new(account: Fabricate(:account))
+    expect(media.valid?).to be false
   end
 
   describe 'descriptions for remote attachments' do
