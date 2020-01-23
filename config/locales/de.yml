@@ -197,11 +197,13 @@ de:
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_account_warning: "%{name} hat eine Warnung an %{target} gesendet"
+        create_announcement: "%{name} hat die neue Ankündigung %{target} erstellt"
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_allow: "%{name} hat die Domain %{target} gewhitelistet"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
         demote_user: "%{name} stufte Benutzer_in %{target} herunter"
+        destroy_announcement: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
         destroy_domain_allow: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
@@ -223,10 +225,22 @@ de:
         unassigned_report: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unsilence_account: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
+        update_announcement: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
         update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
+    announcements:
+      edit:
+        title: Ankündigung bearbeiten
+      empty: Keine Ankündigungen gefunden.
+      live: Live
+      new:
+        create: Ankündigung erstellen
+        title: Neue Ankündigung
+      published: Veröffentlicht
+      time_range: Zeitraum
+      title: Ankündigungen
     custom_emojis:
       assign_category: Kategorie zuweisen
       by_domain: Domain
