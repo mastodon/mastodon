@@ -1,4 +1,5 @@
-"no":
+---
+'no':
   simple_form:
     hints:
       admin_account_action:
@@ -38,7 +39,7 @@
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
       sessions:
-        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
+        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun tuter i de valgte språkene bli vist i de offentlige tidslinjene
     labels:
@@ -129,9 +130,9 @@
       tag:
         name: Emneknagg
         usable: Tillat tuter å bruke denne emneknaggen
-    'no': 'Nei'
+    'no': Nei
     recommended: Anbefalt
     required:
       mark: "*"
       text: obligatorisk
-    'yes': 'Ja'
+    'yes': Ja
