@@ -93,6 +93,7 @@ class User < ApplicationRecord
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
+  scope :matches_ip, ->(value) { left_joins(:session_activations).where('users.current_sign_in_ip <<= ?', value).or(left_joins(:session_activations).where('users.last_sign_in_ip <<= ?', value)).or(left_joins(:session_activations).where('session_activations.ip <<= ?', value)) }
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
@@ -287,6 +288,21 @@ class User < ApplicationRecord
 
   def hide_all_media?
     setting_display_media == 'hide_all'
+  end
+
+  def recent_ips
+    @recent_ips ||= begin
+      arr = []
+
+      session_activations.each do |session_activation|
+        arr << [session_activation.updated_at, session_activation.ip]
+      end
+
+      arr << [current_sign_in_at, current_sign_in_ip] if current_sign_in_ip.present?
+      arr << [last_sign_in_at, last_sign_in_ip] if last_sign_in_ip.present?
+
+      arr.sort_by(&:first).uniq(&:last).reverse!
+    end
   end
 
   protected

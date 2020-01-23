@@ -116,13 +116,6 @@ jobs:
         environment: *ruby_environment
     <<: *install_ruby_dependencies
 
-  install-ruby2.4:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.4-buster-node
-        environment: *ruby_environment
-    <<: *install_ruby_dependencies
-
   build:
     <<: *defaults
     steps:
@@ -187,17 +180,6 @@ jobs:
       - image: circleci/redis:5-alpine
     <<: *test_steps
 
-  test-ruby2.4:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.4-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:10.6-alpine
-        environment:
-          POSTGRES_USER: root
-      - image: circleci/redis:5-alpine
-    <<: *test_steps
-
   test-webui:
     <<: *defaults
     docker:
@@ -232,10 +214,6 @@ workflows:
           requires:
             - install
             - install-ruby2.7
-      - install-ruby2.4:
-          requires:
-            - install
-            - install-ruby2.7
       - build:
           requires:
             - install-ruby2.7
@@ -253,10 +231,6 @@ workflows:
       - test-ruby2.5:
           requires:
             - install-ruby2.5
-            - build
-      - test-ruby2.4:
-          requires:
-            - install-ruby2.4
             - build
       - test-webui:
           requires:

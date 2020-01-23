@@ -60,7 +60,7 @@ class Admin::AnnouncementsController < Admin::BaseController
   end
 
   def filter_params
-    params.slice(:published, :unpublished).permit(:published, :unpublished)
+    params.slice(AnnouncementFilter::KEYS).permit(AnnouncementFilter::KEYS)
   end
 
   def resource_params

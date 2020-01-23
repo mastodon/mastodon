@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class AnnouncementFilter
+  KEYS = %i(
+    published
+    unpublished
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)
