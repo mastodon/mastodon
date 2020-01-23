@@ -13,6 +13,11 @@ de:
         text_html: Optional. Du kannst Beitragssyntax nutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
+      announcement:
+        all_day: Wenn aktiviert werden nur die Daten des Zeitraums angezeigt
+        ends_at: Optional. Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen
+        scheduled_at: Leer lassen um die Ankündigung sofort zu veröffentlichen
+        starts_at: Optional. Falls deine Ankündigung an einen bestimmten Zeitraum gebunden ist
       defaults:
         autofollow: Leute, die sich über deine Einladung registrieren, werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
