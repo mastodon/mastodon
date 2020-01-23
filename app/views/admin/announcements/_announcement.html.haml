@@ -1,0 +1,14 @@
+%tr
+  %td
+    = truncate(announcement.text)
+  %td
+    = time_range(announcement) if announcement.time_range?
+  %td
+    - if announcement.scheduled_at.present?
+      = fa_icon('clock-o') if announcement.scheduled_at > Time.now.utc
+      = l(announcement.scheduled_at)
+    - else
+      = l(announcement.created_at)
+  %td
+    = table_link_to 'pencil', t('generic.edit'), edit_admin_announcement_path(announcement) if can?(:update, announcement)
+    = table_link_to 'trash', t('generic.delete'), admin_announcement_path(announcement), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, announcement)
