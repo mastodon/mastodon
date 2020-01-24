@@ -14,8 +14,9 @@ ja:
         type_html: <strong>%{acct}</strong>さんに対し、何を行うか選択してください
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
-        all_day: チェックすると、期間の日付のみ表示されます
-        scheduled_at: 空白にすると、お知らせはすぐに公開されます
+        all_day: チェックを入れると、期間の日付のみ表示されます
+        ends_at: オプションです。この日時でお知らせは自動的に非公開になります
+        scheduled_at: 空白にするとすぐに公開されます
         text: トゥートと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
@@ -88,6 +89,9 @@ ja:
         warning_preset_id: プリセット警告文を使用
       announcement:
         all_day: 終日
+        ends_at: イベント終了
+        scheduled_at: 公開日時
+        starts_at: イベント開始
         text: お知らせ
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
