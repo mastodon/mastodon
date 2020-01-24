@@ -221,12 +221,25 @@
         resolve_report: "%{name} avviste rapporten %{target}"
         silence_account: "%{name} forstummet %{target}s konto"
         suspend_account: "%{name} suspendert %{target}s konto"
+        unassigned_report: "%{name} avtilegnet rapport %{target}"
         unsilence_account: "%{name} fjernet forstummingen av %{target}s konto"
         unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
+        update_announcement: "%{name} oppdaterte kunngjøring %{target}"
         update_custom_emoji: "%{name} oppdaterte emoji %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(statusen er slettet)"
       title: Revisionslogg
+    announcements:
+      edit:
+        title: Rediger kunngjøring
+      empty: Ingen kunngjøringer funnet.
+      live: Direkte
+      new:
+        create: Lag kunngjøring
+        title: Ny kunngjøring
+      published: Publisert
+      time_range: Tidsramme
+      title: Kunngjøringer
     custom_emojis:
       assign_category: Tilegn kategori
       by_domain: Domene
@@ -261,17 +274,23 @@
       upload: Last opp
     dashboard:
       authorized_fetch_mode: Sikkermodus
+      backlog: opphopsloggede jobber
       config: Oppsett
       feature_deletions: Kontoslettinger
       feature_invites: Invitasjonslenker
       feature_profile_directory: Profilmappe
       feature_registrations: Registreringer
+      feature_relay: Føderasjonsoverganger
       feature_spam_check: Anti-spam
       feature_timeline_preview: Tidslinje-forhåndsvisning
       features: Egenskaper
+      hidden_service: Føderering med skjulte tjenester
       open_reports: åpne rapporter
+      pending_tags: emneknagger som venter gjennomgang
+      pending_users: brukere som venter gjennomgang
       recent_users: Nylige brukere
       search: Fulltekstsøk
+      single_user_mode: Enpersons-modus
       software: Programvare
       space: Plassbruk
       title: Kontrollpanel
@@ -283,12 +302,15 @@
       whitelist_mode: Hvitelistemodus
     domain_allows:
       add_new: Hvitelist domene
+      created_msg: Domenet har blitt hvitelistet
+      destroyed_msg: Domenet har blitt fjernet fra hvitelisten
       undo: Fjern fra hvitelisten
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
+      edit: Rediger domeneblokkering
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
