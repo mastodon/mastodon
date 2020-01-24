@@ -438,6 +438,8 @@ const startWorker = (workerId) => {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Transfer-Encoding', 'chunked');
 
+    res.write(':)\n');
+
     const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
 
     req.on('close', () => {
