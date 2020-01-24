@@ -322,10 +322,13 @@
           suspend: Utvis
         title: Ny domeneblokkering
       private_comment: Privat kommentar
+      private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentlig kommentar
+      public_comment_hint: Kommenter angående denne domenebegrensningen for offentligheten, hvis publisering av domenebegrensningslisten er slått på.
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       reject_reports: Avslå rapporter
+      reject_reports_hint: Ignorer alle rapporter som kommer fra dette domenet. Irrelevant for utvisninger
       rejecting_media: avviser mediafiler
       rejecting_reports: avslår rapporter
       severity:
@@ -341,12 +344,14 @@
         title: Angre domeneblokkering for %{domain}
         undo: Angre
       undo: Angre
+      view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Fjern
       destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
+      empty: Ingen e-mail-domener er sortelistet på dette tidspunkt.
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
@@ -377,6 +382,10 @@
         expired: Utløpt
         title: Filtrer
       title: Invitasjoner
+    pending_accounts:
+      title: Avventende brukere (%{count})
+    relationships:
+      title: "%{acct} sitt forhold"
     relays:
       add_new: Legg til ny overgang
       delete: Slett
