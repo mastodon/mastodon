@@ -231,9 +231,10 @@ ja:
       empty: お知らせはありません
       live: 公開中
       new:
-        create: お知らせを作成
-        title: 新しいお知らせ
-      published: 公開済み
+        create: お知らせ作成
+        title: お知らせを追加
+      published: 公開日時
+      time_range: 期間
       title: お知らせ
     custom_emojis:
       assign_category: カテゴリーを割り当て
@@ -377,6 +378,8 @@ ja:
       title: 招待
     pending_accounts:
       title: 承認待ちアカウント (%{count})
+    relationships:
+      title: "%{acct} さんのフォロー・フォロワー"
     relays:
       add_new: リレーを追加
       delete: 削除
@@ -737,6 +740,7 @@ ja:
     hint_html: "<strong>注目のハッシュタグとは？</strong>プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
+      account: プロフィール
       home: ホームタイムライン
       notifications: 通知
       public: 公開タイムライン
@@ -938,6 +942,7 @@ ja:
     dormant: 非アクティブ
     followers: フォロワー
     following: フォロー中
+    invited: 招待済み
     last_active: 最後の活動
     most_recent: 新着
     moved: 引っ越し済み
