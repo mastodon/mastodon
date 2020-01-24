@@ -389,17 +389,22 @@
     relays:
       add_new: Legg til ny overgang
       delete: Slett
+      description_html: En <strong>federert overgang</strong> er en mellomleddsserver som utveksler store mengder av offentlige tuter mellom servere som abonnerer og publiserer til den. <strong>Det kan hjelpe små og mellomstore servere til å oppdage innhold fra strømiverset</strong>, noe som ellers ville ha krevd at lokale brukere manuelt fulgte andre personer på fjerne servere.
       disable: Skru av
       disabled: Skrudd av
       enable: Skru på
       enable_hint: Når dette har blitt skrudd på, vil tjeneren din abonnere på alle offentlige tuter fra denne overgangen, og vil begynne å sende denne tjenerens offentlige tuter til den.
       enabled: Skrudd på
       inbox_url: Overførings-URL
+      pending: Avventer overgangens godkjenning
       save_and_enable: Lagre og skru på
       setup: Sett opp en overgangsforbindelse
       signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
       status: Status
       title: Overganger
+    report_notes:
+      created_msg: Rapportnotat opprettet!
+      destroyed_msg: Rapportnotat slettet!
     reports:
       account:
         notes:
@@ -412,6 +417,7 @@
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilegnet moderator
+      by_target_domain: Domenet av rapportert bruker
       comment:
         none: Ingen
       created_at: Rapportert
@@ -419,12 +425,16 @@
       mark_as_unresolved: Merk som uoppklart
       notes:
         create: Legg til notat
+        create_and_resolve: Løst med notat
+        create_and_unresolve: Gjenåpne med notat
         delete: Slett
+        placeholder: Beskriv hvilke handlinger som har blitt tatt, eller andre relaterte oppdateringer...
       reopen: Gjenåpne rapporten
       report: 'Rapporter #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
+      resolved_msg: Rapport løst!
       status: Status
       title: Rapporter
       unassign: Fjern tilegning
@@ -441,6 +451,7 @@
         email: Skriv en offentlig e-postadresse
         username: Skriv brukernavn
       custom_css:
+        desc_html: Modifiser utseendet med CSS lastet på hver side
         title: Egendefinert CSS
       domain_blocks:
         all: Til alle
