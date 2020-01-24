@@ -1,5 +1,16 @@
 .composer {
   padding: 10px;
+
+  .emoji-picker-dropdown {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    ::-webkit-scrollbar-track:hover,
+    ::-webkit-scrollbar-track:active {
+      background-color: rgba($base-overlay-background, 0.3);
+    }
+  }
 }
 
 .character-counter {
@@ -232,17 +243,6 @@
     width: 20px;
     height: 20px;
     margin: -5px 0 0;
-  }
-}
-
-.emoji-picker-dropdown {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-
-  ::-webkit-scrollbar-track:hover,
-  ::-webkit-scrollbar-track:active {
-    background-color: rgba($base-overlay-background, 0.3);
   }
 }
 
