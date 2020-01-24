@@ -1,14 +1,14 @@
 es:
   about:
     about_hashtag_html: 'Estos son barritadas públicas etiquetadas con <strong>#%{hashtag}</strong>. Puedes interactuar con ellas si tienes una cuenta en el fediverso.'
-    about_mastodon_html: 'Mastodonte es una red social basada en protocolos web abiertos y Programas Libres y de Código Abierto - Plica/Foss -. Está descentralizado como el correo electrónico!'
+    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
     about_this: Información
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
     api: Interfaz de Programación de la Aplicación
     apps: Aplicaciones móviles
-    apps_platforms: Utiliza Mastodonte desde iOS, Android y otras plataformas
+    apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
     browse_directory: Navega por el directorio de perfiles y filtra por intereses
     browse_local_posts: Explora en vivo los posts públicos de este servidor
     browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
@@ -17,9 +17,9 @@ es:
     contact_unavailable: No disponible
     discover_users: Descubrir usuarios
     documentation: Documentación
-    federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodonte y más allá.
+    federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
     get_apps: Probar una aplicación móvil
-    hosted_on: Mastodonte huesped en %{domain}
+    hosted_on: Mastodon hosteado en %{domain}
     instance_actor_flash: |
       Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
       Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
@@ -41,12 +41,12 @@ es:
       rejecting_media: 'Los archivos multimedia de este servidor no serán procesados y no se mostrarán miniaturas, lo que requiere un clic manual en el otro servidor.'
       silenced: 'Las publicaciones de este servidor no se mostrarán en ningún lugar salvo en el Inicio si sigues al autor.'
       suspended: 'No podrás seguir a nadie de este servidor, y ningún dato de este será procesado o almacenado, y no se intercambiarán datos.'
-    unavailable_content_html: Mastodonte generalmente le permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.
+    unavailable_content_html: Mastodon generalmente le permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.
     user_count_after:
       one: usuario
       other: usuarios
     user_count_before: Inicio de
-    what_is_mastodon: '¿Qué es Mastodonte?'
+    what_is_mastodon: '¿Qué es Mastodon?'
   accounts:
     choices_html: "Elecciones de %{name}:"
     endorsements_hint: Puedes recomendar a gente que sigues desde la interfaz web, y aparecerán allí.
@@ -510,14 +510,14 @@ es:
         desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que estén impuestas aparte en tu instancia. Puedes usar tags HTML
         title: Información extendida personalizada
       site_short_description:
-        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe lo que es Mastodonte y qué hace especial a este servidor en un solo párrafo. si está vacío, pone por defecto la descripción de la instancia.
+        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe lo que es Mastodon y qué hace especial a este servidor en un solo párrafo. si está vacío, pone por defecto la descripción de la instancia.
         title: Descripción corta de la instancia
       site_terms:
         desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
         title: Términos de servicio personalizados
       site_title: Nombre de instancia
       spam_check_enabled:
-        desc_html: Mastodonte puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
+        desc_html: Mastodon puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
         title: Contra-spam
       thumbnail:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
@@ -623,9 +623,9 @@ es:
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     description:
-      prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodonte!"
-      prefix_sign_up: '¡Únete a Mastodonte hoy!'
-      suffix: '¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodonte y más!'
+      prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
+      prefix_sign_up: '¡Únete a Mastodon hoy!'
+      suffix: '¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!'
     didnt_get_confirmation: '¿No recibió el correo de confirmación?'
     forgot_password: '¿Olvidaste tu contraseña?'
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
@@ -724,7 +724,7 @@ es:
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
     '503': La página no se ha podido cargar debido a un fallo temporal del servidor.
-    noscript_html: Para usar la aplicación web de Mastodonte, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodonte para tu plataforma.
+    noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodon para tu plataforma.
   existing_username_validator:
     not_found: no pudo encontrar un usuario local con ese nombre de usuario
     not_found_multiple: no pudo encontrar %{usernames}
@@ -1010,7 +1010,7 @@ es:
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
-    explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodonte.
+    explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1181,9 +1181,9 @@ es:
       <p>Adaptado originalmente desde <a href="https://github.com/discourse/discourse">la política de privacidad de Discourse</a>.</p>
     title: "Términos del Servicio y Políticas de Privacidad de %{instance}"
   themes:
-    contrast: Mastodonte (Alto contraste)
-    default: Mastodonte (Oscuro)
-    mastodon-light: Mastodonte (claro)
+    contrast: Alto contraste
+    default: Mastodon
+    mastodon-light: Mastodon (claro)
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -1206,7 +1206,7 @@ es:
     wrong_code: '¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?'
   user_mailer:
     backup_ready:
-      explanation: Has solicitado una copia completa de tu cuenta de Mastodonte. ¡Ya está preparada para descargar!
+      explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
       title: Descargar archivo
     warning:
@@ -1237,8 +1237,8 @@ es:
       full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
-      subject: Bienvenido a Mastodonte
-      tip_federated_timeline: La cronología federada es una vista de la red de Mastodonte. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
+      subject: Bienvenido a Mastodon
+      tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las cronologías local y federada.
       tip_local_timeline: La cronología local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
@@ -1252,5 +1252,5 @@ es:
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
-    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodonte. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
+    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
     verification: Verificación
