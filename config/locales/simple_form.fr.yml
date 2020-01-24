@@ -14,6 +14,12 @@ fr:
         text_html: Optionnel. Vous pouvez utilisez la syntaxe des pouets. Vous pouvez <a href="%{path}">ajouter des présélections d’attention</a> pour économiser du temps
         type_html: Choisir que faire avec <strong>%{acct}</strong>
         warning_preset_id: Optionnel. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
+      announcement:
+        all_day: Si coché, seules les dates de l’intervalle de temps seront affichées
+        ends_at: Optionnel. L’annonce sera automatiquement dépubliée à ce moment
+        scheduled_at: Laisser vide pour publier l’annonce immédiatement
+        starts_at: Optionnel. Si votre annonce est liée à une période spécifique
+        text: Vous pouvez utiliser la syntaxe d’un pouet. Veuillez prendre en compte l’espace que l'annonce prendra sur l’écran de l'utilisateur
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
         avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
@@ -83,6 +89,12 @@ fr:
           silence: Masquer
           suspend: Suspendre et effacer les données du compte de manière irréversible
         warning_preset_id: Utiliser un modèle d’avertissement
+      announcement:
+        all_day: Événement de toute la journée
+        ends_at: Fin de l’événement
+        scheduled_at: Planifier la publication
+        starts_at: Début de l’événement
+        text: Annonce
       defaults:
         autofollow: Invitation à suivre votre compte
         avatar: Image de profil

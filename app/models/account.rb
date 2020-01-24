@@ -478,6 +478,12 @@ class Account < ApplicationRecord
       records
     end
 
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.map { |(username, domain)| EntityCache.instance.mention(username, domain) }
+    end
+
     private
 
     def generate_query_for_search(terms)

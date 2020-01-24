@@ -9,6 +9,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { Link } from 'react-router-dom';
+import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -113,6 +114,8 @@ class HomeTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
+          prepend={<AnnouncementsContainer />}
+          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`home_timeline-${columnId}`}
           onLoadMore={this.handleLoadMore}

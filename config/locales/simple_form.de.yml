@@ -14,6 +14,12 @@ de:
         text_html: Optional. Du kannst Beitragssyntax nutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
+      announcement:
+        all_day: Wenn aktiviert werden nur die Daten des Zeitraums angezeigt
+        ends_at: Optional. Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen
+        scheduled_at: Leer lassen um die Ankündigung sofort zu veröffentlichen
+        starts_at: Optional. Falls deine Ankündigung an einen bestimmten Zeitraum gebunden ist
+        text: Du kannst die Toot-Syntax verwenden. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm des Benutzers einnehmen wird
       defaults:
         autofollow: Leute, die sich über deine Einladung registrieren, werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
@@ -83,6 +89,12 @@ de:
           silence: Stummschalten
           suspend: Deaktivieren und Benutzerdaten unwiderruflich löschen
         warning_preset_id: Benutze eine Warnungsvorlage
+      announcement:
+        all_day: Ganztägiges Ereignis
+        ends_at: Ereignisende
+        scheduled_at: Veröffentlichung planen
+        starts_at: Beginn des Ereignisses
+        text: Ankündigung
       defaults:
         autofollow: Eingeladene Nutzer sollen dir automatisch folgen
         avatar: Profilbild

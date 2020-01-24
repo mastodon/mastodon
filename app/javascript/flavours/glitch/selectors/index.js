@@ -27,6 +27,7 @@ export const toServerSideType = columnType => {
   case 'notifications':
   case 'public':
   case 'thread':
+  case 'account':
     return columnType;
   default:
     if (columnType.indexOf('list:') > -1) {

@@ -308,9 +308,9 @@ class Formatter
     end
 
     standard = Extractor.extract_entities_with_indices(text, options)
-    xmpp = Extractor.extract_xmpp_uris_with_indices(text, options)
+    extra = Extractor.extract_extra_uris_with_indices(text, options)
 
-    Extractor.remove_overlapping_entities(special + standard + xmpp)
+    Extractor.remove_overlapping_entities(special + standard + extra)
   end
 
   def html_friendly_extractor(html, options = {})

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTrends } from '../../../actions/trends';
+import { fetchTrends } from 'mastodon/actions/trends';
 import Trends from '../components/trends';
 
 const mapStateToProps = state => ({

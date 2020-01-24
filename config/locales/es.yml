@@ -7,7 +7,7 @@ es:
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
-    api: API
+    api: Interfaz de Programación de la Aplicación
     apps: Aplicaciones móviles
     apps_platforms: Utiliza Mastodonte desde iOS, Android y otras plataformas
     browse_directory: Navega por el directorio de perfiles y filtra por intereses
@@ -344,9 +344,6 @@ es:
         create: Añadir dominio
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
-    followers:
-      back_to_account: Volver a la cuenta
-      title: Seguidores de %{acct}
     instances:
       by_domain: Dominio
       delivery_available: Entrega disponible
@@ -375,6 +372,8 @@ es:
       title: Invitaciones
     pending_accounts:
       title: Cuentas pendientes (%{count})
+    relationships:
+      title: Relaciones de %{acct}
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
@@ -486,7 +485,7 @@ es:
           open: Cualquiera puede registrarse
         title: Modo de registros
       show_known_fediverse_at_about_page:
-        desc_html: Cuando esté desactivado, mostrará solamente la cronología local, y no la federada
+        desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
         title: Mostrar fediverso conocido en la vista previa de la cronología
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
@@ -587,7 +586,7 @@ es:
       guide_link: https://es.crowdin.com/project/mastodon
       guide_link_text: Todos pueden contribuir.
     sensitive_content: Contenido sensible
-    toot_layout: Diseño para barritar
+    toot_layout: Diseño de los toots
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name},"
@@ -734,6 +733,7 @@ es:
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a las personas usuarias navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de obras creativas o proyectos a largo plazo."
   filters:
     contexts:
+      account: Perfiles
       home: Cronología propia
       notifications: Notificaciones
       public: Cronología pública
@@ -780,7 +780,7 @@ es:
     i_am_html: Soy %{username} en %{service}.
     identity: Identidad
     inactive: Inactivo
-    publicize_checkbox: 'Y barrite esto:'
+    publicize_checkbox: 'Y tootee esto:'
     publicize_toot: "¡Comprobado! Soy %{username} en %{service}: %{url}"
     status: Estado de la verificación
     view_proof: Ver prueba
@@ -934,6 +934,7 @@ es:
     dormant: Inactivo
     followers: Seguidores
     following: Siguiendo
+    invited: Invitado
     last_active: Última actividad
     most_recent: Más reciente
     moved: Movido
@@ -954,16 +955,16 @@ es:
   remote_interaction:
     favourite:
       proceed: Proceder a marcar como favorito
-      prompt: 'Quieres marcar como favorito este bramido:'
+      prompt: 'Quieres marcar como favorito este toot:'
     reblog:
-      proceed: Proceder a rebarritar
-      prompt: 'Quieres rebarritar este bramido:'
+      proceed: Proceder a retootear
+      prompt: 'Quieres retootear este toot:'
     reply:
       proceed: Proceder a responder
-      prompt: 'Quieres responder a este bramido:'
+      prompt: 'Quieres responder a este toot:'
   scheduled_statuses:
-    over_daily_limit: Ha superado el límite de %{limit} bramidos programados para ese día
-    over_total_limit: Ha superado el límite de %{limit} bramidos programados
+    over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
+    over_total_limit: Ha superado el límite de %{limit} toots programados
     too_soon: La fecha programada debe estar en el futuro
   sessions:
     activity: Última actividad
@@ -1190,8 +1191,8 @@ es:
     warning:
       explanation:
         disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
-        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus bramidos en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
-        suspend: Su cuenta ha sido suspendida, y todos tus bramidos y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
+        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
+        suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
       get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
       review_server_policies: Revisar las políticas del servidor
       statuses: 'Específicamente, para:'

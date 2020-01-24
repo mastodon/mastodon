@@ -344,9 +344,6 @@ pt-BR:
         create: Adicionar domínio
         title: Novo domínio de e-mail bloqueado
       title: Lista de bloqueio de domínios de e-mail
-    followers:
-      back_to_account: Voltar para a conta
-      title: Seguidores de %{acct}
     instances:
       by_domain: Domínio
       delivery_available: Envio disponível
@@ -375,6 +372,8 @@ pt-BR:
       title: Convites
     pending_accounts:
       title: Contas pendentes (%{count})
+    relationships:
+      title: Relações de %{acct}
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -734,6 +733,7 @@ pt-BR:
     hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são mostradas no seu perfil público e permitem que as pessoas acessem seus toots públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
+      account: Perfis
       home: Página inicial
       notifications: Notificações
       public: Linhas públicas
@@ -934,6 +934,7 @@ pt-BR:
     dormant: Inativo
     followers: Seguidores
     following: Seguindo
+    invited: Convidado
     last_active: Última atividade
     most_recent: Mais recente
     moved: Mudou-se

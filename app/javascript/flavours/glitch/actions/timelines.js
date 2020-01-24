@@ -112,9 +112,9 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
 
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
-      done();
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
+    }).finally(() => {
       done();
     });
   };

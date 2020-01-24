@@ -248,7 +248,7 @@ class User < ApplicationRecord
                                  ip: request.remote_ip).session_id
   end
 
-  def exclusive_session(id)
+  def clear_other_sessions(id)
     session_activations.exclusive(id)
   end
 
