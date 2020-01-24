@@ -88,6 +88,12 @@
           silence: Stilne
           suspend: Suspender og ugjenkallelig slett brukerdata
         warning_preset_id: Bruk en advarsels-forhåndsinnstilling
+      announcement:
+        all_day: Heldagshendelse
+        ends_at: Slutten av hendelsen
+        scheduled_at: Planlegg publisering
+        starts_at: Begynnelse av hendelsen
+        text: Kunngjøring
       defaults:
         autofollow: Inviter til å følge kontoen din
         avatar: Profilbilde
@@ -104,6 +110,8 @@
         expires_in: Utløper etter
         fields: Profilmetadata
         header: Overskrift
+        inbox_url: URL til overgangsinnboksen
+        irreversible: Forkast i stedet for å skjule
         locale: Språk
         locked: Lås konto
         max_uses: Maksimalt antall bruk
@@ -157,7 +165,9 @@
         follow: Send e-post når noen følger deg
         follow_request: Send e-post når noen ber om å få følge deg
         mention: Send e-post når noen nevner deg
+        pending_account: Ny bruker avventer gjennomgang
         reblog: Send e-post når noen fremhever din status
+        report: Ny rapport er sendt inn
       tag:
         name: Emneknagg
         usable: Tillat tuter å bruke denne emneknaggen
