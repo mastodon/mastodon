@@ -15,7 +15,6 @@ ja:
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
         all_day: チェックすると、期間の日付のみ表示されます
-        ends_at: オプション。この日時でお知らせは非公開になります
         scheduled_at: 空白にすると、お知らせはすぐに公開されます
         text: トゥートと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
@@ -88,7 +87,8 @@ ja:
           suspend: 停止しアカウントのデータを恒久的に削除する
         warning_preset_id: プリセット警告文を使用
       announcement:
-        text: 告知
+        all_day: 終日
+        text: お知らせ
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
         avatar: アイコン
