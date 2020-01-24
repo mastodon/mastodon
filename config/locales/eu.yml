@@ -196,11 +196,13 @@ eu:
         change_email_user: "%{name}(e)k %{target}(r)en e-mail helbidea aldatu du"
         confirm_user: "%{name}(e)k %{target}(r)en e-mail helbidea berretsi du"
         create_account_warning: "%{name}-k abisua bidali dio %{target}-ri"
+        create_announcement: "%{name}(e)k %{target}(e)rako iragarpen berria sortu du"
         create_custom_emoji: "%{name}(e)k emoji berria kargatu du %{target}"
         create_domain_allow: "%{name}(e)k %{target} domeinua zerrenda zurian zartu du"
         create_domain_block: "%{name}(e)k %{target} domeinua blokeatu du"
         create_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda beltzean sartu du"
         demote_user: "%{name}(e)k %{target} mailaz jaitsi du"
+        destroy_announcement: "%{name}(e)k %{target}(e)rako iragarpena kendu du"
         destroy_custom_emoji: "%{name} erabiltzaileak %{target} emojia suntsitu du"
         destroy_domain_allow: "%{name}(e)k %{target} domeinua zerrenda zuritik kendu du"
         destroy_domain_block: "%{name}(e)k %{target} domeinua desblokeatu du"
@@ -222,6 +224,7 @@ eu:
         unassigned_report: "%{name}(e)k %{target} txotenaren esleipena atzera bota du"
         unsilence_account: "%{name}(e)k %{target} isilarazteko agindua kendu du"
         unsuspend_account: "%{name}(e)k %{target} kontuaren kanporaketa atzera bota du"
+        update_announcement: "%{name}(e)k %{target}(e)rako iragarpena eguneratu du du"
         update_custom_emoji: "%{name}(e)k %{target} emoji-a eguneratu du"
         update_status: "%{name} (e)k %{target}(r)en mezua aldatu du"
       deleted_status: "(ezabatutako mezua)"
@@ -381,6 +384,8 @@ eu:
       title: Gonbidapenak
     pending_accounts:
       title: Zain dauden kontuak (%{count})
+    relationships:
+      title: "%{acct}(e)ren erlazioak"
     relays:
       add_new: Gehitu hari errelea
       delete: Ezabatu
