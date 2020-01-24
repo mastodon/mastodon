@@ -62,6 +62,8 @@
         text: Dette vil hjelpe oss med å gjennomgå din søknad
       sessions:
         otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
+      tag:
+        name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun tuter i de valgte språkene bli vist i de offentlige tidslinjene
     labels:
@@ -69,9 +71,14 @@
         fields:
           name: Etikett
           value: Innhold
+      account_alias:
+        acct: Brukernavnet til den gamle brukeren
+      account_migration:
+        acct: Brukernavnet til den nye brukeren
       account_warning_preset:
         text: Forhåndsvalgt tekst
       admin_account_action:
+        include_statuses: Inkluder rapporterte tuter i e-mailen
         send_email_notification: Si ifra til brukeren over E-post
         text: Tilpasset advarsel
         type: Handling
@@ -79,6 +86,8 @@
           disable: Deaktiver pålogging
           none: Ikke gjør noe
           silence: Stilne
+          suspend: Suspender og ugjenkallelig slett brukerdata
+        warning_preset_id: Bruk en advarsels-forhåndsinnstilling
       defaults:
         autofollow: Inviter til å følge kontoen din
         avatar: Profilbilde
