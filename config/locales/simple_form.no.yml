@@ -16,17 +16,24 @@
       announcement:
         all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
         ends_at: Valgfritt. Kunngjøring vil bli automatisk avpublisert på dette tidspunktet
+        scheduled_at: La stå tomt for å publisere kunngjøringen umiddelbart
+        starts_at: Valgfritt. I tilfellet din kunngjøring er bundet til en spesifikk tidsramme
+        text: Du kan bruke tut syntaks. Vennligst vær oppmerksom på plassen som kunngjøringen vil ta opp på brukeren sin skjerm
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
+        context: En eller flere sammenhenger der filteret skal gjelde
+        current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: For å bekrefte, vennligst skriv inn brukernavnet til den nåværende kontoen
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
         email: Du vil bli tilsendt en bekreftelses-E-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte tuter vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
+        locale: Språket til brukergrensesnittet, e-mailer og push-varsler
         locked: Krever at du manuelt godkjenner følgere
         password: Bruk minst 8 tegn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
@@ -43,12 +50,16 @@
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
         username: Brukernavnet ditt vil være unikt på %{domain}
         whole_word: Når søkeordet eller setningen bare er alfanumerisk, aktiveres det bare hvis det samsvarer med hele ordet
+      domain_allow:
+        domain: Dette domenet vil være i stand til å hente data fra denne serveren og dets innkommende data vil bli prosessert og lagret
       featured_tag:
         name: 'Du vil kanskje ønske å bruke en av disse:'
       form_challenge:
         current_password: Du går inn i et sikkert område
       imports:
         data: CSV-fil eksportert fra en annen Mastodon-instans
+      invite_request:
+        text: Dette vil hjelpe oss med å gjennomgå din søknad
       sessions:
         otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       user:
