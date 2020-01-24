@@ -227,6 +227,17 @@ tr:
         update_status: "%{name}, %{target} kullanıcısının durumunu güncelledi"
       deleted_status: "(silinmiş durum)"
       title: Denetim günlüğü
+    announcements:
+      edit:
+        title: Duyuruyu düzenle
+      empty: Duyuru bulunamadı.
+      live: Canlı
+      new:
+        create: Duyuru oluştur
+        title: Yeni duyuru
+      published: Yayınlanan
+      time_range: Zaman aralığı
+      title: Duyurular
     custom_emojis:
       assign_category: Kategori ata
       by_domain: Alan adı
@@ -656,6 +667,9 @@ tr:
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
     invalid_password: Geçersiz parola
     prompt: Devam etmek parolayı doğrulayın
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}sa"
@@ -757,6 +771,8 @@ tr:
     all: Tümü
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
+    delete: Sil
+    edit: Düzenle
     no_batch_actions_available: Bu sayfada toplu işlem yok
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
@@ -928,6 +944,9 @@ tr:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
+  reactions:
+    errors:
+      unrecognized_emoji: tanınan bir emoji değil
   relationships:
     activity: Hesap etkinliği
     dormant: Atıl
