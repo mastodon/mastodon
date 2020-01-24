@@ -12,6 +12,10 @@
         send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
         text_html: Valgfritt. Du kan bruke tut syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
         type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
+        warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
+      announcement:
+        all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
+        ends_at: Valgfritt. Kunngjøring vil bli automatisk avpublisert på dette tidspunktet
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
