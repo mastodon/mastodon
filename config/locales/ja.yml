@@ -192,6 +192,7 @@ ja:
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
+        create_announcement: "%{name} さんが新しいお知らせ %{target} を作成しました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_allow: "%{name} さんがドメイン %{target} をドメイン用ホワイトリストに追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
@@ -925,6 +926,9 @@ ja:
     other: その他
     posting_defaults: デフォルトの投稿設定
     public_timelines: 公開タイムライン
+  reactions:
+    errors:
+      unrecognized_emoji: 認識できない絵文字
   relationships:
     activity: 活動
     dormant: 非アクティブ
