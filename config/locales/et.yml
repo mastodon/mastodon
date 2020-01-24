@@ -347,9 +347,6 @@ et:
         create: Lisa domeen
         title: Uus e-posti keelunimekirja sisend
       title: E-posti keelunimekiri
-    followers:
-      back_to_account: Tagasi minu kontole
-      title: "%{acct}-i jälgijad"
     instances:
       by_domain: Domeen
       delivery_available: Üleandmine on saadaval
@@ -378,6 +375,8 @@ et:
       title: Kutsed
     pending_accounts:
       title: Ootel olevad kasutajad (%{count})
+    relationships:
+      title: "%{acct}-i suhted"
     relays:
       add_new: Lisa uus relee
       delete: Kustuta
@@ -737,6 +736,7 @@ et:
     hint_html: "<strong>Mis on esile toodud sildid?</strong> Need sildid näidatakse nähtavalt Teie avalikul profiilil ning nad aitavad inimestel leida postitusi, millel on antud sildid. Nad on hea viis kuidas näiteks hoida järge loovtöödel või pikaajalistel projektidel."
   filters:
     contexts:
+      account: Profiilid
       home: Kodu ajajoon
       notifications: Teated
       public: Avalikud ajajooned
@@ -937,6 +937,7 @@ et:
     dormant: Seisev
     followers: Jälgijad
     following: Jälgib
+    invited: Kutsutud
     last_active: Viimati aktiivne
     most_recent: Viimased
     moved: Kolinud

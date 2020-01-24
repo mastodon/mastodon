@@ -344,9 +344,6 @@ es-AR:
         create: Agregar dominio
         title: Nueva desaprobación de correo electrónico
       title: Desaprobación de correo electrónico
-    followers:
-      back_to_account: Volver a la cuenta
-      title: Seguidores de %{acct}
     instances:
       by_domain: Dominio
       delivery_available: La entrega está disponible
@@ -375,6 +372,8 @@ es-AR:
       title: Invitaciones
     pending_accounts:
       title: Cuentas pendientes (%{count})
+    relationships:
+      title: Relaciones de %{acct}
     relays:
       add_new: Agregar nuevo relé
       delete: Eliminar
@@ -734,6 +733,7 @@ es-AR:
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus toots públicos específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
+      account: Perfiles
       home: Línea temporal principal
       notifications: Notificaciones
       public: Líneas temporales públicas
@@ -934,6 +934,7 @@ es-AR:
     dormant: Inactivas
     followers: Seguidores
     following: Siguiendo
+    invited: Invitado
     last_active: Última actividad
     most_recent: Más reciente
     moved: Mudada

@@ -6,31 +6,61 @@ is:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast frá
       account_migration:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast til
+      account_warning_preset:
+        text: Þú getur notað sömu skilgreiningar og fyrir tíst, svo sem URL-slóðir, myllumerki og tilvísanir
       admin_account_action:
+        include_statuses: Notandinn mun sjá hvaða tíst hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
+        send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
+        text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir tíst. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
         type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
+        warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
       defaults:
+        autofollow: Fólk sem skráir sig í gegnum boðið mun sjálfkrafa fylgjast með þér
         avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         bot: Þessi aðgangur er aðallega til að framkvæma sjálfvirkar aðgerðir og gæti verið án þess að hann sé vaktaður reglulega
-        current_password: Í öryggisskyni skaltu setja inn lykiloðið fyrir þennan notandaaðgang
+        context: Eitt eða fleiri samhengi þar sem sían ætti að gilda
+        current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
+        current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
+        digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
         discoverable: Persónusniðamappan er önnur leið til að láta notandaaðganginn þinn ná til fleiri lesenda
         email: Þú munt fá sendan staðfestingarpóst
+        fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
+        inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
+        irreversible: Síuð tíst munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
+        phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í tísti
+        scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
+        setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á tístum sem hafa nýlega verið endurbirt (hefur bara áhrif á ný-mótteknar endurbirtingar)
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
-        setting_noindex: Hefur áhrip á opinbera notandasniðið þitt og stöðusíður
+        setting_hide_network: Hverjum þú fylgist með og hverjir fylgjast með þér verður ekki birt á notandasniðinu þínu
+        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og stöðusíður
+        setting_show_application: Nafnið á forritinu sem þú notar til að tísta mun birtast í ítarlegri sýn á tístunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
-        setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er í stað þess að hún skruni streyminu sjálfvirkt
+        setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
+        username: Notandanafnið þitt verður einstakt á %{domain}
+        whole_word: Þegar stikkorð eða frasi er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
+      domain_allow:
+        domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
+      form_challenge:
+        current_password: Þú ert að fara inn á öryggissvæði
       imports:
         data: CSV-skrá sem flutt hefur verið út af öðrum Mastodon-þjóni
       invite_request:
         text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
+      sessions:
+        otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
+      tag:
+        name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
+      user:
+        chosen_languages: Þegar merkt er við þetta, birtast einungis tíst á völdum tungumálum á opinberum tímalínum
     labels:
       account:
         fields:
@@ -38,6 +68,10 @@ is:
           value: Efni
       account_alias:
         acct: Auðkenni gamla aðgangsins
+      account_migration:
+        acct: Auðkenni nýja aðgangsins
+      account_warning_preset:
+        text: Forstilltur texti
       admin_account_action:
         include_statuses: Innifela kærð tíst í tölvupóstinum
         send_email_notification: Láta notanda vita með tölvupósti
@@ -65,6 +99,7 @@ is:
         expires_in: Rennur út eftir
         fields: Lýsigögn notandasniðs
         header: Síðuhaus
+        inbox_url: URL-slóð á innhólf endurvarpa
         irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
         locked: Læsa aðgangi

@@ -198,11 +198,13 @@ fr:
         change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
         confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
         create_account_warning: "%{name} a envoyé un avertissement à %{target}"
+        create_announcement: "%{name} a créé une nouvelle annonce %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
         create_domain_allow: "%{name} a inscrit le domaine %{target} sur liste blanche"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste noire"
         demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
+        destroy_announcement: "%{name} a supprimé l’annonce %{target}"
         destroy_custom_emoji: "%{name} a détruit l’émoticône %{target}"
         destroy_domain_allow: "%{name} a supprimé le domaine %{target} de la liste blanche"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
@@ -224,10 +226,22 @@ fr:
         unassigned_report: "%{name} a désassigné le signalement %{target}"
         unsilence_account: "%{name} a mis fin au mode silence de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
+        update_announcement: "%{name} a actualisé l’annonce %{target}"
         update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
       title: Journal d’audit
+    announcements:
+      edit:
+        title: Modifier l’annonce
+      empty: Aucune annonce trouvée.
+      live: En direct
+      new:
+        create: Créer une annonce
+        title: Nouvelle annonce
+      published: Publié
+      time_range: Intervalle de temps
+      title: Annonces
     custom_emojis:
       assign_category: Attribuer une catégorie
       by_domain: Domaine
@@ -344,9 +358,6 @@ fr:
         create: Créer le blocage
         title: Nouveau blocage de domaine de courriel
       title: Blocage de domaines de courriel
-    followers:
-      back_to_account: Retour au compte
-      title: Abonné⋅e⋅s de %{acct}
     instances:
       by_domain: Domaine
       delivery_available: Livraison disponible
@@ -375,6 +386,8 @@ fr:
       title: Invitations
     pending_accounts:
       title: Comptes en attente (%{count})
+    relationships:
+      title: Relations de %{acct}
     relays:
       add_new: Ajouter un nouveau relais
       delete: Effacer
@@ -658,6 +671,9 @@ fr:
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
     invalid_password: Mot de passe invalide
     prompt: Confirmez votre mot de passe pour continuer
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -734,6 +750,7 @@ fr:
     hint_html: "<strong>Que sont les hashtags vedettes ?</strong> Ils sont affichés avec emphase sur votre flux d'actualités publique et permettent aux gens de parcourir vos messages publics spécifiquement sous ces hashtags. Ils sont un excellent outil pour garder trace des œuvres créatives ou des projets à long terme."
   filters:
     contexts:
+      account: Profils
       home: Accueil
       notifications: Notifications
       public: Fils publics
@@ -758,6 +775,8 @@ fr:
     all: Tous
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     copy: Copier
+    delete: Supprimer
+    edit: Modifier
     no_batch_actions_available: Aucune action par lots disponible sur cette page
     order_by: Classer par
     save_changes: Enregistrer les modifications
@@ -929,11 +948,15 @@ fr:
     other: Autre
     posting_defaults: Paramètres par défaut des pouets
     public_timelines: Fils publics
+  reactions:
+    errors:
+      unrecognized_emoji: n’est pas un émoji reconnu
   relationships:
     activity: Activité du compte
     dormant: Dormant
     followers: Abonné·e·s
     following: Abonnements
+    invited: Invité·e
     last_active: Dernière activité
     most_recent: Plus récent
     moved: Déménagé

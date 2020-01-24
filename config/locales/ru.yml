@@ -140,7 +140,7 @@ ru:
         remote: Удаленные
         title: Размещение
       login_status: Статус учётной записи
-      media_attachments: Мультимедийные вложения
+      media_attachments: Файлы мультимедиа
       memorialize: Сделать мемориалом
       moderation:
         active: Действующие
@@ -359,9 +359,6 @@ ru:
         create: Создать блокировку
         title: Новая блокировка по домену
       title: Блокировка e-mail доменов
-    followers:
-      back_to_account: Вернуться к учётной записи
-      title: Подписчики пользователя %{acct}
     instances:
       by_domain: Домен
       delivery_available: Доставка возможна
@@ -392,6 +389,8 @@ ru:
       title: Приглашения
     pending_accounts:
       title: Ожидающие учетные записи (%{count})
+    relationships:
+      title: Связи %{acct}
     relays:
       add_new: Добавить ретранслятор
       delete: Удалить
@@ -550,11 +549,11 @@ ru:
       deleted: Удалено
       failed_to_execute: Не удалось выполнить
       media:
-        title: Файлы медиа
-      no_media: Без медиа
+        title: Файлы мультимедиа
+      no_media: Без файлов
       no_status_selected: Ничего не изменилось, так как ни один пост не был выделен
       title: Посты пользователя
-      with_media: С медиа
+      with_media: С файлами
     tags:
       accounts_today: Уникальных использований за сегодня
       accounts_week: Уникальных использований за эту неделю
@@ -755,6 +754,7 @@ ru:
     hint_html: "<strong>Особенные хэштеги</strong> отображаются в вашем профиле и позволяют людям просматривать ваши посты, отмеченные ими. Это отличный инструмент для отслеживания долгосрочных проектов и творческих работ."
   filters:
     contexts:
+      account: Посты в профилях
       home: Домашняя лента
       notifications: Уведомления
       public: Публичные ленты
@@ -963,6 +963,7 @@ ru:
     dormant: Заброшенная
     followers: Подписчики
     following: Подписки
+    invited: Приглашённые
     last_active: По последней активности
     most_recent: По недавности
     moved: Мигрировавшая
