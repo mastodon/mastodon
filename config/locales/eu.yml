@@ -226,6 +226,17 @@ eu:
         update_status: "%{name} (e)k %{target}(r)en mezua aldatu du"
       deleted_status: "(ezabatutako mezua)"
       title: Auditoria-egunkaria
+    announcements:
+      edit:
+        title: Editatu iragarpena
+      empty: Ez da iragarpenik aurkitu.
+      live: Zuzenean
+      new:
+        create: Sortu iragarpena
+        title: Iragarpen berria
+      published: Argitaratua
+      time_range: Denbora-tartea
+      title: Iragarpenak
     custom_emojis:
       assign_category: Esleitu kategoria
       by_domain: Domeinua
@@ -653,6 +664,9 @@ eu:
     hint_html: "<strong>Oharra:</strong> Ez dizugu pasahitza berriro eskatuko ordu batez."
     invalid_password: Pasahitz baliogabea
     prompt: Berretsi pasahitza jarraitzeko
+  date:
+    formats:
+      default: "%Y(e)ko %b %d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -729,6 +743,7 @@ eu:
     hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten mezu publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
+      account: Profilak
       home: Hasierako denbora-lerroa
       notifications: Jakinarazpenak
       public: Denbora-lerro publikoak
@@ -753,6 +768,8 @@ eu:
     all: Denak
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
+    delete: Ezabatu
+    edit: Editatu
     no_batch_actions_available: Ez dago ekintza masiborik orri honetan eskuragarri
     order_by: Ordenatze-irizpidea
     save_changes: Gorde aldaketak
@@ -924,11 +941,15 @@ eu:
     other: Denetarik
     posting_defaults: Bidalketarako lehenetsitakoak
     public_timelines: Denbora-lerro publikoak
+  reactions:
+    errors:
+      unrecognized_emoji: ez da emoji ezaguna
   relationships:
     activity: Kontuaren aktibitatea
     dormant: Ez aktiboa
     followers: Jarraitzaileak
     following: Jarraitzen
+    invited: Gonbidatuta
     last_active: Azkenekoz aktiboa
     most_recent: Azkenak
     moved: Lekuz aldatua
