@@ -1,8 +1,16 @@
 "no":
   simple_form:
     hints:
+      account_alias:
+        acct: Spesifiser brukernavn@domene til brukeren du vil flytte fra
+      account_migration:
+        acct: Spesifiser brukernavn@domene til brukeren du vil flytte til
+      account_warning_preset:
+        text: Du kan bruke tut syntaks, f.eks. URLer, emneknagger og nevnelser
       admin_account_action:
         include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
+        send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
+        text_html: Valgfritt. Du kan bruke tut syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
         type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
