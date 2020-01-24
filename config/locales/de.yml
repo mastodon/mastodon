@@ -198,11 +198,13 @@ de:
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_account_warning: "%{name} hat eine Warnung an %{target} gesendet"
+        create_announcement: "%{name} hat die neue Ankündigung %{target} erstellt"
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_allow: "%{name} hat die Domain %{target} gewhitelistet"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
         demote_user: "%{name} stufte Benutzer_in %{target} herunter"
+        destroy_announcement: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
         destroy_domain_allow: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
@@ -224,10 +226,22 @@ de:
         unassigned_report: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unsilence_account: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
+        update_announcement: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
         update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
+    announcements:
+      edit:
+        title: Ankündigung bearbeiten
+      empty: Keine Ankündigungen gefunden.
+      live: Live
+      new:
+        create: Ankündigung erstellen
+        title: Neue Ankündigung
+      published: Veröffentlicht
+      time_range: Zeitraum
+      title: Ankündigungen
     custom_emojis:
       assign_category: Kategorie zuweisen
       by_domain: Domain
@@ -344,9 +358,6 @@ de:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
       title: E-Mail-Domain-Blockade
-    followers:
-      back_to_account: Zurück zum Konto
-      title: "%{acct}'s Follower"
     instances:
       by_domain: Domain
       delivery_available: Zustellung funktioniert
@@ -375,6 +386,8 @@ de:
       title: Einladungen
     pending_accounts:
       title: Ausstehende Konten (%{count})
+    relationships:
+      title: Beziehungen von %{acct}
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -658,6 +671,9 @@ de:
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
     invalid_password: Ungültiges Passwort
     prompt: Gib dein Passwort ein um fortzufahren
+  date:
+    formats:
+      default: "%d. %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -734,6 +750,7 @@ de:
     hint_html: "<strong>Was sind empfohlene Hashtags?</strong> Sie werden in deinem öffentlichen Profil deutlich angezeigt und ermöglichen es den Menschen, deine öffentlichen Beiträge speziell unter diesen Hashtags zu durchsuchen. Sie sind ein großartiges Werkzeug, um kreative Werke oder langfristige Projekte zu verfolgen."
   filters:
     contexts:
+      account: Profile
       home: Startseite
       notifications: Benachrichtigungen
       public: Öffentliche Zeitleisten
@@ -758,6 +775,8 @@ de:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
+    delete: Löschen
+    edit: Bearbeiten
     no_batch_actions_available: Keine Massenaktionen auf dieser Seite verfügbar
     order_by: Sortieren nach
     save_changes: Änderungen speichern
@@ -921,6 +940,7 @@ de:
       duration_too_long: ist zu weit in der Zukunft
       duration_too_short: ist zu früh
       expired: Die Umfrage ist bereits vorbei
+      invalid_choice: Die gewählte Stimmenoption existiert nicht
       over_character_limit: kann nicht länger als jeweils %{max} Zeichen sein
       too_few_options: muss mindestens einen Eintrag haben
       too_many_options: kann nicht mehr als %{max} Einträge beinhalten
@@ -928,11 +948,15 @@ de:
     other: Weiteres
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Zeitleisten
+  reactions:
+    errors:
+      unrecognized_emoji: ist kein anerkanntes Emoji
   relationships:
     activity: Kontoaktivität
     dormant: Inaktiv
     followers: Folgende
     following: Folgt
+    invited: Eingeladen
     last_active: Zuletzt aktiv
     most_recent: Neuste
     moved: Umgezogen

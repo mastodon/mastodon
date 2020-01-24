@@ -48,7 +48,7 @@ module Admin
     end
 
     def filter_params
-      params.slice(:local, :remote, :by_domain, :shortcode, :page).permit(:local, :remote, :by_domain, :shortcode, :page)
+      params.slice(:page, *CustomEmojiFilter::KEYS).permit(:page, *CustomEmojiFilter::KEYS)
     end
 
     def action_from_button

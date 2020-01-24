@@ -339,14 +339,11 @@ pt-BR:
       delete: Excluir
       destroyed_msg: Domínio de e-mail desbloqueado
       domain: Domínio
-      empty: Nenhum domínio de e-mail atualmente na lista negra.
+      empty: Sem domínios de e-mail bloqueados.
       new:
         create: Adicionar domínio
         title: Novo domínio de e-mail bloqueado
       title: Lista de bloqueio de domínios de e-mail
-    followers:
-      back_to_account: Voltar para a conta
-      title: Seguidores de %{acct}
     instances:
       by_domain: Domínio
       delivery_available: Envio disponível
@@ -375,6 +372,8 @@ pt-BR:
       title: Convites
     pending_accounts:
       title: Contas pendentes (%{count})
+    relationships:
+      title: Relações de %{acct}
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -734,6 +733,7 @@ pt-BR:
     hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são mostradas no seu perfil público e permitem que as pessoas acessem seus toots públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
+      account: Perfis
       home: Página inicial
       notifications: Notificações
       public: Linhas públicas
@@ -745,7 +745,7 @@ pt-BR:
       invalid_irreversible: O filtro irreversível só funciona com os contextos página inicial e notificações
     index:
       delete: Remover
-      empty: Não tem filtros.
+      empty: Sem filtros.
       title: Filtros
     new:
       title: Adicionar filtro
@@ -921,6 +921,7 @@ pt-BR:
       duration_too_long: é muito longe no futuro
       duration_too_short: é curto demais
       expired: A enquete já terminou
+      invalid_choice: Opção inválida
       over_character_limit: não pode ter mais que %{max} caracteres em cada
       too_few_options: deve ter mais que um item
       too_many_options: não pode ter mais que %{max} itens
@@ -933,6 +934,7 @@ pt-BR:
     dormant: Inativo
     followers: Seguidores
     following: Seguindo
+    invited: Convidado
     last_active: Última atividade
     most_recent: Mais recente
     moved: Mudou-se

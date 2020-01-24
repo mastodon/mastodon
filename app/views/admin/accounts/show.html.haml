@@ -41,7 +41,7 @@
       .dashboard__counters__num= number_to_human_size @account.media_attachments.sum('file_file_size')
       .dashboard__counters__label= t 'admin.accounts.media_attachments'
   %div
-    = link_to admin_account_followers_path(@account.id) do
+    = link_to admin_account_relationships_path(@account.id, location: 'local', relationship: 'followed_by') do
       .dashboard__counters__num= number_with_delimiter @account.local_followers_count
       .dashboard__counters__label= t 'admin.accounts.followers'
   %div
@@ -139,12 +139,12 @@
               %time.formatted{ datetime: @account.created_at.iso8601, title: l(@account.created_at) }= l @account.created_at
             %td
 
-          %tr
-            %th= t('admin.accounts.most_recent_ip')
-            %td= @account.user_current_sign_in_ip
-            %td
-              - if @account.user_current_sign_in_ip
-                = table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: @account.user_current_sign_in_ip)
+          - @account.user.recent_ips.each_with_index do |(_, ip), i|
+            %tr
+              - if i.zero?
+                %th{ rowspan: @account.user.recent_ips.size }= t('admin.accounts.most_recent_ip')
+              %td= ip
+              %td= table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: ip)
 
           %tr
             %th= t('admin.accounts.most_recent_activity')

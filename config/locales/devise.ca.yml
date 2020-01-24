@@ -40,7 +40,7 @@ ca:
       reconfirmation_instructions:
         explanation: Confirma la nova adreça per canviar el teu correu electrònic.
         extra: Si no has iniciat aquest canvi, ignora aquest correu electrònic. L'adreça electrònica del compte de Mastodon no canviarà fins que accedeixis a l'enllaç de dalt.
-        subject: 'Mastodon: Confirma el correu electrònic per a %{instance}'
+        subject: 'Mastodon: confirma l''adreça electrònica per a %{instance}'
         title: Verifica l'adreça de correu electrònic
       reset_password_instructions:
         action: Canviar contrasenya
@@ -76,8 +76,8 @@ ca:
       signed_up: Benvingut! T'has registrat amb èxit.
       signed_up_but_inactive: T´has registrat amb èxit. No obstant, no podem identificar-te perquè el compte encara no s'ha activat.
       signed_up_but_locked: T´has registrat amb èxit. No obstant, no podem identificar-te perquè el compte està blocat.
-      signed_up_but_pending: S'ha enviat un missatge amb un enllaç de confirmació a la teva adreça de correu electrònic. Després de que hagis fet clic a l'enllaç, revisarem la teva sol·licitud. Se't notificarà si s'aprova.
-      signed_up_but_unconfirmed: Un missatge amb un enllaç de confirmació ha estat enviat per correu electrònic. Si us plau segueixi l'enllaç per activar el seu compte.
+      signed_up_but_pending: S'ha enviat un missatge amb un enllaç de confirmació a la teva adreça de correu electrònic. Després que hagis fet clic a l'enllaç, revisarem la sol·licitud. Se't notificarà si s'aprova.
+      signed_up_but_unconfirmed: S'ha enviat per correu electrònic un missatge amb un enllaç de confirmació. Fes clic a l'enllaç per a activar el compte.
       update_needs_confirmation: Ha actualitzat el seu compte amb èxit, però necessitem verificar la nova adreça de correu. Si us plau comprovi el correu i segueixi l'enllaç per confirmar la nova adreça de correu.
       updated: El seu compte ha estat actualitzat amb èxit.
     sessions:
@@ -86,8 +86,8 @@ ca:
       signed_out: Has tancat la sessió amb èxit.
     unlocks:
       send_instructions: En pocs minuts rebràs un correu electrònic amb instruccions sobre com desbloquejar el teu compte. Si us plau verifica la teva carpeta de correu brossa si no has rebut aquest correu.
-      send_paranoid_instructions: Si el compte existeix, rebràs en pocs minuts un correu electrònic amb instruccions sobre com desbloquejar-lo. Si us plau verifica la teva carpeta de correu brossa si no has rebut aquest correu.
-      unlocked: El compte s'ha blocat correctament. Inicia sessió per a continuar.
+      send_paranoid_instructions: Si el compte existeix, rebràs en pocs minuts un correu electrònic amb instruccions sobre com desbloquejar-lo. Verifica la carpeta de correu brossa si no has rebut aquest correu.
+      unlocked: El compte s'ha desblocat correctament. Inicia sessió per a continuar.
   errors:
     messages:
       already_confirmed: ja està confirmat. Intenta d'iniciar sessió

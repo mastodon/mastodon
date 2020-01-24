@@ -6,7 +6,7 @@ tr:
     about_this: Bu sunucu hakkında
     active_count_after: etkin
     active_footnote: Aylık Aktif Kullanıcılar (AAK)
-    administered_by: 'Tarafından yönetildi:'
+    administered_by: 'Yöneten:'
     api: API
     apps: Mobil uygulamalar
     apps_platforms: İos, Android ve diğer platformlardaki Mastodon'u kullanın
@@ -344,9 +344,6 @@ tr:
         create: Alan adı ekle
         title: Yeni e-posta kara liste girişi
       title: E-posta kara listesi
-    followers:
-      back_to_account: Hesaba Geri Dön
-      title: "%{acct} Takipçileri"
     instances:
       by_domain: Alan adı
       delivery_available: Teslimat mevcut
@@ -375,6 +372,8 @@ tr:
       title: Davetler
     pending_accounts:
       title: Bekleyen hesaplar (%{count})
+    relationships:
+      title: "%{acct} kişisinin ilişkileri"
     relays:
       add_new: Yeni aktarıcı ekle
       delete: Sil
@@ -692,7 +691,7 @@ tr:
   directories:
     directory: Profil dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
-    explore_mastodon: "%{title} keşfet"
+    explore_mastodon: "%{title} sunucusunu keşfet"
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
   errors:
@@ -721,7 +720,7 @@ tr:
       in_progress: Arşivinizi derliyoruz...
       request: Arşiv isteği
       size: Boyut
-    blocks: Blokladıklarınız
+    blocks: Engelledikleriniz
     csv: CSV
     domain_blocks: Alan adı blokları
     lists: Listeler
@@ -734,6 +733,7 @@ tr:
     hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
   filters:
     contexts:
+      account: Profiller
       home: Ana zaman çizelgesi
       notifications: Bildirimler
       public: Genel zaman çizelgesi
@@ -934,6 +934,7 @@ tr:
     dormant: Atıl
     followers: Takipçiler
     following: Takip edilenler
+    invited: Davet edildi
     last_active: Son aktivite
     most_recent: En son
     moved: Taşındı
@@ -1215,7 +1216,7 @@ tr:
       full_handle_hint: Arkadaşlarınıza, size başka bir sunucudan mesaj atabilmeleri veya sizi takip edebilmeleri için söyleyeceğiniz şey budur.
       review_preferences_action: Tercihleri değiştirin
       review_preferences_step: Hangi e-postaları almak veya gönderilerinizin varsayılan olarak hangi gizlilik seviyesinde olmasını istediğiniz gibi tercihlerinizi ayarladığınızdan emin olun. Hareket hastalığınız yoksa, GIF otomatik oynatmayı etkinleştirmeyi seçebilirsiniz.
-      subject: Mastodon'a hoşgeldiniz
+      subject: Mastodon'a hoş geldiniz
       tip_federated_timeline: Federe zaman tüneli, Mastodon ağının genel bir görüntüsüdür. Ancak yalnızca komşularınızın abone olduğu kişileri içerir, bu yüzden tamamı değildir.
       tip_following: Sunucu yönetici(ler)ini varsayılan olarak takip edersiniz. Daha ilginç insanlar bulmak için yerel ve federe zaman çizelgelerini kontrol edin.
       tip_local_timeline: Yerel zaman çizelgesi, %{instance} üzerindeki kişilerin genel bir görüntüsüdür. Bunlar senin en yakın komşularındır!
