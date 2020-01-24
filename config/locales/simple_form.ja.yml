@@ -14,10 +14,10 @@ ja:
         type_html: <strong>%{acct}</strong>さんに対し、何を行うか選択してください
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
-        all_day: チェックを入れると、期間の日付のみ表示されます
-        ends_at: オプションです。この日時でお知らせは自動的に非公開になります
-        scheduled_at: 空白にするとすぐに公開されます
-        starts_at: オプションです。お知らせが特定の期間に限られる場合に使用します
+        all_day: 有効化すると、対象期間の箇所に日付だけが記述されます
+        ends_at: オプションです。指定すると、お知らせの掲載はその時刻で自動的に終了します
+        scheduled_at: お知らせを今すぐ掲載する場合は空欄にしてください
+        starts_at: オプションです。お知らせが特定の期間に限られる場合に指定します<br>（訳註：期間の記述にのみ影響します。実際の掲載開始日時の制御は「予約掲載」機能をご利用ください）
         text: トゥートと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
@@ -89,10 +89,10 @@ ja:
           suspend: 停止しアカウントのデータを恒久的に削除する
         warning_preset_id: プリセット警告文を使用
       announcement:
-        all_day: 終日
-        ends_at: イベント終了
-        scheduled_at: 公開日時
-        starts_at: イベント開始
+        all_day: 終日として記述
+        ends_at: 掲載終了日時
+        scheduled_at: 予約掲載
+        starts_at: 対象期間の開始日時
         text: お知らせ
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
