@@ -3,6 +3,14 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.animated-number {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+}
+
 .link-button {
   display: block;
   font-size: 15px;
