@@ -3,7 +3,6 @@ import {
   ANNOUNCEMENTS_FETCH_SUCCESS,
   ANNOUNCEMENTS_FETCH_FAIL,
   ANNOUNCEMENTS_UPDATE,
-  ANNOUNCEMENTS_DISMISS,
   ANNOUNCEMENTS_REACTION_UPDATE,
   ANNOUNCEMENTS_REACTION_ADD_REQUEST,
   ANNOUNCEMENTS_REACTION_ADD_FAIL,
@@ -56,8 +55,6 @@ export default function announcementsReducer(state = initialState, action) {
     return state.set('isLoading', false);
   case ANNOUNCEMENTS_UPDATE:
     return state.update('items', list => list.unshift(fromJS(action.announcement)).sortBy(announcement => announcement.get('starts_at'))).set('shown', true);
-  case ANNOUNCEMENTS_DISMISS:
-    return state.update('items', list => list.filterNot(announcement => announcement.get('id') === action.id));
   case ANNOUNCEMENTS_REACTION_UPDATE:
     return updateReactionCount(state, action.reaction);
   case ANNOUNCEMENTS_REACTION_ADD_REQUEST:

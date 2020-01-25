@@ -5,7 +5,6 @@ export const ANNOUNCEMENTS_FETCH_REQUEST = 'ANNOUNCEMENTS_FETCH_REQUEST';
 export const ANNOUNCEMENTS_FETCH_SUCCESS = 'ANNOUNCEMENTS_FETCH_SUCCESS';
 export const ANNOUNCEMENTS_FETCH_FAIL    = 'ANNOUNCEMENTS_FETCH_FAIL';
 export const ANNOUNCEMENTS_UPDATE        = 'ANNOUNCEMENTS_UPDATE';
-export const ANNOUNCEMENTS_DISMISS       = 'ANNOUNCEMENTS_DISMISS';
 
 export const ANNOUNCEMENTS_REACTION_ADD_REQUEST = 'ANNOUNCEMENTS_REACTION_ADD_REQUEST';
 export const ANNOUNCEMENTS_REACTION_ADD_SUCCESS = 'ANNOUNCEMENTS_REACTION_ADD_SUCCESS';
@@ -53,15 +52,6 @@ export const updateAnnouncements = announcement => ({
   type: ANNOUNCEMENTS_UPDATE,
   announcement: normalizeAnnouncement(announcement),
 });
-
-export const dismissAnnouncement = announcementId => (dispatch, getState) => {
-  dispatch({
-    type: ANNOUNCEMENTS_DISMISS,
-    id: announcementId,
-  });
-
-  api(getState).post(`/api/v1/announcements/${announcementId}/dismiss`);
-};
 
 export const addReaction = (announcementId, name) => (dispatch, getState) => {
   dispatch(addReactionRequest(announcementId, name));
