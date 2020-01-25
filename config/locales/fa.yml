@@ -370,18 +370,18 @@ fa:
       private_comment: یادداشت خصوصی
       public_comment: یادداشت عمومی
       title: ارتباط خودگردانی
-      total_blocked_by_us: مسدود به دست ما
-      total_followed_by_them: پی‌گیری شده از سمت آن‌ها
-      total_followed_by_us: ما پیگیرشان هستیم
-      total_reported: گزارش درباره‌شان
+      total_blocked_by_us: مسدودشان کرده‌ایم
+      total_followed_by_them: پی‌گیری شده به دستشان
+      total_followed_by_us: پی‌گیرشان هستیم
+      total_reported: گزارش‌ها درباره‌شان
       total_storage: عکس‌ها و ویدیوها
     invites:
       deactivate_all: غیرفعال‌کردن همه
       filter:
         all: همه
-        available: در دسترس
-        expired: منقضی‌شده
-        title: فیلتر
+        available: موجود
+        expired: منقضی
+        title: پالایه
       title: دعوت‌ها
     pending_accounts:
       title: حساب‌های منتظر (%{count})
@@ -391,16 +391,16 @@ fa:
       add_new: افزودن رلهٔ تازه
       delete: حذف
       description_html: یک <strong>رلهٔ میان‌سروری</strong> (federation relay) یک سرور میانجی است که حجم زیادی از بوق‌های عمومی را بین سرورهای گوناگونی که عضوش می‌شوند جابه‌جا می‌کند. <strong>رله‌ها به سرورهای کوچک و متوسط کمک می‌کنند تا مطالب عمومی بیشتری را بیابند.</strong> اگر رله نباشد، این مطالب عمومی تنها وقتی پیدا می‌شوند که کاربران محلی خودشان پیگیر کاربران روی سرورهای دیگر شوند.
-      disable: غیرفعال‌کردن
-      disabled: غیرفعال
-      enable: فعال‌سازی
-      enable_hint: اگر فعال باشد، سرور شما عضو همهٔ بوق‌های عمومی‌ای را که از این رله می‌آید می‌گیرد، و بوق‌های عمومی این سرور را به آن می‌فرستند.
-      enabled: فعال
+      disable: از کار انداختن
+      disabled: از کار افتاده
+      enable: به کار انداختن
+      enable_hint: وقتی به کار افتد، کارسازتان مشترک همهٔ بوق‌های عمومی این رله خواهد شد و شروع به فرستادن بوق‌های عمومی این کارساز به آن خواهد کرد.
+      enabled: به کار افتاده
       inbox_url: نشانی رله
       pending: در انتظار پذیرش رله
-      save_and_enable: ذخیره و فعال‌سازی
-      setup: پیوستن به رله‌ها
-      signatures_not_enabled: وقتی حالت امن یا حالت فهرست سفید فعال باشد رله‌ها به درستی کار نخواهند کرد
+      save_and_enable: ذخیره و به کار اندازی
+      setup: برپا سازی یک اتّصال رله
+      signatures_not_enabled: رله‌ها در حالت امن یا حالت فهرست مجاز، درست کار نخواهند کرد
       status: وضعیت
       title: رله‌ها
     report_notes:
@@ -415,12 +415,12 @@ fa:
           one: "%{count} گزارش"
           other: "%{count} گزارش"
       action_taken_by: انجام‌دهنده
-      are_you_sure: آیا مطمئن هستید؟
-      assign_to_self: به عهدهٔ من بگذار
+      are_you_sure: مطمئنید؟
+      assign_to_self: واگذاری به من
       assigned: مدیر عهده‌دار
       by_target_domain: دامنهٔ حساب گزارش‌شده
       comment:
-        none: خالی
+        none: هیچ
       created_at: گزارش‌شده
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
       mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
@@ -564,7 +564,7 @@ fa:
       unique_uses_today: "%{count} امروز منتشر شده"
       unreviewed: بازبینی نشده
       updated_msg: تنظیمات برچسب‌ها با موفقیت به‌روز شد
-    title: مدیریت سرور
+    title: مدیریت
     warning_presets:
       add_new: افزودن تازه
       delete: زدودن
@@ -618,14 +618,14 @@ fa:
   auth:
     apply_for_account: درخواست دعوت‌نامه
     change_password: رمز
-    checkbox_agreement_html: من <a href="%{rules_path}" target="_blank">قانون‌های این سرور</a> و <a href="%{terms_path}" target="_blank">شرایط کاربری</a> را می‌پذیرم
+    checkbox_agreement_html: با <a href="%{rules_path}" target="_blank">قانون‌های کارساز</a> و <a href="%{terms_path}" target="_blank">شرایط خدمت</a> موافقم
     checkbox_agreement_without_rules_html: من با <a href="%{terms_path}" target="_blank">شرایط استفاده</a> موافقم
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     description:
-      prefix_invited_by_user: "@%{name} شما را به عضویت در این سرور ماستدون دعوت کرده است!"
+      prefix_invited_by_user: "@%{name} شما را به عضویت در این کارساز ماستودون دعوت کرده است!"
       prefix_sign_up: همین امروز عضو ماستدون شوید!
-      suffix: با داشتن حساب می‌توانید دیگران را پی بگیرید، نوشته‌های تازه منتشر کنید، و با کاربران دیگر از هر سرور ماستدون دیگری و حتی سرورهای دیگر در ارتباط باشید!
+      suffix: با یک حساب می‌توانید افراد را پی گرفته، به‌روز رسانی فرستاده و با کاربرانی از هر کارساز دیگر ماستودون و بیش‌تر از آن در ارتباط باشید!
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
     forgot_password: رمزتان را گم کرده‌اید؟
     invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
@@ -638,7 +638,7 @@ fa:
       cas: CAS
       saml: SAML
     register: عضو شوید
-    registration_closed: "سرور %{instance} عضو تازه‌ای نمی‌پذیرد"
+    registration_closed: "%{instance} عضو جدید نمی‌پذیرد"
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
     reset_password: بازنشانی رمز
     security: امنیت
@@ -695,7 +695,7 @@ fa:
     success_msg: حساب شما با موفقیت پاک شد
     warning:
       before: 'پیش از ادامه،‌ لطفاً نکته‌های زیر را به دقت بخوانید:'
-      caches: محتواهایی که سرورهای دیگر ذخیره کرده‌اند شاید همچنان باقی بمانند
+      caches: ممکن است محتواهایی که دیگر کارسازها ذخیره کرده‌اند، همچنان باقی بماند
       data_removal: نوشته‌ها و داده‌های شما برای همیشه پاک خواهند شد
       email_change_html: شما می‌توانید بدون پاک کردن حساب <a href="%{path}">نشانی ایمیل خود را تغییر دهید</a>
       email_contact_html: اگر ایمیل همچنان نرسیده، برای درخواست کمک به <a href="mailto:%{email}">%{email}</a> پیغام دهید
@@ -706,7 +706,7 @@ fa:
       username_unavailable: نام کاربری شما برای دیگران غیرقابل دسترس خواهد ماند
   directories:
     directory: فهرست گزیدهٔ کاربران
-    explanation: کاربران این سرور را بر اساس علاقه‌مندی‌هایشان پیدا کنید
+    explanation: کاربران را بر اساس علاقه‌مندی‌هایشان بیابید
     explore_mastodon: گشت و گذار در %{title}
   domain_validator:
     invalid_domain: نام دامین معتبر نیست
