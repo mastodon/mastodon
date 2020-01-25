@@ -68,6 +68,10 @@
     padding: 15px;
     padding-right: 15px + 18px;
     position: relative;
+    font-size: 15px;
+    line-height: 20px;
+    word-wrap: break-word;
+    font-weight: 400;
 
     &__range {
       display: block;
@@ -164,10 +168,10 @@
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 90%);
+      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 80%);
 
       .reactions-bar__item__count {
-        color: $highlight-text-color;
+        color: lighten($highlight-text-color, 8%);
       }
     }
   }
