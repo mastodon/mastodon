@@ -9,7 +9,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { Link } from 'react-router-dom';
-import { fetchAnnouncements } from 'mastodon/actions/announcements';
+import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
 import IconWithBadge from 'mastodon/components/icon_with_badge';
@@ -23,7 +23,9 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
   isPartial: state.getIn(['timelines', 'home', 'isPartial']),
-  numAnnouncements: state.getIn(['announcements', 'items']).size,
+  hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
+  unreadAnnouncements: state.getIn(['announcements', 'unread']).size,
+  showAnnouncements: state.getIn(['announcements', 'show']),
 });
 
 export default @connect(mapStateToProps)
@@ -38,13 +40,9 @@ class HomeTimeline extends React.PureComponent {
     isPartial: PropTypes.bool,
     columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
-    numAnnouncements: PropTypes.number,
-    announcementsShown: PropTypes.bool,
-  };
-
-  state = {
-    announcementsShown: true,
-    unreadAnnouncements: 0,
+    hasAnnouncements: PropTypes.bool,
+    unreadAnnouncements: PropTypes.number,
+    showAnnouncements: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -81,10 +79,6 @@ class HomeTimeline extends React.PureComponent {
 
   componentDidUpdate (prevProps) {
     this._checkIfReloadNeeded(prevProps.isPartial, this.props.isPartial);
-
-    if (!this.state.announcementsShown && this.props.numAnnouncements > prevProps.numAnnouncements) {
-      this.setState({ unreadAnnouncements: this.state.unreadAnnouncements + this.props.numAnnouncements - prevProps.numAnnouncements });
-    }
   }
 
   componentWillUnmount () {
@@ -114,24 +108,22 @@ class HomeTimeline extends React.PureComponent {
 
   handleToggleAnnouncementsClick = (e) => {
     e.stopPropagation();
-    this.setState({ announcementsShown: !this.state.announcementsShown, unreadAnnouncements: 0, animating: true });
+    this.props.dispatch(toggleShowAnnouncements());
   }
 
   render () {
-    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn, numAnnouncements } = this.props;
-    const { announcementsShown, unreadAnnouncements } = this.state;
+    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
 
-    const hasAnnouncements = numAnnouncements > 0;
     let announcementsButton = null;
 
     if (hasAnnouncements) {
       announcementsButton = (
         <button
-          className={classNames('column-header__button', { 'active': announcementsShown })}
-          title={intl.formatMessage(announcementsShown ? messages.hide_announcements : messages.show_announcements)}
-          aria-label={intl.formatMessage(announcementsShown ? messages.hide_announcements : messages.show_announcements)}
-          aria-pressed={announcementsShown ? 'true' : 'false'}
+          className={classNames('column-header__button', { 'active': showAnnouncements })}
+          title={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
+          aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
+          aria-pressed={showAnnouncements ? 'true' : 'false'}
           onClick={this.handleToggleAnnouncementsClick}
         >
           <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
@@ -155,7 +147,7 @@ class HomeTimeline extends React.PureComponent {
           <ColumnSettingsContainer />
         </ColumnHeader>
 
-        {hasAnnouncements && announcementsShown && <AnnouncementsContainer />}
+        {hasAnnouncements && showAnnouncements && <AnnouncementsContainer />}
 
         <StatusListContainer
           trackScroll={!pinned}

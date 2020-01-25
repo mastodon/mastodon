@@ -16,6 +16,8 @@ export const ANNOUNCEMENTS_REACTION_REMOVE_FAIL    = 'ANNOUNCEMENTS_REACTION_REM
 
 export const ANNOUNCEMENTS_REACTION_UPDATE = 'ANNOUNCEMENTS_REACTION_UPDATE';
 
+export const ANNOUNCEMENTS_TOGGLE_SHOW = 'ANNOUNCEMENTS_TOGGLE_SHOW';
+
 const noOp = () => {};
 
 export const fetchAnnouncements = (done = noOp) => (dispatch, getState) => {
@@ -121,3 +123,9 @@ export const updateReaction = reaction => ({
   type: ANNOUNCEMENTS_REACTION_UPDATE,
   reaction,
 });
+
+export function toggleShowAnnouncements() {
+  return dispatch => {
+    dispatch({ type: ANNOUNCEMENTS_TOGGLE_SHOW });
+  };
+}
