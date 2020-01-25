@@ -1,7 +1,6 @@
----
 it:
   about:
-    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
+    about_hashtag_html: 'Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.'
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
     active_count_after: attivo
@@ -39,7 +38,7 @@ it:
     unavailable_content_description:
       domain: Server
       reason: 'Motivo:'
-      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
+      rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
       silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
       suspended: 'Nessun dato da questi server sarà elaborato, memorizzato o scambiato, rendendo impossibile qualsiasi interazione o comunicazione con gli utenti di questi server:'
     unavailable_content_html: Mastodon generalmente permette di visualizzare i contenuti e interagire con gli utenti di qualsiasi altro server nel fediverse. Queste sono le eccezioni che sono state create su questo specifico server.
@@ -49,7 +48,7 @@ it:
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
-    choices_html: 'Suggerimenti da %{name}:'
+    choices_html: "Suggerimenti da %{name}:"
     endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
@@ -198,11 +197,13 @@ it:
         change_email_user: "%{name} ha cambiato l'indirizzo email per l'utente %{target}"
         confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
         create_account_warning: "%{name} ha mandato un avvertimento a %{target}"
+        create_announcement: "%{name} ha creato un nuovo annuncio %{target}"
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_allow: "%{name} ha messo il dominio %{target} nella whitelist"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
         demote_user: "%{name} ha degradato l'utente %{target}"
+        destroy_announcement: "%{name} ha eliminato l'annuncio %{target}"
         destroy_custom_emoji: "%{name} ha distrutto l'emoji %{target}"
         destroy_domain_allow: "%{name} ha tolto il dominio %{target} dalla whitelist"
         destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
@@ -224,10 +225,22 @@ it:
         unassigned_report: "%{name} report non assegnato %{target}"
         unsilence_account: "%{name} ha de-silenziato l'account di %{target}"
         unsuspend_account: "%{name} ha annullato la sospensione dell'account di %{target}"
+        update_announcement: "%{name} ha aggiornato l'annuncio %{target}"
         update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
         update_status: "%{name} stato aggiornato da %{target}"
       deleted_status: "(stato cancellato)"
       title: Registro di controllo
+    announcements:
+      edit:
+        title: Modifica annuncio
+      empty: Nessun annuncio trovato.
+      live: Attivo
+      new:
+        create: Crea annuncio
+        title: Nuovo annuncio
+      published: Pubblicato
+      time_range: Periodo
+      title: Annunci
     custom_emojis:
       assign_category: Assegna categoria
       by_domain: Dominio
@@ -325,7 +338,7 @@ it:
       show:
         affected_accounts:
           one: Interessato un solo account nel database
-          other: Interessati %{count} account nel database
+          other: "Interessati %{count} account nel database"
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -563,7 +576,7 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
@@ -575,9 +588,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     localization:
@@ -656,6 +667,9 @@ it:
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
     invalid_password: Password non valida
     prompt: Conferma la tua password per continuare
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ore"
@@ -732,6 +746,7 @@ it:
     hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
+      account: Profili
       home: Timeline home
       notifications: Notifiche
       public: Timeline pubbliche
@@ -756,6 +771,8 @@ it:
     all: Tutto
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
+    delete: Cancella
+    edit: Modifica
     no_batch_actions_available: Nessuna azione batch disponibile su questa pagina
     order_by: Ordina per
     save_changes: Salva modifiche
@@ -927,11 +944,15 @@ it:
     other: Altro
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
+  reactions:
+    errors:
+      unrecognized_emoji: non è un emoji riconosciuto
   relationships:
     activity: Attività dell'account
     dormant: Dormiente
     followers: Seguaci
     following: Seguiti
+    invited: Invitato
     last_active: Ultima volta attivo
     most_recent: Più recente
     moved: Trasferito
