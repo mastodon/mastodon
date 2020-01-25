@@ -175,6 +175,8 @@ ta:
         create: அறிவிப்பை உருவாக்கு
         title: புதிய அறிவிப்பு
       published: வெளியிடப்பட்டது
+      time_range: கால வரையறை
+      title: அறிவிப்புகள்
     custom_emojis:
       uncategorized: வகைப்படுத்தப்படாதவை
       unlist: பட்டியலில் இருந்து அகற்றுக
@@ -218,6 +220,9 @@ ta:
     localization:
       body: மாஸ்டோடான் தன்னார்வலர்களால் மொழிபெயர்க்கப்படுகிறது.
       guide_link_text: அனைவரும் பங்களிக்கலாம்.
+  date:
+    formats:
+      default: "%b %d, %Y"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -231,6 +236,9 @@ ta:
   filters:
     index:
       empty: தடுப்புகள் ஏதும் இல்லை.
+  generic:
+    delete: நீக்கு
+    edit: மாற்று
   invites:
     expires_in:
       '1800': 30 minutes
@@ -246,3 +254,6 @@ ta:
   polls:
     errors:
       invalid_choice: நீங்கள் தேர்வு செய்த விருப்பம் கிடைக்கவில்லை
+  reactions:
+    errors:
+      unrecognized_emoji: அங்கீகரிக்கப்பட்ட ஈமோஜி அல்ல
