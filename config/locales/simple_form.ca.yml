@@ -14,6 +14,12 @@ ca:
         text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
+      announcement:
+        all_day: Si es marca, només es mostraran les dates de l'interval de temps
+        ends_at: Opcional. En aquest moment, l’anunci deixarà automàticament d'estar publicat
+        scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
+        starts_at: Opcional. En el cas que el teu anunci estigui vinculat a un interval de temps específic
+        text: Pots utilitzar sintaxi d'un tut. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
       defaults:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
         avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
@@ -83,6 +89,12 @@ ca:
           silence: Silenci
           suspend: Suspèn i elimina irreversiblement les dades del compte
         warning_preset_id: Utilitza una configuració predefinida d'avís
+      announcement:
+        all_day: Esdeveniment de tot el dia
+        ends_at: Fi del esdeveniment
+        scheduled_at: Programa la publicació
+        starts_at: Inici del esdeveniment
+        text: Anunci
       defaults:
         autofollow: Convida a seguir el teu compte
         avatar: Avatar

@@ -2,21 +2,39 @@
 nn:
   simple_form:
     hints:
+      account_alias:
+        acct: Spesifiser brukernavn@domene til brukeren du vil flytte fra
+      account_migration:
+        acct: Spesifiser brukernavn@domene til brukeren du vil flytte til
+      account_warning_preset:
+        text: Du kan bruke tut syntaks, f.eks. URLer, emneknagger og nevnelser
       admin_account_action:
         include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
+        send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
+        text_html: Valgfritt. Du kan bruke tut syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
         type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
+      announcement:
+        all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
+        ends_at: Valgfritt. Kunngjøring vil bli automatisk avpublisert på dette tidspunktet
+        scheduled_at: La stå tomt for å publisere kunngjøringen umiddelbart
+        starts_at: Valgfritt. I tilfellet din kunngjøring er bundet til en spesifikk tidsramme
+        text: Du kan bruke tut syntaks. Vennligst vær oppmerksom på plassen som kunngjøringen vil ta opp på brukeren sin skjerm
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
+        context: En eller flere sammenhenger der filteret skal gjelde
+        current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
         discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
         email: Du får snart ein stadfestings-e-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte tuter vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
+        locale: Språket til brukergrensesnittet, e-mailer og push-varsler
         locked: Krever at du manuelt godkjenner følgere
         password: Nytt minst 8 teikn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
@@ -33,6 +51,8 @@ nn:
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
         username: Brukarnamnet ditt vert unikt på %{domain}
         whole_word: Når søkeordet eller setningen bare er alfanumerisk, aktiveres det bare hvis det samsvarer med hele ordet
+      domain_allow:
+        domain: Dette domenet vil være i stand til å hente data fra denne serveren og dets innkommende data vil bli prosessert og lagret
       featured_tag:
         name: 'Kanskje du vil nytta ein av desse:'
       form_challenge:
@@ -43,6 +63,8 @@ nn:
         text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+      tag:
+        name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun tuter i de valgte språkene bli vist i de offentlige tidslinjene
     labels:
@@ -50,9 +72,14 @@ nn:
         fields:
           name: Merkelapp
           value: Innhald
+      account_alias:
+        acct: Brukernavnet til den gamle brukeren
+      account_migration:
+        acct: Brukernavnet til den nye brukeren
       account_warning_preset:
         text: Føreåtstekst
       admin_account_action:
+        include_statuses: Inkluder rapporterte tuter i e-mailen
         send_email_notification: Varsl brukaren med e-post
         text: Eigen åtvaring
         type: Handling
@@ -62,6 +89,12 @@ nn:
           silence: Togn
           suspend: Utvis og slett kontodata for godt
         warning_preset_id: Bruk åtvaringsoppsett
+      announcement:
+        all_day: Heldagshendelse
+        ends_at: Slutten av hendelsen
+        scheduled_at: Planlegg publisering
+        starts_at: Begynnelse av hendelsen
+        text: Kunngjøring
       defaults:
         autofollow: Bed om å fylgja kontoen din
         avatar: Bilete
@@ -78,6 +111,8 @@ nn:
         expires_in: Vert ugyldig etter
         fields: Profilmetadata
         header: Overskrift
+        inbox_url: URL til overgangsinnboksen
+        irreversible: Forkast i stedet for å skjule
         locale: Språk
         locked: Lås konto
         max_uses: Grense på brukartal
@@ -134,8 +169,11 @@ nn:
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
         report: Send e-post når nokon rapporterer noko
+        trending_tag: En ugjennomgått emneknagg trender
       tag:
+        listable: Tillat denne emneknaggen å vises i søk og på profilmappen
         name: Emneknagg
+        trendable: Tillat denne emneknaggen til å vises under trender
         usable: Gje tut lov til å nytta denne emneknaggen
     'no': Nei
     recommended: Tilrådt

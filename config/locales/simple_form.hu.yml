@@ -14,6 +14,12 @@ hu:
         text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
         warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
+      announcement:
+        all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
+        ends_at: Opcionális. A közleményt ekkor automatikusan levesszük
+        scheduled_at: Hagyd üresen, hogy a közleményt azonnal közzétegyük
+        starts_at: Opcionális. Akkor használd, ha a közleményed adott időintervallumra vonatkozik
+        text: Használhatod a tülkök szintaxisát. Ügyelj arra, mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -83,6 +89,12 @@ hu:
           silence: Elnémítás
           suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
         warning_preset_id: Figyelmeztetés használata
+      announcement:
+        all_day: Egész napos esemény
+        ends_at: Esemény vége
+        scheduled_at: Közlemény időzítése
+        starts_at: Esemény kezdete
+        text: Közlemény
       defaults:
         autofollow: Meghívás a fiókod követésére
         avatar: Profilkép

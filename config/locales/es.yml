@@ -1,32 +1,32 @@
 ---
 es:
   about:
-    about_hashtag_html: Estos son barritadas públicas etiquetadas con <strong>#%{hashtag}</strong>. Puedes interactuar con ellas si tienes una cuenta en el fediverso.
-    about_mastodon_html: Mastodonte es una red social basada en protocolos web abiertos y Programas Libres y de Código Abierto - Plica/Foss -. Está descentralizado como el correo electrónico!
+    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
+    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
     about_this: Información
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
-    api: Interfaz de Programación de la Aplicación
+    api: API
     apps: Aplicaciones móviles
-    apps_platforms: Utiliza Mastodonte desde iOS, Android y otras plataformas
+    apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
     browse_directory: Navega por el directorio de perfiles y filtra por intereses
     browse_local_posts: Explora en vivo los posts públicos de este servidor
     browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
-    contact_unavailable: No disponible
+    contact_unavailable: N/A
     discover_users: Descubrir usuarios
     documentation: Documentación
-    federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodonte y más allá.
+    federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
     get_apps: Probar una aplicación móvil
-    hosted_on: Mastodonte huesped en %{domain}
+    hosted_on: Mastodon hosteado en %{domain}
     instance_actor_flash: |
       Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
       Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
-    learn_more: Aprenda más
+    learn_more: Aprende más
     privacy_policy: Política de privacidad
-    see_whats_happening: Vea lo que está pasando
+    see_whats_happening: Ver lo que está pasando
     server_stats: 'Datos del servidor:'
     source_code: Código fuente
     status_count_after:
@@ -42,16 +42,16 @@ es:
       rejecting_media: Los archivos multimedia de este servidor no serán procesados y no se mostrarán miniaturas, lo que requiere un clic manual en el otro servidor.
       silenced: Las publicaciones de este servidor no se mostrarán en ningún lugar salvo en el Inicio si sigues al autor.
       suspended: No podrás seguir a nadie de este servidor, y ningún dato de este será procesado o almacenado, y no se intercambiarán datos.
-    unavailable_content_html: Mastodonte generalmente le permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.
+    unavailable_content_html: Mastodon generalmente le permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.
     user_count_after:
       one: usuario
       other: usuarios
-    user_count_before: Inicio de
-    what_is_mastodon: "¿Qué es Mastodonte?"
+    user_count_before: Tenemos
+    what_is_mastodon: "¿Qué es Mastodon?"
   accounts:
     choices_html: 'Elecciones de %{name}:'
     endorsements_hint: Puedes recomendar a gente que sigues desde la interfaz web, y aparecerán allí.
-    featured_tags_hint: Puede presentar etiquetas específicas que se mostrarán aquí.
+    featured_tags_hint: Puede presentar hashtags específicos que se mostrarán aquí.
     follow: Seguir
     followers:
       one: Seguidor
@@ -198,11 +198,13 @@ es:
         change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_announcement: "%{name} creó el nuevo anuncio %{target}"
         create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
         create_domain_allow: "%{name} ha añadido a la lista blanca el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
         demote_user: "%{name} degradó al usuario %{target}"
+        destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_allow: "%{name} ha eliminado el dominio %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
@@ -224,10 +226,22 @@ es:
         unassigned_report: "%{name} ha desasignado la denuncia %{target}"
         unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
+        update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
       title: Log de auditoría
+    announcements:
+      edit:
+        title: Editar anuncio
+      empty: No se encontraron anuncios.
+      live: En vivo
+      new:
+        create: Crear anuncio
+        title: Nuevo anuncio
+      published: Publicados
+      time_range: Intervalo de tiempo
+      title: Anuncios
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -270,11 +284,11 @@ es:
       feature_registrations: Registros
       feature_relay: Relés de federación
       feature_spam_check: Contra-spam
-      feature_timeline_preview: Vista previa de la cronología
+      feature_timeline_preview: Vista previa de la línea de tiempo
       features: Características
       hidden_service: Federación con servicios ocultos
       open_reports: informes abiertos
-      pending_tags: etiquetas esperando revisión
+      pending_tags: hashtags esperando revisión
       pending_users: usuarios esperando por revisión
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
@@ -433,8 +447,8 @@ es:
         desc_html: Conteo de estados publicados localmente, usuarios activos, y nuevos registros en  periodos semanales
         title: Publicar estadísticas locales acerca de actividad de usuario
       bootstrap_timeline_accounts:
-        desc_html: Separa con comas los nombres de usuaria. Solo funcionará para cuentas locales desbloqueadas. Si se deja vacia, se tomará como valor por defecto a todas las administradoras locales.
-        title: Seguimientos predeterminados para usuarias nuevas
+        desc_html: Separa con comas los nombres de usuario. Solo funcionará para cuentas locales desbloqueadas. Si se deja vacío, se tomará como valor por defecto a todos los administradores locales.
+        title: Seguimientos predeterminados para usuarios nuevos
       contact_information:
         email: Correo de trabajo
         username: Nombre de usuario
@@ -452,7 +466,7 @@ es:
       domain_blocks_rationale:
         title: Mostrar la razón de ser
       enable_bootstrap_timeline_accounts:
-        title: Habilitar seguimientos predeterminados para nuevas usuarias
+        title: Habilitar seguimientos predeterminados para usuarios nuevos
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -486,7 +500,7 @@ es:
         title: Modo de registros
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
-        title: Mostrar fediverso conocido en la vista previa de la cronología
+        title: Mostrar fediverso conocido en la vista previa de la historia
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
         title: Mostrar parche de staff
@@ -497,28 +511,28 @@ es:
         desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que estén impuestas aparte en tu instancia. Puedes usar tags HTML
         title: Información extendida personalizada
       site_short_description:
-        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe lo que es Mastodonte y qué hace especial a este servidor en un solo párrafo. si está vacío, pone por defecto la descripción de la instancia.
+        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe lo que es Mastodon y qué hace especial a este servidor en un solo párrafo. si está vacío, pone por defecto la descripción de la instancia.
         title: Descripción corta de la instancia
       site_terms:
         desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
         title: Términos de servicio personalizados
       site_title: Nombre de instancia
       spam_check_enabled:
-        desc_html: Mastodonte puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
+        desc_html: Mastodon puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
         title: Contra-spam
       thumbnail:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
         title: Portada de instancia
       timeline_preview:
-        desc_html: Mostrar cronología pública en la portada
-        title: Permita acceso no autentificado a la cronología pública
+        desc_html: Mostrar línea de tiempo pública en la portada
+        title: Previsualización
       title: Ajustes del sitio
       trendable_by_default:
         desc_html: Afecta a etiquetas que no han sido previamente rechazadas
         title: Permitir que las etiquetas sean tendencia sin revisión previa
       trends:
-        desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia
-        title: Etiquetas que son tendencia
+        desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
+        title: Hashtags de tendencia
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -543,14 +557,14 @@ es:
       last_active: Última actividad
       most_popular: Más popular
       most_recent: Más reciente
-      name: Etiqueta
+      name: Hashtag
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
       trending_right_now: En tendencia ahora mismo
       unique_uses_today: "%{count} publicando hoy"
       unreviewed: No revisado
-      updated_msg: Etiquetas actualizadas con éxito
+      updated_msg: Hashtags actualizados exitosamente
     title: Administración
     warning_presets:
       add_new: Añadir nuevo
@@ -567,7 +581,7 @@ es:
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
     new_trending_tag:
-      body: 'La etiqueta #%{name} es tendencia hoy, pero no ha sido revisada previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario evitando volver a ver este mensaje.'
+      body: 'El hashtag #%{name} está en tendencia hoy, pero no ha sido revisado previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario como para no volver a ver esto.'
       subject: Nuevo hashtag para revisión en %{instance} (#%{name})
   aliases:
     add_new: Crear alias
@@ -577,7 +591,7 @@ es:
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, cronología federada, cualquier número de listas y etiquetas.'
+    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -610,9 +624,9 @@ es:
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
     description:
-      prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodonte!"
-      prefix_sign_up: "¡Únete a Mastodonte hoy!"
-      suffix: "¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodonte y más!"
+      prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
+      prefix_sign_up: "¡Únete a Mastodon hoy!"
+      suffix: "¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!"
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
@@ -657,6 +671,9 @@ es:
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña incorrecta
     prompt: Confirmar contraseña para seguir
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -708,7 +725,7 @@ es:
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
     '503': La página no se ha podido cargar debido a un fallo temporal del servidor.
-    noscript_html: Para usar la aplicación web de Mastodonte, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodonte para tu plataforma.
+    noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodon para tu plataforma.
   existing_username_validator:
     not_found: no pudo encontrar un usuario local con ese nombre de usuario
     not_found_multiple: no pudo encontrar %{usernames}
@@ -729,14 +746,14 @@ es:
   featured_tags:
     add_new: Añadir nuevo
     errors:
-      limit: Alcanzaste el máximo de etiquetados
-    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a las personas usuarias navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de obras creativas o proyectos a largo plazo."
+      limit: Ya has alcanzado la cantidad máxima de hashtags
+    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
       account: Perfiles
-      home: Cronología propia
+      home: Timeline propio
       notifications: Notificaciones
-      public: Cronología pública
+      public: Timeline público
       thread: Conversaciones
     edit:
       title: Editar filtro
@@ -755,9 +772,11 @@ es:
     resources: Recursos
     trending_now: Tendencia ahora
   generic:
-    all: Todas
+    all: Todos
     changes_saved_msg: "¡Cambios guardados con éxito!"
     copy: Copiar
+    delete: Eliminar
+    edit: Editar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
@@ -928,7 +947,11 @@ es:
   preferences:
     other: Otros
     posting_defaults: Configuración por defecto de publicaciones
-    public_timelines: Cronologías públicas
+    public_timelines: Líneas de tiempo públicas
+  reactions:
+    errors:
+      limit_reached: Límite de reacciones diferentes alcanzado
+      unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
     dormant: Inactivo
@@ -989,7 +1012,7 @@ es:
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
-    explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodonte.
+    explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1018,7 +1041,7 @@ es:
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar información
-    featured_tags: Etiquetas destacadas
+    featured_tags: Hashtags destacados
     identity_proofs: Pruebas de identidad
     import: Importar
     import_and_export: Importar y exportar
@@ -1042,8 +1065,8 @@ es:
     boosted_from_html: Impulsado desde %{acct_link}
     content_warning: 'Alerta de contenido: %{warning}'
     disallowed_hashtags:
-      one: 'contenía una etiqueta no permitida: %{tags}'
-      other: 'contenía las etiquetas no permitidas: %{tags}'
+      one: 'contenía un hashtag no permitido: %{tags}'
+      other: 'contenía los hashtags no permitidos: %{tags}'
     language_detection: Detección automática de idioma
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
@@ -1069,7 +1092,7 @@ es:
       public: Público
       public_long: Todos pueden ver
       unlisted: Público, pero no mostrar en la historia federada
-      unlisted_long: Todos pueden ver, pero no está listado en las cronologías públicas
+      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
   stream_entries:
     pinned: Toot fijado
     reblogged: retooteado
@@ -1082,9 +1105,9 @@ es:
       <h3 id="collect">¿Qué información recogemos?</h3>
 
       <ul>
-      <li><em>Información básica sobre su cuenta</em>: Si se registra en este servidor, se le requerirá un nombre de persona usuaria, una dirección de correo electrónico y una contraseña. Además puede incluir información adicional en el perfil como un nombre de perfil y una biografía, y subir una foto de perfil y una imagen de cabecera. El nombre de usuaria, nombre de perfil, biografía, foto de perfil e imagen de cabecera siempre son visibles públicamente</li>
-      <li><em>Publicaciones, seguimiento y otra información pública</em>: La lista de gente a la que sigue es mostrada públicamente, al igual que sus seguidores. Cuando publica un mensaje, la fecha y hora es almacenada, así como la aplicación desde la cual publicó el mensaje. Los mensajes pueden contener archivos adjuntos multimedia, como imágenes y vídeos. Las publicaciones públicas y no listadas están disponibles públicamente. Cuando destaca una entrada en su perfil, también es información disponible públicamente. Sus publicaciones son entregadas a sus seguidores, en algunos casos significa que son entregadas a diferentes servidores y las copias son almacenadas allí. Cuando elimina publicaciones, esto también se transfiere a sus seguidores. La acción de reenviar o marcar como favorito otra publicación es siempre pública.</li>
-      <li><em>Publicaciones directas y sólo para seguidoras</em>: Todos los mensajes se almacenan y procesan en el servidor. Las publicaciones sólo para seguidoras se entregan a las seguidoras y usuarias que se mencionan en ellas, y los mensajes directos se entregan sólo a las usuarias que se mencionan en ellos. En algunos casos significa que se entregan a diferentes servidores y que las copias se almacenan allí. Hacemos un esfuerzo de buena fe para limitar el acceso a esas publicaciones sólo a las personas autorizadas, pero otros servidores pueden no hacerlo. Por lo tanto, es importante revisar los servidores a los que pertenecen sus seguidoras. Puede cambiar una opción para aprobar y rechazar nuevas seguidoras manualmente en la configuración <em>Por favor, tenga en cuenta que las operadoras del servidor y de cualquier servidor receptor pueden ver dichos mensajes</em>, y que las destinatarias pueden capturarlos, copiarlos o volver a compartirlos de alguna otra manera. <em>No comparta ninguna información peligrosa en Mastodonte.</em></li>
+      <li><em>Información básica sobre su cuenta</em>: Si se registra en este servidor, se le requerirá un nombre de usuario, una dirección de correo electrónico y una contraseña. Además puede incluir información adicional en el perfil como un nombre de perfil y una biografía, y subir una foto de perfil y una imagen de cabecera. El nombre de usuario, nombre de perfil, biografía, foto de perfil e imagen de cabecera siempre son visibles públicamente</li>
+      <li><em>Publicaciones, seguimiento y otra información pública</em>: La lista de gente a la que sigue es mostrada públicamente, al igual que sus seguidores. Cuando publica un mensaje, la fecha y hora es almacenada, así como la aplicación desde la cual publicó el mensaje. Los mensajes pueden contener archivos adjuntos multimedia, como imágenes y vídeos. Las publicaciones públicas y no listadas están disponibles públicamente. Cuando destaca una entrada en su perfil, también es información disponible públicamente. Sus publicaciones son entregadas a sus seguidores, en algunos casos significa que son entregadas a diferentes servidores y las copias son almacenadas allí. Cuando elimina publicaciones, esto también se transfiere a sus seguidores. La acción de rebloguear o marcar como favorito otra publicación es siempre pública.</li>
+      <li><em>Publicaciones directas y sólo para seguidores</em>: Todos los mensajes se almacenan y procesan en el servidor. Los mensajes sólo para seguidores se entregan a los seguidores y usuarios que se mencionan en ellos, y los mensajes directos se entregan sólo a los usuarios que se mencionan en ellos. En algunos casos significa que se entregan a diferentes servidores y que las copias se almacenan allí. Hacemos un esfuerzo de buena fe para limitar el acceso a esas publicaciones sólo a las personas autorizadas, pero otros servidores pueden no hacerlo. Por lo tanto, es importante revisar los servidores a los que pertenecen sus seguidores. Puede cambiar una opción para aprobar y rechazar nuevos seguidores manualmente en la configuración <em>Por favor, tenga en cuenta que los operadores del servidor y de cualquier servidor receptor pueden ver dichos mensajes</em>, y que los destinatarios pueden capturarlos, copiarlos o volver a compartirlos de alguna otra manera. <em>No comparta ninguna información peligrosa en Mastodon.</em></li>
       <li><em>Direcciones IP y otros metadatos</em>: Al iniciar sesión, registramos la dirección IP desde la que se ha iniciado sesión, así como el nombre de la aplicación de su navegador. Todas las sesiones iniciadas están disponibles para su revisión y revocación en los ajustes. La última dirección IP utilizada se almacena hasta 12 meses. También podemos conservar los registros del servidor que incluyen la dirección IP de cada solicitud a nuestro servidor.</li>
       </ul>
 
@@ -1095,7 +1118,7 @@ es:
       <p>Toda la información que obtenemos de usted puede ser utilizada de las siguientes maneras:</p>
 
       <ul>
-      <li>Para proporcionar la funcionalidad principal de Mastodonte. Sólo puedes interactuar con el contenido de otras personas y publicar tu propio contenido cuando estés conectado. Por ejemplo, puedes seguir a otras personas para ver sus mensajes combinados en tu propia línea de tiempo personalizada.</li>
+      <li>Para proporcionar la funcionalidad principal de Mastodon. Sólo puedes interactuar con el contenido de otras personas y publicar tu propio contenido cuando estés conectado. Por ejemplo, puedes seguir a otras personas para ver sus mensajes combinados en tu propia línea de tiempo personalizada.</li>
       <li>Para ayudar a la moderación de la comunidad, por ejemplo, comparando su dirección IP con otras conocidas para determinar la evasión de prohibiciones u otras violaciones.</li>
       <li>La dirección de correo electrónico que nos proporcione podrá utilizarse para enviarle información, notificaciones sobre otras personas que interactúen con su contenido o para enviarle mensajes, así como para responder a consultas y/u otras solicitudes o preguntas.</li>
       </ul>
@@ -1135,9 +1158,9 @@ es:
 
       <p>No vendemos, comerciamos ni transferimos a terceros su información personal identificable. Esto no incluye a los terceros de confianza que nos asisten en la operación de nuestro sitio, en la realización de nuestros negocios o en la prestación de servicios, siempre y cuando dichas partes acuerden mantener la confidencialidad de esta información. También podemos divulgar su información cuando creamos que es apropiado para cumplir con la ley, hacer cumplir las políticas de nuestro sitio, o proteger nuestros u otros derechos, propiedad o seguridad.</p>
 
-      <p>Su contenido público puede ser descargado por otros servidores de la red. Tus mensajes públicos y sólo para seguidoras se envían a los servidores donde residen tus seguidoras, y los mensajes directos se envían a los servidores de las destinatarias, en la medida en que dichas seguidoras o destinatarias residan en un servidor diferente.</p>
+      <p>Su contenido público puede ser descargado por otros servidores de la red. Tus mensajes públicos y sólo para seguidores se envían a los servidores donde residen tus seguidores, y los mensajes directos se envían a los servidores de los destinatarios, en la medida en que dichos seguidores o destinatarios residan en un servidor diferente.</p>
 
-      <p>Cuando usted autoriza a una aplicación a usar su cuenta, dependiendo del alcance de los permisos que usted apruebe, puede acceder a la información de su perfil público, su lista de seguimiento, sus seguidoras, sus listas, todos sus mensajes y sus favoritas. Las aplicaciones nunca podrán acceder a su dirección de correo electrónico o contraseña.</p>
+      <p>Cuando usted autoriza a una aplicación a usar su cuenta, dependiendo del alcance de los permisos que usted apruebe, puede acceder a la información de su perfil público, su lista de seguimiento, sus seguidores, sus listas, todos sus mensajes y sus favoritos. Las aplicaciones nunca podrán acceder a su dirección de correo electrónico o contraseña.</p>
 
       <hr class="spacer" />
 
@@ -1160,9 +1183,9 @@ es:
       <p>Adaptado originalmente desde <a href="https://github.com/discourse/discourse">la política de privacidad de Discourse</a>.</p>
     title: Términos del Servicio y Políticas de Privacidad de %{instance}
   themes:
-    contrast: Mastodonte (Alto contraste)
-    default: Mastodonte (Oscuro)
-    mastodon-light: Mastodonte (claro)
+    contrast: Alto contraste
+    default: Mastodon
+    mastodon-light: Mastodon (claro)
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -1185,7 +1208,7 @@ es:
     wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
   user_mailer:
     backup_ready:
-      explanation: Has solicitado una copia completa de tu cuenta de Mastodonte. ¡Ya está preparada para descargar!
+      explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
       title: Descargar archivo
     warning:
@@ -1211,15 +1234,15 @@ es:
       edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezar a publicar
-      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la ristra teporal local y con "etiquetas". Podrías querer presentarte con la "etiqueta" #presentaciones o #nuevascuentas.'
+      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
       full_handle: Su sobrenombre completo
       full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
-      subject: Bienvenido a Mastodonte
-      tip_federated_timeline: La cronología federada es una vista de la red de Mastodonte. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
-      tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las cronologías local y federada.
-      tip_local_timeline: La cronología local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
+      subject: Bienvenido a Mastodon
+      tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
+      tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
+      tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
       tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
@@ -1231,5 +1254,5 @@ es:
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
   verification:
-    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodonte. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
+    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
     verification: Verificación
