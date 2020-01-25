@@ -184,7 +184,7 @@ export default class Dropdown extends React.PureComponent {
     icon: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
     size: PropTypes.number.isRequired,
-    ariaLabel: PropTypes.string,
+    title: PropTypes.string,
     disabled: PropTypes.bool,
     status: ImmutablePropTypes.map,
     isUserTouching: PropTypes.func,
@@ -197,7 +197,7 @@ export default class Dropdown extends React.PureComponent {
   };
 
   static defaultProps = {
-    ariaLabel: 'Menu',
+    title: 'Menu',
   };
 
   state = {
@@ -277,14 +277,14 @@ export default class Dropdown extends React.PureComponent {
   }
 
   render () {
-    const { icon, items, size, ariaLabel, disabled, dropdownPlacement, openDropdownId, openedViaKeyboard } = this.props;
+    const { icon, items, size, title, disabled, dropdownPlacement, openDropdownId, openedViaKeyboard } = this.props;
     const open = this.state.id === openDropdownId;
 
     return (
       <div>
         <IconButton
           icon={icon}
-          title={ariaLabel}
+          title={title}
           active={open}
           disabled={disabled}
           size={size}
