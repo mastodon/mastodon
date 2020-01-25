@@ -277,19 +277,13 @@ class Announcement extends ImmutablePureComponent {
   static propTypes = {
     announcement: ImmutablePropTypes.map.isRequired,
     emojiMap: ImmutablePropTypes.map.isRequired,
-    dismissAnnouncement: PropTypes.func.isRequired,
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
-  handleDismissClick = () => {
-    const { dismissAnnouncement, announcement } = this.props;
-    dismissAnnouncement(announcement.get('id'));
-  }
-
   render () {
-    const { announcement, intl } = this.props;
+    const { announcement } = this.props;
     const startsAt = announcement.get('starts_at') && new Date(announcement.get('starts_at'));
     const endsAt = announcement.get('ends_at') && new Date(announcement.get('ends_at'));
     const now = new Date();
@@ -314,8 +308,6 @@ class Announcement extends ImmutablePureComponent {
           removeReaction={this.props.removeReaction}
           emojiMap={this.props.emojiMap}
         />
-
-        <IconButton title={intl.formatMessage(messages.close)} icon='times' className='announcements__item__dismiss-icon' onClick={this.handleDismissClick} />
       </div>
     );
   }
@@ -328,8 +320,6 @@ class Announcements extends ImmutablePureComponent {
   static propTypes = {
     announcements: ImmutablePropTypes.list,
     emojiMap: ImmutablePropTypes.map.isRequired,
-    fetchAnnouncements: PropTypes.func.isRequired,
-    dismissAnnouncement: PropTypes.func.isRequired,
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -338,11 +328,6 @@ class Announcements extends ImmutablePureComponent {
   state = {
     index: 0,
   };
-
-  componentDidMount () {
-    const { fetchAnnouncements } = this.props;
-    fetchAnnouncements();
-  }
 
   handleChangeIndex = index => {
     this.setState({ index: index % this.props.announcements.size });
@@ -369,13 +354,12 @@ class Announcements extends ImmutablePureComponent {
         <img className='announcements__mastodon' alt='' draggable='false' src={mascot || elephantUIPlane} />
 
         <div className='announcements__container'>
-          <ReactSwipeableViews index={index} onChangeIndex={this.handleChangeIndex}>
+          <ReactSwipeableViews animateHeight index={index} onChangeIndex={this.handleChangeIndex}>
             {announcements.map(announcement => (
               <Announcement
                 key={announcement.get('id')}
                 announcement={announcement}
                 emojiMap={this.props.emojiMap}
-                dismissAnnouncement={this.props.dismissAnnouncement}
                 addReaction={this.props.addReaction}
                 removeReaction={this.props.removeReaction}
                 intl={intl}
