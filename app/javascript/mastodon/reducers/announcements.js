@@ -55,7 +55,7 @@ export default function announcementsReducer(state = initialState, action) {
   case ANNOUNCEMENTS_FETCH_FAIL:
     return state.set('isLoading', false);
   case ANNOUNCEMENTS_UPDATE:
-    return state.update('items', list => list.unshift(fromJS(action.announcement)).sortBy(announcement => announcement.get('starts_at')));
+    return state.update('items', list => list.unshift(fromJS(action.announcement)).sortBy(announcement => announcement.get('starts_at'))).set('shown', true);
   case ANNOUNCEMENTS_DISMISS:
     return state.update('items', list => list.filterNot(announcement => announcement.get('id') === action.id));
   case ANNOUNCEMENTS_REACTION_UPDATE:

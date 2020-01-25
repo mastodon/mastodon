@@ -328,7 +328,6 @@ class Announcements extends ImmutablePureComponent {
   static propTypes = {
     announcements: ImmutablePropTypes.list,
     emojiMap: ImmutablePropTypes.map.isRequired,
-    fetchAnnouncements: PropTypes.func.isRequired,
     dismissAnnouncement: PropTypes.func.isRequired,
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
@@ -338,11 +337,6 @@ class Announcements extends ImmutablePureComponent {
   state = {
     index: 0,
   };
-
-  componentDidMount () {
-    const { fetchAnnouncements } = this.props;
-    fetchAnnouncements();
-  }
 
   handleChangeIndex = index => {
     this.setState({ index: index % this.props.announcements.size });

@@ -9,15 +9,21 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { Link } from 'react-router-dom';
+import { fetchAnnouncements } from 'mastodon/actions/announcements';
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
+import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
+  show_announcements: { id: 'home.show_announcements', defaultMessage: 'Show announcements' },
+  hide_announcements: { id: 'home.hide_announcements', defaultMessage: 'Hide announcements' },
 });
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
   isPartial: state.getIn(['timelines', 'home', 'isPartial']),
+  hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
 });
 
 export default @connect(mapStateToProps)
@@ -32,6 +38,12 @@ class HomeTimeline extends React.PureComponent {
     isPartial: PropTypes.bool,
     columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
+    hasAnnouncements: PropTypes.bool,
+    announcementsShown: PropTypes.bool,
+  };
+
+  state = {
+    announcementsShown: true,
   };
 
   handlePin = () => {
@@ -62,6 +74,7 @@ class HomeTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
+    this.props.dispatch(fetchAnnouncements());
     this._checkIfReloadNeeded(false, this.props.isPartial);
   }
 
@@ -94,9 +107,31 @@ class HomeTimeline extends React.PureComponent {
     }
   }
 
+  handleToggleAnnouncementsClick = (e) => {
+    e.stopPropagation();
+    this.setState({ announcementsShown: !this.state.announcementsShown, animating: true });
+  }
+
   render () {
-    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn } = this.props;
+    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn, hasAnnouncements } = this.props;
+    const { announcementsShown } = this.state;
     const pinned = !!columnId;
+
+    let announcementsButton = null;
+
+    if (hasAnnouncements) {
+      announcementsButton = (
+        <button
+          className={classNames('column-header__button', { 'active': announcementsShown })}
+          title={intl.formatMessage(announcementsShown ? messages.hide_announcements : messages.show_announcements)}
+          aria-label={intl.formatMessage(announcementsShown ? messages.hide_announcements : messages.show_announcements)}
+          aria-pressed={announcementsShown ? 'true' : 'false'}
+          onClick={this.handleToggleAnnouncementsClick}
+        >
+          <Icon id='bullhorn' />
+        </button>
+      );
+    }
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
@@ -109,13 +144,14 @@ class HomeTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          extraButton={announcementsButton}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
 
+        {hasAnnouncements && announcementsShown && <AnnouncementsContainer />}
+
         <StatusListContainer
-          prepend={<AnnouncementsContainer />}
-          alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`home_timeline-${columnId}`}
           onLoadMore={this.handleLoadMore}
