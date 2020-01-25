@@ -14,6 +14,12 @@ es:
         text_html: Opcional. Puede usar sintaxis de toots. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
         type_html: Elige qué hacer con <strong>%{acct}</strong>
         warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
+      announcement:
+        all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
+        ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
+        scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
+        starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
+        text: Puedes usar la sintaxis toot. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -42,7 +48,7 @@ es:
         setting_noindex: Afecta a tu perfil público y páginas de estado
         setting_show_application: La aplicación que utiliza usted para publicar toots se mostrará en la vista detallada de sus toots
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
-        setting_use_pending_items: Ocultar actualizaciones cronológicas tras un clic en lugar de desplazar automáticamente la ristra
+        setting_use_pending_items: Ocultar nuevos estados detrás de un clic en lugar de desplazar automáticamente el feed
         username: Tu nombre de usuario será único en %{domain}
         whole_word: Cuando la palabra clave o frase es solo alfanumérica, solo será aplicado si concuerda con toda la palabra
       domain_allow:
@@ -52,7 +58,7 @@ es:
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
-        data: Archivo CSV exportado desde otra instancia de Mastodonte
+        data: Archivo CSV exportado desde otra instancia de Mastodon
       invite_request:
         text: Esto nos ayudará a revisar su aplicación
       sessions:
@@ -83,6 +89,12 @@ es:
           silence: Silenciar
           suspend: Suspender y eliminar de forma irreversible la información de la cuenta
         warning_preset_id: Usar un aviso predeterminado
+      announcement:
+        all_day: Evento de todo el día
+        ends_at: Fin del evento
+        scheduled_at: Programar publicación
+        starts_at: Comienzo del evento
+        text: Anuncio
       defaults:
         autofollow: Invitar a seguir tu cuenta
         avatar: Avatar
@@ -110,7 +122,7 @@ es:
         password: Contraseña
         phrase: Palabra clave o frase
         setting_advanced_layout: Habilitar interfaz web avanzada
-        setting_aggregate_reblogs: Agrupar rebarritadas en las cronologías
+        setting_aggregate_reblogs: Agrupar retoots en las líneas de tiempo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
         setting_crop_images: Recortar a 16x9 las imágenes de los toots no expandidos
@@ -157,7 +169,7 @@ es:
         pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
         report: Enviar un correo cuando se envía un nuevo informe
-        trending_tag: Enviar correo electrónico cuando una etiqueta no revisada es tendencia
+        trending_tag: Enviar correo electrónico cuando una etiqueta no revisada está de tendencia
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio del perfil
         name: Etiqueta

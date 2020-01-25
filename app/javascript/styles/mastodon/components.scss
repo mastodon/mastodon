@@ -6631,7 +6631,7 @@ noscript {
 }
 
 .announcements {
-  background: lighten($ui-base-color, 4%);
+  background: lighten($ui-base-color, 8%);
   border-top: 1px solid $ui-base-color;
   font-size: 13px;
   display: flex;
@@ -6671,12 +6671,6 @@ noscript {
       display: block;
       font-weight: 500;
       margin-bottom: 10px;
-    }
-
-    &__dismiss-icon {
-      position: absolute;
-      top: 12px;
-      right: 12px;
     }
   }
 

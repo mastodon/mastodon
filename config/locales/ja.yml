@@ -194,11 +194,13 @@ ja:
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
+        create_announcement: "%{name} さんが新しいお知らせ %{target} を作成しました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
         create_domain_allow: "%{name} さんがドメイン %{target} をドメイン用ホワイトリストに追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
         demote_user: "%{name} さんが %{target} さんを降格しました"
+        destroy_announcement: "%{name} さんがお知らせ %{target} を削除しました"
         destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
         destroy_domain_allow: "%{name} さんがドメイン %{target} をドメイン用ホワイトリストから外しました"
         destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
@@ -220,12 +222,22 @@ ja:
         unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
+        update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
       deleted_status: "(削除済)"
       title: 操作履歴
     announcements:
-      title: 告知
+      edit:
+        title: お知らせを編集
+      empty: お知らせはありません
+      live: 公開中
+      new:
+        create: お知らせを作成
+        title: お知らせを追加
+      published: 公開日時
+      time_range: 期間
+      title: お知らせ
     custom_emojis:
       assign_category: カテゴリーを割り当て
       by_domain: ドメイン
@@ -368,6 +380,8 @@ ja:
       title: 招待
     pending_accounts:
       title: 承認待ちアカウント (%{count})
+    relationships:
+      title: "%{acct} さんのフォロー・フォロワー"
     relays:
       add_new: リレーを追加
       delete: 削除
@@ -649,6 +663,9 @@ ja:
     hint_html: 以後 1 時間はパスワードの再入力を求めません
     invalid_password: パスワードが間違っています
     prompt: 続行するにはパスワードを入力してください
+  date:
+    formats:
+      default: "%Y年%m月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -725,6 +742,7 @@ ja:
     hint_html: "<strong>注目のハッシュタグとは？</strong>プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
+      account: プロフィール
       home: ホームタイムライン
       notifications: 通知
       public: 公開タイムライン
@@ -919,11 +937,16 @@ ja:
     other: その他
     posting_defaults: デフォルトの投稿設定
     public_timelines: 公開タイムライン
+  reactions:
+    errors:
+      limit_reached: リアクションの種類が上限に達しました
+      unrecognized_emoji: 認識できない絵文字
   relationships:
     activity: 活動
     dormant: 非アクティブ
     followers: フォロワー
     following: フォロー中
+    invited: 招待済み
     last_active: 最後の活動
     most_recent: 新着
     moved: 引っ越し済み
@@ -988,7 +1011,7 @@ ja:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: 不明なプラットフォーム
       windows: Windows
       windows_mobile: Windows Mobile

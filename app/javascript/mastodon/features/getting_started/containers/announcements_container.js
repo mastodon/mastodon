@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchAnnouncements, dismissAnnouncement, addReaction, removeReaction } from 'mastodon/actions/announcements';
+import { addReaction, removeReaction } from 'mastodon/actions/announcements';
 import Announcements from '../components/announcements';
 import { createSelector } from 'reselect';
 import { Map as ImmutableMap } from 'immutable';
@@ -12,8 +12,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAnnouncements: () => dispatch(fetchAnnouncements()),
-  dismissAnnouncement: id => dispatch(dismissAnnouncement(id)),
   addReaction: (id, name) => dispatch(addReaction(id, name)),
   removeReaction: (id, name) => dispatch(removeReaction(id, name)),
 });
