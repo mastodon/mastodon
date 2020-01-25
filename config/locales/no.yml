@@ -2,7 +2,7 @@
   about:
     about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
     about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
-    about_this: Om denne instansen
+    about_this: Om
     active_count_after: aktive
     active_footnote: Månedlige aktive brukere (MAU)
     administered_by: 'Administrert av:'
@@ -655,6 +655,7 @@
       x_months: "%{count} mnd"
       x_seconds: "%{count} sek"
   deletes:
+    challenge_not_passed: Informasjonen du oppga var ikke korrekt
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
     confirm_username: Skriv inn brukernavnet ditt for å bekrefte prosedyren
     proceed: Slett konto
@@ -711,6 +712,7 @@
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
+      account: Profiler
       home: Hjemmetidslinje
       notifications: Varslinger
       public: Offentlige tidslinjer
@@ -731,6 +733,8 @@
     all: Alle
     changes_saved_msg: Vellykket lagring av endringer!
     copy: Kopier
+    delete: Slett
+    edit: Rediger
     order_by: Sorter etter
     save_changes: Lagre endringer
     validation_errors:
@@ -881,6 +885,7 @@
     dormant: Dormende
     followers: Følgere
     following: Følginger
+    invited: Invitert
     last_active: Senest aktiv
     most_recent: Nyligst
     moved: Flyttet
@@ -1127,6 +1132,7 @@
         silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
         suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
       get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
+      review_server_policies: Gjennomgå serverretningslinjer
       statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
@@ -1156,6 +1162,7 @@
       tips: Tips
       title: Velkommen ombord, %{name}!
   users:
+    follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
     signed_in_as: 'Innlogget som:'
