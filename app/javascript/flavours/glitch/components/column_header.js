@@ -42,6 +42,7 @@ class ColumnHeader extends React.PureComponent {
     onMove: PropTypes.func,
     onClick: PropTypes.func,
     intl: PropTypes.object.isRequired,
+    appendContent: PropTypes.node,
   };
 
   state = {
@@ -106,7 +107,7 @@ class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { intl, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive, placeholder } = this.props;
+    const { intl, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, notifCleaning, notifCleaningActive, placeholder, appendContent } = this.props;
     const { collapsed, animating, animatingNCD } = this.state;
 
     let title = this.props.title;
@@ -229,6 +230,8 @@ class ColumnHeader extends React.PureComponent {
             {(!collapsed || animating) && collapsedContent}
           </div>
         </div>
+
+        {appendContent}
       </div>
     );
 
