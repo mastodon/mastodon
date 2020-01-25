@@ -200,11 +200,13 @@ hu:
         change_email_user: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
         confirm_user: "%{name} megerősítette e-mail címét: %{target}"
         create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
+        create_announcement: "%{name} új közleményt hozott létre %{target}"
         create_custom_emoji: "%{name} új emojit töltött fel: %{target}"
         create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
+        destroy_announcement: "%{name} törölte a közleményt %{target}"
         destroy_custom_emoji: "%{name} törölte az emojit: %{target}"
         destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
@@ -226,10 +228,22 @@ hu:
         unassigned_report: "%{name} törölte a %{target} bejelentés hozzárendelését"
         unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
+        update_announcement: "%{name} frissítette a közleményt %{target}"
         update_custom_emoji: "%{name} frissítette az alábbi emojit: %{target}"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       title: Audit napló
+    announcements:
+      edit:
+        title: Közlemény szerkesztése
+      empty: Nincs közlemény.
+      live: Élő
+      new:
+        create: Közlemény létrehozása
+        title: Új közlemény
+      published: Közzétéve
+      time_range: Időintervallum
+      title: Közlemények
     custom_emojis:
       assign_category: Kategóriák
       by_domain: Domain
@@ -374,6 +388,8 @@ hu:
       title: Meghívások
     pending_accounts:
       title: Függőben lévő fiókok (%{count})
+    relationships:
+      title: "%{acct} kapcsolatai"
     relays:
       add_new: Új relé hozzáadása
       delete: Törlés
@@ -657,6 +673,9 @@ hu:
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
     invalid_password: Érvénytelen jelszó
     prompt: Add meg a jelszót a folytatáshoz
+  date:
+    formats:
+      default: "%Y.%b.%d."
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -733,6 +752,7 @@ hu:
     hint_html: "<strong>Mik a kiemelt hashtagek?</strong> Ezek állandóan megjelennek a nyilvános profilodon és lehetővé teszik, hogy mások kifejezetten az ezekhez tartozó tülkjeidet böngésszék. Jó eszköz ez kreatív munkák vagy hosszútávú projektek nyomonkövetésére."
   filters:
     contexts:
+      account: Profil
       home: Saját idővonal
       notifications: Értesítések
       public: Nyilvános idővonalak
@@ -757,6 +777,8 @@ hu:
     all: Mind
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
+    delete: Törlés
+    edit: Szerkesztés
     no_batch_actions_available: Ezen az oldalon nem elérhetőek kötegelt műveletek
     order_by: Rendezés
     save_changes: Változások mentése
@@ -928,11 +950,15 @@ hu:
     other: Egyéb
     posting_defaults: Tülkölés alapértelmezései
     public_timelines: Nyilvános idővonalak
+  reactions:
+    errors:
+      unrecognized_emoji: nem ismert emoji
   relationships:
     activity: Fiók aktivitás
     dormant: Elhagyott
     followers: Követők
     following: Követve
+    invited: Meghívva
     last_active: Utoljára aktív
     most_recent: Legutóbbi
     moved: Átköltöztetve

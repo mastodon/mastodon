@@ -14,6 +14,12 @@ id:
         text_html: Opsional. Anda dapat memakai sintaks toot. Anda dapat <a href="%{path}">menambahkan preset peringatan</a> untuk hemat waktu
         type_html: Pilih apa yang perlu dilakukan dengan <strong>%{acct}</strong>
         warning_preset_id: Opsional. Anda tetap dapat menambahkan teks kustom pada akhir preset
+      announcement:
+        all_day: Saat dicentang, hanya tanggal dalam rentang waktu tertentu yang akan ditampilkan
+        ends_at: Opsional. Pengumuman akan diterbitkan secara otomatis saat ini
+        scheduled_at: Biarkan kosong jika ingin menerbitkan pengumuman secara langsung
+        starts_at: Opsional. Persiapan jika pengumuman Anda terikat pada rentang waktu tertentu
+        text: Anda dapat menggunakan sintaks toot. Mohon perhatikan ruang pengumuman yang mungkin akan memenuhi layar pengguna
       defaults:
         autofollow: Orang yang ingin mendaftar lewat undangan, otomatis mengikuti Anda
         avatar: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px

@@ -198,11 +198,13 @@ el:
         change_email_user: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
         confirm_user: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
         create_account_warning: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
+        create_announcement: Νέα ανακοίνωση %{target} από %{name}
         create_custom_emoji: Ο/Η %{name} ανέβασε νέο emoji %{target}
         create_domain_allow: Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα
         create_domain_block: Ο/Η %{name} μπλόκαρε τον τομέα %{target}
         create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα
         demote_user: Ο/Η %{name} υποβίβασε το χρήστη %{target}
+        destroy_announcement: Διαγραφή ανακοίνωσης %{target} από %{name}
         destroy_custom_emoji: Ο/Η %{name} κατέστρεψε το emoji %{target}
         destroy_domain_allow: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από λίστα εγκρίσεων
         destroy_domain_block: Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}
@@ -224,10 +226,22 @@ el:
         unassigned_report: Ο/Η %{name} αποδέσμευσε την καταγγελία %{target}
         unsilence_account: Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της %{target}
         unsuspend_account: Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}
+        update_announcement: Ενημέρωση ανακοίνωσης %{target} από %{name}
         update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
         update_status: Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}
       deleted_status: "(διαγραμμένη δημοσίευση)"
       title: Αρχείο ελέγχου
+    announcements:
+      edit:
+        title: Ενημέρωση ανακοίνωσης
+      empty: Δεν βρέθηκε ανακοίνωση.
+      live: Ενεργές
+      new:
+        create: Δημιουργία ανακοίνωσης
+        title: Νέα ανακοίνωση
+      published: Δημοσιευμένη
+      time_range: Χρονική διάρκεια
+      title: Ανακοινώσεις
     custom_emojis:
       assign_category: Κατηγορία
       by_domain: Τομέας
@@ -372,6 +386,8 @@ el:
       title: Προσκλήσεις
     pending_accounts:
       title: Λογαριασμοί σε αναμονή (%{count})
+    relationships:
+      title: Σχέσεις %{acct}
     relays:
       add_new: Πρόσθεσε νέο ανταποκριτή (relay)
       delete: Διαγραφή
@@ -655,6 +671,9 @@ el:
     hint_html: "<strong>Συμβουλή:</strong> Δεν θα σου ζητήσουμε τον κωδικό ασφαλείας σου ξανά για την επόμενη ώρα."
     invalid_password: Μη έγκυρο συνθηματικό
     prompt: Επιβεβαίωση συνθηματικού για συνέχεια
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ω"
@@ -731,6 +750,7 @@ el:
     hint_html: "<strong>Τι είναι οι προβεβλημένες ταμπέλες;</strong> Προβάλλονται στο δημόσιο προφίλ σου επιτρέποντας σε όποιον το βλέπει να χαζέψει τις δημοσιεύσεις που τις χρησιμοποιούν. Είναι ωραίος τρόπος να παρακολουθείς κάποια δημιουργία ή ένα μακροπρόθεσμο έργο."
   filters:
     contexts:
+      account: Προφίλ
       home: Αρχική ροή
       notifications: Ειδοποιήσεις
       public: Δημόσιες ροές
@@ -755,6 +775,8 @@ el:
     all: Όλα
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
     copy: Αντιγραφή
+    delete: Διαγραφή
+    edit: Ενημέρωση
     no_batch_actions_available: Δεν υπάρχουν ομαδικές ενέργειες σε αυτή τη σελίδα
     order_by: Ταξινόμηση κατά
     save_changes: Αποθήκευση αλλαγών
@@ -926,11 +948,15 @@ el:
     other: Άλλες
     posting_defaults: Προεπιλογές δημοσίευσης
     public_timelines: Δημόσιες ροές
+  reactions:
+    errors:
+      unrecognized_emoji: δεν αναγνωρίζεται ως emoji
   relationships:
     activity: Δραστηριότητα λογαριασμού
     dormant: Αδρανείς
     followers: Σε ακολουθούν
     following: Ακολουθείς
+    invited: Προσκεκλημένοι
     last_active: Τελευταία δραστηριότητα
     most_recent: Πιο πρόσφατα
     moved: Μετακόμισε

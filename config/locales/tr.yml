@@ -198,11 +198,13 @@ tr:
         change_email_user: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
         confirm_user: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
         create_account_warning: "%{name} %{target} 'a bir uyarı gönderdi"
+        create_announcement: "%{name}, yeni %{target} duyurusunu oluşturdu"
         create_custom_emoji: "%{name} yeni ifade yükledi %{target}"
         create_domain_allow: "%{target} alan adı, %{name} tarafından beyaz listeye alındı"
         create_domain_block: "%{target} alanı, %{name} tarafından engellendi"
         create_email_domain_block: "%{target} e-posta alanı, %{name} tarafından kara listeye alınmış"
         demote_user: "%{name} %{target} kullanıcısını düşürdü"
+        destroy_announcement: "%{name}, %{target} duyurusunu sildi"
         destroy_custom_emoji: "%{target} emoji, %{name} tarafından kaldırıldı"
         destroy_domain_allow: "%{target} alan adı, %{name} tarafından beyaz listeden çıkartıldı"
         destroy_domain_block: "%{target} alan adının engeli %{name} tarafından kaldırıldı"
@@ -224,10 +226,22 @@ tr:
         unassigned_report: "%{name} %{target} şikayetinin atamasını geri aldı"
         unsilence_account: "%{name} %{target}'in hesabının susturmasını kaldırdı"
         unsuspend_account: "%{name} %{target}'in hesabının uzaklaştırmasını kaldırdı"
+        update_announcement: "%{name}, %{target} duyurusunu güncelledi"
         update_custom_emoji: "%{name} %{target} emojiyi güncelledi"
         update_status: "%{name}, %{target} kullanıcısının durumunu güncelledi"
       deleted_status: "(silinmiş durum)"
       title: Denetim günlüğü
+    announcements:
+      edit:
+        title: Duyuruyu düzenle
+      empty: Duyuru bulunamadı.
+      live: Canlı
+      new:
+        create: Duyuru oluştur
+        title: Yeni duyuru
+      published: Yayınlanan
+      time_range: Zaman aralığı
+      title: Duyurular
     custom_emojis:
       assign_category: Kategori ata
       by_domain: Alan adı
@@ -657,6 +671,9 @@ tr:
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
     invalid_password: Geçersiz parola
     prompt: Devam etmek parolayı doğrulayın
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}sa"
@@ -758,6 +775,8 @@ tr:
     all: Tümü
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
+    delete: Sil
+    edit: Düzenle
     no_batch_actions_available: Bu sayfada toplu işlem yok
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
@@ -929,6 +948,10 @@ tr:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
+  reactions:
+    errors:
+      limit_reached: Farklı reaksiyonların sınırına ulaşıldı
+      unrecognized_emoji: tanınan bir emoji değil
   relationships:
     activity: Hesap etkinliği
     dormant: Atıl

@@ -206,11 +206,13 @@ ru:
         change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
         confirm_user: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
         create_account_warning: "%{name} выдал(а) предупреждение %{target}"
+        create_announcement: "%{name} содал новое объявление %{target}"
         create_custom_emoji: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_allow: "%{name} внес(ла) домен %{target} в белый список"
         create_domain_block: "%{name} заблокировал(а) домен %{target}"
         create_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в чёрный список"
         demote_user: "%{name} разжаловал(а) пользователя %{target}"
+        destroy_announcement: "%{name} удалил объявление %{target}"
         destroy_custom_emoji: "%{name} измельчил(а) эмодзи %{target} в пыль"
         destroy_domain_allow: "%{name} убрал домен %{target} из белого списка"
         destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
@@ -232,10 +234,22 @@ ru:
         unassigned_report: "%{name} сняла назначение жалобы %{target}"
         unsilence_account: "%{name} снял ограничения видимости постов пользователя %{target}"
         unsuspend_account: "%{name} снял(а) блокировку с пользователя %{target}"
+        update_announcement: "%{name} обновил объявление %{target}"
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
         update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
       title: Журнал событий
+    announcements:
+      edit:
+        title: Редактировать объявление
+      empty: Объявления не найдены.
+      live: В эфире
+      new:
+        create: Создать объявление
+        title: Новое объявление
+      published: Опубликованные
+      time_range: Временной диапазон
+      title: Объявления
     custom_emojis:
       assign_category: Задать категорию
       by_domain: Домен
@@ -678,6 +692,9 @@ ru:
     hint_html: "<strong>Подсказка</strong>: мы не будем спрашивать пароль повторно в течение часа."
     invalid_password: Неверный пароль
     prompt: Введите пароль для продолжения
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ч"
@@ -779,6 +796,8 @@ ru:
     all: Любой
     changes_saved_msg: Изменения успешно сохранены!
     copy: Копировать
+    delete: Удалить
+    edit: Изменить
     no_batch_actions_available: На этой странице нет запланированных действий
     order_by: Сортировка
     save_changes: Сохранить изменения
@@ -958,6 +977,10 @@ ru:
     other: Всё остальное
     posting_defaults: Настройки отправки по умолчанию
     public_timelines: Публичные ленты
+  reactions:
+    errors:
+      limit_reached: Достигнут лимит разных реакций
+      unrecognized_emoji: не является распознанным эмодзи
   relationships:
     activity: Активность учётной записи
     dormant: Заброшенная

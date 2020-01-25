@@ -198,11 +198,13 @@ ca:
         change_email_user: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
         confirm_user: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
         create_account_warning: "%{name} ha enviat un avís a %{target}"
+        create_announcement: "%{name} ha creat un nou anunci %{target}"
         create_custom_emoji: "%{name} ha pujat un nou emoji %{target}"
         create_domain_allow: "%{name} ha afegit a la llista blanca el domini %{target}"
         create_domain_block: "%{name} ha blocat el domini %{target}"
         create_email_domain_block: "%{name} ha afegit a la llista negra el domini del correu electrònic %{target}"
         demote_user: "%{name} ha degradat l'usuari %{target}"
+        destroy_announcement: "%{name} ha eliminat l'anunci %{target}"
         destroy_custom_emoji: "%{name} ha destruït l'emoji %{target}"
         destroy_domain_allow: "%{name} ha eliminat el domini %{target} de la llista blanca"
         destroy_domain_block: "%{name} ha desblocat el domini %{target}"
@@ -224,10 +226,22 @@ ca:
         unassigned_report: "%{name} ha des-assignat l'informe %{target}"
         unsilence_account: "%{name} ha silenciat el compte de %{target}"
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
+        update_announcement: "%{name} ha actualitzat l'anunci %{target}"
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
         update_status: "%{name} estat actualitzat per %{target}"
       deleted_status: "(tut esborrat)"
       title: Registre d'auditoria
+    announcements:
+      edit:
+        title: Edita l'anunci
+      empty: No s'ha trobat cap anunci.
+      live: En viu
+      new:
+        create: Crea un anunci
+        title: Nou anunci
+      published: Publicat
+      time_range: Interval de temps
+      title: Anuncis
     custom_emojis:
       assign_category: Assigna una categoria
       by_domain: Domini
@@ -657,6 +671,9 @@ ca:
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
     invalid_password: Contrasenya no vàlida
     prompt: Confirmi la contrasenya per a continuar
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -758,6 +775,8 @@ ca:
     all: Tot
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copia
+    delete: Esborra
+    edit: Edita
     no_batch_actions_available: Cap accions de lot disponibles en aquesta pàgina
     order_by: Ordena per
     save_changes: Desa els canvis
@@ -929,6 +948,9 @@ ca:
     other: Altre
     posting_defaults: Valors predeterminats de publicació
     public_timelines: Línies de temps públiques
+  reactions:
+    errors:
+      unrecognized_emoji: no és un emoji reconegut
   relationships:
     activity: Activitat del compte
     dormant: Inactiu

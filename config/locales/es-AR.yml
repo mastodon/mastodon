@@ -198,11 +198,13 @@ es-AR:
         change_email_user: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_announcement: "%{name} creó el nuevo anuncio %{target}"
         create_custom_emoji: "%{name} subió nuevo emoji %{target}"
         create_domain_allow: "%{name} aprobó el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} desaprobó el dominio de correo electrónico %{target}"
         demote_user: "%{name} bajó de nivel al usuario %{target}"
+        destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_allow: "%{name} quitó el dominio %{target} de los permitidos"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
@@ -224,10 +226,22 @@ es-AR:
         unassigned_report: "%{name} desasignó la denuncia %{target}"
         unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
+        update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
       title: Registro de auditoría
+    announcements:
+      edit:
+        title: Editar anuncio
+      empty: No se encontraron anuncios.
+      live: En vivo
+      new:
+        create: Crear anuncio
+        title: Nuevo anuncio
+      published: Publicados
+      time_range: Rango de tiempo
+      title: Anuncios
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -657,6 +671,9 @@ es-AR:
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña no válida
     prompt: Confirmar contraseña para seguir
+  date:
+    formats:
+      default: "%Y.%b.%d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -758,6 +775,8 @@ es-AR:
     all: Todas
     changes_saved_msg: "¡Cambios guardados exitosamente!"
     copy: Copiar
+    delete: Eliminar
+    edit: Editar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
@@ -929,6 +948,9 @@ es-AR:
     other: Otros
     posting_defaults: Configuración predeterminada de publicaciones
     public_timelines: Líneas temporales públicas
+  reactions:
+    errors:
+      unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
     dormant: Inactivas
