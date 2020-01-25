@@ -327,6 +327,8 @@ th:
       title: คำเชิญ
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
+    relationships:
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -599,6 +601,7 @@ th:
     add_new: เพิ่มใหม่
   filters:
     contexts:
+      account: โปรไฟล์
       home: เส้นเวลาหน้าแรก
       notifications: การแจ้งเตือน
       public: เส้นเวลาสาธารณะ
@@ -725,6 +728,7 @@ th:
     activity: กิจกรรมบัญชี
     followers: ผู้ติดตาม
     following: กำลังติดตาม
+    invited: เชิญแล้ว
     last_active: ใช้งานล่าสุด
     most_recent: ล่าสุด
     moved: ย้ายแล้ว
