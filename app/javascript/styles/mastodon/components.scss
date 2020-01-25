@@ -3,6 +3,14 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.animated-number {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+}
+
 .link-button {
   display: block;
   font-size: 15px;
@@ -5731,6 +5739,8 @@ a.status-card.compact:hover {
     text-align: center;
     text-decoration: none;
     position: relative;
+    overflow: hidden;
+    width: 100%;
 
     &.active {
       color: $secondary-text-color;
@@ -6652,6 +6662,10 @@ noscript {
     padding: 15px;
     padding-right: 15px + 18px;
     position: relative;
+    font-size: 15px;
+    line-height: 20px;
+    word-wrap: break-word;
+    font-weight: 400;
 
     &__range {
       display: block;
@@ -6748,10 +6762,10 @@ noscript {
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 90%);
+      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 80%);
 
       .reactions-bar__item__count {
-        color: $highlight-text-color;
+        color: lighten($highlight-text-color, 8%);
       }
     }
   }
