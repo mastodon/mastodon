@@ -1,8 +1,7 @@
----
 pt-PT:
   about:
-    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
+    about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
     about_this: Sobre esta instância
     active_count_after: activo
     active_footnote: Utilizadores activos mensais (UAM)
@@ -49,7 +48,7 @@ pt-PT:
     user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: 'escolhas de %{name}:'
+    choices_html: "escolhas de %{name}:"
     endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
@@ -198,11 +197,13 @@ pt-PT:
         change_email_user: "%{name} alterou o endereço de e-mail do utilizador %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning: "%{name} enviou um aviso para %{target}"
+        create_announcement: "%{name} criou um novo anúncio %{target}"
         create_custom_emoji: "%{name} enviado emoji novo %{target}"
         create_domain_allow: "%{name} colocou o domínio %{target} na lista branca"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} adicionou na lista negra o domínio de correio electrónico %{target}"
         demote_user: "%{name} rebaixou o utilizador %{target}"
+        destroy_announcement: "%{name} excluiu o anúncio %{target}"
         destroy_custom_emoji: "%{name} destruiu o emoji %{target}"
         destroy_domain_allow: "%{name} removeu o domínio %{target} da lista branca"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
@@ -224,10 +225,22 @@ pt-PT:
         unassigned_report: "%{name} não atribuiu o relatório %{target}"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
+        update_announcement: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o estado de %{target}"
       deleted_status: "(apagou a publicação)"
       title: Registo de auditoria
+    announcements:
+      edit:
+        title: Editar anúncio
+      empty: Nenhum anúncio encontrado.
+      live: Em exibição
+      new:
+        create: Criar anúncio
+        title: Novo anúncio
+      published: Publicado
+      time_range: Intervalo de tempo
+      title: Anúncios
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
@@ -373,7 +386,7 @@ pt-PT:
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Apagar
@@ -565,10 +578,10 @@ pt-PT:
     new_report:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
-      subject: Novo relatório sobre %{instance} (#%{id})
+      subject: 'Novo relatório sobre %{instance} (#%{id})'
     new_trending_tag:
       body: 'A hashtag #%{name} está hoje a destacar-se, mas não foi anteriormente revista. Ela não será exibida publicamente a menos que você o permita, ou limite-se a salvar o formulário tal como está, para nunca mais ouvir falar dela.'
-      subject: Nova hashtag para revisão em %{instance} (#%{name})
+      subject: 'Nova hashtag para revisão em %{instance} (#%{name})'
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
@@ -657,6 +670,9 @@ pt-PT:
     hint_html: "<strong>Dica:</strong> Não vamos pedir novamente a sua senha durante a próxima hora."
     invalid_password: Senha inválida
     prompt: Confirme a sua senha para continuar
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -758,6 +774,8 @@ pt-PT:
     all: Tudo
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
+    delete: Eliminar
+    edit: Editar
     no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Guardar alterações
@@ -888,7 +906,7 @@ pt-PT:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: "%{name} mencionou-te"
+      subject: '%{name} mencionou-te'
       title: Nova menção
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
@@ -929,6 +947,10 @@ pt-PT:
     other: Outro
     posting_defaults: Padrões de publicação
     public_timelines: Cronologias públicas
+  reactions:
+    errors:
+      limit_reached: Limite de reações diferentes atingido
+      unrecognized_emoji: não é um emoji reconhecido
   relationships:
     activity: Atividade da conta
     dormant: Inativo
