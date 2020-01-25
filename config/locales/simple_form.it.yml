@@ -18,6 +18,7 @@ it:
         ends_at: Opzionale. L'annuncio verrà automaticamente ritirato in questo momento
         scheduled_at: Lascia vuoto per pubblicare immediatamente l'annuncio
         starts_at: Opzionale. Quando l'annuncio è legato a un intervallo di tempo specifico
+        text: Puoi usare la sintassi dei toot. Tieni presente lo spazio che l'annuncio occuperà nello schermo dell'utente
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
         avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
@@ -87,6 +88,12 @@ it:
           silence: Silenzia
           suspend: Sospendi e cancella i dati dell'account in modo irreversibile
         warning_preset_id: Usa un avviso preimpostato
+      announcement:
+        all_day: Tutto il giorno
+        ends_at: Fine dell'evento
+        scheduled_at: Programma la pubblicazione
+        starts_at: Inizio dell'evento
+        text: Annuncio
       defaults:
         autofollow: Invita a seguire il tuo account
         avatar: Immagine di profilo
