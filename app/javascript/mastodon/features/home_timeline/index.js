@@ -143,11 +143,10 @@ class HomeTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           extraButton={announcementsButton}
+          appendContent={hasAnnouncements && showAnnouncements && <AnnouncementsContainer />}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
-
-        {hasAnnouncements && showAnnouncements && <AnnouncementsContainer />}
 
         <StatusListContainer
           trackScroll={!pinned}

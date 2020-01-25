@@ -56,12 +56,27 @@ export const updateAnnouncements = announcement => ({
 });
 
 export const addReaction = (announcementId, name) => (dispatch, getState) => {
-  dispatch(addReactionRequest(announcementId, name));
+  const announcement = getState().getIn(['announcements', 'items']).find(x => x.get('id') === announcementId);
+
+  let alreadyAdded = false;
+
+  if (announcement) {
+    const reaction = announcement.get('reactions').find(x => x.get('name') === name);
+    if (reaction && reaction.get('me')) {
+      alreadyAdded = true;
+    }
+  }
+
+  if (!alreadyAdded) {
+    dispatch(addReactionRequest(announcementId, name, alreadyAdded));
+  }
 
   api(getState).put(`/api/v1/announcements/${announcementId}/reactions/${name}`).then(() => {
-    dispatch(addReactionSuccess(announcementId, name));
+    dispatch(addReactionSuccess(announcementId, name, alreadyAdded));
   }).catch(err => {
-    dispatch(addReactionFail(announcementId, name, err));
+    if (!alreadyAdded) {
+      dispatch(addReactionFail(announcementId, name, err));
+    }
   });
 };
 
