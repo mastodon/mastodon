@@ -145,42 +145,42 @@ fa:
       most_recent_ip: IPهای اخیر
       no_account_selected: هیچ حسابی تغییر نکرد زیرا حسابی انتخاب نشده بود
       no_limits_imposed: بدون محدودیت
-      not_subscribed: عضو نیست
+      not_subscribed: مشترک نیست
       pending: در انتظار بررسی
       perform_full_suspension: تعلیق
-      promote: ترفیع‌دادن
-      protocol: پروتکل
+      promote: ترفیع
+      protocol: قرارداد
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
-      redownload: به‌روزرسانی نمایه
-      reject: نپذیرفتن
-      reject_all: نپذیرفتن هیچکدام
-      remove_avatar: حذف تصویر نمایه
+      redownload: نوسازی نمایه
+      reject: رد کردن
+      reject_all: رد کردن همه
+      remove_avatar: برداشتن آواتار
       remove_header: برداشتن تصویر زمینه
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
-        send: ایمیل تایید را دوباره بفرستید
-        success: ایمیل تایید با موفقیت ارسال شد!
+        send: ارسال دوبارهٔ رایانامهٔ تاییدیه
+        success: رایانامهٔ تاییدیه با موفقیت ارسال شد!
       reset: بازنشانی
-      reset_password: بازنشانی رمز
+      reset_password: بازنشانی گذرواژه
       resubscribe: اشتراک دوباره
       role: اجازه‌ها
       roles:
         admin: مدیر
-        moderator: ناظم
+        moderator: ناظر
         staff: کارمند
         user: کاربر
-      search: جستجو
-      search_same_ip: دیگر کاربران با همان IP
+      search: جست‌وجو
+      search_same_ip: دیگر کاربران با IP یکسان
       shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
         created_reports: گزارش‌های ثبت کرده
         targeted_reports: گزارش‌های دیگران
-      silence: بی‌صدا
-      silenced: بی‌صداشده
-      statuses: نوشته‌ها
+      silence: خموشی
+      silenced: خموش
+      statuses: وضعیت‎ها
       subscribe: اشتراک
-      suspended: تعلیق‌شده
+      suspended: معلق
       time_in_queue: در حال انتظار %{time}
       title: حساب‌ها
       unconfirmed_email: ایمیل تأییدنشده
@@ -204,11 +204,11 @@ fa:
         create_email_domain_block: "%{name} دامین ایمیل %{target} را مسدود کرد"
         demote_user: "%{name} مقام کاربر %{target} را تنزل داد"
         destroy_announcement: "%{name} اعلامیهٔ %{target} را حذف کرد"
-        destroy_custom_emoji: "%{name} شکلک %{target} را حذف کرد"
+        destroy_custom_emoji: "%{name} اموجی %{target} را نابود کرد"
         destroy_domain_allow: "%{name} دامنهٔ %{target} را فهرست مجاز برداشت"
-        destroy_domain_block: "%{name} دامین %{target} را باز کرد"
-        destroy_email_domain_block: "%{name} دامین ایمیل %{target} را باز کرد"
-        destroy_status: "%{name} نوشته‌ای از %{target} را پاک کرد"
+        destroy_domain_block: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
+        destroy_email_domain_block: "%{name} دامنهٔ رایانامهٔ %{target} را به فهرست مجاز افزود"
+        destroy_status: "%{name} وضعیت %{target} را برداشت"
         disable_2fa_user: "%{name} اجبار ورود دومرحله‌ای را برای کاربر %{target} غیرفعال کرد"
         disable_custom_emoji: "%{name} شکلک %{target} را غیرفعال کرد"
         disable_user: "%{name} ورود را برای کاربر %{target} غیرفعال کرد"
@@ -228,8 +228,8 @@ fa:
         update_announcement: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
-      deleted_status: "(بوق پاک‌شده)"
-      title: سیاههٔ بازرسی
+      deleted_status: "(وضعیت حذف‌شده)"
+      title: گزارش بازرسی
     announcements:
       edit:
         title: ویرایش اعلامیه
@@ -243,20 +243,20 @@ fa:
       title: اعلامیه‌ها
     custom_emojis:
       assign_category: تعیین دسته
-      by_domain: دامین
-      copied_msg: نسخهٔ محلی شکلک با موفقیت ساخته شد
-      copy: نسخه‌برداری
-      copy_failed_msg: نشد که نسخهٔ محلی این شکلک ساخته شود
-      create_new_category: ساختن دستهٔ تازه
-      created_msg: این شکلک با موفقیت ساخته شد!
-      delete: پاک کردن
-      destroyed_msg: این شکلک با موفقیت پاک شد!
-      disable: غیرفعال‌سازی
-      disabled: غیرفعال
-      disabled_msg: این شکلک با موفقیت غیرفعال شد
-      emoji: شکلک
-      enable: فعال‌سازی
-      enabled: فعال
+      by_domain: دامنه
+      copied_msg: رونوشت محلّی اموجی با موفقیت ایجاد شد
+      copy: رونوشت
+      copy_failed_msg: ناتوانی در ساخت رونوشتی محلّی از آن اموجی
+      create_new_category: ایجاد دستهٔ تازه
+      created_msg: اموجی با موفقیت ایجاد شد!
+      delete: حذف
+      destroyed_msg: اموجی با موفقیت نابود شد!
+      disable: از کار انداختن
+      disabled: از کار افتاده
+      disabled_msg: آن اموجی با موفقیت از کار افتاد
+      emoji: اموجی
+      enable: به کار انداختن
+      enabled: به کار افتاده
       enabled_msg: این شکلک با موفقیت فعال شد
       image_hint: پروندهٔ PNG حداکثر 50KB
       list: فهرست
@@ -277,41 +277,41 @@ fa:
       authorized_fetch_mode: حالت دریافت مجازشده
       backlog: کارهای باقیمانده
       config: پیکربندی
-      feature_deletions: حساب‌های حذف‌شده
-      feature_invites: دعوت‌نامه‌ها
+      feature_deletions: حذف حساب‌ها
+      feature_invites: پیوندهای دعوت
       feature_profile_directory: فهرست گزیدهٔ کاربران
       feature_registrations: ثبت‌نام‌ها
-      feature_relay: رله
+      feature_relay: رلهٔ خودگردانی
       feature_spam_check: ضدهرزنامه
-      feature_timeline_preview: پیش‌نمایش نوشته‌ها
+      feature_timeline_preview: پیش‌نمایش خط‌زمانی
       features: ویژگی‌ها
-      hidden_service: ارتباط میان‌سروری با سرویس‌های نهفته
-      open_reports: گزارش‌های فعال
-      pending_tags: برچسب منتظر بازبینی
+      hidden_service: ارتباط خودگردان با خدمت‌های پنهان
+      open_reports: گزارش‌های باز
+      pending_tags: برچسب‌های منتظر بازبینی
       pending_users: کاربران منتظر بازبینی
-      recent_users: کاربران تازه
-      search: جستجوی متنی
+      recent_users: کاربران اخیر
+      search: جست‌وجوی متن کامل
       single_user_mode: حالت تک‌کاربره
       software: نرم‌افزار
-      space: فضای مصرف‌شده
-      title: ابزارهای مدیریت
+      space: مصرف فضا
+      title: پیشخان
       total_users: شمار کاربران
-      trends: برچسب‌های پرکاربرد
-      week_interactions: فعالیت‌ها در این هفته
-      week_users_active: کاربران فعال هفتهٔ اخیر
-      week_users_new: کاربران هفتهٔ اخیر
+      trends: پرطرفدارها
+      week_interactions: برهم‌کنش‌های این هفته
+      week_users_active: فعّالین این هفته
+      week_users_new: کاربران این هفته
       whitelist_mode: حالت فهرست مجاز
     domain_allows:
-      add_new: دامین مجازشده
-      created_msg: این دامین با موفقیت مجاز شد
-      destroyed_msg: دامین از حالت مجاز خارج شد
-      undo: برداشتن از فهرست مجازها
+      add_new: مجاز کردن دامنه
+      created_msg: دامنه با موفقیت مجاز شد
+      destroyed_msg: دامنه از فهرست مجاز برداشته شد
+      undo: برداشتن از فهرست مجاز
     domain_blocks:
-      add_new: افزودن مسدودسازی دامین تازه
-      created_msg: مسدودکردن دامین در حال انجام است
-      destroyed_msg: مسدودکردن دامین واگردانده شد
-      domain: دامین
-      edit: ویرایش مسدودسازی دامین
+      add_new: افزودن انسداد دامنهٔ جدید
+      created_msg: انسداد دامنه اکنون در حال پردازش است
+      destroyed_msg: انسداد دامنه بازگرداننده شد
+      domain: دامنه
+      edit: ویرایش انسداد دامنه
       existing_domain_block_html: شما پیش‌تر محدودیت‌های سخت‌تری روی %{name} اعمال کرده‌اید، و باید نخست <a href="%{unblock_url}">مسدودسازی را لغو کنید</a>.
       new:
         create: مسدودسازی
