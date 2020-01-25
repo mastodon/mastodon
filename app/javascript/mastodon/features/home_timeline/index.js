@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { fetchAnnouncements } from 'mastodon/actions/announcements';
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import IconWithBadge from 'mastodon/components/icon_with_badge';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -23,7 +23,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
   isPartial: state.getIn(['timelines', 'home', 'isPartial']),
-  hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
+  numAnnouncements: state.getIn(['announcements', 'items']).size,
 });
 
 export default @connect(mapStateToProps)
@@ -38,12 +38,13 @@ class HomeTimeline extends React.PureComponent {
     isPartial: PropTypes.bool,
     columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
-    hasAnnouncements: PropTypes.bool,
+    numAnnouncements: PropTypes.number,
     announcementsShown: PropTypes.bool,
   };
 
   state = {
     announcementsShown: true,
+    unreadAnnouncements: 0,
   };
 
   handlePin = () => {
@@ -80,6 +81,10 @@ class HomeTimeline extends React.PureComponent {
 
   componentDidUpdate (prevProps) {
     this._checkIfReloadNeeded(prevProps.isPartial, this.props.isPartial);
+
+    if (!this.state.announcementsShown && this.props.numAnnouncements > prevProps.numAnnouncements) {
+      this.setState({ unreadAnnouncements: this.state.unreadAnnouncements + this.props.numAnnouncements - prevProps.numAnnouncements });
+    }
   }
 
   componentWillUnmount () {
@@ -109,14 +114,15 @@ class HomeTimeline extends React.PureComponent {
 
   handleToggleAnnouncementsClick = (e) => {
     e.stopPropagation();
-    this.setState({ announcementsShown: !this.state.announcementsShown, animating: true });
+    this.setState({ announcementsShown: !this.state.announcementsShown, unreadAnnouncements: 0, animating: true });
   }
 
   render () {
-    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn, hasAnnouncements } = this.props;
-    const { announcementsShown } = this.state;
+    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn, numAnnouncements } = this.props;
+    const { announcementsShown, unreadAnnouncements } = this.state;
     const pinned = !!columnId;
 
+    const hasAnnouncements = numAnnouncements > 0;
     let announcementsButton = null;
 
     if (hasAnnouncements) {
@@ -128,7 +134,7 @@ class HomeTimeline extends React.PureComponent {
           aria-pressed={announcementsShown ? 'true' : 'false'}
           onClick={this.handleToggleAnnouncementsClick}
         >
-          <Icon id='bullhorn' />
+          <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
         </button>
       );
     }
