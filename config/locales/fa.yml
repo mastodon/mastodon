@@ -319,18 +319,18 @@ fa:
         severity:
           desc_html: "<strong>خموشاندن</strong> نوشته‌های حساب را برای هر فرد غیرپیگیر، نامرئی می‌کند.<strong>تعلیق</strong> همهٔ محتوا، رسانه‌ها، و داده‌های نمایهٔ حساب را پاک می‌کند. اگر فقط می‌خواهید جلوی رسانه‌ها را بگیرید <strong>هیچ</strong> را برگزینید."
           noop: هیچ
-          silence: خموشی
+          silence: خموشاندن
           suspend: تعلیق
-        title: انسداد دامنهٔ جدید
+        title: مسدودسازی دامین تازه
       private_comment: یادداشت خصوصی
       private_comment_hint: یادداشتی دربارهٔ محدودیت روی این دامین برای سایر ناظمان.
       public_comment: یادداشت عمومی
       public_comment_hint: یادداشتی دربارهٔ محدودیت روی این دامین برای عموم، در صورتی که فهرست دامین‌های محدود شده منتشر شود.
-      reject_media: رد کردن پرونده‌های رسانه‌ای
-      reject_media_hint: پرونده‌های رسانه‌ای ذخیره‌شدهٔ محلّی را برداشته و از بارگیریشان در آینده خودداری می‌کند. بی‌تأثیر روی معلق‌ها
-      reject_reports: رد کردن گزارش‌ها
-      reject_reports_hint: نادیده گرفتن تمام گزارش‌های ارسالی از این دامنه. بی‌تأثیر روی معلق‌ها
-      rejecting_media: رد کردن پرونده‌های رسانه‌ای
+      reject_media: نپذیرفتن پرونده‌های رسانه‌ای
+      reject_media_hint: پرونده‌های رسانه‌ای ذخیره‌شدهٔ محلّی را پاک کرده و از بارگیریشان در آینده خودداری می‌کند. بی‌تأثیر روی معلق‌ها
+      reject_reports: نپذیرفتن گزارش‌ها
+      reject_reports_hint: گزارش‌هایی را که از این دامنه می‌آید نادیده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
+      rejecting_media: نپذیرفتن پرونده‌های رسانه‌ای
       rejecting_reports: گزارش‌ها نادیده گرفته می‌شوند
       severity:
         silence: بی‌صداشده
@@ -369,19 +369,19 @@ fa:
         title: مدیریت
       private_comment: یادداشت خصوصی
       public_comment: یادداشت عمومی
-      title: ارتباط خودگردانی
-      total_blocked_by_us: مسدودشان کرده‌ایم
-      total_followed_by_them: پی‌گیری شده به دستشان
-      total_followed_by_us: پی‌گیرشان هستیم
+      title: ارتباط میان‌سروری
+      total_blocked_by_us: مسدودشده از طرف ما
+      total_followed_by_them: ما را پی می‌گیرند
+      total_followed_by_us: ما پیگیرشان هستیم
       total_reported: گزارش‌ها درباره‌شان
       total_storage: عکس‌ها و ویدیوها
     invites:
       deactivate_all: غیرفعال‌کردن همه
       filter:
         all: همه
-        available: موجود
-        expired: منقضی
-        title: پالایه
+        available: در دسترس
+        expired: منقضی‌شده
+        title: فیلتر
       title: دعوت‌ها
     pending_accounts:
       title: حساب‌های منتظر (%{count})
@@ -394,11 +394,11 @@ fa:
       disable: از کار انداختن
       disabled: از کار افتاده
       enable: به کار انداختن
-      enable_hint: وقتی به کار افتد، کارسازتان مشترک همهٔ بوق‌های عمومی این رله خواهد شد و شروع به فرستادن بوق‌های عمومی این کارساز به آن خواهد کرد.
-      enabled: به کار افتاده
+      enable_hint: اگر فعال باشد، کارساز شما عضو همهٔ بوق‌های عمومی‌ای را که از این رله می‌آید می‌گیرد، و بوق‌های عمومی این کارساز را به آن می‌فرستند.
+      enabled: فعال
       inbox_url: نشانی رله
       pending: در انتظار پذیرش رله
-      save_and_enable: ذخیره و به کار اندازی
+      save_and_enable: ذخیره و فعال‌سازی
       setup: برپا سازی یک اتّصال رله
       signatures_not_enabled: رله‌ها در حالت امن یا حالت فهرست مجاز، درست کار نخواهند کرد
       status: وضعیت
@@ -416,7 +416,7 @@ fa:
           other: "%{count} گزارش"
       action_taken_by: انجام‌دهنده
       are_you_sure: مطمئنید؟
-      assign_to_self: واگذاری به من
+      assign_to_self: به عهدهٔ من بگذار
       assigned: مدیر عهده‌دار
       by_target_domain: دامنهٔ حساب گزارش‌شده
       comment:
@@ -452,7 +452,7 @@ fa:
         email: ایمیل کاری
         username: نام کاربری
       custom_css:
-        desc_html: ظاهر را با CSSای که در همهٔ صفحه‌ها بار می‌شود تغییر دهید
+        desc_html: ظاهر ماستودون را با CSS-ای که در همهٔ صفحه‌ها جاسازی می‌شود تغییر دهید
         title: سبک CSS سفارشی
       default_noindex:
         desc_html: روی همهٔ کاربرانی که این تنظیم را خودشان تغییر نداده‌اند تأثیر می‌گذارد
@@ -618,14 +618,14 @@ fa:
   auth:
     apply_for_account: درخواست دعوت‌نامه
     change_password: رمز
-    checkbox_agreement_html: با <a href="%{rules_path}" target="_blank">قانون‌های کارساز</a> و <a href="%{terms_path}" target="_blank">شرایط خدمت</a> موافقم
+    checkbox_agreement_html: با <a href="%{rules_path}" target="_blank">قانون‌های این کارساز</a> و <a href="%{terms_path}" target="_blank">شرایط خدماتش</a> موافقم
     checkbox_agreement_without_rules_html: من با <a href="%{terms_path}" target="_blank">شرایط استفاده</a> موافقم
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     description:
       prefix_invited_by_user: "@%{name} شما را به عضویت در این کارساز ماستودون دعوت کرده است!"
       prefix_sign_up: همین امروز عضو ماستودون شوید!
-      suffix: با یک حساب می‌توانید افراد را پی گرفته، به‌روز رسانی فرستاده و با کاربرانی از هر کارساز دیگر ماستودون و بیش‌تر از آن در ارتباط باشید!
+      suffix: با داشتن حساب می‌توانید دیگران را پی بگیرید، نوشته‌های تازه منتشر کنید، و با کاربران دیگر از هر سرور ماستودون دیگری و حتی سرورهای دیگر در ارتباط باشید!
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
     forgot_password: رمزتان را گم کرده‌اید؟
     invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
@@ -638,7 +638,7 @@ fa:
       cas: CAS
       saml: SAML
     register: عضو شوید
-    registration_closed: "%{instance} عضو جدید نمی‌پذیرد"
+    registration_closed: "سرور %{instance} عضو تازه‌ای نمی‌پذیرد"
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
     reset_password: بازنشانی رمز
     security: امنیت
@@ -723,7 +723,7 @@ fa:
     '500':
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
-    '503': این صفحه می‌تواند به خاطر مشکل موقتی کارساز، در دسترس نباشد.
+    '503': این صفحه به خاطر یک مشکل موقت در کارساز در دسترس نیست.
     noscript_html: لطفاً جاوااسکریپت را برای استفاده از کارهٔ وب ماستودون به کار بیندازید. هم‌چنین می‌توانید یکی از <a href="%{apps_path}">کاره‌های بومی</a> ماستودون برای بن‌سازه‌تان را به کار ببرید.
   existing_username_validator:
     not_found: کاربری محلّی با آن نام کاربری پیدا نشد
