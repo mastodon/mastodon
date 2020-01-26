@@ -7,6 +7,13 @@ GIT
       rails (>= 4.0)
 
 GIT
+  remote: https://github.com/rack/rack
+  revision: 01556901e519159982c28a8511b18ffb22f0454d
+  ref: 01556901e519159982c28a8511b18ffb22f0454d
+  specs:
+    rack (2.2.0)
+
+GIT
   remote: https://github.com/rtomayko/posix-spawn
   revision: 58465d2e213991f8afb13b984854a49fcdcc980c
   ref: 58465d2e213991f8afb13b984854a49fcdcc980c
@@ -441,7 +448,6 @@ GEM
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     raabro (1.1.6)
-    rack (2.1.1)
     rack-attack (6.2.2)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
@@ -749,6 +755,7 @@ DEPENDENCIES
   pry-rails (~> 0.3)
   puma (~> 4.3)
   pundit (~> 2.1)
+  rack!
   rack-attack (~> 6.2)
   rack-cors (~> 1.1)
   rails (~> 5.2.4)
