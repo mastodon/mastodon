@@ -73,6 +73,7 @@ module Mastodon
       :it,
       :ja,
       :ka,
+      :kab,
       :kk,
       :kn,
       :ko,
