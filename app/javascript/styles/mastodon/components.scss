@@ -886,7 +886,7 @@
   }
 
   a {
-    color: $highlight-text-color;
+    color: $secondary-text-color;
     text-decoration: none;
 
     &:hover {
@@ -901,6 +901,10 @@
           text-decoration: underline;
         }
       }
+    }
+
+    &.unhandled-link {
+      color: lighten($ui-highlight-color, 8%);
     }
   }
 }
