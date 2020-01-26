@@ -13,13 +13,14 @@
 #  ends_at      :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  published_at :datetime
 #
 
 class Announcement < ApplicationRecord
   scope :unpublished, -> { where(published: false) }
   scope :published, -> { where(published: true) }
   scope :without_muted, ->(account) { joins("LEFT OUTER JOIN announcement_mutes ON announcement_mutes.announcement_id = announcements.id AND announcement_mutes.account_id = #{account.id}").where('announcement_mutes.id IS NULL') }
-  scope :chronological, -> { order(Arel.sql('COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.created_at) ASC')) }
+  scope :chronological, -> { order(Arel.sql('COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.published_at, announcements.created_at) ASC')) }
 
   has_many :announcement_mutes, dependent: :destroy
   has_many :announcement_reactions, dependent: :destroy
@@ -30,10 +31,6 @@ class Announcement < ApplicationRecord
 
   before_validation :set_all_day
   before_validation :set_published, on: :create
-
-  def published_at
-    scheduled_at || created_at
-  end
 
   def time_range?
     starts_at.present? && ends_at.present?
@@ -73,6 +70,9 @@ class Announcement < ApplicationRecord
   end
 
   def set_published
-    self.published = true if scheduled_at.blank? || scheduled_at.past?
+    return unless scheduled_at.blank? || scheduled_at.past?
+
+    self.published = true
+    self.published_at = Time.now.utc
   end
 end

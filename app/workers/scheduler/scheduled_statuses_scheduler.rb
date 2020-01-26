@@ -34,7 +34,7 @@ class Scheduler::ScheduledStatusesScheduler
   end
 
   def unpublish_expired_announcements!
-    expired_announcements.in_batches.update_all(published: false)
+    expired_announcements.in_batches.update_all(published: false, scheduled_at: nil)
   end
 
   def expired_announcements
