@@ -32,6 +32,14 @@ class Announcement < ApplicationRecord
   before_validation :set_all_day
   before_validation :set_published, on: :create
 
+  def publish!
+    update!(published: true, published_at: Time.now.utc, scheduled_at: nil)
+  end
+
+  def unpublish!
+    update!(published: false, scheduled_at: nil)
+  end
+
   def time_range?
     starts_at.present? && ends_at.present?
   end
