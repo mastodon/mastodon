@@ -5,6 +5,7 @@ export const ANNOUNCEMENTS_FETCH_REQUEST = 'ANNOUNCEMENTS_FETCH_REQUEST';
 export const ANNOUNCEMENTS_FETCH_SUCCESS = 'ANNOUNCEMENTS_FETCH_SUCCESS';
 export const ANNOUNCEMENTS_FETCH_FAIL    = 'ANNOUNCEMENTS_FETCH_FAIL';
 export const ANNOUNCEMENTS_UPDATE        = 'ANNOUNCEMENTS_UPDATE';
+export const ANNOUNCEMENTS_DELETE        = 'ANNOUNCEMENTS_DELETE';
 
 export const ANNOUNCEMENTS_REACTION_ADD_REQUEST = 'ANNOUNCEMENTS_REACTION_ADD_REQUEST';
 export const ANNOUNCEMENTS_REACTION_ADD_SUCCESS = 'ANNOUNCEMENTS_REACTION_ADD_SUCCESS';
@@ -139,8 +140,11 @@ export const updateReaction = reaction => ({
   reaction,
 });
 
-export function toggleShowAnnouncements() {
-  return dispatch => {
-    dispatch({ type: ANNOUNCEMENTS_TOGGLE_SHOW });
-  };
-}
+export const toggleShowAnnouncements = () => ({
+  type: ANNOUNCEMENTS_TOGGLE_SHOW,
+});
+
+export const deleteAnnouncement = id => ({
+  type: ANNOUNCEMENTS_DELETE,
+  id,
+});
