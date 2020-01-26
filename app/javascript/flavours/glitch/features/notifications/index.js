@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from 'flavours/glitch/components/column';
@@ -22,9 +23,13 @@ import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import LoadGap from 'flavours/glitch/components/load_gap';
+import Icon from 'flavours/glitch/components/icon';
+
+import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
+  enterNotifCleaning : { id: 'notification_purge.start', defaultMessage: 'Enter notification cleaning mode' },
 });
 
 const getNotifications = createSelector([
@@ -92,6 +97,10 @@ class Notifications extends React.PureComponent {
 
   static defaultProps = {
     trackScroll: true,
+  };
+
+  state = {
+    animatingNCD: false,
   };
 
   handleLoadGap = (maxId) => {
@@ -176,8 +185,19 @@ class Notifications extends React.PureComponent {
     }
   }
 
+  handleTransitionEndNCD = () => {
+    this.setState({ animatingNCD: false });
+  }
+
+  onEnterCleaningMode = () => {
+    this.setState({ animatingNCD: true });
+    this.props.onEnterCleaningMode(!this.props.notifCleaningActive);
+  }
+
   render () {
     const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar } = this.props;
+    const { notifCleaning, notifCleaningActive } = this.props;
+    const { animatingNCD } = this.state;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />;
 
@@ -232,6 +252,36 @@ class Notifications extends React.PureComponent {
       </ScrollableList>
     );
 
+    const notifCleaningButtonClassName = classNames('column-header__button', {
+      'active': notifCleaningActive,
+    });
+
+    const notifCleaningDrawerClassName = classNames('ncd column-header__collapsible', {
+      'collapsed': !notifCleaningActive,
+      'animating': animatingNCD,
+    });
+
+    const msgEnterNotifCleaning = intl.formatMessage(messages.enterNotifCleaning);
+
+    const notifCleaningButton = (
+      <button
+        aria-label={msgEnterNotifCleaning}
+        title={msgEnterNotifCleaning}
+        onClick={this.onEnterCleaningMode}
+        className={notifCleaningButtonClassName}
+      >
+        <Icon id='eraser' />
+      </button>
+    );
+
+    const notifCleaningDrawer = (
+      <div className={notifCleaningDrawerClassName} onTransitionEnd={this.handleTransitionEndNCD}>
+        <div className='column-header__collapsible-inner nopad-drawer'>
+          {(notifCleaningActive || animatingNCD) ? (<NotificationPurgeButtonsContainer />) : null }
+        </div>
+      </div>
+    );
+
     return (
       <Column
         bindToDocument={!multiColumn}
@@ -250,9 +300,8 @@ class Notifications extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           localSettings={this.props.localSettings}
-          notifCleaning
-          notifCleaningActive={this.props.notifCleaningActive} // this is used to toggle the header text
-          onEnterCleaningMode={this.props.onEnterCleaningMode}
+          extraButton={notifCleaningButton}
+          appendContent={notifCleaningDrawer}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
