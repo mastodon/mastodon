@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class REST::AnnouncementSerializer < ActiveModel::Serializer
-  attributes :id, :content, :starts_at, :ends_at, :all_day
+  attributes :id, :content, :starts_at, :ends_at, :all_day,
+             :published_at, :updated_at
 
   has_many :mentions
   has_many :tags, serializer: REST::StatusSerializer::TagSerializer

@@ -13,7 +13,7 @@ class PublishAnnouncementReactionWorker
     payload = InlineRenderer.render(reaction, nil, :reaction).tap { |h| h[:announcement_id] = announcement_id.to_s }
     payload = Oj.dump(event: :'announcement.reaction', payload: payload)
 
-    Account.joins(:user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).find_each do |account|
+    FeedManager.instance.with_active_accounts do |account|
       redis.publish("timeline:#{account.id}", payload) if redis.exists("subscribed:timeline:#{account.id}")
     end
   rescue ActiveRecord::RecordNotFound

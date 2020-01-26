@@ -20,6 +20,7 @@ class Admin::AnnouncementsController < Admin::BaseController
     @announcement = Announcement.new(resource_params)
 
     if @announcement.save
+      PublishScheduledAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
       log_action :create, @announcement
       redirect_to admin_announcements_path
     else
@@ -35,6 +36,7 @@ class Admin::AnnouncementsController < Admin::BaseController
     authorize :announcement, :update?
 
     if @announcement.update(resource_params)
+      PublishScheduledAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
       log_action :update, @announcement
       redirect_to admin_announcements_path
     else
@@ -45,6 +47,7 @@ class Admin::AnnouncementsController < Admin::BaseController
   def destroy
     authorize :announcement, :destroy?
     @announcement.destroy!
+    UnpublishAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
     log_action :destroy, @announcement
     redirect_to admin_announcements_path
   end
