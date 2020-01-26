@@ -55,4 +55,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
   def moved_and_not_nested?
     object.moved? && object.moved_to_account.moved_to_account_id.nil?
   end
+
+  def last_status_at
+    object.last_status_at&.to_date&.iso8601
+  end
 end
