@@ -6,13 +6,15 @@ import PropTypes from 'prop-types';
 import IconButton from 'mastodon/components/icon_button';
 import Icon from 'mastodon/components/icon';
 import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
-import { autoPlayGif } from 'mastodon/initial_state';
+import { autoPlayGif, reduceMotion } from 'mastodon/initial_state';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'mastodon/initial_state';
 import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
 import classNames from 'classnames';
 import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_picker_dropdown_container';
 import AnimatedNumber from 'mastodon/components/animated_number';
+import TransitionMotion from 'react-motion/lib/TransitionMotion';
+import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -194,6 +196,7 @@ class Reaction extends ImmutablePureComponent {
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     emojiMap: ImmutablePropTypes.map.isRequired,
+    style: PropTypes.object,
   };
 
   state = {
@@ -224,7 +227,7 @@ class Reaction extends ImmutablePureComponent {
     }
 
     return (
-      <button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`}>
+      <button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
         <span className='reactions-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} /></span>
         <span className='reactions-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
       </button>
@@ -248,25 +251,44 @@ class ReactionsBar extends ImmutablePureComponent {
     addReaction(announcementId, data.native.replace(/:/g, ''));
   }
 
+  willEnter () {
+    return { scale: reduceMotion ? 1 : 0 };
+  }
+
+  willLeave () {
+    return { scale: reduceMotion ? 0 : spring(0, { stiffness: 170, damping: 26 }) };
+  }
+
   render () {
     const { reactions } = this.props;
     const visibleReactions = reactions.filter(x => x.get('count') > 0);
 
-    return (
-      <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
-        {visibleReactions.map(reaction => (
-          <Reaction
-            key={reaction.get('name')}
-            reaction={reaction}
-            announcementId={this.props.announcementId}
-            addReaction={this.props.addReaction}
-            removeReaction={this.props.removeReaction}
-            emojiMap={this.props.emojiMap}
-          />
-        ))}
+    const styles = visibleReactions.map(reaction => ({
+      key: reaction.get('name'),
+      data: reaction,
+      style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
+    })).toArray();
 
-        {visibleReactions.size < 8 && <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' />} />}
-      </div>
+    return (
+      <TransitionMotion styles={styles} willEnter={this.willEnter} willLeave={this.willLeave}>
+        {items => (
+          <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
+            {items.map(({ key, data, style }) => (
+              <Reaction
+                key={key}
+                reaction={data}
+                style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
+                announcementId={this.props.announcementId}
+                addReaction={this.props.addReaction}
+                removeReaction={this.props.removeReaction}
+                emojiMap={this.props.emojiMap}
+              />
+            ))}
+
+            {visibleReactions.size < 8 && <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' />} />}
+          </div>
+        )}
+      </TransitionMotion>
     );
   }
 
