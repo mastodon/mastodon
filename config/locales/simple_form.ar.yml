@@ -1,4 +1,3 @@
----
 ar:
   simple_form:
     hints:
@@ -75,6 +74,11 @@ ar:
           silence: كتم
           suspend: تعليق و حذف كافة بيانات الحساب
         warning_preset_id: استخدم نموذج تنبيه
+      announcement:
+        ends_at: نهاية الفعالية
+        scheduled_at: جَدوِل المنشور
+        starts_at: بداية الفعالية
+        text: إعلان
       defaults:
         autofollow: إرسال دعوة لمتابعة حسابك
         avatar: الصورة الرمزية
@@ -155,9 +159,9 @@ ar:
         name: الوسم
         trendable: السماح لهذه الكلمة المفتاحية بالظهور تحت المتداوَلة
         usable: اسمح للتبويقات باستخدام هذا الوسم
-    'no': لا
+    'no': 'لا'
     recommended: موصى بها
     required:
       mark: "*"
       text: مطلوب
-    'yes': نعم
+    'yes': 'نعم'
