@@ -162,7 +162,7 @@ fa:
         send: ایمیل تایید را دوباره بفرستید
         success: ایمیل تایید با موفقیت ارسال شد!
       reset: بازنشانی
-      reset_password: بازنشانی گذرواژه
+      reset_password: بازنشانی رمز
       resubscribe: اشتراک دوباره
       role: اجازه‌ها
       roles:
@@ -170,17 +170,17 @@ fa:
         moderator: ناظر
         staff: کارمند
         user: کاربر
-      search: جست‌وجو
+      search: جستجو
       search_same_ip: دیگر کاربران با IP یکسان
       shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
         created_reports: گزارش‌های ثبت کرده
         targeted_reports: گزارش‌های دیگران
-      silence: خموشی
-      silenced: خموش
-      statuses: وضعیت‎ها
+      silence: خموشاندن
+      silenced: خموشانده
+      statuses: نوشته‌ها
       subscribe: اشتراک
-      suspended: معلق
+      suspended: تعلیق‌شده
       time_in_queue: در حال انتظار %{time}
       title: حساب‌ها
       unconfirmed_email: ایمیل تأییدنشده
@@ -205,10 +205,10 @@ fa:
         demote_user: "%{name} مقام کاربر %{target} را تنزل داد"
         destroy_announcement: "%{name} اعلامیهٔ %{target} را حذف کرد"
         destroy_custom_emoji: "%{name} اموجی %{target} را نابود کرد"
-        destroy_domain_allow: "%{name} دامنهٔ %{target} را فهرست مجاز برداشت"
+        destroy_domain_allow: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
-        destroy_email_domain_block: "%{name} دامنهٔ رایانامهٔ %{target} را به فهرست مجاز افزود"
-        destroy_status: "%{name} وضعیت %{target} را برداشت"
+        destroy_email_domain_block: "%{name} دامنهٔ ایمیل %{target} را به فهرست مجاز افزود"
+        destroy_status: "%{name} نوشتهٔ %{target} را پاک کرد"
         disable_2fa_user: "%{name} اجبار ورود دومرحله‌ای را برای کاربر %{target} غیرفعال کرد"
         disable_custom_emoji: "%{name} شکلک %{target} را غیرفعال کرد"
         disable_user: "%{name} ورود را برای کاربر %{target} غیرفعال کرد"
@@ -228,35 +228,35 @@ fa:
         update_announcement: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
-      deleted_status: "(وضعیت حذف‌شده)"
-      title: گزارش بازرسی
+      deleted_status: "(نوشتهٔ پاک‌شده)"
+      title: سیاههٔ بازرسی
     announcements:
       edit:
         title: ویرایش اعلامیه
       empty: هیچ اعلامیه‌ای پیدا نشد.
-      live: زنده
+      live: فعال
       new:
-        create: ایجاد اعلامیه
-        title: اعلامیهٔ جدید
-      published: منتشره
+        create: ساختن اعلامیه
+        title: اعلامیهٔ تازه
+      published: منتشرشده
       time_range: بازهٔ زمانی
       title: اعلامیه‌ها
     custom_emojis:
       assign_category: تعیین دسته
       by_domain: دامنه
-      copied_msg: رونوشت محلّی اموجی با موفقیت ایجاد شد
+      copied_msg: نسخهٔ محلی شکلک با موفقیت ساخته شد
       copy: رونوشت
-      copy_failed_msg: ناتوانی در ساخت رونوشتی محلّی از آن اموجی
-      create_new_category: ایجاد دستهٔ تازه
-      created_msg: اموجی با موفقیت ایجاد شد!
+      copy_failed_msg: نشد که نسخهٔ محلی این شکلک ساخته شود
+      create_new_category: ساختن دستهٔ تازه
+      created_msg: شکلک با موفقیت ساخته شد!
       delete: حذف
-      destroyed_msg: اموجی با موفقیت نابود شد!
+      destroyed_msg: شکلک با موفقیت پاک شد!
       disable: از کار انداختن
       disabled: از کار افتاده
-      disabled_msg: آن اموجی با موفقیت از کار افتاد
-      emoji: اموجی
+      disabled_msg: شکلک با موفقیت از کار افتاد
+      emoji: شکلک
       enable: به کار انداختن
-      enabled: به کار افتاده
+      enabled: فعال
       enabled_msg: این شکلک با موفقیت فعال شد
       image_hint: پروندهٔ PNG حداکثر 50KB
       list: فهرست
@@ -277,29 +277,29 @@ fa:
       authorized_fetch_mode: حالت دریافت مجازشده
       backlog: کارهای باقیمانده
       config: پیکربندی
-      feature_deletions: حذف حساب‌ها
-      feature_invites: پیوندهای دعوت
+      feature_deletions: حساب‌های حذف‌شده
+      feature_invites: دعوت‌نامه‌ها
       feature_profile_directory: فهرست گزیدهٔ کاربران
       feature_registrations: ثبت‌نام‌ها
-      feature_relay: رلهٔ خودگردانی
+      feature_relay: رله
       feature_spam_check: ضدهرزنامه
       feature_timeline_preview: پیش‌نمایش نوشته‌ها
       features: ویژگی‌ها
-      hidden_service: ارتباط خودگردان با خدمت‌های پنهان
+      hidden_service: ارتباط میان‌سروری با سرویس‌های نهفته
       open_reports: گزارش‌های باز
       pending_tags: برچسب‌های منتظر بازبینی
       pending_users: کاربران منتظر بازبینی
       recent_users: کاربران اخیر
-      search: جست‌وجوی متن کامل
+      search: جستجوی متنی
       single_user_mode: حالت تک‌کاربره
       software: نرم‌افزار
-      space: مصرف فضا
-      title: پیشخان
+      space: فضای مصرف‌شده
+      title: ابزارهای مدیریت
       total_users: شمار کاربران
-      trends: پرطرفدارها
-      week_interactions: برهم‌کنش‌های این هفته
-      week_users_active: فعّالین این هفته
-      week_users_new: کاربران این هفته
+      trends: برچسب‌های پرکاربرد
+      week_interactions: فعالیت‌ها در این هفته
+      week_users_active: کاربران فعال هفتهٔ اخیر
+      week_users_new: کاربران هفتهٔ اخیر
       whitelist_mode: حالت فهرست مجاز
     domain_allows:
       add_new: مجاز کردن دامنه
@@ -307,17 +307,17 @@ fa:
       destroyed_msg: دامنه از فهرست مجاز برداشته شد
       undo: برداشتن از فهرست مجاز
     domain_blocks:
-      add_new: افزودن انسداد دامنهٔ جدید
-      created_msg: انسداد دامنه اکنون در حال پردازش است
-      destroyed_msg: انسداد دامنه بازگرداننده شد
+      add_new: افزودن مسدودسازی دامین تازه
+      created_msg: مسدودسازی دامنه در حال پردازش است
+      destroyed_msg: مسدودکردن دامنه واگردانده شد
       domain: دامنه
-      edit: ویرایش انسداد دامنه
+      edit: ویرایش مسدودسازی دامنه
       existing_domain_block_html: شما پیش‌تر محدودیت‌های سخت‌تری روی %{name} اعمال کرده‌اید، و باید نخست <a href="%{unblock_url}">مسدودسازی را لغو کنید</a>.
       new:
-        create: ایجاد انسداد
-        hint: انسداد دامنه جلوی ایجاد ورودی‌های حساب در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
+        create: مسدودسازی
+        hint: مسدودسازی دامنه جلوی ایجاد ورودی‌های حساب در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
         severity:
-          desc_html: "<strong>خموشی</strong> نوشته‌های حساب را برای هر فرد غیرپی‌گیر، نامریی می‌کند.<strong>تعلیق</strong> همهٔ محتوا، رسانه‌ها، و داده‌های نمایهٔ حساب را برمی‌دارد. اگر فقط می‌خواهید جلوی رسانه‌ها را بگیرید <strong>هیچ</strong> را برگزینید."
+          desc_html: "<strong>خموشاندن</strong> نوشته‌های حساب را برای هر فرد غیرپیگیر، نامرئی می‌کند.<strong>تعلیق</strong> همهٔ محتوا، رسانه‌ها، و داده‌های نمایهٔ حساب را پاک می‌کند. اگر فقط می‌خواهید جلوی رسانه‌ها را بگیرید <strong>هیچ</strong> را برگزینید."
           noop: هیچ
           silence: خموشی
           suspend: تعلیق
