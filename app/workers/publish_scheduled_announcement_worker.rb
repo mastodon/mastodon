@@ -6,7 +6,8 @@ class PublishScheduledAnnouncementWorker
 
   def perform(announcement_id)
     announcement = Announcement.find(announcement_id)
-    announcement.update(published: true)
+
+    announcement.update(published: true, published_at: Time.now.utc, scheduled_at: nil) unless announcement.published?
 
     payload = InlineRenderer.render(announcement, nil, :announcement)
     payload = Oj.dump(event: :announcement, payload: payload)
