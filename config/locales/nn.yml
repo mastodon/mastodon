@@ -1,7 +1,6 @@
----
 nn:
   about:
-    about_hashtag_html: Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.
+    about_hashtag_html: 'Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.'
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     about_this: Om oss
     active_count_after: aktiv
@@ -20,10 +19,9 @@ nn:
     documentation: Dokumentasjon
     federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
     get_apps: Prøv ein mobilapp
-    hosted_on: "%{domain} er vert for Mastodon"
-    instance_actor_flash: 'Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet.
-
-'
+    hosted_on: '%{domain} er vert for Mastodon'
+    instance_actor_flash: |
+      Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet.
     learn_more: Lær meir
     privacy_policy: Personvernsreglar
     see_whats_happening: Sjå kva som skjer
@@ -566,10 +564,10 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
     new_trending_tag:
       body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
-      subject: Ny emneknagg ventar gjennomgang på %{instance} (#%{name})
+      subject: 'Ny emneknagg ventar gjennomgang på %{instance} (#%{name})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -582,6 +580,8 @@ nn:
     animations_and_accessibility: Animasjoner og tilgjengelighet
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdaging
+    localization:
+      guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
     toot_layout: Tutoppsett
   application_mailer:
@@ -636,6 +636,7 @@ nn:
       confirming: Ventar på stadfesting av e-post.
       functional: Kontoen din er oppe og går.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
+      redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Får du ikkje logga inn?
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -729,6 +730,7 @@ nn:
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
+      account: Profiler
       home: Heimeside
       notifications: Varsel
       public: Offentlege tidsliner
@@ -749,6 +751,8 @@ nn:
     all: Alle
     changes_saved_msg: Alle endringane vart lagra!
     copy: Kopier
+    delete: Slett
+    edit: Rediger
     order_by: Sorter etter
     save_changes: Lagr endringar
     validation_errors:
@@ -903,6 +907,7 @@ nn:
     dormant: I dvale
     followers: Følgere
     following: Følginger
+    invited: Invitert
     last_active: Sist aktiv
     most_recent: Sist
     moved: Flytta
@@ -1024,7 +1029,7 @@ nn:
       vote: Røyst
     show_more: Vis meir
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       private: Berre fylgjarar
       private_long: Vis berre til fylgjarar
@@ -1120,7 +1125,7 @@ nn:
       <p>Dette dokumentet er lisensiert under CC BY-SA. Den engelske originalversjonen ble sist oppdatert den 7. mars 2018. Den norske oversettelsen ble sist oppdatert den 13. desember 2019.</p>
 
       <p>Opprinnelig modifisert utifra <a href="https://github.com/discourse/discourse">Discourse sine privatlivsretningslinjer</a>.</p>
-    title: Tenestevilkår og personvernsvilkår for %{instance}
+    title: "Tenestevilkår og personvernsvilkår for %{instance}"
   themes:
     contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)
@@ -1154,6 +1159,7 @@ nn:
         silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
         suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
       get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
+      review_server_policies: Gjennomgå serverretningslinjer
       statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
