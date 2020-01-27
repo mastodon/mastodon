@@ -197,11 +197,13 @@ is:
         change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
         confirm_user: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
         create_account_warning: "%{name} sendi aðvörun til %{target}"
+        create_announcement: "%{name} útbjó auglýsingu %{target}"
         create_custom_emoji: "%{name} sendi inn nýtt tjáningartákn %{target}"
         create_domain_allow: "%{name} setti lén %{target} á lista yfir leyft"
         create_domain_block: "%{name} útilokaði lénið %{target}"
         create_email_domain_block: "%{name} setti póstlén %{target} á lista yfir bannað"
         demote_user: "%{name} lækkaði notandann %{target} í tign"
+        destroy_announcement: "%{name} eyddi auglýsingu %{target}"
         destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
         destroy_domain_allow: "%{name} fjarlægði lén %{target} af lista yfir leyft"
         destroy_domain_block: "%{name} aflétti útilokun af léninu %{target}"
@@ -223,11 +225,13 @@ is:
         unassigned_report: "%{name} fjarlægði úthlutun af skýrslu %{target}"
         unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account: "%{name} tók notandaaðganginn %{target} úr bið"
+        update_announcement: "%{name} uppfærði auglýsingu %{target}"
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
       title: Atvikaskrá
     announcements:
+      destroyed_msg: Það tókst að eyða auglýsingunni!
       edit:
         title: Breyta auglýsingu
       empty: Engar auglýsingar fundust.
