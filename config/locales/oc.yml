@@ -68,6 +68,7 @@ oc:
     roles:
       admin: Admin
       bot: Robòt
+      group: Grop
       moderator: Moderador
     unavailable: Perfil indisponible
     unfollow: Quitar de sègre
@@ -217,6 +218,16 @@ oc:
         update_status: "%{name} metèt a jorn l’estatut a %{target}"
       deleted_status: "(estatut suprimit)"
       title: Audit dels jornals
+    announcements:
+      edit:
+        title: Modificar l’anóncia
+      empty: Cap d’anóncia pas trobada.
+      live: Dirèct
+      new:
+        create: Crear una anóncia
+        title: Anóncia novèla
+      published: Publicadas
+      published_msg: Anóncia corrèctament publicada !
     custom_emojis:
       assign_category: Atribuir una categoria
       by_domain: Domeni
