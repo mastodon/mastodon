@@ -219,6 +219,7 @@ oc:
       deleted_status: "(estatut suprimit)"
       title: Audit dels jornals
     announcements:
+      destroyed_msg: Anóncia corrèctament tirada !
       edit:
         title: Modificar l’anóncia
       empty: Cap d’anóncia pas trobada.
@@ -228,6 +229,11 @@ oc:
         title: Anóncia novèla
       published: Publicadas
       published_msg: Anóncia corrèctament publicada !
+      scheduled_msg: Anóncia programada per publicacion !
+      time_range: Interval de temps
+      title: Anóncias
+      unpublished_msg: Anóncia corrèctament tirada !
+      updated_msg: Anóncia corrèctament actualizada !
     custom_emojis:
       assign_category: Atribuir una categoria
       by_domain: Domeni
@@ -239,6 +245,7 @@ oc:
       delete: Suprimir
       destroyed_msg: Emoji ben suprimit !
       disable: Desactivar
+      disabled: Desactivat
       disabled_msg: Aqueste emoji es ben desactivat
       emoji: Emoji
       enable: Activar
@@ -369,6 +376,8 @@ oc:
       title: Convits
     pending_accounts:
       title: Comptes en espèra (%{count})
+    relationships:
+      title: "Relacions de %{acct}"
     relays:
       add_new: Ajustar un nòu relai
       delete: Suprimir
@@ -548,13 +557,20 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
       subject: 'Novèl senhalament per %{instance} (#%{id})'
+  aliases:
+    add_new: Crear un alias
   appearance:
     advanced_web_interface: Interfàcia web avançada
     advanced_web_interface_hint: 'Se volètz utilizar la nautor complèta de l’ecran, l’interfàcia web avançada vos permet de configurar diferentas colomnas per mostrar tan d’informacions que volètz : Acuèlh, notificacions, flux d’actualitat, e d’autras listas e etiquetas.'
     animations_and_accessibility: Animacion e accessibilitat
     confirmation_dialogs: Fenèstras de confirmacion
     discovery: Descobèrta
+    localization:
+      body: Mastodon es traduch per de benevòls.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
+    toot_layout: Disposicion del tut
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
@@ -870,9 +886,15 @@ oc:
     other: Autre
     posting_defaults: Valors per defaut de las publicacions
     public_timelines: Fluxes d’actualitats publics
+  reactions:
+    errors:
+      unrecognized_emoji: es pas un emoji reconegut
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
+    followers: Seguidors
+    following: Aboanements
+    invited: Convidat
     last_active: Darrièra activitat
     most_recent: Mai recenta
     moved: Mudat
