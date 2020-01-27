@@ -240,8 +240,12 @@ is:
         create: Búa til auglýsingu
         title: Ný auglýsing
       published: Útgefið
+      published_msg: Það tókst að birta auglýsinguna!
+      scheduled_msg: Auglýsing var sett á áætlun!
       time_range: Tímabil
       title: Auglýsingar
+      unpublished_msg: Það tókst að taka auglýsinguna úr birtingu!
+      updated_msg: Það tókst að uppfæra auglýsinguna!
     custom_emojis:
       assign_category: Úthluta flokki
       by_domain: Lén
@@ -386,6 +390,8 @@ is:
       title: Boðsgestir
     pending_accounts:
       title: Notendaaðgangar í bið (%{count})
+    relationships:
+      title: "Vensl %{acct}"
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
@@ -748,6 +754,7 @@ is:
     hint_html: "<strong>Hvað eru myllumerki með aukið vægi?</strong> Þau eru birt áberandi á opinbera notandasniðinu þínu og gera fólki kleift að fletta í gegnum opinberu færslurnar þínar sérstaklega undir þessum myllumerkjum. Þau eru frábær aðferð við að halda utan um skapandi vinnu eða langtíma verkefni."
   filters:
     contexts:
+      account: Notandasnið
       home: Heimatímalína
       notifications: Tilkynningar
       public: Opinberar tímalínur
@@ -945,11 +952,16 @@ is:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
     public_timelines: Opinberar tímalínur
+  reactions:
+    errors:
+      limit_reached: Hámarki mismunandi viðbragða náð
+      unrecognized_emoji: er ekki þekkt tjáningartákn
   relationships:
     activity: Virkni aðgangs
     dormant: Sofandi
     followers: Fylgjendur
     following: Fylgist með
+    invited: Boðið
     last_active: Síðasta virkni
     most_recent: Nýjast
     moved: Fært
