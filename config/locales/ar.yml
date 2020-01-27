@@ -206,6 +206,7 @@ ar:
         change_email_user: "غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}"
         confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_account_warning: "قام %{name} بإرسال تحذير إلى %{target}"
+        create_announcement: "قام %{name} بإنشاء إعلان جديد %{target}"
         create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_allow: "قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
@@ -237,6 +238,7 @@ ar:
       deleted_status: "(منشور محذوف)"
       title: سِجلّ التفتيش و المعاينة
     announcements:
+      destroyed_msg: تم حذف الإعلان بنجاح!
       edit:
         title: تعديل الإعلان
       empty: لم يتم العثور على أية إعلانات.
@@ -245,8 +247,12 @@ ar:
         create: إنشاء إعلان
         title: إعلان جديد
       published: تم نشره
+      published_msg: تم نشر الإعلان بنجاح!
+      scheduled_msg: تمت جدولة نشر الإعلان!
       time_range: النطاق الزمني
       title: الإعلانات
+      unpublished_msg: تم إلغاء نشر الإعلان بنجاح!
+      updated_msg: تم تحديث الإعلان بنجاح!
     custom_emojis:
       assign_category: اسند فئة
       by_domain: النطاق
