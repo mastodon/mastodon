@@ -14,7 +14,7 @@
   .fields-group
     = f.input :text, wrapper: :with_block_label
 
-  - if @announcement.scheduled_at.present? && !@announcement.published?
+  - unless @announcement.published?
     .fields-group
       = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label
 

@@ -8,7 +8,12 @@ import {
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
-import { fetchAnnouncements, updateAnnouncements, updateReaction as updateAnnouncementsReaction } from './announcements';
+import {
+  fetchAnnouncements,
+  updateAnnouncements,
+  updateReaction as updateAnnouncementsReaction,
+  deleteAnnouncement,
+} from './announcements';
 import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
 
@@ -50,6 +55,9 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
           break;
         case 'announcement.reaction':
           dispatch(updateAnnouncementsReaction(JSON.parse(data.payload)));
+          break;
+        case 'announcement.delete':
+          dispatch(deleteAnnouncement(data.payload));
           break;
         }
       },

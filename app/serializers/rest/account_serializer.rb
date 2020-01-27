@@ -56,6 +56,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.moved? && object.moved_to_account.moved_to_account_id.nil?
   end
 
+  def last_status_at
+    object.last_status_at&.to_date&.iso8601
+  end
+
   def followers_count
     (Setting.hide_followers_count || object.user&.setting_hide_followers_count) ? -1 : object.followers_count
   end
