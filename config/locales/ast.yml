@@ -77,7 +77,9 @@ ast:
     action_logs:
       actions:
         create_account_warning: "%{name} unvió una alvertencia a %{target}"
+        create_announcement: "%{name} creó un anunciu %{target}"
         create_domain_block: "%{name} bloquió'l dominiu %{target}"
+        destroy_announcement: "%{name} desanició l'anunciu %{target}"
         disable_custom_emoji: "%{name} desactivó'l fustaxe %{target}"
         disable_user: "%{name} desactivó l'aniciu de sesión del usuariu %{target}"
         enable_custom_emoji: "%{name} activó'l fustaxe %{target}"
@@ -88,6 +90,10 @@ ast:
         resolve_report: "%{name} resolvió l'informe de %{target}"
         silence_account: "%{name} silenció la cuenta de %{target}"
         suspend_account: "%{name} suspendió la cuenta de %{target}"
+        update_announcement: "%{name} anovó l'anunciu %{target}"
+    announcements:
+      new:
+        title: Anunciu nuevu
     custom_emojis:
       by_domain: Dominiu
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
