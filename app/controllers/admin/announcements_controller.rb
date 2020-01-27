@@ -20,8 +20,9 @@ class Admin::AnnouncementsController < Admin::BaseController
     @announcement = Announcement.new(resource_params)
 
     if @announcement.save
+      PublishScheduledAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
       log_action :create, @announcement
-      redirect_to admin_announcements_path
+      redirect_to admin_announcements_path, notice: @announcement.published? ? I18n.t('admin.announcements.published_msg') : I18n.t('admin.announcements.scheduled_msg')
     else
       render :new
     end
@@ -35,18 +36,36 @@ class Admin::AnnouncementsController < Admin::BaseController
     authorize :announcement, :update?
 
     if @announcement.update(resource_params)
+      PublishScheduledAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
       log_action :update, @announcement
-      redirect_to admin_announcements_path
+      redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.updated_msg')
     else
       render :edit
     end
   end
 
+  def publish
+    authorize :announcement, :update?
+    @announcement.publish!
+    PublishScheduledAnnouncementWorker.perform_async(@announcement.id)
+    log_action :update, @announcement
+    redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.published_msg')
+  end
+
+  def unpublish
+    authorize :announcement, :update?
+    @announcement.unpublish!
+    UnpublishAnnouncementWorker.perform_async(@announcement.id)
+    log_action :update, @announcement
+    redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.unpublished_msg')
+  end
+
   def destroy
     authorize :announcement, :destroy?
     @announcement.destroy!
+    UnpublishAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
     log_action :destroy, @announcement
-    redirect_to admin_announcements_path
+    redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.destroyed_msg')
   end
 
   private

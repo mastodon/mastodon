@@ -179,7 +179,13 @@ Rails.application.routes.draw do
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
-    resources :announcements, except: [:show]
+
+    resources :announcements, except: [:show] do
+      member do
+        post :publish
+        post :unpublish
+      end
+    end
 
     resource :settings, only: [:edit, :update]
 
