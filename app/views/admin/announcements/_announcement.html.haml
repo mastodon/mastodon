@@ -10,5 +10,12 @@
     - else
       = l(announcement.created_at)
   %td
-    = table_link_to 'pencil', t('generic.edit'), edit_admin_announcement_path(announcement) if can?(:update, announcement)
+    - if can?(:update, announcement)
+      - if announcement.published?
+        = table_link_to 'pause', t('admin.announcements.unpublish'), unpublish_admin_announcement_path(announcement), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+      - else
+        = table_link_to 'play', t('admin.announcements.publish'), publish_admin_announcement_path(announcement), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+
+      = table_link_to 'pencil', t('generic.edit'), edit_admin_announcement_path(announcement)
+
     = table_link_to 'trash', t('generic.delete'), admin_announcement_path(announcement), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, announcement)
