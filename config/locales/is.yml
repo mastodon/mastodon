@@ -227,6 +227,8 @@ is:
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
       title: Atvikaskrá
+    announcements:
+      title: Tilkynningar
     custom_emojis:
       assign_category: Úthluta flokki
       by_domain: Lén
@@ -654,6 +656,9 @@ is:
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
     invalid_password: Ógilt lykilorð
     prompt: Staðfestu lykilorðið til að halda áfram
+  date:
+    formats:
+      default: "%d. %b, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}kl."
@@ -754,6 +759,8 @@ is:
     all: Allt
     changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
+    delete: Eyða
+    edit: Breyta
     no_batch_actions_available: Engar magnvinnsluaðgerðir tiltækar á þessari síðu
     order_by: Raða eftir
     save_changes: Vista breytingar
