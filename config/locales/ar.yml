@@ -212,6 +212,7 @@ ar:
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
         create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
         demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
+        destroy_announcement: "قام %{name} بحذف الإعلان %{target}"
         destroy_custom_emoji: "قام %{name} بحذف الإيموجي %{target}"
         destroy_domain_allow: "قام %{name} بإزالة النطاق %{target} مِن القائمة البيضاء"
         destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
@@ -233,6 +234,7 @@ ar:
         unassigned_report: "%{name} تقرير غير معتمد %{target}"
         unsilence_account: "لقد قام %{name} بإلغاء الكتم عن حساب %{target}"
         unsuspend_account: "لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}"
+        update_announcement: "قام %{name} بتحديث الإعلان %{target}"
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
         update_status: "لقد قام %{name} بتحديث منشور %{target}"
       deleted_status: "(منشور محذوف)"
@@ -398,6 +400,8 @@ ar:
       title: الدعوات
     pending_accounts:
       title: الحسابات المعلقة (%{count})
+    relationships:
+      title: "علاقات %{acct}"
     relays:
       add_new: إضافة مُرحّل جديد
       delete: حذف
@@ -652,6 +656,9 @@ ar:
     hint_html: "<strong>توصية:</strong> لن نطلب منك ثانية كلمتك السرية في غضون الساعة اللاحقة."
     invalid_password: الكلمة السرية خاطئة
     prompt: أكِّد الكلمة السرية للمواصلة
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}سا"
@@ -723,6 +730,7 @@ ar:
     add_new: أضف واحدًا جديدا
   filters:
     contexts:
+      account: الملفات التعريفية
       home: الخيط الزمني الرئيسي
       notifications: الإخطارات
       public: الخيوط الزمنية العامة
@@ -747,6 +755,8 @@ ar:
     all: الكل
     changes_saved_msg: تم حفظ التعديلات بنجاح!
     copy: نسخ
+    delete: احذف
+    edit: عدّل
     order_by: ترتيب بحسب
     save_changes: حفظ التغييرات
     validation_errors:
