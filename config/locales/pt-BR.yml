@@ -1,7 +1,6 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
     active_count_after: ativo
@@ -49,7 +48,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Sugestões de %{name}:'
+    choices_html: "Sugestões de %{name}:"
     endorsements_hint: Você pode sugerir pessoas que você segue, elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas, elas aparecerão aqui.
     follow: Seguir
@@ -198,11 +197,13 @@ pt-BR:
         change_email_user: "%{name} alterou o endereço de e-mail do usuário %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning: "%{name} enviou um aviso para %{target}"
+        create_announcement: "%{name} criou um novo anúncio %{target}"
         create_custom_emoji: "%{name} enviou o novo emoji %{target}"
         create_domain_allow: "%{name} permitiu %{target}"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} bloqueou o domínio de e-mail %{target}"
         demote_user: "%{name} rebaixou o usuário %{target}"
+        destroy_announcement: "%{name} excluiu o anúncio %{target}"
         destroy_custom_emoji: "%{name} excluiu emoji %{target}"
         destroy_domain_allow: "%{name} bloqueou %{target}"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
@@ -224,10 +225,22 @@ pt-BR:
         unassigned_report: "%{name} largou a denúncia %{target}"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
         unsuspend_account: "%{name} desbaniu %{target}"
+        update_announcement: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o status de %{target}"
       deleted_status: "(status excluído)"
       title: Auditar histórico
+    announcements:
+      edit:
+        title: Editar anúncio
+      empty: Nenhum anúncio encontrado.
+      live: Em exibição
+      new:
+        create: Criar anúncio
+        title: Novo anúncio
+      published: Publicado
+      time_range: Intervalo de tempo
+      title: Anúncios
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
@@ -373,7 +386,7 @@ pt-BR:
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -565,10 +578,10 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trending_tag:
       body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou apenas salve o formulário do jeito que está para nunca mais ouvir falar dela.'
-      subject: Nova hashtag disponível para revisão em %{instance} (#%{name})
+      subject: 'Nova hashtag disponível para revisão em %{instance} (#%{name})'
   aliases:
     add_new: Criar alias
     created_msg: Um novo alias foi criado com sucesso. Agora você pode se mudar.
@@ -657,6 +670,9 @@ pt-BR:
     hint_html: "<strong>Dica:</strong> Não pediremos novamente sua senha pela próxima hora."
     invalid_password: Senha inválida
     prompt: Confirme sua senha para continuar
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -758,6 +774,8 @@ pt-BR:
     all: Tudo
     changes_saved_msg: Alterações foram salvas com sucesso!
     copy: Copiar
+    delete: Eliminar
+    edit: Editar
     no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Salvar alterações
@@ -873,7 +891,7 @@ pt-BR:
         other: "%{count} novas notificações desde o seu último acesso \U0001F418"
       title: Enquanto você estava ausente...
     favourite:
-      body: "%{name} favoritou seu toot:"
+      body: '%{name} favoritou seu toot:'
       subject: "%{name} favoritou seu toot"
       title: Novo favorito
     follow:
@@ -887,11 +905,11 @@ pt-BR:
       title: Nova solicitação para seguir
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     reblog:
-      body: "%{name} deu boost no seu toot:"
+      body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
   notifications:
@@ -929,6 +947,10 @@ pt-BR:
     other: Outro
     posting_defaults: Padrões de publicação
     public_timelines: Linhas públicas
+  reactions:
+    errors:
+      limit_reached: Limite de reações diferentes atingido
+      unrecognized_emoji: não é um emoji reconhecido
   relationships:
     activity: Atividade da conta
     dormant: Inativo
@@ -1158,7 +1180,7 @@ pt-BR:
       <p>CC-BY-SA. Atualizado pela última vez em 7 de março de 2018.</p>
 
       <p>Adaptado originalmente de <a href="https://github.com/discourse/discourse">Política de Privacidade Discourse</a>.</p>
-    title: Termos de Serviço e Política de Privacidade de %{instance}
+    title: "Termos de Serviço e Política de Privacidade de %{instance}"
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
