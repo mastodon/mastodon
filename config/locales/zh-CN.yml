@@ -230,12 +230,15 @@ zh-CN:
       edit:
         title: 编辑公告
       empty: 尚未发布任何公告。
+      live: 当前
       new:
         create: 创建公告
         title: 新公告
       published_msg: 公告已发布！
+      scheduled_for: 定时在 %{time}
+      scheduled_msg: 定时公告已创建！
       title: 公告
-      unpublished_msg: 公告已取消发布！
+      unpublished_msg: 公告已撤回！
       updated_msg: 公告已成功更新！
     custom_emojis:
       assign_category: 指定分类
@@ -662,6 +665,9 @@ zh-CN:
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求您输入密码。"
     invalid_password: 无效密码
     prompt: 确认密码以继续
+  date:
+    formats:
+      default: "%Y年%m月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}时"
@@ -923,6 +929,7 @@ zh-CN:
       duration_too_long: 持续时间过长
       duration_too_short: 持续时间过短
       expired: 投票已经结束
+      invalid_choice: 被选中的投票选项不存在
       over_character_limit: 每条不能超过 %{max} 个字符
       too_few_options: 至少需要两个选项
       too_many_options: 不能超过 %{max} 项
@@ -930,6 +937,10 @@ zh-CN:
     other: 其他
     posting_defaults: 发布默认值
     public_timelines: 公共时间轴
+  reactions:
+    errors:
+      limit_reached: 互动种类的限制
+      unrecognized_emoji: 不是一个可识别的表情
   relationships:
     activity: 帐号活动
     dormant: 休眠
