@@ -9,7 +9,7 @@ kab:
     api: API
     apps: Isnasen izirazen
     apps_platforms: Seqdec Maṣṭudun deg iOS, Android d tγeṛγṛin-nniḍen
-    browse_directory: Qelleb deg tebdert n yimaɣnuten teǧǧeḍ-d gar-asen widak tebɣiḍ
+    browse_directory: Qelleb deg ukaram n imaγnuten teǧǧeḍ-d gar-asen widak tebγiḍ
     contact: Anermis
     contact_unavailable: Wlac
     discover_users: Af-d imseqdacen
@@ -189,7 +189,7 @@ kab:
       title: Imujiten udmawanen
       upload: Sali
     dashboard:
-      feature_profile_directory: Imaɣnuten
+      feature_profile_directory: Akaram n imaγnuten
       features: Timahaltin
       recent_users: Iseqdacen n memli kan
       software: Aseγẓan
@@ -261,23 +261,33 @@ kab:
         all: Ɣef medden akk
         disabled: Ɣef yiwen ala
         users: Ɣef yimseqdacen idiganen i yeqqnen
+      profile_directory:
+        title: Rmed akaram n imaγnuten
       registrations:
         min_invite_role:
           disabled: Ula yiwen·t
       registrations_mode:
         modes:
           none: Yiwen·t ur yzmir ad izeddi
-          open: Zemren akk ad zeddine
+          open: Zemren akk ad jerden
       site_description:
         title: Aglam n uqeddac
       site_title: Isem n uqeddac
       title: Iγewwaṛen n usmel
     statuses:
+      back_to_account: Tuγalin γer usebter n umiḍan
       batch:
         delete: Kkes
+      media:
+        title: Taγwalt
+    tags:
+      directory: Deg ukaram
+      in_directory: "%{count} deg ukaram"
+      most_recent: Melmi kan
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
+      edit: Ẓreg
   appearance:
     sensitive_content: Agbur amḥulfu
   application_mailer:
@@ -291,6 +301,7 @@ kab:
     login: Qqen
     logout: Ffeγ
     or_log_in_with: Neγ eqqen s
+    register: Jerred
     security: Taγellist
     trouble_logging_in: Γur-k uguren n tuqqna?
   authorize_follow:
@@ -314,6 +325,7 @@ kab:
   deletes:
     proceed: Kkes amiḍan
   directories:
+    directory: Akaram n imaγnuten
     explore_mastodon: Snirem %{title}
   errors:
     '400': The request you submitted was invalid or malformed.
