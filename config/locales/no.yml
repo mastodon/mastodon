@@ -536,6 +536,7 @@
       media:
         title: Media
       no_media: Ingen media
+      no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
       with_media: Med media
     tags:
@@ -562,8 +563,10 @@
   admin_mailer:
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
+      subject: Ny konto opp til vurdering på %{instance} (%{username})
     new_report:
       body: "%{reporter} har rapportert %{target}"
+      body_remote: Noen fra %{domain} har rapportert %{target}
       subject: 'Ny rapport for %{instance} (#%{id})'
     new_trending_tag:
       body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
@@ -578,6 +581,7 @@
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdagelse
     localization:
+      body: Mastodon er oversatt av frivillige.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
@@ -705,15 +709,17 @@
     '500':
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Siden kunne ikke vises på grunn av en midlertidig serverfeil.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   existing_username_validator:
+    not_found: kunne ikke finne en lokal bruker med det brukernavnet
     not_found_multiple: klarte ikke å finne %{usernames}
   exports:
     archive_takeout:
       date: Dato
       download: Last ned arkivet ditt
       hint_html: Du kan be om et arkiv med dine <strong>tuter og opplastede media</strong>. Den eksporterte dataen vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
+      in_progress: Samler arkivet ditt...
       request: Be om ditt arkiv
       size: Størrelse
     blocks: Du blokkerer
@@ -736,6 +742,7 @@
       title: Rediger filter
     index:
       delete: Slett
+      empty: Du har ingen filtre.
       title: Filtre
     new:
       title: Legg til nytt filter
@@ -757,6 +764,7 @@
   identity_proofs:
     active: Aktive
     authorize: Ja, autoriser
+    authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
     errors:
       keybase:
         verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
