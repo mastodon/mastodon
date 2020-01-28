@@ -252,6 +252,7 @@ kab:
       delete: Kkes
       disable: Gdel
       enable: Rmed
+      enabled: Yermed
     reports:
       are_you_sure: Tetḥaq-eḍ?
       comment:
@@ -262,6 +263,7 @@ kab:
         create: Rnu tamawt
         delete: Kkes
       resolved: Fran
+      title: Ineqqisen
       unresolved: Ur yefra ara
     settings:
       custom_css:
@@ -299,6 +301,9 @@ kab:
       delete: Kkes
       edit: Ẓreg
   appearance:
+    localization:
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Yal yiwen·t y·tezmer a ttekki.
     sensitive_content: Agbur amḥulfu
   application_mailer:
     salutation: "%{name},"
@@ -311,7 +316,11 @@ kab:
     login: Qqen
     logout: Ffeγ
     or_log_in_with: Neγ eqqen s
+    providers:
+      cas: CAS
+      saml: SAML
     register: Jerred
+    reset_password: Wennez awal uffir
     security: Taγellist
     trouble_logging_in: Γur-k uguren n tuqqna?
   authorize_follow:
