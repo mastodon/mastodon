@@ -47,6 +47,7 @@ kab:
     following: Yeṭafaṛ
     joined: Yettwarna-d deg %{date}
     last_active: armud aneggaru
+    media: Taγwalt
     moved_html: "%{name} ibeddel amiḍan ɣer %{new_profile_link}:"
     network_hidden: Ulac isalli-agi
     never_active: Werǧin
@@ -87,6 +88,7 @@ kab:
       deleted: Yettwakkes
       disable: Gdel
       disable_two_factor_authentication: Gdel 2FA
+      disabled: Yensa
       display_name: Isem ara d-yettwaskanen
       domain: Taɣult
       edit: Ẓreg
@@ -189,8 +191,10 @@ kab:
     dashboard:
       feature_profile_directory: Imaɣnuten
       features: Timahaltin
+      recent_users: Iseqdacen n memli kan
       software: Aseγẓan
       title: Tafelwit
+      total_users: igellan akk d iseqdacen
       week_users_active: yermed deg yimalas-agi
       week_users_new: imseqdacen deg yimalas-agi
     domain_allows:
@@ -206,6 +210,8 @@ kab:
           silence: Sgugem
       severity:
         silence: yettwasgugem
+      show:
+        undo: Sefsex
     email_domain_blocks:
       add_new: Rnu amaynut
       delete: Kkes
@@ -255,6 +261,13 @@ kab:
         all: Ɣef medden akk
         disabled: Ɣef yiwen ala
         users: Ɣef yimseqdacen idiganen i yeqqnen
+      registrations:
+        min_invite_role:
+          disabled: Ula yiwen·t
+      registrations_mode:
+        modes:
+          none: Yiwen·t ur yzmir ad izeddi
+          open: Zemren akk ad zeddine
       site_description:
         title: Aglam n uqeddac
       site_title: Isem n uqeddac
@@ -277,6 +290,7 @@ kab:
     forgot_password: Tettud awal-ik uffir?
     login: Qqen
     logout: Ffeγ
+    or_log_in_with: Neγ eqqen s
     security: Taγellist
     trouble_logging_in: Γur-k uguren n tuqqna?
   authorize_follow:
