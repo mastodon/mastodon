@@ -322,6 +322,7 @@ kab:
     register: Jerred
     reset_password: Wennez awal uffir
     security: Taγellist
+    set_new_password: Egr-ed awal uffir amaynut
     trouble_logging_in: Γur-k uguren n tuqqna?
   authorize_follow:
     already_following: Teṭafareḍ ya kan amiḍan-a
@@ -333,16 +334,22 @@ kab:
   challenge:
     confirm: Kemmel
     invalid_password: Yir awal uffir
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_months: "%{count}ug"
       about_x_years: "%{count}i"
       almost_x_years: "%{count}i"
       half_a_minute: Tura kan
+      less_than_x_minutes: "%{count}t"
       less_than_x_seconds: Tura kan
       over_x_years: "%{count}i"
+      x_days: "%{count}wu"
       x_minutes: "%{count}t"
       x_months: "%{count}ug"
+      x_seconds: "%{count}t"
   deletes:
     proceed: Kkes amiḍan
   directories:
@@ -368,6 +375,7 @@ kab:
     add_new: Rnu amaynut
   filters:
     contexts:
+      account: Imuγna
       notifications: Tilγa
       thread: Idiwenniyen
     index:
@@ -378,6 +386,7 @@ kab:
   generic:
     all: Akk
     copy: Nγel
+    delete: Kkes
     save_changes: Sekles ibeddilen
   identity_proofs:
     authorize: Ih, ssireg
@@ -394,6 +403,7 @@ kab:
       '604800': 1 umalas
       '86400': 1 wass
     expires_in_prompt: Werǧin
+    title: Ɛreḍ-d kra n yimdanen
   migrations:
     acct: Ibeddel γer
   notification_mailer:
