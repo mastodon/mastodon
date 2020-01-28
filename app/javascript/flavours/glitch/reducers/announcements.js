@@ -16,7 +16,7 @@ import { Map as ImmutableMap, List as ImmutableList, Set as ImmutableSet, fromJS
 const initialState = ImmutableMap({
   items: ImmutableList(),
   isLoading: false,
-  show: true,
+  show: false,
   unread: ImmutableSet(),
 });
 
@@ -84,10 +84,11 @@ export default function announcementsReducer(state = initialState, action) {
       const items = fromJS(action.announcements);
 
       map.set('unread', ImmutableSet());
-      map.set('items', items);
-      map.set('isLoading', false);
 
       addUnread(map, items);
+
+      map.set('items', items);
+      map.set('isLoading', false);
     });
   case ANNOUNCEMENTS_FETCH_FAIL:
     return state.set('isLoading', false);

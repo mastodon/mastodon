@@ -903,3 +903,46 @@ a.name-tag,
 .center-text {
   text-align: center;
 }
+
+.announcements-list {
+  border: 1px solid lighten($ui-base-color, 4%);
+  border-radius: 4px;
+
+  &__item {
+    padding: 15px 0;
+    background: $ui-base-color;
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+
+    &__title {
+      padding: 0 15px;
+      display: block;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.5;
+      color: $secondary-text-color;
+      text-decoration: none;
+      margin-bottom: 10px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $primary-text-color;
+      }
+    }
+
+    &__meta {
+      padding: 0 15px;
+      color: $dark-text-color;
+    }
+
+    &__action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
