@@ -242,6 +242,8 @@
       scheduled_for: Planlagt for %{time}
       scheduled_msg: Kunngjøring planlagt for publisering!
       title: Kunngjøringer
+      unpublished_msg: Kunngjøring upublisert!
+      updated_msg: Kunngjøringen er oppdatert!
     custom_emojis:
       assign_category: Tilegn kategori
       by_domain: Domene
@@ -475,7 +477,9 @@
         title: Publiser liste over oppdagede instanser
       preview_sensitive_media:
         desc_html: Lenkeforhåndsvisninger på andre nettsteder vil vise et miniatyrbilde selv dersom mediet er merket som sensitivt
+        title: Vis sensitive medier i OpenGraph-forhåndsvisninger
       profile_directory:
+        desc_html: Tillat brukere å bli oppdagelige
         title: Skru på profilmappen
       registrations:
         closed_message:
@@ -489,8 +493,10 @@
           title: Tillat invitasjoner fra
       registrations_mode:
         modes:
+          approved: Godkjenning kreves for påmelding
           none: Ingen kan melde seg inn
           open: Hvem som helst kan melde seg inn
+        title: Registreringsmodus
       show_staff_badge:
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
@@ -554,6 +560,8 @@
       delete: Slett
       edit: Rediger
   admin_mailer:
+    new_pending_account:
+      body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
     new_report:
       body: "%{reporter} har rapportert %{target}"
       subject: 'Ny rapport for %{instance} (#%{id})'
@@ -570,6 +578,7 @@
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdagelse
     localization:
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
     toot_layout: Tut-utseende
@@ -640,8 +649,12 @@
     title: Følg %{acct}
   challenge:
     confirm: Fortsett
+    hint_html: "<strong>Tips:</strong> Vi ber deg ikke om passordet ditt igjen i løpet av neste time."
     invalid_password: Ugyldig passord
     prompt: Bekreft passordet for å fortsette
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} timer"
@@ -680,10 +693,10 @@
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Forespørselen du sendte inn var ugyldig eller feil.
     '403': Du har ikke tillatelse til å vise denne siden.
     '404': Siden du leter etter finnes ikke.
-    '406': This page is not available in the requested format.
+    '406': Denne siden er ikke tilgjengelig i ønsket format.
     '410': Siden du leter etter finnes ikke lenger.
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
@@ -803,6 +816,7 @@
     cancel: Avbryt omdirigeringen
     cancel_explanation: Å avbryte omdirigeringen vil reaktivere din nåværende konto, men vil ikke bringe tilbake følgere som har blitt flyttet til den kontoen.
     errors:
+      already_moved: er den samme kontoen du allerede har flyttet til
       move_to_self: kan ikke være den nåværende kontoen
       not_found: ble ikke funnet
     incoming_migrations: Flytte fra en annen konto
@@ -875,12 +889,17 @@
       duration_too_long: er for langt frem i tid
       duration_too_short: er for snart
       expired: Denne avstemningen er allerede ferdig
+      invalid_choice: Det valgte stemmealternativet eksisterer ikke
+      over_character_limit: kan ikke være lengre enn %{max} tegn hver
       too_few_options: må ha mer enn én gjenstand
       too_many_options: kan ikke ha mer enn %{max} gjenstander
   preferences:
     other: Annet
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlige tidslinjer
+  reactions:
+    errors:
+      limit_reached: Grensen for forskjellige reaksjoner nådd
   relationships:
     activity: Kontoaktivitet
     dormant: Dormende
@@ -1003,6 +1022,7 @@
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mer
+    sign_in_to_participate: Logg på for å delta i samtalen
     title: '%{name}: «%{quote}»'
     visibilities:
       private: Privat
@@ -1126,6 +1146,7 @@
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
     backup_ready:
+      explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
     warning:
       explanation:
@@ -1166,6 +1187,7 @@
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
+    otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     signed_in_as: 'Innlogget som:'
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
