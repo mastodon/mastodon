@@ -311,7 +311,9 @@ kab:
     security: Taγellist
     trouble_logging_in: Γur-k uguren n tuqqna?
   authorize_follow:
+    already_following: Teṭafareḍ ya kan amiḍan-a
     follow: Ḍfeṛ
+    following: 'Igerrez! Aqlik teṭafareḍ tura:'
     post_follow:
       web: Ddu γer Web
     title: Ḍfeṛ %{acct}
@@ -366,6 +368,9 @@ kab:
   identity_proofs:
     authorize: Ih, ssireg
     i_am_html: Nekki d %{username} deg %{service}.
+  imports:
+    types:
+      following: Tabdart n wid teṭafareḍ
   invites:
     expires_in:
       '1800': 30 n tisdatin
@@ -379,6 +384,8 @@ kab:
     acct: Ibeddel γer
   notification_mailer:
     follow:
+      body: "%{name} yeṭafaṛ-ik-id tura!"
+      subject: "%{name} yeṭafaṛ-ik-id tura"
       title: Ameḍfaṛ amaynut
   preferences:
     other: Wiyaḍ
