@@ -15,16 +15,8 @@
   %div.muted-hint.center-text
     = t 'admin.announcements.empty'
 - else
-  .table-wrapper
-    %table.table
-      %thead
-        %tr
-          %th= t('simple_form.labels.announcement.text')
-          %th= t('admin.announcements.time_range')
-          %th= t('admin.announcements.published')
-          %th
-      %tbody
-        = render partial: 'announcement', collection: @announcements
+  .announcements-list
+    = render partial: 'announcement', collection: @announcements
 
 = paginate @announcements
 
