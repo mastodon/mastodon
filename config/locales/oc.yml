@@ -42,6 +42,7 @@ oc:
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
     choices_html: "Recomandacions de %{name} :"
+    featured_tags_hint: Podètz indicar d’etiquetas que mostrarem aquí.
     follow: Sègre
     followers:
       one: Seguidor
@@ -188,11 +189,13 @@ oc:
         change_email_user: "%{name} cambièt l’adreça de corrièl de %{target}"
         confirm_user: "%{name} confirmèt l’adreça a %{target}"
         create_account_warning: "%{name} mandèt un avertiment a %{target}"
+        create_announcement: "%{name} creèt una nòva anóncia %{target}"
         create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
         create_domain_allow: "%{name} botèt a la lista blanca lo domeni %{target}"
         create_domain_block: "%{name} bloquèt lo domeni %{target}"
         create_email_domain_block: "%{name} botèt a la lista nègra lo domeni de corrièl %{target}"
         demote_user: "%{name} retragradèt l‘utilizaire %{target}"
+        destroy_announcement: "%{name} suprimiguèt una anóncia %{target}"
         destroy_custom_emoji: "%{name} destruguèt l’emoji %{target}"
         destroy_domain_allow: "%{name} levèt lo domeni %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloquèt lo domeni %{target}"
@@ -214,6 +217,7 @@ oc:
         unassigned_report: "%{name} daissèt de tractar lo rapòrt %{target}"
         unsilence_account: "%{name} levèt lo silenci del compte a %{target}"
         unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
+        update_announcement: "%{name} actualizèt una anóncia %{target}"
         update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
         update_status: "%{name} metèt a jorn l’estatut a %{target}"
       deleted_status: "(estatut suprimit)"
@@ -342,6 +346,7 @@ oc:
       delete: Suprimir
       destroyed_msg: Blocatge del domeni de corrièl ben levat
       domain: Domeni
+      empty: Cap de domeni de corrièl es pas en lista negra actualament.
       new:
         create: Crear un blocatge
         title: Nòu blocatge de domeni de corrièl
@@ -633,6 +638,9 @@ oc:
     hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
     invalid_password: Senhal invalid
     prompt: Confirmatz lo senhal per dire de contunhar
+  date:
+    formats:
+      default: "%d %B de %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -654,7 +662,9 @@ oc:
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
     warning:
+      before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
       caches: Lo contengut en cache suls autres servidors pòt demorar
+      data_removal: Vòstras publicacions e las autras donadas seràn suprimidas per totjorn
       email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
       irreversible: Poiretz pas restaurar o reactivar vòstre compte
       more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
