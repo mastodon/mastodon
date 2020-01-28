@@ -230,6 +230,7 @@ eu:
       deleted_status: "(ezabatutako mezua)"
       title: Auditoria-egunkaria
     announcements:
+      destroyed_msg: Iragarpena ongi ezabatu da!
       edit:
         title: Editatu iragarpena
       empty: Ez da iragarpenik aurkitu.
@@ -237,7 +238,12 @@ eu:
       new:
         create: Sortu iragarpena
         title: Iragarpen berria
+      published_msg: Iragarpena ongi argitaratu da!
+      scheduled_for: '%{time}-rako programatuta'
+      scheduled_msg: Iragarpena argitaratzeko programatuta!
       title: Iragarpenak
+      unpublished_msg: Iragarpena ongi desargitaratu da!
+      updated_msg: Iragarpena ongi eguneratu da!
     custom_emojis:
       assign_category: Esleitu kategoria
       by_domain: Domeinua
@@ -909,7 +915,7 @@ eu:
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
   notifications:
-    email_events: Gertaerak helbide elektronikoko jakinarazpenentzat
+    email_events: E-mail jakinarazpenentzako gertaerak
     email_events_hint: 'Hautatu jaso nahi dituzun gertaeren jakinarazpenak:'
     other_settings: Bezte jakinarazpen konfigurazioak
   number:
