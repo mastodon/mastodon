@@ -5,7 +5,7 @@ export const ANNOUNCEMENTS_FETCH_REQUEST = 'ANNOUNCEMENTS_FETCH_REQUEST';
 export const ANNOUNCEMENTS_FETCH_SUCCESS = 'ANNOUNCEMENTS_FETCH_SUCCESS';
 export const ANNOUNCEMENTS_FETCH_FAIL    = 'ANNOUNCEMENTS_FETCH_FAIL';
 export const ANNOUNCEMENTS_UPDATE        = 'ANNOUNCEMENTS_UPDATE';
-export const ANNOUNCEMENTS_DISMISS       = 'ANNOUNCEMENTS_DISMISS';
+export const ANNOUNCEMENTS_DELETE        = 'ANNOUNCEMENTS_DELETE';
 
 export const ANNOUNCEMENTS_REACTION_ADD_REQUEST = 'ANNOUNCEMENTS_REACTION_ADD_REQUEST';
 export const ANNOUNCEMENTS_REACTION_ADD_SUCCESS = 'ANNOUNCEMENTS_REACTION_ADD_SUCCESS';
@@ -16,6 +16,8 @@ export const ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS = 'ANNOUNCEMENTS_REACTION_REM
 export const ANNOUNCEMENTS_REACTION_REMOVE_FAIL    = 'ANNOUNCEMENTS_REACTION_REMOVE_FAIL';
 
 export const ANNOUNCEMENTS_REACTION_UPDATE = 'ANNOUNCEMENTS_REACTION_UPDATE';
+
+export const ANNOUNCEMENTS_TOGGLE_SHOW = 'ANNOUNCEMENTS_TOGGLE_SHOW';
 
 const noOp = () => {};
 
@@ -54,22 +56,28 @@ export const updateAnnouncements = announcement => ({
   announcement: normalizeAnnouncement(announcement),
 });
 
-export const dismissAnnouncement = announcementId => (dispatch, getState) => {
-  dispatch({
-    type: ANNOUNCEMENTS_DISMISS,
-    id: announcementId,
-  });
-
-  api(getState).post(`/api/v1/announcements/${announcementId}/dismiss`);
-};
-
 export const addReaction = (announcementId, name) => (dispatch, getState) => {
-  dispatch(addReactionRequest(announcementId, name));
+  const announcement = getState().getIn(['announcements', 'items']).find(x => x.get('id') === announcementId);
+
+  let alreadyAdded = false;
+
+  if (announcement) {
+    const reaction = announcement.get('reactions').find(x => x.get('name') === name);
+    if (reaction && reaction.get('me')) {
+      alreadyAdded = true;
+    }
+  }
+
+  if (!alreadyAdded) {
+    dispatch(addReactionRequest(announcementId, name, alreadyAdded));
+  }
 
   api(getState).put(`/api/v1/announcements/${announcementId}/reactions/${name}`).then(() => {
-    dispatch(addReactionSuccess(announcementId, name));
+    dispatch(addReactionSuccess(announcementId, name, alreadyAdded));
   }).catch(err => {
-    dispatch(addReactionFail(announcementId, name, err));
+    if (!alreadyAdded) {
+      dispatch(addReactionFail(announcementId, name, err));
+    }
   });
 };
 
@@ -130,4 +138,13 @@ export const removeReactionFail = (announcementId, name, error) => ({
 export const updateReaction = reaction => ({
   type: ANNOUNCEMENTS_REACTION_UPDATE,
   reaction,
+});
+
+export const toggleShowAnnouncements = () => ({
+  type: ANNOUNCEMENTS_TOGGLE_SHOW,
+});
+
+export const deleteAnnouncement = id => ({
+  type: ANNOUNCEMENTS_DELETE,
+  id,
 });

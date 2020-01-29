@@ -5,13 +5,16 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import IconButton from 'mastodon/components/icon_button';
 import Icon from 'mastodon/components/icon';
-import { defineMessages, injectIntl, FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl';
-import { autoPlayGif } from 'mastodon/initial_state';
+import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
+import { autoPlayGif, reduceMotion } from 'mastodon/initial_state';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'mastodon/initial_state';
 import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
 import classNames from 'classnames';
 import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_picker_dropdown_container';
+import AnimatedNumber from 'mastodon/components/animated_number';
+import TransitionMotion from 'react-motion/lib/TransitionMotion';
+import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -193,6 +196,7 @@ class Reaction extends ImmutablePureComponent {
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     emojiMap: ImmutablePropTypes.map.isRequired,
+    style: PropTypes.object,
   };
 
   state = {
@@ -223,9 +227,9 @@ class Reaction extends ImmutablePureComponent {
     }
 
     return (
-      <button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`}>
+      <button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
         <span className='reactions-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} /></span>
-        <span className='reactions-bar__item__count'><FormattedNumber value={reaction.get('count')} /></span>
+        <span className='reactions-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
       </button>
     );
   }
@@ -247,25 +251,44 @@ class ReactionsBar extends ImmutablePureComponent {
     addReaction(announcementId, data.native.replace(/:/g, ''));
   }
 
+  willEnter () {
+    return { scale: reduceMotion ? 1 : 0 };
+  }
+
+  willLeave () {
+    return { scale: reduceMotion ? 0 : spring(0, { stiffness: 170, damping: 26 }) };
+  }
+
   render () {
     const { reactions } = this.props;
     const visibleReactions = reactions.filter(x => x.get('count') > 0);
 
-    return (
-      <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
-        {visibleReactions.map(reaction => (
-          <Reaction
-            key={reaction.get('name')}
-            reaction={reaction}
-            announcementId={this.props.announcementId}
-            addReaction={this.props.addReaction}
-            removeReaction={this.props.removeReaction}
-            emojiMap={this.props.emojiMap}
-          />
-        ))}
+    const styles = visibleReactions.map(reaction => ({
+      key: reaction.get('name'),
+      data: reaction,
+      style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
+    })).toArray();
 
-        <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' />} />
-      </div>
+    return (
+      <TransitionMotion styles={styles} willEnter={this.willEnter} willLeave={this.willLeave}>
+        {items => (
+          <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
+            {items.map(({ key, data, style }) => (
+              <Reaction
+                key={key}
+                reaction={data}
+                style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
+                announcementId={this.props.announcementId}
+                addReaction={this.props.addReaction}
+                removeReaction={this.props.removeReaction}
+                emojiMap={this.props.emojiMap}
+              />
+            ))}
+
+            {visibleReactions.size < 8 && <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' />} />}
+          </div>
+        )}
+      </TransitionMotion>
     );
   }
 
@@ -276,19 +299,13 @@ class Announcement extends ImmutablePureComponent {
   static propTypes = {
     announcement: ImmutablePropTypes.map.isRequired,
     emojiMap: ImmutablePropTypes.map.isRequired,
-    dismissAnnouncement: PropTypes.func.isRequired,
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
-  handleDismissClick = () => {
-    const { dismissAnnouncement, announcement } = this.props;
-    dismissAnnouncement(announcement.get('id'));
-  }
-
   render () {
-    const { announcement, intl } = this.props;
+    const { announcement } = this.props;
     const startsAt = announcement.get('starts_at') && new Date(announcement.get('starts_at'));
     const endsAt = announcement.get('ends_at') && new Date(announcement.get('ends_at'));
     const now = new Date();
@@ -313,8 +330,6 @@ class Announcement extends ImmutablePureComponent {
           removeReaction={this.props.removeReaction}
           emojiMap={this.props.emojiMap}
         />
-
-        <IconButton title={intl.formatMessage(messages.close)} icon='times' className='announcements__item__dismiss-icon' onClick={this.handleDismissClick} />
       </div>
     );
   }
@@ -327,8 +342,6 @@ class Announcements extends ImmutablePureComponent {
   static propTypes = {
     announcements: ImmutablePropTypes.list,
     emojiMap: ImmutablePropTypes.map.isRequired,
-    fetchAnnouncements: PropTypes.func.isRequired,
-    dismissAnnouncement: PropTypes.func.isRequired,
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -337,11 +350,6 @@ class Announcements extends ImmutablePureComponent {
   state = {
     index: 0,
   };
-
-  componentDidMount () {
-    const { fetchAnnouncements } = this.props;
-    fetchAnnouncements();
-  }
 
   handleChangeIndex = index => {
     this.setState({ index: index % this.props.announcements.size });
@@ -368,13 +376,12 @@ class Announcements extends ImmutablePureComponent {
         <img className='announcements__mastodon' alt='' draggable='false' src={mascot || elephantUIPlane} />
 
         <div className='announcements__container'>
-          <ReactSwipeableViews index={index} onChangeIndex={this.handleChangeIndex}>
+          <ReactSwipeableViews animateHeight={!reduceMotion} adjustHeight={reduceMotion} index={index} onChangeIndex={this.handleChangeIndex}>
             {announcements.map(announcement => (
               <Announcement
                 key={announcement.get('id')}
                 announcement={announcement}
                 emojiMap={this.props.emojiMap}
-                dismissAnnouncement={this.props.dismissAnnouncement}
                 addReaction={this.props.addReaction}
                 removeReaction={this.props.removeReaction}
                 intl={intl}
@@ -382,11 +389,13 @@ class Announcements extends ImmutablePureComponent {
             ))}
           </ReactSwipeableViews>
 
-          <div className='announcements__pagination'>
-            <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.previous)} icon='chevron-left' onClick={this.handlePrevClick} size={13} />
-            <span>{index + 1} / {announcements.size}</span>
-            <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.next)} icon='chevron-right' onClick={this.handleNextClick} size={13} />
-          </div>
+          {announcements.size > 1 && (
+            <div className='announcements__pagination'>
+              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.previous)} icon='chevron-left' onClick={this.handlePrevClick} size={13} />
+              <span>{index + 1} / {announcements.size}</span>
+              <IconButton disabled={announcements.size === 1} title={intl.formatMessage(messages.next)} icon='chevron-right' onClick={this.handleNextClick} size={13} />
+            </div>
+          )}
         </div>
       </div>
     );

@@ -3,6 +3,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 import PropTypes from 'prop-types';
 
 const messages = defineMessages({
+  today: { id: 'relative_time.today', defaultMessage: 'today' },
   just_now: { id: 'relative_time.just_now', defaultMessage: 'now' },
   seconds: { id: 'relative_time.seconds', defaultMessage: '{number}s' },
   minutes: { id: 'relative_time.minutes', defaultMessage: '{number}m' },
@@ -65,12 +66,14 @@ const getUnitDelay = units => {
   }
 };
 
-export const timeAgoString = (intl, date, now, year) => {
+export const timeAgoString = (intl, date, now, year, timeGiven = true) => {
   const delta = now - date.getTime();
 
   let relativeTime;
 
-  if (delta < 10 * SECOND) {
+  if (delta < DAY && !timeGiven) {
+    relativeTime = intl.formatMessage(messages.today);
+  } else if (delta < 10 * SECOND) {
     relativeTime = intl.formatMessage(messages.just_now);
   } else if (delta < 7 * DAY) {
     if (delta < MINUTE) {
@@ -91,12 +94,14 @@ export const timeAgoString = (intl, date, now, year) => {
   return relativeTime;
 };
 
-const timeRemainingString = (intl, date, now) => {
+const timeRemainingString = (intl, date, now, timeGiven = true) => {
   const delta = date.getTime() - now;
 
   let relativeTime;
 
-  if (delta < 10 * SECOND) {
+  if (delta < DAY && !timeGiven) {
+    relativeTime = intl.formatMessage(messages.today);
+  } else if (delta < 10 * SECOND) {
     relativeTime = intl.formatMessage(messages.moments_remaining);
   } else if (delta < MINUTE) {
     relativeTime = intl.formatMessage(messages.seconds_remaining, { number: Math.floor(delta / SECOND) });
@@ -173,8 +178,9 @@ class RelativeTimestamp extends React.Component {
   render () {
     const { timestamp, intl, year, futureDate } = this.props;
 
+    const timeGiven    = timestamp.includes('T');
     const date         = new Date(timestamp);
-    const relativeTime = futureDate ? timeRemainingString(intl, date, this.state.now) : timeAgoString(intl, date, this.state.now, year);
+    const relativeTime = futureDate ? timeRemainingString(intl, date, this.state.now, timeGiven) : timeAgoString(intl, date, this.state.now, year, timeGiven);
 
     return (
       <time dateTime={timestamp} title={intl.formatDate(date, dateFormatOptions)}>

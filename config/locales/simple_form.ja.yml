@@ -14,6 +14,12 @@ ja:
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
         type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
+      announcement:
+        all_day: 選択すると、おしらせ対象の開始および終了日時は日付のみ表示されます
+        ends_at: オプションです。指定すると、お知らせの掲載はその日時で自動的に終了します
+        scheduled_at: お知らせを今すぐ掲載する場合は空欄にしてください
+        starts_at: オプションです。お知らせしたい事柄の期間が決まっている場合に使用します
+        text: トゥートと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
@@ -84,7 +90,11 @@ ja:
           suspend: 停止しアカウントのデータを恒久的に削除する
         warning_preset_id: プリセット警告文を使用
       announcement:
-        text: 告知
+        all_day: 終日
+        ends_at: お知らせ対象の終了日時
+        scheduled_at: 掲載する日時
+        starts_at: おしらせ対象の開始日時
+        text: お知らせ
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
         avatar: アイコン

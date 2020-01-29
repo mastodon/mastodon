@@ -14,6 +14,12 @@ ko:
         text_html: 선택사항. 툿 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
         type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
         warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
+      announcement:
+        all_day: 체크 되었을 경우, 그 시간에 속한 날짜들에만 표시됩니다
+        ends_at: 옵션입니다. 공지사항이 이 시간에 자동으로 발행 중지 됩니다
+        scheduled_at: 공백으로 두면 공지사항이 곧바로 발행 됩니다
+        starts_at: 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
+        text: 툿 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -83,6 +89,12 @@ ko:
           silence: 침묵
           suspend: 정지하고 되돌릴 수 없는 데이터 삭제
         warning_preset_id: 경고 틀 사용하기
+      announcement:
+        all_day: 종일 일정
+        ends_at: 이벤트 종료
+        scheduled_at: 발행 일정
+        starts_at: 이벤트 시작
+        text: 공지사항
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타

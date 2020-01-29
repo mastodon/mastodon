@@ -23,43 +23,43 @@ es:
         explanation: Has creado una cuenta en %{host} con esta dirección de correo electrónico. Estas a un clic de activarla. Si no fue usted, por favor ignore este correo electrónico.
         explanation_when_pending: Usted ha solicitado una invitación a %{host} con esta dirección de correo electrónico. Una vez que confirme su dirección de correo electrónico, revisaremos su aplicación. No puede iniciar sesión hasta que su aplicación sea revisada. Si su solicitud está rechazada, sus datos serán eliminados, así que no será necesaria ninguna acción adicional por ti. Si no fuera usted, por favor ignore este correo electrónico.
         extra_html: Por favor revise <a href="%{terms_path}">las reglas de la instancia</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
-        subject: 'Mastodonte: Instrucciones de confirmación para %{instance}'
+        subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
         title: Verificar dirección de correo electrónico
       email_changed:
         explanation: 'El correo electrónico para su cuenta esta siendo cambiada a:'
         extra: Si usted no ha cambiado su correo electrónico, es probable que alguien haya conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte al administrador de la instancia si usted no puede iniciar sesión.
-        subject: 'Mastodonte: Correo electrónico cambiado'
+        subject: 'Mastodon: Correo electrónico cambiado'
         title: Nueva dirección de correo electrónico
       password_change:
         explanation: La contraseña de su cuenta a sido cambiada.
         extra: Si usted no a cambiado su contraseña. es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte a el administrador de la instancia si usted esta bloqueado de su cuenta.
-        subject: 'Mastodonte: Contraseña cambiada'
+        subject: 'Mastodon: Contraseña cambiada'
         title: Contraseña cambiada
       reconfirmation_instructions:
         explanation: Confirme la nueva dirección para cambiar su coreo electrónico.
-        extra: Si no iniciaste este cambio, por favor ignora este correo. Esta dirección de correo para la cuenta de Mastodonte no cambiará hasta que accedas al vinculo arriba.
-        subject: 'Mastodonte: Confirme correo electrónico para %{instance}'
+        extra: Si no iniciaste este cambio, por favor ignora este correo. Esta dirección de correo para la cuenta de Mastodon no cambiará hasta que accedas al vinculo arriba.
+        subject: 'Mastodon: Confirme correo electrónico para %{instance}'
         title: Verifique dirección de correo electrónico
       reset_password_instructions:
         action: Cambiar contraseña
         explanation: Solicitaste una nueva contraseña para tu cuenta.
         extra: Si no solicitaste esto, por favor ignora este correo. Tu contraseña no cambiará hasta que tu accedas al vinculo arriba y crees una nueva.
-        subject: 'Mastodonte: Instrucciones para reiniciar contraseña'
+        subject: 'Mastodon: Instrucciones para reiniciar contraseña'
         title: Reiniciar contraseña
       two_factor_disabled:
         explanation: La autenticación de dos factores para tu cuenta ha sido deshabilitada. Ahora puedes conectarte solamente usando la dirección de correo electrónico y la contraseña.
-        subject: 'Mastodonte: La autenticación de dos factores está deshabilitada'
+        subject: 'Mastodon: La autenticación de dos factores está deshabilitada'
         title: 2FA desactivada
       two_factor_enabled:
         explanation: La autenticación de dos factores para tu cuenta ha sido habilitada. Se requiere un token generado por la aplicación TOTP emparejada para ingresar.
-        subject: 'Mastodonte: La autenticación de dos factores está habilitada'
+        subject: 'Mastodon: La autenticación de dos factores está habilitada'
         title: 2FA activada
       two_factor_recovery_codes_changed:
         explanation: Los códigos de recuperación previos han sido invalidados y se generaron códigos nuevos.
-        subject: 'Mastodonte: Los códigos de recuperación de dos factores fueron regenerados'
+        subject: 'Mastodon: Los códigos de recuperación de dos factores fueron regenerados'
         title: Códigos de recuperación 2FA cambiados
       unlock_instructions:
-        subject: 'Mastodonte: Instrucciones para desbloquear'
+        subject: 'Mastodon: Instrucciones para desbloquear'
     omniauth_callbacks:
       failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
       success: Autentificado con éxito desde la cuenta %{kind} .

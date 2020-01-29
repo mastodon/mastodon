@@ -92,6 +92,7 @@ export default function getStream(streamingAPIBaseURL, accessToken, stream, { co
     return ws;
   }
 
+  stream = stream.replace(/:/g, '/');
   params.push(`access_token=${accessToken}`);
   const es = new EventSource(`${streamingAPIBaseURL}/api/v1/streaming/${stream}?${params.join('&')}`);
 

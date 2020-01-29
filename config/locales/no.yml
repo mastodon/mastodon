@@ -21,6 +21,9 @@
     federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
     get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
+    instance_actor_flash: 'Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet.
+
+'
     learn_more: Lær mer
     privacy_policy: Privatlivsretningslinjer
     see_whats_happening: Se hva som skjer
@@ -47,6 +50,8 @@
     what_is_mastodon: Hva er Mastodon?
   accounts:
     choices_html: "%{name} sine anbefalte:"
+    endorsements_hint: Du kan fremheve personer du følger fra nettgrensesnittet som deretter vil bli vist her.
+    featured_tags_hint: Du kan fremheve spesifikke emneknagger som vil bli vist her.
     follow: Følg
     followers:
       one: Følger
@@ -54,6 +59,7 @@
     following: Følger
     joined: Ble med den %{date}
     last_active: senest aktiv
+    link_verified_on: Eierskap av denne lenken ble sjekket %{date}
     media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikke tilgjengelig
@@ -61,6 +67,8 @@
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
+    pin_errors:
+      following: Du må allerede følge personen du vil fremheve
     posts:
       one: Tut
       other: Tuter
@@ -136,6 +144,7 @@
       moderation_notes: Moderasjonsnotater
       most_recent_activity: Nyligste aktivitet
       most_recent_ip: Nyligste IP
+      no_account_selected: Ingen brukere ble forandret da ingen var valgt
       no_limits_imposed: Ingen grenser er tatt i bruk
       not_subscribed: Ikke abonnért
       pending: Avventer gjennomgang
@@ -173,6 +182,7 @@
       statuses: Statuser
       subscribe: Abonnere
       suspended: Suspendert
+      time_in_queue: Venter i kø %{time}
       title: Kontoer
       unconfirmed_email: Ubekreftet E-postadresse
       undo_silenced: Angre målbinding
@@ -184,13 +194,17 @@
       whitelisted: Hvitelistet
     action_logs:
       actions:
+        assigned_to_self_report: "%{name} tilegnet rapport %{target} til seg selv"
+        change_email_user: "%{name} forandret e-postadressen for bruker %{target}"
         confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
         create_account_warning: "%{name} sendte en advarsel til %{target}"
+        create_announcement: "%{name} laget en ny kunngjøring %{target}"
         create_custom_emoji: "%{name} lastet opp ny emoji %{target}"
         create_domain_allow: "%{name} hvitelistet domenet %{target}"
         create_domain_block: "%{name} blokkerte domenet %{target}"
         create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
         demote_user: "%{name} degraderte bruker %{target}"
+        destroy_announcement: "%{name} slettet kunngjøring %{target}"
         destroy_custom_emoji: "%{name} ødela emojien %{target}"
         destroy_domain_allow: "%{name} fjernet domenet %{target} fra hvitelisten"
         destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
@@ -209,12 +223,25 @@
         resolve_report: "%{name} avviste rapporten %{target}"
         silence_account: "%{name} forstummet %{target}s konto"
         suspend_account: "%{name} suspendert %{target}s konto"
+        unassigned_report: "%{name} avtilegnet rapport %{target}"
         unsilence_account: "%{name} fjernet forstummingen av %{target}s konto"
         unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
+        update_announcement: "%{name} oppdaterte kunngjøring %{target}"
         update_custom_emoji: "%{name} oppdaterte emoji %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(statusen er slettet)"
       title: Revisionslogg
+    announcements:
+      edit:
+        title: Rediger kunngjøring
+      empty: Ingen kunngjøringer funnet.
+      live: Direkte
+      new:
+        create: Lag kunngjøring
+        title: Ny kunngjøring
+      published: Publisert
+      time_range: Tidsramme
+      title: Kunngjøringer
     custom_emojis:
       assign_category: Tilegn kategori
       by_domain: Domene
@@ -249,17 +276,23 @@
       upload: Last opp
     dashboard:
       authorized_fetch_mode: Sikkermodus
+      backlog: opphopsloggede jobber
       config: Oppsett
       feature_deletions: Kontoslettinger
       feature_invites: Invitasjonslenker
       feature_profile_directory: Profilmappe
       feature_registrations: Registreringer
+      feature_relay: Føderasjonsoverganger
       feature_spam_check: Anti-spam
       feature_timeline_preview: Tidslinje-forhåndsvisning
       features: Egenskaper
+      hidden_service: Føderering med skjulte tjenester
       open_reports: åpne rapporter
+      pending_tags: emneknagger som venter gjennomgang
+      pending_users: brukere som venter gjennomgang
       recent_users: Nylige brukere
       search: Fulltekstsøk
+      single_user_mode: Enpersons-modus
       software: Programvare
       space: Plassbruk
       title: Kontrollpanel
@@ -271,12 +304,15 @@
       whitelist_mode: Hvitelistemodus
     domain_allows:
       add_new: Hvitelist domene
+      created_msg: Domenet har blitt hvitelistet
+      destroyed_msg: Domenet har blitt fjernet fra hvitelisten
       undo: Fjern fra hvitelisten
     domain_blocks:
       add_new: Lag ny
       created_msg: Domeneblokkering blir nå behandlet
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
+      edit: Rediger domeneblokkering
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
@@ -288,10 +324,13 @@
           suspend: Utvis
         title: Ny domeneblokkering
       private_comment: Privat kommentar
+      private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentlig kommentar
+      public_comment_hint: Kommenter angående denne domenebegrensningen for offentligheten, hvis publisering av domenebegrensningslisten er slått på.
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       reject_reports: Avslå rapporter
+      reject_reports_hint: Ignorer alle rapporter som kommer fra dette domenet. Irrelevant for utvisninger
       rejecting_media: avviser mediafiler
       rejecting_reports: avslår rapporter
       severity:
@@ -307,12 +346,14 @@
         title: Angre domeneblokkering for %{domain}
         undo: Angre
       undo: Angre
+      view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Fjern
       destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
+      empty: Ingen e-mail-domener er sortelistet på dette tidspunkt.
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
@@ -343,20 +384,29 @@
         expired: Utløpt
         title: Filtrer
       title: Invitasjoner
+    pending_accounts:
+      title: Avventende brukere (%{count})
+    relationships:
+      title: "%{acct} sitt forhold"
     relays:
       add_new: Legg til ny overgang
       delete: Slett
+      description_html: En <strong>federert overgang</strong> er en mellomleddsserver som utveksler store mengder av offentlige tuter mellom servere som abonnerer og publiserer til den. <strong>Det kan hjelpe små og mellomstore servere til å oppdage innhold fra strømiverset</strong>, noe som ellers ville ha krevd at lokale brukere manuelt fulgte andre personer på fjerne servere.
       disable: Skru av
       disabled: Skrudd av
       enable: Skru på
       enable_hint: Når dette har blitt skrudd på, vil tjeneren din abonnere på alle offentlige tuter fra denne overgangen, og vil begynne å sende denne tjenerens offentlige tuter til den.
       enabled: Skrudd på
       inbox_url: Overførings-URL
+      pending: Avventer overgangens godkjenning
       save_and_enable: Lagre og skru på
       setup: Sett opp en overgangsforbindelse
       signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
       status: Status
       title: Overganger
+    report_notes:
+      created_msg: Rapportnotat opprettet!
+      destroyed_msg: Rapportnotat slettet!
     reports:
       account:
         notes:
@@ -369,6 +419,7 @@
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilegnet moderator
+      by_target_domain: Domenet av rapportert bruker
       comment:
         none: Ingen
       created_at: Rapportert
@@ -376,12 +427,16 @@
       mark_as_unresolved: Merk som uoppklart
       notes:
         create: Legg til notat
+        create_and_resolve: Løst med notat
+        create_and_unresolve: Gjenåpne med notat
         delete: Slett
+        placeholder: Beskriv hvilke handlinger som har blitt tatt, eller andre relaterte oppdateringer...
       reopen: Gjenåpne rapporten
       report: 'Rapporter #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
       resolved: Løst
+      resolved_msg: Rapport løst!
       status: Status
       title: Rapporter
       unassign: Fjern tilegning
@@ -398,6 +453,7 @@
         email: Skriv en offentlig e-postadresse
         username: Skriv brukernavn
       custom_css:
+        desc_html: Modifiser utseendet med CSS lastet på hver side
         title: Egendefinert CSS
       domain_blocks:
         all: Til alle

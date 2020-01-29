@@ -194,11 +194,13 @@ ko:
         change_email_user: "%{name}이 %{target}의 이메일 주소를 변경했습니다"
         confirm_user: "%{name}이 %{target}의 이메일 주소를 컨펌했습니다"
         create_account_warning: "%{name}가 %{target}에게 경고 보냄"
+        create_announcement: "%{name} 님이 새 공지 %{target}을 만들었습니다"
         create_custom_emoji: "%{name}이 새로운 에모지 %{target}를 추가했습니다"
         create_domain_allow: "%{name} 님이 %{target} 도메인을 화이트리스트에 넣었습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
         create_email_domain_block: "%{name}이 이메일 도메인 %{target}를 차단했습니다"
         demote_user: "%{name}이 %{target}을 강등했습니다"
+        destroy_announcement: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji: "%{name}이 %{target} 에모지를 삭제함"
         destroy_domain_allow: "%{name} 님이 %{target} 도메인을 화이트리스트에서 제거하였습니다"
         destroy_domain_block: "%{name}이 도메인 %{target}의 차단을 해제했습니다"
@@ -220,10 +222,22 @@ ko:
         unassigned_report: "%{name}이 리포트 %{target}을 할당 해제했습니다"
         unsilence_account: "%{name}이 %{target}에 대한 침묵을 해제했습니다"
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
+        update_announcement: "%{name} 님이 공지 %{target}을 갱신했습니다"
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
         update_status: "%{name}이 %{target}의 상태를 업데이트 했습니다"
       deleted_status: "(삭제됨)"
       title: 감사 기록
+    announcements:
+      edit:
+        title: 공지사항 수정
+      empty: 공지를 찾을 수 없습니다.
+      live: 진행 중
+      new:
+        create: 공지사항 생성
+        title: 새 공지사항
+      published: 발행됨
+      time_range: 시간 범위
+      title: 공지사항
     custom_emojis:
       assign_category: 분류 지정
       by_domain: 도메인
@@ -368,6 +382,8 @@ ko:
       title: 초대
     pending_accounts:
       title: 대기중인 계정 (%{count})
+    relationships:
+      title: "%{acct}의 관계"
     relays:
       add_new: 릴레이 추가
       delete: 삭제
@@ -649,6 +665,9 @@ ko:
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
     invalid_password: 잘못된 암호
     prompt: 계속하려면 암호 확인
+  date:
+    formats:
+      default: "%Y-%b-%d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
@@ -725,6 +744,7 @@ ko:
     hint_html: "<strong>추천 해시태그가 무엇이죠?</strong> 당신의 공개 프로필 페이지에 눈에 띄게 표현 되며 사람들이 그 해시태그를 포함한 당신의 글을 찾아 볼 수 있도록 합니다. 창작활동이나 긴 기간을 가지는 프로젝트를 쭉 따라가기에 좋은 도구입니다."
   filters:
     contexts:
+      account: 프로필
       home: 홈 타임라인
       notifications: 알림
       public: 퍼블릭 타임라인
@@ -749,6 +769,8 @@ ko:
     all: 모두
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
+    delete: 삭제
+    edit: 수정
     no_batch_actions_available: 이 페이지에서 수행할 수 있는 일괄작업이 없습니다
     order_by: 순서
     save_changes: 변경 사항을 저장
@@ -916,6 +938,10 @@ ko:
     other: 기타
     posting_defaults: 게시물 기본설정
     public_timelines: 공개 타임라인
+  reactions:
+    errors:
+      limit_reached: 다른 리액션 제한에 도달했습니다
+      unrecognized_emoji: 인식 되지 않은 에모지입니다
   relationships:
     activity: 계정 활동
     dormant: 휴면

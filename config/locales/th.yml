@@ -154,6 +154,7 @@ th:
         staff: พนักงาน
         user: ผู้ใช้
       search: ค้นหา
+      search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
         created_reports: รายงานที่สร้าง
@@ -178,10 +179,13 @@ th:
         change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
         confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
         create_account_warning: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
+        create_announcement: "%{name} ได้สร้างประกาศใหม่ %{target}"
+        create_custom_emoji: "%{name} ได้อัปโหลดอีโมจิใหม่ %{target}"
         create_domain_allow: "%{name} ได้ขึ้นบัญชีขาวโดเมน %{target}"
         create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
         create_email_domain_block: "%{name} ได้ขึ้นบัญชีดำโดเมนอีเมล %{target}"
         demote_user: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
+        destroy_announcement: "%{name} ได้ลบประกาศ %{target}"
         destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
         destroy_domain_allow: "%{name} ได้เอาโดเมน %{target} ออกจากบัญชีขาว"
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
@@ -199,10 +203,22 @@ th:
         suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
         unassigned_report: "%{name} ได้เลิกมอบหมายรายงาน %{target}"
         unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
+        update_announcement: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
       title: รายการบันทึกการตรวจสอบ
+    announcements:
+      edit:
+        title: แก้ไขประกาศ
+      empty: ไม่พบประกาศ
+      live: สด
+      new:
+        create: สร้างประกาศ
+        title: ประกาศใหม่
+      published: เผยแพร่เมื่อ
+      time_range: ช่วงเวลา
+      title: ประกาศ
     custom_emojis:
       assign_category: กำหนดหมวดหมู่
       by_domain: โดเมน
@@ -328,6 +344,8 @@ th:
       title: คำเชิญ
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
+    relationships:
+      title: ความสัมพันธ์ของ %{acct}
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -539,6 +557,9 @@ th:
     confirm: ดำเนินการต่อ
     invalid_password: รหัสผ่านไม่ถูกต้อง
     prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ชั่วโมง"
@@ -600,6 +621,7 @@ th:
     add_new: เพิ่มใหม่
   filters:
     contexts:
+      account: โปรไฟล์
       home: เส้นเวลาหน้าแรก
       notifications: การแจ้งเตือน
       public: เส้นเวลาสาธารณะ
@@ -621,6 +643,8 @@ th:
     all: ทั้งหมด
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
+    delete: ลบ
+    edit: แก้ไข
     order_by: เรียงลำดับตาม
     save_changes: บันทึกการเปลี่ยนแปลง
   html_validator:
@@ -722,10 +746,14 @@ th:
     other: อื่น ๆ
     posting_defaults: ค่าเริ่มต้นการโพสต์
     public_timelines: เส้นเวลาสาธารณะ
+  reactions:
+    errors:
+      unrecognized_emoji: ไม่ใช่อีโมจิที่รู้จัก
   relationships:
     activity: กิจกรรมบัญชี
     followers: ผู้ติดตาม
     following: กำลังติดตาม
+    invited: เชิญแล้ว
     last_active: ใช้งานล่าสุด
     most_recent: ล่าสุด
     moved: ย้ายแล้ว

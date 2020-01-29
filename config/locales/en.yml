@@ -236,6 +236,7 @@ en:
       deleted_status: "(deleted status)"
       title: Audit log
     announcements:
+      destroyed_msg: Announcement successfully deleted!
       edit:
         title: Edit announcement
       empty: No announcements found.
@@ -243,9 +244,12 @@ en:
       new:
         create: Create announcement
         title: New announcement
-      published: Published
-      time_range: Time range
+      published_msg: Announcement successfully published!
+      scheduled_for: Scheduled for %{time}
+      scheduled_msg: Announcement scheduled for publication!
       title: Announcements
+      unpublished_msg: Announcement successfully unpublished!
+      updated_msg: Announcement successfully updated!
     custom_emojis:
       assign_category: Assign category
       by_domain: Domain
@@ -794,7 +798,6 @@ en:
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
-    edit: Edit
     no_batch_actions_available: No batch actions available on this page
     order_by: Order by
     save_changes: Save changes
@@ -969,6 +972,7 @@ en:
     public_timelines: Public timelines
   reactions:
     errors:
+      limit_reached: Limit of different reactions reached
       unrecognized_emoji: is not a recognized emoji
   relationships:
     activity: Account activity
