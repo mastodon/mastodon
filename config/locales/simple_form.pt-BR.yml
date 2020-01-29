@@ -14,11 +14,11 @@ pt-BR:
         type_html: Decida o que fazer com <strong>%{acct}</strong>
         warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
       announcement:
-        all_day: Quando marcado, apenas as datas do intervalo de tempo serão exibidas
-        ends_at: Opcional. O anúncio será automaticamente retirado de exibição neste momento
+        all_day: Quando marcado, apenas as datas do período serão exibidas
+        ends_at: Opcional. O anúncio será automaticamente não publicado no momento
         scheduled_at: Deixe em branco para publicar o anúncio imediatamente
-        starts_at: Opcional. Caso o seu anúncio seja vinculado a um intervalo de tempo específico
-        text: Pode utilizar a sintaxe dos toot. Por favor, tenha em consideração o espaço que o anúncio ocupará no ecrã do utilizador
+        starts_at: Opcional. Caso seu anúncio esteja vinculado a um período específico
+        text: Você pode usar a sintaxe toot. Esteja ciente do espaço que o anúncio ocupará na tela do usuário
       defaults:
         autofollow: Pessoas que criarem conta através de seu convite te seguirão automaticamente
         avatar: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
@@ -89,7 +89,7 @@ pt-BR:
           suspend: Banir e excluir irreversivelmente dados da conta
         warning_preset_id: Usar um aviso pré-definido
       announcement:
-        all_day: Evento de dia inteiro
+        all_day: Evento o dia inteiro
         ends_at: Fim do evento
         scheduled_at: Agendar publicação
         starts_at: Início do evento
