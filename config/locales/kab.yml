@@ -305,6 +305,9 @@ kab:
       add_new: Rnu amaynut
       delete: Kkes
       edit: Ẓreg
+  admin_mailer:
+    new_report:
+      subject: 'Aneqqis amaynut i %{instance} (#%{id})'
   appearance:
     localization:
       guide_link: https://crowdin.com/project/mastodon
@@ -485,6 +488,8 @@ kab:
       private: Imeḍfaṛen kan
   stream_entries:
     sensitive_content: Agbur amḥulfu
+  terms:
+    title: "Tiwtilin n useqdec akked tsertit tabaḍnit n %{instance}"
   themes:
     contrast: Maṣṭudun (agnil awriran)
     default: Maṣṭudun (Aberkan)
