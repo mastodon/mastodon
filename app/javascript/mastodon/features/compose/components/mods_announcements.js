@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import classnames from 'classnames';
 
-class Announcement extends React.PureComponent {
+class ModAnnouncement extends React.PureComponent {
 
   static propTypes = {
     item: ImmutablePropTypes.map,
@@ -15,10 +15,10 @@ class Announcement extends React.PureComponent {
     const { item } = this.props;
 
     const contents = [];
-    contents.push(<div key='body' className='announcements__body'>{item.get('body')}</div>);
+    contents.push(<div key='body' className='mods__announcements__body'>{item.get('body')}</div>);
     if (item.get('icon')) {
       contents.push(
-        <div key='icon' className='announcements__icon'>
+        <div key='icon' className='mods__announcements__icon'>
           <img src={item.get('icon')} alt='' />
         </div>
       );
@@ -27,8 +27,8 @@ class Announcement extends React.PureComponent {
     const href = item.get('href');
 
     const classname = classnames({
-      'announcements__item': true,
-      'announcements__item--clickable': !!href,
+      'mods__announcements__item': true,
+      'mods__announcements__item--clickable': !!href,
     });
 
     if (!href) {
@@ -42,10 +42,10 @@ class Announcement extends React.PureComponent {
 
 }
 
-export default class Announcements extends React.PureComponent {
+export default class ModsAnnouncements extends React.PureComponent {
 
   state = {
-    items: Announcements.cache || Immutable.Map(),
+    items: ModsAnnouncements.cache || Immutable.Map(),
   }
 
   static isCacheControlled = false
@@ -88,15 +88,15 @@ export default class Announcements extends React.PureComponent {
 
     axios.get('/announcements.json', {
       headers: {
-        'If-Modified-Since': !Announcements.isCacheControlled && Announcements.lastDate || '',
+        'If-Modified-Since': !ModsAnnouncements.isCacheControlled && ModsAnnouncements.lastDate || '',
       },
     })
       .then(resp => {
-        Announcements.isCacheControlled = !!resp.headers['cache-control'];
-        Announcements.lastDate = resp.headers['last-modified'];
+        ModsAnnouncements.isCacheControlled = !!resp.headers['cache-control'];
+        ModsAnnouncements.lastDate = resp.headers['last-modified'];
         return resp;
       })
-      .then(resp => this.setState({ items: Announcements.cache = Immutable.fromJS(resp.data) || {} }))
+      .then(resp => this.setState({ items: ModsAnnouncements.cache = Immutable.fromJS(resp.data) || {} }))
       .catch(err => err.response.status !== 304 && console.warn(err))
       .then(this.deleteServiceWorkerCache)
       .then(this.setPolling)
@@ -107,10 +107,10 @@ export default class Announcements extends React.PureComponent {
     const { items } = this.state;
 
     return (
-      <ul className='announcements'>
+      <ul className='mods__announcements'>
         {items.entrySeq().map(([key, item]) =>
           (<li key={key}>
-            <Announcement item={item} />
+            <ModAnnouncement item={item} />
           </li>)
         )}
       </ul>
