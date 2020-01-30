@@ -79,11 +79,11 @@ services:
 
 ## Flodgatt Streaming (work in progress)
 #   flodgatt:
-#     build: .
-#     image: tootsuite/mastodon
+#     context: .
+#     dockerfile: Dockerfile.flodgatt
 #     restart: always
 #     env_file: .env.production
-#     command: bash -c "/opt/mastodon/flodgatt"
+#     command: /flodgatt
 #     networks:
 #       - external_network
 #       - internal_network
