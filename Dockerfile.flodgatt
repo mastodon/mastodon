@@ -8,7 +8,9 @@ RUN apt update && \
 	apt install -y whois wget && \
 	addgroup --gid $GID mastodon && \
 	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
-	echo "mastodon:`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256`" | chpasswd
+	echo "mastodon:`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256`" | chpasswd && \
+	rm -rf /var/cache && \
+	rm -rf /var/lib/apt/lists/*
  
 # Add tini
 ENV TINI_VERSION="v0.18.0"
