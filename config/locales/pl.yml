@@ -178,6 +178,7 @@ pl:
         staff: Ekipa
         user: Użytkownik
       search: Szukaj
+      search_same_ip: Inni użytkownicy z tym samym IP
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -345,9 +346,6 @@ pl:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
       title: Blokowanie domen e-mail
-    followers:
-      back_to_account: Wróć do konta
-      title: Śledzący %{acct}
     instances:
       by_domain: Domena
       delivery_available: Doręczanie jest dostępne
@@ -508,6 +506,7 @@ pl:
       title: Wpisy konta
       with_media: Z zawartością multimedialną
     tags:
+      name: Hasztag
       title: Hashtagi
     title: Administracja
     warning_presets:
@@ -524,6 +523,8 @@ pl:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
+  aliases:
+    add_new: Utwórz alias
   appearance:
     advanced_web_interface: Zaawansowany interfejs użytkownika
     advanced_web_interface_hint: Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.
@@ -580,6 +581,8 @@ pl:
       return: Pokaż stronę użytkownika
       web: Przejdź do sieci
     title: Śledź %{acct}
+  challenge:
+    confirm: Kontynuuj
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
@@ -631,7 +634,6 @@ pl:
     blocks: Zablokowani
     csv: CSV
     domain_blocks: Blokady domen
-    follows: Śledzeni
     lists: Listy
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
@@ -1082,7 +1084,7 @@ pl:
         suspend: Konto zawieszone
     welcome:
       edit_profile_action: Skonfiguruj profil
-      edit_profile_step: Możesz dostować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
+      edit_profile_step: Możesz dostosować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
       explanation: Kilka wskazówek, które pomogą Ci rozpocząć
       final_action: Zacznij pisać
       final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie śledzi, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'

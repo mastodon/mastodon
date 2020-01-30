@@ -74,6 +74,7 @@ id:
     roles:
       admin: Admin
       bot: Bot
+      group: Grup
       moderator: Moderator
     unavailable: Profil tidak tersedia
     unfollow: Berhenti mengikuti
@@ -307,6 +308,7 @@ id:
       private_comment: Komentar pribadi
       private_comment_hint: Komentar tentang pembatasan domain ini untuk penggunaan internal oleh moderator.
       public_comment: Komentar publik
+      public_comment_hint: Komentar tentang pembatasan domain ini untuk publik umum, jika mengiklankan daftar pembatasan domain diaktifkan.
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       reject_reports: Tolak laporan
@@ -332,13 +334,11 @@ id:
       delete: Hapus
       destroyed_msg: Berhasil menghapus domain surel dari daftar hitam
       domain: Domain
+      empty: Tidak ada domain surel yang masuk daftar hitam.
       new:
         create: Tambah domain
         title: Entri daftar hitam surel baru
       title: Daftar hitam surel
-    followers:
-      back_to_account: Kembali Ke Akun
-      title: Pengikut %{acct}
     instances:
       by_domain: Domain
       delivery_available: Pengiriman tersedia
@@ -386,10 +386,16 @@ id:
       created_msg: Catatan laporan berhasil dibuat!
       destroyed_msg: Catatan laporan berhasil dihapus!
     reports:
+      account:
+        notes:
+          other: "%{count} catatan"
+        reports:
+          other: "%{count} laporan"
       action_taken_by: Aksi dilakukan oleh
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
       assigned: Moderator tertugas
+      by_target_domain: Domain akun yang dilaporkan
       comment:
         none: Tidak ada
       created_at: Dilaporkan
@@ -432,8 +438,14 @@ id:
         all: Kepada semua orang
         disabled: Tidak kepada siapa pun
         title: Lihat blokir domain
+        users: Ke pengguna lokal yang sudah login
+      domain_blocks_rationale:
+        title: Tampilkan alasan
+      enable_bootstrap_timeline_accounts:
+        title: Aktifkan opsi ikuti otomatis untuk pengguna baru
       hero:
         desc_html: Ditampilkan di halaman depan. Direkomendasikan minimal 600x100px. Jika tidak diatur, kembali ke server gambar kecil
+        title: Gambar pertama
       mascot:
         desc_html: Ditampilkan di banyak halaman. Direkomendasikan minimal 293x205px. Jika tidak diatur, kembali ke maskot bawaan
         title: Gambar maskot
@@ -558,7 +570,12 @@ id:
     animations_and_accessibility: Animasi dan aksesibilitas
     confirmation_dialogs: Dialog konfirmasi
     discovery: Jelajah
+    localization:
+      body: Mastodon diterjemahkan oleh sukarelawan.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Siapa saja bisa berkontribusi.
     sensitive_content: Konten sensitif
+    toot_layout: Tata letak toot
   application_mailer:
     notification_preferences: Ubah pilihan email
     salutation: "%{name},"
@@ -695,12 +712,13 @@ id:
     blocks: Anda blokir
     csv: CSV
     domain_blocks: Blokir domain
-    follows: Anda ikuti
     lists: Daftar
     mutes: Anda bisukan
     storage: Penyimpanan media
   featured_tags:
     add_new: Tambah baru
+    errors:
+      limit: Anda sudah menampilkan tagar unggulan dengan jumlah maksimum
   filters:
     contexts:
       home: Beranda
@@ -709,8 +727,11 @@ id:
       thread: Percakapan
     edit:
       title: Ubah saringan
+    errors:
+      invalid_context: Konteks tidak ada atau invalid
     index:
       delete: Hapus
+      empty: Anda tidak memiliki filter.
       title: Saringan
     new:
       title: Tambah saringan baru
@@ -813,6 +834,7 @@ id:
       cooldown: Setelah pindah akun adalah masa tenang, masa Anda tidak dapat pindah akun lagi
       followers: Tindakan ini akan memindah semua pengikut Anda dari akun sekarang ke akun baru
       other_data: Tidak akan ada data lagi yang dipindahkan secara otomatis
+      redirect: Pemberitahuan peralihan akan dimunculkan pada akun profil Anda dan akun akan dikecualikan dari pencarian
   moderation:
     title: Moderasi
   notification_mailer:
@@ -847,6 +869,8 @@ id:
       body: 'Status anda di-boost oleh %{name}:'
       subject: "%{name} mem-boost status anda"
       title: Boost baru
+  notifications:
+    other_settings: Pengaturan notifikasi lain
   number:
     human:
       decimal_units:
@@ -869,22 +893,28 @@ id:
       duplicate_options: berisi item ganda
       duration_too_short: terlalu cepat
       expired: Japat telah berakhir
+      invalid_choice: Opsi pilihan yang dipilih tidak ada
       over_character_limit: tidak boleh lebih dari %{max} karakter
       too_few_options: harus punya lebih dari satu item
       too_many_options: tidak boleh berisi lebih dari %{max} item
   preferences:
     other: Lainnya
+    posting_defaults: Kiriman bawaan
     public_timelines: Linimasa publik
   relationships:
     activity: Aktivitas akun
     dormant: Terbengkalai
+    followers: Pengikut
+    following: Mengikuti
     last_active: Terakhir aktif
     most_recent: Terkini
     moved: Dipindah
+    mutual: Mutual
     primary: Utama
     relationship: Hubungan
     remove_selected_domains: Hapus semua pengikut dari domain yang dipilih
     remove_selected_followers: Hampus pengikut yang dipilih
+    remove_selected_follows: Batal ikuti pengguna terpilih
     status: Status akun
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
@@ -967,6 +997,7 @@ id:
     notifications: Notifikasi
     preferences: Pilihan
     profile: Profil
+    relationships: Ikuti dan pengikut
     two_factor_authentication: Autentikasi Two-factor
   spam_check:
     spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
@@ -986,35 +1017,68 @@ id:
     over_character_limit: melebihi %{max} karakter
     pin_errors:
       limit: Anda sudah mencapai jumlah maksimum toot yang dapat disematkan
+      ownership: Toot orang lain tidak bisa disematkan
+      private: Toot privat tidak bisa disematkan
+      reblog: Boost tidak bisa disematkan
+    poll:
+      total_people:
+        other: "%{count} orang"
+      total_votes:
+        other: "%{count} memilih"
+      vote: Memilih
     show_more: Tampilkan selengkapnya
+    sign_in_to_participate: Masuk untuk mengikuti percakapan
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Khusus pengikut
       private_long: Hanya tampilkan ke pengikut
       public: Publik
       public_long: Bisa dilihat semua orang
       unlisted: Bisa dilihat semua orang, tapi tidak ditampilkan di linimasa publik
+      unlisted_long: Tidak terdaftar di linimasa publik tetapi siapapun dapat melihat
   stream_entries:
+    pinned: Toot tersemat
     reblogged: di-boost-kan
     sensitive_content: Konten sensitif
+  tags:
+    does_not_match_previous_name: tidak cocok dengan nama sebelumnya
+  terms:
+    title: "%{instance} Ketentuan Layanan dan Kebijakan Privasi"
+  themes:
+    contrast: Mastodon (Kontras tinggi)
+    default: Mastodon (Gelap)
+    mastodon-light: Mastodon (Terang)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Masukkan kode yang dibuat oleh app autentikator sebagai konfirmasi
     description_html: Jika anda menaktifkan ototentikasi dua faktor, saat login anda harus menggunakan telepon anda  untuk membuat token supaya anda bisa masuk.
     disable: Matikan
     enable: Aktifkan
+    enabled: Otentifikasi dua faktor aktif
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
     instructions_html: "<strong>Pindai kode QR ini pada Otentikator Google anda atau aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk login."
     lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
     manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode yang harus dimasukkan:'
+    recovery_codes: Kode pemulihan cadangan
     recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     setup: Persiapan
     wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
   user_mailer:
+    backup_ready:
+      explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
+      subject: Arsip Anda sudah siap diunduh
+      title: Ambil arsip
     warning:
+      explanation:
+        disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
+        silence: Saat akun Anda dibatasi, hanya akun yang Anda ikuti yang dapat melihat toot Anda di server ini. Akun Anda mungkin akan dikecualikan dari daftar publik. Akun lain dapat mengikuti akun Anda secara manual.
+        suspend: Akun Anda telah ditangguhkan. Semua toot dan media yang Anda unggah dihapus secara permanen dari server ini, dan server tempat Anda memiliki pengikut.
+      get_in_touch: Anda dapat membalas surel ini untuk menghubungi pengurus %{instance}.
       review_server_policies: Tinjau kebijakan server
       statuses: 'Khususnya untuk:'
       subject:
@@ -1029,6 +1093,25 @@ id:
         suspend: Akun ditangguhkan
     welcome:
       edit_profile_action: Siapkan profil
+      edit_profile_step: Anda dapat menyesuaikan profil Anda dengan mengunggah avatar, kepala, mengubah tampilan nama dan lainnya. Jika Anda ingin meninjau pengikut baru sebelum Anda terima sebagai pengikut, Anda dapat mengunci akun Anda.
+      explanation: Beberapa tips sebelum Anda memulai
+      final_action: Mulai mengirim
+      final_step: 'Mulai mengirim! Tanpa pengikut, pesan publik Anda akan tetap dapat dilihat oleh akun lain, contohnya di linimasa lokal atau di tagar. Anda mungkin ingin memperkenalkan diri dengan tagar #introductions.'
+      full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
+      review_preferences_action: Ubah preferensi
+      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti surel untuk menerima pesan, atau tingkat privasi bawaan untuk kiriman Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
+      subject: Selamat datang di Mastodon
+      tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
+      tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
+      tips: Tips
+      title: Selamat datang, %{name}!
   users:
+    follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
     invalid_email: Alamat email tidak cocok
     invalid_otp_token: Kode dua faktor tidak cocok
+    otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
+    seamless_external_login: Anda masuk via layanan eksternal, sehingga setelan kata sandi dan surel tidak tersedia.
+    signed_in_as: 'Masuk sebagai:'
+  verification:
+    explanation_html: 'Anda dapat <strong>memverifikasi diri Anda sebagai pemiliki tautan pada metadata profil</strong>. Situsweb yang ditautkan haruslah berisi tautan ke profil Mastodon Anda. Tautan tersebut <strong>harus</strong> memiliki atribut <code>rel="me"</code>. Isi teks tautan tidaklah penting. Ini contohnya:'
+    verification: Verifikasi

@@ -211,7 +211,6 @@ class MediaModal extends ImmutablePureComponent {
             style={swipeableViewsStyle}
             containerStyle={containerStyle}
             onChangeIndex={this.handleSwipe}
-            onSwitching={this.handleSwitching}
             index={index}
           >
             {content}

@@ -78,6 +78,7 @@ eu:
     roles:
       admin: Administratzailea
       bot: Bot-a
+      group: Taldea
       moderator: Moderatzailea
     unavailable: Profila ez dago eskuragarri
     unfollow: Utzi jarraitzeari
@@ -197,11 +198,13 @@ eu:
         change_email_user: "%{name}(e)k %{target}(r)en e-mail helbidea aldatu du"
         confirm_user: "%{name}(e)k %{target}(r)en e-mail helbidea berretsi du"
         create_account_warning: "%{name}-k abisua bidali dio %{target}-ri"
+        create_announcement: "%{name}(e)k %{target}(e)rako iragarpen berria sortu du"
         create_custom_emoji: "%{name}(e)k emoji berria kargatu du %{target}"
         create_domain_allow: "%{name}(e)k %{target} domeinua zerrenda zurian zartu du"
         create_domain_block: "%{name}(e)k %{target} domeinua blokeatu du"
         create_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda beltzean sartu du"
         demote_user: "%{name}(e)k %{target} mailaz jaitsi du"
+        destroy_announcement: "%{name}(e)k %{target}(e)rako iragarpena kendu du"
         destroy_custom_emoji: "%{name} erabiltzaileak %{target} emojia suntsitu du"
         destroy_domain_allow: "%{name}(e)k %{target} domeinua zerrenda zuritik kendu du"
         destroy_domain_block: "%{name}(e)k %{target} domeinua desblokeatu du"
@@ -223,10 +226,22 @@ eu:
         unassigned_report: "%{name}(e)k %{target} txotenaren esleipena atzera bota du"
         unsilence_account: "%{name}(e)k %{target} isilarazteko agindua kendu du"
         unsuspend_account: "%{name}(e)k %{target} kontuaren kanporaketa atzera bota du"
+        update_announcement: "%{name}(e)k %{target}(e)rako iragarpena eguneratu du du"
         update_custom_emoji: "%{name}(e)k %{target} emoji-a eguneratu du"
         update_status: "%{name} (e)k %{target}(r)en mezua aldatu du"
       deleted_status: "(ezabatutako mezua)"
       title: Auditoria-egunkaria
+    announcements:
+      edit:
+        title: Editatu iragarpena
+      empty: Ez da iragarpenik aurkitu.
+      live: Zuzenean
+      new:
+        create: Sortu iragarpena
+        title: Iragarpen berria
+      published: Argitaratua
+      time_range: Denbora-tartea
+      title: Iragarpenak
     custom_emojis:
       assign_category: Esleitu kategoria
       by_domain: Domeinua
@@ -338,13 +353,11 @@ eu:
       delete: Ezabatu
       destroyed_msg: Ongi ezabatu da e-mail domeinua zerrenda beltzetik
       domain: Domeinua
+      empty: Ez dago e-mail domeinurik zerrenda beltzean.
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
       title: E-mail zerrenda beltza
-    followers:
-      back_to_account: Itzuli kontura
-      title: "%{acct} kontuaren jarraitzaileak"
     instances:
       by_domain: Domeinua
       delivery_available: Bidalketa eskuragarri dago
@@ -373,6 +386,8 @@ eu:
       title: Gonbidapenak
     pending_accounts:
       title: Zain dauden kontuak (%{count})
+    relationships:
+      title: "%{acct}(e)ren erlazioak"
     relays:
       add_new: Gehitu hari errelea
       delete: Ezabatu
@@ -393,10 +408,18 @@ eu:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
     reports:
+      account:
+        notes:
+          one: Ohar %{count}
+          other: "%{count} ohar"
+        reports:
+          one: Txosten %{count}
+          other: "%{count} txosten"
       action_taken_by: Neurrien hartzailea
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
       assigned: Esleitutako moderatzailea
+      by_target_domain: Jakinarazitako kontuaren domeinua
       comment:
         none: Bat ere ez
       created_at: Salatua
@@ -442,6 +465,8 @@ eu:
         users: Saioa hasita duten erabiltzaile lokalei
       domain_blocks_rationale:
         title: Erakutsi arrazoia
+      enable_bootstrap_timeline_accounts:
+        title: Gaitu lehenetsitako jarraipena erabiltzaile berrientzat
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
         title: Azaleko irudia
@@ -570,6 +595,10 @@ eu:
     animations_and_accessibility: Animazioak eta irisgarritasuna
     confirmation_dialogs: Berrespen dialogoak
     discovery: Aurkitzea
+    localization:
+      body: Mastodon boluntarioek itzultzen dute.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Edonork lagundu dezake.
     sensitive_content: Eduki hunkigarria
     toot_layout: Toot disposizioa
   application_mailer:
@@ -642,9 +671,12 @@ eu:
     hint_html: "<strong>Oharra:</strong> Ez dizugu pasahitza berriro eskatuko ordu batez."
     invalid_password: Pasahitz baliogabea
     prompt: Berretsi pasahitza jarraitzeko
+  date:
+    formats:
+      default: "%Y(e)ko %b %d"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}o"
+      about_x_hours: "%{count}h"
       about_x_months: "%{count} hilabete"
       about_x_years: "%{count} urte"
       almost_x_years: "%{count} urte"
@@ -708,7 +740,6 @@ eu:
     blocks: Zuk blokeatutakoak
     csv: CSV
     domain_blocks: Domeinuen blokeoak
-    follows: Zuk jarraitutakoak
     lists: Zerrendak
     mutes: Zuk mututukoak
     storage: Multimedia biltegiratzea
@@ -719,6 +750,7 @@ eu:
     hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten mezu publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
+      account: Profilak
       home: Hasierako denbora-lerroa
       notifications: Jakinarazpenak
       public: Denbora-lerro publikoak
@@ -730,6 +762,7 @@ eu:
       invalid_irreversible: Behin betiko iragazketa hasiera edo jakinarazpenen testuinguruan besterik ez dabil
     index:
       delete: Ezabatu
+      empty: Ez duzu iragazkirik.
       title: Iragazkiak
     new:
       title: Gehitu iragazki berria
@@ -742,6 +775,8 @@ eu:
     all: Denak
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
+    delete: Ezabatu
+    edit: Editatu
     no_batch_actions_available: Ez dago ekintza masiborik orri honetan eskuragarri
     order_by: Ordenatze-irizpidea
     save_changes: Gorde aldaketak
@@ -878,6 +913,10 @@ eu:
       body: "%{name}(e)k bultzada eman dio zure mezuari:"
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
+  notifications:
+    email_events: Gertaerak helbide elektronikoko jakinarazpenentzat
+    email_events_hint: 'Hautatu jaso nahi dituzun gertaeren jakinarazpenak:'
+    other_settings: Bezte jakinarazpen konfigurazioak
   number:
     human:
       decimal_units:
@@ -901,6 +940,7 @@ eu:
       duration_too_long: etorkizunean urrunegi dago
       duration_too_short: goizegi da
       expired: Inkesta amaitu da jada
+      invalid_choice: Hautatutako boto aukera ez da existitzen
       over_character_limit: bakoitzak gehienez %{max} karaktere izan ditzake
       too_few_options: elementu bat baino gehiago izan behar du
       too_many_options: ezin ditu %{max} elementu baino gehiago izan
@@ -908,9 +948,15 @@ eu:
     other: Denetarik
     posting_defaults: Bidalketarako lehenetsitakoak
     public_timelines: Denbora-lerro publikoak
+  reactions:
+    errors:
+      unrecognized_emoji: ez da emoji ezaguna
   relationships:
     activity: Kontuaren aktibitatea
     dormant: Ez aktiboa
+    followers: Jarraitzaileak
+    following: Jarraitzen
+    invited: Gonbidatuta
     last_active: Azkenekoz aktiboa
     most_recent: Azkenak
     moved: Lekuz aldatua

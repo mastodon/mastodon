@@ -2,6 +2,10 @@
 ar:
   simple_form:
     hints:
+      account_alias:
+        acct: ادخِل عنون الحساب username@domain الذي تودّ مغادرته
+      account_migration:
+        acct: ادخِل عنون الحساب username@domain الذي تودّ الإنتقال إليه
       account_warning_preset:
         text: بإمكانك استخدام نفس القواعد التي نجدها في التبويقات كعناوين الروابط والوسوم والإشارات
       admin_account_action:
@@ -13,6 +17,8 @@ ar:
         avatar: ملف PNG أو GIF أو JPG. حجمه على أقصى تصدير %{size}. سيتم تصغيره إلى %{dimensions}px
         bot: يُعلِم أنّ هذا الحساب لا يمثل شخصًا
         context: واحد أو أكثر من السياقات التي يجب أن ينطبق عليها عامل التصفية
+        current_password: لأسباب أمنية ، يرجى إدخال الكلمة السرية الخاصة بالحساب الحالي
+        current_username: يرجى إدخال اسم المستخدم الخاص بالحساب الحالي قصد التأكيد
         digest: تُرسَل إليك بعد مُضيّ مدة مِن خمول نشاطك و فقط إذا ما تلقيت رسائل شخصية مباشِرة أثناء فترة غيابك مِن الشبكة
         discoverable: سِجل الملفات التعريفية للمستخدمين هو طريقة أخرى لبلوغ جمهور أوسع
         email: سوف تتلقى رسالة إلكترونية للتأكيد
@@ -36,7 +42,7 @@ ar:
         setting_use_pending_items: إخفاء تحديثات الخط وراء نقرة بدلًا مِن التمرير التلقائي للتدفق
         username: اسم المستخدم الخاص بك سوف يكون فريدا مِن نوعه على %{domain}
       featured_tag:
-        name: 'رُبَّما تريد·ين استخدام واحد مِن هذه:'
+        name: 'رُبَّما تريد·ين استخدام واحد مِن بين هذه:'
       form_challenge:
         current_password: إنك بصدد الدخول إلى منطقة آمنة
       imports:
@@ -99,6 +105,7 @@ ar:
         setting_aggregate_reblogs: جمع الترقيات في خيوط زمنية
         setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
         setting_boost_modal: إظهار مربع حوار للتأكيد قبل ترقية أي تبويق
+        setting_crop_images: قص الصور في التبويقات غير الموسعة إلى 16x9
         setting_default_language: لغة النشر
         setting_default_privacy: خصوصية المنشور
         setting_default_sensitive: اعتبر الوسائط دائما كمحتوى حساس
@@ -116,6 +123,7 @@ ar:
         setting_theme: سمة الموقع
         setting_trends: اعرض ما يُتداوَل اليوم
         setting_unfollow_modal: إظهار مربع حوار للتأكيد قبل إلغاء متابعة أي حساب
+        setting_use_blurhash: أظهر ألوانًا متدرّجة على الوسائط المَخفية
         setting_use_pending_items: الوضع البطيء
         severity: القوّة
         type: صيغة الاستيراد

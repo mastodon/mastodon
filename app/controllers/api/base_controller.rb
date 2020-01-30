@@ -85,7 +85,7 @@ class Api::BaseController < ApplicationController
   end
 
   def require_authenticated_user!
-    render json: { error: 'This API requires an authenticated user' }, status: 401 unless current_user
+    render json: { error: 'This method requires an authenticated user' }, status: 401 unless current_user
   end
 
   def require_user!

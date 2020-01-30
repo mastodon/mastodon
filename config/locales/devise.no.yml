@@ -21,6 +21,7 @@
         action: Bekreft e-postadresse
         action_with_app: Bekreft og gå tilbake til %{app}
         explanation: Du har laget en konto på %{host} med denne e-postadressen. Du er ett klikk unna å aktivere den. Hvis dette ikke var deg, vennligst se bort fra denne e-posten.
+        explanation_when_pending: Du søkte om en invitasjon til %{host} med denne E-postadressen. Når du har bekreftet E-postadressen din, vil vi gå gjennom søknaden din. Du kan logge på for å endre dine detaljer eller slette kontoen din, men du har ikke tilgang til de fleste funksjoner før kontoen din er akseptert. Dersom søknaden din blir avslått, vil dataene dine bli fjernet, så ingen ytterligere handlinger fra deg vil være nødvendige. Dersom dette ikke var deg, vennligst ignorer denne E-posten.
         extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
         subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse %{instance}'
         title: Bekreft e-postadresse
@@ -46,6 +47,7 @@
         subject: 'Mastodon: Hvordan nullstille passord'
         title: Nullstill passord
       two_factor_disabled:
+        explanation: 2-trinnsinnlogging for kontoen din har blitt skrudd av. Pålogging er mulig gjennom kun E-postadresse og passord.
         subject: 'Mastodon: To-faktor autentisering deaktivert'
         title: 2FA deaktivert
       two_factor_enabled:
@@ -54,6 +56,8 @@
         title: 2FA aktivert
       two_factor_recovery_codes_changed:
         explanation: De forrige gjenopprettingskodene er ugyldig og nye generert.
+        subject: 'Mastodon: 2-trinnsgjenopprettingskoder har blitt generert på nytt'
+        title: 2FA-gjenopprettingskodene ble endret
       unlock_instructions:
         subject: 'Mastodon: Instruksjoner for å gjenåpne konto'
     omniauth_callbacks:

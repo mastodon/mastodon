@@ -62,16 +62,18 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
   end
 
   def up
-    say ''
-    say 'WARNING: This migration may take a *long* time for large instances'
-    say 'It will *not* lock tables for any significant time, but it may run'
-    say 'for a very long time. We will pause for 10 seconds to allow you to'
-    say 'interrupt this migration if you are not ready.'
-    say ''
+    if $stdout.isatty
+      say ''
+      say 'WARNING: This migration may take a *long* time for large instances'
+      say 'It will *not* lock tables for any significant time, but it may run'
+      say 'for a very long time. We will pause for 10 seconds to allow you to'
+      say 'interrupt this migration if you are not ready.'
+      say ''
 
-    10.downto(1) do |i|
-      say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
-      sleep 1
+      10.downto(1) do |i|
+        say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
+        sleep 1
+      end
     end
 
     migrated  = 0

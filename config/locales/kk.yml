@@ -78,6 +78,7 @@ kk:
     roles:
       admin: Админ
       bot: Бот
+      group: Топ
       moderator: Мод
     unavailable: Профиль қолжетімді емес
     unfollow: Оқымау
@@ -338,13 +339,11 @@ kk:
       delete: Өшіру
       destroyed_msg: Successfully deletеd e-mail domain from blacklist
       domain: Домен
+      empty: Ешқандай e-mail домені қаратізімге алынбапты.
       new:
         create: Add dоmain
         title: New e-mail blаcklist entry
       title: E-mail қаратізімі
-    followers:
-      back_to_account: Back To Accоunt
-      title: "%{acct} оқырмандары"
     instances:
       by_domain: Domаin
       delivery_available: Жеткізу қол жетімді
@@ -373,6 +372,8 @@ kk:
       title: Шақырулар
     pending_accounts:
       title: Күтілген аккаунттар (%{count})
+    relationships:
+      title: "%{acct} байланыстары"
     relays:
       add_new: Жаңа арна қосу
       delete: Өшіру
@@ -397,6 +398,7 @@ kk:
       are_you_sure: Шынымен бе?
       assign_to_self: Мені тағайындау
       assigned: Модератор тағайындау
+      by_target_domain: Шағымдалған аккаунт домені
       comment:
         none: Ештеңе
       created_at: Шағым тасталды
@@ -442,6 +444,8 @@ kk:
         users: Жергілікті қолданушыларға
       domain_blocks_rationale:
         title: Дәлелді көрсету
+      enable_bootstrap_timeline_accounts:
+        title: Жаңа қолданушылар жазылатын адамдарды белгілеу
       hero:
         desc_html: Бастапқы бетінде көрсетіледі. Кем дегенде 600x100px ұсынылады. Орнатылмаған кезде, сервердің нобайына оралады
         title: Қаһарман суреті
@@ -708,7 +712,6 @@ kk:
     blocks: Бұғатталғансыз
     csv: СSV
     domain_blocks: Домен блоктары
-    follows: Оқитындарыңыз
     lists: Тізімдер
     mutes: Үнсіздер
     storage: Медиа жинақ
@@ -730,6 +733,7 @@ kk:
       invalid_irreversible: Қайтарылмайтын сүзгі тек ішкі немесе ескертпелер контекстімен жұмыс істейді
     index:
       delete: Өшіру
+      empty: Сізде ешқандай фильтр жоқ.
       title: Фильтрлер
     new:
       title: Жаңа фильтр қосу
@@ -878,6 +882,10 @@ kk:
       body: 'Жазбаңызды бөліскен %{name}:'
       subject: "%{name} жазбаңызды бөлісті"
       title: Жаңа бөлісім
+  notifications:
+    email_events: E-mail ескертпелеріне шаралар
+    email_events_hint: 'Ескертпе болып келетін шараларды таңда:'
+    other_settings: Ескертпелердің басқа баптаулары
   number:
     human:
       decimal_units:
@@ -901,6 +909,7 @@ kk:
       duration_too_long: тым ұзақ екен
       duration_too_short: тым аз екен
       expired: Сауалнама уақыты аяқталған
+      invalid_choice: Таңдалған жауап енді жоқ екен
       over_character_limit: "%{max} таңбадан артық болмайды"
       too_few_options: бір жауаптан көп болуы керек
       too_many_options: "%{max} жауаптан көп болмайды"
@@ -908,9 +917,15 @@ kk:
     other: Басқа
     posting_defaults: Пост жазу негіздері
     public_timelines: Ашық таймлайндар
+  reactions:
+    errors:
+      limit_reached: Түрлі реакциялар лимиті толды
   relationships:
     activity: Аккаунт белсенділігі
     dormant: Ұйқысыз
+    followers: Оқырмандар
+    following: Жазылғандары
+    invited: Шақырылды
     last_active: Соңғы белсенділік
     most_recent: Ең соңғы
     moved: Көшірілді

@@ -78,6 +78,7 @@ es-AR:
     roles:
       admin: Administrador
       bot: Bot
+      group: Grupo
       moderator: Moderador
     unavailable: Perfil no disponible
     unfollow: Dejar de seguir
@@ -181,6 +182,7 @@ es-AR:
       statuses: Estados
       subscribe: Suscribirse
       suspended: Suspendidas
+      time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
       undo_silenced: Deshacer silenciado
@@ -196,11 +198,13 @@ es-AR:
         change_email_user: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_announcement: "%{name} creó el nuevo anuncio %{target}"
         create_custom_emoji: "%{name} subió nuevo emoji %{target}"
         create_domain_allow: "%{name} aprobó el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} desaprobó el dominio de correo electrónico %{target}"
         demote_user: "%{name} bajó de nivel al usuario %{target}"
+        destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_allow: "%{name} quitó el dominio %{target} de los permitidos"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
@@ -212,6 +216,7 @@ es-AR:
         enable_custom_emoji: "%{name} habilitó el emoji %{target}"
         enable_user: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de recordatorio"
+        promote_user: "%{name} promovió al usuario %{target}"
         remove_avatar_user: "%{name} quitó el avatar de %{target}"
         reopen_report: "%{name} reabrió la denuncia %{target}"
         reset_password_user: "%{name} cambió la contraseña del usuario %{target}"
@@ -221,10 +226,22 @@ es-AR:
         unassigned_report: "%{name} desasignó la denuncia %{target}"
         unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
+        update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
       title: Registro de auditoría
+    announcements:
+      edit:
+        title: Editar anuncio
+      empty: No se encontraron anuncios.
+      live: En vivo
+      new:
+        create: Crear anuncio
+        title: Nuevo anuncio
+      published: Publicados
+      time_range: Rango de tiempo
+      title: Anuncios
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -336,13 +353,11 @@ es-AR:
       delete: Eliminar
       destroyed_msg: Se aprobó dominio de correo electrónico exitosamente
       domain: Dominio
+      empty: Actualmente no hay dominios de correo electrónico desaprobados.
       new:
         create: Agregar dominio
         title: Nueva desaprobación de correo electrónico
       title: Desaprobación de correo electrónico
-    followers:
-      back_to_account: Volver a la cuenta
-      title: Seguidores de %{acct}
     instances:
       by_domain: Dominio
       delivery_available: La entrega está disponible
@@ -371,6 +386,8 @@ es-AR:
       title: Invitaciones
     pending_accounts:
       title: Cuentas pendientes (%{count})
+    relationships:
+      title: Relaciones de %{acct}
     relays:
       add_new: Agregar nuevo relé
       delete: Eliminar
@@ -391,10 +408,18 @@ es-AR:
       created_msg: "¡La nota de denuncia fue creada exitosamente!"
       destroyed_msg: "¡La nota de denuncia fue eliminada exitosamente!"
     reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+        reports:
+          one: "%{count} denuncia"
+          other: "%{count} denuncias"
       action_taken_by: Acción tomada por
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
+      by_target_domain: Dominio de la cuenta denunciada
       comment:
         none: Ninguno
       created_at: Denunciado
@@ -438,6 +463,10 @@ es-AR:
         disabled: A nadie
         title: Mostrar dominios bloqueados
         users: A usuarios locales con sesiones abiertas
+      domain_blocks_rationale:
+        title: Mostrar razonamiento
+      enable_bootstrap_timeline_accounts:
+        title: Habilitar seguimientos predeterminados para nuevas cuentas
       hero:
         desc_html: Mostrado en la página principal. Se recomienda un tamaño mínimo de 600x100 píxeles. Predeterminadamente se establece a la miniatura del servidor.
         title: Imagen de portada
@@ -566,6 +595,10 @@ es-AR:
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrimiento
+    localization:
+      body: Mastodon es localizado por voluntarios.
+      guide_link: https://es.crowdin.com/project/mastodon
+      guide_link_text: Todos pueden contribuir.
     sensitive_content: Contenido sensible
     toot_layout: Diseño del toot
   application_mailer:
@@ -638,6 +671,9 @@ es-AR:
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña no válida
     prompt: Confirmar contraseña para seguir
+  date:
+    formats:
+      default: "%Y.%b.%d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -704,7 +740,6 @@ es-AR:
     blocks: Tus bloqueos
     csv: CSV
     domain_blocks: Dominios bloqueados
-    follows: Quienes seguís
     lists: Listas
     mutes: Quienes silenciaste
     storage: Almacenamiento de medios
@@ -715,6 +750,7 @@ es-AR:
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus toots públicos específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
+      account: Perfiles
       home: Línea temporal principal
       notifications: Notificaciones
       public: Líneas temporales públicas
@@ -726,6 +762,7 @@ es-AR:
       invalid_irreversible: El filtrado irreversible sólo funciona con los contextos de "Principal" o de notificaciones
     index:
       delete: Eliminar
+      empty: No tenés filtros.
       title: Filtros
     new:
       title: Agregar nuevo filtro
@@ -738,6 +775,8 @@ es-AR:
     all: Todas
     changes_saved_msg: "¡Cambios guardados exitosamente!"
     copy: Copiar
+    delete: Eliminar
+    edit: Editar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
@@ -874,6 +913,10 @@ es-AR:
       body: "%{name} retooteó tu estado:"
       subject: "%{name} retooteó tu estado"
       title: Nuevo retoot
+  notifications:
+    email_events: Eventos para notificaciones por correo electrónico
+    email_events_hint: 'Seleccioná los eventos para los que querés recibir notificaciones:'
+    other_settings: Configuración de otras notificaciones
   number:
     human:
       decimal_units:
@@ -897,6 +940,7 @@ es-AR:
       duration_too_long: está demasiado lejos en el futuro
       duration_too_short: es demasiado pronto
       expired: La encuesta ya finalizó
+      invalid_choice: La opción elegida no existe
       over_character_limit: no puede ser más largo de %{max} caracteres, cada uno
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
@@ -904,9 +948,15 @@ es-AR:
     other: Otros
     posting_defaults: Configuración predeterminada de publicaciones
     public_timelines: Líneas temporales públicas
+  reactions:
+    errors:
+      unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
     dormant: Inactivas
+    followers: Seguidores
+    following: Siguiendo
+    invited: Invitado
     last_active: Última actividad
     most_recent: Más reciente
     moved: Mudada
@@ -1189,7 +1239,9 @@ es-AR:
       review_preferences_action: Cambiar configuración
       review_preferences_step: Asegurate de establecer tu configuración, como qué tipo de correos electrónicos te gustaría recibir, o qué nivel de privacidad te gustaría que sea el predeterminado para tus toots. Si no tenés mareos, podrías elegir habilitar la reproducción automática de GIFs.
       subject: Bienvenido a Mastodon
+      tip_federated_timeline: La línea temporal federada es una línea contínua global de la red de Mastodon. Pero sólo incluye gente que tus vecinos están siguiendo, así que no es completa.
       tip_following: Predeterminadamente seguís al / a los administrador/es de tu servidor. Para encontrar más gente interesante, revisá las lineas temporales local y federada.
+      tip_local_timeline: La línea temporal local es una línea contínua global de cuentas en %{instance}. ¡Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si tu navegador web móvil te ofrece agregar Mastodon a tu página de inicio, podés recibir notificaciones PuSH. ¡Actúa como una aplicación nativa de muchas maneras!
       tips: Consejos
       title: "¡Bienvenido a bordo, %{name}!"

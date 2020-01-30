@@ -198,11 +198,13 @@ en:
         change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
         create_account_warning: "%{name} sent a warning to %{target}"
+        create_announcement: "%{name} created new announcement %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_allow: "%{name} whitelisted domain %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
+        destroy_announcement: "%{name} deleted announcement %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_allow: "%{name} removed domain %{target} from whitelist"
         destroy_domain_block: "%{name} unblocked domain %{target}"
@@ -224,10 +226,26 @@ en:
         unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
+        update_announcement: "%{name} updated announcement %{target}"
         update_custom_emoji: "%{name} updated emoji %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       title: Audit log
+    announcements:
+      destroyed_msg: Announcement successfully deleted!
+      edit:
+        title: Edit announcement
+      empty: No announcements found.
+      live: Live
+      new:
+        create: Create announcement
+        title: New announcement
+      published_msg: Announcement successfully published!
+      scheduled_for: Scheduled for %{time}
+      scheduled_msg: Announcement scheduled for publication!
+      title: Announcements
+      unpublished_msg: Announcement successfully unpublished!
+      updated_msg: Announcement successfully updated!
     custom_emojis:
       assign_category: Assign category
       by_domain: Domain
@@ -339,13 +357,11 @@ en:
       delete: Delete
       destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
+      empty: No e-mail domains currently blacklisted.
       new:
         create: Add domain
         title: New e-mail blacklist entry
       title: E-mail blacklist
-    followers:
-      back_to_account: Back To Account
-      title: "%{acct}'s Followers"
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
@@ -374,6 +390,8 @@ en:
       title: Invites
     pending_accounts:
       title: Pending accounts (%{count})
+    relationships:
+      title: "%{acct}'s relationships"
     relays:
       add_new: Add new relay
       delete: Delete
@@ -657,6 +675,9 @@ en:
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
     invalid_password: Invalid password
     prompt: Confirm password to continue
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -733,6 +754,7 @@ en:
     hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
+      account: Profiles
       home: Home timeline
       notifications: Notifications
       public: Public timelines
@@ -757,6 +779,7 @@ en:
     all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
+    delete: Delete
     no_batch_actions_available: No batch actions available on this page
     order_by: Order by
     save_changes: Save changes
@@ -921,6 +944,7 @@ en:
       duration_too_long: is too far into the future
       duration_too_short: is too soon
       expired: The poll has already ended
+      invalid_choice: The chosen vote option does not exist
       over_character_limit: cannot be longer than %{max} characters each
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
@@ -928,11 +952,16 @@ en:
     other: Other
     posting_defaults: Posting defaults
     public_timelines: Public timelines
+  reactions:
+    errors:
+      limit_reached: Limit of different reactions reached
+      unrecognized_emoji: is not a recognized emoji
   relationships:
     activity: Account activity
     dormant: Dormant
     followers: Followers
     following: Following
+    invited: Invited
     last_active: Last active
     most_recent: Most recent
     moved: Moved
@@ -997,7 +1026,7 @@ en:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: unknown platform
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1059,6 +1088,7 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
+    show_thread: Show thread
     sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:

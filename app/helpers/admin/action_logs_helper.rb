@@ -22,6 +22,8 @@ module Admin::ActionLogsHelper
       log.recorded_changes.slice('severity', 'reject_media')
     elsif log.target_type == 'Status' && log.action == :update
       log.recorded_changes.slice('sensitive')
+    elsif log.target_type == 'Announcement' && log.action == :update
+      log.recorded_changes.slice('text', 'starts_at', 'ends_at', 'all_day')
     end
   end
 
@@ -52,6 +54,8 @@ module Admin::ActionLogsHelper
       'pencil'
     when 'AccountWarning'
       'warning'
+    when 'Announcement'
+      'bullhorn'
     end
   end
 
@@ -94,6 +98,8 @@ module Admin::ActionLogsHelper
       link_to record.account.acct, ActivityPub::TagManager.instance.url_for(record)
     when 'AccountWarning'
       link_to record.target_account.acct, admin_account_path(record.target_account_id)
+    when 'Announcement'
+      link_to "##{record.id}", edit_admin_announcement_path(record.id)
     end
   end
 
@@ -111,6 +117,8 @@ module Admin::ActionLogsHelper
       else
         I18n.t('admin.action_logs.deleted_status')
       end
+    when 'Announcement'
+      "##{attributes['id']}"
     end
   end
 end

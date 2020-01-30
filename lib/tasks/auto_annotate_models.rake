@@ -4,6 +4,7 @@ if Rails.env.development?
   task :set_annotation_options do
     Annotate.set_defaults(
       'routes'                  => 'false',
+      'models'                  => 'true',
       'position_in_routes'      => 'before',
       'position_in_class'       => 'before',
       'position_in_test'        => 'before',

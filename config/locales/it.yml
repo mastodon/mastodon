@@ -2,7 +2,7 @@
 it:
   about:
     about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
-    about_mastodon_html: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
+    about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
     active_count_after: attivo
     active_footnote: Utenti Attivi Mensili (MAU)
@@ -78,6 +78,7 @@ it:
     roles:
       admin: Amministratore
       bot: Bot
+      group: Gruppo
       moderator: Moderatore
     unavailable: Profilo non disponibile
     unfollow: Non seguire più
@@ -198,10 +199,12 @@ it:
         confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
         create_account_warning: "%{name} ha mandato un avvertimento a %{target}"
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
+        create_domain_allow: "%{name} ha messo il dominio %{target} nella whitelist"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
         demote_user: "%{name} ha degradato l'utente %{target}"
         destroy_custom_emoji: "%{name} ha distrutto l'emoji %{target}"
+        destroy_domain_allow: "%{name} ha tolto il dominio %{target} dalla whitelist"
         destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
         destroy_email_domain_block: "%{name}ha messo il dominio email %{target} nella whitelist"
         destroy_status: "%{name} ha eliminato lo status di %{target}"
@@ -243,6 +246,7 @@ it:
       enabled: Abilitato
       enabled_msg: Questa emoji è stata abilitata con successo
       image_hint: PNG fino a 50 KB
+      list: Includi nell'elenco
       listed: Elencato
       new:
         title: Aggiungi nuovo emoji personalizzato
@@ -251,6 +255,7 @@ it:
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
       title: Emoji personalizzate
       uncategorized: Nessuna categoria
+      unlist: Escludi dall'elenco
       unlisted: Non elencato
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
@@ -334,13 +339,11 @@ it:
       delete: Elimina
       destroyed_msg: Dominio email cancellato con successo dalla lista nera
       domain: Dominio
+      empty: Nessun dominio di posta elettronica attualmente in blacklist.
       new:
         create: Aggiungi dominio
         title: Nuova voce della lista nera delle email
       title: Lista nera email
-    followers:
-      back_to_account: Torna all'account
-      title: Seguaci di %{acct}
     instances:
       by_domain: Dominio
       delivery_available: Distribuzione disponibile
@@ -389,10 +392,18 @@ it:
       created_msg: Nota rapporto creata!
       destroyed_msg: Nota rapporto cancellata!
     reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} note"
+        reports:
+          one: "%{count} rapporto"
+          other: "%{count} rapporti"
       action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
       assigned: Moderatore assegnato
+      by_target_domain: Dominio dell'account segnalato
       comment:
         none: Nessuno
       created_at: Segnalato
@@ -438,6 +449,8 @@ it:
         users: Agli utenti locali connessi
       domain_blocks_rationale:
         title: Mostra motivazione
+      enable_bootstrap_timeline_accounts:
+        title: Abilita seguiti predefiniti per i nuovi utenti
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
@@ -529,6 +542,7 @@ it:
       most_popular: Più popolari
       most_recent: Più recenti
       name: Hashtag
+      review: Esamina status
       reviewed: Controllato
       title: Hashtag
       trending_right_now: Di tendenza ora
@@ -566,6 +580,10 @@ it:
       Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
+    localization:
+      body: Mastodon è tradotto da volontari.
+      guide_link: https://it.crowdin.com/project/mastodon
+      guide_link_text: Tutti possono contribuire.
     sensitive_content: Contenuto sensibile
     toot_layout: Layout dei toot
   application_mailer:
@@ -614,6 +632,7 @@ it:
     setup:
       email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
       email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
+      title: Configurazione
     status:
       account_status: Stato dell'account
       confirming: In attesa che la conferma e-mail sia completata.
@@ -703,7 +722,6 @@ it:
     blocks: Stai bloccando
     csv: CSV
     domain_blocks: Blocchi di dominio
-    follows: Stai seguendo
     lists: Liste
     mutes: Stai silenziando
     storage: Archiviazione media
@@ -725,6 +743,7 @@ it:
       invalid_irreversible: Il filtraggio irreversibile funziona solo nei contesti di home o notifiche
     index:
       delete: Cancella
+      empty: Non hai alcun filtro.
       title: Filtri
     new:
       title: Aggiungi filtro
@@ -819,6 +838,7 @@ it:
       not_found: non trovato
       on_cooldown: Ti trovi nel periodo di pausa tra un trasferimento e l'altro
     followers_count: Seguaci al momento dello spostamento
+    incoming_migrations: In arrivo da un altro account
     incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
     moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
     not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
@@ -872,6 +892,10 @@ it:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
+  notifications:
+    email_events: Eventi per notifiche via email
+    email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
+    other_settings: Altre impostazioni per le notifiche
   number:
     human:
       decimal_units:
@@ -895,6 +919,7 @@ it:
       duration_too_long: è troppo lontano nel futuro
       duration_too_short: è troppo presto
       expired: Il sondaggio si è già concluso
+      invalid_choice: L'opzione di voto scelta non esiste
       over_character_limit: non possono essere più lunghi di %{max} caratteri ciascuno
       too_few_options: deve avere più di un elemento
       too_many_options: non può contenere più di %{max} elementi
@@ -905,6 +930,8 @@ it:
   relationships:
     activity: Attività dell'account
     dormant: Dormiente
+    followers: Seguaci
+    following: Seguiti
     last_active: Ultima volta attivo
     most_recent: Più recente
     moved: Trasferito

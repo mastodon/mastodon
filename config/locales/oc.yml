@@ -11,6 +11,7 @@ oc:
     apps: Aplicacions per mobil
     apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
     browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
+    browse_local_posts: Percórrer un flux en dirècte de las publicacions publicas d’aqueste servidor
     browse_public_posts: Navigatz pel flux public a Mastodon
     contact: Contacte
     contact_missing: Pas parametrat
@@ -161,6 +162,7 @@ oc:
         staff: Personnal
         user: Uitlizaire
       search: Cercar
+      search_same_ip: Autres utilizaires amb la meteissa IP
       shared_inbox_url: URL de recepcion partejada
       show:
         created_reports: Senhalaments creats
@@ -187,10 +189,12 @@ oc:
         confirm_user: "%{name} confirmèt l’adreça a %{target}"
         create_account_warning: "%{name} mandèt un avertiment a %{target}"
         create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
+        create_domain_allow: "%{name} botèt a la lista blanca lo domeni %{target}"
         create_domain_block: "%{name} bloquèt lo domeni %{target}"
         create_email_domain_block: "%{name} botèt a la lista nègra lo domeni de corrièl %{target}"
         demote_user: "%{name} retragradèt l‘utilizaire %{target}"
         destroy_custom_emoji: "%{name} destruguèt l’emoji %{target}"
+        destroy_domain_allow: "%{name} levèt lo domeni %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloquèt lo domeni %{target}"
         destroy_email_domain_block: "%{name} botèt a la lista blanca lo domeni de corrièl %{target}"
         destroy_status: "%{name} levèt l‘estatut a %{target}"
@@ -327,9 +331,6 @@ oc:
         create: Crear un blocatge
         title: Nòu blocatge de domeni de corrièl
       title: Blocatge de domeni de corrièl
-    followers:
-      back_to_account: Tornar al compte
-      title: Seguidors de %{acct}
     instances:
       by_domain: Domeni
       delivery_available: Liurason disponibla
@@ -378,6 +379,10 @@ oc:
       created_msg: Nòta de moderacion corrèctament creada !
       destroyed_msg: Nòta de moderacion corrèctament suprimida !
     reports:
+      account:
+        notes:
+          one: "%{count} nòta"
+          other: "%{count} nòtas"
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
       assign_to_self: Me l’assignar
@@ -666,7 +671,6 @@ oc:
     blocks: Personas que blocatz
     csv: CSV
     domain_blocks: Blocatge de domenis
-    follows: Personas que seguètz
     lists: Listas
     mutes: Personas rescondudas
     storage: Mèdias gardats
@@ -782,6 +786,7 @@ oc:
     past_migrations: Migracions passadas
     proceed_with_move: Desplaçar los seguidors
     redirecting_to: Vòstre compte manda a %{acct}.
+    set_redirect: Definir redireccion
     warning:
       before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
       other_data: Cap d’autra donada serà desplaçada automaticament
@@ -821,6 +826,10 @@ oc:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
+  notifications:
+    email_events: Eveniments per las notificacions per corrièl
+    email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
+    other_settings: Autres paramètres de notificacion
   number:
     human:
       decimal_units:
@@ -947,6 +956,8 @@ oc:
     profile: Perfil
     relationships: Abonaments e seguidors
     two_factor_authentication: Autentificacion en dos temps
+  spam_check:
+    spam_detected: Aquò es un senhalament automatic. D’spam es estat detectat.
   statuses:
     attached:
       description: 'Ajustat : %{attached}'

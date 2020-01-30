@@ -294,9 +294,6 @@ zh-TW:
         create: 新增站點
         title: 新增電子信箱黑名單項目
       title: 電子信箱黑名單
-    followers:
-      back_to_account: 返回帳戶
-      title: "%{acct} 的關注者"
     instances:
       moderation:
         all: 全部
@@ -417,6 +414,11 @@ zh-TW:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: 來自 %{instance} 的使用者檢舉（#%{id}）
+  appearance:
+    localization:
+      body: Mastodon 是由志願者翻譯的。
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: 每個人都能貢獻。
   application_mailer:
     notification_preferences: 變更電子信件設定
     salutation: "%{name}、"
@@ -444,6 +446,8 @@ zh-TW:
     migrate_account: 轉移到另一個帳戶
     migrate_account_html: 如果你希望引導他人關注另一個帳戶，請<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
+    providers:
+      saml: SAML
     register: 註冊
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
@@ -502,11 +506,19 @@ zh-TW:
       request: 下載存檔
       size: 大小
     blocks: 您封鎖的使用者
-    follows: 您關注的使用者
+    csv: CSV
+    lists: 列表
     mutes: 您靜音的使用者
     storage: 儲存空間大小
+  filters:
+    index:
+      empty: 您沒有過濾器。
+  footer:
+    more: 更多......
   generic:
+    all: 全部
     changes_saved_msg: 已成功儲存修改!
+    copy: 複製
     save_changes: 儲存修改
   imports:
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
@@ -575,6 +587,16 @@ zh-TW:
       body: '你的嘟文被 %{name} 轉嘟:'
       subject: "%{name} 轉嘟了你的嘟文"
       title: 新的轉嘟
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: 較新
     next: 下一頁
@@ -610,6 +632,9 @@ zh-TW:
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於你的 Mastodon 帳戶的瀏覽器。
     ip: IP 位址
+    platforms:
+      ios: iOS
+      mac: Mac
     revoke: 取消
     revoke_success: Session 取消成功
     title: 作業階段
@@ -638,6 +663,8 @@ zh-TW:
       ownership: 不能置頂他人的嘟文
       private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
+    poll:
+      vote: 投票
     show_more: 顯示更多
     visibilities:
       private: 僅關注者

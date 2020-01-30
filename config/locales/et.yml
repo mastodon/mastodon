@@ -78,6 +78,7 @@ et:
     roles:
       admin: Administraator
       bot: Robot
+      group: Grupp
       moderator: Moderaator
     unavailable: Profiil pole saadaval
     unfollow: Lõpeta jälgimine
@@ -341,13 +342,11 @@ et:
       delete: Kustuta
       destroyed_msg: E-posti aadressi keelunimekirjast kustutamine õnnestus
       domain: Domeen
+      empty: Ühtegi e-postidomeeni pole blokeeritud.
       new:
         create: Lisa domeen
         title: Uus e-posti keelunimekirja sisend
       title: E-posti keelunimekiri
-    followers:
-      back_to_account: Tagasi minu kontole
-      title: "%{acct}-i jälgijad"
     instances:
       by_domain: Domeen
       delivery_available: Üleandmine on saadaval
@@ -376,6 +375,8 @@ et:
       title: Kutsed
     pending_accounts:
       title: Ootel olevad kasutajad (%{count})
+    relationships:
+      title: "%{acct}-i suhted"
     relays:
       add_new: Lisa uus relee
       delete: Kustuta
@@ -383,7 +384,7 @@ et:
       disable: Keela
       disabled: Keelatud
       enable: Luba
-      enable_hint: Kui lubatud, siis sinu server tellib kõik avalikud tuututused sellelt releelt, ning hakkab ka enda avalikke tuututusi sellele saatma.
+      enable_hint: Kui lubatud, siis Teie server tellib kõik avalikud tuututused sellelt releelt ning hakkab ka enda avalikke tuututusi sellele saatma.
       enabled: Lubatud
       inbox_url: Relee URL
       pending: Ootab relee nõusolekut
@@ -396,10 +397,18 @@ et:
       created_msg: Teade edukalt koostatud!
       destroyed_msg: Teade edukalt kustutatud!
     reports:
+      account:
+        notes:
+          one: "%{count} märkus"
+          other: "%{count} märkust"
+        reports:
+          one: "%{count} teavitus"
+          other: "%{count} teavitust"
       action_taken_by: Meetmeid kasutanud
       are_you_sure: Olete kindel?
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
+      by_target_domain: Teavitatud konto domeen
       comment:
         none: Pole
       created_at: Teavitatud
@@ -445,6 +454,8 @@ et:
         users: Sisseloginud kohalikele kasutajatele
       domain_blocks_rationale:
         title: Näita põhjendust
+      enable_bootstrap_timeline_accounts:
+        title: Luba vaikimisi jälgimisi uutele kasutajatele
       hero:
         desc_html: Kuvatud kodulehel. Vähemalt 600x100px soovitatud. Kui pole seadistatud, kuvatakse serveri pisililt
         title: Maskotipilt
@@ -573,6 +584,10 @@ et:
     animations_and_accessibility: Animatsioonid ja ligipääs
     confirmation_dialogs: Kinnitusdialoogid
     discovery: Avastus
+    localization:
+      body: Mastodon on tõlgitud vabatahtlike poolt.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Igaüks võib panustada.
     sensitive_content: Tundlik sisu
     toot_layout: Tuututuse kujundus
   application_mailer:
@@ -589,7 +604,7 @@ et:
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
     warning: Olge nende andmetega ettevaatlikud. Ärge jagage neid kellegagi!
-    your_token: Sinu access token
+    your_token: Teie access token
   auth:
     apply_for_account: Taotle kutse
     change_password: Salasõna
@@ -711,7 +726,6 @@ et:
     blocks: Teie blokeerite
     csv: CSV
     domain_blocks: Domeeni blokeeringud
-    follows: Teie jälgite
     lists: Nimistud
     mutes: Teie vaigistate
     storage: Meedia hoidla
@@ -722,6 +736,7 @@ et:
     hint_html: "<strong>Mis on esile toodud sildid?</strong> Need sildid näidatakse nähtavalt Teie avalikul profiilil ning nad aitavad inimestel leida postitusi, millel on antud sildid. Nad on hea viis kuidas näiteks hoida järge loovtöödel või pikaajalistel projektidel."
   filters:
     contexts:
+      account: Profiilid
       home: Kodu ajajoon
       notifications: Teated
       public: Avalikud ajajooned
@@ -733,6 +748,7 @@ et:
       invalid_irreversible: Taastamatu filter töötab ainult kodu või teavituste kontekstis
     index:
       delete: Kustuta
+      empty: Teil pole filtreid.
       title: Filterid
     new:
       title: Lisa uus filter
@@ -851,7 +867,7 @@ et:
     digest:
       action: Vaata kõiki teateid
       body: Siin on kiire ülevaade sellest, mis sõnumeid Te ei näinud pärast Teie viimast külastust %{since}
-      mention: "%{name} mainis sind postituses:"
+      mention: "%{name} mainis Teid postituses:"
       new_followers_summary:
         one: Ja veel, Te saite ühe uue jälgija kui Te olite eemal! Jee!
         other: Ja veel, Te saite %{count} uut jälgijat kui Te olite eemal! Hämmastav!
@@ -881,6 +897,10 @@ et:
       body: "%{name} upitas Teie staatust:"
       subject: "%{name} upitas su staatust"
       title: Uus upitus
+  notifications:
+    email_events: E-posti teadete sündmused
+    email_events_hint: 'Valige sündmused, millest soovite teavitusi:'
+    other_settings: Muud teadete sätted
   number:
     human:
       decimal_units:
@@ -904,6 +924,7 @@ et:
       duration_too_long: kestab liiga kaua
       duration_too_short: on liiga vara
       expired: See küsitlus on juba lõppenud
+      invalid_choice: Valitud küsitluse valikut pole olemas
       over_character_limit: igaüks ei saa olla rohkem kui %{max} tähemärki
       too_few_options: peab olema rohkem kui üks vastus
       too_many_options: ei saa sisaldada rohkem kui %{max} vastust
@@ -914,6 +935,9 @@ et:
   relationships:
     activity: Konto tegevus
     dormant: Seisev
+    followers: Jälgijad
+    following: Jälgib
+    invited: Kutsutud
     last_active: Viimati aktiivne
     most_recent: Viimased
     moved: Kolinud
@@ -970,7 +994,7 @@ et:
       weibo: Weibo
     current_session: Praegune seanss
     description: "%{browser} platvormil %{platform}"
-    explanation: Need on praegused veebilehitsejad, mis on sisse logitud sinu Mastodoni kontosse.
+    explanation: Need on praegused veebilehitsejad, mis on sisse logitud Teie Mastodoni kontosse.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1112,7 +1136,7 @@ et:
       explanation: Siin on mõned nõuanded, mis aitavad sul alustada
       final_action: Alusa postitamist
       final_step: 'Alusta postitamist! Isegi ilma jälgijateta näevad teised Teie avalikke postitusi, näiteks kohalikul ajajoonel ning siltidest. Te võite ennast tutvustada kasutades silti #introductions.'
-      full_handle: Sinu täisnimi
+      full_handle: Teie täisnimi
       full_handle_hint: See on mida oma sõpradega jagada, et nad saaksid Teile sõnumeid saata ning Teid jälgida teiselt serverilt.
       review_preferences_action: Muuda eelistusi
       review_preferences_step: Kindlasti seadistage oma sätted Teie maitse järgi, näiteks e-kirju, mida soovite saada, või millist privaatsustaset Te soovite vaikimisi. Kui Teil pole merehaigust, võite Te näiteks lubada GIFide automaatse mängimise.

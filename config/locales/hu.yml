@@ -3,7 +3,7 @@ hu:
   about:
     about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> hashtag-gel ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
     about_mastodon_html: A Mastodon egy szabad webes protokollokat használó, nyílt forráskódú szociális háló. Decentralizált, akár az e-mail.
-    about_this: Rólunk
+    about_this: Névjegy
     active_count_after: aktív
     active_footnote: Havonta aktív felhasználók
     administered_by: 'Adminisztrátor:'
@@ -80,6 +80,7 @@ hu:
     roles:
       admin: Adminisztrátor
       bot: Bot
+      group: Csoport
       moderator: Moderátor
     unavailable: Nincs ilyen profil
     unfollow: Követés vége
@@ -199,11 +200,13 @@ hu:
         change_email_user: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
         confirm_user: "%{name} megerősítette e-mail címét: %{target}"
         create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
+        create_announcement: "%{name} új közleményt hozott létre %{target}"
         create_custom_emoji: "%{name} új emojit töltött fel: %{target}"
         create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
+        destroy_announcement: "%{name} törölte a közleményt %{target}"
         destroy_custom_emoji: "%{name} törölte az emojit: %{target}"
         destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
@@ -225,10 +228,22 @@ hu:
         unassigned_report: "%{name} törölte a %{target} bejelentés hozzárendelését"
         unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
+        update_announcement: "%{name} frissítette a közleményt %{target}"
         update_custom_emoji: "%{name} frissítette az alábbi emojit: %{target}"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       title: Audit napló
+    announcements:
+      edit:
+        title: Közlemény szerkesztése
+      empty: Nincs közlemény.
+      live: Élő
+      new:
+        create: Közlemény létrehozása
+        title: Új közlemény
+      published: Közzétéve
+      time_range: Időintervallum
+      title: Közlemények
     custom_emojis:
       assign_category: Kategóriák
       by_domain: Domain
@@ -340,13 +355,11 @@ hu:
       delete: Törlés
       destroyed_msg: E-mail domain sikeresen eltávolítva a feketelistáról
       domain: Domain
+      empty: Nincs email domain a feketelistán.
       new:
         create: Domain hozzáadása
         title: Új e-mail feketelista bejegyzés
       title: E-mail feketelista
-    followers:
-      back_to_account: Vissza a fiókhoz
-      title: "%{acct} követői"
     instances:
       by_domain: Domain
       delivery_available: Kézbesítés elérhető
@@ -375,6 +388,8 @@ hu:
       title: Meghívások
     pending_accounts:
       title: Függőben lévő fiókok (%{count})
+    relationships:
+      title: "%{acct} kapcsolatai"
     relays:
       add_new: Új relé hozzáadása
       delete: Törlés
@@ -395,10 +410,18 @@ hu:
       created_msg: Bejelentési feljegyzés létrehozva!
       destroyed_msg: Bejelentési feljegyzés törölve!
     reports:
+      account:
+        notes:
+          one: "%{count} feljegyzés"
+          other: "%{count} feljegyzés"
+        reports:
+          one: "%{count} bejelentés"
+          other: "%{count} bejelentés"
       action_taken_by: 'Kezelte:'
       are_you_sure: Biztos vagy benne?
       assign_to_self: Magamhoz rendelés
       assigned: Hozzárendelt moderátor
+      by_target_domain: A bejelentett fiók domainje
       comment:
         none: Egyik sem
       created_at: Jelentve
@@ -444,6 +467,8 @@ hu:
         users: Bejelentkezett helyi felhasználóknak
       domain_blocks_rationale:
         title: Mutasd meg az indokolást
+      enable_bootstrap_timeline_accounts:
+        title: Alapértelmezett követés engedélyezése új felhasználóknak
       hero:
         desc_html: A kezdőoldalon látszik. Legalább 600x100px méret javasolt. Ha nincs beállítva, a szerver bélyegképet használjuk
         title: Hősi kép
@@ -572,6 +597,10 @@ hu:
     animations_and_accessibility: Animáció és akadálymentesítés
     confirmation_dialogs: Megerősítő párbeszédablakok
     discovery: Felfedezés
+    localization:
+      body: A Mastodont önkéntesek fordítják.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Bárki közreműködhet.
     sensitive_content: Szenzitív tartalom
     toot_layout: Tülkök megjelenése
   application_mailer:
@@ -644,6 +673,9 @@ hu:
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
     invalid_password: Érvénytelen jelszó
     prompt: Add meg a jelszót a folytatáshoz
+  date:
+    formats:
+      default: "%Y.%b.%d."
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -710,7 +742,6 @@ hu:
     blocks: Tiltólistádon
     csv: CSV
     domain_blocks: Tiltott domainjeid
-    follows: Követettjeid
     lists: Listáid
     mutes: Némításaid
     storage: Médiatároló
@@ -721,6 +752,7 @@ hu:
     hint_html: "<strong>Mik a kiemelt hashtagek?</strong> Ezek állandóan megjelennek a nyilvános profilodon és lehetővé teszik, hogy mások kifejezetten az ezekhez tartozó tülkjeidet böngésszék. Jó eszköz ez kreatív munkák vagy hosszútávú projektek nyomonkövetésére."
   filters:
     contexts:
+      account: Profil
       home: Saját idővonal
       notifications: Értesítések
       public: Nyilvános idővonalak
@@ -732,6 +764,7 @@ hu:
       invalid_irreversible: Visszafordíthatatlan szűrést csak saját idővonalon vagy értesítéseken lehet végezni
     index:
       delete: Törlés
+      empty: Nincs szűrés.
       title: Szűrők
     new:
       title: Új szűrő hozzáadása
@@ -744,6 +777,8 @@ hu:
     all: Mind
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
+    delete: Törlés
+    edit: Szerkesztés
     no_batch_actions_available: Ezen az oldalon nem elérhetőek kötegelt műveletek
     order_by: Rendezés
     save_changes: Változások mentése
@@ -880,6 +915,10 @@ hu:
       body: 'A tülködet %{name} megtolta:'
       subject: "%{name} megtolta a tülködet"
       title: Új megtolás
+  notifications:
+    email_events: Események email értesítésekhez
+    email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
+    other_settings: Értesítések egyéb beállításai
   number:
     human:
       decimal_units:
@@ -903,6 +942,7 @@ hu:
       duration_too_long: túl távoli időpont
       duration_too_short: túl közeli időpont
       expired: A szavazásnak már vége
+      invalid_choice: A kiválasztott szavazási lehetőség nem létezik
       over_character_limit: egyik sem lehet %{max} karakternél hosszabb
       too_few_options: több, mint egy opciónak kell lennie
       too_many_options: nem lehet több, mint %{max} opció
@@ -910,9 +950,15 @@ hu:
     other: Egyéb
     posting_defaults: Tülkölés alapértelmezései
     public_timelines: Nyilvános idővonalak
+  reactions:
+    errors:
+      unrecognized_emoji: nem ismert emoji
   relationships:
     activity: Fiók aktivitás
     dormant: Elhagyott
+    followers: Követők
+    following: Követve
+    invited: Meghívva
     last_active: Utoljára aktív
     most_recent: Legutóbbi
     moved: Átköltöztetve

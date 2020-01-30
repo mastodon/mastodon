@@ -23,10 +23,17 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     not_found
   end
 
+  def update
+    super do |resource|
+      resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?
+    end
+  end
+
   protected
 
   def update_resource(resource, params)
     params[:password] = nil if Devise.pam_authentication && resource.encrypted_password.blank?
+
     super
   end
 

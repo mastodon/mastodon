@@ -10,7 +10,7 @@ fr:
     api: API
     apps: Applications mobiles
     apps_platforms: Utilisez Mastodon depuis iOS, Android et d’autres plates-formes
-    browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêt
+    browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêts
     browse_local_posts: Parcourir un flux en direct de messages publics depuis ce serveur
     browse_public_posts: Parcourir un flux en direct de messages publics sur Mastodon
     contact: Contact
@@ -78,6 +78,7 @@ fr:
     roles:
       admin: Admin
       bot: Robot
+      group: Groupe
       moderator: Modérateur·trice
     unavailable: Profil non disponible
     unfollow: Ne plus suivre
@@ -197,11 +198,13 @@ fr:
         change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
         confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
         create_account_warning: "%{name} a envoyé un avertissement à %{target}"
+        create_announcement: "%{name} a créé une nouvelle annonce %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
         create_domain_allow: "%{name} a inscrit le domaine %{target} sur liste blanche"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste noire"
         demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
+        destroy_announcement: "%{name} a supprimé l’annonce %{target}"
         destroy_custom_emoji: "%{name} a détruit l’émoticône %{target}"
         destroy_domain_allow: "%{name} a supprimé le domaine %{target} de la liste blanche"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
@@ -223,10 +226,22 @@ fr:
         unassigned_report: "%{name} a désassigné le signalement %{target}"
         unsilence_account: "%{name} a mis fin au mode silence de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
+        update_announcement: "%{name} a actualisé l’annonce %{target}"
         update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
       title: Journal d’audit
+    announcements:
+      edit:
+        title: Modifier l’annonce
+      empty: Aucune annonce trouvée.
+      live: En direct
+      new:
+        create: Créer une annonce
+        title: Nouvelle annonce
+      published: Publié
+      time_range: Intervalle de temps
+      title: Annonces
     custom_emojis:
       assign_category: Attribuer une catégorie
       by_domain: Domaine
@@ -338,13 +353,11 @@ fr:
       delete: Supprimer
       destroyed_msg: Le blocage de domaine de courriel a été désactivé
       domain: Domaine
+      empty: Aucun domaine de courriel n’est actuellement sur liste noire.
       new:
         create: Créer le blocage
         title: Nouveau blocage de domaine de courriel
       title: Blocage de domaines de courriel
-    followers:
-      back_to_account: Retour au compte
-      title: Abonné⋅e⋅s de %{acct}
     instances:
       by_domain: Domaine
       delivery_available: Livraison disponible
@@ -373,6 +386,8 @@ fr:
       title: Invitations
     pending_accounts:
       title: Comptes en attente (%{count})
+    relationships:
+      title: Relations de %{acct}
     relays:
       add_new: Ajouter un nouveau relais
       delete: Effacer
@@ -393,10 +408,18 @@ fr:
       created_msg: Note de signalement créée avec succès !
       destroyed_msg: Note de signalement effacée avec succès !
     reports:
+      account:
+        notes:
+          one: "%{count} note"
+          other: "%{count} notes"
+        reports:
+          one: "%{count} signalement"
+          other: "%{count} signalements"
       action_taken_by: Intervention de
       are_you_sure: Êtes vous certain⋅e ?
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
+      by_target_domain: Domaine du compte signalé
       comment:
         none: Aucun
       created_at: Signalé
@@ -442,6 +465,8 @@ fr:
         users: Pour les utilisateurs locaux connectés
       domain_blocks_rationale:
         title: Montrer la raison
+      enable_bootstrap_timeline_accounts:
+        title: Activer le suivi par défaut pour les nouveaux·elles utilisateur·ice·s
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette du serveur
         title: Image d’en-tête
@@ -570,6 +595,10 @@ fr:
     animations_and_accessibility: Animations et accessibilité
     confirmation_dialogs: Dialogues de confirmation
     discovery: Découverte
+    localization:
+      body: Mastodon est traduit par des volontaires.
+      guide_link: https://fr.crowdin.com/project/mastodon
+      guide_link_text: Tout le monde peut y contribuer.
     sensitive_content: Contenu sensible
     toot_layout: Agencement du pouet
   application_mailer:
@@ -642,6 +671,9 @@ fr:
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
     invalid_password: Mot de passe invalide
     prompt: Confirmez votre mot de passe pour continuer
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -708,7 +740,6 @@ fr:
     blocks: Vous bloquez
     csv: CSV
     domain_blocks: Bloqueurs de domaine
-    follows: Vous suivez
     lists: Listes
     mutes: Vous masquez
     storage: Médias stockés
@@ -719,6 +750,7 @@ fr:
     hint_html: "<strong>Que sont les hashtags vedettes ?</strong> Ils sont affichés avec emphase sur votre flux d'actualités publique et permettent aux gens de parcourir vos messages publics spécifiquement sous ces hashtags. Ils sont un excellent outil pour garder trace des œuvres créatives ou des projets à long terme."
   filters:
     contexts:
+      account: Profils
       home: Accueil
       notifications: Notifications
       public: Fils publics
@@ -730,6 +762,7 @@ fr:
       invalid_irreversible: Le filtrage irréversible ne fonctionne que pour l’accueil et les notifications
     index:
       delete: Effacer
+      empty: Vous n'avez aucun filtre.
       title: Filtres
     new:
       title: Ajouter un nouveau filtre
@@ -742,6 +775,8 @@ fr:
     all: Tous
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     copy: Copier
+    delete: Supprimer
+    edit: Modifier
     no_batch_actions_available: Aucune action par lots disponible sur cette page
     order_by: Classer par
     save_changes: Enregistrer les modifications
@@ -834,7 +869,7 @@ fr:
     redirecting_to: Votre compte est redirigé vers %{acct}.
     set_redirect: Définir la redirection
     warning:
-      backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci
+      backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci en définissant un alias
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
       cooldown: Après le déménagement, il y a une période de gel pendant laquelle vous ne pourrez plus re-déménager
       disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la ré-activation.
@@ -878,6 +913,10 @@ fr:
       body: "%{name} a partagé votre statut :"
       subject: "%{name} a partagé votre statut"
       title: Nouveau partage
+  notifications:
+    email_events: Événements pour les notifications par courriel
+    email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
+    other_settings: Autres paramètres de notifications
   number:
     human:
       decimal_units:
@@ -901,6 +940,7 @@ fr:
       duration_too_long: est trop loin dans le futur
       duration_too_short: est trop tôt
       expired: Ce sondage est déjà terminé
+      invalid_choice: L'option de vote choisie n'existe pas
       over_character_limit: ne peuvent être plus long que %{max} caractères chacun
       too_few_options: doit avoir plus qu’une proposition
       too_many_options: ne peut contenir plus de %{max} propositions
@@ -908,9 +948,15 @@ fr:
     other: Autre
     posting_defaults: Paramètres par défaut des pouets
     public_timelines: Fils publics
+  reactions:
+    errors:
+      unrecognized_emoji: n’est pas un émoji reconnu
   relationships:
     activity: Activité du compte
     dormant: Dormant
+    followers: Abonné·e·s
+    following: Abonnements
+    invited: Invité·e
     last_active: Dernière activité
     most_recent: Plus récent
     moved: Déménagé
@@ -933,8 +979,8 @@ fr:
       proceed: Confirmer l’ajout aux favoris
       prompt: 'Vous souhaitez mettre ce pouet en favori :'
     reblog:
-      proceed: Confirmer le repartage
-      prompt: 'Vous souhaitez repartager ce pouet :'
+      proceed: Confirmer le partage
+      prompt: 'Vous souhaitez partager ce pouet :'
     reply:
       proceed: Confirmer la réponse
       prompt: 'Vous souhaitez répondre à ce pouet :'
@@ -1015,7 +1061,7 @@ fr:
       video:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
-    boosted_from_html: Repartagé depuis %{acct_link}
+    boosted_from_html: Partagé depuis %{acct_link}
     content_warning: 'Avertissement sur le contenu : %{warning}'
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
@@ -1207,5 +1253,5 @@ fr:
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
-    explanation_html: 'Vous pouvez <strong>vérifier vous-même que vous êtes le propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site Web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel du lien n’a pas d’importance. En voici un exemple :'
+    explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
     verification: Vérification

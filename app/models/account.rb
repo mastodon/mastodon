@@ -314,10 +314,6 @@ class Account < ApplicationRecord
     self.fields = tmp
   end
 
-  def subscription(webhook_url)
-    @subscription ||= OStatus2::Subscription.new(remote_url, secret: secret, webhook: webhook_url, hub: hub_url)
-  end
-
   def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
@@ -478,6 +474,12 @@ class Account < ApplicationRecord
 
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
       records
+    end
+
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.map { |(username, domain)| EntityCache.instance.mention(username, domain) }
     end
 
     private

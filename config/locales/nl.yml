@@ -78,6 +78,7 @@ nl:
     roles:
       admin: Beheerder
       bot: Bot
+      group: Groep
       moderator: Moderator
     unavailable: Profiel niet beschikbaar
     unfollow: Ontvolgen
@@ -198,10 +199,12 @@ nl:
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
+        create_domain_allow: "%{name} heeft het domein %{target} aan de witte lijst toegevoegd"
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
+        destroy_domain_allow: "%{name} heeft het domein %{target} van de witte lijst verwijderd"
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
         destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
         destroy_status: Toot van %{target} is door %{name} verwijderd
@@ -340,9 +343,6 @@ nl:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
       title: E-maildomeinen blokkeren
-    followers:
-      back_to_account: Terug naar account
-      title: Volgers van %{acct}
     instances:
       by_domain: Domein
       delivery_available: Bezorging is mogelijk
@@ -391,10 +391,18 @@ nl:
       created_msg: Opmerking bij rapportage succesvol aangemaakt!
       destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
     reports:
+      account:
+        notes:
+          one: "%{count} opmerking"
+          other: "%{count} opmerkingen"
+        reports:
+          one: "%{count} rapportage"
+          other: "%{count} rapportages"
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
+      by_target_domain: Domein van gerapporteerde account
       comment:
         none: Geen
       created_at: Gerapporteerd op
@@ -440,6 +448,8 @@ nl:
         users: Naar ingelogde lokale gebruikers
       domain_blocks_rationale:
         title: Motivering tonen
+      enable_bootstrap_timeline_accounts:
+        title: Standaard te volgen accounts voor nieuwe gebruikers inschakelen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -706,7 +716,6 @@ nl:
     blocks: Jij blokkeert
     csv: CSV
     domain_blocks: Domeinblokkades
-    follows: Jij volgt
     lists: Lijsten
     mutes: Jij negeert
     storage: Mediaopslag
@@ -876,6 +885,10 @@ nl:
       body: 'Jouw toot werd door %{name} geboost:'
       subject: "%{name} boostte jouw toot"
       title: Nieuwe boost
+  notifications:
+    email_events: E-mailmeldingen voor gebeurtenissen
+    email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
+    other_settings: Andere meldingsinstellingen
   number:
     human:
       decimal_units:
@@ -909,6 +922,8 @@ nl:
   relationships:
     activity: Accountactiviteit
     dormant: Sluimerend
+    followers: Volgers
+    following: Volgend
     last_active: Laatst actief
     most_recent: Recentelijk gevolgd
     moved: Verhuisd

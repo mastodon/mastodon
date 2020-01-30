@@ -41,6 +41,8 @@ sk:
     unavailable_content_description:
       domain: Server
       reason: 'Dôvod:'
+      rejecting_media: 'Mediálne súbory z týchto serverov nebudú spracované, alebo ukladané, a nebudú z nich zobrazované žiadne náhľady, vyžadujúc ručné prekliknutie priamo až k pôvodnému súboru:'
+      silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenásleduješ:'
     user_count_after:
       few: užívateľov
       many: užívatelia
@@ -82,6 +84,7 @@ sk:
     roles:
       admin: Správca
       bot: Bot
+      group: Skupina
       moderator: Moderátor
     unavailable: Profil nieje dostupný
     unfollow: Prestaň sledovať
@@ -202,10 +205,12 @@ sk:
         confirm_user: "%{name} potvrdil emailovú adresu používateľa %{target}"
         create_account_warning: "%{name} poslal/a varovanie užívateľovi %{target}"
         create_custom_emoji: "%{name} nahral nový emoji %{target}"
+        create_domain_allow: "%{name} pridal/a doménu %{target} na zoznam povolených"
         create_domain_block: "%{name} zablokoval doménu %{target}"
         create_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam zakázaných"
         demote_user: "%{name} degradoval používateľa %{target}"
         destroy_custom_emoji: "%{name} zničil/a %{target} emoji"
+        destroy_domain_allow: "%{name} odstránil/a doménu %{target} zo zoznamu povolených"
         destroy_domain_block: "%{name} povolil doménu %{target}"
         destroy_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam povolených"
         destroy_status: "%{name} zmazal status %{target}"
@@ -215,7 +220,7 @@ sk:
         enable_custom_emoji: "%{name} povolil emoji %{target}"
         enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
         memorialize_account: "%{name} zmenil účet %{target} na pamätnú stránku"
-        promote_user: "%{name} povýšil/a používateľa %{target}"
+        promote_user: "%{name} vyzdvihli užívateľa %{target}"
         remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
         reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
         reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
@@ -229,6 +234,14 @@ sk:
         update_status: "%{name} aktualizoval/a status pre %{target}"
       deleted_status: "(zmazaný príspevok)"
       title: Kontrólny záznam
+    announcements:
+      live: Naživo
+      new:
+        create: Vytvor oznam
+        title: Nové oznámenie
+      published: Zverejnený
+      time_range: Časový rozsah
+      title: Oboznámenia
     custom_emojis:
       assign_category: Priraď kategóriu
       by_domain: Doména
@@ -237,7 +250,7 @@ sk:
       copy_failed_msg: Nebolo možné vytvoriť miestnu kópiu tohto emoji
       create_new_category: Vytvor novú kategóriu
       created_msg: Emoji úspešne vytvorené!
-      delete: Zmaž
+      delete: Vymaž
       destroyed_msg: Emoji úspešne zničené!
       disable: Zakáž
       disabled: Vypnuté
@@ -305,7 +318,7 @@ sk:
         create: Vytvor blokovanie domény
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databázi, ale tieto budú spätne automaticky moderované.
         severity:
-          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Suspendácia</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
+          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Vylúčenie</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
           noop: Nič
           silence: Stíš
           suspend: Vylúč
@@ -345,9 +358,6 @@ sk:
         create: Pridaj doménu
         title: Nový email na zablokovanie
       title: Blokované emailové adresy
-    followers:
-      back_to_account: Späť na účet
-      title: Sledovatielia užívateľa %{acct}
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
@@ -398,10 +408,17 @@ sk:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
+      account:
+        reports:
+          few: "%{count} hlásení"
+          many: "%{count} hlásenia"
+          one: "%{count} hlásenie"
+          other: "%{count} hlásení"
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Si si istý/á?
       assign_to_self: Priraď sebe
       assigned: Priradený moderátor
+      by_target_domain: Doména nahláseného účtu
       comment:
         none: Žiadne
       created_at: Nahlásené
@@ -467,7 +484,7 @@ sk:
           desc_html: Toto sa zobrazí na hlavnej stránke v prípade, že sú registrácie uzavreté. Možno tu použiť aj HTML kód
           title: Správa o uzavretých registráciách
         deletion:
-          desc_html: Dovoľ každému aby si mohli zmazať svok účet
+          desc_html: Dovoľ každému, aby si mohli vymazať svok účet
           title: Sprístupni možnosť vymazať si účet
         min_invite_role:
           disabled: Nikto
@@ -573,6 +590,8 @@ sk:
     animations_and_accessibility: Animácie a prístupnosť
     confirmation_dialogs: Potvrdzovacie dialógy
     discovery: Nájdenie
+    localization:
+      guide_link_text: Prispievať môže každý.
     sensitive_content: Chúlostivý obsah
     toot_layout: Rozloženie príspevkov
   application_mailer:
@@ -586,7 +605,7 @@ sk:
     created: Aplikácia bola vytvorená úspešne
     destroyed: Aplikáciu sa podarilo odstrániť
     invalid_url: Zadaná URL adresa je nesprávna
-    regenerate_token: Znovu vygenerovať prístupový token
+    regenerate_token: Znovu vygeneruj prístupový token
     token_regenerated: Prístupový token bol úspešne vygenerovaný znova
     warning: Na tieto údaje dávaj ohromný pozor. Nikdy ich s nikým nezďieľaj!
     your_token: Tvoj prístupový token
@@ -708,7 +727,6 @@ sk:
     blocks: Blokujete
     csv: CSV
     domain_blocks: Blokované domény
-    follows: Následujete
     lists: Zoznamy
     mutes: Stíšil/a si
     storage: Úložisko médií
@@ -729,6 +747,7 @@ sk:
       invalid_irreversible: Nezvratné filtrovanie funguje iba so súvislostiami domovskej osi a oboznámení
     index:
       delete: Vymaž
+      empty: Nemáš žiadné filtrovanie.
       title: Triedenia
     new:
       title: Pridaj nové triedenie
@@ -841,6 +860,7 @@ sk:
     warning:
       backreference_required: Nový účet musí byť najskôr nastavený tak, aby spätne odkazoval na tento
       before: 'Než budeš pokračovať, prosím pozorne si prečítaj tieto poznámky:'
+      cooldown: Po presunutí je tu istá zahrievacia doba, počas ktorej sa nebudeš môcť znova presunúť
       disabled_account: Tvoj súčasný účet už po tomto nebude plne použiteľný. Stále ale budeš mať prístup ku stiahnutiu dát a možnosti znovu-aktivácie.
       followers: Tento úkon presunie všetkých následovateľov zo súčasného účtu na nový účet
       only_redirect_html: Ako alternatívu, môžeš <a href="%{path}">iba nastaviť presmerovanie na tvoj profil</a>.
@@ -886,6 +906,10 @@ sk:
       body: 'Tvoj príspevok bol vyzdvihnutý užívateľom %{name}:'
       subject: "%{name} vyzdvihli tvoj príspevok"
       title: Novo vyzdvyhnuté
+  notifications:
+    email_events: Udalosti oznamované emailom
+    email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
+    other_settings: Ostatné oboznamovacie nastavenia
   pagination:
     newer: Novšie
     next: Ďalšie
@@ -898,6 +922,7 @@ sk:
       duration_too_long: je príliš ďaleko do budúcnosti
       duration_too_short: je príliš skoro
       expired: Anketa už skončila
+      invalid_choice: Zvolená hlasovacia možnosť neexistuje
       over_character_limit: každá nemôže byť dlhšia ako %{max} znakov
       too_few_options: musí mať viac ako jednu položku
       too_many_options: nemôže zahŕňať viac ako %{max} položiek
@@ -908,6 +933,8 @@ sk:
   relationships:
     activity: Aktivita účtu
     dormant: Spiace
+    followers: Následovatelia
+    following: Následovaní
     last_active: Naposledy aktívny
     most_recent: Najnovšie
     moved: Presunuli sa

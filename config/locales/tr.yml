@@ -6,7 +6,7 @@ tr:
     about_this: Bu sunucu hakkında
     active_count_after: etkin
     active_footnote: Aylık Aktif Kullanıcılar (AAK)
-    administered_by: 'Tarafından yönetildi:'
+    administered_by: 'Yöneten:'
     api: API
     apps: Mobil uygulamalar
     apps_platforms: İos, Android ve diğer platformlardaki Mastodon'u kullanın
@@ -56,7 +56,7 @@ tr:
     followers:
       one: Takipçi
       other: Takipçi
-    following: Takip ediliyor
+    following: Takip ettikleri
     joined: "%{date} tarihinde katıldı"
     last_active: son aktivite
     link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
@@ -78,6 +78,7 @@ tr:
     roles:
       admin: Yönetici
       bot: Bot
+      group: Grup
       moderator: Denetleyici
     unavailable: Profil kullanılamıyor
     unfollow: Takibi bırak
@@ -197,11 +198,13 @@ tr:
         change_email_user: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
         confirm_user: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
         create_account_warning: "%{name} %{target} 'a bir uyarı gönderdi"
+        create_announcement: "%{name}, yeni %{target} duyurusunu oluşturdu"
         create_custom_emoji: "%{name} yeni ifade yükledi %{target}"
         create_domain_allow: "%{target} alan adı, %{name} tarafından beyaz listeye alındı"
         create_domain_block: "%{target} alanı, %{name} tarafından engellendi"
         create_email_domain_block: "%{target} e-posta alanı, %{name} tarafından kara listeye alınmış"
         demote_user: "%{name} %{target} kullanıcısını düşürdü"
+        destroy_announcement: "%{name}, %{target} duyurusunu sildi"
         destroy_custom_emoji: "%{target} emoji, %{name} tarafından kaldırıldı"
         destroy_domain_allow: "%{target} alan adı, %{name} tarafından beyaz listeden çıkartıldı"
         destroy_domain_block: "%{target} alan adının engeli %{name} tarafından kaldırıldı"
@@ -223,10 +226,22 @@ tr:
         unassigned_report: "%{name} %{target} şikayetinin atamasını geri aldı"
         unsilence_account: "%{name} %{target}'in hesabının susturmasını kaldırdı"
         unsuspend_account: "%{name} %{target}'in hesabının uzaklaştırmasını kaldırdı"
+        update_announcement: "%{name}, %{target} duyurusunu güncelledi"
         update_custom_emoji: "%{name} %{target} emojiyi güncelledi"
         update_status: "%{name}, %{target} kullanıcısının durumunu güncelledi"
       deleted_status: "(silinmiş durum)"
       title: Denetim günlüğü
+    announcements:
+      edit:
+        title: Duyuruyu düzenle
+      empty: Duyuru bulunamadı.
+      live: Canlı
+      new:
+        create: Duyuru oluştur
+        title: Yeni duyuru
+      published: Yayınlanan
+      time_range: Zaman aralığı
+      title: Duyurular
     custom_emojis:
       assign_category: Kategori ata
       by_domain: Alan adı
@@ -338,13 +353,11 @@ tr:
       delete: Sil
       destroyed_msg: E-posta alan adı kara listeden başarıyla silindi
       domain: Alan adı
+      empty: Şu anda hiçbir e-posta alan adı kara listeye alınmadı.
       new:
         create: Alan adı ekle
         title: Yeni e-posta kara liste girişi
       title: E-posta kara listesi
-    followers:
-      back_to_account: Hesaba Geri Dön
-      title: "%{acct} Takipçileri"
     instances:
       by_domain: Alan adı
       delivery_available: Teslimat mevcut
@@ -373,6 +386,8 @@ tr:
       title: Davetler
     pending_accounts:
       title: Bekleyen hesaplar (%{count})
+    relationships:
+      title: "%{acct} kişisinin ilişkileri"
     relays:
       add_new: Yeni aktarıcı ekle
       delete: Sil
@@ -393,10 +408,18 @@ tr:
       created_msg: Şikayet notu başarıyla oluşturuldu!
       destroyed_msg: Şikayet notu başarıyla silindi!
     reports:
+      account:
+        notes:
+          one: "%{count} not"
+          other: "%{count} not"
+        reports:
+          one: "%{count} şikayet"
+          other: "%{count} şikayet"
       action_taken_by: tarafından gerçekleştirilen eylem
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
       assigned: Denetleyici atandı
+      by_target_domain: Şikayet edilen hesabın alan adı
       comment:
         none: Yok
       created_at: Şikayet edildi
@@ -442,6 +465,8 @@ tr:
         users: Oturum açan yerel kullanıcılara
       domain_blocks_rationale:
         title: Gerekçeyi göster
+      enable_bootstrap_timeline_accounts:
+        title: Yeni kullanıcılar için varsayılan takipleri etkinleştir
       hero:
         desc_html: Önsayfada görüntülenir. En az 600x100px önerilir. Ayarlanmadığında, sunucu küçük resmi kullanılır
         title: Kahraman görseli
@@ -529,7 +554,7 @@ tr:
       context: İçerik
       directory: Dizinde
       in_directory: Dizinde %{count}
-      last_active: Son aktiflik
+      last_active: Son aktivite
       most_popular: En popüler
       most_recent: En yeni
       name: Etiket
@@ -570,6 +595,10 @@ tr:
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
     confirmation_dialogs: Onay iletişim kutuları
     discovery: Keşfet
+    localization:
+      body: Mastodon, gönüllüler tarafından çevrilmektedir.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Herkes katkıda bulunabilir.
     sensitive_content: Hassas içerik
     toot_layout: Toot yerleşimi
   application_mailer:
@@ -642,6 +671,9 @@ tr:
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
     invalid_password: Geçersiz parola
     prompt: Devam etmek parolayı doğrulayın
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}sa"
@@ -676,7 +708,7 @@ tr:
   directories:
     directory: Profil dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
-    explore_mastodon: "%{title} keşfet"
+    explore_mastodon: "%{title} sunucusunu keşfet"
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
   errors:
@@ -705,10 +737,9 @@ tr:
       in_progress: Arşivinizi derliyoruz...
       request: Arşiv isteği
       size: Boyut
-    blocks: Blokladıklarınız
+    blocks: Engelledikleriniz
     csv: CSV
     domain_blocks: Alan adı blokları
-    follows: Takip ettikleriniz
     lists: Listeler
     mutes: Susturduklarınız
     storage: Ortam deposu
@@ -719,6 +750,7 @@ tr:
     hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
   filters:
     contexts:
+      account: Profiller
       home: Ana zaman çizelgesi
       notifications: Bildirimler
       public: Genel zaman çizelgesi
@@ -730,6 +762,7 @@ tr:
       invalid_irreversible: Geri dönüşümsüz filtreleme sadece anasayfa ya da bildirim bağlamında çalışır
     index:
       delete: Sil
+      empty: Hiç filtreniz yok.
       title: Filtreler
     new:
       title: Yeni filtre ekle
@@ -742,6 +775,8 @@ tr:
     all: Tümü
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
+    delete: Sil
+    edit: Düzenle
     no_batch_actions_available: Bu sayfada toplu işlem yok
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
@@ -878,6 +913,10 @@ tr:
       body: "%{name} durumunuzu boost etti:"
       subject: "%{name} durumunuzu boost etti"
       title: Yeni gönderi
+  notifications:
+    email_events: E-posta bildirimi gönderilecek etkinlikler
+    email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
+    other_settings: Diğer bildirim ayarları
   number:
     human:
       decimal_units:
@@ -901,6 +940,7 @@ tr:
       duration_too_long: ileriye doğru çok geç
       duration_too_short: çok erken
       expired: Anket çoktan sona erdi
+      invalid_choice: Seçilen oylama seçeneği mevcut değil
       over_character_limit: her biri %{max} karakterden daha uzun olamaz
       too_few_options: birden fazla öğeye sahip olmalı
       too_many_options: "%{max} öğeden fazla öğe içeremez"
@@ -908,9 +948,16 @@ tr:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
+  reactions:
+    errors:
+      limit_reached: Farklı reaksiyonların sınırına ulaşıldı
+      unrecognized_emoji: tanınan bir emoji değil
   relationships:
     activity: Hesap etkinliği
     dormant: Atıl
+    followers: Takipçiler
+    following: Takip edilenler
+    invited: Davet edildi
     last_active: Son aktivite
     most_recent: En son
     moved: Taşındı
@@ -1192,7 +1239,7 @@ tr:
       full_handle_hint: Arkadaşlarınıza, size başka bir sunucudan mesaj atabilmeleri veya sizi takip edebilmeleri için söyleyeceğiniz şey budur.
       review_preferences_action: Tercihleri değiştirin
       review_preferences_step: Hangi e-postaları almak veya gönderilerinizin varsayılan olarak hangi gizlilik seviyesinde olmasını istediğiniz gibi tercihlerinizi ayarladığınızdan emin olun. Hareket hastalığınız yoksa, GIF otomatik oynatmayı etkinleştirmeyi seçebilirsiniz.
-      subject: Mastodon'a hoşgeldiniz
+      subject: Mastodon'a hoş geldiniz
       tip_federated_timeline: Federe zaman tüneli, Mastodon ağının genel bir görüntüsüdür. Ancak yalnızca komşularınızın abone olduğu kişileri içerir, bu yüzden tamamı değildir.
       tip_following: Sunucu yönetici(ler)ini varsayılan olarak takip edersiniz. Daha ilginç insanlar bulmak için yerel ve federe zaman çizelgelerini kontrol edin.
       tip_local_timeline: Yerel zaman çizelgesi, %{instance} üzerindeki kişilerin genel bir görüntüsüdür. Bunlar senin en yakın komşularındır!

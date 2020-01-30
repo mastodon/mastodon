@@ -11,6 +11,7 @@ cy:
     apps: Apiau symudol
     apps_platforms: Defnyddio Mastodon o iOS, Android a phlatfformau eraill
     browse_directory: Pori cyfeiriadur proffil a hidlo wrth diddordebau
+    browse_local_posts: Pori ffrwd byw o byst cyhoeddus o'r gweinydd hyn
     browse_public_posts: Pori ffrwd byw o byst cyhoeddus ar Fastodon
     contact: Cyswllt
     contact_missing: Heb ei osod
@@ -93,6 +94,7 @@ cy:
     roles:
       admin: Gweinyddwr
       bot: Bot
+      group: Grŵp
       moderator: Safonwr
     unavailable: Proffil ddim ar gael
     unfollow: Dad-ddilyn
@@ -213,10 +215,12 @@ cy:
         confirm_user: Cadarnhaodd %{name} gyfeiriad e-bost y defnyddiwr %{target}
         create_account_warning: Anfonwyd rhybudd i %{target} gan %{name}
         create_custom_emoji: Uwchlwythodd %{name} emoji newydd %{target}
+        create_domain_allow: Gwynrestrodd %{name} y parth %{target}
         create_domain_block: Blociodd %{name} y parth %{target}
         create_email_domain_block: Cosbrestrwyd parth e-bost %{target} gan %{name}
         demote_user: Diraddiodd %{name} y defnyddiwr %{target}
         destroy_custom_emoji: Dinistriodd %{name} emoji %{target}
+        destroy_domain_allow: Tynnodd %{name} parth %{target} o'r gwynrestr
         destroy_domain_block: Dadflociodd %{name} y parth %{target}
         destroy_email_domain_block: Gwynrestrodd %{name} parth e-bost %{target}
         destroy_status: Cafodd %{name} wared ar statws gan %{target}
@@ -355,13 +359,11 @@ cy:
       delete: Dileu
       destroyed_msg: Llwyddwyd i ddileu parth e-bost o'r gosbrestr
       domain: Parth
+      empty: Dim parthiau ebost ar y rhestr rhwystro.
       new:
         create: Ychwanegu parth
         title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
-    followers:
-      back_to_account: Nôl i'r gyfrif
-      title: Dilynwyr %{acct}
     instances:
       by_domain: Parth
       delivery_available: Mae'r cyflenwad ar gael
@@ -414,10 +416,26 @@ cy:
       created_msg: Llwyddwyd i greu nodyn adroddiad!
       destroyed_msg: Llwyddwyd i ddileu nodyn adroddiad!
     reports:
+      account:
+        notes:
+          few: "%{count} o nodiadau"
+          many: "%{count} o nodiadau"
+          one: "%{count} nodyn"
+          other: "%{count} o nodiadau"
+          two: "%{count} o nodiadau"
+          zero: "%{count} nodyn"
+        reports:
+          few: "%{count} o adroddiadau"
+          many: "%{count} o adroddiadau"
+          one: "%{count} adroddiad"
+          other: "%{count} o adroddiadau"
+          two: "%{count} o adroddiadau"
+          zero: "%{count} adroddiad"
       action_taken_by: Gwnaethpwyd hyn gan
       are_you_sure: Ydych chi'n sicr?
       assign_to_self: Aseinio i mi
       assigned: Arolygwr wedi'i aseinio
+      by_target_domain: Parth cyfrif a adroddir
       comment:
         none: Dim
       created_at: Adroddwyd
@@ -463,6 +481,8 @@ cy:
         users: I ddefnyddwyr lleol mewngofnodadwy
       domain_blocks_rationale:
         title: Dangos rhesymwaith
+      enable_bootstrap_timeline_accounts:
+        title: Alluogi dilyn diofyn i ddefnyddwyr newydd
       hero:
         desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia. Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
         title: Delwedd arwr
@@ -591,6 +611,10 @@ cy:
     animations_and_accessibility: Animeiddiau ac hygyrchedd
     confirmation_dialogs: Deialog cadarnhau
     discovery: Darganfyddiad
+    localization:
+      body: Caiff Mastodon ei gyfieithu gan wirfoddolwyr.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Gall pawb gyfrannu.
     sensitive_content: Cynnwys sensitif
     toot_layout: Gosodiad tŵt
   application_mailer:
@@ -729,7 +753,6 @@ cy:
     blocks: Yr ydych yn blocio
     csv: CSV
     domain_blocks: Blociau parth
-    follows: Yr ydych yn dilyn
     lists: Rhestrau
     mutes: Yr ydych yn tawelu
     storage: Storio cyfryngau
@@ -751,6 +774,7 @@ cy:
       invalid_irreversible: Mae hidlo anadferadwy ond yn gweithio yng nghyd-destun cartref neu hysbysiadau
     index:
       delete: Dileu
+      empty: Nid oes gennych chi hidlyddion.
       title: Hidlyddion
     new:
       title: Ychwanegu hidlydd newydd
@@ -915,6 +939,10 @@ cy:
       body: 'Cafodd eich statws ei fŵstio gan %{name}:'
       subject: Bŵstiodd %{name} eich statws
       title: Hwb newydd
+  notifications:
+    email_events: Digwyddiadau ar gyfer hysbysiadau e-bost
+    email_events_hint: 'Dewis digwyddiadau hoffech derbyn hysbysiadau ar eu cyfer:'
+    other_settings: Gosodiadau hysbysiadau arall
   number:
     human:
       decimal_units:
@@ -938,6 +966,7 @@ cy:
       duration_too_long: yn rhy bell yn y dyfodol
       duration_too_short: yn rhy fuan
       expired: Mae'r pleidlais wedi gorffen yn barod
+      invalid_choice: Nid yw'r dewis pleidlais hyn yn bodoli
       over_character_limit: ni all fod yn hirach na %{max} cymeriad yr un
       too_few_options: rhaid cael fwy nag un eitem
       too_many_options: ni all cynnwys fwy na %{max} o eitemau
@@ -948,6 +977,8 @@ cy:
   relationships:
     activity: Gweithgareddau cyfrif
     dormant: Segur
+    followers: Dilynwyr
+    following: Yn dilyn
     last_active: Gweithred ddiwethaf
     most_recent: Yn diweddaraf
     moved: Wedi symud
