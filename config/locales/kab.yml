@@ -123,6 +123,7 @@ kab:
       redownload: Smiren amaɣnu
       reject: Ggami
       reject_all: Ggami-ten akk
+      remove_avatar: Kkes tugna n wummuγ
       resend_confirmation:
         already_confirmed: Amseqdac-agi yettwasentem yakan
         send: Azen tikelt-nniḍen imayl n usentem
@@ -142,6 +143,7 @@ kab:
       time_in_queue: Deg tebdert n uraju %{time}
       title: Imiḍan
       unconfirmed_email: Imayl ur yettwasentem ara
+      undo_silenced: Kkes asgugem
       unsubscribe: Ur ṭafar ara
       username: Isem n useqdac
       web: Web
@@ -173,6 +175,7 @@ kab:
     announcements:
       edit:
         title: Ẓreg ulγu
+      empty: Ulac kra n ulγuyen.
       new:
         create: Rnu-d ulγu
         title: Ulγu amaynut
@@ -258,7 +261,12 @@ kab:
       disable: Gdel
       enable: Rmed
       enabled: Yermed
+      save_and_enable: Sekles rnu rmed-it
     reports:
+      account:
+        reports:
+          one: "%{count} uneqqis"
+          other: "%{count} n ineqqisen"
       are_you_sure: Tetḥaq-eḍ?
       comment:
         none: Ula yiwen
@@ -271,6 +279,7 @@ kab:
       resolved: Fran
       title: Ineqqisen
       unresolved: Ur yefra ara
+      updated_at: Yettwaleqqem
     settings:
       custom_css:
         desc_html: Beddel aɣan s CSS ara d-yettwasalayen deg yal asebter
@@ -296,8 +305,11 @@ kab:
       back_to_account: Tuγalin γer usebter n umiḍan
       batch:
         delete: Kkes
+      deleted: Yettwakkes
       media:
         title: Taγwalt
+      no_media: Mebla taγwalt
+      with_media: S taγwalt
     tags:
       directory: Deg ukaram
       in_directory: "%{count} deg ukaram"
@@ -338,16 +350,19 @@ kab:
     follow: Ḍfeṛ
     following: 'Igerrez! Aqlik teṭafareḍ tura:'
     post_follow:
+      return: Sken-ed amγnu n useqdac
       web: Ddu γer Web
     title: Ḍfeṛ %{acct}
   challenge:
     confirm: Kemmel
     invalid_password: Yir awal uffir
+    prompt: Sentem awal uffir send ad tkemleḍ
   date:
     formats:
       default: "%d %b %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}a"
       about_x_months: "%{count}ug"
       about_x_years: "%{count}i"
       almost_x_years: "%{count}i"
