@@ -1,6 +1,5 @@
 version: '3'
 services:
-
 ## Database and Cache (postgres and redis)
   db:
     restart: always
@@ -77,54 +76,54 @@ services:
       - db
       - redis
 
-## Flodgatt Streaming (work in progress)
-#   flodgatt:
-#     context: .
-#     dockerfile: Dockerfile.flodgatt
-#     restart: always
-#     env_file: .env.production
-#     command: /flodgatt
-#     networks:
-#       - external_network
-#       - internal_network
-#     healthcheck:
-#       test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
-#     ports:
-#       - "127.0.0.1:4000:4000"
-#     depends_on:
-#       - db
-#       - redis
+# Flodgatt Streaming (work in progress)
+#  flodgatt:
+#    context: .
+#    dockerfile: Dockerfile.flodgatt
+#    restart: always
+#    env_file: .env.production
+#    command: /flodgatt
+#    networks:
+#      - external_network
+#      - internal_network
+#    healthcheck:
+#      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
+#    ports:
+#      - "127.0.0.1:4000:4000"
+#    depends_on:
+#      - db
+#      - redis
 
 ## Optional Full Text Search (elasticsearch)
-#   es:
-#     restart: always
-#     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.3
-#     environment:
-#       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#     networks:
-#       - internal_network
-#     healthcheck:
-#       test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-#     volumes:
-#       - ./elasticsearch:/usr/share/elasticsearch/data
+#  es:
+#    restart: always
+#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.3
+#    environment:
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    networks:
+#      - internal_network
+#    healthcheck:
+#      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+#    volumes:
+#      - ./elasticsearch:/usr/share/elasticsearch/data
 
 
 ## Optional Onion Hidden Service (Tor)
-#   tor:
-#     image: sirboops/tor
-#     networks:
-#       - external_network
-#       - internal_network
-#   privoxy:
-#     image: sirboops/privoxy
-#     volumes:
-#       - ./priv-config:/opt/config
-#     networks:
-#       - external_network
-#       - internal_network
-##   Uncomment to enable federation with tor instances along with adding the following ENV variables
-##   http_proxy=http://privoxy:8118
-##   ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
+#  tor:
+#    image: sirboops/tor
+#    networks:
+#      - external_network
+#      - internal_network
+#  privoxy:
+#    image: sirboops/privoxy
+#    volumes:
+#      - ./priv-config:/opt/config
+#    networks:
+#      - external_network
+#      - internal_network
+## Uncomment to enable federation with tor instances along with adding the following ENV variables
+## http_proxy=http://privoxy:8118
+## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
 
 networks:
   external_network:
