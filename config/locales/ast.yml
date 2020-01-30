@@ -205,6 +205,7 @@ ast:
       email_contact_html: Si entá nun aportó, pues unviar un corréu a<a href="mailto:%{email}">%{email}</a> pa más ayuda
       more_details_html: Pa más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   directories:
+    explanation: y descubri a usuarios según los sos intereses
     explore_mastodon: Esplora %{title}
   errors:
     '400': The request you submitted was invalid or malformed.
@@ -333,10 +334,16 @@ ast:
     no_account_html: '¿Nun tienes una cuenta? Pues <a href=''%{sign_up_path}'' target=''_blank''>rexistrate equí</a>'
     proceed: Siguir
     prompt: 'Vas siguir a:'
+    reason_html: "<strong>¿Por qué esti pasu ye precisu?</strong> <code>%{instance}</code> seique nun seya'l sirvidor onde tas rexistráu, polo que precisamos redirixite primero al de to."
   remote_interaction:
+    favourite:
+      proceed: Siguir
+      prompt: 'Quies marcar esti barritu como favoritu:'
     reblog:
+      proceed: Siguir
       prompt: 'Quies compartir esti barritu:'
     reply:
+      proceed: Siguir
       prompt: 'Quies responder a esti barritu:'
   sessions:
     browser: Restolador
