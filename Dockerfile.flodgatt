@@ -26,6 +26,8 @@ ADD --chown=mastodon:mastodon https://github.com/tootsuite/flodgatt/releases/dow
 RUN echo "$FG_SUM /flodgatt" | sha256sum -c -
 RUN chmod +x /flodgatt
 
+ENV BIND="0.0.0.0"
+
 # Set the run user
 USER mastodon
 
