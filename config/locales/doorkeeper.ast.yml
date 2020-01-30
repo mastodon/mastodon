@@ -3,6 +3,7 @@ ast:
     attributes:
       doorkeeper/application:
         name: Nome de l'aplicación
+        redirect_uri: URI de redireición
         scopes: Ámbitos
         website: Sitiu web de l'aplicación
     errors:
@@ -25,6 +26,7 @@ ast:
         error: '¡Meca! Comprueba los fallos posibles del formulariu'
       help:
         native_redirect_uri: Usa %{native_redirect_uri} pa pruebes llocales
+        redirect_uri: Usa una llinia per URI
       index:
         empty: Nun tienes aplicaciones.
         name: Nome
@@ -99,4 +101,5 @@ ast:
       "write:media": xubir ficheros multimedia
       "write:mutes": silenciar xente y conversaciones
       "write:notifications": llimpiar los tos avisos
+      "write:reports": informar d'otres persones
       "write:statuses": espublizar estaos
