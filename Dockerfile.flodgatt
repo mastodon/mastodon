@@ -1,8 +1,5 @@
 FROM ubuntu:18.04
 
-# Add more PATHs to the PATH
-ENV PATH="${PATH}:/opt/mastodon/bin"
-
 # Create the mastodon user
 ARG UID=991
 ARG GID=991
