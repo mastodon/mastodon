@@ -76,23 +76,25 @@ services:
       - db
       - redis
 
-# Flodgatt Streaming (work in progress)
-#  flodgatt:
-#    context: .
-#    dockerfile: Dockerfile.flodgatt
-#    restart: always
-#    env_file: .env.production
-#    command: /flodgatt
-#    networks:
-#      - external_network
-#      - internal_network
-#    healthcheck:
-#      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
-#    ports:
-#      - "127.0.0.1:4000:4000"
-#    depends_on:
-#      - db
-#      - redis
+## Flodgatt Streaming (work in progress)
+#   flodgatt:
+#     image: tootsuite/flodgatt
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.flodgatt
+#     restart: always
+#     env_file: .env.production
+#     command: /flodgatt
+#     networks:
+#       - external_network
+#       - internal_network
+#     healthcheck:
+#       test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
+#     ports:
+#       - "127.0.0.1:4000:4000"
+#     depends_on:
+#       - db
+#       - redis
 
 ## Optional Full Text Search (elasticsearch)
 #  es:
