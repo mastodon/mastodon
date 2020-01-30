@@ -123,4 +123,4 @@ RUN cd ~ && \
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
 ENTRYPOINT ["/tini", "--"]
-EXPOSE 3000 4000
+EXPOSE 3000
