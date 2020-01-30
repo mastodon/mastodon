@@ -195,7 +195,7 @@ eo:
         create_custom_emoji: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block: "%{name} blokis domajnon %{target}"
-        create_email_domain_block: "%{name} metis en nigran liston domajnon %{target}"
+        create_email_domain_block: "%{name} aldonis retadresan domajnon %{target} al la nigra listo"
         demote_user: "%{name} degradis uzanton %{target}"
         destroy_announcement: "%{name} forigis anoncon %{target}"
         destroy_custom_emoji: "%{name} neniigis la emoĝion %{target}"
@@ -348,6 +348,7 @@ eo:
       delete: Forigi
       destroyed_msg: Retadreso sukcese forigita de la nigra listo
       domain: Domajno
+      empty: Neniu retadresa domajno nune estas en la nigra listo.
       new:
         create: Aldoni domajnon
         title: Nova blokado de retadresa domajno
@@ -380,6 +381,8 @@ eo:
       title: Invitoj
     pending_accounts:
       title: Pritraktataj kontoj (%{count})
+    relationships:
+      title: "Rilatoj de %{acct}"
     relays:
       add_new: Aldoni novan ripetilon
       delete: Forigi
