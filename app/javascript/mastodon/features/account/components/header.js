@@ -11,6 +11,7 @@ import Avatar from 'mastodon/components/avatar';
 import { shortNumberFormat } from 'mastodon/utils/numbers';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import IconButton from '../../../components/icon_button';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -45,6 +46,7 @@ const messages = defineMessages({
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
+  share_profile: { id: 'profile.share', defaultMessage: 'Share profile' },
 });
 
 const dateFormatOptions = {
@@ -64,6 +66,7 @@ class Header extends ImmutablePureComponent {
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
+    onShare: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
   };
@@ -129,6 +132,7 @@ class Header extends ImmutablePureComponent {
     }
 
     let info        = [];
+    let shareBtn    = '';
     let actionBtn   = '';
     let lockedIcon  = '';
     let menu        = [];
@@ -156,6 +160,8 @@ class Header extends ImmutablePureComponent {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
     } else {
+      shareBtn = <IconButton icon='share' title={intl.formatMessage(messages.share_profile)} size={24} style={{ marginRight: '5px' }}onClick={this.props.onShare} />;
+
       actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
     }
 
@@ -270,6 +276,7 @@ class Header extends ImmutablePureComponent {
 
             <div className='account__header__tabs__buttons'>
               {actionBtn}
+              {shareBtn}
 
               <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
             </div>

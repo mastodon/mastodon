@@ -153,3 +153,7 @@ export function Audio () {
 export function Directory () {
   return import(/* webpackChunkName: "features/directory" */'../../directory');
 }
+
+export function ShareProfileModal() {
+  return import(/* webpackChunkName: "modals/share_profile_modal" */'../components/share_profile_modal');
+}

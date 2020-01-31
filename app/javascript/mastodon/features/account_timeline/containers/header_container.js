@@ -120,6 +120,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }));
   },
 
+  onShare(account, domain) {
+    dispatch(openModal('SHARE_PROFILE', {
+      url: account.get('url'),
+      handle: account.get('acct'),
+      domain,
+    }));
+  },
+
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Header));

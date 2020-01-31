@@ -6042,6 +6042,75 @@ noscript {
   }
 }
 
+.share-profile-modal {
+  $modal: &;
+
+  &__container {
+    padding: 15px 25px !important;
+
+    #{$modal}__handle {
+      box-sizing: border-box;
+      background: none;
+      border: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 18px;
+      margin: -15px 0 15px;
+    }
+
+    #{$modal}__socials {
+      & > a,
+      & > button {
+        $size: 42px;
+
+        display: inline-block;
+
+        font-size: 32px;
+
+        width: $size;
+        height: $size;
+
+        text-align: center;
+        line-height: $size;
+        vertical-align: middle;
+
+        background: none;
+
+        box-sizing: border-box;
+
+        margin: 10px;
+        padding: 0;
+
+        border: 0;
+      }
+
+      .share {
+        &-twitter {
+          color: #1da1f2;
+        }
+
+        &-facebook {
+          color: #3b5998;
+        }
+
+        &-vk {
+          color: #4680c2;
+        }
+
+        &-clipboard {
+          font-size: 26px !important;
+          transition: .5s ease;
+
+          &.copied {
+            color: #006400;
+            transition: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 .account__moved-note {
   padding: 14px 10px;
   padding-bottom: 16px;

@@ -23,6 +23,7 @@ export default class Header extends ImmutablePureComponent {
     onUnblockDomain: PropTypes.func.isRequired,
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
+    onShare: PropTypes.func.isRequired,
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
   };
@@ -83,6 +84,10 @@ export default class Header extends ImmutablePureComponent {
     this.props.onAddToList(this.props.account);
   }
 
+  handleShare = () => {
+    this.props.onShare(this.props.account, this.props.domain);
+  }
+
   render () {
     const { account, hideTabs, identity_proofs } = this.props;
 
@@ -108,6 +113,7 @@ export default class Header extends ImmutablePureComponent {
           onUnblockDomain={this.handleUnblockDomain}
           onEndorseToggle={this.handleEndorseToggle}
           onAddToList={this.handleAddToList}
+          onShare={this.handleShare}
           domain={this.props.domain}
         />
 
