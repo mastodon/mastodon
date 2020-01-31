@@ -48,7 +48,7 @@ module AccountFinderConcern
     end
 
     def with_usernames
-      Account.where(Account.arel_table[:username].lower.not_eq '')
+      Account.where.not(Account.arel_table[:username].lower.eq '')
     end
 
     def matching_username
