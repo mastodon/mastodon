@@ -12,7 +12,7 @@ import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
 import { fetchFilters } from 'flavours/glitch/actions/filters';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
-import { submitMarkers } from 'flavours/glitch/actions/markers';
+import { submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import PermaLink from 'flavours/glitch/components/permalink';
@@ -388,6 +388,7 @@ class UI extends React.Component {
 
     this.favicon = new Favico({ animation:"none" });
 
+    this.props.dispatch(fetchMarkers());
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);

@@ -23,6 +23,9 @@ import {
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
 } from 'flavours/glitch/actions/accounts';
+import {
+  MARKERS_FETCH_SUCCESS,
+} from 'flavours/glitch/actions/markers';
 import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from 'flavours/glitch/actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
@@ -104,7 +107,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
         mutable.update('lastReadId', id => compareId(id, items.first().get('id')) > 0 ? id : items.first().get('id'));
       }
     } else {
-      mutable.update('unread', unread => unread + items.filter(item => compareId(item.get('id'), lastReadId) > 0).size);
+      mutable.update('unread', unread => unread + items.count(item => compareId(item.get('id'), lastReadId) > 0));
     }
 
     if (!next) {
@@ -197,10 +200,24 @@ const shouldCountUnreadNotifications = (state) => {
   return !(state.get('isTabVisible') && state.get('top') && state.get('mounted') > 0);
 };
 
+const recountUnread = (state, last_read_id) => {
+  return state.withMutations(mutable => {
+    if (compareId(last_read_id, mutable.get('lastReadId')) > 0) {
+      mutable.set('lastReadId', last_read_id);
+    }
+
+    if (state.get('unread') > 0 || shouldCountUnreadNotifications(state)) {
+      mutable.set('unread', mutable.get('pendingItems').count(item => item !== null) + mutable.get('items').count(item => item && compareId(item.get('id'), last_read_id) > 0));
+    }
+  });
+}
+
 export default function notifications(state = initialState, action) {
   let st;
 
   switch(action.type) {
+  case MARKERS_FETCH_SUCCESS:
+    return action.markers.notifications ? recountUnread(state, action.markers.notifications.last_read_id) : state;
   case NOTIFICATIONS_MOUNT:
     return updateMounted(state);
   case NOTIFICATIONS_UNMOUNT:
