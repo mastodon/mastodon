@@ -11,13 +11,12 @@ import {
   ANNOUNCEMENTS_TOGGLE_SHOW,
   ANNOUNCEMENTS_DELETE,
 } from '../actions/announcements';
-import { Map as ImmutableMap, List as ImmutableList, Set as ImmutableSet, fromJS } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   items: ImmutableList(),
   isLoading: false,
   show: false,
-  unread: ImmutableSet(),
 });
 
 const updateReaction = (state, id, name, updater) => state.update('items', list => list.map(announcement => {
@@ -42,23 +41,10 @@ const addReaction = (state, id, name) => updateReaction(state, id, name, x => x.
 
 const removeReaction = (state, id, name) => updateReaction(state, id, name, x => x.set('me', false).update('count', y => y - 1));
 
-const addUnread = (state, items) => {
-  if (state.get('show')) {
-    return state;
-  }
-
-  const newIds = ImmutableSet(items.map(x => x.get('id')));
-  const oldIds = ImmutableSet(state.get('items').map(x => x.get('id')));
-
-  return state.update('unread', unread => unread.union(newIds.subtract(oldIds)));
-};
-
 const sortAnnouncements = list => list.sortBy(x => x.get('starts_at') || x.get('published_at'));
 
 const updateAnnouncement = (state, announcement) => {
   const idx = state.get('items').findIndex(x => x.get('id') === announcement.get('id'));
-
-  state = addUnread(state, [announcement]);
 
   if (idx > -1) {
     // Deep merge is used because announcements from the streaming API do not contain
@@ -74,7 +60,6 @@ export default function announcementsReducer(state = initialState, action) {
   switch(action.type) {
   case ANNOUNCEMENTS_TOGGLE_SHOW:
     return state.withMutations(map => {
-      if (!map.get('show')) map.set('unread', ImmutableSet());
       map.set('show', !map.get('show'));
     });
   case ANNOUNCEMENTS_FETCH_REQUEST:
@@ -82,10 +67,6 @@ export default function announcementsReducer(state = initialState, action) {
   case ANNOUNCEMENTS_FETCH_SUCCESS:
     return state.withMutations(map => {
       const items = fromJS(action.announcements);
-
-      map.set('unread', ImmutableSet());
-
-      addUnread(map, items);
 
       map.set('items', items);
       map.set('isLoading', false);
@@ -103,7 +84,7 @@ export default function announcementsReducer(state = initialState, action) {
   case ANNOUNCEMENTS_REACTION_ADD_FAIL:
     return removeReaction(state, action.id, action.name);
   case ANNOUNCEMENTS_DELETE:
-    return state.update('unread', set => set.delete(action.id)).update('items', list => {
+    return state.update('items', list => {
       const idx = list.findIndex(x => x.get('id') === action.id);
 
       if (idx > -1) {
