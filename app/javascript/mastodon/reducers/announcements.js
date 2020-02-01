@@ -10,7 +10,7 @@ import {
   ANNOUNCEMENTS_REACTION_REMOVE_FAIL,
   ANNOUNCEMENTS_TOGGLE_SHOW,
   ANNOUNCEMENTS_DELETE,
-  ANNOUNCEMENTS_DISMISS_SUCCESS
+  ANNOUNCEMENTS_DISMISS_SUCCESS,
 } from '../actions/announcements';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
@@ -85,7 +85,7 @@ export default function announcementsReducer(state = initialState, action) {
   case ANNOUNCEMENTS_REACTION_ADD_FAIL:
     return removeReaction(state, action.id, action.name);
   case ANNOUNCEMENTS_DISMISS_SUCCESS:
-    return updateAnnouncement(state, fromJS({'id': action.id, 'read': true}));
+    return updateAnnouncement(state, fromJS({ 'id': action.id, 'read': true }));
   case ANNOUNCEMENTS_DELETE:
     return state.update('items', list => {
       const idx = list.findIndex(x => x.get('id') === action.id);

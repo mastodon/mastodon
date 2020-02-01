@@ -67,8 +67,6 @@ export const dismissAnnouncement = announcementId => (dispatch, getState) => {
     dispatch(dismissAnnouncementSuccess(announcementId));
   }).catch(error => {
     dispatch(dismissAnnouncementFail(announcementId, error));
-  }).finally(() => {
-    done();
   });
 };
 
