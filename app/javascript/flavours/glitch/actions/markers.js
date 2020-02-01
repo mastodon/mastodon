@@ -9,7 +9,7 @@ export const submitMarkers = () => (dispatch, getState) => {
   const params      = {};
 
   const lastHomeId         = getState().getIn(['timelines', 'home', 'items', 0]);
-  const lastNotificationId = getState().getIn(['notifications', 'items', 0, 'id']);
+  const lastNotificationId = getState().getIn(['notifications', 'lastReadId']);
 
   if (lastHomeId) {
     params.home = {
@@ -17,7 +17,7 @@ export const submitMarkers = () => (dispatch, getState) => {
     };
   }
 
-  if (lastNotificationId) {
+  if (lastNotificationId && lastNotificationId !== '0') {
     params.notifications = {
       last_read_id: lastNotificationId,
     };
