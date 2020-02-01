@@ -13,6 +13,9 @@ oc:
         text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
         type_html: Causir de qué far amb <strong>%{acct}</strong>
         warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
+      announcement:
+        ends_at: Opcional. L’anóncia serà automaticament tirada a aqueste moment
+        scheduled_at: Daissar void per publicar l’anóncia immediatament
       defaults:
         autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
@@ -83,6 +86,7 @@ oc:
           suspend: Suspendre e escafar per de bon las donadas del compte
         warning_preset_id: Utilizar un avertiment predefinit
       announcement:
+        all_day: Eveniment tota la jornada
         ends_at: Fin de l’eveniment
         scheduled_at: Publicacions programadas
         starts_at: Debuta de l’eveniment
