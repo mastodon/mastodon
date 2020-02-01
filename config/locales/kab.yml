@@ -3,7 +3,7 @@ kab:
     about_hashtag_html: 'Tigi d tijewwiqin tizuyaz, γur-sent <strong>#%{hashtag}</strong>. Tzemreḍ ad tesdemreḍ akked yid-sent ma tesɛiḍ amiḍan deg kra n umḍiq deg fediverse.'
     about_mastodon_html: 'Azeṭṭa ametti n uzekka: Ulac deg-s asussen, ulac taɛessast n tsuddiwin fell-ak, yebna γef leqder d ttrebga, daγen d akeslemmas! Akked Maṣṭudun, isefka-inek ad qimen inek!'
     about_this: Γef
-    active_count_after: yekker
+    active_count_after: d urmid
     active_footnote: Imseqdacen yekkren s wayyur (MAU)
     administered_by: 'Yettwadbel sɣur:'
     api: API
@@ -209,6 +209,7 @@ kab:
       feature_profile_directory: Akaram n imaγnuten
       feature_registrations: Ajerred
       features: Timahaltin
+      open_reports: ad yeldi ineqqisen
       recent_users: Iseqdacen n memli kan
       software: Aseγẓan
       title: Tafelwit
@@ -313,6 +314,7 @@ kab:
     tags:
       directory: Deg ukaram
       in_directory: "%{count} deg ukaram"
+      most_popular: Ittwasnen aṭas
       most_recent: Melmi kan
     warning_presets:
       add_new: Rnu amaynut
@@ -328,6 +330,7 @@ kab:
     sensitive_content: Agbur amḥulfu
   application_mailer:
     salutation: "%{name},"
+    view_profile: Sken-d amaγnu
   auth:
     change_password: Awal uffir
     delete_account: Kkes amiḍan
@@ -497,11 +500,16 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     open_in_web: Ldi deg Web
+    poll:
+      total_people:
+        one: "%{count} n wemdan"
+        other: "%{count} n yemdanen"
     show_more: Sken-ed ugar
     sign_in_to_participate: Qqen i waken ad tzeddiḍ deg udiwenni
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Imeḍfaṛen kan
+      public_long: Yal yiwen·t yezmer at iwali
   stream_entries:
     sensitive_content: Agbur amḥulfu
   terms:
