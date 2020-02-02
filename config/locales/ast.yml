@@ -67,6 +67,7 @@ ast:
         local: Llocal
         title: Allugamientu
       protocol: Protocolu
+      reject: Refugar
       reject_all: Refugar too
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
@@ -76,6 +77,7 @@ ast:
         moderator: Llendador
         user: Usuariu
       statuses: Estaos
+      time_in_queue: Esperando na cola %{time}
       title: Cuentes
       username: Nome d'usuariu
       web: Web
@@ -96,9 +98,13 @@ ast:
         silence_account: "%{name} silenció la cuenta de %{target}"
         suspend_account: "%{name} suspendió la cuenta de %{target}"
         update_announcement: "%{name} anovó l'anunciu %{target}"
+        update_custom_emoji: "%{name} anovo'l fustaxe %{target}"
     announcements:
+      destroyed_msg: '¡L''anunciu desanicióse con ésitu!'
       new:
         title: Anunciu nuevu
+      published_msg: '¡L''anunciu espublizóse con ésitu!'
+      title: Anuncios
     custom_emojis:
       by_domain: Dominiu
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
