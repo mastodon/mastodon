@@ -136,6 +136,8 @@ module ApplicationHelper
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
 
+    state_params[:visibility] = params[:visibility] if %w(public unlisted private direct).include? params[:visibility]
+
     if user_signed_in?
       state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
       state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
