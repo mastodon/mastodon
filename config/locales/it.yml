@@ -243,6 +243,8 @@ it:
       scheduled_for: Programmato per %{time}
       scheduled_msg: Annuncio programmato per la pubblicazione!
       title: Annunci
+      unpublished_msg: Annuncio tolto dalla pubblicazione!
+      updated_msg: Annuncio aggiornato!
     custom_emojis:
       assign_category: Assegna categoria
       by_domain: Dominio
@@ -387,6 +389,8 @@ it:
       title: Inviti
     pending_accounts:
       title: Account in attesa (%{count})
+    relationships:
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -947,6 +951,7 @@ it:
     public_timelines: Timeline pubbliche
   reactions:
     errors:
+      limit_reached: Raggiunto il limite di reazioni diverse
       unrecognized_emoji: non è un emoji riconosciuto
   relationships:
     activity: Attività dell'account
@@ -1080,6 +1085,7 @@ it:
         other: "%{count} voti"
       vote: Vota
     show_more: Mostra di più
+    show_thread: Mostra thread
     sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
     visibilities:
