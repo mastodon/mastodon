@@ -830,6 +830,7 @@ oc:
     set_redirect: Definir redireccion
     warning:
       before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
+      only_redirect_html: Autrament, podètz <a href="%{path}">solament definir una redireccion sus vòstre perfil</a>.
       other_data: Cap d’autra donada serà desplaçada automaticament
   moderation:
     title: Moderacion
@@ -894,6 +895,7 @@ oc:
       duration_too_long: es tròp alonhat dins lo futur
       duration_too_short: es tròp d’ora
       expired: Lo sondatge es ja acabat
+      invalid_choice: L’opcion causida existís pas
       over_character_limit: pòt pas èsser superior a %{max} caractèrs cadun
       too_few_options: deu contenir mai d’una opcion
       too_many_options: pòt pas contenir mai de %{max} opcions
@@ -903,6 +905,7 @@ oc:
     public_timelines: Fluxes d’actualitats publics
   reactions:
     errors:
+      limit_reached: La limita de las reaccions diferentas es estada atenguda
       unrecognized_emoji: es pas un emoji reconegut
   relationships:
     activity: Activitat del compte
