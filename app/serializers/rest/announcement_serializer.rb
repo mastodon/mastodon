@@ -41,5 +41,9 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
     def url
       ActivityPub::TagManager.instance.url_for(object)
     end
+
+    def acct
+      object.pretty_acct
+    end
   end
 end
