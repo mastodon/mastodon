@@ -809,7 +809,7 @@
     }
   }
 
-  a {
+  a[href] {
     color: $secondary-text-color;
     text-decoration: none;
 
@@ -836,7 +836,7 @@
     }
   }
 
-  a.unhandled-link {
+  a[href].unhandled-link {
     color: lighten($ui-highlight-color, 8%);
   }
 
@@ -1039,7 +1039,7 @@
     .status__content {
       color: $inverted-text-color;
 
-      a {
+      a[href] {
         color: $highlight-text-color;
       }
 
@@ -1255,7 +1255,7 @@
   color: $inverted-text-color;
   font-size: 14px;
 
-  a {
+  a[href] {
     color: $lighter-text-color;
   }
 }
@@ -4780,7 +4780,7 @@ a.status-card.compact:hover {
   overflow-y: auto;
   overflow-x: hidden;
 
-  .status__content a {
+  .status__content a[href] {
     color: $highlight-text-color;
   }
 
@@ -6304,7 +6304,7 @@ noscript {
     }
   }
 
-  a {
+  a[href] {
     color: inherit;
     text-decoration: underline;
 
@@ -6441,7 +6441,7 @@ noscript {
       margin: 0;
       border-top: 1px solid lighten($ui-base-color, 12%);
 
-      a {
+      a[href] {
         color: lighten($ui-highlight-color, 8%);
       }
 
@@ -6449,7 +6449,7 @@ noscript {
         border-radius: 0 4px 0 0;
       }
 
-      .verified a {
+      .verified a[href] {
         color: $valid-value-color;
       }
     }
@@ -6619,7 +6619,7 @@ noscript {
       flex-basis: 90px;
       flex-grow: 1;
 
-      a {
+      a[href] {
         color: $primary-text-color;
         text-decoration: none;
 
