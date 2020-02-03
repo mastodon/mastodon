@@ -6694,6 +6694,18 @@ noscript {
       font-weight: 500;
       margin-bottom: 10px;
     }
+
+    &__unread {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: inline-block;
+      background: $highlight-text-color;
+      border-radius: 50%;
+      width: 0.625rem;
+      height: 0.625rem;
+      margin: 0 .15em;
+    }
   }
 
   &__pagination {
