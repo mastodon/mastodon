@@ -14,7 +14,7 @@ kab:
       not_found_in_database: Tella tuccḍa deg %{authentication_keys} neɣ deg wawal uffir.
       pending: Amiḍan-inek mazal-it deg ɛiwed n tmuɣli.
       timeout: Tiɣimit n tuqqna tezri. Ma ulac aɣilif ɛiwed tuqqna akken ad tkemmleḍ.
-      unauthenticated: Ilaq ad teqqneḍ neɣ ad tjerrḍeḍ akken ad tkemmelḍ.
+      unauthenticated: Ilaq ad teqqneḍ neγ ad tjerrḍeḍ akken ad tkemmelḍ.
       unconfirmed: Ilaq ad wekdeḍ tansa-inek imayl akken ad tkemmelḍ.
     mailer:
       confirmation_instructions:
@@ -23,20 +23,20 @@ kab:
         explanation: Aqla-k terniḍ amiḍan deg %{host} s tansa imayl-agi. Mazal-ak yiwen utekki akken ad t-tremdeḍ. Ma mačči d kečč i yessutren ay-agi, ttxil-k ssinef izen-a.
         explanation_when_pending: Tsutreḍ-d ajerred deg %{host} s tansa-agi imayl. Ad nɣeṛ asuter-ik ticki tsentmeḍ tansa-ik imayl. Send asentem, ur tezmireḍ ara ad teqqneḍ ɣer umiḍan-ik. Ma yella nugi asuter-ik, isefka-ik ad ttwakksen seg uqeddac, ihi ulac tigawt-nniḍen ara k-d-yettuqeblen. Ma mačči d kečč i yellan deffir n usuter-agi, ttxil-k ssinef izen-agi.
         extra_html: Ttxil-k ẓer daɣen <a href="%{terms_path}">ilugan n uqeddac</a> akked <a href="%{policy_path}">twetlin n useqdec</a>.
-        subject: 'Mastudun: Asentem n ujerred deg uqeddac %{instance}'
+        subject: 'Maṣṭudun: Asentem n ujerred deg uqeddac %{instance}'
         title: Senqed tansa-inek imayl
       email_changed:
-        extra: Ma mačči d kečč i ibeddlen tansa imayl, ihi yezmer d alebɛaḍ i ikecmen ɣer umiḍan-ik. Ttxil-k beddel awal-ik uffir tura neɣ siwel i unedbal n uqeddac ma tḥesleḍ berra n umiḍan-ik.
-        subject: 'Masṭudun: Imayl-ik yettubeddel'
+        extra: Ma mačči d kečč i ibeddlen tansa imayl, ihi yezmer d alebɛaḍ i ikecmen γer umiḍan-ik. Ttxil-k beddel awal-ik uffir tura neγ siwel i unedbal n uqeddac ma tḥesleḍ berra n umiḍan-ik.
+        subject: 'Maṣṭudun: Imayl-ik yettubeddel'
         title: Tansa imayl tamaynut
       password_change:
         explanation: Awal uffir n umiḍan-ik yettubeddel.
-        extra: Ma mačči d kečč i ibeddlen awal uffir, ihi yezmer d alebɛaḍ i ikecmen ɣer umiḍan-ik. Ttxil-k beddel awal-ik uffir tura neɣ siwel i unedbal n uqeddac ma tḥesleḍ berra n umiḍan-ik.
-        subject: 'Masṭudun: Yettubeddel wawal-ik uffir'
+        extra: Ma mačči d kečč i ibeddlen awal uffir, ihi yezmer d alebɛaḍ i ikecmen γer umiḍan-ik. Ttxil-k beddel awal-ik uffir tura neγ siwel i unedbal n uqeddac ma tḥesleḍ berra n umiḍan-ik.
+        subject: 'Maṣṭudun: Yettubeddel wawal-ik uffir'
         title: Awal uffir yettubeddel
       reconfirmation_instructions:
         explanation: Sentem tansa imayl tamaynut akken ad tbeddleḍ imayl-inek.
-        subject: 'Mastudun: Sentem tansa imayl n %{instance}'
+        subject: 'Maṣṭudun: Sentem tansa imayl n %{instance}'
         title: Senqed tansa-inek imayl
       reset_password_instructions:
         action: Beddel awal uffir

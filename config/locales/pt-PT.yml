@@ -198,11 +198,13 @@ pt-PT:
         change_email_user: "%{name} alterou o endereço de e-mail do utilizador %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning: "%{name} enviou um aviso para %{target}"
+        create_announcement: "%{name} criou um novo anúncio %{target}"
         create_custom_emoji: "%{name} enviado emoji novo %{target}"
         create_domain_allow: "%{name} colocou o domínio %{target} na lista branca"
         create_domain_block: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block: "%{name} adicionou na lista negra o domínio de correio electrónico %{target}"
         demote_user: "%{name} rebaixou o utilizador %{target}"
+        destroy_announcement: "%{name} excluiu o anúncio %{target}"
         destroy_custom_emoji: "%{name} destruiu o emoji %{target}"
         destroy_domain_allow: "%{name} removeu o domínio %{target} da lista branca"
         destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
@@ -224,10 +226,26 @@ pt-PT:
         unassigned_report: "%{name} não atribuiu o relatório %{target}"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
+        update_announcement: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o estado de %{target}"
       deleted_status: "(apagou a publicação)"
       title: Registo de auditoria
+    announcements:
+      destroyed_msg: Anúncio excluído com sucesso!
+      edit:
+        title: Editar anúncio
+      empty: Nenhum anúncio encontrado.
+      live: Em exibição
+      new:
+        create: Criar anúncio
+        title: Novo anúncio
+      published_msg: Anúncio publicado com sucesso!
+      scheduled_for: Agendado para %{time}
+      scheduled_msg: Anúncio agendado para publicação!
+      title: Anúncios
+      unpublished_msg: Anúncio retirado de exibição com sucesso!
+      updated_msg: Anúncio atualizado com sucesso!
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
@@ -657,6 +675,9 @@ pt-PT:
     hint_html: "<strong>Dica:</strong> Não vamos pedir novamente a sua senha durante a próxima hora."
     invalid_password: Senha inválida
     prompt: Confirme a sua senha para continuar
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -758,6 +779,7 @@ pt-PT:
     all: Tudo
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
+    delete: Eliminar
     no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Guardar alterações
@@ -929,6 +951,10 @@ pt-PT:
     other: Outro
     posting_defaults: Padrões de publicação
     public_timelines: Cronologias públicas
+  reactions:
+    errors:
+      limit_reached: Limite de reações diferentes atingido
+      unrecognized_emoji: não é um emoji reconhecido
   relationships:
     activity: Atividade da conta
     dormant: Inativo
@@ -1061,6 +1087,7 @@ pt-PT:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar mais
+    show_thread: Mostrar conversa
     sign_in_to_participate: Inicie a sessão para participar na conversa
     title: '%{name}: "%{quote}"'
     visibilities:

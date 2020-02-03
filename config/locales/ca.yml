@@ -232,6 +232,7 @@ ca:
       deleted_status: "(tut esborrat)"
       title: Registre d'auditoria
     announcements:
+      destroyed_msg: L’anunci s’ha esborrat amb èxit!
       edit:
         title: Edita l'anunci
       empty: No s'ha trobat cap anunci.
@@ -239,9 +240,12 @@ ca:
       new:
         create: Crea un anunci
         title: Nou anunci
-      published: Publicat
-      time_range: Interval de temps
+      published_msg: L’anunci s’ha publicat amb èxit!
+      scheduled_for: Programat per a %{time}
+      scheduled_msg: Anunci programat per a ser publicat!
       title: Anuncis
+      unpublished_msg: L’anunci s’ha despublicat amb èxit!
+      updated_msg: L'anunci s'ha actualitzat correctament!
     custom_emojis:
       assign_category: Assigna una categoria
       by_domain: Domini
@@ -776,7 +780,6 @@ ca:
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copia
     delete: Esborra
-    edit: Edita
     no_batch_actions_available: Cap accions de lot disponibles en aquesta pàgina
     order_by: Ordena per
     save_changes: Desa els canvis
@@ -950,6 +953,7 @@ ca:
     public_timelines: Línies de temps públiques
   reactions:
     errors:
+      limit_reached: Límit de diferents reaccions assolit
       unrecognized_emoji: no és un emoji reconegut
   relationships:
     activity: Activitat del compte
@@ -1083,6 +1087,7 @@ ca:
         other: "%{count} vots"
       vote: Vota
     show_more: Mostra'n més
+    show_thread: Mostra el fil
     sign_in_to_participate: Inicia la sessió per participar a la conversa
     title: '%{name}: "%{quote}"'
     visibilities:

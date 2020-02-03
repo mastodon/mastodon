@@ -14,6 +14,12 @@ zh-CN:
         text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
         type_html: 用<strong>%{acct}</strong>选择做什么
         warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
+      announcement:
+        all_day: 如果选中，只有该时间段内的日期会显示。
+        ends_at: 可选。公告会在该时间点自动取消发布
+        scheduled_at: 留空的话，公告会立即发布。
+        starts_at: 可选。你可以让你的公告只在特定时间段显示。
+        text: 你可以使用嘟文格式。但是请注意不要让公告占据太多用户屏幕上的空间。
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
@@ -83,6 +89,12 @@ zh-CN:
           silence: 静音
           suspend: 停用并永久删除账号数据
         warning_preset_id: 使用预置警告
+      announcement:
+        all_day: 全天事件
+        ends_at: 事件结束
+        scheduled_at: 定时发布
+        starts_at: 事件开始
+        text: 公告
       defaults:
         autofollow: 让被邀请人关注你的帐户
         avatar: 头像

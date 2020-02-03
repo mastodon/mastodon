@@ -232,6 +232,7 @@ es-AR:
       deleted_status: "(estado borrado)"
       title: Registro de auditoría
     announcements:
+      destroyed_msg: "¡Anuncio eliminado exitosamente!"
       edit:
         title: Editar anuncio
       empty: No se encontraron anuncios.
@@ -239,9 +240,12 @@ es-AR:
       new:
         create: Crear anuncio
         title: Nuevo anuncio
-      published: Publicados
-      time_range: Rango de tiempo
+      published_msg: "¡Anuncio publicado exitosamente!"
+      scheduled_for: Programado para %{time}
+      scheduled_msg: "¡Anuncio programado para su publicación!"
       title: Anuncios
+      unpublished_msg: "¡Anuncio dejado de publicar exitosamente!"
+      updated_msg: "¡Anuncio actualizado exitosamente!"
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -776,7 +780,6 @@ es-AR:
     changes_saved_msg: "¡Cambios guardados exitosamente!"
     copy: Copiar
     delete: Eliminar
-    edit: Editar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
@@ -950,6 +953,7 @@ es-AR:
     public_timelines: Líneas temporales públicas
   reactions:
     errors:
+      limit_reached: Se alcanzó el límite de reacciones diferentes
       unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
@@ -1083,6 +1087,7 @@ es-AR:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar más
+    show_thread: Mostrar hilo
     sign_in_to_participate: Iniciá sesión para participar en la conversación
     title: '%{name}: "%{quote}"'
     visibilities:
