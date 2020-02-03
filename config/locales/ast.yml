@@ -146,6 +146,7 @@ ast:
           other: "%{count} informes"
       are_you_sure: '¿De xuru?'
       status: Estáu
+      title: Informes
     settings:
       registrations:
         min_invite_role:
@@ -166,6 +167,7 @@ ast:
     new_pending_account:
       body: Los detalles de la cuenta nueva tán embaxo. Pues aprobar o refugar esta aplicación.
     new_report:
+      body: "%{reporter} informó de %{target}"
       body_remote: Daquién dende %{domain} informó de %{target}
     new_trending_tag:
       body: 'Güei la etiqueta #%{name} ye tendencia pero nun se revisó anteriormente. Nun va amosase públicamente a nun ser que lo permitas o guardes el formulariu como ta pa nun saber más d''ello.'
