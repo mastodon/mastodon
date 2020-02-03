@@ -35,6 +35,7 @@ oc:
     unavailable_content_description:
       domain: Servidor
       reason: 'Motiu :'
+      rejecting_media: 'Los fichièrs mèdias d’aquestes servidors estant seràn pas tractats o gardats e pas cap de miniatura serà pas mostrada, demanda de clicar sul fichièr original :'
     user_count_after:
       one: utilizaire
       other: utilizaires
@@ -413,6 +414,7 @@ oc:
       are_you_sure: Es segur ?
       assign_to_self: Me l’assignar
       assigned: Moderador assignat
+      by_target_domain: Domeni del compte senhalat
       comment:
         none: Pas cap
       created_at: Creacion
@@ -457,6 +459,8 @@ oc:
         users: Als utilizaires locals connectats
       domain_blocks_rationale:
         title: Mostrar lo rasonament
+      enable_bootstrap_timeline_accounts:
+        title: Activar lo seguiment per defaut pels nòuvenguts
       hero:
         desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge del servidor serà mostrat
         title: Imatge de l’eròi
@@ -564,8 +568,11 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
       subject: 'Novèl senhalament per %{instance} (#%{id})'
+    new_trending_tag:
+      subject: 'Nòva etiqueta per repassar sus %{instance} (#%{name})'
   aliases:
     add_new: Crear un alias
+    remove: Desligar l’alias
   appearance:
     advanced_web_interface: Interfàcia web avançada
     advanced_web_interface_hint: 'Se volètz utilizar la nautor complèta de l’ecran, l’interfàcia web avançada vos permet de configurar diferentas colomnas per mostrar tan d’informacions que volètz : Acuèlh, notificacions, flux d’actualitat, e d’autras listas e etiquetas.'
@@ -821,6 +828,8 @@ oc:
     errors:
       move_to_self: pòt pas èsser lo compte actual
       not_found: impossible de trobar
+      on_cooldown: Sètz en temps de recargament
+    followers_count: Seguidors al moment de mudar
     incoming_migrations: Mudar d’un compte diferent
     moved_msg: Vòstre compte manda ara a %{acct} e vòstres seguidors son desplaçats.
     not_redirecting: Vòstre compte manda pas enlòc pel moment.
