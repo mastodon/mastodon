@@ -517,7 +517,7 @@ class Video extends React.PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              {(!onCloseVideo && !editable) && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
+              {(!onCloseVideo && !editable && !fullscreen) && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
               {(!fullscreen && onOpenVideo) && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
               {onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
               <button type='button' aria-label={intl.formatMessage(messages.download)}><a className='video-player__download__icon' href={this.props.src} download><Icon id={'download'} fixedWidth /></a></button>
