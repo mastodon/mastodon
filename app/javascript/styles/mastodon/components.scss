@@ -290,27 +290,29 @@
   position: absolute;
 }
 
-.invisible {
-  font-size: 0;
-  line-height: 0;
-  display: inline-block;
-  width: 0;
-  height: 0;
-  position: absolute;
+a[href] {
+ .invisible {
+    font-size: 0;
+    line-height: 0;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: absolute;
 
-  img,
-  svg {
-    margin: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
+    img,
+    svg {
+      margin: 0 !important;
+      border: 0 !important;
+      padding: 0 !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
   }
-}
 
-.ellipsis {
-  &::after {
-    content: "…";
+  .ellipsis {
+    &::after {
+      content: "…";
+    }
   }
 }
 
