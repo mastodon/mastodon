@@ -7,6 +7,10 @@ export const ANNOUNCEMENTS_FETCH_FAIL    = 'ANNOUNCEMENTS_FETCH_FAIL';
 export const ANNOUNCEMENTS_UPDATE        = 'ANNOUNCEMENTS_UPDATE';
 export const ANNOUNCEMENTS_DELETE        = 'ANNOUNCEMENTS_DELETE';
 
+export const ANNOUNCEMENTS_DISMISS_REQUEST = 'ANNOUNCEMENTS_DISMISS_REQUEST';
+export const ANNOUNCEMENTS_DISMISS_SUCCESS = 'ANNOUNCEMENTS_DISMISS_SUCCESS';
+export const ANNOUNCEMENTS_DISMISS_FAIL    = 'ANNOUNCEMENTS_DISMISS_FAIL';
+
 export const ANNOUNCEMENTS_REACTION_ADD_REQUEST = 'ANNOUNCEMENTS_REACTION_ADD_REQUEST';
 export const ANNOUNCEMENTS_REACTION_ADD_SUCCESS = 'ANNOUNCEMENTS_REACTION_ADD_SUCCESS';
 export const ANNOUNCEMENTS_REACTION_ADD_FAIL    = 'ANNOUNCEMENTS_REACTION_ADD_FAIL';
@@ -54,6 +58,32 @@ export const fetchAnnouncementsFail= error => ({
 export const updateAnnouncements = announcement => ({
   type: ANNOUNCEMENTS_UPDATE,
   announcement: normalizeAnnouncement(announcement),
+});
+
+export const dismissAnnouncement = announcementId => (dispatch, getState) => {
+  dispatch(dismissAnnouncementRequest(announcementId));
+
+  api(getState).post(`/api/v1/announcements/${announcementId}/dismiss`).then(() => {
+    dispatch(dismissAnnouncementSuccess(announcementId));
+  }).catch(error => {
+    dispatch(dismissAnnouncementFail(announcementId, error));
+  });
+};
+
+export const dismissAnnouncementRequest = announcementId => ({
+  type: ANNOUNCEMENTS_DISMISS_REQUEST,
+  id: announcementId,
+});
+
+export const dismissAnnouncementSuccess = announcementId => ({
+  type: ANNOUNCEMENTS_DISMISS_SUCCESS,
+  id: announcementId,
+});
+
+export const dismissAnnouncementFail = (announcementId, error) => ({
+  type: ANNOUNCEMENTS_DISMISS_FAIL,
+  id: announcementId,
+  error,
 });
 
 export const addReaction = (announcementId, name) => (dispatch, getState) => {

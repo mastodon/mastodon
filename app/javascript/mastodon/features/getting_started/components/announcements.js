@@ -302,10 +302,23 @@ class Announcement extends ImmutablePureComponent {
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    selected: PropTypes.bool,
   };
+
+  state = {
+    unread: !this.props.announcement.get('read'),
+  };
+
+  componentDidUpdate () {
+    const { selected, announcement } = this.props;
+    if (!selected && this.state.unread !== !announcement.get('read')) {
+      this.setState({ unread: !announcement.get('read') });
+    }
+  }
 
   render () {
     const { announcement } = this.props;
+    const { unread } = this.state;
     const startsAt = announcement.get('starts_at') && new Date(announcement.get('starts_at'));
     const endsAt = announcement.get('ends_at') && new Date(announcement.get('ends_at'));
     const now = new Date();
@@ -330,6 +343,8 @@ class Announcement extends ImmutablePureComponent {
           removeReaction={this.props.removeReaction}
           emojiMap={this.props.emojiMap}
         />
+
+        {unread && <span className='announcements__item__unread' />}
       </div>
     );
   }
@@ -342,6 +357,7 @@ class Announcements extends ImmutablePureComponent {
   static propTypes = {
     announcements: ImmutablePropTypes.list,
     emojiMap: ImmutablePropTypes.map.isRequired,
+    dismissAnnouncement: PropTypes.func.isRequired,
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -350,6 +366,21 @@ class Announcements extends ImmutablePureComponent {
   state = {
     index: 0,
   };
+
+  componentDidMount () {
+    this._markAnnouncementAsRead();
+  }
+
+  componentDidUpdate () {
+    this._markAnnouncementAsRead();
+  }
+
+  _markAnnouncementAsRead () {
+    const { dismissAnnouncement, announcements } = this.props;
+    const { index } = this.state;
+    const announcement = announcements.get(index);
+    if (!announcement.get('read')) dismissAnnouncement(announcement.get('id'));
+  }
 
   handleChangeIndex = index => {
     this.setState({ index: index % this.props.announcements.size });
@@ -377,7 +408,7 @@ class Announcements extends ImmutablePureComponent {
 
         <div className='announcements__container'>
           <ReactSwipeableViews animateHeight={!reduceMotion} adjustHeight={reduceMotion} index={index} onChangeIndex={this.handleChangeIndex}>
-            {announcements.map(announcement => (
+            {announcements.map((announcement, idx) => (
               <Announcement
                 key={announcement.get('id')}
                 announcement={announcement}
@@ -385,6 +416,7 @@ class Announcements extends ImmutablePureComponent {
                 addReaction={this.props.addReaction}
                 removeReaction={this.props.removeReaction}
                 intl={intl}
+                selected={index === idx}
               />
             ))}
           </ReactSwipeableViews>
