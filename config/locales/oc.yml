@@ -406,6 +406,9 @@ oc:
         notes:
           one: "%{count} nòta"
           other: "%{count} nòtas"
+        reports:
+          one: "%{count} senhalament"
+          other: "%{count} senhalaments"
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
       assign_to_self: Me l’assignar
@@ -1025,6 +1028,9 @@ oc:
       private: Se pòt pas penjar los tuts pas publics
       reblog: Se pòt pas penjar un tut partejat
     poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} personas"
       total_votes:
         one: "%{count} vòte"
         other: "%{count} vòtes"
