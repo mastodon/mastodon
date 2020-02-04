@@ -130,6 +130,7 @@ kab:
         success: Imayl n usentem yettwazen mebla ugur!
       reset: Wennez
       reset_password: Beddel awal uffir
+      role: Tisirag
       roles:
         admin: Anedbal
         staff: Tarbaɛt
@@ -199,6 +200,7 @@ kab:
       list: Tabdart
       new:
         title: Timerna n imuji udmawan amaynut
+      overwrite: Semselsi
       title: Imujiten udmawanen
       unlist: Kkes si tabdert
       unlisted: Yettwakkes si tabdert
@@ -249,6 +251,9 @@ kab:
         other: "%{count} n yimiḍanen i yettwassnen"
       moderation:
         all: Akk
+      private_comment: Awennit uslig
+      public_comment: Awennit azayez
+      title: Tamatut
       total_blocked_by_us: Ttwasḥebsen sɣur-neɣ
       total_followed_by_them: Ṭtafaṛen-t
       total_followed_by_us: Neṭṭafaṛ-it
@@ -265,6 +270,7 @@ kab:
       enable: Rmed
       enabled: Yermed
       save_and_enable: Sekles rnu rmed-it
+      status: Addad
     reports:
       account:
         reports:
@@ -280,6 +286,7 @@ kab:
         delete: Kkes
       report: 'Aneqqis #%{id}'
       resolved: Fran
+      status: Addad
       title: Ineqqisen
       unresolved: Ur yefra ara
       updated_at: Yettwaleqqem
@@ -427,10 +434,12 @@ kab:
     all: Akk
     copy: Nγel
     delete: Kkes
+    order_by: Sizwer s
     save_changes: Sekles ibeddilen
   identity_proofs:
     authorize: Ih, ssireg
     i_am_html: Nekki d %{username} deg %{service}.
+    identity: Tamagit
   imports:
     types:
       following: Tabdart n wid teṭafareḍ
