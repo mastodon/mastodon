@@ -440,7 +440,10 @@ kab:
     authorize: Ih, ssireg
     i_am_html: Nekki d %{username} deg %{service}.
     identity: Tamagit
+    publicize_checkbox: 'Tjewqeḍ aya:'
   imports:
+    modes:
+      overwrite: Semselsi
     types:
       following: Tabdart n wid teṭafareḍ
     upload: Sali
@@ -467,6 +470,7 @@ kab:
   pagination:
     newer: Amaynut
     next: Wayed
+    older: Aqbuṛ
     prev: Win iɛeddan
     truncate: "d"
   preferences:
@@ -474,6 +478,7 @@ kab:
   relationships:
     followers: Imeḍfaṛen
     following: Yeṭafaṛ
+    moved: Igujj
     status: Addad n umiḍan
   remote_follow:
     no_account_html: Ur tesɛid ara amiḍan? Tzmreḍ <a href='%{sign_up_path}' target='_blank'>ad jerdeḍ da</a>
@@ -486,8 +491,13 @@ kab:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
       opera: Opera
       otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
@@ -505,6 +515,8 @@ kab:
       mac: Mac
       windows: Windows
       windows_mobile: Windows Mobile
+      windows_phone: Tiliγri Windows Phone
+    revoke: Ḥwi
   settings:
     account: Amiḍan
     account_settings: Iγewwaṛen n umiḍan
@@ -561,6 +573,7 @@ kab:
       full_handle: Tansa umiḍan-ik takemmalit
       review_preferences_action: Beddel imenyafen
       subject: Ansuf γer Maṣṭudun
+      tips: Tixbaluyin
       title: Ansuf yessek·em, %{name}!
   users:
     signed_in_as: 'Teqqneḍ amzun d:'
