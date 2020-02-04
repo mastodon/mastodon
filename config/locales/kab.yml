@@ -348,6 +348,9 @@ kab:
     reset_password: Wennez awal uffir
     security: Taγellist
     set_new_password: Egr-ed awal uffir amaynut
+    status:
+      account_status: Addad n umiḍan
+      functional: Amiḍan-inek·m yettwaheyya.
     trouble_logging_in: Γur-k uguren n tuqqna?
   authorize_follow:
     already_following: Teṭafareḍ ya kan amiḍan-a
@@ -399,6 +402,7 @@ kab:
       size: Teγzi
     csv: CSV
     lists: Tibdarin
+    mutes: Wid tesgugmeḍ
   featured_tags:
     add_new: Rnu amaynut
   filters:
@@ -406,8 +410,14 @@ kab:
       account: Imuγna
       notifications: Tilγa
       thread: Idiwenniyen
+    edit:
+      title: Ẓreg amzizdig
     index:
       delete: Kkes
+      empty: Ur tesɛid ara imzizdigen.
+      title: Imzizdigen
+    new:
+      title: Rnu yiwen umzizdig amaynut
   footer:
     developers: Ineflayen
     more: Ugar…
@@ -434,6 +444,7 @@ kab:
     title: Ɛreḍ-d kra n yimdanen
   migrations:
     acct: Ibeddel γer
+    incoming_migrations: Tusiḍ-ed seg umiḍan nniḍen
   notification_mailer:
     follow:
       body: "%{name} yeṭafaṛ-ik-id tura!"
@@ -451,6 +462,7 @@ kab:
   relationships:
     followers: Imeḍfaṛen
     following: Yeṭafaṛ
+    status: Addad n umiḍan
   remote_follow:
     no_account_html: Ur tesɛid ara amiḍan? Tzmreḍ <a href='%{sign_up_path}' target='_blank'>ad jerdeḍ da</a>
   sessions:
@@ -488,7 +500,9 @@ kab:
     back: Uγal γer Maṣṭudun
     development: Taneflit
     edit_profile: Ẓreg amaγnu
+    export: Taktert n yisefka
     import: Kter
+    import_and_export: Taktert d usifeḍ
     notifications: Tilγa
     preferences: Imenyafen
     profile: Ameγnu
