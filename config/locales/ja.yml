@@ -228,6 +228,7 @@ ja:
       deleted_status: "(削除済)"
       title: 操作履歴
     announcements:
+      destroyed_msg: お知らせが削除されました
       edit:
         title: お知らせを編集
       empty: お知らせはありません
@@ -235,9 +236,12 @@ ja:
       new:
         create: お知らせを作成
         title: お知らせを追加
-      published: 公開日時
-      time_range: 期間
+      published_msg: お知らせを掲載しました
+      scheduled_for: "%{time} に予約"
+      scheduled_msg: お知らせの掲載を予約しました
       title: お知らせ
+      unpublished_msg: お知らせを非掲載にしました
+      updated_msg: お知らせを更新しました
     custom_emojis:
       assign_category: カテゴリーを割り当て
       by_domain: ドメイン
@@ -768,7 +772,6 @@ ja:
     changes_saved_msg: 正常に変更されました！
     copy: コピー
     delete: 削除
-    edit: 編集
     no_batch_actions_available: このページに一括操作はありません
     order_by: 並び順
     save_changes: 変更を保存
@@ -940,7 +943,7 @@ ja:
   reactions:
     errors:
       limit_reached: リアクションの種類が上限に達しました
-      unrecognized_emoji: 認識できない絵文字
+      unrecognized_emoji: は絵文字として認識されていません
   relationships:
     activity: 活動
     dormant: 非アクティブ
@@ -1069,6 +1072,7 @@ ja:
         other: "%{count}票"
       vote: 投票
     show_more: もっと見る
+    show_thread: スレッドを表示
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:

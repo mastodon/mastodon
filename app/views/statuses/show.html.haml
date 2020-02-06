@@ -10,7 +10,7 @@
 
   = opengraph 'og:site_name', site_title
   = opengraph 'og:type', 'article'
-  = opengraph 'og:title', "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+  = opengraph 'og:title', "#{display_name(@account)} (#{acct(@account)})"
   = opengraph 'og:url', short_account_status_url(@account, @status)
 
   = render 'og_description', activity: @status
