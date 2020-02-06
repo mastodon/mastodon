@@ -192,11 +192,13 @@ eo:
         change_email_user: "%{name} ŝanĝis retadreson de uzanto %{target}"
         confirm_user: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning: "%{name} sendis averton al %{target}"
+        create_announcement: "%{name} kreis novan anoncon %{target}"
         create_custom_emoji: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block: "%{name} blokis domajnon %{target}"
-        create_email_domain_block: "%{name} metis en nigran liston domajnon %{target}"
+        create_email_domain_block: "%{name} aldonis retadresan domajnon %{target} al la nigra listo"
         demote_user: "%{name} degradis uzanton %{target}"
+        destroy_announcement: "%{name} forigis anoncon %{target}"
         destroy_custom_emoji: "%{name} neniigis la emoĝion %{target}"
         destroy_domain_allow: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block: "%{name} malblokis domajnon %{target}"
@@ -218,10 +220,26 @@ eo:
         unassigned_report: "%{name} malasignis signalon %{target}"
         unsilence_account: "%{name} malkaŝis la konton de %{target}"
         unsuspend_account: "%{name} malhaltigis la konton de %{target}"
+        update_announcement: "%{name} ĝisdatigis anoncon %{target}"
         update_custom_emoji: "%{name} ĝisdatigis emoĝion %{target}"
         update_status: "%{name} ĝisdatigis mesaĝon de %{target}"
       deleted_status: "(forigita mesaĝo)"
       title: Kontrola protokolo
+    announcements:
+      destroyed_msg: Anonco sukcese forigita!
+      edit:
+        title: Redakti anoncon
+      empty: Neniu anonco trovita.
+      live: Publikigita
+      new:
+        create: Krei anoncon
+        title: Nova anonco
+      published_msg: Anonco sukcese publikigita!
+      scheduled_for: Planigita je %{time}
+      scheduled_msg: Anonco planigita por publikigo!
+      title: Anoncoj
+      unpublished_msg: Anonco sukcese malpublikigita!
+      updated_msg: Anonco sukcese ĝisdatigis!
     custom_emojis:
       assign_category: Atribui kategorion
       by_domain: Domajno
@@ -331,6 +349,7 @@ eo:
       delete: Forigi
       destroyed_msg: Retadreso sukcese forigita de la nigra listo
       domain: Domajno
+      empty: Neniu retadresa domajno nune estas en la nigra listo.
       new:
         create: Aldoni domajnon
         title: Nova blokado de retadresa domajno
@@ -363,6 +382,8 @@ eo:
       title: Invitoj
     pending_accounts:
       title: Pritraktataj kontoj (%{count})
+    relationships:
+      title: Rilatoj de %{acct}
     relays:
       add_new: Aldoni novan ripetilon
       delete: Forigi
@@ -517,6 +538,7 @@ eo:
     tags:
       accounts_today: Unikaj uzoj hodiaŭ
       accounts_week: Unikaj uzoj je ĉi tiu semajno
+      breakdown: Disigo de la hodiaŭa uzo per fonto
       context: Kunteksto
       directory: En la adresaro
       in_directory: "%{count} en adresaro"
@@ -701,6 +723,7 @@ eo:
     hint_html: "<strong>Kio estas la trajtaj kradvortoj?</strong> Ili bone videblas en via publika profilo kaj permesas al homoj trarigardi viajn publikajn mesaĝojn specife laŭ tiuj kradvortoj. Ili estas bonaj iloj por sekvi la evoluon de kreadaj laboroj aŭ longdaŭraj projektoj."
   filters:
     contexts:
+      account: Profiloj
       home: Hejma templinio
       notifications: Sciigoj
       public: Publika templinio
@@ -725,6 +748,7 @@ eo:
     all: Ĉio
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
     copy: Kopii
+    delete: Forigi
     order_by: Ordigi de
     save_changes: Konservi ŝanĝojn
     validation_errors:
@@ -1012,6 +1036,7 @@ eo:
         other: "%{count} voĉdonoj"
       vote: Voĉdoni
     show_more: Montri pli
+    show_thread: Montri la fadenon
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: "%{name}: “%{quote}”"
     visibilities:

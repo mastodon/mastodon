@@ -14,6 +14,12 @@ cs:
         text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
         type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
         warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
+      announcement:
+        all_day: Po vybrání budou zobrazeny jenom dny z časového období
+        ends_at: Volitelné. Zveřejněné oznámení bude v uvedený čas skryto.
+        scheduled_at: Pro okamžité zveřejnění ponechte prázdné
+        starts_at: Volitelné. Jen pokud je oznámení vázáno na konkrétní časové období
+        text: Můžete použít stejnou syntax jako pro tooty. Myslete ale na to, že oznámení zabere uživatelům na obrazovce nějaký prostor.
       defaults:
         autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -85,8 +91,10 @@ cs:
         warning_preset_id: Použít předlohu pro varování
       announcement:
         all_day: Celodenní událost
+        ends_at: Konec události
         scheduled_at: Naplánovat zveřejnění
         starts_at: Začátek události
+        text: Oznámení
       defaults:
         autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar

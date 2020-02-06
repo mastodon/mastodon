@@ -209,6 +209,7 @@ th:
       deleted_status: "(สถานะที่ลบแล้ว)"
       title: รายการบันทึกการตรวจสอบ
     announcements:
+      destroyed_msg: ลบประกาศสำเร็จ!
       edit:
         title: แก้ไขประกาศ
       empty: ไม่พบประกาศ
@@ -216,9 +217,12 @@ th:
       new:
         create: สร้างประกาศ
         title: ประกาศใหม่
-      published: เผยแพร่เมื่อ
-      time_range: ช่วงเวลา
+      published_msg: เผยแพร่ประกาศสำเร็จ!
+      scheduled_for: จัดกำหนดไว้สำหรับ %{time}
+      scheduled_msg: จัดกำหนดการเผยแพร่ประกาศแล้ว!
       title: ประกาศ
+      unpublished_msg: เลิกเผยแพร่ประกาศสำเร็จ!
+      updated_msg: อัปเดตประกาศสำเร็จ!
     custom_emojis:
       assign_category: กำหนดหมวดหมู่
       by_domain: โดเมน
@@ -644,7 +648,6 @@ th:
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
     delete: ลบ
-    edit: แก้ไข
     order_by: เรียงลำดับตาม
     save_changes: บันทึกการเปลี่ยนแปลง
   html_validator:
@@ -653,6 +656,7 @@ th:
     active: ใช้งานอยู่
     authorize: ใช่ อนุญาต
     inactive: ไม่ได้ใช้งาน
+    publicize_checkbox: 'และโพสต์สิ่งนี้:'
     status: สถานะการตรวจสอบ
   imports:
     modes:
@@ -779,6 +783,8 @@ th:
     reply:
       proceed: ดำเนินการต่อเพื่อตอบกลับ
       prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
+  scheduled_statuses:
+    too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
@@ -861,6 +867,7 @@ th:
         other: "%{count} การลงคะแนน"
       vote: ลงคะแนน
     show_more: แสดงเพิ่มเติม
+    show_thread: แสดงกระทู้
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'
     visibilities:
