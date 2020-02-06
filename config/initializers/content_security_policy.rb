@@ -23,6 +23,8 @@ if Rails.env.production?
     data_hosts << "https://#{url.host}"
   end
 
+  data_hosts.concat(ENV['EXTRA_DATA_HOSTS'].split('|')) if ENV['EXTRA_DATA_HOSTS']
+
   data_hosts.uniq!
 
   Rails.application.config.content_security_policy do |p|
