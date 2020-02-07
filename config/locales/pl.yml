@@ -233,10 +233,26 @@ pl:
         unassigned_report: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
         unsilence_account: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
+        update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
       title: Dziennik działań administracyjnych
+    announcements:
+      destroyed_msg: Pomyślnie usunięto ogłoszenie!
+      edit:
+        title: Edytuj ogłoszenie
+      empty: Nie znaleziono ogłoszeń.
+      live: Na żywo
+      new:
+        create: Utwórz ogłoszenie
+        title: Nowe ogłoszenie
+      published_msg: Pomyślnie opublikowano ogłoszenie!
+      scheduled_for: Zaplanowano na %{time}
+      scheduled_msg: Zaplanowano publikację ogłoszenia!
+      title: Ogłoszenia
+      unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
+      updated_msg: Pomyślnie zaktualizowano ogłoszenie!
     custom_emojis:
       assign_category: Ustaw kategorię
       by_domain: Domeny
@@ -248,9 +264,11 @@ pl:
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto emoji!
       disable: Wyłącz
+      disabled: Wyłączone
       disabled_msg: Pomyślnie wyłączono emoji
       emoji: Emotikona
       enable: Włącz
+      enabled: Włączone
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
       list: Dodaj do listy
@@ -319,6 +337,7 @@ pl:
       private_comment: Prywatny komentarz
       private_comment_hint: Komentarz na temat ograniczeń dla tej domeny do wewnętrznej informacji dla moderatorów.
       public_comment: Publiczny komentarz
+      public_comment_hint: Komentarz dotyczący tego ograniczenia domeny widoczny publicznie, jeżeli wyświetlanie listy ograniczonych domen jest włączone.
       reject_media: Odrzucaj pliki multimedialne
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
@@ -347,6 +366,7 @@ pl:
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
       domain: Domena
+      empty: Żadna domena e-mail nie znajduje się obecnie na czarnej liście.
       new:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
