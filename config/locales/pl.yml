@@ -10,6 +10,7 @@ pl:
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
     browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
+    browse_local_posts: Przeglądaj strumień publicznych wpisów z tego serwera
     browse_public_posts: Przeglądaj strumień publicznych wpisów na Mastodonie na żywo
     contact: Kontakt
     contact_missing: Nie ustawiono
@@ -204,11 +205,15 @@ pl:
         change_email_user: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
         confirm_user: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
         create_account_warning: "%{name} wysłał(a) ostrzeżenie do %{target}"
+        create_announcement: "%{name} utworzył(a) nowe ogłoszenie %{target}"
         create_custom_emoji: "%{name} dodał(a) nowe emoji %{target}"
+        create_domain_allow: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_announcement: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
+        destroy_domain_allow: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
