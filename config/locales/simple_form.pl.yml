@@ -38,12 +38,16 @@ pl:
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
+      form_challenge:
+        current_password: Wchodzisz w strefę bezpieczną
       imports:
         data: Plik CSV wyeksportowany z innego serwera Mastodona
       invite_request:
         text: To pomoże nam w recenzji Twojej aplikacji
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
+      tag:
+        name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
     labels:
@@ -51,9 +55,14 @@ pl:
         fields:
           name: Nazwa
           value: Zawartość
+      account_alias:
+        acct: Nazwa starego konta
+      account_migration:
+        acct: Nazwa nowego konta
       account_warning_preset:
         text: Tekst szablonu
       admin_account_action:
+        include_statuses: Uwzględniaj zgłoszone wpisy w wiadomości e-mail
         send_email_notification: Powiadom użytkownika mailem
         text: Niestandardowe ostrzeżenie
         type: Działanie
@@ -63,6 +72,12 @@ pl:
           silence: Wycisz
           suspend: Zawieś i nieodwracalnie usuń dane konta
         warning_preset_id: Użyj szablonu ostrzeżenia
+      announcement:
+        all_day: Wydarzenie całodniowe
+        ends_at: Koniec wydarzenia
+        scheduled_at: Zaplanuj publikację
+        starts_at: Początek wydarzenia
+        text: Ogłoszenie
       defaults:
         autofollow: Zapraszaj do śledzenia swojego konta
         avatar: Awatar
@@ -93,6 +108,7 @@ pl:
         setting_aggregate_reblogs: Grupuj podbicia na osiach czasu
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
+        setting_crop_images: Przycinaj obrazki w nierozwiniętych wpisach do 16x9
         setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
@@ -108,8 +124,10 @@ pl:
         setting_show_application: Informuj o aplikacji z której wysłano wpisy
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
+        setting_trends: Pokazuj dzisiejsze „Na czasie”
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
         setting_use_blurhash: Pokazuj kolorowe gradienty dla ukrytej zawartości multimedialnej
+        setting_use_pending_items: Tryb spowolniony
         severity: Priorytet
         type: Importowane dane
         username: Nazwa użytkownika
@@ -121,6 +139,8 @@ pl:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
         must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie śledzisz
+      invite:
+        comment: Komentarz
       invite_request:
         text: Czemu chcesz dołączyć?
       notification_emails:
@@ -132,6 +152,12 @@ pl:
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
         report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
+        trending_tag: Nieprzejrzany hashtag jest na czasie
+      tag:
+        listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
+        name: Hashtag
+        trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
+        usable: Pozwól na umieszczanie tego hashtagu we wpisach
     'no': Nie
     recommended: Polecane
     required:

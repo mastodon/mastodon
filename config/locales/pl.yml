@@ -11,6 +11,7 @@ pl:
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
     browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
+    browse_local_posts: Przeglądaj strumień publicznych wpisów z tego serwera
     browse_public_posts: Przeglądaj strumień publicznych wpisów na Mastodonie na żywo
     contact: Kontakt
     contact_missing: Nie ustawiono
@@ -85,6 +86,7 @@ pl:
     roles:
       admin: Administrator
       bot: Bot
+      group: Grupa
       moderator: Moderator
     unavailable: Profil niedostępny
     unfollow: Przestań śledzić
@@ -204,11 +206,15 @@ pl:
         change_email_user: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
         confirm_user: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
         create_account_warning: "%{name} wysłał(a) ostrzeżenie do %{target}"
+        create_announcement: "%{name} utworzył(a) nowe ogłoszenie %{target}"
         create_custom_emoji: "%{name} dodał(a) nowe emoji %{target}"
+        create_domain_allow: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_announcement: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
+        destroy_domain_allow: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
@@ -228,10 +234,26 @@ pl:
         unassigned_report: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
         unsilence_account: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
+        update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
       title: Dziennik działań administracyjnych
+    announcements:
+      destroyed_msg: Pomyślnie usunięto ogłoszenie!
+      edit:
+        title: Edytuj ogłoszenie
+      empty: Nie znaleziono ogłoszeń.
+      live: Na żywo
+      new:
+        create: Utwórz ogłoszenie
+        title: Nowe ogłoszenie
+      published_msg: Pomyślnie opublikowano ogłoszenie!
+      scheduled_for: Zaplanowano na %{time}
+      scheduled_msg: Zaplanowano publikację ogłoszenia!
+      title: Ogłoszenia
+      unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
+      updated_msg: Pomyślnie zaktualizowano ogłoszenie!
     custom_emojis:
       assign_category: Ustaw kategorię
       by_domain: Domeny
@@ -243,9 +265,11 @@ pl:
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto emoji!
       disable: Wyłącz
+      disabled: Wyłączone
       disabled_msg: Pomyślnie wyłączono emoji
       emoji: Emotikona
       enable: Włącz
+      enabled: Włączone
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
       list: Dodaj do listy
@@ -314,6 +338,7 @@ pl:
       private_comment: Prywatny komentarz
       private_comment_hint: Komentarz na temat ograniczeń dla tej domeny do wewnętrznej informacji dla moderatorów.
       public_comment: Publiczny komentarz
+      public_comment_hint: Komentarz dotyczący tego ograniczenia domeny widoczny publicznie, jeżeli wyświetlanie listy ograniczonych domen jest włączone.
       reject_media: Odrzucaj pliki multimedialne
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
@@ -342,6 +367,7 @@ pl:
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
       domain: Domena
+      empty: Żadna domena e-mail nie znajduje się obecnie na czarnej liście.
       new:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
@@ -376,6 +402,8 @@ pl:
       title: Zaproszenia
     pending_accounts:
       title: Oczekujące konta (%{count})
+    relationships:
+      title: Relacje %{acct}
     relays:
       add_new: Dodaj nowy
       delete: Usuń
@@ -400,6 +428,7 @@ pl:
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
+      by_target_domain: Domena zgłaszanego konta
       comment:
         none: Brak
       created_at: Zgłoszono
