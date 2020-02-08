@@ -323,6 +323,7 @@ kab:
     tags:
       directory: Deg ukaram
       in_directory: "%{count} deg ukaram"
+      last_active: Armud aneggaru
       most_popular: Ittwasnen aṭas
       most_recent: Melmi kan
     warning_presets:
@@ -333,6 +334,7 @@ kab:
     new_report:
       subject: 'Aneqqis amaynut i %{instance} (#%{id})'
   appearance:
+    discovery: Asnirem
     localization:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Yal yiwen·t y·tezmer a ttekki.
@@ -405,6 +407,8 @@ kab:
     '429': Throttled
     '500':
     '503': The page could not be served due to a temporary server failure.
+  existing_username_validator:
+    not_found_multiple: ur yezmir ara ad yaf %{usernames}
   exports:
     archive_takeout:
       date: Azemz
@@ -437,9 +441,11 @@ kab:
     order_by: Sizwer s
     save_changes: Sekles ibeddilen
   identity_proofs:
+    active: Yermed
     authorize: Ih, ssireg
     i_am_html: Nekki d %{username} deg %{service}.
     identity: Tamagit
+    inactive: D arurmid
     publicize_checkbox: 'Tjewqeḍ aya:'
   imports:
     modes:
@@ -461,6 +467,9 @@ kab:
     acct: Ibeddel γer
     incoming_migrations: Tusiḍ-ed seg umiḍan nniḍen
   notification_mailer:
+    digest:
+      action: Wali akk tilγa
+      mention: "Yuder-ik-id %{name} deg:"
     follow:
       body: "%{name} yeṭafaṛ-ik-id tura!"
       subject: "%{name} yeṭafaṛ-ik-id tura"
