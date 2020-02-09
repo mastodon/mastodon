@@ -69,7 +69,7 @@ gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
 gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.10'
-gem 'nsa', '~> 0.2'
+
 gem 'oj', '~> 3.10'
 gem 'ox', '~> 2.12'
 gem 'parslet'
