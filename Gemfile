@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.5.0', '< 3.0.0'
+ruby '>= 2.4.0', '< 3.0.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 4.3', '>= 4.3.1'
-gem 'rails', '~> 6.0', '>= 6.0.2.1'
-gem 'sprockets', '~> 4.0'
-gem 'thor', '~> 1.0', '>= 1.0.1'
-gem 'rack', '~> 2.2', '>= 2.2.1'
+gem 'puma', '~> 4.3'
+gem 'rails', '~> 5.2.4'
+gem 'sprockets', '~> 3.7.2'
+gem 'thor', '~> 0.20'
+gem 'rack', '~> 2.1.2'
 
 gem 'thwait', '~> 0.1.0'
 gem 'e2mmap', '~> 0.1.0'
 
-gem 'hamlit-rails', '~> 0.2.3'
-gem 'pg', '~> 1.2', '>= 1.2.2'
-gem 'makara', '~> 0.4.1'
-gem 'pghero', '~> 2.4', '>= 2.4.1'
-gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
+gem 'hamlit-rails', '~> 0.2'
+gem 'pg', '~> 1.2'
+gem 'makara', '~> 0.4'
+gem 'pghero', '~> 2.4'
+gem 'dotenv-rails', '~> 2.7'
 
 gem 'aws-sdk-s3', '~> 1.60', require: false
 gem 'fog-core', '<= 2.1.0'
@@ -60,7 +60,7 @@ gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 4.3'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
-gem 'httplog', '~> 1.4'
+gem 'httplog', '~> 1.4.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.1'
 gem 'link_header', '~> 0.0'
