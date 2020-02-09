@@ -196,12 +196,13 @@ class ActionBar extends React.PureComponent {
     //if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
     // else if (status.get('visibility') === 'private') reblogIcon = 'lock';
 
+    let reblog_disabled = (status.get('visibility') === 'direct' || (status.get('visibility') === 'private' && me !== status.getIn(['account', 'id'])));
     let reblog_message  = status.get('visibility') === 'private' ? messages.reblog_private : messages.reblog;
 
     return (
       <div className='detailed-status__action-bar'>
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
-        <div className='detailed-status__button'><IconButton disabled={!publicStatus} active={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(reblog_message)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
+        <div className='detailed-status__button'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(reblog_message)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
         {shareButton}
         <div className='detailed-status__button'><IconButton className='bookmark-icon' active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
