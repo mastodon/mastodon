@@ -214,11 +214,13 @@ cy:
         change_email_user: Newidodd %{name} gyfeiriad e-bost y defnyddiwr %{target}
         confirm_user: Cadarnhaodd %{name} gyfeiriad e-bost y defnyddiwr %{target}
         create_account_warning: Anfonwyd rhybudd i %{target} gan %{name}
+        create_announcement: Wnaeth %{name} creu cyhoeddiad newydd %{target}
         create_custom_emoji: Uwchlwythodd %{name} emoji newydd %{target}
         create_domain_allow: Gwynrestrodd %{name} y parth %{target}
         create_domain_block: Blociodd %{name} y parth %{target}
         create_email_domain_block: Cosbrestrwyd parth e-bost %{target} gan %{name}
         demote_user: Diraddiodd %{name} y defnyddiwr %{target}
+        destroy_announcement: Wnaeth %{name} dileu cyhoeddiad newydd %{target}
         destroy_custom_emoji: Dinistriodd %{name} emoji %{target}
         destroy_domain_allow: Tynnodd %{name} parth %{target} o'r gwynrestr
         destroy_domain_block: Dadflociodd %{name} y parth %{target}
@@ -240,10 +242,26 @@ cy:
         unassigned_report: Dadbenododd %{name} adroddiad %{target}
         unsilence_account: Terfynodd %{name} dawelu cyfrif %{target}
         unsuspend_account: Terfynodd %{name} yr ataliad ar gyfrif %{target}
+        update_announcement: Wnaeth %{name} diweddaru cyhoeddiad newydd %{target}
         update_custom_emoji: Diweddarodd %{name} emoji %{target}
         update_status: Diweddarodd %{name} statws gan %{target}
       deleted_status: "(statws wedi ei ddileu)"
       title: Log archwilio
+    announcements:
+      destroyed_msg: Cyhoeddiad wedi'i ddileu yn llwyddianus!
+      edit:
+        title: Golygu cyhoeddiad
+      empty: Dim gyhoeddiad ar gael.
+      live: Byw
+      new:
+        create: Creu cyhoeddiad
+        title: Cyhoeddiad newydd
+      published_msg: Cyhoeddiad wedi'i gyhoeddi'n llwyddianus!
+      scheduled_for: Wedi'i amserlenni ar gyfer %{time}
+      scheduled_msg: Cyhoeddiad wedi'i amserlenni ar gyfer cyhoeddiad!
+      title: Cyhoeddiadau
+      unpublished_msg: Cyhoeddiad wedi'i angyhoeddi'n llwyddianus!
+      updated_msg: Cyhoeddiad wedi'i ddiweddaru yn llwyddianus!
     custom_emojis:
       assign_category: Neilltuo categori
       by_domain: Parth
@@ -396,6 +414,8 @@ cy:
       title: Gwahoddiadau
     pending_accounts:
       title: Cyfrifau yn aros (%{count})
+    relationships:
+      title: Perthnasau %{acct}
     relays:
       add_new: Ychwanegau relái newydd
       delete: Dileu
@@ -687,6 +707,9 @@ cy:
     hint_html: "<strong>Awgrym:</strong> Ni fyddwn yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
     invalid_password: Cyfrinair annilys
     prompt: Cadarnhewch gyfrinair i barhau
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}awr"
@@ -763,6 +786,7 @@ cy:
     hint_html: "<strong>Beth yw hashnodau nodedig?</strong> Mae'r rhain yn cael ei arddangos yn amlwg ar eich proffil cyhoeddus ac yn gadael i bobl pori eich pyst cyhoeddus o dan y hashnodau rhain yn benodol. Rydynt yn declyn grêt ar gyfer tracio gweithiau creadigol neu brosiectau hir-dymor."
   filters:
     contexts:
+      account: Proffilau
       home: Ffrwd gartref
       notifications: Hysbysiadau
       public: Ffrwd gyhoeddus
@@ -787,6 +811,7 @@ cy:
     all: Popeth
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
     copy: Copïo
+    delete: Dileu
     no_batch_actions_available: Dim gweithredau llwyth ar gael ar y dudalen hon
     order_by: Trefnu wrth
     save_changes: Cadw newidiadau
@@ -974,11 +999,16 @@ cy:
     other: Arall
     posting_defaults: Rhagosodiadau postio
     public_timelines: Ffrydau gyhoeddus
+  reactions:
+    errors:
+      limit_reached: Cyfwng o ymatebion wahanol wedi'i cyrraedd
+      unrecognized_emoji: ddim yn emoji adnabyddwy
   relationships:
     activity: Gweithgareddau cyfrif
     dormant: Segur
     followers: Dilynwyr
     following: Yn dilyn
+    invited: Wedi gwahodd
     last_active: Gweithred ddiwethaf
     most_recent: Yn diweddaraf
     moved: Wedi symud
@@ -1127,6 +1157,7 @@ cy:
         zero: "%{count} pleidlais"
       vote: Pleidleisio
     show_more: Dangos mwy
+    show_thread: Dangos edefyn
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     title: '%{name}: "%{quote}"'
     visibilities:

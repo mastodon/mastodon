@@ -39,7 +39,7 @@ nl:
     unavailable_content_description:
       domain: Server
       reason: 'Reden:'
-      rejecting_media: Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken.
+      rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
       silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
       suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
     unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
@@ -198,11 +198,13 @@ nl:
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
+        create_announcement: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
         create_domain_allow: "%{name} heeft het domein %{target} aan de witte lijst toegevoegd"
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_announcement: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
         destroy_domain_allow: "%{name} heeft het domein %{target} van de witte lijst verwijderd"
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
@@ -224,10 +226,26 @@ nl:
         unassigned_report: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unsilence_account: Negeren van account %{target} is door %{name} opgeheven
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
+        update_announcement: "%{name} heeft de mededeling %{target} bijgewerkt"
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
       deleted_status: "(verwijderde toot}"
       title: Auditlog
+    announcements:
+      destroyed_msg: Verwijderen van mededeling geslaagd!
+      edit:
+        title: Mededeling bewerken
+      empty: Geen mededelingen gevonden.
+      live: Live
+      new:
+        create: Mededeling aanmaken
+        title: Nieuwe mededeling
+      published_msg: Publiceren van mededeling geslaagd!
+      scheduled_for: Ingepland voor %{time}
+      scheduled_msg: Mededeling staat ingepland voor publicatie!
+      title: Mededelingen
+      unpublished_msg: Ongedaan maken van gepubliceerde mededeling geslaagd!
+      updated_msg: Bijwerken van mededeling geslaagd!
     custom_emojis:
       assign_category: Categorie toewijzen
       by_domain: Domein
@@ -339,6 +357,7 @@ nl:
       delete: Verwijderen
       destroyed_msg: Deblokkeren e-maildomein geslaagd
       domain: Domein
+      empty: Momenteel staan er geen e-maildomeinen op de zwarte lijst.
       new:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
@@ -371,6 +390,8 @@ nl:
       title: Uitnodigingen
     pending_accounts:
       title: Accounts in afwachting (%{count})
+    relationships:
+      title: Relaties van %{acct}
     relays:
       add_new: Nieuwe relayserver toevoegen
       delete: Verwijderen
@@ -578,6 +599,10 @@ nl:
     animations_and_accessibility: Animaties en toegankelijkheid
     confirmation_dialogs: Bevestigingen
     discovery: Ontdekken
+    localization:
+      body: Mastodon wordt door vrijwilligers vertaald.
+      guide_link: https://crowdin.com/project/mastodon/nl
+      guide_link_text: Iedereen kan bijdragen.
     sensitive_content: Gevoelige inhoud
     toot_layout: Lay-out van toots
   application_mailer:
@@ -650,6 +675,9 @@ nl:
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
     invalid_password: Ongeldig wachtwoord
     prompt: Bevestig wachtwoord om door te gaan
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}u"
@@ -726,6 +754,7 @@ nl:
     hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare toots per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
+      account: Profielen
       home: Starttijdlijn
       notifications: Meldingen
       public: Openbare tijdlijnen
@@ -737,6 +766,7 @@ nl:
       invalid_irreversible: Onomkeerbaar filteren werkt alleen met de starttijdlijn en meldingen
     index:
       delete: Verwijderen
+      empty: Je hebt geen filters aangemaakt.
       title: Filters
     new:
       title: Nieuw filter toevoegen
@@ -749,6 +779,7 @@ nl:
     all: Alles
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
+    delete: Verwijderen
     no_batch_actions_available: Geen batchacties op deze pagina beschikbaar
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
@@ -912,6 +943,7 @@ nl:
       duration_too_long: ligt te ver in de toekomst
       duration_too_short: is te kort van duur
       expired: De poll is al beëindigd
+      invalid_choice: De gekozen poll-optie bestaat niet
       over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
       too_few_options: moet meer dan één item bevatten
       too_many_options: kan niet meer dan %{max} items bevatten
@@ -919,11 +951,16 @@ nl:
     other: Overig
     posting_defaults: Standaardinstellingen voor posten
     public_timelines: Openbare tijdlijnen
+  reactions:
+    errors:
+      limit_reached: Limiet van verschillende emoji-reacties bereikt
+      unrecognized_emoji: is geen bestaande emoji-reactie
   relationships:
     activity: Accountactiviteit
     dormant: Sluimerend
     followers: Volgers
     following: Volgend
+    invited: Uitgenodigd
     last_active: Laatst actief
     most_recent: Recentelijk gevolgd
     moved: Verhuisd
@@ -988,7 +1025,7 @@ nl:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: Onbekend platform
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1050,6 +1087,7 @@ nl:
         other: "%{count} stemmen"
       vote: Stemmen
     show_more: Meer tonen
+    show_thread: Gesprek tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:

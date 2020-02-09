@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+  = "#{display_name(@account)} (#{acct(@account)})"
 
 - content_for :header_tags do
   - if @account.user&.setting_noindex

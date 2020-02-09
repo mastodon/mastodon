@@ -232,6 +232,7 @@ nn:
       deleted_status: "(sletta status)"
       title: Revisionslogg
     announcements:
+      destroyed_msg: Kunngjøringen er slettet!
       edit:
         title: Rediger kunngjøring
       empty: Ingen kunngjøringer funnet.
@@ -239,9 +240,12 @@ nn:
       new:
         create: Lag kunngjøring
         title: Ny kunngjøring
-      published: Publisert
-      time_range: Tidsramme
+      published_msg: Kunngjøring publisert!
+      scheduled_for: Planlagt for %{time}
+      scheduled_msg: Kunngjøring planlagt for publisering!
       title: Kunngjøringer
+      unpublished_msg: Kunngjøring upublisert!
+      updated_msg: Kunngjøringen er oppdatert!
     custom_emojis:
       assign_category: Vel kategori
       by_domain: Domene
@@ -475,6 +479,7 @@ nn:
         title: Publiser liste over oppdaga tenarar
       preview_sensitive_media:
         desc_html: Lenkeforhåndsvisninger på andre nettsteder vil vise et miniatyrbilde selv dersom mediet er merket som sensitivt
+        title: Vis sensitive medier i OpenGraph-forhåndsvisninger
       profile_directory:
         desc_html: Gjer at brukarar kan oppdagast
         title: Skru på profilmappen
@@ -490,8 +495,10 @@ nn:
           title: Tillat innbydingar frå
       registrations_mode:
         modes:
+          approved: Godkjenning kreves for påmelding
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
+        title: Registreringsmodus
       show_staff_badge:
         desc_html: Vis personalmerke på ei brukarside
         title: Vis personalmerke
@@ -563,6 +570,9 @@ nn:
       edit_preset: Endr åtvaringsoppsett
       title: Handsam åtvaringsoppsett
   admin_mailer:
+    new_pending_account:
+      body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
+      subject: Ny konto opp til vurdering på %{instance} (%{username})
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
@@ -582,6 +592,10 @@ nn:
     animations_and_accessibility: Animasjoner og tilgjengelighet
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdaging
+    localization:
+      body: Mastodon er oversatt av frivillige.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
     toot_layout: Tutoppsett
   application_mailer:
@@ -636,6 +650,7 @@ nn:
       confirming: Ventar på stadfesting av e-post.
       functional: Kontoen din er oppe og går.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
+      redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Får du ikkje logga inn?
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -653,6 +668,9 @@ nn:
     hint_html: "<strong>Tips:</strong> Vi skal ikkje spørja deg om passordet ditt igjen i laupet av den neste timen."
     invalid_password: Ugyldig passord
     prompt: Stadfest passord for å halda fram
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -703,7 +721,7 @@ nn:
     '500':
       content: Orsak. Vi har gjort noko feil.
       title: Denne sida er ikkje rett
-    '503': The page could not be served due to a temporary server failure.
+    '503': Siden kunne ikke vises på grunn av en midlertidig serverfeil.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   existing_username_validator:
     not_found: fann ingen lokalbrukar med det namnet
@@ -729,6 +747,7 @@ nn:
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
+      account: Profiler
       home: Heimeside
       notifications: Varsel
       public: Offentlege tidsliner
@@ -737,6 +756,7 @@ nn:
       title: Endr filter
     index:
       delete: Slett
+      empty: Du har ingen filtre.
       title: Filter
     new:
       title: Legg til nytt filter
@@ -749,6 +769,7 @@ nn:
     all: Alle
     changes_saved_msg: Alle endringane vart lagra!
     copy: Kopier
+    delete: Slett
     order_by: Sorter etter
     save_changes: Lagr endringar
     validation_errors:
@@ -757,6 +778,7 @@ nn:
   identity_proofs:
     active: Aktiv
     authorize: Ja, stadfest
+    authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
     errors:
       keybase:
         verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
@@ -891,6 +913,7 @@ nn:
       duration_too_long: er for langt fram i tid
       duration_too_short: er for snart
       expired: Denne rundspørjinga er allereie ferdig
+      invalid_choice: Det valgte stemmealternativet eksisterer ikke
       over_character_limit: kan ikkje vera lengre enn %{max} teikn kvar
       too_few_options: må ha meir enn eitt element
       too_many_options: kan ikkje ha meir enn %{max} element
@@ -898,11 +921,15 @@ nn:
     other: Anna
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlege tidsliner
+  reactions:
+    errors:
+      limit_reached: Grensen for forskjellige reaksjoner nådd
   relationships:
     activity: Kontoaktivitet
     dormant: I dvale
     followers: Følgere
     following: Følginger
+    invited: Invitert
     last_active: Sist aktiv
     most_recent: Sist
     moved: Flytta
@@ -1147,6 +1174,7 @@ nn:
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
     backup_ready:
+      explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
     warning:
       explanation:
@@ -1154,6 +1182,7 @@ nn:
         silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
         suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
       get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
+      review_server_policies: Gjennomgå serverretningslinjer
       statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
@@ -1186,6 +1215,7 @@ nn:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
     invalid_email: E-mailadressa er ugyldig
     invalid_otp_token: Ugyldig tostegskode
+    otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     signed_in_as: 'Logga inn som:'
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'

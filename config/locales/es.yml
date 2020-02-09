@@ -232,6 +232,7 @@ es:
       deleted_status: "(estado borrado)"
       title: Log de auditoría
     announcements:
+      destroyed_msg: "¡Anuncio eliminado con éxito!"
       edit:
         title: Editar anuncio
       empty: No se encontraron anuncios.
@@ -239,9 +240,12 @@ es:
       new:
         create: Crear anuncio
         title: Nuevo anuncio
-      published: Publicados
-      time_range: Intervalo de tiempo
+      published_msg: "¡Anuncio publicado con éxito!"
+      scheduled_for: Programado para %{time}
+      scheduled_msg: "¡Anuncio programado para su publicación!"
       title: Anuncios
+      unpublished_msg: "¡Anuncio despublicado con éxito!"
+      updated_msg: "¡Anuncio actualizado con éxito!"
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -776,7 +780,6 @@ es:
     changes_saved_msg: "¡Cambios guardados con éxito!"
     copy: Copiar
     delete: Eliminar
-    edit: Editar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
@@ -1084,6 +1087,7 @@ es:
         other: "%{count} votos"
       vote: Vota
     show_more: Mostrar más
+    show_thread: Mostrar hilo
     sign_in_to_participate: Regístrate para participar en la conversación
     title: '%{name}: "%{quote}"'
     visibilities:

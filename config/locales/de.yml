@@ -232,6 +232,7 @@ de:
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
     announcements:
+      destroyed_msg: Ankündigung erfolgreich gelöscht!
       edit:
         title: Ankündigung bearbeiten
       empty: Keine Ankündigungen gefunden.
@@ -239,9 +240,12 @@ de:
       new:
         create: Ankündigung erstellen
         title: Neue Ankündigung
-      published: Veröffentlicht
-      time_range: Zeitraum
+      published_msg: Ankündigung erfolgreich erstellt!
+      scheduled_for: Geplant für %{time}
+      scheduled_msg: Ankündigung ist zur Veröffentlichung vorgemerkt!
       title: Ankündigungen
+      unpublished_msg: Ankündigung ist jetzt nicht mehr sichtbar!
+      updated_msg: Ankündigung erfolgreich geändert!
     custom_emojis:
       assign_category: Kategorie zuweisen
       by_domain: Domain
@@ -776,7 +780,6 @@ de:
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
     delete: Löschen
-    edit: Bearbeiten
     no_batch_actions_available: Keine Massenaktionen auf dieser Seite verfügbar
     order_by: Sortieren nach
     save_changes: Änderungen speichern
@@ -1084,6 +1087,7 @@ de:
         other: "%{count} Stimmen"
       vote: Abstimmen
     show_more: Mehr anzeigen
+    show_thread: Zeige Konversation
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:

@@ -194,11 +194,13 @@ id:
         change_email_user: "%{name} mengubah alamat surel pengguna %{target}"
         confirm_user: "%{name} mengonfirmasi alamat surel pengguna %{target}"
         create_account_warning: "%{name} mengirim peringatan untuk %{target}"
+        create_announcement: "%{name} membuat pengumuman baru %{target}"
         create_custom_emoji: "%{name} mengunggah emoji baru %{target}"
         create_domain_allow: "%{name} memasukkan ke daftar putih domain %{target}"
         create_domain_block: "%{name} memblokir domain %{target}"
         create_email_domain_block: "%{name} memasukkan ke daftar hitam domain surel %{target}"
         demote_user: "%{name} menurunkan pengguna %{target}"
+        destroy_announcement: "%{name} menghapus pengumuman %{target}"
         destroy_custom_emoji: "%{name} menghapus emoji %{target}"
         destroy_domain_allow: "%{name} menghapus domain %{target} dari daftar putih"
         destroy_domain_block: "%{name} membuka blokir domain %{target}"
@@ -220,10 +222,26 @@ id:
         unassigned_report: "%{name} tidak menugaskan laporan %{target}"
         unsilence_account: "%{name} menghapus bungkaman akun %{target}"
         unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
+        update_announcement: "%{name} memperbarui pengumuman %{target}"
         update_custom_emoji: "%{name} memperbarui emoji %{target}"
         update_status: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       title: Log audit
+    announcements:
+      destroyed_msg: Pengumuman berhasil dihapus!
+      edit:
+        title: Edit pengumuman
+      empty: Pengumuman tidak ditemukan.
+      live: Siaran langsung
+      new:
+        create: Buat pengumuman
+        title: Pengumuman baru
+      published_msg: Pengumuman berhasil diterbitkan!
+      scheduled_for: Dijadwalkan untuk %{time}
+      scheduled_msg: Pengumuman dijadwalkan untuk publikasi!
+      title: Pengumuman
+      unpublished_msg: Pengumuman berhasil ditarik!
+      updated_msg: Pengumuman berhasil diperbarui!
     custom_emojis:
       assign_category: Beri kategori
       by_domain: Domain
@@ -366,6 +384,8 @@ id:
       title: Undang
     pending_accounts:
       title: Akun tertunda (%{count})
+    relationships:
+      title: Hubungan %{acct}
     relays:
       add_new: Tambah relai baru
       delete: Hapus
@@ -494,6 +514,7 @@ id:
         title: Ketentuan layanan kustom
       site_title: Judul Situs
       spam_check_enabled:
+        desc_html: Mastodon dapat melaporkan secara otomatis akun yang mengirimkan pesan berulang tanpa diminta. Ini mungkin ada kesalahan.
         title: Automasi anti-spam
       thumbnail:
         desc_html: Dipakai sebagai pratinjau via OpenGraph dan API. Direkomendasikan 1200x630px
@@ -646,6 +667,9 @@ id:
     hint_html: "<strong>Tip:</strong> Kami tidak akan meminta kata sandi Anda lagi untuk beberapa jam ke depan."
     invalid_password: Kata sandi tidak valid
     prompt: Konfirmasi kata sandi untuk melanjutkan
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}j"
@@ -719,8 +743,10 @@ id:
     add_new: Tambah baru
     errors:
       limit: Anda sudah menampilkan tagar unggulan dengan jumlah maksimum
+    hint_html: "<strong>Apa itu tagar yang diunggulkan?</strong> Mereka ditampilkan secara mencolok di profil publik Anda dan mengizinkan orang-orang untuk menjelajahi kiriman publik khususnya yang ada di bawah tagar tersebut. Mereka adalah alat yang bagus untuk melacak pekerjaan kreatif atau proyek jangka panjang."
   filters:
     contexts:
+      account: Profil
       home: Beranda
       notifications: Notifikasi
       public: Linimasa publik
@@ -744,6 +770,8 @@ id:
     all: Semua
     changes_saved_msg: Perubahan berhasil disimpan!
     copy: Salin
+    delete: Hapus
+    no_batch_actions_available: Tindakan batch tidak tersedia di halaman ini
     order_by: Urut berdasarkan
     save_changes: Simpan perubahan
     validation_errors:
@@ -1027,6 +1055,7 @@ id:
         other: "%{count} memilih"
       vote: Memilih
     show_more: Tampilkan selengkapnya
+    show_thread: Tampilkan utas
     sign_in_to_participate: Masuk untuk mengikuti percakapan
     title: '%{name}: "%{quote}"'
     visibilities:
