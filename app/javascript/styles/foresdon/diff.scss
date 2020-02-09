@@ -536,6 +536,10 @@ body.layout-single-column {
   }
 }
 
+.directory__tag > div {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
+}
+
 .getting-started {
   margin-top: 3px;
   background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
@@ -782,4 +786,8 @@ body.layout-single-column {
 
 article div {
   outline: 0;
+}
+
+.announcements {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
 }
