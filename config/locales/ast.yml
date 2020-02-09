@@ -40,7 +40,6 @@ ast:
       one: Siguidor
       other: Siguidores
     joined: Xunióse en %{date}
-    last_active: última actividá
     moved_html: "%{name} mudóse a %{new_profile_link}:"
     network_hidden: Esta información nun ta disponible
     never_active: Enxamás
@@ -73,6 +72,7 @@ ast:
       reject_all: Refugar too
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
+        send: Reunviar les instrucciones
       role: Permisos
       roles:
         admin: Alministrador
@@ -92,6 +92,7 @@ ast:
         disable_custom_emoji: "%{name} desactivó'l fustaxe %{target}"
         disable_user: "%{name} desactivó l'aniciu de sesión del usuariu %{target}"
         enable_custom_emoji: "%{name} activó'l fustaxe %{target}"
+        enable_user: "%{name} activó l'aniciu de sesión del usuariu %{target}"
         promote_user: "%{name} ascendió al usuariu %{target}"
         remove_avatar_user: "%{name} desanició l'avatar de %{target}"
         reopen_report: "%{name} reabrió l'informe de %{target}"
@@ -147,6 +148,7 @@ ast:
           other: "%{count} informes"
       are_you_sure: "¿De xuru?"
       status: Estáu
+      title: Informes
     settings:
       registrations:
         min_invite_role:
@@ -167,6 +169,7 @@ ast:
     new_pending_account:
       body: Los detalles de la cuenta nueva tán embaxo. Pues aprobar o refugar esta aplicación.
     new_report:
+      body: "%{reporter} informó de %{target}"
       body_remote: Daquién dende %{domain} informó de %{target}
     new_trending_tag:
       body: 'Güei la etiqueta #%{name} ye tendencia pero nun se revisó anteriormente. Nun va amosase públicamente a nun ser que lo permitas o guardes el formulariu como ta pa nun saber más d''ello.'
@@ -180,6 +183,7 @@ ast:
       body: Mastodon tradúcenlu voluntarios,
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: tol mundu pue collaborar.
+    sensitive_content: Conteníu sensible
     toot_layout: Distribución de los barritos
   applications:
     invalid_url: La URL apurrida nun ye válida
@@ -192,6 +196,7 @@ ast:
     delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir equí</a>. Va pidísete la confirmación.
     description:
       suffix: "¡Con una cuenta, vas ser a siguir a persones, espublizar anovamientos ya intercambiar mensaxes con usuarios de cualesquier sirvidor de Mastodon y más!"
+    didnt_get_confirmation: "¿Nun recibiesti les instrucciones de confirmación?"
     forgot_password: "¿Escaeciesti la contraseña?"
     login: Aniciar sesión
     migrate_account: Mudase a otra cuenta
@@ -221,6 +226,7 @@ ast:
       email_contact_html: Si entá nun aportó, pues unviar un corréu a<a href="mailto:%{email}">%{email}</a> pa más ayuda
       more_details_html: Pa más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   directories:
+    directory: Direutoriu de perfiles
     explanation: y descubri a usuarios según los sos intereses
     explore_mastodon: Esplora %{title}
   errors:
@@ -266,15 +272,22 @@ ast:
   generic:
     all: Too
     changes_saved_msg: "¡Los cambeos guardáronse con ésitu!"
+    order_by: Clasificación
     save_changes: Guardar cambeos
   identity_proofs:
     authorize: Sí, autorizar
     i_am_html: Soi %{username} de %{service}.
     identity: Identidá
   imports:
+    modes:
+      merge: Mecíu
+      merge_long: Caltién los rexistros esistentes y amesta otros nuevos
+      overwrite: Sobrescritura
+      overwrite_long: Troca los rexistros actuales por otros nuevos
     preface: Pues importar los datos qu'esportares dende otra instancia, como por exemplu la llista de persones que bloquiares o tuvieres siguiendo.
     types:
       blocking: Llista de xente bloquiao
+      domain_blocking: Llista de dominios bloquiaos
       following: Llista de siguidores
       muting: Llista de xente silenciao
     upload: Xubir
@@ -345,10 +358,12 @@ ast:
   preferences:
     public_timelines: Llinies temporales públiques
   relationships:
+    activity: Actividá
     followers: Siguidores
     most_recent: Lo más recién
     relationship: Rellación
     remove_selected_follows: Dexar de siguir a los usuarios esbillaos
+    status: Estáu
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer
     no_account_html: "¿Nun tienes una cuenta? Pues <a href='%{sign_up_path}' target='_blank'>rexistrate equí</a>"
