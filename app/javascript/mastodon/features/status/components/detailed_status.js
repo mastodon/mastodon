@@ -6,7 +6,7 @@ import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
-import { FormattedDate, FormattedNumber } from 'react-intl';
+import { FormattedDate } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
@@ -14,6 +14,7 @@ import Audio from '../../audio';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
+import AnimatedNumber from 'mastodon/components/animated_number';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -156,7 +157,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
+      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></span>;
     }
 
     if (status.get('visibility') === 'direct') {
@@ -172,7 +173,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
           <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
-            <FormattedNumber value={status.get('reblogs_count')} />
+            <AnimatedNumber value={status.get('reblogs_count')} />
           </span>
         </Link>
       );
@@ -181,7 +182,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
           <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
-            <FormattedNumber value={status.get('reblogs_count')} />
+            <AnimatedNumber value={status.get('reblogs_count')} />
           </span>
         </a>
       );
@@ -192,7 +193,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
           <Icon id='star' />
           <span className='detailed-status__favorites'>
-            <FormattedNumber value={status.get('favourites_count')} />
+            <AnimatedNumber value={status.get('favourites_count')} />
           </span>
         </Link>
       );
@@ -201,7 +202,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
           <Icon id='star' />
           <span className='detailed-status__favorites'>
-            <FormattedNumber value={status.get('favourites_count')} />
+            <AnimatedNumber value={status.get('favourites_count')} />
           </span>
         </a>
       );
@@ -220,7 +221,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           {media}
 
           <div className='detailed-status__meta'>
-            <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
+            <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
               <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
             </a>{applicationLink} · {reblogLink} · {favouriteLink}
           </div>

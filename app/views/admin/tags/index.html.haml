@@ -28,7 +28,7 @@
 
 = form_tag admin_tags_url, method: 'GET', class: 'simple_form' do
   .fields-group
-    - Admin::FilterHelper::TAGS_FILTERS.each do |key|
+    - TagFilter::KEYS.each do |key|
       = hidden_field_tag key, params[key] if params[key].present?
 
     - %i(name).each do |key|
@@ -43,32 +43,32 @@
 
 = form_for(@form, url: batch_admin_tags_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
-  = hidden_field_tag :name, params[:name] if params[:name].present?
 
-  - Admin::FilterHelper::TAGS_FILTERS.each do |key|
+  - TagFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 
-  .batch-table
+  .batch-table.optional
     .batch-table__toolbar
-      %label.batch-table__toolbar__select.batch-checkbox-all
-        = check_box_tag :batch_checkbox_all, nil, false
-      .batch-table__toolbar__actions
-        - if params[:pending_review] == '1'
+      - if params[:pending_review] == '1' || params[:unreviewed] == '1'
+        %label.batch-table__toolbar__select.batch-checkbox-all
+          = check_box_tag :batch_checkbox_all, nil, false
+        .batch-table__toolbar__actions
           = f.button safe_join([fa_icon('check'), t('admin.accounts.approve')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
           = f.button safe_join([fa_icon('times'), t('admin.accounts.reject')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        - else
+      - else
+        .batch-table__toolbar__actions
           %span.neutral-hint= t('generic.no_batch_actions_available')
 
     .batch-table__body
       - if @tags.empty?
         = nothing_here 'nothing-here--under-tabs'
       - else
-        = render partial: 'tag', collection: @tags, locals: { f: f }
+        = render partial: 'tag', collection: @tags, locals: { f: f, batch_available: params[:pending_review] == '1' || params[:unreviewed] == '1' }
 
 = paginate @tags
 
-- if params[:pending_review] == '1'
+- if params[:pending_review] == '1' || params[:unreviewed] == '1'
   %hr.spacer/
 
   %div{ style: 'overflow: hidden' }

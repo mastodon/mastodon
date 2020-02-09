@@ -57,6 +57,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_use_blurhash,
       :setting_use_pending_items,
       :setting_trends,
+      :setting_crop_images,
       notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account trending_tag),
       interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )
