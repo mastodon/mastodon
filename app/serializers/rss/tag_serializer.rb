@@ -3,7 +3,6 @@
 class RSS::TagSerializer
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::SanitizeHelper
-  include StatusesHelper
   include RoutingHelper
 
   def render(tag, statuses)

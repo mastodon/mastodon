@@ -1,5 +1,5 @@
-= simple_form_for(new_user, url: user_registration_path, namespace: 'registration') do |f|
-  .simple_form__overlay-area
+.simple_form__overlay-area{ class: (closed_registrations? && @instance_presenter.closed_registrations_message.present?) ? 'simple_form__overlay-area__blurred' : '' }
+  = simple_form_for(new_user, url: user_registration_path, namespace: 'registration') do |f|
     %p.lead= t('about.federation_hint_html', instance: content_tag(:strong, site_hostname))
 
     .fields-group
@@ -21,8 +21,8 @@
     .actions
       = f.button :button, sign_up_message, type: :submit, class: 'button button-primary', disabled: closed_registrations?
 
-    - if closed_registrations? && @instance_presenter.closed_registrations_message.present?
-      .simple_form__overlay-area__overlay
-        .simple_form__overlay-area__overlay__content.rich-formatting
-          .block-icon= fa_icon 'warning'
-          = @instance_presenter.closed_registrations_message.html_safe
+  - if closed_registrations? && @instance_presenter.closed_registrations_message.present?
+    .simple_form__overlay-area__overlay
+      .simple_form__overlay-area__overlay__content.rich-formatting
+        .block-icon= fa_icon 'warning'
+        = @instance_presenter.closed_registrations_message.html_safe

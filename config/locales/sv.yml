@@ -4,22 +4,56 @@ sv:
     about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
+    active_count_after: aktiv
+    active_footnote: Månatligen Aktiva användare (MAU)
     administered_by: 'Administreras av:'
     api: API
+    apps: Mobilappar
+    apps_platforms: Använd Mastodon från iOS, Android och andra plattformar
+    browse_directory: Titta på en profilkatalog och filtrera enligt intressen
+    browse_local_posts: Titta på strömmande publika inlägg från denna server
+    browse_public_posts: Titta på strömmande publika inlägg på Mastodon
     contact: Kontakt
     contact_missing: Inte inställd
-    hosted_on: Mastodon värd på %{domain}
+    contact_unavailable: Ej tillämplig
+    discover_users: Upptäck användare
+    documentation: Dokumentation
+    federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
+    get_apps: Prova en mobilapp
+    hosted_on: Mastodon-värd på %{domain}
+    instance_actor_flash: 'Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas.
+
+'
     learn_more: Lär dig mer
+    privacy_policy: Integritetspolicy
+    see_whats_happening: Se vad som händer
+    server_stats: 'Serverstatistik:'
     source_code: Källkod
     status_count_before: Som skapat
+    tagline: Följ vänner och upptäck nya
     terms: Användarvillkor
+    unavailable_content: Otillgängligt innehåll
+    unavailable_content_description:
+      domain: Server
+      reason: Anledning
+      rejecting_media: 'Mediafiler från dessa servers kommer inte hanteras eller lagras, och inga miniatyrer kammer att visas, utan manuell klickning erfordras på originalfilen:'
+      silenced: 'Poster från dessa servers kommer att döljas i publika tidslinjer och konversationer, och meddelanden kommer inte att genereras från deras användares handlingar, förutom om du följer dem:'
+      suspended: 'Ingen data från dessa serverdatorer kommer bearbetas, lagras eller bytas ut vilket omöjliggör kommunikation med användare från dessa serverdatorer:'
+    unavailable_content_html: Mastodon låter dig se material från, och interagera med, andra användare i servernätverket. Det är undantag som gjorts på denna serverdator.
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
   accounts:
+    choices_html: "%{name}s val:"
+    endorsements_hint: Från webbgränssnittet kan du rekommendera följare, som sedan visas här.
+    featured_tags_hint: Du kan använda fyrkanter som visas här.
     follow: Följa
+    followers:
+      one: Följare
+      other: Följare
     following: Följer
     joined: Gick med %{date}
     last_active: senast aktiv
+    link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
@@ -27,12 +61,15 @@ sv:
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
+    pin_errors:
+      following: Du måste vara följare av den person du vill godkänna
     posts_tab_heading: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
     roles:
       admin: Administratör
       bot: Robot
+      group: Grupp
       moderator: Moderator
     unavailable: Profilen är inte tillgänglig
     unfollow: Sluta följa
@@ -73,11 +110,13 @@ sv:
       email_status: E-poststatus
       enable: Aktivera
       enabled: Aktiverad
-      feed_url: Flödes URL
       followers: Följare
-      followers_url: Följare URL
       follows: Följs
+      header: Rubrik
       inbox_url: Inkorgs URL
+      invited_by: Inbjuden av
+      ip: IP-adress
+      joined: Gick med
       location:
         all: Alla
         local: Lokal
@@ -87,23 +126,29 @@ sv:
       media_attachments: Media bifogade filer
       memorialize: Förvandla till ett memoriam
       moderation:
+        active: Aktiv
         all: Alla
+        pending: Väntande
         silenced: Tystas
         suspended: Avstängd
         title: Moderering
       moderation_notes: Moderation anteckning
       most_recent_activity: Senaste aktivitet
       most_recent_ip: Senaste IP
+      no_account_selected: Inga konton har ändrats och inget har valts
+      no_limits_imposed: Inga begränsningar har införts
       not_subscribed: Inte prenumererat
-      outbox_url: Utkorg URL
+      pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
-      profile_url: Profil URL
       promote: Befordra
       protocol: Protokoll
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera avatar
+      reject: Förkasta
+      reject_all: Förkasta allt / Avvisa alla
       remove_avatar: Ta bort avatar
+      remove_header: Ta bort rubrik
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
         send: Skicka om e-postbekräftelse
@@ -114,37 +159,47 @@ sv:
       role: Behörigheter
       roles:
         admin: Administratör
+        moderator: Moderator
         staff: Personal
         user: Användare
-      salmon_url: Lax URL
       search: Sök
+      search_same_ip: Annan användare med samma IP-adress
       shared_inbox_url: Delad inkorg URL
       show:
         created_reports: Anmälningar som skapats av det här kontot
         targeted_reports: Anmälningar gjorda om detta konto
       silence: Tystnad
+      silenced: Tystad / Tystat
       statuses: Status
       subscribe: Prenumerera
+      suspended: Avstängd / Avstängt
+      time_in_queue: Väntar i kö %{time}
       title: Konton
       unconfirmed_email: Obekräftad E-postadress
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
       unsubscribe: Avsluta prenumeration
       username: Användarnamn
+      warn: Varna
       web: Webb
+      whitelisted: Vitlistad
     action_logs:
       actions:
         assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
         change_email_user: "%{name} bytte e-postadress för användare %{target}"
         confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
+        create_account_warning: "%{name} sände en varning till %{target}"
         create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
+        create_domain_allow: "%{name} vitlistade domän %{target}"
         create_domain_block: "%{name} blockerade domän %{target}"
         create_email_domain_block: "%{name} svartlistade e-postdomän %{target}"
         demote_user: "%{name} degraderade användare %{target}"
+        destroy_custom_emoji: "%{name} förstörde emoji %{target}"
+        destroy_domain_allow: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block: "%{name} avblockerade domän %{target}"
         destroy_email_domain_block: "%{name} vitlistade e-postdomän %{target}"
         destroy_status: "%{name} tog bort status av %{target}"
-        disable_2fa_user: "%{name} inaktiverade tvåstegsautentiseringskrav för användare %{target}"
+        disable_2fa_user: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användare %{target}"
         disable_custom_emoji: "%{name} inaktiverade emoji %{target}"
         disable_user: "%{name} inaktiverade inloggning för användare %{target}"
         enable_custom_emoji: "%{name} aktiverade emoji %{target}"
@@ -162,20 +217,27 @@ sv:
         unsuspend_account: "%{name} aktiverade %{target}s konto"
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
         update_status: "%{name} uppdaterade status för %{target}"
+      deleted_status: "(raderad status)"
       title: Revisionslogg
     custom_emojis:
+      assign_category: Ange kategori
       by_domain: Domän
       copied_msg: Skapade en lokal kopia av emoji utan problem
       copy: Kopia
       copy_failed_msg: Kunde inte skapa en lokal kopia av den emoji
+      create_new_category: Skapa ny kategori
       created_msg: Emoji skapades utan problem!
       delete: Radera
       destroyed_msg: Emojo borttagen utan problem!
       disable: Inaktivera
+      disabled: Inaktiverad
       disabled_msg: Inaktiverade emoji utan problem
+      emoji: Emoji
       enable: Aktivera
+      enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
       image_hint: PNG upp till 50KB
+      list: Lista
       listed: Noterade
       new:
         title: Lägg till ny egen emoji
@@ -183,15 +245,52 @@ sv:
       shortcode: Kortkod
       shortcode_hint: Minst 2 tecken, endast alfanumeriska tecken och understreck
       title: Egentillverkade emojis
+      uncategorized: Okategoriserad / Okategoiserat / Okategoriserade
+      unlist: Avnotera / Tag bort
       unlisted: Olistade
       update_failed_msg: Kunde inte uppdatera emoji
       updated_msg: Emoji uppdaterades utan problem!
       upload: Ladda upp
+    dashboard:
+      authorized_fetch_mode: Säkert läge
+      backlog: återstående jobb
+      config: Konfiguration
+      feature_deletions: Kontoraderingar
+      feature_invites: Inbjudningslänkar
+      feature_profile_directory: Profilkatalog
+      feature_registrations: Registreringar
+      feature_relay: Förbundsmöte
+      feature_spam_check: Anti-skräp
+      feature_timeline_preview: Förhandsgranskning av tidslinje
+      features: Funktioner
+      hidden_service: Sammanslutning med gömda tjänster
+      open_reports: öppna rapporter
+      pending_tags: hashtags som inväntar granskning
+      pending_users: användare som inväntar granskning
+      recent_users: Senaste användare
+      search: Fulltextsökning
+      single_user_mode: Enanvändarläge
+      software: Programvara
+      space: Utrymmesutnyttjande / Utrymmesanvändning
+      title: Kontrollpanel
+      total_users: totalt antal användare
+      trends: Trender
+      week_interactions: kommunikation denna vecka / interaktioner denna vecka
+      week_users_active: aktiv(a) denna vecka
+      week_users_new: användare denna vecka
+      whitelist_mode: Vitlisteläge
+    domain_allows:
+      add_new: Vitlistedomän
+      created_msg: Domänen har vitlistats
+      destroyed_msg: Domänen har tagits bort från vitlistan
+      undo: Tag bort från vitlistan
     domain_blocks:
       add_new: Lägg till ny
       created_msg: Domänblocket behandlas nu
       destroyed_msg: Domänblockering har återtagits
       domain: Domän
+      edit: Ändra domänblock
+      existing_domain_block_html: Du har redan satt begränsningar för %{name} så <a href="%{unblock_url}">avblockera användaren</a> först.
       new:
         create: Skapa block
         hint: Domänblocket hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt, automatiskt att tillämpa specifika modereringsmetoder på dessa konton.
@@ -201,8 +300,13 @@ sv:
           silence: Tysta ner
           suspend: Suspendera
         title: Nytt domänblock
+      private_comment: Privat kommentar
+      private_comment_hint: Kommentar för moderatorer om denna domänbegränsning.
+      public_comment: Offentlig kommentar
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
+      severity:
+        suspend: avstängd
       show:
         affected_accounts:
           one: Ett konto i databasen drabbades
@@ -219,11 +323,17 @@ sv:
       delete: Radera
       destroyed_msg: E-postdomän har tagits bort från domänblockslistan utan problem
       domain: Domän
+      empty: För tillfället inga svartlistade mejl.
       new:
         create: Skapa domän
         title: Ny E-postdomänblocklistningsinmatning
       title: E-postdomänblock
     instances:
+      by_domain: Domän
+      moderation:
+        all: Alla
+        limited: Begränsad
+      private_comment: Privat kommentar
       title: Kända instanser
     invites:
       filter:
@@ -232,13 +342,17 @@ sv:
         expired: Utgångna
         title: Filtrera
       title: Inbjudningar
+    relays:
+      delete: Radera
+      disable: Inaktivera
+      enable: Aktivera
+      enabled: Aktivera
+      save_and_enable: Spara och aktivera
+      status: Status
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
     reports:
-      account:
-        note: anteckning
-        report: anmälan
       action_taken_by: Åtgärder vidtagna av
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -260,6 +374,7 @@ sv:
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
+      status: Status
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
@@ -274,6 +389,8 @@ sv:
       contact_information:
         email: Företag E-post
         username: Användarnamn för kontakt
+      custom_css:
+        title: Anpassad CSS
       hero:
         desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
         title: Hjältebild
@@ -319,15 +436,35 @@ sv:
         delete: Radera
         nsfw_off: Markera som ej känslig
         nsfw_on: Markera som känslig
+      deleted: Raderad
       failed_to_execute: Misslyckades att utföra
       no_media: Ingen media
       title: Kontostatus
       with_media: med media
+    tags:
+      accounts_today: Unika användare idag
+      accounts_week: Unika användare den här veckan
+      last_active: Senast aktiv
+    warning_presets:
+      add_new: Lägg till ny
+      delete: Radera
+      edit: Redigera
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: Ny rapport för %{instance} (#%{id})
+  aliases:
+    add_new: Skapa alias
+    remove: Avlänka alias
+  appearance:
+    advanced_web_interface: Avancerat webbgränssnitt
+    animations_and_accessibility: Animationer och tillgänglighet
+    discovery: Upptäck
+    localization:
+      body: Mastodon översätts av volontärer.
+      guide_link_text: Alla kan bidra.
+    sensitive_content: Känsligt innehåll
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     settings: 'Ändra e-postinställningar: %{link}'
@@ -346,7 +483,7 @@ sv:
     change_password: Lösenord
     delete_account: Ta bort konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
-    didnt_get_confirmation: Fick inte instruktioner om bekräftelse?
+    didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
     login: Logga in
@@ -362,6 +499,10 @@ sv:
     reset_password: Återställ lösenord
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
+    setup:
+      email_settings_hint_html: Bekräftelsemeddelandet skickades till %{email}. Om den e-postadressen inte stämmer så kan du ändra den i kontoinställningarna.
+    status:
+      account_status: Kontostatus
   authorize_follow:
     already_following: Du följer redan detta konto
     error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
@@ -373,6 +514,10 @@ sv:
       return: Visa användarens profil
       web: Gå till webb
     title: Följ %{acct}
+  challenge:
+    confirm: Fortsätt
+    invalid_password: Ogiltigt lösenord
+    prompt: Bekräfta lösenord för att fortsätta
   datetime:
     distance_in_words:
       about_x_hours: "%{count}tim"
@@ -389,7 +534,9 @@ sv:
   deletes:
     confirm_password: Ange ditt lösenord för att verifiera din identitet
     proceed: Ta bort konto
-    success_msg: Ditt konto har tagits bort
+    success_msg: Ditt konto har raderats
+  domain_validator:
+    invalid_domain: är inte ett giltigt domännamn
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Du har inte behörighet att visa den här sidan.
@@ -415,10 +562,28 @@ sv:
       size: Storlek
     blocks: Du blockerar
     csv: CSV
-    follows: Du följer
+    lists: Listor
     mutes: Du tystar
     storage: Medialagring
+  featured_tags:
+    add_new: Lägg till ny
+  filters:
+    contexts:
+      notifications: Aviseringar
+      thread: Konversationer
+    edit:
+      title: Redigera filter
+    index:
+      delete: Radera
+      empty: Du har inga filter.
+      title: Filter
+    new:
+      title: Lägg till nytt filter
+  footer:
+    developers: Utvecklare
+    more: Mer…
   generic:
+    all: Alla
     changes_saved_msg: Ändringar sparades framgångsrikt!
     save_changes: Spara ändringar
     validation_errors:
@@ -464,11 +629,12 @@ sv:
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
+    incoming_migrations: Flyttar från ett annat konto
   moderation:
     title: Moderera
   notification_mailer:
     digest:
-      action: Visa alla notifieringar
+      action: Visa alla aviseringar
       body: Här är en kort sammanfattning av de meddelanden du missade sedan ditt senaste besök på %{since}
       mention: "%{name} nämnde dig i:"
       new_followers_summary:
@@ -500,13 +666,23 @@ sv:
       body: 'Din status knuffades av %{name}:'
       subject: "%{name} knuffade din status"
       title: Ny knuff
+  notifications:
+    other_settings: Andra aviseringsinställningar
   pagination:
     newer: Nyare
     next: Nästa
     older: Äldre
     prev: Tidigare
+  polls:
+    errors:
+      invalid_choice: Det valda röstalternativet finns inte
   preferences:
     other: Annat
+  relationships:
+    activity: Kontoaktivitet
+    followers: Följare
+    following: Följer
+    status: Kontostatus
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
@@ -545,16 +721,23 @@ sv:
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
   settings:
+    account: Konto
+    account_settings: Kontoinställningar
+    aliases: Kontoalias
+    appearance: Utseende
     authorized_apps: Godkända appar
     back: Tillbaka till Mastodon
     delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
+    import_and_export: Import och export
     migrate: Kontoflytt
-    notifications: Meddelanden
+    notifications: Aviseringar
     preferences: Inställningar
-    two_factor_authentication: Tvåstegsautentisering
+    profile: Profil
+    relationships: Följer och följare
+    two_factor_authentication: Tvåfaktorsautentisering
   spam_check:
     spam_detected: Det här är en automatisk rapport. Spam har upptäckts.
   statuses:
@@ -677,17 +860,17 @@ sv:
     mastodon-light: Mastodon (ljust)
   two_factor_authentication:
     code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
-    description_html: Om du aktiverar <strong>tvåstegsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att uppge.
-    disable: Avaktivera
+    description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att ange.
+    disable: Inaktivera
     enable: Aktivera
     enabled: Tvåfaktorsautentisering är aktiverad
-    enabled_success: Tvåfaktors autentisering aktiverad
+    enabled_success: Tvåfaktorsautentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app på din telefon </strong>. Från och med nu genererar den appen tokens som du måste ange när du loggar in."
     lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt konto om du förlorar din telefon. Om du har förlorat dina återställningskoder kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
-    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den manuellt, här är den enkla texten:'
+    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den manuellt, här är den hemliga nyckeln i ren text:'
     recovery_codes: Backup återställningskod
-    recovery_codes_regenerated: Återställningskoder regenererades framgångsrikt
+    recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
     setup: Ställ in
     wrong_code: Den angivna koden var ogiltig! Är servertid och enhetstid korrekt?
@@ -710,11 +893,11 @@ sv:
       tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket. Men det inkluderar bara människor som dina grannar följer, så det är inte komplett.
       tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
       tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
-      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon till ditt hemskärm kan du få push-meddelanden. Det fungerar som en inbyggd app på många sätt!
+      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
       title: Välkommen ombord, %{name}!
   users:
     invalid_email: E-postadressen är ogiltig
-    invalid_otp_token: Ogiltig tvåfaktorkod
+    invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'

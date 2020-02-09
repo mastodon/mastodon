@@ -50,7 +50,7 @@
 
 class Account < ApplicationRecord
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[a-z0-9]+)?)/i
 
   include AccountAssociations
   include AccountAvatar
@@ -70,14 +70,13 @@ class Account < ApplicationRecord
   enum protocol: [:ostatus, :activitypub]
 
   validates :username, presence: true
+  validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations
-  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && will_save_change_to_username? }
   validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
@@ -93,6 +92,7 @@ class Account < ApplicationRecord
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
+  scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
@@ -153,8 +153,18 @@ class Account < ApplicationRecord
     self.actor_type = ActiveModel::Type::Boolean.new.cast(val) ? 'Service' : 'Person'
   end
 
+  def group?
+    actor_type == 'Group'
+  end
+
+  alias group group?
+
   def acct
     local? ? username : "#{username}@#{domain}"
+  end
+
+  def pretty_acct
+    local? ? username : "#{username}@#{Addressable::IDNA.to_unicode(domain)}"
   end
 
   def local_username_and_domain
@@ -303,10 +313,6 @@ class Account < ApplicationRecord
     self.fields = tmp
   end
 
-  def subscription(webhook_url)
-    @subscription ||= OStatus2::Subscription.new(remote_url, secret: secret, webhook: webhook_url, hub: hub_url)
-  end
-
   def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
@@ -429,12 +435,14 @@ class Account < ApplicationRecord
             SELECT target_account_id
             FROM follows
             WHERE account_id = ?
+            UNION ALL
+            SELECT ?
           )
           SELECT
             accounts.*,
             (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
           FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?)
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND #{query} @@ #{textsearch}
             AND accounts.suspended_at IS NULL
@@ -465,6 +473,12 @@ class Account < ApplicationRecord
 
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
       records
+    end
+
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.map { |(username, domain)| EntityCache.instance.mention(username, domain) }
     end
 
     private

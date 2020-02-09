@@ -19,15 +19,21 @@ sv:
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
-        email: Ett konfirmationsmeddelande kommer att skickas till dig via epost
+        email: Du kommer att få ett bekräftelsemeddelande via e-post
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
-        locale: Användargränssnittets språk, e-post och push-aviseringar
+        locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
+        setting_display_media_default: Dölj media markerad som känslig
+        setting_display_media_hide_all: Dölj alltid all media
+        setting_display_media_show_all: Visa alltid media markerad som känslig
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
+        username: Ditt användarnamn måste vara unikt på %{domain}
+      featured_tag:
+        name: 'Du kan vilja använda en av dessa:'
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
       sessions:
@@ -39,6 +45,9 @@ sv:
         fields:
           name: Etikett
           value: Innehåll
+      admin_account_action:
+        types:
+          none: Gör ingenting
       defaults:
         autofollow: Bjud in till att följa ditt konto
         bot: Detta är ett botkonto
@@ -56,28 +65,38 @@ sv:
         max_uses: Högst antal  användningar
         new_password: Nytt lösenord
         note: Biografi
-        otp_attempt: Tvåstegslösenord
+        otp_attempt: Tvåfaktorskod
         password: Lösenord
-        setting_auto_play_gif: Auto-play animerade GIF-filer
+        phrase: Nyckelord eller fras
+        setting_advanced_layout: Aktivera avancerat webbgränssnitt
+        setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
         setting_default_language: Språk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
+        setting_display_media: Mediavisning
+        setting_display_media_hide_all: Dölj alla
+        setting_display_media_show_all: Visa alla
         setting_hide_network: Göm ditt nätverk
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
         setting_theme: Sidans tema
+        setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
         severity: Strikthet
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
       interactions:
-        must_be_follower: Blockera meddelanden från icke-följare
-        must_be_following: Blockera meddelanden från personer du inte följer
+        must_be_follower: Blockera aviseringar från icke-följare
+        must_be_following: Blockera aviseringar från personer du inte följer
         must_be_following_dm: Blockera direktmeddelanden från personer du inte följer
+      invite:
+        comment: Kommentar
+      invite_request:
+        text: Varför vill du gå med?
       notification_emails:
         digest: Skicka sammandrag via e-post
         favourite: Skicka e-post när någon favoriserar din status
@@ -86,6 +105,8 @@ sv:
         mention: Skicka e-post när någon nämner dig
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
+    recommended: Rekommenderad
     required:
+      mark: "*"
       text: obligatorisk
     'yes': Ja

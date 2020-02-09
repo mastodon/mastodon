@@ -25,6 +25,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   private
 
+  def audience_to
+    @object['to'] || @json['to']
+  end
+
+  def audience_cc
+    @object['cc'] || @json['cc']
+  end
+
   def process_status
     @tags     = []
     @mentions = []
@@ -75,7 +83,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_audience
-    (as_array(@object['to']) + as_array(@object['cc'])).uniq.each do |audience|
+    (as_array(audience_to) + as_array(audience_cc)).uniq.each do |audience|
       next if audience == ActivityPub::TagManager::COLLECTIONS[:public]
 
       # Unlike with tags, there is no point in resolving accounts we don't already
@@ -149,7 +157,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['name'].blank?
 
     Tag.find_or_create_by_names(tag['name']) do |hashtag|
-      @tags << hashtag unless @tags.include?(hashtag)
+      @tags << hashtag unless @tags.include?(hashtag) || !hashtag.valid?
     end
   rescue ActiveRecord::RecordInvalid
     nil
@@ -159,7 +167,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if tag['href'].blank?
 
     account = account_from_uri(tag['href'])
-    account = ::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
+    account = ActivityPub::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
 
     return if account.nil?
 
@@ -291,11 +299,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def visibility_from_audience
-    if equals_or_includes?(@object['to'], ActivityPub::TagManager::COLLECTIONS[:public])
+    if equals_or_includes?(audience_to, ActivityPub::TagManager::COLLECTIONS[:public])
       :public
-    elsif equals_or_includes?(@object['cc'], ActivityPub::TagManager::COLLECTIONS[:public])
+    elsif equals_or_includes?(audience_cc, ActivityPub::TagManager::COLLECTIONS[:public])
       :unlisted
-    elsif equals_or_includes?(@object['to'], @account.followers_url)
+    elsif equals_or_includes?(audience_to, @account.followers_url)
       :private
     else
       :direct
@@ -304,7 +312,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def audience_includes?(account)
     uri = ActivityPub::TagManager.instance.uri_for(account)
-    equals_or_includes?(@object['to'], uri) || equals_or_includes?(@object['cc'], uri)
+    equals_or_includes?(audience_to, uri) || equals_or_includes?(audience_cc, uri)
   end
 
   def replied_to_status
@@ -415,7 +423,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def addresses_local_accounts?
     return true if @options[:delivered_to_account_id]
 
-    local_usernames = (as_array(@object['to']) + as_array(@object['cc'])).uniq.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }.map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
+    local_usernames = (as_array(audience_to) + as_array(audience_cc)).uniq.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }.map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
 
     return false if local_usernames.empty?
 

@@ -23,11 +23,11 @@ export default class StatusContent extends React.PureComponent {
     onExpandedToggle: PropTypes.func,
     onClick: PropTypes.func,
     collapsable: PropTypes.bool,
+    onCollapsedToggle: PropTypes.func,
   };
 
   state = {
     hidden: true,
-    collapsed: null, //  `collapsed: null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
   };
 
   _updateStatusLinks () {
@@ -59,17 +59,19 @@ export default class StatusContent extends React.PureComponent {
       }
 
       link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener');
+      link.setAttribute('rel', 'noopener noreferrer');
     }
 
-    if (
-      this.props.collapsable
-      && this.props.onClick
-      && this.state.collapsed === null
-      && node.clientHeight > MAX_HEIGHT
-      && this.props.status.get('spoiler_text').length === 0
-    ) {
-      this.setState({ collapsed: true });
+    if (this.props.status.get('collapsed', null) === null) {
+      let collapsed =
+          this.props.collapsable
+          && this.props.onClick
+          && node.clientHeight > MAX_HEIGHT
+          && this.props.status.get('spoiler_text').length === 0;
+
+      if(this.props.onCollapsedToggle) this.props.onCollapsedToggle(collapsed);
+
+      this.props.status.set('collapsed', collapsed);
     }
   }
 
@@ -178,6 +180,7 @@ export default class StatusContent extends React.PureComponent {
     }
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const renderReadMore = this.props.onClick && status.get('collapsed');
 
     const content = { __html: status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -185,7 +188,7 @@ export default class StatusContent extends React.PureComponent {
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
-      'status__content--collapsed': this.state.collapsed === true,
+      'status__content--collapsed': renderReadMore,
     });
 
     if (isRtl(status.get('search_index'))) {
@@ -237,7 +240,7 @@ export default class StatusContent extends React.PureComponent {
         </div>,
       ];
 
-      if (this.state.collapsed) {
+      if (renderReadMore) {
         output.push(readMoreButton);
       }
 

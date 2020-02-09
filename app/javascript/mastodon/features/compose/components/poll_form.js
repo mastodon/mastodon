@@ -13,6 +13,8 @@ const messages = defineMessages({
   add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
   remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
   poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
+  switchToMultiple: { id: 'compose_form.poll.switch_to_multiple', defaultMessage: 'Change poll to allow multiple choices' },
+  switchToSingle: { id: 'compose_form.poll.switch_to_single', defaultMessage: 'Change poll to allow for a single choice' },
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
   hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
@@ -50,6 +52,12 @@ class Option extends React.PureComponent {
     e.stopPropagation();
   };
 
+  handleCheckboxKeypress = e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.handleToggleMultiple(e);
+    }
+  }
+
   onSuggestionsClearRequested = () => {
     this.props.onClearSuggestions();
   }
@@ -71,8 +79,11 @@ class Option extends React.PureComponent {
           <span
             className={classNames('poll__input', { checkbox: isPollMultiple })}
             onClick={this.handleToggleMultiple}
+            onKeyPress={this.handleCheckboxKeypress}
             role='button'
             tabIndex='0'
+            title={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
+            aria-label={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
           />
 
           <AutosuggestInput
@@ -142,9 +153,7 @@ class PollForm extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          {options.size < 4 && (
-            <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
-          )}
+          <button disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
 
           <select value={expiresIn} onChange={this.handleSelectDuration}>
             <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>

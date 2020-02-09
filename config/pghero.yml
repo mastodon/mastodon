@@ -1,0 +1,41 @@
+databases:
+  primary:
+    # Database URL (defaults to app database)
+    # url: <%= ENV["DATABASE_URL"] %>
+
+  # Add more databases
+  # other:
+  #   url: <%= ENV["OTHER_DATABASE_URL"] %>
+
+# Minimum time for long running queries
+# long_running_query_sec: 60
+
+# Minimum average time for slow queries
+# slow_query_ms: 20
+
+# Minimum calls for slow queries
+# slow_query_calls: 100
+
+# Minimum connections for high connections warning
+# total_connections_threshold: 500
+
+# Statement timeout for explain
+# explain_timeout_sec: 10
+
+# Time zone (defaults to app time zone)
+# time_zone: "Pacific Time (US & Canada)"
+
+# Basic authentication
+# username: admin
+# password: secret
+
+# Stats database URL (defaults to app database)
+# stats_database_url: <%= ENV["PGHERO_STATS_DATABASE_URL"] %>
+
+# AWS configuration (defaults to app AWS config)
+# also need aws_db_instance_identifier with each database
+# aws_access_key_id: ...
+# aws_secret_access_key: ...
+# aws_region: us-east-1
+
+override_csp: true

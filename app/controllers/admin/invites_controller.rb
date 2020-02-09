@@ -47,7 +47,7 @@ module Admin
     end
 
     def filter_params
-      params.permit(:available, :expired)
+      params.slice(*InviteFilter::KEYS).permit(*InviteFilter::KEYS)
     end
   end
 end

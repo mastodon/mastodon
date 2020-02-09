@@ -24,7 +24,7 @@ class TagsController < ApplicationController
       format.rss do
         expires_in 0, public: true
 
-        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none)).limit(PAGE_SIZE)
+        @statuses = HashtagQueryService.new.call(@tag, filter_params).limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
 
         render xml: RSS::TagSerializer.render(@tag, @statuses)
@@ -33,7 +33,7 @@ class TagsController < ApplicationController
       format.json do
         expires_in 3.minutes, public: public_fetch_mode?
 
-        @statuses = HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
+        @statuses = HashtagQueryService.new.call(@tag, filter_params, current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
         render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
@@ -57,10 +57,14 @@ class TagsController < ApplicationController
 
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: tag_url(@tag, params.slice(:any, :all, :none)),
+      id: tag_url(@tag, filter_params),
       type: :ordered,
       size: @tag.statuses.count,
       items: @statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
     )
+  end
+
+  def filter_params
+    params.slice(:any, :all, :none).permit(:any, :all, :none)
   end
 end

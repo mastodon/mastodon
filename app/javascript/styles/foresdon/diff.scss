@@ -302,6 +302,10 @@ body.layout-single-column {
         border: none;
         background: darken($ui-base-color, 3%);
       }
+
+      & .account {
+        border-bottom: 0;
+      }
     }
   }
 }
@@ -534,6 +538,10 @@ body.layout-single-column {
   &__extra {
     background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
   }
+}
+
+.directory__tag > div {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
 }
 
 .getting-started {
@@ -782,4 +790,8 @@ body.layout-single-column {
 
 article div {
   outline: 0;
+}
+
+.announcements {
+  background: rgba($ui-base-color, $foresdon-primary-ui-alpha);
 }
