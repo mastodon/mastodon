@@ -38,6 +38,10 @@ services:
 #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
 #    volumes:
 #      - ./elasticsearch:/usr/share/elasticsearch/data
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
 
   web:
     build: .
