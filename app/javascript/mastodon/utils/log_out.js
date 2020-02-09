@@ -1,4 +1,4 @@
-import Rails from 'rails-ujs';
+import Rails from '@rails/ujs';
 
 export const logOut = () => {
   const form = document.createElement('form');
