@@ -395,14 +395,14 @@ fr:
     relays:
       add_new: Ajouter un nouveau relais
       delete: Effacer
-      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets publics entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyen serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
+      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets publics entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyens serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
       disable: Désactiver
       disabled: Désactivé
       enable: Activer
       enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
       enabled: Activé
       inbox_url: URL du relais
-      pending: En attente de l’approbation du relai
+      pending: En attente de l’approbation du relais
       save_and_enable: Sauvegarder et activer
       setup: Paramétrer une connexion de relais
       signatures_not_enabled: Les relais ne fonctionneront pas correctement lorsque le mode sécurisé ou le mode liste blanche est activé
@@ -515,7 +515,7 @@ fr:
         desc_html: L’endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre serveur différent. Vous pouvez utiliser des balises HTML
         title: Description étendue du serveur
       site_short_description:
-        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description du serveur sera affiché par défaut.
+        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description du serveur sera affichée par défaut.
         title: Description courte du serveur
       site_terms:
         desc_html: Affichée sur la page des conditions d’utilisation du site. Vous pouvez utiliser des balises HTML
@@ -785,7 +785,7 @@ fr:
     save_changes: Enregistrer les modifications
     validation_errors:
       one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
-      other: Certaines choses ne vont pas ! Veuillez vérifiez les %{count} erreurs ci-dessous
+      other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
   html_validator:
     invalid_markup: 'contient un balisage HTML invalide: %{error}'
   identity_proofs:
@@ -885,7 +885,7 @@ fr:
   notification_mailer:
     digest:
       action: Voir toutes les notifications
-      body: Voici un bref résumé des messages que vous avez raté depuis votre dernière visite le %{since}
+      body: Voici un bref résumé des messages que vous avez ratés depuis votre dernière visite le %{since}
       mention: "%{name} vous a mentionné⋅e dans :"
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
@@ -1096,7 +1096,7 @@ fr:
       public: Public
       public_long: Tout le monde peut voir vos statuts
       unlisted: Public sans être affiché sur le fil public
-      unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
+      unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas listés sur les fils publics
   stream_entries:
     pinned: Pouet épinglé
     reblogged: a partagé
@@ -1244,7 +1244,7 @@ fr:
       review_preferences_action: Modifier les préférences
       review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous aimeriez que vos messages soient soumis par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique des GIF.
       subject: Bienvenue sur Mastodon
-      tip_federated_timeline: La fil public global est une vue en direct du réseau Mastodon. Mais elle n’inclut que les personnes auxquelles vos voisin·es sont abonné·e·s, donc elle n’est pas complète.
+      tip_federated_timeline: Le fil public global est une vue en direct du réseau Mastodon. Mais elle n’inclut que les personnes auxquelles vos voisin·es sont abonné·e·s, donc elle n’est pas complète.
       tip_following: Vous suivez les administrateur·rice·s de votre serveur par défaut. Pour trouver d’autres personnes intéressantes, consultez les fils publics local et global.
       tip_local_timeline: Le fil public local est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
       tip_mobile_webapp: Si votre navigateur mobile vous propose d’ajouter Mastodon à votre écran d’accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
