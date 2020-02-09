@@ -14,6 +14,12 @@ en:
         text_html: Optional. You can use toot syntax. You can <a href="%{path}">add warning presets</a> to save time
         type_html: Choose what to do with <strong>%{acct}</strong>
         warning_preset_id: Optional. You can still add custom text to end of the preset
+      announcement:
+        all_day: When checked, only the dates of the time range will be displayed
+        ends_at: Optional. Announcement will be automatically unpublished at this time
+        scheduled_at: Leave blank to publish the announcement immediately
+        starts_at: Optional. In case your announcement is bound to a specific time range
+        text: You can use toot syntax. Please be mindful of the space the announcement will take up on the user's screen
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
@@ -83,6 +89,12 @@ en:
           silence: Silence
           suspend: Suspend and irreversibly delete account data
         warning_preset_id: Use a warning preset
+      announcement:
+        all_day: All-day event
+        ends_at: End of event
+        scheduled_at: Schedule publication
+        starts_at: Start of event
+        text: Announcement
       defaults:
         autofollow: Invite to follow your account
         avatar: Avatar

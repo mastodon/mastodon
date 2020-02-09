@@ -294,6 +294,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "today",
+        "id": "relative_time.today"
+      },
+      {
         "defaultMessage": "now",
         "id": "relative_time.just_now"
       },
@@ -777,6 +781,10 @@
         "id": "account.badges.bot"
       },
       {
+        "defaultMessage": "Group",
+        "id": "account.badges.group"
+      },
+      {
         "defaultMessage": "Toots",
         "id": "account.posts"
       },
@@ -1034,6 +1042,14 @@
       {
         "defaultMessage": "Poll duration",
         "id": "compose_form.poll.duration"
+      },
+      {
+        "defaultMessage": "Change poll to allow multiple choices",
+        "id": "compose_form.poll.switch_to_multiple"
+      },
+      {
+        "defaultMessage": "Change poll to allow for a single choice",
+        "id": "compose_form.poll.switch_to_single"
       },
       {
         "defaultMessage": "{number, plural, one {# minute} other {# minutes}}",
@@ -1396,6 +1412,10 @@
         "id": "account.unmute"
       },
       {
+        "defaultMessage": "Unfollow",
+        "id": "confirmations.unfollow.confirm"
+      },
+      {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
       },
@@ -1537,6 +1557,27 @@
       }
     ],
     "path": "app/javascript/mastodon/features/following/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Previous",
+        "id": "lightbox.previous"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "lightbox.next"
+      },
+      {
+        "defaultMessage": "Announcement",
+        "id": "announcement.announcement"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/getting_started/components/announcements.json"
   },
   {
     "descriptors": [
@@ -1704,6 +1745,14 @@
       {
         "defaultMessage": "Home",
         "id": "column.home"
+      },
+      {
+        "defaultMessage": "Show announcements",
+        "id": "home.show_announcements"
+      },
+      {
+        "defaultMessage": "Hide announcements",
+        "id": "home.hide_announcements"
       },
       {
         "defaultMessage": "Your home timeline is empty! Visit {public} or use search to get started and meet other users.",
@@ -2281,6 +2330,10 @@
       {
         "defaultMessage": "Bookmark",
         "id": "status.bookmark"
+      },
+      {
+        "defaultMessage": "More",
+        "id": "status.more"
       },
       {
         "defaultMessage": "Mute @{name}",

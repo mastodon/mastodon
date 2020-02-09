@@ -14,6 +14,12 @@ tr:
         text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
         type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
+      announcement:
+        all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
+        ends_at: İsteğe bağlı. Duyuru, bu tarihte otomatik olarak yayından kaldırılacak
+        scheduled_at: Duyuruyu hemen yayınlamak için boş bırakın
+        starts_at: İsteğe bağlı. Duyurunuzun belirli bir zaman aralığına bağlı olması durumunda
+        text: Toot söz dizimini kullanabilirsiniz. Lütfen duyurunun kullanıcının ekranında yer alacağı alanı göz önünde bulundurun
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
@@ -83,6 +89,12 @@ tr:
           silence: Sessiz
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
         warning_preset_id: Bir uyarı ön-ayarı kullan
+      announcement:
+        all_day: Tüm gün etkinliği
+        ends_at: Etkinlik sonu
+        scheduled_at: Yayınlamayı zamanla
+        starts_at: Etkinlik başlangıcı
+        text: Duyuru
       defaults:
         autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi

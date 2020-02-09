@@ -46,7 +46,7 @@ class StatusesController < ApplicationController
   end
 
   def embed
-    raise ActiveRecord::RecordNotFound if @status.hidden?
+    return not_found if @status.hidden?
 
     expires_in 180, public: true
     response.headers['X-Frame-Options'] = 'ALLOWALL'
@@ -68,7 +68,7 @@ class StatusesController < ApplicationController
     @status = @account.statuses.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    raise ActiveRecord::RecordNotFound
+    not_found
   end
 
   def set_instance_presenter

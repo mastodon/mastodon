@@ -5,7 +5,7 @@ ru:
       doorkeeper/application:
         name: Название
         redirect_uri: URI перенаправления
-        scopes: Права
+        scopes: Разрешения
         website: Веб-сайт приложения
     errors:
       models:
@@ -38,13 +38,14 @@ ru:
         application: Приложение
         callback_url: Callback URL
         delete: Удалить
+        empty: У вас нет созданных приложений.
         name: Название
         new: Новое приложение
-        scopes: Права
+        scopes: Разрешения
         show: Показывать
         title: Ваши приложения
       new:
-        title: Новое Приложение
+        title: Создание приложения
       show:
         actions: Действия
         application_id: Id приложения
@@ -122,27 +123,29 @@ ru:
       admin:write:reports: производить модерацию жалоб
       follow: управлять подписками и списком блокировок
       push: получать push-уведомления
-      read: читать данные Вашей учётной записи
+      read: просматривать данные вашей учётной записи
       read:accounts: видеть информацию об учётных записях
-      read:blocks: видеть ваших заблокированных
+      read:blocks: видеть ваши блокировки
+      read:bookmarks: видеть ваши закладки
       read:favourites: видеть ваше избранное
       read:filters: видеть ваши фильтры
-      read:follows: видеть, на кого вы подписаны
+      read:follows: видеть ваши подписки
       read:lists: видеть ваши списки
-      read:mutes: видеть список заглушенных
-      read:notifications: видеть ваши уведомления
+      read:mutes: видеть список игнорируемых
+      read:notifications: получать уведомления
       read:reports: видеть ваши жалобы
       read:search: использовать поиск
-      read:statuses: видеть все статусы
+      read:statuses: видеть все ваши посты
       write: изменять все данные вашей учётной записи
       write:accounts: редактировать ваш профиль
       write:blocks: блокировать учётные записи и домены
-      write:favourites: отмечать статусы как избранные
+      write:bookmarks: добавлять посты в закладки
+      write:favourites: отмечать посты как избранные
       write:filters: создавать фильтры
       write:follows: подписываться на людей
       write:lists: создавать списки
-      write:media: выкладывать медиаконтент
-      write:mutes: заглушать людей и обсуждения
+      write:media: загружать медиафайлы
+      write:mutes: добавлять в игнорируемое людей и обсуждения
       write:notifications: очищать список уведомлений
       write:reports: отправлять жалобы на других
-      write:statuses: публиковать статусы
+      write:statuses: публиковать посты

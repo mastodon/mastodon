@@ -4,17 +4,17 @@ zh-TW:
     confirmations:
       confirmed: 您的電子信箱位址已確認成功。
       send_instructions: 幾分鐘後您將收到確認信件。若未收到此信件，請檢查垃圾郵件資料夾。
-      send_paranoid_instructions: 如果您的電子信箱存在於我們的資料庫，將會在幾分鐘內收到確認信。若未收到請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 如果您的電子信箱存在於我們的資料庫，您將會在幾分鐘內收到確認信。若未收到請檢查垃圾郵件資料夾。
     failure:
       already_authenticated: 您已登入。
       inactive: 您的帳戶尚未啟用。
       invalid: 無效的 %{authentication_keys} 或密碼。
-      last_attempt: 在帳號遭封鎖前您還有最後一次嘗試機會。
-      locked: 您的帳戶已被鎖定。
+      last_attempt: 在帳號鎖定前，您還有最後一次嘗試機會。
+      locked: 已鎖定您的帳戶。
       not_found_in_database: 無效的 %{authentication_keys} 或密碼。
       pending: 您的帳戶仍在審核中。
       timeout: 登入階段逾時。請重新登入以繼續。
-      unauthenticated: 您必須先登入或註冊以繼續使用。
+      unauthenticated: 您必須先登入或註冊才能繼續使用。
       unconfirmed: 您必須先確認電子信箱才能繼續使用。
     mailer:
       confirmation_instructions:
@@ -22,7 +22,7 @@ zh-TW:
         action_with_app: 確認並返回 %{app}
         explanation: 您已經在 %{host} 上以此電子信箱位址建立了一支帳戶。您距離啟用它只剩一點之遙了。若這不是您，請忽略此信件。
         explanation_when_pending: 您使用此電子信箱位址申請了 %{host} 的邀請。當您確認電子信箱後我們將審核您的申請，而直到核准前您都無法登入。當您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您，請忽略此信件。
-        extra_html: 同時也請看看<a href="%{terms_path}">該伺服器的規則</a>與<a href="%{policy_path}">服務條款</a>。
+        extra_html: 同時也請看看<a href="%{terms_path}">伺服器規則</a>與<a href="%{policy_path}">服務條款</a>。
         subject: Mastodon：%{instance} 確認說明
         title: 驗證電子信箱位址
       email_changed:
@@ -42,7 +42,7 @@ zh-TW:
         title: 驗證電子信箱位址
       reset_password_instructions:
         action: 變更密碼
-        explanation: 您已請求設定帳號的新密碼。
+        explanation: 您已請求帳戶的新密碼。
         extra: 若您並未請求，請忽略此信件。您的密碼在存取上方連結並建立新連結前不會變更。
         subject: Mastodon：重設密碼指引
         title: 重設密碼
@@ -55,14 +55,14 @@ zh-TW:
         subject: Mastodon：已啟用兩步驟驗證
         title: 已啟用 2FA
       two_factor_recovery_codes_changed:
-        explanation: 上一次的復原碼已經失效，且已產生新的復原碼。
+        explanation: 上一次的復原碼已經失效，且已產生新的。
         subject: Mastodon：兩步驟驗證復原碼已經重新產生
         title: 2FA 復原碼已變更
       unlock_instructions:
-        subject: Mastodon：帳戶解鎖指引
+        subject: Mastodon：解鎖指引
     omniauth_callbacks:
       failure: 無法透過 %{kind} 認證是否為您，因為「%{reason}」。
-      success: 成功透過 %{kind} 登入帳戶。
+      success: 成功透過 %{kind} 帳戶登入。
     passwords:
       no_token: 您必須透過密碼重設信件才能存取此頁面。若確實如此，請確定輸入的網址是完整的。
       send_instructions: 若電子信箱位址存在於資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
@@ -92,6 +92,6 @@ zh-TW:
       confirmation_period_expired: 需要在 %{period} 內完成驗證。請重新申請
       expired: 已經過期，請重新請求
       not_found: 找不到
-      not_locked: 並未被鎖定
+      not_locked: 並未鎖定
       not_saved:
         other: 因 %{count} 錯誤導致 %{resource} 無法儲存：

@@ -82,7 +82,7 @@ function main() {
       content.textContent = timeAgoString({
         formatMessage: ({ id, defaultMessage }, values) => (new IntlMessageFormat(messages[id] || defaultMessage, locale)).format(values),
         formatDate: (date, options) => (new Intl.DateTimeFormat(locale, options)).format(date),
-      }, datetime, now, now.getFullYear());
+      }, datetime, now, now.getFullYear(), content.getAttribute('datetime').includes('T'));
     });
 
     const reactComponents = document.querySelectorAll('[data-component]');
@@ -140,15 +140,6 @@ function main() {
     }
 
     return false;
-  });
-
-  delegate(document, '.blocks-table button.icon-button', 'click', function(e) {
-    e.preventDefault();
-
-    const classList = this.firstElementChild.classList;
-    classList.toggle('fa-chevron-down');
-    classList.toggle('fa-chevron-up');
-    this.parentElement.parentElement.nextElementSibling.classList.toggle('hidden');
   });
 
   delegate(document, '.modal-button', 'click', e => {

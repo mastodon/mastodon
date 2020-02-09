@@ -33,14 +33,15 @@ fr:
       help:
         native_redirect_uri: Utiliser %{native_redirect_uri} pour les tests locaux
         redirect_uri: Utiliser une ligne par URL
-        scopes: Séparer les portées avec des espaces. Laisser vide pour utiliser les portées par défaut.
+        scopes: Séparer les permissions avec des espaces. Laisser vide pour utiliser les portées par défaut.
       index:
         application: Application
         callback_url: URL de retour d’appel
         delete: Effacer
+        empty: Vous n’avez pas d’application.
         name: Nom
         new: Nouvelle application
-        scopes: Portées
+        scopes: Permissions
         show: Voir
         title: Vos applications
       new:
@@ -49,7 +50,7 @@ fr:
         actions: Actions
         application_id: ID de l’application
         callback_urls: URL du retour d’appel
-        scopes: Portées
+        scopes: Permissions
         secret: Secret
         title: 'Application : %{name}'
     authorizations:
@@ -73,7 +74,7 @@ fr:
         application: Application
         created_at: Créé le
         date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: permissions
+        scopes: Permissions
         title: Vos applications autorisées
     errors:
       messages:
@@ -84,7 +85,7 @@ fr:
         invalid_redirect_uri: L’URL de redirection n’est pas valide.
         invalid_request: La requête omet un paramètre requis, inclut une valeur de paramètre non prise en charge ou est autrement mal formée.
         invalid_resource_owner: Les identifiants fournis par le propriétaire de la ressource ne sont pas valides ou le propriétaire de la ressource ne peut être trouvé
-        invalid_scope: La portée demandée n’est pas valide, est inconnue ou mal formée.
+        invalid_scope: La permission demandée est invalide, inconnue ou mal formée.
         invalid_token:
           expired: Le jeton d’accès a expiré
           revoked: Le jeton d’accès a été révoqué
@@ -119,30 +120,32 @@ fr:
       admin:read:reports: lire les informations sensibles de tous les signalements et des comptes signalés
       admin:write: modifier toutes les données sur le serveur
       admin:write:accounts: effectuer des actions de modération sur les comptes
-      admin:write:reports: effectuer des actions de modération sur les singnalements
-      follow: modifier les relations avec les comptes
+      admin:write:reports: effectuer des actions de modération sur les signalements
+      follow: modifier les relations du compte
       push: recevoir vos notifications poussées
       read: lire toutes les données de votre compte
-      read:accounts: voir les informations du compte
-      read:blocks: voir vos bloquages
+      read:accounts: voir les informations des comptes
+      read:blocks: voir vos blocages
+      read:bookmarks: voir vos marque-pages
       read:favourites: voir vos favoris
       read:filters: voir vos filtres
-      read:follows: voir vos suivis
+      read:follows: voir vos abonnements
       read:lists: voir vos listes
       read:mutes: voir vos masquages
       read:notifications: voir vos notifications
-      read:reports: voir vos rapports
+      read:reports: voir vos signalements
       read:search: rechercher en votre nom
       read:statuses: voir tous les statuts
       write: modifier toutes les données de votre compte
       write:accounts: modifier votre profil
       write:blocks: bloquer des comptes et des domaines
-      write:favourites: statuts favoris
+      write:bookmarks: statuts des marque-pages
+      write:favourites: mettre des statuts en favori
       write:filters: créer des filtres
-      write:follows: suivre les gens
+      write:follows: suivre des personnes
       write:lists: créer des listes
-      write:media: téléverser des fichiers-média
+      write:media: téléverser des fichiers média
       write:mutes: masquer des gens et des conversations
       write:notifications: nettoyer vos notifications
-      write:reports: rapporter d’autres personnes
+      write:reports: signaler d’autres personnes
       write:statuses: publier des statuts

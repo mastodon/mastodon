@@ -157,9 +157,9 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
       fetchRelatedRelationships(dispatch, response.data);
-      done();
     }).catch(error => {
       dispatch(expandNotificationsFail(error, isLoadingMore));
+    }).finally(() => {
       done();
     });
   };
@@ -188,6 +188,7 @@ export function expandNotificationsFail(error, isLoadingMore) {
     type: NOTIFICATIONS_EXPAND_FAIL,
     error,
     skipLoading: !isLoadingMore,
+    skipAlert: !isLoadingMore,
   };
 };
 

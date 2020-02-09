@@ -10,6 +10,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_instance_presenter, only: [:new, :create, :update]
   before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
+  before_action :set_cache_headers, only: [:edit, :update]
 
   skip_before_action :require_functional!, only: [:edit, :update]
 
@@ -21,10 +22,17 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     not_found
   end
 
+  def update
+    super do |resource|
+      resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?
+    end
+  end
+
   protected
 
   def update_resource(resource, params)
     params[:password] = nil if Devise.pam_authentication && resource.encrypted_password.blank?
+
     super
   end
 
@@ -108,5 +116,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def require_not_suspended!
     forbidden if current_account.suspended?
+  end
+
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
   end
 end

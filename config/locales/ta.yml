@@ -1,12 +1,24 @@
 ---
 ta:
   about:
+    about_mastodon_html: 'எதிர்காலத்தின் சமூகப் பிணையம்: விளம்பரம் இல்லை, பொதுநிறுவனக் கண்காணிப்பு இல்லை, நெறிக்குட்பட்ட வரைவுத்திட்டம், மற்றும் பகிர்ந்தாளுதல்! மஸ்டோடோனுடன் உங்கள் தரவுகள் உங்களுக்கே சொந்தம்!'
     about_this: தகவல்
+    active_count_after: செயலில்
+    active_footnote: செயலிலுள்ள மாதாந்திர பயனர்கள் (செமாப)
     administered_by: 'நிர்வாகம்:'
     api: செயலிக்கான மென்பொருள் இடைமுகம் API
     apps: கைப்பேசி செயலிகள்
+    apps_platforms: மஸ்டோடோனை ஐஓஎஸ், ஆன்டிராய்டு, மற்றும் பிற இயங்குதளங்களில் பயன்படுத்துக
+    browse_directory: தன்விவரக் கோப்புகளைப் பார்த்து உங்கள் விருப்பங்களுக்கேற்பத் தேர்வு செய்க
+    browse_local_posts: நேரலையில் பொதுப் பதிவுகளை இந்த வழங்கியிலிருந்து காண்க
+    browse_public_posts: நேரலையில் பொதுப் பதிவுகளை மஸ்டோடோனிலிருந்து காண்க
     contact: தொடர்புக்கு
+    contact_missing: நிறுவப்படவில்லை
+    contact_unavailable: பொ/இ
+    discover_users: பயனர்களை அறிக
+    documentation: ஆவணச்சான்று
     get_apps: கைப்பேசி செயலியை முயற்சி செய்யவும்
+    hosted_on: மாஸ்டோடாண் %{domain} இனையத்தில் இயங்குகிறது
     learn_more: மேலும் அறிய
     privacy_policy: தனியுரிமை கொள்கை
     see_whats_happening: என்ன நடக்கிறது என்று பார்க்க
@@ -29,6 +41,7 @@ ta:
     what_is_mastodon: மச்டொடன் என்றால் என்ன?
   accounts:
     choices_html: "%{name}-இன் தேர்வுகள்:"
+    featured_tags_hint: குறிப்பிட்ட சிட்டைகளை இங்கு நீங்கள் காட்சிப்படுத்தலாம்.
     follow: பின்தொடர்
     followers:
       one: பின்தொடர்பவர்
@@ -37,8 +50,184 @@ ta:
     joined: "%{date} அன்று இனைந்தார்"
     last_active: கடைசியாக பார்த்தது
     media: படங்கள்
+    moved_html: "%{name} %{new_profile_link}க்கு மாறியுள்ளது:"
+    network_hidden: இத்தகவல் கிடைக்கவில்லை
     never_active: எப்போதுமில்லை
     nothing_here: இங்கு எதுவும் இல்லை!
+    people_followed_by: "%{name} பின்தொடரும் நபர்கள்"
+    people_who_follow: "%{name}ஐ பின்தொடரும் நபர்கள்"
+    pin_errors:
+      following: தாங்கள் அங்கீகரிக்க விரும்பும் நபரை தாங்கள் ஏற்கனவே பின்தொடரந்து கொண்டு இருக்க வேண்டும்
+    posts_tab_heading: பிளிறல்கள்
+    posts_with_replies: பிளிறல்கள் மற்றும் மறுமொழிகள்
+    reserved_username: பயனர்பெயர் முன்பதிவு செய்யப்பட்டுள்ளது
+    roles:
+      admin: நிர்வாகி
+      bot: பொறி
+      group: குழு
+      moderator: மட்டுறுத்துநர்
+    unavailable: சுயவிவரம் கிடைக்கவில்லை
+    unfollow: பின்தொடராதே
+  admin:
+    account_actions:
+      action: நடவடிக்கை எடு
+      title: "%{acct}ஐ நடுநிலைப்படுத்தவும்"
+    account_moderation_notes:
+      create: குறிப்பு எழுதவும்
+      created_msg: நடுநிலை குறிப்பு வெற்றிகரமாக பதிவு செய்யப்பட்டது!
+      delete: அகற்று
+      destroyed_msg: நடுநிலை குறிப்பு வெற்றிகரமாக அகற்றப்பட்டது!
+    accounts:
+      approve: அங்கீகரி
+      approve_all: அனைத்தும் அங்கீகரி
+      are_you_sure: நிச்சயமா?
+      avatar: அவதாரம்
+      by_domain: தளம்
+      change_email:
+        changed_msg: உறிமை மின் அஞ்சல் வெற்றிகரமாக மாற்ற்ப்பட்டது!
+        current_email: தற்கால மின் அஞ்சல்
+        label: மின் அஞ்சலை மற்றுக
+        new_email: புதிய மின் அஞ்சல்
+        submit: மின் அஞ்சல் மாற்றுக
+        title: "%{username} உடைய மின் அஞ்சலை மாற்றுக"
+      confirm: உறுதிசெய்
+      confirmed: உறுதி செய்யப்பட்டது
+      confirming: உறுதி செய்யப்படுகிறது
+      deleted: நீக்கு
+      demote: பதவியிறக்கு
+      disable: முடக்கப்பட்டது
+      disable_two_factor_authentication: இரண்டு கட்ட உளைவுச்சொல்லை நீக்குக
+      disabled: முடக்கப்பட்டது
+      display_name: புனைப்பெயர்
+      domain: இனையதளப் பெயர்
+      edit: திருத்து
+      email: மின்னஞ்சல்
+      email_status: மின்னஞ்சல் நிலவரம்
+      enable: இயக்கு
+      enabled: செயலில்பாட்டில் உள்ளது
+      followers: வாசகர்கள்
+      follows: வாசிக்கிறார்
+      header: தலைப்பு
+      inbox_url: மின்னஞ்சல் பெட்டி முகவரி
+      invited_by: அழைத்தவர்
+      ip: இணைய முகவரி ஏன்
+      joined: சேர்ந்தார்
+      location:
+        all: அனைத்தும்
+        local: அருகாமை
+        remote: தொலைவு
+        title: இடம்
+      login_status: நுழைவு நிலை
+      media_attachments: சேர்க்கைகள்
+      moderation:
+        active: அனுமதிக்கப்பட்டுள்ளது
+        all: அனைத்தும்
+        pending: நிலுவையில் உள்ளது
+        silenced: தடுக்கப்பட்டுள்ளது
+        suspended: இடைநீக்கப்பட்டது
+        title: மிதமானர்
+      moderation_notes: நடுவர் கருத்து
+      most_recent_activity: மிக அண்மை நடவடிக்கை
+      most_recent_ip: மிக அண்மை ஐபி
+      no_limits_imposed: அளவுக்கட்டுப்பாடு திணிக்கப்படவில்லை
+      pending: திறனாய்வு நிலுவையில் உள்ளது
+      perform_full_suspension: தற்காலீகமாக நீக்குக
+      promote: பரிந்துறை
+      protocol: நெறிமுறை
+      public: பொது
+      reject: விலக்கு
+      reject_all: அனைத்தையும் மறு
+      remove_avatar: அவதாரத்தை நீக்குக
+      resend_confirmation:
+        already_confirmed: இப்பயனர் ஏற்கனவே  உறுதி  படுத்திவிட்டார்
+      reset: மீட்டமைக்கவும்
+      reset_password: கடவுச்சொல்லை மீளமைத்திடுக
+      role: அனுமதி
+      roles:
+        admin: நிர்வாகி
+        moderator: நடுவர்
+        staff: பணியாளர்
+        user: பயனர்
+      search: தேடு
+      shared_inbox_url: குழு மின்னஞ்சல் முகவரி
+      show:
+        created_reports: உறுவாக்கிய அறிக்கைகள்
+        targeted_reports: மற்றவர்களால் அறிவிக்கப்பட்டது
+      silence: அணை
+      silenced: அணைக்கப்பட்டது
+      statuses: பதிவுகள்
+      suspended: இடைநீக்கப்பட்டது
+      time_in_queue: வரிசையில் காத்திருக்கிறது %{time}
+      title: கணக்குகள்
+      username: பயனர் பெயர்
+      warn: எச்சரி
+      whitelisted: அனுமதிப்பட்டியல்
+    action_logs:
+      actions:
+        create_announcement: "%{name} %{target} என்றொரு புதிய அறிவிப்பை உருவாக்கியிருக்கிறார்"
+        destroy_announcement: "%{name} %{target} அறிவிப்பை நீக்கிவிட்டார்"
+        update_announcement: "%{name} %{target} அறிவிப்பைப் புதுப்பித்துள்ளார்"
+    announcements:
+      destroyed_msg: அறிவிப்பு வெற்றிகரமாக நீக்கப்பட்டது!
+      edit:
+        title: அறிவிப்பைத் திருத்து
+      empty: அறிவிப்புகள் ஏதும் இல்லை.
+      live: நேரலை
+      new:
+        create: அறிவிப்பை உருவாக்கு
+        title: புதிய அறிவிப்பு
+      published_msg: அறிவிப்பு வெற்றிகரமாகப் பதியப்பட்டது!
+      scheduled_for: "%{time} மணிக்குப் பதியப்படும்"
+      scheduled_msg: அறிவிப்பு, குறித்த நேரத்தில் பதியப்படும்!
+      title: அறிவிப்புகள்
+      unpublished_msg: அறிவிப்பு வெற்றிகரமாகத் திரும்பப் பெறப்பட்டது!
+      updated_msg: அறிவிப்பு வெற்றிகரமாகத் திருத்தப்பட்டது!
+    custom_emojis:
+      uncategorized: வகைப்படுத்தப்படாதவை
+      unlist: பட்டியலில் இருந்து அகற்றுக
+      unlisted: பட்டியலிடப்படாத
+      upload: பதிவேற்றம்
+    dashboard:
+      feature_registrations: பதிவுகள்
+      features: அம்சங்கள்
+      recent_users: அண்மை பயனாளர்கள்
+      total_users: மொத்த பயனாளர் தொகை
+      trends: போக்குகள்
+    domain_blocks:
+      new:
+        severity:
+          noop: எதுவுமில்லை
+          suspend: தற்காலீகமாக நீக்குக
+    email_domain_blocks:
+      empty: மின்னஞ்சற் களங்கள் எதுவும் தடுக்கப்படவில்லை.
+    invites:
+      filter:
+        all: அனைத்தும்
+        expired: காலாவதியானது
+        title: வடிகட்டி
+      title: அழைப்பிதழ்கள்
+    relays:
+      delete: அகற்று
+      disable: முடக்கு
+      disabled: முடக்கப்பட்டது
+      enabled: செயலில்பாட்டில் உள்ளது
+    reports:
+      account:
+        notes:
+          one: "%{count} குறிப்பு"
+          other: "%{count} குறிப்புகள்"
+        reports:
+          one: "%{count} புகார்"
+          other: "%{count} புகார்கள்"
+      comment:
+        none: எதுவுமில்லை
+  appearance:
+    localization:
+      body: மாஸ்டோடான் தன்னார்வலர்களால் மொழிபெயர்க்கப்படுகிறது.
+      guide_link_text: அனைவரும் பங்களிக்கலாம்.
+  date:
+    formats:
+      default: "%b %d, %Y"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -49,6 +238,11 @@ ta:
     '429': Throttled
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    index:
+      empty: தடுப்புகள் ஏதும் இல்லை.
+  generic:
+    delete: நீக்கு
   invites:
     expires_in:
       '1800': 30 minutes
@@ -57,3 +251,16 @@ ta:
       '43200': 12 hours
       '604800': 1 week
       '86400': 1 day
+  notifications:
+    email_events: மின்னஞ்சல் அறிவிப்புகளுக்கான நிகழ்வுகள்
+    email_events_hint: 'எந்த நிகழ்வுகளுக்கு அறிவிப்புகளைப் பெற வேண்டும் என்று தேர்வு செய்க:'
+    other_settings: அறிவிப்புகள் குறித்த பிற அமைப்புகள்
+  polls:
+    errors:
+      invalid_choice: நீங்கள் தேர்வு செய்த விருப்பம் கிடைக்கவில்லை
+  reactions:
+    errors:
+      limit_reached: எதிர்வினைகளுக்கான உச்சவரம்பு எட்டப்பட்டது
+      unrecognized_emoji: அங்கீகரிக்கப்பட்ட ஈமோஜி அல்ல
+  statuses:
+    show_thread: தொடரைக் காட்டு
