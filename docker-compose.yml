@@ -26,7 +26,9 @@ services:
 #    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
 #    environment:
 #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "cluster.name=es-mastodon"
 #      - "discovery.type=single-node"
+#      - "bootstrap.memory_lock=true"
 #    networks:
 #      - internal_network
 #    healthcheck:
