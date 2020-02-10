@@ -47,7 +47,7 @@ RUN apt update && \
 	make -j$(nproc) > /dev/null && \
 	make install
 
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
+ENV PATH="/opt/ruby/bin:/opt/node/bin:${PATH}"
 
 RUN npm install -g yarn && \
 	gem install bundler && \
@@ -71,7 +71,7 @@ COPY --from=build-dep /opt/ruby /opt/ruby
 COPY --from=build-dep /opt/jemalloc /opt/jemalloc
 
 # Add more PATHs to the PATH
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"
+ENV PATH="/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin:${PATH}"
 
 # Create the mastodon user
 ARG UID=991
