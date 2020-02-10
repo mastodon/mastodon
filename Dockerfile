@@ -27,7 +27,7 @@ RUN apt update && \
 	make -j$(nproc) > /dev/null && \
 	make install_bin install_include install_lib
 
-# Install ruby
+# Install Ruby
 ENV RUBY_VER="2.6.5"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
@@ -47,22 +47,28 @@ RUN apt update && \
 	make -j$(nproc) > /dev/null && \
 	make install
 
+# Add more PATHs to the PATH
 ENV PATH="/opt/ruby/bin:/opt/node/bin:${PATH}"
 
-RUN npm install -g yarn && \
-	gem install bundler && \
-	apt update && \
+# Install OS Package Dependencies
+RUN apt update && \
 	apt -y install git libicu-dev libidn11-dev \
 	libpq-dev libprotobuf-dev protobuf-compiler
 
+# Install Node and Ruby Dependencies
+RUN npm install -g yarn
+RUN	gem install bundler
+
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
+# Node and Ruby Runtimes
 RUN cd /opt/mastodon && \
   bundle config set deployment 'true' && \
   bundle config set without 'development test' && \
 	bundle install -j$(nproc) && \
 	yarn install --pure-lockfile
 
+##---------------------------------------------------------------------------
 FROM ubuntu:18.04
 
 # Copy over all the langs needed for runtime
