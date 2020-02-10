@@ -6,7 +6,7 @@ module DomainControlHelper
 
     domain = begin
       if uri_or_domain.include?('://')
-        Addressable::URI.parse(uri_or_domain).domain
+        Addressable::URI.parse(uri_or_domain).host
       else
         uri_or_domain
       end

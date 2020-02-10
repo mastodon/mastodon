@@ -3,8 +3,8 @@ FROM ubuntu:18.04 as build-dep
 # Use bash for the shell
 SHELL ["bash", "-c"]
 
-# Install Node
-ENV NODE_VER="12.11.1"
+# Install Node v12 (LTS)
+ENV NODE_VER="12.14.0"  
 RUN	echo "Etc/UTC" > /etc/localtime && \
 	apt update && \
 	apt -y install wget python && \
@@ -58,7 +58,9 @@ RUN npm install -g yarn && \
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 RUN cd /opt/mastodon && \
-	bundle install -j$(nproc) --deployment --without development test && \
+  bundle config set deployment 'true' && \
+  bundle config set without 'development test' && \
+	bundle install -j$(nproc) && \
 	yarn install --pure-lockfile
 
 FROM ubuntu:18.04
@@ -123,3 +125,4 @@ RUN cd ~ && \
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
 ENTRYPOINT ["/tini", "--"]
+EXPOSE 3000 4000

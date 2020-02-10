@@ -1,3 +1,6 @@
 Fabricator(:announcement) do
-  body 'hello'
+  text      { Faker::Lorem.paragraph(sentence_count: 2) }
+  published true
+  starts_at nil
+  ends_at   nil
 end

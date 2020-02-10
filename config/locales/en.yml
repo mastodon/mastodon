@@ -11,6 +11,7 @@ en:
     apps: Mobile apps
     apps_platforms: Use Mastodon from iOS, Android and other platforms
     browse_directory: Browse a profile directory and filter by interests
+    browse_local_posts: Browse a live stream of public posts from this server
     browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
     contact_missing: Not set
@@ -38,7 +39,7 @@ en:
     unavailable_content_description:
       domain: Server
       reason: Reason
-      rejecting_media: 'Media files from these servers will not be processed or stored, and and no thumbnails will be displayed, requiring manual click-through to the original file:'
+      rejecting_media: 'Media files from these servers will not be processed or stored, and no thumbnails will be displayed, requiring manual click-through to the original file:'
       silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users'' interactions, unless you are following them:'
       suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
     unavailable_content_html: Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
@@ -77,6 +78,7 @@ en:
     roles:
       admin: Admin
       bot: Bot
+      group: Group
       moderator: Mod
     unavailable: Profile unavailable
     unfollow: Unfollow
@@ -117,9 +119,7 @@ en:
       email_status: Email status
       enable: Enable
       enabled: Enabled
-      feed_url: Feed URL
       followers: Followers
-      followers_url: Followers URL
       follows: Follows
       header: Header
       inbox_url: Inbox URL
@@ -147,10 +147,8 @@ en:
       no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
-      outbox_url: Outbox URL
       pending: Pending review
       perform_full_suspension: Suspend
-      profile_url: Profile URL
       promote: Promote
       protocol: Protocol
       public: Public
@@ -173,8 +171,8 @@ en:
         moderator: Moderator
         staff: Staff
         user: User
-      salmon_url: Salmon URL
       search: Search
+      search_same_ip: Other users with the same IP
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
@@ -200,11 +198,15 @@ en:
         change_email_user: "%{name} changed the e-mail address of user %{target}"
         confirm_user: "%{name} confirmed e-mail address of user %{target}"
         create_account_warning: "%{name} sent a warning to %{target}"
+        create_announcement: "%{name} created new announcement %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
+        create_domain_allow: "%{name} whitelisted domain %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
+        destroy_announcement: "%{name} deleted announcement %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
+        destroy_domain_allow: "%{name} removed domain %{target} from whitelist"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
@@ -224,10 +226,26 @@ en:
         unassigned_report: "%{name} unassigned report %{target}"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
+        update_announcement: "%{name} updated announcement %{target}"
         update_custom_emoji: "%{name} updated emoji %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       title: Audit log
+    announcements:
+      destroyed_msg: Announcement successfully deleted!
+      edit:
+        title: Edit announcement
+      empty: No announcements found.
+      live: Live
+      new:
+        create: Create announcement
+        title: New announcement
+      published_msg: Announcement successfully published!
+      scheduled_for: Scheduled for %{time}
+      scheduled_msg: Announcement scheduled for publication!
+      title: Announcements
+      unpublished_msg: Announcement successfully unpublished!
+      updated_msg: Announcement successfully updated!
     custom_emojis:
       assign_category: Assign category
       by_domain: Domain
@@ -339,13 +357,11 @@ en:
       delete: Delete
       destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
+      empty: No e-mail domains currently blacklisted.
       new:
         create: Add domain
         title: New e-mail blacklist entry
       title: E-mail blacklist
-    followers:
-      back_to_account: Back To Account
-      title: "%{acct}'s Followers"
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
@@ -374,6 +390,8 @@ en:
       title: Invites
     pending_accounts:
       title: Pending accounts (%{count})
+    relationships:
+      title: "%{acct}'s relationships"
     relays:
       add_new: Add new relay
       delete: Delete
@@ -395,12 +413,17 @@ en:
       destroyed_msg: Report note successfully deleted!
     reports:
       account:
-        note: note
-        report: report
+        notes:
+          one: "%{count} note"
+          other: "%{count} notes"
+        reports:
+          one: "%{count} report"
+          other: "%{count} reports"
       action_taken_by: Action taken by
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
+      by_target_domain: Domain of reported account
       comment:
         none: None
       created_at: Reported
@@ -446,6 +469,8 @@ en:
         users: To logged-in local users
       domain_blocks_rationale:
         title: Show rationale
+      enable_bootstrap_timeline_accounts:
+        title: Enable default follows for new users
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
@@ -574,7 +599,12 @@ en:
     animations_and_accessibility: Animations and accessibility
     confirmation_dialogs: Confirmation dialogs
     discovery: Discovery
+    localization:
+      body: Mastodon is translated by volunteers.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Everyone can contribute.
     sensitive_content: Sensitive content
+    toot_layout: Toot layout
   application_mailer:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"
@@ -645,6 +675,9 @@ en:
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
     invalid_password: Invalid password
     prompt: Confirm password to continue
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -711,7 +744,6 @@ en:
     blocks: You block
     csv: CSV
     domain_blocks: Domain blocks
-    follows: You follow
     lists: Lists
     mutes: You mute
     storage: Media storage
@@ -722,6 +754,7 @@ en:
     hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
   filters:
     contexts:
+      account: Profiles
       home: Home timeline
       notifications: Notifications
       public: Public timelines
@@ -733,6 +766,7 @@ en:
       invalid_irreversible: Irreversible filtering only works with home or notifications context
     index:
       delete: Delete
+      empty: You have no filters.
       title: Filters
     new:
       title: Add new filter
@@ -745,6 +779,7 @@ en:
     all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
+    delete: Delete
     no_batch_actions_available: No batch actions available on this page
     order_by: Order by
     save_changes: Save changes
@@ -881,6 +916,10 @@ en:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
       title: New boost
+  notifications:
+    email_events: Events for e-mail notifications
+    email_events_hint: 'Select events that you want to receive notifications for:'
+    other_settings: Other notifications settings
   number:
     human:
       decimal_units:
@@ -905,6 +944,7 @@ en:
       duration_too_long: is too far into the future
       duration_too_short: is too soon
       expired: The poll has already ended
+      invalid_choice: The chosen vote option does not exist
       over_character_limit: cannot be longer than %{max} characters each
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
@@ -912,9 +952,16 @@ en:
     other: Other
     posting_defaults: Posting defaults
     public_timelines: Public timelines
+  reactions:
+    errors:
+      limit_reached: Limit of different reactions reached
+      unrecognized_emoji: is not a recognized emoji
   relationships:
     activity: Account activity
     dormant: Dormant
+    followers: Followers
+    following: Following
+    invited: Invited
     last_active: Last active
     most_recent: Most recent
     moved: Moved
@@ -979,7 +1026,7 @@ en:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: unknown platform
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1041,6 +1088,7 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
+    show_thread: Show thread
     sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
     visibilities:

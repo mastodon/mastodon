@@ -79,7 +79,7 @@ sk:
         access_denied: Prístup zamietnutý.
         credential_flow_not_configured: Resource Owner Password Credentials zlyhal lebo Doorkeeper.configure.resource_owner_from_credentials nebol nakonfigurovaný.
         invalid_client: Overenie klienta zlyhalo. Neznámy klient, chýbajú údaje o klientovi alebo nepodporovaná metóda overovania.
-        invalid_grant: Poslané oprávnenie je neplatné, expirované, zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke alebo bolo vydané niekomu inému.
+        invalid_grant: Dané oprávnenie je neplatné, vypršané, zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke, alebo bolo vydané pre iný klient.
         invalid_redirect_uri: Presmerovacia URI je neplatná.
         invalid_request: Požiadavke chýba povinný parameter alebo obsahuje nepodporovanú hodnotu niektorého parametra alebo je nejako inak poškodená.
         invalid_resource_owner: Uvedené prihlasovacie údaje sú neplatné alebo nenájdené
@@ -93,7 +93,7 @@ sk:
         temporarily_unavailable: Autorizačný server ťa teraz nemôže obslúžiť, pretože prebieha údržba alebo je dočasne preťažený.
         unauthorized_client: Klient nie je autorizovaný vykonať danú požiadavku týmto spôsobom.
         unsupported_grant_type: Tento typ oprávnenia nie je podporovaný autorizačným serverom.
-        unsupported_response_type: Autorizačný server nepodporuje typ tejto odpovede.
+        unsupported_response_type: Overovací server nepodporuje tento druh odpovede.
     flash:
       applications:
         create:
@@ -124,6 +124,7 @@ sk:
       read: prezri si všetky dáta ohľadom svojho účetu
       read:accounts: prezri si informácie o účte
       read:blocks: prezri svoje bloky
+      read:bookmarks: pozri svoje záložky
       read:favourites: prezri svoje obľúbené
       read:filters: prezri svoje filtrovanie
       read:follows: prezri si svoje sledovania
@@ -136,6 +137,7 @@ sk:
       write: upraviť všetky dáta tvojho účtu
       write:accounts: uprav svoj profil
       write:blocks: blokuj účty a domény
+      write:bookmarks: pridaj si príspevky k záložkám
       write:favourites: obľúbené príspevky
       write:filters: vytvor roztriedenie
       write:follows: následuj ľudí

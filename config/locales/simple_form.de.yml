@@ -14,6 +14,12 @@ de:
         text_html: Optional. Du kannst Beitragssyntax nutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
+      announcement:
+        all_day: Wenn aktiviert werden nur die Daten des Zeitraums angezeigt
+        ends_at: Optional. Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen
+        scheduled_at: Leer lassen um die Ankündigung sofort zu veröffentlichen
+        starts_at: Optional. Falls deine Ankündigung an einen bestimmten Zeitraum gebunden ist
+        text: Du kannst die Toot-Syntax verwenden. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm des Benutzers einnehmen wird
       defaults:
         autofollow: Leute, die sich über deine Einladung registrieren, werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
@@ -41,7 +47,7 @@ de:
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_show_application: Die Anwendung die du nutzst wird in der detaillierten Ansicht deiner Beiträge angezeigt
-        setting_use_blurhash: Die Farbverläufe basieren auf den Farben der versteckten Medien, aber verstecken irgendwelche Details
+        setting_use_blurhash: Die Farbverläufe basieren auf den Farben der versteckten Medien, aber verstecken jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken anstatt automatisch zu scrollen
         username: Dein Benutzername wird auf %{domain} einzigartig sein
         whole_word: Wenn das Schlagwort nur aus Buchstaben und Zahlen besteht, wird es nur angewendet, wenn es dem ganzen Wort entspricht
@@ -83,6 +89,12 @@ de:
           silence: Stummschalten
           suspend: Deaktivieren und Benutzerdaten unwiderruflich löschen
         warning_preset_id: Benutze eine Warnungsvorlage
+      announcement:
+        all_day: Ganztägiges Ereignis
+        ends_at: Ereignisende
+        scheduled_at: Veröffentlichung planen
+        starts_at: Beginn des Ereignisses
+        text: Ankündigung
       defaults:
         autofollow: Eingeladene Nutzer sollen dir automatisch folgen
         avatar: Profilbild
@@ -113,6 +125,7 @@ de:
         setting_aggregate_reblogs: Gruppiere erneut geteilte Beiträge auf der Startseite
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
+        setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Medien immer als heikel markieren

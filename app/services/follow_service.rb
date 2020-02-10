@@ -8,7 +8,7 @@ class FollowService < BaseService
   # @param [Account] source_account From which to follow
   # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
   # @param [true, false, nil] reblogs Whether or not to show reblogs, defaults to true
-  def call(source_account, target_account, reblogs: nil)
+  def call(source_account, target_account, reblogs: nil, bypass_locked: false)
     reblogs = true if reblogs.nil?
     target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
 
@@ -30,7 +30,7 @@ class FollowService < BaseService
 
     ActivityTracker.increment('activity:interactions')
 
-    if target_account.locked? || source_account.silenced? || target_account.activitypub?
+    if (target_account.locked? && !bypass_locked) || source_account.silenced? || target_account.activitypub?
       request_follow(source_account, target_account, reblogs: reblogs)
     elsif target_account.local?
       direct_follow(source_account, target_account, reblogs: reblogs)

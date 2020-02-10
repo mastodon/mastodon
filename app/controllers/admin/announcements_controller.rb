@@ -1,67 +1,88 @@
 # frozen_string_literal: true
 
-module Admin
-  class AnnouncementsController < BaseController
-    before_action :set_announcement, only: [:edit, :update, :destroy]
-    after_action :publish_updates, only: [:create, :update, :destroy]
+class Admin::AnnouncementsController < Admin::BaseController
+  before_action :set_announcements, only: :index
+  before_action :set_announcement, except: [:index, :new, :create]
 
-    def index
-      @announcements = Announcement.all
+  def index
+    authorize :announcement, :index?
+  end
+
+  def new
+    authorize :announcement, :create?
+
+    @announcement = Announcement.new
+  end
+
+  def create
+    authorize :announcement, :create?
+
+    @announcement = Announcement.new(resource_params)
+
+    if @announcement.save
+      PublishScheduledAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
+      log_action :create, @announcement
+      redirect_to admin_announcements_path, notice: @announcement.published? ? I18n.t('admin.announcements.published_msg') : I18n.t('admin.announcements.scheduled_msg')
+    else
+      render :new
     end
+  end
 
-    def new
-      @announcement = Announcement.new
-      fill_links!
+  def edit
+    authorize :announcement, :update?
+  end
+
+  def update
+    authorize :announcement, :update?
+
+    if @announcement.update(resource_params)
+      PublishScheduledAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
+      log_action :update, @announcement
+      redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.updated_msg')
+    else
+      render :edit
     end
+  end
 
-    def edit
-      fill_links!
-    end
+  def publish
+    authorize :announcement, :update?
+    @announcement.publish!
+    PublishScheduledAnnouncementWorker.perform_async(@announcement.id)
+    log_action :update, @announcement
+    redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.published_msg')
+  end
 
-    def create
-      @announcement = Announcement.new(announcement_params)
-      if @announcement.save
-        redirect_to :admin_announcements
-      else
-        fill_links!
-        render :new
-      end
-    end
+  def unpublish
+    authorize :announcement, :update?
+    @announcement.unpublish!
+    UnpublishAnnouncementWorker.perform_async(@announcement.id)
+    log_action :update, @announcement
+    redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.unpublished_msg')
+  end
 
-    def update
-      if @announcement.update(announcement_params)
-        redirect_to :admin_announcements
-      else
-        fill_links!
-        render :edit
-      end
-    end
+  def destroy
+    authorize :announcement, :destroy?
+    @announcement.destroy!
+    UnpublishAnnouncementWorker.perform_async(@announcement.id) if @announcement.published?
+    log_action :destroy, @announcement
+    redirect_to admin_announcements_path, notice: I18n.t('admin.announcements.destroyed_msg')
+  end
 
-    def destroy
-      @announcement.destroy
-      redirect_to admin_announcements_path
-    end
+  private
 
-    private
+  def set_announcements
+    @announcements = AnnouncementFilter.new(filter_params).results.page(params[:page])
+  end
 
-    def set_announcement
-      @announcement = Announcement.find(params[:id])
-    end
+  def set_announcement
+    @announcement = Announcement.find(params[:id])
+  end
 
-    def announcement_params
-      params.require(:announcement).permit(:body, :order, links_attributes: [:id, :text, :url]).tap do |x|
-        x[:links_attributes].each do |n, link|
-          link[:_destroy] = 1 if link[:id].present? && link[:url].blank? && link[:text].blank?
-        end
-      end
-    end
+  def filter_params
+    params.slice(*AnnouncementFilter::KEYS).permit(*AnnouncementFilter::KEYS)
+  end
 
-    def fill_links!
-      @announcement.links << (3 - @announcement.links.length).times.map { AnnouncementLink.new }
-    end
-
-    def publish_updates
-      AnnouncementPublishWorker.perform_async
-    end
+  def resource_params
+    params.require(:announcement).permit(:text, :scheduled_at, :starts_at, :ends_at, :all_day)
   end
 end

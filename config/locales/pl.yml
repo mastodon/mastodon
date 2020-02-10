@@ -11,6 +11,7 @@ pl:
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
     browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
+    browse_local_posts: Przeglądaj strumień publicznych wpisów z tego serwera
     browse_public_posts: Przeglądaj strumień publicznych wpisów na Mastodonie na żywo
     contact: Kontakt
     contact_missing: Nie ustawiono
@@ -20,6 +21,9 @@ pl:
     federation_hint_html: Z kontem na %{instance}, możesz śledzić użytkowników każdego serwera Mastodona i nie tylko.
     get_apps: Spróbuj aplikacji mobilnej
     hosted_on: Mastodon uruchomiony na %{domain}
+    instance_actor_flash: |
+      To konto jest wirtualnym nadawcą, używanym do reprezentacji serwera, a nie jakiegokolwiek użytkownika.
+      Jest używane w celu federowania i nie powinno być blokowane, chyba że chcesz zablokować całą instację, w takim przypadku użyj blokady domeny.
     learn_more: Dowiedz się więcej
     privacy_policy: Polityka prywatności
     see_whats_happening: Zobacz co się dzieje
@@ -33,6 +37,14 @@ pl:
     status_count_before: Są autorami
     tagline: Śledź znajomych i poznawaj nowych
     terms: Zasady użytkowania
+    unavailable_content: Niedostępne treści
+    unavailable_content_description:
+      domain: Serwer
+      reason: Powód
+      rejecting_media: 'Pliki multimedialne z tych serwerów nie będą przetwarzane ani przechowywane, ani ich miniaturki nie będą wyświetlane, wymuszając ręczne przejście do oryginalnego pliku:'
+      silenced: 'Posty z tych serwerów będą ukryte na publicznych osiach czasu i konwersacjach, a powiadomienia z interakcji ich użytkowników nie będą generowane, chyba że ich obserwujesz:'
+      suspended: 'Żadne dane z tych serwerów nie będą przetwarzane, przechowywane ani wymieniane, sprawiając że jakakolwiek interakcja czy komunikacja z użytkownikami tych serwerów będzie niemożliwa:'
+    unavailable_content_html: Normalnie Mastodon pozwala ci przeglądać treści od innych użytkowników z jakiegokolwiek serwera w fediwersum. To są wyjątki, które zostały stworzone na tym konkretnym serwerze.
     user_count_after:
       few: użytkowników
       many: użytkowników
@@ -42,6 +54,8 @@ pl:
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     choices_html: 'Polecani przez %{name}:'
+    endorsements_hint: Możesz promować ludzi, których obserwujesz, z poziomu interfejsu webowego - wtedy oni pojawią się w tym miejscu.
+    featured_tags_hint: Możesz przedstawić w tym miejscu kilka wybranych hasztagów.
     follow: Śledź
     followers:
       few: śledzących
@@ -55,6 +69,7 @@ pl:
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     network_hidden: Ta informacja nie jest dostępna
+    never_active: Nigdy
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -71,6 +86,7 @@ pl:
     roles:
       admin: Administrator
       bot: Bot
+      group: Grupa
       moderator: Moderator
     unavailable: Profil niedostępny
     unfollow: Przestań śledzić
@@ -111,9 +127,7 @@ pl:
       email_status: Stan e-maila
       enable: Aktywuj
       enabled: Aktywowano
-      feed_url: Adres kanału
       followers: Śledzący
-      followers_url: Adres śledzących
       follows: Śledzeni
       header: Nagłówek
       inbox_url: Adres skrzynki
@@ -141,10 +155,8 @@ pl:
       no_account_selected: Żadne konto nie zostało zmienione, bo żadne nie zostało wybrane
       no_limits_imposed: Nie nałożono ograniczeń
       not_subscribed: Nie zasubskrybowano
-      outbox_url: Adres skrzynki nadawczej
       pending: Oczekuje na przegląd
       perform_full_suspension: Zawieś
-      profile_url: Adres profilu
       promote: Podnieś uprawnienia
       protocol: Protokół
       public: Publiczne
@@ -167,8 +179,8 @@ pl:
         moderator: Moderator
         staff: Ekipa
         user: Użytkownik
-      salmon_url: Adres Salmon
       search: Szukaj
+      search_same_ip: Inni użytkownicy z tym samym IP
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -187,17 +199,22 @@ pl:
       username: Nazwa użytkownika
       warn: Ostrzeż
       web: Sieć
+      whitelisted: Na białej liście
     action_logs:
       actions:
         assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
         change_email_user: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
         confirm_user: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
         create_account_warning: "%{name} wysłał(a) ostrzeżenie do %{target}"
+        create_announcement: "%{name} utworzył(a) nowe ogłoszenie %{target}"
         create_custom_emoji: "%{name} dodał(a) nowe emoji %{target}"
+        create_domain_allow: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_announcement: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
+        destroy_domain_allow: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
@@ -217,24 +234,45 @@ pl:
         unassigned_report: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
         unsilence_account: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
+        update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
       title: Dziennik działań administracyjnych
+    announcements:
+      destroyed_msg: Pomyślnie usunięto ogłoszenie!
+      edit:
+        title: Edytuj ogłoszenie
+      empty: Nie znaleziono ogłoszeń.
+      live: Na żywo
+      new:
+        create: Utwórz ogłoszenie
+        title: Nowe ogłoszenie
+      published_msg: Pomyślnie opublikowano ogłoszenie!
+      scheduled_for: Zaplanowano na %{time}
+      scheduled_msg: Zaplanowano publikację ogłoszenia!
+      title: Ogłoszenia
+      unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
+      updated_msg: Pomyślnie zaktualizowano ogłoszenie!
     custom_emojis:
+      assign_category: Ustaw kategorię
       by_domain: Domeny
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
       copy_failed_msg: Nie udało się utworzyć lokalnej kopii emoji
+      create_new_category: Stwórz nową kategorię
       created_msg: Pomyślnie utworzono emoji!
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto emoji!
       disable: Wyłącz
+      disabled: Wyłączone
       disabled_msg: Pomyślnie wyłączono emoji
       emoji: Emotikona
       enable: Włącz
+      enabled: Włączone
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
+      list: Dodaj do listy
       listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
@@ -242,11 +280,14 @@ pl:
       shortcode: Krótki kod
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
+      uncategorized: Bez kategorii
+      unlist: Usuń z listy
       unlisted: Niewidoczne
       update_failed_msg: Nie udało się zaktualizować emoji
       updated_msg: Pomyślnie zaktualizowano emoji!
       upload: Dodaj
     dashboard:
+      authorized_fetch_mode: Tryb bezpieczny
       backlog: zaległe zadania
       config: Konfiguracja
       feature_deletions: Usuwanie kont
@@ -254,10 +295,13 @@ pl:
       feature_profile_directory: Katalog profilów
       feature_registrations: Rejestracja
       feature_relay: Przekazywanie federacji
+      feature_spam_check: Anty-spam
       feature_timeline_preview: Podgląd osi czasu
       features: Możliwości
       hidden_service: Federowanie z ukrytymi usługami
       open_reports: otwarte zgłoszenia
+      pending_tags: hasztagi oczekujące na sprawdzenie
+      pending_users: użytkownicy oczekujący na sprawdzenie
       recent_users: Ostatni użytkownicy
       search: Wyszukiwanie pełnego tekstu
       single_user_mode: Tryb jednego użytkownika
@@ -269,11 +313,18 @@ pl:
       week_interactions: interakcje w tym tygodniu
       week_users_active: aktywni w tym tygodniu
       week_users_new: rejestracje w tym tygodniu
+      whitelist_mode: Tryb białej listy
+    domain_allows:
+      add_new: Zatwierdź domenę
+      created_msg: Domena dodana do białej listy
+      destroyed_msg: Domena usunięta z białej listy
+      undo: Usuń z białej listy
     domain_blocks:
       add_new: Dodaj nową
       created_msg: Blokada domen jest przetwarzana
       destroyed_msg: Blokada domeny nie może zostać odwrócona
       domain: Domena
+      edit: Edytuj blokadę domeny
       existing_domain_block_html: Już narzuciłeś bardziej rygorystyczne limity na %{name}, musisz najpierw <a href="%{unblock_url}">je odblokować</a>.
       new:
         create: Utwórz blokadę
@@ -284,6 +335,10 @@ pl:
           silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
+      private_comment: Prywatny komentarz
+      private_comment_hint: Komentarz na temat ograniczeń dla tej domeny do wewnętrznej informacji dla moderatorów.
+      public_comment: Publiczny komentarz
+      public_comment_hint: Komentarz dotyczący tego ograniczenia domeny widoczny publicznie, jeżeli wyświetlanie listy ograniczonych domen jest włączone.
       reject_media: Odrzucaj pliki multimedialne
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
@@ -305,19 +360,18 @@ pl:
         title: Odwołaj blokadę dla domeny %{domain}
         undo: Cofnij
       undo: Cofnij
+      view: Zobacz blokadę domeny
     email_domain_blocks:
       add_new: Dodaj nową
       created_msg: Pomyślnie utworzono blokadę domeny e-mail
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
       domain: Domena
+      empty: Żadna domena e-mail nie znajduje się obecnie na czarnej liście.
       new:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
       title: Blokowanie domen e-mail
-    followers:
-      back_to_account: Wróć do konta
-      title: Śledzący %{acct}
     instances:
       by_domain: Domena
       delivery_available: Doręczanie jest dostępne
@@ -330,6 +384,8 @@ pl:
         all: Wszystkie
         limited: Ograniczone
         title: Moderacja
+      private_comment: Prywatny komentarz
+      public_comment: Publiczny komentarz
       title: Znane instancje
       total_blocked_by_us: Zablokowane przez nas
       total_followed_by_them: Śledzeni przez nich
@@ -346,6 +402,8 @@ pl:
       title: Zaproszenia
     pending_accounts:
       title: Oczekujące konta (%{count})
+    relationships:
+      title: Relacje %{acct}
     relays:
       add_new: Dodaj nowy
       delete: Usuń
@@ -359,19 +417,18 @@ pl:
       pending: Oczekiwanie na przyjęcie przez przekaźnik
       save_and_enable: Zapisz i aktywuj
       setup: Skonfiguruj połączenie z przekaźnikiem
+      signatures_not_enabled: Przekaźniki nie będą funkcjonować poprawnie kiedy tryb bezpieczeństwa lub białej listy są włączone
       status: Stan
       title: Przekaźniki
     report_notes:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
-      account:
-        note: notatka
-        report: zgłoszenie
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
+      by_target_domain: Domena zgłaszanego konta
       comment:
         none: Brak
       created_at: Zgłoszono
@@ -478,6 +535,7 @@ pl:
       title: Wpisy konta
       with_media: Z zawartością multimedialną
     tags:
+      name: Hasztag
       title: Hashtagi
     title: Administracja
     warning_presets:
@@ -494,6 +552,8 @@ pl:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
+  aliases:
+    add_new: Utwórz alias
   appearance:
     advanced_web_interface: Zaawansowany interfejs użytkownika
     advanced_web_interface_hint: Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.
@@ -550,6 +610,8 @@ pl:
       return: Pokaż stronę użytkownika
       web: Przejdź do sieci
     title: Śledź %{acct}
+  challenge:
+    confirm: Kontynuuj
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
@@ -601,7 +663,6 @@ pl:
     blocks: Zablokowani
     csv: CSV
     domain_blocks: Blokady domen
-    follows: Śledzeni
     lists: Listy
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
@@ -1052,7 +1113,7 @@ pl:
         suspend: Konto zawieszone
     welcome:
       edit_profile_action: Skonfiguruj profil
-      edit_profile_step: Możesz dostować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
+      edit_profile_step: Możesz dostosować profil wysyłając awatar, obraz nagłówka, zmieniając wyświetlaną nazwę i wiele więcej. Jeżeli chcesz, możesz zablokować konto, aby kontrolować, kto może Cię śledzić.
       explanation: Kilka wskazówek, które pomogą Ci rozpocząć
       final_action: Zacznij pisać
       final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie śledzi, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'

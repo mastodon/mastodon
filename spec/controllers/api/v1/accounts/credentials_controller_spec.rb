@@ -59,6 +59,19 @@ describe Api::V1::Accounts::CredentialsController do
         end
       end
 
+      describe 'with empty source list' do
+        before do
+          patch :update, params: {
+            display_name: "I'm a cat",
+            source: {},
+          }, as: :json
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+     end
+
       describe 'with invalid data' do
         before do
           patch :update, params: { note: 'This is too long. ' * Account::NOTE_MAXIMUM_LENGTH }

@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class CustomEmojiFilter
+  KEYS = %i(
+    local
+    remote
+    by_domain
+    shortcode
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)

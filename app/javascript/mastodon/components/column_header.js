@@ -33,6 +33,7 @@ class ColumnHeader extends React.PureComponent {
     onPin: PropTypes.func,
     onMove: PropTypes.func,
     onClick: PropTypes.func,
+    appendContent: PropTypes.node,
   };
 
   state = {
@@ -81,7 +82,7 @@ class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder } = this.props;
+    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -172,6 +173,8 @@ class ColumnHeader extends React.PureComponent {
             {(!collapsed || animating) && collapsedContent}
           </div>
         </div>
+
+        {appendContent}
       </div>
     );
 
