@@ -136,7 +136,7 @@ group :development do
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
-  gem 'letter_opener_web', '~> 1.3'
+  gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.79', require: false
   gem 'rubocop-rails', '~> 2.4', require: false
