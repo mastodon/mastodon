@@ -50,20 +50,20 @@ nn:
         subject: 'Mastodon: To-faktor-autentisering deaktivert'
         title: 2FA deaktivert
       two_factor_enabled:
-        explanation: To-faktor autentisering er aktivert for kontoen din. Et symbol som er generert av den sammenkoblede TOTP-appen vil være påkrevd for innlogging.
-        subject: 'Mastodon: To-faktor autentisering aktivert'
+        explanation: To-faktor-autentisering har vorte slått på for kontoen din. Ein kode frå den samankopla TOTP-appen er kravd for å logge inn.
+        subject: 'Mastodon: To-faktor-autentisering aktivert'
         title: 2FA aktivert
       two_factor_recovery_codes_changed:
-        explanation: De forrige gjenopprettingskodene er ugyldig og nye generert.
-        subject: 'Mastodon: 2-trinnsgjenopprettingskoder har blitt generert på nytt'
-        title: 2FA-gjenopprettingskodene ble endret
+        explanation: Dei førre gjenopprettingskodane er ugyldige og nye er genererte.
+        subject: 'Mastodon: To-faktor-gjenopprettingskodar har vorte genererte på nytt'
+        title: 2FA-gjenopprettingskodane er endra
       unlock_instructions:
-        subject: 'Mastodon: Instruksjoner for å gjenåpne konto'
+        subject: 'Mastodon: Instruksjonar for å opne kontoen igjen'
     omniauth_callbacks:
-      failure: Kunne ikke autentisere deg fra %{kind} fordi "%{reason}".
-      success: Vellykket autentisering fra %{kind}.
+      failure: Du kunne ikkje verte autentisert frå %{kind} av di "%{reason}".
+      success: Autentisert frå %{kind}-konto.
     passwords:
-      no_token: Du har ingen tilgang til denne siden hvis ikke klikket på en e-post om nullstilling av passord. Hvis du kommer fra en sådan bør du dobbelsjekke at du limte inn hele URLen.
+      no_token: Du har ikkje tilgang til denne sida utan ha gått via ein e-post som gjeld å nullstille passordet. Dersom det er kva du har gjort, dobbelsjekk at du har kopiert heile URLen.
       send_instructions: Du vil motta en e-post med instruksjoner om nullstilling av passord om noen få minutter.
       send_paranoid_instructions: Om vi har e-postadressa di i databasen vår, får du ei lenkje til å endra passordet om nokre få minutt. Ver venleg og sjekk søppelpostmappa om du ikkje fekk denne e-posten.
       updated: Passordet ditt er endra. No er du logga inn.
