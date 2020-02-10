@@ -37,4 +37,16 @@ module ActiveRecord
       super(direction, migrations, target_version)
     end
   end
+
+  class MigrationContext
+    def needs_migration?
+      # A set of duplicated migrations is considered migrated if at least one of
+      # them is migrated.
+      migrated = get_all_versions
+      migrations.group_by(&:name).each do |name, duplicates|
+        return true unless duplicates.any? { |m| migrated.include?(m.version.to_i) }
+      end
+      return false
+    end
+  end
 end
