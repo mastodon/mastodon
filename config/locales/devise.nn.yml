@@ -21,12 +21,12 @@ nn:
         action_with_app: Stadfest og gå tilbake til %{app}
         explanation: Du har registrert deg på %{host} med denne e-postadressa. Du er eitt klikk unna aktivere kontoen. Om det ikkje var deg, berre oversjå denne e-posten.
         explanation_when_pending: Du har søkt om en invitasjon til %{host} med denne e-postadressa. Når du har stadfesta e-postadressa di, vil vi gå gjennom søknaden. Du kan logge på for å endre detaljar eller slette kontoen, men du har ikke tilgang til dei fleste funksjonane før kontoen din er godkjent. Dersom søknaden din vert avslått, vil dataene dine verte sletta, så du treng ikkje gjera meir. Dersom dette ikke var deg, berre oversjå denne e-posten.
-        extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
-        subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse %{instance}'
+        extra_html: Ta ein kikk på <a href="%{terms_path}">reglane på instansen</a> og <a href="%{policy_path}">bruksvilkåra våre</a>.
+        subject: 'Mastodon: Instruksjonar for stadfesting hos %{instance}'
         title: Stadfest e-postadresse
       email_changed:
         explanation: 'E-postadressa til kontoen din vert endra til:'
-        extra: Hvis du ikke endret din e-postadresse, er det sannsynlig at noen har fått tilgang til din konto. Vennligst endre ditt passord umiddelbart eller kontakt instansens administrator dersom du er utestengt fra kontoen din.
+        extra: Dersom du ikkje har endra e-postadressa di, er det truleg at nokon har fått tilgang til kontoen din. Bytt straks passordet ditt, eller kontakt tenaradministratoren dersom du har vorte låst ut av kontoen.
         subject: 'Mastodon: E-postadressa er endra'
         title: Ny e-postadresse
       password_change:
@@ -36,8 +36,8 @@ nn:
         title: Passord endra
       reconfirmation_instructions:
         explanation: Stadfest den nye adressa for å byta e-postadressa di.
-        extra: Se bort fra denne e-posten dersom du ikke gjorde denne endringen. E-postadressen for Mastadon-kontoen blir ikke endret før du trykker på lenken over.
-        subject: 'Mastodon: Bekreft e-postadresse for %{instance}'
+        extra: Oversjå denne eposten dersom du ikkje gjorde endra. E-postadressa for Mastodon-kontoen vert ikkje endra før lenka over vert trykt på.
+        subject: 'Mastodon: Stadfest e-post for %{instance}'
         title: Stadfest e-postadresse
       reset_password_instructions:
         action: Endr passord
@@ -46,8 +46,8 @@ nn:
         subject: 'Mastodon: Instuksjonar for å endra passord'
         title: Attstilling av passord
       two_factor_disabled:
-        explanation: 2-trinnsinnlogging for kontoen din har blitt skrudd av. Pålogging er mulig gjennom kun E-postadresse og passord.
-        subject: 'Mastodon: To-faktor autentisering deaktivert'
+        explanation: To-faktor-autentisering har vorte slått av for kontoen din. Det går no an logge inn med berre e-postadresse og passord.
+        subject: 'Mastodon: To-faktor-autentisering deaktivert'
         title: 2FA deaktivert
       two_factor_enabled:
         explanation: To-faktor autentisering er aktivert for kontoen din. Et symbol som er generert av den sammenkoblede TOTP-appen vil være påkrevd for innlogging.
