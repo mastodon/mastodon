@@ -76,7 +76,7 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
 
-## Node Streaming (Legacy)
+## Node Streaming (Stable)
   streaming:
     build: .
     image: tootsuite/mastodon
