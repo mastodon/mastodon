@@ -3,6 +3,11 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.1] - 2020-02-10
+### Fixed
+
+- Fix yanked dependency preventing installation ([mayaeh](https://github.com/tootsuite/mastodon/pull/13059))
+
 ## [3.1.0] - 2020-02-09
 ### Added
 
