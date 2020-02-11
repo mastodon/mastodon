@@ -14,7 +14,7 @@ module Mastodon
 
     option :days, type: :numeric, default: 90
     option :clean_followed, type: :boolean
-    option :skip_media_remove, type :boolean
+    option :skip_media_remove, type: :boolean
     desc 'remove', 'Remove unreferenced statuses'
     long_desc <<~LONG_DESC
       Remove statuses that are not referenced by local user activity, such as
