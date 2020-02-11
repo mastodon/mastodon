@@ -12,6 +12,7 @@ export default class ErrorBoundary extends React.PureComponent {
 
   state = {
     hasError: false,
+    errorMessage: undefined,
     stackTrace: undefined,
     mappedStackTrace: undefined,
     componentStack: undefined,
@@ -20,6 +21,7 @@ export default class ErrorBoundary extends React.PureComponent {
   componentDidCatch (error, info) {
     this.setState({
       hasError: true,
+      errorMessage: error.toString(),
       stackTrace: error.stack,
       componentStack: info && info.componentStack,
       mappedStackTrace: undefined,
@@ -37,10 +39,10 @@ export default class ErrorBoundary extends React.PureComponent {
   }
 
   handleCopyStackTrace = () => {
-    const { stackTrace, mappedStackTrace } = this.state;
+    const { errorMessage, stackTrace, mappedStackTrace } = this.state;
     const textarea = document.createElement('textarea');
 
-    let contents = [stackTrace];
+    let contents = [errorMessage, stackTrace];
     if (mappedStackTrace) {
       contents.push(mappedStackTrace);
     }
