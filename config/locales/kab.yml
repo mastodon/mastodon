@@ -148,20 +148,20 @@ kab:
       unsubscribe: Ur ṭafar ara
       username: Isem n useqdac
       web: Web
-      whitelisted: Deg tebdert tamellalt
+      whitelisted: Deg umuγ tamellalt
     action_logs:
       actions:
         change_email_user: "%{name} ibeddel imayl n umseqdac %{target}"
         confirm_user: "%{name} isentem tansa imayl n umseqdac %{target}"
         create_account_warning: "%{name} yuzen alγu i %{target}"
         create_custom_emoji: "%{name} yessuli-d imujiten imaynuten %{target}"
-        create_domain_allow: "%{name} yerna taγult %{target} γer tebdart tamellalt"
+        create_domain_allow: "%{name} yerna taγult %{target} γer wumuγ amellal"
         create_domain_block: "%{name} yesseḥbes taγult %{target}"
-        create_email_domain_block: "%{name} yerna taγult n imayl %{target} γer tebdart taberkant"
+        create_email_domain_block: "%{name} yerna taγult n imayl %{target} γer wumuγ aberkan"
         destroy_custom_emoji: "%{name} ihudd imuji %{target}"
-        destroy_domain_allow: "%{name} yekkes taγult %{target} seg tebdart tamellalt"
+        destroy_domain_allow: "%{name} yekkes taγult %{target} seg wumuγ amellal"
         destroy_domain_block: "%{name} yekkes aseḥbes n taγult %{target}"
-        destroy_email_domain_block: "%{name} yerna taγult n imayl %{target} γer tebdart tamellalt"
+        destroy_email_domain_block: "%{name} yerna taγult n imayl %{target} γer wumuγ amellal"
         destroy_status: "%{name} yekkes tasuffeγt n %{target}"
         disable_custom_emoji: "%{name} yessens imuji %{target}"
         disable_user: "%{name} yessens tuqqna i umseqdac %{target}"
@@ -197,13 +197,13 @@ kab:
       enabled: Yermed
       enabled_msg: Imuji yermed mebla ugur
       image_hint: PNG n ddaw n 50KT
-      list: Tabdart
+      list: Umuγ
       new:
         title: Timerna n imuji udmawan amaynut
       overwrite: Semselsi
       title: Imujiten udmawanen
-      unlist: Kkes si tabdert
-      unlisted: Yettwakkes si tabdert
+      unlist: Kkes seg wumuγ
+      unlisted: Yettwakkes seg wumuγ
       update_failed_msg: Ur izmir ara ad-issali umuji-a
       upload: Sali
     dashboard:
@@ -219,10 +219,10 @@ kab:
       week_users_active: yermed deg yimalas-agi
       week_users_new: imseqdacen deg yimalas-agi
     domain_allows:
-      add_new: Timerna n taγult γer tebdart tamellalt
-      created_msg: Taγult-a tettwarna γer tebdart tamellalt mebla ugur
-      destroyed_msg: Taγult-a tettwakkes seg tebdart tamellalt
-      undo: Kkes seg tebdart tamellalt
+      add_new: Timerna n taγult γer wumuγ amellal
+      created_msg: Taγult-a tettwarna γer wumuγ amellal mebla ugur
+      destroyed_msg: Taγult-a tettwakkes seg umuγ amellal
+      undo: Kkes seg umuγ amellal
     domain_blocks:
       domain: Taγult
       new:
@@ -241,8 +241,8 @@ kab:
       domain: Taγult
       new:
         create: Rnu taγult
-        title: Timerna n taγult tamaynut n imayl γer tebdart taberkant
-      title: Tabdart taberkant n imayl
+        title: Timerna n taγult tamaynut n imayl γer wumuγ aberkan
+      title: Umuγ aberkan n imayl
     instances:
       by_domain: Taγult
       delivery_available: Yella usiweḍ
@@ -421,7 +421,7 @@ kab:
       date: Azemz
       size: Teγzi
     csv: CSV
-    lists: Tibdarin
+    lists: Umuγen
     mutes: Wid tesgugmeḍ
   featured_tags:
     add_new: Rnu amaynut
@@ -458,7 +458,8 @@ kab:
     modes:
       overwrite: Semselsi
     types:
-      following: Tabdart n wid teṭafareḍ
+      following: Umuγ n wid teṭafareḍ
+      muting: Umuγ n wid tesgugmeḍ
     upload: Sali
   invites:
     expires_in:
