@@ -269,6 +269,7 @@ kab:
     relays:
       delete: Kkes
       disable: Gdel
+      disabled: Yettwassens
       enable: Rmed
       enabled: Yermed
       save_and_enable: Sekles rnu rmed-it
@@ -321,6 +322,7 @@ kab:
       media:
         title: Taγwalt
       no_media: Mebla taγwalt
+      title: Tisuffiγin n umiḍan
       with_media: S taγwalt
     tags:
       directory: Deg ukaram
@@ -343,7 +345,9 @@ kab:
     sensitive_content: Agbur amḥulfu
   application_mailer:
     salutation: "%{name},"
+    view: 'Ẓaṛ:'
     view_profile: Sken-d amaγnu
+    view_status: Sken-ed tasuffiγt
   auth:
     change_password: Awal uffir
     delete_account: Kkes amiḍan
@@ -408,6 +412,7 @@ kab:
     '422':
     '429': Throttled
     '500':
+      title: Asebter-ayi d arameγtu
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
     not_found_multiple: ur yezmir ara ad yaf %{usernames}
