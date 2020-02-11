@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { version, source_url } from 'mastodon/initial_state';
+import StackTrace from 'stacktrace-js';
 
 export default class ErrorBoundary extends React.PureComponent {
 
@@ -12,6 +13,7 @@ export default class ErrorBoundary extends React.PureComponent {
   state = {
     hasError: false,
     stackTrace: undefined,
+    mappedStackTrace: undefined,
     componentStack: undefined,
   };
 
@@ -20,15 +22,30 @@ export default class ErrorBoundary extends React.PureComponent {
       hasError: true,
       stackTrace: error.stack,
       componentStack: info && info.componentStack,
-      copied: false,
+      mappedStackTrace: undefined,
+    });
+
+    StackTrace.fromError(error).then((stackframes) => {
+      this.setState({
+        mappedStackTrace: stackframes.map((sf) => sf.toString()).join('\n'),
+      });
+    }).catch(() => {
+      this.setState({
+        mappedStackTrace: undefined,
+      });
     });
   }
 
   handleCopyStackTrace = () => {
-    const { stackTrace } = this.state;
+    const { stackTrace, mappedStackTrace } = this.state;
     const textarea = document.createElement('textarea');
 
-    textarea.textContent    = stackTrace;
+    let contents = [stackTrace];
+    if (mappedStackTrace) {
+      contents.push(mappedStackTrace);
+    }
+
+    textarea.textContent    = contents.join('\n\n\n');
     textarea.style.position = 'fixed';
 
     document.body.appendChild(textarea);
