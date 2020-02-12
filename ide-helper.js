@@ -7,6 +7,6 @@ module.exports = {
   resolve: {
     alias: {
       'mastodon': path.resolve(__dirname, 'app/javascript/mastodon'),
-    }
-  }
-}
+    },
+  },
+};
