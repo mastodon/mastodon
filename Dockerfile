@@ -55,7 +55,7 @@ RUN apt update && \
 	apt -y install git libicu-dev libidn11-dev \
 	libpq-dev libprotobuf-dev protobuf-compiler
 
-# Install Node and Ruby Dependencies
+# Install yarn and ruby package manager
 RUN npm install -g yarn
 RUN	gem install bundler
 
