@@ -191,6 +191,10 @@ module AccountInteractions
     status.proper.bookmarks.where(account: self).exists?
   end
 
+  def hidden?(status)
+    status.proper.hidden_statuses.where(account: self).exists?
+  end
+
   def reblogged?(status)
     status.proper.reblogs.where(account: self).exists?
   end

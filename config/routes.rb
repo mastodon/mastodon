@@ -301,6 +301,8 @@ Rails.application.routes.draw do
           resource :bookmark, only: :create
           post :unbookmark, to: 'bookmarks#destroy'
 
+          post :hide, to: 'hidden_statuses#create'
+
           resource :mute, only: :create
           post :unmute, to: 'mutes#destroy'
 

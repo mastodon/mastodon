@@ -24,6 +24,7 @@ import {
   hideStatus,
   revealStatus,
   toggleStatusCollapse,
+  hide,
 } from '../actions/statuses';
 import {
   unmuteAccount,
@@ -49,6 +50,7 @@ const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
+  hideStatusConfirm: { id: 'confirmations.hide_status.confirm', defaultMessage: 'Hide the status' },
 });
 
 const makeMapStateToProps = () => {
@@ -109,6 +111,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(bookmark(status));
     }
+  },
+
+  onHide (status, history) {
+    dispatch(openModal('CONFIRM', {
+      message: <FormattedMessage id='confirmations.hide_status.message' defaultMessage='Are you sure to hide this status ?' />,
+      confirm: intl.formatMessage(messages.hideStatusConfirm),
+      onConfirm: () => dispatch(hide(status, history)),
+    }));
   },
 
   onPin (status) {

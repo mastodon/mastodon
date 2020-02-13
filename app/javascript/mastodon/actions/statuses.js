@@ -30,6 +30,10 @@ export const STATUS_REVEAL   = 'STATUS_REVEAL';
 export const STATUS_HIDE     = 'STATUS_HIDE';
 export const STATUS_COLLAPSE = 'STATUS_COLLAPSE';
 
+export const HIDE_REQUEST = 'HIDE_REQUEST';
+export const HIDE_SUCCESS = 'HIDE_SUCCESS';
+export const HIDE_FAIL    = 'HIDE_FAIL';
+
 export const REDRAFT = 'REDRAFT';
 
 export function fetchStatusRequest(id, skipLoading) {
@@ -108,7 +112,6 @@ export function fetchStatus(id) {
     }).then(() => {
       dispatch(fetchStatusSuccess(skipLoading));
     }, () => api(getState).get(`/api/v1/statuses/${id}`).then(response => {
-      dispatch(importFetchedStatus(response.data));
       dispatch(fetchStatusSuccess(skipLoading));
     })).catch(error => {
       dispatch(fetchStatusFail(id, error, skipLoading));
@@ -184,6 +187,42 @@ export function deleteStatusFail(id, error) {
   return {
     type: STATUS_DELETE_FAIL,
     id: id,
+    error: error,
+  };
+};
+
+export function hide(status) {
+  return function (dispatch, getState) {
+    dispatch(hideRequest(status));
+
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/hide`).then(function (response) {
+      dispatch(importFetchedStatus(response.data));
+      dispatch(hideSuccess(status.get('id'), getState().get('statuses')));
+    }).catch(function (error) {
+      dispatch(hideFail(status, error));
+    });
+  };
+};
+
+export function hideRequest(status) {
+  return {
+    type: HIDE_REQUEST,
+    status: status,
+  };
+};
+
+export function hideSuccess(id, statuses) {
+  return {
+    type: HIDE_SUCCESS,
+    id,
+    statuses
+  };
+};
+
+export function hideFail(status, error) {
+  return {
+    type: HIDE_FAIL,
+    status: status.id,
     error: error,
   };
 };

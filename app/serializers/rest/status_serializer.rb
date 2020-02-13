@@ -11,6 +11,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :muted, if: :current_user?
   attribute :bookmarked, if: :current_user?
   attribute :pinned, if: :pinnable?
+  attribute :hidden, if: :current_user?
 
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
@@ -99,6 +100,14 @@ class REST::StatusSerializer < ActiveModel::Serializer
       instance_options[:relationships].bookmarks_map[object.id] || false
     else
       current_user.account.bookmarked?(object)
+    end
+  end
+
+  def hidden
+    if instance_options && instance_options[:relationships]
+      instance_options[:relationships].hidden_map[object.id] || false
+    else
+      current_user.account.hidden?(object)
     end
   end
 

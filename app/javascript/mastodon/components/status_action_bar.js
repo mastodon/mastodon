@@ -32,6 +32,7 @@ const messages = defineMessages({
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
   pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
+  hide: { id: 'status.hide', defaultMessage: 'Hide' },
   embed: { id: 'status.embed', defaultMessage: 'Embed' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
@@ -135,6 +136,10 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleBookmarkClick = () => {
     this.props.onBookmark(this.props.status);
+  }
+
+  handleHideClick = () => {
+    this.props.onHide(this.props.status);
   }
 
   handleDeleteClick = () => {
@@ -249,6 +254,11 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     menu.push({ text: intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark), action: this.handleBookmarkClick });
+
+    if (status.getIn(['account', 'id']) !== me) {
+      menu.push({ text: intl.formatMessage(messages.hide), action: this.handleHideClick });
+    }
+
     menu.push(null);
 
     if (status.getIn(['account', 'id']) === me || withDismiss) {

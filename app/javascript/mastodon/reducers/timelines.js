@@ -18,6 +18,8 @@ import {
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 import compareId from '../compare_id';
 
+export const HIDE_SUCCESS = 'HIDE_SUCCESS';
+
 const initialState = ImmutableMap();
 
 const initialTimeline = ImmutableMap({
@@ -158,6 +160,8 @@ export default function timelines(state = initialState, action) {
     return filterTimelines(state, action.relationship, action.statuses);
   case ACCOUNT_UNFOLLOW_SUCCESS:
     return filterTimeline('home', state, action.relationship, action.statuses);
+  case HIDE_SUCCESS:
+    return deleteStatus(state, action.id, action.accountId, action.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
