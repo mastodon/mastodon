@@ -111,7 +111,7 @@ export function fetchStatus(id) {
       });
     }).then(() => {
       dispatch(fetchStatusSuccess(skipLoading));
-    }, () => api(getState).get(`/api/v1/statuses/${id}`).then(response => {
+    }, () => api(getState).get(`/api/v1/statuses/${id}`).then(() => {
       dispatch(fetchStatusSuccess(skipLoading));
     })).catch(error => {
       dispatch(fetchStatusFail(id, error, skipLoading));
@@ -215,7 +215,7 @@ export function hideSuccess(id, statuses) {
   return {
     type: HIDE_SUCCESS,
     id,
-    statuses
+    statuses,
   };
 };
 

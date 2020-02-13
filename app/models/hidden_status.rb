@@ -13,8 +13,8 @@
 class HiddenStatus < ApplicationRecord
   update_index('statuses#status', :status) if Chewy.enabled?
 
-  belongs_to :account, inverse_of: :bookmarks
-  belongs_to :status,  inverse_of: :bookmarks
+  belongs_to :account, inverse_of: :hidden_statuses
+  belongs_to :status,  inverse_of: :hidden_statuses
 
   validates :status_id, uniqueness: { scope: :account_id }
 end
