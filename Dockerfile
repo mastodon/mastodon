@@ -5,8 +5,9 @@ SHELL ["bash", "-c"]
 
 # Install Node v12 (LTS)
 ENV NODE_VER="12.14.0"  
-RUN	ARCH= && dpkgArch="$(dpkg --print-architecture)" \
-  && case "${dpkgArch##*-}" in \
+RUN	ARCH= && \
+    dpkgArch="$(dpkg --print-architecture)" && \
+  case "${dpkgArch##*-}" in \
     amd64) ARCH='x64';; \
     ppc64el) ARCH='ppc64le';; \
     s390x) ARCH='s390x';; \
