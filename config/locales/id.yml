@@ -861,7 +861,9 @@ id:
     warning:
       before: 'Sebelum lanjut, mohon perhatikan catatan ini:'
       cooldown: Setelah pindah akun adalah masa tenang, masa Anda tidak dapat pindah akun lagi
+      disabled_account: Akun Anda tidak akan dapat dipakai secara penuh. Namun, Anda tetap akan memiliki akses ke ekspor data dan aktivasi ulang.
       followers: Tindakan ini akan memindah semua pengikut Anda dari akun sekarang ke akun baru
+      only_redirect_html: Secara alternatif, Anda <a href="%{path}">hanya dapat menaruh tulisan mengarahkan ke profil Anda</a>.
       other_data: Tidak akan ada data lagi yang dipindahkan secara otomatis
       redirect: Pemberitahuan peralihan akan dimunculkan pada akun profil Anda dan akun akan dikecualikan dari pencarian
   moderation:
@@ -899,6 +901,8 @@ id:
       subject: "%{name} mem-boost status anda"
       title: Boost baru
   notifications:
+    email_events: Event untuk notifikasi surel
+    email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
     other_settings: Pengaturan notifikasi lain
   number:
     human:
@@ -920,6 +924,7 @@ id:
     errors:
       already_voted: Anda sudah mengikuti japat ini
       duplicate_options: berisi item ganda
+      duration_too_long: terlalu jauh ke masa depan
       duration_too_short: terlalu cepat
       expired: Japat telah berakhir
       invalid_choice: Opsi pilihan yang dipilih tidak ada
@@ -930,6 +935,9 @@ id:
     other: Lainnya
     posting_defaults: Kiriman bawaan
     public_timelines: Linimasa publik
+  reactions:
+    errors:
+      limit_reached: Batas reaksi yang berbeda terpenuhi
   relationships:
     activity: Aktivitas akun
     dormant: Terbengkalai
