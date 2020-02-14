@@ -93,7 +93,7 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = (overriddenVisibility = null) => {
     const { textarea: { value }, uploadForm } = this;
     const {
       onChange,
@@ -106,6 +106,7 @@ class ComposeForm extends ImmutablePureComponent {
       text,
       mediaDescriptionConfirmation,
       onMediaDescriptionConfirm,
+      onChangeVisibility,
     } = this.props;
 
     //  If something changes inside the textarea, then we update the
@@ -124,6 +125,9 @@ class ComposeForm extends ImmutablePureComponent {
       const firstWithoutDescription = media.find(item => !item.get('description'));
       onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get('id'));
     } else if (onSubmit) {
+      if (onChangeVisibility && overriddenVisibility) {
+        onChangeVisibility(overriddenVisibility);
+      }
       onSubmit(this.context.router ? this.context.router.history : null);
     }
   }
@@ -152,13 +156,9 @@ class ComposeForm extends ImmutablePureComponent {
   //  Handles the secondary submit button.
   handleSecondarySubmit = () => {
     const {
-      onChangeVisibility,
       sideArm,
     } = this.props;
-    if (sideArm !== 'none' && onChangeVisibility) {
-      onChangeVisibility(sideArm);
-    }
-    this.handleSubmit();
+    this.handleSubmit(sideArm === 'none' ? null : sideArm);
   }
 
   //  Selects a suggestion from the autofill.
