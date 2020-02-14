@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+##
+# Authorizes a follow-request and notifies the account that issued the follow
+# request.
 class AuthorizeFollowService < BaseService
   include Payloadable
 

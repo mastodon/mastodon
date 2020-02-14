@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+##
+# Creates a +Report+ for +target_account+ as reported by +account+.
+#
+# Notifies the staff of the instance of +target_account+.
+#
+# It fans out by creating jobs for emails to staff, and/or remote instance
+# reports.
 class ReportService < BaseService
   include Payloadable
 

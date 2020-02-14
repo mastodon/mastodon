@@ -2,6 +2,8 @@
 
 require 'rubygems/package'
 
+##
+# Builds a backup archive
 class BackupService < BaseService
   include Payloadable
 

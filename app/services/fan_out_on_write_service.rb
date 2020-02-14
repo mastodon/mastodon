@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+##
+# Delivers status updates to (mentioned) followers, lists and self.
+#
+# Delivery to followers and lists fans out: it inserts a job per follower,
+# mentioned follower and list.
 class FanOutOnWriteService < BaseService
   # Push a status into home and mentions feeds
   # @param [Status] status

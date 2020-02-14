@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+##
+# Blocks a +target_account+ for +account+.
+#
+# Handles the bi-directional unfollow, and rejects future follow requests.
+# Then schedules a notification for the +target_account+ of this block.
+#
+# +account+ is the account performing the block.
+# +target_account+ is the account being blocked by +account+.
 class BlockService < BaseService
   include Payloadable
 

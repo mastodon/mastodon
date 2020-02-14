@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+##
+# Creates a +Notification+ in the local database and delivers it over Webpush
+# and/or email.
+#
+# Determines whether, and where to deliver a message based on the +Account+,
+# its settings and the +Notification+.
 class NotifyService < BaseService
   def call(recipient, activity)
     @recipient    = recipient

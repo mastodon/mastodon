@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+##
+# Rejects a follow-request and notifies the account that issued the follow
+# request.
 class RejectFollowService < BaseService
   include Payloadable
 

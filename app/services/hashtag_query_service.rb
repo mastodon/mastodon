@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# Searches tags by their name or query params.
 class HashtagQueryService < BaseService
   LIMIT_PER_MODE = 4
 

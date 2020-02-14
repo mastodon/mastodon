@@ -2,6 +2,9 @@
 
 require 'csv'
 
+##
+# Parses import CSV and handles the imported followers, blocks, mutes, and/or
+# domain_blocks.
 class ImportService < BaseService
   ROWS_PROCESSING_LIMIT = 20_000
 

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+##
+# Search for an account in either elasticsearch when enabled, or the local
+# database.
 class AccountSearchService < BaseService
   attr_reader :query, :limit, :offset, :options, :account
 

@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+##
+# Handles a +Migration+ for +account+ to +target_account+.
+#
+# Fans out by inserting jobs for local updates, and pushing the updates
+# to remote instances.
 class MoveService < BaseService
   def call(migration)
     @migration      = migration

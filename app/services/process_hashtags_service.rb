@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+##
+# Processes hash+Tag+s from a +Status+.
+#
+# Updates +TrendingTags+ and/or the +featured_tags+ on the account that authored
+# the +Status+.
 class ProcessHashtagsService < BaseService
   def call(status, tags = [])
     tags    = Extractor.extract_hashtags(status.text) if status.local?

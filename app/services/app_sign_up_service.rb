@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+##
+# Handles a registration from a (3rd party) application.
+#
+# Generates and returns an access token
 class AppSignUpService < BaseService
   def call(app, params)
     return unless allowed_registrations?

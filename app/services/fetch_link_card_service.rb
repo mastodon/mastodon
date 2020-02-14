@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+##
+# Fetches the data for a +PreviewCard+ from an URL.
+#
+# Uses OG, thumbnails, video stills and more to generate, update and/or
+# return a +PreviewCard+.
 class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
     (                                                                                                 #   $1 URL

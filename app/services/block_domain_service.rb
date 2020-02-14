@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+##
+# Processes a +DomainBlock+ model.
+#
+# Performing all actions needed to handle the DomainBlock, such as
+# suspending or silencing accounts. And cleaning up media, emoji, cache and
+# other attachments.
 class BlockDomainService < BaseService
   attr_reader :domain_block
 

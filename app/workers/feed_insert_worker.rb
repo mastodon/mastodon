@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# Inserts a status into the feed for an account and/or a list.
 class FeedInsertWorker
   include Sidekiq::Worker
 
