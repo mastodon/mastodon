@@ -10,4 +10,10 @@ class HomeFeed < Feed
   def regenerating?
     redis.exists("account:#{@id}:regeneration")
   end
+
+  protected
+
+  def status_scope
+    [:not_hidden, @account]
+  end
 end

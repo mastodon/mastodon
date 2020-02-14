@@ -28,7 +28,11 @@ class Feed
       unhydrated = redis.zrangebyscore(key, "(#{min_id}", '+inf', limit: [0, limit], with_scores: true).map(&:first).map(&:to_i)
     end
 
-    Status.not_hidden(@account).where(id: unhydrated).cache_ids
+    Status.send(*status_scope).where(id: unhydrated).cache_ids
+  end
+
+  def status_scope
+    :all
   end
 
   def key
