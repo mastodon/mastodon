@@ -38,8 +38,12 @@ class Publisher extends ImmutablePureComponent {
     sideArm: PropTypes.oneOf(['none', 'direct', 'private', 'unlisted', 'public']),
   };
 
+  handleSubmit = () => {
+    this.props.onSubmit();
+  };
+
   render () {
-    const { countText, disabled, intl, onSecondarySubmit, onSubmit, privacy, sideArm } = this.props;
+    const { countText, disabled, intl, onSecondarySubmit, privacy, sideArm } = this.props;
 
     const diff = maxChars - length(countText || '');
     const computedClass = classNames('composer--publisher', {
@@ -105,7 +109,7 @@ class Publisher extends ImmutablePureComponent {
             }
           }()}
           title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
-          onClick={onSubmit}
+          onClick={this.handleSubmit}
           disabled={disabled || diff < 0}
         />
       </div>
