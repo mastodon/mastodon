@@ -17,11 +17,20 @@ class Api::V1::Admin::AccountActionsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.find(params[:account_id])
+    @account = Account.find(filtered_params[:account_id])
+  end
+
+  def filtered_params
+    params.require(:account_id).permit(:type,
+      :report_id,
+      :warning_preset_id,
+      :text,
+      :send_email_notification
+    )
   end
 
   def resource_params
-    params.permit(
+    filtered_params.slice(
       :type,
       :report_id,
       :warning_preset_id,

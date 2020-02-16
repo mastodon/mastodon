@@ -45,8 +45,12 @@ class Settings::IdentityProofsController < Settings::BaseController
     redirect_to settings_identity_proofs_path unless [:provider, :provider_username, :username, :token].all? { |k| params[k].present? }
   end
 
+  def filtered_params
+    params.require(:account_identity_proof).permit(:provider, :provider_username, :token, :post_status, :status_text)
+  end
+
   def resource_params
-    params.require(:account_identity_proof).permit(:provider, :provider_username, :token)
+    filtered_params.slice(:account_identity_proof, :provider, :provider_username, :token)
   end
 
   def publish_proof?
@@ -54,6 +58,6 @@ class Settings::IdentityProofsController < Settings::BaseController
   end
 
   def post_params
-    params.require(:account_identity_proof).permit(:post_status, :status_text)
+    filtered_params.slice(:account_identity_proof, :post_status, :status_text)
   end
 end
