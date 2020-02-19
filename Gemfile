@@ -102,7 +102,7 @@ gem 'webpacker', '~> 4.2'
 gem 'webpush'
 
 gem 'json-ld'
-gem 'json-ld-preloaded', '~> 3.0'
+gem 'json-ld-preloaded', '~> 3.1'
 gem 'rdf-normalize', '~> 0.4'
 
 gem 'redcarpet', '~> 3.4'
@@ -111,7 +111,7 @@ group :development, :test do
   gem 'fabrication', '~> 2.21'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 0.9', require: false
-  gem 'pry-byebug', '~> 3.7'
+  gem 'pry-byebug', '~> 3.8'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.9'
 end
@@ -121,13 +121,13 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.30'
+  gem 'capybara', '~> 3.31'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.10'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
-  gem 'simplecov', '~> 0.17', require: false
+  gem 'simplecov', '~> 0.18', require: false
   gem 'webmock', '~> 3.8'
   gem 'parallel_tests', '~> 2.30'
 end
@@ -139,7 +139,7 @@ group :development do
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
-  gem 'letter_opener_web', '~> 1.3'
+  gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.79', require: false
   gem 'rubocop-rails', '~> 2.4', require: false
