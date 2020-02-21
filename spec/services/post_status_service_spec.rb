@@ -212,14 +212,18 @@ RSpec.describe PostStatusService, type: :service do
 
   it 'does not allow attaching both videos and images' do
     account = Fabricate(:account)
+    video   = Fabricate(:media_attachment, type: :video, account: account)
+    image   = Fabricate(:media_attachment, type: :image, account: account)
+
+    video.update(type: :video)
 
     expect do
       subject.call(
         account,
         text: "test status update",
         media_ids: [
-          Fabricate(:media_attachment, type: :video, account: account),
-          Fabricate(:media_attachment, type: :image, account: account),
+          video,
+          image,
         ].map(&:id),
       )
     end.to raise_error(

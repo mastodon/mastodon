@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class InstanceFilter
+  KEYS = %i(
+    limited
+    by_domain
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)

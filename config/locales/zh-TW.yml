@@ -7,6 +7,7 @@ zh-TW:
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
     administered_by: 管理者：
+    api: API
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
@@ -28,6 +29,9 @@ zh-TW:
     status_count_before: 他們共嘟出了
     tagline: 關注朋友並探索新朋友
     terms: 使用條款
+    unavailable_content_description:
+      domain: 伺服器
+      reason: 原因
     user_count_after:
       other: 位使用者
     user_count_before: 註冊使用者數
@@ -44,6 +48,7 @@ zh-TW:
     media: 媒體
     moved_html: "%{name} 已經搬遷到 %{new_profile_link}:"
     network_hidden: 此訊息不可用
+    never_active: 永不
     nothing_here: 暫時沒有內容可供顯示!
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
@@ -68,6 +73,7 @@ zh-TW:
       destroyed_msg: 成功刪除管理備忘!
     accounts:
       approve: 核准
+      approve_all: 全部批准
       are_you_sure: 您確定嗎?
       avatar: 頭像
       by_domain: 站點
@@ -93,9 +99,7 @@ zh-TW:
       email_status: 電子信箱狀態
       enable: 啟用
       enabled: 已啟用
-      feed_url: 訂閱 URL
       followers: 關注者
-      followers_url: 關注者（Followers）URL
       follows: 正在關注
       header: 開頭
       inbox_url: 收件箱 (Inbox) URL
@@ -122,16 +126,15 @@ zh-TW:
       most_recent_ip: 最近 IP 位址
       no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
-      outbox_url: 寄件箱 (Outbox) URL
       pending: 等待審核中
       perform_full_suspension: 停權
-      profile_url: 個人檔案 URL
       promote: 晉級
       protocol: 協議
       public: 公開
       push_subscription_expires: PuSH 訂閱過期
       redownload: 重新整理個人資料
       reject: 拒絕
+      reject_all: 全部拒絕
       remove_avatar: 取消頭像
       remove_header: 移除開頭
       resend_confirmation:
@@ -147,7 +150,6 @@ zh-TW:
         moderator: 版主
         staff: 管理人員
         user: 普通使用者
-      salmon_url: Salmon 網址
       search: 搜尋
       shared_inbox_url: 共享收件箱網址
       show:
@@ -209,11 +211,14 @@ zh-TW:
       delete: 刪除
       destroyed_msg: 已刪除表情符號!
       disable: 停用
+      disabled: 已停用
       disabled_msg: 已停用表情符號
       emoji: 表情符號
       enable: 啟用
+      enabled: 已啟用
       enabled_msg: 已啟用表情符號
       image_hint: PNG 格式, 最大 50KB
+      list: 列表
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
@@ -289,10 +294,11 @@ zh-TW:
         create: 新增站點
         title: 新增電子信箱黑名單項目
       title: 電子信箱黑名單
-    followers:
-      back_to_account: 返回帳戶
-      title: "%{acct} 的關注者"
     instances:
+      moderation:
+        all: 全部
+        limited: 限制
+        title: 版主
       title: 聯邦
     invites:
       filter:
@@ -303,13 +309,12 @@ zh-TW:
       title: 邀請使用者
     relays:
       description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。"
+      disabled: 停用
+      enable: 啟用
     report_notes:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
     reports:
-      account:
-        note: 條記錄
-        report: 條檢舉
       action_taken_by: 操作執行者
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
@@ -397,12 +402,23 @@ zh-TW:
       no_media: 不含媒體檔案
       title: 帳戶嘟文
       with_media: 含有媒體檔案
+    tags:
+      name: Hashtag
     title: 管理介面
+    warning_presets:
+      add_new: 新增
+      delete: 刪除
+      edit: 編輯
   admin_mailer:
     new_report:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: 來自 %{instance} 的使用者檢舉（#%{id}）
+  appearance:
+    localization:
+      body: Mastodon 是由志願者翻譯的。
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: 每個人都能貢獻。
   application_mailer:
     notification_preferences: 變更電子信件設定
     salutation: "%{name}、"
@@ -430,6 +446,8 @@ zh-TW:
     migrate_account: 轉移到另一個帳戶
     migrate_account_html: 如果你希望引導他人關注另一個帳戶，請<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
+    providers:
+      saml: SAML
     register: 註冊
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
@@ -488,11 +506,19 @@ zh-TW:
       request: 下載存檔
       size: 大小
     blocks: 您封鎖的使用者
-    follows: 您關注的使用者
+    csv: CSV
+    lists: 列表
     mutes: 您靜音的使用者
     storage: 儲存空間大小
+  filters:
+    index:
+      empty: 您沒有過濾器。
+  footer:
+    more: 更多......
   generic:
+    all: 全部
     changes_saved_msg: 已成功儲存修改!
+    copy: 複製
     save_changes: 儲存修改
   imports:
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
@@ -561,6 +587,16 @@ zh-TW:
       body: '你的嘟文被 %{name} 轉嘟:'
       subject: "%{name} 轉嘟了你的嘟文"
       title: 新的轉嘟
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: 較新
     next: 下一頁
@@ -596,6 +632,9 @@ zh-TW:
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於你的 Mastodon 帳戶的瀏覽器。
     ip: IP 位址
+    platforms:
+      ios: iOS
+      mac: Mac
     revoke: 取消
     revoke_success: Session 取消成功
     title: 作業階段
@@ -624,6 +663,8 @@ zh-TW:
       ownership: 不能置頂他人的嘟文
       private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
+    poll:
+      vote: 投票
     show_more: 顯示更多
     visibilities:
       private: 僅關注者

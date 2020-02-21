@@ -117,7 +117,7 @@ class Tag < ApplicationRecord
   class << self
     def find_or_create_by_names(name_or_names)
       Array(name_or_names).map(&method(:normalize)).uniq { |str| str.mb_chars.downcase.to_s }.map do |normalized_name|
-        tag = matching_name(normalized_name).first || create!(name: normalized_name)
+        tag = matching_name(normalized_name).first || create(name: normalized_name)
 
         yield tag if block_given?
 

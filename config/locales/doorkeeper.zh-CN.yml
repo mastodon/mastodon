@@ -4,7 +4,7 @@ zh-CN:
     attributes:
       doorkeeper/application:
         name: 应用名称
-        redirect_uri: 重定向 URI
+        redirect_uri: 跳转 URI
         scopes: 权限范围
         website: 应用网站
     errors:
@@ -38,6 +38,7 @@ zh-CN:
         application: 应用
         callback_url: 回调 URL
         delete: 删除
+        empty: 您没有申请。
         name: 名称
         new: 创建新应用
         scopes: 权限范围
@@ -115,17 +116,18 @@ zh-CN:
         title: 需要 OAuth 认证
     scopes:
       admin:read: 读取服务器上的所有数据
-      admin:read:accounts: 读取所有账户的敏感信息
-      admin:read:reports: 读取所有举报和被举报账户的敏感信息
+      admin:read:accounts: 读取所有帐号的敏感信息
+      admin:read:reports: 读取所有举报和被举报帐号的敏感信息
       admin:write: 修改服务器上的所有数据
-      admin:write:accounts: 对账户执行管理操作
+      admin:write:accounts: 对帐号执行管理操作
       admin:write:reports: 对举报执行管理操作
       follow: 关注或屏蔽用户
       push: 接收你的帐户的推送通知
       read: 读取你的帐户数据
-      read:accounts: 查看账户信息
+      read:accounts: 查看账号信息
       read:blocks: 查看你的屏蔽列表
-      read:favourites: 查看你的收藏
+      read:bookmarks: 查看您的书签
+      read:favourites: 查看喜欢的嘟文
       read:filters: 查看你的过滤器
       read:follows: 查看你的关注
       read:lists: 查看你的列表
@@ -134,10 +136,11 @@ zh-CN:
       read:reports: 查看你的举报
       read:search: 以你的身份搜索
       read:statuses: 查看所有嘟文
-      write: 修改你的账户数据
+      write: 修改你的账号数据
       write:accounts: 修改你的个人资料
-      write:blocks: 屏蔽账户和域名
-      write:favourites: 收藏嘟文
+      write:blocks: 屏蔽账号和域名
+      write:bookmarks: 为嘟文添加书签
+      write:favourites: 喜欢的嘟文
       write:filters: 创建过滤器
       write:follows: 关注其他人
       write:lists: 创建列表
