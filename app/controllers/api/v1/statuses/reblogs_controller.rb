@@ -14,12 +14,17 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
   end
 
   def destroy
-    @status = status_for_destroy.reblog
-    @reblogs_map = { @status.id => false }
+    status_for_destroy = current_user.account.statuses.find_by(reblog_of_id: params[:status_id])
+    if status_for_destroy.nil?
+      @status = Status.find(params[:status_id])
+    else
+      @status = status_for_destroy.reblog
+      authorize status_for_destroy, :unreblog?
+      status_for_destroy.discard
+      RemovalWorker.perform_async(status_for_destroy.id)
+    end
 
-    authorize status_for_destroy, :unreblog?
-    status_for_destroy.discard
-    RemovalWorker.perform_async(status_for_destroy.id)
+    @reblogs_map = { @status.id => false }
 
     render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, reblogs_map: @reblogs_map)
   end
@@ -28,10 +33,6 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
 
   def status_for_reblog
     Status.find params[:status_id]
-  end
-
-  def status_for_destroy
-    @status_for_destroy ||= current_user.account.statuses.where(reblog_of_id: params[:status_id]).first!
   end
 
   def reblog_params

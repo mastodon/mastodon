@@ -17,8 +17,8 @@ class Api::V1::Statuses::BookmarksController < Api::BaseController
     @status = requested_status
     @bookmarks_map = { @status.id => false }
 
-    bookmark = Bookmark.find_by!(account: current_user.account, status: @status)
-    bookmark.destroy!
+    bookmark = Bookmark.find_by(account: current_user.account, status: @status)
+    bookmark&.destroy!
 
     render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, bookmarks_map: @bookmarks_map)
   end
