@@ -99,7 +99,7 @@ class ResolveAccountService < BaseService
       if lock.acquired?
         @account = Account.find_remote(@username, @domain)
 
-        next if (@account.present? && !@account.activitypub?) || actor_json.nil?
+        next if actor_json.nil?
 
         @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, actor_json)
       else
