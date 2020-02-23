@@ -3,194 +3,128 @@ en:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 'Application name'
-        redirect_uri: 'Redirect URI'
-        scopes: 'Scopes'
-        website: 'Application website'
+        name: Name
+        redirect_uri: Redirect URI
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: 'cannot contain a fragment.'
-              invalid_uri: 'must be a valid URI.'
-              unspecified_scheme: 'must specify a scheme.'
-              relative_uri: 'must be an absolute URI.'
-              secured_uri: 'must be an HTTPS/SSL URI.'
-              forbidden_uri: 'is forbidden by the server.'
+              forbidden_uri: is forbidden by the server.
+              fragment_present: cannot contain a fragment.
+              invalid_uri: must be a valid URI.
+              relative_uri: must be an absolute URI.
+              secured_uri: must be an HTTPS/SSL URI.
+              unspecified_scheme: must specify a scheme.
             scopes:
-              not_match_configured: "doesn't match configured on the server."
-
+              not_match_configured: doesn't match configured on the server.
   doorkeeper:
     applications:
-      confirmations:
-        destroy: 'Are you sure?'
       buttons:
-        edit: 'Edit'
-        destroy: 'Destroy'
-        submit: 'Submit'
-        cancel: 'Cancel'
-        authorize: 'Authorize'
-      form:
-        error: 'Whoops! Check your form for possible errors'
-      help:
-        confidential: 'Application will be used where the client secret can be kept confidential. Native mobile apps and Single Page Apps are considered non-confidential.'
-        redirect_uri: 'Use one line per URI'
-        blank_redirect_uri: "Leave it blank if you configured your provider to use Client Credentials, Resource Owner Password Credentials or any other grant type that doesn't require redirect URI."
-        scopes: 'Separate scopes with spaces. Leave blank to use the default scopes.'
+        authorize: Authorize
+        cancel: Cancel
+        destroy: Destroy
+        edit: Edit
+        submit: Submit
+      confirmations:
+        destroy: Are you sure?
       edit:
-        title: 'Edit application'
+        title: Edit application
+      form:
+        error: Whoops! Check your form for possible errors
+      help:
+        blank_redirect_uri: Leave it blank if you configured your provider to use Client Credentials, Resource Owner Password Credentials or any other grant type that doesn't require redirect URI.
+        confidential: Application will be used where the client secret can be kept confidential. Native mobile apps and Single Page Apps are considered non-confidential.
+        redirect_uri: Use one line per URI
+        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
-        application: 'Application'
-        callback_url: 'Callback URL'
-        delete: 'Delete'
-        empty: 'You have no applications.'
-        name: 'Name'
-        new: 'New application'
-        scopes: 'Scopes'
-        show: 'Show'
-        title: 'Your applications'
-        new: 'New Application'
-        name: 'Name'
-        callback_url: 'Callback URL'
-        confidential: 'Confidential?'
-        actions: 'Actions'
+        actions: Actions
+        callback_url: Callback URL
+        confidential: Confidential?
         confidentiality:
-          'yes': 'Yes'
           'no': 'No'
+          'yes': 'Yes'
+        name: Name
+        new: New Application
+        title: Your applications
       new:
-        title: 'New Application'
+        title: New Application
       show:
-        actions: 'Actions'
-        application_id: 'Client key'
-        callback_urls: 'Callback URLs'
-        scopes: 'Scopes'
-        secret: 'Client secret'
+        actions: Actions
+        application_id: Application UID
+        callback_urls: Callback urls
+        confidential: Confidential
+        scopes: Scopes
+        secret: Secret
         title: 'Application: %{name}'
-        application_id: 'Application UID'
-        secret: 'Secret'
-        scopes: 'Scopes'
-        confidential: 'Confidential'
-        callback_urls: 'Callback urls'
-        actions: 'Actions'
-
     authorizations:
       buttons:
-        authorize: 'Authorize'
-        deny: 'Deny'
+        authorize: Authorize
+        deny: Deny
       error:
-        title: 'An error has occurred'
+        title: An error has occurred
       new:
-        able_to: 'It will be able to'
-        prompt: 'Application %{client_name} requests access to your account'
-        title: 'Authorization required'
+        able_to: This application will be able to
+        prompt: Authorize %{client_name} to use your account?
+        title: Authorization required
       show:
-        title: 'Copy this authorization code and paste it to the application.'
+        title: Authorization code
     authorized_applications:
-      confirmations:
-        revoke: 'Are you sure?'
       buttons:
-        revoke: 'Revoke'
+        revoke: Revoke
+      confirmations:
+        revoke: Are you sure?
       index:
-        application: 'Application'
-        created_at: 'Authorized'
+        application: Application
+        created_at: Created At
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: 'Scopes'
-        title: 'Your authorized applications'
-
-    pre_authorization:
-      status: 'Pre-authorization'
-
+        title: Your authorized applications
     errors:
       messages:
-        # Common error messages
+        access_denied: The resource owner or authorization server denied the request.
+        admin_authenticator_not_configured: Access to admin panel is forbidden due to Doorkeeper.configure.admin_authenticator being unconfigured.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_code_challenge_method: The code challenge method must be plain or S256.
+        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
+        invalid_redirect_uri: The requested redirect uri is malformed or doesn't match client redirect URI.
         invalid_request:
-          unknown: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
           missing_param: 'Missing required parameter: %{value}.'
-          not_support_pkce: 'Invalid code_verifier parameter. Server does not support pkce.'
-          request_not_authorized: 'Request need to be authorized. Required parameter for authorizing request is missing or invalid.'
-        invalid_redirect_uri: "The requested redirect uri is malformed or doesn't match client redirect URI."
-        unauthorized_client: 'The client is not authorized to perform this request using this method.'
-        access_denied: 'The resource owner or authorization server denied the request.'
-        invalid_scope: 'The requested scope is invalid, unknown, or malformed.'
-        invalid_code_challenge_method: 'The code challenge method must be plain or S256.'
-        server_error: 'The authorization server encountered an unexpected condition which prevented it from fulfilling the request.'
-        temporarily_unavailable: 'The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.'
-
-        # Configuration error messages
-        credential_flow_not_configured: 'Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.'
-        resource_owner_authenticator_not_configured: 'Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfigured.'
-        admin_authenticator_not_configured: 'Access to admin panel is forbidden due to Doorkeeper.configure.admin_authenticator being unconfigured.'
-
-        # Access grant errors
-        unsupported_response_type: 'The authorization server does not support this response type.'
-
-        # Access token errors
-        invalid_client: 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
-        invalid_grant: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
-        unsupported_grant_type: 'The authorization grant type is not supported by the authorization server.'
-
+          not_support_pkce: Invalid code_verifier parameter. Server does not support pkce.
+          request_not_authorized: Request need to be authorized. Required parameter for authorizing request is missing or invalid.
+          unknown: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+        invalid_scope: The requested scope is invalid, unknown, or malformed.
         invalid_token:
-          revoked: "The access token was revoked"
-          expired: "The access token expired"
-          unknown: "The access token is invalid"
+          expired: The access token expired
+          revoked: The access token was revoked
+          unknown: The access token is invalid
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfigured.
         revoke:
-          unauthorized: "You are not authorized to revoke this token"
-
+          unauthorized: You are not authorized to revoke this token
+        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
+        temporarily_unavailable: The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
+        unauthorized_client: The client is not authorized to perform this request using this method.
+        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
+        unsupported_response_type: The authorization server does not support this response type.
     flash:
       applications:
         create:
-          notice: 'Application created.'
+          notice: Application created.
         destroy:
-          notice: 'Application deleted.'
+          notice: Application deleted.
         update:
-          notice: 'Application updated.'
+          notice: Application updated.
       authorized_applications:
         destroy:
-          notice: 'Application revoked.'
-
+          notice: Application revoked.
     layouts:
       admin:
-        title: 'Doorkeeper'
         nav:
-          applications: 'Applications'
-          oauth2_provider: 'OAuth2 Provider'
-          applications: 'Applications'
-          home: 'Home'
+          applications: Applications
+          home: Home
+          oauth2_provider: OAuth2 Provider
+        title: Doorkeeper
       application:
-        title: 'OAuth authorization required'
-    scopes:
-      admin:read: 'read all data on the server'
-      admin:read:accounts: 'read sensitive information of all accounts'
-      admin:read:reports: 'read sensitive information of all reports and reported accounts'
-      admin:write: 'modify all data on the server'
-      admin:write:accounts: 'perform moderation actions on accounts'
-      admin:write:reports: 'perform moderation actions on reports'
-      follow: 'modify account relationships'
-      push: 'receive your push notifications'
-      read: "read all your account's data"
-      read:accounts: 'see accounts information'
-      read:blocks: 'see your blocks'
-      read:bookmarks: 'see your bookmarks'
-      read:favourites: 'see your favourites'
-      read:filters: 'see your filters'
-      read:follows: 'see your follows'
-      read:lists: 'see your lists'
-      read:mutes: 'see your mutes'
-      read:notifications: 'see your notifications'
-      read:reports: 'see your reports'
-      read:search: 'search on your behalf'
-      read:statuses: 'see all statuses'
-      write: "modify all your account's data"
-      write:accounts: 'modify your profile'
-      write:blocks: 'block accounts and domains'
-      write:bookmarks: 'bookmark statuses'
-      write:favourites: 'favourite statuses'
-      write:filters: 'create filters'
-      write:follows: 'follow people'
-      write:lists: 'create lists'
-      write:media: 'upload media files'
-      write:mutes: 'mute people and conversations'
-      write:notifications: 'clear your notifications'
-      write:reports: 'report other people'
-      write:statuses: 'publish statuses'
+        title: OAuth authorization required
+    pre_authorization:
+      status: Pre-authorization
