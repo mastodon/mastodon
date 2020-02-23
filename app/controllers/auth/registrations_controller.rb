@@ -79,7 +79,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def allowed_registrations?
-    Setting.registrations_mode != 'none' || @invite&.valid_for_use?
+#    Setting.registrations_mode != 'none' || @invite&.valid_for_use?
+    (Setting.registrations_mode != 'none' || @invite&.valid_for_use?) && is_human?
   end
 
   def invite_code
