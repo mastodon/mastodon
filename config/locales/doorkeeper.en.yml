@@ -14,26 +14,32 @@ en:
             redirect_uri:
               fragment_present: 'cannot contain a fragment.'
               invalid_uri: 'must be a valid URI.'
+              unspecified_scheme: 'must specify a scheme.'
               relative_uri: 'must be an absolute URI.'
               secured_uri: 'must be an HTTPS/SSL URI.'
+              forbidden_uri: 'is forbidden by the server.'
+            scopes:
+              not_match_configured: "doesn't match configured on the server."
+
   doorkeeper:
     applications:
-      buttons:
-        authorize: 'Authorize'
-        cancel: 'Cancel'
-        destroy: 'Destroy'
-        edit: 'Edit'
-        submit: 'Submit'
       confirmations:
         destroy: 'Are you sure?'
-      edit:
-        title: 'Edit application'
+      buttons:
+        edit: 'Edit'
+        destroy: 'Destroy'
+        submit: 'Submit'
+        cancel: 'Cancel'
+        authorize: 'Authorize'
       form:
         error: 'Whoops! Check your form for possible errors'
       help:
-        native_redirect_uri: 'Use %{native_redirect_uri} for local tests'
+        confidential: 'Application will be used where the client secret can be kept confidential. Native mobile apps and Single Page Apps are considered non-confidential.'
         redirect_uri: 'Use one line per URI'
+        blank_redirect_uri: "Leave it blank if you configured your provider to use Client Credentials, Resource Owner Password Credentials or any other grant type that doesn't require redirect URI."
         scopes: 'Separate scopes with spaces. Leave blank to use the default scopes.'
+      edit:
+        title: 'Edit application'
       index:
         application: 'Application'
         callback_url: 'Callback URL'
@@ -44,8 +50,16 @@ en:
         scopes: 'Scopes'
         show: 'Show'
         title: 'Your applications'
+        new: 'New Application'
+        name: 'Name'
+        callback_url: 'Callback URL'
+        confidential: 'Confidential?'
+        actions: 'Actions'
+        confidentiality:
+          'yes': 'Yes'
+          'no': 'No'
       new:
-        title: 'New application'
+        title: 'New Application'
       show:
         actions: 'Actions'
         application_id: 'Client key'
@@ -53,6 +67,13 @@ en:
         scopes: 'Scopes'
         secret: 'Client secret'
         title: 'Application: %{name}'
+        application_id: 'Application UID'
+        secret: 'Secret'
+        scopes: 'Scopes'
+        confidential: 'Confidential'
+        callback_urls: 'Callback urls'
+        actions: 'Actions'
+
     authorizations:
       buttons:
         authorize: 'Authorize'
@@ -66,36 +87,56 @@ en:
       show:
         title: 'Copy this authorization code and paste it to the application.'
     authorized_applications:
-      buttons:
-        revoke: 'Revoke'
       confirmations:
         revoke: 'Are you sure?'
+      buttons:
+        revoke: 'Revoke'
       index:
         application: 'Application'
         created_at: 'Authorized'
         date_format: "%Y-%m-%d %H:%M:%S"
         scopes: 'Scopes'
         title: 'Your authorized applications'
+
+    pre_authorization:
+      status: 'Pre-authorization'
+
     errors:
       messages:
+        # Common error messages
+        invalid_request:
+          unknown: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
+          missing_param: 'Missing required parameter: %{value}.'
+          not_support_pkce: 'Invalid code_verifier parameter. Server does not support pkce.'
+          request_not_authorized: 'Request need to be authorized. Required parameter for authorizing request is missing or invalid.'
+        invalid_redirect_uri: "The requested redirect uri is malformed or doesn't match client redirect URI."
+        unauthorized_client: 'The client is not authorized to perform this request using this method.'
         access_denied: 'The resource owner or authorization server denied the request.'
-        credential_flow_not_configured: 'Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.'
-        invalid_client: 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
-        invalid_grant: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
-        invalid_redirect_uri: 'The redirect uri included is not valid.'
-        invalid_request: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
-        invalid_resource_owner: 'The provided resource owner credentials are not valid, or resource owner cannot be found'
         invalid_scope: 'The requested scope is invalid, unknown, or malformed.'
-        invalid_token:
-          expired: 'The access token expired'
-          revoked: 'The access token was revoked'
-          unknown: 'The access token is invalid'
-        resource_owner_authenticator_not_configured: 'Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.'
+        invalid_code_challenge_method: 'The code challenge method must be plain or S256.'
         server_error: 'The authorization server encountered an unexpected condition which prevented it from fulfilling the request.'
         temporarily_unavailable: 'The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.'
-        unauthorized_client: 'The client is not authorized to perform this request using this method.'
-        unsupported_grant_type: 'The authorization grant type is not supported by the authorization server.'
+
+        # Configuration error messages
+        credential_flow_not_configured: 'Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.'
+        resource_owner_authenticator_not_configured: 'Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfigured.'
+        admin_authenticator_not_configured: 'Access to admin panel is forbidden due to Doorkeeper.configure.admin_authenticator being unconfigured.'
+
+        # Access grant errors
         unsupported_response_type: 'The authorization server does not support this response type.'
+
+        # Access token errors
+        invalid_client: 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
+        invalid_grant: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
+        unsupported_grant_type: 'The authorization grant type is not supported by the authorization server.'
+
+        invalid_token:
+          revoked: "The access token was revoked"
+          expired: "The access token expired"
+          unknown: "The access token is invalid"
+        revoke:
+          unauthorized: "You are not authorized to revoke this token"
+
     flash:
       applications:
         create:
@@ -107,11 +148,15 @@ en:
       authorized_applications:
         destroy:
           notice: 'Application revoked.'
+
     layouts:
       admin:
+        title: 'Doorkeeper'
         nav:
           applications: 'Applications'
           oauth2_provider: 'OAuth2 Provider'
+          applications: 'Applications'
+          home: 'Home'
       application:
         title: 'OAuth authorization required'
     scopes:
