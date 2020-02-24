@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-class ActivityPub::CollectionSerializer < ActiveModel::Serializer
+class ActivityPub::CollectionSerializer < ActivityPub::Serializer
   def self.serializer_for(model, options)
     return ActivityPub::NoteSerializer if model.class.name == 'Status'
     return ActivityPub::CollectionSerializer if model.class.name == 'ActivityPub::CollectionPresenter'
     super
   end
 
-  attributes :id, :type
+  attribute :id, if: -> { object.id.present? }
+  attribute :type
   attribute :total_items, if: -> { object.size.present? }
   attribute :next, if: -> { object.next.present? }
   attribute :prev, if: -> { object.prev.present? }
@@ -37,6 +38,6 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
   end
 
   def page?
-    object.part_of.present?
+    object.part_of.present? || object.page.present?
   end
 end

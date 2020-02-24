@@ -3,7 +3,7 @@
     %li= link_to t('auth.login'), new_session_path(resource_name)
 
   - if devise_mapping.registerable? && controller_name != 'registrations'
-    %li= link_to t('auth.register'), open_registrations? ? new_registration_path(resource_name) : 'https://joinmastodon.org/#getting-started'
+    %li= link_to t('auth.register'), available_sign_up_path
 
   - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
     %li= link_to t('auth.forgot_password'), new_password_path(resource_name)

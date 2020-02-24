@@ -1,0 +1,15 @@
+---
+tr:
+  devise:
+    confirmations:
+      confirmed: E-posta adresiniz başarıyla onaylandı.
+      send_instructions: Birkaç dakika içinde e-posta adresinizi nasıl onaylayacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+      send_paranoid_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinizi birkaç dakika içinde nasıl doğrulayacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
+    failure:
+      already_authenticated: Zaten oturum açtınız.
+      inactive: Hesabınız henüz etkinleştirilmedi.
+      last_attempt: Hesabınız kilitlenmeden önce bir kez daha denemeniz gerekir.
+      locked: Hesabınız kilitli.
+    mailer:
+      confirmation_instructions:
+        action: E-posta adresinizi doğrulayın

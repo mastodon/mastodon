@@ -2,12 +2,20 @@
 eo:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Vi povas uzi skribmanierojn de mesaĝoj, kiel URL-ojn, kradvortojn kaj menciojn
+      admin_account_action:
+        send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
+        text_html: Malnepra. Vi povas uzi skribmanierojn de mesaĝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
+        type_html: Elektu kion fari kun <strong>%{acct}</strong>
+        warning_preset_id: Malnepra. Vi povas ankoraŭ aldoni propran tekston al la fino de la antaŭagordo
       defaults:
         autofollow: Homoj, kiuj registriĝos per la invito aŭtomate sekvos vin
         avatar: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
         bot: Tiu konto ĉefe faras aŭtomatajn agojn, kaj povas esti ne kontrolata
         context: Unu ol pluraj kuntekstoj kie la filtrilo devus agi
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
+        discoverable_html: La <a href="%{path}" target="_blank">profilujo</a> permesas al homoj trovi kontojn laŭ interesoj kaj aktiveco. Postulas almenaŭ %{min_followers} sekvantojn
         email: Vi ricevos konfirman retmesaĝon
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
@@ -17,17 +25,22 @@ eo:
         locked: Vi devos aprobi ĉiun peton de sekvado mane
         password: Uzu almenaŭ 8 signojn
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
+        scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
+        setting_aggregate_reblogs: Ne montri novajn diskonigojn de mesaĝoj laste diskonigitaj (nur efikas al novaj diskonigoj)
         setting_default_language: La lingvo de viaj mesaĝoj povas esti aŭtomate detektitaj, sed tio ne ĉiam ĝustas
         setting_display_media_default: Kaŝi aŭdovidaĵojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi ĉiujn aŭdovidaĵojn
         setting_display_media_show_all: Ĉiam montri aŭdovidaĵojn markitajn kiel tiklaj
         setting_hide_network: Tiuj, kiujn vi sekvas, kaj tiuj, kiuj sekvas vin ne estos videblaj en via profilo
         setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
+        setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj mesaĝoj
         setting_theme: Influas kiel Mastodon aspektas post ensaluto de ajna aparato.
         username: Via uzantnomo estos unika ĉe %{domain}
         whole_word: Kiam la vorto aŭ frazo estas nur litera aŭ cifera, ĝi estos uzata nur se ĝi kongruas kun la tuta vorto
+      featured_tag:
+        name: 'Vi povus uzi iun el la jenaj:'
       imports:
-        data: CSV-dosiero el alia nodo de Mastodon
+        data: CSV-dosiero el alia Mastodon-servilo
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
       user:
@@ -37,6 +50,18 @@ eo:
         fields:
           name: Etikedo
           value: Enhavo
+      account_warning_preset:
+        text: Antaŭagordita teksto
+      admin_account_action:
+        send_email_notification: Atentigi la uzanton retpoŝte
+        text: Propra averto
+        type: Ago
+        types:
+          disable: Malebligi
+          none: Fari nenion
+          silence: Silentigi
+          suspend: Haltigi kaj nemalfereble forigi kontajn datumojn
+        warning_preset_id: Uzi antaŭagorditan averton
       defaults:
         autofollow: Inviti al sekvi vian konton
         avatar: Profilbildo
@@ -47,6 +72,7 @@ eo:
         context: Filtri kuntekstojn
         current_password: Nuna pasvorto
         data: Datumoj
+        discoverable: Montri ĉi tiun konton en la profilujo
         display_name: Publika nomo
         email: Retadreso
         expires_in: Eksvalidiĝas post
@@ -62,6 +88,7 @@ eo:
         otp_attempt: Kodo de dufaktora aŭtentigo
         password: Pasvorto
         phrase: Vorto aŭ frazo
+        setting_aggregate_reblogs: Grupigi diskonigojn en tempolinioj
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri fenestron por konfirmi antaŭ ol diskonigi
         setting_default_language: Publikada lingvo
@@ -76,6 +103,7 @@ eo:
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
         setting_noindex: Ellistiĝi de retserĉila indeksado
         setting_reduce_motion: Malrapidigi animaciojn
+        setting_show_application: Publikigi la aplikaĵon uzatan por sendi mesaĝojn
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_theme: Reteja etoso
         setting_unfollow_modal: Montri fenestron por konfirmi antaŭ ol ĉesi sekvi iun
@@ -84,6 +112,8 @@ eo:
         username: Uzantnomo
         username_or_email: Uzantnomo aŭ Retadreso
         whole_word: Tuta vorto
+      featured_tag:
+        name: Kradvorto
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas

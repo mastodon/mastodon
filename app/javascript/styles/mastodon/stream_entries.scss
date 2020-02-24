@@ -109,6 +109,23 @@
     }
   }
 
+  &:disabled,
+  &.disabled {
+    svg path:last-child {
+      fill: $ui-primary-color;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      background: $ui-primary-color;
+
+      svg path:last-child {
+        fill: $ui-primary-color;
+      }
+    }
+  }
+
   &.button--destructive {
     &:active,
     &:focus,

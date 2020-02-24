@@ -14,7 +14,7 @@ Devise.setup do |config|
     cas_options[:host] = ENV['CAS_HOST'] if ENV['CAS_HOST']
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
     cas_options[:ssl] = ENV['CAS_SSL'] == 'true' if ENV['CAS_SSL']
-    cas_options[:validate_url] = ENV['CAS_VALIDATE_URL'] if ENV['CAS_VALIDATE_URL']
+    cas_options[:service_validate_url] = ENV['CAS_VALIDATE_URL'] if ENV['CAS_VALIDATE_URL']
     cas_options[:callback_url] = ENV['CAS_CALLBACK_URL'] if ENV['CAS_CALLBACK_URL']
     cas_options[:logout_url] = ENV['CAS_LOGOUT_URL'] if ENV['CAS_LOGOUT_URL']
     cas_options[:login_url] = ENV['CAS_LOGIN_URL'] if ENV['CAS_LOGIN_URL']

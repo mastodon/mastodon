@@ -64,7 +64,7 @@ export default class ActionsModal extends ImmutablePureComponent {
       <div className='modal-root__modal actions-modal'>
         {status}
 
-        <ul>
+        <ul className={classNames({ 'with-status': !!status })}>
           {this.props.actions.map(this.renderAction)}
         </ul>
       </div>

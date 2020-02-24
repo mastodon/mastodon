@@ -44,6 +44,8 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
+    raise Mastodon::ValidationError, I18n.t('_imastodon.polls.validations.forbidden') if status_params[:poll].present?
+
     @status = PostStatusService.new.call(current_user.account,
                                          text: status_params[:status],
                                          thread: status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
@@ -53,6 +55,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          visibility: status_params[:visibility],
                                          scheduled_at: status_params[:scheduled_at],
                                          application: doorkeeper_token.application,
+                                         poll: status_params[:poll],
                                          idempotency: request.headers['Idempotency-Key'])
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
@@ -73,12 +76,25 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
   end
 
   def status_params
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, :scheduled_at, media_ids: [])
+    params.permit(
+      :status,
+      :in_reply_to_id,
+      :sensitive,
+      :spoiler_text,
+      :visibility,
+      :scheduled_at,
+      media_ids: [],
+      poll: [
+        :multiple,
+        :hide_totals,
+        :expires_in,
+        options: [],
+      ]
+    )
   end
 
   def pagination_params(core_params)

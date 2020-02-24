@@ -41,12 +41,21 @@ class SuspendAccountService < BaseService
     @account = account
     @options = options
 
+    reject_follows!
     purge_user!
     purge_profile!
     purge_content!
   end
 
   private
+
+  def reject_follows!
+    return if @account.local? || !@account.activitypub?
+
+    ActivityPub::DeliveryWorker.push_bulk(Follow.where(account: @account)) do |follow|
+      [build_reject_json(follow), follow.target_account_id, follow.account.inbox_url]
+    end
+  end
 
   def purge_user!
     return if !@account.local? || @account.user.nil?
@@ -59,7 +68,7 @@ class SuspendAccountService < BaseService
   end
 
   def purge_content!
-    distribute_delete_actor! if @account.local?
+    distribute_delete_actor! if @account.local? && !@options[:skip_distribution]
 
     @account.statuses.reorder(nil).find_in_batches do |statuses|
       BatchedRemoveStatusService.new.call(statuses, skip_side_effects: @options[:destroy])
@@ -118,6 +127,14 @@ class SuspendAccountService < BaseService
     ).as_json
 
     @delete_actor_json = Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account))
+  end
+
+  def build_reject_json(follow)
+    ActiveModelSerializers::SerializableResource.new(
+      follow,
+      serializer: ActivityPub::RejectFollowSerializer,
+      adapter: ActivityPub::Adapter
+    ).to_json
   end
 
   def delivery_inboxes

@@ -12,13 +12,16 @@ sl:
       last_attempt: Pred zaklepom računa imate še en poskus.
       locked: Vaš račun je zaklenjen.
       not_found_in_database: Neveljavno %{authentication_keys} ali geslo.
+      pending: Vaš račun je še vedno pod drobnogledom.
       timeout: Vaša seja je potekla. Če želite nadaljevati, se znova prijavite.
       unauthenticated: Pred nadaljevanjem se morate prijaviti ali vpisati.
       unconfirmed: Pred nadaljevanjem morate potrditi svoj e-poštni naslov.
     mailer:
       confirmation_instructions:
         action: Potrdi e-poštni naslov
+        action_with_app: Potrdi in se vrni v %{app}
         explanation: S tem e-poštnim naslovom ste ustvarili račun na %{host}. Z enim samim klikom ga aktivirate. Če to niste bili vi, prosimo, prezrite to e-poštno sporočilo.
+        explanation_when_pending: S tem e-poštnim naslovom ste zaprosili za povabilo na %{host}. Ko potrdite svoj e-poštni naslov, bomo pregledali vašo prijavo. Do takrat se ne morete prijaviti. Če bo vaša prijava zavrnjena, bodo vaši podatki odstranjeni, zato ne bo potrebno nadaljnje ukrepanje. Če to niste bili vi, prezrite to e-poštno sporočilo.
         extra_html: Preverite tudi <a href="%{terms_path}">pravila vozlišča</a> in <a href="%{policy_path}">naše pogoje storitve</a>.
         subject: 'Mastodon: Navodila za potrditev za %{instance}'
         title: Potrdi e-poštni naslov
@@ -34,3 +37,17 @@ sl:
         title: Geslo je spremenjeno
       reconfirmation_instructions:
         explanation: Potrdite novi naslov, da spremenite svoj e-poštni naslov.
+        extra: Če te spremembe niste sprožili, prezrite to e-poštno sporočilo. E-poštni naslov za račun Mastodon se ne bo spremenil, dokler ne kliknete na zgornjo povezavo.
+        subject: 'Mastodon: Potrdite e-pošto za %{instance}'
+        title: Potrdi e-poštni naslov
+      reset_password_instructions:
+        action: Spremeni geslo
+        explanation: Zahtevali ste novo geslo za svoj račun.
+        extra: Če tega niste zahtevali, prezrite to e-poštno sporočilo. Vaše geslo se ne bo spremenilo, dokler ne kliknete na zgornjo povezavo in ustvarite novega.
+        subject: 'Mastodon: Navodila za ponastavitev gesla'
+        title: Ponastavitev gesla
+      unlock_instructions:
+        subject: 'Mastodon: Odkleni navodila'
+    omniauth_callbacks:
+      failure: Overitev iz %{kind} ni možna zaradi "%{reason}".
+      success: Overitev iz računa %{kind} je bila uspešna.

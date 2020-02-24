@@ -16,10 +16,11 @@ class Api::V1::Accounts::SearchController < Api::BaseController
   def account_search
     AccountSearchService.new.call(
       params[:q],
-      limit_param(DEFAULT_ACCOUNTS_LIMIT),
       current_account,
+      limit: limit_param(DEFAULT_ACCOUNTS_LIMIT),
       resolve: truthy_param?(:resolve),
-      following: truthy_param?(:following)
+      following: truthy_param?(:following),
+      offset: params[:offset]
     )
   end
 end

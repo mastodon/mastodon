@@ -12,13 +12,13 @@ module Mastodon
 
     desc 'open', 'Open registrations'
     def open
-      Setting.open_registrations = true
+      Setting.registrations_mode = 'open'
       say('OK', :green)
     end
 
     desc 'close', 'Close registrations'
     def close
-      Setting.open_registrations = false
+      Setting.registrations_mode = 'none'
       say('OK', :green)
     end
   end

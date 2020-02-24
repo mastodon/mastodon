@@ -2,48 +2,132 @@
 th:
   simple_form:
     hints:
+      account_warning_preset:
+        text: คุณสามารถใช้ไวยากรณ์โพสต์ เช่น URL, แฮชแท็ก และการกล่าวถึง
+      admin_account_action:
+        send_email_notification: ผู้ใช้จะได้รับคำอธิบายว่าเกิดอะไรขึ้นกับบัญชีของเขา
+        text_html: ตัวเลือกเพิ่มเติม คุณสามารถใช้ไวยากรณ์โพสต์ คุณสามารถ <a href="%{path}">เพิ่มคำเตือนที่ตั้งไว้ล่วงหน้า</a> เพื่อประหยัดเวลา
+        type_html: เลือกสิ่งที่จะทำกับ <strong>%{acct}</strong>
+        warning_preset_id: ตัวเลือกเพิ่มเติม คุณยังคงสามารถเพิ่มข้อความที่กำหนดเองที่จุดสิ้นสุดของค่าที่ตั้งไว้ล่วงหน้า
       defaults:
-        avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        locked: Requires you to manually approve followers and defaults post privacy to followers-only
+        autofollow: ผู้คนที่ลงทะเบียนผ่านคำเชิญจะติดตามคุณโดยอัตโนมัติ
+        avatar: PNG, GIF หรือ JPG สูงสุด %{size} จะถูกย่อขนาดเป็น %{dimensions}px
+        bot: บัญชีนี้ทำการกระทำอัตโนมัติเป็นหลักและอาจไม่ได้รับการสังเกตการณ์
+        context: บริบทจำนวนหนึ่งหรือมากกว่าที่ตัวกรองควรใช้
+        digest: ส่งเฉพาะหลังจากไม่มีการใช้งานเป็นเวลานานและในกรณีที่คุณได้รับข้อความส่วนบุคคลใด ๆ เมื่อคุณไม่อยู่เท่านั้น
+        discoverable_html: <a href="%{path}" target="_blank">ไดเรกทอรี</a> ช่วยให้ผู้คนค้นหาบัญชีตามความสนใจและกิจกรรม ต้องการอย่างน้อย %{min_followers} ผู้ติดตาม
+        email: คุณจะได้รับอีเมลยืนยัน
+        fields: คุณสามารถมีได้มากถึง 4 รายการแสดงผลเป็นตารางในโปรไฟล์ของคุณ
+        header: PNG, GIF หรือ JPG สูงสุด %{size} จะถูกย่อขนาดเป็น %{dimensions}px
+        inbox_url: คัดลอก URL จากหน้าแรกของรีเลย์ที่คุณต้องการใช้
+        irreversible: โพสต์ที่กรองจะหายไปอย่างถาวร แม้ว่าจะเอาตัวกรองออกในภายหลัง
+        locale: ภาษาของส่วนติดต่อผู้ใช้, อีเมล และการแจ้งเตือนแบบผลัก
+        locked: คุณต้องอนุมัติผู้ติดตามด้วยตนเอง
+        password: ใช้อย่างน้อย 8 ตัวอักษร
+        phrase: จะถูกจับคู่โดยไม่คำนึงถึงตัวอักษรใหญ่เล็กในข้อความหรือคำเตือนเนื้อหาของโพสต์
+        scopes: API ใดที่แอปพลิเคชันจะได้รับอนุญาตให้เข้าถึง หากคุณเลือกขอบเขตระดับบนสุด คุณไม่จำเป็นต้องเลือกแต่ละขอบเขต
+        setting_aggregate_reblogs: ไม่แสดงการดันใหม่สำหรับโพสต์ที่เพิ่งดัน (มีผลต่อการดันที่ได้รับใหม่เท่านั้น)
+        setting_default_language: สามารถตรวจพบภาษาของโพสต์ของคุณโดยอัตโนมัติ แต่อาจไม่แม่นยำเสมอไป
+        setting_display_media_default: ซ่อนสื่อที่ถูกทำเครื่องหมายว่าละเอียดอ่อน
+        setting_display_media_hide_all: ซ่อนสื่อทั้งหมดเสมอ
+        setting_display_media_show_all: แสดงสื่อที่ถูกทำเครื่องหมายว่าละเอียดอ่อนเสมอ
+        setting_hide_network: จะไม่แสดงผู้ที่คุณติดตามและผู้ที่ติดตามคุณในโปรไฟล์ของคุณ
+        setting_noindex: มีผลต่อโปรไฟล์สาธารณะและหน้าสถานะของคุณ
+        setting_show_application: จะแสดงผลแอปพลิเคชันที่คุณใช้เพื่อโพสต์ในมุมมองโดยละเอียดของโพสต์ของคุณ
+        setting_theme: มีผลต่อลักษณะของ Mastodon เมื่อคุณเข้าสู่ระบบจากอุปกรณ์ใด ๆ
+        username: ชื่อผู้ใช้ของคุณจะไม่ซ้ำกันบน %{domain}
+        whole_word: เมื่อคำสำคัญหรือวลีมีแค่ตัวอักษรและตัวเลข จะถูกใช้หากตรงกันทั้งคำเท่านั้น
+      featured_tag:
+        name: 'คุณอาจต้องการใช้หนึ่งในนี้:'
       imports:
-        data: CSV file exported from another Mastodon instance
+        data: ไฟล์ CSV ที่ส่งออกจากเซิร์ฟเวอร์ Mastodon อื่น
       sessions:
-        otp: Enter the Two-factor code from your phone or use one of your recovery codes.
+        otp: 'ป้อนรหัสสองปัจจัยที่สร้างโดยแอปในโทรศัพท์ของคุณหรือใช้หนึ่งในรหัสกู้คืนของคุณ:'
+      user:
+        chosen_languages: เมื่อกาเครื่องหมาย จะแสดงผลเฉพาะโพสต์ในภาษาที่เลือกในเส้นเวลาสาธารณะ
     labels:
+      account:
+        fields:
+          name: ป้ายชื่อ
+          value: เนื้อหา
+      account_warning_preset:
+        text: ข้อความที่ตั้งไว้ล่วงหน้า
+      admin_account_action:
+        send_email_notification: แจ้งเตือนผู้ใช้ทางอีเมล
+        text: คำเตือนที่กำหนดเอง
+        type: การกระทำ
+        types:
+          disable: ปิดใช้งาน
+          none: ไม่ทำสิ่งใด
+          silence: เงียบ
+          suspend: ระงับและลบข้อมูลบัญชีอย่างถาวร
+        warning_preset_id: ใช้คำเตือนที่ตั้งไว้ล่วงหน้า
       defaults:
-        avatar: Avatar
-        confirm_new_password: Confirm new password
-        confirm_password: Confirm password
-        current_password: Current password
+        autofollow: เชิญให้ติดตามบัญชีของคุณ
+        avatar: ภาพประจำตัว
+        bot: นี่คือบัญชีบอต
+        chosen_languages: กรองภาษา
+        confirm_new_password: ยืนยันรหัสผ่านใหม่
+        confirm_password: ยืนยันรหัสผ่าน
+        context: บริบทตัวกรอง
+        current_password: รหัสผ่านปัจจุบัน
         data: ข้อมูล
-        display_name: Display name
-        email: E-mail address
-        header: Header
-        locale: ภาษา
-        locked: Lock account
-        new_password: New password
-        note: Bio
-        otp_attempt: Two-factor code
-        password: พาร์สเวิร์ด
-        setting_auto_play_gif: Auto-play animated GIFs
-        setting_boost_modal: Show confirmation dialog before boosting
-        setting_default_privacy: Post privacy
-        severity: Severity
-        type: Import type
-        username: Username
+        discoverable: แสดงรายการบัญชีนี้ในไดเรกทอรี
+        display_name: ชื่อที่แสดงผล
+        email: ที่อยู่อีเมล
+        expires_in: หมดอายุหลังจาก
+        fields: ข้อมูลเมตาโปรไฟล์
+        header: ส่วนหัว
+        inbox_url: URL กล่องขาเข้าแบบรีเลย์
+        irreversible: ลบแทนที่จะซ่อน
+        locale: ภาษาส่วนติดต่อ
+        locked: ล็อคบัญชี
+        max_uses: จำนวนการใช้งานสูงสุด
+        new_password: รหัสผ่านใหม่
+        note: ชีวประวัติ
+        otp_attempt: รหัสสองปัจจัย
+        password: รหัสผ่าน
+        phrase: คำสำคัญหรือวลี
+        setting_aggregate_reblogs: จัดกลุ่มการดันในเส้นเวลา
+        setting_auto_play_gif: เล่น GIF แบบเคลื่อนไหวโดยอัตโนมัติ
+        setting_boost_modal: แสดงกล่องโต้ตอบการยืนยันก่อนดัน
+        setting_default_language: ภาษาที่โพสต์
+        setting_default_privacy: ความเป็นส่วนตัวของโพสต์
+        setting_default_sensitive: ทำเครื่องหมายสื่อว่าละเอียดอ่อนเสมอ
+        setting_delete_modal: แสดงกล่องโต้ตอบการยืนยันก่อนลบโพสต์
+        setting_display_media: การแสดงผลสื่อ
+        setting_display_media_default: ค่าเริ่มต้น
+        setting_display_media_hide_all: ซ่อนทั้งหมด
+        setting_display_media_show_all: แสดงทั้งหมด
+        setting_expand_spoilers: ขยายโพสต์ที่ทำเครื่องหมายด้วยคำเตือนเนื้อหาเสมอ
+        setting_hide_network: ซ่อนเครือข่ายของคุณ
+        setting_noindex: เลือกไม่รับการทำดัชนีโดยเครื่องมือค้นหา
+        setting_reduce_motion: ลดการเคลื่อนไหวในภาพเคลื่อนไหว
+        setting_show_application: เปิดเผยแอปพลิเคชันที่ใช้ในการส่งโพสต์
+        setting_system_font_ui: ใช้แบบอักษรเริ่มต้นของระบบ
+        setting_theme: ชุดรูปแบบไซต์
+        setting_unfollow_modal: แสดงกล่องโต้ตอบการยืนยันก่อนเลิกติดตามใครสักคน
+        severity: ความรุนแรง
+        type: ชนิดการนำเข้า
+        username: ชื่อผู้ใช้
+        username_or_email: ชื่อผู้ใช้หรืออีเมล
+        whole_word: ทั้งคำ
+      featured_tag:
+        name: แฮชแท็ก
       interactions:
-        must_be_follower: Block notifications from non-followers
-        must_be_following: Block notifications from people you don't follow
+        must_be_follower: ปิดกั้นการแจ้งเตือนจากที่ไม่ใช่ผู้ติดตาม
+        must_be_following: ปิดกั้นการแจ้งเตือนจากผู้คนที่คุณไม่ได้ติดตาม
+        must_be_following_dm: ปิดกั้นข้อความโดยตรงจากผู้คนที่คุณไม่ได้ติดตาม
       notification_emails:
-        digest: Send digest e-mails
-        favourite: Send e-mail when someone favourites your status
-        follow: Send e-mail when someone follows you
-        follow_request: Send e-mail when someone requests to follow you
-        mention: Send e-mail when someone mentions you
-        reblog: Send e-mail when someone boosts your status
+        digest: ส่งอีเมลสรุป
+        favourite: ส่งอีเมลเมื่อใครสักคนชื่นชอบสถานะของคุณ
+        follow: ส่งอีเมลเมื่อใครสักคนติดตามคุณ
+        follow_request: ส่งอีเมลเมื่อใครสักคนขอติดตามคุณ
+        mention: ส่งอีเมลเมื่อใครสักคนกล่าวถึงคุณ
+        reblog: ส่งอีเมลเมื่อใครสักคนดันสถานะของคุณ
+        report: ส่งอีเมลเมื่อมีการส่งรายงานใหม่
     'no': ไม่
     required:
       mark: "*"
-      text: required
+      text: ต้องระบุ
     'yes': ใช่

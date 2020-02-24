@@ -64,6 +64,20 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         expect(Status.find_by(id: status.id)).to be nil
       end
     end
+
+    context 'with a poll' do
+      describe 'POST #create' do
+        let(:scopes) { 'write:statuses' }
+
+        before do
+          post :create, params: { status: 'Hello world', poll: { options: %w(Sakura Izumi Ako) } }
+        end
+
+        it 'returns http failure (imastodon)' do
+          expect(response).to have_http_status(422)
+        end
+      end
+    end
   end
 
   context 'without an oauth token' do

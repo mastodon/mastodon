@@ -19,6 +19,10 @@ class Formatter
 
     raw_content = status.text
 
+    if options[:inline_poll_options] && status.preloadable_poll
+      raw_content = raw_content + "\n\n" + status.preloadable_poll.options.map { |title| "[ ] #{title}" }.join("\n")
+    end
+
     return '' if raw_content.blank?
 
     unless status.local?
@@ -63,6 +67,12 @@ class Formatter
 
   def format_spoiler(status, **options)
     html = encode(status.spoiler_text)
+    html = encode_custom_emojis(html, status.emojis, options[:autoplay])
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def format_poll_option(status, option, **options)
+    html = encode(option.title)
     html = encode_custom_emojis(html, status.emojis, options[:autoplay])
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -177,7 +187,7 @@ class Formatter
   end
 
   def rewrite(text, entities)
-    chars = text.to_s.to_char_a
+    text = text.to_s
 
     # Sort by start index
     entities = entities.sort_by do |entity|
@@ -189,12 +199,12 @@ class Formatter
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
-      result << encode(chars[index...indices.first].join)
+      result << encode(text[index...indices.first])
       result << yield(entity)
       indices.last
     end
 
-    result << encode(chars[last_index..-1].join)
+    result << encode(text[last_index..-1])
 
     result.flatten.join
   end
@@ -221,23 +231,14 @@ class Formatter
     # Note: I couldn't obtain list_slug with @user/list-name format
     # for mention so this requires additional check
     special = Extractor.extract_urls_with_indices(escaped, options).map do |extract|
-      # exactly one of :url, :hashtag, :screen_name, :cashtag keys is present
-      key = (extract.keys & [:url, :hashtag, :screen_name, :cashtag]).first
-
       new_indices = [
         old_to_new_index.find_index(extract[:indices].first),
         old_to_new_index.find_index(extract[:indices].last),
       ]
 
-      has_prefix_char = [:hashtag, :screen_name, :cashtag].include?(key)
-      value_indices = [
-        new_indices.first + (has_prefix_char ? 1 : 0), # account for #, @ or $
-        new_indices.last - 1,
-      ]
-
       next extract.merge(
-        :indices => new_indices,
-        key => text[value_indices.first..value_indices.last]
+        indices: new_indices,
+        url: text[new_indices.first..new_indices.last - 1]
       )
     end
 

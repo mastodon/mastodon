@@ -97,7 +97,7 @@ class ReportModal extends ImmutablePureComponent {
 
         <div className='report-modal__container'>
           <div className='report-modal__comment'>
-            <p><FormattedMessage id='report.hint' defaultMessage='The report will be sent to your instance moderators. You can provide an explanation of why you are reporting this account below:' /></p>
+            <p><FormattedMessage id='report.hint' defaultMessage='The report will be sent to your server moderators. You can provide an explanation of why you are reporting this account below:' /></p>
 
             <textarea
               className='setting-text light'

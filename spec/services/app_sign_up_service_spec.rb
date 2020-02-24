@@ -8,8 +8,10 @@ RSpec.describe AppSignUpService, type: :service do
 
   describe '#call' do
     it 'returns nil when registrations are closed' do
-      Setting.open_registrations = false
+      tmp = Setting.registrations_mode
+      Setting.registrations_mode = 'none'
       expect(subject.call(app, good_params)).to be_nil
+      Setting.registrations_mode = tmp
     end
 
     it 'raises an error when params are missing' do

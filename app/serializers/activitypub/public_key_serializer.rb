@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ActivityPub::PublicKeySerializer < ActiveModel::Serializer
+class ActivityPub::PublicKeySerializer < ActivityPub::Serializer
+  context :security
+
   attributes :id, :owner, :public_key_pem
 
   def id

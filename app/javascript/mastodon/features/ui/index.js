@@ -47,7 +47,8 @@ import {
   Lists,
 } from './util/async-components';
 import { me } from '../../initial_state';
-import { previewState } from './components/media_modal';
+import { previewState as previewMediaState } from './components/media_modal';
+import { previewState as previewVideoState } from './components/video_modal';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -121,7 +122,7 @@ class SwitchingColumnsArea extends React.PureComponent {
   }
 
   shouldUpdateScroll (_, { location }) {
-    return location.state !== previewState;
+    return location.state !== previewMediaState && location.state !== previewVideoState;
   }
 
   handleResize = debounce(() => {
@@ -263,7 +264,7 @@ class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
     this.dragTargets = [];
 
-    if (e.dataTransfer && e.dataTransfer.files.length === 1) {
+    if (e.dataTransfer && e.dataTransfer.files.length >= 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   }
@@ -367,11 +368,16 @@ class UI extends React.PureComponent {
   handleHotkeyFocusColumn = e => {
     const index  = (e.key * 1) + 1; // First child is drawer, skip that
     const column = this.node.querySelector(`.column:nth-child(${index})`);
+    if (!column) return;
+    const container = column.querySelector('.scrollable');
 
-    if (column) {
-      const status = column.querySelector('.focusable');
+    if (container) {
+      const status = container.querySelector('.focusable');
 
       if (status) {
+        if (container.scrollTop > status.offsetTop) {
+          status.scrollIntoView(true);
+        }
         status.focus();
       }
     }

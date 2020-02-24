@@ -1,39 +1,43 @@
 ---
 en:
+  _imastodon:
+    polls:
+      validations:
+        forbidden: Cannot create a poll in this server.
   about:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
     administered_by: 'Administered by:'
     api: API
     apps: Mobile apps
-    closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
+    apps_platforms: Use Mastodon from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
+    discover_users: Discover users
     documentation: Documentation
     extended_description_html: |
       <h3>A good place for rules</h3>
       <p>The extended description has not been set up yet.</p>
-    features:
-      humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
-      humane_approach_title: A more humane approach
-      not_a_product_body: Mastodon is not a commercial network. No advertising, no data mining, no walled gardens. There is no central authority.
-      not_a_product_title: You’re a person, not a product
-      real_conversation_body: With 500 characters at your disposal and support for granular content and media warnings, you can express yourself the way you want to.
-      real_conversation_title: Built for real conversation
-      within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
-      within_reach_title: Always within reach
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} is one server in the network"
+    get_apps: Try a mobile app
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    other_instances: Instance list
     privacy_policy: Privacy policy
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
     source_code: Source code
     status_count_after:
       one: status
       other: statuses
     status_count_before: Who authored
+    tagline: Follow friends and discover new ones
     terms: Terms of service
     user_count_after:
       one: user
@@ -68,6 +72,7 @@ en:
       admin: Admin
       bot: Bot
       moderator: Mod
+    unavailable: Profile unavailable
     unfollow: Unfollow
   admin:
     account_actions:
@@ -79,6 +84,8 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      approve: Approve
+      approve_all: Approve all
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -124,15 +131,18 @@ en:
       moderation:
         active: Active
         all: All
+        pending: Pending
         silenced: Silenced
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
+      no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: No limits imposed
       not_subscribed: Not subscribed
       outbox_url: Outbox URL
+      pending: Pending review
       perform_full_suspension: Suspend
       profile_url: Profile URL
       promote: Promote
@@ -140,6 +150,8 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
+      reject: Reject
+      reject_all: Reject all
       remove_avatar: Remove avatar
       remove_header: Remove header
       resend_confirmation:
@@ -262,6 +274,7 @@ en:
       feature_profile_directory: Profile directory
       feature_registrations: Registrations
       feature_relay: Federation relay
+      feature_timeline_preview: Timeline preview
       features: Features
       hidden_service: Federation with hidden services
       open_reports: open reports
@@ -281,6 +294,7 @@ en:
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
@@ -346,6 +360,8 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    pending_accounts:
+      title: Pending accounts (%{count})
     relays:
       add_new: Add new relay
       delete: Delete
@@ -408,14 +424,14 @@ en:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
       hero:
-        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
       mascot:
         desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
       peers_api_enabled:
-        desc_html: Domain names this instance has encountered in the fediverse
-        title: Publish list of discovered instances
+        desc_html: Domain names this server has encountered in the fediverse
+        title: Publish list of discovered servers
       preview_sensitive_media:
         desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
         title: Show sensitive media in OpenGraph previews
@@ -432,9 +448,12 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
-        open:
-          desc_html: Allow anyone to create an account
-          title: Open registration
+      registrations_mode:
+        modes:
+          approved: Approval required for sign up
+          none: Nobody can sign up
+          open: Anyone can sign up
+        title: Registrations mode
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
         title: Show known fediverse on timeline preview
@@ -442,21 +461,21 @@ en:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
       site_description:
-        desc_html: Introductory paragraph on the frontpage. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Instance description
+        desc_html: Introductory paragraph on the API. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Server description
       site_description_extended:
-        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your server apart. You can use HTML tags
         title: Custom extended information
       site_short_description:
-        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to instance description.
-        title: Short instance description
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
+        title: Short server description
       site_terms:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
-      site_title: Instance name
+      site_title: Server name
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
-        title: Instance thumbnail
+        title: Server thumbnail
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
@@ -497,6 +516,9 @@ en:
       edit_preset: Edit warning preset
       title: Manage warning presets
   admin_mailer:
+    new_pending_account:
+      body: The details of the new account are below. You can approve or reject this application.
+      subject: New account up for review on %{instance} (%{username})
     new_report:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
@@ -506,7 +528,7 @@ en:
     salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
     view: 'View:'
-    view_profile: View Profile
+    view_profile: View profile
     view_status: View status
   applications:
     created: Application successfully created
@@ -517,8 +539,9 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
+    apply_for_account: Request an invite
     change_password: Password
+    checkbox_agreement_html: I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -529,17 +552,17 @@ en:
     logout: Logout
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
-    or: or
     or_log_in_with: Or log in with
     providers:
       cas: CAS
       saml: SAML
     register: Sign up
-    register_elsewhere: Sign up on another server
+    registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     security: Security
     set_new_password: Set new password
+    trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
     error: Unfortunately, there was an error looking up the remote account
@@ -571,7 +594,7 @@ en:
     description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
     proceed: Delete account
     success_msg: Your account was successfully deleted
-    warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
+    warning_html: Only deletion of content from this particular server is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
     warning_title: Disseminated content availability
   directories:
     directory: Profile directory
@@ -585,8 +608,8 @@ en:
       other: "%{count} people"
   errors:
     '403': You don't have permission to view this page.
-    '404': The page you were looking for doesn't exist.
-    '410': The page you were looking for doesn't exist anymore.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
@@ -595,11 +618,14 @@ en:
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
+  existing_username_validator:
+    not_found: could not find a local user with that username
+    not_found_multiple: could not find %{usernames}
   exports:
     archive_takeout:
       date: Date
       download: Download your archive
-      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
       in_progress: Compiling your archive...
       request: Request your archive
       size: Size
@@ -622,6 +648,10 @@ en:
     name_of_tag: Name of tag
     order: order
     submit: Create favourite tag
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
   filters:
     contexts:
       home: Home timeline
@@ -638,34 +668,50 @@ en:
       title: Filters
     new:
       title: Add new filter
-  followers:
-    domain: Domain
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
-    followers_count: Number of followers
-    lock_link: Lock your account
-    purge: Remove from followers
-    success:
-      one: In the process of soft-blocking followers from one domain...
-      other: In the process of soft-blocking followers from %{count} domains...
-    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
-    unlocked_warning_title: Your account is not locked
   footer:
     developers: Developers
     more: More…
     resources: Resources
   generic:
+    all: All
     changes_saved_msg: Changes successfully saved!
     copy: Copy
+    order_by: Order by
     save_changes: Save changes
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
+  html_validator:
+    invalid_markup: 'contains invalid HTML markup: %{error}'
+  identity_proofs:
+    active: Active
+    authorize: Yes, authorize
+    authorize_connection_prompt: Authorize this cryptographic connection?
+    errors:
+      failed: The cryptographic connection failed. Please try again from %{provider}.
+      keybase:
+        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
+        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
+      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
+    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    i_am_html: I am %{username} on %{service}.
+    identity: Identity
+    inactive: Inactive
+    publicize_checkbox: 'And toot this:'
+    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    status: Verification status
+    view_proof: View proof
   imports:
-    preface: You can import data that you have exported from another instance, such as a list of the people you are following or blocking.
+    modes:
+      merge: Merge
+      merge_long: Keep existing records and add new ones
+      overwrite: Overwrite
+      overwrite_long: Replace current records with the new ones
+    preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
+      domain_blocking: Domain blocking list
       following: Following list
       muting: Muting list
     upload: Upload
@@ -687,7 +733,7 @@ en:
       one: 1 use
       other: "%{count} uses"
     max_uses_prompt: No limit
-    prompt: Generate and share links with others to grant access to this instance
+    prompt: Generate and share links with others to grant access to this server
     table:
       expires_at: Expires
       uses: Uses
@@ -757,11 +803,34 @@ en:
     older: Older
     prev: Prev
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: You have already voted on this poll
+      duplicate_options: contain duplicate items
+      duration_too_long: is too far into the future
+      duration_too_short: is too soon
+      expired: The poll has already ended
+      over_character_limit: cannot be longer than %{max} characters each
+      too_few_options: must have more than one item
+      too_many_options: can't contain more than %{max} items
   preferences:
     languages: Languages
     other: Other
     publishing: Publishing
     web: Web
+  relationships:
+    activity: Account activity
+    dormant: Dormant
+    last_active: Last active
+    most_recent: Most recent
+    moved: Moved
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Remove all followers from the selected domains
+    remove_selected_followers: Remove selected followers
+    remove_selected_follows: Unfollow selected users
+    status: Account status
   remote_follow:
     acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
@@ -829,6 +898,9 @@ en:
     revoke_success: Session successfully revoked
     title: Sessions
   settings:
+    account: Account
+    account_settings: Account settings
+    appearance: Appearance
     authorized_apps: Authorized apps
     back: Back to Mastodon
     delete: Account deletion
@@ -836,14 +908,16 @@ en:
     edit_profile: Edit profile
     export: Data export
     favourite_tags: Favourite tags
-    followers: Authorized followers
+    featured_tags: Featured hashtags
+    identity_proofs: Identity proofs
     import: Import
+    import_and_export: Import and export
     migrate: Account migration
     notifications: Notifications
     preferences: Preferences
-    settings: Settings
+    profile: Profile
+    relationships: Follows and followers
     two_factor_authentication: Two-factor Auth
-    your_apps: Your applications
   statuses:
     attached:
       description: 'Attached: %{attached}'
@@ -866,6 +940,11 @@ en:
       ownership: Someone else's toot cannot be pinned
       private: Non-public toot cannot be pinned
       reblog: A boost cannot be pinned
+    poll:
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
     show_more: Show more
     sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
@@ -1015,7 +1094,7 @@ en:
       final_action: Start posting
       final_step: 'Start posting! Even without followers your public messages may be seen by others, for example on the local timeline and in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Your full handle
-      full_handle_hint: This is what you would tell your friends so they can message or follow you from another instance.
+      full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
       review_preferences_action: Change preferences
       review_preferences_step: Make sure to set your preferences, such as which emails you'd like to receive, or what privacy level you’d like your posts to default to. If you don’t have motion sickness, you could choose to enable GIF autoplay.
       subject: Welcome to Mastodon

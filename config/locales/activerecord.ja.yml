@@ -2,6 +2,9 @@
 ja:
   activerecord:
     attributes:
+      poll:
+        expires_at: 期限
+        options: 項目
       user:
         email: メールアドレス
     errors:
@@ -9,8 +12,8 @@ ja:
         account:
           attributes:
             username:
-              invalid: アルファベット・数値・アンダーバー(_)で入力してください
+              invalid: アルファベット・数字・アンダーバーの組み合わせで入力してください
         status:
           attributes:
             reblog:
-              taken: のブーストはすでに存在します
+              taken: は既にブーストされています

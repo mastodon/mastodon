@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class AccountSearchService < BaseService
-  attr_reader :query, :limit, :options, :account
+  attr_reader :query, :limit, :offset, :options, :account
 
-  def call(query, limit, account = nil, options = {})
+  def call(query, account = nil, options = {})
     @query   = query.strip
-    @limit   = limit
+    @limit   = options[:limit].to_i
+    @offset  = options[:offset].to_i
     @options = options
     @account = account
 
@@ -83,11 +84,11 @@ class AccountSearchService < BaseService
   end
 
   def advanced_search_results
-    Account.advanced_search_for(terms_for_query, account, limit, options[:following])
+    Account.advanced_search_for(terms_for_query, account, limit, options[:following], offset)
   end
 
   def simple_search_results
-    Account.search_for(terms_for_query, limit)
+    Account.search_for(terms_for_query, limit, offset)
   end
 
   def terms_for_query

@@ -33,6 +33,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     statuses.merge!(only_media_scope) if truthy_param?(:only_media)
     statuses.merge!(no_replies_scope) if truthy_param?(:exclude_replies)
     statuses.merge!(no_reblogs_scope) if truthy_param?(:exclude_reblogs)
+    statuses.merge!(hashtag_scope)    if params[:tagged].present?
 
     statuses
   end
@@ -65,6 +66,16 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def no_reblogs_scope
     Status.without_reblogs
+  end
+
+  def hashtag_scope
+    tag = Tag.find_normalized(params[:tagged])
+
+    if tag
+      Status.tagged_with(tag.id)
+    else
+      Status.none
+    end
   end
 
   def pagination_params(core_params)

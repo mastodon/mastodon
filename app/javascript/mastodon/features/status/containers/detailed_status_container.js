@@ -38,6 +38,7 @@ const messages = defineMessages({
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
+  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
 });
 
 const makeMapStateToProps = () => {
@@ -135,11 +136,17 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(openModal('VIDEO', { media, time }));
   },
 
-  onBlock (account) {
+  onBlock (status) {
+    const account = status.get('account');
     dispatch(openModal('CONFIRM', {
       message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
       confirm: intl.formatMessage(messages.blockConfirm),
       onConfirm: () => dispatch(blockAccount(account.get('id'))),
+      secondary: intl.formatMessage(messages.blockAndReport),
+      onSecondary: () => {
+        dispatch(blockAccount(account.get('id')));
+        dispatch(initReport(account, status));
+      },
     }));
   },
 

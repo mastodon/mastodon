@@ -1,0 +1,20 @@
+%tr
+  %td
+    = link_to proof.badge.profile_url, class: 'name-tag' do
+      = image_tag proof.badge.avatar_url, width: 15, height: 15, alt: '', class: 'avatar'
+      %span.username
+        = proof.provider_username
+        %span= "(#{proof.provider.capitalize})"
+
+  %td
+    - if proof.live?
+      %span.positive-hint
+        = fa_icon 'check-circle fw'
+        = t('identity_proofs.active')
+    - else
+      %span.negative-hint
+        = fa_icon 'times-circle fw'
+        = t('identity_proofs.inactive')
+
+  %td
+    = table_link_to 'external-link', t('identity_proofs.view_proof'), proof.badge.proof_url if proof.badge.proof_url

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-class ActivityPub::DeleteSerializer < ActiveModel::Serializer
-  class TombstoneSerializer < ActiveModel::Serializer
+class ActivityPub::DeleteSerializer < ActivityPub::Serializer
+  class TombstoneSerializer < ActivityPub::Serializer
+    context_extensions :atom_uri
+
     attributes :id, :type, :atom_uri
 
     def id

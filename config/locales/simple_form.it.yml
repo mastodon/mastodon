@@ -33,11 +33,14 @@ it:
         setting_display_media_show_all: Nascondi sempre i media segnati come sensibili
         setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
         setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
+        setting_show_application: L'applicazione che usi per pubblicare i toot sarà mostrata nella vista di dettaglio dei tuoi toot
         setting_theme: Ha effetto sul modo in cui Mastodon verrà visualizzato quando sarai collegato da qualsiasi dispositivo.
         username: Il tuo nome utente sarà unico su %{domain}
         whole_word: Quando la parola chiave o la frase è solo alfanumerica, si applica solo se corrisponde alla parola intera
+      featured_tag:
+        name: 'Eccone alcuni che potresti usare:'
       imports:
-        data: File CSV esportato da un'altra istanza di Mastodon
+        data: File CSV esportato da un altro server Mastodon
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
       user:
@@ -100,14 +103,17 @@ it:
         setting_hide_network: Nascondi la tua rete
         setting_noindex: Non farti indicizzare dai motori di ricerca
         setting_reduce_motion: Riduci movimento nelle animazioni
+        setting_show_application: Rendi pubblica l'applicazione usata per inviare i toot
         setting_system_font_ui: Usa il carattere predefinito del sistema
         setting_theme: Tema sito
-        setting_unfollow_modal: Mostra dialogo di conferma prima di smettere di seguire qualcuno
+        setting_unfollow_modal: Chiedi conferma prima di smettere di seguire qualcuno
         severity: Severità
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
         whole_word: Parola intera
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui

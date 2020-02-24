@@ -10,7 +10,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
           Fabricate(:account)
         end
 
-        post :create
+        post :create, body: '{}'
         expect(response).to have_http_status(202)
       end
     end
@@ -21,7 +21,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
           false
         end
 
-        post :create
+        post :create, body: '{}'
         expect(response).to have_http_status(401)
       end
     end

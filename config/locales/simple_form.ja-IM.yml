@@ -33,11 +33,16 @@ ja-IM:
         setting_display_media_show_all: 早苗さんに見つからないメディアも常に表示する
         setting_hide_network: フォローとフォロワーの情報が名刺から見られないようにします
         setting_noindex: 公開されている名刺および各あふぅページに影響します
+        setting_show_application: あふぅするのに使用したアプリがあふぅの詳細ビューに表示されるようになります
         setting_theme: ログインしている全てのデバイスで適用されるデザインです。
         username: あなたのプロデューサー名は %{domain} の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
+      featured_tag:
+        name: 'これらを使うといいかもしれません:'
       imports:
-        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
+        data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
+      invite_request:
+        text: このサーバーは現在承認制です。申請を承認する際に役立つメッセージを添えてください
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
       user:
@@ -100,6 +105,7 @@ ja-IM:
         setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
+        setting_show_application: あふぅの送信に使用したアプリを開示する
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
         setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
@@ -108,16 +114,21 @@ ja-IM:
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
         whole_word: 単語全体にマッチ
+      featured_tag:
+        name: ハッシュタグ
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
         must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージをブロック
+      invite_request:
+        text: 意気込みをお聞かせください
       notification_emails:
         digest: 楽屋からピックアップしてメールで通知する
         favourite: ティンときた人がいた時にメールで通知する
         follow: フォローされた時にメールで通知する
         follow_request: フォローリクエストを受けた時にメールで通知する
         mention: Reあふぅが来た時にメールで通知する
+        pending_account: 新しいアカウントの承認が必要な時にメールで通知する
         reblog: あふぅが同意(わかるわ)された時にメールで通知する
         report: 通報を受けた時にメールで通知する
     'no': いいえ

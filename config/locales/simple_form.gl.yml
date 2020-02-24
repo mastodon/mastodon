@@ -33,15 +33,18 @@ gl:
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
         setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
+        setting_show_application: A aplicación que está a utilizar para enviar toots mostrarase na vista detallada do toot
         setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
         username: O seu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
+      featured_tag:
+        name: 'Podería utilizar algunha de estas:'
       imports:
-        data: Ficheiro CSV exportado desde outra instancia Mastodon
+        data: Ficheiro CSV exportado desde outro servidor Mastodon
       sessions:
         otp: 'Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación:'
       user:
-        chosen_languages: Si se marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
+        chosen_languages: Se ten marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
     labels:
       account:
         fields:
@@ -97,9 +100,10 @@ gl:
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Despregar sempre as mensaxes marcadas con avisos de contido
-        setting_hide_network: Agochar a súa rede
+        setting_hide_network: Non mostrar contactos
         setting_noindex: Pedir non aparecer nas buscas dos motores de busca
         setting_reduce_motion: Reducir o movemento nas animacións
+        setting_show_application: Mostrar a aplicación utilizada para tootear
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
         setting_theme: Decorado da instancia
         setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
@@ -108,6 +112,8 @@ gl:
         username: Nome de usuaria
         username_or_email: Nome de usuaria ou Correo-e
         whole_word: Palabra completa
+      featured_tag:
+        name: Etiqueta
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue

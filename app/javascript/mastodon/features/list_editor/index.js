@@ -7,11 +7,11 @@ import { injectIntl } from 'react-intl';
 import { setupListEditor, clearListSuggestions, resetListEditor } from '../../actions/lists';
 import Account from './components/account';
 import Search from './components/search';
+import EditListForm from './components/edit_list_form';
 import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 
 const mapStateToProps = state => ({
-  title: state.getIn(['listEditor', 'title']),
   accountIds: state.getIn(['listEditor', 'accounts', 'items']),
   searchAccountIds: state.getIn(['listEditor', 'suggestions', 'items']),
 });
@@ -33,7 +33,6 @@ class ListEditor extends ImmutablePureComponent {
     onInitialize: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onReset: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
     accountIds: ImmutablePropTypes.list.isRequired,
     searchAccountIds: ImmutablePropTypes.list.isRequired,
   };
@@ -49,12 +48,12 @@ class ListEditor extends ImmutablePureComponent {
   }
 
   render () {
-    const { title, accountIds, searchAccountIds, onClear } = this.props;
+    const { accountIds, searchAccountIds, onClear } = this.props;
     const showSearch = searchAccountIds.size > 0;
 
     return (
       <div className='modal-root__modal list-editor'>
-        <h4>{title}</h4>
+        <EditListForm />
 
         <Search />
 

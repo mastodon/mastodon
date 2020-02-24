@@ -66,6 +66,12 @@ module Mastodon
       say("Imported #{imported}, skipped #{skipped}, failed to import #{failed}", color(imported, skipped, failed))
     end
 
+    desc 'purge', 'Remove all custom emoji'
+    def purge
+      CustomEmoji.in_batches.destroy_all
+      say('OK', :green)
+    end
+
     private
 
     def color(green, _yellow, red)

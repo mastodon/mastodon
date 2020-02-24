@@ -33,7 +33,7 @@
       %h4
         = instance.domain
         %small
-          = t('admin.instances.known_accounts', count: instance.accounts_count)
+          = t('admin.instances.known_accounts', count: instance.cached_accounts_count)
 
           - if instance.domain_block
             - if !instance.domain_block.noop?

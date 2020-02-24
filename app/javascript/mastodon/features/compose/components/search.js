@@ -5,6 +5,7 @@ import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { searchEnabled } from '../../../initial_state';
+import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
@@ -72,17 +73,13 @@ class Search extends React.PureComponent {
     }
   }
 
-  handleKeyDown = (e) => {
+  handleKeyUp = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.props.onSubmit();
     } else if (e.key === 'Escape') {
       document.querySelector('.ui').parentElement.focus();
     }
-  }
-
-  noop () {
-
   }
 
   handleFocus = () => {
@@ -109,15 +106,15 @@ class Search extends React.PureComponent {
             placeholder={intl.formatMessage(messages.placeholder)}
             value={value}
             onChange={this.handleChange}
-            onKeyUp={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />
         </label>
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
-          <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />
-          <i aria-label={intl.formatMessage(messages.placeholder)} className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} />
+          <Icon id='search' className={hasValue ? '' : 'active'} />
+          <Icon id='times-circle' className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
 
         <Overlay show={expanded && !hasValue} placement='bottom' target={this}>

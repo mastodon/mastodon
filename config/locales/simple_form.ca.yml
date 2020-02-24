@@ -33,11 +33,14 @@ ca:
         setting_display_media_show_all: Mostra sempre els elements multimèdia marcats com a sensibles
         setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
+        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà a la vista detallada dels teus toots
         setting_theme: Afecta l'aspecte de Mastodon quan es visita des de qualsevol dispositiu.
         username: El teu nom d'usuari serà únic a %{domain}
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
+      featured_tag:
+        name: 'És possible que vulguis utilitzar un d''aquests:'
       imports:
-        data: Fitxer CSV exportat des de una altra instància de Mastodon
+        data: Fitxer CSV exportat des d'un altre servidor de Mastodon
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
       user:
@@ -100,6 +103,7 @@ ca:
         setting_hide_network: Amaga la teva xarxa
         setting_noindex: Desactivació de la indexació del motor de cerca
         setting_reduce_motion: Redueix el moviment en animacions
+        setting_show_application: Desvela l'aplicació utilitzada per enviar toots
         setting_system_font_ui: Utilitza el tipus de lletra predeterminat del sistema
         setting_theme: Tema del lloc
         setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de seguir a algú
@@ -108,6 +112,8 @@ ca:
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
         whole_word: Paraula sencera
+      featured_tag:
+        name: Etiqueta
       interactions:
         must_be_follower: Blocar les notificacions de persones que no et segueixen
         must_be_following: Bloca les notificacions de persones que no segueixes

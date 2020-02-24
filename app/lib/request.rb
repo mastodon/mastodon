@@ -171,7 +171,7 @@ class Request
         outer_e = nil
 
         Resolv::DNS.open do |dns|
-          dns.timeouts = 1
+          dns.timeouts = 5
 
           addresses = dns.getaddresses(host).take(2)
           time_slot = 10.0 / addresses.size

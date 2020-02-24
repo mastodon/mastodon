@@ -2,34 +2,35 @@
 pt:
   devise:
     confirmations:
-      confirmed: O teu endereço de email foi confirmado.
-      send_instructions: Vais receber um email com as instruções para confirmar o teu endereço de email dentro de alguns minutos.
-      send_paranoid_instructions: Se o teu endereço de email já existir na nossa base de dados, vais receber um email com as instruções de confirmação dentro de alguns minutos.
+      confirmed: O teu endereço de e-mail foi confirmado com sucesso.
+      send_instructions: Vais receber um email com as instruções para confirmar o teu endereço de email dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeste o e-mail.
+      send_paranoid_instructions: Se o teu endereço de email já existir na nossa base de dados, vais receber um email com as instruções de confirmação dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeste o e-mail.
     failure:
       already_authenticated: A tua sessão já está aberta.
       inactive: A tua conta ainda não está ativada.
-      invalid: "%{authentication_keys} ou palavra-passe não válida."
+      invalid: "%{authentication_keys} ou palavra-passe inválida."
       last_attempt: Tens mais uma tentativa antes de a tua conta ficar bloqueada.
       locked: A tua conta está bloqueada.
-      not_found_in_database: "%{authentication_keys} ou palavra-passe não válida."
+      not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
       timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
-      unauthenticated: Precisas de entrar na tua conta ou registares-te antes de continuar.
+      unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
       unconfirmed: Tens de confirmar o teu endereço de email antes de continuar.
     mailer:
       confirmation_instructions:
         action: Verificar o endereço de e-mail
+        action_with_app: Confirmar e regressar a %{app}
         explanation: Criaste uma conta em %{host} com este endereço de e-mail. Estás a um clique de activá-la. Se não foste tu que fizeste este registo, por favor ignora esta mensagem.
-        extra_html: Por favor vê as <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}">termos de serviço</a>.
+        extra_html: Por favor lê <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}"> nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
       email_changed:
         explanation: 'O e-mail associado à tua conta será alterado para:'
-        extra: Se não alteraste o teu e-mail é possível que alguém tenha conseguido aceder à tua conta. Por favor muda a tua palavra-passe imediatamente ou entra em contato com um administrador da tua instância se ficaste sem acesso à tua conta.
+        extra: Se não alteraste o teu e-mail é possível que alguém tenha conseguido aceder à tua conta. Por favor muda a tua palavra-passe imediatamente ou entra em contato com um administrador do servidor se ficaste sem acesso à tua conta.
         subject: 'Mastodon: Email alterado'
         title: Novo endereço de e-mail
       password_change:
         explanation: A palavra-passe da tua conta foi alterada.
-        extra: Se não alteraste a tua palavra-passe, é possível que alguém tenha conseguido aceder à tua conta. Por favor muda a tua palavra-passe imediatamente ou entra em contato com um administrador da tua instância se ficaste sem acesso à tua conta.
+        extra: Se não alteraste a tua palavra-passe, é possível que alguém tenha conseguido aceder à tua conta. Por favor muda a tua palavra-passe imediatamente ou entra em contato com um administrador do servidor se ficaste sem acesso à tua conta.
         subject: 'Mastodon: Nova palavra-passe'
         title: Palavra-passe alterada
       reconfirmation_instructions:

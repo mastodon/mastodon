@@ -53,6 +53,11 @@ class Bundle extends React.PureComponent {
     const { fetchComponent, onFetch, onFetchSuccess, onFetchFail, renderDelay } = props || this.props;
     const cachedMod = Bundle.cache.get(fetchComponent);
 
+    if (fetchComponent === undefined) {
+      this.setState({ mod: null });
+      return Promise.resolve();
+    }
+
     onFetch();
 
     if (cachedMod) {

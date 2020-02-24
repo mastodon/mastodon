@@ -18,18 +18,19 @@ eo:
     mailer:
       confirmation_instructions:
         action: Konfirmi retadreson
+        action_with_app: Konfirmi kaj reveni al %{app}
         explanation: Vi kreis konton en %{host} per ĉi tiu retadreso. Nur klako restas por aktivigi ĝin. Se tio ne estis vi, bonvolu ignori ĉi tiun retmesaĝon.
-        extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la nodo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
+        extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la servilo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
         subject: 'Mastodon: Konfirmaj instrukcioj por %{instance}'
         title: Konfirmi retadreson
       email_changed:
         explanation: 'La retadreso de via konto ŝanĝiĝas al:'
-        extra: Se vi ne volis ŝanĝi vian retadreson, iu verŝajne aliris al via konto. Bonvolu tuj ŝanĝi vian pasvorton aŭ kontakti la administranton de la nodo, se vi estas blokita ekster via konto.
+        extra: Se vi ne volis ŝanĝi vian retadreson, iu verŝajne aliris al via konto. Bonvolu tuj ŝanĝi vian pasvorton aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
         subject: 'Mastodon: Retadreso ŝanĝita'
         title: Nova retadreso
       password_change:
         explanation: La pasvorto de via konto estis ŝanĝita.
-        extra: Se vi ne ŝanĝis vian pasvorton, iu verŝajne aliris al via konto. Bonvolu ŝanĝi vian pasvorton tuj aŭ kontakti la administranton de la nodo, se vi estas blokita ekster via konto.
+        extra: Se vi ne ŝanĝis vian pasvorton, iu verŝajne aliris al via konto. Bonvolu ŝanĝi vian pasvorton tuj aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
         subject: 'Mastodon: Pasvorto ŝanĝita'
         title: Pasvorto ŝanĝita
       reconfirmation_instructions:

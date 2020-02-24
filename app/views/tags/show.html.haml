@@ -2,6 +2,7 @@
   = "##{@tag.name}"
 
 - content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
   %link{ rel: 'alternate', type: 'application/rss+xml', href: tag_url(@tag, format: 'rss') }/
 
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)

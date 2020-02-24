@@ -94,7 +94,7 @@ class Account < ApplicationRecord
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :searchable, -> { without_suspended.where(moved_to_account_id: nil) }
-  scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).joins(:account_stat).where(AccountStat.arel_table[:followers_count].gteq(MIN_FOLLOWERS_DISCOVERY)).by_recent_status }
+  scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).joins(:account_stat).where(AccountStat.arel_table[:followers_count].gteq(MIN_FOLLOWERS_DISCOVERY)) }
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
@@ -104,11 +104,14 @@ class Account < ApplicationRecord
            :current_sign_in_ip,
            :current_sign_in_at,
            :confirmed?,
+           :approved?,
+           :pending?,
            :admin?,
            :moderator?,
            :staff?,
            :locale,
            :hides_network?,
+           :shows_application?,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -265,6 +268,7 @@ class Account < ApplicationRecord
     return if fields.size >= DEFAULT_FIELDS_SIZE
 
     tmp = self[:fields] || []
+    tmp = [] if tmp.is_a?(Hash)
 
     (DEFAULT_FIELDS_SIZE - tmp.size).times do
       tmp << { name: '', value: '' }
@@ -386,7 +390,7 @@ class Account < ApplicationRecord
       DeliveryFailureTracker.filter(urls)
     end
 
-    def search_for(terms, limit = 10)
+    def search_for(terms, limit = 10, offset = 0)
       textsearch, query = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
@@ -398,15 +402,15 @@ class Account < ApplicationRecord
           AND accounts.suspended = false
           AND accounts.moved_to_account_id IS NULL
         ORDER BY rank DESC
-        LIMIT ?
+        LIMIT ? OFFSET ?
       SQL
 
-      records = find_by_sql([sql, limit])
+      records = find_by_sql([sql, limit, offset])
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
       records
     end
 
-    def advanced_search_for(terms, account, limit = 10, following = false)
+    def advanced_search_for(terms, account, limit = 10, following = false, offset = 0)
       textsearch, query = generate_query_for_search(terms)
 
       if following
@@ -427,10 +431,10 @@ class Account < ApplicationRecord
             AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC
-          LIMIT ?
+          LIMIT ? OFFSET ?
         SQL
 
-        records = find_by_sql([sql, account.id, account.id, account.id, limit])
+        records = find_by_sql([sql, account.id, account.id, account.id, limit, offset])
       else
         sql = <<-SQL.squish
           SELECT
@@ -443,10 +447,10 @@ class Account < ApplicationRecord
             AND accounts.moved_to_account_id IS NULL
           GROUP BY accounts.id
           ORDER BY rank DESC
-          LIMIT ?
+          LIMIT ? OFFSET ?
         SQL
 
-        records = find_by_sql([sql, account.id, account.id, limit])
+        records = find_by_sql([sql, account.id, account.id, limit, offset])
       end
 
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
@@ -470,6 +474,7 @@ class Account < ApplicationRecord
 
   before_create :generate_keys
   before_validation :prepare_contents, if: :local?
+  before_validation :prepare_username, on: :create
   before_destroy :clean_feed_manager
 
   private
@@ -477,6 +482,10 @@ class Account < ApplicationRecord
   def prepare_contents
     display_name&.strip!
     note&.strip!
+  end
+
+  def prepare_username
+    username&.squish!
   end
 
   def generate_keys

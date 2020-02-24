@@ -85,8 +85,8 @@ class HashtagTimeline extends React.PureComponent {
     let all  = (tags.all || []).map(tag => tag.value);
     let none = (tags.none || []).map(tag => tag.value);
 
-    [id, ...any].map((tag) => {
-      this.disconnects.push(dispatch(connectHashtagStream(id, tag, isLocal, (status) => {
+    [id, ...any].map(tag => {
+      this.disconnects.push(dispatch(connectHashtagStream(id, tag, isLocal, status => {
         let tags = status.tags.map(tag => tag.name);
 
         return all.filter(tag => tags.includes(tag)).length === all.length &&
@@ -112,6 +112,7 @@ class HashtagTimeline extends React.PureComponent {
     const { dispatch, params } = this.props;
     const { isLocal } = nextProps;
     const { id, tags } = nextProps.params;
+
     if (id !== params.id || this.props.isLocal !== isLocal || !isEqual(tags, params.tags)) {
       this._unsubscribe();
       this._subscribe(dispatch, id, isLocal, tags);

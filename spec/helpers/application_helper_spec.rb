@@ -69,7 +69,7 @@ describe ApplicationHelper do
   describe 'open_registrations?' do
     it 'returns true when open for registrations' do
       without_partial_double_verification do
-        expect(Setting).to receive(:open_registrations).and_return(true)
+        expect(Setting).to receive(:registrations_mode).and_return('open')
       end
 
       expect(helper.open_registrations?).to eq true
@@ -77,7 +77,7 @@ describe ApplicationHelper do
 
     it 'returns false when closed for registrations' do
       without_partial_double_verification do
-        expect(Setting).to receive(:open_registrations).and_return(false)
+        expect(Setting).to receive(:registrations_mode).and_return('none')
       end
 
       expect(helper.open_registrations?).to eq false

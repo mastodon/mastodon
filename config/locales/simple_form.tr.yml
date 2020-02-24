@@ -2,7 +2,11 @@
 tr:
   simple_form:
     hints:
+      admin_account_action:
+        send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
+        warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       defaults:
+        autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
         header: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir.
         locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.

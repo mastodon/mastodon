@@ -9,6 +9,8 @@
 
 - if @account.user_hides_network?
   .nothing-here= t('accounts.network_hidden')
+- elsif user_signed_in? && @account.blocking?(current_account)
+  .nothing-here= t('accounts.unavailable')
 - elsif @follows.empty?
   = nothing_here
 - else

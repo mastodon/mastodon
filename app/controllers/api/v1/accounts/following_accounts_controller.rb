@@ -19,9 +19,13 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   end
 
   def load_accounts
-    return [] if @account.user_hides_network? && current_account.id != @account.id
+    return [] if hide_results?
 
     default_accounts.merge(paginated_follows).to_a
+  end
+
+  def hide_results?
+    (@account.user_hides_network? && current_account.id != @account.id) || (current_account && @account.blocking?(current_account))
   end
 
   def default_accounts

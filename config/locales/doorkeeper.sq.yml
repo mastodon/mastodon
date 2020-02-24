@@ -1,0 +1,142 @@
+---
+sq:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Emër aplikacioni
+        redirect_uri: URI Ridrejtimi
+        scopes: Fushëveprime
+        website: Sajt aplikacioni
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: s’mund të përmbajë një fragment.
+              invalid_uri: duhet të jetë një URI e vlefshme.
+              relative_uri: duhet të jetë një URI absolute.
+              secured_uri: duhet të jetë një URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizoje
+        cancel: Anuloje
+        destroy: Asgjësoje
+        edit: Përpunoni
+        submit: Parashtroje
+      confirmations:
+        destroy: A jeni i sigurt?
+      edit:
+        title: Përpunoni aplikacion
+      form:
+        error: Oh! Kontrolloni formularin tuaj për gabime të mundshme
+      help:
+        native_redirect_uri: Përdor %{native_redirect_uri} për teste vendore
+        redirect_uri: Përdorni një URI për rresht
+        scopes: Ndajini fushëveprimet me hapësira. Që të përdoren fushëveprimet parazgjedhje, lëreni të zbrazët.
+      index:
+        application: Aplikacion
+        callback_url: URL Callback-u
+        delete: Fshije
+        name: Emër
+        new: Aplikacion i ri
+        scopes: Fushëveprime
+        show: Shfaqe
+        title: Aplikacionet tuaja
+      new:
+        title: Aplikacion i ri
+      show:
+        actions: Veprime
+        application_id: Kyç klienti
+        callback_urls: URL-ra Callback
+        scopes: Fushëveprime
+        secret: E fshehtë klienti
+        title: 'Aplikacion: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizoje
+        deny: Mohoje
+      error:
+        title: Ndodhi një gabim
+      new:
+        able_to: Do të jetë në gjendje të
+        prompt: "%{client_name} kërkesa hyrjeje aplikacionesh te llogaria juaj"
+        title: Lypset autorizim
+      show:
+        title: Kopjojeni këtë kod autorizimi dhe ngjiteni te aplikacioni.
+    authorized_applications:
+      buttons:
+        revoke: Shfuqizoje
+      confirmations:
+        revoke: A jeni i sigurt?
+      index:
+        application: Aplikacion
+        created_at: I autorizuar
+        date_format: "%d.%m.%Y, %H:%M:%S"
+        scopes: Fushëveprime
+        title: Aplikacionet tuaja të autorizuara
+    errors:
+      messages:
+        access_denied: I zoti i burimit ose shërbyesi i autorizimit e hodhi poshtë kërkesën.
+        credential_flow_not_configured: Rrjedha e Kredencialeve të Fjalëkalimit të të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials është i paformësuar.
+        invalid_client: Mirëfilltësimi i klientit dështoi për shkak klienti të panjohur, mospërfshirjeje mirëfilltësimi klienti, ose metode të pambuluar mirëfilltësimi.
+        invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, nuk përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
+        invalid_redirect_uri: URI e ridrejtimit s’është e vlefshme.
+        invalid_request: Kërkesës i mungon një parametër i domosdoshëm, përfshin një vlerë të pambuluar parametri, ose përndryshe është e keqformuar.
+        invalid_resource_owner: Kredencialet e dhëna për të zotin e burimit s’janë të vlefshme, ose s’gjendet i zoti i burimit
+        invalid_scope: Fushëveprimi i kërkuar është i pavlefshëm, i panjohur ose i keqformuar.
+        invalid_token:
+          expired: Token-i i hyrjeve skadoi
+          revoked: Token-i i hyrjeve u shfuqizua
+          unknown: Token-i i hyrjeve është i pavlefshëm
+        resource_owner_authenticator_not_configured: Gjetja e të Zotit të Burimit dështoi, ngaqë Doorkeeper.configure.resource_owner_authenticator s’është i formësuar.
+        server_error: Shërbyesi i autorizimit hasi një kusht të papritur, i cili e pengoi të plotësonte kërkesën.
+        temporarily_unavailable: Shërbyesi i mirëfilltësimeve hëpërhë s’është në gjendje të trajtojë kërkesën, për shkak të një mbingarkese të përkohshme ose ndonjë mirëmbajtjeje të shërbyesit.
+        unauthorized_client: Klienti s’është i autorizuar të kryejë këtë kërkesë duke përdorur këtë metodë.
+        unsupported_grant_type: Lloji i autorizimit të dhënë nuk mbulohet nga shërbyesi i autorizimeve.
+        unsupported_response_type: Shërbyesi i autorizimeve nuk e mbulon këtë lloj përgjigjeje.
+    flash:
+      applications:
+        create:
+          notice: Aplikacioni u krijua.
+        destroy:
+          notice: Aplikacioni u fshi.
+        update:
+          notice: Aplikacioni u përditësua.
+      authorized_applications:
+        destroy:
+          notice: Aplikacioni u shfuqizua.
+    layouts:
+      admin:
+        nav:
+          applications: Aplikacione
+          oauth2_provider: Furnizues OAuth2
+      application:
+        title: Lypset autorizim OAuth
+    scopes:
+      follow: të ndryshojë marrëdhënies llogarish
+      push: të marrë njoftime push për ju
+      read: të lexojë krejt të dhënat e llogarisë tuaj
+      read:accounts: të shohë të dhëna llogarish
+      read:blocks: të shohë blloqet tuaja
+      read:favourites: të shohë të parapëlqyerit tuaj
+      read:filters: të shohë filtrat tuaj
+      read:follows: të shohë ndjekësit tuaj
+      read:lists: të shohë listat tuaja
+      read:mutes: të shohë ç’keni heshtuar
+      read:notifications: të shohë njoftimet tuaja
+      read:reports: të shohë raportet tuaja
+      read:search: të bëjë kërkime në emrin tuaj
+      read:statuses: të shohë krejt gjendjet
+      write: të ndryshojë krejt të dhënat e llogarisë tuaj
+      write:accounts: të ndryshojë profilin tuaj
+      write:blocks: të bllokojë llogari dhe përkatësi
+      write:favourites: të parapëlqejë gjendje
+      write:filters: të krijojë filtra
+      write:follows: të ndjekë persona
+      write:lists: të krijojë lista
+      write:media: të ngarkojë kartela media
+      write:mutes: të heshtojë persona dhe biseda
+      write:notifications: të pastrojë njoftimet tuaja
+      write:reports: të raportojë persona të tjerë
+      write:statuses: të botojë gjendje

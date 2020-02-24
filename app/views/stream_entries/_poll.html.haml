@@ -1,0 +1,27 @@
+- show_results = (user_signed_in? && poll.voted?(current_account)) || poll.expired?
+
+.poll
+  %ul
+    - poll.loaded_options.each do |option|
+      %li
+        - if show_results
+          - percent = poll.votes_count > 0 ? 100 * option.votes_count / poll.votes_count : 0
+          %span.poll__chart{ style: "width: #{percent}%" }
+
+          %label.poll__text><
+            %span.poll__number= percent.round
+            = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
+        - else
+          %label.poll__text><
+            %span.poll__input{ class: poll.multiple? ? 'checkbox' : nil}><
+            = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
+  .poll__footer
+    - unless show_results
+      %button.button.button-secondary{ disabled: true }
+        = t('statuses.poll.vote')
+
+    %span= t('statuses.poll.total_votes', count: poll.votes_count)
+
+    - unless poll.expires_at.nil?
+      ·
+      %span= l poll.expires_at

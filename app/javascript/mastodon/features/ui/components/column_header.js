@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Icon from 'mastodon/components/icon';
 
 export default class ColumnHeader extends React.PureComponent {
 
@@ -21,7 +22,7 @@ export default class ColumnHeader extends React.PureComponent {
     let iconElement = '';
 
     if (icon) {
-      iconElement = <i className={`fa fa-fw fa-${icon} column-header__icon`} />;
+      iconElement = <Icon id={icon} fixedWidth className='column-header__icon' />;
     }
 
     return (

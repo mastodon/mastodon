@@ -20,17 +20,17 @@ da:
         action: Bekræft email adresse
         action_with_app: Bekræft og vend tilbage til %{app}
         explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
-        extra_html: Tjek også <a href="%{terms_path}">reglerne for instansen</a> og <a href="%{policy_path}">vores betingelser</a>.
+        extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> og <a href="%{policy_path}">vores betingelser</a>.
         subject: 'Mastodon: Bekræftelses instrukser for %{instance}'
         title: Bekræft email adresse
       email_changed:
         explanation: 'Email adressen for din konto bliver ændret til:'
-        extra: Hvis du ikke har ændret din email adresse er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på instansen hvis du er låst ude af din konto.
+        extra: Hvis du ikke har ændret din email adresse er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på serveren hvis du er låst ude af din konto.
         subject: 'Mastodon: Email ændret'
         title: Ny email adresse
       password_change:
         explanation: Kodeordet for din konto er blevet ændret.
-        extra: Hvis du ikke har ændret dit kodeord er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på instansen hvis du er låst ude af din konto.
+        extra: Hvis du ikke har ændret dit kodeord er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på serveren hvis du er låst ude af din konto.
         subject: 'Mastodon: Kodeord ændret'
         title: Kodeordet er blevet ændret
       reconfirmation_instructions:

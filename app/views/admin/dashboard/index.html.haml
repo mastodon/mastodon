@@ -40,35 +40,17 @@
       %h4= t 'admin.dashboard.features'
       %ul
         %li
-          = link_to t('admin.dashboard.feature_registrations'), edit_admin_settings_path
-          - if @registrations_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(link_to(t('admin.dashboard.feature_registrations'), edit_admin_settings_path), @registrations_enabled)
         %li
-          = link_to t('admin.dashboard.feature_invites'), edit_admin_settings_path
-          - if @invites_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(link_to(t('admin.dashboard.feature_invites'), edit_admin_settings_path), @invites_enabled)
         %li
-          = link_to t('admin.dashboard.feature_deletions'), edit_admin_settings_path
-          - if @deletions_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(link_to(t('admin.dashboard.feature_deletions'), edit_admin_settings_path), @deletions_enabled)
         %li
-          = link_to t('admin.dashboard.feature_profile_directory'), edit_admin_settings_path
-          - if @profile_directory
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(link_to(t('admin.dashboard.feature_profile_directory'), edit_admin_settings_path), @profile_directory)
         %li
-          = link_to t('admin.dashboard.feature_relay'), admin_relays_path
-          - if @relay_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(link_to(t('admin.dashboard.feature_timeline_preview'), edit_admin_settings_path), @timeline_preview)
+        %li
+          = feature_hint(link_to(t('admin.dashboard.feature_relay'), admin_relays_path), @relay_enabled)
 
   .dashboard__widgets__versions
     %div
@@ -103,47 +85,19 @@
       %h4= t 'admin.dashboard.config'
       %ul
         %li
-          = t('admin.dashboard.search')
-          - if @search_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(t('admin.dashboard.search'), @search_enabled)
         %li
-          = t('admin.dashboard.single_user_mode')
-          - if @single_user_mode
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(t('admin.dashboard.single_user_mode'), @single_user_mode)
         %li
-          LDAP
-          - if @ldap_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint('LDAP', @ldap_enabled)
         %li
-          CAS
-          - if @cas_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint('CAS', @cas_enabled)
         %li
-          SAML
-          - if @saml_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint('SAML', @saml_enabled)
         %li
-          PAM
-          - if @pam_enabled
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint('PAM', @pam_enabled)
         %li
-          = t 'admin.dashboard.hidden_service'
-          - if @hidden_service
-            %span.pull-right.positive-hint= fa_icon 'check fw'
-          - else
-            %span.pull-right.negative-hint= fa_icon 'times fw'
+          = feature_hint(t('admin.dashboard.hidden_service'), @hidden_service)
 
   .dashboard__widgets__trends
     %div
