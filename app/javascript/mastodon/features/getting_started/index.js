@@ -39,8 +39,6 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   myAccount: state.getIn(['accounts', me]),
-  github_url: state.getIn(['meta', 'github_url']),
-  github_name: state.getIn(['meta', 'github_name']),
   unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
 });
 
@@ -67,8 +65,6 @@ class GettingStarted extends ImmutablePureComponent {
     myAccount: ImmutablePropTypes.map.isRequired,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
-    github_url: PropTypes.string.isRequired,
-    github_name: PropTypes.string.isRequired,
     fetchFollowRequests: PropTypes.func.isRequired,
     unreadFollowRequests: PropTypes.number,
     unreadNotifications: PropTypes.number,
@@ -83,7 +79,7 @@ class GettingStarted extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, myAccount, multiColumn, github_url, github_name, unreadFollowRequests } = this.props;
+    const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
     let i = 1;
@@ -182,7 +178,7 @@ class GettingStarted extends ImmutablePureComponent {
               <FormattedMessage
                 id='getting_started.open_source_notice'
                 defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-                values={{ github: <span><a href={github_url} rel='noopener' target='_blank'>{github_name}</a> (v{version})</span> }}
+                values={{ github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
               />
             </p>
           </div>
