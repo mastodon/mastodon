@@ -92,7 +92,6 @@ export function normalizeStatus(status, normalOldStatus) {
       normalStatus.quote.account.display_name_html = emojify(escapeTextContentForBrowser(displayName), quote_account_emojiMap);
       normalStatus.quote.search_index = domParser.parseFromString(quote_searchContent, 'text/html').documentElement.textContent;
       let docElem = domParser.parseFromString(normalStatus.quote.content, 'text/html').documentElement;
-      Array.from(docElem.querySelectorAll('span.invisible'), span => span.remove());
       Array.from(docElem.querySelectorAll('p,br'), line => {
         let parentNode = line.parentNode;
         if (line.nextSibling) {

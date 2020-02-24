@@ -48,7 +48,6 @@ class Formatter
     html = format(status)
     return '' if html.empty?
     doc = Nokogiri::HTML.parse(html, nil, 'utf-8')
-    doc.search('span.invisible').remove
     html = doc.css('body')[0].inner_html
     html.sub!(/^<p>(.+)<\/p>$/, '\1')
     html = Sanitize.clean(html).delete("\n").truncate(150)
