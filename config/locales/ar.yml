@@ -420,6 +420,21 @@ ar:
       created_msg: تم إنشاء ملاحظة الشكوى بنجاح!
       destroyed_msg: تم حذف ملاحظة الشكوى بنجاح!
     reports:
+      account:
+        notes:
+          zero: "%{count} ملاحظات"
+          one: "%{count} ملاحظة"
+          two: "%{count} ملاحظتَيْن"
+          few: "%{count} ملاحظات"
+          many: "%{count} ملاحظات"
+          other: "%{count} ملاحظات"
+        reports:
+          zero: "%{count} تقارير"
+          one: "%{count} تقرير واحد"
+          two: "%{count} تقريرَيْن"
+          few: "%{count} تقارير"
+          many: "%{count} تقارير"
+          other: "%{count} تقارير"
       action_taken_by: تم اتخاذ الإجراء مِن طرف
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
@@ -645,6 +660,7 @@ ar:
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
+    already_requested: لقد قُمتَ بإرسال طلب متابَعة إلى هذا الحساب مِن قَبل
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: اتبع
     follow_request: 'لقد قمت بإرسال طلب متابعة إلى:'
