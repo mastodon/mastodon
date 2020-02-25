@@ -14,8 +14,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       access_token: object.token,
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
-      github_url: Mastodon::Version.source_base_url,
-      github_name: Mastodon::Version.source_link_title,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
       repository: Mastodon::Version.repository,

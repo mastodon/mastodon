@@ -129,7 +129,7 @@ class ComposeForm extends ImmutablePureComponent {
 
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
-    } else if (prevProps.isSubmitting && !this.props.isSubmitting) {
+    } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.autosuggestTextarea.textarea.setSelectionRange(0, 0)
       this.autosuggestTextarea.textarea.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
