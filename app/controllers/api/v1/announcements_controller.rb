@@ -11,7 +11,7 @@ class Api::V1::AnnouncementsController < Api::BaseController
   end
 
   def dismiss
-    AnnouncementMute.create!(account: current_account, announcement: @announcement)
+    AnnouncementMute.find_or_create_by!(account: current_account, announcement: @announcement)
     render_empty
   end
 
