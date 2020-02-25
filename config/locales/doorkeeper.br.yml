@@ -1,1 +1,34 @@
 br:
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: Nullañ
+        destroy: Distrujañ
+        edit: Aozañ
+      confirmations:
+        destroy: Ha sur oc'h ?
+      index:
+        application: Arload
+        delete: Dilemel
+        name: Anv
+        new: Arload nevez
+        show: Diskouez
+        title: Hoc'h arloadoù
+      new:
+        title: Arload nevez
+      show:
+        title: 'Arload : %{name}'
+    authorized_applications:
+      confirmations:
+        revoke: Ha sur oc'h ?
+      index:
+        application: Arload
+        date_format: "%d-%m-%Y %H:%M:%S"
+    layouts:
+      admin:
+        nav:
+          applications: Arloadoù
+    scopes:
+      "read:lists": gwelout ho listennoù
+      "write:lists": krouiñ listennoù
+      "write:statuses": embann toudoù
