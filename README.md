@@ -88,7 +88,7 @@ Hometown uses [semantic versioning](https://semver.org) and follows a versioning
 
 ## Contributing to Hometown
 
-Setting up your Hometown development environment is [exactly like setting up your Mastodon development environment](https://docs.joinmastodon.org/development/overview/). Pull requests should be made to the `hometown-dev` branch, which is our default branch in Github.
+Setting up your Hometown development environment is [exactly like setting up your Mastodon development environment](https://docs.joinmastodon.org/dev/overview/). Pull requests should be made to the `hometown-dev` branch, which is our default branch in Github.
 
 ## License
 
