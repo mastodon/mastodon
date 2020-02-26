@@ -1,1 +1,17 @@
+---
 nn:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Frist
+        options: Val
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: bare bokstaver, tall og understreker
+        status:
+          attributes:
+            reblog:
+              taken: av status eksisterer allerede

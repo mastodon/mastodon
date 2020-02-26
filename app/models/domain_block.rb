@@ -54,7 +54,7 @@ class DomainBlock < ApplicationRecord
       segments = uri.normalized_host.split('.')
       variants = segments.map.with_index { |_, i| segments[i..-1].join('.') }
 
-      where(domain: variants[0..-2]).order(Arel.sql('char_length(domain) desc')).first
+      where(domain: variants).order(Arel.sql('char_length(domain) desc')).first
     end
   end
 

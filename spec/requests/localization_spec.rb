@@ -26,6 +26,7 @@ describe 'Localization' do
       I18n.t('about.tagline', locale: 'es')
     )
   end
+
   it 'falls back to english when locale is missing' do
     headers = { 'Accept-Language' => '12-FAKE' }
 

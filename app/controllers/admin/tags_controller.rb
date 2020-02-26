@@ -73,7 +73,7 @@ module Admin
     end
 
     def filter_params
-      params.slice(:directory, :reviewed, :unreviewed, :pending_review, :page, :popular, :active, :name).permit(:directory, :reviewed, :unreviewed, :pending_review, :page, :popular, :active, :name)
+      params.slice(:page, *TagFilter::KEYS).permit(:page, *TagFilter::KEYS)
     end
 
     def tag_params

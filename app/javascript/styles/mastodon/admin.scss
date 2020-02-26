@@ -181,18 +181,44 @@ $content-width: 840px;
       padding-top: 30px;
     }
 
+    &-heading {
+      display: flex;
+
+      padding-bottom: 40px;
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+      margin: -15px -15px 40px 0;
+
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+
+      & > * {
+        margin-top: 15px;
+        margin-right: 15px;
+      }
+
+      &-actions {
+        display: inline-flex;
+
+        & > :not(:first-child) {
+          margin-left: 5px;
+        }
+      }
+
+      @media screen and (max-width: $no-columns-breakpoint) {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+
     h2 {
       color: $secondary-text-color;
       font-size: 24px;
       line-height: 28px;
       font-weight: 400;
-      padding-bottom: 40px;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
-      margin-bottom: 40px;
 
       @media screen and (max-width: $no-columns-breakpoint) {
-        border-bottom: 0;
-        padding-bottom: 0;
         font-weight: 700;
       }
     }
@@ -855,5 +881,52 @@ a.name-tag,
     box-sizing: border-box;
     padding: 20px;
     color: $primary-text-color;
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.announcements-list {
+  border: 1px solid lighten($ui-base-color, 4%);
+  border-radius: 4px;
+
+  &__item {
+    padding: 15px 0;
+    background: $ui-base-color;
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+
+    &__title {
+      padding: 0 15px;
+      display: block;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.5;
+      color: $secondary-text-color;
+      text-decoration: none;
+      margin-bottom: 10px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $primary-text-color;
+      }
+    }
+
+    &__meta {
+      padding: 0 15px;
+      color: $dark-text-color;
+    }
+
+    &__action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 }

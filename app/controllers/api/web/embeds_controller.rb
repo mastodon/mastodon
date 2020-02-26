@@ -7,15 +7,21 @@ class Api::Web::EmbedsController < Api::Web::BaseController
 
   def create
     status = StatusFinder.new(params[:url]).status
+
+    return not_found if status.hidden?
+
     render json: status, serializer: OEmbedSerializer, width: 400
   rescue ActiveRecord::RecordNotFound
     oembed = FetchOEmbedService.new.call(params[:url])
-    oembed[:html] = Formatter.instance.sanitize(oembed[:html], Sanitize::Config::MASTODON_OEMBED) if oembed[:html].present?
 
-    if oembed
-      render json: oembed
-    else
-      render json: {}, status: :not_found
+    return not_found if oembed.nil?
+
+    begin
+      oembed[:html] = Formatter.instance.sanitize(oembed[:html], Sanitize::Config::MASTODON_OEMBED)
+    rescue ArgumentError
+      return not_found
     end
+
+    render json: oembed
   end
 end

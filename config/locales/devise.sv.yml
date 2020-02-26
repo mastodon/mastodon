@@ -12,12 +12,14 @@ sv:
       last_attempt: Du har ytterligare ett försök innan ditt konto blir låst.
       locked: Ditt konto är låst.
       not_found_in_database: Ogiltigt %{authentication_keys} eller lösenord.
+      pending: Ditt konto granskas fortfarande.
       timeout: Din session löpte ut. Vänligen logga in igen för att fortsätta.
       unauthenticated: Du måste logga in eller registrera dig innan du fortsätter.
       unconfirmed: Du måste bekräfta din e-postadress innan du fortsätter.
     mailer:
       confirmation_instructions:
         action: Verifiera e-postadress
+        action_with_app: Bekräfta och återgå till %{app}
         explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
         extra_html: Kolla gärna också <a href="%{terms_path}">instansens regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
         subject: 'Mastodon: Bekräftelsesinstruktioner för %{instance}'
@@ -36,13 +38,25 @@ sv:
         explanation: Bekräfta den nya adressen för att ändra din e-postadress.
         extra: Om den här ändringen inte initierades av dig kan du ignorerar det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du kommer åt länken ovan.
         subject: 'Mastodon: Bekräfta e-post för %{instance}'
-        title: Verifiera e-postadressen
+        title: Verifiera e-postadress
       reset_password_instructions:
         action: Ändra lösenord
         explanation: Du begärde ett nytt lösenord för ditt konto.
         extra: Om du inte begärt detta kan du ignorerar det här e-postmeddelandet. Ditt lösenord ändras inte förrän du öppnar länken ovan och skapar ett nytt.
         subject: 'Mastodon: Instruktioner för återställning av lösenord'
         title: Lösenordsåterställning
+      two_factor_disabled:
+        explanation: Tvåfaktorsautentisering för ditt konto har inaktiverats. Det är nu möjligt att logga in med enbart e-postadress och lösenord.
+        subject: 'Mastodon: Tvåfaktorsautentisering inaktiverad'
+        title: 2FA inaktiverad
+      two_factor_enabled:
+        explanation: Tvåfaktorsautentisering har aktiverats för ditt konto. En token som genereras av en kopplad TOTP-app kommer att krävas vid inloggning.
+        subject: 'Mastodon: Tvåfaktorsautentisering aktiverad'
+        title: 2FA aktiverad
+      two_factor_recovery_codes_changed:
+        explanation: De tidigare återställningskoderna har ogiltigförklarats och nya har genererats.
+        subject: Mastodon Tvåfaktors-återställningskoder genererades på nytt
+        title: 2FA-återställningskoder ändrades
       unlock_instructions:
         subject: 'Mastodon: Lås upp instruktioner'
     omniauth_callbacks:
@@ -59,7 +73,7 @@ sv:
       signed_up: Välkommen! Du har nu registrerat dig.
       signed_up_but_inactive: Du har nu registrerat dig. Vi kunde dock inte logga in dig eftersom ditt konto ännu inte är aktiverat.
       signed_up_but_locked: Du har nu registrerat dig. Vi kunde dock inte logga in eftersom ditt konto är låst.
-      signed_up_but_unconfirmed: Ett meddelande med en bekräftelse länk har skickats till din e-postadress. Vänligen följ länken för att aktivera ditt konto. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
+      signed_up_but_unconfirmed: Ett meddelande med en bekräftelselänk har skickats till din e-postadress. Vänligen följ länken för att aktivera ditt konto. Kontrollera din skräppostmapp om du inte fick det här e-postmeddelandet.
       update_needs_confirmation: Du har uppdaterat ditt konto med framgång, men vi måste verifiera din nya e-postadress. Vänligen kolla din email och följ bekräfta länken för att bekräfta din nya e-postadress. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
       updated: Ditt konto har uppdaterats utan problem.
     sessions:

@@ -1,1 +1,151 @@
+---
 es-AR:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nombre de la aplicación
+        redirect_uri: Dirección web de redireccionamiento
+        scopes: Ámbitos
+        website: Sitio web de la aplicación
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: no puede contener un fragmento.
+              invalid_uri: debe ser una dirección web válida.
+              relative_uri: debe ser una dirección web absoluta.
+              secured_uri: debe ser una dirección web HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruir
+        edit: Editar
+        submit: Enviar
+      confirmations:
+        destroy: "¿Estás seguro?"
+      edit:
+        title: Editar aplicación
+      form:
+        error: "¡Epa! Comprobá tu formulario por posibles errores"
+      help:
+        native_redirect_uri: Usá %{native_redirect_uri} para pruebas locales
+        redirect_uri: Usá una línea por dirección web
+        scopes: Separá los ámbitos con espacios. Dejalo en blanco para usar los ámbitos predeterminados.
+      index:
+        application: Aplicación
+        callback_url: Dirección web de respuesta ("callback")
+        delete: Eliminar
+        empty: No tenés aplicaciones.
+        name: Nombre
+        new: Nueva aplicación
+        scopes: Ámbitos
+        show: Mostrar
+        title: Tus aplicaciones
+      new:
+        title: Nueva aplicación
+      show:
+        actions: Acciones
+        application_id: Clave del cliente
+        callback_urls: Direcciones web de respuesta ("callback")
+        scopes: Ámbitos
+        secret: Secreto del cliente
+        title: 'Aplicación: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizar
+        deny: Denegar
+      error:
+        title: Ocurrió un error
+      new:
+        able_to: Será capaz de
+        prompt: La aplicación %{client_name} solicita acceso a tu cuenta
+        title: Autorización requerida
+      show:
+        title: Copiá este código de autorización y pegalo en la aplicación.
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      confirmations:
+        revoke: "¿Estás seguro?"
+      index:
+        application: Aplicación
+        created_at: Autorizada
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Ámbitos
+        title: Tus aplicaciones autorizadas
+    errors:
+      messages:
+        access_denied: El propietario del recurso o servidor de autorización denegó la petición.
+        credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
+        invalid_client: La autenticación del cliente falló debido a que es un cliente desconocido, o no está incluída la autenticación del cliente, o el método de autenticación no está soportado.
+        invalid_grant: La concesión de autorización ofrecida no es válida, venció, se revocó, no coincide con la dirección web de redireccionamiento usada en la petición de autorización, o fue emitida para otro cliente.
+        invalid_redirect_uri: La dirección web de redireccionamiento incluida no es válida.
+        invalid_request: En la solicitud falta un parámetro requerido, o incluye un valor de parámetro no soportado, o está corrompida.
+        invalid_resource_owner: Las credenciales proporcionadas del propietario del recurso no son válidas, o no se puede encontrar al propietario del recurso.
+        invalid_scope: El ámbito solicitado no es válido, o conocido, o está corrompido.
+        invalid_token:
+          expired: Venció la clave de acceso
+          revoked: Se revocó la clave de acceso
+          unknown: La clave de acceso no es válida
+        resource_owner_authenticator_not_configured: El propietario del recurso falló debido a que "Doorkeeper.configure.resource_owner_authenticator" está sin configurar.
+        server_error: El servidor de la autorización encontró una condición inesperada que le impidió cumplir con la solicitud.
+        temporarily_unavailable: El servidor de la autorización es actualmente incapaz de manejar la solicitud debido a una sobrecarga temporal o un trabajo de mantenimiento del servidor.
+        unauthorized_client: El cliente no está autorizado a realizar esta solicitud usando este método.
+        unsupported_grant_type: El tipo de concesión de autorización no está soportado por el servidor de autorización.
+        unsupported_response_type: El servidor de autorización no soporta este tipo de respuesta.
+    flash:
+      applications:
+        create:
+          notice: Aplicación creada.
+        destroy:
+          notice: Aplicación eliminada.
+        update:
+          notice: Aplicación actualizada.
+      authorized_applications:
+        destroy:
+          notice: Aplicación revocada.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicaciones
+          oauth2_provider: Proveedor OAuth2
+      application:
+        title: Autorización de OAuth requerida
+    scopes:
+      admin:read: leer todos los datos en el servidor
+      admin:read:accounts: leer información sensible de todas las cuentas
+      admin:read:reports: leer información sensible de todos los informes y cuentas denunciadas
+      admin:write: modificar todos los datos en el servidor
+      admin:write:accounts: ejecutar acciones de moderación en cuentas
+      admin:write:reports: ejecutar acciones de moderación en informes
+      follow: modificar relaciones de cuenta
+      push: recibir tus notificaciones PuSH
+      read: leer todos los datos de tu cuenta
+      read:accounts: ver información de cuentas
+      read:blocks: ver qué cuentas bloqueaste
+      read:bookmarks: mirá tus marcadores
+      read:favourites: ver tus favoritos
+      read:filters: ver tus filtros
+      read:follows: ver qué cuentas seguís
+      read:lists: ver tus listas
+      read:mutes: ver qué cuentas silenciaste
+      read:notifications: ver tus notificaciones
+      read:reports: ver tus informes
+      read:search: buscar en tu nombre
+      read:statuses: ver todos los estados
+      write: modificar todos los datos de tu cuenta
+      write:accounts: modificar tu perfil
+      write:blocks: bloquear cuentas y dominios
+      write:bookmarks: estados del marcador
+      write:favourites: toots favoritos
+      write:filters: crear filtros
+      write:follows: seguir cuentas
+      write:lists: crear listas
+      write:media: subir archivos de medios
+      write:mutes: silenciar usuarios y conversaciones
+      write:notifications: limpiá tus notificaciones
+      write:reports: denunciar otras cuentas
+      write:statuses: publicar estados

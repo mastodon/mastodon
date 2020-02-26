@@ -173,9 +173,18 @@ Rails.application.routes.draw do
         get :edit
       end
     end
+
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
+
+    resources :announcements, except: [:show] do
+      member do
+        post :publish
+        post :unpublish
+      end
+    end
+
     resource :settings, only: [:edit, :update]
 
     resources :invites, only: [:index, :create, :destroy] do
@@ -223,7 +232,7 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
       resources :statuses, only: [:index, :show, :create, :update, :destroy]
-      resources :followers, only: [:index]
+      resources :relationships, only: [:index]
 
       resource :confirmation, only: [:create] do
         collection do
@@ -231,7 +240,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resource :role do
+      resource :role, only: [] do
         member do
           post :promote
           post :demote
@@ -289,6 +298,9 @@ Rails.application.routes.draw do
           resource :favourite, only: :create
           post :unfavourite, to: 'favourites#destroy'
 
+          resource :bookmark, only: :create
+          post :unbookmark, to: 'bookmarks#destroy'
+
           resource :mute, only: :create
           post :unmute, to: 'mutes#destroy'
 
@@ -314,6 +326,16 @@ Rails.application.routes.draw do
       resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
       resources :preferences, only: [:index]
 
+      resources :announcements, only: [:index] do
+        scope module: :announcements do
+          resources :reactions, only: [:update, :destroy]
+        end
+
+        member do
+          post :dismiss
+        end
+      end
+
       resources :conversations, only: [:index, :destroy] do
         member do
           post :read
@@ -324,6 +346,7 @@ Rails.application.routes.draw do
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
+      resources :bookmarks,    only: [:index]
       resources :reports,      only: [:create]
       resources :trends,       only: [:index]
       resources :filters,      only: [:index, :create, :show, :update, :destroy]

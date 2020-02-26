@@ -3,7 +3,7 @@
 class AdminMailer < ApplicationMailer
   layout 'plain_mailer'
 
-  helper :statuses
+  helper :accounts
 
   def new_report(recipient, report)
     @report   = report
