@@ -18,9 +18,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account        = Account.find_remote(@username, @domain)
-        @old_public_key = @account&.public_key
-        @old_protocol   = @account&.protocol
+        @account          = Account.remote.find_by(uri: @uri) if @options[:only_key]
+        @account        ||= Account.find_remote(@username, @domain)
+        @old_public_key   = @account&.public_key
+        @old_protocol     = @account&.protocol
 
         create_account if @account.nil?
         update_account
