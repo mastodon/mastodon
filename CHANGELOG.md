@@ -3,6 +3,11 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.4] - 2020-02-27
+### Security
+
+- Fix leak of arbitrary statuses through unfavourite action in REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/13161))
+
 ## [2.9.3] - 2019-08-10
 ### Added
 
