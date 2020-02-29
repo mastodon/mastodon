@@ -14,7 +14,9 @@ def setup_redis_env_url(prefix = nil, defaults = true)
   ENV[prefix + 'REDIS_URL'] = if [password, host, port, db].all?(&:nil?)
                                 ENV['REDIS_URL']
                               else
-                                "redis://#{password.blank? ? '' : ":#{password}@"}#{host}:#{port}/#{db}"
+                                Addressable::URI.parse("redis://#{host}:#{port}/#{db}").tap do |uri|
+                                  uri.password = password if password.present?
+                                end.normalize.to_str
                               end
 end
 
