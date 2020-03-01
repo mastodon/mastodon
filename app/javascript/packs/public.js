@@ -134,6 +134,12 @@ function main() {
 
       return false;
     });
+
+    [].forEach.call(document.querySelectorAll('.status__content__spoiler-link'), (spoilerLink) => {
+      const contentEl = spoilerLink.parentNode.parentNode.querySelector('.e-content');
+      const message = (contentEl.style.display === 'block') ? (messages['status.show_less'] || 'Show less') : (messages['status.show_more'] || 'Show more');
+      spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
+    });
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
