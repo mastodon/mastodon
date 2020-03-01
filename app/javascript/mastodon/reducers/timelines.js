@@ -89,7 +89,7 @@ const updateTimeline = (state, timeline, status, usePendingItems) => {
   }));
 };
 
-const deleteStatus = (state, id, accountId, references, exclude_account = null) => {
+const deleteStatus = (state, id, references, exclude_account = null) => {
   state.keySeq().forEach(timeline => {
     if (exclude_account === null || (timeline !== `account:${exclude_account}` && !timeline.startsWith(`account:${exclude_account}:`))) {
       const helper = list => list.filterNot(item => item === id);
@@ -99,7 +99,7 @@ const deleteStatus = (state, id, accountId, references, exclude_account = null) 
 
   // Remove reblogs of deleted status
   references.forEach(ref => {
-    state = deleteStatus(state, ref[0], ref[1], [], exclude_account);
+    state = deleteStatus(state, ref, [], exclude_account);
   });
 
   return state;
@@ -117,8 +117,8 @@ const filterTimelines = (state, relationship, statuses) => {
       return;
     }
 
-    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => [item.get('id'), item.get('account')]);
-    state      = deleteStatus(state, status.get('id'), status.get('account'), references, relationship.id);
+    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => item.get('id'));
+    state      = deleteStatus(state, status.get('id'), references, relationship.id);
   });
 
   return state;
@@ -150,7 +150,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, fromJS(action.status), action.usePendingItems);
   case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
+    return deleteStatus(state, action.id, action.references, action.reblogOf);
   case TIMELINE_CLEAR:
     return clearTimeline(state, action.timeline);
   case ACCOUNT_BLOCK_SUCCESS:
