@@ -336,7 +336,20 @@ namespace :mastodon do
       if prompt.yes?('Save configuration?')
         cmd = TTY::Command.new(printer: :quiet)
 
-        File.write(Rails.root.join('.env.production'), "# Generated with mastodon:setup on #{Time.now.utc}\n\n" + env.each_pair.map { |key, value| "#{key}=#{value}" }.join("\n") + "\n")
+        env_contents = env.each_pair.map do |key, value|
+          if value.is_a?(String) && value =~ /[\s\#\\"]/
+            if value =~ /[']/
+              value = value.to_s.gsub(/[\\"\$]/) { |x| "\\#{x}" }
+              "#{key}=\"#{value}\""
+            else
+              "#{key}='#{value}'"
+            end
+          else
+            "#{key}=#{value}"
+          end
+        end.join("\n")
+
+        File.write(Rails.root.join('.env.production'), "# Generated with mastodon:setup on #{Time.now.utc}\n\n" + env_contents + "\n")
 
         if using_docker
           prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'
