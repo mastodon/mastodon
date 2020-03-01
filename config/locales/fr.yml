@@ -532,7 +532,7 @@ fr:
       title: Paramètres du serveur
       trendable_by_default:
         desc_html: Affecte les hashtags qui n'ont pas été précédemment non autorisés
-        title: Autoriser les hashtags à apparaître dans les tendances sans examen préalable
+        title: Autoriser les hashtags à apparaître dans les tendances sans approbation préalable
       trends:
         desc_html: Afficher publiquement les hashtags approuvés qui sont populaires en ce moment
         title: Hashtags populaires
@@ -561,7 +561,7 @@ fr:
       most_popular: Plus populaire
       most_recent: Plus récent
       name: Hashtag
-      review: État de traitement
+      review: État du traitement
       reviewed: Traité
       title: Hashtags
       trending_right_now: Populaire en ce moment
@@ -584,8 +584,8 @@ fr:
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trending_tag:
-      body: 'Le hashtag #%{name} est populaire aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que vous l’autorisiez, ou sauvegardiez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
-      subject: 'Nouveau hashtag en attente de traitement sur %{instance} (#%{name})'
+      body: 'Le hashtag #%{name} est dans les tendances aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que vous l’autorisiez, ou sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
+      subject: 'Nouveau hashtag en attente d’approbation sur %{instance} (#%{name})'
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
