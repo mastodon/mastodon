@@ -32,6 +32,9 @@ class Status < ApplicationRecord
   include Paginable
   include Cacheable
   include StatusThreadingConcern
+  include RateLimitable
+
+  rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
 
