@@ -40,10 +40,10 @@ fr:
       reason: Motif
       rejecting_media: 'Les fichiers média de ces serveurs ne seront pas traités ou stockés et aucune miniature ne sera affichée, nécessitant un clic vers le fichier d’origine :'
       silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·rice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
-      suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant toute interaction ou communication avec les utilisateurs de ces serveurs impossible :'
+      suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant toute interaction ou communication avec les utilisateur·rice·s de ces serveurs impossible :'
     unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
     user_count_after:
-      one: utilisateur⋅rice
+      one: utilisateur·rice
       other: utilisateur·rice·s
     user_count_before: Abrite
     what_is_mastodon: Qu’est-ce que Mastodon ?
@@ -158,7 +158,7 @@ fr:
       remove_avatar: Supprimer l’avatar
       remove_header: Supprimer l’entête
       resend_confirmation:
-        already_confirmed: Cet·te utilisateur·ice est déjà confirmé·e
+        already_confirmed: Cet·te utilisateur·rice est déjà confirmé·e
         send: Renvoyer un courriel de confirmation
         success: Courriel de confirmation envoyé avec succès !
       reset: Réinitialiser
@@ -195,27 +195,27 @@ fr:
       actions:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
-        confirm_user: "%{name} adresse courriel confirmée de l’utilisateur·ice %{target}"
+        confirm_user: "%{name} adresse courriel confirmée pour l’utilisateur·rice %{target}"
         create_account_warning: "%{name} a envoyé un avertissement à %{target}"
         create_announcement: "%{name} a créé une nouvelle annonce %{target}"
         create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
         create_domain_allow: "%{name} a inscrit le domaine %{target} sur liste blanche"
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste noire"
-        demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
+        demote_user: "%{name} a rétrogradé l’utilisateur·rice %{target}"
         destroy_announcement: "%{name} a supprimé l’annonce %{target}"
         destroy_custom_emoji: "%{name} a détruit l’émoticône %{target}"
         destroy_domain_allow: "%{name} a supprimé le domaine %{target} de la liste blanche"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
-        disable_2fa_user: "%{name} a désactivé l’authentification à deux facteurs pour l’utilisateur·ice %{target}"
+        disable_2fa_user: "%{name} a désactivé l’authentification à deux facteurs pour l’utilisateur·rice %{target}"
         disable_custom_emoji: "%{name} a désactivé l’émoji %{target}"
-        disable_user: "%{name} a désactivé le login pour l’utilisateur·ice %{target}"
+        disable_user: "%{name} a désactivé la connexion pour l’utilisateur·rice %{target}"
         enable_custom_emoji: "%{name} a activé l’émoji %{target}"
-        enable_user: "%{name} a activé le login pour l’utilisateur·ice %{target}"
+        enable_user: "%{name} a activé la connexion pour l’utilisateur·rice %{target}"
         memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
-        promote_user: "%{name} a promu l’utilisateur·ice %{target}"
+        promote_user: "%{name} a promu l’utilisateur·rice %{target}"
         remove_avatar_user: "%{name} a supprimé l’avatar de %{target}"
         reopen_report: "%{name} a rouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
@@ -448,7 +448,7 @@ fr:
     settings:
       activity_api_enabled:
         desc_html: Nombre de statuts affichés localement, de comptes actifs et de nouvelles inscriptions regroupé·e·s par semaine
-        title: Publier des statistiques agrégées sur l’activité des utilisateur·ice·s
+        title: Publier des statistiques agrégées sur l’activité des utilisateur·rice·s
       bootstrap_timeline_accounts:
         desc_html: Séparez les noms d’utilisateur·ice par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateur⋅ice⋅s locaux sont sélectionné⋅e⋅s.
         title: Abonnements par défaut pour les nouveaux·elles utilisateur·ice·s
@@ -505,7 +505,7 @@ fr:
         desc_html: Lorsque l’option est activée, les pouets provenant de toutes les serveurs connus sont montrés dans la prévisualisation. Sinon, seuls les pouets locaux sont montrés
         title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur·ice
+        desc_html: Montrer un badge de responsable sur une page utilisateur·rice
         title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
@@ -629,7 +629,7 @@ fr:
     description:
       prefix_invited_by_user: "@%{name} vous invite à rejoindre ce serveur Mastodon !"
       prefix_sign_up: Inscrivez-vous aujourd’hui sur Mastodon !
-      suffix: Avec un compte, vous pourrez suivre des gens, publier des statuts et échanger des messages avec les utilisateur·ice·s de n'importe quel serveur Mastodon et bien plus !
+      suffix: Avec un compte, vous pourrez suivre des gens, publier des statuts et échanger des messages avec les utilisateur·rice·s de n'importe quel serveur Mastodon et bien plus !
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
     forgot_password: Mot de passe oublié ?
     invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
@@ -707,11 +707,11 @@ fr:
       email_reconfirmation_html: Si vous ne recevez pas le courriel de confirmation, vous pouvez le <a href="%{path}">demander à nouveau</a>
       irreversible: Vous ne pourrez pas restaurer ou réactiver votre compte
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
-      username_available: Votre nom d’utilisateur·ice sera à nouveau disponible
-      username_unavailable: Votre nom d’utilisateur·ice restera indisponible
+      username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
+      username_unavailable: Votre nom d’utilisateur·rice restera indisponible
   directories:
     directory: Annuaire des profils
-    explanation: Découvrir des utilisateur·ice·s en selon leurs centres d’intérêt
+    explanation: Découvrir des utilisateur·rice·s en selon leurs centres d’intérêt
     explore_mastodon: Explorer %{title}
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
@@ -1218,7 +1218,7 @@ fr:
     warning:
       explanation:
         disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu’à ce qu’il soit débloqué.
-        silence: Lorsque votre compte est limité, seul·e·s les utilisateur·ice·s qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d’autres utilisateur·ice·s peuvent vous suivre manuellement.
+        silence: Lorsque votre compte est limité, seul·e·s les utilisateur·rice·s qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d’autres utilisateur·rice·s peuvent vous suivre manuellement.
         suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs où vous aviez des abonné⋅e⋅s.
       get_in_touch: Vous pouvez répondre à cette adresse pour entrer en contact avec l’équipe de %{instance}.
       review_server_policies: Passer en revue les politiques du serveur
