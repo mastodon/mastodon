@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
-        @statuses = filtered_statuses.without_local_only.without_reblogs.without_replies.limit(PAGE_SIZE)
+        @statuses = filtered_statuses.without_reblogs.without_local_only.without_replies.limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end

@@ -22,9 +22,9 @@
 #  application_id         :bigint(8)
 #  in_reply_to_account_id :bigint(8)
 #  poll_id                :bigint(8)
+#  deleted_at             :datetime
 #  local_only             :boolean
 #  activity_pub_type      :string
-#  deleted_at             :datetime
 #
 
 class Status < ApplicationRecord
@@ -56,6 +56,7 @@ class Status < ApplicationRecord
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
+  has_many :bookmarks, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy, inverse_of: :status
@@ -84,6 +85,7 @@ class Status < ApplicationRecord
   scope :remote, -> { where(local: false).where.not(uri: nil) }
   scope :local,  -> { where(local: true).or(where(uri: nil)) }
 
+  scope :with_accounts, ->(ids) { where(id: ids).includes(:account) }
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :without_local_only, -> { where(local_only: [false, nil]) }
@@ -200,8 +202,12 @@ class Status < ApplicationRecord
   def title
     if destroyed?
       "#{account.acct} deleted status"
+    elsif reblog?
+      preview = sensitive ? '<sensitive>' : text.slice(0, 10).split("\n")[0]
+      "#{account.acct} shared #{reblog.account.acct}'s: #{preview}"
     else
-      reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
+      preview = sensitive ? '<sensitive>' : text.slice(0, 20).split("\n")[0]
+      "#{account.acct}: #{preview}"
     end
   end
 
@@ -309,6 +315,10 @@ class Status < ApplicationRecord
 
     def favourites_map(status_ids, account_id)
       Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |f, h| h[f.status_id] = true }
+    end
+
+    def bookmarks_map(status_ids, account_id)
+      Bookmark.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
     end
 
     def reblogs_map(status_ids, account_id)

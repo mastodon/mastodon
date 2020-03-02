@@ -4,6 +4,7 @@ module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
+<<<<<<< HEAD
   def display_name(account, **options)
     if options[:custom_emojify]
       Formatter.instance.format_display_name(account, options)
@@ -78,6 +79,8 @@ module StatusesHelper
     end
   end
 
+=======
+>>>>>>> e0f3a4583c68b560425e30306153cf1b8f4dabe0
   def link_to_more(url)
     link_to t('statuses.show_more'), url, class: 'load-more load-gap'
   end
@@ -86,27 +89,6 @@ module StatusesHelper
     content_tag(:div, class: "nothing-here #{extra_classes}") do
       t('accounts.nothing_here')
     end
-  end
-
-  def account_description(account)
-    prepend_str = [
-      [
-        number_to_human(account.statuses_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.posts', count: account.statuses_count),
-      ].join(' '),
-
-      [
-        number_to_human(account.following_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.following', count: account.following_count),
-      ].join(' '),
-
-      [
-        number_to_human(account.followers_count, strip_insignificant_zeros: true),
-        I18n.t('accounts.followers', count: account.followers_count),
-      ].join(' '),
-    ].join(', ')
-
-    [prepend_str, account.note].join(' · ')
   end
 
   def media_summary(status)
@@ -152,14 +134,6 @@ module StatusesHelper
 
   def stream_link_target
     embedded_view? ? '_blank' : nil
-  end
-
-  def acct(account)
-    if account.local?
-      "@#{account.acct}@#{Rails.configuration.x.local_domain}"
-    else
-      "@#{account.acct}"
-    end
   end
 
   def style_classes(status, is_predecessor, is_successor, include_threads)

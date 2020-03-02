@@ -19,7 +19,7 @@
       .dashboard__counters__num= number_with_delimiter @blocks_count
       .dashboard__counters__label= t 'admin.instances.total_blocked_by_us'
   %div
-    %div
+    = link_to admin_reports_path(by_target_domain: @instance.domain) do
       .dashboard__counters__num= number_with_delimiter @reports_count
       .dashboard__counters__label= t 'admin.instances.total_reported'
   %div

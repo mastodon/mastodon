@@ -14,7 +14,16 @@ class ProcessMentionsService < BaseService
     mentions = []
 
     status.text = status.text.gsub(Account::MENTION_RE) do |match|
-      username, domain  = Regexp.last_match(1).split('@')
+      username, domain = Regexp.last_match(1).split('@')
+
+      domain = begin
+        if TagManager.instance.local_domain?(domain)
+          nil
+        else
+          TagManager.instance.normalize_domain(domain)
+        end
+      end
+
       mentioned_account = Account.find_remote(username, domain)
 
       if mention_undeliverable?(mentioned_account)

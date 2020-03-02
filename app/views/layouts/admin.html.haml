@@ -1,4 +1,5 @@
 - content_for :header_tags do
+  = render_initial_state
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
@@ -24,7 +25,12 @@
 
     .content-wrapper
       .content
-        %h2= yield :page_title
+        .content-heading
+          %h2= yield :page_title
+
+          - if :heading_actions
+            .content-heading-actions
+              = yield :heading_actions
 
         = render 'application/flashes'
 
