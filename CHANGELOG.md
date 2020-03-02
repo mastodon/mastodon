@@ -3,6 +3,32 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [v3.1.2] - 2020-02-27
+### Added
+
+- Add `--reset-password` option to `tootctl accounts modify` ([ThibG](https://github.com/tootsuite/mastodon/pull/13126))
+- Add source-mapped stacktrace to error message in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13082))
+
+### Fixed
+
+- Fix dismissing an announcement twice raising an obscure error ([ThibG](https://github.com/tootsuite/mastodon/pull/13124))
+- Fix misleading error when attempting to re-send a pending follow request ([ThibG](https://github.com/tootsuite/mastodon/pull/13133))
+- Fix backups failing when files are missing from media attachments ([ThibG](https://github.com/tootsuite/mastodon/pull/13146))
+- Fix duplicate accounts being created when fetching an account for its key only ([ThibG](https://github.com/tootsuite/mastodon/pull/13147))
+- Fix `/web` redirecting to `/web/web` in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13128))
+- Fix previously OStatus-based accounts not being detected as ActivityPub ([ThibG](https://github.com/tootsuite/mastodon/pull/13129))
+- Fix account JSON/RSS not being cacheable due to wrong mime type comparison ([ThibG](https://github.com/tootsuite/mastodon/pull/13116))
+- Fix old browsers crashing because of missing `finally` polyfill in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13115))
+- Fix account's bio not being shown if there are no proofs/fields in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13075))
+- Fix sign-ups without checked user agreement being accepted through the web form ([ThibG](https://github.com/tootsuite/mastodon/pull/13088))
+- Fix non-x64 architectures not being able to build Docker image because of hardcoded Node.js architecture ([SaraSmiseth](https://github.com/tootsuite/mastodon/pull/13081))
+- Fix invite request input not being shown on sign-up error if left empty ([ThibG](https://github.com/tootsuite/mastodon/pull/13089))
+- Fix some migration hints mentioning GitLab instead of Mastodon ([saper](https://github.com/tootsuite/mastodon/pull/13084))
+
+### Security
+
+- Fix leak of arbitrary statuses through unfavourite action in REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/13161))
+
 ## [3.1.1] - 2020-02-10
 ### Fixed
 
