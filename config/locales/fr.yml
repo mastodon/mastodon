@@ -93,7 +93,7 @@ fr:
     accounts:
       approve: Approuver
       approve_all: Tout approuver
-      are_you_sure: Êtes-vous certain⋅e ?
+      are_you_sure: Voulez-vous vraiment faire ça ?
       avatar: Avatar
       by_domain: Domaine
       change_email:
@@ -393,7 +393,7 @@ fr:
       title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
-      delete: Effacer
+      delete: Supprimer
       description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets publics entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyen serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
       disable: Désactiver
       disabled: Désactivé
@@ -419,7 +419,7 @@ fr:
           one: "%{count} signalement"
           other: "%{count} signalements"
       action_taken_by: Intervention de
-      are_you_sure: Êtes-vous certain⋅e ?
+      are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       by_target_domain: Domaine du compte signalé
@@ -432,7 +432,7 @@ fr:
         create: Ajouter une note
         create_and_resolve: Résoudre avec une note
         create_and_unresolve: Ré-ouvrir avec une note
-        delete: Effacer
+        delete: Supprimer
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
@@ -571,7 +571,7 @@ fr:
     title: Administration
     warning_presets:
       add_new: Ajouter un nouveau
-      delete: Effacer
+      delete: Supprimer
       edit: Éditer
       edit_preset: Éditer les avertissements prédéfinis
       title: Gérer les avertissements prédéfinis
@@ -589,7 +589,7 @@ fr:
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
-    deleted_msg: Suppression réussie de l'alias. Le déménagement de ce compte vers celui-ci ne sera plus possible.
+    deleted_msg: Alias supprimé avec succès. Le déménagement de ce compte vers celui-ci ne sera plus possible.
     hint_html: Si vous voulez déménager d’un autre compte vers celui-ci, vous pouvez créer ici un alias, qui est nécessaire avant de pouvoir migrer les abonné·e·s de l’ancien compte vers celui-ci. Cette action en soi est <strong>inoffensive et réversible</strong>. <strong>La migration du compte est initiée à partir de l’ancien compte</strong>.
     remove: Détacher l'alias
   appearance:
@@ -765,7 +765,7 @@ fr:
       invalid_context: Contexte invalide ou insuffisant
       invalid_irreversible: Le filtrage irréversible ne fonctionne que pour l’accueil et les notifications
     index:
-      delete: Effacer
+      delete: Supprimer
       empty: Vous n'avez aucun filtre.
       title: Filtres
     new:
