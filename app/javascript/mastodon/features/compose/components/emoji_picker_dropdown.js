@@ -362,7 +362,7 @@ class EmojiPickerDropdown extends React.PureComponent {
             className={classNames('emojione', { 'pulse-loading': active && loading })}
             alt='🙂'
             src={`${assetHost}/emoji/1f602.svg`}
-          />}
+          />
         </div>
 
         <Overlay show={active} placement={placement} target={this.findTarget}>
