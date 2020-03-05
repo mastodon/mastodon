@@ -170,6 +170,7 @@ class MediaAttachment < ApplicationRecord
 
   def variant?(other_file_name)
     return true if file_file_name == other_file_name
+    return false if file_file_name.nil?
 
     formats = file.styles.values.map(&:format).compact
 
