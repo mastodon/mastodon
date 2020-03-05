@@ -14,8 +14,6 @@ class Api::V1::AccountsController < Api::BaseController
 
   skip_before_action :require_authenticated_user!, only: :create
 
-  respond_to :json
-
   def show
     render json: @account, serializer: REST::AccountSerializer
   end
