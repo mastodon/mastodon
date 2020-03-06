@@ -7,8 +7,6 @@ class Api::V1::Statuses::FavouritesController < Api::BaseController
   before_action :require_user!
   before_action :set_status
 
-  respond_to :json
-
   def create
     FavouriteService.new.call(current_account, @status)
     render json: @status, serializer: REST::StatusSerializer

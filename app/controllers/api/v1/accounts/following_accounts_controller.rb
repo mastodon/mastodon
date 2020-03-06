@@ -5,8 +5,6 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   before_action :set_account
   after_action :insert_pagination_headers
 
-  respond_to :json
-
   def index
     @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer

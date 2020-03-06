@@ -8,8 +8,6 @@ class Api::V1::DomainBlocksController < Api::BaseController
   before_action :require_user!
   after_action :insert_pagination_headers, only: :show
 
-  respond_to :json
-
   def show
     @blocks = load_domain_blocks
     render json: @blocks.map(&:domain)

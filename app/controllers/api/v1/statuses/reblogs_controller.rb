@@ -7,8 +7,6 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
   before_action :require_user!
   before_action :set_reblog
 
-  respond_to :json
-
   def create
     @status = ReblogService.new.call(current_account, @reblog, reblog_params)
     render json: @status, serializer: REST::StatusSerializer
