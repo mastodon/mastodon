@@ -95,7 +95,7 @@ class Content extends ImmutablePureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
-        let status = this.props.announcement.get('statuses').find(item => link.href == item.get('url'));
+        let status = this.props.announcement.get('statuses').find(item => link.href === item.get('url'));
         if (status) {
           link.addEventListener('click', this.onStatusClick.bind(this, status), false);
         }
