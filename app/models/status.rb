@@ -366,6 +366,18 @@ class Status < ApplicationRecord
       end
     end
 
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(FetchLinkCardService::URL_PATTERN).map { |match| match.first }.uniq.map do |url|
+        if TagManager.instance.local_url?(url)
+          ActivityPub::TagManager.instance.uri_to_resource(url, Status)
+        else
+          Status.find_by(uri: url) || Status.find_by(url: url)
+        end
+      end.select { |status| status&.distributable? }.compact
+    end
+
     private
 
     def timeline_scope(local_only = false)
