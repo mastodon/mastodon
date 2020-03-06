@@ -19,12 +19,14 @@
 #  description         :text
 #  scheduled_status_id :bigint(8)
 #  blurhash            :string
+#  processing          :integer
 #
 
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
   enum type: [:image, :gifv, :video, :unknown, :audio]
+  enum processing: [:queued, :in_progress, :complete, :failed], _prefix: true
 
   MAX_DESCRIPTION_LENGTH = 1_500
 
@@ -156,6 +158,10 @@ class MediaAttachment < ApplicationRecord
     remote_url.blank?
   end
 
+  def not_processed?
+    processing.present? && !processing_complete?
+  end
+
   def needs_redownload?
     file.blank? && remote_url.present?
   end
@@ -203,10 +209,18 @@ class MediaAttachment < ApplicationRecord
     "#{x},#{y}"
   end
 
+  attr_writer :delay_processing
+
+  def delay_processing?
+    @delay_processing
+  end
+
+  after_commit :enqueue_processing, on: :create
   after_commit :reset_parent_cache, on: :update
 
   before_create :prepare_description, unless: :local?
   before_create :set_shortcode
+  before_create :set_processing
 
   before_post_process :set_type_and_extension
 
@@ -277,6 +291,10 @@ class MediaAttachment < ApplicationRecord
     end
   end
 
+  def set_processing
+    self.processing = delay_processing? ? :queued : :complete
+  end
+
   def set_meta
     meta = populate_meta
 
@@ -322,9 +340,11 @@ class MediaAttachment < ApplicationRecord
     }.compact
   end
 
-  def reset_parent_cache
-    return if status_id.nil?
+  def enqueue_processing
+    PostProcessMediaWorker.perform_async(id) if delay_processing?
+  end
 
-    Rails.cache.delete("statuses/#{status_id}")
+  def reset_parent_cache
+    Rails.cache.delete("statuses/#{status_id}") if status_id.present?
   end
 end
