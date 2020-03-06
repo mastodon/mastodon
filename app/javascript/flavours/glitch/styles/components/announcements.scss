@@ -1,5 +1,6 @@
 .announcements__item__content {
   word-wrap: break-word;
+  overflow-y: auto;
 
   .emojione {
     width: 20px;
@@ -69,17 +70,21 @@
     box-sizing: border-box;
     width: 100%;
     padding: 15px;
-    padding-right: 15px + 18px;
     position: relative;
     font-size: 15px;
     line-height: 20px;
     word-wrap: break-word;
     font-weight: 400;
+    max-height: 50vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     &__range {
       display: block;
       font-weight: 500;
       margin-bottom: 10px;
+      padding-right: 18px;
     }
 
     &__unread {
