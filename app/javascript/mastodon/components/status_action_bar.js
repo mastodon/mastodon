@@ -96,15 +96,6 @@ class StatusActionBar extends ImmutablePureComponent {
     }
   }
 
-  handleShareClick = () => {
-    navigator.share({
-      text: this.props.status.get('search_index'),
-      url: this.props.status.get('url'),
-    }).catch((e) => {
-      if (e.name !== 'AbortError') console.error(e);
-    });
-  }
-
   handleFavouriteClick = () => {
     if (me) {
       this.props.onFavourite(this.props.status);
@@ -317,17 +308,11 @@ class StatusActionBar extends ImmutablePureComponent {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
     }
 
-    const shareButton = ('share' in navigator) && publicStatus && (
-      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
-    );
-
     return (
       <div className='status__action-bar'>
         <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
-
-        {shareButton}
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenuContainer
