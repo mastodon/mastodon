@@ -126,6 +126,9 @@ class MediaAttachment < ApplicationRecord
   IMAGE_LIMIT = 10.megabytes
   VIDEO_LIMIT = 40.megabytes
 
+  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
+  MAX_VIDEO_FRAME_RATE   = 60
+
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
   belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true
@@ -223,6 +226,7 @@ class MediaAttachment < ApplicationRecord
   before_create :set_processing
 
   before_post_process :set_type_and_extension
+  before_post_process :check_video_dimensions
 
   before_save :set_meta
 
@@ -293,6 +297,17 @@ class MediaAttachment < ApplicationRecord
 
   def set_processing
     self.processing = delay_processing? ? :queued : :complete
+  end
+
+  def check_video_dimensions
+    return unless (video? || gifv?) && file.queued_for_write[:original].present?
+
+    movie = FFMPEG::Movie.new(file.queued_for_write[:original].path)
+
+    return unless movie.valid?
+
+    raise Mastodon::DimensionsValidationError, "#{movie.width}x#{movie.height} videos are not supported" if movie.width * movie.height > MAX_VIDEO_MATRIX_LIMIT
+    raise Mastodon::DimensionsValidationError, "#{movie.frame_rate.to_i}fps videos are not supported" if movie.frame_rate > MAX_VIDEO_FRAME_RATE
   end
 
   def set_meta
