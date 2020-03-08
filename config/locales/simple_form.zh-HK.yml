@@ -65,6 +65,7 @@ zh-HK:
       account_warning_preset:
         text: 預設文字
       admin_account_action:
+        include_statuses: 在電子郵件中加入檢舉的嘟文
         send_email_notification: 透過電子信件通知使用者
         text: 自訂警告
         type: 動作
@@ -74,6 +75,12 @@ zh-HK:
           silence: 安靜
           suspend: 停權並不可逆的刪除帳戶資料
         warning_preset_id: 使用警告預設
+      announcement:
+        all_day: 全天活動
+        ends_at: 活動結束時間
+        scheduled_at: 排程發佈
+        starts_at: 活動開始時間
+        text: 公告
       defaults:
         autofollow: 邀請別人關注你的賬號
         avatar: 個人頭像
@@ -100,6 +107,7 @@ zh-HK:
         otp_attempt: 雙重認證碼
         password: 密碼
         phrase: 關鍵字或片語
+        setting_advanced_layout: 啟用進階網頁介面
         setting_aggregate_reblogs: 時間軸中的群組轉嘟
         setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
@@ -118,7 +126,9 @@ zh-HK:
         setting_show_application: 顯示用來傳送嘟文的應用程式
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 網站主題
+        setting_trends: 顯示本日趨勢
         setting_unfollow_modal: 取消關注前跳出詢問我
+        setting_use_pending_items: 限速模式
         severity: 等級
         type: 匯入資料類型
         username: 用戶名稱
@@ -130,15 +140,26 @@ zh-HK:
         must_be_follower: 隱藏沒有關注你的用戶的通知
         must_be_following: 隱藏你不關注的用戶的通知
         must_be_following_dm: 隱藏你不關注的用戶的私信
+      invite:
+        comment: 備註
+      invite_request:
+        text: 加入的原因
       notification_emails:
         digest: 定期電郵摘要
         favourite: 當有用戶喜歡你的文章時，發電郵通知
         follow: 當有用戶關注你時，發電郵通知
         follow_request: 當有用戶要求關注你時，發電郵通知
         mention: 當有用戶在文章提及你時，發電郵通知
+        pending_account: 需要審核的新帳戶
         reblog: 當有用戶轉推你的文章時，發電郵通知
         report: 當提交新檢舉時傳送電子郵件
+      tag:
+        listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
+        name: 主題標籤
+        trendable: 允許此主題標籤在趨勢下顯示
+        usable: 允許嘟文使用此主題標籤
     'no': '否'
+    recommended: 建議
     required:
       mark: "*"
       text: 必須填寫
