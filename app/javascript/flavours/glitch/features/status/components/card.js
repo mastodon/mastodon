@@ -90,7 +90,7 @@ export default class Card extends React.PureComponent {
           },
         },
       ]),
-      0
+      0,
     );
   };
 

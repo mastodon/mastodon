@@ -66,7 +66,7 @@ class Blocks extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountContainer key={id} id={id} />
+            <AccountContainer key={id} id={id} />,
           )}
         </ScrollableList>
       </Column>

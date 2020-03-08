@@ -67,7 +67,7 @@ class FollowRequests extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountAuthorizeContainer key={id} id={id} />
+            <AccountAuthorizeContainer key={id} id={id} />,
           )}
         </ScrollableList>
       </Column>

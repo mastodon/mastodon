@@ -146,7 +146,7 @@ export const makeGetStatus = () => {
         map.set('account', accountBase);
         map.set('filtered', filtered);
       });
-    }
+    },
   );
 };
 
