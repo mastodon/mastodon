@@ -167,23 +167,23 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def outbox_total_items
-    collection_info('outbox')[0]
+    collection_info('outbox').first
   end
 
   def following_total_items
-    collection_info('following')[0]
+    collection_info('following').first
   end
 
   def followers_total_items
-    collection_info('followers')[0]
+    collection_info('followers').first
   end
 
   def following_private?
-    !collection_info('following')[1]
+    !collection_info('following').last
   end
 
   def followers_private?
-    !collection_info('followers')[1]
+    !collection_info('followers').last
   end
 
   def collection_info(type)
