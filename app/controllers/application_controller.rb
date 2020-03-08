@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
   rescue_from Mastodon::NotPermittedError, with: :forbidden
   rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
   rescue_from Mastodon::RaceConditionError, with: :service_unavailable
+  rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
@@ -179,6 +180,10 @@ class ApplicationController < ActionController::Base
 
   def service_unavailable
     respond_with_error(503)
+  end
+
+  def too_many_requests
+    respond_with_error(429)
   end
 
   def single_user_mode?

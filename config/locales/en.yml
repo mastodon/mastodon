@@ -550,6 +550,9 @@ en:
       trends:
         desc_html: Publicly display previously reviewed hashtags that are currently trending
         title: Trending hashtags
+    site_uploads:
+      delete: Delete uploaded file
+      destroyed_msg: Site upload successfully deleted!
     statuses:
       back_to_account: Back to account page
       batch:
@@ -738,7 +741,7 @@ en:
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
-    '429': Throttled
+    '429': Too many requests
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct

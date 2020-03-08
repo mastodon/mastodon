@@ -1,7 +1,10 @@
 - content_for :page_title do
   = t('settings.appearance')
 
-= simple_form_for current_user, url: settings_preferences_appearance_path, html: { method: :put } do |f|
+- content_for :heading_actions do
+  = button_tag t('generic.save_changes'), class: 'button', form: 'edit_user'
+
+= simple_form_for current_user, url: settings_preferences_appearance_path, html: { method: :put, id: 'edit_user' } do |f|
   .fields-group
     = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }, selected: I18n.locale, hint: false
 

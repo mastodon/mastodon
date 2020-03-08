@@ -67,7 +67,7 @@ class Blocks extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {domains.map(domain =>
-            <DomainContainer key={domain} domain={domain} />
+            <DomainContainer key={domain} domain={domain} />,
           )}
         </ScrollableList>
       </Column>

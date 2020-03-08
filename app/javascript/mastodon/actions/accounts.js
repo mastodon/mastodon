@@ -106,7 +106,7 @@ export function fetchAccount(id) {
       dispatch,
       getState,
       db.transaction('accounts', 'read').objectStore('accounts').index('id'),
-      id
+      id,
     ).then(() => db.close(), error => {
       db.close();
       throw error;
