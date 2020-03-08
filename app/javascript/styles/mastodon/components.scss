@@ -388,8 +388,8 @@
 
   .emoji-picker-dropdown {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: 0;
   }
 
   .compose-form__autosuggest-wrapper {
@@ -4061,10 +4061,7 @@ a.status-card.compact:hover {
 
 .emoji-button {
   display: block;
-  font-size: 24px;
-  line-height: 24px;
-  margin-left: 2px;
-  width: 24px;
+  padding: 5px 5px 2px 2px;
   outline: 0;
   cursor: pointer;
 
@@ -4080,7 +4077,6 @@ a.status-card.compact:hover {
     margin: 0;
     width: 22px;
     height: 22px;
-    margin-top: 2px;
   }
 
   &:hover,
