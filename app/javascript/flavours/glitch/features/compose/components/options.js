@@ -34,7 +34,7 @@ const messages = defineMessages({
     id: 'content-type.change',
   },
   direct_long: {
-    defaultMessage: 'Post to mentioned users only',
+    defaultMessage: 'Visible for mentioned users only',
     id: 'privacy.direct.long',
   },
   direct_short: {
@@ -66,7 +66,7 @@ const messages = defineMessages({
     id: 'compose.content-type.plain',
   },
   private_long: {
-    defaultMessage: 'Post to followers only',
+    defaultMessage: 'Visible for followers only',
     id: 'privacy.private.long',
   },
   private_short: {
@@ -74,7 +74,7 @@ const messages = defineMessages({
     id: 'privacy.private.short',
   },
   public_long: {
-    defaultMessage: 'Post to public timelines',
+    defaultMessage: 'Visible for all, shown in public timelines',
     id: 'privacy.public.long',
   },
   public_short: {
@@ -94,7 +94,7 @@ const messages = defineMessages({
     id: 'advanced_options.threaded_mode.short',
   },
   unlisted_long: {
-    defaultMessage: 'Do not show in public timelines',
+    defaultMessage: 'Visible for all, but not in public timelines',
     id: 'privacy.unlisted.long',
   },
   unlisted_short: {
