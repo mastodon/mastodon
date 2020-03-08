@@ -57,47 +57,6 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  VIDEO_STYLES = {
-    small: {
-      convert_options: {
-        output: {
-          'loglevel' => 'fatal',
-          vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
-        },
-      },
-      format: 'png',
-      time: 0,
-      file_geometry_parser: FastGeometryParser,
-      blurhash: BLURHASH_OPTIONS,
-    },
-
-    original: {
-      keep_same_format: true,
-      convert_options: {
-        output: {
-          'loglevel' => 'fatal',
-          'map_metadata' => '-1',
-          'c:v' => 'copy',
-          'c:a' => 'copy',
-        },
-      },
-    },
-  }.freeze
-
-  AUDIO_STYLES = {
-    original: {
-      format: 'mp3',
-      content_type: 'audio/mpeg',
-      convert_options: {
-        output: {
-          'loglevel' => 'fatal',
-          'map_metadata' => '-1',
-          'q:a' => 2,
-        },
-      },
-    },
-  }.freeze
-
   VIDEO_FORMAT = {
     format: 'mp4',
     content_type: 'video/mp4',
@@ -114,6 +73,37 @@ class MediaAttachment < ApplicationRecord
         'frames:v' => 60 * 60 * 3,
         'crf' => 18,
         'map_metadata' => '-1',
+      },
+    },
+  }.freeze
+
+  VIDEO_STYLES = {
+    small: {
+      convert_options: {
+        output: {
+          'loglevel' => 'fatal',
+          vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
+        },
+      },
+      format: 'png',
+      time: 0,
+      file_geometry_parser: FastGeometryParser,
+      blurhash: BLURHASH_OPTIONS,
+    },
+
+    original: VIDEO_FORMAT,
+  }.freeze
+
+  AUDIO_STYLES = {
+    original: {
+      format: 'mp3',
+      content_type: 'audio/mpeg',
+      convert_options: {
+        output: {
+          'loglevel' => 'fatal',
+          'map_metadata' => '-1',
+          'q:a' => 2,
+        },
       },
     },
   }.freeze
