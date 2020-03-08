@@ -6,6 +6,6 @@ module Admin::SettingsHelper
     return hint unless upload
 
     link = link_to t('admin.site_uploads.delete'), admin_site_upload_path(upload), data: { method: :delete }
-    safe_join([hint, content_tag(:p, link, class: 'hint')])
+    safe_join([hint, link], '<br/>'.html_safe)
   end
 end
