@@ -46,6 +46,7 @@
 #  silenced_at             :datetime
 #  suspended_at            :datetime
 #  trust_level             :integer
+#  hide_collections        :boolean
 #
 
 class Account < ApplicationRecord
@@ -321,6 +322,14 @@ class Account < ApplicationRecord
     self.header = nil
 
     save!
+  end
+
+  def hides_followers?
+    hide_collections? || user_hides_network?
+  end
+
+  def hides_following?
+    hide_collections? || user_hides_network?
   end
 
   def object_type
