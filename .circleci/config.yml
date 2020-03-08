@@ -6,6 +6,7 @@ aliases:
       - image: circleci/ruby:2.7-buster-node
         environment: &ruby_environment
           BUNDLE_APP_CONFIG: ./.bundle/
+          BUNDLE_PATH: ./vendor/bundle/
           DB_HOST: localhost
           DB_USER: root
           RAILS_ENV: test
