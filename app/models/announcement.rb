@@ -48,6 +48,10 @@ class Announcement < ApplicationRecord
     @mentions ||= Account.from_text(text)
   end
 
+  def statuses
+    @statuses ||= Status.from_text(text)
+  end
+
   def tags
     @tags ||= Tag.find_or_create_by_names(Extractor.extract_hashtags(text))
   end

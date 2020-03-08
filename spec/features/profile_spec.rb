@@ -39,7 +39,7 @@ feature 'Profile' do
     visit settings_profile_path
     fill_in 'Display name', with: 'Bob'
     fill_in 'Bio', with: 'Bob is silent'
-    click_on 'Save changes'
+    first('.btn[type=submit]').click
     is_expected.to have_content 'Changes successfully saved!'
 
     # View my own public profile and see the changes

@@ -8,8 +8,6 @@ class Api::V2::SearchController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:search' }
   before_action :require_user!
 
-  respond_to :json
-
   def index
     @search = Search.new(search_results)
     render json: @search, serializer: REST::SearchSerializer

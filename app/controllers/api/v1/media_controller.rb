@@ -4,8 +4,6 @@ class Api::V1::MediaController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:media' }
   before_action :require_user!
 
-  respond_to :json
-
   def create
     @media = current_account.media_attachments.create!(media_params)
     render json: @media, serializer: REST::MediaAttachmentSerializer

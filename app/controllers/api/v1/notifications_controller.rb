@@ -6,8 +6,6 @@ class Api::V1::NotificationsController < Api::BaseController
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index
 
-  respond_to :json
-
   DEFAULT_NOTIFICATIONS_LIMIT = 15
 
   def index

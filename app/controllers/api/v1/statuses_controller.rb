@@ -8,7 +8,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action :require_user!, except:  [:show, :context]
   before_action :set_status, only:       [:show, :context]
 
-  respond_to :json
+  override_rate_limit_headers :create, family: :statuses
 
   # This API was originally unlimited, pagination cannot be introduced without
   # breaking backwards-compatibility. Arbitrarily high number to cover most
@@ -45,7 +45,8 @@ class Api::V1::StatusesController < Api::BaseController
                                          application: doorkeeper_token.application,
                                          poll: status_params[:poll],
                                          content_type: status_params[:content_type],
-                                         idempotency: request.headers['Idempotency-Key'])
+                                         idempotency: request.headers['Idempotency-Key'],
+                                         with_rate_limit: true)
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
