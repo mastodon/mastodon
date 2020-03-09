@@ -535,6 +535,9 @@ gl:
       trends:
         desc_html: Amosar de xeito público cancelos revisados previamente que actualmente son tendencia
         title: Cancelos en tendencia
+    site_uploads:
+      delete: Eliminar o ficheiro subido
+      destroyed_msg: Eliminado correctamente o subido!
     statuses:
       back_to_account: Voltar a páxina da conta
       batch:
@@ -848,6 +851,7 @@ gl:
   media_attachments:
     validations:
       images_and_video: Non pode anexar un vídeo a un estado que xa contén imaxes
+      not_ready: Non se poden anexar ficheiros que aínda se están a procesar. Agarda un intre!
       too_many: Non pode anexar máis de 4 ficheiros
   migrations:
     acct: nomeusuaria@dominio da nova conta
