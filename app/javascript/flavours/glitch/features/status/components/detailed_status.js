@@ -198,8 +198,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
       reblogIcon = 'lock';
     }
 
-    if (status.get('visibility') === 'private') {
-      reblogLink = <Icon id={reblogIcon} />;
+    if (!['unlisted', 'public'].includes(status.get('visibility'))) {
+      reblogLink = null;
     } else if (this.context.router) {
       reblogLink = (
         <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
@@ -265,7 +265,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
               <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-            </a>{applicationLink} · {reblogLink} · {favouriteLink} · <VisibilityIcon visibility={status.get('visibility')} />
+            </a>{applicationLink} {!!reblogLink && ['·', reblogLink]} · {favouriteLink} · <VisibilityIcon visibility={status.get('visibility')} />
           </div>
         </div>
       </div>
