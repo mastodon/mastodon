@@ -78,8 +78,9 @@ class MediaAttachment < ApplicationRecord
   }.freeze
 
   VIDEO_PASSTHROUGH_OPTIONS = {
-    video_codec_whitelist: ['h264'],
-    audio_codec_whitelist: ['aac', nil],
+    video_codecs: ['h264'],
+    audio_codecs: ['aac', nil],
+    colorspaces: ['yuv420p'],
     options: {
       format: 'mp4',
       convert_options: {
