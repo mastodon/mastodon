@@ -6,19 +6,21 @@ module Paperclip
   class VideoTranscoder < Paperclip::Processor
     def make
       movie = FFMPEG::Movie.new(@file.path)
-      actual_options = options
-      passthrough_options = actual_options[:passthrough_options]
-      actual_options = passthrough_options[:options] if passthrough?(movie, passthrough_options)
 
       attachment.instance.type = MediaAttachment.types[:gifv] unless movie.audio_codec
 
-      Paperclip::Transcoder.make(file, actual_options, attachment)
+      Paperclip::Transcoder.make(file, actual_options(movie), attachment)
     end
 
     private
 
-    def passthrough?(movie, options)
-      options && options[:video_codec_whitelist].include?(movie.video_codec) && options[:audio_codec_whitelist].include?(movie.audio_codec)
+    def actual_options(movie)
+      opts = options[:passthrough_options]
+      if opts && opts[:video_codecs].include?(movie.video_codec) && opts[:audio_codecs].include?(movie.audio_codec) && opts[:colorspaces].include?(movie.colorspace)
+        opts[:options]
+      else
+        options
+      end
     end
   end
 end
