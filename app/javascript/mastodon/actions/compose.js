@@ -245,7 +245,7 @@ export function uploadCompose(files) {
             const poll = () => {
               api(getState).get(`/api/v1/media/${data.id}`).then(response => {
                 if (response.status === 200) {
-                  dispatch(uploadComposeSuccess(data, f));
+                  dispatch(uploadComposeSuccess(response.data, f));
                 } else if (response.status === 206) {
                   setTimeout(() => poll(), 1000);
                 }
