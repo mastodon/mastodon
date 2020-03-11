@@ -7,6 +7,13 @@ class EntityCache
 
   MAX_EXPIRATION = 7.days.freeze
 
+  def status(url)
+    Rails.cache.fetch(to_key(:status, url), expires_in: MAX_EXPIRATION) do
+      scope = Status.select(:id, :url, :uri, :visibility)
+      scope.find_by(uri: url) || scope.find_by(url: url)
+    end
+  end
+
   def mention(username, domain)
     Rails.cache.fetch(to_key(:mention, username, domain), expires_in: MAX_EXPIRATION) { Account.select(:id, :username, :domain, :url).find_remote(username, domain) }
   end
