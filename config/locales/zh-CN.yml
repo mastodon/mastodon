@@ -7,7 +7,6 @@ zh-CN:
     active_count_after: 活跃
     active_footnote: 每月活跃用户
     administered_by: 本实例的管理员：
-    api: API
     apps: 移动应用
     contact: 联系方式
     contact_missing: 未设定
@@ -22,19 +21,16 @@ zh-CN:
     privacy_policy: 隐私政策
     source_code: 源代码
     status_count_after:
-      one: 条嘟文
       other: 条嘟文
     status_count_before: 他们共嘟出了
     terms: 使用条款
     user_count_after:
-      one: 位用户
       other: 位用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
     follow: 关注
     followers:
-      one: 关注者
       other: 关注者
     following: 正在关注
     joined: 加入于 %{date}
@@ -45,7 +41,6 @@ zh-CN:
     people_followed_by: "%{name} 关注的人"
     people_who_follow: 关注 %{name} 的人
     posts:
-      one: 嘟文
       other: 嘟文
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文和回复
@@ -243,7 +238,6 @@ zh-CN:
       reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
       show:
         affected_accounts:
-          one: 将会影响到数据库中的 1 个帐户
           other: 将会影响到数据库中的 %{count} 个帐户
         retroactive:
           silence: 对此域名的所有帐户解除隐藏
@@ -386,8 +380,6 @@ zh-CN:
       confirmed: 已确认
       expires_in: 失效时间
       last_delivery: 最后一次接收数据的时间
-      title: WebSub
-      topic: Topic
     title: 管理
   admin_mailer:
     new_report:
@@ -396,7 +388,6 @@ zh-CN:
       subject: 来自 %{instance} 的用户举报（#%{id}）
   application_mailer:
     notification_preferences: 更改电子邮件首选项
-    salutation: "%{name},"
     settings: 使用此链接更改你的电子邮件首选项：%{link}
     view: 点此链接查看详情：
     view_profile: 查看个人资料页
@@ -422,9 +413,6 @@ zh-CN:
     migrate_account: 迁移到另一个帐户
     migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过其他方式登录
-    providers:
-      cas: CAS
-      saml: SAML
     register: 注册
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
@@ -484,7 +472,6 @@ zh-CN:
       request: 请求你的存档
       size: 大小
     blocks: 屏蔽的用户
-    csv: CSV
     follows: 关注的用户
     mutes: 隐藏的用户
     storage: 媒体文件存储
@@ -507,7 +494,6 @@ zh-CN:
     changes_saved_msg: 更改保存成功！
     save_changes: 保存更改
     validation_errors:
-      one: 出错啦！检查一下下面出错的地方吧
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   imports:
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
@@ -532,7 +518,6 @@ zh-CN:
     generate: 生成邀请链接
     invited_by: 你的邀请人是：
     max_uses:
-      one: 1 次
       other: "%{count} 次"
     max_uses_prompt: 无限制
     prompt: 生成分享链接，邀请他人在本实例注册
@@ -560,9 +545,7 @@ zh-CN:
       body: 以下是自%{since}你最后一次登录以来错过的消息的摘要
       mention: "%{name} 在嘟文中提到了你："
       new_followers_summary:
-        one: 而且，你不在的时候，有一个人关注了你！耶！
         other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
-      subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知 \U0001F418"
       title: 在你不在的这段时间……
     favourite:
       body: 你的嘟文被 %{name} 收藏了：
@@ -586,28 +569,11 @@ zh-CN:
       body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: 更新
     next: 下一页
     older: 更早
     prev: 上一页
-    truncate: "&hellip;"
-  preferences:
-    languages: 语言
-    other: 其他
-    publishing: 发布
-    web: 站内
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
@@ -623,39 +589,16 @@ zh-CN:
     browser: 浏览器
     browsers:
       alipay: 支付宝
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: 未知浏览器
-      ie: Internet Explorer
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: QQ浏览器
-      safari: Safari
       uc_browser: UC浏览器
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
     explanation: 你的 Mastodon 帐户目前已在这些浏览器上登录。
     ip: IP 地址
-    platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
-      other: 未知平台
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: 注销
     revoke_success: 会话注销成功
     title: 会话
@@ -675,15 +618,12 @@ zh-CN:
     attached:
       description: 附加媒体：%{attached}
       image:
-        one: "%{count} 张图片"
         other: "%{count} 张图片"
       video:
-        one: "%{count} 段视频"
         other: "%{count} 段视频"
     boosted_from_html: 转嘟自 %{acct_link}
     content_warning: 内容警告：%{warning}
     disallowed_hashtags:
-      one: 包含了一个禁止的话题标签：%{tags}
       other: 包含了这些禁止的话题标签：%{tags}
     language_detection: 自动检测语言
     open_in_web: 在站内打开

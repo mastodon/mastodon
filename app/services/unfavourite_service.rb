@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UnfavouriteService < BaseService
+  include Payloadable
+
   def call(account, status)
     favourite = Favourite.find_by!(account: account, status: status)
     favourite.destroy!
@@ -21,11 +23,7 @@ class UnfavouriteService < BaseService
   end
 
   def build_json(favourite)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
-      favourite,
-      serializer: ActivityPub::UndoLikeSerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json).sign!(favourite.account))
+    Oj.dump(serialize_payload(favourite, ActivityPub::UndoLikeSerializer))
   end
 
   def build_xml(favourite)

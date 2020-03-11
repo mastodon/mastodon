@@ -1,12 +1,16 @@
 ---
 es:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Vencimiento
+        options: Opciones
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: solo letras, números y guiones bajos
+              invalid: sólo letras, números y guiones bajos
         status:
           attributes:
             reblog:

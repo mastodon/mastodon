@@ -27,20 +27,21 @@ eo:
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn diskonigojn de mesaĝoj laste diskonigitaj (nur efikas al novaj diskonigoj)
-        setting_default_language: La lingvo de viaj mesaĝoj povas esti aŭtomate detektitaj, sed tio ne ĉiam ĝustas
+        setting_default_sensitive: Sentema komunikilo estas kaŝita defaŭlte kaj povas esti rivelita per alklako
         setting_display_media_default: Kaŝi aŭdovidaĵojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi ĉiujn aŭdovidaĵojn
         setting_display_media_show_all: Ĉiam montri aŭdovidaĵojn markitajn kiel tiklaj
         setting_hide_network: Tiuj, kiujn vi sekvas, kaj tiuj, kiuj sekvas vin ne estos videblaj en via profilo
         setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
         setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj mesaĝoj
-        setting_theme: Influas kiel Mastodon aspektas post ensaluto de ajna aparato.
         username: Via uzantnomo estos unika ĉe %{domain}
         whole_word: Kiam la vorto aŭ frazo estas nur litera aŭ cifera, ĝi estos uzata nur se ĝi kongruas kun la tuta vorto
       featured_tag:
         name: 'Vi povus uzi iun el la jenaj:'
       imports:
         data: CSV-dosiero el alia Mastodon-servilo
+      invite_request:
+        text: Ĉi tio helpos nin revizii vian kandidatiĝon
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
       user:
@@ -88,6 +89,7 @@ eo:
         otp_attempt: Kodo de dufaktora aŭtentigo
         password: Pasvorto
         phrase: Vorto aŭ frazo
+        setting_advanced_layout: Ebligi altnivelan retpaĝan interfacon
         setting_aggregate_reblogs: Grupigi diskonigojn en tempolinioj
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri fenestron por konfirmi antaŭ ol diskonigi
@@ -118,15 +120,19 @@ eo:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas
         must_be_following_dm: Bloki rektajn mesaĝojn de homoj, kiujn vi ne sekvas
+      invite_request:
+        text: Kial vi volas aliĝi?
       notification_emails:
         digest: Sendi resumajn retmesaĝojn
         favourite: Sendi retmesaĝon kiam iu stelumas vian mesaĝon
         follow: Sendi retmesaĝon kiam iu sekvas vin
         follow_request: Sendi retmesaĝon kiam iu petas sekvi vin
         mention: Sendi retmesaĝon kiam iu mencias vin
+        pending_account: Sendi retmesaĝon kiam nova konto bezonas kontrolon
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
         report: Sendi retmesaĝon kiam nova signalo estas sendita
     'no': Ne
+    recommended: Rekomendita
     required:
       mark: "*"
       text: bezonata

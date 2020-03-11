@@ -5,7 +5,6 @@ fi:
     about_mastodon_html: Mastodon on sosiaalinen verkosto. Se on toteutettu avoimilla verkkoprotokollilla ja vapailla, avoimen lähdekoodin ohjelmistoilla, ja se toimii hajautetusti samaan tapaan kuin sähköposti.
     about_this: Tietoja tästä palvelimesta
     administered_by: 'Ylläpitäjä:'
-    api: API
     apps: Mobiili sovellukset
     contact: Ota yhteyttä
     contact_missing: Ei asetettu
@@ -39,7 +38,6 @@ fi:
     joined: Liittynyt %{date}
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
-    media: Media
     moved_html: "%{name} on muuttanut osoitteeseen %{new_profile_link}:"
     network_hidden: Nämä tiedot eivät ole käytettävissä
     nothing_here: Täällä ei ole mitään!
@@ -47,10 +45,6 @@ fi:
     people_who_follow: Käyttäjän %{name} seuraajat
     pin_errors:
       following: Sinun täytyy seurata henkilöä jota haluat tukea
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Tuuttaukset ja vastaukset
     reserved_username: Käyttäjänimi on varattu
     roles:
@@ -93,7 +87,6 @@ fi:
       followers_url: Seuraajien osoite
       follows: Seuraa
       inbox_url: Saapuvan postilaatikon osoite
-      ip: IP
       location:
         all: Kaikki
         local: Paikalliset
@@ -148,7 +141,6 @@ fi:
       undo_suspension: Peru jäähy
       unsubscribe: Lopeta tilaus
       username: Käyttäjänimi
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} otti raportin %{target} tehtäväkseen"
@@ -189,7 +181,6 @@ fi:
       destroyed_msg: Emojon poisto onnistui!
       disable: Poista käytöstä
       disabled_msg: Emojin poisto käytöstä onnistui
-      emoji: Emoji
       enable: Ota käyttöön
       enabled_msg: Emojin käyttöönotto onnistui
       image_hint: PNG enintään 50 kt
@@ -336,8 +327,6 @@ fi:
         nsfw_off: NSFW POIS
         nsfw_on: NSFW PÄÄLLÄ
       failed_to_execute: Suoritus epäonnistui
-      media:
-        title: Media
       no_media: Ei mediaa
       title: Tilin tilat
       with_media: Sisältää mediaa
@@ -346,7 +335,6 @@ fi:
       confirmed: Vahvistettu
       expires_in: Vanhenee
       last_delivery: Viimeisin toimitus
-      title: WebSub
       topic: Aihe
     title: Ylläpito
   admin_mailer:
@@ -356,7 +344,6 @@ fi:
       subject: Uusi raportti instanssista %{instance} (nro %{id})
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
-    salutation: "%{name},"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
     view: 'Näytä:'
     view_profile: Näytä profiili
@@ -382,9 +369,6 @@ fi:
     migrate_account: Muuta toiseen tiliin
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
-    providers:
-      cas: CAS
-      saml: SAML
     register: Rekisteröidy
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
@@ -444,7 +428,6 @@ fi:
       request: Pyydä arkisto
       size: Koko
     blocks: Estot
-    csv: CSV
     follows: Seurattavat
     mutes: Mykistetyt
     storage: Media-arkisto
@@ -538,22 +521,16 @@ fi:
         format: "%n %u"
         units:
           billion: Mrd
-          million: M
           quadrillion: Brd
           thousand: k
           trillion: B
-          unit: ''
   pagination:
     newer: Uudemmat
     next: Seuraava
     older: Vanhemmat
     prev: Edellinen
-    truncate: "&hellip;"
   preferences:
-    languages: Kielet
     other: Muut
-    publishing: Julkaiseminen
-    web: Web
   remote_follow:
     acct: Syötä se käyttäjätunnus@verkkotunnus, josta haluat seurata
     missing_resource: Vaadittavaa uudelleenohjaus-URL:ää tiliisi ei löytynyt
@@ -565,40 +542,13 @@ fi:
     activity: Viimeisin toiminta
     browser: Selain
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Tuntematon selain
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi -selain
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser}, %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: tuntematon järjestelmä
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Hylkää
     revoke_success: Istunnon hylkäys onnistui
     title: Istunnot
@@ -620,9 +570,6 @@ fi:
       image:
         one: "%{count} kuva"
         other: "%{count} kuvaa"
-      video:
-        one: "%{count} video"
-        other: "%{count} videota"
     content_warning: 'Sisältövaroitus: %{warning}'
     disallowed_hashtags:
       one: 'sisälsi aihetunnisteen jota ei sallita: %{tags}'

@@ -4,26 +4,37 @@ fr:
     about_hashtag_html: Figurent ci-dessous les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fediverse.
     about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
     about_this: À propos
+    active_count_after: actif·ve·s
+    active_footnote: Utilisateur·rice·s actif·ve·s mensuels (MAU)
     administered_by: 'Administrée par :'
     api: API
     apps: Applications mobiles
+    apps_platforms: Utilisez Mastodon depuis iOS, Android et d’autres plates-formes
+    browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêt
+    browse_public_posts: Parcourir un flux en direct de messages publics sur Mastodon
     contact: Contact
     contact_missing: Manquant
     contact_unavailable: Non disponible
+    discover_users: Découvrez des utilisateur·rice·s
     documentation: Documentation
     extended_description_html: |
       <h3>Un bon endroit pour les règles</h3>
       <p>La description étendue n’a pas été remplie.</p>
+    federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
     generic_description: "%{domain} est seulement un serveur du réseau"
+    get_apps: Essayez une application mobile
     hosted_on: Serveur Mastodon hébergée par %{domain}
     learn_more: En savoir plus
     privacy_policy: Politique de vie privée
+    see_whats_happening: Voir ce qui se passe
+    server_stats: 'Statistiques du serveur :'
     source_code: Code source
     status_count_after:
       one: Statut
       other: Statuts
     status_count_before: Ayant publié
-    terms: Conditions d'utilisation
+    tagline: Suivez vos ami·e·s et découvrez en de nouveaux·elles
+    terms: Conditions d’utilisation
     user_count_after:
       one: utilisateur
       other: utilisateurs
@@ -57,6 +68,7 @@ fr:
       admin: Admin
       bot: Robot
       moderator: Modérateur·trice
+    unavailable: Profil non disponible
     unfollow: Ne plus suivre
   admin:
     account_actions:
@@ -68,6 +80,8 @@ fr:
       delete: Supprimer
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
+      approve: Approuver
+      approve_all: Tout approuver
       are_you_sure: Êtes-vous certain⋅e ?
       avatar: Avatar
       by_domain: Domaine
@@ -113,15 +127,18 @@ fr:
       moderation:
         active: Actif
         all: Tous
+        pending: En cours de traitement
         silenced: Masqués
         suspended: Suspendus
         title: Modération
       moderation_notes: Notes de modération
       most_recent_activity: Dernière activité
       most_recent_ip: Adresse IP la plus récente
+      no_account_selected: Aucun compte n’a été modifié, car aucun n’a été sélectionné
       no_limits_imposed: Aucune limite imposée
       not_subscribed: Non abonné
       outbox_url: URL de sortie
+      pending: En attente d’approbation
       perform_full_suspension: Suspendre
       profile_url: URL du profil
       promote: Promouvoir
@@ -129,8 +146,10 @@ fr:
       public: Publique
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir le profil
+      reject: Rejeter
+      reject_all: Tout rejeter
       remove_avatar: Supprimer l’avatar
-      remove_header: Supprimer l'entête
+      remove_header: Supprimer l’entête
       resend_confirmation:
         already_confirmed: Cet·te utilisateur·ice est déjà confirmé·e
         send: Renvoyer un courriel de confirmation
@@ -149,12 +168,13 @@ fr:
       shared_inbox_url: URL de la boite de réception partagée
       show:
         created_reports: Signalements faits
-        targeted_reports: Signalés par d'autres
+        targeted_reports: Signalés par d’autres
       silence: Masquer
       silenced: Silencié
       statuses: Statuts
       subscribe: S’abonner
       suspended: Suspendu
+      time_in_queue: En file d’attente %{time}
       title: Comptes
       unconfirmed_email: Courriel non-confirmé
       undo_silenced: Démasquer
@@ -173,7 +193,7 @@ fr:
         create_domain_block: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste noire"
         demote_user: "%{name} a rétrogradé l’utilisateur·ice %{target}"
-        destroy_custom_emoji: "%{name} a détruit l'émoticône %{target}"
+        destroy_custom_emoji: "%{name} a détruit l’émoticône %{target}"
         destroy_domain_block: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block: "%{name} a mis le domaine du courriel %{target} sur liste blanche"
         destroy_status: "%{name} a enlevé le statut de %{target}"
@@ -230,6 +250,7 @@ fr:
       feature_profile_directory: Annuaire des profils
       feature_registrations: Inscriptions
       feature_relay: Relais de fédération
+      feature_timeline_preview: Aperçu du fil public
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
       open_reports: signalements non résolus
@@ -249,6 +270,7 @@ fr:
       created_msg: Le blocage de domaine est désormais activé
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
+      existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le <a href="%{unblock_url}">débloquer</a>.
       new:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
@@ -314,6 +336,8 @@ fr:
         expired: Expiré
         title: Filtre
       title: Invitations
+    pending_accounts:
+      title: Comptes en attente (%{count})
     relays:
       add_new: Ajouter un nouveau relais
       delete: Effacer
@@ -324,7 +348,7 @@ fr:
       enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
       enabled: Activé
       inbox_url: URL de relais
-      pending: En attente de l'approbation du relai
+      pending: En attente de l’approbation du relai
       save_and_enable: Sauvegarder et activer
       setup: Paramétrer une connexion de relais
       status: Statut
@@ -373,13 +397,13 @@ fr:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur⋅ice
       custom_css:
-        desc_html: Modifier l'apparence avec une CSS chargée sur chaque page
+        desc_html: Modifier l’apparence avec une CSS chargée sur chaque page
         title: CSS personnalisé
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette du serveur
         title: Image d’en-tête
       mascot:
-        desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu'il n'est pas défini, retombe à la mascotte par défaut
+        desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu’il n’est pas défini, retombe à la mascotte par défaut
         title: Image de la mascotte
       peers_api_enabled:
         desc_html: Noms des domaines que ce serveur a découvert dans le fediverse
@@ -388,8 +412,8 @@ fr:
         desc_html: Les liens de prévisualisation sur les autres sites web afficheront une vignette même si le média est sensible
         title: Afficher les médias sensibles dans les prévisualisations OpenGraph
       profile_directory:
-        desc_html: Permettre aux utilisateurs d'être découverts
-        title: Activer l'annuaire des profils
+        desc_html: Permettre aux utilisateurs d’être découverts
+        title: Activer l’annuaire des profils
       registrations:
         closed_message:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
@@ -400,6 +424,12 @@ fr:
         min_invite_role:
           disabled: Personne
           title: Autoriser les invitations par
+      registrations_mode:
+        modes:
+          approved: Approbation requise pour s’inscrire
+          none: Personne ne peut s’inscrire
+          open: N’importe qui peut s’inscrire
+        title: Mode d’enregistrement
       show_known_fediverse_at_about_page:
         desc_html: Lorsque l’option est activée, les pouets provenant de toutes les serveurs connues sont affichés dans la prévisualisation. Sinon, seuls les pouets locaux sont affichés.
         title: Afficher le fediverse connu dans la prévisualisation du fil
@@ -410,7 +440,7 @@ fr:
         desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du serveur
       site_description_extended:
-        desc_html: L'endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre serveur différent. Vous pouvez utiliser des balises HTML
+        desc_html: L’endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre serveur différent. Vous pouvez utiliser des balises HTML
         title: Description étendue du serveur
       site_short_description:
         desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description du serveur sera affiché par défaut.
@@ -449,23 +479,32 @@ fr:
     tags:
       accounts: Comptes
       hidden: Masqué
-      hide: Masquer dans l'annuaire
+      hide: Masquer dans l’annuaire
       name: Hashtag
       title: Hashtags
-      unhide: Afficher dans l'annuaire
+      unhide: Afficher dans l’annuaire
       visible: Visible
     title: Administration
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Effacer
       edit: Éditer
-      edit_preset: Éditer la présélection d'attention
-      title: Gérer les présélections d'attention
+      edit_preset: Éditer la présélection d’avertissement
+      title: Gérer les présélections d’avertissement
   admin_mailer:
+    new_pending_account:
+      body: Les détails du nouveau compte se trouvent ci-dessous. Vous pouvez approuver ou rejeter cette demande.
+      subject: Nouveau compte à examiner sur %{instance} (%{username})
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Interface web avancée
+    advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil public fédéré, un nombre illimité de listes et hashtags.'
+    animations_and_accessibility: Animations et accessibilité
+    confirmation_dialogs: Dialogues de confirmation
+    sensitive_content: Contenu sensible
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
@@ -482,7 +521,9 @@ fr:
     warning: Soyez prudent⋅e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
+    apply_for_account: Demander une invitation
     change_password: Mot de passe
+    checkbox_agreement_html: J’accepte les <a href="%{rules_path}" target="_blank">règles du serveur</a> et les <a href="%{terms_path}" target="_blank">conditions de service</a>
     confirm_email: Confirmer mon adresse mail
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
@@ -498,10 +539,12 @@ fr:
       cas: CAS
       saml: SAML
     register: S’inscrire
+    registration_closed: "%{instance} n’accepte pas de nouveaux membres"
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
+    trouble_logging_in: Vous avez un problème pour vous connecter ?
   authorize_follow:
     already_following: Vous suivez déjà ce compte
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
@@ -537,11 +580,11 @@ fr:
     warning_title: Disponibilité du contenu disséminé
   directories:
     directory: Annuaire des profils
-    enabled: Vous êtes actuellement listé dans l'annuaire.
-    enabled_but_waiting: Vous avez choisi d'être listé dans l'annuaire, mais vous n'avez pas encore le nombre minimum de suiveurs (%{min_followers}) pour y être inscrit.
-    explanation: Découvrir des utilisateurs en se basant sur leurs centres d'intérêt
+    enabled: Vous êtes actuellement listé dans l’annuaire.
+    enabled_but_waiting: Vous avez choisi d’être listé dans l’annuaire, mais vous n’avez pas encore le nombre minimum de suiveurs (%{min_followers}) pour y être inscrit.
+    explanation: Découvrir des utilisateurs en se basant sur leurs centres d’intérêt
     explore_mastodon: Explorer %{title}
-    how_to_enable: Vous n'êtes pas encore inscrit dans l'annuaire. Vous pouvez vous inscrire ci-dessous. Utilisez des hashtags dans votre texte biographique pour être listé sous des hashtags spécifiques !
+    how_to_enable: Vous n’êtes pas encore inscrit dans l’annuaire. Vous pouvez vous inscrire ci-dessous. Utilisez des hashtags dans votre texte biographique pour être listé sous des hashtags spécifiques !
     people:
       one: "%{count} personne"
       other: "%{count} personne"
@@ -557,6 +600,9 @@ fr:
       content: Nous sommes désolé·e·s, mais quelque chose s’est mal passé de notre côté.
       title: Cette page n’est pas correcte
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
+  existing_username_validator:
+    not_found: n’a pas trouvé d’utilisateur·rice local·e avec ce nom
+    not_found_multiple: n’a pas trouvé %{usernames}
   exports:
     archive_takeout:
       date: Date
@@ -597,19 +643,41 @@ fr:
     more: Davantage…
     resources: Ressources
   generic:
+    all: Tous
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     copy: Copier
+    order_by: Classer par
     save_changes: Enregistrer les modifications
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Vérifiez les %{count} erreurs ci-dessous
+  html_validator:
+    invalid_markup: 'contient un balisage HTML invalide: %{error}'
+  identity_proofs:
+    active: Actif
+    authorize: Oui, autoriser
+    authorize_connection_prompt: Autoriser cette connexion chiffrée ?
+    errors:
+      failed: La connexion chiffrée a échoué. Veuillez réessayer à partir de %{provider}.
+      keybase:
+        invalid_token: Les jetons Keybase sont des hachages de signatures et doivent comporter 66 caractères hexadécimaux
+        verification_failed: Keybase ne reconnaît pas ce jeton comme une signature de l’utilisateur Keybase %{kb_username}. Veuillez réessayer à partir de Keybase.
+      wrong_user: Impossible de créer une preuve pour %{proving} lorsque vous êtes connecté en tant que %{current}. Connectez-vous en tant que %{proving} et réessayez.
+    explanation_html: Ici, vous pouvez connecter de manière chiffrée vos autres identités, par exemple un profil Keybase. Cela permet à d’autres personnes de vous envoyer des messages chiffrés et de faire confiance au contenu que vous leur envoyez.
+    i_am_html: Je suis %{username} sur %{service}.
+    identity: Identité
+    inactive: Inactif
+    publicize_checkbox: 'Et le poueter:'
+    publicize_toot: 'C’est prouvé ! Je suis %{username} sur %{service}: %{url}'
+    status: Statut de vérification
+    view_proof: Voir la preuve
   imports:
     modes:
       merge: Fusionner
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
       overwrite: Réécrire
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
-    preface: Vous pouvez importer certaines données que vous avez exporté d'un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
+    preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
       blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅e⋅s
@@ -698,7 +766,6 @@ fr:
           quadrillion: P
           thousand: K
           trillion: T
-          unit: ''
   pagination:
     newer: Plus récent
     next: Suivant
@@ -713,13 +780,25 @@ fr:
       duration_too_short: est trop tôt
       expired: Ce sondage est déjà terminé
       over_character_limit: ne peuvent être plus long que %{max} caractères chacun
-      too_few_options: doit avoir plus qu'une proposition
+      too_few_options: doit avoir plus qu’une proposition
       too_many_options: ne peut contenir plus que %{max} propositions
   preferences:
-    languages: Langues
     other: Autre
-    publishing: Publication
-    web: Web
+    posting_defaults: Paramètres par défaut des pouets
+    public_timelines: Fils publics
+  relationships:
+    activity: Activité du compte
+    dormant: Dormant
+    last_active: Dernière activité
+    most_recent: Plus récent
+    moved: Déménagé
+    mutual: Mutuel
+    primary: Primaire
+    relationship: Relation
+    remove_selected_domains: Supprimer tous les abonné·e·s des domaines sélectionnés
+    remove_selected_followers: Supprimer les abonné·e·s sélectionnés
+    remove_selected_follows: Cesser de suivre les utilisateur·rice·s sélectionné·e·s
+    status: Statut du compte
   remote_follow:
     acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez vous abonner
     missing_resource: L’URL de redirection n’a pas pu être trouvée
@@ -729,7 +808,7 @@ fr:
     reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur où vous vous êtes inscrit, et nous devons donc vous rediriger vers votre serveur de base en premier."
   remote_interaction:
     favourite:
-      proceed: Confirmer l'ajout aux favoris
+      proceed: Confirmer l’ajout aux favoris
       prompt: 'Vous souhaitez mettre ce pouet en favori :'
     reblog:
       proceed: Confirmer le repartage
@@ -787,6 +866,9 @@ fr:
     revoke_success: Session révoquée avec succès
     title: Sessions
   settings:
+    account: Compte
+    account_settings: Paramètres du compte
+    appearance: Apparence
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
     delete: Suppression de compte
@@ -794,10 +876,14 @@ fr:
     edit_profile: Modifier le profil
     export: Export de données
     featured_tags: Hashtags mis en avant
+    identity_proofs: Preuves d’identité
     import: Import de données
+    import_and_export: Import et export
     migrate: Migration de compte
     notifications: Notifications
     preferences: Préférences
+    profile: Profil
+    relationships: Abonnements et abonné·e·s
     two_factor_authentication: Identification à deux facteurs
   statuses:
     attached:
@@ -846,10 +932,10 @@ fr:
       <h3 id="collect">Quelles informations collectons-nous ?</h3>
 
       <ul>
-        <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
+      <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
       <li><em>Posts, liste d’abonnements et autres informations publiques</em> : La liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimer un post, il est probable que vos abonné·e·s en soient informé·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
-        <li><em>Posts directs et abonné·e·s uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne fois pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il-vous-plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
-        <li><em>IP et autres métadonnées</em> : Quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
+      <li><em>Posts directs et abonné·e·s uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne fois pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il-vous-plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
+      <li><em>IP et autres métadonnées</em> : Quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
       </ul>
 
       <hr class="spacer" />
@@ -859,9 +945,9 @@ fr:
       <p>Toutes les informations que nous collectons sur vous peuvent être utilisées d’une des manières suivantes :</p>
 
       <ul>
-        <li>Pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
-        <li>Pour aider à la modération de la communauté, par exemple, comparer votre adresse IP à d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
-        <li>L’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyez des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour tout autres requêtes ou questions.</li>
+      <li>Pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
+      <li>Pour aider à la modération de la communauté, par exemple, comparer votre adresse IP à d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
+      <li>L’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyez des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour tout autres requêtes ou questions.</li>
       </ul>
 
       <hr class="spacer" />
@@ -877,8 +963,8 @@ fr:
       <p>Nous ferons un effort de bonne foi :</p>
 
       <ul>
-        <li>Pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
-        <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
+      <li>Pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
+      <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
       </ul>
 
       <p>Vous pouvez demander une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
@@ -954,8 +1040,8 @@ fr:
       title: Récupération de l’archive
     warning:
       explanation:
-        disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu'à ce qu'il soit débloqué.
-        silence: Lorsque votre compte est limité, seulement les utilisateurs qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d'autres utilisateurs peuvent vous suivre manuellement.
+        disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu’à ce qu’il soit débloqué.
+        silence: Lorsque votre compte est limité, seulement les utilisateurs qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d’autres utilisateurs peuvent vous suivre manuellement.
         suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs où vous aviez des abonné⋅e⋅s.
       review_server_policies: Passer en revue les politiques du serveur
       subject:
@@ -993,5 +1079,5 @@ fr:
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
-    explanation_html: 'Vous pouvez <strong>vérifier vous-même que vous êtes le propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site Web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel du lien n''a pas d''importance. En voici un exemple :'
+    explanation_html: 'Vous pouvez <strong>vérifier vous-même que vous êtes le propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site Web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong>avoir un attribut <code>rel="me"</code>. Le contenu textuel du lien n’a pas d’importance. En voici un exemple :'
     verification: Vérification

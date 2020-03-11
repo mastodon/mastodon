@@ -5,11 +5,9 @@ lt:
     about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
     about_this: Apie
     administered_by: 'Administruoja:'
-    api: API
     apps: Mobilioji Aplikacija
     contact: Kontaktai
     contact_missing: Nenustatyta
-    contact_unavailable: N/A
     documentation: Dokumentacija
     extended_description_html: |
       <h3>Taisyklės</h3>
@@ -19,25 +17,13 @@ lt:
     learn_more: Daugiau
     privacy_policy: Privatumo Politika
     source_code: Šaltinio kodas
-    status_count_after:
-      few: statusai
-      one: statusas
-      other: statusai
     status_count_before: Autorius
     terms: Naudojimo sąlygos
-    user_count_after:
-      few: vartotojai
-      one: vartotojas
-      other: vartotojai
     user_count_before: Namai
     what_is_mastodon: Kas tai, Mastodon?
   accounts:
     choices_html: "%{name} pasirinkimai:"
     follow: Sekti
-    followers:
-      few: Sekėjai
-      one: Sekėjas
-      other: Sekėjai
     following: Sekami
     joined: Prisijungiai %{date}
     last_active: paskutinį kartą aktyvus
@@ -50,10 +36,6 @@ lt:
     people_who_follow: Žmonės kurie seka %{name}
     pin_errors:
       following: Privalai sekti žmogų kurį nori pagerbti
-    posts:
-      few: Tootai
-      one: Tootas
-      other: Tootai
     posts_tab_heading: Tootai
     posts_with_replies: Tootai ir atsakymai
     reserved_username: Vartotojo vardas rezervuotas
@@ -104,7 +86,6 @@ lt:
       header: Antraštė
       inbox_url: Gautųjų URL
       invited_by: Pakvietė
-      ip: IP
       joined: Prisijungė
       location:
         all: Visi
@@ -166,7 +147,6 @@ lt:
       unsubscribe: Nebeprenumeruoti
       username: Slapyvardis
       warn: Įspėti
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} paskyrė reportą %{target} saviems"
@@ -274,10 +254,6 @@ lt:
         silence: užtildytas
         suspend: uždraustas
       show:
-        affected_accounts:
-          few: "%{count} vartotojai duomenų bazėje yra paveikti"
-          one: Vienas vartotojas duomenų bazėje paveiktas
-          other: "%{count} vartotojai duomenų bazėje yra paveikti"
         retroactive:
           silence: Atitildyti visus egzistuojančius vartotojus šiame domene
           suspend: Atblokuotis visus egzistuojančius vartotojus šiame domene
@@ -300,10 +276,6 @@ lt:
     instances:
       by_domain: Domenas
       delivery_available: Pristatymas galimas
-      known_accounts:
-        few: "%{count} žinomos paskyros"
-        one: "%{count} žinoma paskyra"
-        other: "%{count} žinomos paskyros"
       moderation:
         all: Visi
         limited: Limituotas
@@ -476,7 +448,6 @@ lt:
       subject: Naujas skundas %{instance} (#%{id})
   application_mailer:
     notification_preferences: Keisti el pašto parinktis
-    salutation: "%{name},"
     settings: 'Keisti el pašto parinktis: %{link}'
     view: 'Peržiūra:'
     view_profile: Peržiurėti profilį
@@ -502,9 +473,6 @@ lt:
     migrate_account: Prisijungti prie kitos paskyros
     migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
     or_log_in_with: Arba prisijungti su
-    providers:
-      cas: CAS
-      saml: SAML
     register: Užsiregistruoti
     resend_confirmation: Išsiųsti dar kartą patvirtinimo instrukcijas
     reset_password: Atstatyti slaptažodį
@@ -550,10 +518,6 @@ lt:
     explanation: Raskite vartotojus, remiantis tuo, kuo jie domisi
     explore_mastodon: Naršyti %{title}
     how_to_enable: Jūs nesate prisijungęs prie šios direktorijos. Galite prisijungti žemiau. Naudokite saitažodžius savo biografiniame tekste, kad būtumėte rastas naudojantis specifinius saitažodžius!
-    people:
-      few: "%{count} žmonės"
-      one: "%{count} žmogus"
-      other: "%{count} žmonės"
   errors:
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
@@ -575,7 +539,6 @@ lt:
       request: Prašyti savo archyvo
       size: Dydis
     blocks: Jūs blokuojate
-    csv: CSV
     domain_blocks: Domeno blokai
     follows: Jūs sekate
     lists: Sąrašai
@@ -609,10 +572,6 @@ lt:
     changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
     copy: Kopijuoti
     save_changes: Išsaugoti pakeitimus
-    validation_errors:
-      few: Kažkas negerai! Prašau patikrinti %{count} klaidas žemiau
-      one: Kažkas negerai! Peržiūrėk klaidas žemiau
-      other: Kažkas negerai! Prašau patikrinti %{count} klaidas žemiau
   imports:
     modes:
       merge: Sulieti
@@ -641,10 +600,6 @@ lt:
     expires_in_prompt: Niekada
     generate: Generuoti
     invited_by: 'Jus pakvietė:'
-    max_uses:
-      few: "%{count} naudojimai"
-      one: 1 naudojimas
-      other: "%{count} naudojimai"
     max_uses_prompt: Be limito
     prompt: Generuoti ir dalintis įrašais su kitais, kad sukurti prieigą prie serverio
     table:
@@ -670,14 +625,6 @@ lt:
       action: Peržiurėti visus pranešimus
       body: Čia yra trumpa santrauka žinutės, kurią jūs praleidote nuo jūsų paskutinio apsilankymo %{since}
       mention: "%{name} paminėjo jus:"
-      new_followers_summary:
-        few: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo! Nuostabu!
-        one: Beje, jūs gavote naują sekėją, kol buvote atsijungęs! Yay!
-        other: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo! Nuostabu!
-      subject:
-        few: "%{count} nauji pranešimai, nuo paskutinio apsilankymo\U0001F418"
-        one: "1 naujas pranešimas nuo paskutinio apsilankymo \U0001F418"
-        other: "%{count} nauji pranešimai, nuo paskutinio apsilankymo\U0001F418"
       title: Kol jūsų nebuvo...
     favourite:
       body: 'Jūsų statusą pamėgo %{name}:'
@@ -701,27 +648,13 @@ lt:
       body: 'Jūsų statusą pakėlė %{name}:'
       subject: "%{name} pakėlė Jūsų statusą"
       title: Naujas pakėlimas
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: Naujesnis
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
-    truncate: "&hellip;"
   preferences:
-    languages: Kalbos
     other: Kita
-    publishing: Skelbiama
-    web: Tinklas
   remote_follow:
     acct: Įveskite Jūsų slapyvardį@domenas kurį norite naudoti
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
@@ -751,40 +684,12 @@ lt:
     activity: Paskutinė veikla
     browser: Naršyklė
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Nežinoma naršyklė
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Dabartinė sesija
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: nežinoma platforma
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Atšaukti
     revoke_success: Sesija sėkmingai atšaukta
     title: Sesijos
@@ -804,20 +709,8 @@ lt:
   statuses:
     attached:
       description: 'Pridėta: %{attached}'
-      image:
-        few: "%{count} nuotraukos"
-        one: "%{count} nuotrauka"
-        other: "%{count} nuotraukos"
-      video:
-        few: "%{count} vaizdo įrašai"
-        one: "%{count} video"
-        other: "%{count} vaizdo įrašai"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
-    disallowed_hashtags:
-      few: 'rasti neleistini saitąžodžiai: %{tags}'
-      one: 'rastas neleistinas saitažodis : %{tags}'
-      other: 'rasti neleistini saitąžodžiai: %{tags}'
     language_detection: Automatiškai nustatyti kalbą
     open_in_web: Atidaryti naudojan Web
     over_character_limit: pasiektas %{max} simbolių limitas
@@ -828,7 +721,6 @@ lt:
       reblog: Pakeltos žinutės negali būti prisegtos
     show_more: Daugiau
     sign_in_to_participate: Prisijunkite jeigu norite dalyvauti pokalbyje
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tik sekėjams
       private_long: Rodyti tik sekėjams
@@ -925,10 +817,6 @@ lt:
     contrast: Mastodon (Didelio Kontrasto)
     default: Mastodon (Tamsus)
     mastodon-light: Mastodon (Šviesus)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Įveskite autentikacijos aplikacijos sugeneruotą kodą kad galėtumete tęsti
     description_html: Jeigu įjungiate <strong>dviejų veiksnių autentikaciją</strong>, prisijungiant jums reikės turėti su savimi savo telefoną, kuris jums generuos prisijungimo žetonus.

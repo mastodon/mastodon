@@ -37,14 +37,16 @@
       display: none;
     }
 
+    .autossugest-input {
+      flex: 1 1 auto;
+    }
+
     input[type=text] {
       display: block;
       box-sizing: border-box;
-      flex: 1 1 auto;
-      width: 20px;
+      width: 100%;
       font-size: 14px;
       color: $inverted-text-color;
-      display: block;
       outline: 0;
       font-family: inherit;
       background: $simple-background-color;
@@ -64,6 +66,7 @@
     &.editable {
       display: flex;
       align-items: center;
+      overflow: visible;
     }
   }
 

@@ -27,20 +27,21 @@ pl:
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
         setting_aggregate_reblogs: Nie pokazuj nowych podbić dla wpisów, które zostały niedawno podbite (dotyczy tylko nowo otrzymanych podbić)
-        setting_default_language: Język Twoich wpisów może być wykrywany automatycznie, ale nie zawsze jest to dokładne
+        setting_default_sensitive: Wrażliwe multimedia są domyślnie schowane i mogą być odkryte kliknięciem
         setting_display_media_default: Ukrywaj zawartość oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_display_media_show_all: Nie ukrywaj zawartości multimedialnej oznaczonej jako wrażliwa
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
-        setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
         username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
       imports:
         data: Plik CSV wyeksportowany z innego serwera Mastodona
+      invite_request:
+        text: To pomoże nam w recenzji Twojej aplikacji
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
       user:
@@ -88,7 +89,7 @@ pl:
         otp_attempt: Kod uwierzytelnienia dwustopniowego
         password: Hasło
         phrase: Słowo kluczowe lub fraza
-        scopes: Do których API aplikacja będzie miała dostęp. Jeżeli wybierzesz zakres wyższego poziomu, nie musisz zaznaczać bardziej szczegółowych.
+        setting_advanced_layout: Włącz zaawansowany interfejs użytkownika
         setting_aggregate_reblogs: Grupuj podbicia na osiach czasu
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
@@ -114,20 +115,24 @@ pl:
         username_or_email: Nazwa użytkownika lub adres e-mail
         whole_word: Całe słowo
       featured_tag:
-        name: Hashtag
+        name: Hasztag
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
         must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie śledzisz
+      invite_request:
+        text: Czemu chcesz dołączyć?
       notification_emails:
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
         follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
         follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na śledzenie mnie
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
+        pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
         report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
     'no': Nie
+    recommended: Polecane
     required:
       mark: "*"
       text: pole wymagane

@@ -5,11 +5,9 @@ sr:
     about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
     about_this: О инстанци
     administered_by: 'Администрирано од стране:'
-    api: API
     apps: Мобилне апликације
     contact: Контакт
     contact_missing: Није постављено
-    contact_unavailable: N/A
     documentation: Документација
     extended_description_html: |
       <h3>Добро место за правила</h3>
@@ -21,14 +19,12 @@ sr:
     source_code: Изворни код
     status_count_after:
       few: статуси
-      many: статуси
       one: статус
       other: статуса
     status_count_before: Који су написали
     terms: Услови коришћења
     user_count_after:
       few: корисници
-      many: корисници
       one: корисник
       other: корисника
     user_count_before: Дом за
@@ -38,7 +34,6 @@ sr:
     follow: Запрати
     followers:
       few: Пратиоци
-      many: Пратиоци
       one: Пратиоц
       other: Пратиоци
     following: Пратим
@@ -55,7 +50,6 @@ sr:
       following: Морате пратити ову особу ако хоћете да потврдите
     posts:
       few: Трубе
-      many: Трубе
       one: Труба
       other: Трубе
     posts_tab_heading: Трубе
@@ -108,7 +102,6 @@ sr:
       header: Заглавље
       inbox_url: Адреса сандучета
       invited_by: Позван од стране
-      ip: IP
       joined: Придружио се
       location:
         all: Све
@@ -278,7 +271,6 @@ sr:
       show:
         affected_accounts:
           few: Утиче на %{count} налога у бази
-          many: Утиче на %{count} налога у бази
           one: Један налог у бази података је под утицајем
           other: Утиче на %{count} налога у бази података
         retroactive:
@@ -304,7 +296,6 @@ sr:
       delivery_available: Достава је доступна
       known_accounts:
         few: "%{count} знаних налога"
-        many: "%{count} знаних налога"
         one: "%{count} знан налог"
         other: "%{count} знаних налога"
       moderation:
@@ -450,12 +441,9 @@ sr:
       title: Статуси налога
       with_media: Са мултимедијом
     subscriptions:
-      callback_url: Callback URL
       confirmed: Потврђено
       expires_in: Истиче за
       last_delivery: Последња достава
-      title: WebSub
-      topic: Topic
     tags:
       accounts: Налози
       hidden: Скривено
@@ -478,7 +466,6 @@ sr:
       subject: Нова пријава за %{instance} (#%{id})
   application_mailer:
     notification_preferences: Промени преференце Е-поште
-    salutation: "%{name},"
     settings: 'Промени подешавања е-поште: %{link}'
     view: 'Погледај:'
     view_profile: Погледај профил
@@ -525,18 +512,14 @@ sr:
     title: Запрати %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}месец"
       about_x_years: "%{count}год"
       almost_x_years: "%{count}год"
       half_a_minute: Управо сад
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Управо сад
       over_x_years: "%{count}год"
       x_days: "%{count}д"
-      x_minutes: "%{count}m"
       x_months: "%{count}месец"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Добар покушај, хакери! Неисправна лозинка
     confirm_password: Унесите тренутну лозинку да бисмо проверили Ваш идентитет
@@ -552,7 +535,6 @@ sr:
     explore_mastodon: Истражи %{title}
     people:
       few: "%{count} људе"
-      many: "%{count} људе"
       one: "%{count} особа/е"
       other: "%{count} људи"
   errors:
@@ -576,7 +558,6 @@ sr:
       request: Затражите Вашу архиву
       size: Величина
     blocks: Блокирали сте
-    csv: CSV
     domain_blocks: Блокови домена
     follows: Пратите
     lists: Листе
@@ -608,7 +589,6 @@ sr:
     save_changes: Сними измене
     validation_errors:
       few: Нешто није баш како треба! Прегледајте %{count} грешке испод
-      many: Нешто није баш како треба! Прегледајте %{count} грешака испод
       one: Нешто није баш како треба! Прегледајте грешке испод
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
   imports:
@@ -619,7 +599,6 @@ sr:
       following: Листа пратилаца
       muting: Листа ућутканих
     upload: Отпреми
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Деактивирај
     expired: Истекло
@@ -635,7 +614,6 @@ sr:
     invited_by: 'Позвао Вас је:'
     max_uses:
       few: "%{count} коришћења"
-      many: "%{count} коришћења"
       one: 1 коришћење
       other: "%{count} коришћења"
     max_uses_prompt: Без ограничења
@@ -665,12 +643,10 @@ sr:
       mention: "%{name} Вас је поменуо у:"
       new_followers_summary:
         few: Добили сте %{count} нова пратиоца! Сјајно!
-        many: Добили сте %{count} нових пратиоца! Сјајно!
         one: Добили сте једног новог пратиоца! Јеее!
         other: Добили сте %{count} нових пратиоца! Сјајно!
       subject:
         few: "%{count} нова обавештења од последње посете \U0001F418"
-        many: "%{count} нових обавештења од последње посете \U0001F418"
         one: "1 ново обавештење од последње посете \U0001F418"
         other: "%{count} нових обавештења од последње посете \U0001F418"
       title: Док нисте били ту...
@@ -696,28 +672,13 @@ sr:
       body: "%{name} Вам је подржао/ла статус:"
       subject: "%{name} је подржао/ла Ваш статус"
       title: Нова подршка
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Новије
     next: Следеће
     older: Старије
     prev: Претходни
-    truncate: "&hellip;"
   preferences:
-    languages: Језици
     other: Остало
-    publishing: Објављивање
-    web: Веб
   remote_follow:
     acct: Унесите Ваш корисник@домен са кога желите да пратите
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
@@ -764,7 +725,6 @@ sr:
     current_session: Тренутна сесија
     description: "%{browser} са %{platform}"
     explanation: Ово су веб претраживачи који су тренутно пријављени на Ваш Мастодон налог.
-    ip: IP
     platforms:
       adobe_air: Адоб Ер-а
       android: Андроида
@@ -798,19 +758,16 @@ sr:
       description: 'У прилогу: %{attached}'
       image:
         few: "%{count} слика"
-        many: "%{count} слика"
         one: "%{count} слику"
         other: "%{count} слика"
       video:
         few: "%{count} видео записа"
-        many: "%{count} видео записа"
         one: "%{count} видео запис"
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
     content_warning: 'Упозорење на садржај: %{warning}'
     disallowed_hashtags:
       few: 'садржи забрањене хештегове: %{tags}'
-      many: 'садржи забрањене хештегове: %{tags}'
       one: 'садржи забрањени хештег: %{tags}'
       other: 'садржи забрањене хештегове: %{tags}'
     language_detection: Аутоматскo откривање језика
@@ -823,7 +780,6 @@ sr:
       reblog: Подршка не може да се прикачи
     show_more: Прикажи још
     sign_in_to_participate: Пријавите се да учествујете у разговору
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Само пратиоци
       private_long: Прикажи само пратиоцима
@@ -841,10 +797,6 @@ sr:
     contrast: Велики контраст
     default: Мастодон
     mastodon-light: Мастодон (светло)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Да бисте потврдили, унесите код генерисан од стране ваше апликације за потврду идентитета
     description_html: Ако укључите <strong>двофакторску идентификацију</strong>, мораћете да имате телефон са собом да бисте могли да се пријавите. Телефон ће онда генерисати токене за Вашу пријаву.

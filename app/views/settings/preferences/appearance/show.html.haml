@@ -1,0 +1,41 @@
+- content_for :page_title do
+  = t('settings.appearance')
+
+= simple_form_for current_user, url: settings_preferences_appearance_path, html: { method: :put } do |f|
+  .fields-row
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }, selected: I18n.locale, hint: false
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :setting_theme, collection: Themes.instance.names, label_method: lambda { |theme| I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false, hint: false
+
+  %h4= t 'appearance.advanced_web_interface'
+
+  %p.hint= t 'appearance.advanced_web_interface_hint'
+
+  .fields-group
+    = f.input :setting_advanced_layout, as: :boolean, wrapper: :with_label, hint: false
+
+  %h4= t 'appearance.animations_and_accessibility'
+
+  .fields-group
+    = f.input :setting_auto_play_gif, as: :boolean, wrapper: :with_label, recommended: true
+    = f.input :setting_reduce_motion, as: :boolean, wrapper: :with_label
+    = f.input :setting_system_font_ui, as: :boolean, wrapper: :with_label
+
+  %h4= t 'appearance.confirmation_dialogs'
+
+  .fields-group
+    = f.input :setting_unfollow_modal, as: :boolean, wrapper: :with_label
+    = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
+    = f.input :setting_delete_modal, as: :boolean, wrapper: :with_label
+
+  %h4= t 'appearance.sensitive_content'
+
+  .fields-group
+    = f.input :setting_display_media, collection: ['default', 'show_all', 'hide_all'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_media_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
+
+  .fields-group
+    = f.input :setting_expand_spoilers, as: :boolean, wrapper: :with_label
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

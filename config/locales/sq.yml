@@ -5,11 +5,9 @@ sq:
     about_mastodon_html: Mastodon-i është një rrjet shoqëror i bazuar në protokolle web të hapur dhe në software të lirë, me burim të hapur. Është i decentralizuar, si email-ii.
     about_this: Mbi
     administered_by: 'Administruar nga:'
-    api: API
     apps: Aplikacione për celular
     contact: Kontakt
     contact_missing: I parregulluar
-    contact_unavailable: N/A
     documentation: Dokumentim
     extended_description_html: |
       <h3>Një vend i mirë për rregulla</h3>
@@ -38,7 +36,6 @@ sq:
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
-    media: Media
     moved_html: "%{name} ka kaluar te %{new_profile_link}:"
     network_hidden: Këto të dhëna nuk mund të kihen
     nothing_here: S’ka gjë këtu!
@@ -54,8 +51,6 @@ sq:
     reserved_username: Emri i përdoruesit është i ruajtur për dikë
     roles:
       admin: Përgjegjës
-      bot: Bot
-      moderator: Mod
     unfollow: Resht së ndjekuri
   admin:
     account_actions:
@@ -68,7 +63,6 @@ sq:
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
       are_you_sure: A jeni i sigurt?
-      avatar: Avatar
       by_domain: Përkatësi
       change_email:
         changed_msg: Email-i i llogarisë u ndryshua me sukses!
@@ -88,7 +82,6 @@ sq:
       display_name: Emër në ekran
       domain: Përkatësi
       edit: Përpunojeni
-      email: Email
       email_status: Gjendje email-i
       enable: Aktivizoje
       enabled: E aktivizuar
@@ -99,7 +92,6 @@ sq:
       header: Krye
       inbox_url: URL Mesazhesh të Marrë
       invited_by: Ftuar nga
-      ip: IP
       joined: U bë pjesë
       location:
         all: Krejt
@@ -119,7 +111,7 @@ sq:
       most_recent_activity: Veprimtaria më e freskët
       most_recent_ip: IP-ja më e freskët
       no_limits_imposed: Pa imponim kufijsh
-      not_subscribed: Jo i  pajtuar
+      not_subscribed: Jo i pajtuar
       outbox_url: URL Mesazhesh të Dërguar
       perform_full_suspension: Pezulloje
       profile_url: URL profili
@@ -140,7 +132,6 @@ sq:
       role: Leje
       roles:
         admin: Përgjegjës
-        moderator: Moderator
         staff: Staf
         user: Përdorues
       search: Kërkoni
@@ -160,7 +151,6 @@ sq:
       unsubscribe: Shpajtohuni
       username: Emër përdoruesi
       warn: Sinjalizoje
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
@@ -234,7 +224,6 @@ sq:
       recent_users: Përdorues së fundi
       search: Kërko tekstin e plotë
       single_user_mode: Mënyrë me përdorues të vetëm
-      software: Software
       space: Përdorim hapësire
       title: Pult
       total_users: përdorues gjithsej
@@ -430,8 +419,6 @@ sq:
         nsfw_off: Vëri shenjë si jo rezervat
         nsfw_on: Vëri shenjë si rezervat
       failed_to_execute: S’u arrit të përmbushej
-      media:
-        title: Media
       no_media: S’ka media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
@@ -441,13 +428,11 @@ sq:
       confirmed: U ripohua
       expires_in: Skadon më
       last_delivery: Dorëzimi e fundit
-      title: WebSub
       topic: Temë
     tags:
       accounts: Llogari
       hidden: Fshehur
       hide: Fshihe prej drejtorie
-      name: Hashtag
       title: Hashtage
       unhide: Shfaqe në drejtori
       visible: E dukshme
@@ -465,7 +450,6 @@ sq:
       subject: Raport i ri për %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
-    salutation: "%{name},"
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
     view: 'Parje:'
     view_profile: Shihni Profilin
@@ -491,9 +475,6 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
-    providers:
-      cas: CAS
-      saml: SAML
     register: Regjistrohuni
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
@@ -517,13 +498,9 @@ sq:
       about_x_years: "%{count}v"
       almost_x_years: "%{count}v"
       half_a_minute: Mu tani
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Mu tani
       over_x_years: "%{count}v"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mj"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Provë e bukur, trimosha! Fjalëkalim i pasaktë
     confirm_password: Jepni fjalëkalimin tuaj të tanishëm që të verifikohet identiteti juaj
@@ -539,9 +516,6 @@ sq:
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
     how_to_enable: S’keni zgjedhur të jeni i pranishëm te drejtoria. Mund ta bëni më poshtë. Përdorni te teksti i jetëshkrimit tuaj hashtagë, për t’u përfshirë nën hashtagë specifikë!
-    people:
-      one: "%{count} person"
-      other: "%{count} persona"
   errors:
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, s’gjendet këtu.
@@ -563,7 +537,6 @@ sq:
       request: Kërkoni arkivin tuaj
       size: Madhësi
     blocks: Bllokoni
-    csv: CSV
     domain_blocks: Bllokime përkatësish
     follows: Ndiqni
     lists: Lista
@@ -614,7 +587,6 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -688,24 +660,15 @@ sq:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
-          billion: B
-          million: M
           quadrillion: K
-          thousand: K
-          trillion: T
   pagination:
     newer: Më të ri
     next: Pasuesi
     older: Më të vjetër
     prev: I mëparshmi
-    truncate: "&hellip;"
   preferences:
-    languages: Gjuhë
     other: Tjetër
-    publishing: Publikim
-    web: Web
   remote_follow:
     acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
@@ -735,40 +698,13 @@ sq:
     activity: Veprimtaria e fundit
     browser: Shfletues
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Shfletues i panjohur
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e futur në këtë çast te llogaria juaj Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: platformë e panjohur
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Shfuqizoje
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
@@ -791,9 +727,6 @@ sq:
       image:
         one: "%{count} figurë"
         other: "%{count} figura"
-      video:
-        one: "%{count} video"
-        other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
     disallowed_hashtags:
@@ -809,7 +742,6 @@ sq:
       reblog: S’mund të fiksohet një përforcim
     show_more: Shfaq më tepër
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Vetëm ndjekësve
       private_long: Shfaqua vetëm ndjekësve
@@ -827,10 +759,10 @@ sq:
       <h3 id="collect">Ç’të dhëna grumbullojmë?</h3>
 
       <ul>
-        <li><em>Të dhëna bazë llogarie</em>: Nëse regjistroheni në këtë shërbyes, mund t’ju kërkohet të jepni një emër përdoruesi, një adresë email dhe një fjalëkalim. Mundet të jepni edhe të dhëna shtesë profili, të tilla si emër në ekran dhe jetëshkrim, dhe të ngarkoni një foto profili dhe figurë kryesh. Emri i përdoruesit, emri për në ekran, jetëshkrimi, fotoja e profilit dhe figura për kryet shfaqen përherë publikisht.</li>
-        <li><em>Postime, ndjekje dhe të tjera të dhëna publike</em>: Lista e personave që ndiqni shfaqet publikisht, po njësoj edhe ajo e ndjekësve tuaj. Kur parashtroni një mesazh, depozitohet data dhe koha, si dhe aplikacioni prej nga u parashtrua mesazhi. Mesazhet mund të përmbajnë bashkëngjitje media, bie fjala, foto dhe video. Postimet publike dhe ato të pashfaqura janë të passhme publikisht. Kur një postim e vini të zgjedhur në profilin tuaj, edhe ky është informacion i passhëm publikisht. Postimet tuaja janë u dërgohen ndjekësve tuaj, në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Kur fshini postime, edhe kjo u dërgohet ndjekësve tuaj. Veprimi i riblogimit apo i parapëlqimit të një postimi tjetër është përherë publik.</li>
-        <li><em>Postime të drejtpërdrejta dhe ato vetëm për ndjekësit</em>: Krejt postimet depozitohen dhe trajtohen te shërbyesi. Postimet vetëm për ndjekës u dërgohen ndjekësve tuaj të cilët përmenden në to, dhe postimet e drejtpërdrejta u dërgohen vetëm përdoruesve të përmendur në to. Në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Përpiqemi pa hile të kufizojmë hyrjen në këto postime vetëm të personave të autorizuar, por shërbyesit e tjerë mund të mos bëjnë të njëjtën gjë. Ndaj është e rëndësishme të shqyrtoni shërbyesit pjesë e të cilëve janë ndjekësit tuaj. Te rregullimet mund të përdorni një mundësi për të miratuar ose hedhur poshtë dorazi ndjekës të rinj. <em>Ju lutemi, mbani parasysh se operatorët e shërbyesit dhe cilido shërbyes marrës mund t’i shohin mesazhe të tillë</em>, dhe që marrësit mund të bëjnë për ta foto ekrani, t’i kopjojnë ose t’i rindajnë ato me të tjerët. <em>Mos u jepni të tjerëve të dhëna të rrezikshme përmes Mastodon-it.</em></li>
-        <li><em>IP dhe të tjera tejtëdhëna</em>: Kur bëni hyrjen, regjistrojmë adresën IP prej nga hytë, si dhe emrin e shfletuesit tuaj. Krejt sesionet e hyrjeve janë të shqyrtueshme nga ju dhe shfuqizim, që nga rregullimet. Adresa e fundit IP e përdorur depozitohet për 12 muaj. Mund të mbajmë edhe regjistra shërbyesi të cilët përfshijnë adresën IP të çdo kërkese ndaj shërbyesit tonë.</li>
+      <li><em>Të dhëna bazë llogarie</em>: Nëse regjistroheni në këtë shërbyes, mund t’ju kërkohet të jepni një emër përdoruesi, një adresë email dhe një fjalëkalim. Mundet të jepni edhe të dhëna shtesë profili, të tilla si emër në ekran dhe jetëshkrim, dhe të ngarkoni një foto profili dhe figurë kryesh. Emri i përdoruesit, emri për në ekran, jetëshkrimi, fotoja e profilit dhe figura për kryet shfaqen përherë publikisht.</li>
+      <li><em>Postime, ndjekje dhe të tjera të dhëna publike</em>: Lista e personave që ndiqni shfaqet publikisht, po njësoj edhe ajo e ndjekësve tuaj. Kur parashtroni një mesazh, depozitohet data dhe koha, si dhe aplikacioni prej nga u parashtrua mesazhi. Mesazhet mund të përmbajnë bashkëngjitje media, bie fjala, foto dhe video. Postimet publike dhe ato të pashfaqura janë të passhme publikisht. Kur një postim e vini të zgjedhur në profilin tuaj, edhe ky është informacion i passhëm publikisht. Postimet tuaja janë u dërgohen ndjekësve tuaj, në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Kur fshini postime, edhe kjo u dërgohet ndjekësve tuaj. Veprimi i riblogimit apo i parapëlqimit të një postimi tjetër është përherë publik.</li>
+      <li><em>Postime të drejtpërdrejta dhe ato vetëm për ndjekësit</em>: Krejt postimet depozitohen dhe trajtohen te shërbyesi. Postimet vetëm për ndjekës u dërgohen ndjekësve tuaj të cilët përmenden në to, dhe postimet e drejtpërdrejta u dërgohen vetëm përdoruesve të përmendur në to. Në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Përpiqemi pa hile të kufizojmë hyrjen në këto postime vetëm të personave të autorizuar, por shërbyesit e tjerë mund të mos bëjnë të njëjtën gjë. Ndaj është e rëndësishme të shqyrtoni shërbyesit pjesë e të cilëve janë ndjekësit tuaj. Te rregullimet mund të përdorni një mundësi për të miratuar ose hedhur poshtë dorazi ndjekës të rinj. <em>Ju lutemi, mbani parasysh se operatorët e shërbyesit dhe cilido shërbyes marrës mund t’i shohin mesazhe të tillë</em>, dhe që marrësit mund të bëjnë për ta foto ekrani, t’i kopjojnë ose t’i rindajnë ato me të tjerët. <em>Mos u jepni të tjerëve të dhëna të rrezikshme përmes Mastodon-it.</em></li>
+      <li><em>IP dhe të tjera tejtëdhëna</em>: Kur bëni hyrjen, regjistrojmë adresën IP prej nga hytë, si dhe emrin e shfletuesit tuaj. Krejt sesionet e hyrjeve janë të shqyrtueshme nga ju dhe shfuqizim, që nga rregullimet. Adresa e fundit IP e përdorur depozitohet për 12 muaj. Mund të mbajmë edhe regjistra shërbyesi të cilët përfshijnë adresën IP të çdo kërkese ndaj shërbyesit tonë.</li>
       </ul>
 
       <hr class="spacer" />
@@ -840,9 +772,9 @@ sq:
       <p>Cilado prej të dhënave që grumbullojmë prej jush mund të përdoret në rrugët vijuese:</p>
 
       <ul>
-        <li>Për të mundësuar funksionimin bazë të Mastodon-it. Mundeni të ndërveproni me lëndën e personave të tjerë dhe të postoni lëndë tuajën vetëm kur jeni i futur në llogarinë tuaj. Për shembull, mund të ndiqni njerëz të tjerë për të parë postimet e tyre të ndërthurura te rrjedha juaj kohore e përshtatur.</li>
-        <li>Për të ndihmuar moderimin e bashkësisë, për shembull, duke krahasuar adresën tuaj IP me të tjera të njohura, për të përcaktuar shmangie nga dëbime ose cenime të tjera.</li>
-        <li>Adresa email që jepni mund të përdoret për t’ju dërguar informacion, njoftime mbi persona të tjerë që ndërveprojnë me lëndën tuaj ose që ju dërgojnë mesazhe, dhe për t’iu përgjigju pyetjeve dhe/ose kërkesave të tjera.</li>
+      <li>Për të mundësuar funksionimin bazë të Mastodon-it. Mundeni të ndërveproni me lëndën e personave të tjerë dhe të postoni lëndë tuajën vetëm kur jeni i futur në llogarinë tuaj. Për shembull, mund të ndiqni njerëz të tjerë për të parë postimet e tyre të ndërthurura te rrjedha juaj kohore e përshtatur.</li>
+      <li>Për të ndihmuar moderimin e bashkësisë, për shembull, duke krahasuar adresën tuaj IP me të tjera të njohura, për të përcaktuar shmangie nga dëbime ose cenime të tjera.</li>
+      <li>Adresa email që jepni mund të përdoret për t’ju dërguar informacion, njoftime mbi persona të tjerë që ndërveprojnë me lëndën tuaj ose që ju dërgojnë mesazhe, dhe për t’iu përgjigju pyetjeve dhe/ose kërkesave të tjera.</li>
       </ul>
 
       <hr class="spacer" />
@@ -858,8 +790,8 @@ sq:
       <p>Do të përpiqemi pa hile:</p>
 
       <ul>
-        <li>Të mbajmë regjistra shërbyesi që përmbajnë adresën IP të krejt kërkesave te ky shërbyes, sa kohë që regjistra të tillë mbahen, për jo më shumë se 90 ditë.</li>
-        <li>Të mbajmë adresat IP përshoqëruar me përdoruesit e regjistruar, për jo më shumë se 12 muaj.</li>
+      <li>Të mbajmë regjistra shërbyesi që përmbajnë adresën IP të krejt kërkesave te ky shërbyes, sa kohë që regjistra të tillë mbahen, për jo më shumë se 90 ditë.</li>
+      <li>Të mbajmë adresat IP përshoqëruar me përdoruesit e regjistruar, për jo më shumë se 12 muaj.</li>
       </ul>
 
       <p>Mund të kërkoni dhe të shkarkoni një arkiv të lëndës tuaj, përfshi postimet tuaja, bashkëngjitje media, foto profili, dhe figurë kryesh.</p>
@@ -911,7 +843,6 @@ sq:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
     description_html: Nëse aktivizoni <strong>mirëfilltësimin dyfaktorësh</strong>, hyrja do të kërkojë të jeni në zotërim të telefonit tuaj, i cili do të prodhojë kod që duhet ta jepni.

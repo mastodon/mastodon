@@ -5,7 +5,6 @@ pt:
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
     about_this: Sobre esta instância
     administered_by: 'Administrado por:'
-    api: API
     apps: Aplicações móveis
     contact: Contacto
     contact_missing: Não configurado
@@ -39,7 +38,6 @@ pt:
     joined: Aderiu %{date}
     last_active: última vez activo
     link_verified_on: A posse deste link foi verificada em %{date}
-    media: Media
     moved_html: "%{name} mudou-se para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
     nothing_here: Não há nada aqui!
@@ -69,7 +67,6 @@ pt:
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       are_you_sure: Tens a certeza?
-      avatar: Avatar
       by_domain: Domínio
       change_email:
         changed_msg: E-mail da conta alterado com sucesso!
@@ -100,11 +97,9 @@ pt:
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
-      ip: IP
       joined: Aderiu
       location:
         all: Todos
-        local: Local
         remote: Remoto
         title: Local
       login_status: Estado de início de sessão
@@ -162,7 +157,6 @@ pt:
       unsubscribe: Cancelar inscrição
       username: Usuário
       warn: Aviso
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} atribuiu o relatório %{target} a si próprios"
@@ -207,7 +201,6 @@ pt:
       destroyed_msg: Emoji destruído com sucesso!
       disable: Desativar
       disabled_msg: Desativado com sucesso este emoji
-      emoji: Emoji
       enable: Ativar
       enabled_msg: Ativado com sucesso este emoji
       image_hint: PNG de até 50KB
@@ -236,7 +229,6 @@ pt:
       recent_users: Utilizadores recentes
       search: Pesquisa com texto completo
       single_user_mode: Modo de utilizador único
-      software: Software
       space: Utilização do espaço
       title: Painel de controlo
       total_users: total de utilizadores
@@ -444,14 +436,11 @@ pt:
       confirmed: Confirmado
       expires_in: Expira em
       last_delivery: Última entrega
-      title: WebSub
       topic: Tópico
     tags:
       accounts: Contas
       hidden: Escondidas
       hide: Esconder no diretório
-      name: Hashtag
-      title: Hashtags
       unhide: Mostrar no diretório
       visible: Visível
     title: Administração
@@ -468,7 +457,6 @@ pt:
       subject: Novo relatório sobre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
-    salutation: "%{name},"
     settings: 'Alterar preferências de email: %{link}'
     view: 'Ver:'
     view_profile: Ver perfil
@@ -494,9 +482,6 @@ pt:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se desejas redirecionar esta conta para uma outra podes<a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou iniciar sessão com
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registar
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
@@ -515,7 +500,6 @@ pt:
     title: Seguir %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} meses"
       about_x_years: "%{count} anos"
       almost_x_years: "%{count} anos"
@@ -568,7 +552,6 @@ pt:
       request: Pede o teu arquivo
       size: Tamanho
     blocks: Bloqueaste
-    csv: CSV
     domain_blocks: Bloqueios de domínio
     follows: Segues
     lists: Listas
@@ -690,23 +673,11 @@ pt:
       body: 'O teu post foi partilhado por %{name}:'
       subject: "%{name} partilhou o teu post"
       title: Nova partilha
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Mais nova
     next: Seguinte
     older: Mais velha
     prev: Anterior
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Tu já votaste nesta sondagem
@@ -718,10 +689,7 @@ pt:
       too_few_options: tem de ter mais do que um item
       too_many_options: não pode conter mais do que %{max} itens
   preferences:
-    languages: Idiomas
     other: Outro
-    publishing: Publicação
-    web: Web
   remote_follow:
     acct: Entre seu usuário@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
@@ -751,40 +719,15 @@ pt:
     activity: Última atividade
     browser: Navegador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navegador desconhecido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
-      opera: Opera
       otter: Lontra
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a tua conta do Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
       firefox_os: SO Firefox
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: Plataforma desconhecida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
@@ -830,7 +773,6 @@ pt:
       vote: Votar
     show_more: Mostrar mais
     sign_in_to_participate: Inicie a sessão para participar na conversa
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Mostrar apenas para seguidores
       private_long: Mostrar apenas para seguidores
@@ -848,10 +790,10 @@ pt:
       <h3 id="collect">Que informação nós recolhemos?</h3>
 
       <ul>
-        <li><em>Informação básica da conta</em>: Se te registares neste servidor, pode-te ser pedido que indiques um nome de utilizador, um endereço de e-mail e uma palavra-passe. Também podes introduzir informação adicional de perfil, tal como um nome a mostrar e dados biográficos, que carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador, o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
-        <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que tu segues é pública, o mesmo é verdade para os teus seguidores. Quando tu publicas uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos multimédia, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando expões uma publicação no teu perfil, isso é também informação disponível publicamente. As tuas publicações são enviadas aos teus seguidores. Em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando tu apagas publicações, isso também é enviado para os teus seguidores. A acção de republicar ou favoritar outra publicação é sempre pública.</li>
-        <li><em>Publicações directas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para utilizadores que são nelas mencionados. As publicações directas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que elas são enviadas para diferentes servidores onde são guardadas cópias das mesmas. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objectivo.  Por isso, tu deves rever os servidores a que os teus seguidores pertencem. Tu podes activar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tem em mente que os gestores do servidor e qualquer servidor que receba a publicação pode lê-la</em>e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação. <em>Não partilhes qualquer informação perigosa no Mastodon.</em></li>
-        <li><em>IPs e outros metadados</em>: Quando inicias sessão, nós guardamos o endereço de IP a partir do qual iniciaste a sessão, tal como o nome do teu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
+      <li><em>Informação básica da conta</em>: Se te registares neste servidor, pode-te ser pedido que indiques um nome de utilizador, um endereço de e-mail e uma palavra-passe. Também podes introduzir informação adicional de perfil, tal como um nome a mostrar e dados biográficos, que carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador, o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
+      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que tu segues é pública, o mesmo é verdade para os teus seguidores. Quando tu publicas uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos multimédia, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando expões uma publicação no teu perfil, isso é também informação disponível publicamente. As tuas publicações são enviadas aos teus seguidores. Em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando tu apagas publicações, isso também é enviado para os teus seguidores. A acção de republicar ou favoritar outra publicação é sempre pública.</li>
+      <li><em>Publicações directas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para utilizadores que são nelas mencionados. As publicações directas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que elas são enviadas para diferentes servidores onde são guardadas cópias das mesmas. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objectivo.  Por isso, tu deves rever os servidores a que os teus seguidores pertencem. Tu podes activar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tem em mente que os gestores do servidor e qualquer servidor que receba a publicação pode lê-la</em>e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação. <em>Não partilhes qualquer informação perigosa no Mastodon.</em></li>
+      <li><em>IPs e outros metadados</em>: Quando inicias sessão, nós guardamos o endereço de IP a partir do qual iniciaste a sessão, tal como o nome do teu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
       </ul>
 
       <hr class="spacer" />
@@ -861,9 +803,9 @@ pt:
       <p>Qualquer informação que recolhemos sobre ti pode ser usada dos seguintes modos:</p>
 
       <ul>
-        <li>Para providenciar a funcionalidade central do Mastodon. Tu só podes interagir com o conteúdo de outras pessoas e publicar o teu próprio conteúdo depois de teres iniciado sessão. Por exemplo, tu podes seguir outras pessoas para veres as suas publicações na tua cronologia inicial personalizada. </li>
-        <li>Para ajudar na moderação da comunidade para, por exemplo, comparar o teu endereço IP com outros conhecidos, para determinar a fuga ao banimento ou outras violações.</li>
-        <li>O endereço de e-mail que tu forneces pode ser usado para te enviar informações e/ou notificações sobre outras pessoas que estão a interagir com o teu conteúdo ou a enviar-te mensagens, para responderes a inquéritos e/ou outros pedidos ou questões.</li>
+      <li>Para providenciar a funcionalidade central do Mastodon. Tu só podes interagir com o conteúdo de outras pessoas e publicar o teu próprio conteúdo depois de teres iniciado sessão. Por exemplo, tu podes seguir outras pessoas para veres as suas publicações na tua cronologia inicial personalizada. </li>
+      <li>Para ajudar na moderação da comunidade para, por exemplo, comparar o teu endereço IP com outros conhecidos, para determinar a fuga ao banimento ou outras violações.</li>
+      <li>O endereço de e-mail que tu forneces pode ser usado para te enviar informações e/ou notificações sobre outras pessoas que estão a interagir com o teu conteúdo ou a enviar-te mensagens, para responderes a inquéritos e/ou outros pedidos ou questões.</li>
       </ul>
 
       <hr class="spacer" />
@@ -879,8 +821,8 @@ pt:
       <p>Nós envidaremos todos os esforços no sentido de:</p>
 
       <ul>
-        <li>Guardar registos do servidor contendo o endereço de IP de todos os pedidos feitos a este  servidor, considerando que estes registos não serão guardados por mais de 90 dias.</li>
-        <li>Guardar os endereços de IP associados aos utilizadores registados durante um período que não ultrapassará os 12 meses.</li>
+      <li>Guardar registos do servidor contendo o endereço de IP de todos os pedidos feitos a este  servidor, considerando que estes registos não serão guardados por mais de 90 dias.</li>
+      <li>Guardar os endereços de IP associados aos utilizadores registados durante um período que não ultrapassará os 12 meses.</li>
       </ul>
 
       <p>Tu podes pedir e descarregar um ficheiro com o teu conteúdo, incluindo as tuas publicações, os ficheiros multimédia, a imagem de perfil e a imagem de cabeçalho.</p>
@@ -929,10 +871,6 @@ pt:
     contrast: Mastodon (Elevado contraste)
     default: Mastodon
     mastodon-light: Mastodon (Leve)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Entre o código gerado pelo seu aplicativo para confirmar
     description_html: Se ativar a <strong>autenticação em dois passos</strong>, quando logar será necessário o seu telefone que vai gerar os tokens para validação.

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Follow < ActivityPub::Activity
+  include Payloadable
+
   def perform
     target_account = account_from_uri(object_uri)
 
@@ -28,7 +30,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
   end
 
   def reject_follow_request!(target_account)
-    json = ActiveModelSerializers::SerializableResource.new(FollowRequest.new(account: @account, target_account: target_account, uri: @json['id']), serializer: ActivityPub::RejectFollowSerializer, adapter: ActivityPub::Adapter).to_json
+    json = Oj.dump(serialize_payload(FollowRequest.new(account: @account, target_account: target_account, uri: @json['id']), ActivityPub::RejectFollowSerializer))
     ActivityPub::DeliveryWorker.perform_async(json, target_account.id, @account.inbox_url)
   end
 end

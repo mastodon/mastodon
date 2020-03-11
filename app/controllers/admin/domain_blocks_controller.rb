@@ -41,7 +41,7 @@ module Admin
 
     def destroy
       authorize @domain_block, :destroy?
-      UnblockDomainService.new.call(@domain_block, retroactive_unblock?)
+      UnblockDomainService.new.call(@domain_block)
       log_action :destroy, @domain_block
       redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end
@@ -53,11 +53,7 @@ module Admin
     end
 
     def resource_params
-      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :retroactive)
-    end
-
-    def retroactive_unblock?
-      ActiveRecord::Type.lookup(:boolean).cast(resource_params[:retroactive])
+      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports)
     end
   end
 end

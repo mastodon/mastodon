@@ -22,6 +22,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
         favourite: alerts_enabled,
         reblog: alerts_enabled,
         mention: alerts_enabled,
+        poll: alerts_enabled,
       },
     }
 
@@ -57,6 +58,6 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   def data_params
-    @data_params ||= params.require(:data).permit(alerts: [:follow, :favourite, :reblog, :mention])
+    @data_params ||= params.require(:data).permit(alerts: [:follow, :favourite, :reblog, :mention, :poll])
   end
 end

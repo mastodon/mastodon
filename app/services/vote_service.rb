@@ -2,6 +2,7 @@
 
 class VoteService < BaseService
   include Authorization
+  include Payloadable
 
   def call(account, poll, choices)
     authorize_with account, poll, :vote?
@@ -50,10 +51,6 @@ class VoteService < BaseService
   end
 
   def build_json(vote)
-    ActiveModelSerializers::SerializableResource.new(
-      vote,
-      serializer: ActivityPub::VoteSerializer,
-      adapter: ActivityPub::Adapter
-    ).to_json
+    Oj.dump(serialize_payload(vote, ActivityPub::VoteSerializer))
   end
 end

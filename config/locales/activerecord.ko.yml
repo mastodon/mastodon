@@ -1,0 +1,17 @@
+---
+ko:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: 마감 기한
+        options: 선택
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: 영문자, 숫자, _만 사용 가능
+        status:
+          attributes:
+            reblog:
+              taken: 이미 게시물이 존재합니다

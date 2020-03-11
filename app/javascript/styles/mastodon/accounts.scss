@@ -68,6 +68,7 @@
         margin: 0;
         border-radius: 4px;
         background: darken($ui-base-color, 8%);
+        object-fit: cover;
       }
     }
 
@@ -196,7 +197,8 @@
   }
 }
 
-.account-role {
+.account-role,
+.simple_form .recommended {
   display: inline-block;
   padding: 4px 6px;
   cursor: default;

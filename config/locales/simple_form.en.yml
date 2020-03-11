@@ -27,14 +27,13 @@ en:
         phrase: Will be matched regardless of casing in text or content warning of a toot
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_aggregate_reblogs: Do not show new boosts for toots that have been recently boosted (only affects newly-received boosts)
-        setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
+        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide all media
         setting_display_media_show_all: Always show media marked as sensitive
         setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
         setting_show_application: The application you use to toot will be displayed in the detailed view of your toots
-        setting_theme: Affects how Mastodon looks when you're logged in from any device.
         username: Your username will be unique on %{domain}
         whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       featured_tag:
@@ -90,11 +89,12 @@ en:
         otp_attempt: Two-factor code
         password: Password
         phrase: Keyword or phrase
+        setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Group boosts in timelines
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Show confirmation dialog before boosting
         setting_default_language: Posting language
-        setting_default_privacy: Post privacy
+        setting_default_privacy: Posting privacy
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a toot
         setting_display_media: Media display
@@ -132,6 +132,7 @@ en:
         reblog: Send e-mail when someone boosts your status
         report: Send e-mail when a new report is submitted
     'no': 'No'
+    recommended: Recommended
     required:
       mark: "*"
       text: required

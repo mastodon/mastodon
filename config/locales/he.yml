@@ -4,7 +4,6 @@ he:
     about_hashtag_html: אלו סטטוסים פומביים המתוייגים בתור<strong>#%{hashtag}</strong>. ניתן להגיב, להדהד או לחבב אותם אם יש לך חשבון בכל מקום בפדרציה.
     about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     about_this: אודות שרת זה
-    api: API
     apps: יישומונים לנייד
     contact: יצירת קשר
     contact_missing: ללא הגדרה
@@ -17,21 +16,17 @@ he:
     hosted_on: מסטודון שיושב בכתובת %{domain}
     learn_more: מידע נוסף
     source_code: קוד מקור
-    status_count_after: הודעות
     status_count_before: שכתבו
-    user_count_after: משתמשים
     user_count_before: ביתם של
     what_is_mastodon: מה זה מסטודון?
   accounts:
     follow: לעקוב
-    followers: עוקבים
     following: נעקבים
     media: מדיה
     moved_html: "%{name} עבר(ה) אל %{new_profile_link}:"
     nothing_here: אין פה שום דבר!
     people_followed_by: הנעקבים של %{name}
     people_who_follow: העוקבים של %{name}
-    posts: הודעות
     posts_with_replies: חצרוצים ותגובות
     reserved_username: שם המשתמש שמור
     roles:
@@ -146,9 +141,6 @@ he:
       reject_media: חסימת קבצי מדיה
       reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות
       show:
-        affected_accounts:
-          one: חשבון אחד במסד הנתונים מושפע
-          other: "%{count} חשהבונות במסד הנתונים מושפעים"
         retroactive:
           silence: הסרת השתקה מכל החשבונות על שרת זה
           suspend: הסרת השעייה מכל החשבונות על שרת זה
@@ -234,18 +226,15 @@ he:
       content: בדיקת אבטחה נכשלה. החסמת עוגיותיך מפנינו?
       title: בדיקת בטיחות נכשלה
     '429': הוחנק
+    '500': 
   exports:
     blocks: רשימת חסימות
-    csv: CSV
     follows: רשימת נעקבים
     mutes: רשימת השתקות
     storage: אחסון מדיה
   generic:
     changes_saved_msg: השינויים נשמרו בהצלחה!
     save_changes: שמור שינויים
-    validation_errors:
-      one: משהו לא לגמרי בסדר עדיין! אנא הציצו על השגיאה מטה
-      other: משהו לא לגמרי בסדר עדיין! אנא הציצו על %{count} השגיאות מטה
   imports:
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
     success: כל המידע יובא בהצלחה, ויעובד בזמן הקרוב
@@ -254,6 +243,14 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
@@ -262,12 +259,6 @@ he:
     digest:
       body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
       mention: "%{name} פנה אליך ב:"
-      new_followers_summary:
-        one: נוסף לך עוקב! סחתיין!
-        other: נוספו לך %{count} עוקבים חדשים! מעולה!
-      subject:
-        one: "התראה חדשה אחת מאז ביקורך האחרון \U0001F418"
-        other: "%{count} התראות חדשות \U0001F418"
     favourite:
       body: 'חצרוצך חובב על ידי %{name}:'
       subject: חצרוצך חובב על ידי %{name}
@@ -283,21 +274,9 @@ he:
     reblog:
       body: 'חצרוצך הודהד על ידי %{name}:'
       subject: חצרוצך הודהד על ידי%{name}
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: הבא
     prev: הקודם
-    truncate: "&hellip;"
   remote_follow:
     acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
     missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך

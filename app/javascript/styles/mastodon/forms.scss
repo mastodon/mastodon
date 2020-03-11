@@ -79,6 +79,12 @@ code {
           text-decoration: none;
         }
       }
+
+      .recommended {
+        position: absolute;
+        margin: 0 4px;
+        margin-top: -2px;
+      }
     }
   }
 
@@ -443,6 +449,10 @@ code {
     height: 41px;
   }
 
+  h4 {
+    margin-bottom: 15px !important;
+  }
+
   .label_input {
     &__wrapper {
       position: relative;
@@ -553,7 +563,7 @@ code {
     box-sizing: border-box;
     display: block;
     width: 100%;
-    border: none;
+    border: 0;
     padding: 10px;
     font-family: $font-monospace, monospace;
     background: $ui-base-color;

@@ -5,6 +5,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
+import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
 
 const loadScriptOnce = require('load-script-once');
@@ -190,8 +191,12 @@ export default class StatusContent extends React.PureComponent {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
-    if (e.target.localName === 'button' || e.target.localName === 'a' || (e.target.parentNode && (e.target.parentNode.localName === 'button' || e.target.parentNode.localName === 'a'))) {
-      return;
+    let element = e.target;
+    while (element) {
+      if (element.localName === 'button' || element.localName === 'a' || element.localName === 'label') {
+        return;
+      }
+      element = element.parentNode;
     }
 
     if (deltaX + deltaY < 5 && e.button === 0 && this.props.onClick) {
@@ -275,6 +280,8 @@ export default class StatusContent extends React.PureComponent {
           {mentionsPlaceholder}
 
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
+
+          {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
         </div>
       );
     } else if (this.props.onClick) {
@@ -296,9 +303,13 @@ export default class StatusContent extends React.PureComponent {
         output.push(readMoreButton);
       }
 
+      if (status.get('poll')) {
+        output.push(<PollContainer pollId={status.get('poll')} />);
+      }
+
       return output;
     } else {
-      return (
+      const output = [
         <div
           tabIndex='0'
           ref={this.setRef}
@@ -306,8 +317,14 @@ export default class StatusContent extends React.PureComponent {
           style={directionStyle}
           dangerouslySetInnerHTML={content}
           lang={status.get('language')}
-        />
-      );
+        />,
+      ];
+
+      if (status.get('poll')) {
+        output.push(<PollContainer pollId={status.get('poll')} />);
+      }
+
+      return output;
     }
   }
 

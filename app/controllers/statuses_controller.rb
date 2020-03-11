@@ -27,7 +27,7 @@ class StatusesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        mark_cacheable! unless user_signed_in?
+        expires_in 10.seconds, public: true if current_account.nil?
 
         @body_classes = 'with-modals'
 
@@ -38,8 +38,6 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        mark_cacheable! unless @stream_entry.hidden?
-
         render_cached_json(['activitypub', 'note', @status], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
           ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
         end
@@ -48,8 +46,6 @@ class StatusesController < ApplicationController
   end
 
   def activity
-    skip_session!
-
     render_cached_json(['activitypub', 'activity', @status], content_type: 'application/activity+json', public: !@stream_entry.hidden?) do
       ActiveModelSerializers::SerializableResource.new(@status, serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter)
     end
@@ -58,7 +54,6 @@ class StatusesController < ApplicationController
   def embed
     raise ActiveRecord::RecordNotFound if @status.hidden?
 
-    skip_session!
     expires_in 180, public: true
     response.headers['X-Frame-Options'] = 'ALLOWALL'
     @autoplay = ActiveModel::Type::Boolean.new.cast(params[:autoplay])
@@ -67,8 +62,6 @@ class StatusesController < ApplicationController
   end
 
   def replies
-    skip_session!
-
     render json: replies_collection_presenter,
            serializer: ActivityPub::CollectionSerializer,
            adapter: ActivityPub::Adapter,

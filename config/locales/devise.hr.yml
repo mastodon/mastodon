@@ -2,18 +2,9 @@
 hr:
   devise:
     confirmations:
-      already_authenticated: Već si prijavljen.
       confirmed: Tvoja email adresa je uspješno potvrđena.
-      inactive: Tvoj račun još nije aktiviran.
-      invalid: Nevaljan %{authentication_keys} ili lozinka.
-      last_attempt: Imaš još jedan pokušaj prije no što ti se račun zaključa.
-      locked: Tvoj račun je zaključan.
-      not_found_in_database: Nevaljan %{authentication_keys} ili lozinka.
       send_instructions: Primit ćeš email sa uputama kako potvrditi  svoju email adresu za nekoliko minuta.
       send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš email sa uputama kako ju potvrditi za nekoliko minuta.
-      timeout: Tvoja sesija je istekla. Molimo te, prijavi se ponovo kako bi nastavio.
-      unauthenticated: Moraš se registrirati ili prijaviti prije no što nastaviš.
-      unconfirmed: Moraš potvrditi svoju email adresu prije no što nastaviš.
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Upute za potvrđivanje %{instance}'
@@ -58,4 +49,3 @@ hr:
       expired: je istekao, zatraži novu
       not_found: nije nađen
       not_locked: nije zaključan
-      not_saved: "%{count} greške su zabranile da ovaj %{resource} bude sačuvan:"

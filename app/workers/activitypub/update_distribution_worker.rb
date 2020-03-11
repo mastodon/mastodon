@@ -2,6 +2,7 @@
 
 class ActivityPub::UpdateDistributionWorker
   include Sidekiq::Worker
+  include Payloadable
 
   sidekiq_options queue: 'push'
 
@@ -27,14 +28,6 @@ class ActivityPub::UpdateDistributionWorker
   end
 
   def signed_payload
-    @signed_payload ||= Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(@account, sign_with: @options[:sign_with]))
-  end
-
-  def payload
-    @payload ||= ActiveModelSerializers::SerializableResource.new(
-      @account,
-      serializer: ActivityPub::UpdateSerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json
+    @signed_payload ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateSerializer, signer: @account, sign_with: @options[:sign_with]))
   end
 end

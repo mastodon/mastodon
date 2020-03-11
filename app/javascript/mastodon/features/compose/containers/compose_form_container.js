@@ -45,8 +45,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchComposeSuggestions(token));
   },
 
-  onSuggestionSelected (position, token, suggestion) {
-    dispatch(selectComposeSuggestion(position, token, suggestion));
+  onSuggestionSelected (position, token, suggestion, path) {
+    dispatch(selectComposeSuggestion(position, token, suggestion, path));
   },
 
   onChangeSpoilerText (checked) {

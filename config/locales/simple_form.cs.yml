@@ -27,14 +27,13 @@ cs:
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či varování o obsahu
         scopes: Která API bude aplikaci povoleno používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro tooty, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
-        setting_default_language: Jazyk vašich tootů může být detekován automaticky, není to však vždy přesné
+        setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat všechna média
         setting_display_media_show_all: Vždy zobrazovat média označená jako citlivá
         setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na vašem profilu
         setting_noindex: Ovlivňuje váš veřejný profil a stránky tootů
         setting_show_application: Aplikace, kterou používáte k psaní tootů, bude zobrazena v detailním zobrazení vašich tootů
-        setting_theme: Ovlivňuje jak Mastodon vypadá, jste-li přihlášen na libovolném zařízení.
         username: Vaše uživatelské jméno bude na %{domain} unikátní
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
       featured_tag:
@@ -90,6 +89,7 @@ cs:
         otp_attempt: Dvoufázový kód
         password: Heslo
         phrase: Klíčové slovo či fráze
+        setting_advanced_layout: Povolit pokročilé webové rozhraní
         setting_aggregate_reblogs: Seskupovat boosty v časových osách
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Zobrazovat před boostnutím potvrzovací okno
@@ -132,6 +132,7 @@ cs:
         reblog: Posílat e-maily, když někdo boostne váš toot
         report: Posílat e-maily, je-li odesláno nové nahlášení
     'no': Ne
+    recommended: Doporučeno
     required:
       mark: "*"
       text: požadováno
