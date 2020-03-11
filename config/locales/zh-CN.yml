@@ -527,6 +527,9 @@ zh-CN:
       trends:
         desc_html: 公开显示先前已通过审核的当前热门话题
         title: 热门标签
+    site_uploads:
+      delete: 删除已上传的文件
+      destroyed_msg: 站点上传的文件已经成功删除！
     statuses:
       back_to_account: 返回帐户信息页
       batch:
@@ -838,6 +841,7 @@ zh-CN:
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
+      not_ready: 不能附加还在处理中的文件。请稍后再试！
       too_many: 最多只能添加 4 张图片
   migrations:
     acct: 新帐户的 用户名@域名
