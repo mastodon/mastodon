@@ -52,6 +52,8 @@ ko:
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
       domain_allow:
         domain: 이 도메인은 이 서버에서 데이터를 가져갈 수 있고 이 도메인에서 보내진 데이터는 처리되고 저장 됩니다
+      email_domain_block:
+        with_dns_records: 입력한 도메인의 DNS를 조회를 시도하여 나온 값도 차단됩니다
       featured_tag:
         name: '이것들을 사용하면 좋을 것 같습니다:'
       form_challenge:
@@ -150,6 +152,8 @@ ko:
         username: 유저 이름
         username_or_email: 유저네임 또는 이메일
         whole_word: 단어 전체에 매칭
+      email_domain_block:
+        with_dns_records: 도메인의 IP와 MX 레코드 값을 포함
       featured_tag:
         name: 해시태그
       interactions:
