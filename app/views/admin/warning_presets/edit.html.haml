@@ -5,6 +5,9 @@
   = render 'shared/error_messages', object: @warning_preset
 
   .fields-group
+    = f.input :title, wrapper: :with_block_label
+
+  .fields-group
     = f.input :text, wrapper: :with_block_label
 
   .actions

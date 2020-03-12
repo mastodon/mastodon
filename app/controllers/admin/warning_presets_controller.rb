@@ -7,7 +7,7 @@ module Admin
     def index
       authorize :account_warning_preset, :index?
 
-      @warning_presets = AccountWarningPreset.all
+      @warning_presets = AccountWarningPreset.alphabetic
       @warning_preset  = AccountWarningPreset.new
     end
 
@@ -19,7 +19,7 @@ module Admin
       if @warning_preset.save
         redirect_to admin_warning_presets_path
       else
-        @warning_presets = AccountWarningPreset.all
+        @warning_presets = AccountWarningPreset.alphabetic
         render :index
       end
     end
@@ -52,7 +52,7 @@ module Admin
     end
 
     def warning_preset_params
-      params.require(:account_warning_preset).permit(:text)
+      params.require(:account_warning_preset).permit(:title, :text)
     end
   end
 end
