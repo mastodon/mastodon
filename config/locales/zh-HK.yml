@@ -10,12 +10,14 @@ zh-HK:
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
+    browse_local_posts: 瀏覽這台伺服器中公開嘟文的直播串流
     browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 未公開
     discover_users: 探索使用者
     documentation: 文件
+    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤隨便一台 Mastodon 伺服器上的人等等。
     get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 服務站
     learn_more: 了解更多
@@ -28,6 +30,7 @@ zh-HK:
     status_count_before: 他們共發佈了
     tagline: 關注朋友並探索新朋友
     terms: 使用條款
+    unavailable_content: 無法取得的內容
     unavailable_content_description:
       domain: 伺服器
       reason: 原因
@@ -59,7 +62,9 @@ zh-HK:
     roles:
       admin: 管理員
       bot: 機械人
+      group: 群組
       moderator: 監察員
+    unavailable: 無法取得個人檔案
     unfollow: 取消關注
   admin:
     account_actions:
@@ -71,6 +76,7 @@ zh-HK:
       delete: 刪除
       destroyed_msg: 管理記錄已被刪除
     accounts:
+      add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 核准
       approve_all: 全部批准
       are_you_sure: 你確定嗎？
@@ -150,6 +156,8 @@ zh-HK:
         staff: 管理人員
         user: 普通用戶
       search: 搜索
+      search_same_email_domain: 其他有同個電子郵件網域的使用者
+      search_same_ip: 其他有同個 IP 的使用者
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
       show:
         created_reports: 此用戶所提舉報的紀錄
@@ -159,6 +167,7 @@ zh-HK:
       statuses: 文章
       subscribe: 訂閱
       suspended: 已停權
+      time_in_queue: 正在佇列等待 %{time}
       title: 用戶
       unconfirmed_email: 未確認的電郵
       undo_silenced: 解除靜音
@@ -167,17 +176,22 @@ zh-HK:
       username: 用戶名稱
       warn: 警告
       web: 用戶頁面
+      whitelisted: 已加入白名單
     action_logs:
       actions:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
         change_email_user: "%{name} 改變了用戶 %{target} 的電郵地址"
         confirm_user: "%{name} 確認了用戶 %{target} 的電郵地址"
         create_account_warning: "%{name} 已對 %{target} 送出警告"
+        create_announcement: "%{name} 建立了新公告 %{target}"
         create_custom_emoji: "%{name} 加入自訂表情符號 %{target}"
+        create_domain_allow: "%{name} 將 %{target} 網域加入黑名單了"
         create_domain_block: "%{name} 阻隔了網域 %{target}"
         create_email_domain_block: "%{name} 阻隔了電郵網域 %{target}"
         demote_user: "%{name} 把用戶 %{target} 降任"
+        destroy_announcement: "%{name} 刪除了公告 %{target}"
         destroy_custom_emoji: "%{name} 破壞了 %{target} 表情符號"
+        destroy_domain_allow: "%{name} 從白名單中移除了 %{target} 網域"
         destroy_domain_block: "%{name} 取消了對網域 %{target} 的阻隔"
         destroy_email_domain_block: "%{name} 取消了對電郵網域 %{target} 的阻隔"
         destroy_status: "%{name} 刪除了 %{target} 的文章"
@@ -197,10 +211,25 @@ zh-HK:
         unassigned_report: "%{name} 取消指派 %{target} 的舉報"
         unsilence_account: "%{name} 取消了用戶 %{target} 的靜音狀態"
         unsuspend_account: "%{name} 取消了用戶 %{target} 的停權狀態"
+        update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自訂表情符號 %{target}"
         update_status: "%{name} 刷新了 %{target} 的文章"
       deleted_status: "（已刪除嘟文）"
       title: 營運日誌
+    announcements:
+      destroyed_msg: 成功刪除公告！
+      edit:
+        title: 編輯公告
+      empty: 找不到公告。
+      live: 直播
+      new:
+        create: 建立公告
+        title: 新增公告
+      published_msg: 成功發布公告！
+      scheduled_for: 排定 %{time}
+      scheduled_msg: 公告已排定公開！
+      title: 公告
+      unpublished_msg: 成功取消發布公告！
     custom_emojis:
       by_domain: 網域
       copied_msg: 成功將表情複製到本地
