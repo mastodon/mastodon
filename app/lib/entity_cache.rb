@@ -9,8 +9,7 @@ class EntityCache
 
   def status(url)
     Rails.cache.fetch(to_key(:status, url), expires_in: MAX_EXPIRATION) do
-      scope = Status.select(:id, :url, :uri, :visibility)
-      scope.find_by(uri: url) || scope.find_by(url: url)
+      FetchRemoteStatusService.new.call(url)
     end
   end
 
