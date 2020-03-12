@@ -53,6 +53,9 @@ ca:
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       domain_allow:
         domain: Aquest domini podrà obtenir dades d’aquest servidor i les dades entrants d’aquests seran processades i emmagatzemades
+      email_domain_block:
+        domain: Això pot ser el nom del domini que es veu en l’adreça de correu electrònic, el registre MX al que resol el domini o l’IP del servidor al que resol el registre MX. Es comprovaran amb el registre d’usuari i es rebutjarà la inscripció.
+        with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
         name: 'És possible que vulguis utilitzar un d''aquests:'
       form_challenge:
@@ -151,6 +154,8 @@ ca:
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
         whole_word: Paraula sencera
+      email_domain_block:
+        with_dns_records: Incloure registres MX i IP del domini
       featured_tag:
         name: Etiqueta
       interactions:
