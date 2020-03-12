@@ -14,6 +14,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  published_at :datetime
+#  status_ids   :bigint           is an Array
 #
 
 class Announcement < ApplicationRecord
@@ -31,6 +32,7 @@ class Announcement < ApplicationRecord
 
   before_validation :set_all_day
   before_validation :set_published, on: :create
+  before_validation :set_status_ids
 
   def publish!
     update!(published: true, published_at: Time.now.utc, scheduled_at: nil)
@@ -49,7 +51,9 @@ class Announcement < ApplicationRecord
   end
 
   def statuses
-    @statuses ||= Status.from_text(text)
+    return [] if status_ids.nil?
+
+    @statuses ||= Status.where(id: status_ids, visibility: [:public, :unlisted])
   end
 
   def tags
@@ -86,5 +90,9 @@ class Announcement < ApplicationRecord
 
     self.published = true
     self.published_at = Time.now.utc
+  end
+
+  def set_status_ids
+    self.status_ids = Status.from_text(text).map(&:id)
   end
 end

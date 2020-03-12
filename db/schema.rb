@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_185443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "published_at"
+    t.bigint "status_ids", array: true
   end
 
   create_table "backups", force: :cascade do |t|
