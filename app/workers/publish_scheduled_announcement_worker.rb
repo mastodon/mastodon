@@ -7,6 +7,8 @@ class PublishScheduledAnnouncementWorker
   def perform(announcement_id)
     announcement = Announcement.find(announcement_id)
 
+    announcement.refresh_status_ids!
+
     announcement.publish! unless announcement.published?
 
     payload = InlineRenderer.render(announcement, nil, :announcement)

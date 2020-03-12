@@ -32,7 +32,6 @@ class Announcement < ApplicationRecord
 
   before_validation :set_all_day
   before_validation :set_published, on: :create
-  before_validation :set_status_ids
 
   def publish!
     update!(published: true, published_at: Time.now.utc, scheduled_at: nil)
@@ -79,6 +78,11 @@ class Announcement < ApplicationRecord
     records
   end
 
+  def refresh_status_ids!
+    self.status_ids = Status.from_text(text).map(&:id)
+    save
+  end
+
   private
 
   def set_all_day
@@ -90,9 +94,5 @@ class Announcement < ApplicationRecord
 
     self.published = true
     self.published_at = Time.now.utc
-  end
-
-  def set_status_ids
-    self.status_ids = Status.from_text(text).map(&:id)
   end
 end
