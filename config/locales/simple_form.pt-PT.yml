@@ -53,6 +53,8 @@ pt-PT:
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
         domain: Este domínio será capaz de obter dados deste servidor e os dados dele recebidos serão processados e armazenados
+      email_domain_block:
+        domain: Este pode ser o nome de domínio que aparece no endereço de email, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Estes serão verificados no momento da inscrição do utilizador e a inscrição será rejeitada.
       featured_tag:
         name: 'Poderás querer usar um destes:'
       form_challenge:
