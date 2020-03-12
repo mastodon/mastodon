@@ -11,7 +11,7 @@ module Admin
 
     def new
       authorize :email_domain_block, :create?
-      @email_domain_block = EmailDomainBlock.new
+      @email_domain_block = EmailDomainBlock.new(domain: params[:_domain])
     end
 
     def create
