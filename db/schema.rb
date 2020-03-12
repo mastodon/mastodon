@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_144258) do
+ActiveRecord::Schema.define(version: 2020_03_12_185443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -336,6 +336,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_144258) do
     t.string "domain", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_id"
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
@@ -869,6 +870,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_144258) do
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
+  add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade
