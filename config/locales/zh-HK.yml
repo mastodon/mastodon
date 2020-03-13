@@ -293,6 +293,8 @@ zh-HK:
     domain_allows:
       add_new: 將網域加入白名單
       created_msg: 網域已成功加入白名單
+      destroyed_msg: 網域已成功從白名單移除
+      undo: 從白名單移除
     domain_blocks:
       add_new: 新增
       created_msg: 正處理域名阻隔
@@ -393,12 +395,23 @@ zh-HK:
       contact_information:
         email: 輸入一個公開的電郵地址
         username: 輸入用戶名稱
+      domain_blocks:
+        all: 給任何人
+        disabled: 給沒有人
+        title: 顯示封鎖的網域
+      enable_bootstrap_timeline_accounts:
+        title: 啟用新使用者的預設追蹤
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
         title: 主題圖片
       peers_api_enabled:
         desc_html: 現時本服務站在網絡中已發現的域名
         title: 公開已知服務站的列表
+      preview_sensitive_media:
+        title: 在 OpenGraph 預覽中顯示敏感媒體
+      profile_directory:
+        desc_html: 允許能探索使用者
+        title: 啟用個人資料目錄
       registrations:
         closed_message:
           desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
@@ -409,6 +422,9 @@ zh-HK:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
+      registrations_mode:
+        modes:
+          approved: 註冊需要核准
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示跨站文章，否則就只會顯示本站文章。
         title: 在時間軸預覽顯示跨站文章
