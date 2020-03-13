@@ -230,11 +230,14 @@ zh-TW:
       scheduled_msg: 公告已排定公開！
       title: 公告
       unpublished_msg: 成功取消發布公告！
+      updated_msg: 成功更新公告！
     custom_emojis:
+      assign_category: 指定分類
       by_domain: 站點
       copied_msg: 成功將表情複製到本地
       copy: 複製
       copy_failed_msg: 無法將表情複製到本地
+      create_new_category: 建立新分類
       created_msg: 已新增表情符號!
       delete: 刪除
       destroyed_msg: 已刪除表情符號!
@@ -254,11 +257,13 @@ zh-TW:
       shortcode: 短代碼
       shortcode_hint: 至少 2 個字元，只能使用字母、數字和下劃線
       title: 自訂表情符號
+      uncategorized: 未分類
       unlisted: 已隱藏
       update_failed_msg: 無法更新表情符號
       updated_msg: 已更新表情符號!
       upload: 上傳新的表情符號
     dashboard:
+      authorized_fetch_mode: 安全模式
       backlog: 未處理工作數
       config: 設定
       feature_deletions: 帳戶刪除
@@ -266,9 +271,13 @@ zh-TW:
       feature_profile_directory: 個人資料目錄
       feature_registrations: 註冊
       feature_relay: 聯邦中繼站
+      feature_spam_check: 防垃圾訊息
+      feature_timeline_preview: 時間軸預覽
       features: 功能
       hidden_service: 與隱密服務互連
       open_reports: 待處理檢舉數
+      pending_tags: 等待審核的主題標籤
+      pending_users: 等待審核的使用者
       recent_users: 最近加入的使用者
       search: 全文搜尋
       single_user_mode: 單一使用者模式
@@ -280,6 +289,10 @@ zh-TW:
       week_interactions: 本週互動次數
       week_users_active: 本週活躍使用者數
       week_users_new: 本週新使用者數
+      whitelist_mode: 白名單模式
+    domain_allows:
+      add_new: 將網域加入白名單
+      created_msg: 網域已成功加入白名單
     domain_blocks:
       add_new: 新增欲封鎖域名
       created_msg: 正在進行站點封鎖
