@@ -293,6 +293,8 @@ zh-TW:
     domain_allows:
       add_new: 將網域加入白名單
       created_msg: 網域已成功加入白名單
+      destroyed_msg: 網域已成功從白名單移除
+      undo: 從白名單移除
     domain_blocks:
       add_new: 新增欲封鎖域名
       created_msg: 正在進行站點封鎖
@@ -392,12 +394,23 @@ zh-TW:
       contact_information:
         email: 用於聯絡的公開電子信箱位址
         username: 請輸入使用者名稱
+      domain_blocks:
+        all: 給任何人
+        disabled: 給沒有人
+        title: 顯示封鎖的網域
+      enable_bootstrap_timeline_accounts:
+        title: 啟用新使用者的預設追蹤
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
         title: 主題圖片
       peers_api_enabled:
         desc_html: 本伺服器在聯邦中發現的站點
         title: 發布已知伺服器的列表
+      preview_sensitive_media:
+        title: 在 OpenGraph 預覽中顯示敏感媒體
+      profile_directory:
+        desc_html: 允許能探索使用者
+        title: 啟用個人資料目錄
       registrations:
         closed_message:
           desc_html: 關閉註冊時顯示在首頁的內容，可使用 HTML 標籤
