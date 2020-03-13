@@ -7,6 +7,7 @@ el:
         acct: Όρισε το username@domain του λογαριασμού στον οποίο θέλεις να μετακινηθείς
       account_warning_preset:
         text: Μπορείς να χρησιμοποιήσεις το ίδιο συντακτικό των τουτ όπως URL, ετικέτες και αναφορές
+        title: Προαιρετικό. Δεν εμφανίζεται στον παραλήπτη
       admin_account_action:
         include_statuses: Ο χρήστης θα δει ποια τουτ προκάλεσαν την προειδοποίηση ή την ενέργεια των διαχειριστών
         send_email_notification: Ο χρήστης θα λάβει μια εξήγηση του τι συνέβη με τον λογαριασμό του
@@ -77,6 +78,7 @@ el:
         acct: Διακριτικό του νέου λογαριασμού
       account_warning_preset:
         text: Προκαθορισμένο κείμενο
+        title: Τίτλος
       admin_account_action:
         include_statuses: Συμπερίληψη των καταγγελλομένων τουτ στο email
         send_email_notification: Ενημέρωση χρήστη μέσω email
@@ -149,6 +151,8 @@ el:
         username: Όνομα χρηστη
         username_or_email: Όνομα ή διεύθυνση email χρήστη
         whole_word: Ολόκληρη λέξη
+      email_domain_block:
+        with_dns_records: Συμπερίληψη εγγραφών MX και διευθύνσεων IP του τομέα
       featured_tag:
         name: Ετικέτα
       interactions:
