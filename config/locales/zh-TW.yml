@@ -421,6 +421,12 @@ zh-TW:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
+      registrations_mode:
+        modes:
+          approved: 註冊需要核准
+          none: 沒有人可註冊
+          open: 任何人皆能註冊
+        title: 註冊模式
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示其他站點嘟文，否則就只會顯示本站點嘟文。
         title: 在時間軸預覽顯示其他站點嘟文
@@ -433,10 +439,14 @@ zh-TW:
       site_description_extended:
         desc_html: 可放置行為準則、規定以及其他此伺服器特有的內容。可使用 HTML 標籤
         title: 本站詳細資訊
+      site_short_description:
+        title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
         title: 自訂使用條款
       site_title: 伺服器名稱
+      spam_check_enabled:
+        title: 自動防廣告訊息
       thumbnail:
         desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
         title: 伺服器縮圖
@@ -444,6 +454,8 @@ zh-TW:
         desc_html: 在主頁顯示本站時間軸
         title: 時間軸預覽
       title: 網站設定
+      trends:
+        title: 趨勢主題標籤
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！
@@ -453,14 +465,29 @@ zh-TW:
         delete: 刪除
         nsfw_off: 標記為非敏感內容
         nsfw_on: 標記為敏感內容
+      deleted: 已刪除
       failed_to_execute: 執行失敗
       media:
         title: 媒體檔案
       no_media: 不含媒體檔案
+      no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶嘟文
       with_media: 含有媒體檔案
     tags:
+      context: 上下文
+      directory: 在目錄中
+      in_directory: "目錄中有 %{count} 個"
+      last_active: 上次活躍
+      most_popular: 最熱門
+      most_recent: 最近
       name: Hashtag
+      review: 審核嘟文
+      reviewed: 已審核
+      title: 主題標籤
+      trending_right_now: 最新趨勢
+      unique_uses_today: "今天嘟了 %{count} 則"
+      unreviewed: 未審核
+      updated_msg: 成功更新主題標籤設定
     title: 管理介面
     warning_presets:
       add_new: 新增
