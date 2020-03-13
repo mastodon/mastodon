@@ -53,6 +53,9 @@ is:
         whole_word: Þegar stikkorð eða frasi er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
       domain_allow:
         domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
+      email_domain_block:
+        domain: Þetta getur verið heiti lénsins sem birtist í tölvupóstfanginu, MX-færslan sem það lén beinist að, eða IP-vistfang netþjónsins sem sú MX-færsla beinist að. Þetta verður athugað um leið og notandi skráir sig, og verður þá skráningunni hafnað.
+        with_dns_records: Tilraun verður gerð til að leysa DNS-færslur uppgefins léns og munu niðurstöðurnar einnig verða útilokaðar
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
       form_challenge:
