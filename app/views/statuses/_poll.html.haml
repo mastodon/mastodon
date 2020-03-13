@@ -8,16 +8,16 @@
       %li
         - if show_results
           - percent = total_votes_count > 0 ? 100 * option.votes_count / total_votes_count : 0
-          %span.poll__chart{ style: "width: #{percent}%" }
-
-          %label.poll__text><
+          %label.poll__option><
             %span.poll__number><
               - if own_votes.include?(index)
-                %i.poll__vote__mark.fa.fa-check
+                %i.poll__voted__mark.fa.fa-check
               = percent.round
             = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
+
+            %span.poll__chart{ style: "width: #{percent}%" }
         - else
-          %label.poll__text><
+          %label.poll__option><
             %span.poll__input{ class: poll.multiple? ? 'checkbox' : nil}><
             = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
   .poll__footer
