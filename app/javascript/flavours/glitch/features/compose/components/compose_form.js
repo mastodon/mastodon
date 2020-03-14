@@ -81,18 +81,6 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onChange(e.target.value);
   }
 
-  handleKeyDown = ({ ctrlKey, keyCode, metaKey, altKey }) => {
-    //  We submit the status on control/meta + enter.
-    if (keyCode === 13 && (ctrlKey || metaKey)) {
-      this.handleSubmit();
-    }
-
-    // Submit the status with secondary visibility on alt + enter.
-    if (keyCode === 13 && altKey) {
-      this.handleSecondarySubmit();
-    }
-  }
-
   handleSubmit = (overriddenVisibility = null) => {
     const { textarea: { value }, uploadForm } = this;
     const {
@@ -171,9 +159,19 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   //  When the escape key is released, we focus the UI.
-  handleKeyUp = ({ key }) => {
+  handleKeyUp = ({ key, ctrlKey, keyCode, metaKey, altKey }) => {
     if (key === 'Escape') {
       document.querySelector('.ui').parentElement.focus();
+    }
+
+    //  We submit the status on control/meta + enter.
+    if (keyCode === 13 && (ctrlKey || metaKey)) {
+      this.handleSubmit();
+    }
+
+    // Submit the status with secondary visibility on alt + enter.
+    if (keyCode === 13 && altKey) {
+      this.handleSecondarySubmit();
     }
   }
 
@@ -307,7 +305,6 @@ class ComposeForm extends ImmutablePureComponent {
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={spoilerText}
             onChange={this.handleChangeSpoiler}
-            onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
             disabled={!spoiler}
             ref={this.handleRefSpoilerText}
@@ -328,9 +325,9 @@ class ComposeForm extends ImmutablePureComponent {
           disabled={isSubmitting}
           value={this.props.text}
           onChange={this.handleChange}
+          onKeyUp={this.handleKeyUp}
           suggestions={this.props.suggestions}
           onFocus={this.handleFocus}
-          onKeyDown={this.handleKeyDown}
           onSuggestionsFetchRequested={onFetchSuggestions}
           onSuggestionsClearRequested={onClearSuggestions}
           onSuggestionSelected={this.onSuggestionSelected}
