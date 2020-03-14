@@ -114,11 +114,16 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(changeComposeVisibility(value));
   },
 
-  onMediaDescriptionConfirm(routerHistory, mediaId) {
+  onMediaDescriptionConfirm(routerHistory, mediaId, overriddenVisibility = null) {
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.missingDescriptionMessage),
       confirm: intl.formatMessage(messages.missingDescriptionConfirm),
-      onConfirm: () => dispatch(submitCompose(routerHistory)),
+      onConfirm: () => {
+        if (overriddenVisibility) {
+          dispatch(changeComposeVisibility(overriddenVisibility));
+        };
+        dispatch(submitCompose(routerHistory));
+      },
       secondary: intl.formatMessage(messages.missingDescriptionEdit),
       onSecondary: () => dispatch(openModal('FOCAL_POINT', { id: mediaId })),
       onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
