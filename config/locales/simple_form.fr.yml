@@ -53,6 +53,9 @@ fr:
         whole_word: Si le mot-clé ou la phrase est alphanumérique, alors le filtre ne sera appliqué que s’il correspond au mot entier
       domain_allow:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
+      email_domain_block:
+        domain: Ceci peut être le nom de domaine qui apparaît dans le courriel, l’enregistrement MX que le domaine résout, ou l’IP du serveur auquel l’enregistrement MX résout. Celles-ci seront vérifiées lors de l’inscription de l’utilisateur et l’inscription sera rejetée.
+        with_dns_records: Une tentative de résolution des enregistrements DNS du domaine donné sera effectuée et les résultats seront également mis sur liste noire
       featured_tag:
         name: 'Vous pourriez vouloir utiliser l’un d’entre eux :'
       form_challenge:
@@ -151,6 +154,8 @@ fr:
         username: Identifiant
         username_or_email: Nom d’utilisateur·rice ou courriel
         whole_word: Mot entier
+      email_domain_block:
+        with_dns_records: Inclure les enregistrements MX et IP du domaine
       featured_tag:
         name: Hashtag
       interactions:
