@@ -142,10 +142,12 @@ class Status < ApplicationRecord
       ids += mentions.where(account: Account.local).pluck(:account_id)
       ids += favourites.where(account: Account.local).pluck(:account_id)
       ids += reblogs.where(account: Account.local).pluck(:account_id)
+      ids += bookmarks.where(account: Account.local).pluck(:account_id)
     else
       ids += preloaded.mentions[id] || []
       ids += preloaded.favourites[id] || []
       ids += preloaded.reblogs[id] || []
+      ids += preloaded.bookmarks[id] || []
     end
 
     ids.uniq
