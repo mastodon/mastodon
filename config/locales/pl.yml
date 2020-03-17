@@ -99,6 +99,7 @@ pl:
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
+      add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
       approve_all: Zatwierdź wszystkie
       are_you_sure: Jesteś tego pewien?
@@ -179,6 +180,7 @@ pl:
         staff: Ekipa
         user: Użytkownik
       search: Szukaj
+      search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
@@ -367,6 +369,7 @@ pl:
       destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
       domain: Domena
       empty: Żadna domena e-mail nie znajduje się obecnie na czarnej liście.
+      from_html: z %{domain}
       new:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
@@ -463,6 +466,18 @@ pl:
       custom_css:
         desc_html: Modyfikuj wygląd pliku CSS ładowanego na każdej stronie
         title: Niestandardowy CSS
+      default_noindex:
+        desc_html: Wpływa na wszystkich użytkowników, którzy nie zmienili tego ustawienia
+        title: Domyślnie żądaj nieindeksowania użytkowników w wyszukiwarkach
+      domain_blocks:
+        all: Każdemu
+        disabled: Nikomu
+        title: Pokazuj zablokowane domeny
+        users: Zalogowanym lokalnym użytkownikom
+      domain_blocks_rationale:
+        title: Pokaż uzasadnienia
+      enable_bootstrap_timeline_accounts:
+        title: Dodawaj domyślne obserwacje nowym użytkownikom
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura serwera
         title: Obraz bohatera
@@ -513,6 +528,8 @@ pl:
         desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać ze znaczników HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa serwera
+      spam_check_enabled:
+        desc_html: Mastodon może automatycznie zgłaszać konta, które wysyłają powtarzające się niechciane wiadomości. Część zgłoszeń może być nieprawidłowa.
       thumbnail:
         desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli'
         title: Miniatura serwera
@@ -520,6 +537,11 @@ pl:
         desc_html: Wyświetlaj publiczną oś czasu na stronie widocznej dla niezalogowanych
         title: Podgląd osi czasu
       title: Ustawienia strony
+      trendable_by_default:
+        desc_html: Wpływa na hashtagi, które nie były wcześniej niedozwolone
+        title: Hashtagi mogą pojawiać się w trendach bez wcześniejszego zatwierdzenia
+      trends:
+        title: Popularne hashtagi
     statuses:
       back_to_account: Wróć na konto
       batch:
