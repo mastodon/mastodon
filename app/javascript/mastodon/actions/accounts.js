@@ -139,7 +139,6 @@ export function fetchAccountFail(id, error) {
     id,
     error,
     skipAlert: true,
-    skipNotFound: true,
   };
 };
 
