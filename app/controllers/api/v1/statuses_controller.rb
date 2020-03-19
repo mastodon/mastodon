@@ -34,26 +34,24 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-    begin
-      @thread = status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id])
-    rescue ActiveRecord::RecordNotFound
-      render json: { error: I18n.t('errors.in_reply_not_found') }, status: 404
-    else
-      @status = PostStatusService.new.call(current_user.account,
-                                           text: status_params[:status],
-                                           thread: @thread,
-                                           media_ids: status_params[:media_ids],
-                                           sensitive: status_params[:sensitive],
-                                           spoiler_text: status_params[:spoiler_text],
-                                           visibility: status_params[:visibility],
-                                           scheduled_at: status_params[:scheduled_at],
-                                           application: doorkeeper_token.application,
-                                           poll: status_params[:poll],
-                                           idempotency: request.headers['Idempotency-Key'],
-                                           with_rate_limit: true)
+    @thread = status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: I18n.t('errors.in_reply_not_found') }, status: 404
+  else
+    @status = PostStatusService.new.call(current_user.account,
+                                         text: status_params[:status],
+                                         thread: @thread,
+                                         media_ids: status_params[:media_ids],
+                                         sensitive: status_params[:sensitive],
+                                         spoiler_text: status_params[:spoiler_text],
+                                         visibility: status_params[:visibility],
+                                         scheduled_at: status_params[:scheduled_at],
+                                         application: doorkeeper_token.application,
+                                         poll: status_params[:poll],
+                                         idempotency: request.headers['Idempotency-Key'],
+                                         with_rate_limit: true)
 
-      render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
-    end
+    render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
 
   def destroy
