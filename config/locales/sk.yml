@@ -42,6 +42,7 @@ sk:
       reason: 'Dôvod:'
       rejecting_media: 'Mediálne súbory z týchto serverov nebudú spracované, alebo ukladané, a nebudú z nich zobrazované žiadne náhľady, vyžadujúc ručné prekliknutie priamo až k pôvodnému súboru:'
       silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenásleduješ:'
+    unavailable_content_html: Vo všeobecnosti, Mastodon ti dovoľuje vidieť obsah, a komunikovať s užívateľmi akéhokoľvek iného serveru v rámci fediversa. Toto sú výnimky, ktoré boli vytvorené na tomto konkrétnom serveri.
     user_count_after:
       one: užívateľ
       few: užívateľov
@@ -178,6 +179,7 @@ sk:
         staff: Člen
         user: Užívateľ
       search: Hľadaj
+      search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
       shared_inbox_url: URL zdieľanej schránky
       show:
@@ -245,6 +247,7 @@ sk:
         title: Nové oznámenie
       published_msg: Oboznámenie úspešne zverejnené!
       scheduled_for: Načasované na %{time}
+      scheduled_msg: Oboznámenie bolo naplánované na zverejnenie!
       title: Oboznámenia
     custom_emojis:
       assign_category: Priraď kategóriu
@@ -689,7 +692,7 @@ sk:
       x_seconds: "%{count}sek"
   deletes:
     challenge_not_passed: Údaje, ktoré si zadal/a, sú nesprávne
-    confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
+    confirm_password: Napíš svoje terajšie heslo pre overenie tvojej identity
     confirm_username: Zadaj svoju prezývku, na potvrdenie úkonu
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
@@ -942,6 +945,9 @@ sk:
     other: Ostatné
     posting_defaults: Východiskové nastavenia príspevkov
     public_timelines: Verejné časové osi
+  reactions:
+    errors:
+      unrecognized_emoji: je neznámy smajlík
   relationships:
     activity: Aktivita účtu
     dormant: Spiace
