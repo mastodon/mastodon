@@ -595,11 +595,16 @@ pl:
       subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
   aliases:
     add_new: Utwórz alias
+    remove: Odłącz alias
   appearance:
     advanced_web_interface: Zaawansowany interfejs użytkownika
     advanced_web_interface_hint: 'Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.'
     animations_and_accessibility: Animacje i dostępność
     confirmation_dialogs: Dialogi potwierdzenia
+    localization:
+      body: Mastodon jest tłumaczony przez wolontariuszy.
+      guide_link: https://pl.crowdin.com/project/mastodon
+      guide_link_text: Każdy może wnieść swój wkład.
     sensitive_content: Wrażliwa zawartość
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
@@ -622,6 +627,8 @@ pl:
     checkbox_agreement_html: Zgadzam się z <a href="%{rules_path}" target="_blank">regułami serwera</a> i <a href="%{terms_path}" target="_blank">zasadami korzystania z usługi</a>
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
+    description:
+      prefix_sign_up: Zarejestruj się na Mastodon już dziś!
     didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
@@ -639,6 +646,10 @@ pl:
     reset_password: Zresetuj hasło
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
+    setup:
+      title: Konfiguracja
+    status:
+      account_status: Stan konta
     trouble_logging_in: Masz problem z zalogowaniem się?
   authorize_follow:
     already_following: Już śledzisz to konto
@@ -653,6 +664,8 @@ pl:
     title: Śledź %{acct}
   challenge:
     confirm: Kontynuuj
+    invalid_password: Nieprawidłowe hasło
+    prompt: Potwierdź hasło, aby kontynuować
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
@@ -713,6 +726,7 @@ pl:
       limit: Już przekroczyłeś(-aś) maksymalną liczbę wyróżnionych hashtagów
   filters:
     contexts:
+      account: Profile
       home: Strona główna
       notifications: Powiadomienia
       public: Publiczne osie czasu
@@ -724,6 +738,7 @@ pl:
       invalid_irreversible: Nieodwracalne filtrowanie działa tylko na stronie głównej i w powiadomieniach
     index:
       delete: Usuń
+      empty: Nie masz żadnych filtrów.
       title: Filtry
     new:
       title: Dodaj nowy filtr
@@ -731,10 +746,13 @@ pl:
     developers: Dla programistów
     more: Więcej…
     resources: Zasoby
+    trending_now: Obecnie na czasie
   generic:
     all: Wszystkie
     changes_saved_msg: Ustawienia zapisane!
     copy: Kopiuj
+    delete: Usuń
+    no_batch_actions_available: Brak akcji wsadowych dostępnych na tej stronie
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
     validation_errors:
@@ -810,6 +828,17 @@ pl:
       too_many: Nie możesz załączyć więcej niż 4 plików
   migrations:
     acct: nazwa@domena nowego konta
+    cancel: Anuluj przekierowanie
+    cancelled_msg: Pomyślnie anulowano przekierowanie.
+    errors:
+      move_to_self: nie może być bieżącym kontem
+      not_found: nie mogło zostać odnalezione
+    past_migrations: Poprzednie migracje
+    proceed_with_move: Przenieś obserwujących
+    redirecting_to: Twoje konto przekierowuje na %{acct}.
+    set_redirect: Ustaw przekierowanie
+    warning:
+      other_data: Żadne inne dane nie zostaną automatycznie przeniesione
   moderation:
     title: Moderacja
   notification_mailer:
@@ -850,6 +879,8 @@ pl:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
+  notifications:
+    other_settings: Inne ustawienia powiadomień
   number:
     human:
       decimal_units:
@@ -873,6 +904,7 @@ pl:
       duration_too_long: jest zbyt odległa
       duration_too_short: jest zbyt bliska
       expired: To głosowanie już zakończyło się
+      invalid_choice: Wybrana opcja głosowania nie istnieje
       over_character_limit: nie może zawierać więcej niż %{max} znaków
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
@@ -880,9 +912,16 @@ pl:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
     public_timelines: Publiczne osie czasu
+  reactions:
+    errors:
+      limit_reached: Przekroczono limit różnych reakcji
+      unrecognized_emoji: nie jest znanym emoji
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
+    followers: Śledzący
+    following: Śledzeni
+    invited: Zaproszeni
     last_active: Ostatnia aktywność
     most_recent: Ostatnie
     moved: Przeniesione
@@ -958,6 +997,7 @@ pl:
   settings:
     account: Konto
     account_settings: Ustawienia konta
+    aliases: Aliasy konta
     appearance: Wygląd
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
@@ -975,6 +1015,8 @@ pl:
     profile: Profil
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
+  spam_check:
+    spam_detected: To zgłoszenie jest automatyczne. Został wykryty spam.
   statuses:
     attached:
       description: 'Załączono: %{attached}'
@@ -1011,6 +1053,7 @@ pl:
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
+    show_thread: Pokaż wątek
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1024,6 +1067,8 @@ pl:
     pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
+  tags:
+    does_not_match_previous_name: nie pasuje do poprzedniej nazwy
   terms:
     body_html: |
       <h2>Polityka prywatności</h2>
@@ -1142,6 +1187,7 @@ pl:
         silence: Kiedy Twoje konto jest ograniczone, tylko osoby które je śledzą będą widzieć Twoje wpisy. Może ono też przestać być widoczne na publicznych listach. Inni wciąż mogą zacząć Cię śledzić.
         suspend: Twoje konto zostało zawieszone i wszystkie Twoje wpisy wraz z zawartością multimedialną zostały nieodwracalnie usunięte z tego serwera i serwerów, których użytkownicy śledzili Cię.
       review_server_policies: Przejrzyj zasady serwera
+      statuses: 'Szczególnie dla:'
       subject:
         disable: Twoje konto %{acct} zostało wyłączone
         none: Ostrzeżenie dla %{acct}
