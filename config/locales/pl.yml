@@ -530,6 +530,7 @@ pl:
       site_title: Nazwa serwera
       spam_check_enabled:
         desc_html: Mastodon może automatycznie zgłaszać konta, które wysyłają powtarzające się niechciane wiadomości. Część zgłoszeń może być nieprawidłowa.
+        title: Automatyzacja antyspamu
       thumbnail:
         desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli'
         title: Miniatura serwera
@@ -541,13 +542,18 @@ pl:
         desc_html: Wpływa na hashtagi, które nie były wcześniej niedozwolone
         title: Hashtagi mogą pojawiać się w trendach bez wcześniejszego zatwierdzenia
       trends:
+        desc_html: Wyświetlaj publicznie wcześniej sprawdzone hashtagi, które są obecnie na czasie
         title: Popularne hashtagi
+    site_uploads:
+      delete: Usuń przesłany plik
+      destroyed_msg: Pomyślnie usunięto przesłany plik!
     statuses:
       back_to_account: Wróć na konto
       batch:
         delete: Usuń
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
+      deleted: Usunięto
       failed_to_execute: Nie udało się wykonać
       media:
         title: Multimedia
@@ -556,8 +562,23 @@ pl:
       title: Wpisy konta
       with_media: Z zawartością multimedialną
     tags:
+      accounts_today: Unikalne wykorzystania dzisiaj
+      accounts_week: Unikalne wykorzystania w tym tygodniu
+      breakdown: Podział dzisiejszego wykorzystania według źródła
+      context: Kontekst
+      directory: W katalogu
+      in_directory: "%{count} w katalogu"
+      last_active: Ostatnia aktywność
+      most_popular: Najpopularniejsze
+      most_recent: Ostatnie
       name: Hasztag
+      review: Stan przeglądu
+      reviewed: Przejrzany
       title: Hashtagi
+      trending_right_now: Obecnie na czasie
+      unique_uses_today: "%{count} opublikowanych dzisiaj"
+      unreviewed: Nie przejrzano
+      updated_msg: Pomyślnie uaktualniono ustawienia hashtagów
     title: Administracja
     warning_presets:
       add_new: Dodaj nowy
