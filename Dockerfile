@@ -38,7 +38,7 @@ RUN apt update && \
 	make -j$(nproc) > /dev/null && \
 	make install_bin install_include install_lib
 
-# Install ruby
+# Install Ruby
 ENV RUBY_VER="2.6.5"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
@@ -58,8 +58,10 @@ RUN apt update && \
 	make -j$(nproc) > /dev/null && \
 	make install
 
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
+# Update PATH
+ENV PATH="/opt/ruby/bin:/opt/node/bin:${PATH}"
 
+# Install mastodon install deps
 RUN npm install -g yarn && \
 	gem install bundler && \
 	apt update && \
@@ -74,6 +76,7 @@ RUN cd /opt/mastodon && \
 	bundle install -j$(nproc) && \
 	yarn install --pure-lockfile
 
+##-------------------------------------------------
 FROM ubuntu:18.04
 
 # Copy over all the langs needed for runtime
@@ -81,8 +84,8 @@ COPY --from=build-dep /opt/node /opt/node
 COPY --from=build-dep /opt/ruby /opt/ruby
 COPY --from=build-dep /opt/jemalloc /opt/jemalloc
 
-# Add more PATHs to the PATH
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"
+# Update PATH
+ENV PATH="/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin:${PATH}"
 
 # Create the mastodon user
 ARG UID=991
@@ -136,4 +139,4 @@ RUN cd ~ && \
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
 ENTRYPOINT ["/tini", "--"]
-EXPOSE 3000 4000
+EXPOSE 3000
