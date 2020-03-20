@@ -17,8 +17,7 @@ feature 'Profile' do
   scenario 'I can view Annes public account' do
     visit account_path('alice')
 
-    is_expected.to have_title("alice (@alice@#{local_domain})")
-
+    is_expected.to have_title("anne (@anne@@#{local_domain})")
     within('.public-account-header h1') do
       is_expected.to have_content("alice @alice@#{local_domain}")
     end
