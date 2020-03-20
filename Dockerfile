@@ -5,12 +5,12 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo "Etc/UTC" > /etc/localtime && \
 	apt-get update && \
-    apt-get --no-install-recommends -y install apt-utils wget python ca-certificates
+	apt-get --no-install-recommends -y install apt-utils wget python ca-certificates
 
 # Install Node v12 (LTS)
 ENV NODE_VER="12.16.1"
 RUN	ARCH= && \
-    dpkgArch="$(dpkg --print-architecture)" && \
+	dpkgArch="$(dpkg --print-architecture)" && \
 	case "${dpkgArch##*-}" in \
 		amd64) ARCH='x64';; \
 		ppc64el) ARCH='ppc64le';; \
@@ -84,7 +84,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo "Etc/UTC" > /etc/localtime && \
 	apt-get update && \
-    apt-get --no-install-recommends -y install apt-utils wget whois ca-certificates
+	apt-get --no-install-recommends -y install apt-utils wget whois ca-certificates
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
@@ -117,7 +117,7 @@ ENV TINI_VERSION="0.18.0"
 ENV TINI_SUM="12d20136605531b09a2c2dac02ccee85e1b874eb322ef6baf7561cd93f93c855"
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini /tini
 RUN echo "${TINI_SUM} tini" | sha256sum -c - && \
-    chmod +x /tini
+	chmod +x /tini
 
 # Copy over mastodon source, and dependencies from building, and set permissions
 COPY --chown=mastodon:mastodon . /opt/mastodon
