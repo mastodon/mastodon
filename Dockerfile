@@ -42,9 +42,7 @@ RUN apt-get --no-install-recommends -y install make autoconf gcc g++ && \
 ENV RUBY_VER="2.6.5"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
-RUN apt-get update && \
-	apt-get --no-install-recommends -y install build-essential \
-	bison libyaml-dev libgdbm-dev libreadline-dev \
+RUN apt-get --no-install-recommends -y install build-essential bison libyaml-dev libgdbm-dev libreadline-dev \
 	libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
 	cd ~ && \
 	wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-${RUBY_VER}.tar.gz && \
@@ -64,9 +62,7 @@ ENV PATH="/opt/ruby/bin:/opt/node/bin:${PATH}"
 # Install mastodon install deps
 RUN npm install -g yarn && \
 	gem install bundler && \
-	apt-get update && \
-	apt-get --no-install-recommends -y install git libicu-dev libidn11-dev \
-	libpq-dev libprotobuf-dev protobuf-compiler
+	apt-get --no-install-recommends -y install git libicu-dev libidn11-dev libpq-dev libprotobuf-dev protobuf-compiler
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
@@ -112,7 +108,7 @@ RUN apt-get --no-install-recommends -y install \
 	rm -rf /var/cache && \
 	rm -rf /var/lib/apt/lists/*
 
-# Add tini
+# Install tini
 ENV TINI_VERSION="0.18.0"
 ENV TINI_SUM="12d20136605531b09a2c2dac02ccee85e1b874eb322ef6baf7561cd93f93c855"
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini /tini

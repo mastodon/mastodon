@@ -16,7 +16,7 @@ RUN addgroup --gid ${GID} mastodon && \
 	useradd -m -u ${UID} -g ${GID} -d /opt/mastodon mastodon && \
 	echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd
 
-# Add tini
+# Install tini
 ENV TINI_VERSION="v0.18.0"
 ENV TINI_SUM="12d20136605531b09a2c2dac02ccee85e1b874eb322ef6baf7561cd93f93c855"
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
