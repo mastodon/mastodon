@@ -389,7 +389,7 @@ class Announcements extends ImmutablePureComponent {
   _markAnnouncementAsRead () {
     const { dismissAnnouncement, announcements } = this.props;
     const { index } = this.state;
-    const announcement = announcements.get(index);
+    const announcement = announcements.get(index) || announcements.get(index - 1);
     if (!announcement.get('read')) dismissAnnouncement(announcement.get('id'));
   }
 
@@ -407,7 +407,7 @@ class Announcements extends ImmutablePureComponent {
 
   render () {
     const { announcements, intl } = this.props;
-    const { index } = this.state;
+    const index = this.state.index < announcements.size ? this.state.index : announcements.size - 1;
 
     if (announcements.isEmpty()) {
       return null;
