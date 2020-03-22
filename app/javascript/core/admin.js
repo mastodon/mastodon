@@ -1,6 +1,6 @@
 //  This file will be loaded on admin pages, regardless of theme.
 
-import { delegate } from 'rails-ujs';
+import { delegate } from '@rails/ujs';
 import ready from '../mastodon/ready';
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';

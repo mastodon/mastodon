@@ -3,7 +3,7 @@
 import createHistory from 'history/createBrowserHistory';
 import ready from '../mastodon/ready';
 
-const { delegate } = require('rails-ujs');
+const { delegate } = require('@rails/ujs');
 const { length } = require('stringz');
 
 delegate(document, '.webapp-btn', 'click', ({ target, button }) => {

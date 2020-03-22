@@ -4,7 +4,7 @@ FROM ubuntu:18.04 as build-dep
 SHELL ["bash", "-c"]
 
 # Install Node v12 (LTS)
-ENV NODE_VER="12.14.0"  
+ENV NODE_VER="12.16.1"
 RUN	ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \

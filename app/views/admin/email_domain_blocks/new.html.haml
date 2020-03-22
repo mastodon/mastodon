@@ -5,7 +5,10 @@
   = render 'shared/error_messages', object: @email_domain_block
 
   .fields-group
-    = f.input :domain, wrapper: :with_label, label: t('admin.email_domain_blocks.domain')
+    = f.input :domain, wrapper: :with_block_label, label: t('admin.email_domain_blocks.domain')
+
+  .fields-group
+    = f.input :with_dns_records, as: :boolean, wrapper: :with_label
 
   .actions
     = f.button :button, t('.create'), type: :submit

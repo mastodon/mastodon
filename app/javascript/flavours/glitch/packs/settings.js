@@ -3,7 +3,7 @@ import ready from 'flavours/glitch/util/ready';
 import loadKeyboardExtensions from 'flavours/glitch/util/load_keyboard_extensions';
 
 function main() {
-  const { delegate } = require('rails-ujs');
+  const { delegate } = require('@rails/ujs');
 
   delegate(document, '.sidebar__toggle__icon', 'click', () => {
     const target = document.querySelector('.sidebar ul');
