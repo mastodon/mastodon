@@ -131,7 +131,7 @@ class Formatter
   end
 
   def link_url(url)
-    "<a href=\"#{encode(url)}\" target=\"blank\" rel=\"nofollow noopener\">#{link_html(url)}</a>"
+    "<a href=\"#{encode(url)}\" target=\"blank\" rel=\"nofollow noopener noreferrer\">#{link_html(url)}</a>"
   end
 
   private

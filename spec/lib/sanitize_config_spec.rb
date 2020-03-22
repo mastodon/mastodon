@@ -28,7 +28,11 @@ describe Sanitize::Config do
     end
 
     it 'keeps a with href' do
-      expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener tag noreferrer" target="_blank">Test</a>'
+      expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
+    end
+
+    it 'keeps a with href and rel tag' do
+      expect(Sanitize.fragment('<a href="http://example.com" rel="tag">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener noreferrer tag" target="_blank">Test</a>'
     end
   end
 end

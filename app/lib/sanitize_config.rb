@@ -54,6 +54,15 @@ class Sanitize
       end
     end
 
+    LINK_REL_TRANSFORMER = lambda do |env|
+      return unless env[:node_name] == 'a'
+
+      node = env[:node]
+
+      rel = (node['rel'] || '').split(' ') & ['tag']
+      node['rel'] = (['nofollow', 'noopener', 'noreferrer'] + rel).join(' ')
+    end
+
     UNSUPPORTED_HREF_TRANSFORMER = lambda do |env|
       return unless env[:node_name] == 'a'
 
@@ -82,7 +91,6 @@ class Sanitize
 
       add_attributes: {
         'a' => {
-          'rel' => 'nofollow noopener tag noreferrer',
           'target' => '_blank',
         },
       },
@@ -95,6 +103,7 @@ class Sanitize
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
         IMG_TAG_TRANSFORMER,
+        LINK_REL_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
       ]
     )
