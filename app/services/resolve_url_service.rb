@@ -12,7 +12,7 @@ class ResolveURLService < BaseService
       process_local_url
     elsif !fetched_resource.nil?
       process_url
-    elsif @on_behalf_of.present?
+    else
       process_url_from_db
     end
   end
@@ -30,6 +30,8 @@ class ResolveURLService < BaseService
   end
 
   def process_url_from_db
+    return unless @on_behalf_of.present? && [401, 403, 404].include?(fetch_resource_service.response_code)
+
     # It may happen that the resource is a private toot, and thus not fetchable,
     # but we can return the toot if we already know about it.
     status = Status.find_by(uri: @url) || Status.find_by(url: @url)
@@ -40,7 +42,11 @@ class ResolveURLService < BaseService
   end
 
   def fetched_resource
-    @fetched_resource ||= FetchResourceService.new.call(@url)
+    @fetched_resource ||= fetch_resource_service.call(@url)
+  end
+
+  def fetch_resource_service
+    @_fetch_resource_service ||= FetchResourceService.new
   end
 
   def resource_url

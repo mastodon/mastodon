@@ -1,4 +1,4 @@
-import Rails from 'rails-ujs';
+import Rails from '@rails/ujs';
 import { signOutLink } from 'flavours/glitch/util/backend_links';
 
 export const logOut = () => {

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.4.0', '< 3.0.0'
+ruby '>= 2.5.0', '< 3.0.0'
 
 gem 'pkg-config', '~> 1.4'
 
@@ -35,7 +35,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
-gem 'cld3', '~> 3.2.6'
+gem 'cld3', '~> 3.3.0'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
@@ -84,7 +84,7 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
 gem 'sanitize', '~> 5.1'
-gem 'sidekiq', '~> 5.2'
+gem 'sidekiq', '~> 6.0'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
@@ -145,7 +145,7 @@ group :development do
   gem 'brakeman', '~> 4.7', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
-  gem 'capistrano', '~> 3.11'
+  gem 'capistrano', '~> 3.12'
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'

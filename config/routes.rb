@@ -346,7 +346,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :media,        only: [:create, :update]
+      resources :media,        only: [:create, :update, :show]
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index] do
         collection do
@@ -463,6 +463,7 @@ Rails.application.routes.draw do
     end
 
     namespace :v2 do
+      resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
     end
 

@@ -1,4 +1,4 @@
-import { start } from 'rails-ujs';
+import { start } from '@rails/ujs';
 
 start();
 

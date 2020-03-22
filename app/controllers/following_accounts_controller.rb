@@ -29,7 +29,8 @@ class FollowingAccountsController < ApplicationController
         render json: collection_presenter,
                serializer: ActivityPub::CollectionSerializer,
                adapter: ActivityPub::Adapter,
-               content_type: 'application/activity+json'
+               content_type: 'application/activity+json',
+               fields: restrict_fields_to
       end
     end
   end
@@ -70,6 +71,14 @@ class FollowingAccountsController < ApplicationController
         size: @account.following_count,
         first: page_url(1)
       )
+    end
+  end
+
+  def restrict_fields_to
+    if page_requested? || !@account.user_hides_network?
+      # Return all fields
+    else
+      %i(id type totalItems)
     end
   end
 end

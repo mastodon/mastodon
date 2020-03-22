@@ -5,7 +5,7 @@ import loadKeyboardExtensions from 'flavours/glitch/util/load_keyboard_extension
 function main() {
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('flavours/glitch/components/relative_timestamp');
-  const { delegate } = require('rails-ujs');
+  const { delegate } = require('@rails/ujs');
   const emojify = require('flavours/glitch/util/emoji').default;
   const { getLocale } = require('locales');
   const { messages } = getLocale();
