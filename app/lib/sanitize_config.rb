@@ -60,7 +60,10 @@ class Sanitize
       node = env[:node]
 
       rel = (node['rel'] || '').split(' ') & ['tag']
-      node['rel'] = (['nofollow', 'noopener', 'noreferrer'] + rel).join(' ')
+      unless env[:config][:outgoing] && TagManager.instance.local_url?(node['href'])
+        rel += ['nofollow', 'noopener', 'noreferrer']
+      end
+      node['rel'] = rel.join(' ')
     end
 
     UNSUPPORTED_HREF_TRANSFORMER = lambda do |env|
@@ -103,8 +106,8 @@ class Sanitize
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
         IMG_TAG_TRANSFORMER,
-        LINK_REL_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
+        LINK_REL_TRANSFORMER,
       ]
     )
 
