@@ -15,9 +15,93 @@ br:
       domain: Dafariad
   accounts:
     media: Media
+    posts_tab_heading: Toudoù
+    posts_with_replies: Toudoù ha respontoù
+    roles:
+      admin: Merour
+      bot: Robot
+      group: Strollad
+      moderator: Mod
+    unavailable: Profil dihegerz
+    unfollow: Diheuliañ
   admin:
+    account_moderation_notes:
+      delete: Dilemel
+    accounts:
+      change_email:
+        current_email: Postel bremanel
+        label: Kemm ar postel
+        new_email: Postel nevez
+        submit: Kemm ar postel
+      enable: Gweredekaat
+      enabled: Gweredekaet
+      followers: Heulier·ezed·ien
+      header: Talbenn
+      ip: IP
+      location:
+        local: Lec'hel
+        remote: A-bell
+      moderation:
+        active: Oberiant
+        silenced: Mudet
+        suspended: Astalet
+      perform_full_suspension: Astalañ
+      protocol: Komenad
+      public: Publik
+      reject: Nac'hañ
+      reject_all: Nac'hañ pep hini
+      remove_header: Dilemel an talbenn
+      reset: Adderaouekaat
+      reset_password: Adderaouekaat ar ger-tremen
+      roles:
+        admin: Merour
+        moderator: Habaskaer·ez
+        user: Implijer·ez
+    action_logs:
+      deleted_status: "(statud dilemet)"
+    announcements:
+      new:
+        create: Sevel ur gemenn
+        title: Kemenn nevez
+      title: Kemennoù
+    custom_emojis:
+      delete: Dilemel
+      disable: Diweredekaat
+      disabled: Diweredekaet
+      emoji: Fromlun
+      enable: Gweredekaat
+      enabled: Gweredekaet
     dashboard:
+      config: Kefluniadur
+      software: Meziant
       trends: Luskadoù
+    domain_blocks:
+      domain: Domani
+      new:
+        create: Sevel ur stanker
+        severity:
+          noop: Hini ebet
+          silence: Mudañ
+          suspend: Astalañ
+      severity:
+        silence: mudet
+        suspend: astalet
+      show:
+        undo: Dizober
+    email_domain_blocks:
+      add_new: Ouzhpenniñ unan nevez
+      delete: Dilemel
+      domain: Domani
+      from_html: eus %{domain}
+      new:
+        create: Ouzhpenniñ un domani
+    instances:
+      by_domain: Domani
+      moderation:
+        all: Pep tra
+    settings:
+      domain_blocks:
+        all: D'an holl dud
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
