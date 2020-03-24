@@ -214,6 +214,22 @@ br:
     title: '%{name}: "%{quote}"'
     visibilities:
       public: Publik
+  stream_entries:
+    pinned: Toud spilhennet
   themes:
     default: Mastodoñ (Teñval)
     mastodon-light: Mastodoñ (Sklaer)
+  time:
+    formats:
+      default: "%He%M, %d %b %Y"
+      month: "%b %Y"
+  two_factor_authentication:
+    disable: Diweredekaat
+    enable: Gweredekaat
+    setup: Kefluniañ
+  user_mailer:
+    warning:
+      title:
+        none: Diwall
+    welcome:
+      edit_profile_action: Kefluniañ ar profil
