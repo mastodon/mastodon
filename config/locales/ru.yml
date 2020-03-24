@@ -219,7 +219,7 @@ ru:
         destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
         destroy_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в белый список"
         destroy_status: "%{name} удалил(а) пост пользователя %{target}"
-        disable_2fa_user: "%{name} отключил(а) двухэтапную авторизацию у пользователя %{target}"
+        disable_2fa_user: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji: "%{name} отключил(а) эмодзи %{target}"
         disable_user: "%{name} заморозил(а) пользователя %{target}"
         enable_custom_emoji: "%{name} включил(а) эмодзи %{target}"
@@ -378,8 +378,8 @@ ru:
       by_domain: Домен
       delivery_available: Доставка возможна
       known_accounts:
-        one: "%{count} известных учётных записей"
-        few: "%{count} известных учётных записей"
+        one: "%{count} известная учётная запись"
+        few: "%{count} известные учётные записи"
         many: "%{count} известных учётных записей"
         other: "%{count} известных учётных записей"
       moderation:
@@ -431,12 +431,12 @@ ru:
           one: "%{count} заметка"
           few: "%{count} заметки"
           many: "%{count} заметок"
-          other: "%{count} заметки"
+          other: "%{count} заметок"
         reports:
           one: "%{count} жалоба"
           few: "%{count} жалобы"
           many: "%{count} жалоб"
-          other: "%{count} жалобы"
+          other: "%{count} жалоб"
       action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
       assign_to_self: Назначить себе
@@ -1083,7 +1083,7 @@ ru:
     preferences: Настройки
     profile: Профиль
     relationships: Подписки и подписчики
-    two_factor_authentication: Подтверждение входа
+    two_factor_authentication: Двухфакторная аутентификация
   spam_check:
     spam_detected: Это автоматический отчет. Обнаружен спам.
   statuses:
@@ -1117,7 +1117,7 @@ ru:
     poll:
       total_people:
         one: "%{count} человек"
-        few: "%{count} человек"
+        few: "%{count} человека"
         many: "%{count} человек"
         other: "%{count} человек"
       total_votes:
