@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ ko:
         include_statuses: 사용자는 어떤 툿에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
         send_email_notification: 유저는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
         text_html: 선택사항. 툿 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
-        type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
+        type_html: <strong>%{acct}</strong>에 대해 취할 행동 선택
         warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
       announcement:
         all_day: 체크 되었을 경우, 그 시간에 속한 날짜들에만 표시됩니다
@@ -182,9 +181,9 @@ ko:
         name: 해시태그
         trendable: 이 해시태그가 유행에 보여지도록 허용
         usable: 이 해시태그를 툿에 사용 가능하도록 허용
-    'no': 아니오
+    'no': '아니오'
     recommended: 추천함
     required:
       mark: "*"
       text: 필수 항목
-    'yes': 네
+    'yes': '네'
