@@ -93,7 +93,7 @@ class Followers extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {blockedBy ? [] : accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />
+            <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
       </Column>

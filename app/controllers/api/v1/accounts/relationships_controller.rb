@@ -4,8 +4,6 @@ class Api::V1::Accounts::RelationshipsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:follows' }
   before_action :require_user!
 
-  respond_to :json
-
   def index
     accounts = Account.where(id: account_ids).select('id')
     # .where doesn't guarantee that our results are in the same order

@@ -59,6 +59,14 @@ class Report < ApplicationRecord
   end
 
   def resolve!(acting_account)
+    if account_id == -99 && target_account.trust_level == Account::TRUST_LEVELS[:untrusted]
+      # This is an automated report and it is being dismissed, so it's
+      # a false positive, in which case update the account's trust level
+      # to prevent further spam checks
+
+      target_account.update(trust_level: Account::TRUST_LEVELS[:trusted])
+    end
+
     RemovalWorker.push_bulk(Status.with_discarded.discarded.where(id: status_ids).pluck(:id)) { |status_id| [status_id, { immediate: true }] }
     update!(action_taken: true, action_taken_by_account_id: acting_account.id)
   end

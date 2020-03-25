@@ -5,8 +5,6 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   before_action :set_account
   after_action :insert_pagination_headers
 
-  respond_to :json
-
   def index
     @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer
@@ -27,7 +25,7 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   end
 
   def hide_results?
-    (@account.user_hides_network? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
+    (@account.hides_following? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
   end
 
   def default_accounts

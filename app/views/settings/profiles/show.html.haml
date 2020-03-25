@@ -1,7 +1,10 @@
 - content_for :page_title do
   = t('settings.edit_profile')
 
-= simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
+- content_for :heading_actions do
+  = button_tag t('generic.save_changes'), class: 'button', form: 'edit_profile'
+
+= simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
   = render 'shared/error_messages', object: @account
 
   .fields-row

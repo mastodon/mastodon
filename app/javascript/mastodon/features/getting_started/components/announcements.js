@@ -95,6 +95,10 @@ class Content extends ImmutablePureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
+        let status = this.props.announcement.get('statuses').find(item => link.href === item.get('url'));
+        if (status) {
+          link.addEventListener('click', this.onStatusClick.bind(this, status), false);
+        }
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
       }
@@ -117,6 +121,13 @@ class Content extends ImmutablePureComponent {
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.history.push(`/timelines/tag/${hashtag}`);
+    }
+  }
+
+  onStatusClick = (status, e) => {
+    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      this.context.router.history.push(`/statuses/${status.get('id')}`);
     }
   }
 
@@ -378,7 +389,7 @@ class Announcements extends ImmutablePureComponent {
   _markAnnouncementAsRead () {
     const { dismissAnnouncement, announcements } = this.props;
     const { index } = this.state;
-    const announcement = announcements.get(index);
+    const announcement = announcements.get(index) || announcements.get(index - 1);
     if (!announcement.get('read')) dismissAnnouncement(announcement.get('id'));
   }
 
@@ -396,7 +407,7 @@ class Announcements extends ImmutablePureComponent {
 
   render () {
     const { announcements, intl } = this.props;
-    const { index } = this.state;
+    const index = this.state.index < announcements.size ? this.state.index : announcements.size - 1;
 
     if (announcements.isEmpty()) {
       return null;
