@@ -1,3 +1,4 @@
+---
 ja:
   simple_form:
     hints:
@@ -12,7 +13,7 @@ ja:
         include_statuses: ユーザーは取られた制限や警告の原因となったトゥートを確認できるようになります
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
-        type_html: <strong>%{acct}</strong>さんに対し、何を行うか選択してください
+        type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
         all_day: 有効化すると、対象期間の箇所に日付だけが表示されます
@@ -22,7 +23,7 @@ ja:
         text: トゥートと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
-        avatar: '%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます'
+        avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
         current_password: 現在のアカウントのパスワードを入力してください
@@ -31,7 +32,7 @@ ja:
         discoverable: ディレクトリはあなたのアカウントをより多くの人に見つけてもらうためのひとつの手段です
         email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
-        header: '%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます'
+        header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外されたトゥートは元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
@@ -181,9 +182,9 @@ ja:
         name: ハッシュタグ
         trendable: トレンドへの表示を許可する
         usable: トゥートへの使用を許可する
-    'no': 'いいえ'
+    'no': いいえ
     recommended: おすすめ
     required:
       mark: "*"
       text: 必須
-    'yes': 'はい'
+    'yes': はい
