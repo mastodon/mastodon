@@ -8,6 +8,7 @@ gl:
         acct: Indica o usuaria@servidor da conta a cal queres migrar
       account_warning_preset:
         text: Pódeslle dar formato ao toot, como URLs, etiquetas e mencións
+        title: Optativo. Non visible para a correspondente
       admin_account_action:
         include_statuses: A usuaria verá que toots causaron a acción da moderación ou aviso
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
@@ -53,6 +54,9 @@ gl:
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
       domain_allow:
         domain: Este dominio estará en disposición de obter datos desde este servidor e datos de entrada a el poderán ser procesados e gardados
+      email_domain_block:
+        domain: Esto pode ser o nome de dominio que aparece no enderezo do correo, o rexistro MX que resolve o dominio, ou o IP do servidor que resolve o rexistro MX. Estos confrontaranse contra o rexistro da usuaria e o rexistro será rexeitado.
+        with_dns_records: Vaise facer un intento de resolver os rexistros DNS propocionados e os resultados tamén irán a lista negra
       featured_tag:
         name: 'Podería utilizar algunha de estas:'
       form_challenge:
@@ -78,6 +82,7 @@ gl:
         acct: Xestiona a nova conta
       account_warning_preset:
         text: Texto preestablecido
+        title: Título
       admin_account_action:
         include_statuses: Incluír toots reportados no correo
         send_email_notification: Notificar a usuaria por correo-e
@@ -150,6 +155,8 @@ gl:
         username: Nome de usuaria
         username_or_email: Nome de usuaria ou Correo-e
         whole_word: Palabra completa
+      email_domain_block:
+        with_dns_records: Incluír rexistros MX e IPs do dominio
       featured_tag:
         name: Etiqueta
       interactions:

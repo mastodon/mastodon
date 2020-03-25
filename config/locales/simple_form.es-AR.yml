@@ -8,6 +8,7 @@ es-AR:
         acct: Especificá el nombredeusuario@dominio de la cuenta a la que querés mudarte
       account_warning_preset:
         text: Podés usar sintaxis de toots, como direcciones web, etiquetas y menciones
+        title: Opcional. No visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué toots causaron la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con su cuenta
@@ -53,6 +54,9 @@ es-AR:
         whole_word: Cuando la palabra clave o frase es sólo alfanumérica, sólo será aplicado si coincide con toda la palabra
       domain_allow:
         domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
+      email_domain_block:
+        domain: Puede ser el nombre de dominio que aparece en la dirección de correo electrónico, el registro MX hacia el cual resuelve el dominio, o la dirección IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del registro del usuario, y el registro será rechazado.
+        with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en la lista de desaprobados
       featured_tag:
         name: 'Puede que quieras usar una de estas:'
       form_challenge:
@@ -78,6 +82,7 @@ es-AR:
         acct: Alias de la cuenta nueva
       account_warning_preset:
         text: Texto predefinido
+        title: Título
       admin_account_action:
         include_statuses: Incluir en el correo electrónico a los toots denunciados
         send_email_notification: Notificar al usuario por correo electrónico
@@ -150,6 +155,8 @@ es-AR:
         username: Nombre de usuario
         username_or_email: Nombre de usuario o correo electrónico
         whole_word: Palabra entera
+      email_domain_block:
+        with_dns_records: Incluir los registros MX y las direcciones IP del dominio
       featured_tag:
         name: Etiqueta
       interactions:

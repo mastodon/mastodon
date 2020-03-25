@@ -8,6 +8,7 @@ ja:
         acct: 引っ越し先のユーザー名@ドメインを指定してください
       account_warning_preset:
         text: URL、ハッシュタグ、メンションなど、投稿に用いる構文が使用できます
+        title: オプションです。受信者には表示されません。
       admin_account_action:
         include_statuses: ユーザーは取られた制限や警告の原因となったトゥートを確認できるようになります
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
@@ -42,8 +43,8 @@ ja:
         setting_aggregate_reblogs: 最近ブーストされたトゥートが新たにブーストされても表示しません (設定後受信したものにのみ影響)
         setting_default_sensitive: 閲覧注意状態のメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
-        setting_display_media_hide_all: 全てのメディアを常に隠す
-        setting_display_media_show_all: 閲覧注意としてマークされたメディアも常に表示する
+        setting_display_media_hide_all: メディアを常に隠す
+        setting_display_media_show_all: メディアを常に表示する
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_show_application: トゥートするのに使用したアプリがトゥートの詳細ビューに表示されるようになります
@@ -53,6 +54,9 @@ ja:
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       domain_allow:
         domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
+      email_domain_block:
+        domain: メールアドレスのドメイン名および、名前解決したMXレコード、IPアドレスを指定できます。ユーザー登録時にこれらをチェックし、該当する場合はユーザー登録を拒否します。
+        with_dns_records: 指定したドメインの名前解決ができない場合、ブラックリストに登録されます
       featured_tag:
         name: 'これらを使うといいかもしれません:'
       form_challenge:
@@ -78,13 +82,14 @@ ja:
         acct: 引っ越し先のユーザー ID
       account_warning_preset:
         text: プリセット警告文
+        title: タイトル
       admin_account_action:
         include_statuses: 通報されたトゥートをメールに含める
         send_email_notification: メールでユーザーに通知
         text: カスタム警告文
         type: アクション
         types:
-          disable: 無効化
+          disable: ログインを無効化
           none: 何もしない
           silence: サイレンス
           suspend: 停止しアカウントのデータを恒久的に削除する
@@ -150,6 +155,8 @@ ja:
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
         whole_word: 単語全体にマッチ
+      email_domain_block:
+        with_dns_records: ドメインのMXレコードとIPアドレスを含む
       featured_tag:
         name: ハッシュタグ
       interactions:

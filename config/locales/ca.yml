@@ -92,6 +92,7 @@ ca:
       delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
+      add_email_domain_block: Afegir el domini de correu a la llista negra
       approve: Aprova
       approve_all: Aprova'ls tots
       are_you_sure: N'estàs segur?
@@ -172,6 +173,7 @@ ca:
         staff: Personal
         user: Usuari
       search: Cerca
+      search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
       shared_inbox_url: URL de la safata d'entrada compartida
       show:
@@ -358,6 +360,7 @@ ca:
       destroyed_msg: S'ha eliminat correctament el bloc del domini de correu
       domain: Domini
       empty: Cap domini de correu a la llista negre.
+      from_html: des de %{domain}
       new:
         create: Afegeix un domini
         title: Nova adreça de correu en la llista negra
@@ -537,6 +540,9 @@ ca:
       trends:
         desc_html: Mostra públicament les etiquetes revisades anteriorment que actualment estan en tendència
         title: Etiquetes tendència
+    site_uploads:
+      delete: Esborra el fitxer pujat
+      destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
     statuses:
       back_to_account: Torna a la pàgina del compte
       batch:
@@ -660,6 +666,7 @@ ca:
     trouble_logging_in: Problemes per iniciar la sessió?
   authorize_follow:
     already_following: Ja estàs seguint aquest compte
+    already_requested: Ja has enviat una sol·licitud de seguiment a aquest usuari
     error: Malauradament, ha ocorregut un error cercant el compte remot
     follow: Segueix
     follow_request: 'Has enviat una sol·licitud de seguiment a:'
@@ -848,6 +855,7 @@ ca:
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
+      not_ready: No es poden adjuntar fitxers que no s'hagin acabat de processar. Torna-ho a provar en un moment!
       too_many: No es poden adjuntar més de 4 fitxers
   migrations:
     acct: Mogut a

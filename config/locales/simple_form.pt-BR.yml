@@ -8,6 +8,7 @@ pt-BR:
         acct: Especifique o usuário@domínio da conta para a qual você deseja se mudar
       account_warning_preset:
         text: Você pode usar a sintaxe do toot, como links, hashtags e menções
+        title: Opcional. Não visível para o destinatário
       admin_account_action:
         include_statuses: O usuário verá quais toots causaram o aviso ou ação da moderação
         send_email_notification: O usuário receberá uma explicação do que aconteceu com a própria conta
@@ -15,7 +16,7 @@ pt-BR:
         type_html: Decida o que fazer com <strong>%{acct}</strong>
         warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
       announcement:
-        all_day: Quando marcado, apenas as datas do período serão exibidas
+        all_day: Quando marcada, apenas as datas do período serão mostradas
         ends_at: Opcional. O anúncio será automaticamente não publicado no momento
         scheduled_at: Deixe em branco para publicar o anúncio imediatamente
         starts_at: Opcional. Caso seu anúncio esteja vinculado a um período específico
@@ -53,6 +54,9 @@ pt-BR:
         whole_word: Quando a palavra-chave ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
+      email_domain_block:
+        domain: Este pode ser o nome de domínio que aparece no endereço de email, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Estes serão verificados no momento da inscrição do usuário e a inscrição será rejeitada.
+        with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Você pode querer usar um destes:'
       form_challenge:
@@ -78,6 +82,7 @@ pt-BR:
         acct: Nome de usuário da nova conta
       account_warning_preset:
         text: Aviso pré-definido
+        title: Título
       admin_account_action:
         include_statuses: Incluir toots denunciados no e-mail
         send_email_notification: Notificar o usuário por e-mail
@@ -150,6 +155,8 @@ pt-BR:
         username: Nome de usuário
         username_or_email: Nome de usuário ou e-mail
         whole_word: Palavra inteira
+      email_domain_block:
+        with_dns_records: Incluir registros MX e IPs do domínio
       featured_tag:
         name: Hashtag
       interactions:
@@ -169,11 +176,11 @@ pt-BR:
         pending_account: Enviar e-mail quando uma nova conta precisar ser revisada
         reblog: Enviar e-mail quando alguém der boost nos seus toots
         report: Enviar e-mail quando uma nova denúncia for enviada
-        trending_tag: Enviar e-mail quando uma hashtag não revisada estiver em alta
+        trending_tag: Uma hashtag não-revisada está em alta
       tag:
         listable: Permitir que esta hashtag apareça em pesquisas e no diretório de perfis
         name: Hashtag
-        trendable: Permitir que esta hashtag apareça em alta
+        trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que toots usem esta hashtag
     'no': Não
     recommended: Recomendado

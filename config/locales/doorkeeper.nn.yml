@@ -5,7 +5,7 @@ nn:
       doorkeeper/application:
         name: Applikasjonsnamn
         redirect_uri: Omdirigerings-URI
-        scopes: Omfang
+        scopes: Skop
         website: Applikasjonsnettside
     errors:
       models:
@@ -33,15 +33,15 @@ nn:
       help:
         native_redirect_uri: Bruk %{native_redirect_uri} for lokale testar
         redirect_uri: Bruk ei linjer per URI
-        scopes: Adskill omfang med mellomrom. La det være blankt for å bruke standard omfang.
+        scopes: Skil skop med mellomrom. Ikkje fyll inn noko som helst for å bruke standardskop.
       index:
         application: Applikasjon
         callback_url: Callback-URL
         delete: Slett
-        empty: Du har ingen søknader.
+        empty: Du har ikkje nokon applikasjonar.
         name: Namn
         new: Ny applikasjon
-        scopes: Omfang
+        scopes: Skop
         show: Vis
         title: Dine applikasjonar
       new:
@@ -49,8 +49,8 @@ nn:
       show:
         actions: Handlingar
         application_id: Klientnøkkel
-        callback_urls: Callback-URLer
-        scopes: Omfang
+        callback_urls: Callback-URLar
+        scopes: Skop
         secret: Klienthemmelegheit
         title: 'Applikasjon: %{name}'
     authorizations:
@@ -60,8 +60,8 @@ nn:
       error:
         title: Ein feil har oppstått
       new:
-        able_to: Den vil ha mulighet til
-        prompt: Applikasjon %{client_name} spør om tilgang til din konto
+        able_to: Applikasjonen vil kunne
+        prompt: Applikasjonen %{client_name} spør om tilgang til kontoen din
         title: Autorisasjon nødvendig
       show:
         title: Kopier denne autorisasjonskoden og lim den inn i applikasjonen.
@@ -74,15 +74,15 @@ nn:
         application: Applikasjon
         created_at: Autorisert
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Omfang
+        scopes: Skop
         title: Dine autoriserte applikasjonar
     errors:
       messages:
-        access_denied: Ressurseieren eller autoriseringstjeneren avviste forespørslen.
-        credential_flow_not_configured: Ressurseiers passordflyt feilet fordi Doorkeeper.configure.resource_owner_from_credentials ikke var konfigurert.
+        access_denied: Ressurseigaren eller autorisasjonstenaren avviste førespurnaden.
+        credential_flow_not_configured: Flyten «Resource Owner Password Credentials» kunne ikkje verte fullført av di «Doorkeeper.configure.resource_owner_from_credentials» er ikkje konfigurert.
         invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
-        invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
+        invalid_redirect_uri: Omdirigerings-URLen er ikkje gyldig.
         invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
         invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.

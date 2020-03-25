@@ -1,1 +1,52 @@
+---
 br:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Anv an arload
+        website: Lec'hienn an arload
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Aotren
+        cancel: Nullañ
+        destroy: Distrujañ
+        edit: Aozañ
+      confirmations:
+        destroy: Ha sur oc'h ?
+      index:
+        application: Arload
+        delete: Dilemel
+        name: Anv
+        new: Arload nevez
+        show: Diskouez
+        title: Hoc'h arloadoù
+      new:
+        title: Arload nevez
+      show:
+        title: 'Arload : %{name}'
+    authorizations:
+      buttons:
+        authorize: Aotren
+    authorized_applications:
+      confirmations:
+        revoke: Ha sur oc'h ?
+      index:
+        application: Arload
+        date_format: "%d-%m-%Y %H:%M:%S"
+    flash:
+      applications:
+        create:
+          notice: Savet eo bet an arload.
+        destroy:
+          notice: Dilamet eo bet an arload.
+        update:
+          notice: Hizivaet eo bet an arload.
+    layouts:
+      admin:
+        nav:
+          applications: Arloadoù
+    scopes:
+      read:lists: gwelout ho listennoù
+      write:lists: krouiñ listennoù
+      write:statuses: embann toudoù

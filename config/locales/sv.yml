@@ -219,6 +219,8 @@ sv:
         update_status: "%{name} uppdaterade status för %{target}"
       deleted_status: "(raderad status)"
       title: Revisionslogg
+    announcements:
+      scheduled_for: Schemalagd för %{time}
     custom_emojis:
       assign_category: Ange kategori
       by_domain: Domän
@@ -430,6 +432,8 @@ sv:
         desc_html: Visa offentlig tidslinje på landingsidan
         title: Förhandsgranska tidslinje
       title: Sidans inställningar
+    site_uploads:
+      delete: Radera uppladdad fil
     statuses:
       back_to_account: Tillbaka till kontosidan
       batch:
@@ -504,6 +508,7 @@ sv:
       account_status: Kontostatus
   authorize_follow:
     already_following: Du följer redan detta konto
+    already_requested: Du har redan skickat en vänförfrågan till det kontot
     error: Tyvärr inträffade ett fel när vi kontrollerade fjärrkontot
     follow: Följ
     follow_request: 'Du har skickat en följaförfrågan till:'
@@ -759,6 +764,7 @@ sv:
       private: Icke-offentliga toot kan inte fästas
       reblog: Knuffar kan inte fästas
     show_more: Visa mer
+    show_thread: Visa tråd
     visibilities:
       private: Endast följare
       private_long: Visa endast till följare

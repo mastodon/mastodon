@@ -92,6 +92,7 @@ es-AR:
       delete: Eliminar
       destroyed_msg: "¡Nota de moderación destruída exitosamente!"
     accounts:
+      add_email_domain_block: Desaprobar el dominio del correo electrónico
       approve: Aprobar
       approve_all: Aprobar todas
       are_you_sure: "¿Estás seguro?"
@@ -172,6 +173,7 @@ es-AR:
         staff: Equipo
         user: Usuario
       search: Buscar
+      search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
       show:
@@ -358,6 +360,7 @@ es-AR:
       destroyed_msg: Se aprobó dominio de correo electrónico exitosamente
       domain: Dominio
       empty: Actualmente no hay dominios de correo electrónico desaprobados.
+      from_html: de %{domain}
       new:
         create: Agregar dominio
         title: Nueva desaprobación de correo electrónico
@@ -537,6 +540,9 @@ es-AR:
       trends:
         desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia actualmente
         title: Etiquetas tendencias
+    site_uploads:
+      delete: Eliminar archivo subido
+      destroyed_msg: "¡Subida al sitio eliminada exitosamente!"
     statuses:
       back_to_account: Volver a la página de la cuenta
       batch:
@@ -660,6 +666,7 @@ es-AR:
     trouble_logging_in: "¿Tenés problemas para iniciar sesión?"
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
+    already_requested: Ya enviaste una solicitud de seguimiento a esa cuenta
     error: Lamentablemente, ocurrió un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Enviaste una solicitud de seguimiento a:'
@@ -848,6 +855,7 @@ es-AR:
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      not_ready: No se pueden adjuntar archivos que no terminaron de procesarse. ¡Intentá de nuevo en un rato!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
     acct: Mudada a
@@ -1098,7 +1106,7 @@ es-AR:
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
   stream_entries:
     pinned: Toot fijado
-    reblogged: retooteado
+    reblogged: retooteó
     sensitive_content: Contenido sensible
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior

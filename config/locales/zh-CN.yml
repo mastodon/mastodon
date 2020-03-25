@@ -88,6 +88,7 @@ zh-CN:
       delete: 删除
       destroyed_msg: 管理备忘删除成功！
     accounts:
+      add_email_domain_block: 把电子邮箱域名加入黑名单
       approve: 批准
       approve_all: 批准全部
       are_you_sure: 你确定吗？
@@ -168,6 +169,7 @@ zh-CN:
         staff: 管理人员
         user: 普通用户
       search: 搜索
+      search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
@@ -353,6 +355,7 @@ zh-CN:
       destroyed_msg: 电子邮件域名屏蔽删除成功
       domain: 域名
       empty: 当前没有邮件域名黑名单。
+      from_html: 来自 %{domain}
       new:
         create: 添加域名
         title: 添加电子邮件域名屏蔽
@@ -529,6 +532,9 @@ zh-CN:
       trends:
         desc_html: 公开显示先前已通过审核的当前热门话题
         title: 热门标签
+    site_uploads:
+      delete: 删除已上传的文件
+      destroyed_msg: 站点上传的文件已经成功删除！
     statuses:
       back_to_account: 返回帐户信息页
       batch:
@@ -652,6 +658,7 @@ zh-CN:
     trouble_logging_in: 登录有问题？
   authorize_follow:
     already_following: 你已经在关注此用户了
+    already_requested: 你已经向那个账户发送过关注请求了
     error: 对不起，寻找这个跨站用户时出错
     follow: 关注
     follow_request: 关注请求已发送给：
@@ -838,6 +845,7 @@ zh-CN:
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
+      not_ready: 不能附加还在处理中的文件。请稍后再试！
       too_many: 最多只能添加 4 张图片
   migrations:
     acct: 新帐户的 用户名@域名

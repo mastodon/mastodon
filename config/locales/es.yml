@@ -92,6 +92,7 @@ es:
       delete: Borrar
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
+      add_email_domain_block: Poner en lista negra el dominio del correo
       approve: Aprobar
       approve_all: Aprobar todos
       are_you_sure: "¿Estás seguro?"
@@ -172,6 +173,7 @@ es:
         staff: Personal
         user: Usuario
       search: Buscar
+      search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
       shared_inbox_url: URL de bandeja compartida
       show:
@@ -358,6 +360,7 @@ es:
       destroyed_msg: Dominio de correo borrado de la lista negra con éxito
       domain: Dominio
       empty: Actualmente no hay dominios de correo electrónico en la lista negra.
+      from_html: de %{domain}
       new:
         create: Añadir dominio
         title: Nueva entrada en la lista negra de correo
@@ -537,6 +540,9 @@ es:
       trends:
         desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
         title: Hashtags de tendencia
+    site_uploads:
+      delete: Eliminar archivo subido
+      destroyed_msg: "¡Carga del sitio eliminada con éxito!"
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -660,6 +666,7 @@ es:
     trouble_logging_in: "¿Problemas para iniciar sesión?"
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
+    already_requested: Ya has enviado una solicitud de seguimiento a esa cuenta
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
@@ -848,6 +855,7 @@ es:
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
     acct: username@domain de la nueva cuenta

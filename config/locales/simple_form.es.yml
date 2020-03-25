@@ -8,6 +8,7 @@ es:
         acct: Especifique el nombre de usuario@dominio de la cuenta a la cual se desea migrar
       account_warning_preset:
         text: Puede usar sintaxis de toots, como URLs, hashtags y menciones
+        title: Opcional. No visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué toots han causado la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con respecto a su cuenta
@@ -53,6 +54,9 @@ es:
         whole_word: Cuando la palabra clave o frase es solo alfanumérica, solo será aplicado si concuerda con toda la palabra
       domain_allow:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
+      email_domain_block:
+        domain: Puede ser el nombre de dominio que aparece en la dirección de correo, el registro MX hacia el cual resuelve el dominio, o la IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del alta del usuario y el alta se rechazará.
+        with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
         name: 'Puede que quieras usar uno de estos:'
       form_challenge:
@@ -78,6 +82,7 @@ es:
         acct: Maneja la cuenta nueva
       account_warning_preset:
         text: Texto predefinido
+        title: Título
       admin_account_action:
         include_statuses: Incluir en el correo electrónico a los toots denunciados
         send_email_notification: Notificar al usuario por correo electrónico
@@ -150,6 +155,8 @@ es:
         username: Nombre de usuario
         username_or_email: Usuario o Email
         whole_word: Toda la palabra
+      email_domain_block:
+        with_dns_records: Incluye los registros MX y las IP del dominio
       featured_tag:
         name: Etiqueta
       interactions:
