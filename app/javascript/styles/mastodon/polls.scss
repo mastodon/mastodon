@@ -95,8 +95,8 @@
     &:active,
     &:focus,
     &:hover {
+      border-color: lighten($valid-value-color, 15%);
       border-width: 4px;
-      background: none;
     }
 
     &::-moz-focus-inner {
