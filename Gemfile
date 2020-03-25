@@ -7,7 +7,6 @@ gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.3'
 gem 'rails', '~> 5.2.4'
-gem 'sprockets', '~> 4.0.0'
 gem 'thor', '~> 0.20'
 gem 'rack', '~> 2.2.2'
 
@@ -90,7 +89,6 @@ gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.1'
 gem 'simple_form', '~> 5.0'
-gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.0'
 gem 'strong_migrations', '~> 0.6'
 gem 'tty-command', '~> 0.9', require: false
