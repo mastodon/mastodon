@@ -184,19 +184,6 @@ class MediaAttachment < ApplicationRecord
     audio? || video?
   end
 
-  def variant?(other_file_name)
-    return true if file_file_name == other_file_name
-    return false if file_file_name.nil?
-
-    formats = file.styles.values.map(&:format).compact
-
-    return false if formats.empty?
-
-    extension = File.extname(other_file_name)
-
-    formats.include?(extension.delete('.')) && File.basename(other_file_name, extension) == File.basename(file_file_name, File.extname(file_file_name))
-  end
-
   def to_param
     shortcode
   end
