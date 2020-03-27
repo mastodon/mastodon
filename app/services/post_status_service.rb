@@ -50,11 +50,11 @@ class PostStatusService < BaseService
   def preprocess_attributes!
     if @text.blank? && @options[:spoiler_text].present?
      @text = '.'
-     if @media.find(&:video?) || @media.find(&:gifv?)
+     if @media&.find(&:video?) || @media&.find(&:gifv?)
        @text = '📹'
-     elsif @media.find(&:audio?)
+     elsif @media&.find(&:audio?)
        @text = '🎵'
-     elsif @media.find(&:image?)
+     elsif @media&.find(&:image?)
        @text = '🖼'
      end
     end
