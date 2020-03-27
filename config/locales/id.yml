@@ -652,6 +652,7 @@ id:
     trouble_logging_in: Kesulitan masuk?
   authorize_follow:
     already_following: Anda sudah mengikuti akun ini
+    already_requested: Anda sudah mengirimkan permintaan untuk mengikuti akun tersebut
     error: Sayangnya, ada error saat melihat akun remote
     follow: Ikuti
     follow_request: 'Anda telah mengirim permintaan untuk mengikuti ke:'
@@ -715,7 +716,7 @@ id:
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal
-    '429': Throttled
+    '429': Lambat
     '500':
       content: Maaf, ada sesuatu yang salah pada sistem kami.
       title: Halaman ini tidak benar
@@ -754,6 +755,7 @@ id:
       title: Ubah saringan
     errors:
       invalid_context: Konteks tidak ada atau invalid
+      invalid_irreversible: Penyaringan yang tidak dapat dipulihkan hanya bekerja di beranda atau konteks notifikasi
     index:
       delete: Hapus
       empty: Anda tidak memiliki filter.
@@ -845,21 +847,27 @@ id:
     cancelled_msg: Pembatalan peralihan berhasil.
     errors:
       already_moved: adalah akun yang sama yang sudah Anda pindahkan ke
+      missing_also_known_as: ini bukan back-reference akun ini
       move_to_self: tidak boleh akun sekarang
       not_found: tidak dapat ditemukan
+      on_cooldown: Anda berada di masa tenang
     followers_count: Jumlah pengikut saat migrasi
     incoming_migrations: Pindah dari akun berbeda
     incoming_migrations_html: Untuk pindah dari akun lain ke sini, Anda harus <a href="%{path}">membuat alias akun</a> terlebih dahulu.
     moved_msg: Akun Anda dialihkan ke %{acct} dan pengikut Anda akan ikut dipindahkan.
     not_redirecting: Saat ini akun Anda tidak dialihkan ke akun lain.
     on_cooldown: Anda baru saja memindahkan akun Anda. Fungsi ini akan tersedia kembali %{count} hari lagi.
+    past_migrations: Migrasi lampau
     proceed_with_move: Pindahkan pengikut
     redirecting_to: Akun Anda dialihkan ke %{acct}.
     set_redirect: Atur peralihan
     warning:
+      backreference_required: Akun baru harus dikonfigurasi terlebih dahulu agar merujuk ke akun ini
       before: 'Sebelum lanjut, mohon perhatikan catatan ini:'
       cooldown: Setelah pindah akun adalah masa tenang, masa Anda tidak dapat pindah akun lagi
+      disabled_account: Akun Anda tidak akan dapat dipakai secara penuh. Namun, Anda tetap akan memiliki akses ke ekspor data dan aktivasi ulang.
       followers: Tindakan ini akan memindah semua pengikut Anda dari akun sekarang ke akun baru
+      only_redirect_html: Secara alternatif, Anda <a href="%{path}">hanya dapat menaruh tulisan mengarahkan ke profil Anda</a>.
       other_data: Tidak akan ada data lagi yang dipindahkan secara otomatis
       redirect: Pemberitahuan peralihan akan dimunculkan pada akun profil Anda dan akun akan dikecualikan dari pencarian
   moderation:
@@ -897,6 +905,8 @@ id:
       subject: "%{name} mem-boost status anda"
       title: Boost baru
   notifications:
+    email_events: Event untuk notifikasi surel
+    email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
     other_settings: Pengaturan notifikasi lain
   number:
     human:
@@ -918,6 +928,7 @@ id:
     errors:
       already_voted: Anda sudah mengikuti japat ini
       duplicate_options: berisi item ganda
+      duration_too_long: terlalu jauh ke masa depan
       duration_too_short: terlalu cepat
       expired: Japat telah berakhir
       invalid_choice: Opsi pilihan yang dipilih tidak ada
@@ -928,11 +939,16 @@ id:
     other: Lainnya
     posting_defaults: Kiriman bawaan
     public_timelines: Linimasa publik
+  reactions:
+    errors:
+      limit_reached: Batas reaksi yang berbeda terpenuhi
+      unrecognized_emoji: bukan emoji yang dikenal
   relationships:
     activity: Aktivitas akun
     dormant: Terbengkalai
     followers: Pengikut
     following: Mengikuti
+    invited: Diundang
     last_active: Terakhir aktif
     most_recent: Terkini
     moved: Dipindah
@@ -1125,11 +1141,14 @@ id:
       explanation: Beberapa tips sebelum Anda memulai
       final_action: Mulai mengirim
       final_step: 'Mulai mengirim! Tanpa pengikut, pesan publik Anda akan tetap dapat dilihat oleh akun lain, contohnya di linimasa lokal atau di tagar. Anda mungkin ingin memperkenalkan diri dengan tagar #introductions.'
+      full_handle: Penanganan penuh Anda
       full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
       review_preferences_action: Ubah preferensi
       review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti surel untuk menerima pesan, atau tingkat privasi bawaan untuk kiriman Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
       subject: Selamat datang di Mastodon
+      tip_federated_timeline: Linimasa gabungan adalah ruang yang menampilkan jaringan Mastodon. Tapi ini hanya berisi tetangga orang-orang yang Anda ikuti, jadi tidak sepenuhnya komplet.
       tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
+      tip_local_timeline: Linimasa lokal adalah ruang yang menampilkan orang-orang di %{instance}. Mereka adalah tetangga dekat!
       tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
       tips: Tips
       title: Selamat datang, %{name}!

@@ -94,6 +94,7 @@ fa:
       delete: حذف
       destroyed_msg: یادداشت نظارتی با موفقیت نابود شد!
     accounts:
+      add_email_domain_block: مسدود کردن دامنهٔ رایانامه
       approve: پذیرفتن
       approve_all: پذیرفتن همه
       are_you_sure: مطمئنید؟
@@ -174,6 +175,7 @@ fa:
         staff: کارمند
         user: کاربر
       search: جستجو
+      search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
       shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
@@ -360,6 +362,7 @@ fa:
       destroyed_msg: مسدودسازی دامین ایمیل با موفقیت پاک شد
       domain: دامین
       empty: هیچ دامنه ایمیلی در حال حاضر در لیست‌سیاه قرار نگرفته است.
+      from_html: از %{domain}
       new:
         create: ساختن مسدودسازی
         title: مسدودسازی دامین ایمیل تازه
@@ -539,6 +542,9 @@ fa:
       trends:
         desc_html: برچسب‌های عمومی که پیش‌تر بازبینی شده‌اند و هم‌اینک پرطرفدارند
         title: برچسب‌های پرطرفدار
+    site_uploads:
+      delete: پرونده بارگذاری شده را پاک کنید
+      destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
     statuses:
       back_to_account: بازگشت به صفحهٔ حساب
       batch:
@@ -662,6 +668,7 @@ fa:
     trouble_logging_in: برای ورود مشکلی دارید؟
   authorize_follow:
     already_following: شما همین الان هم این حساب را پی‌می‌گیرید
+    already_requested: درخواست پی‌گیری‌ای برای آن حساب فرستاده‌ بودید
     error: متأسفانه حین یافتن آن حساب خطایی رخ داد
     follow: پی بگیرید
     follow_request: 'شما درخواست پیگیری فرستاده‌اید به:'
@@ -850,6 +857,7 @@ fa:
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
+      not_ready: پرونده‌هایی که پردازش را تمام نکرده‌اند نمی‌توانند پیوست شوند. یکبار دیگر امتحان کنید!
       too_many: نمی‌توان بیشتر از ۴ تصویر بارگذاری کرد
   migrations:
     acct: username@domain حساب تازه

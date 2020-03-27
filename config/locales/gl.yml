@@ -92,6 +92,7 @@ gl:
       delete: Eliminar
       destroyed_msg: Nota de moderación eliminada de xeito correcto!
     accounts:
+      add_email_domain_block: Bloquear o dominio do email
       approve: Aprobar
       approve_all: Aprobar todos
       are_you_sure: Está segura?
@@ -172,6 +173,7 @@ gl:
         staff: Persoal (staff)
         user: Usuaria
       search: Procurar
+      search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
       shared_inbox_url: URL da caixa de entrada compartida
       show:
@@ -358,6 +360,7 @@ gl:
       destroyed_msg: Eliminouse de xeito correcto o dominio de email da listaxe negra
       domain: Dominio
       empty: Actualmente non hai dominios de email na listaxe negra.
+      from_html: desde %{domain}
       new:
         create: Engadir dominio
         title: Nova entrada na listaxe negra de email
@@ -537,6 +540,9 @@ gl:
       trends:
         desc_html: Amosar de xeito público cancelos revisados previamente que actualmente son tendencia
         title: Cancelos en tendencia
+    site_uploads:
+      delete: Eliminar o ficheiro subido
+      destroyed_msg: Eliminado correctamente o subido!
     statuses:
       back_to_account: Voltar a páxina da conta
       batch:
@@ -660,6 +666,7 @@ gl:
     trouble_logging_in: Problemas para conectar?
   authorize_follow:
     already_following: Xa está a seguir esta conta
+    already_requested: Xa tes enviada unha solicitude de seguimento a esa conta
     error: Desgraciadamente, algo fallou ao buscar a conta remota
     follow: Seguir
     follow_request: 'Enviou unha petición de seguimento a:'
@@ -848,6 +855,7 @@ gl:
   media_attachments:
     validations:
       images_and_video: Non pode anexar un vídeo a un estado que xa contén imaxes
+      not_ready: Non se poden anexar ficheiros que aínda se están a procesar. Agarda un intre!
       too_many: Non pode anexar máis de 4 ficheiros
   migrations:
     acct: nomeusuaria@dominio da nova conta

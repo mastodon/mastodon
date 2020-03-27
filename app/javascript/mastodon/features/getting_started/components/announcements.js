@@ -378,6 +378,14 @@ class Announcements extends ImmutablePureComponent {
     index: 0,
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.announcements.size > 0 && state.index >= props.announcements.size) {
+      return { index: props.announcements.size - 1 };
+    } else {
+      return null;
+    }
+  }
+
   componentDidMount () {
     this._markAnnouncementAsRead();
   }
@@ -389,7 +397,7 @@ class Announcements extends ImmutablePureComponent {
   _markAnnouncementAsRead () {
     const { dismissAnnouncement, announcements } = this.props;
     const { index } = this.state;
-    const announcement = announcements.get(index) || announcements.get(index - 1);
+    const announcement = announcements.get(index);
     if (!announcement.get('read')) dismissAnnouncement(announcement.get('id'));
   }
 
@@ -407,7 +415,7 @@ class Announcements extends ImmutablePureComponent {
 
   render () {
     const { announcements, intl } = this.props;
-    const index = this.state.index < announcements.size ? this.state.index : announcements.size - 1;
+    const { index } = this.state;
 
     if (announcements.isEmpty()) {
       return null;

@@ -2,7 +2,7 @@
 ar:
   about:
     about_hashtag_html: هذه تبويقات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.
-    about_mastodon_html: ماستدون شبكة اجتماعية مبنية على أسُس بروتوكولات برمجيات الويب الحرة و مفتوحة المصدر. و هو لامركزي تمامًا كالبريد الإلكتروني.
+    about_mastodon_html: 'شبكة التواصل الإجتماعية المستقبَليّة: مِن دون إعلانات ، غير خاضعة لرقابة الشركات ، تصميم أخلاقي ولامركزية! بياناتكم مِلك لكم مع ماستدون!'
     about_this: عن مثيل الخادوم هذا
     active_count_after: نشط
     active_footnote: مستخدم نشيط شهريا (MAU)
@@ -39,8 +39,9 @@ ar:
     unavailable_content: محتوى غير متوفر
     unavailable_content_description:
       domain: الخادم
-      reason: 'السبب:'
+      reason: السبب
       silenced: 'سيتم إخفاء المنشورات القادمة من هذه الخوادم في الخيوط الزمنية والمحادثات العامة، ولن يتم إنشاء أي إخطارات من جراء تفاعلات مستخدميها، ما لم تُتَابعهم:'
+    unavailable_content_html: يسمح لك ماستدون عموماً بعرض محتوى المستخدمين القادم من أي خادم آخر في الفديفرس والتفاعل معهم. وهذه هي الاستثناءات التي وضعت على هذا الخادوم بالذات.
     user_count_after:
       few: مستخدمين
       many: مستخدمين
@@ -53,6 +54,7 @@ ar:
   accounts:
     choices_html: 'توصيات %{name}:'
     endorsements_hint: يمكنك التوصية بالأشخاص الذين تتابعهم من واجهة الويب، وسيظهرون هنا.
+    featured_tags_hint: يمكنك عرض وسوم محددة سيتم عرضها هنا.
     follow: اتبع
     followers:
       few: متابِعون
@@ -421,10 +423,26 @@ ar:
       created_msg: تم إنشاء ملاحظة الشكوى بنجاح!
       destroyed_msg: تم حذف ملاحظة الشكوى بنجاح!
     reports:
+      account:
+        notes:
+          few: "%{count} ملاحظات"
+          many: "%{count} ملاحظات"
+          one: "%{count} ملاحظة"
+          other: "%{count} ملاحظات"
+          two: "%{count} ملاحظتَيْن"
+          zero: "%{count} ملاحظات"
+        reports:
+          few: "%{count} تقارير"
+          many: "%{count} تقارير"
+          one: "%{count} تقرير واحد"
+          other: "%{count} تقارير"
+          two: "%{count} تقريرَيْن"
+          zero: "%{count} تقارير"
       action_taken_by: تم اتخاذ الإجراء مِن طرف
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
       assigned: تعين رئيس
+      by_target_domain: نطاق الحساب المبلّغ عنه
       comment:
         none: لا شيء
       created_at: ذكرت
@@ -466,11 +484,16 @@ ar:
         all: للجميع
         disabled: لا أحد
         title: اظهر خاصية حجب النطاقات
+        users: للمستخدمين المتصلين محليا
       domain_blocks_rationale:
         title: اظهر السبب
+      enable_bootstrap_timeline_accounts:
+        title: تمكين الاشتراكات الافتراضية للمستخدمين الجدد
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
+      mascot:
+        title: صورة الماسكوت
       peers_api_enabled:
         desc_html: أسماء النطاقات التي التقى بها مثيل الخادوم على البيئة الموحَّدة فديفرس
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
@@ -527,6 +550,9 @@ ar:
         title: السماح للوسوم بالظهور على المتداوَلة بدون مراجعة مسبقة
       trends:
         title: الوسوم المتداولة
+    site_uploads:
+      delete: احذف الملف الذي تم تحميله
+      destroyed_msg: تم حذف التحميل مِن الموقع بنجاح!
     statuses:
       back_to_account: العودة إلى صفحة الحساب
       batch:
@@ -577,6 +603,7 @@ ar:
     remove: إلغاء ربط الكنية
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
+    advanced_web_interface_hint: 'إذا كنت ترغب في استخدام عرض شاشتك بأكمله، فواجهة الويب المتقدمة تسمح لك بضبط العديد من الأعمدة المختلفة لرؤية أكبر قدر من المعلومات التي ترغب فيها في آن واحد: الخيط الرئيسي والإخطارات والخيط الزمني الفدرالي وأي عدد من القوائم والوسوم.'
     animations_and_accessibility: الإتاحة والحركة
     confirmation_dialogs: نوافذ التأكيد
     discovery: استكشاف
@@ -641,6 +668,7 @@ ar:
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
+    already_requested: لقد قُمتَ بإرسال طلب متابَعة إلى هذا الحساب مِن قَبل
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: اتبع
     follow_request: 'لقد قمت بإرسال طلب متابعة إلى:'
@@ -683,6 +711,7 @@ ar:
       data_removal: سوف تُحذَف منشوراتك والبيانات الأخرى نهائيا
       email_change_html: بإمكانك <a href="%{path}">تغيير عنوان بريدك الإلكتروني</a> دون أن يُحذف حسابك
       email_contact_html: إن لم تتلقّ أي شيء ، يمكنك مراسلة <a href="mailto:%{email}">%{email}</a> لطلب المساعدة
+      email_reconfirmation_html: إن لم تتلقّ الرسالة الإلكترونية للتأكيد ، بإمكانك <a href="%{path}">إعادة طلبها ثانيةً</a>
       irreversible: لن يكون بإمكانك استرجاع أو إعادة تنشيط حسابك
       more_details_html: للمزيد مِن التفاصيل ، يرجى الإطلاع على <a href="%{terms_path}">سياسة الخصوصية</a>.
       username_available: سيصبح اسم مستخدمك متوفرا ثانية
@@ -824,7 +853,7 @@ ar:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
       too_many: لا يمكن إرفاق أكثر من 4 ملفات
   migrations:
-    acct: username@domain للحساب الجديد
+    acct: انتقل إلى
     cancel: ألغِ التوجيه
     cancelled_msg: تم إلغاء التوجيه بنجاح.
     errors:
@@ -1088,6 +1117,8 @@ ar:
     pinned: تبويق مثبّت
     reblogged: رقّاه
     sensitive_content: محتوى حساس
+  tags:
+    does_not_match_previous_name: لا يطابق الإسم السابق
   terms:
     title: شروط الخدمة وسياسة الخصوصية على %{instance}
   themes:

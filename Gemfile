@@ -20,7 +20,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.4'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.60', require: false
+gem 'aws-sdk-s3', '~> 1.61', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -48,7 +48,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
-gem 'discard', '~> 1.1'
+gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.3'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
