@@ -735,7 +735,6 @@ en:
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
     '503': The page could not be served due to a temporary server failure.
-    in_reply_not_found: The status you are trying to reply to does not appear to exist.
     noscript_html: To use the Mastodon web application, please enable JavaScript. Alternatively, try one of the <a href="%{apps_path}">native apps</a> for Mastodon for your platform.
   existing_username_validator:
     not_found: could not find a local user with that username
@@ -1079,6 +1078,8 @@ en:
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
+    errors:
+      in_reply_not_found: The status you are trying to reply to does not appear to exist.
     language_detection: Automatically detect language
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded

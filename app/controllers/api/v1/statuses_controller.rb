@@ -73,7 +73,7 @@ class Api::V1::StatusesController < Api::BaseController
   def set_thread
     @thread = status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: I18n.t('errors.in_reply_not_found') }, status: 404
+    render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
   end
 
   def status_params
