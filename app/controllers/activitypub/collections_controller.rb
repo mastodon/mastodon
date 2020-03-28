@@ -9,8 +9,6 @@ class ActivityPub::CollectionsController < Api::BaseController
   before_action :set_cache_headers
 
   def show
-    skip_session!
-
     render_cached_json(['activitypub', 'collection', @account, params[:id]], content_type: 'application/activity+json') do
       ActiveModelSerializers::SerializableResource.new(
         collection_presenter,

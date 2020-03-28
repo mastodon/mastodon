@@ -27,20 +27,21 @@ gl:
         phrase: Concordará independentemente das maiúsculas ou avisos de contido no toot
         scopes: A que APIs terá acceso a aplicación. Si selecciona un ámbito de alto nivel, non precisa seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de toots que foron promocionados recentemente (só afecta a promocións recén recibidas)
-        setting_default_language: Pódese detectar automáticamente o idioma dos seus toots, mais non sempre é preciso
+        setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
         setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
         setting_noindex: Afecta ao seu perfil público e páxinas de estado
         setting_show_application: A aplicación que está a utilizar para enviar toots mostrarase na vista detallada do toot
-        setting_theme: Afecta ao aspecto de Mastodon en calquer dispositivo cando está conectada.
         username: O seu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
       featured_tag:
         name: 'Podería utilizar algunha de estas:'
       imports:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
+      invite_request:
+        text: Esto axudaranos a revisar a súa aplicación
       sessions:
         otp: 'Introduza o código de doble-factor xerado no aplicativo do seu móbil ou utilice un dos seus códigos de recuperación:'
       user:
@@ -88,6 +89,7 @@ gl:
         otp_attempt: Código de Doble-Factor
         password: Contrasinal
         phrase: Palabra chave ou frase
+        setting_advanced_layout: Activar interface web avanzada
         setting_aggregate_reblogs: Agrupar promocións nas liñas temporais
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Pedir confirmación antes de promocionar
@@ -118,15 +120,19 @@ gl:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de personas que non segue
         must_be_following_dm: Bloquea as mensaxes directas de personas que non segue
+      invite_request:
+        text: Por que quere unirse?
       notification_emails:
         digest: Enviar correos con resumos
         favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
         follow: Enviar un correo cando alguén a segue
         follow_request: Enviar un correo cando alguén solicita seguila
         mention: Enviar un correo cando alguén a menciona
+        pending_account: Enviar correo-e cando unha nova conta precisa revisión
         reblog: Enviar un correo cando alguén promociona a súa mensaxe
         report: Enviar un correo cando se envíe un novo informe
     'no': Non
+    recommended: Recomendado
     required:
       mark: "*"
       text: requerido

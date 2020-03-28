@@ -16,22 +16,30 @@ module StreamEntriesHelper
     if user_signed_in?
       if account.id == current_user.account_id
         link_to settings_profile_url, class: 'button logo-button' do
-          safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('settings.edit_profile')])
+          safe_join([svg_logo, t('settings.edit_profile')])
         end
       elsif current_account.following?(account) || current_account.requested?(account)
         link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
-          safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.unfollow')])
+          safe_join([svg_logo, t('accounts.unfollow')])
         end
       elsif !(account.memorial? || account.moved?)
         link_to account_follow_path(account), class: "button logo-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post } do
-          safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
+          safe_join([svg_logo, t('accounts.follow')])
         end
       end
     elsif !(account.memorial? || account.moved?)
       link_to account_remote_follow_path(account), class: 'button logo-button modal-button', target: '_new' do
-        safe_join([render(file: Rails.root.join('app', 'javascript', 'images', 'logo.svg')), t('accounts.follow')])
+        safe_join([svg_logo, t('accounts.follow')])
       end
     end
+  end
+
+  def svg_logo
+    content_tag(:svg, tag(:use, 'xlink:href' => '#mastodon-svg-logo'), 'viewBox' => '0 0 216.4144 232.00976')
+  end
+
+  def svg_logo_full
+    content_tag(:svg, tag(:use, 'xlink:href' => '#logo_imastodon'), 'viewBox' => '0 0 705.13 154.34')
   end
 
   def account_badge(account, all: false)

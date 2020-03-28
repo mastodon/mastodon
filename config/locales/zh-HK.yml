@@ -15,14 +15,14 @@ zh-HK:
     hosted_on: 在 %{domain} 運作的 Mastodon 服務站
     learn_more: 了解更多
     source_code: 源代碼
-    status_count_after: 篇文章
     status_count_before: 他們共發佈了
-    user_count_after: 位使用者
+    tagline: 關注朋友並探索新朋友
     user_count_before: 這裏共註冊有
     what_is_mastodon: Mastodon 是甚麼？
   accounts:
     follow: 關注
-    followers: 關注者
+    followers:
+      other: 關注者
     following: 正在關注
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
@@ -30,7 +30,6 @@ zh-HK:
     nothing_here: 暫時未有內容可以顯示。
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
-    posts: 文章
     posts_with_replies: 文章和回覆
     reserved_username: 此用戶名已被保留
     roles:
@@ -203,7 +202,6 @@ zh-HK:
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
       show:
-        affected_accounts: 資料庫中有%{count}個用戶受影響
         retroactive:
           silence: 對此域名的所有用戶取消靜音
           suspend: 對此域名的所有用戶取消除名
@@ -220,8 +218,12 @@ zh-HK:
         create: 新增網域
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
+    followers:
+      back_to_account: 返回帳戶
+      title: "%{acct} 的關注者"
     instances:
       title: 已知服務站
+      total_followed_by_us: 開始關注你
     invites:
       filter:
         all: 全部
@@ -229,6 +231,8 @@ zh-HK:
         expired: 已失效
         title: 篩選
       title: 邀請用戶
+    relays:
+      description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。"
     report_notes:
       created_msg: 舉報筆記已建立。
       destroyed_msg: 舉報筆記已刪除。
@@ -364,9 +368,6 @@ zh-HK:
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
-    providers:
-      cas: CAS
-      saml: SAML
     register: 登記
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
@@ -426,7 +427,6 @@ zh-HK:
       request: 下載檔案
       size: 檔案大小
     blocks: 被你封鎖的用戶
-    csv: CSV
     follows: 你所關注的用戶
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
@@ -434,7 +434,6 @@ zh-HK:
     changes_saved_msg: 已成功儲存修改。
     save_changes: 儲存修改
     validation_errors:
-      one: 提交的資料有問題
       other: 提交的資料有 %{count} 項問題
   imports:
     preface: 你可以在此匯入你在其他服務站所匯出的資料檔，包括︰你所關注的用戶，被你封鎖的用戶。
@@ -459,7 +458,6 @@ zh-HK:
     generate: 生成邀請連結
     invited_by: 你的邀請人是：
     max_uses:
-      one: 1 次
       other: "%{count} 次"
     max_uses_prompt: 無限制
     prompt: 生成分享連結，邀請他人在本服務站註冊
@@ -487,10 +485,8 @@ zh-HK:
       body: 這是自從你在%{since}使用以後，你錯失了的訊息︰
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
-        one: 你新獲得了 1 位關注者了！恭喜！
         other: 你新獲得了 %{count} 位關注者了！好厲害！
       subject:
-        one: "自從上次登入以來，你收到 1 則新的通知 \U0001F418"
         other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 在你不在的這段時間……
     favourite:
@@ -515,27 +511,14 @@ zh-HK:
       body: 您的文章被 %{name} 轉推：
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: 較新
     next: 下一頁
     older: 較舊
     prev: 上一頁
     truncate: "……"
-  preferences:
-    languages: 語言
-    other: 其他
-    publishing: 發佈
-    web: 站内
+  relationships:
+    remove_selected_followers: 刪除所選選項
   remote_follow:
     acct: 請輸入你的︰用戶名稱@服務點域名
     missing_resource: 無法找到你用戶的轉接網址
@@ -550,7 +533,6 @@ zh-HK:
     browser: 瀏覽器
     browsers:
       alipay: 支付寶
-      blackberry: Blackberry
       chrome: Chrome 瀏覽器
       edge: Microsoft Edge 瀏覽器
       electron: Electron 瀏覽器
@@ -559,30 +541,14 @@ zh-HK:
       ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
-      opera: Opera
       otter: Otter 瀏覽器
-      phantom_js: PhantomJS
       qq: QQ瀏覽器
-      safari: Safari
       uc_browser: UC瀏覽器
       weibo: 新浪微博
     current_session: 目前的作業階段
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
-    platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
-      other: 未知平台
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: 取消
     revoke_success: 作業階段成功取消
     title: 作業階段
@@ -602,15 +568,12 @@ zh-HK:
     attached:
       description: 附件： %{attached}
       image:
-        one: "%{count} 幅圖片"
         other: "%{count} 幅圖片"
       video:
-        one: "%{count} 段影片"
         other: "%{count} 段影片"
     boosted_from_html: 轉推自 %{acct_link}
     content_warning: 內容警告： %{warning}
     disallowed_hashtags:
-      one: 包含不允許的標籤： %{tags}
       other: 包含不允許的標籤： %{tags}
     language_detection: 自動偵測語言
     open_in_web: 開啟網頁

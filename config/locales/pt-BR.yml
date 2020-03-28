@@ -7,7 +7,6 @@ pt-BR:
     active_count_after: Ativo
     active_footnote: Usuários ativos mensais (UAM)
     administered_by: 'Administrado por:'
-    api: API
     apps: Apps
     apps_platforms: Use o Mastodon a partir de iOS, Android e outras plataformas
     browse_directory: Navegue pelo diretório de perfis e filtre por interesses
@@ -29,9 +28,6 @@ pt-BR:
     see_whats_happening: Veja o que está acontecendo
     server_stats: 'Estatísticas do servidor:'
     source_code: Código-fonte
-    status_count_after:
-      one: status
-      other: status
     status_count_before: Autores de
     tagline: Siga amigos e encontre novos
     terms: Termos de serviço
@@ -58,10 +54,6 @@ pt-BR:
     people_who_follow: Pessoas que seguem %{name}
     pin_errors:
       following: Você tem que estar seguindo a pessoa que você quer sugerir
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: Este usuário está reservado
     roles:
@@ -83,7 +75,6 @@ pt-BR:
       approve: Aprovar
       approve_all: Aprovar tudo
       are_you_sure: Você tem certeza?
-      avatar: Avatar
       by_domain: Domínio
       change_email:
         changed_msg: E-mail da conta modificado com sucesso!
@@ -114,11 +105,9 @@ pt-BR:
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
-      ip: IP
       joined: Se cadastrou
       location:
         all: Todos
-        local: Local
         remote: Remoto
         title: Localização
       login_status: Situação de login
@@ -181,7 +170,6 @@ pt-BR:
       unsubscribe: Desinscrever-se
       username: Nome de usuário
       warn: Notificar
-      web: Web
     action_logs:
       actions:
         assigned_to_self_report: "%{name} designou a denúncia %{target} para si"
@@ -226,7 +214,6 @@ pt-BR:
       destroyed_msg: Emoji deletado com sucesso!
       disable: Desabilitar
       disabled_msg: Emoji desabilitado com sucesso
-      emoji: Emoji
       enable: Habilitar
       enabled_msg: Emoji habilitado com sucesso
       image_hint: PNG de até 50KB
@@ -256,7 +243,6 @@ pt-BR:
       recent_users: Usuários recentes
       search: Pesquisa em texto
       single_user_mode: Modo de usuário único
-      software: Software
       space: Uso de espaço em disco
       title: Painel de controle
       total_users: usuários no total
@@ -349,7 +335,6 @@ pt-BR:
       pending: Esperando pela aprovação do repetidor
       save_and_enable: Salvar e habilitar
       setup: Configurar uma conexão de repetidor
-      status: Status
       title: Repetidores
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
@@ -379,7 +364,6 @@ pt-BR:
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
-      status: Status
       title: Denúncias
       unassign: Desatribuir
       unresolved: Não resolvido
@@ -472,14 +456,11 @@ pt-BR:
       confirmed: Confirmado
       expires_in: Expira em
       last_delivery: Última entrega
-      title: WebSub
       topic: Tópico
     tags:
       accounts: Contas
       hidden: Escondido
       hide: Esconder do diretório
-      name: Hashtag
-      title: Hashtags
       unhide: Mostrar no diretório
       visible: Visível
     title: Administração
@@ -499,7 +480,6 @@ pt-BR:
       subject: Nova denúncia sobre %{instance} (#%{id})
   application_mailer:
     notification_preferences: Mudar preferências de e-mail
-    salutation: "%{name},"
     settings: 'Mudar e-mail de preferência: %{link}'
     view: 'Visualizar:'
     view_profile: Ver perfil
@@ -527,9 +507,6 @@ pt-BR:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou faça login com
-    providers:
-      cas: CAS
-      saml: SAML
     register: Cadastrar-se
     registration_closed: "%{instance} não está aceitando novos membros"
     resend_confirmation: Reenviar instruções de confirmação
@@ -550,7 +527,6 @@ pt-BR:
     title: Seguir %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count} meses"
       about_x_years: "%{count} anos"
       almost_x_years: "%{count} anos"
@@ -604,7 +580,6 @@ pt-BR:
       request: Solicitar o seu arquivo
       size: Tamanho
     blocks: Você bloqueou
-    csv: CSV
     domain_blocks: Bloqueios de domínio
     follows: Você segue
     lists: Listas
@@ -748,23 +723,11 @@ pt-BR:
       body: 'Sua postagem foi compartilhada por %{name}:'
       subject: "%{name} compartilhou a sua postagem"
       title: Novo compartilhamento
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Mais novo
     next: Próximo
     older: Mais antigo
     prev: Anterior
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Você já votou nessa enquete
@@ -776,10 +739,7 @@ pt-BR:
       too_few_options: deve ter mais que um item
       too_many_options: não pode ter mais que %{max} itens
   preferences:
-    languages: Idiomas
     other: Outro
-    publishing: Publicação
-    web: Web
   relationships:
     activity: Atividade da conta
     dormant: Inativo
@@ -822,40 +782,13 @@ pt-BR:
     activity: Última atividade
     browser: Navegador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navegador desconhecido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta do Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: Plataforma desconhecida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
@@ -908,7 +841,6 @@ pt-BR:
       vote: Votar
     show_more: Mostrar mais
     sign_in_to_participate: Entre para participar dessa conversa
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Apenas seguidores
       private_long: Mostrar apenas para seguidores
@@ -926,10 +858,10 @@ pt-BR:
       <h3 id="collect">Que informação nós coletamos?</h3>
 
       <ul>
-        <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
-        <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.</li>
-        <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
-        <li><em>IPs e outros metadados</em>: Quando você faz se autentica, nos guardamos o endereço de IP que você usou ao se autenticar e o nome do seu navegador da internet. Todas as sessões autenticadas são disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é guardado por até 12 meses. Nós também podemos reter históricos do servidor que incluem o endereço de IP de todas as requisições ao nosso servidor.</li>
+      <li><em>Informação básica de conta</em>: Se você se registrar nesse servidor, podemos pedir que você utilize um nome de usuário, um e-mail e uma senha. Você também pode adicionar informações extras como um nome de exibição e biografia; enviar uma imagem de perfil e imagem de cabeçalho. O nome de usuário, nome de exibição, biografia, imagem de perfil e imagem de cabeçalho são sempre listadas publicamente.</li>
+      <li><em>Posts, informação de seguidores e outras informações públicas</em>: A lista de pessoas que você segue é listada publicamente, o mesmo é verdade para quem te segue. Quando você envia uma mensagem, a data e o horário são armazenados, assim como a aplicação que você usou para enviar a mensagem. Mensagens podem conter mídias anexadas, como imagens e vídeos. Posts públicos e não-listados estão disponíveis publicamente. Quando você destaca um post no seu perfil, isso também é uma informação pública. Seus posts são entregues aos seus seguidores e em alguns casos isso significa que eles são enviados para servidores diferentes e cópias são armazenadas nesses servidores. Quando você remove posts, essa informação também é entregue aos seus seguidores. O ato de compartilhar ou favoritar um outro post é sempre público.</li>
+      <li><em>Mensagens diretas e posts somente para seguidores</em>: Todos os posts são armazenados e processados no servidor. Posts somente para seguidores são entregues aos seus seguidores e usuários que são mencionados neles; mensagens diretas são entregues somente aos usuários mencionados nelas. Em alguns casos isso significa que as mensagens são entregues para servidores diferentes e cópias são armazenadas nesses servidores. Nós fazemos esforços substanciais para limitar o acesso dessas mensagens somente para as pessoas autorizadas, mas outros servidores podem não fazer o mesmo. É importante portanto revisar os servidores à qual seus seguidores pertencem. Você pode usar uma opção para aprovar ou rejeitar novos seguidores manualmente nas configurações. <em>Por favor tenha em mente que os operadores do servidor e de qualquer servidores do destinatário podem ver tais mensagens</em>, e que os destinatários podem fazer capturas de tela, copiar ou de outra maneira compartilhar as mensagens. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
+      <li><em>IPs e outros metadados</em>: Quando você faz se autentica, nos guardamos o endereço de IP que você usou ao se autenticar e o nome do seu navegador da internet. Todas as sessões autenticadas são disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é guardado por até 12 meses. Nós também podemos reter históricos do servidor que incluem o endereço de IP de todas as requisições ao nosso servidor.</li>
       </ul>
 
       <hr class="spacer" />
@@ -939,9 +871,9 @@ pt-BR:
       <p>Toda informação que coletamos de você pode ser usada das seguintes maneiras:</p>
 
       <ul>
-        <li>Para prover a funcionalidade básica do Mastodon. Você só pode interagir com o conteúdo de outras pessoas e postar seu próprio conteúdo estando autenticado. Por exemplo, você pode seguir outras pessoas para ver seus posts combinados na sua linha do tempo personalizada.</li>
-        <li>Para auxiliar na moderação da comunidade, por exemplo ao comparar o seu endereço de IP com outros endereços de IP conhecidos para determinar evasão de banimento e outras violações.</li>
-        <li>O endereço de email que você prover pode ser usado para lhe enviar informação, notificação sobre outras pessoas interagindo com o seu conteúdo ou lhe enviando mensagens e para responder a questões ou outros pedidos.</li>
+      <li>Para prover a funcionalidade básica do Mastodon. Você só pode interagir com o conteúdo de outras pessoas e postar seu próprio conteúdo estando autenticado. Por exemplo, você pode seguir outras pessoas para ver seus posts combinados na sua linha do tempo personalizada.</li>
+      <li>Para auxiliar na moderação da comunidade, por exemplo ao comparar o seu endereço de IP com outros endereços de IP conhecidos para determinar evasão de banimento e outras violações.</li>
+      <li>O endereço de email que você prover pode ser usado para lhe enviar informação, notificação sobre outras pessoas interagindo com o seu conteúdo ou lhe enviando mensagens e para responder a questões ou outros pedidos.</li>
       </ul>
 
       <hr class="spacer" />
@@ -957,8 +889,8 @@ pt-BR:
       <p>Nós fazemos esforços substanciais para:</p>
 
       <ul>
-        <li>Reter o histórico do servidor contendo os endereços de IP de todas as requisições feitas à esse servidor, e com respeito a quanto tempo esses logs são retidos, não mais que 90 dias.</li>
-        <li>Reter o endereço de IP associado com usuários registrados não mais que 12 meses.</li>
+      <li>Reter o histórico do servidor contendo os endereços de IP de todas as requisições feitas à esse servidor, e com respeito a quanto tempo esses logs são retidos, não mais que 90 dias.</li>
+      <li>Reter o endereço de IP associado com usuários registrados não mais que 12 meses.</li>
       </ul>
 
       <p>Você pode pedir e fazer o download de um arquivo de todo o conteúdo da sua conta, incluindo as suas mensagens, suas mídias anexadas, imagem de perfil e imagem de topo.</p>
@@ -1009,7 +941,6 @@ pt-BR:
     mastodon-light: Mastodon (claro)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
       month: "%B de %Y"
   two_factor_authentication:
     code_hint: Insira o código gerado pelo seu aplicativo auteticador para confirmar

@@ -44,6 +44,12 @@ function main() {
     }
   };
 
+  const getEmojiAnimationHandler = (swapTo) => {
+    return ({ target }) => {
+      target.src = target.getAttribute(swapTo);
+    };
+  };
+
   ready(() => {
     const locale = document.documentElement.lang;
 
@@ -116,6 +122,9 @@ function main() {
       document.head.appendChild(scrollbarWidthStyle);
       scrollbarWidthStyle.sheet.insertRule(`body.with-modals--active { margin-right: ${scrollbarWidth}px; }`, 0);
     }
+
+    delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
+    delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
@@ -126,15 +135,15 @@ function main() {
     return false;
   });
 
-  delegate(document, '.status__content__spoiler-link', 'click', ({ target }) => {
-    const contentEl = target.parentNode.parentNode.querySelector('.e-content');
+  delegate(document, '.status__content__spoiler-link', 'click', function() {
+    const contentEl = this.parentNode.parentNode.querySelector('.e-content');
 
     if (contentEl.style.display === 'block') {
       contentEl.style.display = 'none';
-      target.parentNode.style.marginBottom = 0;
+      this.parentNode.style.marginBottom = 0;
     } else {
       contentEl.style.display = 'block';
-      target.parentNode.style.marginBottom = null;
+      this.parentNode.style.marginBottom = null;
     }
 
     return false;
@@ -178,7 +187,7 @@ function main() {
     return ({ target }) => {
       const swapSrc = target.getAttribute(swapTo);
       //only change the img source if autoplay is off and the image src is actually different
-      if(target.getAttribute('data-autoplay') === 'false' && target.src !== swapSrc) {
+      if(target.getAttribute('data-autoplay') !== 'true' && target.src !== swapSrc) {
         target.src = swapSrc;
       }
     };

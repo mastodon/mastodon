@@ -48,7 +48,7 @@ class ResolveAccountService < BaseService
       return
     end
 
-    return if links_missing?
+    return if links_missing? || auto_suspend?
     return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
 
     RedisLock.acquire(lock_options) do |lock|
@@ -119,9 +119,9 @@ class ResolveAccountService < BaseService
     Rails.logger.debug "Creating new remote account for #{@username}@#{@domain}"
 
     @account = Account.new(username: @username, domain: @domain)
-    @account.suspended   = true if auto_suspend?
-    @account.silenced    = true if auto_silence?
-    @account.private_key = nil
+    @account.suspended_at = domain_block.created_at if auto_suspend?
+    @account.silenced_at  = domain_block.created_at if auto_silence?
+    @account.private_key  = nil
   end
 
   def update_account
@@ -146,7 +146,7 @@ class ResolveAccountService < BaseService
 
   def domain_block
     return @domain_block if defined?(@domain_block)
-    @domain_block = DomainBlock.find_by(domain: @domain)
+    @domain_block = DomainBlock.rule_for(@domain)
   end
 
   def atom_url

@@ -7,8 +7,6 @@ class EmojisController < ApplicationController
   def show
     respond_to do |format|
       format.json do
-        skip_session!
-
         render_cached_json(['activitypub', 'emoji', @emoji], content_type: 'application/activity+json') do
           ActiveModelSerializers::SerializableResource.new(@emoji, serializer: ActivityPub::EmojiSerializer, adapter: ActivityPub::Adapter)
         end

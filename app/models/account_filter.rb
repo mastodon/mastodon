@@ -37,6 +37,8 @@ class AccountFilter
       Account.without_suspended
     when 'pending'
       accounts_with_users.merge User.pending
+    when 'disabled'
+      accounts_with_users.merge User.disabled
     when 'silenced'
       Account.silenced
     when 'suspended'

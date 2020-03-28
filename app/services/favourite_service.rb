@@ -2,6 +2,7 @@
 
 class FavouriteService < BaseService
   include Authorization
+  include Payloadable
 
   # Favourite a status and notify remote user
   # @param [Account] account
@@ -43,11 +44,7 @@ class FavouriteService < BaseService
   end
 
   def build_json(favourite)
-    Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(
-      favourite,
-      serializer: ActivityPub::LikeSerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json).sign!(favourite.account))
+    Oj.dump(serialize_payload(favourite, ActivityPub::LikeSerializer))
   end
 
   def build_xml(favourite)

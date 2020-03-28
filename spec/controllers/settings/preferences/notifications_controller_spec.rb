@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Settings::NotificationsController do
+describe Settings::Preferences::NotificationsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -28,7 +28,7 @@ describe Settings::NotificationsController do
         }
       }
 
-      expect(response).to redirect_to(settings_notifications_path)
+      expect(response).to redirect_to(settings_preferences_notifications_path)
       user.reload
       expect(user.settings['notification_emails']['follow']).to be true
       expect(user.settings['interactions']['must_be_follower']).to be false

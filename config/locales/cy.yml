@@ -4,20 +4,30 @@ cy:
     about_hashtag_html: Dyma dŵtiau cyhoeddus wedi eu tagio gyda <strong>#%{hashtag}</strong>. Gallwch ryngweithio gyda nhw os oes gennych gyfrif yn unrhyw le yn y ffeddysawd.
     about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n ddatganoledig.
     about_this: Ynghylch
+    active_count_after: yn weithredol
+    active_footnote: Defnyddwyr Gweithredol Misol (DGM)
     administered_by: 'Gweinyddir gan:'
     api: API
     apps: Apiau symudol
+    apps_platforms: Defnyddio Mastodon o iOS, Android a phlatfformau eraill
+    browse_directory: Pori cyfeiriadur proffil a hidlo wrth diddordebau
+    browse_public_posts: Pori ffrwd byw o byst cyhoeddus ar Fastodon
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
+    discover_users: Darganfod defnyddwyr
     documentation: Dogfennaeth
     extended_description_html: |
       <h3>Lle da ar gyfer rheolau</h3>
       <p>Nid yw'r disgrifiad estynedig wedi ei osod eto.</p>
+    federation_hint_html: Gyda cyfrif ar %{instance}, gallwch dilyn pobl ar unrhyw gweinydd Mastodon, a thu hwnt.
     generic_description: Mae %{domain} yn un gweinydd yn y rhwydwaith
+    get_apps: Rhowch gynnig ar ap dyfeis symudol
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     learn_more: Dysu mwy
     privacy_policy: Polisi preifatrwydd
+    see_whats_happening: Gweld beth sy'n digwydd
+    server_stats: 'Ystadegau gweinydd:'
     source_code: Cod ffynhonnell
     status_count_after:
       few: statwsau
@@ -27,6 +37,7 @@ cy:
       two: statwsau
       zero: statwsau
     status_count_before: Ysgriffennwyd gan
+    tagline: Dilyn ffrindiau a darganfod rhai newydd
     terms: Telerau gwasanaeth
     user_count_after:
       few: defnyddwyr
@@ -73,17 +84,20 @@ cy:
       admin: Gweinyddwr
       bot: Bot
       moderator: Safonwr
+    unavailable: Proffil ddim ar gael
     unfollow: Dad-ddilyn
   admin:
     account_actions:
       action: Cyflawni gweithred
-      title: Perfformio cymedroli ar %{acct}
+      title: Perfformio gweithrediad goruwchwylio ar %{acct}
     account_moderation_notes:
       create: Gadael nodyn
-      created_msg: Crewyd nodyn cymedroli yn llwyddiannus!
+      created_msg: Crewyd nodyn goruwchwylio yn llwyddiannus!
       delete: Dileu
-      destroyed_msg: Dinistrwyd nodyn cymedroli yn llwyddiannus!
+      destroyed_msg: Dinistrwyd nodyn goruwchwylio yn llwyddiannus!
     accounts:
+      approve: Cymeradwyo
+      approve_all: Cymeradwyo pob un
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
       by_domain: Parth
@@ -129,22 +143,27 @@ cy:
       moderation:
         active: Yn weithredol
         all: Popeth
+        pending: Yn aros
         silenced: Wedi ei dawelu
         suspended: Wedi ei atal
-        title: Cymedroli
-      moderation_notes: Nodiadau cymedroli
+        title: Goruwchwyliad
+      moderation_notes: Nodiadau goruwchwylio
       most_recent_activity: Gweithgarwch diweddaraf
       most_recent_ip: IP diweddaraf
+      no_account_selected: Ni newidwyd dim cyfrif achos ni ddewiswyd dim un
       no_limits_imposed: Dim terfynau wedi'i gosod
       not_subscribed: Heb danysgrifio
       outbox_url: Allflwch URL
+      pending: Yn aros am adolygiad
       perform_full_suspension: Atal
       profile_url: URL proffil
       promote: Hyrwyddo
       protocol: Protocol
       public: Cyhoeddus
-      push_subscription_expires: Tanysgrifiad PuSH yn dod i ben
+      push_subscription_expires: Tanysgrifiad gwthiadwy yn dod i ben
       redownload: Adnewyddu proffil
+      reject: Gwrthod
+      reject_all: Gwrthod pob un
       remove_avatar: Dileu afatar
       remove_header: Dileu pennawd
       resend_confirmation:
@@ -157,7 +176,7 @@ cy:
       role: Caniatâd
       roles:
         admin: Gweinyddwr
-        moderator: Safonwr
+        moderator: Aroglygydd
         staff: Staff
         user: Defnyddiwr
       salmon_url: URL Eog
@@ -171,6 +190,7 @@ cy:
       statuses: Statysau
       subscribe: Tanysgrifio
       suspended: Ataliwyd
+      time_in_queue: Yn aros yn y rhestr am %{time}
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
       undo_silenced: Dadwneud tawelu
@@ -246,6 +266,7 @@ cy:
       feature_profile_directory: Cyfeiriadur proffil
       feature_registrations: Cofrestriadau
       feature_relay: Relái ffederasiwn
+      feature_timeline_preview: Rhagolwg o'r ffrwd
       features: Nodweddion
       hidden_service: Ffederasiwn a gwasanaethau cudd
       open_reports: adroddiadau agored
@@ -265,9 +286,10 @@ cy:
       created_msg: Mae'r bloc parth nawr yn cael ei brosesu
       destroyed_msg: Mae'r bloc parth wedi ei ddadwneud
       domain: Parth
+      existing_domain_block_html: Rydych yn barod wedi gosod cyfyngau fwy llym ar %{name}, mae rhaid i chi ei <a href="%{unblock_url}">ddadblocio</a> yn gyntaf.
       new:
         create: Creu bloc
-        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
+        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau goruwchwylio penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
         severity:
           desc_html: Mae <strong>Tawelu</strong> yn gwneud twtiau y cyfrif yn anweledig i unrhyw un nad yw'n dilyn y cyfrif. Mae <strong>Atal</strong> yn cael gwared ar holl gynnwys, cyfryngau a data proffil y cyfrif. Defnyddiwch <strong>Dim</strong> os ydych chi ond am wrthod dogfennau cyfryngau.
           noop: Dim
@@ -323,7 +345,7 @@ cy:
       moderation:
         all: Pob
         limited: Gyfyngedig
-        title: Cymedroli
+        title: Goruwchwyliad
       title: Ffederasiwn
       total_blocked_by_us: Wedi'i bloc gan ni
       total_followed_by_them: Yn dilyn ganynt
@@ -338,6 +360,8 @@ cy:
         expired: Wedi dod i ben
         title: Hidlo
       title: Gwahoddiadau
+    pending_accounts:
+      title: Cyfrifau yn aros (%{count})
     relays:
       add_new: Ychwanegau relái newydd
       delete: Dileu
@@ -363,7 +387,7 @@ cy:
       action_taken_by: Gwnaethpwyd hyn gan
       are_you_sure: Ydych chi'n sicr?
       assign_to_self: Aseinio i mi
-      assigned: Cymedrolwr wedi'i aseinio
+      assigned: Arolygwr wedi'i aseinio
       comment:
         none: Dim
       created_at: Adroddwyd
@@ -424,6 +448,12 @@ cy:
         min_invite_role:
           disabled: Neb
           title: Caniatau gwahoddiadau gan
+      registrations_mode:
+        modes:
+          approved: Mae angen cymeradwyaeth ar gyfer cofrestru
+          none: Ni all unrhyw un cofrestru
+          open: Gall unrhyw un cofrestru
+        title: Modd cofrestriadau
       show_known_fediverse_at_about_page:
         desc_html: Wedi'i ddewis, bydd yn dangos rhagolwg o dŵtiau o'r holl ffedysawd. Fel arall bydd ond yn dangos tŵtiau lleol.
         title: Dangos ffedysawd hysbys ar ragolwg y ffrwd
@@ -486,10 +516,19 @@ cy:
       edit_preset: Golygu rhagosodiad rhybudd
       title: Rheoli rhagosodiadau rhybudd
   admin_mailer:
+    new_pending_account:
+      body: Mae manylion y cyfrif newydd yn isod. Gallwch cymeradwyo neu wrthod y ceisiad hon.
+      subject: Cyfrif newydd i fynu ar gyfer adolygiad ar %{instance} (%{username})
     new_report:
       body: Mae %{reporter} wedi cwyno am %{target}
       body_remote: Mae rhywun o %{domain} wedi cwyno am %{target}
-      subject: Cwyn newydd am %{instance} {#%{id}}
+      subject: Cwyn newydd am %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Rhyngwyneb gwe uwch
+    advanced_web_interface_hint: 'Os hoffech gwneud defnydd o gyd o''ch lled sgrin, mae''r rhyngwyneb gwe uwch yn gadael i chi ffurfweddu sawl colofn wahanol i weld cymaint o wybodaeth â hoffech: Catref, hysbysiadau, ffrwd y ffedysawd, unrhyw nifer o rhestrau ac hashnodau.'
+    animations_and_accessibility: Animeiddiau ac hygyrchedd
+    confirmation_dialogs: Deialog cadarnhau
+    sensitive_content: Cynnwys sensitif
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
     salutation: "%{name},"
@@ -506,7 +545,9 @@ cy:
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
   auth:
+    apply_for_account: Gofyn am wahoddiad
     change_password: Cyfrinair
+    checkbox_agreement_html: Rydw i'n cytuno i'r <a href="%{rules_path}" target="_blank">rheolau'r gweinydd</a> a'r <a href="%{terms_path}" target="_blank">telerau gwasanaeth</a>
     confirm_email: Cadarnhau e-bost
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
@@ -522,10 +563,12 @@ cy:
       cas: CAS
       saml: SAML
     register: Cofrestru
+    registration_closed: Nid yw %{instance} yn derbyn aelodau newydd
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
     reset_password: Ailosod cyfrinair
     security: Diogelwch
     set_new_password: Gosod cyfrinair newydd
+    trouble_logging_in: Trafferdd mewngofnodi?
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
     error: Yn anffodus, roedd gwall tra'n edrych am y cyfrif anghysbell
@@ -544,11 +587,11 @@ cy:
       about_x_years: "%{count}blwyddyn"
       almost_x_years: "%{count}blwyddyn"
       half_a_minute: Newydd fod
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: "%{count}munud"
       less_than_x_seconds: Newydd fod
       over_x_years: "%{count}blwyddyn"
       x_days: "%{count}dydd"
-      x_minutes: "%{count}m"
+      x_minutes: "%{count}munud"
       x_months: "%{count}mis"
       x_seconds: "%{count}eiliad"
   deletes:
@@ -567,12 +610,12 @@ cy:
     explore_mastodon: Archwilio %{title}
     how_to_enable: Ar hyn o bryd nid ydych chi wedi dewis y cyfeiriadur. Gallwch ddewis i mewn isod. Defnyddiwch hashnodau yn eich bio-destun i'w restru dan hashnodau penodol!
     people:
-      few: "%{count} personau"
-      many: "%{count} personau"
-      one: "%{count} person"
-      other: "%{count} personau"
-      two: "%{count} personau"
-      zero: "%{count} personau"
+      few: "%{count} o bobl"
+      many: "%{count} o bobl"
+      one: "%{count} berson"
+      other: "%{count} o bobl"
+      two: "%{count} o bobl"
+      zero: "%{count} person"
   errors:
     '403': Nid oes gennych ganiatad i weld y dudalen hon.
     '404': Nid yw'r dudalen yr oeddech yn chwilio amdani'n bodoli.
@@ -585,6 +628,9 @@ cy:
       content: Mae'n ddrwg gennym ni, ond fe aeth rhywbeth o'i le ar ein rhan ni.
       title: Nid yw'r dudalen hon yn gywir
     noscript_html: I ddefnyddio ap gwe Mastodon, galluogwch JavaScript os gwlwch yn dda. Fel arall, gallwch drio un o'r <a href="%{apps_path}">apiau cynhenid</a> ar gyfer Mastodon ar eich platfform.
+  existing_username_validator:
+    not_found: ni ddarganfwyd defnyddiwr lleol gyda'r enw cyfrif hynny
+    not_found_multiple: ni ddarganfwyd %{usernames}
   exports:
     archive_takeout:
       date: Dyddiad
@@ -625,8 +671,10 @@ cy:
     more: Mwy…
     resources: Adnoddau
   generic:
+    all: Popeth
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
     copy: Copïo
+    order_by: Trefnu wrth
     save_changes: Cadw newidiadau
     validation_errors:
       few: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
@@ -635,18 +683,41 @@ cy:
       other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       two: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
       zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
+  html_validator:
+    invalid_markup: 'yn cynnwys marciad HTML annilys: %{error}'
+  identity_proofs:
+    active: Yn weithredol
+    authorize: Ie, awdurdodi
+    authorize_connection_prompt: Awdurdodi y cysylltiad cryptograffig hon?
+    errors:
+      failed: Methwyd y cysylltiad cryptograffig. Ceisiwch eto o %{provider}, os gwelwch yn dda.
+      keybase:
+        invalid_token: Mae tocynnau keybase yn hashiau o llofnodau ac mae rhaid iddynt bod yn 66 cymeriadau hecs
+        verification_failed: Nid yw Keybase yn adnabod y tocyn hyn fel llofnod defnyddiwr Keybase %{kb_username}. Cesiwch eto o Keybase, os gwelwch yn dda.
+      wrong_user: Ni all greu prawf ar gyfer %{proving} tra wedi mewngofnodi fel %{current}. Mewngofnodi fel %{proving} a cheisiwch eto.
+    explanation_html: Fama gallwch cysylltu i'ch hunanieithau arall yn cryptograffig, er enghraifft proffil Keybase. Mae hyn yn gadael pobl arall i anfon chi negeseuon amgryptiedig a ymddiried mewn cynnwys rydych yn eich anfon iddynt.
+    i_am_html: Rydw i'n %{username} ar %{service}.
+    identity: Hunaniaeth
+    inactive: Anweithgar
+    publicize_checkbox: 'A thŵtiwch hon:'
+    publicize_toot: 'Wedi profi! Rydw i''n %{username} ar %{service}: %{url}'
+    status: Statws gwirio
+    view_proof: Gweld prawf
   imports:
     modes:
       merge: Cyfuno
       merge_long: Cadw'r cofnodau presennol ac ychwanegu rhai newydd
+      overwrite: Trosysgrifio
+      overwrite_long: Disodli cofnodau bresennol gyda'r cofnodau newydd
     preface: Mae modd mewnforio data yr ydych wedi allforio o achos arall, megis rhestr o bobl yr ydych yn ei ddilyn neu yn blocio.
     success: Uwchlwythwyd eich data yn llwyddiannus ac fe fydd yn cael ei brosesu mewn da bryd
     types:
       blocking: Rhestr blocio
+      domain_blocking: Rhestr rhwystro parth
       following: Rhestr dilyn
       muting: Rhestr tawelu
     upload: Uwchlwytho
-  in_memoriam_html: In Memoriam.
+  in_memoriam_html: Mewn Cofiad.
   invites:
     delete: Dadactifadu
     expired: Wedi darfod
@@ -686,7 +757,7 @@ cy:
     proceed: Cadw
     updated_msg: Diweddarwyd gosodiad mudo eich cyfrif yn llwyddiannus!
   moderation:
-    title: Cymedroli
+    title: Goruwchwyliad
   notification_mailer:
     digest:
       action: Gweld holl hysbysiadau
@@ -734,32 +805,71 @@ cy:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
+          billion: Biliwn
+          million: Miliwn
+          quadrillion: Cwadriliwn
+          thousand: Mil
+          trillion: Triliwn
   pagination:
     newer: Diweddarach
     next: Nesaf
     older: Hŷn
     prev: Blaenorol
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Rydych chi barod wedi pleidleisio ar y pleidlais hon
+      duplicate_options: yn cynnwys eitemau dyblyg
+      duration_too_long: yn rhy bell yn y dyfodol
+      duration_too_short: yn rhy fuan
+      expired: Mae'r pleidlais wedi gorffen yn barod
+      over_character_limit: ni all fod yn hirach na %{max} cymeriad yr un
+      too_few_options: rhaid cael fwy nag un eitem
+      too_many_options: ni all cynnwys fwy na %{max} o eitemau
   preferences:
-    languages: Ieithoedd
     other: Arall
-    publishing: Cyhoeddi
-    web: Gwe
+    posting_defaults: Rhagosodiadau postio
+    public_timelines: Ffrydau gyhoeddus
+  relationships:
+    activity: Gweithgareddau cyfrif
+    dormant: Segur
+    last_active: Gweithred ddiwethaf
+    most_recent: Yn diweddaraf
+    moved: Wedi symud
+    mutual: Cydfuddiannol
+    primary: Cynradd
+    relationship: Perthynas
+    remove_selected_domains: Tynnu pob dilynydd o'r parthau dewisiedig
+    remove_selected_followers: Tynnu'r dilynydd dewisiedig
+    remove_selected_follows: Dad-ddilyn y defnyddwyr dewisiedig
+    status: Statws cyfrif
   remote_follow:
     acct: Mewnbynnwch eich enwdefnyddiwr@parth yr ydych eisiau gweithredu ohonno
     missing_resource: Ni ellir canfod yr URL ailgyferio angenrheidiol i'ch cyfrif
     no_account_html: Heb gyfrif? Mae modd i chi <a href='%{sign_up_path}' target='_blank'>gofrestru yma</a>
     proceed: Ymlaen i ddilyn
     prompt: 'Yr ydych am ddilyn:'
+    reason_html: |-
+      <strong>Pam yw'r cam hyn yn angenrheidiol? </strong>
+      Efallai nid yw <code>%{instance}</code> yn gweinydd ble wnaethoch gofrestru, felly mae'n rhaid i ni ailarweinio chi at eich gweinydd catref yn gyntaf.
+  remote_interaction:
+    favourite:
+      proceed: Ymlaen i hoffi
+      prompt: 'Hoffech hoffi''r tŵt hon:'
+    reblog:
+      proceed: Ymlaen i fŵstio
+      prompt: 'Hoffech fŵstio''r tŵt hon:'
+    reply:
+      proceed: Ymlaen i ateb
+      prompt: 'Hoffech ateb y tŵt hon:'
   remote_unfollow:
     error: Gwall
     title: Teitl
     unfollowed: Dad-ddilynwyd
+  scheduled_statuses:
+    over_daily_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig ar y dydd hynny
+    over_total_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig
+    too_soon: Mae rhaid i'r dydd rhestredig fod yn y dyfodol
   sessions:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr
@@ -789,29 +899,37 @@ cy:
       adobe_air: Adobe Air
       android: Android
       blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
+      chrome_os: OS Chrome
+      firefox_os: OS Firefox
       ios: iOS
       linux: Linux
       mac: Mac
       other: platfform anhysbys
       windows: Windows
       windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
+      windows_phone: Ffôn Windows
     revoke: Diddymu
     revoke_success: Sesiwn wedi ei ddiddymu yn llwyddiannus
     title: Sesiynau
   settings:
+    account: Cyfrif
+    account_settings: Gosodiadau'r cyfrif
+    appearance: Arddangosiad
     authorized_apps: Apiau awdurdodedig
     back: Yn ôl i Mastodon
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
     export: Allforio data
+    featured_tags: Hashnodau Nodedig
+    identity_proofs: Profiadau Hunaniaeth
     import: Mewnforio
+    import_and_export: Mewnfori ac allfori
     migrate: Mudo cyfrif
     notifications: Hysbysiadau
     preferences: Dewisiadau
+    profile: Proffil
+    relationships: Dilynion a dilynwyr
     two_factor_authentication: Awdurdodi dau-gam
   statuses:
     attached:
@@ -847,6 +965,15 @@ cy:
       ownership: Ni ellir pinio tŵt rhywun arall
       private: Ni ellir pinio tŵt nad yw'n gyhoeddus
       reblog: Ni ellir pinio bŵstiau
+    poll:
+      total_votes:
+        few: "%{count} o bleidleisiau"
+        many: "%{count} o bleidleisiau"
+        one: "%{count} bleidlais"
+        other: "%{count} o bleidleisiau"
+        two: "%{count} o bleidleisiau"
+        zero: "%{count} pleidlais"
+      vote: Pleidleisio
     show_more: Dangos mwy
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     title: '%{name}: "%{quote}"'
@@ -867,10 +994,10 @@ cy:
       <h3 id="collect">Pa wybodaeth ydyn ni'n ei gasglu?</h3>
 
       <ul>
-        <li><em>Gwybodaeth cyfrif sylfaenol</em>: Os ydych yn cofrestru ar y gweinydd hwn, mae'n bosib y byddwch yn cael eich gofyn i fewnbynnu enw defnyddiwr, cyfeiriad e-bost a chyfrinair. Mae modd i chi hefyd fewnbynnu gwybodaeth ychwanegol megis enw arddangos a bywgraffiad ac uwchlwytho llun proffil a llun pennawd. Mae'r enw defnyddiwr, enw arddangos, bywgraffiad, llun proffil a'r llun pennawd wedi eu rhestru'n gyhoeddus bob tro.</li>
-        <li><em>Postio, dilyn a gwybodaeth gyhoeddus arall</em>: Mae'r rhestr o bobl yr ydych yn dilyn wedi ei restru'n gyhoeddus, mae'r un peth yn wir am eich dilynwyr. Pan yr ydych yn mewnosod neges, mae'r dyddiad a'r amser yn cael ei gofnodi ynghyd a'r rhaglen y wnaethoch anfon y neges ohonni. Gall negeseuon gynnwys atodiadau cyfryngau, megis lluniau neu fideo. Mae negeseuon cyhoeddus a negeseuon heb eu rhestru ar gael yn gyhoeddus. Pan yr ydych yn nodweddu neges ar eich proffil, mae hynny hefyd yn wybodaeth sydd ar gael yn gyhoeddus. Mae eich negeseuon yn cael eu hanfon i'ch dilynwyr, mewn rhai achosion mae hyn yn golygu eu bod yn cael eu hanfon i amryw o weinyddwyr ac fe fydd copiau yn cael eu cadw yno. Pan yr ydych yn dileu negeseuon, mae hyn hefyd yn cael ei hanfon i'ch dilynwyr. Mae'r weithred o rannu neu hoffi neges arall yn gyhoeddus bob tro.</li>
-        <li><em>Negeseuon uniongyrchol a dilynwyr yn unig</em>: Mae pob neges yn cael eu cadw a'u prosesu ar y gweinydd. Mae negeseuon dilynwyr yn unig yn cael eu hanfon i'ch dilynwyr a'r defnyddwyr sy'n cael eu crybwyll ynddynt tra bod negeseuon uniongyrchol yn cael eu hanfon at rheini sy'n cael crybwyll ynddynt yn unig. Mewn rhai achostion golyga hyn eu bod yn cael eu hanfon i weinyddwyr gwahanol a'u cadw yno. yr ydym yn gnweud ymgais ewyllys da i gyfyngu'r mynediad at y negeseuon yna i bobl ac awdurdod yn unig, ond mae'n bosib y bydd gweinyddwyr eraill yn methu a gwneud hyn. Mae'n bwysig felly i chi fod yn wyliadwrus o ba weinyddwyr y mae eich dilynwyr yn perthyn iddynt. Mae modd i chi osod y dewis i ganiatau a gwrthod dilynwyr newydd a llaw yn y gosodiadau. <em>Cofiwch gall gweithredwyr y gweinydd ac unrhyw weinydd derbyn weld unrhyw negeseuon o'r fath</em>, ac fe all y derbynwyr gymryd sgrinlin, copïo neu drwy ddulliau eraill rannu rhain. <em>Peidiwch a rhannu unrhyw wybodaeth beryglus dros Mastodon.</em></li>
-        <li><em>IPs a mathau eraill o metadata</em>: Pan yr ydych yn mewngofnodi, yr ydym yn cofnodi y cyfeiriad IP yr ydych yn mewngofnodi ohonno, ynghyd a enw eich rhaglen pori. Mae pob un sesiwn mewngofnodi ar gael i chi adolygu a gwrthod yn y gosodiadau. Mae'r cyfeiriad IP diweddaraf yn cael ei storio hyd at 12 mis. Mae'n bosib y byddwn hefyd yn cadw cofnodion gweinydd sy'n cynnwys y cyfeiriad IP am bob cais sy'n cael ei wneud i'n gweinydd.</li>
+      <li><em>Gwybodaeth cyfrif sylfaenol</em>: Os ydych yn cofrestru ar y gweinydd hwn, mae'n bosib y byddwch yn cael eich gofyn i fewnbynnu enw defnyddiwr, cyfeiriad e-bost a chyfrinair. Mae modd i chi hefyd fewnbynnu gwybodaeth ychwanegol megis enw arddangos a bywgraffiad ac uwchlwytho llun proffil a llun pennawd. Mae'r enw defnyddiwr, enw arddangos, bywgraffiad, llun proffil a'r llun pennawd wedi eu rhestru'n gyhoeddus bob tro.</li>
+      <li><em>Postio, dilyn a gwybodaeth gyhoeddus arall</em>: Mae'r rhestr o bobl yr ydych yn dilyn wedi ei restru'n gyhoeddus, mae'r un peth yn wir am eich dilynwyr. Pan yr ydych yn mewnosod neges, mae'r dyddiad a'r amser yn cael ei gofnodi ynghyd a'r rhaglen y wnaethoch anfon y neges ohonni. Gall negeseuon gynnwys atodiadau cyfryngau, megis lluniau neu fideo. Mae negeseuon cyhoeddus a negeseuon heb eu rhestru ar gael yn gyhoeddus. Pan yr ydych yn nodweddu neges ar eich proffil, mae hynny hefyd yn wybodaeth sydd ar gael yn gyhoeddus. Mae eich negeseuon yn cael eu hanfon i'ch dilynwyr, mewn rhai achosion mae hyn yn golygu eu bod yn cael eu hanfon i amryw o weinyddwyr ac fe fydd copiau yn cael eu cadw yno. Pan yr ydych yn dileu negeseuon, mae hyn hefyd yn cael ei hanfon i'ch dilynwyr. Mae'r weithred o rannu neu hoffi neges arall yn gyhoeddus bob tro.</li>
+      <li><em>Negeseuon uniongyrchol a dilynwyr yn unig</em>: Mae pob neges yn cael eu cadw a'u prosesu ar y gweinydd. Mae negeseuon dilynwyr yn unig yn cael eu hanfon i'ch dilynwyr a'r defnyddwyr sy'n cael eu crybwyll ynddynt tra bod negeseuon uniongyrchol yn cael eu hanfon at rheini sy'n cael crybwyll ynddynt yn unig. Mewn rhai achostion golyga hyn eu bod yn cael eu hanfon i weinyddwyr gwahanol a'u cadw yno. yr ydym yn gnweud ymgais ewyllys da i gyfyngu'r mynediad at y negeseuon yna i bobl ac awdurdod yn unig, ond mae'n bosib y bydd gweinyddwyr eraill yn methu a gwneud hyn. Mae'n bwysig felly i chi fod yn wyliadwrus o ba weinyddwyr y mae eich dilynwyr yn perthyn iddynt. Mae modd i chi osod y dewis i ganiatau a gwrthod dilynwyr newydd a llaw yn y gosodiadau. <em>Cofiwch gall gweithredwyr y gweinydd ac unrhyw weinydd derbyn weld unrhyw negeseuon o'r fath</em>, ac fe all y derbynwyr gymryd sgrinlin, copïo neu drwy ddulliau eraill rannu rhain. <em>Peidiwch a rhannu unrhyw wybodaeth beryglus dros Mastodon.</em></li>
+      <li><em>IPs a mathau eraill o metadata</em>: Pan yr ydych yn mewngofnodi, yr ydym yn cofnodi y cyfeiriad IP yr ydych yn mewngofnodi ohonno, ynghyd a enw eich rhaglen pori. Mae pob un sesiwn mewngofnodi ar gael i chi adolygu a gwrthod yn y gosodiadau. Mae'r cyfeiriad IP diweddaraf yn cael ei storio hyd at 12 mis. Mae'n bosib y byddwn hefyd yn cadw cofnodion gweinydd sy'n cynnwys y cyfeiriad IP am bob cais sy'n cael ei wneud i'n gweinydd.</li>
       </ul>
 
       <hr class="spacer" />
@@ -880,9 +1007,9 @@ cy:
       <p>Gall unrhyw wybodaeth yr ydym yn ei gasglu oddi wrthych gael ei ddefnyddio yn y ffyrdd canlynol:</p>
 
       <ul>
-        <li>I ddarparu prif weithgaredd Mastodon. Gallwch ond rhyngweithio a chynnwys pobl eraill pan yr ydych wedi'ch mewngofnodi. Er enghraifft, gallwch ddilyn pobl eraill i weld eu negeseuon wedi cyfuno ar ffrwd gartref bersonol.</li>
-        <li>I helpu gyda goruwchwylio'r gymuned, er enghraifft drwy gymharu eich cyfeiriad IP gyda rhai eraill hysbys er mwyn sefydlu ymgais i geisio hepgor gwaharddiad neu droseddau eraill.</li>
-        <li>Gall y cyfeiriad e-bost yr ydych yn ei ddarparu gael ei ddefnyddio i anfon gwybodaeth atoch, hsybysiadau am bobl eraill yn rhyngweithio a'ch cynnwys neu'n anfon negeseuon atoch a/neu geisiadau neu gwestiynnau eraill.</li>
+      <li>I ddarparu prif weithgaredd Mastodon. Gallwch ond rhyngweithio a chynnwys pobl eraill pan yr ydych wedi'ch mewngofnodi. Er enghraifft, gallwch ddilyn pobl eraill i weld eu negeseuon wedi cyfuno ar ffrwd gartref bersonol.</li>
+      <li>I helpu gyda goruwchwylio'r gymuned, er enghraifft drwy gymharu eich cyfeiriad IP gyda rhai eraill hysbys er mwyn sefydlu ymgais i geisio hepgor gwaharddiad neu droseddau eraill.</li>
+      <li>Gall y cyfeiriad e-bost yr ydych yn ei ddarparu gael ei ddefnyddio i anfon gwybodaeth atoch, hsybysiadau am bobl eraill yn rhyngweithio a'ch cynnwys neu'n anfon negeseuon atoch a/neu geisiadau neu gwestiynnau eraill.</li>
       </ul>
 
       <hr class="spacer" />
@@ -898,8 +1025,8 @@ cy:
       <p>Gwnawn ymdrech ewyllys da i:</p>
 
       <ul>
-        <li>Gadw cofnod gweinydd yn cynnwys y cyfeiriad IP o bob cais i'r gweinydd hwn, i'r graddau y mae cofnodion o'r fath yn cael eu cadw, am ddim mwy na 90 diwrnod.</li>
-        <li>Gadw cyfeiriadau IP a chysylltiad i ddefnyddwyr cofrestredig am ddim mwy na 12 mis.</li>
+      <li>Gadw cofnod gweinydd yn cynnwys y cyfeiriad IP o bob cais i'r gweinydd hwn, i'r graddau y mae cofnodion o'r fath yn cael eu cadw, am ddim mwy na 90 diwrnod.</li>
+      <li>Gadw cyfeiriadau IP a chysylltiad i ddefnyddwyr cofrestredig am ddim mwy na 12 mis.</li>
       </ul>
 
       <p>Mae modd i chi wneud cais am, a lawrlwytho archif o'ch cynnwys, gan gynnwys eich tŵtiau, atodiadau cyfryngau, llun proffil a llun pennawd.</p>
@@ -945,8 +1072,8 @@ cy:
       <p>Cafodd ei addasu yn wreiddiol o'r<a href="https://github.com/discourse/discourse">Polisi preifatrwydd disgwrs</a>.</p>
     title: "%{instance} Termau Gwasanaeth a Polisi Preifatrwydd"
   themes:
-    contrast: Cyferbyniad uchel
-    default: Mastodon
+    contrast: Mastodon (Cyferbyniad uchel)
+    default: Mastodon (Tywyll)
     mastodon-light: Mastodon (golau)
   time:
     formats:
@@ -976,6 +1103,8 @@ cy:
     warning:
       explanation:
         disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
+        silence: Pan mae eich cyfrif yn gyfyngiedig, dim ond pobl sydd yn barod yn eich dilyn yn gweld eich tŵtiau ar y gweinydd hon, a efallai byddwch yn cael eich tynnu o restrau cyhoeddus. Er hyn, gall eraill eich dilyn chi wrth law.
+        suspend: Mae eich cyfrif wedi cael ei wahardd, a mae gyd o'ch tŵtiau a'ch ffeiliau cyfrwng uwchlwythadwy wedi cael eu tynnu or gweinydd yn barhaol, ac o weinyddau ble yr oedd eich dilynwyr.
       review_server_policies: Adolygu polisïau'r gweinydd
       subject:
         disable: Mae'ch cyfrif %{acct} wedi'i rewi
@@ -1001,7 +1130,7 @@ cy:
       tip_federated_timeline: Mae'r ffrwd ffederasiwn yn olwg firehose o'r rhwydwaith Mastodon. Ond mae ond yn cynnwys y bobl mae eich cymdogion wedi ymrestru iddynt, felly nid yw'n gyflawn.
       tip_following: Rydych yn dilyn goruwchwyliwr eich gweinydd yn ddiofyn. I ganfod pobl mwy diddorol, edrychwch ar y ffrydiau lleol a'r rhai wedi ei ffedereiddio.
       tip_local_timeline: Mae'r ffrwd leol yn olwg firehose o bobl ar %{instance}. Dyma eich cymdogion agosaf!
-      tip_mobile_webapp: Os yw eich porwr gwe yn cynnig i ch ychwanegu Mastodon i'ch sgrîn gartref, mae modd i chi dderbyn hysbysiadau push. Mewn sawl modd mae'n gweithio fel ap cynhenid!
+      tip_mobile_webapp: Os yw eich porwr gwe yn cynnig i chi ychwanegu Mastodon i'ch sgrîn gartref, mae modd i chi dderbyn hysbysiadau gwthiadwy. Mewn sawl modd mae'n gweithio fel ap cynhenid!
       tips: Awgrymiadau
       title: Croeso, %{name}!
   users:

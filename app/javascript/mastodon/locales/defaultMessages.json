@@ -180,10 +180,6 @@
       {
         "defaultMessage": "Media hidden",
         "id": "status.media_hidden"
-      },
-      {
-        "defaultMessage": "Click to view",
-        "id": "status.sensitive_toggle"
       }
     ],
     "path": "app/javascript/mastodon/components/media_gallery.json"
@@ -1073,7 +1069,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Add media (JPEG, PNG, GIF, WebM, MP4, MOV)",
+        "defaultMessage": "Add media ({formats})",
         "id": "upload_button.label"
       }
     ],
@@ -1114,6 +1110,10 @@
       {
         "defaultMessage": "Media is not marked as sensitive",
         "id": "compose_form.sensitive.unmarked"
+      },
+      {
+        "defaultMessage": "Mark media as sensitive",
+        "id": "compose_form.sensitive.hide"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/containers/sensitive_button_container.json"
@@ -1374,46 +1374,6 @@
       {
         "defaultMessage": "Profile directory",
         "id": "getting_started.directory"
-      },
-      {
-        "defaultMessage": "Invite people",
-        "id": "getting_started.invite"
-      },
-      {
-        "defaultMessage": "Hotkeys",
-        "id": "navigation_bar.keyboard_shortcuts"
-      },
-      {
-        "defaultMessage": "Security",
-        "id": "getting_started.security"
-      },
-      {
-        "defaultMessage": "About this server",
-        "id": "navigation_bar.info"
-      },
-      {
-        "defaultMessage": "Mobile apps",
-        "id": "navigation_bar.apps"
-      },
-      {
-        "defaultMessage": "Terms of service",
-        "id": "getting_started.terms"
-      },
-      {
-        "defaultMessage": "Developers",
-        "id": "getting_started.developers"
-      },
-      {
-        "defaultMessage": "Documentation",
-        "id": "getting_started.documentation"
-      },
-      {
-        "defaultMessage": "Logout",
-        "id": "navigation_bar.logout"
-      },
-      {
-        "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
-        "id": "getting_started.open_source_notice"
       }
     ],
     "path": "app/javascript/mastodon/features/getting_started/index.json"
@@ -1616,6 +1576,10 @@
       {
         "defaultMessage": "to show/hide text behind CW",
         "id": "keyboard_shortcuts.toggle_hidden"
+      },
+      {
+        "defaultMessage": "to show/hide media",
+        "id": "keyboard_shortcuts.toggle_sensitivity"
       },
       {
         "defaultMessage": "to move up in the list",
@@ -2179,6 +2143,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Unboost",
+        "id": "status.cancel_reblog_private"
+      },
+      {
         "defaultMessage": "Boost",
         "id": "status.reblog"
       },
@@ -2261,6 +2229,60 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Follow requests",
+        "id": "navigation_bar.follow_requests"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/follow_requests_nav_link.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Invite people",
+        "id": "getting_started.invite"
+      },
+      {
+        "defaultMessage": "Hotkeys",
+        "id": "navigation_bar.keyboard_shortcuts"
+      },
+      {
+        "defaultMessage": "Security",
+        "id": "getting_started.security"
+      },
+      {
+        "defaultMessage": "About this server",
+        "id": "navigation_bar.info"
+      },
+      {
+        "defaultMessage": "Mobile apps",
+        "id": "navigation_bar.apps"
+      },
+      {
+        "defaultMessage": "Terms of service",
+        "id": "getting_started.terms"
+      },
+      {
+        "defaultMessage": "Developers",
+        "id": "getting_started.developers"
+      },
+      {
+        "defaultMessage": "Documentation",
+        "id": "getting_started.documentation"
+      },
+      {
+        "defaultMessage": "Logout",
+        "id": "navigation_bar.logout"
+      },
+      {
+        "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
+        "id": "getting_started.open_source_notice"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/link_footer.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Close",
         "id": "lightbox.close"
       },
@@ -2271,6 +2293,10 @@
       {
         "defaultMessage": "Next",
         "id": "lightbox.next"
+      },
+      {
+        "defaultMessage": "View context",
+        "id": "lightbox.view_context"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/media_modal.json"
@@ -2295,6 +2321,51 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/mute_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Home",
+        "id": "tabs_bar.home"
+      },
+      {
+        "defaultMessage": "Notifications",
+        "id": "tabs_bar.notifications"
+      },
+      {
+        "defaultMessage": "Local",
+        "id": "tabs_bar.local_timeline"
+      },
+      {
+        "defaultMessage": "Federated",
+        "id": "tabs_bar.federated_timeline"
+      },
+      {
+        "defaultMessage": "Direct messages",
+        "id": "navigation_bar.direct"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "navigation_bar.favourites"
+      },
+      {
+        "defaultMessage": "Lists",
+        "id": "navigation_bar.lists"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "Follows and followers",
+        "id": "navigation_bar.follows_and_followers"
+      },
+      {
+        "defaultMessage": "Profile directory",
+        "id": "navigation_bar.profile_directory"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/navigation_panel.json"
   },
   {
     "descriptors": [
@@ -2366,6 +2437,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "View context",
+        "id": "lightbox.view_context"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Your draft will be lost if you leave Mastodon.",
         "id": "ui.beforeunload"
       }
@@ -2417,10 +2497,6 @@
       {
         "defaultMessage": "Media hidden",
         "id": "status.media_hidden"
-      },
-      {
-        "defaultMessage": "Click to view",
-        "id": "status.sensitive_toggle"
       }
     ],
     "path": "app/javascript/mastodon/features/video/index.json"

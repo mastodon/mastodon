@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ProcessMentionsService, type: :service do
-  let(:account) { Fabricate(:account, username: 'alice') }
-  let(:status)  { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct}") }
+  let(:account)    { Fabricate(:account, username: 'alice') }
+  let(:visibility) { :public }
+  let(:status)     { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct}", visibility: visibility) }
 
-  context 'OStatus' do
+  context 'OStatus with public toot' do
     let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :ostatus, domain: 'example.com', salmon_url: 'http://salmon.example.com') }
 
     subject { ProcessMentionsService.new }
@@ -20,6 +21,26 @@ RSpec.describe ProcessMentionsService, type: :service do
 
     it 'posts to remote user\'s Salmon end point' do
       expect(a_request(:post, remote_user.salmon_url)).to have_been_made.once
+    end
+  end
+
+  context 'OStatus with private toot' do
+    let(:visibility)  { :private }
+    let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :ostatus, domain: 'example.com', salmon_url: 'http://salmon.example.com') }
+
+    subject { ProcessMentionsService.new }
+
+    before do
+      stub_request(:post, remote_user.salmon_url)
+      subject.call(status)
+    end
+
+    it 'does not create a mention' do
+      expect(remote_user.mentions.where(status: status).count).to eq 0
+    end
+
+    it 'does not post to remote user\'s Salmon end point' do
+      expect(a_request(:post, remote_user.salmon_url)).to_not have_been_made
     end
   end
 

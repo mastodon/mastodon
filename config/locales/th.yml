@@ -23,21 +23,21 @@ th:
     get_apps: ลองแอปสำหรับมือถือ
     learn_more: เรียนรู้เพิ่มเติม
     privacy_policy: นโยบายความเป็นส่วนตัว
+    see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
     server_stats: 'สถิติเซิร์ฟเวอร์:'
     source_code: โค้ดต้นฉบับ
     status_count_after:
-      one: สถานะ
       other: สถานะ
     status_count_before: ผู้สร้าง
+    terms: เงื่อนไขการให้บริการ
     user_count_after:
-      one: ผู้ใช้
       other: ผู้ใช้
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
+    choices_html: 'ทางเลือกของ %{name}:'
     follow: ติดตาม
     followers:
-      one: ผู้ติดตาม
       other: ผู้ติดตาม
     following: กำลังติดตาม
     joined: เข้าร่วมเมื่อ %{date}
@@ -49,7 +49,6 @@ th:
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
     posts:
-      one: โพสต์
       other: โพสต์
     posts_tab_heading: โพสต์
     posts_with_replies: โพสต์และการตอบกลับ
@@ -57,6 +56,7 @@ th:
       admin: ผู้ดูแล
       bot: บอต
       moderator: ผู้ควบคุม
+    unavailable: ไม่มีโปรไฟล์
     unfollow: เลิกติดตาม
   admin:
     account_moderation_notes:
@@ -65,6 +65,7 @@ th:
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     accounts:
       approve: อนุมัติ
+      approve_all: อนุมัติทั้งหมด
       are_you_sure: คุณแน่ใจหรือไม่?
       avatar: ภาพประจำตัว
       by_domain: โดเมน
@@ -83,7 +84,7 @@ th:
       disable: ปิดใช้งาน
       disable_two_factor_authentication: ปิดใช้งาน 2FA
       disabled: ปิดใช้งานอยู่
-      display_name: ชื่อที่แสดงผล
+      display_name: ชื่อที่แสดง
       domain: โดเมน
       edit: แก้ไข
       email: อีเมล
@@ -93,7 +94,7 @@ th:
       feed_url: URL ฟีด
       followers: ผู้ติดตาม
       followers_url: URL ผู้ติดตาม
-      follows: ติดตาม
+      follows: การติดตาม
       header: ส่วนหัว
       inbox_url: URL กล่องขาเข้า
       invited_by: เชิญโดย
@@ -121,7 +122,9 @@ th:
       protocol: โปรโตคอล
       public: สาธารณะ
       push_subscription_expires: การบอกรับ PuSH หมดอายุเมื่อ
+      redownload: รีเฟรชโปรไฟล์
       reject: ปฏิเสธ
+      reject_all: ปฏิเสธทั้งหมด
       remove_avatar: เอาภาพประจำตัวออก
       remove_header: เอาส่วนหัวออก
       resend_confirmation:
@@ -130,12 +133,12 @@ th:
         success: ส่งอีเมลยืนยันสำเร็จ!
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
+      role: สิทธิอนุญาต
       roles:
         admin: ผู้ดูแล
         moderator: ผู้ควบคุม
         staff: พนักงาน
         user: ผู้ใช้
-      salmon_url: Salmon URL
       search: ค้นหา
       show:
         created_reports: รายงานที่สร้าง
@@ -160,9 +163,13 @@ th:
       copy: คัดลอก
       created_msg: สร้างอีโมจิสำเร็จ!
       delete: ลบ
+      destroyed_msg: ทำลายอีโมโจสำเร็จ!
       disable: ปิดใช้งาน
+      disabled_msg: ปิดใช้งานอีโมจินั้นสำเร็จ
       emoji: อีโมจิ
       enable: เปิดใช้งาน
+      enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
+      image_hint: PNG สูงสุด 50KB
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
       overwrite: เขียนทับ
@@ -178,6 +185,7 @@ th:
       feature_invites: ลิงก์เชิญ
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
       feature_registrations: การลงทะเบียน
+      feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
       open_reports: รายงานที่เปิด
       recent_users: ผู้ใช้ล่าสุด
@@ -213,7 +221,6 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          one: มีผลต่อหนึ่งบัญชีในฐานข้อมูล
           other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
         retroactive:
           silence: เลิกเงียบบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -249,6 +256,7 @@ th:
       enable: เปิดใช้งาน
       enabled: เปิดใช้งานอยู่
       inbox_url: URL รีเลย์
+      save_and_enable: บันทึกแล้วเปิดใช้งาน
       status: สถานะ
       title: รีเลย์
     report_notes:
@@ -288,7 +296,7 @@ th:
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
       registrations:
         closed_message:
-          desc_html: แสดงผลในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
+          desc_html: แสดงในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
           title: ข้อความการปิดการลงทะเบียน
         deletion:
           desc_html: อนุญาตให้ใครก็ตามลบบัญชีของเขา
@@ -305,7 +313,7 @@ th:
         desc_html: แสดงป้ายพนักงานในหน้าผู้ใช้
         title: แสดงป้ายพนักงาน
       site_description:
-        desc_html: ย่อหน้าเกริ่นนำในหน้าแรก อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>
+        desc_html: ย่อหน้าเกริ่นนำใน API อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>
         title: คำอธิบายเซิร์ฟเวอร์
       site_description_extended:
         desc_html: สถานที่ที่ดีสำหรับแนวทางปฏิบัติ, กฎ, หลักเกณฑ์ และสิ่งอื่น ๆ ของคุณที่ทำให้เซิร์ฟเวอร์ของคุณแตกต่าง คุณสามารถใช้แท็ก HTML
@@ -349,6 +357,10 @@ th:
       edit: แก้ไข
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
+  appearance:
+    advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
+    animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
+    sensitive_content: เนื้อหาที่ละเอียดอ่อน
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
@@ -362,7 +374,6 @@ th:
     change_password: รหัสผ่าน
     confirm_email: ยืนยันอีเมล
     delete_account: ลบบัญชี
-    didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: ลืมรหัสผ่านของคุณ?
     login: เข้าสู่ระบบ
     logout: ออกจากระบบ
@@ -379,8 +390,8 @@ th:
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
-    error: Unfortunately, there was an error looking up the remote account
     follow: ติดตาม
+    follow_request: 'คุณได้ส่งคำขอติดตามไปยัง:'
     following: 'สำเร็จ! คุณกำลังติดตาม:'
     post_follow:
       return: แสดงโปรไฟล์ของผู้ใช้
@@ -408,7 +419,7 @@ th:
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
   errors:
-    '403': คุณไม่มีสิทธิดูหน้านี้
+    '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
     '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
     '422':
@@ -454,15 +465,13 @@ th:
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
     save_changes: บันทึกการเปลี่ยนแปลง
-    validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      other: Something isn't quite right yet! Please review %{count} errors below
+  identity_proofs:
+    authorize: ใช่ อนุญาต
   imports:
     modes:
       merge: ผสาน
       overwrite: เขียนทับ
     preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
-    success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: รายการปิดกั้น
       following: รายการติดตาม
@@ -495,14 +504,10 @@ th:
   notification_mailer:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
-      body: Here is a brief summary of the messages you missed since your last visit on %{since}
       mention: "%{name} ได้กล่าวถึงคุณใน:"
       new_followers_summary:
-        one: นอกจากนี้คุณยังมีหนึ่งผู้ติดตามใหม่ขณะที่ไม่อยู่! เย่!
         other: You have gotten %{count} new followers! Amazing!
-      subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+      title: เมื่อคุณไม่อยู่...
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
       subject: "%{name} ได้ชื่นชอบสถานะของคุณ"
@@ -525,17 +530,6 @@ th:
       body: 'สถานะของคุณได้รับการดันโดย %{name}:'
       subject: "%{name} ได้ดันสถานะของคุณ"
       title: การดันใหม่
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: ใหม่กว่า
     next: ถัดไป
@@ -543,12 +537,11 @@ th:
     prev: ก่อนหน้า
     truncate: "&hellip;"
   preferences:
-    languages: ภาษา
-    other: อื่น ๆ
-    publishing: การเผยแพร่
-    web: เว็บ
+    posting_defaults: ค่าเริ่มต้นการโพสต์
+    public_timelines: เส้นเวลาสาธารณะ
   relationships:
     activity: กิจกรรมบัญชี
+    last_active: ใช้งานล่าสุด
     relationship: ความสัมพันธ์
     remove_selected_domains: เอาผู้ติดตามทั้งหมดออกจากโดเมนที่เลือก
     remove_selected_followers: เอาผู้ติดตามที่เลือกออก
@@ -556,7 +549,6 @@ th:
     status: สถานะบัญชี
   remote_follow:
     acct: ป้อน username@domain ของคุณที่คุณต้องการกระทำจาก
-    missing_resource: Could not find the required redirect URL for your account
     no_account_html: ไม่มีบัญชี? คุณสามารถ <a href='%{sign_up_path}' target='_blank'>ลงทะเบียนที่นี่</a>
     proceed: ดำเนินการต่อเพื่อติดตาม
     prompt: 'คุณกำลังจะติดตาม:'
@@ -577,9 +569,44 @@ th:
   sessions:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: เซสชันปัจจุบัน
     ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: เพิกถอน
+    revoke_success: เพิกถอนเซสชันสำเร็จ
+    title: เซสชัน
   settings:
+    account: บัญชี
+    account_settings: การตั้งค่าบัญชี
+    appearance: ลักษณะที่ปรากฏ
     authorized_apps: แอปที่ได้รับอนุญาต
     back: กลับไปที่ Mastodon
     delete: การลบบัญชี
@@ -587,27 +614,25 @@ th:
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
     import: นำเข้า
+    import_and_export: การนำเข้าและการส่งออก
     notifications: การแจ้งเตือน
     preferences: การกำหนดลักษณะ
+    profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
   statuses:
     attached:
       description: 'แนบ: %{attached}'
       image:
-        one: "%{count} ภาพ"
         other: "%{count} ภาพ"
       video:
-        one: "%{count} วิดีโอ"
         other: "%{count} วิดีโอ"
     content_warning: 'คำเตือนเนื้อหา: %{warning}'
     open_in_web: เปิดในเว็บ
-    over_character_limit: character limit of %{max} exceeded
     pin_errors:
       reblog: ไม่สามารถปักหมุดการดัน
     poll:
       total_votes:
-        one: "%{count} การลงคะแนน"
         other: "%{count} การลงคะแนน"
     show_more: แสดงเพิ่มเติม
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
@@ -618,10 +643,8 @@ th:
       public: สาธารณะ
       public_long: ทุกคนสามารถเห็น
       unlisted: ไม่อยู่ในรายการ
-      unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     pinned: โพสต์ที่ปักหมุด
-    reblogged: boosted
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   themes:
     contrast: Mastodon (ความคมชัดสูง)
@@ -630,19 +653,12 @@ th:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
-    code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: ปิดใช้งาน
     enable: เปิดใช้งาน
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
     enabled_success: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     generate_recovery_codes: สร้างรหัสกู้คืน
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
-    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
-    recovery_codes_regenerated: Recovery codes successfully regenerated
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?

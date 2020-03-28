@@ -5,7 +5,6 @@ id:
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
     administered_by: 'Dikelola oleh:'
-    api: API
     apps: Aplikasi hp
     contact: Kontak
     contact_missing: Belum diset
@@ -20,25 +19,21 @@ id:
     privacy_policy: Kebijakan Privasi
     source_code: Kode sumber
     status_count_after:
-      one: status
       other: status
     status_count_before: Yang telah menulis
     terms: Kebijakan layanan
     user_count_after:
-      one: pengguna
       other: pengguna
     user_count_before: Tempat bernaung bagi
     what_is_mastodon: Apa itu Mastodon?
   accounts:
     follow: Ikuti
     followers:
-      one: Pengikut
       other: Pengikut
     following: Mengikuti
     joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
-    media: Media
     moved_html: "%{name} telah pindah ke %{new_profile_link}:"
     network_hidden: Informasi ini tidak tersedia
     nothing_here: Tidak ada apapun disini!
@@ -47,14 +42,11 @@ id:
     pin_errors:
       following: Anda harus mengikuti orang yang ingin anda endorse
     posts:
-      one: Toot
       other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot dan balasan
     reserved_username: Nama pengguna telah dipesan
     roles:
-      admin: Admin
-      bot: Bot
       moderator: Moderator
     unfollow: Berhenti mengikuti
   admin:
@@ -68,8 +60,6 @@ id:
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
       are_you_sure: Anda yakin?
-      avatar: Avatar
-      by_domain: Domain
       change_email:
         changed_msg: Email akun ini berhasil diubah!
         current_email: Email saat ini
@@ -85,7 +75,6 @@ id:
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
       display_name: Nama
-      domain: Domain
       edit: Ubah
       email: E-mail
       email_status: Status Email
@@ -97,12 +86,10 @@ id:
       follows: Mengikut
       inbox_url: URL Kotak masuk
       invited_by: Diundang oleh
-      ip: IP
       joined: Bergabung
       location:
         all: Semua
         local: Lokal
-        remote: Remote
         title: Lokasi
       login_status: Status login
       media_attachments: Lampiran media
@@ -132,13 +119,10 @@ id:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
         success: Email konfirmasi berhasil dikirim!
-      reset: Reset
       reset_password: Reset kata sandi
       resubscribe: Langganan ulang
       role: Hak akses
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Staf
         user: Pengguna
       salmon_url: URL Salmon
@@ -158,12 +142,10 @@ id:
       unsubscribe: Berhenti langganan
       username: Nama pengguna
       warn: Beri Peringatan
-      web: Web
     domain_blocks:
       add_new: Tambah
       created_msg: Pemblokiran domain sedang diproses
       destroyed_msg: Pemblokiran domain telah dibatalkan
-      domain: Domain
       new:
         create: Buat pemblokiran
         hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
@@ -176,13 +158,11 @@ id:
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       show:
         affected_accounts:
-          one: Satu akun di dalam database terpengaruh
           other: "%{count} akun dalam database terpengaruh"
         retroactive:
           silence: Hapus pendiaman terhadap akun pada domain ini
           suspend: Hapus suspen terhadap akun pada domain ini
         title: Hapus pemblokiran domain %{domain}
-        undo: Undo
     instances:
       title: Server yang diketahui
     reports:
@@ -193,7 +173,6 @@ id:
       reported_account: Akun yang dilaporkan
       reported_by: Dilaporkan oleh
       resolved: Terseleseikan
-      status: Status
       title: Laporan
       unresolved: Belum Terseleseikan
     settings:
@@ -213,11 +192,9 @@ id:
       site_title: Judul Situs
       title: Pengaturan situs
     subscriptions:
-      callback_url: Callback URL
       confirmed: Dikonfirmasi
       expires_in: Kadaluarsa dalam
       last_delivery: Terakhir dikirim
-      title: WebSub
       topic: Topik
     title: Administrasi
   application_mailer:
@@ -260,16 +237,16 @@ id:
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal
+    '429': Throttled
+    '500': 
   exports:
     blocks: Anda blokir
-    csv: CSV
     follows: Anda ikuti
     mutes: Anda bisukan
     storage: Penyimpanan media
   generic:
     changes_saved_msg: Perubahan berhasil disimpan!
     save_changes: Simpan perubahan
-    validation_errors: Ada yang tidak beres! Mohon tinjau error dibawah ini
   imports:
     preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
     success: Data anda berhasil diupload dan akan diproses sesegera mungkin
@@ -278,6 +255,14 @@ id:
       following: Daftar diikuti
       muting: Daftar didiamkan
     upload: Unggah
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
@@ -287,10 +272,8 @@ id:
       body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
       mention: "%{name} menyebut anda di:"
       new_followers_summary:
-        one: Anda mendapatkan satu pengikut baru! Hore!
         other: Anda mendapatkan %{count} pengikut baru! Luar biasa!
       subject:
-        one: "1 notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
         other: "%{count} notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
     favourite:
       body: 'Status anda disukai oleh %{name}:'
@@ -307,21 +290,9 @@ id:
     reblog:
       body: 'Status anda di-boost oleh %{name}:'
       subject: "%{name} mem-boost status anda"
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: Selanjutnya
     prev: Sebelumnya
-    truncate: "&hellip;"
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda

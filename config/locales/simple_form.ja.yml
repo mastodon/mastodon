@@ -27,14 +27,13 @@ ja:
         phrase: トゥートの大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
         setting_aggregate_reblogs: 最近ブーストされたトゥートが新たにブーストされても表示しません (設定後受信したものにのみ影響)
-        setting_default_language: トゥートの言語は自動的に検出されますが、必ずしも正確とは限りません
+        setting_default_sensitive: 閲覧注意状態のメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: 全てのメディアを常に隠す
         setting_display_media_show_all: 閲覧注意としてマークされたメディアも常に表示する
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_show_application: トゥートするのに使用したアプリがトゥートの詳細ビューに表示されるようになります
-        setting_theme: ログインしている全てのデバイスで適用されるデザインです。
         username: あなたのユーザー名は %{domain} の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       featured_tag:
@@ -90,6 +89,7 @@ ja:
         otp_attempt: 二段階認証コード
         password: パスワード
         phrase: キーワードまたはフレーズ
+        setting_advanced_layout: 上級者向け UI を有効にする
         setting_aggregate_reblogs: ブーストをまとめる
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
@@ -105,7 +105,7 @@ ja:
         setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
-        setting_show_application: トゥートの送信に使用したアプリを開示する
+        setting_show_application: 送信したアプリを開示する
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
         setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
@@ -132,6 +132,7 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
         report: 通報を受けた時にメールで通知する
     'no': いいえ
+    recommended: おすすめ
     required:
       mark: "*"
       text: 必須

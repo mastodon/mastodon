@@ -91,11 +91,15 @@ class ApplicationController < ActionController::Base
   end
 
   def current_account
-    @current_account ||= current_user.try(:account)
+    return @current_account if defined?(@current_account)
+
+    @current_account = current_user&.account
   end
 
   def current_session
-    @current_session ||= SessionActivation.find_by(session_id: cookies.signed['_session_id'])
+    return @current_session if defined?(@current_session)
+
+    @current_session = SessionActivation.find_by(session_id: cookies.signed['_session_id']) if cookies.signed['_session_id'].present?
   end
 
   def current_theme
@@ -126,11 +130,7 @@ class ApplicationController < ActionController::Base
   def respond_with_error(code)
     respond_to do |format|
       format.any  { head code }
-
-      format.html do
-        set_locale
-        render "errors/#{code}", layout: 'error', status: code
-      end
+      format.html { render "errors/#{code}", layout: 'error', status: code }
     end
   end
 
@@ -152,11 +152,6 @@ class ApplicationController < ActionController::Base
   end
 
   def mark_cacheable!
-    skip_session!
     expires_in 0, public: true
-  end
-
-  def skip_session!
-    request.session_options[:skip] = true
   end
 end

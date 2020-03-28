@@ -14,7 +14,7 @@ ko:
     browse_public_posts: 마스토돈의 공개 라이브 스트림을 둘러보기
     contact: 연락처
     contact_missing: 미설정
-    contact_unavailable: N/A
+    contact_unavailable: 없음
     discover_users: 유저 발견하기
     documentation: 문서
     extended_description_html: |
@@ -30,13 +30,11 @@ ko:
     server_stats: '서버 통계:'
     source_code: 소스 코드
     status_count_after:
-      one: 툿
       other: 툿
     status_count_before: 툿 수
     tagline: 친구들을 팔로우 하고 새로운 사람들도 만나기
     terms: 이용약관
     user_count_after:
-      one: 명
       other: 명
     user_count_before: 사용자 수
     what_is_mastodon: 마스토돈이란?
@@ -44,7 +42,6 @@ ko:
     choices_html: "%{name}의 추천:"
     follow: 팔로우
     followers:
-      one: 팔로워
       other: 팔로워
     following: 팔로잉
     joined: "%{date}에 가입함"
@@ -59,7 +56,6 @@ ko:
     pin_errors:
       following: 추천하려는 사람을 팔로우 하고 있어야 합니다
     posts:
-      one: 툿
       other: 툿
     posts_tab_heading: 툿
     posts_with_replies: 툿과 답장
@@ -174,6 +170,7 @@ ko:
       statuses: 툿 수
       subscribe: 구독하기
       suspended: 정지 됨
+      time_in_queue: "%{time}동안 기다림"
       title: 계정
       unconfirmed_email: 미확인 된 이메일 주소
       undo_silenced: 침묵 해제
@@ -269,6 +266,7 @@ ko:
       created_msg: 도메인 차단 처리를 완료했습니다
       destroyed_msg: 도메인 차단이 해제되었습니다
       domain: 도메인
+      existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
       new:
         create: 차단 추가
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 모더레이션을 적용하게 할 수 있습니다.
@@ -291,7 +289,6 @@ ko:
         suspend: 정지
       show:
         affected_accounts:
-          one: 데이터베이스 중 1개의 계정에 영향을 끼칩니다
           other: 데이터베이스 중 %{count}개의 계정에 영향을 끼칩니다
         retroactive:
           silence: 이 도메인에 존재하는 모든 계정의 침묵를 해제
@@ -316,7 +313,6 @@ ko:
       by_domain: 도메인
       delivery_available: 전송 가능
       known_accounts:
-        one: 알려진 계정 %{count}개
         other: 알려진 계정 %{count}개
       moderation:
         all: 모두
@@ -499,11 +495,17 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+  appearance:
+    advanced_web_interface: 고급 웹 인터페이스
+    advanced_web_interface_hint: '화면의 가로폭을 가득 채우고 싶다면, 고급 웹 인터페이스는 한 번에 여러 정보를 볼 수 있도록 여러 컬럼을 설정할 수 있도록 합니다: 홈, 알림, 연합타임라인, 리스트, 해시태그 등'
+    animations_and_accessibility: 애니메이션과 접근성
+    confirmation_dialogs: 확인 대화상자
+    sensitive_content: 민감한 내용
   application_mailer:
     notification_preferences: 메일 설정 변경
     salutation: "%{name} 님,"
     settings: '메일 설정을 변경: %{link}'
-    view: 'View:'
+    view: '보기:'
     view_profile: 프로필 보기
     view_status: 게시물 보기
   applications:
@@ -580,7 +582,6 @@ ko:
     explore_mastodon: "%{title} 탐사하기"
     how_to_enable: 아직 디렉터리에 참여하지 않았습니다. 아래에서 참여할 수 있습니다. 바이오 텍스트에 해시태그를 사용해 특정 해시태그 디렉터리에 표시 될 수 있습니다!
     people:
-      one: "%{count}명"
       other: "%{count}명"
   errors:
     '403': 이 페이지를 표시할 권한이 없습니다.
@@ -643,7 +644,6 @@ ko:
     order_by: 순서
     save_changes: 변경 사항을 저장
     validation_errors:
-      one: 오류가 발생했습니다. 아래 오류를 확인해 주십시오
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   html_validator:
     invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
@@ -694,7 +694,6 @@ ko:
     generate: 생성
     invited_by: '당신을 초대한 사람:'
     max_uses:
-      one: 일회용
       other: "%{count} 회"
     max_uses_prompt: 제한 없음
     prompt: 이 서버에 대한 초대 링크를 만들고 공유합니다
@@ -722,10 +721,8 @@ ko:
       body: 마지막 로그인(%{since}) 이후로 일어난 일들에 관한 요약
       mention: "%{name} 님이 답장했습니다:"
       new_followers_summary:
-        one: 그리고, 접속 하지 않으신 동안 새 팔로워가 생겼습니다!
         other: 게다가, 접속하지 않은 동안 %{count} 명의 팔로워가 생겼습니다!
       subject:
-        one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
       title: 당신이 없는 동안에...
     favourite:
@@ -760,7 +757,6 @@ ko:
           quadrillion: Q
           thousand: K
           trillion: T
-          unit: "."
   pagination:
     newer: 새로운 툿
     next: 다음
@@ -778,10 +774,9 @@ ko:
       too_few_options: 한가지 이상의 항목을 포함해야 합니다
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
   preferences:
-    languages: 언어
     other: 기타
-    publishing: 퍼블리싱
-    web: 웹
+    posting_defaults: 게시물 기본설정
+    public_timelines: 공개 타임라인
   relationships:
     activity: 계정 활동
     dormant: 휴면
@@ -839,7 +834,7 @@ ko:
       phantom_js: PhantomJS
       qq: QQ 브라우저
       safari: 사파리
-      uc_browser: UCBrowser
+      uc_browser: UC브라우저
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
@@ -885,15 +880,12 @@ ko:
     attached:
       description: '첨부: %{attached}'
       image:
-        one: "%{count} 이미지"
         other: "%{count} 이미지"
       video:
-        one: "%{count} 영상"
         other: "%{count} 영상"
-    boosted_from_html: "%{acct_link} 님이 부스트"
+    boosted_from_html: "%{acct_link} 님으로부터 부스트"
     content_warning: '열람 주의: %{warning}'
     disallowed_hashtags:
-      one: '허용 되지 않은 해시태그를 포함하고 있습니다: %{tags}'
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
     language_detection: 자동으로 언어 감지
     open_in_web: Web으로 열기
@@ -905,7 +897,6 @@ ko:
       reblog: 부스트는 고정될 수 없습니다
     poll:
       total_votes:
-        one: "%{count}명 투표함"
         other: "%{count}명 투표함"
       vote: 투표
     show_more: 더 보기
@@ -928,10 +919,10 @@ ko:
       <h3 id="collect">우리가 어떤 정보를 수집하나요?</h3>
 
       <ul>
-        <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 유저네임, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 디스플레이네임이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 유저네임, 디스플레이네임, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
-        <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 즐겨찾기 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
-        <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>위험한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
-        <li><em>IP와 기타 메타데이터</em>: 당신이 로그인 하는 경우 IP 주소와 브라우저의 이름을 저장합니다. 모든 세션은 당신이 검토하고 취소할 수 있도록 설정에서 제공 됩니다. 마지막으로 사용 된 IP 주소는 최대 12개월 간 저장됩니다. 또한, 모든 요청에 대해 IP주소를 포함한 정보를 로그에 저장할 수 있습니다.</li>
+      <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 유저네임, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 디스플레이네임이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 유저네임, 디스플레이네임, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
+      <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 즐겨찾기 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
+      <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>위험한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
+      <li><em>IP와 기타 메타데이터</em>: 당신이 로그인 하는 경우 IP 주소와 브라우저의 이름을 저장합니다. 모든 세션은 당신이 검토하고 취소할 수 있도록 설정에서 제공 됩니다. 마지막으로 사용 된 IP 주소는 최대 12개월 간 저장됩니다. 또한, 모든 요청에 대해 IP주소를 포함한 정보를 로그에 저장할 수 있습니다.</li>
       </ul>
 
       <hr class="spacer" />
@@ -941,9 +932,9 @@ ko:
       <p>당신에게서 수집한 정보는 다음과 같은 곳에 사용 됩니다:</p>
 
       <ul>
-        <li>마스토돈의 주요 기능 제공. 다른 사람의 게시물에 상호작용 하거나 자신의 게시물을 작성하기 위해서는 로그인을 해야 합니다. 예를 들어, 다른 사람의 게시물을 자신만의 홈 타임라인에서 모아 보기 위해 팔로우를 할 수 있습니다.</li>
-        <li>커뮤니티의 모더레이션을 위해, 예를 들어 당신의 IP 주소와 기타 사항을 비교하여 금지를 우회하거나 다른 규칙을 위반하는지 판단하는 데에 사용할 수 있습니다.</li>
-        <li>당신이 제공한 이메일 주소를 통해 정보, 다른 사람들의 반응이나 받은 메시지에 대한 알림, 기타 요청 등에 관한 응답 요청 등을 보내는 데에 활용됩니다.</li>
+      <li>마스토돈의 주요 기능 제공. 다른 사람의 게시물에 상호작용 하거나 자신의 게시물을 작성하기 위해서는 로그인을 해야 합니다. 예를 들어, 다른 사람의 게시물을 자신만의 홈 타임라인에서 모아 보기 위해 팔로우를 할 수 있습니다.</li>
+      <li>커뮤니티의 모더레이션을 위해, 예를 들어 당신의 IP 주소와 기타 사항을 비교하여 금지를 우회하거나 다른 규칙을 위반하는지 판단하는 데에 사용할 수 있습니다.</li>
+      <li>당신이 제공한 이메일 주소를 통해 정보, 다른 사람들의 반응이나 받은 메시지에 대한 알림, 기타 요청 등에 관한 응답 요청 등을 보내는 데에 활용됩니다.</li>
       </ul>
 
       <hr class="spacer" />
@@ -959,8 +950,8 @@ ko:
       <p>우리는 다음을 위해 노력을 할 것입니다:</p>
 
       <ul>
-        <li>IP를 포함해 이 서버에 전송 되는 모든 요청에 대한 로그는 90일을 초과하여 저장되지 않습니다.</li>
-        <li>가입 된 유저의 IP 정보는 12개월을 초과하여 저장 되지 않습니다.</li>
+      <li>IP를 포함해 이 서버에 전송 되는 모든 요청에 대한 로그는 90일을 초과하여 저장되지 않습니다.</li>
+      <li>가입 된 유저의 IP 정보는 12개월을 초과하여 저장 되지 않습니다.</li>
       </ul>
 
       <p>당신은 언제든지 게시물, 미디어 첨부, 프로필 이미지, 헤더 이미지를 포함한 당신의 컨텐트에 대한 아카이브를 요청하고 다운로드 할 수 있습니다.</p>

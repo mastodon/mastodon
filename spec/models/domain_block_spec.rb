@@ -21,23 +21,40 @@ RSpec.describe DomainBlock, type: :model do
     end
   end
 
-  describe 'blocked?' do
+  describe '.blocked?' do
     it 'returns true if the domain is suspended' do
-      Fabricate(:domain_block, domain: 'domain', severity: :suspend)
-      expect(DomainBlock.blocked?('domain')).to eq true
+      Fabricate(:domain_block, domain: 'example.com', severity: :suspend)
+      expect(DomainBlock.blocked?('example.com')).to eq true
     end
 
     it 'returns false even if the domain is silenced' do
-      Fabricate(:domain_block, domain: 'domain', severity: :silence)
-      expect(DomainBlock.blocked?('domain')).to eq false
+      Fabricate(:domain_block, domain: 'example.com', severity: :silence)
+      expect(DomainBlock.blocked?('example.com')).to eq false
     end
 
     it 'returns false if the domain is not suspended nor silenced' do
-      expect(DomainBlock.blocked?('domain')).to eq false
+      expect(DomainBlock.blocked?('example.com')).to eq false
     end
   end
 
-  describe 'stricter_than?' do
+  describe '.rule_for' do
+    it 'returns rule matching a blocked domain' do
+      block = Fabricate(:domain_block, domain: 'example.com')
+      expect(DomainBlock.rule_for('example.com')).to eq block
+    end
+
+    it 'returns a rule matching a subdomain of a blocked domain' do
+      block = Fabricate(:domain_block, domain: 'example.com')
+      expect(DomainBlock.rule_for('sub.example.com')).to eq block
+    end
+
+    it 'returns a rule matching a blocked subdomain' do
+      block = Fabricate(:domain_block, domain: 'sub.example.com')
+      expect(DomainBlock.rule_for('sub.example.com')).to eq block
+    end
+  end
+
+  describe '#stricter_than?' do
     it 'returns true if the new block has suspend severity while the old has lower severity' do
       suspend = DomainBlock.new(domain: 'domain', severity: :suspend)
       silence = DomainBlock.new(domain: 'domain', severity: :silence)

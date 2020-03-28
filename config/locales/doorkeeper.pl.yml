@@ -114,6 +114,12 @@ pl:
       application:
         title: Uwierzytelnienie OAuth jest wymagane
     scopes:
+      admin:read: odczytaj wszystkie dane na serwerze
+      admin:read:accounts: odczytaj wrażliwe informacje na wszystkich kontach
+      admin:read:reports: odczytaj wrażliwe informacje ze wszystkich zgłoszeń oraz zgłoszonych kont
+      admin:write: zmodyfikuj wszystkie dane na serwerze
+      admin:write:accounts: wykonaj działania moderacyjne na kontach
+      admin:write:reports: wykonaj działania moderacyjne na zgłoszeniach
       follow: możliwość śledzenia kont
       push: otrzymywanie powiadomień push dla Twojego konta
       read: możliwość odczytu wszystkich danych konta

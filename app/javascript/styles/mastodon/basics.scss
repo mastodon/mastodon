@@ -2,7 +2,8 @@
   @if type-of($color) == 'color' {
     $color: str-slice(ie-hex-str($color), 4);
   }
-  @return '%23' + unquote($color)
+
+  @return '%23' + unquote($color);
 }
 
 body {
@@ -15,7 +16,7 @@ body {
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
   text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 
   &.system-font {

@@ -13,11 +13,11 @@ module Admin
       authorize :domain_block, :create?
 
       @domain_block = DomainBlock.new(resource_params)
-      existing_domain_block = resource_params[:domain].present? ? DomainBlock.find_by(domain: resource_params[:domain]) : nil
+      existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
 
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
         @domain_block.save
-        flash[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe # rubocop:disable Rails/OutputSafety
+        flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe # rubocop:disable Rails/OutputSafety
         @domain_block.errors[:domain].clear
         render :new
       else
@@ -41,7 +41,7 @@ module Admin
 
     def destroy
       authorize @domain_block, :destroy?
-      UnblockDomainService.new.call(@domain_block, retroactive_unblock?)
+      UnblockDomainService.new.call(@domain_block)
       log_action :destroy, @domain_block
       redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end
@@ -53,11 +53,7 @@ module Admin
     end
 
     def resource_params
-      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :retroactive)
-    end
-
-    def retroactive_unblock?
-      ActiveRecord::Type.lookup(:boolean).cast(resource_params[:retroactive])
+      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports)
     end
   end
 end
