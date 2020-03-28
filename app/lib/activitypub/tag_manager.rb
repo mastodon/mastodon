@@ -15,6 +15,8 @@ class ActivityPub::TagManager
   def url_for(target)
     return target.url if target.respond_to?(:local?) && !target.local?
 
+    return unless target.respond_to?(:object_type)
+
     case target.object_type
     when :person
       target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)

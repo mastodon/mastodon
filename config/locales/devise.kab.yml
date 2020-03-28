@@ -10,7 +10,7 @@ kab:
       inactive: Amiḍan-inek mazal ur yermed ara.
       invalid: Tella tuccḍa deg %{authentication_keys} neγ deg wawal uffir.
       last_attempt: Γur-k yiwen n uɛraḍ-nniḍen kan send ad yettucekkel umiḍan-ik.
-      locked: Amiḍan-ik yewḥel.
+      locked: Amiḍan-ik yettwargel.
       not_found_in_database: Tella tuccḍa deg %{authentication_keys} neγ deg wawal uffir.
       pending: Amiḍan-inek mazal-it deg ɛiwed n tmuγli.
       timeout: Tiγimit n tuqqna tezri. Ma ulac aγilif ɛiwed tuqqna akken ad tkemmleḍ.
@@ -22,10 +22,11 @@ kab:
         action_with_app: Wekked sakkin uγal γer %{app}
         explanation: Aqla-k terniḍ amiḍan deg %{host} s tansa imayl-agi. Mazal-ak yiwen utekki akken ad t-tremdeḍ. Ma mačči d kečč i yessutren ay-agi, ttxil-k ssinef izen-a.
         explanation_when_pending: Tsutreḍ-d ajerred deg %{host} s tansa-agi imayl. Ad nγeṛ asuter-ik ticki tsentmeḍ tansa-ik imayl. Send asentem, ur tezmireḍ ara ad teqqneḍ γer umiḍan-ik. Ma yella nugi asuter-ik, isefka-ik ad ttwakksen seg uqeddac, ihi ulac tigawt-nniḍen ara k-d-yettuqeblen. Ma mačči d kečč i yellan deffir n usuter-agi, ttxil-k ssinef izen-agi.
-        extra_html: Ttxil-k ẓer daγen <a href="%{terms_path}">ilugan n uqeddac</a> akked <a href="%{policy_path}">twetlin n useqdec</a>.
+        extra_html: Ttxil-k ẓer daγen <a href="%{terms_path}">ilugan n uqeddac</a> akked <a href="%{policy_path}">twetlin n useqdec-nneγ</a>.
         subject: 'Maṣṭudun: Asentem n ujerred deg uqeddac %{instance}'
         title: Senqed tansa-inek imayl
       email_changed:
+        explanation: 'Tansa n yimayl n umiḍan-ik ibeddel ɣer:'
         extra: Ma mačči d kečč i ibeddlen tansa imayl, ihi yezmer d alebɛaḍ i ikecmen γer umiḍan-ik. Ttxil-k beddel awal-ik uffir tura neγ siwel i unedbal n uqeddac ma tḥesleḍ berra n umiḍan-ik.
         subject: 'Maṣṭudun: Imayl-ik yettubeddel'
         title: Tansa imayl tamaynut
@@ -42,6 +43,10 @@ kab:
         action: Beddel awal uffir
         explanation: Tessutreḍ awal uffir amaynut i umiḍan-ik.
         title: Aɛiwed n wawal uffir
+      two_factor_disabled:
+        title: Asesteb s snat n tarrayin insa
+      two_factor_enabled:
+        title: Asesteb s snat n tarrayin irmed
     passwords:
       send_paranoid_instructions: Ma nufa tansa-inek imayl tella deg uzadur-nneγ n yisefka, ad n-teṭṭfeḍ izen deg kra n tesdatin, deg-s assaγ i uɛawed n wawal uffir. Ma ur k-in-yewwiḍ ara yizen, ttxil-k ẓer deg ukaram spam.
       updated: Awal-ik uffir yettwabeddel mebla ugur. Aqla-k tura tjerrḍeḍ.

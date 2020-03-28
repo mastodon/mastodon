@@ -3,8 +3,140 @@ br:
   about:
     about_this: Diàr-benn
     active_count_after: oberiant
+    api: API
     apps: Arloadoù pellgomz
     apps_platforms: Ober get Mastodoñ àr iOS, Android ha savennoù arall
+    contact: Darempred
+    discover_users: Dizoleiñ implijer·ien·ezed
+    learn_more: Gouzout hiroc'h
+    privacy_policy: Reolennoù prevezded
+    source_code: Boneg tarzh
+    terms: Divizoù gwerzhañ hollek
+    unavailable_content_description:
+      domain: Dafariad
+  accounts:
+    media: Media
+    posts_tab_heading: Toudoù
+    posts_with_replies: Toudoù ha respontoù
+    roles:
+      admin: Merour
+      bot: Robot
+      group: Strollad
+      moderator: Mod
+    unavailable: Profil dihegerz
+    unfollow: Diheuliañ
+  admin:
+    account_moderation_notes:
+      delete: Dilemel
+    accounts:
+      change_email:
+        current_email: Postel bremanel
+        label: Kemm ar postel
+        new_email: Postel nevez
+        submit: Kemm ar postel
+      enable: Gweredekaat
+      enabled: Gweredekaet
+      followers: Heulier·ezed·ien
+      header: Talbenn
+      ip: IP
+      location:
+        local: Lec'hel
+        remote: A-bell
+      moderation:
+        active: Oberiant
+        silenced: Mudet
+        suspended: Astalet
+      perform_full_suspension: Astalañ
+      protocol: Komenad
+      public: Publik
+      reject: Nac'hañ
+      reject_all: Nac'hañ pep hini
+      remove_header: Dilemel an talbenn
+      reset: Adderaouekaat
+      reset_password: Adderaouekaat ar ger-tremen
+      roles:
+        admin: Merour
+        moderator: Habaskaer·ez
+        user: Implijer·ez
+    action_logs:
+      deleted_status: "(statud dilemet)"
+    announcements:
+      new:
+        create: Sevel ur gemenn
+        title: Kemenn nevez
+      title: Kemennoù
+    custom_emojis:
+      delete: Dilemel
+      disable: Diweredekaat
+      disabled: Diweredekaet
+      emoji: Fromlun
+      enable: Gweredekaat
+      enabled: Gweredekaet
+    dashboard:
+      config: Kefluniadur
+      software: Meziant
+      trends: Luskadoù
+    domain_blocks:
+      domain: Domani
+      new:
+        create: Sevel ur stanker
+        severity:
+          noop: Hini ebet
+          silence: Mudañ
+          suspend: Astalañ
+      severity:
+        silence: mudet
+        suspend: astalet
+      show:
+        undo: Dizober
+    email_domain_blocks:
+      add_new: Ouzhpenniñ unan nevez
+      delete: Dilemel
+      domain: Domani
+      from_html: eus %{domain}
+      new:
+        create: Ouzhpenniñ un domani
+    instances:
+      by_domain: Domani
+      moderation:
+        all: Pep tra
+    settings:
+      domain_blocks:
+        all: D'an holl dud
+      site_title: Anv ar servijer
+      title: Arventennoù al lec'hienn
+  auth:
+    change_password: Ger-tremen
+    delete_account: Dilemel ar gont
+    login: Mont tre
+    logout: Digennaskañ
+    providers:
+      saml: SAML
+    reset_password: Adderaouekaat ar ger-tremen
+    security: Diogelroez
+    setup:
+      title: Kefluniañ
+  authorize_follow:
+    title: Heuliañ %{acct}
+  challenge:
+    confirm: Kenderc' hel
+    invalid_password: Ger-tremen diwiriek
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}e"
+      about_x_months: "%{count}miz"
+      about_x_years: "%{count}b"
+      almost_x_years: "%{count}b"
+      less_than_x_minutes: "%{count}m"
+      over_x_years: "%{count}b"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}miz"
+      x_seconds: "%{count}eil"
+  deletes:
+    proceed: Dilemel ar gont
+  directories:
+    directory: Roll ar profiloù
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -12,14 +144,93 @@ br:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
-    '429': Throttled
+    '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  featured_tags:
+    add_new: Ouzhpenniñ unan nevez
+  filters:
+    contexts:
+      account: Profiloù
+      notifications: Kemennoù
+    index:
+      delete: Dilemel
+  footer:
+    developers: Diorroerien
+    more: Muioc'h…
+  generic:
+    all: Pep tra
+    copy: Eilañ
+    delete: Dilemel
+    order_by: Urzhiañ dre
   invites:
     expires_in:
       '1800': 30 minutes
       '21600': 6 hours
       '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '43200': 12 eur
+      '604800': 1 sizhun
+      '86400': 1 deiz
+    expires_in_prompt: Birviken
+    title: Pediñ tud
+  notification_mailer:
+    follow:
+      title: Heulier nevez
+    mention:
+      action: Respont
+  relationships:
+    followers: Heulier·ezed·ien
+  sessions:
+    browser: Merdeer
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      windows: Windows
+  statuses:
+    show_more: Diskouez muioc'h
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      public: Publik
+  stream_entries:
+    pinned: Toud spilhennet
+  themes:
+    default: Mastodoñ (Teñval)
+    mastodon-light: Mastodoñ (Sklaer)
+  time:
+    formats:
+      default: "%He%M, %d %b %Y"
+      month: "%b %Y"
+  two_factor_authentication:
+    disable: Diweredekaat
+    enable: Gweredekaat
+    setup: Kefluniañ
+  user_mailer:
+    warning:
+      title:
+        none: Diwall
+    welcome:
+      edit_profile_action: Kefluniañ ar profil

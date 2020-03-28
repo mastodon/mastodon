@@ -92,6 +92,7 @@ is:
       delete: Eyða
       destroyed_msg: Tókst að eyða minnispunkti umsjónarmanns!
     accounts:
+      add_email_domain_block: Útiloka tölvupóstlén
       approve: Samþykkja
       approve_all: Samþykkja allt
       are_you_sure: Ertu viss?
@@ -115,7 +116,7 @@ is:
       display_name: Birtingarnafn
       domain: Lén
       edit: Breyta
-      email: Tölvupóstur
+      email: Tölvupóstfang
       email_status: Staða tölvupósts
       enable: Virkja
       enabled: Virkt
@@ -172,6 +173,7 @@ is:
         staff: Starfsmaður
         user: Notandi
       search: Leita
+      search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
       shared_inbox_url: Slóð á sameiginlegt innhólf
       show:
@@ -358,6 +360,7 @@ is:
       destroyed_msg: Tókst að eyða póstléni af lista yfir bannað
       domain: Lén
       empty: Engin tölvupóstlén eru á bannlista.
+      from_html: frá %{domain}
       new:
         create: Bæta við léni
         title: Ný færsla á bannlista fyrir tölvupóstföng
@@ -537,6 +540,9 @@ is:
       trends:
         desc_html: Birta opinberlega þau áður yfirförnu myllumerki sem eru núna í umræðunni
         title: Myllumerki í umræðunni
+    site_uploads:
+      delete: Eyða innsendri skrá
+      destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
     statuses:
       back_to_account: Fara aftur á síðu notandaaðgangsins
       batch:
@@ -660,6 +666,7 @@ is:
     trouble_logging_in: Vandræði við að skrá inn?
   authorize_follow:
     already_following: Þú ert að þegar fylgjast með þessum aðgangi
+    already_requested: Þú ert þegar búin/n að senda fylgjendabeiðni á þennan notanda
     error: Því miður, það kom upp villa við að fletta upp fjartengda notandaaðgangnum
     follow: Fylgjast með
     follow_request: 'Þú sendir beiðni um að fylgjast með til:'
@@ -848,6 +855,7 @@ is:
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
+      not_ready: Ekki er hægt að hengja við skrár sem ekki er búið að vinna til fulls. Prófaðu aftur eftir augnablik!
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
     acct: Færði í

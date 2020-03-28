@@ -92,6 +92,7 @@ co:
       delete: Toglie
       destroyed_msg: Nota di muderazione sguassata!
     accounts:
+      add_email_domain_block: Mette u duminiu e-mail in lista nera
       approve: Appruvà
       approve_all: Appruvà tuttu
       are_you_sure: Site sicuru·a?
@@ -172,6 +173,7 @@ co:
         staff: Squadra
         user: Utilizatore
       search: Cercà
+      search_same_email_domain: Altri utilizatori cù listessu duminiu d'e-mail
       search_same_ip: Altri utilizatori cù listessa IP
       shared_inbox_url: URL di l’inbox spartuta
       show:
@@ -358,6 +360,7 @@ co:
       destroyed_msg: U blucchime di u duminiu d’e-mail ùn hè più attivu
       domain: Duminiu
       empty: Ùn c'hè manc'un duminiu d'email in lista nera.
+      from_html: da %{domain}
       new:
         create: Creà un blucchime
         title: Nova iscrizzione nant’a lista nera e-mail
@@ -537,6 +540,9 @@ co:
       trends:
         desc_html: Mustrà à u pubblicu i hashtag chì sò stati digià verificati è chì sò in e tendenze avà
         title: Tendenze di hashtag
+    site_uploads:
+      delete: Sguassà u fugliale caricatu
+      destroyed_msg: Fugliale sguassatu da u situ!
     statuses:
       back_to_account: Ritornu à a pagina di u contu
       batch:
@@ -660,6 +666,7 @@ co:
     trouble_logging_in: Difficultà per cunnettavi?
   authorize_follow:
     already_following: Site digià abbunatu·a à stu contu
+    already_requested: Avete digià mandatu una dumanda d'abbunamentu à stu contu
     error: Peccatu, c’hè statu un prublemu ricercandu u contu
     follow: Siguità
     follow_request: 'Avete dumandatu di siguità:'
@@ -848,6 +855,7 @@ co:
   media_attachments:
     validations:
       images_and_video: Ùn si pò micca aghjunghje un filmettu à un statutu chì hà digià ritratti
+      not_ready: Ùn si pò micca aghjunghje un fugliale micca ancu trattatu. Ripruvate più tardi!
       too_many: Ùn si pò micca aghjunghje più di 4 fugliali
   migrations:
     acct: cugnome@duminiu di u novu contu

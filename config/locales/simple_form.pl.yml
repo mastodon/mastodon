@@ -2,19 +2,34 @@
 pl:
   simple_form:
     hints:
+      account_alias:
+        acct: Określ nazwę@domenę konta z którego chcesz się przenieść
+      account_migration:
+        acct: Określ nazwę@domenę konta na które chcesz się przenieść
       account_warning_preset:
         text: Możesz korzystać ze składni której używasz we wpisach, takiej jak adresy URL, hashtagi i wspomnienia
+        title: Nieobowiązkowe. Niewidoczne dla odbiorcy
       admin_account_action:
+        include_statuses: Użytkownik zobaczy, których wpisów dotyczyło działanie moderacji lub ostrzeżenie
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
         text_html: Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
         type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
         warning_preset_id: Nieobowiązkowe. Możesz dodać niestandardowy tekst do końcowki szablonu
+      announcement:
+        all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
+        ends_at: Nieobowiązkowe. Ogłoszenie zostanie automatycznie wycofane w tym czasie
+        scheduled_at: Pozostaw puste, aby opublikować ogłoszenie natychmiastowo
+        starts_at: Nieobowiązkowe. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
+        text: Możesz używać składni wpisu. Pamiętaj o tym, ile miejsca zajmie ogłoszenie na ekranie użytkownika
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
         avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
+        current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
+        current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
+        discoverable: Katalog profilu jest jednym ze sposobów, dzięki którym Twoje konto dotrze do szerszego grona
         email: Otrzymasz e-mail potwierdzający
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -35,8 +50,13 @@ pl:
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
         setting_skin: Zmienia wygląd używanej odmiany Mastodona
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
+        setting_use_pending_items: Ukryj aktualizacje osi czasu za kliknięciem, zamiast automatycznego przewijania strumienia
         username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
+      domain_allow:
+        domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
+      email_domain_block:
+        with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
       form_challenge:
@@ -62,6 +82,7 @@ pl:
         acct: Nazwa nowego konta
       account_warning_preset:
         text: Tekst szablonu
+        title: Tytuł
       admin_account_action:
         include_statuses: Uwzględniaj zgłoszone wpisy w wiadomości e-mail
         send_email_notification: Powiadom użytkownika mailem
@@ -136,6 +157,8 @@ pl:
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
         whole_word: Całe słowo
+      email_domain_block:
+        with_dns_records: Uwzględnij rekordy MX i adresy IP domeny
       featured_tag:
         name: Hasztag
       interactions:

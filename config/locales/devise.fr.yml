@@ -67,16 +67,16 @@ fr:
       no_token: Vous ne pouvez accéder à cette page sans passer par un courriel de réinitialisation de mot de passe. Si vous êtes passé⋅e par un courriel de ce type, assurez-vous d’utiliser l’URL complète.
       send_instructions: Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
       send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez recevoir un lien de réinitialisation par courriel. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
-      updated: Votre mot de passe a été modifié avec succès, vous êtes maintenant connecté⋅e.
+      updated: Votre mot de passe a été modifié avec succès, vous êtes maintenant connecté·e.
       updated_not_active: Votre mot de passe a été modifié avec succès.
     registrations:
       destroyed: Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.
-      signed_up: Bienvenue ! Vous êtes connecté⋅e.
-      signed_up_but_inactive: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
-      signed_up_but_locked: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
-      signed_up_but_pending: Un message avec un lien de confirmation a été envoyé à votre adresse courriel. Après avoir cliqué sur le lien, nous étudierons votre demande. Vous serez informé·e si elle a été approuvée.
+      signed_up: Bienvenue ! Vous êtes connecté·e.
+      signed_up_but_inactive: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
+      signed_up_but_locked: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
+      signed_up_but_pending: Un message avec un lien de confirmation a été envoyé à votre adresse courriel. Après avoir cliqué sur le lien, nous examinerons votre demande. Vous serez informé·e si elle a été approuvée.
       signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse courriel. Ouvrez ce lien pour activer votre compte. Veuillez vérifier votre dossier d'indésirables si vous ne recevez pas le courriel.
-      update_needs_confirmation: Votre compte a bien été mis à jour, mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse. Si vous n'avez pas reçu le courriel, vérifiez votre dossier d'indésirables.
+      update_needs_confirmation: Votre compte a bien été mis à jour, mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse. Si vous n'avez pas reçu le courriel, vérifiez votre dossier de spams.
       updated: Votre compte a été modifié avec succès.
     sessions:
       already_signed_out: Déconnecté·e.
@@ -85,14 +85,14 @@ fr:
     unlocks:
       send_instructions: Vous allez recevoir les instructions nécessaires au déverrouillage de votre compte dans quelques instants. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
       send_paranoid_instructions: Si votre compte existe, vous allez bientôt recevoir un courriel contenant les instructions pour le déverrouiller. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
-      unlocked: Votre compte a été déverrouillé avec succès, vous êtes maintenant connecté⋅e.
+      unlocked: Votre compte a été déverrouillé avec succès, vous êtes maintenant connecté·e.
   errors:
     messages:
       already_confirmed: a déjà été validée, veuillez essayer de vous connecter
       confirmation_period_expired: à confirmer dans les %{period}, merci de faire une nouvelle demande
       expired: a expiré, merci d’en faire une nouvelle demande
-      not_found: n’a pas été trouvé⋅e
-      not_locked: n’était pas verrouillé⋅e
+      not_found: n’a pas été trouvé·e
+      not_locked: n’était pas verrouillé·e
       not_saved:
-        one: 'Une erreur a empêché ce(tte) %{resource} d’être sauvegardé⋅e :'
+        one: 'Une erreur a empêché ce·tte %{resource} d’être sauvegardé·e :'
         other: "%{count} erreurs ont empêché %{resource} d’être sauvegardé⋅e :"

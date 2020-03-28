@@ -8,6 +8,7 @@ oc:
         acct: Donatz l’utilizaire@domeni del compte ont volètz anar
       account_warning_preset:
         text: Podètz utilizar la sintaxi dels tuts, coma las URL, las etiquetas e las mencions
+        title: Opcional. Pas visible pel destinari
       admin_account_action:
         include_statuses: L’utilizaire veiràs quals tuts a provocat l’accion de moderacion o avertiment
         send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
@@ -78,6 +79,7 @@ oc:
         acct: Identificant del nòu compte
       account_warning_preset:
         text: Tèxt predefinit
+        title: Títol
       admin_account_action:
         include_statuses: Inclure los tuts senhalats dins lo corrièl
         send_email_notification: Avisar l’utilizaire per corrièl
@@ -150,6 +152,8 @@ oc:
         username: Nom d’utilizaire
         username_or_email: Nom d’utilizaire o corrièl
         whole_word: Mot complèt
+      email_domain_block:
+        with_dns_records: Inclure los enregistraments MX e las IP del domeni
       featured_tag:
         name: Etiqueta
       interactions:
