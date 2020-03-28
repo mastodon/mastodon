@@ -39,7 +39,7 @@ module StreamEntriesHelper
   end
 
   def svg_logo_full
-    content_tag(:svg, tag(:use, 'xlink:href' => '#logo_imastodon'), 'viewBox' => '0 0 705.13 154.34')
+    content_tag(:svg, tag(:use, 'xlink:href' => '#logo_full_imastodon'), 'viewBox' => '0 0 705.13 154.34')
   end
 
   def account_badge(account, all: false)
