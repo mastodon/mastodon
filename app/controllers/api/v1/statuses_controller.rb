@@ -7,6 +7,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :destroy]
   before_action :require_user!, except:  [:show, :context]
   before_action :set_status, only:       [:show, :context]
+  before_action :set_thread, only:       [:create]
 
   override_rate_limit_headers :create, family: :statuses
 
@@ -36,7 +37,7 @@ class Api::V1::StatusesController < Api::BaseController
   def create
     @status = PostStatusService.new.call(current_user.account,
                                          text: status_params[:status],
-                                         thread: status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
+                                         thread: @thread,
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
@@ -67,6 +68,12 @@ class Api::V1::StatusesController < Api::BaseController
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
     raise ActiveRecord::RecordNotFound
+  end
+
+  def set_thread
+    @thread = status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
   end
 
   def status_params
