@@ -545,6 +545,7 @@ sk:
         title: Populárne haštagy
     site_uploads:
       delete: Vymaž nahratý súbor
+      destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!
     statuses:
       back_to_account: Späť na účet
       batch:
@@ -947,6 +948,7 @@ sk:
     public_timelines: Verejné časové osi
   reactions:
     errors:
+      limit_reached: Maximálny počet rôznorodých reakcií bol dosiahnutý
       unrecognized_emoji: je neznámy smajlík
   relationships:
     activity: Aktivita účtu
@@ -1055,6 +1057,8 @@ sk:
       few: 'obsah nepovolených haštagov: %{tags}'
       many: 'obsah nepovolených haštagov: %{tags}'
       other: 'obsahoval nepovolené haštagy: %{tags}'
+    errors:
+      in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, už pravdepodobne neexistuje.
     language_detection: Zisti automaticky
     open_in_web: Otvor v okne na webe
     over_character_limit: limit %{max} znakov bol presiahnutý
