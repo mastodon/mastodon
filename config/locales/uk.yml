@@ -5,7 +5,6 @@ uk:
     about_mastodon_html: Mastodon - це <em>вільна</em> соціальна мережа з <em>відкритим вихідним кодом</em>. Вона є <em>децентралізованою</em> альтернативою комерційним платформам, що дозволяє уникнути ризиків монополізації вашого спілкування однією компанією. Виберіть сервер, якому ви довіряєте &mdash; що б ви не вибрали, Ви зможете спілкуватись з усіма іншими. Будь-який користувач може запустити власну інстанцію Mastodon та без проблем брати участь в <em>соціальній мережі</em>.
     about_this: Про цю інстанцію
     administered_by: 'Адміністратор:'
-    api: API
     contact: Зв'язатися
     contact_missing: Не зазначено
     contact_unavailable: Недоступно
@@ -18,15 +17,12 @@ uk:
     learn_more: Дізнатися більше
     privacy_policy: Політика приватності
     source_code: Вихідний код
-    status_count_after: статусів
     status_count_before: Опубліковано
     terms: Правила використання
-    user_count_after: користувачів
     user_count_before: Тут живе
     what_is_mastodon: Що таке Mastodon?
   accounts:
     follow: Підписатися
-    followers: Підписники
     following: Підписаний(-а)
     joined: Приєднався %{date}
     media: Медіа
@@ -35,7 +31,6 @@ uk:
     nothing_here: Тут нічого немає!
     people_followed_by: Люди, на яких підписаний(-а) %{name}
     people_who_follow: Підписники %{name}
-    posts: Пости
     posts_with_replies: Пости і відповіді
     reserved_username: Це ім'я користувача зарезервоване
     roles:
@@ -70,7 +65,6 @@ uk:
       display_name: Відображуване ім'я
       domain: Домен
       edit: Змінити
-      email: Email
       email_status: Статус e-mail
       enable: Увімкнути
       enabled: Увімкнено
@@ -79,7 +73,6 @@ uk:
       followers_url: URL підписників
       follows: Підписки
       inbox_url: Вхідний URL
-      ip: IP
       location:
         all: Усі
         local: Локальні
@@ -119,7 +112,6 @@ uk:
         moderator: Модератор
         staff: Персонал
         user: Користувач
-      salmon_url: Salmon URL
       search: Пошук
       shared_inbox_url: URL спільного вхідного кошика
       show:
@@ -358,11 +350,9 @@ uk:
       title: Статуси аккаунтів
       with_media: З медіа
     subscriptions:
-      callback_url: Callback URL
       confirmed: Підтверджено
       expires_in: Спливає через
       last_delivery: Остання доставка
-      title: WebSub
       topic: Тема
     title: Адміністрування
   admin_mailer:
@@ -372,7 +362,6 @@ uk:
       subject: Нова скарга до %{instance} (#%{id})
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
-    salutation: "%{name},"
     settings: 'Змінити налаштування e-mail: %{link}'
     view: 'Перегляд:'
     view_profile: Показати профіль
@@ -398,9 +387,6 @@ uk:
     migrate_account: Переїхати до іншого аккаунту
     migrate_account_html: Якщо ви бажаєте, щоб відвідувачі цього акканту були перенаправлені до іншого, ви можете <a href="%{path}">налаштувати це тут</a>.
     or_log_in_with: Або увійдіть з
-    providers:
-      cas: CAS
-      saml: SAML
     register: Зареєструватися
     resend_confirmation: Повторно відправити інструкції з підтвердження
     reset_password: Скинути пароль
@@ -460,7 +446,6 @@ uk:
       request: Зробити запит на архів
       size: Розмір
     blocks: Список блокувань
-    csv: CSV
     follows: Підписки
     mutes: Список глушення
     storage: Ваш медіаконтент
@@ -483,7 +468,6 @@ uk:
   generic:
     changes_saved_msg: Зміни успішно збережені!
     save_changes: Зберегти зміни
-    validation_errors: Щось тут не так! Будь ласка, ознайомтеся з %{count} помилками нижче
   imports:
     preface: Вы можете завантажити деякі дані, наприклад, списки людей, на яких Ви підписані чи яких блокуєте, в Ваш акаунт на цій інстанції з файлів, експортованих з іншої інстанції.
     success: Ваші дані були успішно загружені та будуть оброблені в найближчий момент
@@ -506,7 +490,6 @@ uk:
     expires_in_prompt: Ніколи
     generate: Згенерувати
     invited_by: 'Вас запросив(-ла):'
-    max_uses: "%{count} використань"
     max_uses_prompt: Без обмеження
     prompt: Генеруйте та діліться посиланням з іншими для надання доступу до сайту
     table:
@@ -568,24 +551,18 @@ uk:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: млрд
           million: млн
           quadrillion: квдрл
           thousand: тис
           trillion: трлн
-          unit: ''
   pagination:
     newer: Новіше
     next: Далі
     prev: Назад
-    truncate: "&hellip;"
   preferences:
-    languages: Мови
     other: Інше
-    publishing: Публікація
-    web: Веб
   remote_follow:
     acct: Введіть username@domain, яким ви хочете підписатися
     missing_resource: Пошук потрібного перенаправлення URL для Вашого аккаунта закінчився невдачею
@@ -600,40 +577,12 @@ uk:
     activity: Остання активність
     browser: Браузер
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Невідомий браузер
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Активна сесія
     description: "%{browser} на %{platform}"
     explanation: Це веб-браузери, нині авторизовані до вашого аккаунту Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
       other: невідома платформа
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Закінчити
     revoke_success: Сесія успішно закінчена
     title: Сесії
@@ -652,11 +601,8 @@ uk:
   statuses:
     attached:
       description: 'Прикріплено: %{attached}'
-      image: "%{count} картинки"
-      video: "%{count} відео"
     boosted_from_html: Просунуто від %{acct_link}
     content_warning: 'Попередження про контент: %{warning}'
-    disallowed_hashtags: 'містив заборонені хештеґи: %{tags}'
     language_detection: Автоматично визначати мову
     open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів (%{max})
@@ -666,7 +612,6 @@ uk:
       private: Не можна закріпити непублічний пост
       reblog: Не можна закріпити просунутий пост
     show_more: Детальніше
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Для підписників
       private_long: Показувати тільки підписникам
@@ -684,9 +629,6 @@ uk:
     contrast: Висока контрасність
     default: Mastodon
     mastodon-light: Mastodon (світла)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Для підтверждення введіть код, згенерований застосунком аутентифікатора
     description_html: При увімкненні <strong>двофакторної аутентифікації</strong>, вхід буде вимагати від Вас використовування Вашого телефона, який згенерує вхідний код.

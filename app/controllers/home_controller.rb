@@ -58,7 +58,7 @@ class HomeController < ApplicationController
     if request.path.start_with?('/web')
       new_user_session_path
     elsif single_user_mode?
-      short_account_path(Account.local.where(suspended: false).first)
+      short_account_path(Account.local.without_suspended.first)
     else
       about_path
     end

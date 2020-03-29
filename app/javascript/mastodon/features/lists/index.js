@@ -65,11 +65,11 @@ class Lists extends ImmutablePureComponent {
 
         <NewListForm />
 
-        <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
         <ScrollableList
           scrollKey='lists'
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
+          prepend={<ColumnSubheading text={intl.formatMessage(messages.subheading)} />}
         >
           {lists.map(list =>
             <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />

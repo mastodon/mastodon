@@ -44,7 +44,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def browserable_account_notifications
-    current_account.notifications.browserable(exclude_types)
+    current_account.notifications.browserable(exclude_types, from_account)
   end
 
   def target_statuses_from_notifications
@@ -79,6 +79,10 @@ class Api::V1::NotificationsController < Api::BaseController
     val = params.permit(exclude_types: [])[:exclude_types] || []
     val = [val] unless val.is_a?(Enumerable)
     val
+  end
+
+  def from_account
+    params[:account_id]
   end
 
   def pagination_params(core_params)

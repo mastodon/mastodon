@@ -6,7 +6,6 @@ sr-Latn:
     about_this: O instanci
     contact: Kontakt
     contact_missing: Nije postavljeno
-    contact_unavailable: N/A
     extended_description_html: |
       <h3>Dobro mesto za pravila</h3>
       <p>Prošireni opis koji još nije postavljen.</p>
@@ -14,21 +13,15 @@ sr-Latn:
     hosted_on: Mastodont hostovan na %{domain}
     learn_more: Saznajte više
     source_code: Izvorni kod
-    status_count_after: statusa
     status_count_before: Koji su napisali
-    user_count_after: korisnika
     user_count_before: Dom za
     what_is_mastodon: Šta je Mastodont?
   accounts:
-    follow: Follow
-    followers: Followers
-    following: Following
     media: Multimedija
     moved_html: "%{name} je pomeren na %{new_profile_link}:"
     nothing_here: Ovde nema ništa!
     people_followed_by: Ljudi koje %{name} prati
     people_who_follow: Ljudi koji prate %{name}
-    posts: Tutovi
     posts_with_replies: Tutovi i odgovori
     reserved_username: Korisničko ime je rezervisano
     roles:
@@ -63,7 +56,6 @@ sr-Latn:
       followers_url: Adresa pratioca
       follows: Praćeni
       inbox_url: Adresa sandučeta
-      ip: IP
       location:
         all: Sve
         local: Lokalne
@@ -87,7 +79,6 @@ sr-Latn:
       promote: Unapredi
       protocol: Protokol
       public: Javno
-      push_subscription_expires: PuSH subscription expires
       redownload: Osveži avatar
       resend_confirmation:
         already_confirmed: Ovaj korisnik je već potvrđen
@@ -98,8 +89,6 @@ sr-Latn:
       resubscribe: Ponovo se pretplati
       role: Ovlašćenja
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Osoblje
         user: Korisnik
       salmon_url: Salmon adresa
@@ -187,7 +176,6 @@ sr-Latn:
       show:
         affected_accounts:
           few: Utiče na %{count} naloga u bazi
-          many: Utiče na %{count} naloga u bazi
           one: Utiče na jedan nalog u bazi
           other: Utiče na %{count} naloga u bazi
         retroactive:
@@ -213,7 +201,6 @@ sr-Latn:
         all: Sve
         available: Aktivne
         expired: Istekle
-        title: Filter
       title: Pozivnice
     reports:
       action_taken_by: Akciju izveo
@@ -225,7 +212,6 @@ sr-Latn:
       reported_account: Prijavljeni nalog
       reported_by: Prijavio
       resolved: Rešeni
-      status: Status
       title: Prijave
       unresolved: Nerešeni
     settings:
@@ -278,19 +264,15 @@ sr-Latn:
       title: Statusi naloga
       with_media: Sa multimedijom
     subscriptions:
-      callback_url: Callback URL
       confirmed: Potvrđeno
       expires_in: Ističe za
       last_delivery: Poslednja dostava
-      title: WebSub
-      topic: Topic
     title: Administracija
   admin_mailer:
     new_report:
       body: "%{reporter} je prijavio %{target}"
       subject: Nova prijava za %{instance} (#%{id})
   application_mailer:
-    salutation: "%{name},"
     settings: 'Promeni podešavanja e-pošte: %{link}'
     view: 'Pogledaj:'
   applications:
@@ -328,18 +310,13 @@ sr-Latn:
     title: Zaprati %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}mesec"
       about_x_years: "%{count}god"
       almost_x_years: "%{count}god"
       half_a_minute: Upravo sad
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Upravo sad
       over_x_years: "%{count}god"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mesec"
-      x_seconds: "%{count}s"
   deletes:
     bad_password_msg: Dobar pokušaj, hakeri! Neispravna lozinka
     confirm_password: Unesite trenutnu lozinku da bismo proverili Vaš identitet
@@ -352,9 +329,7 @@ sr-Latn:
     '403': Nemate dozvola da vidite ovu stranu.
     '404': Strana koju ste tražili ne postoji.
     '410': Strana koju ste tražili više ne postoji.
-    '422':
-      content: Security verification failed. Are you blocking cookies?
-      title: Security verification failed
+    '422': 
     '429': Uspored
     '500':
       content: Izvinjavamo se, nešto je pošlo po zlu sa ove strane.
@@ -362,7 +337,6 @@ sr-Latn:
     noscript_html: Da biste koristili Mastodont veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="%{apps_path}">originalnih aplikacija</a> za Mastodont za Vašu platformu.
   exports:
     blocks: Blokirali ste
-    csv: CSV
     follows: Pratite
     mutes: Ućutkali ste
     storage: Multimedijalno skladište
@@ -371,7 +345,6 @@ sr-Latn:
     save_changes: Snimi izmene
     validation_errors:
       few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
-      many: Nešto nije baš kako treba! Pregledajte %{count} grešaka ispod
       one: Nešto nije baš kako treba! Pregledajte greške ispod
       other: Nešto nije baš kako treba! Pregledajte %{count} grešaka ispod
   imports:
@@ -382,7 +355,6 @@ sr-Latn:
       following: Lista pratilaca
       muting: Lista ućutkanih
     upload: Otpremi
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Deaktiviraj
     expired: Isteklo
@@ -391,12 +363,12 @@ sr-Latn:
       '21600': 6 sati
       '3600': 1 sad
       '43200': 12 sati
+      '604800': 1 week
       '86400': 1 dan
     expires_in_prompt: Nikad
     generate: Generiši
     max_uses:
       few: "%{count} korišćenja"
-      many: "%{count} korišćenja"
       one: 1 korišćenje
       other: "%{count} korišćenja"
     max_uses_prompt: Bez ograničenja
@@ -425,12 +397,10 @@ sr-Latn:
       mention: "%{name} Vas je pomenuo u:"
       new_followers_summary:
         few: Dobili ste %{count} nova pratioca! Sjajno!
-        many: Dobili ste %{count} novih pratioca! Sjajno!
         one: Dobili ste jednog novog pratioca! Jeee!
         other: Dobili ste %{count} novih pratioca! Sjajno!
       subject:
         few: "%{count} nova obaveštenja od poslednje posete \U0001F418"
-        many: "%{count} novih obaveštenja od poslednje posete \U0001F418"
         one: "1 novo obaveštenje od poslednje posete \U0001F418"
         other: "%{count} novih obaveštenja od poslednje posete \U0001F418"
     favourite:
@@ -448,26 +418,11 @@ sr-Latn:
     reblog:
       body: "%{name} Vam je podržao(la) status:"
       subject: "%{name} je podržao(la) Vaš status"
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: Sledeći
     prev: Prethodni
-    truncate: "&hellip;"
   preferences:
-    languages: Jezici
     other: Ostali
-    publishing: Objavljivanje
-    web: Veb
   remote_follow:
     acct: Unesite Vaš korisnik@domen sa koga želite da pratite
     missing_resource: Ne mogu da nađem zahtevanu adresu preusmeravanja za Vaš nalog
@@ -477,32 +432,18 @@ sr-Latn:
     activity: Poslednja aktivnost
     browser: Veb čitač
     browsers:
-      alipay: Alipay
       blackberry: Blekberi
       chrome: Hrom
-      edge: Microsoft Edge
-      firefox: Firefox
       generic: Nepoznati veb čitač
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Trenutna sesija
     description: "%{browser} sa %{platform}"
     explanation: Ovo su trenutno prijavljeni veb čitači na Vaš Mastodont nalog.
-    ip: IP
     platforms:
       adobe_air: Adobe Air-a
       android: Androida
       blackberry: Blekberija
       chrome_os: Hrom OS-a
       firefox_os: Fajerfoks OS-a
-      ios: iOS
       linux: Linuksa
       mac: Mac-a
       other: nepoznate platforme
@@ -533,7 +474,6 @@ sr-Latn:
       private: Tutovi koji nisu javni ne mogu da se prikače
       reblog: Podrška ne može da se prikači
     show_more: Prikaži još
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Samo pratioci
       private_long: Samo prikaži pratiocima
@@ -549,9 +489,6 @@ sr-Latn:
     title: Uslovi korišćenja i politika privatnosti instance %{instance}
   themes:
     default: Mastodont
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Unesite kod sa Vaše aplikacije za proveru identiteta da potvrdite
     description_html: Ako uključite <strong>dvofaktorsku identifikaciju</strong>, moraćete da imate telefon sa sobom da biste mogli da se prijavite. Telefon će onda generisati tokene za Vašu prijavu.

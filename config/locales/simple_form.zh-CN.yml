@@ -2,21 +2,46 @@
 zh-CN:
   simple_form:
     hints:
+      account_warning_preset:
+        text: 你可以使用嘟文格式，在嘟文中加入 URL、话题标签和提及“@”
+      admin_account_action:
+        send_email_notification: 用户将收到对其帐号上发生的事的解释
+        text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
+        type_html: 用<strong>%{acct}</strong>选择做什么
+        warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
         bot: 来自这个帐户的绝大多数操作都是自动进行的，并且可能无人监控
+        context: 过滤器的应用场景
         digest: 仅在你长时间未登录，且收到了私信时发送
+        discoverable_html: <a href="%{path}" target="_blank">目录</a> 让大家能根据兴趣和活动寻找用户。需要至少 %{min_followers} 位关注者
+        email: 我们会向你发送一封确认邮件
         fields: 这将会在个人资料页上以表格的形式展示，最多 4 个项目
         header: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
+        inbox_url: 从你想要使用的中继的主页上复制 URL
+        irreversible: 已过滤的嘟文会不可逆转地消失，即便移除过滤器之后也一样
         locale: 用户界面、电子邮件和推送通知中使用的语言
         locked: 你需要手动审核所有关注请求
-        setting_default_language: 嘟文语言自动检测的结果有可能不准确（此设置仅影响你的嘟文）
+        password: 至少需要8个字符
+        phrase: 匹配将无视大小写和嘟文的内容警告
+        scopes: 哪些 API 被允许使用。如果你选中了更高一级的范围，就不能单个选中了。
+        setting_aggregate_reblogs: 请不要显示最近已经被转嘟过的转嘟（只会影响新收到的转嘟）
+        setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
+        setting_display_media_default: 隐藏被标记为敏感内容的媒体
+        setting_display_media_hide_all: 总是隐藏所有媒体
+        setting_display_media_show_all: 总是显示被标记为敏感内容的媒体
         setting_hide_network: 你关注的人和关注你的人将不会在你的个人资料页上展示
         setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
-        setting_theme: 此设置会影响到所有已登录设备上 Mastodon 的显示样式
+        setting_show_application: 你用来发表嘟文的应用程序将会在你嘟文的详细内容中显示
+        username: 你的用户名在 %{domain} 上是独特的
+        whole_word: 如果关键词只包含字母和数字，就只会在整个词被匹配时才会套用
+      featured_tag:
+        name: 你可能想要使用以下之一：
       imports:
-        data: 请上传从其他 Mastodon 实例导出的 CSV 文件
+        data: 从其他 Mastodon 服务器导出的 CSV 文件
+      invite_request:
+        text: 这会有助于我们处理你的申请
       sessions:
         otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
       user:
@@ -26,6 +51,18 @@ zh-CN:
         fields:
           name: 标签
           value: 内容
+      account_warning_preset:
+        text: 预置文本
+      admin_account_action:
+        send_email_notification: 通过邮件提醒此用户
+        text: 内容警告
+        type: 动作
+        types:
+          disable: 禁用
+          none: 忽略
+          silence: 静音
+          suspend: 停用并永久删除账户数据
+        warning_preset_id: 使用预置警告
       defaults:
         autofollow: 让被邀请人关注你的帐户
         avatar: 头像
@@ -33,13 +70,17 @@ zh-CN:
         chosen_languages: 语言过滤
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
+        context: 过滤器场景
         current_password: 当前密码
         data: 数据文件
+        discoverable: 在本站用户资料目录中列出此账户
         display_name: 昵称
         email: 电子邮件地址
         expires_in: 失效时间
         fields: 个人资料附加信息
         header: 个人资料页横幅图片
+        inbox_url: 中继收件箱的 URL
+        irreversible: 放弃而非隐藏
         locale: 界面语言
         locked: 保护你的帐户（锁嘟）
         max_uses: 最大使用次数
@@ -47,15 +88,24 @@ zh-CN:
         note: 简介
         otp_attempt: 双重认证代码
         password: 密码
+        phrase: 关键词
+        setting_advanced_layout: 启用高级 web 界面
+        setting_aggregate_reblogs: 在时间轴中合并转嘟
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
+        setting_display_media: 媒体展示
+        setting_display_media_default: 默认
+        setting_display_media_hide_all: 隐藏全部
+        setting_display_media_show_all: 显示全部
+        setting_expand_spoilers: 始终展开具有内容警告的嘟文
         setting_hide_network: 隐藏你的社交网络
         setting_noindex: 禁止搜索引擎建立索引
         setting_reduce_motion: 降低过渡动画效果
+        setting_show_application: 展示你用来发嘟的应用
         setting_system_font_ui: 使用系统默认字体
         setting_theme: 站点主题
         setting_unfollow_modal: 在取消关注前询问我
@@ -63,19 +113,26 @@ zh-CN:
         type: 导入数据类型
         username: 用户名
         username_or_email: 用户名或电子邮件地址
+        whole_word: 整个词条
+      featured_tag:
+        name: 话题标签
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
         must_be_following_dm: 屏蔽来自我未关注的用户的私信
+      invite_request:
+        text: 你为什么想要加入？
       notification_emails:
         digest: 发送摘要邮件
         favourite: 当有用户收藏了我的嘟文时，发送电子邮件提醒我
         follow: 当有用户关注我时，发送电子邮件提醒我
         follow_request: 当有用户向我发送关注请求时，发送电子邮件提醒我
         mention: 当有用户在嘟文中提及我时，发送电子邮件提醒我
+        pending_account: 在有账户需要审核时，发送电子邮件提醒我
         reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
+        report: 在提交新举报时，发送电子邮件提醒我
     'no': 否
+    recommended: 推荐
     required:
-      mark: "*"
       text: 必填
     'yes': 是

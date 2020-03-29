@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { fromJS } from 'immutable';
+import { fromJS, is } from 'immutable';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
@@ -102,6 +102,8 @@ class Video extends React.PureComponent {
     detailed: PropTypes.bool,
     inline: PropTypes.bool,
     cacheWidth: PropTypes.func,
+    visible: PropTypes.bool,
+    onToggleVisibility: PropTypes.func,
     intl: PropTypes.object.isRequired,
     blurhash: PropTypes.string,
     link: PropTypes.node,
@@ -117,7 +119,7 @@ class Video extends React.PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all',
+    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
   };
 
   // hard coded in components.scss
@@ -280,7 +282,16 @@ class Video extends React.PureComponent {
     document.removeEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
   }
 
-  componentDidUpdate (prevProps) {
+  componentWillReceiveProps (nextProps) {
+    if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
+      this.setState({ revealed: nextProps.visible });
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.revealed && !this.state.revealed && this.video) {
+      this.video.pause();
+    }
     if (prevProps.blurhash !== this.props.blurhash && this.props.blurhash) {
       this._decode();
     }
@@ -316,11 +327,11 @@ class Video extends React.PureComponent {
   }
 
   toggleReveal = () => {
-    if (this.state.revealed) {
-      this.video.pause();
+    if (this.props.onToggleVisibility) {
+      this.props.onToggleVisibility();
+    } else {
+      this.setState({ revealed: !this.state.revealed });
     }
-
-    this.setState({ revealed: !this.state.revealed });
   }
 
   handleLoadedData = () => {

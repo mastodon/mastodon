@@ -8,7 +8,7 @@ ca:
     active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
     api: API
-    apps: Apps mòbil
+    apps: Apps mòbils
     apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
     browse_directory: Navega per el directori de perfils i filtra segons interessos
     browse_public_posts: Navega per una transmissió en directe de publicacions públiques a Mastodon
@@ -30,8 +30,8 @@ ca:
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
-      one: estat
-      other: estats
+      one: toot
+      other: toots
     status_count_before: Que han escrit
     tagline: Segueix els teus amics i descobreix-ne de nous
     terms: Termes del servei
@@ -174,6 +174,7 @@ ca:
       statuses: Estats
       subscribe: Subscriu
       suspended: Suspès
+      time_in_queue: Esperant en la cua %{time}
       title: Comptes
       unconfirmed_email: Correu electrònic sense confirmar
       undo_silenced: Deixa de silenciar
@@ -209,7 +210,7 @@ ca:
         resolve_report: "%{name} ha resolt l'informe %{target}"
         silence_account: "%{name} ha silenciat el compte de %{target}"
         suspend_account: "%{name} ha suspès el compte de %{target}"
-        unassigned_report: "%{name} ha des-assignat  l'informe %{target}"
+        unassigned_report: "%{name} ha des-assignat l'informe %{target}"
         unsilence_account: "%{name} ha silenciat el compte de %{target}"
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
@@ -269,6 +270,7 @@ ca:
       created_msg: El bloqueig de domini ara s'està processant
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
+      existing_domain_block_html: Ja has imposat uns limits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
       new:
         create: Crea un bloqueig
         hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s'aplicaran de manera retroactiva mètodes de moderació específics sobre aquests comptes.
@@ -497,6 +499,12 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Interfície web avançada
+    advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol número de llistes i etiquetes.'
+    animations_and_accessibility: Animacions i accessibilitat
+    confirmation_dialogs: Diàlegs de confirmació
+    sensitive_content: Contingut sensible
   application_mailer:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
@@ -525,7 +533,7 @@ ca:
     login: Inicia sessió
     logout: Tanca sessió
     migrate_account: Mou a un compte diferent
-    migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots  <a href="%{path}">configurar aquí</a>.
+    migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
     providers:
       cas: CAS
@@ -555,7 +563,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: fa %{count} minuts
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -655,7 +663,7 @@ ca:
         invalid_token: Els tokens de Keybase són hashs de signatures i han de tenir 66 caràcters hexadecimals
         verification_failed: Keybase no reconeix aquest token com a signatura del usuari de Keybase %{kb_username}. Si us plau prova des de Keybase.
       wrong_user: No es pot crear una prova per a %{proving} mentre es connectava com a %{current}. Inicia sessió com a %{proving} i prova de nou.
-    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'envïin missatges xifrats i continguts de confiança que els hi enviess.
+    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'envïin missatges xifrats i confiar en el contingut que els hi envies.
     i_am_html: Sóc %{username} a %{service}.
     identity: Identitat
     inactive: Inactiu
@@ -675,7 +683,7 @@ ca:
       blocking: Llista de blocats
       domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
-      muting: Llista d'apagats
+      muting: Llista de silenciats
     upload: Carregar
   in_memoriam_html: En Memòria.
   invites:
@@ -758,7 +766,6 @@ ca:
           quadrillion: Q
           thousand: m
           trillion: T
-          unit: " "
   pagination:
     newer: Més recent
     next: Endavant
@@ -768,7 +775,7 @@ ca:
   polls:
     errors:
       already_voted: Ja has votat en aquesta enquesta
-      duplicate_options: Conté opcions duplicades
+      duplicate_options: conté opcions duplicades
       duration_too_long: està massa lluny en el futur
       duration_too_short: és massa aviat
       expired: L'enquesta ja ha finalitzat
@@ -776,10 +783,9 @@ ca:
       too_few_options: ha de tenir més d'una opció
       too_many_options: no pot contenir més de %{max} opcions
   preferences:
-    languages: Llengues
     other: Altre
-    publishing: Publicació
-    web: Web
+    posting_defaults: Valors predeterminats de publicació
+    public_timelines: Línies de temps públiques
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
@@ -922,14 +928,14 @@ ca:
     sensitive_content: Contingut sensible
   terms:
     body_html: |
-      <h2>Privacy Policy</h2>
+      <h2>Política de Privacitat</h2>
       <h3 id="collect">Quina informació recollim?</h3>
 
       <ul>
-        <li><em>Informació bàsica del compte</em>: Si et registres en aquest servidor, se´t pot demanar que introdueixis un nom d'usuari, una adreça de correu electrònic i una contrasenya. També pots introduir informació de perfil addicional, com ara un nom de visualització i una biografia, i carregar una imatge de perfil i de capçalera. El nom d'usuari, el nom de visualització, la biografia, la imatge de perfil i la imatge de capçalera sempre apareixen públicament.</li>
-        <li><em>Publicacions, seguiment i altra informació pública</em>: La llista de persones que segueixes s'enumeren públicament i el mateix passa amb els teus seguidors. Quan envies un missatge, la data i l'hora s'emmagatzemen, així com l'aplicació que va enviar el missatge. Els missatges poden contenir multimèdia, com ara imatges i vídeos. Els toots públics i no llistats estan disponibles públicament. En quan tinguis un toot en el teu perfil, aquest també és informació pública. Les teves entrades es lliuren als teus seguidors que en alguns casos significa que es lliuren a diferents servidors en els quals s'hi emmagatzemen còpies. Quan suprimeixes publicacions, també es lliuraran als teus seguidors. L'acció d'impulsar o marcar com a favorit una publicació sempre és pública.</li>
-        <li><em>Toots directes i per a només seguidors</em>: Totes les publicacions s'emmagatzemen i processen al servidor. Els toots per a només seguidors només es lliuren als teus seguidors i als usuaris que s'esmenten en ells i els toots directes només es lliuren als usuaris esmentats. En alguns casos, significa que es lliuren a diferents servidors i s'hi emmagatzemen còpies. Fem un esforç de bona fe per limitar l'accés a aquestes publicacions només a les persones autoritzades, però és possible que altres servidors no ho facin. Per tant, és important revisar els servidors als quals pertanyen els teus seguidors. Pots canviar la opció de aprovar o rebutjar els nous seguidors manualment a la configuració.  <em>Tingues en compte que els operadors del servidor i qualsevol servidor receptor poden visualitzar aquests missatges</em> i els destinataris poden fer una captura de pantalla, copiar-los o tornar-los a compartir.  <em>No comparteixis cap informació perillosa a Mastodon.</em></li>
-        <li><em>IPs i altres metadades</em>: Quan inicies sessió registrem l'adreça IP en que l'has iniciat, així com el nom de l'aplicació o navegador. Totes les sessions registrades estan disponibles per a la teva revisió i revocació a la configuració. L'última adreça IP utilitzada s'emmagatzema durant un màxim de 12 mesos. També podrem conservar els registres que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</li>
+      <li><em>Informació bàsica del compte</em>: Si et registres en aquest servidor, se´t pot demanar que introdueixis un nom d'usuari, una adreça de correu electrònic i una contrasenya. També pots introduir informació de perfil addicional, com ara un nom de visualització i una biografia, i carregar una imatge de perfil i de capçalera. El nom d'usuari, el nom de visualització, la biografia, la imatge de perfil i la imatge de capçalera sempre apareixen públicament.</li>
+      <li><em>Publicacions, seguiment i altra informació pública</em>: La llista de persones que segueixes s'enumeren públicament i el mateix passa amb els teus seguidors. Quan envies un missatge, la data i l'hora s'emmagatzemen, així com l'aplicació que va enviar el missatge. Els missatges poden contenir multimèdia, com ara imatges i vídeos. Els toots públics i no llistats estan disponibles públicament. En quan tinguis un toot en el teu perfil, aquest també és informació pública. Les teves entrades es lliuren als teus seguidors que en alguns casos significa que es lliuren a diferents servidors en els quals s'hi emmagatzemen còpies. Quan suprimeixes publicacions, també es lliuraran als teus seguidors. L'acció d'impulsar o marcar com a favorit una publicació sempre és pública.</li>
+      <li><em>Toots directes i per a només seguidors</em>: Totes les publicacions s'emmagatzemen i processen al servidor. Els toots per a només seguidors només es lliuren als teus seguidors i als usuaris que s'esmenten en ells i els toots directes només es lliuren als usuaris esmentats. En alguns casos, significa que es lliuren a diferents servidors i s'hi emmagatzemen còpies. Fem un esforç de bona fe per limitar l'accés a aquestes publicacions només a les persones autoritzades, però és possible que altres servidors no ho facin. Per tant, és important revisar els servidors als quals pertanyen els teus seguidors. Pots canviar la opció de aprovar o rebutjar els nous seguidors manualment a la configuració. <em>Tingues en compte que els operadors del servidor i qualsevol servidor receptor poden visualitzar aquests missatges</em> i els destinataris poden fer una captura de pantalla, copiar-los o tornar-los a compartir. <em>No comparteixis cap informació perillosa a Mastodon.</em></li>
+      <li><em>IPs i altres metadades</em>: Quan inicies sessió registrem l'adreça IP en que l'has iniciat, així com el nom de l'aplicació o navegador. Totes les sessions registrades estan disponibles per a la teva revisió i revocació a la configuració. L'última adreça IP utilitzada s'emmagatzema durant un màxim de 12 mesos. També podrem conservar els registres que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</li>
       </ul>
 
       <hr class="spacer" />
@@ -939,9 +945,9 @@ ca:
       <p>Qualsevol de la informació que recopilem de tu es pot utilitzar de la manera següent:</p>
 
       <ul>
-        <li>Per proporcionar la funcionalitat bàsica de Mastodon. Només pots interactuar amb el contingut d'altres persones i publicar el teu propi contingut quan hàgis iniciat la sessió. Per exemple, pots seguir altres persones per veure les publicacions combinades a la teva pròpia línia de temps personalitzada.</li>
-        <li>Per ajudar a la moderació de la comunitat, per exemple comparar la teva adreça IP amb altres conegudes per determinar l'evasió de prohibicions o altres infraccions.</li>
-        <li>L'adreça electrònica que ens proporciones pot utilitzar-se per enviar-te informació, notificacions sobre altres persones que interactuen amb el teu contingut o t'envien missatges, i per respondre a les consultes i / o altres sol·licituds o preguntes.</li>
+      <li>Per proporcionar la funcionalitat bàsica de Mastodon. Només pots interactuar amb el contingut d'altres persones i publicar el teu propi contingut quan hàgis iniciat la sessió. Per exemple, pots seguir altres persones per veure les publicacions combinades a la teva pròpia línia de temps personalitzada.</li>
+      <li>Per ajudar a la moderació de la comunitat, per exemple comparar la teva adreça IP amb altres conegudes per determinar l'evasió de prohibicions o altres infraccions.</li>
+      <li>L'adreça electrònica que ens proporciones pot utilitzar-se per enviar-te informació, notificacions sobre altres persones que interactuen amb el teu contingut o t'envien missatges, i per respondre a les consultes i / o altres sol·licituds o preguntes.</li>
       </ul>
 
       <hr class="spacer" />
@@ -957,8 +963,8 @@ ca:
       <p>Farem un esforç de bona fe per:</p>
 
       <ul>
-        <li>Conservar els registres del servidor que continguin l'adreça IP de totes les sol·licituds que rebi, tenint em compte que aquests registres es mantenen no més de 90 dies.</li>
-        <li>Conservar les adreces IP associades als usuaris registrats no més de 12 mesos.</li>
+      <li>Conservar els registres del servidor que continguin l'adreça IP de totes les sol·licituds que rebi, tenint em compte que aquests registres es mantenen no més de 90 dies.</li>
+      <li>Conservar les adreces IP associades als usuaris registrats no més de 12 mesos.</li>
       </ul>
 
       <p>Pots sol·licitar i descarregar un arxiu del teu contingut incloses les publicacions, els fitxers adjunts multimèdia, la imatge de perfil i la imatge de capçalera.</p>
@@ -999,7 +1005,7 @@ ca:
 
       <p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>
 
-      <p> Aquest document és CC-BY-SA. Actualitzat per darrera vegada el 7 de Març del 2018.</p>
+      <p>Aquest document és CC-BY-SA. Actualitzat per darrera vegada el 7 de Març del 2018.</p>
 
       <p>Originalment adaptat des del <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Condicions del servei i política de privadesa"

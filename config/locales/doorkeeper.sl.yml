@@ -4,3 +4,145 @@ sl:
     attributes:
       doorkeeper/application:
         name: Ime programa
+        redirect_uri: Preusmeritev URI
+        scopes: Obsegi
+        website: Spletišče programa
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ne more vsebovati fragmenta.
+              invalid_uri: mora biti veljaven URI.
+              relative_uri: mora biti absolutni URI.
+              secured_uri: mora biti HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Overi
+        cancel: Prekliči
+        destroy: Uniči
+        edit: Uredi
+        submit: Pošlji
+      confirmations:
+        destroy: Ali ste prepričani?
+      edit:
+        title: Uredi aplikacijo
+      form:
+        error: Ups! Preverite obrazec za morebitne napake
+      help:
+        native_redirect_uri: Uporabite %{native_redirect_uri} za krajevne preizkuse
+        redirect_uri: Uporabite eno vrstico na URI
+        scopes: Ločite obsege s presledki. Pustite prazno, da uporabite privzete obsege.
+      index:
+        application: Program
+        callback_url: Povratni URL
+        delete: Izbriši
+        name: Ime
+        new: Nov program
+        scopes: Obsegi
+        show: Pokaži
+        title: Vaši programi
+      new:
+        title: Nov program
+      show:
+        actions: Dejanja
+        application_id: Ključ odjemalca
+        callback_urls: Povratni URL-ji
+        scopes: Obsegi
+        secret: Skrivnost odjemalca
+        title: 'Program: %{name}'
+    authorizations:
+      buttons:
+        authorize: Overi
+        deny: Zavrni
+      error:
+        title: Prišlo je do napake
+      new:
+        able_to: To bo lahko
+        prompt: Program %{client_name} zahteva dostop do vašega računa
+        title: Potrebna je pooblastitev
+      show:
+        title: Kopirajte to pooblastilno kodo in jo prilepite v program.
+    authorized_applications:
+      buttons:
+        revoke: Prekliči
+      confirmations:
+        revoke: Ali ste prepričani?
+      index:
+        application: Program
+        created_at: Odobreno
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Obsegi
+        title: Vaši odobreni programi
+    errors:
+      messages:
+        access_denied: Lastnik virov ali strežnik pooblastil je zavrnil zahtevo.
+        credential_flow_not_configured: Pretok geselskih pooblastil lastnika virov ni uspel, ker Doorkeeper.configure.resource_owner_from_credentials ni nastavljen.
+        invalid_client: Overitev odjemalca ni uspelo zaradi neznanega odjemalca, zaradi nevključitve overitve odjemalca ali zaradi nepodprte metode overitve.
+        invalid_grant: Predložena odobritev za pooblastilo je neveljavna, potekla, preklicana, se ne ujema z URI preusmeritvijo, ki je uporabljena v zahtevi za pooblastilo ali je bila izdana drugemu odjemalcu.
+        invalid_redirect_uri: URI za preusmeritev ni veljaven.
+        invalid_request: Zahtevku manjka zahtevan parameter, vključuje nepodprto vrednost parametra ali je nepravilno oblikovan.
+        invalid_resource_owner: Predložene poverilnice lastnika virov niso veljavne ali pa lastnika virov ni mogoče najti
+        invalid_scope: Zahtevani obseg je neveljaven, neznan ali nepravilen.
+        invalid_token:
+          expired: Žeton za dostop je pretekel
+          revoked: Žeton za dostop je bil preklican
+          unknown: Žeton za dostop je neveljaven
+        resource_owner_authenticator_not_configured: Iskanje lastnika virov ni uspelo, ker Doorkeeper.configure.resource_owner_authenticator ni nastavljen.
+        server_error: Strežnik pooblastil je naletel na nepričakovano stanje, ki je preprečilo, da bi izpolnil zahtevo.
+        temporarily_unavailable: Strežnik pooblastil, zaradi začasne preobremenitve ali vzdrževanja, trenutno ne more obdelati zahteve.
+        unauthorized_client: Odjemalec nima pooblastila za izvajanje te zahteve po tej metodi.
+        unsupported_grant_type: Strežnik pooblastil ne podpira vrste odobritve pooblastila.
+        unsupported_response_type: Strežnik pooblastil ne podpira te vrste odziva.
+    flash:
+      applications:
+        create:
+          notice: Program je ustvarjen.
+        destroy:
+          notice: Program je izbrisan.
+        update:
+          notice: Program je posodobljen.
+      authorized_applications:
+        destroy:
+          notice: Program je preklican.
+    layouts:
+      admin:
+        nav:
+          applications: Programi
+          oauth2_provider: Ponudnik OAuth2
+      application:
+        title: Potrebna je OAuth pooblastitev
+    scopes:
+      admin:read: preberi vse podatke na strežniku
+      admin:read:accounts: preberi občutljive informacije vseh računov
+      admin:read:reports: preberi občutljive informacije vseh prijav in prijavljenih računov
+      admin:write: spremeni vse podatke na strežniku
+      admin:write:accounts: izvedi moderirana dejanja na računih
+      admin:write:reports: izvedi moderirana dejanja na prijavah
+      follow: spremeni razmerja med računi
+      push: prejmi potisna obvestila
+      read: preberi vse podatke svojega računa
+      read:accounts: oglejte si podrobnosti računov
+      read:blocks: oglejte si svoje blokirane
+      read:favourites: oglejte si svoje priljubljene
+      read:filters: oglejte si svoje filtre
+      read:follows: oglejte si svoje sledilce
+      read:lists: oglejte si svoje sezname
+      read:mutes: oglejte si svoje utišane
+      read:notifications: oglejte si svoja obvestila
+      read:reports: oglejte si svoje prijave
+      read:search: iščite v svojem imenu
+      read:statuses: oglejte si vsa stanja
+      write: spremenite vse podatke svojega računa
+      write:accounts: spremenite svoj profil
+      write:blocks: blokirajte račune in domene
+      write:favourites: priljubljena stanja
+      write:filters: ustvari filtre
+      write:follows: sledi osebam
+      write:lists: ustvarite sezname
+      write:media: pošlji medije
+      write:mutes: utišaj osebe in pogovore
+      write:notifications: počisti svoja obvestila
+      write:reports: prijavi druge osebe
+      write:statuses: objavi stanja

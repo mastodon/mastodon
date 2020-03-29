@@ -5,97 +5,35 @@ io:
     about_this: Pri ta instaluro
     contact: Kontaktar
     source_code: Fontkodexo
-    status_count_after: mesaji
     status_count_before: Qua publikigis
-    user_count_after: uzeri
     user_count_before: Hemo di
   accounts:
     follow: Sequar
-    followers: Sequanti
     following: Sequati
     nothing_here: Esas nulo hike!
     people_followed_by: Sequati da %{name}
     people_who_follow: Sequanti di %{name}
-    posts: Mesaji
     unfollow: Dessequar
   admin:
     accounts:
       are_you_sure: Ka tu esas certa?
-      display_name: Display name
-      domain: Domain
-      edit: Edit
       email: E-mail
-      feed_url: Feed URL
-      followers: Followers
-      follows: Follows
-      location:
-        all: All
-        local: Local
-        remote: Remote
-        title: Location
-      media_attachments: Media attachments
-      moderation:
-        all: All
-        silenced: Silenced
-        suspended: Suspended
-        title: Moderation
-      most_recent_activity: Most recent activity
-      most_recent_ip: Most recent IP
-      not_subscribed: Not subscribed
       perform_full_suspension: Perform full suspension
-      profile_url: Profile URL
-      public: Public
-      push_subscription_expires: PuSH subscription expires
-      reset_password: Reset password
-      salmon_url: Salmon URL
       show:
         created_reports: Reports created by this account
         targeted_reports: Reports made about this account
-      silence: Silence
-      statuses: Statuses
-      title: Accounts
-      undo_silenced: Undo silence
-      undo_suspension: Undo suspension
-      username: Username
-      web: Web
     domain_blocks:
       add_new: Add new
-      created_msg: Domain block is now being processed
-      destroyed_msg: Domain block has been undone
-      domain: Domain
       new:
-        create: Create block
-        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
           desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
-          silence: Silence
-          suspend: Suspend
-        title: New domain block
-      reject_media: Reject media files
-      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       show:
-        affected_accounts:
-          one: One account in the database affected
-          other: "%{count} accounts in the database affected"
         retroactive:
           silence: Unsilence all existing accounts from this domain
           suspend: Unsuspend all existing accounts from this domain
-        title: Undo domain block for %{domain}
-        undo: Undo
       undo: Undo
     instances:
       title: Known Instances
-    reports:
-      comment:
-        none: None
-      mark_as_resolved: Mark as resolved
-      report: 'Report #%{id}'
-      reported_account: Reported account
-      reported_by: Reported by
-      resolved: Resolved
-      status: Status
-      title: Reports
-      unresolved: Unresolved
     settings:
       contact_information:
         email: Enter a public e-mail address
@@ -103,7 +41,6 @@ io:
       registrations:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
-          title: Closed registration message
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Site description
@@ -112,14 +49,6 @@ io:
         title: Extended site description
       site_title: Site title
       title: Site Settings
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Confirmed
-      expires_in: Expires in
-      last_delivery: Last delivery
-      title: WebSub
-      topic: Topic
-    title: Administration
   application_mailer:
     settings: 'Chanjar la retpost-mesajala preferi: %{link}'
     view: 'Vidar:'
@@ -141,29 +70,18 @@ io:
     title: Sequar %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
       half_a_minute: Jus
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Jus
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
   errors:
+    '403': You don't have permission to view this page.
     '404': La pagino quan tu serchas ne existas.
     '410': La pagino quan tu serchas ne plus existas.
-    '422':
-      content: Security verification failed. Are you blocking cookies?
-      title: Security verification failed
+    '422': 
+    '429': Throttled
+    '500': 
   exports:
     blocks: Tu blokusas
-    csv: CSV
     follows: Tu sequas
-    mutes: You mute
     storage: Konservado di kontenajo
   generic:
     changes_saved_msg: Chanji senprobleme konservita!
@@ -177,12 +95,15 @@ io:
     types:
       blocking: Listo de blokusiti
       following: Listo de sequati
-      muting: Muting list
     upload: Kargar
-  media_attachments:
-    validations:
-      images_and_video: Cannot attach a video to a status that already contains images
-      too_many: Cannot attach more than 4 files
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   notification_mailer:
     digest:
       body: Yen mikra rezumo di to, depos ke tu laste vizitis en %{since}
@@ -208,21 +129,9 @@ io:
     reblog:
       body: "%{name} diskonocigis tua mesajo:"
       subject: "%{name} diskonocigis tua mesajo"
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: Sequanta
     prev: Preiranta
-    truncate: "&hellip;"
   remote_follow:
     acct: Enpozez tua uzernomo@instaluro de ube tu volas sequar ta uzero
     missing_resource: La URL di plussendado ne povis esar trovita
@@ -247,23 +156,13 @@ io:
   stream_entries:
     reblogged: diskonocigita
     sensitive_content: Titiliva kontenajo
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
-    code_hint: Enter the code generated by your authenticator app to confirm
     description_html: Se tu posibligas <strong>dufaktora autentikigo</strong>, tu bezonos tua poshtelefonilo por enirar, nam ol kreos nombri, quin tu devos enskribar.
     disable: Extingar
     enable: Acendar
-    enabled_success: Two-factor authentication successfully enabled
     generate_recovery_codes: Generate Recovery Codes
     instructions_html: "<strong>Skanez ta QR-kodexo per Google Authenticator o per simila apliko di tua poshtelefonilo</strong>. De lore, la apliko kreos nombri, quin tu devos enskribar."
-    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
-    recovery_codes_regenerated: Recovery codes successfully regenerated
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
-    setup: Set up
-    wrong_code: The entered code was invalid! Are server time and device time correct?
   users:
     invalid_email: La retpost-adreso ne esas valida
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida

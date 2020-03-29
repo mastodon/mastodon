@@ -89,13 +89,22 @@ Rails.application.routes.draw do
   get '/explore', to: 'directories#index', as: :explore
   get '/explore/:id', to: 'directories#show', as: :explore_hashtag
 
+  get '/settings', to: redirect('/settings/profile')
+
   namespace :settings do
     resource :profile, only: [:show, :update]
-    resource :preferences, only: [:show, :update]
-    resource :notifications, only: [:show, :update]
-    resource :import, only: [:show, :create]
 
+    get :preferences, to: redirect('/settings/preferences/appearance')
+
+    namespace :preferences do
+      resource :appearance, only: [:show, :update], controller: :appearance
+      resource :notifications, only: [:show, :update]
+      resource :other, only: [:show, :update], controller: :other
+    end
+
+    resource :import, only: [:show, :create]
     resource :export, only: [:show, :create]
+
     namespace :exports, constraints: { format: :csv } do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
@@ -105,6 +114,7 @@ Rails.application.routes.draw do
     end
 
     resource :two_factor_authentication, only: [:show, :create, :destroy]
+
     namespace :two_factor_authentication do
       resources :recovery_codes, only: [:create]
       resource :confirmation, only: [:new, :create]
@@ -393,6 +403,29 @@ Rails.application.routes.draw do
 
       namespace :push do
         resource :subscription, only: [:create, :show, :update, :destroy]
+      end
+
+      namespace :admin do
+        resources :accounts, only: [:index, :show] do
+          member do
+            post :enable
+            post :unsilence
+            post :unsuspend
+            post :approve
+            post :reject
+          end
+
+          resource :action, only: [:create], controller: 'account_actions'
+        end
+
+        resources :reports, only: [:index, :show] do
+          member do
+            post :assign_to_self
+            post :unassign
+            post :reopen
+            post :resolve
+          end
+        end
       end
     end
 

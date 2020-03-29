@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UnblockService < BaseService
+  include Payloadable
+
   def call(account, target_account)
     return unless account.blocking?(target_account)
 
@@ -20,11 +22,7 @@ class UnblockService < BaseService
   end
 
   def build_json(unblock)
-    ActiveModelSerializers::SerializableResource.new(
-      unblock,
-      serializer: ActivityPub::UndoBlockSerializer,
-      adapter: ActivityPub::Adapter
-    ).to_json
+    Oj.dump(serialize_payload(unblock, ActivityPub::UndoBlockSerializer))
   end
 
   def build_xml(block)

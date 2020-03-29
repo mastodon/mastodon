@@ -17,7 +17,7 @@ import { MediaGallery, Video } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import PollContainer from 'mastodon/containers/poll_container';
+import { displayMedia } from '../initial_state';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -45,6 +45,18 @@ export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   }
 
   return values.join(', ');
+};
+
+export const defaultMediaVisibility = (status) => {
+  if (!status) {
+    return undefined;
+  }
+
+  if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    status = status.get('reblog');
+  }
+
+  return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
 };
 
 export default @injectIntl
@@ -93,6 +105,11 @@ class Status extends ImmutablePureComponent {
     'hidden',
   ];
 
+  state = {
+    showMedia: defaultMediaVisibility(this.props.status),
+    statusId: undefined,
+  };
+
   // Track height changes we know about to compensate scrolling
   componentDidMount () {
     this.didShowCard = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
@@ -106,11 +123,24 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.status && nextProps.status.get('id') !== prevState.statusId) {
+      return {
+        showMedia: defaultMediaVisibility(nextProps.status),
+        statusId: nextProps.status.get('id'),
+      };
+    } else {
+      return null;
+    }
+  }
+
   // Compensate height changes
   componentDidUpdate (prevProps, prevState, snapshot) {
     const doShowCard  = !this.props.muted && !this.props.hidden && this.props.status && this.props.status.get('card');
+
     if (doShowCard && !this.didShowCard) {
       this.didShowCard = true;
+
       if (snapshot !== null && this.props.updateScrollBottom) {
         if (this.node && this.node.offsetTop < snapshot.top) {
           this.props.updateScrollBottom(snapshot.height - snapshot.top);
@@ -130,6 +160,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleToggleMediaVisibility = () => {
+    this.setState({ showMedia: !this.state.showMedia });
+  }
+
   handleClick = () => {
     if (this.props.onClick) {
       this.props.onClick();
@@ -142,6 +176,22 @@ class Status extends ImmutablePureComponent {
 
     const { status } = this.props;
     this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+  }
+
+  handleExpandClick = (e) => {
+    if (this.props.onClick) {
+      this.props.onClick();
+      return;
+    }
+
+    if (e.button === 0) {
+      if (!this.context.router) {
+        return;
+      }
+
+      const { status } = this.props;
+      this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    }
   }
 
   handleAccountClick = (e) => {
@@ -204,6 +254,10 @@ class Status extends ImmutablePureComponent {
 
   handleHotkeyToggleHidden = () => {
     this.props.onToggleHidden(this._properStatus());
+  }
+
+  handleHotkeyToggleSensitive = () => {
+    this.handleToggleMediaVisibility();
   }
 
   _properStatus () {
@@ -279,9 +333,7 @@ class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('poll')) {
-      media = <PollContainer pollId={status.get('poll')} />;
-    } else if (status.get('media_attachments').size > 0) {
+    if (status.get('media_attachments').size > 0) {
       if (this.props.muted) {
         media = (
           <AttachmentList
@@ -289,23 +341,25 @@ class Status extends ImmutablePureComponent {
             media={status.get('media_attachments')}
           />
         );
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        const video = status.getIn(['media_attachments', 0]);
+      } else if (['video', 'audio'].includes(status.getIn(['media_attachments', 0, 'type']))) {
+        const attachment = status.getIn(['media_attachments', 0]);
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
             {Component => (
               <Component
-                preview={video.get('preview_url')}
-                blurhash={video.get('blurhash')}
-                src={video.get('url')}
-                alt={video.get('description')}
+                preview={attachment.get('preview_url')}
+                blurhash={attachment.get('blurhash')}
+                src={attachment.get('url')}
+                alt={attachment.get('description')}
                 width={this.props.cachedMediaWidth}
                 height={110}
                 inline
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
                 cacheWidth={this.props.cacheMediaWidth}
+                visible={this.state.showMedia}
+                onToggleVisibility={this.handleToggleMediaVisibility}
               />
             )}
           </Bundle>
@@ -321,6 +375,8 @@ class Status extends ImmutablePureComponent {
                 onOpenMedia={this.props.onOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
+                visible={this.state.showMedia}
+                onToggleVisibility={this.handleToggleMediaVisibility}
               />
             )}
           </Bundle>
@@ -360,6 +416,7 @@ class Status extends ImmutablePureComponent {
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
       toggleHidden: this.handleHotkeyToggleHidden,
+      toggleSensitive: this.handleHotkeyToggleSensitive,
     };
 
     return (

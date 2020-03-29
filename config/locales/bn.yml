@@ -68,6 +68,7 @@ bn:
       admin: পরিচালক
       bot: রোবট
       moderator: পরিচালক
+    unavailable: প্রোফাইল অনুপলব্ধ
     unfollow: অনুসরণ বাদ
   admin:
     account_actions:
@@ -80,6 +81,7 @@ bn:
       destroyed_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে মুছে ফেলা হয়েছে!
     accounts:
       approve: অনুমোদন দিন
+      approve_all: প্রত্যেক কে অনুমতি দিন
       are_you_sure: আপনি কি নিশ্চিত ?
       avatar: অবতার
       by_domain: ওয়েবসাইট/কার্যক্ষেত্র
@@ -137,5 +139,20 @@ bn:
       outbox_url: চিঠি পাঠানোর বাক্স লিংক
       pending: পয্র্যবেক্ষণের অপেক্ষায় আছে
       perform_full_suspension: বাতিল করা
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Throttled
+    '500': 
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   verification:
     verification: সত্যতা নির্ধারণ

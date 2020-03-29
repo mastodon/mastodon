@@ -27,20 +27,21 @@ eu:
         phrase: Bat egingo du Maiuskula/minuskula kontuan hartu gabe eta edukiaren abisua kontuan hartu gabe
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
         setting_aggregate_reblogs: Ez erakutsi buktzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die besterik ez)
-        setting_default_language: Zure Toot-en hizkuntza automatikoki antzeman daiteke, baina ez da beti zehatza
+        setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
         setting_display_media_show_all: Erakutsi beti hunkigarri gisa markatutako multimedia
         setting_hide_network: Nor jarraitzen duzun eta nork jarraitzen zaituen ez da bistaratuko zure profilean
         setting_noindex: Zure profil publiko eta Toot-en orrietan eragina du
         setting_show_application: Tootak bidaltzeko erabiltzen duzun aplikazioa zure tooten ikuspegi xehetsuan bistaratuko da
-        setting_theme: Edozein gailutik konektatzean Mastodon-en itxuran eragiten du.
         username: Zure erabiltzaile-izena bakana izango da %{domain} domeinuan
         whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
       featured_tag:
         name: 'Hauetakoren bat erabili zenezake:'
       imports:
         data: Beste Mastodon zerbitzari batetik esportatutako CSV fitxategia
+      invite_request:
+        text: Honek zure eskaera berrikustean lagunduko digu
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
       user:
@@ -88,6 +89,7 @@ eu:
         otp_attempt: Bi faktoreetako kodea
         password: Pasahitza
         phrase: Hitz edo esaldi gakoa
+        setting_advanced_layout: Gaitu web interfaze aurreratua
         setting_aggregate_reblogs: Taldekatu bultzadak denbora-lerroetan
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
@@ -118,15 +120,19 @@ eu:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzunen jakinarazpenak
         must_be_following_dm: Blokeatu zuk jarraitzen ez dituzunen mezu zuzenak
+      invite_request:
+        text: Zergatik elkartu nahi duzu?
       notification_emails:
         digest: Bidali laburpenak e-mail bidez
         favourite: Bidali e-mail bat norbaitek zure mezua gogoko duenean
         follow: Bidali e-mail bat norbaitek jarraitzen zaituenean
         follow_request: Bidali e-mail bat norbaitek zu jarraitzea eskatzen duenean
         mention: Bidali e-mail bat norbaitek zu aipatzean
+        pending_account: Bidali e-mail bat kontu bat berrikusi behar denean
         reblog: Bidali e-mail bat norbaitek zure mezuari bultzada ematen badio
         report: Bidali e-maila txosten berri bat aurkezten denean
     'no': Ez
+    recommended: Aholkatua
     required:
       mark: "*"
       text: beharrezkoa

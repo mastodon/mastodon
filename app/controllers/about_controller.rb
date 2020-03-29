@@ -5,6 +5,8 @@ class AboutController < ApplicationController
 
   before_action :set_instance_presenter, only: [:show, :more, :terms]
 
+  skip_before_action :check_user_permissions, only: [:more, :terms]
+
   def show
     @hide_navbar = true
   end

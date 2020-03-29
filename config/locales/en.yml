@@ -178,6 +178,7 @@ en:
       statuses: Statuses
       subscribe: Subscribe
       suspended: Suspended
+      time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
       undo_silenced: Undo silence
@@ -318,8 +319,8 @@ en:
           one: One account in the database affected
           other: "%{count} accounts in the database affected"
         retroactive:
-          silence: Unsilence all existing accounts from this domain
-          suspend: Unsuspend all existing accounts from this domain
+          silence: Unsilence existing affected accounts from this domain
+          suspend: Unsuspend existing affected accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
       undo: Undo domain block
@@ -523,6 +524,12 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+  appearance:
+    advanced_web_interface: Advanced web interface
+    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    animations_and_accessibility: Animations and accessibility
+    confirmation_dialogs: Confirmation dialogs
+    sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Change e-mail preferences
     salutation: "%{name},"
@@ -606,6 +613,8 @@ en:
     people:
       one: "%{count} person"
       other: "%{count} people"
+  domain_validator:
+    invalid_domain: is not a valid domain name
   errors:
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
@@ -814,10 +823,9 @@ en:
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
   preferences:
-    languages: Languages
     other: Other
-    publishing: Publishing
-    web: Web
+    posting_defaults: Posting defaults
+    public_timelines: Public timelines
   relationships:
     activity: Account activity
     dormant: Dormant

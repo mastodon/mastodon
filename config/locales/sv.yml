@@ -5,9 +5,9 @@ sv:
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
     administered_by: 'Administreras av:'
+    api: API
     contact: Kontakt
     contact_missing: Inte inställd
-    contact_unavailable: N/A
     extended_description_html: |
       <h3>En bra plats för regler</h3>
       <p>Den utökade beskrivningen har inte konfigurerats ännu.</p>
@@ -15,14 +15,12 @@ sv:
     hosted_on: Mastodon värd på %{domain}
     learn_more: Lär dig mer
     source_code: Källkod
-    status_count_after: statusar
     status_count_before: Som skapat
-    user_count_after: användare
+    terms: Användarvillkor
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
   accounts:
     follow: Följa
-    followers: Följare
     following: Följer
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
@@ -30,12 +28,9 @@ sv:
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
-    posts: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
     roles:
-      admin: Admin
-      bot: Bot
       moderator: Moderator
     unfollow: Sluta följa
   admin:
@@ -46,7 +41,6 @@ sv:
       destroyed_msg: Modereringsnotering borttagen utan problem!
     accounts:
       are_you_sure: Är du säker?
-      avatar: Avatar
       by_domain: Domän
       change_email:
         changed_msg: E-postadressen har ändrats!
@@ -74,7 +68,6 @@ sv:
       followers_url: Följare URL
       follows: Följs
       inbox_url: Inkorgs URL
-      ip: IP
       location:
         all: Alla
         local: Lokal
@@ -111,7 +104,6 @@ sv:
       role: Behörigheter
       roles:
         admin: Administratör
-        moderator: Moderator
         staff: Personal
         user: Användare
       salmon_url: Lax URL
@@ -171,7 +163,6 @@ sv:
       destroyed_msg: Emojo borttagen utan problem!
       disable: Inaktivera
       disabled_msg: Inaktiverade emoji utan problem
-      emoji: Emoji
       enable: Aktivera
       enabled_msg: Aktiverade den emoji utan problem
       image_hint: PNG upp till 50KB
@@ -259,7 +250,6 @@ sv:
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
-      status: Status
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
@@ -320,8 +310,6 @@ sv:
         nsfw_off: Markera som ej känslig
         nsfw_on: Markera som känslig
       failed_to_execute: Misslyckades att utföra
-      media:
-        title: Media
       no_media: Ingen media
       title: Kontostatus
       with_media: med media
@@ -330,9 +318,7 @@ sv:
       confirmed: Bekräftad
       expires_in: Utgår om
       last_delivery: Sista leverans
-      title: WebSub
       topic: Ämne
-    title: Administration
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
@@ -340,7 +326,6 @@ sv:
       subject: Ny rapport för %{instance} (#%{id})
   application_mailer:
     notification_preferences: Ändra e-postinställningar
-    salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
     view: 'Granska:'
     view_profile: Visa profil
@@ -395,7 +380,6 @@ sv:
       less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Just nu
       over_x_years: "%{count}år"
-      x_days: "%{count}d"
       x_minutes: "%{count}min"
       x_months: "%{count}mån"
       x_seconds: "%{count}sek"
@@ -517,28 +501,13 @@ sv:
       body: 'Din status knuffades av %{name}:'
       subject: "%{name} knuffade din status"
       title: Ny knuff
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: " "
   pagination:
     newer: Nyare
     next: Nästa
     older: Äldre
     prev: Tidigare
-    truncate: "&hellip;"
   preferences:
-    languages: Språk
     other: Annat
-    publishing: Publicering
-    web: Webb
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
@@ -552,23 +521,16 @@ sv:
     activity: Senaste aktivitet
     browser: Webbläsare
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
       generic: Okänd browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
-      qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
@@ -584,8 +546,6 @@ sv:
       mac: Mac
       other: okänd plattform
       windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
@@ -596,7 +556,6 @@ sv:
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
-    import: Import
     migrate: Kontoflytt
     notifications: Meddelanden
     preferences: Inställningar
@@ -607,9 +566,6 @@ sv:
       image:
         one: "%{count} bild"
         other: "%{count} bilder"
-      video:
-        one: "%{count} video"
-        other: "%{count} videor"
     boosted_from_html: Boosted från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
     disallowed_hashtags:
@@ -624,7 +580,6 @@ sv:
       private: Icke-offentliga toot kan inte fästas
       reblog: Knuffar kan inte fästas
     show_more: Visa mer
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Endast följare
       private_long: Visa endast till följare
@@ -642,10 +597,10 @@ sv:
       <h3 id="collect">Vilken information samlar vi in?</h3>
 
       <ul>
-        <li><em>Grundläggande kontoinformation</em>: Det användarnamn du väljer, visningsnamn, biografi, avatar/profilbild och bakgrundsbild kommer alltid vara tillgängliga för alla som kan nå webbsidan. </li>
-        <li><em>Inlägg, vem du följer och annan tillgänglig information</em>: Dina följare och de konton du följer är alltid tillgängliga. När du skapar ett nytt inlägg sparas datum och tid för meddelandet, samt vilket program du använde för att skapa inlägget. Detta gäller även bilder och media som inlägg kan innehålla.Både "Publika" och "Olistade" inlägg kan vara tillgängliga för alla som har åtkomst till webbsidan. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      <li><em>Grundläggande kontoinformation</em>: Det användarnamn du väljer, visningsnamn, biografi, avatar/profilbild och bakgrundsbild kommer alltid vara tillgängliga för alla som kan nå webbsidan. </li>
+      <li><em>Inlägg, vem du följer och annan tillgänglig information</em>: Dina följare och de konton du följer är alltid tillgängliga. När du skapar ett nytt inlägg sparas datum och tid för meddelandet, samt vilket program du använde för att skapa inlägget. Detta gäller även bilder och media som inlägg kan innehålla.Både "Publika" och "Olistade" inlägg kan vara tillgängliga för alla som har åtkomst till webbsidan. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
       <hr class="spacer" />
@@ -655,9 +610,9 @@ sv:
       <p>Any of the information we collect from you may be used in the following ways:</p>
 
       <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
       </ul>
 
       <hr class="spacer" />
@@ -673,8 +628,8 @@ sv:
       <p>We will make a good faith effort to:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
       </ul>
 
       <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
@@ -723,9 +678,6 @@ sv:
     contrast: Hög kontrast
     default: Mastodon
     mastodon-light: Mastodon (ljust)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
     description_html: Om du aktiverar <strong>tvåstegsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att uppge.
@@ -762,7 +714,6 @@ sv:
       tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
       tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
       tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon till ditt hemskärm kan du få push-meddelanden. Det fungerar som en inbyggd app på många sätt!
-      tips: Tips
       title: Välkommen ombord, %{name}!
   users:
     invalid_email: E-postadressen är ogiltig

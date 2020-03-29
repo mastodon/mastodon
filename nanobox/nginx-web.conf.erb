@@ -10,10 +10,13 @@ http {
     sendfile on;
 
     gzip on;
-    gzip_http_version 1.0;
-    gzip_proxied any;
-    gzip_min_length 500;
     gzip_disable "MSIE [1-6]\.";
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_min_length 500;
+    gzip_http_version 1.1;
     gzip_types text/plain text/xml text/javascript text/css text/comma-separated-values application/xml+rss application/xml application/x-javascript application/json application/javascript application/atom+xml;
 
     # Proxy upstream to the puma process
@@ -31,12 +34,12 @@ http {
         # Listen on port 8080
         listen 8080;
 
-        add_header Strict-Transport-Security "max-age=31536000";
-        # add_header Content-Security-Policy "style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'self'; img-src data: https:; media-src data: https:; connect-src 'self' wss://<%= ENV["LOCAL_DOMAIN"] %>; upgrade-insecure-requests";
+        keepalive_timeout    70;
+        client_max_body_size 80M;
 
         root /app/public;
 
-        client_max_body_size 80M;
+        add_header Strict-Transport-Security "max-age=31536000";
 
         location / {
             try_files $uri @rails;
@@ -44,17 +47,23 @@ http {
 
         location /sw.js {
             add_header Cache-Control "public, max-age=0";
+            add_header Strict-Transport-Security "max-age=31536000";
             try_files $uri @rails;
         }
 
         location ~ ^/(emoji|packs|system/media_attachments/files|system/accounts/avatars) {
             add_header Cache-Control "public, max-age=31536000, immutable";
+            add_header Strict-Transport-Security "max-age=31536000";
             try_files $uri @rails;
         }
 
         # Proxy connections to rails
         location @rails {
             proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_set_header Proxy "";
             proxy_pass_header Server;
 
             proxy_pass http://rails;
@@ -66,7 +75,10 @@ http {
 
             proxy_cache CACHE;
             proxy_cache_valid 200 7d;
+            proxy_cache_valid 410 24h;
             proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+            add_header Strict-Transport-Security "max-age=31536000";
+            add_header X-Cached $upstream_cache_status;
 
             tcp_nodelay on;
         }
