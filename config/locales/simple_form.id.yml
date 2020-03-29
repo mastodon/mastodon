@@ -53,6 +53,9 @@ id:
         whole_word: Ketika kata kunci/frasa hanya alfanumerik, maka itu hanya akan diterapkan jika cocok dengan semua kata
       domain_allow:
         domain: Domain ini dapat mengambil data dari server ini dan data yang diterima akan diproses dan disimpan
+      email_domain_block:
+        domain: Ini bisa nama domain yang muncul di alamat surel, data MX yang sedang diselesaikan oleh domain, atau IP server yang dipecahkan oleh data MX. Mereka akan dicek saat pendaftaran pengguna dan pendaftaran akan ditolak.
+        with_dns_records: Usaha untuk menyelesaikan data DNS domain yang diberikan akan dilakukan dan hasilnya akan masuk daftar hitam
       featured_tag:
         name: 'Anda mungkin ingin pakai salah satu dari ini:'
       form_challenge:
