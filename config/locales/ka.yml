@@ -11,9 +11,6 @@ ka:
     contact_missing: არაა დაყენებული
     contact_unavailable: მიუწ.
     documentation: დოკუმენტაცია
-    extended_description_html: |
-      <h3>კარგი ადგილი წესებისთვის</h3>
-      <p>განვრცობილი აღწერილობა ჯერ არ შექმნილა.</p>
     generic_description: "%{domain} ერთი სერვერია ქსელში"
     hosted_on: მასტოდონს მასპინძლობს %{domain}
     learn_more: გაიგე მეტი
@@ -368,13 +365,6 @@ ka:
       no_status_selected: სატუსები არ შეცვლილა, რადგან არცერთი არ მონიშნულა
       title: ანგარიშის სტატუსები
       with_media: მედიით
-    subscriptions:
-      callback_url: ქოლბექ ურლ
-      confirmed: დამოწმდა
-      expires_in: ვადა გასდის
-      last_delivery: ბოლო მიღება
-      title: ვებ-საბი
-      topic: სათაური
     title: ადმინისტრაცია
   admin_mailer:
     new_report:
@@ -397,7 +387,6 @@ ka:
     your_token: თქვენი წვდომის ტოკენი
   auth:
     change_password: პაროლი
-    confirm_email: ელ-ფოსტის დამოწმება
     delete_account: ანგარიშის გაუქმება
     delete_account_html: თუ გსურთ გააუქმოთ თქვენი ანგარიში, შეგიძლიათ <a href="%{path}">გააგრძელოთ აქ</a>. საჭირო იქნება დამოწმება.
     didnt_get_confirmation: არ მოგსვლიათ დამოწმების ინსტრუქციები?
@@ -442,16 +431,14 @@ ka:
       x_months: "%{count}თვე"
       x_seconds: "%{count}წმ"
   deletes:
-    bad_password_msg: კარგად სცადეთ, ჰაკერებო! არასწორი პაროლი
     confirm_password: იდენტობის დასამოწმებლად შეიყვანეთ მიმდინარე პაროლი
-    description_html: ეს <strong>სამუდამოდ, დაუბრუნებლად</strong> გააუქმებს კონტენტს თქვენი ანგარიშიდან და მოახდენს მის დეაქტივაციას. მომხმარებლის სახელი კი, სამომავლო იმპერსონაციების შესაჩერებლად, გახდება რეზერვირებული.
     proceed: ანგარიშის გაუქმება
     success_msg: თქვენი ანგარიში წარმატებით გაუქმდა
-    warning_html: მოცულობის გაუქმება გარანტირებულია მხოლოდ ამ ინსტანციაზე. კონტენტი რომელიც ფართო მასშტაბით გაზიარდა უფრო დატოვებს კვალს. ოფლაინ სერვერები და სერვერები, რომლებმაც შეწყვიტეს თქვენი განახლებების გამოწერა არ განაახლებენ მონაცემთა ბაზებს.
-    warning_title: წვდომა გავრცელებულ კონტენტზე
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': ამ გვერდის ხილვის უფლება არ გაქვთ.
     '404': გვერდი რომელსაც ეძებთ არ არსებობს.
+    '406': This page is not available in the requested format.
     '410': გვერდი რომელსაც ეძებდით აღარ არსებობს.
     '422':
       content: უსაფრთხოების ვერიფიკაცია ვერ მოხერხდა. ბლოკავთ ქუქის?
@@ -460,6 +447,7 @@ ka:
     '500':
       content: ბოდიში, ჩვენ მხარეს რაღაც არია.
       title: გვერდი არაა სწორი
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: მასტოდონ ვებ-აპლიკაციის გამოყენებისთვის, გთხოვთ ჩართოთ ჯავასკრიპტი. სხვა შემთხვევაში, მასტოდონის თქვენი პატფორმისთვის სცადეთ გამოიყენოთ ერთ-ერთი <a href="%{apps_path}">მშობლიური აპლიკაცია</a>.
   exports:
     archive_takeout:
@@ -540,9 +528,6 @@ ka:
       too_many: თან ვერ დაურთავთ 4 ფაილზე მეტს
   migrations:
     acct: username@domain ახალი ანგარიშის
-    currently_redirecting: 'თქვენი პროფილი გამართულია მოახდინოს გადამისამართება მისამართზე:'
-    proceed: შენახვა
-    updated_msg: თქვენი ანგარიშის მიგრაციის პარამეტრები წარმატეებით დამახსოვრდა!
   moderation:
     title: მოდერაცია
   notification_mailer:
@@ -601,10 +586,6 @@ ka:
     no_account_html: არ გაქვთ ანგარიში? შეგიძლიათ <a href='%{sign_up_path}' target='_blank'>დარეგისტრირდეთ აქ</a>
     proceed: გააგრძელეთ გასაყოლად
     prompt: 'თქვენ გაჰყვებით:'
-  remote_unfollow:
-    error: შეცდომა
-    title: სათაური
-    unfollowed: დადევნების შეწყვეტა
   sessions:
     activity: ბოლო აქტივობა
     browser: ბრაუზერი

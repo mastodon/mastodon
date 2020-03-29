@@ -9,9 +9,6 @@ sq:
     contact: Kontakt
     contact_missing: I parregulluar
     documentation: Dokumentim
-    extended_description_html: |
-      <h3>Një vend i mirë për rregulla</h3>
-      <p>Përshkrimi i zgjeruar s’është sajuar ende.</p>
     generic_description: "%{domain} është një shërbyes te rrjeti"
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
@@ -423,19 +420,8 @@ sq:
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
       with_media: Me media
-    subscriptions:
-      callback_url: URL Callback-u
-      confirmed: U ripohua
-      expires_in: Skadon më
-      last_delivery: Dorëzimi e fundit
-      topic: Temë
     tags:
-      accounts: Llogari
-      hidden: Fshehur
-      hide: Fshihe prej drejtorie
       title: Hashtage
-      unhide: Shfaqe në drejtori
-      visible: E dukshme
     title: Administrim
     warning_presets:
       add_new: Shtoni të ri
@@ -464,7 +450,6 @@ sq:
     your_token: Token-i juaj për hyrje
   auth:
     change_password: Fjalëkalim
-    confirm_email: Ripohoni email-in
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
     didnt_get_confirmation: S’morët udhëzime ripohimi?
@@ -502,23 +487,18 @@ sq:
       over_x_years: "%{count}v"
       x_months: "%{count}mj"
   deletes:
-    bad_password_msg: Provë e bukur, trimosha! Fjalëkalim i pasaktë
     confirm_password: Jepni fjalëkalimin tuaj të tanishëm që të verifikohet identiteti juaj
-    description_html: Kjo të heqë <strong>në mënyrë të përhershme, të pakthyeshme</strong> lëndë nga llogaria juaj dhe do ta çaktivizojë atë. Emri juaj i përdoruesit do të mbetet i rezervuar për të shmangur sozi të ardhme.
     proceed: Fshini llogarinë
     success_msg: Llogaria juaj u fshi me sukses
-    warning_html: Garantohet vetëm fshirja e lëndës prej këtij shërbyesi të veçantë. Lënda që është ndarë gjerësisht me të tjerët ka gjasa të lërë gjurmë. Shërbyesit <em>offline</em> dhe shërbyesit që janë shpajtuar prej përditësimeve tuaja, s’do t’i përditësojnë bazat e tyre të të dhënave.
-    warning_title: Mund të ketë lëndë të përhapur
   directories:
     directory: Drejtori profilesh
-    enabled: Gjendeni te lista e drejtorisë.
-    enabled_but_waiting: Keni zgjedhur të jeni pjesë e drejtorisë, por ende s’keni numrin minimum të ndjekësve (%{min_followers}) për përfshirje në të.
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
-    how_to_enable: S’keni zgjedhur të jeni i pranishëm te drejtoria. Mund ta bëni më poshtë. Përdorni te teksti i jetëshkrimit tuaj hashtagë, për t’u përfshirë nën hashtagë specifikë!
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, s’gjendet këtu.
+    '406': This page is not available in the requested format.
     '410': Faqja që po kërkonit, s’gjendet më këtu.
     '422':
       content: Verifikimi i sigurisë dështoi. Mos i bllokoni gjë cookie-t?
@@ -527,6 +507,7 @@ sq:
     '500':
       content: Na ndjeni, diçka shkoi ters në anën tonë.
       title: Kjo faqe s’është e saktë
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Që të përdorni aplikacionin web Mastodon, ju lutemi, aktivizoni JavaScript-in. Ndryshe, provoni për Mastodon-in një nga <a href="%{apps_path}">aplikacionet e brendshëm</a> të platformës tuaj.
   exports:
     archive_takeout:
@@ -618,9 +599,6 @@ sq:
       too_many: S’mund të bashkëngjiten më shumë se 4 kartela
   migrations:
     acct: emërpërdoruesi@përkatësi e llogarisë së re
-    currently_redirecting: 'Profili juaj është caktuar të ridrejtojë te:'
-    proceed: Ruaje
-    updated_msg: Rregullimi juaj për migrim llogarish u përditësua me sukses!
   moderation:
     title: Moderim
   notification_mailer:
@@ -686,10 +664,6 @@ sq:
     reply:
       proceed: Ripohoni përgjigjen
       prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
-  remote_unfollow:
-    error: Gabim
-    title: Titull
-    unfollowed: U hoq ndjekja
   scheduled_statuses:
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
     over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara

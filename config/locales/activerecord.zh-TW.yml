@@ -1,1 +1,17 @@
+---
 zh-TW:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: 截止時間
+        options: 選擇
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: 只能有字母、數字及底線
+        status:
+          attributes:
+            reblog:
+              taken: 嘟文已經存在

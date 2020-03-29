@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import Status from '../components/status';
 import { makeGetStatus } from '../selectors';
@@ -15,7 +14,6 @@ import {
   pin,
   unpin,
 } from '../actions/interactions';
-import { blockAccount } from '../actions/accounts';
 import {
   muteStatus,
   unmuteStatus,
@@ -24,9 +22,10 @@ import {
   revealStatus,
 } from '../actions/statuses';
 import { initMuteModal } from '../actions/mutes';
+import { initBlockModal } from '../actions/blocks';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import { boostModal, deleteModal } from '../initial_state';
 import { showAlertForError } from '../actions/alerts';
 
@@ -35,10 +34,8 @@ const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
-  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
 });
 
 const makeMapStateToProps = () => {
@@ -56,6 +53,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onReply (status, router) {
     dispatch((_, getState) => {
       let state = getState();
+
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
         dispatch(openModal('CONFIRM', {
           message: intl.formatMessage(messages.replyMessage),
@@ -77,7 +75,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onReblog (status, e) {
-    if (e.shiftKey || !boostModal) {
+    if ((e && e.shiftKey) || !boostModal) {
       this.onModalReblog(status);
     } else {
       dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
@@ -137,16 +135,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onBlock (status) {
     const account = status.get('account');
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockConfirm),
-      onConfirm: () => dispatch(blockAccount(account.get('id'))),
-      secondary: intl.formatMessage(messages.blockAndReport),
-      onSecondary: () => {
-        dispatch(blockAccount(account.get('id')));
-        dispatch(initReport(account, status));
-      },
-    }));
+    dispatch(initBlockModal(account));
   },
 
   onReport (status) {

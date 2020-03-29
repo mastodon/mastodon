@@ -6,9 +6,6 @@ sr-Latn:
     about_this: O instanci
     contact: Kontakt
     contact_missing: Nije postavljeno
-    extended_description_html: |
-      <h3>Dobro mesto za pravila</h3>
-      <p>Prošireni opis koji još nije postavljen.</p>
     generic_description: "%{domain} je server na mreži"
     hosted_on: Mastodont hostovan na %{domain}
     learn_more: Saznajte više
@@ -263,10 +260,6 @@ sr-Latn:
       no_media: Bez multimedije
       title: Statusi naloga
       with_media: Sa multimedijom
-    subscriptions:
-      confirmed: Potvrđeno
-      expires_in: Ističe za
-      last_delivery: Poslednja dostava
     title: Administracija
   admin_mailer:
     new_report:
@@ -318,22 +311,21 @@ sr-Latn:
       over_x_years: "%{count}god"
       x_months: "%{count}mesec"
   deletes:
-    bad_password_msg: Dobar pokušaj, hakeri! Neispravna lozinka
     confirm_password: Unesite trenutnu lozinku da bismo proverili Vaš identitet
-    description_html: Ovo će <strong>trajno, bespovratno</strong> ukloniti sadržaj sa Vašef naloga i deaktivirati ga. Vaše korisničko ime će ostati rezervisano da se spreči da se neko ne predstavlja kao Vi sutra.
     proceed: Obriši nalog
     success_msg: Vaš nalog je uspešno obrisan
-    warning_html: Garantovano je samo brisanje sadržaja sa ove instance. Sadržaj koji je deljen dalje će verovatno da ostavi neke tragove. Nedostupni i ugašeni serveri, kao i serveri koji su odjavljeni od primanja statusa od Vas, neće ažurirati svoje baze.
-    warning_title: Dostupnost rasejanog sadržaja
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nemate dozvola da vidite ovu stranu.
     '404': Strana koju ste tražili ne postoji.
+    '406': This page is not available in the requested format.
     '410': Strana koju ste tražili više ne postoji.
     '422': 
     '429': Uspored
     '500':
       content: Izvinjavamo se, nešto je pošlo po zlu sa ove strane.
       title: Strana nije ispravna
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Da biste koristili Mastodont veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="%{apps_path}">originalnih aplikacija</a> za Mastodont za Vašu platformu.
   exports:
     blocks: Blokirali ste
@@ -386,9 +378,6 @@ sr-Latn:
       too_many: Ne može se prikačiti više od 4 fajla
   migrations:
     acct: korisnik@domen novog naloga
-    currently_redirecting: 'Profil Vam je podešen da preusmerava na :'
-    proceed: Sačuvaj
-    updated_msg: Prebacivanje postavki Vašeg naloga uspešno izmenjeno!
   moderation:
     title: Moderacija
   notification_mailer:

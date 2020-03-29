@@ -114,6 +114,12 @@ nl:
       application:
         title: OAuth-autorisatie vereist
     scopes:
+      admin:read: lees alle gegevens op de server
+      admin:read:accounts: lees gevoelige informatie van alle accounts
+      admin:read:reports: lees gevoelige informatie van alle rapportages en gerapporteerde accounts
+      admin:write: wijzig alle gegevens op de server
+      admin:write:accounts: moderatieacties op accounts uitvoeren
+      admin:write:reports: moderatieacties op rapportages uitvoeren
       follow: relaties tussen accounts bewerken
       push: ontvang jouw pushmeldingen
       read: alle gegevens van jouw account lezen

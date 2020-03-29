@@ -56,6 +56,7 @@ class AccountGallery extends ImmutablePureComponent {
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   state = {
@@ -101,6 +102,8 @@ class AccountGallery extends ImmutablePureComponent {
   handleOpenMedia = attachment => {
     if (attachment.get('type') === 'video') {
       this.props.dispatch(openModal('VIDEO', { media: attachment, status: attachment.get('status') }));
+    } else if (attachment.get('type') === 'audio') {
+      this.props.dispatch(openModal('AUDIO', { media: attachment, status: attachment.get('status') }));
     } else {
       const media = attachment.getIn(['status', 'media_attachments']);
       const index = media.findIndex(x => x.get('id') === attachment.get('id'));
@@ -116,7 +119,7 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   render () {
-    const { attachments, shouldUpdateScroll, isLoading, hasMore, isAccount } = this.props;
+    const { attachments, shouldUpdateScroll, isLoading, hasMore, isAccount, multiColumn } = this.props;
     const { width } = this.state;
 
     if (!isAccount) {
@@ -143,7 +146,7 @@ class AccountGallery extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={shouldUpdateScroll}>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>

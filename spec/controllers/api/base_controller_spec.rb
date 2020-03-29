@@ -15,7 +15,7 @@ describe Api::BaseController do
     end
   end
 
-  describe 'Forgery protection' do
+  describe 'forgery protection' do
     before do
       routes.draw { post 'success' => 'api/base#success' }
     end
@@ -27,7 +27,45 @@ describe Api::BaseController do
     end
   end
 
-  describe 'Error handling' do
+  describe 'non-functional accounts handling' do
+    let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+    let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
+
+    controller do
+      before_action :require_user!
+    end
+
+    before do
+      routes.draw { post 'success' => 'api/base#success' }
+      allow(controller).to receive(:doorkeeper_token) { token }
+    end
+
+    it 'returns http forbidden for unconfirmed accounts' do
+      user.update(confirmed_at: nil)
+      post 'success'
+      expect(response).to have_http_status(403)
+    end
+
+    it 'returns http forbidden for pending accounts' do
+      user.update(approved: false)
+      post 'success'
+      expect(response).to have_http_status(403)
+    end
+
+    it 'returns http forbidden for disabled accounts' do
+      user.update(disabled: true)
+      post 'success'
+      expect(response).to have_http_status(403)
+    end
+
+    it 'returns http forbidden for suspended accounts' do
+      user.account.suspend!
+      post 'success'
+      expect(response).to have_http_status(403)
+    end
+  end
+
+  describe 'error handling' do
     ERRORS_WITH_CODES = {
       ActiveRecord::RecordInvalid => 422,
       Mastodon::ValidationError => 422,

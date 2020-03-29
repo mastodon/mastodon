@@ -20,6 +20,8 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
     focal_point: { 'toot' => 'http://joinmastodon.org/ns#', 'focalPoint' => { '@container' => '@list', '@id' => 'toot:focalPoint' } },
     identity_proof: { 'toot' => 'http://joinmastodon.org/ns#', 'IdentityProof' => 'toot:IdentityProof' },
     blurhash: { 'toot' => 'http://joinmastodon.org/ns#', 'blurhash' => 'toot:blurhash' },
+    discoverable: { 'toot' => 'http://joinmastodon.org/ns#', 'discoverable' => 'toot:discoverable' },
+    voters_count: { 'toot' => 'http://joinmastodon.org/ns#', 'votersCount' => 'toot:votersCount' },
   }.freeze
 
   def self.default_key_transform
@@ -31,21 +33,23 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
   end
 
   def serializable_hash(options = nil)
+    named_contexts     = {}
+    context_extensions = {}
     options         = serialization_options(options)
-    serialized_hash = serializer.serializable_hash(options)
+    serialized_hash = serializer.serializable_hash(options.merge(named_contexts: named_contexts, context_extensions: context_extensions))
+    serialized_hash = serialized_hash.select { |k, _| options[:fields].include?(k) } if options[:fields]
     serialized_hash = self.class.transform_key_casing!(serialized_hash, instance_options)
 
-    { '@context' => serialized_context }.merge(serialized_hash)
+    { '@context' => serialized_context(named_contexts, context_extensions) }.merge(serialized_hash)
   end
 
   private
 
-  def serialized_context
+  def serialized_context(named_contexts_map, context_extensions_map)
     context_array = []
 
-    serializer_options = serializer.send(:instance_options) || {}
-    named_contexts     = [:activitystreams] + serializer._named_contexts.keys + serializer_options.fetch(:named_contexts, {}).keys
-    context_extensions = serializer._context_extensions.keys + serializer_options.fetch(:context_extensions, {}).keys
+    named_contexts     = [:activitystreams] + named_contexts_map.keys
+    context_extensions = context_extensions_map.keys
 
     named_contexts.each do |key|
       context_array << NAMED_CONTEXT_MAP[key]

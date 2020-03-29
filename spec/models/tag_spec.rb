@@ -62,6 +62,10 @@ RSpec.describe Tag, type: :model do
       expect(subject.match('hello #one·two·three').to_s).to eq ' #one·two·three'
     end
 
+    it 'matches ZWNJ' do
+      expect(subject.match('just add #نرم‌افزار and').to_s).to eq ' #نرم‌افزار'
+    end
+
     it 'does not match middle dots at the start' do
       expect(subject.match('hello #·one·two·three')).to be_nil
     end
@@ -79,6 +83,40 @@ RSpec.describe Tag, type: :model do
     it 'returns name' do
       tag = Fabricate(:tag, name: 'foo')
       expect(tag.to_param).to eq 'foo'
+    end
+  end
+
+  describe '.find_normalized' do
+    it 'returns tag for a multibyte case-insensitive name' do
+      upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
+      downcase_string = 'abcabcａｂｃａｂｃやゆよ';
+
+      tag = Fabricate(:tag, name: downcase_string)
+      expect(Tag.find_normalized(upcase_string)).to eq tag
+    end
+  end
+
+  describe '.matching_name' do
+    it 'returns tags for multibyte case-insensitive names' do
+      upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
+      downcase_string = 'abcabcａｂｃａｂｃやゆよ';
+
+      tag = Fabricate(:tag, name: downcase_string)
+      expect(Tag.matching_name(upcase_string)).to eq [tag]
+    end
+  end
+
+  describe '.find_or_create_by_names' do
+    it 'runs a passed block once per tag regardless of duplicates' do
+      upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
+      downcase_string = 'abcabcａｂｃａｂｃやゆよ';
+      count           = 0
+
+      Tag.find_or_create_by_names([upcase_string, downcase_string]) do |tag|
+        count += 1
+      end
+
+      expect(count).to eq 1
     end
   end
 
@@ -102,8 +140,8 @@ RSpec.describe Tag, type: :model do
     end
 
     it 'finds the exact matching tag as the first item' do
-      similar_tag = Fabricate(:tag, name: "matchlater")
-      tag = Fabricate(:tag, name: "match")
+      similar_tag = Fabricate(:tag, name: "matchlater", reviewed_at: Time.now.utc)
+      tag = Fabricate(:tag, name: "match", reviewed_at: Time.now.utc)
 
       results = Tag.search_for("match")
 

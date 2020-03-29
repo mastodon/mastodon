@@ -25,15 +25,6 @@ describe StatusFinder do
       end
     end
 
-    context 'with a stream entry url' do
-      let(:stream_entry) { Fabricate(:stream_entry) }
-      let(:url) { account_stream_entry_url(stream_entry.account, stream_entry) }
-
-      it 'finds the stream entry' do
-        expect(subject.status).to eq(stream_entry.status)
-      end
-    end
-
     context 'with a remote url even if id exists on local' do
       let(:status) { Fabricate(:status) }
       let(:url) { "https://example.com/users/test/statuses/#{status.id}" }

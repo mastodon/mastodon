@@ -3,7 +3,6 @@
 
 - content_for :header_tags do
   %meta{ name: 'robots', content: 'noindex' }/
-  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
   = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
 
 .page-header

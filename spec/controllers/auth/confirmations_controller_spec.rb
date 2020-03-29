@@ -50,45 +50,4 @@ describe Auth::ConfirmationsController, type: :controller do
       end
     end
   end
-
-  describe 'GET #finish_signup' do
-    subject { get :finish_signup }
-
-    let(:user) { Fabricate(:user) }
-    before do
-      sign_in user, scope: :user
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-    end
-
-    it 'renders finish_signup' do
-      is_expected.to render_template :finish_signup
-      expect(assigns(:user)).to have_attributes id: user.id
-    end
-  end
-
-  describe 'PATCH #finish_signup' do
-    subject { patch :finish_signup, params: { user: { email: email } } }
-
-    let(:user) { Fabricate(:user) }
-    before do
-      sign_in user, scope: :user
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-    end
-
-    context 'when email is valid' do
-      let(:email) { 'new_' + user.email }
-
-      it 'redirects to root_path' do
-        is_expected.to redirect_to root_path
-      end
-    end
-
-    context 'when email is invalid' do
-      let(:email) { '' }
-
-      it 'renders finish_signup' do
-        is_expected.to render_template :finish_signup
-      end
-    end
-  end
 end

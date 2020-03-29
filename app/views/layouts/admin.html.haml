@@ -4,11 +4,21 @@
 - content_for :content do
   .admin-wrapper
     .sidebar-wrapper
-      .sidebar
-        = link_to root_path do
-          = image_pack_tag 'logo_full_imastodon.svg', class: 'logo', alt: 'iMastodon'
+      .sidebar-wrapper__inner
+        .sidebar
+          = link_to root_path do
+            = image_pack_tag 'logo_full_imastodon.svg', class: 'logo', alt: 'iMastodon'
 
-        = render_navigation
+          .sidebar__toggle
+            .sidebar__toggle__logo
+              = link_to root_path do
+                = svg_logo_full
+
+            = link_to '#', class: 'sidebar__toggle__icon' do
+              = fa_icon 'bars'
+
+          = render_navigation
+
     .content-wrapper
       .content
         %h2= yield :page_title
@@ -16,5 +26,7 @@
         = render 'application/flashes'
 
         = yield
+
+    .sidebar-wrapper.sidebar-wrapper--empty
 
 = render template: 'layouts/application'

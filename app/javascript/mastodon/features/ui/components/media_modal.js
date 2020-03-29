@@ -228,7 +228,7 @@ class MediaModal extends ImmutablePureComponent {
 
           {status && (
             <div className={classNames('media-modal__meta', { 'media-modal__meta--shifted': media.size > 1 })}>
-              <a href={status.get('url')} onClick={this.handleStatusClick}><FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
+              <a href={status.get('url')} onClick={this.handleStatusClick}><Icon id='comments' /> <FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
             </div>
           )}
 

@@ -7,3 +7,16 @@
 
 <% end %>
 <%= @warning.text %>
+<% if !@statuses.nil? && !@statuses.empty? %>
+<%= t('user_mailer.warning.statuses') %>
+
+<% @statuses.each do |status| %>
+
+<%= render 'notification_mailer/status', status: status %>
+---
+<% end %>
+<% else %>
+---
+<% end %>
+
+<%= t 'user_mailer.warning.get_in_touch', instance: @instance %>

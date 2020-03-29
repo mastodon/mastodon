@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { FormattedMessage, injectIntl } from 'react-intl';
-import api from '../../../api';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import api from 'mastodon/api';
+import IconButton from 'mastodon/components/icon_button';
+
+const messages = defineMessages({
+  close: { id: 'lightbox.close', defaultMessage: 'Close' },
+});
 
 export default @injectIntl
 class EmbedModal extends ImmutablePureComponent {
@@ -50,13 +55,17 @@ class EmbedModal extends ImmutablePureComponent {
   }
 
   render () {
+    const { intl, onClose } = this.props;
     const { oembed } = this.state;
 
     return (
-      <div className='modal-root__modal embed-modal'>
-        <h4><FormattedMessage id='status.embed' defaultMessage='Embed' /></h4>
+      <div className='modal-root__modal report-modal embed-modal'>
+        <div className='report-modal__target'>
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
+          <FormattedMessage id='status.embed' defaultMessage='Embed' />
+        </div>
 
-        <div className='embed-modal__container'>
+        <div className='report-modal__container embed-modal__container' style={{ display: 'block' }}>
           <p className='hint'>
             <FormattedMessage id='embed.instructions' defaultMessage='Embed this status on your website by copying the code below.' />
           </p>

@@ -8,9 +8,7 @@ class ActivityPub::ProcessCollectionService < BaseService
     @json    = Oj.load(body, mode: :strict)
     @options = options
 
-    return unless supported_context?
-    return if different_actor? && verify_account!.nil?
-    return if @account.suspended? || @account.local?
+    return if !supported_context? || (different_actor? && verify_account!.nil?) || @account.suspended? || @account.local?
 
     case @json['type']
     when 'Collection', 'CollectionPage'

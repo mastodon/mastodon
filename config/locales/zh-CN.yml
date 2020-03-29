@@ -10,16 +10,13 @@ zh-CN:
     api: API
     apps: 移动应用
     apps_platforms: 在 iOS、Android 和其他平台上使用 Mastodon
-    browse_directory: 浏览用户资料目录并按兴趣筛选
+    browse_directory: 浏览用户目录并按兴趣筛选
     browse_public_posts: 浏览 Mastodon 上公共嘟文的实时信息流
     contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
     discover_users: 发现用户
     documentation: 文档
-    extended_description_html: |
-      <h3>这里可以写一些规定</h3>
-      <p>本站尚未设置详细介绍。</p>
     federation_hint_html: 在%{instance} 上拥有账户后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     generic_description: "%{domain} 是这个庞大网络中的一台服务器"
     get_apps: 尝试移动应用
@@ -32,7 +29,7 @@ zh-CN:
     status_count_after:
       other: 条嘟文
     status_count_before: 他们共嘟出了
-    tagline: 关注朋友并发现新朋友
+    tagline: 关注并发现新朋友
     terms: 使用条款
     user_count_after:
       other: 位用户
@@ -90,7 +87,7 @@ zh-CN:
         title: 为 %{username} 更改电子邮件地址
       confirm: 确认
       confirmed: 已确认
-      confirming: 确认
+      confirming: 确认中
       deleted: 已删除
       demote: 降任
       disable: 停用
@@ -179,6 +176,7 @@ zh-CN:
       username: 用户名
       warn: 警告
       web: 站内页面
+      whitelisted: 已加入白名单
     action_logs:
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
@@ -243,13 +241,16 @@ zh-CN:
       config: 服务器配置
       feature_deletions: 帐户删除
       feature_invites: 邀请链接
-      feature_profile_directory: 用户资料目录
+      feature_profile_directory: 用户目录
       feature_registrations: 公开注册
-      feature_relay: 同步中继
+      feature_relay: 中继服务器
+      feature_spam_check: 反垃圾
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
       open_reports: 待处理举报数
+      pending_tags: 等待审核的标签
+      pending_users: 等待审核的用户
       recent_users: 新用户
       search: 全文搜索
       single_user_mode: 单用户模式
@@ -261,11 +262,18 @@ zh-CN:
       week_interactions: 本周互动数
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
+      whitelist_mode: 白名单模式
+    domain_allows:
+      add_new: 白名单域名
+      created_msg: 域名已被列入白名单
+      destroyed_msg: 域名已从白名单中移除
+      undo: 从白名单中移除
     domain_blocks:
       add_new: 添加新屏蔽域名
       created_msg: 正在进行域名屏蔽
       destroyed_msg: 域名屏蔽已撤销
       domain: 域名
+      edit: 编辑域名屏蔽
       existing_domain_block_html: 您已经对 %{name} 施加了更严格的限制，您需要先 <a href="%{unblock_url}">解封</a>。
       new:
         create: 添加屏蔽
@@ -276,6 +284,8 @@ zh-CN:
           silence: 自动隐藏
           suspend: 自动封禁
         title: 添加域名屏蔽
+      private_comment: 私密评论
+      public_comment: 公开评论
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
       reject_reports: 拒绝接收举报
@@ -294,6 +304,7 @@ zh-CN:
         title: 撤销对 %{domain} 的域名屏蔽
         undo: 撤销
       undo: 撤销屏蔽域名
+      view: 查看域名屏蔽
     email_domain_blocks:
       add_new: 添加新条目
       created_msg: 电子邮件域名屏蔽添加成功
@@ -316,6 +327,8 @@ zh-CN:
         all: 全部
         limited: 受限的
         title: 运营
+      private_comment: 私密评论
+      public_comment: 公开评论
       title: 已知实例
       total_blocked_by_us: 被我方屏蔽的
       total_followed_by_them: 被对方关注的
@@ -333,9 +346,9 @@ zh-CN:
     pending_accounts:
       title: 待处理的帐户 (%{count})
     relays:
-      add_new: 添加新的中继
+      add_new: 订阅新的中继
       delete: 删除
-      description_html: "<strong>同步中继</strong>是一种中间服务器，各实例可以通过订阅中继和向中继推送信息的方式来大量交换公开嘟文。<strong>它可以帮助中小型实例发现网络中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。"
+      description_html: "<strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来交换大量公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。"
       disable: 禁用
       disabled: 已禁用
       enable: 启用
@@ -400,14 +413,14 @@ zh-CN:
         desc_html: 用于在首页展示。推荐分辨率 293×205px 以上。未指定的情况下将使用默认吉祥物。
         title: 吉祥物图像
       peers_api_enabled:
-        desc_html: 截至目前本实例在网络中已发现的域名
+        desc_html: 截至目前本服务器在联邦宇宙中已发现的域名
         title: 公开已知实例的列表
       preview_sensitive_media:
         desc_html: 始终在站外链接预览中展示缩略图，无论媒体内容是否标记为敏感
         title: 在 OpenGraph 预览中显示敏感媒体内容
       profile_directory:
-        desc_html: 允许用户可被发现
-        title: 启用用户资料目录
+        desc_html: 允许用户被发现
+        title: 启用用户目录
       registrations:
         closed_message:
           desc_html: 本站关闭注册期间的提示信息。可以使用 HTML 标签
@@ -443,6 +456,9 @@ zh-CN:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
         title: 自定义使用条款
       site_title: 本站名称
+      spam_check_enabled:
+        desc_html: Mastodon可以自动隐藏和举报重复发送垃圾消息的账户。但是本功能有可能误伤无辜。
+        title: 自动反垃圾
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
         title: 本站缩略图
@@ -450,12 +466,15 @@ zh-CN:
         desc_html: 在主页显示公共时间轴
         title: 时间轴预览
       title: 网站设置
+      trends:
+        title: 热门标签
     statuses:
       back_to_account: 返回帐户信息页
       batch:
         delete: 删除
         nsfw_off: 标记为非敏感内容
         nsfw_on: 标记为敏感内容
+      deleted: 已删除
       failed_to_execute: 执行失败
       media:
         title: 媒体文件
@@ -463,21 +482,15 @@ zh-CN:
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
-    subscriptions:
-      callback_url: 回调 URL
-      confirmed: 已确认
-      expires_in: 失效时间
-      last_delivery: 最后一次接收数据的时间
-      title: WebSub
-      topic: 话题
     tags:
-      accounts: 帐户
-      hidden: 隐藏
-      hide: 从目录隐藏
-      name: 话题标签
+      accounts_today: 今日活跃用户
+      accounts_week: 本周活跃用户
+      directory: 在目录中
+      review: 审核状态
+      reviewed: 已审核
       title: 话题标签
-      unhide: 在目录中显示
-      visible: 可见
+      trending_right_now: 当前热门
+      unreviewed: 未审核
     title: 管理
     warning_presets:
       add_new: 添加新条目
@@ -498,6 +511,7 @@ zh-CN:
     advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
+    discovery: 发现
     sensitive_content: 敏感内容
   application_mailer:
     notification_preferences: 更改电子邮件首选项
@@ -518,7 +532,6 @@ zh-CN:
     apply_for_account: 请求邀请
     change_password: 密码
     checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">服务器规则</a> 和 <a href="%{terms_path}" target="_blank">服务条款</a>
-    confirm_email: 确认电子邮件地址
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
     didnt_get_confirmation: 没有收到确认邮件？
@@ -538,6 +551,11 @@ zh-CN:
     reset_password: 重置密码
     security: 帐户安全
     set_new_password: 设置新密码
+    setup:
+      title: 初始设置
+    status:
+      account_status: 帐户状态
+      confirming: 等待电子邮件确认完成。
     trouble_logging_in: 登录有问题？
   authorize_follow:
     already_following: 你已经在关注此用户了
@@ -565,25 +583,20 @@ zh-CN:
       x_months: "%{count}个月"
       x_seconds: "%{count}秒"
   deletes:
-    bad_password_msg: 想得美，黑客！密码输入错误
     confirm_password: 输入你当前的密码来验证身份
-    description_html: 继续操作将会<strong>永久地、不可撤销地</strong>删除帐户中的所有内容，然后冻结帐户。你的用户名将会被保留，以防有人冒用你的身份。
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
-    warning_html: 我们只能保证本服务器上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本服务器以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器所存储的数据亦无法删除。
-    warning_title: 关于已传播的内容的警告
   directories:
-    directory: 用户资料目录
-    enabled: 您目前已被列入目录中。
-    enabled_but_waiting: 您已选择列入目录，但是您没有达到关注者数量下限 (%{min_followers} 名) 。
+    directory: 用户目录
     explanation: 根据兴趣发现用户
     explore_mastodon: 探索 %{title}
-    how_to_enable: 您目前没有选择选择列入到目录中。您可以在下面选择列入。可以在个人简介中加上话题标签，话题标签也会显示在用户资料目录里！
-    people:
-      other: "%{count} 人"
+  domain_validator:
+    invalid_domain: 不是一个有效的域名
   errors:
+    '400': 您提交的请求无效或格式不正确。
     '403': 你没有访问这个页面的权限。
     '404': 无法找到你所要访问的页面。
+    '406': This page is not available in the requested format.
     '410': 你所要访问的页面此处已不存在。
     '422':
       content: 无法确认登录信息。你是不是屏蔽了 Cookie？
@@ -592,6 +605,7 @@ zh-CN:
     '500':
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
@@ -635,6 +649,7 @@ zh-CN:
     developers: 开发者
     more: 更多…
     resources: 资源
+    trending_now: 现在流行
   generic:
     all: 全部
     changes_saved_msg: 更改保存成功！
@@ -708,9 +723,6 @@ zh-CN:
       too_many: 最多只能添加 4 张图片
   migrations:
     acct: 新帐户的 用户名@域名
-    currently_redirecting: 目前你的个人资料页显示的新帐户是：
-    proceed: 保存
-    updated_msg: 帐户迁移设置更新成功！
   moderation:
     title: 运营
   notification_mailer:
@@ -748,6 +760,7 @@ zh-CN:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -759,6 +772,7 @@ zh-CN:
     next: 下一页
     older: 更早
     prev: 上一页
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: 你已经在这里投过票了
@@ -803,10 +817,6 @@ zh-CN:
     reply:
       proceed: 确认回复
       prompt: 您想要回复此嘟文：
-  remote_unfollow:
-    error: 错误
-    title: 标题
-    unfollowed: 已取消关注
   scheduled_statuses:
     over_daily_limit: 您已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 您已超出定时嘟文的上限（%{limit} 条）
@@ -870,7 +880,7 @@ zh-CN:
     notifications: 通知
     preferences: 首选项
     profile: 个人资料
-    relationships: 正在关注以及关注者
+    relationships: 关注管理
     two_factor_authentication: 双重认证
   statuses:
     attached:
@@ -909,7 +919,90 @@ zh-CN:
     pinned: 置顶嘟文
     reblogged: 转嘟
     sensitive_content: 敏感内容
+  tags:
+    does_not_match_previous_name: 和之前的名称不匹配
   terms:
+    body_html: |
+      <h2>隐私政策</h2>
+      <h3 id="collect">我们收集什么信息？</h3>
+
+      <ul>
+      <li><em>基本帐户信息</em>:如果您在此服务器上注册，可能会要求您输入用户名，电子邮件地址和密码。 您还可以输入其他个人资料信息，例如显示名称和传记，并上传个人资料照片和标题图像。 用户名，显示名称，传记，个人资料图片和标题图片始终公开列出。</li>
+      <li><em>帖子，关注和其他公共信息</em>: 您关注的人员列表会公开列出，您的粉丝也是如此。 提交邮件时，会存储日期和时间以及您提交邮件的应用程序。 消息可能包含媒体附件，例如图片和视频。 公开和非上市帖子可公开获取。 当您在个人资料中添加帖子时，这也是公开信息。 您的帖子会发送给您的关注者，在某些情况下，这意味着他们会将其发送到不同的服务器，并将副本存储在那里。 当您删除帖子时，同样会将其发送给您的关注者。 重新记录或赞成其他职位的行为始终是公开的。</li>
+      <li><em>直接和关注者的帖子</em>: 所有帖子都在服务器上存储和处理。 仅限关注者的帖子会发送给您的关注者和用户，并且直接帖子仅会发送给他们中提到的用户。 在某些情况下，这意味着它们被传送到不同的服务器并且副本存储在那里。 我们善意努力限制只有授权人员访问这些帖子，但其他服务器可能无法这样做。 因此，查看您的关注者所属的服务器非常重要。 您可以在设置中切换选项以手动批准和拒绝新关注者。 <em>请记住，服务器和任何接收服务器的操作员可能会查看此类消息</em>, 并且收件人可以截图，复制或以其他方式重新共享它们。 <em> 不要在 Mastodon 上分享任何危险信息。</em></li>
+      <li><em>IP和其他元数据</em>: 登录时，我们会记录您登录的IP地址以及浏览器应用程序的名称。 所有登录的会话都可供您在设置中查看和撤销。 使用的最新IP地址最长可存储12个月。 我们还可以保留服务器日志，其中包括我们服务器的每个请求的IP地址。</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">我们将您的信息用于什么？</h3>
+
+      <p>我们向您收集的任何信息均可通过以下方式使用：</p>
+
+      <ul>
+      <li>提供Mastodon的核心功能。 您只能在登录时与其他人的内容进行互动并发布您自己的内容。例如，您可以关注其他人在您自己的个性化家庭时间轴中查看他们的组合帖子。</li>
+      <li>为了帮助社区适度，例如将您的IP地址与其他已知的IP地址进行比较，以确定禁止逃税或其他违规行为。</li>
+      <li>您提供的电子邮件地址可能用于向您发送信息，有关其他人与您的内容交互或向您发送消息的通知，以及回复查询和/或其他请求或问题。</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">我们如何保护您的信息？</h3>
+
+      <p>当您输入，提交或访问您的个人信息时，我们会实施各种安全措施以维护您的个人信息的安全。 除此之外，您的浏览器会话以及应用程序和API之间的流量都使用SSL进行保护，您的密码使用强大的单向算法进行哈希处理。 您可以启用双因素身份验证，以进一步保护对您帐户的访问。</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">我们的数据保留政策是什么？</h3>
+
+      <p>我们真诚的努力：</p>
+
+      <ul>
+      <li>保留包含此服务器的所有请求的IP地址的服务器日志，只要保留此类日志，不超过90天。</li>
+      <li>保留与注册用户关联的IP地址不超过12个月。</li>
+      </ul>
+
+      <p>您可以请求并下载我们内容的存档，包括您的帖子，媒体附件，个人资料图片和标题图片。</p>
+
+      <p>您可以随时不可逆转地删除您的帐户。</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">我们使用 cookies 吗？</h3>
+
+      <p>是。 Cookie是网站或其服务提供商通过Web浏览器传输到计算机硬盘的小文件（如果允许）。 这些cookie使网站能够识别您的浏览器，如果您有注册帐户，则将其与您的注册帐户相关联。</p>
+
+      <p>我们使用Cookie来了解并保存您对未来访问的偏好。</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">我们是否透露任何信息给其他方？</h3>
+
+      <p>我们不会将您的个人身份信息出售，交易或以其他方式转让给外方。 这不包括协助我们操作我们的网站，开展业务或为您服务的受信任的第三方，只要这些方同意保密这些信息。 当我们认为发布适合遵守法律，执行我们的网站政策或保护我们或他人的权利，财产或安全时，我们也可能会发布您的信息。</p>
+
+      <p>您的公共内容可能会被网络中的其他服务器下载。 您的公开帖子和关注者帖子会发送到关注者所在的服务器，并且直接邮件会传递到收件人的服务器，只要这些关注者或收件人位于与此不同的服务器上。</p>
+
+      <p>当您授权应用程序使用您的帐户时，根据您批准的权限范围，它可能会访问您的公开个人资料信息，以下列表，您的关注者，您的列表，所有帖子和您的收藏夹。 应用程序永远不能访问您的电子邮件地址或密码。</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">儿童使用网站</h3>
+
+      <p>如果此服务器位于欧盟或欧洲经济区：我们的网站，产品和服务都是针对至少16岁的人。 如果您未满16岁，则符合GDPR的要求(<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) 不要使用这个网站。</p>
+
+      <p>如果此服务器位于美国：我们的网站，产品和服务均面向至少13岁的人。 如果您未满13岁，则符合COPPA的要求 (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) 不要使用这个网站。</p>
+
+      <p>如果此服务器位于另一个辖区，则法律要求可能不同。</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">我们隐私政策的变更</h3>
+
+      <p>如果我们决定更改我们的隐私政策，我们会在此页面上发布这些更改。</p>
+
+      <p>本文件为CC-BY-SA。 它最后更新于2018年3月7日。</p>
+
+      <p>最初改编自 <a href="https://github.com/discourse/discourse">Discourse 隐私政策</a>.</p>
     title: "%{instance} 使用条款和隐私权政策"
   themes:
     contrast: Mastodon（高对比度）
@@ -945,7 +1038,7 @@ zh-CN:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
         silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
-      review_server_policies: 审阅服务器条款
+      review_server_policies: 查看服务器政策
       subject:
         disable: 您的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告

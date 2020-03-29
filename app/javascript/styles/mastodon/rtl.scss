@@ -7,6 +7,34 @@ body.rtl {
     padding-right: 15px;
   }
 
+  .radio-button__input {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+
+  .directory__card__bar .display-name {
+    margin-left: 0;
+    margin-right: 15px;
+  }
+
+  .display-name {
+    text-align: right;
+  }
+
+  .notification__message {
+    margin-left: 0;
+    margin-right: 68px;
+  }
+
+  .drawer__inner__mastodon > img {
+    transform: scaleX(-1);
+  }
+
+  .notification__favourite-icon-wrapper {
+    left: auto;
+    right: -26px;
+  }
+
   .landing-page__logo {
     margin-right: 0;
     margin-left: 20px;
@@ -135,7 +163,6 @@ body.rtl {
   }
 
   .status__action-bar {
-
     &__counter {
       margin-right: 0;
       margin-left: 11px;
@@ -326,6 +353,12 @@ body.rtl {
         padding-right: 5px;
       }
     }
+  }
+
+  .columns-area--mobile .column,
+  .columns-area--mobile .drawer {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .public-layout {

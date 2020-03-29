@@ -17,9 +17,6 @@ pl:
     contact_unavailable: Nie dotyczy
     discover_users: Odkrywaj użytkowników
     documentation: Dokumentacja
-    extended_description_html: |
-      <h3>Dobre miejsce na zasady użytkowania</h3>
-      <p>Nie ustawiono jeszcze szczegółowego opisu</p>
     federation_hint_html: Z kontem na %{instance}, możesz śledzić użytkowników każdego serwera Mastodona i nie tylko.
     generic_description: "%{domain} jest jednym z serwerów sieci"
     get_apps: Spróbuj aplikacji mobilnej
@@ -52,7 +49,7 @@ pl:
       many: śledzących
       one: śledzący
       other: Śledzących
-    following: Śledzonych
+    following: śledzonych
     joined: Dołączył(a) %{date}
     last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
@@ -481,21 +478,8 @@ pl:
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
       with_media: Z zawartością multimedialną
-    subscriptions:
-      callback_url: URL zwrotny
-      confirmed: Potwierdzone
-      expires_in: Wygasa
-      last_delivery: Ostatnio doręczono
-      title: WebSub
-      topic: Temat
     tags:
-      accounts: Konta
-      hidden: Ukryte
-      hide: Ukryj w katalogu
-      name: Hasztag
       title: Hashtagi
-      unhide: Pokazuj w katalogu
-      visible: Widoczne
     title: Administracja
     warning_presets:
       add_new: Dodaj nowy
@@ -536,7 +520,6 @@ pl:
     apply_for_account: Poproś o zaproszenie
     change_password: Hasło
     checkbox_agreement_html: Zgadzam się z <a href="%{rules_path}" target="_blank">regułami serwera</a> i <a href="%{terms_path}" target="_blank">zasadami korzystania z usługi</a>
-    confirm_email: Potwierdź adres e-mail
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
@@ -583,28 +566,18 @@ pl:
       x_months: "%{count} miesięcy"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Niezła próba, hakerze! Wprowadzono nieprawidłowe hasło
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
-    description_html: Ta opcja usunie <strong>bezpowrotnie i nieodwracalnie</strong> całą zawartość konta i zdezaktywuje je. Twoja nazwa użytkownika pozostanie zarezerwowana, aby zapobiec nadużyciom.
     proceed: Usuń konto
     success_msg: Twoje konto zostało pomyślnie usunięte
-    warning_html: Możemy usunąć zawartość jedynie w obrębie tego serwera. Zawartość udostępniona publicznie pozostawia trwałe ślady. Serwery niepodłączone do sieci bądź nieśledzące Twoich aktualizacji mogą zachować Twoje dane.
-    warning_title: Dostępność usuniętej zawartości
   directories:
     directory: Katalog profilów
-    enabled: Jesteś obecnie zapisany(-a) do katalogu
-    enabled_but_waiting: Jesteś zapisany(-a) do katalogu, ale jeszcze nie śledzi Cię wystarczająca liczba osób (%{min_followers}), aby się tam pojawić.
     explanation: Poznaj profile na podstawie zainteresowań
     explore_mastodon: Odkrywaj %{title}
-    how_to_enable: Nie jesteś obecnie zapisany(-a) do katalogu. Poniżej możesz zapisać się. Użyj hashtagów w swoim opisie, aby zostać wyświetlonym pod określonymi hashtagami!
-    people:
-      few: "%{count} osoby"
-      many: "%{count} osób"
-      one: "%{count} osoba"
-      other: "%{count} osób"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
+    '406': This page is not available in the requested format.
     '410': Strona, którą próbujesz odwiedzić, przestała istnieć.
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
@@ -613,6 +586,7 @@ pl:
     '500':
       content: Przepraszamy, coś poszło nie tak, po naszej stronie.
       title: Ta strona jest nieprawidłowa
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="%{apps_path}">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   existing_username_validator:
     not_found: nie znaleziono lokalnego użytkownika o tej nazwie
@@ -735,9 +709,6 @@ pl:
       too_many: Nie możesz załączyć więcej niż 4 plików
   migrations:
     acct: nazwa@domena nowego konta
-    currently_redirecting: 'Obecnie Twoje konto przekierowuje do:'
-    proceed: Zapisz
-    updated_msg: Pomyślnie zaktualizowano ustawienia migracji Twojego konta!
   moderation:
     title: Moderacja
   notification_mailer:
@@ -838,10 +809,6 @@ pl:
     reply:
       proceed: Przejdź do dodawania odpowiedzi
       prompt: 'Chcesz odpowiedzieć na ten wpis:'
-  remote_unfollow:
-    error: Błąd
-    title: Tytuł
-    unfollowed: Przestałeś(-aś) śledzić
   scheduled_statuses:
     over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
     over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
@@ -1023,9 +990,9 @@ pl:
 
       <h3 id="children">Korzystanie ze strony przez dzieci</h3>
 
-      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś(-aś) 16 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś(-aś) 16 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
 
-      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś(-aś) 13 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
+      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś(-aś) 13 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
 
       <p>Wymogi mogą być inne, jeżeli serwer znajduje się w innym kraju.</p>
 

@@ -13,15 +13,6 @@
       "description": "The domain that your Mastodon instance will run on (this can be appname.herokuapp.com or a custom domain)",
       "required": true
     },
-    "LOCAL_HTTPS": {
-      "description": "Will your domain support HTTPS? (Automatic for herokuapp, requires manual configuration for custom domains)",
-      "value": "false",
-      "required": true
-    },
-    "PAPERCLIP_SECRET": {
-      "description": "The secret key for storing media files",
-      "generator": "secret"
-    },
     "SECRET_KEY_BASE": {
       "description": "The secret key base",
       "generator": "secret"

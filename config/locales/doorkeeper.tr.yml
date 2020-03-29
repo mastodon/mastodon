@@ -4,7 +4,18 @@ tr:
     attributes:
       doorkeeper/application:
         name: Uygulama adı
+        redirect_uri: Yönlendirme URI'si
+        scopes: Kapsamlar
         website: Uygulama web sitesi
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: parça içeremez.
+              invalid_uri: geçerli bir URI olmalıdır.
+              relative_uri: mutlak bir URI olmalıdır.
+              secured_uri: HTTPS/SSL URI olması gerekir.
   doorkeeper:
     applications:
       buttons:
@@ -17,3 +28,121 @@ tr:
         destroy: Emin misiniz?
       edit:
         title: Uygulamayı düzenle
+      form:
+        error: Tüh! Muhtemel hatalar için formunuzu kontrol edin
+      help:
+        native_redirect_uri: Yerel testler için %{native_redirect_uri} kullanın
+        redirect_uri: URl başına bir satır kullanın
+        scopes: Kapsamları boşluklarla ayırın. Varsayılan kapsamları kullanmak için boş bırakın.
+      index:
+        application: Uygulama
+        callback_url: Geri Dönüş URL
+        delete: Sil
+        name: İsim
+        new: Yeni uygulama
+        scopes: Kapsam
+        show: Göster
+        title: Uygulamalarınız
+      new:
+        title: Yeni uygulama
+      show:
+        actions: Eylemler
+        application_id: İstemci anahtarı
+        callback_urls: Callback URL'si
+        scopes: Kapsamlar
+        secret: İstemci anahtarı
+        title: 'Uygulama: %{name}'
+    authorizations:
+      buttons:
+        authorize: Yetkilendir
+        deny: Reddet
+      error:
+        title: Bir hata oluştu
+      new:
+        able_to: Şunları yapabilecek
+        prompt: "%{client_name} uygulaması hesabınıza erişim istiyor"
+        title: Yetkilendirme gerekli
+      show:
+        title: Bu yetki kodunu kopyalayın ve uygulamaya yapıştırın.
+    authorized_applications:
+      buttons:
+        revoke: İptal
+      confirmations:
+        revoke: Emin misiniz?
+      index:
+        application: Uygulama
+        created_at: Yetkili
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Kapsamlar
+        title: Yetkili uygulamalarınız
+    errors:
+      messages:
+        access_denied: Kaynak sahibi veya yetkilendirme sunucusu isteği reddetti.
+        credential_flow_not_configured: Kaynak Sahibi Şifresinin Bilgi akışı Doorkeeper.configure.resource_owner_from_credentials bilgilerinin yapılandırılmamış olması nedeniyle başarısız oldu.
+        invalid_client: İstemcinin kimlik doğrulaması bilinmeyen istemci, istemci kimlik doğrulamasının dahil olmaması veya desteklenmeyen kimlik doğrulama yöntemi nedeniyle başarısız oldu.
+        invalid_grant: Sağlanan yetkilendirme izni geçersiz, süresi dolmuş, iptal edilmiş, yetkilendirme isteğinde kullanılan yönlendirme URI'siyle eşleşmiyor veya başka bir müşteriye verilmiş.
+        invalid_redirect_uri: Dahil edilmiş yönlendirme Uri'si geçersiz.
+        invalid_request: İstekte gerekli bir parametre eksik, desteklenmeyen bir parametre değeri içeriyor veya başka türlü hatalı biçimlendirilmiş.
+        invalid_resource_owner: Sağlanan kaynak sahibi kimlik bilgileri geçerli değil veya kaynak sahibi bulunamıyor
+        invalid_scope: İstenen kapsam geçersiz, bilinmeyen veya hatalı biçimlendirilmiş olabilir.
+        invalid_token:
+          expired: Erişim belirtecinin süresi dolmuş
+          revoked: Erişim belirteci iptal edildi
+          unknown: Erişim belirteci geçersiz
+        resource_owner_authenticator_not_configured: Kaynak Sahibi yapılandırılmamış Doorkeeper.configure.resource_owner_authenticator nedeniyle başarısız oldu.
+        server_error: Yetkilendirme sunucusu, isteği yerine getirmesini engelleyen beklenmeyen bir koşulla karşılaştı.
+        temporarily_unavailable: Yetkilendirme sunucusu şu anda sunucunun geçici bir aşırı yüklenmesi veya bakımı nedeniyle isteği yerine getiremiyor.
+        unauthorized_client: İstemci bu yöntemi kullanarak bu isteği gerçekleştirmek için yetkili değil.
+        unsupported_grant_type: Yetkilendirme izni türü, yetkilendirme sunucusu tarafından desteklenmiyor.
+        unsupported_response_type: Yetkilendirme sunucusu bu yanıt türünü desteklemiyor.
+    flash:
+      applications:
+        create:
+          notice: Uygulama oluşturuldu.
+        destroy:
+          notice: Uygulama silindi.
+        update:
+          notice: Uygulama güncellendi.
+      authorized_applications:
+        destroy:
+          notice: Uygulama iptal edildi.
+    layouts:
+      admin:
+        nav:
+          applications: Uygulamalar
+          oauth2_provider: OAuth2 Sağlayıcısı
+      application:
+        title: OAuth yetkilendirme gerekli
+    scopes:
+      admin:read: sunucudaki tüm verileri oku
+      admin:read:accounts: tüm hesapların hassas bilgilerini oku
+      admin:read:reports: tüm raporların ve raporlanan hesapların hassas bilgilerini oku
+      admin:write: sunucudaki tüm verileri değiştirin
+      admin:write:accounts: hesaplar üzerinde denetleme eylemleri gerçekleştirin
+      admin:write:reports: raporlar üzerinde denetleme eylemleri gerçekleştirin
+      follow: hesap ilişkilerini değiştirin
+      push: anlık bildirimlerizi alın
+      read: hesabınızın tüm verilerini okuyun
+      read:accounts: hesap bilgilerini gör
+      read:blocks: engellemelerinizi görün
+      read:favourites: favorilerini gör
+      read:filters: filtrelerinizi görün
+      read:follows: izlerini gör
+      read:lists: listelerinizi görün
+      read:mutes: sessize aldıklarınızı görün
+      read:notifications: bildirimlerinizi görün
+      read:reports: şikayetlerinizi görün
+      read:search: kendi adınıza arayın
+      read:statuses: tüm durumları görün
+      write: hesabınızın tüm verilerini değiştirin
+      write:accounts: profilini değiştir
+      write:blocks: hesapları ve alan adlarını engelleyin
+      write:favourites: favori durumlar
+      write:filters: filtre oluştur
+      write:follows: insanları takip et
+      write:lists: liste oluştur
+      write:media: medya dosyalarını yükle
+      write:mutes: insanları ve konuşmaları sustur
+      write:notifications: bildirimlerinizi temizleyin
+      write:reports: diğer insanları bildir
+      write:statuses: durumları yayınlayın

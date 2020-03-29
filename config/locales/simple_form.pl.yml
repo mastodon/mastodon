@@ -15,7 +15,6 @@ pl:
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
-        discoverable_html: <a href="%{path}" target="_blank">Katalog</a> pozwala znaleźć konta na podstawie zainteresowań i aktywności. Profil musi śledzić przynajmniej %{min_followers} osób
         email: Otrzymasz e-mail potwierdzający
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -34,6 +33,7 @@ pl:
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
+        setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
         username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
       featured_tag:
@@ -109,6 +109,7 @@ pl:
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
+        setting_use_blurhash: Pokazuj kolorowe gradienty dla ukrytej zawartości multimedialnej
         severity: Priorytet
         type: Importowane dane
         username: Nazwa użytkownika

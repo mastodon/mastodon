@@ -1,0 +1,17 @@
+---
+et:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Tähtaeg
+        options: Valikud
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: ainult tähtmärgid, numbrid ja alakriipsud
+        status:
+          attributes:
+            reblog:
+              taken: staatusel juba eksisteerib

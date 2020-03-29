@@ -15,6 +15,10 @@ export const CONVERSATIONS_UPDATE        = 'CONVERSATIONS_UPDATE';
 
 export const CONVERSATIONS_READ = 'CONVERSATIONS_READ';
 
+export const CONVERSATIONS_DELETE_REQUEST = 'CONVERSATIONS_DELETE_REQUEST';
+export const CONVERSATIONS_DELETE_SUCCESS = 'CONVERSATIONS_DELETE_SUCCESS';
+export const CONVERSATIONS_DELETE_FAIL    = 'CONVERSATIONS_DELETE_FAIL';
+
 export const mountConversations = () => ({
   type: CONVERSATIONS_MOUNT,
 });
@@ -82,3 +86,27 @@ export const updateConversations = conversation => dispatch => {
     conversation,
   });
 };
+
+export const deleteConversation = conversationId => (dispatch, getState) => {
+  dispatch(deleteConversationRequest(conversationId));
+
+  api(getState).delete(`/api/v1/conversations/${conversationId}`)
+    .then(() => dispatch(deleteConversationSuccess(conversationId)))
+    .catch(error => dispatch(deleteConversationFail(conversationId, error)));
+};
+
+export const deleteConversationRequest = id => ({
+  type: CONVERSATIONS_DELETE_REQUEST,
+  id,
+});
+
+export const deleteConversationSuccess = id => ({
+  type: CONVERSATIONS_DELETE_SUCCESS,
+  id,
+});
+
+export const deleteConversationFail = (id, error) => ({
+  type: CONVERSATIONS_DELETE_FAIL,
+  id,
+  error,
+});

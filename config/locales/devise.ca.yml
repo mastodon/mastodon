@@ -48,6 +48,18 @@ ca:
         extra: Si no ho has sol·licitat, ignora aquest correu electrònic. La teva contrasenya no canviarà fins que accedeixis a l'enllaç de dalt i creis un de nou.
         subject: 'Mastodon: Instruccions per a reiniciar contrassenya'
         title: Contrasenya restablerta
+      two_factor_disabled:
+        explanation: L´autenticació de dos factors pel teu compte ha estat desactivat. L'inici de sessió és ara possible utilitzant només l'adreça de correu electrònic i la contrasenya.
+        subject: 'Mastodon: autenticació de dos factors desactivada'
+        title: 2FA desactivat
+      two_factor_enabled:
+        explanation: L'autenticació de dos factors ha estat habilitada pel teu compte. Un token generat pel emparellat TOTP app serà requerit per a iniciar sessió.
+        subject: 'Mastodon: autenticació de dos factors activada'
+        title: 2FA activat
+      two_factor_recovery_codes_changed:
+        explanation: Els codis de recuperació anteriors han estat invalidats i s'han generat uns de nous.
+        subject: 'Mastodon: codis de recuperació de Dos factors regenerats'
+        title: 2FA codis de recuperació canviats
       unlock_instructions:
         subject: 'Mastodon: Instruccions per a desblocar'
     omniauth_callbacks:

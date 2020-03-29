@@ -23,7 +23,7 @@ class FeaturedTag < ApplicationRecord
   validate :validate_featured_tags_limit, on: :create
 
   def name=(str)
-    self.tag = Tag.find_or_initialize_by(name: str.strip.delete('#').mb_chars.downcase.to_s)
+    self.tag = Tag.find_or_create_by_names(str.strip)&.first
   end
 
   def increment(timestamp)

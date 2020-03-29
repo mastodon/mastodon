@@ -6,7 +6,9 @@ module Paperclip
   class VideoTranscoder < Paperclip::Processor
     def make
       meta = ::Av.cli.identify(@file.path)
+
       attachment.instance.type = MediaAttachment.types[:gifv] unless meta[:audio_encode]
+      options[:format] = File.extname(attachment.instance.file_file_name)[1..-1] if options[:keep_same_format]
 
       Paperclip::Transcoder.make(file, options, attachment)
     end

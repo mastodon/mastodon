@@ -12,6 +12,8 @@ class Api::V1::AccountsController < Api::BaseController
   before_action :check_account_suspension, only: [:show]
   before_action :check_enabled_registrations, only: [:create]
 
+  skip_before_action :require_authenticated_user!, only: :create
+
   respond_to :json
 
   def show
@@ -31,7 +33,7 @@ class Api::V1::AccountsController < Api::BaseController
   def follow
     FollowService.new.call(current_user.account, @account, reblogs: truthy_param?(:reblogs))
 
-    options = @account.locked? ? {} : { following_map: { @account.id => { reblogs: truthy_param?(:reblogs) } }, requested_map: { @account.id => false } }
+    options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: truthy_param?(:reblogs) } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(options)
   end
@@ -76,7 +78,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason)
   end
 
   def check_enabled_registrations
