@@ -57,7 +57,7 @@ gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.7'
 gem 'health_check', git: 'https://github.com/ianheggie/health_check', ref: '0b799ead604f900ed50685e9b2d469cd2befba5b'
 gem 'htmlentities', '~> 4.3'
-gem 'http', '~> 4.3'
+gem 'http', '~> 4.4'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
 gem 'httplog', '~> 1.4.2'
