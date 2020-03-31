@@ -1,6 +1,16 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Require HTTPS in production
+  config.force_ssl = true
+
+  # Except for the healthcheck endpoint
+  config.ssl_options = {
+    redirect: {
+      exclude: ->(request) { request.path.start_with?('/health') }
+    }
+  }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -52,7 +62,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_store, ENV['CACHE_REDIS_URL'], REDIS_CACHE_PARAMS
+  config.cache_store = :redis_cache_store, REDIS_CACHE_PARAMS
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

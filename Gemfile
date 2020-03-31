@@ -6,7 +6,7 @@ ruby '>= 2.5.0', '< 3.0.0'
 gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.3'
-gem 'rails', '~> 5.2.4'
+gem 'rails', '~> 6.0.2'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
 gem 'rack', '~> 2.2.2'
@@ -67,7 +67,7 @@ gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
 gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.10'
-gem 'nsa', '~> 0.2'
+gem 'nsa', '~> 0.2', git: 'https://github.com/Gargron/nsa', ref: 'd1079e0cdafdfed7f9f35478d13b9bdaa65965c0'
 gem 'oj', '~> 3.10'
 gem 'ox', '~> 2.13'
 gem 'parslet'
@@ -77,7 +77,7 @@ gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.2'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
-gem 'rails-i18n', '~> 5.1'
+gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
@@ -153,7 +153,6 @@ end
 
 group :production do
   gem 'lograge', '~> 0.11'
-  gem 'redis-rails', '~> 5.0'
 end
 
 gem 'concurrent-ruby', require: false
