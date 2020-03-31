@@ -13,6 +13,11 @@ Sidekiq.configure_server do |config|
   config.server_middleware do |chain|
     chain.add SidekiqErrorHandler
   end
+
+  config.death_handlers << lambda do |job, _ex|
+    digest = job['lock_digest']
+    SidekiqUniqueJobs::Digests.delete_by_digest(digest) if digest
+  end
 end
 
 Sidekiq.configure_client do |config|
