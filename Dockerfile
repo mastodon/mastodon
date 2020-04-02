@@ -42,8 +42,17 @@ RUN apt-get --no-install-recommends -y install make autoconf gcc g++ && \
 ENV RUBY_VER="2.6.5"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
-RUN apt-get --no-install-recommends -y install build-essential bison libyaml-dev libgdbm-dev libreadline-dev \
-    libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
+RUN apt-get --no-install-recommends -y install \
+    build-essential \
+    bison \
+    libgdbm-dev \
+    libncurses5-dev \
+    libreadline-dev \
+    libffi-dev \
+    libssl-dev \
+    libyaml-dev \
+    zlib1g-dev \    
+  && \
     cd ~ && \
     wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-${RUBY_VER}.tar.gz && \
     tar xf ruby-${RUBY_VER}.tar.gz && \
