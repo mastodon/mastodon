@@ -139,7 +139,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.7-buster-node
         environment: *ruby_environment
-      - image: circleci/postgres:10.6-alpine
+      - image: circleci/postgres:12.2
         environment:
           POSTGRES_USER: root
       - image: circleci/redis:5-alpine
@@ -158,7 +158,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.7-buster-node
         environment: *ruby_environment
-      - image: circleci/postgres:10.6-alpine
+      - image: circleci/postgres:12.2
         environment:
           POSTGRES_USER: root
       - image: circleci/redis:5-alpine
@@ -169,7 +169,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.6-buster-node
         environment: *ruby_environment
-      - image: circleci/postgres:10.6-alpine
+      - image: circleci/postgres:12.2
         environment:
           POSTGRES_USER: root
       - image: circleci/redis:5-alpine
@@ -180,7 +180,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.5-buster-node
         environment: *ruby_environment
-      - image: circleci/postgres:10.6-alpine
+      - image: circleci/postgres:12.2
         environment:
           POSTGRES_USER: root
       - image: circleci/redis:5-alpine
