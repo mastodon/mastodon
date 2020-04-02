@@ -9,78 +9,7 @@ module Admin::ActionLogsHelper
     end
   end
 
-  def relevant_log_changes(log)
-    if log.target_type == 'CustomEmoji' && [:enable, :disable, :destroy].include?(log.action)
-      log.recorded_changes.slice('domain')
-    elsif log.target_type == 'CustomEmoji' && log.action == :update
-      log.recorded_changes.slice('domain', 'visible_in_picker')
-    elsif log.target_type == 'User' && [:promote, :demote].include?(log.action)
-      log.recorded_changes.slice('moderator', 'admin')
-    elsif log.target_type == 'User' && [:change_email].include?(log.action)
-      log.recorded_changes.slice('email', 'unconfirmed_email')
-    elsif log.target_type == 'DomainBlock'
-      log.recorded_changes.slice('severity', 'reject_media')
-    elsif log.target_type == 'Status' && log.action == :update
-      log.recorded_changes.slice('sensitive')
-    elsif log.target_type == 'Announcement' && log.action == :update
-      log.recorded_changes.slice('text', 'starts_at', 'ends_at', 'all_day')
-    end
-  end
-
-  def log_extra_attributes(hash)
-    safe_join(hash.to_a.map { |key, value| safe_join([content_tag(:span, key, class: 'diff-key'), '=', log_change(value)]) }, ' ')
-  end
-
-  def log_change(val)
-    return content_tag(:span, val, class: 'diff-neutral') unless val.is_a?(Array)
-    safe_join([content_tag(:span, val.first, class: 'diff-old'), content_tag(:span, val.last, class: 'diff-new')], '→')
-  end
-
-  def icon_for_log(log)
-    case log.target_type
-    when 'Account', 'User'
-      'user'
-    when 'CustomEmoji'
-      'file'
-    when 'Report'
-      'flag'
-    when 'DomainBlock'
-      'lock'
-    when 'DomainAllow'
-      'plus-circle'
-    when 'EmailDomainBlock'
-      'envelope'
-    when 'Status'
-      'pencil'
-    when 'AccountWarning'
-      'warning'
-    when 'Announcement'
-      'bullhorn'
-    end
-  end
-
-  def class_for_log_icon(log)
-    case log.action
-    when :enable, :unsuspend, :unsilence, :confirm, :promote, :resolve
-      'positive'
-    when :create
-      opposite_verbs?(log) ? 'negative' : 'positive'
-    when :update, :reset_password, :disable_2fa, :memorialize, :change_email
-      'neutral'
-    when :demote, :silence, :disable, :suspend, :remove_avatar, :remove_header, :reopen
-      'negative'
-    when :destroy
-      opposite_verbs?(log) ? 'positive' : 'negative'
-    else
-      ''
-    end
-  end
-
   private
-
-  def opposite_verbs?(log)
-    %w(DomainBlock EmailDomainBlock AccountWarning).include?(log.target_type)
-  end
 
   def linkable_log_target(record)
     case record.class.name
@@ -99,7 +28,7 @@ module Admin::ActionLogsHelper
     when 'AccountWarning'
       link_to record.target_account.acct, admin_account_path(record.target_account_id)
     when 'Announcement'
-      link_to "##{record.id}", edit_admin_announcement_path(record.id)
+      link_to truncate(record.text), edit_admin_announcement_path(record.id)
     end
   end
 
@@ -118,7 +47,7 @@ module Admin::ActionLogsHelper
         I18n.t('admin.action_logs.deleted_status')
       end
     when 'Announcement'
-      "##{attributes['id']}"
+      truncate(attributes['text'])
     end
   end
 end

@@ -53,7 +53,7 @@
       .dashboard__counters__num= number_with_delimiter @account.targeted_reports.count
       .dashboard__counters__label= t '.targeted_reports'
   %div
-    %div
+    = link_to admin_action_logs_path(target_account_id: @account.id) do
       .dashboard__counters__text
         - if @account.local? && @account.user.nil?
           %span.neutral= t('admin.accounts.deleted')
