@@ -92,6 +92,7 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      add_email_domain_block: Blacklist e-mail domain
       approve: Approve
       approve_all: Approve all
       are_you_sure: Are you sure?
@@ -172,6 +173,7 @@ en:
         staff: Staff
         user: User
       search: Search
+      search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
       shared_inbox_url: Shared inbox URL
       show:
@@ -358,6 +360,7 @@ en:
       destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
       empty: No e-mail domains currently blacklisted.
+      from_html: from %{domain}
       new:
         create: Add domain
         title: New e-mail blacklist entry
@@ -537,6 +540,9 @@ en:
       trends:
         desc_html: Publicly display previously reviewed hashtags that are currently trending
         title: Trending hashtags
+    site_uploads:
+      delete: Delete uploaded file
+      destroyed_msg: Site upload successfully deleted!
     statuses:
       back_to_account: Back to account page
       batch:
@@ -573,7 +579,6 @@ en:
     warning_presets:
       add_new: Add new
       delete: Delete
-      edit: Edit
       edit_preset: Edit warning preset
       title: Manage warning presets
   admin_mailer:
@@ -725,7 +730,7 @@ en:
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
-    '429': Throttled
+    '429': Too many requests
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
@@ -850,6 +855,7 @@ en:
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
+      not_ready: Cannot attach files that have not finished processing. Try again in a moment!
       too_many: Cannot attach more than 4 files
   migrations:
     acct: Moved to
@@ -1072,6 +1078,8 @@ en:
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
+    errors:
+      in_reply_not_found: The status you are trying to reply to does not appear to exist.
     language_detection: Automatically detect language
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded

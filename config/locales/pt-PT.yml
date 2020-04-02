@@ -92,6 +92,7 @@ pt-PT:
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
+      add_email_domain_block: Adicione o domínio de email à lista negra
       approve: Aprovar
       approve_all: Aprovar todos
       are_you_sure: Tens a certeza?
@@ -132,7 +133,7 @@ pt-PT:
         remote: Remoto
         title: Local
       login_status: Estado de início de sessão
-      media_attachments: Media anexa
+      media_attachments: Anexos de média
       memorialize: Converter em memorial
       moderation:
         active: Activo
@@ -172,6 +173,7 @@ pt-PT:
         staff: Equipa
         user: Utilizador
       search: Pesquisar
+      search_same_email_domain: Outros utilizadores com o mesmo domínio de email
       search_same_ip: Outros utilizadores com o mesmo IP
       shared_inbox_url: URL da caixa de entrada compartilhada
       show:
@@ -322,7 +324,7 @@ pt-PT:
         create: Criar bloqueio
         hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> irá fazer com que os posts dessas contas sejam invisíveis para todos que não a seguem. <strong>Supender</strong> irá eliminar todo o conteúdo guardado dessa conta, media e informação de perfil.Usa <strong>Nenhum</strong> se  apenas desejas rejeitar arquivos de media."
+          desc_html: "<strong>Silenciar</strong> irá fazer com que as publicações dessa conta sejam invisíveis para quem não a segue. <strong>Supender</strong> irá eliminar todo o conteúdo guardado dessa conta, média e informação de perfil. Use <strong>Nenhum</strong> se apenas deseja rejeitar arquivos de média."
           noop: Nenhum
           silence: Silenciar
           suspend: Suspender
@@ -331,11 +333,11 @@ pt-PT:
       private_comment_hint: Comentário sobre essa limitação de domínio para uso interno pelos moderadores.
       public_comment: Comentário público
       public_comment_hint: Comentário sobre essa limitação de domínio para o público geral, se ativada a divulgação da lista de limitações de domínio.
-      reject_media: Rejeitar ficheiros de media
-      reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer guardar novos no futuro. Irrelevante na suspensão
+      reject_media: Rejeitar ficheiros de média
+      reject_media_hint: Remove arquivos de média armazenados localmente e rejeita descarregar novos arquivos no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar relatórios
       reject_reports_hint: Ignorar todos os relatórios vindos deste domínio. Irrelevantes para efectuar suspensões
-      rejecting_media: a rejeitar ficheiros de media
+      rejecting_media: a rejeitar ficheiros de média
       rejecting_reports: a rejeitar relatórios
       severity:
         silence: silenciado
@@ -358,6 +360,7 @@ pt-PT:
       destroyed_msg: Bloqueio de domínio de email excluído com sucesso
       domain: Domínio
       empty: Nenhum domínio de e-mail atualmente na lista negra.
+      from_html: de %{domain}
       new:
         create: Adicionar domínio
         title: Novo bloqueio de domínio de email
@@ -379,7 +382,7 @@ pt-PT:
       total_followed_by_them: Seguidas por eles
       total_followed_by_us: Seguidas por nós
       total_reported: Relatórios sobre eles
-      total_storage: Anexos de media
+      total_storage: Anexos de média
     invites:
       deactivate_all: Desactivar todos
       filter:
@@ -395,7 +398,7 @@ pt-PT:
     relays:
       add_new: Adicionar novo repetidor
       delete: Apagar
-      description_html: Um <strong>repetidor da federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre servidores que o subscrevem e publicam. <strong>Ele pode ajudar pequenos e médios servidores a descobrir conteúdo do "fediverse"</strong>que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em servidores remotos.
+      description_html: Um <strong>repetidor da federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre servidores que o subscrevem e publicam. <strong>Ele pode ajudar pequenos e médios servidores a descobrir conteúdo do "fediverse"</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em servidores remotos.
       disable: Desactivar
       disabled: Desactivado
       enable: Activar
@@ -481,8 +484,8 @@ pt-PT:
         desc_html: Nomes de domínio que esta instância encontrou no fediverso
         title: Publicar lista de instâncias descobertas
       preview_sensitive_media:
-        desc_html: Previsualização de links noutros websites irá apresentar uma miniatura, mesmo que a media seja marcada como sensível
-        title: Mostrar media sensível em previsualizações OpenGraph
+        desc_html: A pre-visualização de links noutros sites irá apresentar uma miniatura, mesmo que a média seja marcada como sensível
+        title: Mostrar média sensível em pre-visualizações OpenGraph
       profile_directory:
         desc_html: Permite aos utilizadores serem descobertos
         title: Ativar directório do perfil
@@ -537,6 +540,9 @@ pt-PT:
       trends:
         desc_html: Exibir publicamente hashtags atualmente em destaque que já tenham sido revistas anteriormente
         title: Hashtags em destaque
+    site_uploads:
+      delete: Excluir arquivo carregado
+      destroyed_msg: Upload do site excluído com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -550,7 +556,7 @@ pt-PT:
       no_media: Não há média
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       title: Estado das contas
-      with_media: Com media
+      with_media: Com média
     tags:
       accounts_today: Usos únicos hoje
       accounts_week: Usos únicos desta semana
@@ -573,7 +579,6 @@ pt-PT:
     warning_presets:
       add_new: Adicionar novo
       delete: Apagar
-      edit: Editar
       edit_preset: Editar o aviso predefinido
       title: Gerir os avisos predefinidos
   admin_mailer:
@@ -661,6 +666,7 @@ pt-PT:
     trouble_logging_in: Problemas em iniciar sessão?
   authorize_follow:
     already_following: Tu já estás a seguir esta conta
+    already_requested: Já enviou anteriormente um pedido para seguir esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
     follow_request: 'Enviaste uma solicitação de seguidor para:'
@@ -737,7 +743,7 @@ pt-PT:
     archive_takeout:
       date: Data
       download: Descarregar o teu arquivo
-      hint_html: Podes pedir um arquivo das tuas <strong> publicações e ficheiros de media carregados</strong>. Os dados do ficheiro exportado estarão no formato ActivityPub, que pode ser lido com qualquer software compatível. Tu podes pedir um arquivo destes a cada 7 dias.
+      hint_html: Pode pedir um arquivo das suas <strong>publicações e ficheiros de média carregados</strong>. Os dados no ficheiro exportado estarão no formato ActivityPub, que pode ser lido com qualquer software compatível. Pode solicitar um arquivo a cada 7 dias.
       in_progress: A compilar o seu arquivo...
       request: Pede o teu arquivo
       size: Tamanho
@@ -849,6 +855,7 @@ pt-PT:
   media_attachments:
     validations:
       images_and_video: Não é possível anexar um vídeo a uma publicação que já contém imagens
+      not_ready: Não é possível anexar arquivos que não terminaram de ser processados. Tente novamente daqui a pouco!
       too_many: Não é possível anexar mais de 4 arquivos
   migrations:
     acct: username@domain da nova conta
@@ -1109,9 +1116,9 @@ pt-PT:
       <h3 id="collect">Que informação nós recolhemos?</h3>
 
       <ul>
-      <li><em>Informação básica da conta</em>: Se te registares neste servidor, pode-te ser pedido que indiques um nome de utilizador, um endereço de e-mail e uma palavra-passe. Também podes introduzir informação adicional de perfil, tal como um nome a mostrar e dados biográficos, que carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador, o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
-      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que tu segues é pública, o mesmo é verdade para os teus seguidores. Quando tu publicas uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos multimédia, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando expões uma publicação no teu perfil, isso é também informação disponível publicamente. As tuas publicações são enviadas aos teus seguidores. Em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando tu apagas publicações, isso também é enviado para os teus seguidores. A acção de republicar ou favoritar outra publicação é sempre pública.</li>
-      <li><em>Publicações directas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para utilizadores que são nelas mencionados. As publicações directas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que elas são enviadas para diferentes servidores onde são guardadas cópias das mesmas. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objectivo.  Por isso, tu deves rever os servidores a que os teus seguidores pertencem. Tu podes activar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tem em mente que os gestores do servidor e qualquer servidor que receba a publicação pode lê-la</em>e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação. <em>Não partilhes qualquer informação perigosa no Mastodon.</em></li>
+      <li><em>Informação básica da conta</em>: Se te registares neste servidor, pode-te ser pedido que indiques um nome de utilizador, um endereço de email e uma palavra-passe. Também podes introduzir informação adicional de perfil, tal como um nome a mostrar e dados biográficos, que carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador, o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
+      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que tu segues é pública, o mesmo é verdade para os teus seguidores. Quando tu publicas uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos média, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando expões uma publicação no teu perfil, isso é também informação disponível publicamente. As tuas publicações são enviadas aos teus seguidores. Em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando tu apagas publicações, isso também é enviado para os teus seguidores. A ação de republicar ou favoritar outra publicação é sempre pública.</li>
+      <li><em>Publicações diretas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para utilizadores que são nelas mencionados. As publicações diretas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que elas são enviadas para diferentes servidores onde são guardadas cópias das mesmas. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objetivo. Por isso, tu deves rever os servidores a que os teus seguidores pertencem. Tu podes ativar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tem em mente que os gestores do servidor e qualquer servidor que receba a publicação pode lê-la</em> e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação. <em>Não partilhes qualquer informação perigosa no Mastodon.</em></li>
       <li><em>IPs e outros metadados</em>: Quando inicias sessão, nós guardamos o endereço de IP a partir do qual iniciaste a sessão, tal como o nome do teu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
       </ul>
 
@@ -1140,7 +1147,7 @@ pt-PT:
       <p>Nós envidaremos todos os esforços no sentido de:</p>
 
       <ul>
-      <li>Guardar registos do servidor contendo o endereço de IP de todos os pedidos feitos a este  servidor, considerando que estes registos não serão guardados por mais de 90 dias.</li>
+      <li>Guardar registos do servidor contendo o endereço de IP de todos os pedidos feitos a este servidor, considerando que estes registos não serão guardados por mais de 90 dias.</li>
       <li>Guardar os endereços de IP associados aos utilizadores registados durante um período que não ultrapassará os 12 meses.</li>
       </ul>
 
@@ -1246,7 +1253,7 @@ pt-PT:
       subject: Bem-vindo ao Mastodon
       tip_federated_timeline: A cronologia federativa é uma visão global da rede Mastodon. Mas só inclui pessoas que os teus vizinhos subscrevem, por isso não é uma visão completa.
       tip_following: Tu segues o(s) administrador(es) do teu servidor por defeito. Para encontrares mais pessoas interessantes, procura nas cronologias local e federativa.
-      tip_local_timeline: A cronologia local é uma visão global das pessoas em %{instance}. Estes são os teus vizinhos próximos!
+      tip_local_timeline: A cronologia local é uma visão global das pessoas em %{instance}. Estes são os teus vizinhos mais próximos!
       tip_mobile_webapp: Se o teu navegador móvel te oferecer a possibilidade de adicionar o Mastodon ao teu homescreen, tu podes receber notificações push. Ele age como uma aplicação nativa de vários modos!
       tips: Dicas
       title: Bem-vindo a bordo, %{name}!

@@ -92,6 +92,7 @@ it:
       delete: Elimina
       destroyed_msg: Nota di moderazione distrutta con successo!
     accounts:
+      add_email_domain_block: Inserisci il dominio email nella blacklist
       approve: Approva
       approve_all: Approva tutto
       are_you_sure: Sei sicuro?
@@ -172,6 +173,7 @@ it:
         staff: Personale
         user: Utente
       search: Cerca
+      search_same_email_domain: Altri utenti con lo stesso dominio e-mail
       search_same_ip: Altri utenti con lo stesso IP
       shared_inbox_url: URL Inbox Condiviso
       show:
@@ -244,7 +246,7 @@ it:
       scheduled_for: Programmato per %{time}
       scheduled_msg: Annuncio programmato per la pubblicazione!
       title: Annunci
-      unpublished_msg: Annuncio tolto dalla pubblicazione!
+      unpublished_msg: Annuncio ritirato!
       updated_msg: Annuncio aggiornato!
     custom_emojis:
       assign_category: Assegna categoria
@@ -358,6 +360,7 @@ it:
       destroyed_msg: Dominio email cancellato con successo dalla lista nera
       domain: Dominio
       empty: Nessun dominio di posta elettronica attualmente in blacklist.
+      from_html: da %{domain}
       new:
         create: Aggiungi dominio
         title: Nuova voce della lista nera delle email
@@ -537,6 +540,9 @@ it:
       trends:
         desc_html: Visualizza pubblicamente gli hashtag precedentemente esaminati che sono attualmente in tendenza
         title: Hashtag di tendenza
+    site_uploads:
+      delete: Cancella il file caricato
+      destroyed_msg: Caricamento sito eliminato!
     statuses:
       back_to_account: Torna alla pagina dell'account
       batch:
@@ -573,7 +579,6 @@ it:
     warning_presets:
       add_new: Aggiungi nuovo
       delete: Cancella
-      edit: Modifica
       edit_preset: Modifica avviso predefinito
       title: Gestisci avvisi predefiniti
   admin_mailer:
@@ -662,6 +667,7 @@ it:
     trouble_logging_in: Problemi di accesso?
   authorize_follow:
     already_following: Stai già seguendo questo account
+    already_requested: Hai già mandato una richiesta di seguire questo account
     error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
     follow: Segui
     follow_request: 'Hai mandato una richiesta di diventare seguace a:'
@@ -850,6 +856,7 @@ it:
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
+      not_ready: Impossibile allegare file per cui l'elaborazione non è finita. Riprova tra poco!
       too_many: Impossibile allegare più di 4 file
   migrations:
     acct: utente@dominio del nuovo account

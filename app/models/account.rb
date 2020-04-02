@@ -46,6 +46,7 @@
 #  silenced_at             :datetime
 #  suspended_at            :datetime
 #  trust_level             :integer
+#  hide_collections        :boolean
 #
 
 class Account < ApplicationRecord
@@ -102,6 +103,7 @@ class Account < ApplicationRecord
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
+  scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
@@ -320,6 +322,14 @@ class Account < ApplicationRecord
     self.header = nil
 
     save!
+  end
+
+  def hides_followers?
+    hide_collections? || user_hides_network?
+  end
+
+  def hides_following?
+    hide_collections? || user_hides_network?
   end
 
   def object_type

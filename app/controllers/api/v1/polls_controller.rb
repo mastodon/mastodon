@@ -7,8 +7,6 @@ class Api::V1::PollsController < Api::BaseController
   before_action :set_poll
   before_action :refresh_poll
 
-  respond_to :json
-
   def show
     render json: @poll, serializer: REST::PollSerializer, include_results: true
   end

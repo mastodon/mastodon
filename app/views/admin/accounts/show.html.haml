@@ -96,9 +96,16 @@
               = table_link_to 'angle-double-down', t('admin.accounts.demote'), demote_admin_account_role_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:demote, @account.user)
 
           %tr
-            %th= t('admin.accounts.email')
-            %td= @account.user_email
+            %th{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= t('admin.accounts.email')
+            %td{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= @account.user_email
             %td= table_link_to 'edit', t('admin.accounts.change_email.label'), admin_account_change_email_path(@account.id) if can?(:change_email, @account.user)
+
+          %tr
+            %td= table_link_to 'search', t('admin.accounts.search_same_email_domain'), admin_accounts_path(email: "%@#{@account.user_email.split('@').last}")
+
+          - if can?(:create, :email_domain_block)
+            %tr
+              %td= table_link_to 'ban', t('admin.accounts.add_email_domain_block'), new_admin_email_domain_block_path(_domain: @account.user_email.split('@').last)
 
           - if @account.user_unconfirmed_email.present?
             %tr
@@ -204,7 +211,7 @@
         = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@account.id, type: 'suspend'), class: 'button button--destructive' if can?(:suspend, @account)
 
       - unless @account.local?
-        - if DomainBlock.where(domain: @account.domain).exists?
+        - if DomainBlock.rule_for(@account.domain)
           = link_to t('admin.domain_blocks.view'), admin_instance_path(@account.domain), class: 'button'
         - else
           = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain), class: 'button button--destructive'

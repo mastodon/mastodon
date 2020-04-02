@@ -42,6 +42,7 @@ class Rack::Attack
     /auth/sign_in
     /auth
     /auth/password
+    /auth/confirmation
   ).freeze
 
   PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })
@@ -70,7 +71,6 @@ class Rack::Attack
     req.remote_ip if req.post? && req.path == '/api/v1/accounts'
   end
 
-  # Throttle paging, as it is mainly used for public pages and AP collections
   throttle('throttle_authenticated_paging', limit: 300, period: 15.minutes) do |req|
     req.authenticated_user_id if req.paging_request?
   end

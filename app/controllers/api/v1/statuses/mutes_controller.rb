@@ -8,8 +8,6 @@ class Api::V1::Statuses::MutesController < Api::BaseController
   before_action :set_status
   before_action :set_conversation
 
-  respond_to :json
-
   def create
     current_account.mute_conversation!(@conversation)
     @mutes_map = { @conversation.id => true }

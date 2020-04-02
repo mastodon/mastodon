@@ -388,8 +388,8 @@
 
   .emoji-picker-dropdown {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: 0;
   }
 
   .compose-form__autosuggest-wrapper {
@@ -870,6 +870,7 @@
 
 .announcements__item__content {
   word-wrap: break-word;
+  overflow-y: auto;
 
   .emojione {
     width: 20px;
@@ -1027,12 +1028,10 @@
     }
 
     .display-name {
+      color: $light-text-color;
+
       strong {
         color: $inverted-text-color;
-      }
-
-      span {
-        color: $light-text-color;
       }
     }
 
@@ -1332,7 +1331,6 @@
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    cursor: default;
 
     & > div {
       float: left;
@@ -4060,10 +4058,7 @@ a.status-card.compact:hover {
 
 .emoji-button {
   display: block;
-  font-size: 24px;
-  line-height: 24px;
-  margin-left: 2px;
-  width: 24px;
+  padding: 5px 5px 2px 2px;
   outline: 0;
   cursor: pointer;
 
@@ -4079,7 +4074,6 @@ a.status-card.compact:hover {
     margin: 0;
     width: 22px;
     height: 22px;
-    margin-top: 2px;
   }
 
   &:hover,
@@ -5058,12 +5052,6 @@ a.status-card.compact:hover {
 }
 
 .media-gallery__gifv {
-  &.autoplay {
-    .media-gallery__gifv__label {
-      display: none;
-    }
-  }
-
   &:hover {
     .media-gallery__gifv__label {
       opacity: 1;
@@ -6579,6 +6567,7 @@ noscript {
     padding: 10px;
     padding-top: 12px;
     position: relative;
+    cursor: pointer;
   }
 
   &__unread {
@@ -6682,17 +6671,21 @@ noscript {
     box-sizing: border-box;
     width: 100%;
     padding: 15px;
-    padding-right: 15px + 18px;
     position: relative;
     font-size: 15px;
     line-height: 20px;
     word-wrap: break-word;
     font-weight: 400;
+    max-height: 50vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     &__range {
       display: block;
       font-weight: 500;
       margin-bottom: 10px;
+      padding-right: 18px;
     }
 
     &__unread {

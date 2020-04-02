@@ -106,7 +106,7 @@ export function fetchAccount(id) {
       dispatch,
       getState,
       db.transaction('accounts', 'read').objectStore('accounts').index('id'),
-      id
+      id,
     ).then(() => db.close(), error => {
       db.close();
       throw error;
@@ -396,6 +396,7 @@ export function fetchFollowersFail(id, error) {
     type: FOLLOWERS_FETCH_FAIL,
     id,
     error,
+    skipNotFound: true,
   };
 };
 
@@ -482,6 +483,7 @@ export function fetchFollowingFail(id, error) {
     type: FOLLOWING_FETCH_FAIL,
     id,
     error,
+    skipNotFound: true,
   };
 };
 
@@ -571,6 +573,7 @@ export function fetchRelationshipsFail(error) {
     type: RELATIONSHIPS_FETCH_FAIL,
     error,
     skipLoading: true,
+    skipNotFound: true,
   };
 };
 

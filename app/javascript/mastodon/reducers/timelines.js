@@ -54,7 +54,7 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
 
         return oldIds.take(firstIndex + 1).concat(
           isPartial && oldIds.get(firstIndex) !== null ? newIds.unshift(null) : newIds,
-          oldIds.skip(lastIndex)
+          oldIds.skip(lastIndex),
         );
       });
     }
@@ -166,7 +166,7 @@ export default function timelines(state = initialState, action) {
     return state.update(
       action.timeline,
       initialTimeline,
-      map => map.set('online', false).update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items)
+      map => map.set('online', false).update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items),
     );
   default:
     return state;

@@ -8,6 +8,7 @@ eu:
         acct: Zehaztu migrazioaren xede den kontuaren erabiltzaile@domeinua
       account_warning_preset:
         text: Toot sintaxia erabili dezakezu, URLak, traolak eta aipamenak
+        title: Aukerakoa. Hartzaileak ez du ikusiko
       admin_account_action:
         include_statuses: Erabiltzaileak moderazio ekintza edo abisu bat eragin duten toot-ak ikusi ahal izango ditu
         send_email_notification: Erabiltzaileak bere kontuarekin gertatutakoaren azalpen bat jasoko du
@@ -53,6 +54,9 @@ eu:
         whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
       domain_allow:
         domain: Domeinu honek zerbitzari honetatik datuak hartu ahal izango ditu eta bertatik jasotako informazioa prozesatu eta gordeko da
+      email_domain_block:
+        domain: Hau e-mail helbidean agertzen den domeinua izan daiteke, honen MX erregistroa, edo MX erregistroaren IP helbidea. Hauek erabiltzaileak izena ematean egiaztatuko dira eta atzera botako da.
+        with_dns_records: Emandako domeinuaren DNS erregistroak ebazteko saiakera bat egingo da eta emaitzak ere zerrenda beltzean sartuko dira
       featured_tag:
         name: 'Hauetakoren bat erabili zenezake:'
       form_challenge:
@@ -78,6 +82,7 @@ eu:
         acct: Kontu berriaren helbidea
       account_warning_preset:
         text: Aurrez ezarritako testua
+        title: Izenburua
       admin_account_action:
         include_statuses: Txertatu salatutako toot-ak e-mailean
         send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
@@ -150,6 +155,8 @@ eu:
         username: Erabiltzaile-izena
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
         whole_word: Hitz osoa
+      email_domain_block:
+        with_dns_records: Sartu ere domeinuaren MX erregistroak eta IPak
       featured_tag:
         name: Traola
       interactions:

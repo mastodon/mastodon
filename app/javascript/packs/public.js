@@ -25,7 +25,7 @@ window.addEventListener('message', e => {
 function main() {
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('../mastodon/components/relative_timestamp');
-  const { delegate } = require('rails-ujs');
+  const { delegate } = require('@rails/ujs');
   const emojify = require('../mastodon/features/emoji/emoji').default;
   const { getLocale } = require('../mastodon/locales');
   const { messages } = getLocale();

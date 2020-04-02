@@ -94,6 +94,7 @@ hu:
       delete: Törlés
       destroyed_msg: Moderációs bejegyzés törölve!
     accounts:
+      add_email_domain_block: Email domain tiltólistára vétele
       approve: Jóváhagyás
       approve_all: Mindet jóváhagy
       are_you_sure: Biztos vagy benne?
@@ -174,6 +175,7 @@ hu:
         staff: Stáb
         user: Felhasználó
       search: Keresés
+      search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
@@ -360,6 +362,7 @@ hu:
       destroyed_msg: E-mail domain sikeresen eltávolítva a feketelistáról
       domain: Domain
       empty: Nincs email domain a feketelistán.
+      from_html: "%{domain}-ról"
       new:
         create: Domain hozzáadása
         title: Új e-mail feketelista bejegyzés
@@ -539,6 +542,9 @@ hu:
       trends:
         desc_html: Előzetesen engedélyezett és most trendi hashtagek nyilvános mutatása
         title: Trendi hashtagek
+    site_uploads:
+      delete: Feltöltött fájl törlése
+      destroyed_msg: Sikeresen töröltük a site feltöltését!
     statuses:
       back_to_account: Vissza a fiók oldalára
       batch:
@@ -575,7 +581,6 @@ hu:
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
-      edit: Szerkesztés
       edit_preset: Figyelmeztetés szerkesztése
       title: Figyelmeztetések
   admin_mailer:
@@ -663,6 +668,7 @@ hu:
     trouble_logging_in: Problémád van a bejelentkezéssel?
   authorize_follow:
     already_following: Már követed ezt a felhasználót
+    already_requested: Már küldtél követési kérelmet ennek a fióknak
     error: Hiba történt a távoli felhasználó keresésekor
     follow: Követés
     follow_request: 'Engedélyt kértél az alábbi felhasználó követésére:'
@@ -851,6 +857,7 @@ hu:
   media_attachments:
     validations:
       images_and_video: Nem csatolhatsz videót olyan tülkhöz, amelyhez már csatoltál képet
+      not_ready: Nem lehet olyan fájlt csatolni, melynek még nem fejeződött be a feldolgozása. Próbáld kicsit később!
       too_many: Maximum négy fájlt csatolhatsz a tülkhöz
   migrations:
     acct: Az új fiók felhasznalonev@domain formátumban

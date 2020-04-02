@@ -43,6 +43,7 @@ sk:
       reason: 'Dôvod:'
       rejecting_media: 'Mediálne súbory z týchto serverov nebudú spracované, alebo ukladané, a nebudú z nich zobrazované žiadne náhľady, vyžadujúc ručné prekliknutie priamo až k pôvodnému súboru:'
       silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenásleduješ:'
+    unavailable_content_html: Vo všeobecnosti, Mastodon ti dovoľuje vidieť obsah, a komunikovať s užívateľmi akéhokoľvek iného serveru v rámci fediversa. Toto sú výnimky, ktoré boli vytvorené na tomto konkrétnom serveri.
     user_count_after:
       few: užívateľov
       many: užívatelia
@@ -98,6 +99,7 @@ sk:
       delete: Vymaž
       destroyed_msg: Moderátorska poznámka bola úspešne zmazaná!
     accounts:
+      add_email_domain_block: Pridaj e-mailovú doménu na zoznam zakázaných
       approve: Schváľ
       approve_all: Schváľ všetky
       are_you_sure: Si si istý/á?
@@ -178,6 +180,7 @@ sk:
         staff: Člen
         user: Užívateľ
       search: Hľadaj
+      search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
       shared_inbox_url: URL zdieľanej schránky
       show:
@@ -244,6 +247,8 @@ sk:
         create: Vytvor oznam
         title: Nové oznámenie
       published_msg: Oboznámenie úspešne zverejnené!
+      scheduled_for: Načasované na %{time}
+      scheduled_msg: Oboznámenie bolo naplánované na zverejnenie!
       title: Oboznámenia
     custom_emojis:
       assign_category: Priraď kategóriu
@@ -358,6 +363,7 @@ sk:
       destroyed_msg: Emailová doména bola úspešne vymazaná zo zoznamu zakázaných
       domain: Doména
       empty: Žiadné emailové domény niesú v súčasnosti na čiernej listine.
+      from_html: z %{domain}
       new:
         create: Pridaj doménu
         title: Nový email na zablokovanie
@@ -538,6 +544,8 @@ sk:
       trends:
         desc_html: Verejne zobraz už schválené haštagy, ktoré práve trendujú
         title: Populárne haštagy
+    site_uploads:
+      delete: Vymaž nahratý súbor
     statuses:
       back_to_account: Späť na účet
       batch:
@@ -574,7 +582,6 @@ sk:
     warning_presets:
       add_new: Pridaj nové
       delete: Vymaž
-      edit: Uprav
       edit_preset: Uprav varovnú predlohu
       title: Spravuj varovné predlohy
   admin_mailer:
@@ -686,7 +693,7 @@ sk:
       x_seconds: "%{count}sek"
   deletes:
     challenge_not_passed: Údaje, ktoré si zadal/a, sú nesprávne
-    confirm_password: Napíšte svoje terajšie heslo pre overenie vašej identity
+    confirm_password: Napíš svoje terajšie heslo pre overenie tvojej identity
     confirm_username: Zadaj svoju prezývku, na potvrdenie úkonu
     proceed: Vymaž účet
     success_msg: Tvoj účet bol úspešne vymazaný
@@ -745,6 +752,7 @@ sk:
       limit: Už si si predvolil/a najvyšší možný počet obľúbených haštagov
   filters:
     contexts:
+      account: Profily
       home: Domáca os
       notifications: Oznámenia
       public: Verejné osi
@@ -769,6 +777,7 @@ sk:
     all: Všetko
     changes_saved_msg: Zmeny boli úspešne uložené!
     copy: Kopíruj
+    delete: Vymaž
     no_batch_actions_available: Na tejto stránke niesú k dispozícii žiadne hromadné akcie
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
@@ -939,6 +948,9 @@ sk:
     other: Ostatné
     posting_defaults: Východiskové nastavenia príspevkov
     public_timelines: Verejné časové osi
+  reactions:
+    errors:
+      unrecognized_emoji: je neznámy smajlík
   relationships:
     activity: Aktivita účtu
     dormant: Spiace
@@ -1067,6 +1079,7 @@ sk:
         other: "%{count} hlasy"
       vote: Hlasuj
     show_more: Ukáž viac
+    show_thread: Ukáž diskusné vlákno
     sign_in_to_participate: Prihlás sa pre zapojenie do diskusie
     title: '%{name}: „%{quote}"'
     visibilities:

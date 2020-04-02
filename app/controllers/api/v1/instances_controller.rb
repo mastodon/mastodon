@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::InstancesController < Api::BaseController
-  respond_to :json
-
   skip_before_action :set_cache_headers
   skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
 

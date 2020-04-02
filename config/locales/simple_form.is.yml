@@ -8,6 +8,7 @@ is:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast til
       account_warning_preset:
         text: Þú getur notað sömu skilgreiningar og fyrir tíst, svo sem URL-slóðir, myllumerki og tilvísanir
+        title: Valkvætt. Ekki sýnilegt viðtakandanum
       admin_account_action:
         include_statuses: Notandinn mun sjá hvaða tíst hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
         send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
@@ -53,6 +54,9 @@ is:
         whole_word: Þegar stikkorð eða frasi er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
       domain_allow:
         domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
+      email_domain_block:
+        domain: Þetta getur verið heiti lénsins sem birtist í tölvupóstfanginu, MX-færslan sem það lén beinist að, eða IP-vistfang netþjónsins sem sú MX-færsla beinist að. Þetta verður athugað um leið og notandi skráir sig, og verður þá skráningunni hafnað.
+        with_dns_records: Tilraun verður gerð til að leysa DNS-færslur uppgefins léns og munu niðurstöðurnar einnig verða útilokaðar
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
       form_challenge:
@@ -78,6 +82,7 @@ is:
         acct: Auðkenni nýja aðgangsins
       account_warning_preset:
         text: Forstilltur texti
+        title: Titill
       admin_account_action:
         include_statuses: Innifela kærð tíst í tölvupóstinum
         send_email_notification: Láta notanda vita með tölvupósti
@@ -150,6 +155,8 @@ is:
         username: Notandanafn
         username_or_email: Notandanafn eða tölvupóstfang
         whole_word: Heil orð
+      email_domain_block:
+        with_dns_records: Hafa með MX-færslur og IP-vistföng lénsins
       featured_tag:
         name: Myllumerki
       interactions:

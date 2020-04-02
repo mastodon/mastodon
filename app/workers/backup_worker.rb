@@ -9,8 +9,12 @@ class BackupWorker
     backup_id = msg['args'].first
 
     ActiveRecord::Base.connection_pool.with_connection do
-      backup = Backup.find(backup_id)
-      backup&.destroy
+      begin
+        backup = Backup.find(backup_id)
+        backup.destroy
+      rescue ActiveRecord::RecordNotFound
+        true
+      end
     end
   end
 

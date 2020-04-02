@@ -1,4 +1,4 @@
-import { delegate } from 'rails-ujs';
+import { delegate } from '@rails/ujs';
 import ready from '../mastodon/ready';
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';

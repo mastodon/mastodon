@@ -76,8 +76,9 @@ class ColumnHeader extends React.PureComponent {
 
   handlePin = () => {
     if (!this.props.pinned) {
-      this.historyBack();
+      this.context.router.history.replace('/');
     }
+
     this.props.onPin();
   }
 

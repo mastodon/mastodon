@@ -32,6 +32,9 @@ class Status < ApplicationRecord
   include Paginable
   include Cacheable
   include StatusThreadingConcern
+  include RateLimitable
+
+  rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
 
@@ -139,10 +142,12 @@ class Status < ApplicationRecord
       ids += mentions.where(account: Account.local).pluck(:account_id)
       ids += favourites.where(account: Account.local).pluck(:account_id)
       ids += reblogs.where(account: Account.local).pluck(:account_id)
+      ids += bookmarks.where(account: Account.local).pluck(:account_id)
     else
       ids += preloaded.mentions[id] || []
       ids += preloaded.favourites[id] || []
       ids += preloaded.reblogs[id] || []
+      ids += preloaded.bookmarks[id] || []
     end
 
     ids.uniq
@@ -364,6 +369,21 @@ class Status < ApplicationRecord
              .or(scope.where(id: account.mentions.select(:status_id)))
              .merge(scope.where(reblog_of_id: nil).or(scope.where.not(reblogs_statuses: { account_id: account.excluded_from_timeline_account_ids })))
       end
+    end
+
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(FetchLinkCardService::URL_PATTERN).map(&:first).uniq.map do |url|
+        status = begin
+          if TagManager.instance.local_url?(url)
+            ActivityPub::TagManager.instance.uri_to_resource(url, Status)
+          else
+            Status.find_by(uri: url) || Status.find_by(url: url)
+          end
+        end
+        status&.distributable? ? status : nil
+      end.compact
     end
 
     private

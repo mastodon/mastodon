@@ -92,6 +92,7 @@ de:
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
+      add_email_domain_block: E-Mail-Domain blacklisten
       approve: Akzeptieren
       approve_all: Alle akzeptieren
       are_you_sure: Bist du sicher?
@@ -172,6 +173,7 @@ de:
         staff: Mitarbeiter
         user: Nutzer
       search: Suche
+      search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer mit derselben IP
       shared_inbox_url: Geteilte Posteingang-URL
       show:
@@ -358,6 +360,7 @@ de:
       destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
       domain: Domain
       empty: Keine E-Mail-Domains sind momentan auf der Blacklist.
+      from_html: von %{domain}
       new:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
@@ -537,6 +540,9 @@ de:
       trends:
         desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
         title: Trendende Hashtags
+    site_uploads:
+      delete: Hochgeladene Datei löschen
+      destroyed_msg: Upload erfolgreich gelöscht!
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -573,7 +579,6 @@ de:
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
-      edit: Bearbeiten
       edit_preset: Warnungsvorlage bearbeiten
       title: Warnungsvorlagen verwalten
   admin_mailer:
@@ -661,6 +666,7 @@ de:
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
+    already_requested: Du hast bereits eine Anfrage zum Folgen diesen Accounts versendet
     error: Das Remote-Konto konnte nicht geladen werden
     follow: Folgen
     follow_request: 'Du hast eine Folgeanfrage gesendet an:'
@@ -849,6 +855,7 @@ de:
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
+      not_ready: Dateien die noch nicht bearbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
       too_many: Es können nicht mehr als 4 Dateien angehängt werden
   migrations:
     acct: benutzername@domain des neuen Kontos
