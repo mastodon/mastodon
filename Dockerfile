@@ -51,8 +51,8 @@ RUN apt-get --no-install-recommends -y install \
     libffi-dev \
     libssl-dev \
     libyaml-dev \
-    zlib1g-dev \    
-  && \
+    zlib1g-dev \
+    && \
     cd ~ && \
     wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-${RUBY_VER}.tar.gz && \
     tar xf ruby-${RUBY_VER}.tar.gz && \
@@ -68,10 +68,18 @@ RUN apt-get --no-install-recommends -y install \
 # Update PATH
 ENV PATH="/opt/ruby/bin:/opt/node/bin:${PATH}"
 
-# Install mastodon install deps
+# Install mastodon package managers
 RUN npm install -g yarn && \
-    gem install bundler && \
-    apt-get --no-install-recommends -y install git libicu-dev libidn11-dev libpq-dev libprotobuf-dev protobuf-compiler
+    gem install bundler
+
+# Install mastodon OS Package
+RUN apt-get --no-install-recommends -y install \
+    git \
+    libicu-dev \
+    libidn11-dev \
+    libpq-dev \
+    libprotobuf-dev \
+    protobuf-compiler
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
@@ -89,7 +97,11 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo "Etc/UTC" > /etc/localtime && \
     apt-get update && \
-    apt-get --no-install-recommends -y install apt-utils wget whois ca-certificates
+    apt-get --no-install-recommends -y install \
+    apt-utils \
+    wget \
+    whois \
+    ca-certificates
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
@@ -109,12 +121,26 @@ RUN addgroup --gid ${GID} mastodon && \
 
 # Install mastodon runtime deps
 RUN apt-get --no-install-recommends -y install \
-    libssl1.1 libpq5 imagemagick ffmpeg \
-    libicu60 libprotobuf10 libidn11 libyaml-0-2 \
-    file ca-certificates tzdata libreadline7 gcc && \
-    ln -s /opt/mastodon /mastodon && \
-    gem install bundler && \
-    rm -rf /var/cache && \
+    libssl1.1 \
+    libpq5 \
+    imagemagick \
+    ffmpeg \
+    libicu60 \
+    libprotobuf10 \
+    libidn11 \
+    libyaml-0-2 \
+    file \
+    ca-certificates \
+    tzdata \
+    libreadline7 \
+    gcc 
+
+# Prepare mastodon env
+RUN ln -s /opt/mastodon /mastodon && \
+    gem install bundler
+
+# Cleanup apt-get
+RUN rm -rf /var/cache && \
     rm -rf /var/lib/apt/lists/*
 
 # Install tini
