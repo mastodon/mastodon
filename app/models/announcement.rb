@@ -50,9 +50,13 @@ class Announcement < ApplicationRecord
   end
 
   def statuses
-    return [] if status_ids.nil?
-
-    @statuses ||= Status.where(id: status_ids, visibility: [:public, :unlisted])
+    @statuses ||= begin
+      if status_ids.nil?
+        []
+      else
+        Status.where(id: status_ids, visibility: [:public, :unlisted])
+      end
+    end
   end
 
   def tags
@@ -76,11 +80,6 @@ class Announcement < ApplicationRecord
 
     ActiveRecord::Associations::Preloader.new.preload(records, :custom_emoji)
     records
-  end
-
-  def refresh_status_ids!
-    self.status_ids = Status.from_text(text).map(&:id)
-    save
   end
 
   private

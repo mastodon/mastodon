@@ -8,9 +8,7 @@ class EntityCache
   MAX_EXPIRATION = 7.days.freeze
 
   def status(url)
-    Rails.cache.fetch(to_key(:status, url), expires_in: MAX_EXPIRATION) do
-      FetchRemoteStatusService.new.call(url)
-    end
+    Rails.cache.fetch(to_key(:status, url), expires_in: MAX_EXPIRATION) { FetchRemoteStatusService.new.call(url) }
   end
 
   def mention(username, domain)
