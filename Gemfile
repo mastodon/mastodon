@@ -69,7 +69,7 @@ gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.10'
-gem 'ox', '~> 2.12'
+gem 'ox', '~> 2.13'
 gem 'parslet'
 gem 'parallel', '~> 1.19'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
@@ -94,7 +94,7 @@ gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.0'
 gem 'strong_migrations', '~> 0.6'
 gem 'tty-command', '~> 0.9', require: false
-gem 'tty-prompt', '~> 0.20', require: false
+gem 'tty-prompt', '~> 0.21', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2019'
 gem 'webpacker', '~> 4.2'
@@ -112,7 +112,7 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.8'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
 end
 
 group :production, :test do
@@ -122,19 +122,19 @@ end
 group :test do
   gem 'capybara', '~> 3.31'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.10'
+  gem 'faker', '~> 2.11'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.18', require: false
   gem 'webmock', '~> 3.8'
-  gem 'parallel_tests', '~> 2.30'
+  gem 'parallel_tests', '~> 2.32'
 end
 
 group :development do
   gem 'active_record_query_trace', '~> 1.7'
   gem 'annotate', '~> 3.0'
-  gem 'better_errors', '~> 2.5'
+  gem 'better_errors', '~> 2.6'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
@@ -142,7 +142,7 @@ group :development do
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.79', require: false
   gem 'rubocop-rails', '~> 2.4', require: false
-  gem 'brakeman', '~> 4.7', require: false
+  gem 'brakeman', '~> 4.8', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
   gem 'capistrano', '~> 3.12'

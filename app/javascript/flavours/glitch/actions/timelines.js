@@ -165,6 +165,7 @@ export function expandTimelineFail(timeline, error, isLoadingMore) {
     timeline,
     error,
     skipLoading: !isLoadingMore,
+    skipNotFound: timeline.startsWith('account:'),
   };
 };
 

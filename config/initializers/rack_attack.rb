@@ -42,6 +42,7 @@ class Rack::Attack
     /auth/sign_in
     /auth
     /auth/password
+    /auth/confirmation
   ).freeze
 
   PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })

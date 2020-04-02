@@ -75,7 +75,7 @@ class Option extends React.PureComponent {
 
     return (
       <li>
-        <label className='poll__text editable'>
+        <label className='poll__option editable'>
           <span
             className={classNames('poll__input', { checkbox: isPollMultiple })}
             onClick={this.handleToggleMultiple}
