@@ -193,27 +193,63 @@ hu:
       web: Web
       whitelisted: Engedélyező-listán
     action_logs:
+      action_types:
+        assigned_to_self_report: Jelentés hozzárendelése
+        change_email_user: Felhasználó e-mail címének módosítása
+        confirm_user: Felhasználó megerősítése
+        create_account_warning: Figyelmeztetés létrehozása
+        create_announcement: Közlemény létrehozása
+        create_custom_emoji: Egyéni emodzsi létrehozása
+        create_domain_allow: Domain engedélyezés létrehozása
+        create_domain_block: Domain blokkolás létrehozása
+        create_email_domain_block: E-mail domain blokkolás létrehozása
+        demote_user: Felhasználó lefokozása
+        destroy_announcement: Közlemény törlése
+        destroy_custom_emoji: Egyéni emodzsi törlése
+        destroy_domain_allow: Domain engedélyezés törlése
+        destroy_domain_block: Domain blokkolás törlése
+        destroy_email_domain_block: E-mail domain blokkolás törlése
+        destroy_status: Állapot törlése
+        disable_2fa_user: Kétlépcsős hitelesítés letiltása
+        disable_custom_emoji: Egyéni emodzsi letiltása
+        disable_user: Felhasználói letiltása
+        enable_custom_emoji: Egyéni emodzsi engedélyezése
+        enable_user: Felhasználó engedélyezése
+        memorialize_account: Fiók emlékké nyilvánítása
+        promote_user: Felhasználó előléptetése
+        remove_avatar_user: Profilkép eltávolítása
+        reopen_report: Jelentés újranyitása
+        reset_password_user: Jelszó visszaállítása
+        resolve_report: Jelentés megoldása
+        silence_account: Fiók némítása
+        suspend_account: Fiók felfüggesztése
+        unassigned_report: Jelentés hozzárendelésének megszüntetése
+        unsilence_account: Fiók némításának feloldása
+        unsuspend_account: Fiók felfüggesztésének feloldása
+        update_announcement: Közlemény frissítése
+        update_custom_emoji: Egyéni emodzsi frissítése
+        update_status: Állapot frissítése
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
         change_email_user: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
         confirm_user: "%{name} megerősítette e-mail címét: %{target}"
         create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
         create_announcement: "%{name} új közleményt hozott létre %{target}"
-        create_custom_emoji: "%{name} új emojit töltött fel: %{target}"
+        create_custom_emoji: "%{name} új emodzsit töltött fel: %{target}"
         create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
         destroy_announcement: "%{name} törölte a közleményt %{target}"
-        destroy_custom_emoji: "%{name} törölte az emojit: %{target}"
+        destroy_custom_emoji: "%{name} törölte az emodzsit: %{target}"
         destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
         destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
         disable_2fa_user: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
-        disable_custom_emoji: "%{name} letiltotta az alábbi emojit: %{target}"
+        disable_custom_emoji: "%{name} letiltotta az alábbi emodzsit: %{target}"
         disable_user: "%{name} letiltotta az alábbi felhasználó bejelentkezését: %{target}"
-        enable_custom_emoji: "%{name} engedélyezte az alábbi emojit: %{target}"
+        enable_custom_emoji: "%{name} engedélyezte az alábbi emodzsit: %{target}"
         enable_user: "%{name} engedélyezte az alábbi felhasználó bejelentkezését: %{target}"
         memorialize_account: "%{name} emléket állított az alábbi felhasználónak: %{target}"
         promote_user: "%{name} előléptette az alábbi felhasználót: %{target}"
@@ -227,9 +263,12 @@ hu:
         unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement: "%{name} frissítette a közleményt %{target}"
-        update_custom_emoji: "%{name} frissítette az alábbi emojit: %{target}"
+        update_custom_emoji: "%{name} frissítette az alábbi emodzsit: %{target}"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
+      empty: Nem található napló.
+      filter_by_action: Szűrés művelet alapján
+      filter_by_user: Szűrés felhasználó alapján
       title: Audit napló
     announcements:
       destroyed_msg: A közlemény sikeresen törölve!
@@ -249,34 +288,34 @@ hu:
     custom_emojis:
       assign_category: Kategóriák
       by_domain: Domain
-      copied_msg: Sikeresen létrehoztuk az emoji helyi másolatát
+      copied_msg: Sikeresen létrehoztuk az emodzsi helyi másolatát
       copy: Másolás
-      copy_failed_msg: Emoji helyi másolatának létrehozása sikertelen
+      copy_failed_msg: Emodzsi helyi másolatának létrehozása sikertelen
       create_new_category: Új kategória létrehozása
-      created_msg: Emoji létrehozva!
+      created_msg: Emodzsi létrehozva!
       delete: Törlés
-      destroyed_msg: Emoji törlése sikeres!
+      destroyed_msg: Emodzsi törlése sikeres!
       disable: Letiltás
       disabled: Letiltva
-      disabled_msg: Emoji letiltva
-      emoji: Emoji
+      disabled_msg: Emodzsi letiltva
+      emoji: Emodzsi
       enable: Engedélyezés
       enabled: Engedélyezve
-      enabled_msg: Emoji engedélyezve
+      enabled_msg: Emodzsji engedélyezve
       image_hint: PNG (maximális méret 50KB)
       list: Listázás
       listed: Listázva
       new:
-        title: Új egyedi emoji hozzáadása
+        title: Új egyedi emodzsi hozzáadása
       overwrite: Felülírás
       shortcode: Rövidítés
       shortcode_hint: Legalább két karakter, csak betűk, számok és alsóvonás
-      title: Egyedi emojik
+      title: Egyedi emodzsik
       uncategorized: Nem kategorizált
       unlist: Elrejtés a listáról
       unlisted: Nincs listázva
-      update_failed_msg: Nem sikerült frissíteni az emojit
-      updated_msg: Emoji sikeresen frissítve!
+      update_failed_msg: Nem sikerült frissíteni az emodzsit
+      updated_msg: Emodzsi sikeresen frissítve!
       upload: Feltöltés
     dashboard:
       authorized_fetch_mode: Áttöltő üzemmód engedélyezve
@@ -959,7 +998,7 @@ hu:
   reactions:
     errors:
       limit_reached: A különböző reakciók száma elérte a határértéket
-      unrecognized_emoji: nem ismert emoji
+      unrecognized_emoji: nem ismert emodzsi
   relationships:
     activity: Fiók aktivitás
     dormant: Elhagyott
