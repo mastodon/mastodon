@@ -194,6 +194,42 @@ it:
       web: Web
       whitelisted: Nella whitelist
     action_logs:
+      action_types:
+        assigned_to_self_report: Assegna report
+        change_email_user: Cambia l'e-mail per l'utente
+        confirm_user: Conferma utente
+        create_account_warning: Crea avviso
+        create_announcement: Crea un annuncio
+        create_custom_emoji: Crea emoji personalizzata
+        create_domain_allow: Crea permesso di dominio
+        create_domain_block: Crea blocco di dominio
+        create_email_domain_block: Crea blocco dominio e-mail
+        demote_user: Degrada l'utente
+        destroy_announcement: Cancella annuncio
+        destroy_custom_emoji: Cancella emoji personalizzata
+        destroy_domain_allow: Cancella permesso di dominio
+        destroy_domain_block: Cancella blocco di dominio
+        destroy_email_domain_block: Cancella blocco dominio e-mail
+        destroy_status: Cancella stato
+        disable_2fa_user: Disabilita l'autenticazione a due fattori
+        disable_custom_emoji: Disabilita emoji personalizzata
+        disable_user: Disabilita utente
+        enable_custom_emoji: Abilita emoji personalizzata
+        enable_user: Abilita utente
+        memorialize_account: Trasforma in account commemorativo
+        promote_user: Promuovi utente
+        remove_avatar_user: Elimina avatar
+        reopen_report: Riapri report
+        reset_password_user: Reimposta password
+        resolve_report: Risolvi report
+        silence_account: Silenzia account
+        suspend_account: Sospendi account
+        unassigned_report: Disassegna report
+        unsilence_account: De-silenzia account
+        unsuspend_account: Annulla la sospensione dell'account
+        update_announcement: Aggiorna annuncio
+        update_custom_emoji: Aggiorna emoji personalizzata
+        update_status: Aggiorna stato
       actions:
         assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user: "%{name} ha cambiato l'indirizzo email per l'utente %{target}"
@@ -231,6 +267,9 @@ it:
         update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
         update_status: "%{name} stato aggiornato da %{target}"
       deleted_status: "(stato cancellato)"
+      empty: Nessun log trovato.
+      filter_by_action: Filtra per azione
+      filter_by_user: Filtra per utente
       title: Registro di controllo
     announcements:
       destroyed_msg: Annuncio eliminato!
