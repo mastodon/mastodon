@@ -203,6 +203,23 @@ ar:
       web: الويب
       whitelisted: في القائمة البيضاء
     action_logs:
+      action_types:
+        assigned_to_self_report: أسند التقرير
+        change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
+        confirm_user: تأكيد المستخدم
+        create_account_warning: إنشاء تحذير
+        create_announcement: إنشاء إعلان
+        create_custom_emoji: إنشاء إيموجي مخصص
+        destroy_announcement: احذف الإعلان
+        destroy_custom_emoji: احذف الإيموجي المخصص
+        disable_user: تعطيل المستخدم
+        enable_custom_emoji: تفعيل الإيموجي المخصص
+        enable_user: تفعيل المستخدم
+        remove_avatar_user: احذف الصورة الرمزية
+        reopen_report: إعادة فتح التقرير
+        reset_password_user: إعادة تعيين كلمة المرور
+        silence_account: كتم الحساب
+        suspend_account: تعليق الحساب
       actions:
         assigned_to_self_report: "قام %{name} بتعيين التقرير %{target} لأنفسهم"
         change_email_user: "غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}"
