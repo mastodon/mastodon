@@ -202,6 +202,13 @@ ru:
       web: Веб
       whitelisted: В белом списке
     action_logs:
+      action_types:
+        assigned_to_self_report: Присвоения жалоб
+        change_email_user: Изменение e-mail пользователей
+        confirm_user: Подтверждение пользователей
+        create_account_warning: Выдача предупреждения
+        create_announcement: Создание объявлений
+        create_custom_emoji: Добавление эмодзи
       actions:
         assigned_to_self_report: "%{name} назначил(а) себя для решения жалобы %{target}"
         change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
@@ -239,6 +246,9 @@ ru:
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
         update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
+      empty: Журнал пуст.
+      filter_by_action: Все действия
+      filter_by_user: Все пользователи
       title: Журнал событий
     announcements:
       destroyed_msg: Объявление удалено.
