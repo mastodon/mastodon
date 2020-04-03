@@ -190,6 +190,42 @@ ko:
       web: 웹
       whitelisted: 허용 목록
     action_logs:
+      action_types:
+        assigned_to_self_report: 신고 맡기
+        change_email_user: 사용자의 이메일 변경
+        confirm_user: 사용자 확인
+        create_account_warning: 경고 생성
+        create_announcement: 공지사항 생성
+        create_custom_emoji: 커스텀 에모지 생성
+        create_domain_allow: 도메인 허용 생성
+        create_domain_block: 도메인 차단 추가
+        create_email_domain_block: 이메일 도메인 차단 생성
+        demote_user: 사용자 강등
+        destroy_announcement: 공지사항 삭제
+        destroy_custom_emoji: 커스텀 에모지 삭제
+        destroy_domain_allow: 도메인 허용 삭제
+        destroy_domain_block: 도메인 차단 삭제
+        destroy_email_domain_block: 이메일 도메인 차단 삭제
+        destroy_status: 게시물 삭제
+        disable_2fa_user: 2단계 인증 비활성화
+        disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_user: 사용자 비활성화
+        enable_custom_emoji: 커스텀 에모지 활성화
+        enable_user: 사용자 활성화
+        memorialize_account: 계정을 기념비화
+        promote_user: 사용자 승급
+        remove_avatar_user: 아바타 지우기
+        reopen_report: 신고 다시 열기
+        reset_password_user: 암호 재설정
+        resolve_report: 신고 처리
+        silence_account: 계정 침묵
+        suspend_account: 계정 정지
+        unassigned_report: 신고 맡기 취소
+        unsilence_account: 계정 침묵 취소
+        unsuspend_account: 계정 정지 취소
+        update_announcement: 공지사항 업데이트
+        update_custom_emoji: 커스텀 에모지 업데이트
+        update_status: 게시물 게시
       actions:
         assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
         change_email_user: "%{name}이 %{target}의 이메일 주소를 변경했습니다"
