@@ -194,6 +194,41 @@ fa:
       web: وب
       whitelisted: فهرست مجاز
     action_logs:
+      action_types:
+        assigned_to_self_report: واگذاری گزارش
+        change_email_user: تغییر رایانامه برای کاربر
+        confirm_user: تأیید کاربر
+        create_account_warning: ایجاد هشدار
+        create_announcement: ایجاد اعلامیه
+        create_custom_emoji: ایجاد اموجی سفارشی
+        create_domain_allow: ایجاد اجازهٔ دامنه
+        create_domain_block: ایجاد انسداد دامنه
+        create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
+        demote_user: تنزل کاربر
+        destroy_announcement: حذف اعلامیه
+        destroy_custom_emoji: حذف اموجی سفارشی
+        destroy_domain_allow: حذف اجازهٔ دامنه
+        destroy_domain_block: حذف انسداد دامنه
+        destroy_email_domain_block: حذف انسداد دامنهٔ رایانامه
+        destroy_status: حذف وضعیت
+        disable_2fa_user: از کار انداختن ورود دومرحله‌ای
+        disable_custom_emoji: از کار انداختن اموجی سفارشی
+        disable_user: از کار انداختن کاربر
+        enable_custom_emoji: به کار انداختن اموجی سفارشی
+        enable_user: به کار انداختن کاربر
+        promote_user: ترفیع کاربر
+        remove_avatar_user: برداشتن تصویر نمایه
+        reopen_report: بازگشایی گزارش
+        reset_password_user: بازنشانی گذرواژه
+        resolve_report: رفع گزارش
+        silence_account: خموشی حساب
+        suspend_account: تعلیق حساب
+        unassigned_report: رفع واگذاری گزارش
+        unsilence_account: رفع خموشی حساب
+        unsuspend_account: رفع تعلیق حساب
+        update_announcement: به‌روز رسانی اعلامیه
+        update_custom_emoji: به‌روز رسانی اموجی سفارشی
+        update_status: به‌روز رسانی وضعیت
       actions:
         assigned_to_self_report: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
         change_email_user: "%{name} نشانی ایمیل کاربر %{target} را تغییر داد"
@@ -231,6 +266,9 @@ fa:
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
       deleted_status: "(نوشتهٔ پاک‌شده)"
+      empty: هیچ گزارشی پیدا نشد.
+      filter_by_action: پالایش بر اساس کنش
+      filter_by_user: پالایش بر اساس کاربر
       title: سیاههٔ بازرسی
     announcements:
       destroyed_msg: اعلامیه با موفقیت حذف شد!
