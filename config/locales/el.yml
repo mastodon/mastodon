@@ -194,6 +194,12 @@ el:
       web: Διαδίκτυο
       whitelisted: Εγκεκριμένοι
     action_logs:
+      action_types:
+        change_email_user: Αλλαγή email για χρήστη
+        destroy_status: Διαγραφή Κατάστασης
+        disable_user: Απενεργοποίηση Χρήστη
+        enable_user: Ενεργοποίηση Χρήστη
+        update_status: Ενημέρωση Κατάστασης
       actions:
         assigned_to_self_report: "Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της"
         change_email_user: "Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}"
@@ -231,6 +237,9 @@ el:
         update_custom_emoji: "Ο/Η %{name} ενημέρωσε το emoji %{target}"
         update_status: "Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}"
       deleted_status: "(διαγραμμένη δημοσίευση)"
+      empty: Δεν βρέθηκαν αρχεία καταγραφής.
+      filter_by_action: Φιλτράρισμα ανά ενέργεια
+      filter_by_user: Φιλτράρισμα ανά χρήστη
       title: Αρχείο ελέγχου
     announcements:
       destroyed_msg: Επιτυχής διαγραφή ανακοίνωσης!
