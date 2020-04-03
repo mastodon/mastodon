@@ -194,6 +194,28 @@ ca:
       web: Web
       whitelisted: Llista blanca
     action_logs:
+      action_types:
+        assigned_to_self_report: Assigna l'informe
+        change_email_user: Canvia l'adreça electrònica per l'usuari
+        confirm_user: Confirma l'usuari
+        create_account_warning: Crea un avís
+        create_announcement: Crea un anunci
+        create_custom_emoji: Crea un emoji personalitzat
+        create_domain_allow: Crea un domini permès
+        create_domain_block: Crea un bloqueig de domini
+        create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
+        demote_user: Degrada l'usuari
+        destroy_announcement: Esborra l'anunci
+        destroy_custom_emoji: Esborra l'emoji personalitzat
+        destroy_domain_allow: Esborra el domini permès
+        destroy_domain_block: Esborra el bloqueig de domini
+        destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_status: Esborra el tut
+        disable_2fa_user: Desactiva 2FA
+        disable_custom_emoji: Desactiva l'emoji personalitzat
+        disable_user: Deshabilita l'usuari
+        enable_custom_emoji: Activa l'emoji personalitzat
+        enable_user: Activa l'usuari
       actions:
         assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
