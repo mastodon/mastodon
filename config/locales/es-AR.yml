@@ -198,6 +198,38 @@ es-AR:
         assigned_to_self_report: Asignar Reporte
         change_email_user: Cambiar Correo Electrónico del Usuario
         confirm_user: Confirmar Usuario
+        create_account_warning: Crear Aviso
+        create_announcement: Crear Anuncio
+        create_custom_emoji: Crear Emoji Personalizado
+        create_domain_allow: Crear Permiso de Dominio
+        create_domain_block: Crear Bloqueo de Dominio
+        create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        demote_user: Degradar Usuario
+        destroy_announcement: Eliminar Anuncio
+        destroy_custom_emoji: Eliminar Emoji Personalizado
+        destroy_domain_allow: Eliminar Permiso de Dominio
+        destroy_domain_block: Eliminar Bloqueo de Dominio
+        destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_status: Eliminar Estado
+        disable_2fa_user: Deshabilitar 2FA
+        disable_custom_emoji: Deshabilitar Emoji Personalizado
+        disable_user: Deshabilitar Usuario
+        enable_custom_emoji: Habilitar Emoji Personalizado
+        enable_user: Habilitar Usuario
+        memorialize_account: Conmemorar Cuenta
+        promote_user: Promover Usuario
+        remove_avatar_user: Eliminar Avatar
+        reopen_report: Reabrir Reporte
+        reset_password_user: Restablecer Contraseña
+        resolve_report: Resolver Reporte
+        silence_account: Silenciar Cuenta
+        suspend_account: Suspender Cuenta
+        unassigned_report: Desasignar Reporte
+        unsilence_account: Dejar de Silenciar Cuenta
+        unsuspend_account: Desbloquear la cuenta
+        update_announcement: Actualizar anuncio
+        update_custom_emoji: Actualizar Emoji Personalizado
+        update_status: Actualizar Estado
       actions:
         assigned_to_self_report: "%{name} se asignó la denuncia %{target} a sí"
         change_email_user: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
@@ -235,6 +267,9 @@ es-AR:
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
+      empty: No se encontraron registros.
+      filter_by_action: Filtrar por acción
+      filter_by_user: Filtrar por usuario
       title: Registro de auditoría
     announcements:
       destroyed_msg: '¡Anuncio eliminado exitosamente!'
