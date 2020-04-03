@@ -194,6 +194,35 @@ pt-BR:
       web: Web
       whitelisted: Permitido
     action_logs:
+      action_types:
+        assigned_to_self_report: Adicionar relatório
+        change_email_user: Editar e-mail do usuário
+        confirm_user: Confirmar Usuário
+        create_account_warning: Criar Aviso
+        create_announcement: Criar Anúncio
+        create_custom_emoji: Criar Emoji Personalizado
+        create_domain_allow: Adicionar domínio permitido
+        create_domain_block: Adicionar domínio bloqueado
+        create_email_domain_block: Adicionar domínio de e-mail bloqueado
+        destroy_announcement: Excluir anúncio
+        destroy_custom_emoji: Excluir emoji personalizado
+        destroy_domain_allow: Excluir domínio permitido
+        destroy_domain_block: Excluir domínio bloqueado
+        destroy_email_domain_block: Excluir domínio de e-mail bloqueado
+        disable_2fa_user: Desativar autenticação de dois fatores
+        disable_custom_emoji: Desativar Emoji Personalizado
+        disable_user: Desativar usuário
+        enable_custom_emoji: Ativar Emoji Personalizado
+        enable_user: Ativar usuário
+        memorialize_account: Memorizar Conta
+        promote_user: Promover usuário
+        remove_avatar_user: Remover Avatar
+        reopen_report: Reabrir Relatório
+        reset_password_user: Redefinir a senha
+        resolve_report: Resolver Relatório
+        silence_account: Silenciar conta
+        suspend_account: Suspender Conta
+        unassigned_report: Remover relatório
       actions:
         assigned_to_self_report: "%{name} pegou a denúncia %{target}"
         change_email_user: "%{name} alterou o endereço de e-mail do usuário %{target}"
@@ -231,6 +260,7 @@ pt-BR:
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o status de %{target}"
       deleted_status: "(status excluído)"
+      empty: Nenhum registro encontrado.
       title: Auditar histórico
     announcements:
       destroyed_msg: Anúncio excluído com sucesso!
