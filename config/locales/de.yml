@@ -194,6 +194,36 @@ de:
       web: Web
       whitelisted: Auf der Whitelist
     action_logs:
+      action_types:
+        assigned_to_self_report: Bericht zuweisen
+        change_email_user: E-Mail des Benutzers ändern
+        confirm_user: Benutzer bestätigen
+        create_account_warning: Warnung erstellen
+        create_announcement: Ankündigung erstellen
+        create_custom_emoji: Eigene Emoji erstellen
+        create_domain_allow: Domain erlauben
+        create_domain_block: Domain blockieren
+        create_email_domain_block: E-Mail-Domain-Block erstellen
+        demote_user: Benutzer degradieren
+        destroy_announcement: Ankündigung löschen
+        destroy_custom_emoji: Eigene Emoji löschen
+        destroy_domain_allow: Erlaube das Löschen von Domains
+        destroy_domain_block: Domain-Blockade löschen
+        destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_status: Beitrag löschen
+        disable_2fa_user: 2FA deaktivieren
+        disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
+        disable_user: Benutzer deaktivieren
+        enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
+        enable_user: Benutzer aktivieren
+        memorialize_account: Konto in ein Konto von einer verstorbenen Person umwandeln
+        promote_user: Benutzer befördern
+        remove_avatar_user: Profilbild entfernen
+        reopen_report: Meldung wieder eröffnen
+        reset_password_user: Passwort zurücksetzen
+        resolve_report: Bericht lösen
+        silence_account: Konto stummschalten
+        suspend_account: Konto sperren
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
