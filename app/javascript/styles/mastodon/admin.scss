@@ -418,6 +418,11 @@ body,
       }
     }
 
+    &--with-select strong {
+      display: block;
+      margin-bottom: 10px;
+    }
+
     a {
       display: inline-block;
       color: $darker-text-color;
@@ -583,19 +588,22 @@ body,
 }
 
 .log-entry {
-  margin-bottom: 20px;
   line-height: 20px;
+  padding: 15px 0;
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 4%);
+
+  &:last-child {
+    border-bottom: 0;
+  }
 
   &__header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px;
-    background: $ui-base-color;
     color: $darker-text-color;
-    border-radius: 4px 4px 0 0;
     font-size: 14px;
-    position: relative;
+    padding: 0 10px;
   }
 
   &__avatar {
@@ -622,62 +630,12 @@ body,
     color: $dark-text-color;
   }
 
-  &__extras {
-    background: lighten($ui-base-color, 6%);
-    border-radius: 0 0 4px 4px;
-    padding: 10px;
-    color: $darker-text-color;
-    font-family: $font-monospace, monospace;
-    font-size: 12px;
-    word-wrap: break-word;
-    min-height: 20px;
-  }
-
-  &__icon {
-    font-size: 28px;
-    margin-right: 10px;
-    color: $dark-text-color;
-  }
-
-  &__icon__overlay {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-
-    &.positive {
-      background: $success-green;
-    }
-
-    &.negative {
-      background: lighten($error-red, 12%);
-    }
-
-    &.neutral {
-      background: $ui-highlight-color;
-    }
-  }
-
   a,
   .username,
   .target {
     color: $secondary-text-color;
     text-decoration: none;
     font-weight: 500;
-  }
-
-  .diff-old {
-    color: lighten($error-red, 12%);
-  }
-
-  .diff-neutral {
-    color: $secondary-text-color;
-  }
-
-  .diff-new {
-    color: $success-green;
   }
 }
 

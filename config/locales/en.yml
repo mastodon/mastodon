@@ -195,6 +195,42 @@ en:
       web: Web
       whitelisted: Whitelisted
     action_logs:
+      action_types:
+        assigned_to_self_report: Assign Report
+        change_email_user: Change E-mail for User
+        confirm_user: Confirm User
+        create_account_warning: Create Warning
+        create_announcement: Create Announcement
+        create_custom_emoji: Create Custom Emoji
+        create_domain_allow: Create Domain Allow
+        create_domain_block: Create Domain Block
+        create_email_domain_block: Create E-mail Domain Block
+        demote_user: Demote User
+        destroy_announcement: Delete Announcement
+        destroy_custom_emoji: Delete Custom Emoji
+        destroy_domain_allow: Delete Domain Allow
+        destroy_domain_block: Delete Domain Block
+        destroy_email_domain_block: Delete e-mail domain block
+        destroy_status: Delete Status
+        disable_2fa_user: Disable 2FA
+        disable_custom_emoji: Disable Custom Emoji
+        disable_user: Disable User
+        enable_custom_emoji: Enable Custom Emoji
+        enable_user: Enable User
+        memorialize_account: Memorialize Account
+        promote_user: Promote User
+        remove_avatar_user: Remove Avatar
+        reopen_report: Reopen Report
+        reset_password_user: Reset Password
+        resolve_report: Resolve Report
+        silence_account: Silence Account
+        suspend_account: Suspend Account
+        unassigned_report: Unassign Report
+        unsilence_account: Unsilence Account
+        unsuspend_account: Unsuspend Account
+        update_announcement: Update Announcement
+        update_custom_emoji: Update Custom Emoji
+        update_status: Update Status
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
         change_email_user: "%{name} changed the e-mail address of user %{target}"
@@ -232,6 +268,9 @@ en:
         update_custom_emoji: "%{name} updated emoji %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
+      empty: No logs found.
+      filter_by_action: Filter by action
+      filter_by_user: Filter by user
       title: Audit log
     announcements:
       destroyed_msg: Announcement successfully deleted!
