@@ -267,6 +267,7 @@ is:
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
+      empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
       title: Atvikaskrá
@@ -1114,6 +1115,8 @@ is:
     disallowed_hashtags:
       one: 'innihélt óleyfilegt myllumerki: %{tags}'
       other: 'innihélt óleyfilegu myllumerkin: %{tags}'
+    errors:
+      in_reply_not_found: Stöðufærslan sem þú ert að reyna að svara að er líklega ekki til.
     language_detection: Greina tungumál sjálfvirkt
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
