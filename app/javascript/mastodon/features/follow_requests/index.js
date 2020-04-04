@@ -21,6 +21,7 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
   hasMore: !!state.getIn(['user_lists', 'follow_requests', 'next']),
   locked: !!state.getIn(['accounts', me, 'locked']),
+  domain: state.getIn(['meta', 'domain']),
 });
 
 export default @connect(mapStateToProps)
@@ -34,6 +35,7 @@ class FollowRequests extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
     locked: PropTypes.bool,
+    domain: PropTypes.string,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
   };
@@ -47,7 +49,7 @@ class FollowRequests extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, shouldUpdateScroll, accountIds, hasMore, multiColumn, locked } = this.props;
+    const { intl, shouldUpdateScroll, accountIds, hasMore, multiColumn, locked, domain } = this.props;
 
     if (!accountIds) {
       return (
@@ -62,7 +64,8 @@ class FollowRequests extends ImmutablePureComponent {
       <div className='follow_requests-unlocked_explanation'>
         <FormattedMessage
           id='follow_requests.unlocked_explanation'
-          defaultMessage='While your account is not locked, follow requests from people silenced on your server still require you to review them.'
+          defaultMessage='Even though your account is not locked, the {domain} staff thought you might want to review follow requests from these accounts manually.'
+          values={{ domain: domain }}
         />
       </div>
     );
