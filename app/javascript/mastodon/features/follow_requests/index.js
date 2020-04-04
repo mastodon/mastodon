@@ -11,6 +11,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountAuthorizeContainer from './containers/account_authorize_container';
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import ScrollableList from '../../components/scrollable_list';
+import { me } from '../../initial_state';
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
@@ -19,6 +20,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
   hasMore: !!state.getIn(['user_lists', 'follow_requests', 'next']),
+  locked: !!state.getIn(['accounts', me, 'locked']),
 });
 
 export default @connect(mapStateToProps)
@@ -31,6 +33,7 @@ class FollowRequests extends ImmutablePureComponent {
     shouldUpdateScroll: PropTypes.func,
     hasMore: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
+    locked: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
   };
@@ -44,7 +47,7 @@ class FollowRequests extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, shouldUpdateScroll, accountIds, hasMore, multiColumn } = this.props;
+    const { intl, shouldUpdateScroll, accountIds, hasMore, multiColumn, locked } = this.props;
 
     if (!accountIds) {
       return (
@@ -55,6 +58,14 @@ class FollowRequests extends ImmutablePureComponent {
     }
 
     const emptyMessage = <FormattedMessage id='empty_column.follow_requests' defaultMessage="You don't have any follow requests yet. When you receive one, it will show up here." />;
+    const unlockedPrependMessage = locked ? null : (
+      <div className='follow_requests-unlocked_explanation'>
+        <FormattedMessage
+          id='follow_requests.unlocked_explanation'
+          defaultMessage='While your account is not locked, follow requests from people silenced on your server still require you to review them.'
+        />
+      </div>
+    );
 
     return (
       <Column bindToDocument={!multiColumn} icon='user-plus' heading={intl.formatMessage(messages.heading)}>
@@ -66,6 +77,7 @@ class FollowRequests extends ImmutablePureComponent {
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
+          prepend={unlockedPrependMessage}
         >
           {accountIds.map(id =>
             <AccountAuthorizeContainer key={id} id={id} />,
