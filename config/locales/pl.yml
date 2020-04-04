@@ -741,9 +741,13 @@ pl:
   deletes:
     challenge_not_passed: Wprowadzone informacje za nieprawidłowe
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
+    confirm_username: Wprowadź swoją nazwę użytkownika aby potwierdzić procedurę
     proceed: Usuń konto
     success_msg: Twoje konto zostało pomyślnie usunięte
     warning:
+      before: 'Zanim kontynuujesz, przeczytać uważnie te uwagi:'
+      data_removal: Twoje wpisy i inne dane zostaną bezpowrotnie usunięte
+      email_change_html: Możesz <a href="%{path}">zmienić swój adres e-mail</a> bez usunięcia konta
       username_available: Twoja nazwa użytkownika będzie z powrotem dostępna
       username_unavailable: Twoja nazwa użytkownika pozostanie niedostępna
   directories:
