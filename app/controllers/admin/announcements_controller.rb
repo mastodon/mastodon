@@ -43,7 +43,7 @@ class Admin::AnnouncementsController < Admin::BaseController
 
   private
 
-  def set_announcenments
+  def set_announcements
     @announcements = Announcement.all
   end
 
