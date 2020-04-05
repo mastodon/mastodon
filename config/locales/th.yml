@@ -158,7 +158,7 @@ th:
       show:
         created_reports: รายงานที่สร้าง
         targeted_reports: รายงานโดยผู้อื่น
-      silence: เงียบ
+      silence: ทำให้เงียบ
       silenced: เงียบอยู่
       statuses: สถานะ
       subscribe: บอกรับ
@@ -166,7 +166,7 @@ th:
       time_in_queue: กำลังรออยู่ในคิว %{time}
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
-      undo_silenced: เลิกทำการเงียบ
+      undo_silenced: เลิกทำการทำให้เงียบ
       undo_suspension: เลิกทำการระงับ
       unsubscribe: เลิกบอกรับ
       username: ชื่อผู้ใช้
@@ -202,8 +202,10 @@ th:
         reopen_report: เปิดรายงานใหม่
         reset_password_user: ตั้งรหัสผ่านใหม่
         resolve_report: แก้ปัญหารายงาน
+        silence_account: ทำให้บัญชีเงียบ
         suspend_account: ระงับบัญชี
         unassigned_report: เลิกมอบหมายรายงาน
+        unsilence_account: เลิกทำให้บัญชีเงียบ
         unsuspend_account: เลิกระงับบัญชี
         update_announcement: อัปเดตประกาศ
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
@@ -234,8 +236,10 @@ th:
         remove_avatar_user: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report: "%{name} ได้เปิดรายงาน %{target} ใหม่"
         resolve_report: "%{name} ได้แก้ปัญหารายงาน %{target}"
+        silence_account: "%{name} ได้ทำให้บัญชีของ %{target} เงียบ"
         suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
         unassigned_report: "%{name} ได้เลิกมอบหมายรายงาน %{target}"
+        unsilence_account: "%{name} ได้เลิกทำให้บัญชีของ %{target} เงียบ"
         unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_announcement: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
@@ -330,9 +334,9 @@ th:
         create: สร้างการปิดกั้น
         hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมเฉพาะกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
         severity:
-          desc_html: "<strong>เงียบ</strong> จะทำให้โพสต์ของบัญชีไม่ปรากฏแก่ใครก็ตามที่ไม่ได้กำลังติดตามบัญชี <strong>ระงับ</strong> จะเอาเนื้อหา, สื่อ และข้อมูลโปรไฟล์ทั้งหมดของบัญชีออก ใช้ <strong>ไม่มี</strong> หากคุณเพียงแค่ต้องการปฏิเสธไฟล์สื่อ"
+          desc_html: "<strong>ทำให้เงียบ</strong> จะทำให้โพสต์ของบัญชีไม่ปรากฏแก่ใครก็ตามที่ไม่ได้กำลังติดตามบัญชี <strong>ระงับ</strong> จะเอาเนื้อหา, สื่อ และข้อมูลโปรไฟล์ทั้งหมดของบัญชีออก ใช้ <strong>ไม่มี</strong> หากคุณเพียงแค่ต้องการปฏิเสธไฟล์สื่อ"
           noop: ไม่มี
-          silence: เงียบ
+          silence: ทำให้เงียบ
           suspend: ระงับ
         title: การปิดกั้นโดเมนใหม่
       private_comment: ความคิดเห็นส่วนตัว
@@ -347,7 +351,7 @@ th:
         affected_accounts:
           other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
-          silence: เลิกเงียบบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
+          silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
         title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
         undo: เลิกทำ
