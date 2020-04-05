@@ -465,6 +465,17 @@ pl:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
+      account:
+        notes:
+          one: "%{count} notatka"
+          few: "%{count} notatki"
+          many: "%{count} notatek"
+          other: "%{count} notatki"
+        reports:
+          one: "%{count} zgłoszenie"
+          few: "%{count} zgłoszenia"
+          many: "%{count} zgłoszeń"
+          other: "%{count} zgłoszenia"
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
@@ -724,6 +735,9 @@ pl:
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
     invalid_password: Nieprawidłowe hasło
     prompt: Potwierdź hasło, aby kontynuować
+  date:
+    formats:
+      default: "%d. %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
@@ -1142,6 +1156,11 @@ pl:
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
     poll:
+      total_people:
+        one: "%{count} osoba"
+        few: "%{count} osoby"
+        many: "%{count} osób"
+        other: "%{count} osoby"
       total_votes:
         one: "%{count} głos"
         few: "%{count} głosy"
