@@ -189,6 +189,42 @@ ja:
       web: Web
       whitelisted: ホワイトリストに登録済み
     action_logs:
+      action_types:
+        assigned_to_self_report: 通報の担当者に設定
+        change_email_user: ユーザーのメールアドレスを変更
+        confirm_user: ユーザーの確認
+        create_account_warning: 警告を作成
+        create_announcement: お知らせを作成
+        create_custom_emoji: カスタム絵文字を作成
+        create_domain_allow: ドメインホワイトリストに追加
+        create_domain_block: ドメインブロックを作成
+        create_email_domain_block: メールドメインブロックを作成
+        demote_user: ユーザーを降格
+        destroy_announcement: お知らせを削除
+        destroy_custom_emoji: カスタム絵文字を削除
+        destroy_domain_allow: ドメインホワイトリストから削除
+        destroy_domain_block: ドメインブロックを削除
+        destroy_email_domain_block: メールドメインブロックを削除
+        destroy_status: トゥートを削除
+        disable_2fa_user: 二段階認証を無効にする
+        disable_custom_emoji: カスタム絵文字を無効化
+        disable_user: ユーザーを無効化
+        enable_custom_emoji: カスタム絵文字を有効化
+        enable_user: ユーザーを有効化
+        memorialize_account: 追悼アカウント
+        promote_user: ユーザーを昇格
+        remove_avatar_user: アイコンを削除
+        reopen_report: 通報を再度開く
+        reset_password_user: パスワードをリセット
+        resolve_report: 通報を解決済みにする
+        silence_account: アカウントをサイレンス
+        suspend_account: アカウントをサスペンド
+        unassigned_report: 通報の担当を解除
+        unsilence_account: アカウントのサイレンスを解除
+        unsuspend_account: アカウントのサスペンドを解除
+        update_announcement: お知らせを更新
+        update_custom_emoji: カスタム絵文字を更新
+        update_status: ステータスを更新
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
@@ -226,6 +262,9 @@ ja:
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
       deleted_status: "(削除済)"
+      empty: ログが見つかりませんでした
+      filter_by_action: アクションでフィルター
+      filter_by_user: ユーザーでフィルター
       title: 操作履歴
     announcements:
       destroyed_msg: お知らせが削除されました
