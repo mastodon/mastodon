@@ -4,7 +4,15 @@ update_configs:
   - package_manager: "ruby:bundler"
     directory: "/"
     update_schedule: "weekly"
+    version_requirement_updates: auto
+    allowed_updates:
+      - match:
+          update_type: "all"
 
   - package_manager: "javascript"
     directory: "/"
     update_schedule: "weekly"
+    version_requirement_updates: auto
+    allowed_updates:
+      - match:
+          update_type: "all"
