@@ -175,6 +175,7 @@ th:
       whitelisted: ขึ้นบัญชีขาวแล้ว
     action_logs:
       action_types:
+        assigned_to_self_report: มอบหมายรายงาน
         change_email_user: เปลี่ยนอีเมลสำหรับผู้ใช้
         confirm_user: ยืนยันผู้ใช้
         create_account_warning: สร้างคำเตือน
@@ -197,6 +198,15 @@ th:
         enable_user: เปิดใช้งานผู้ใช้
         promote_user: เลื่อนขั้นผู้ใช้
         remove_avatar_user: เอาภาพประจำตัวออก
+        reopen_report: เปิดรายงานใหม่
+        reset_password_user: ตั้งรหัสผ่านใหม่
+        resolve_report: แก้ปัญหารายงาน
+        suspend_account: ระงับบัญชี
+        unassigned_report: เลิกมอบหมายรายงาน
+        unsuspend_account: เลิกระงับบัญชี
+        update_announcement: อัปเดตประกาศ
+        update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
+        update_status: อัปเดตสถานะ
       actions:
         change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
         confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
@@ -229,6 +239,9 @@ th:
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
+      empty: ไม่พบรายการบันทึก
+      filter_by_action: กรองตามการกระทำ
+      filter_by_user: กรองตามผู้ใช้
       title: รายการบันทึกการตรวจสอบ
     announcements:
       destroyed_msg: ลบประกาศสำเร็จ!
