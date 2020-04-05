@@ -39,7 +39,7 @@ RUN apt update && \
 	make install_bin install_include install_lib
 
 # Install ruby
-ENV RUBY_VER="2.6.5"
+ENV RUBY_VER="2.6.6"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
 RUN apt update && \
