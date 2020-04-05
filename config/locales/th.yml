@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา, ไม่มีการสอดแนมโดยองค์กร, การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -41,7 +40,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ทางเลือกของ %{name}:'
+    choices_html: "ทางเลือกของ %{name}:"
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -350,7 +349,7 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -393,7 +392,7 @@ th:
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -538,7 +537,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
   aliases:
     add_new: สร้างนามแฝง
     remove: เลิกเชื่อมโยงนามแฝง
@@ -926,7 +925,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
