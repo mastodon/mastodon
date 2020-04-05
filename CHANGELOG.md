@@ -13,10 +13,13 @@ All notable changes to this project will be documented in this file.
 - Add sorting by username, creation and last activity in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13076))
 - Add explanation as to why unlocked accounts may have follow requests in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13385))
 - Add link to bookmarks to dropdown in web UI ([mayaeh](https://github.com/tootsuite/mastodon/pull/13273))
-- Add support for links to statuses in announcements to be opened in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13212))
+- Add support for links to statuses in announcements to be opened in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13212), [ThibG](https://github.com/tootsuite/mastodon/pull/13250))
 - Add tooltips to audio/video player buttons in web UI ([ariasuni](https://github.com/tootsuite/mastodon/pull/13203))
 - Add submit button to the top of preferences pages ([guigeekz](https://github.com/tootsuite/mastodon/pull/13068))
-- Add specific rate limits for posting and following ([Gargron](https://github.com/tootsuite/mastodon/pull/13172))
+- Add specific rate limits for posting, following and reporting ([Gargron](https://github.com/tootsuite/mastodon/pull/13172), [Gargron](https://github.com/tootsuite/mastodon/pull/13390))
+  - 300 posts every 3 hours
+  - 400 follows or follow requests every 24 hours
+  - 400 reports every 24 hours
 - Add federation support for the "hide network" preference ([ThibG](https://github.com/tootsuite/mastodon/pull/11673))
 - Add `--skip-media-remove` option to `tootctl statuses remove` ([tateisu](https://github.com/tootsuite/mastodon/pull/13080))
 
@@ -28,11 +31,17 @@ All notable changes to this project will be documented in this file.
 - **Change local media attachments to perform heavy processing asynchronously** ([Gargron](https://github.com/tootsuite/mastodon/pull/13210))
 - Change video uploads to always be converted to H264/MP4 ([Gargron](https://github.com/tootsuite/mastodon/pull/13220), [ThibG](https://github.com/tootsuite/mastodon/pull/13239), [ThibG](https://github.com/tootsuite/mastodon/pull/13242))
 - Change video uploads to enforce certain limits ([Gargron](https://github.com/tootsuite/mastodon/pull/13218))
+  - Dimensions smaller than 1920x1200px
+  - Frame rate at most 60fps
 - Change the tooltip "Toggle visibility" to "Hide media" in web UI ([ariasuni](https://github.com/tootsuite/mastodon/pull/13199))
 - Change description of privacy levels to be more intuitive in web UI ([ariasuni](https://github.com/tootsuite/mastodon/pull/13197))
 - Change GIF label to be displayed even when autoplay is enabled in web UI ([koyuawsmbrtn](https://github.com/tootsuite/mastodon/pull/13209))
 - Change the string "Hide everything from …" to "Block domain …" in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13178), [mayaeh](https://github.com/tootsuite/mastodon/pull/13221))
 - Change wording of media display preferences to be more intuitive ([ariasuni](https://github.com/tootsuite/mastodon/pull/13198))
+
+### Deprecated
+
+- `POST /api/v1/media` → `POST /api/v2/media` ([Gargron](https://github.com/tootsuite/mastodon/pull/13210))
 
 ### Fixed
 
@@ -41,6 +50,7 @@ All notable changes to this project will be documented in this file.
 - Fix pinning a column in web UI sometimes redirecting out of web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/13376))
 - Fix background jobs not using locks like they are supposed to ([Gargron](https://github.com/tootsuite/mastodon/pull/13361))
 - Fix content warning being unnecessarily cleared when hiding content warning input in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13348))
+- Fix "Show more" not switching to "Show less" on public pages ([ThibG](https://github.com/tootsuite/mastodon/pull/13174))
 - Fix import overwrite option not being selectable ([noellabo](https://github.com/tootsuite/mastodon/pull/13347))
 - Fix wrong color for ellipsis in boost confirmation dialog in web UI ([ariasuni](https://github.com/tootsuite/mastodon/pull/13355))
 - Fix unnecessary unfollowing when importing follows with overwrite option ([noellabo](https://github.com/tootsuite/mastodon/pull/13350))
