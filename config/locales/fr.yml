@@ -195,6 +195,42 @@ fr:
       web: Web
       whitelisted: Sur liste blanche
     action_logs:
+      action_types:
+        assigned_to_self_report: Affecter le signalement
+        change_email_user: Modifier le courriel pour
+        confirm_user: Confirmer l’utilisateur
+        create_account_warning: Créer une alerte
+        create_announcement: Créer une annonce
+        create_custom_emoji: Créer des émojis personnalisés
+        create_domain_allow: Créer un domaine autorisé
+        create_domain_block: Créer un blocage de domaine
+        create_email_domain_block: Créer un blocage de domaine de courriel
+        demote_user: Rétrograder l’utilisateur·ice
+        destroy_announcement: Supprimer l’annonce
+        destroy_custom_emoji: Supprimer des émojis personnalisés
+        destroy_domain_allow: Supprimer le domaine autorisé
+        destroy_domain_block: Supprimer le blocage de domaine
+        destroy_email_domain_block: Supprimer le blocage de domaine de courriel
+        destroy_status: Supprimer le statut
+        disable_2fa_user: Désactiver l’A2F
+        disable_custom_emoji: Désactiver les émojis personnalisés
+        disable_user: Désactiver l’utilisateur·ice
+        enable_custom_emoji: Activer les émojis personnalisées
+        enable_user: Activer l’utilisateur
+        memorialize_account: Mémorialiser le compte
+        promote_user: Promouvoir l’utilisateur
+        remove_avatar_user: Supprimer l’avatar
+        reopen_report: Rouvrir le signalement
+        reset_password_user: Réinitialiser le mot de passe
+        resolve_report: Résoudre le signalement
+        silence_account: Rendre le compte silencieux
+        suspend_account: Suspendre le compte
+        unassigned_report: Ne plus assigner le signalement
+        unsilence_account: Désactiver le silence du compte
+        unsuspend_account: Annuler la suspension du compte
+        update_announcement: Modifier l’annonce
+        update_custom_emoji: Mettre à jour les émojis personnalisés
+        update_status: Mettre à jour le statut
       actions:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
@@ -232,6 +268,9 @@ fr:
         update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
+      empty: Aucun journal trouvé.
+      filter_by_action: Filtrer par action
+      filter_by_user: Filtrer par utilisateur·ice
       title: Journal d’audit
     announcements:
       destroyed_msg: Annonce supprimée avec succès !
@@ -1077,6 +1116,8 @@ fr:
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
       other: 'contient les hashtags désactivés : %{tags}'
+    errors:
+      in_reply_not_found: Le statut auquel vous essayez de répondre ne semble pas exister.
     language_detection: Détecter automatiquement la langue
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de %{max} caractères dépassée

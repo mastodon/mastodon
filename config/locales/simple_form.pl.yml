@@ -55,6 +55,7 @@ pl:
       domain_allow:
         domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
       email_domain_block:
+        domain: Może to być nazwa domeny pojawiająca się w adresu e-mail, rekord MX na który rozwiązuje domena lub IP serwera na który rozwiązuje rekord MX. Będą one wykrywane i odrzucane przy rejestracji.
         with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
