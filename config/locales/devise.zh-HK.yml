@@ -1,4 +1,3 @@
----
 zh-HK:
   devise:
     confirmations:
@@ -26,9 +25,9 @@ zh-HK:
         subject: 'Mastodon: 確認電郵地址 %{instance}'
         title: 驗證電子郵件地址
       email_changed:
-        explanation: 你的帳戶的電子郵件地址即將變更為：
+        explanation: '你的帳戶的電子郵件地址即將變更為：'
         extra: 如果你沒有請求更改你的電子郵件地址，則他人很有可能已經入侵你的帳戶。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
-        subject: Mastodon：電子郵件地址已被更改
+        subject: 'Mastodon：電子郵件地址已被更改'
         title: 新電子郵件地址
       password_change:
         explanation: 你的帳戶的密碼已被更改。
@@ -38,7 +37,7 @@ zh-HK:
       reconfirmation_instructions:
         explanation: 點擊下面的連結來確認你的新電子郵件地址。
         extra: 如果你沒有請求本次變更，請忽略此郵件。 Mastodon 帳戶的電子郵件地址只有在你點擊上面的連結後才會更改。
-        subject: Mastodon：確認 %{instance} 電子郵件地址
+        subject: 'Mastodon：確認 %{instance} 電子郵件地址'
         title: 驗證電子郵件地址
       reset_password_instructions:
         action: 更改密碼
@@ -48,15 +47,15 @@ zh-HK:
         title: 重設密碼
       two_factor_disabled:
         explanation: 您帳戶的兩步驟驗證已停用。現在只能使用電子信箱位址及密碼登入。
-        subject: Mastodon：已停用兩步驟驗證
+        subject: 'Mastodon：已停用兩步驟驗證'
         title: 已停用 2FA
       two_factor_enabled:
         explanation: 已對您的帳戶啟用兩步驟驗證。登入時將需要配對之 TOTP 應用程式所產生的 Token。
-        subject: Mastodon：已啟用兩步驟驗證
+        subject: 'Mastodon：已啟用兩步驟驗證'
         title: 已啟用 2FA
       two_factor_recovery_codes_changed:
         explanation: 上一次的復原碼已經失效，且已產生新的。
-        subject: Mastodon：兩步驟驗證復原碼已經重新產生
+        subject: 'Mastodon：兩步驟驗證復原碼已經重新產生'
         title: 2FA 復原碼已變更
       unlock_instructions:
         subject: 'Mastodon: 解除用戶鎖定'
