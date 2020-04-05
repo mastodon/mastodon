@@ -797,6 +797,7 @@ pl:
     add_new: Dodaj nowy
     errors:
       limit: Już przekroczyłeś(-aś) maksymalną liczbę wyróżnionych hashtagów
+    hint_html: "<strong>Czym są wyróżnione hashtagi?</strong> Są one na stałe wyświetlane na Twoim profilu i pozwalają innym na przeglądanie Twoich wpisów używających tych hashtagów. Są doskonałym narzędziem do śledzenia kreatywnej twórczości czy długoterminowych projektów."
   filters:
     contexts:
       account: Profile
@@ -903,6 +904,7 @@ pl:
   migrations:
     acct: nazwa@domena nowego konta
     cancel: Anuluj przekierowanie
+    cancel_explanation: Anulowanie przekierowania aktywuje Twoje obecne konto ponownie, ale nie przeniesie z powrotem śledzących, których przeniesiono na tamto konto.
     cancelled_msg: Pomyślnie anulowano przekierowanie.
     errors:
       already_moved: jest tym samym kontem, na które już się przeniosłeś(-aś)
@@ -911,13 +913,22 @@ pl:
       not_found: nie mogło zostać odnalezione
     followers_count: Śledzący w chwili przenoszenia
     incoming_migrations: Przenoszenie z innego konta
+    incoming_migrations_html: Aby przenieść się z innego konta na to, musisz najpierw <a href="%{path}">utworzyć alias konta</a>.
+    moved_msg: Twoje konto przekierowuje teraz na %{acct}, a śledzący są przenoszeni.
+    not_redirecting: Twoje konto nie przekierowuje obecnie na żadne inne konto.
+    on_cooldown: Ostatnio przeniosłeś(-aś) swoje konto. Ta funkcja będzie dostępna ponownie za %{count} dni.
     past_migrations: Poprzednie migracje
     proceed_with_move: Przenieś obserwujących
     redirecting_to: Twoje konto przekierowuje na %{acct}.
     set_redirect: Ustaw przekierowanie
     warning:
+      backreference_required: Nowe konto musi wcześniej zostać skonfigurowane tak, aby odwoływało się do tego
       before: 'Zanim kontynuujesz, przeczytaj uważnie te uwagi:'
+      disabled_account: Twoje obecne konto nie będzie później całkowicie użyteczne. Możesz jednak uzyskać dostęp do eksportu danych i ponownie aktywować je.
+      followers: To działanie przeniesie wszystkich Twoich śledzących z obecnego konta na nowe
+      only_redirect_html: Możesz też <a href="%{path}">po prostu skonfigurować przekierowanie na swój profil</a>.
       other_data: Żadne inne dane nie zostaną automatycznie przeniesione
+      redirect: Twoje obecne konto zostanie uaktualnione o informację o przeniesieniu i wyłączone z wyszukiwania
   moderation:
     title: Moderacja
   notification_mailer:
@@ -959,6 +970,8 @@ pl:
       subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
   notifications:
+    email_events: 'Powiadamiaj e-mailem o:'
+    email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
     other_settings: Inne ustawienia powiadomień
   number:
     human:
@@ -1267,6 +1280,7 @@ pl:
         disable: Kiedy Twoje konto jest wyłączone, Twoje dane pozostają na serwerze, ale nie możesz wykonywać żadnych działań, zanim zostanie odblokowane.
         silence: Kiedy Twoje konto jest ograniczone, tylko osoby które je śledzą będą widzieć Twoje wpisy. Może ono też przestać być widoczne na publicznych listach. Inni wciąż mogą zacząć Cię śledzić.
         suspend: Twoje konto zostało zawieszone i wszystkie Twoje wpisy wraz z zawartością multimedialną zostały nieodwracalnie usunięte z tego serwera i serwerów, których użytkownicy śledzili Cię.
+      get_in_touch: Możesz odpowiedzieć na ten e-mail aby pozostać w kontakcie z prowadzącymi %{instance}.
       review_server_policies: Przejrzyj zasady serwera
       statuses: 'Szczególnie dla:'
       subject:
