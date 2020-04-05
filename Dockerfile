@@ -4,8 +4,11 @@ FROM ubuntu:18.04 as build-dep
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo "Etc/UTC" > /etc/localtime && \
-    apt-get update && \
-    apt-get --no-install-recommends -y install apt-utils wget python ca-certificates
+    apt-get update && apt-get --no-install-recommends -y install \
+    apt-utils \
+    wget \
+    python \
+    ca-certificates
 
 # Install Node v12 (LTS)
 ENV NODE_VER="12.16.1"
@@ -28,7 +31,7 @@ RUN ARCH= && \
 
 # Install jemalloc
 ENV JE_VER="5.2.1"
-RUN apt-get --no-install-recommends -y install make autoconf gcc g++ && \
+RUN apt-get update && apt-get --no-install-recommends -y install make autoconf gcc g++ && \
     cd ~ && \
     wget https://github.com/jemalloc/jemalloc/archive/${JE_VER}.tar.gz && \
     tar xf ${JE_VER}.tar.gz && \
@@ -42,7 +45,7 @@ RUN apt-get --no-install-recommends -y install make autoconf gcc g++ && \
 ENV RUBY_VER="2.6.6"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
-RUN apt-get --no-install-recommends -y install \
+RUN apt-get update && apt-get --no-install-recommends -y install \
     build-essential \
     bison \
     libgdbm-dev \
@@ -51,9 +54,8 @@ RUN apt-get --no-install-recommends -y install \
     libffi-dev \
     libssl-dev \
     libyaml-dev \
-    zlib1g-dev \
-    && \
-    cd ~ && \
+    zlib1g-dev 
+RUN cd ~ && \
     wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-${RUBY_VER}.tar.gz && \
     tar xf ruby-${RUBY_VER}.tar.gz && \
     cd ruby-${RUBY_VER} && \
@@ -73,7 +75,7 @@ RUN npm install -g yarn && \
     gem install bundler
 
 # Install mastodon OS Package
-RUN apt-get --no-install-recommends -y install \
+RUN apt-get update && apt-get --no-install-recommends -y install \
     git \
     libicu-dev \
     libidn11-dev \
@@ -96,8 +98,7 @@ FROM ubuntu:18.04
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo "Etc/UTC" > /etc/localtime && \
-    apt-get update && \
-    apt-get --no-install-recommends -y install \
+    apt-get update && apt-get --no-install-recommends -y install \
     apt-utils \
     wget \
     whois \
@@ -120,7 +121,7 @@ RUN addgroup --gid ${GID} mastodon && \
     echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd
 
 # Install mastodon runtime deps
-RUN apt-get --no-install-recommends -y install \
+RUN apt-get update && apt-get --no-install-recommends -y install \
     libssl1.1 \
     libpq5 \
     imagemagick \
