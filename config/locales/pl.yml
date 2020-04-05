@@ -746,8 +746,13 @@ pl:
     success_msg: Twoje konto zostało pomyślnie usunięte
     warning:
       before: 'Zanim kontynuujesz, przeczytać uważnie te uwagi:'
+      caches: Zawartość obecna w pamięci podręcznej innych serwerów może tam pozostać
       data_removal: Twoje wpisy i inne dane zostaną bezpowrotnie usunięte
       email_change_html: Możesz <a href="%{path}">zmienić swój adres e-mail</a> bez usunięcia konta
+      email_contact_html: Jeżeli wciąż nie dotarł, możesz wysłać wiadomość e-mail na <a href="mailto:%{email}">%{email}</a> aby uzyskać pomoc
+      email_reconfirmation_html: Jeżeli nie otrzymujesz potwierdzającego e-maila, możesz <a href="%{path}">poprosić o kolejny</a>
+      irreversible: Nie będziesz móc przywrócić lub reaktywować swojego konta
+      more_details_html: Aby uzyskać więcej szczegółów, przeczytaj naszą <a href="%{terms_path}">politykę prywatności</a>.
       username_available: Twoja nazwa użytkownika będzie z powrotem dostępna
       username_unavailable: Twoja nazwa użytkownika pozostanie niedostępna
   directories:
