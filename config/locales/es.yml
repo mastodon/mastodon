@@ -195,6 +195,42 @@ es:
       web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
+      action_types:
+        assigned_to_self_report: Asignar Reporte
+        change_email_user: Cambiar Correo Electrónico del Usuario
+        confirm_user: Confirmar Usuario
+        create_account_warning: Crear Advertencia
+        create_announcement: Crear Anuncio
+        create_custom_emoji: Crear Emoji Personalizado
+        create_domain_allow: Crear Permiso de Dominio
+        create_domain_block: Crear Bloqueo de Dominio
+        create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        demote_user: Degradar Usuario
+        destroy_announcement: Eliminar Anuncio
+        destroy_custom_emoji: Eliminar Emoji Personalizado
+        destroy_domain_allow: Eliminar Permiso de Dominio
+        destroy_domain_block: Eliminar Bloqueo de Dominio
+        destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_status: Eliminar Estado
+        disable_2fa_user: Deshabilitar 2FA
+        disable_custom_emoji: Deshabilitar Emoji Personalizado
+        disable_user: Deshabilitar Usuario
+        enable_custom_emoji: Habilitar Emoji Personalizado
+        enable_user: Habilitar Usuario
+        memorialize_account: Transformar en Cuenta Conmemorativa
+        promote_user: Promover Usuario
+        remove_avatar_user: Eliminar Avatar
+        reopen_report: Reabrir Reporte
+        reset_password_user: Restablecer Contraseña
+        resolve_report: Resolver Reporte
+        silence_account: Silenciar Cuenta
+        suspend_account: Suspender Cuenta
+        unassigned_report: Desasignar Reporte
+        unsilence_account: Dejar de Silenciar Cuenta
+        unsuspend_account: Dejar de Suspender Cuenta
+        update_announcement: Actualizar Anuncio
+        update_custom_emoji: Actualizar Emoji Personalizado
+        update_status: Actualizar Estado
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
         change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
@@ -232,6 +268,9 @@ es:
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
+      empty: No se encontraron registros.
+      filter_by_action: Filtrar por acción
+      filter_by_user: Filtrar por usuario
       title: Log de auditoría
     announcements:
       destroyed_msg: "¡Anuncio eliminado con éxito!"
@@ -1077,6 +1116,8 @@ es:
     disallowed_hashtags:
       one: 'contenía un hashtag no permitido: %{tags}'
       other: 'contenía los hashtags no permitidos: %{tags}'
+    errors:
+      in_reply_not_found: El estado al que intentas responder no existe.
     language_detection: Detección automática de idioma
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado

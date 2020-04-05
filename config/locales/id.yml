@@ -88,6 +88,7 @@ id:
       delete: Hapus
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
+      add_email_domain_block: Masukkan domain surel ke daftar hitam
       approve: Terima
       approve_all: Terima semua
       are_you_sure: Anda yakin?
@@ -168,6 +169,7 @@ id:
         staff: Staf
         user: Pengguna
       search: Cari
+      search_same_email_domain: Pengguna lain dengan domain surel yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
       shared_inbox_url: URL kotak masuk bersama
       show:
@@ -353,6 +355,7 @@ id:
       destroyed_msg: Berhasil menghapus domain surel dari daftar hitam
       domain: Domain
       empty: Tidak ada domain surel yang masuk daftar hitam.
+      from_html: dari %{domain}
       new:
         create: Tambah domain
         title: Entri daftar hitam surel baru
@@ -529,6 +532,9 @@ id:
       trends:
         desc_html: Tampilkan secara publik tagar tertinjau yang kini sedang tren
         title: Tagar sedang tren
+    site_uploads:
+      delete: Hapus berkas yang diunggah
+      destroyed_msg: Situs yang diunggah berhasil dihapus!
     statuses:
       back_to_account: Kembali ke halaman akun
       batch:
@@ -839,6 +845,7 @@ id:
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
+      not_ready: Tidak dapat melampirkan berkas yang belum selesai diproses. Coba lagi nanti!
       too_many: Tidak dapat melampirkan lebih dari 4 file
   migrations:
     acct: Pindah ke
@@ -1055,6 +1062,8 @@ id:
     content_warning: 'Peringatan konten: %{warning}'
     disallowed_hashtags:
       other: 'berisi tagar yang tidak diizinkan: %{tags}'
+    errors:
+      in_reply_not_found: Status yang ingin Anda balas sudah tidak ada.
     language_detection: Deteksi bahasa secara otomatis
     open_in_web: Buka di web
     over_character_limit: melebihi %{max} karakter

@@ -17,11 +17,13 @@ fi:
     hosted_on: Mastodon palvelimella %{domain}
     learn_more: Lisätietoja
     privacy_policy: Tietosuojaseloste
+    server_stats: 'Palvelimen tilastot:'
     source_code: Lähdekoodi
     status_count_after:
       one: tila
       other: tilanne
     status_count_before: He ovat luoneet
+    tagline: Seuraa ja löydä uusia kavereita
     terms: Käyttöehdot
     unavailable_content_description:
       domain: Palvelin
@@ -59,6 +61,7 @@ fi:
     roles:
       admin: Ylläpitäjä
       bot: Botti
+      group: Ryhmä
       moderator: Moderaattori
     unavailable: Profiili ei saatavilla
     unfollow: Lopeta seuraaminen
@@ -190,19 +193,27 @@ fi:
         update_custom_emoji: "%{name} päivitti emojin %{target}"
         update_status: "%{name} päivitti käyttäjän %{target} tilan"
       title: Auditointiloki
+    announcements:
+      title: Ilmoitukset
     custom_emojis:
+      assign_category: Aseta kategoria
       by_domain: Verkkotunnus
       copied_msg: Emojin paikallisen kopion luonti onnistui
       copy: Kopioi
       copy_failed_msg: Emojista ei voitu tehdä paikallista kopiota
+      create_new_category: Luo uusi kategoria
       created_msg: Emojin luonti onnistui!
       delete: Poista
       destroyed_msg: Emojon poisto onnistui!
       disable: Poista käytöstä
+      disabled: Ei käytössä
       disabled_msg: Emojin poisto käytöstä onnistui
+      emoji: Emoji
       enable: Ota käyttöön
+      enabled: Käytössä
       enabled_msg: Emojin käyttöönotto onnistui
       image_hint: PNG enintään 50 kt
+      list: Listaa
       listed: Listassa
       new:
         title: Lisää uusi mukautettu emoji
@@ -210,12 +221,20 @@ fi:
       shortcode: Lyhennekoodi
       shortcode_hint: Vähintään kaksi merkkiä, vain kirjaimia, numeroita ja alaviivoja
       title: Mukautetut emojit
+      uncategorized: Luokittelemattomat
+      unlist: Poista listalta
       unlisted: Ei listassa
       update_failed_msg: Emojin päivitys epäonnistui
       updated_msg: Emojin päivitys onnistui!
       upload: Lähetä
     dashboard:
       authorized_fetch_mode: Suojattu tila
+      config: Asetukset
+      feature_deletions: Tilien poistot
+      feature_invites: Kutsulinkit
+      feature_profile_directory: Profiilihakemisto
+      feature_registrations: Rekisteröitymiset
+      title: Hallintapaneeli
     domain_blocks:
       add_new: Lisää uusi
       created_msg: Verkkotunnuksen estoa käsitellään

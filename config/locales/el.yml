@@ -195,6 +195,18 @@ el:
       web: Διαδίκτυο
       whitelisted: Εγκεκριμένοι
     action_logs:
+      action_types:
+        change_email_user: Αλλαγή email για χρήστη
+        destroy_status: Διαγραφή Κατάστασης
+        disable_2fa_user: Απενεργοποίηση 2FA
+        disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
+        disable_user: Απενεργοποίηση Χρήστη
+        enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
+        enable_user: Ενεργοποίηση Χρήστη
+        promote_user: Προαγωγή Χρήστη
+        remove_avatar_user: Αφαίρεση Avatar
+        silence_account: Σίγαση Λογαριασμού
+        update_status: Ενημέρωση Κατάστασης
       actions:
         assigned_to_self_report: Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της
         change_email_user: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
@@ -232,6 +244,9 @@ el:
         update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
         update_status: Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}
       deleted_status: "(διαγραμμένη δημοσίευση)"
+      empty: Δεν βρέθηκαν αρχεία καταγραφής.
+      filter_by_action: Φιλτράρισμα ανά ενέργεια
+      filter_by_user: Φιλτράρισμα ανά χρήστη
       title: Αρχείο ελέγχου
     announcements:
       destroyed_msg: Επιτυχής διαγραφή ανακοίνωσης!
@@ -1077,6 +1092,8 @@ el:
     disallowed_hashtags:
       one: 'περιέχει μη επιτρεπτή ετικέτα: %{tags}'
       other: περιέχει μη επιτρεπτές ετικέτες %{tags}
+    errors:
+      in_reply_not_found: Η κατάσταση στην οποία προσπαθείτε να απαντήσετε δεν υπάρχει.
     language_detection: Αυτόματη αναγνώριση γλώσσας
     open_in_web: Δες στο διαδίκτυο
     over_character_limit: υπέρβαση μέγιστου ορίου %{max} χαρακτήρων

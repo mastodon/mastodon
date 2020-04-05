@@ -195,6 +195,42 @@ ca:
       web: Web
       whitelisted: Llista blanca
     action_logs:
+      action_types:
+        assigned_to_self_report: Assigna l'informe
+        change_email_user: Canvia l'adreça electrònica per l'usuari
+        confirm_user: Confirma l'usuari
+        create_account_warning: Crea un avís
+        create_announcement: Crea un anunci
+        create_custom_emoji: Crea un emoji personalitzat
+        create_domain_allow: Crea un domini permès
+        create_domain_block: Crea un bloqueig de domini
+        create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
+        demote_user: Degrada l'usuari
+        destroy_announcement: Esborra l'anunci
+        destroy_custom_emoji: Esborra l'emoji personalitzat
+        destroy_domain_allow: Esborra el domini permès
+        destroy_domain_block: Esborra el bloqueig de domini
+        destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_status: Esborra el tut
+        disable_2fa_user: Desactiva 2FA
+        disable_custom_emoji: Desactiva l'emoji personalitzat
+        disable_user: Deshabilita l'usuari
+        enable_custom_emoji: Activa l'emoji personalitzat
+        enable_user: Activa l'usuari
+        memorialize_account: Memoritza el compte
+        promote_user: Promou l'usuari
+        remove_avatar_user: Eliminar avatar
+        reopen_report: Reobre l'informe
+        reset_password_user: Restableix la contrasenya
+        resolve_report: Resolt l'informe
+        silence_account: Silencia el compte
+        suspend_account: Suspèn el compte
+        unassigned_report: Des-assigna l'informe
+        unsilence_account: Desfés el silenci del compte
+        unsuspend_account: Desfés la suspensió del compte
+        update_announcement: Actualitza l'anunci
+        update_custom_emoji: Actualitza l'emoji personalitzat
+        update_status: Actualitza l'estat
       actions:
         assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
@@ -232,6 +268,9 @@ ca:
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
         update_status: "%{name} estat actualitzat per %{target}"
       deleted_status: "(tut esborrat)"
+      empty: No s’han trobat registres.
+      filter_by_action: Filtra per acció
+      filter_by_user: Filtra per usuari
       title: Registre d'auditoria
     announcements:
       destroyed_msg: L’anunci s’ha esborrat amb èxit!
@@ -1077,6 +1116,8 @@ ca:
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
       other: 'conté les etiquetes no permeses: %{tags}'
+    errors:
+      in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
     language_detection: Detecta automàticament el llenguatge
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat

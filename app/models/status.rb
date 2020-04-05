@@ -429,7 +429,7 @@ class Status < ApplicationRecord
           if TagManager.instance.local_url?(url)
             ActivityPub::TagManager.instance.uri_to_resource(url, Status)
           else
-            Status.find_by(uri: url) || Status.find_by(url: url)
+            EntityCache.instance.status(url)
           end
         end
         status&.distributable? ? status : nil
