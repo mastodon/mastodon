@@ -16,3 +16,19 @@ update_configs:
     allowed_updates:
       - match:
           update_type: "all"
+
+
+  - package_manager: "ruby:bundler"
+    directory: "/"
+    update_schedule: "live"
+    version_requirement_updates: auto
+    allowed_updates:
+      - match:
+          update_type: "security"
+
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "live"
+    allowed_updates:
+      - match:
+          update_type: "security"
