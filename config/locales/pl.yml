@@ -905,6 +905,8 @@ pl:
     cancel: Anuluj przekierowanie
     cancelled_msg: Pomyślnie anulowano przekierowanie.
     errors:
+      already_moved: jest tym samym kontem, na które już się przeniosłeś(-aś)
+      missing_also_known_as: nie odwołuje się do tego konta
       move_to_self: nie może być bieżącym kontem
       not_found: nie mogło zostać odnalezione
     followers_count: Śledzący w chwili przenoszenia
@@ -914,6 +916,7 @@ pl:
     redirecting_to: Twoje konto przekierowuje na %{acct}.
     set_redirect: Ustaw przekierowanie
     warning:
+      before: 'Zanim kontynuujesz, przeczytaj uważnie te uwagi:'
       other_data: Żadne inne dane nie zostaną automatycznie przeniesione
   moderation:
     title: Moderacja
