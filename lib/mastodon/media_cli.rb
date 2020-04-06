@@ -276,7 +276,7 @@ module Mastodon
       preload_map = Hash.new { |hash, key| hash[key] = [] }
 
       objects.map do |object|
-        segments   = object.key.split('/').first
+        segments   = object.key.split('/')
         model_name = segments.first.classify
         record_id  = segments[2..-2].join.to_i
 
