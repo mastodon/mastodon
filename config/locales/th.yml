@@ -113,12 +113,12 @@ th:
       joined: เข้าร่วมเมื่อ
       location:
         all: ทั้งหมด
-        local: ในเว็บ
+        local: ในเซิร์ฟเวอร์
         remote: ระยะไกล
         title: ตำแหน่งที่ตั้ง
       login_status: สถานะการเข้าสู่ระบบ
       media_attachments: ไฟล์แนบสื่อ
-      memorialize: เปลี่ยนเป็นระลึกถึง
+      memorialize: เปลี่ยนเป็นอนุสรณ์
       moderation:
         active: ใช้งานอยู่
         all: ทั้งหมด
@@ -159,7 +159,7 @@ th:
       show:
         created_reports: รายงานที่สร้าง
         targeted_reports: รายงานโดยผู้อื่น
-      silence: เงียบ
+      silence: ทำให้เงียบ
       silenced: เงียบอยู่
       statuses: สถานะ
       subscribe: บอกรับ
@@ -167,7 +167,7 @@ th:
       time_in_queue: กำลังรออยู่ในคิว %{time}
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
-      undo_silenced: เลิกทำการเงียบ
+      undo_silenced: เลิกทำการทำให้เงียบ
       undo_suspension: เลิกทำการระงับ
       unsubscribe: เลิกบอกรับ
       username: ชื่อผู้ใช้
@@ -175,6 +175,42 @@ th:
       web: เว็บ
       whitelisted: ขึ้นบัญชีขาวแล้ว
     action_logs:
+      action_types:
+        assigned_to_self_report: มอบหมายรายงาน
+        change_email_user: เปลี่ยนอีเมลสำหรับผู้ใช้
+        confirm_user: ยืนยันผู้ใช้
+        create_account_warning: สร้างคำเตือน
+        create_announcement: สร้างประกาศ
+        create_custom_emoji: สร้างอีโมจิที่กำหนดเอง
+        create_domain_allow: สร้างการอนุญาตโดเมน
+        create_domain_block: สร้างการปิดกั้นโดเมน
+        create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
+        demote_user: ลดขั้นผู้ใช้
+        destroy_announcement: ลบประกาศ
+        destroy_custom_emoji: ลบอีโมจิที่กำหนดเอง
+        destroy_domain_allow: ลบการอนุญาตโดเมน
+        destroy_domain_block: ลบการปิดกั้นโดเมน
+        destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
+        destroy_status: ลบสถานะ
+        disable_2fa_user: ปิดใช้งาน 2FA
+        disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
+        disable_user: ปิดใช้งานผู้ใช้
+        enable_custom_emoji: เปิดใช้งานอีโมจิที่กำหนดเอง
+        enable_user: เปิดใช้งานผู้ใช้
+        memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
+        promote_user: เลื่อนขั้นผู้ใช้
+        remove_avatar_user: เอาภาพประจำตัวออก
+        reopen_report: เปิดรายงานใหม่
+        reset_password_user: ตั้งรหัสผ่านใหม่
+        resolve_report: แก้ปัญหารายงาน
+        silence_account: ทำให้บัญชีเงียบ
+        suspend_account: ระงับบัญชี
+        unassigned_report: เลิกมอบหมายรายงาน
+        unsilence_account: เลิกทำให้บัญชีเงียบ
+        unsuspend_account: เลิกระงับบัญชี
+        update_announcement: อัปเดตประกาศ
+        update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
+        update_status: อัปเดตสถานะ
       actions:
         change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
         confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
@@ -196,17 +232,23 @@ th:
         disable_user: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
         enable_user: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
+        memorialize_account: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
         promote_user: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
         remove_avatar_user: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report: "%{name} ได้เปิดรายงาน %{target} ใหม่"
         resolve_report: "%{name} ได้แก้ปัญหารายงาน %{target}"
+        silence_account: "%{name} ได้ทำให้บัญชีของ %{target} เงียบ"
         suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
         unassigned_report: "%{name} ได้เลิกมอบหมายรายงาน %{target}"
+        unsilence_account: "%{name} ได้เลิกทำให้บัญชีของ %{target} เงียบ"
         unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_announcement: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
+      empty: ไม่พบรายการบันทึก
+      filter_by_action: กรองตามการกระทำ
+      filter_by_user: กรองตามผู้ใช้
       title: รายการบันทึกการตรวจสอบ
     announcements:
       destroyed_msg: ลบประกาศสำเร็จ!
@@ -259,6 +301,7 @@ th:
       feature_invites: ลิงก์เชิญ
       feature_profile_directory: ไดเรกทอรีโปรไฟล์
       feature_registrations: การลงทะเบียน
+      feature_relay: รีเลย์การติดต่อกับภายนอก
       feature_spam_check: การป้องกันสแปม
       feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
@@ -292,15 +335,15 @@ th:
         create: สร้างการปิดกั้น
         hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมเฉพาะกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
         severity:
-          desc_html: "<strong>เงียบ</strong> จะทำให้โพสต์ของบัญชีไม่ปรากฏแก่ใครก็ตามที่ไม่ได้กำลังติดตามบัญชี <strong>ระงับ</strong> จะเอาเนื้อหา, สื่อ และข้อมูลโปรไฟล์ทั้งหมดของบัญชีออก ใช้ <strong>ไม่มี</strong> หากคุณเพียงแค่ต้องการปฏิเสธไฟล์สื่อ"
+          desc_html: "<strong>ทำให้เงียบ</strong> จะทำให้โพสต์ของบัญชีไม่ปรากฏแก่ใครก็ตามที่ไม่ได้กำลังติดตามบัญชี <strong>ระงับ</strong> จะเอาเนื้อหา, สื่อ และข้อมูลโปรไฟล์ทั้งหมดของบัญชีออก ใช้ <strong>ไม่มี</strong> หากคุณเพียงแค่ต้องการปฏิเสธไฟล์สื่อ"
           noop: ไม่มี
-          silence: เงียบ
+          silence: ทำให้เงียบ
           suspend: ระงับ
         title: การปิดกั้นโดเมนใหม่
       private_comment: ความคิดเห็นส่วนตัว
       public_comment: ความคิดเห็นสาธารณะ
       reject_media: ปฏิเสธไฟล์สื่อ
-      reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเว็บออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
+      reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเซิร์ฟเวอร์ออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
       severity:
         silence: เงียบอยู่
@@ -309,7 +352,7 @@ th:
         affected_accounts:
           other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
         retroactive:
-          silence: เลิกเงียบบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
+          silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
         title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
         undo: เลิกทำ
@@ -409,7 +452,7 @@ th:
         all: ให้กับทุกคน
         disabled: ให้กับไม่มีใคร
         title: แสดงการปิดกั้นโดเมน
-        users: ให้กับผู้ใช้ในเว็บที่เข้าสู่ระบบ
+        users: ให้กับผู้ใช้ในเซิร์ฟเวอร์ที่เข้าสู่ระบบ
       domain_blocks_rationale:
         title: แสดงคำชี้แจงเหตุผล
       enable_bootstrap_timeline_accounts:

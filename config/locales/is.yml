@@ -134,7 +134,7 @@ is:
         title: Staðsetning
       login_status: Staða innskráningar
       media_attachments: Myndaviðhengi
-      memorialize: Breya í minningargrein
+      memorialize: Breyta í minningargrein
       moderation:
         active: Virkur
         all: Allt
@@ -195,6 +195,42 @@ is:
       web: Vefur
       whitelisted: Á lista yfir leyft
     action_logs:
+      action_types:
+        assigned_to_self_report: Úthluta kæru
+        change_email_user: Skipta um tölvupóstfang notanda
+        confirm_user: Staðfesta notanda
+        create_account_warning: Útbúa aðvörun
+        create_announcement: Búa til tilkynningu
+        create_custom_emoji: Búa til sérsniðið tjáningartákn
+        create_domain_allow: Búa til lén leyft
+        create_domain_block: Búa til lén bannað
+        create_email_domain_block: Búa til tölvupóstfang bannað
+        demote_user: Lækka notanda í tign
+        destroy_announcement: Eyða tilkynningu
+        destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
+        destroy_domain_allow: Eyða léni leyft
+        destroy_domain_block: Eyða léni bannað
+        destroy_email_domain_block: Eyða tölvupóstfangi bannað
+        destroy_status: Eyða stöðufærslu
+        disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
+        disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
+        disable_user: Gera notanda óvirkan
+        enable_custom_emoji: Virkja sérsniðið tjáningartákn
+        enable_user: Virkja notanda
+        memorialize_account: Gera aðgang að minningargrein
+        promote_user: Hækka notanda í tign
+        remove_avatar_user: Fjarlægja auðkennismynd
+        reopen_report: Enduropna kæru
+        reset_password_user: Endurstilla lykilorð
+        resolve_report: Leysa kæru
+        silence_account: Hylja notandaaðgang
+        suspend_account: Setja notandaaðgang í bið
+        unassigned_report: Aftengja úthlutun kæru
+        unsilence_account: Hætta að hylja notandaaðgang
+        unsuspend_account: Taka notandaaðgang úr bið
+        update_announcement: Uppfæra tilkynningu
+        update_custom_emoji: Uppfæra sérsniðið tjáningartákn
+        update_status: Uppfæra stöðufærslu
       actions:
         assigned_to_self_report: "%{name} úthlutaði skýrslu %{target} til sín"
         change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
@@ -232,6 +268,9 @@ is:
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
+      empty: Engar atvikaskrár fundust.
+      filter_by_action: Sía eftir aðgerð
+      filter_by_user: Sía eftir notanda
       title: Atvikaskrá
     announcements:
       destroyed_msg: Það tókst að eyða auglýsingunni!
@@ -1077,6 +1116,8 @@ is:
     disallowed_hashtags:
       one: 'innihélt óleyfilegt myllumerki: %{tags}'
       other: 'innihélt óleyfilegu myllumerkin: %{tags}'
+    errors:
+      in_reply_not_found: Stöðufærslan sem þú ert að reyna að svara að er líklega ekki til.
     language_detection: Greina tungumál sjálfvirkt
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð

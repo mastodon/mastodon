@@ -14,9 +14,9 @@ class RateLimiter
       period: 3.hours.freeze,
     }.freeze,
 
-    media: {
-      limit: 30,
-      period: 30.minutes.freeze,
+    reports: {
+      limit: 400,
+      period: 24.hours.freeze,
     }.freeze,
   }.freeze
 

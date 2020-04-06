@@ -204,6 +204,34 @@ ar:
       web: الويب
       whitelisted: في القائمة البيضاء
     action_logs:
+      action_types:
+        assigned_to_self_report: أسند التقرير
+        change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
+        confirm_user: تأكيد المستخدم
+        create_account_warning: إنشاء تحذير
+        create_announcement: إنشاء إعلان
+        create_custom_emoji: إنشاء إيموجي مخصص
+        destroy_announcement: احذف الإعلان
+        destroy_custom_emoji: احذف الإيموجي المخصص
+        disable_2fa_user: تعطيل 2FA
+        disable_custom_emoji: تعطيل الإيموجي المخصص
+        disable_user: تعطيل المستخدم
+        enable_custom_emoji: تفعيل الإيموجي المخصص
+        enable_user: تفعيل المستخدم
+        memorialize_account: جعل الحساب تذكاريا
+        promote_user: ترقية المستخدم
+        remove_avatar_user: احذف الصورة الرمزية
+        reopen_report: إعادة فتح التقرير
+        reset_password_user: إعادة تعيين كلمة المرور
+        resolve_report: حل الشكوى
+        silence_account: كتم الحساب
+        suspend_account: تعليق الحساب
+        unassigned_report: إلغاء إسناد الشكوى
+        unsilence_account: إلغاء كتم الحساب
+        unsuspend_account: إلغاء تعليق الحساب
+        update_announcement: تحديث الإعلان
+        update_custom_emoji: تحديث الإيموجي المخصص
+        update_status: تحديث الحالة
       actions:
         assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
         change_email_user: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
@@ -241,6 +269,9 @@ ar:
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
         update_status: لقد قام %{name} بتحديث منشور %{target}
       deleted_status: "(منشور محذوف)"
+      empty: لم يتم العثور على سجلات.
+      filter_by_action: تصفية بحسب الإجراء
+      filter_by_user: تصفية حسب المستخدم
       title: سِجلّ التفتيش و المعاينة
     announcements:
       destroyed_msg: تم حذف الإعلان بنجاح!
@@ -366,6 +397,7 @@ ar:
       destroyed_msg: تم حذف نطاق البريد الإلكتروني من اللائحة السوداء بنجاح
       domain: النطاق
       empty: ليس هناك أية نطاقات للبريد الإلكتروني مُدرَجة في القائمة السوداء.
+      from_html: مِن %{domain}
       new:
         create: إضافة نطاق
         title: إضافة نطاق بريد جديد إلى اللائحة السوداء

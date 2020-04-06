@@ -203,6 +203,39 @@ ru:
       web: Веб
       whitelisted: В белом списке
     action_logs:
+      action_types:
+        assigned_to_self_report: Присвоение жалоб
+        change_email_user: Изменение e-mail пользователей
+        confirm_user: Подтверждение пользователей
+        create_account_warning: Выдача предупреждения
+        create_announcement: Создание объявлений
+        create_custom_emoji: Добавление эмодзи
+        create_domain_block: Блокировка доменов
+        create_email_domain_block: Блокировка e-mail доменов
+        demote_user: Разжалование пользователей
+        destroy_announcement: Удаление объявлений
+        destroy_custom_emoji: Удаление эмодзи
+        destroy_domain_block: Разблокировка доменов
+        destroy_email_domain_block: Разблокировка e-mail доменов
+        destroy_status: Удаление постов
+        disable_2fa_user: Отключение 2FA
+        disable_custom_emoji: Отключение эмодзи
+        disable_user: Заморозка пользователей
+        enable_custom_emoji: Включение эмодзи
+        enable_user: Разморозка пользователей
+        promote_user: Повышение пользователей
+        remove_avatar_user: Удаление аватаров
+        reopen_report: Возобновление жалоб
+        reset_password_user: Сброс пароля пользователей
+        resolve_report: Отметка жалоб «решёнными»
+        silence_account: Скрытие пользователей
+        suspend_account: Блокировка пользователей
+        unassigned_report: Снятие жалоб
+        unsilence_account: Отмена скрытия пользователей
+        unsuspend_account: Разблокировка пользователей
+        update_announcement: Обновление объявлений
+        update_custom_emoji: Обновление эмодзи
+        update_status: Изменение постов
       actions:
         assigned_to_self_report: "%{name} назначил(а) себя для решения жалобы %{target}"
         change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
@@ -240,6 +273,9 @@ ru:
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
         update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
+      empty: Журнал пуст.
+      filter_by_action: Фильтр по действию
+      filter_by_user: Фильтр по пользователю
       title: Журнал событий
     announcements:
       destroyed_msg: Объявление удалено.
@@ -683,7 +719,7 @@ ru:
       confirming: Ожидание подтверждения e-mail.
       functional: Ваша учётная запись в полном порядке.
       pending: Ваша заявка ожидает одобрения администраторами, это может занять немного времени. Вы получите письмо, как только заявку одобрят.
-      redirecting_to: Ваша учётная запись признана неактивным, потому что она перенаправляется на %{acct}.
+      redirecting_to: Ваша учётная запись деактивированна, потому что вы настроили перенаправление на %{acct}.
     trouble_logging_in: Не удаётся войти?
   authorize_follow:
     already_following: Вы уже подписаны на эту учётную запись
@@ -691,7 +727,7 @@ ru:
     error: К сожалению, при поиске удалённой учётной записи возникла ошибка
     follow: Подписаться
     follow_request: 'Вы отправили запрос на подписку:'
-    following: 'Ура! Теперь Вы подписаны на:'
+    following: 'Готово! Вы подписались на:'
     post_follow:
       close: Или просто закройте это окно.
       return: Вернуться к профилю пользователя
@@ -1112,6 +1148,8 @@ ru:
       many: 'содержались запрещённые хэштеги: %{tags}'
       one: 'содержался запрещённый хэштег: %{tags}'
       other: 'содержались запрещённые хэштеги: %{tags}'
+    errors:
+      in_reply_not_found: Пост, на который вы пытаетесь ответить, не существует или удалён.
     language_detection: Определять язык автоматически
     open_in_web: Открыть в веб-версии
     over_character_limit: превышен лимит символов (%{max})

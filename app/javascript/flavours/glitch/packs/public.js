@@ -97,6 +97,28 @@ function main() {
 
     delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
     delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
+
+    delegate(document, '.status__content__spoiler-link', 'click', function() {
+      const contentEl = this.parentNode.parentNode.querySelector('.e-content');
+
+      if (contentEl.style.display === 'block') {
+        contentEl.style.display = 'none';
+        this.parentNode.style.marginBottom = 0;
+        this.textContent = (new IntlMessageFormat(messages['status.show_more'] || 'Show more', locale)).format();
+      } else {
+        contentEl.style.display = 'block';
+        this.parentNode.style.marginBottom = null;
+        this.textContent = (new IntlMessageFormat(messages['status.show_less'] || 'Show less', locale)).format();
+      }
+
+      return false;
+    });
+
+    [].forEach.call(document.querySelectorAll('.status__content__spoiler-link'), (spoilerLink) => {
+      const contentEl = spoilerLink.parentNode.parentNode.querySelector('.e-content');
+      const message = (contentEl.style.display === 'block') ? (messages['status.show_less'] || 'Show less') : (messages['status.show_more'] || 'Show more');
+      spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
+    });
   });
 
   delegate(document, '.sidebar__toggle__icon', 'click', () => {
