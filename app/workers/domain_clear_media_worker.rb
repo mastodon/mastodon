@@ -6,8 +6,9 @@ class DomainClearMediaWorker
   sidekiq_options queue: 'pull'
 
   def perform(domain_block_id)
-    ClearDomainMediaService.new.call(DomainBlock.find(domain_block_id))
-  rescue ActiveRecord::RecordNotFound
-    true
+    domain_block = DomainBlock.find_by(id: domain_block_id)
+    return true if domain_block.nil?
+
+    ClearDomainMediaService.new.call(domain_block)
   end
 end
