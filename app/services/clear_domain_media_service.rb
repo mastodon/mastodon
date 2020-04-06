@@ -21,17 +21,19 @@ class ClearDomainMediaService < BaseService
   def clear_media!
     @affected_status_ids = []
 
-    clear_account_images!
-    clear_account_attachments!
-    clear_emojos!
-
-    invalidate_association_caches!
+    begin
+      clear_account_images!
+      clear_account_attachments!
+      clear_emojos!
+    ensure
+      invalidate_association_caches!
+    end
   end
 
   def clear_account_images!
     blocked_domain_accounts.reorder(nil).find_each do |account|
-      account.avatar.destroy if account.avatar.exists?
-      account.header.destroy if account.header.exists?
+      account.avatar.destroy if account.avatar&.exists?
+      account.header.destroy if account.header&.exists?
       account.save
     end
   end
@@ -40,7 +42,7 @@ class ClearDomainMediaService < BaseService
     media_from_blocked_domain.reorder(nil).find_each do |attachment|
       @affected_status_ids << attachment.status_id if attachment.status_id.present?
 
-      attachment.file.destroy if attachment.file.exists?
+      attachment.file.destroy if attachment.file&.exists?
       attachment.type = :unknown
       attachment.save
     end
