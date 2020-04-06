@@ -195,16 +195,40 @@ el:
       whitelisted: Εγκεκριμένοι
     action_logs:
       action_types:
+        assigned_to_self_report: Ανάθεση Αναφοράς
         change_email_user: Αλλαγή email για χρήστη
+        confirm_user: Επιβεβαίωση Χρήστη
+        create_account_warning: Δημιουργία Προειδοποίησης
+        create_announcement: Δημιουργία Ανακοίνωσης
+        create_custom_emoji: Δημιουργία Προσαρμοσμένου Emoji
+        create_domain_allow: Δημιουργία Επιτρεπτού Τομέα
+        create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
+        create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
+        demote_user: Υποβιβασμός Χρήστη
+        destroy_announcement: Διαγραφή Ανακοίνωσης
+        destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
+        destroy_domain_allow: Διαγραφή Επιτρεπτού Τομέα
+        destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
+        destroy_email_domain_block: Διαγραφή Αποκλεισμένου Τομέα email
         destroy_status: Διαγραφή Κατάστασης
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
         disable_user: Απενεργοποίηση Χρήστη
         enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
         enable_user: Ενεργοποίηση Χρήστη
+        memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
         promote_user: Προαγωγή Χρήστη
         remove_avatar_user: Αφαίρεση Avatar
+        reopen_report: Ξανάνοιγμα Καταγγελίας
+        reset_password_user: Επαναφορά Συνθηματικού
+        resolve_report: Επίλυση Καταγγελίας
         silence_account: Σίγαση Λογαριασμού
+        suspend_account: Αναστολή Λογαριασμού
+        unassigned_report: Αποδέσμευση Καταγγελίας
+        unsilence_account: Άρση Σίγασης Λογαριασμού
+        unsuspend_account: Άρση Αναστολής Λογαριασμού
+        update_announcement: Ενημέρωση Ανακοίνωσης
+        update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
         update_status: Ενημέρωση Κατάστασης
       actions:
         assigned_to_self_report: "Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της"
