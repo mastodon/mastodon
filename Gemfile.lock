@@ -408,7 +408,7 @@ GEM
     parallel (1.19.1)
     parallel_tests (2.32.0)
       parallel
-    parser (2.7.0.5)
+    parser (2.7.1.0)
       ast (~> 2.4.0)
     parslet (1.8.2)
     pastel (0.7.3)
@@ -549,7 +549,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-rails (2.4.2)
+    rubocop-rails (2.5.1)
+      activesupport
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
@@ -764,7 +765,7 @@ DEPENDENCIES
   rspec-rails (~> 4.0)
   rspec-sidekiq (~> 3.0)
   rubocop (~> 0.79)
-  rubocop-rails (~> 2.4)
+  rubocop-rails (~> 2.5)
   ruby-progressbar (~> 1.10)
   sanitize (~> 5.1)
   sidekiq (~> 6.0)
