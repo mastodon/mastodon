@@ -164,6 +164,22 @@ ta:
       warn: எச்சரி
       whitelisted: அனுமதிப்பட்டியல்
     action_logs:
+      action_types:
+        change_email_user: பயனரின் மின்னஞ்சலை மாற்று
+        confirm_user: பயனரை உறுதி செய்
+        create_account_warning: எச்சரிக்கையை உருவாக்கு
+        create_announcement: அறிவிப்பை உருவாக்கு
+        create_custom_emoji: தனிப்பயனான ஈமோஜியை உருவாக்கு
+        create_domain_allow: கள அனுமதியை உருவாக்கு
+        create_domain_block: களத் தடுப்பை உருவாக்கு
+        create_email_domain_block: மின்னஞ்சல் களத் தடுப்பை உருவாக்கு
+        demote_user: பயனரைப் படியிறக்கு
+        destroy_announcement: அறிவிப்பை நீக்கு
+        destroy_custom_emoji: தனிப்பயனான ஈமோஜியை நீக்கு
+        destroy_domain_allow: கள அனுமதியை நீக்கு
+        destroy_domain_block: கள முடக்கத்தை நீக்கு
+        destroy_email_domain_block: மின்னஞ்சல் கள முடக்கத்தை நீக்கு
+        destroy_status: பதிவை நீக்கு
       actions:
         create_announcement: "%{name} %{target} என்றொரு புதிய அறிவிப்பை உருவாக்கியிருக்கிறார்"
         destroy_announcement: "%{name} %{target} அறிவிப்பை நீக்கிவிட்டார்"
