@@ -171,12 +171,12 @@
             %th= t('admin.accounts.inbox_url')
             %td
               = @account.inbox_url
-              = fa_icon DeliveryFailureTracker.unavailable?(@account.inbox_url) ? 'times' : 'check'
+              = fa_icon DeliveryFailureTracker.available?(@account.inbox_url) ? 'check' : 'times'
           %tr
             %th= t('admin.accounts.shared_inbox_url')
             %td
               = @account.shared_inbox_url
-              = fa_icon DeliveryFailureTracker.unavailable?(@account.shared_inbox_url) ? 'times' : 'check'
+              = fa_icon DeliveryFailureTracker.available?(@account.shared_inbox_url) ? 'check': 'times'
 
   %div{ style: 'overflow: hidden' }
     %div{ style: 'float: right' }
