@@ -2,6 +2,8 @@
 
 module WellKnown
   class WebfingerController < ActionController::Base
+    protect_from_forgery with: :exception
+    
     include RoutingHelper
 
     before_action { response.headers['Vary'] = 'Accept' }
