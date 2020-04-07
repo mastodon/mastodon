@@ -204,7 +204,7 @@ pt-BR:
         create_domain_allow: Adicionar domínio permitido
         create_domain_block: Adicionar domínio bloqueado
         create_email_domain_block: Adicionar domínio de e-mail bloqueado
-        demote_user: Despromover Utilizador
+        demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir domínio permitido
@@ -225,8 +225,8 @@ pt-BR:
         silence_account: Silenciar conta
         suspend_account: Suspender Conta
         unassigned_report: Remover relatório
-        unsilence_account: Deixar de Silenciar Conta
-        unsuspend_account: Retirar Suspensão à Conta
+        unsilence_account: Desfazer silenciar conta
+        unsuspend_account: Remover suspensão de conta
         update_announcement: Editar anúncio
         update_custom_emoji: Editar Emoji Personalizado
         update_status: Editar Status
@@ -262,7 +262,7 @@ pt-BR:
         suspend_account: "%{name} baniu a conta de %{target}"
         unassigned_report: "%{name} largou a denúncia %{target}"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
-        unsuspend_account: "%{name} desbaniu %{target}"
+        unsuspend_account: "%{name} removeu a suspensão da conta de %{target}"
         update_announcement: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o status de %{target}"
@@ -386,7 +386,7 @@ pt-BR:
           other: "%{count} contas no banco de dados foram afetadas"
         retroactive:
           silence: Desativar silêncio de todas as contas desse domínio
-          suspend: Desbanir todas as contas deste domínio
+          suspend: Remover a suspensão de todas as contas deste domínio
         title: Desbloquear domínio %{domain}
         undo: Desfazer
       undo: Desbloquear domínio
