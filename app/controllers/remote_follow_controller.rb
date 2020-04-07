@@ -18,7 +18,7 @@ class RemoteFollowController < ApplicationController
 
     if @remote_follow.valid?
       session[:remote_follow] = @remote_follow.acct
-      redirect_to @remote_follow.subscribe_address_for(@account)
+      redirect_to @remote_follow.subscribe_address_for(@account).path
     else
       render :new
     end
