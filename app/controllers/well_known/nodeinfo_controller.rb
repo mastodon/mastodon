@@ -2,6 +2,8 @@
 
 module WellKnown
   class NodeInfoController < ActionController::Base
+    protect_from_forgery with: :exception
+    
     include CacheConcern
 
     before_action { response.headers['Vary'] = 'Accept' }
