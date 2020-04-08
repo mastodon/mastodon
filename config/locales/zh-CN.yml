@@ -215,6 +215,14 @@ zh-CN:
         remove_avatar_user: 移除头像
         reopen_report: 重开举报
         reset_password_user: 重置密码
+        resolve_report: 处理举报
+        silence_account: 隐藏用户
+        suspend_account: 封禁用户
+        unsilence_account: 解除账号隐藏
+        unsuspend_account: 解除账号封禁
+        update_announcement: 更新公告
+        update_custom_emoji: 更新自定义表情符号
+        update_status: 更新嘟文
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
         change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
@@ -252,6 +260,9 @@ zh-CN:
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
       deleted_status: "（嘟文已删除）"
+      empty: 没有找到日志
+      filter_by_action: 根据行为过滤
+      filter_by_user: 根据用户过滤
       title: 运营日志
     announcements:
       destroyed_msg: 公告已删除！
@@ -308,7 +319,7 @@ zh-CN:
       feature_invites: 邀请链接
       feature_profile_directory: 用户目录
       feature_registrations: 公开注册
-      feature_relay: 中继服务器
+      feature_relay: 联邦中继站
       feature_spam_check: 反垃圾
       feature_timeline_preview: 时间轴预览
       features: 功能
@@ -414,21 +425,21 @@ zh-CN:
     relationships:
       title: "%{acct} 的关系"
     relays:
-      add_new: 订阅新的中继
+      add_new: 订阅新的中继站
       delete: 删除
       description_html: <strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来交换大量公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。
       disable: 禁用
       disabled: 已禁用
       enable: 启用
-      enable_hint: 启用此功能后，你的实例会订阅此中继的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
+      enable_hint: 启用此功能后，你的实例会订阅此中继站的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
       enabled: 已启用
-      inbox_url: 中继 URL
-      pending: 等待中继确认
+      inbox_url: 中继站 URL
+      pending: 等待中继站的确认
       save_and_enable: 保存并启用
       setup: 设置中继连接
       signatures_not_enabled: 安全模式或白名单模式启用时，中继将不会正常工作
       status: 状态
-      title: 中继
+      title: 中继站
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
