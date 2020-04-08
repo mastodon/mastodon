@@ -128,6 +128,16 @@
 
 .embed,
 .public-layout {
+  .status__content[data-spoiler=folded] {
+    .e-content {
+      display: none;
+    }
+
+    p:first-child {
+      margin-bottom: 0;
+    }
+  }
+
   .detailed-status {
     padding: 15px;
   }
