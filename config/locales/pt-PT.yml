@@ -10,23 +10,23 @@ pt-PT:
     apps: Aplicações móveis
     apps_platforms: Usar o Mastodon a partir do iOS, Android e outras plataformas
     browse_directory: Navegue pelo directório de perfis e filtre por interesses
-    browse_local_posts: Visualize as publicações públicas deste servidor em tempo real
+    browse_local_posts: Visualize as publicações públicas desta instância em tempo real
     browse_public_posts: Visualize as publicações públicas do Mastodon em tempo real
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
     discover_users: Descobrir utilizadores
     documentation: Documentação
-    federation_hint_html: Ter uma conta em %{instance} permitirá seguir pessoas em qualquer servidor Mastodon.
+    federation_hint_html: Ter uma conta em %{instance} permitirá seguir pessoas em qualquer instância Mastodon.
     get_apps: Experimente uma aplicação
     hosted_on: Mastodon em %{domain}
     instance_actor_flash: |
-      Esta conta é um actor virtual usado para representar o próprio servidor e não um utilizador individual.
+      Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual.
       É usada para motivos de federação e não deve ser bloqueada a não ser que que queira bloquear a instância por completo. Se for esse o caso, deverá usar o bloqueio de domínio.
     learn_more: Saber mais
     privacy_policy: Política de privacidade
     see_whats_happening: Veja o que está a acontecer
-    server_stats: 'Estatísticas do servidor:'
+    server_stats: 'Estatísticas da instância:'
     source_code: Código fonte
     status_count_after:
       one: publicação
@@ -36,11 +36,11 @@ pt-PT:
     terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
-      domain: Servidor
+      domain: Instância
       reason: Motivo
-      rejecting_media: 'Arquivos de média destes servidores não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
-      silenced: 'Publicações destes servidores serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus utilizadores, a menos que você os esteja a seguir:'
-      suspended: 'Nenhum dado desses servidores será processado, armazenado ou trocado, tornando qualquer interação ou comunicação com os utilizadores desses servidores impossível:'
+      rejecting_media: 'Arquivos de média destas instâncias não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
+      silenced: 'Publicações destas instâncias serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus utilizadores, a menos que você os esteja a seguir:'
+      suspended: 'Nenhum dado dessas instâncias será processado, armazenado ou trocado, tornando qualquer interação ou comunicação com os utilizadores dessas instâncias impossível:'
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com utilizadores de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
     user_count_after:
       one: utilizador
@@ -436,11 +436,11 @@ pt-PT:
     relays:
       add_new: Adicionar novo repetidor
       delete: Apagar
-      description_html: Um <strong>repetidor da federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre servidores que o subscrevem e publicam. <strong>Ele pode ajudar pequenos e médios servidores a descobrir conteúdo do "fediverse"</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em servidores remotos.
+      description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre instâncias que o subscrevem e publicam. <strong>Ele pode ajudar pequenas e médias instâncias a descobrir conteúdo do fediverso</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em instâncias remotas.
       disable: Desactivar
       disabled: Desactivado
       enable: Activar
-      enable_hint: Uma vez activado, o teu servidor irá subscrever a todas as publicações deste repetidor e irá começar a enviar as suas publicações públicas para ele.
+      enable_hint: Uma vez ativado, a tua instância irá subscrever a todas as publicações deste repetidor e irá começar a enviar as suas publicações públicas para ele.
       enabled: Ativado
       inbox_url: URL do repetidor
       pending: À espera da aprovação do repetidor
@@ -513,7 +513,7 @@ pt-PT:
       enable_bootstrap_timeline_accounts:
         title: Habilitar seguidores predefinidos para novos utilizadores
       hero:
-        desc_html: Apresentado na primeira página. Pelo menos 600x100px recomendados. Quando não é definido, é apresentado o thumbnail do servidor
+        desc_html: Apresentado na primeira página. Pelo menos 600x100px recomendados. Quando não é definido, é apresentada a miniatura da instância
         title: Imagem Hero
       mascot:
         desc_html: Apresentada em múltiplas páginas. Pelo menos 293x205px recomendados. Quando não é definida, é apresentada a mascote predefinida
@@ -556,8 +556,8 @@ pt-PT:
         desc_html: Mostrar na página de mais informações<br/>Podes usar tags HTML
         title: Página de mais informações
       site_short_description:
-        desc_html: Mostrada na barra lateral e em etiquetas de metadados. Descreve o que o Mastodon é e o que torna este servidor especial num único parágrafo. Se deixada em branco, remete para a descrição do servidor.
-        title: Breve descrição do servidor
+        desc_html: Mostrada na barra lateral e em etiquetas de metadados. Descreve o que o Mastodon é e o que torna esta instância especial num único parágrafo. Se deixada em branco, remete para a descrição da instância.
+        title: Breve descrição da instância
       site_terms:
         desc_html: Podes escrever a sua própria política de privacidade, termos de serviço, entre outras coisas. Pode utilizar etiquetas HTML
         title: Termos de serviço personalizados
@@ -671,9 +671,9 @@ pt-PT:
     delete_account: Eliminar conta
     delete_account_html: Se desejas eliminar a conta, podes <a href="%{path}">continua aqui</a>. Uma confirmação será pedida.
     description:
-      prefix_invited_by_user: "@%{name} convidou-o a juntar-se a este servidor do Mastodon!"
+      prefix_invited_by_user: "@%{name} convidou-o a juntar-se a esta instância do Mastodon!"
       prefix_sign_up: Inscreva-se hoje no Mastodon!
-      suffix: Com uma conta, poderá seguir pessoas, publicar atualizações e trocar mensagens com utilizadores de qualquer servidor Mastodon e muito mais!
+      suffix: Com uma conta, poderá seguir pessoas, publicar atualizações e trocar mensagens com utilizadores de qualquer instância Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu o email de confirmação?
     forgot_password: Esqueceste a palavra-passe?
     invalid_reset_password_token: Token de modificação da palavra-passe é inválido ou expirou. Por favor, solicita um novo.
@@ -744,7 +744,7 @@ pt-PT:
     success_msg: A tua conta foi eliminada com sucesso
     warning:
       before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
-      caches: O conteúdo que foi armazenado em cache por outros servidores pode persistir
+      caches: O conteúdo que foi armazenado em cache por outras instâncias pode persistir
       data_removal: As suas publicações e outros dados serão removidos permanentemente
       email_change_html: Pode <a href="%{path}">alterar o seu endereço de e-mail</a> sem eliminar a sua conta
       email_contact_html: Se ainda não chegou, pode enviar um e-mail a <a href="mailto:%{email}">%{email}</a> para obter ajuda
@@ -1022,7 +1022,7 @@ pt-PT:
     no_account_html: Não tens uma conta? Tu podes <a href='%{sign_up_path}' target='_blank'> aderir aqui</a>
     proceed: Prossiga para seguir
     prompt: 'Você vai seguir:'
-    reason_html: "<strong> Porque é que este passo é necessário?</strong> <code>%{instance}</code> pode não ser o servidor onde tu estás registado. Por isso, nós precisamos de te redirecionar para o teu servidor inicial em primeiro lugar."
+    reason_html: "<strong> Porque é que este passo é necessário?</strong> <code>%{instance}</code> pode não ser a instância onde você está registado. Por isso, nós precisamos de o redirecionar para a sua instância de origem em primeiro lugar."
   remote_interaction:
     favourite:
       proceed: Prosseguir para os favoritos
