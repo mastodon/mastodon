@@ -393,7 +393,7 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
-    } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
+    } else if (status.get('spoiler_text').length === 0 && !status.get('sensitive') && status.get('card')) {
       media = (
         <Card
           onOpenMedia={this.props.onOpenMedia}

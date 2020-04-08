@@ -152,7 +152,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           />
         );
       }
-    } else if (status.get('spoiler_text').length === 0) {
+    } else if (status.get('spoiler_text').length === 0 && !status.get('sensitive')) {
       media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
     }
 
