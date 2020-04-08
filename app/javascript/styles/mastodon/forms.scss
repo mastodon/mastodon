@@ -635,6 +635,15 @@ code {
   @media screen and (max-width: 740px) and (min-width: 441px) {
     margin-top: 40px;
   }
+
+  &.translation-prompt {
+    text-align: unset;
+    color: unset;
+
+    a {
+      text-decoration: underline;
+    }
+  }
 }
 
 .form-footer {
