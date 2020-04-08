@@ -189,6 +189,32 @@ zh-CN:
       web: 站内页面
       whitelisted: 已加入白名单
     action_logs:
+      action_types:
+        change_email_user: 为用户修改邮箱地址
+        confirm_user: 确认用户
+        create_account_warning: 创建警告
+        create_announcement: 创建通知
+        create_custom_emoji: 创建自定义表情符号
+        create_domain_allow: 允许新域名
+        create_domain_block: 封禁新域名
+        create_email_domain_block: 封禁电子邮箱域名
+        demote_user: 给用户降职
+        destroy_announcement: 删除公告
+        destroy_custom_emoji: 删除自定义表情符号
+        destroy_domain_allow: 解除域名允许
+        destroy_domain_block: 解除域名封禁
+        destroy_email_domain_block: 解除电子邮箱域名封禁
+        destroy_status: 删除嘟文
+        disable_2fa_user: 禁用双重认证
+        disable_custom_emoji: 禁用自定义表情符号
+        disable_user: 禁用用户
+        enable_custom_emoji: 启用自定义表情符号
+        enable_user: 启用用户
+        memorialize_account: 将账户设为追悼模式
+        promote_user: 给用户升任
+        remove_avatar_user: 移除头像
+        reopen_report: 重开举报
+        reset_password_user: 重置密码
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
         change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
