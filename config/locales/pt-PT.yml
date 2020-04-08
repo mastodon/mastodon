@@ -38,7 +38,7 @@ pt-PT:
     unavailable_content_description:
       domain: Instância
       reason: Motivo
-      rejecting_media: 'Arquivos de média destas instâncias não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
+      rejecting_media: 'Arquivos de media destas instâncias não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
       silenced: 'Publicações destas instâncias serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus utilizadores, a menos que você os esteja a seguir:'
       suspended: 'Nenhum dado dessas instâncias será processado, armazenado ou trocado, tornando qualquer interação ou comunicação com os utilizadores dessas instâncias impossível:'
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com utilizadores de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
@@ -59,7 +59,7 @@ pt-PT:
     joined: Aderiu %{date}
     last_active: última vez activo
     link_verified_on: A posse deste link foi verificada em %{date}
-    media: Média
+    media: Media
     moved_html: "%{name} mudou-se para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
     never_active: Nunca
@@ -132,7 +132,7 @@ pt-PT:
         remote: Remoto
         title: Local
       login_status: Estado de início de sessão
-      media_attachments: Anexos de média
+      media_attachments: Anexos de media
       memorialize: Converter em memorial
       moderation:
         active: Activo
@@ -362,7 +362,7 @@ pt-PT:
         create: Criar bloqueio
         hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> irá fazer com que as publicações dessa conta sejam invisíveis para quem não a segue. <strong>Supender</strong> irá eliminar todo o conteúdo guardado dessa conta, média e informação de perfil. Use <strong>Nenhum</strong> se apenas deseja rejeitar arquivos de média."
+          desc_html: "<strong>Silenciar</strong> irá fazer com que as publicações dessa conta sejam invisíveis para quem não a segue. <strong>Supender</strong> irá eliminar todo o conteúdo guardado dessa conta, media e informação de perfil. Use <strong>Nenhum</strong> se apenas deseja rejeitar arquivos de media."
           noop: Nenhum
           silence: Silenciar
           suspend: Suspender
@@ -371,11 +371,11 @@ pt-PT:
       private_comment_hint: Comentário sobre essa limitação de domínio para uso interno pelos moderadores.
       public_comment: Comentário público
       public_comment_hint: Comentário sobre essa limitação de domínio para o público geral, se ativada a divulgação da lista de limitações de domínio.
-      reject_media: Rejeitar ficheiros de média
-      reject_media_hint: Remove arquivos de média armazenados localmente e rejeita descarregar novos arquivos no futuro. Irrelevante para suspensões
+      reject_media: Rejeitar ficheiros de media
+      reject_media_hint: Remove arquivos de media armazenados localmente e rejeita descarregar novos arquivos no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar relatórios
       reject_reports_hint: Ignorar todos os relatórios vindos deste domínio. Irrelevantes para efectuar suspensões
-      rejecting_media: a rejeitar ficheiros de média
+      rejecting_media: a rejeitar ficheiros de media
       rejecting_reports: a rejeitar relatórios
       severity:
         silence: silenciado
@@ -420,7 +420,7 @@ pt-PT:
       total_followed_by_them: Seguidas por eles
       total_followed_by_us: Seguidas por nós
       total_reported: Relatórios sobre eles
-      total_storage: Anexos de média
+      total_storage: Anexos de media
     invites:
       deactivate_all: Desactivar todos
       filter:
@@ -436,7 +436,7 @@ pt-PT:
     relays:
       add_new: Adicionar novo repetidor
       delete: Apagar
-      description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre instâncias que o subscrevem e publicam. <strong>Ele pode ajudar pequenas e médias instâncias a descobrir conteúdo do fediverso</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em instâncias remotas.
+      description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre instâncias que o subscrevem e publicam. <strong>Ele pode ajudar pequenas e medias instâncias a descobrir conteúdo do fediverso</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em instâncias remotas.
       disable: Desactivar
       disabled: Desactivado
       enable: Activar
@@ -522,8 +522,8 @@ pt-PT:
         desc_html: Nomes de domínio que esta instância encontrou no fediverso
         title: Publicar lista de instâncias descobertas
       preview_sensitive_media:
-        desc_html: A pre-visualização de links noutros sites irá apresentar uma miniatura, mesmo que a média seja marcada como sensível
-        title: Mostrar média sensível em pre-visualizações OpenGraph
+        desc_html: A pre-visualização de links noutros sites irá apresentar uma miniatura, mesmo que a media seja marcada como sensível
+        title: Mostrar media sensível em pre-visualizações OpenGraph
       profile_directory:
         desc_html: Permite aos utilizadores serem descobertos
         title: Ativar directório do perfil
@@ -590,11 +590,11 @@ pt-PT:
       deleted: Apagado
       failed_to_execute: Falhou ao executar
       media:
-        title: Média
-      no_media: Não há média
+        title: Media
+      no_media: Não há media
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       title: Estado das contas
-      with_media: Com média
+      with_media: Com media
     tags:
       accounts_today: Usos únicos hoje
       accounts_week: Usos únicos desta semana
@@ -781,7 +781,7 @@ pt-PT:
     archive_takeout:
       date: Data
       download: Descarregar o teu arquivo
-      hint_html: Pode pedir um arquivo das suas <strong>publicações e ficheiros de média carregados</strong>. Os dados no ficheiro exportado estarão no formato ActivityPub, que pode ser lido com qualquer software compatível. Pode solicitar um arquivo a cada 7 dias.
+      hint_html: Pode pedir um arquivo das suas <strong>publicações e ficheiros de media carregados</strong>. Os dados no ficheiro exportado estarão no formato ActivityPub, que pode ser lido com qualquer software compatível. Pode solicitar um arquivo a cada 7 dias.
       in_progress: A compilar o seu arquivo...
       request: Pede o teu arquivo
       size: Tamanho
@@ -790,7 +790,7 @@ pt-PT:
     domain_blocks: Bloqueios de domínio
     lists: Listas
     mutes: Tens em silêncio
-    storage: Armazenamento de média
+    storage: Armazenamento de media
   featured_tags:
     add_new: Adicionar nova
     errors:
@@ -1022,7 +1022,7 @@ pt-PT:
     no_account_html: Não tens uma conta? Tu podes <a href='%{sign_up_path}' target='_blank'> aderir aqui</a>
     proceed: Prossiga para seguir
     prompt: 'Você vai seguir:'
-    reason_html: "<strong> Porque é que este passo é necessário?</strong> <code>%{instance}</code> pode não ser a instância onde você está registado. Por isso, nós precisamos de o redirecionar para a sua instância de origem em primeiro lugar."
+    reason_html: "<strong> Porque é este passo necessário?</strong> <code>%{instance}</code> pode não ser a instância onde você está registado. Por isso, precisamos de o redirecionar para a sua instância de origem em primeiro lugar."
   remote_interaction:
     favourite:
       proceed: Prosseguir para os favoritos
@@ -1265,10 +1265,10 @@ pt-PT:
     warning:
       explanation:
         disable: Enquanto a tua conta está congelada, os seus dados permanecem intactos, mas tu não podes executar quaisquer acções até que ela seja desbloqueada.
-        silence: Enquanto a tua conta estiver limitada, só pessoas que já estiveres a seguir irão ver as tuas publicações neste servidor e poderás ser excluído de várias listagens públicas. No entanto, outros ainda te poderão seguir de forma manual.
-        suspend: A tua conta foi suspensa e todas as tuas publicações e os teus ficheiros de media foram irreversivelmente removidos deste servidor e dos servidores onde tinhas seguidores.
+        silence: Enquanto a sua conta estiver limitada, só pessoas que já estiver a seguir irão ver as suas publicações nesta instância e poderá ser excluído de várias listagens públicas. No entanto, outros ainda o poderão seguir de forma manual.
+        suspend: A sua conta foi suspensa e todas as suas publicações e os seus ficheiros de media foram irreversivelmente removidos desta instância e das instâncias onde tinhas seguidores.
       get_in_touch: Pode responder a este e-mail para entrar em contacto com a equipa de %{instance}.
-      review_server_policies: Revê as políticas do servidor
+      review_server_policies: Reveja a política da instância
       statuses: 'Especificamente, para:'
       subject:
         disable: A tua conta %{acct} foi congelada
@@ -1287,13 +1287,13 @@ pt-PT:
       final_action: Começa a publicar
       final_step: 'Começa a publicar! Mesmo sem seguidores, as tuas mensagens públicas podem ser vistas por outros, por exemplo, na cronologia local e em hashtags. Tu podes querer apresentar-te na hashtag #introductions.'
       full_handle: O teu nome completo
-      full_handle_hint: Isto é o que tu dirias aos teus amigos para que eles te possam enviar mensagens ou seguir-te a partir de outro servidor.
+      full_handle_hint: Isto é o que você diria aos seus amigos para que eles lhe possam enviar mensagens ou seguir a partir de outra instância.
       review_preferences_action: Alterar preferências
       review_preferences_step: Certifica-te de configurar as tuas preferências, tais como os e-mails que gostarias de receber ou o nível de privacidade que desejas que as tuas publicações tenham por defeito. Se não sofres de enjoo, podes ativar a opção de auto-iniciar GIFs.
       subject: Bem-vindo ao Mastodon
       tip_federated_timeline: A cronologia federativa é uma visão global da rede Mastodon. Mas só inclui pessoas que os teus vizinhos subscrevem, por isso não é uma visão completa.
-      tip_following: Tu segues o(s) administrador(es) do teu servidor por defeito. Para encontrares mais pessoas interessantes, procura nas cronologias local e federativa.
-      tip_local_timeline: A cronologia local é uma visão global das pessoas em %{instance}. Estes são os teus vizinhos mais próximos!
+      tip_following: Você segue o(s) administrador(es) da sua instância por defeito. Para encontrar mais pessoas interessantes, procure nas cronologias local e federada.
+      tip_local_timeline: A cronologia local é uma visão global das pessoas em %{instance}. Estes são os seus vizinhos mais próximos!
       tip_mobile_webapp: Se o teu navegador móvel te oferecer a possibilidade de adicionar o Mastodon ao teu homescreen, tu podes receber notificações push. Ele age como uma aplicação nativa de vários modos!
       tips: Dicas
       title: Bem-vindo a bordo, %{name}!
