@@ -33,7 +33,7 @@ pt-PT:
       other: publicações
     status_count_before: Que fizeram
     tagline: Siga os seus amigos e descubra novas amizades
-    terms: termos de serviço
+    terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
       domain: Servidor
@@ -41,7 +41,7 @@ pt-PT:
       rejecting_media: 'Arquivos de média destes servidores não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
       silenced: 'Publicações destes servidores serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus utilizadores, a menos que você os esteja a seguir:'
       suspended: 'Nenhum dado desses servidores será processado, armazenado ou trocado, tornando qualquer interação ou comunicação com os utilizadores desses servidores impossível:'
-    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outro servidor no fediverso. Estas são as exceções deste servidor específico.
+    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com utilizadores de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
     user_count_after:
       one: utilizador
       other: utilizadores
@@ -159,7 +159,7 @@ pt-PT:
       remove_avatar: Remover a imagem de perfil
       remove_header: Remover o cabeçalho
       resend_confirmation:
-        already_confirmed: Este usuário já está confirmado
+        already_confirmed: Este utilizador já está confirmado
         send: Reenviar um email de confirmação
         success: Email de confirmação enviado com sucesso!
       reset: Restaurar
@@ -189,7 +189,7 @@ pt-PT:
       undo_silenced: Desfazer silenciar
       undo_suspension: Desfazer supensão
       unsubscribe: Cancelar inscrição
-      username: Usuário
+      username: Utilizador
       warn: Aviso
       web: Web
       whitelisted: Está na lista branca
@@ -559,8 +559,8 @@ pt-PT:
         desc_html: Mostrada na barra lateral e em etiquetas de metadados. Descreve o que o Mastodon é e o que torna este servidor especial num único parágrafo. Se deixada em branco, remete para a descrição do servidor.
         title: Breve descrição do servidor
       site_terms:
-        desc_html: Podes escrever a tua própria política de privacidade, termos de serviço, entre outras coisas. Podes usar tags HTML
-        title: Termos de serviço customizados
+        desc_html: Podes escrever a sua própria política de privacidade, termos de serviço, entre outras coisas. Pode utilizar etiquetas HTML
+        title: Termos de serviço personalizados
       site_title: Título do site
       spam_check_enabled:
         desc_html: O Mastodon pode reportar automaticamente contas que enviem repetidamente mensagens não solicitadas. Poderão ocorrer alguns falso-positivos.
@@ -571,7 +571,7 @@ pt-PT:
       timeline_preview:
         desc_html: Exibir a linha temporal pública na página inicial
         title: Visualização da linha temporal
-      title: Preferências do site
+      title: Configurações do site
       trendable_by_default:
         desc_html: Afecta as hashtags que ainda não tenham sido proibidas
         title: Permitir hashtags em tendência sem revisão prévia
@@ -666,7 +666,7 @@ pt-PT:
   auth:
     apply_for_account: Solicitar um convite
     change_password: Palavra-passe
-    checkbox_agreement_html: Concordo com as <a href="%{rules_path}" target="_blank">regras do servidor</a> e com os <a href="%{terms_path}" target="_blank">termos de serviço</a>
+    checkbox_agreement_html: Concordo com as <a href="%{rules_path}" target="_blank">regras da instância</a> e com os <a href="%{terms_path}" target="_blank">termos de serviço</a>
     checkbox_agreement_without_rules_html: Concordo com os <a href="%{terms_path}" target="_blank">termos do serviço</a>
     delete_account: Eliminar conta
     delete_account_html: Se desejas eliminar a conta, podes <a href="%{path}">continua aqui</a>. Uma confirmação será pedida.
@@ -1017,7 +1017,7 @@ pt-PT:
     remove_selected_follows: Deixar de seguir os utilizadores selecionados
     status: Estado da conta
   remote_follow:
-    acct: Entre seu usuário@domínio do qual quer seguir
+    acct: Introduza o seu utilizador@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
     no_account_html: Não tens uma conta? Tu podes <a href='%{sign_up_path}' target='_blank'> aderir aqui</a>
     proceed: Prossiga para seguir
@@ -1289,7 +1289,7 @@ pt-PT:
       full_handle: O teu nome completo
       full_handle_hint: Isto é o que tu dirias aos teus amigos para que eles te possam enviar mensagens ou seguir-te a partir de outro servidor.
       review_preferences_action: Alterar preferências
-      review_preferences_step: Certifica-te de configurar as tuas preferências, tais como os e-mails que gostarias de receber ou o nível de privacidade que desejas que as tuas publicações tenham por defeito. Se não sofres de enjoo, podes activar a opção GIF autoplay.
+      review_preferences_step: Certifica-te de configurar as tuas preferências, tais como os e-mails que gostarias de receber ou o nível de privacidade que desejas que as tuas publicações tenham por defeito. Se não sofres de enjoo, podes ativar a opção de auto-iniciar GIFs.
       subject: Bem-vindo ao Mastodon
       tip_federated_timeline: A cronologia federativa é uma visão global da rede Mastodon. Mas só inclui pessoas que os teus vizinhos subscrevem, por isso não é uma visão completa.
       tip_following: Tu segues o(s) administrador(es) do teu servidor por defeito. Para encontrares mais pessoas interessantes, procura nas cronologias local e federativa.
