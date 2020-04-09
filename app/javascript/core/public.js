@@ -1,6 +1,5 @@
 //  This file will be loaded on public pages, regardless of theme.
 
-import createHistory from 'history/createBrowserHistory';
 import ready from '../mastodon/ready';
 
 const { delegate } = require('@rails/ujs');

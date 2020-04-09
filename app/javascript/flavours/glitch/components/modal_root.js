@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'wicg-inert';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 export default class ModalRoot extends React.PureComponent {
   static contextTypes = {
@@ -51,7 +51,7 @@ export default class ModalRoot extends React.PureComponent {
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
-    this.history = this.context.router ? this.context.router.history : createHistory();
+    this.history = this.context.router ? this.context.router.history : createBrowserHistory();
   }
 
   componentWillReceiveProps (nextProps) {
