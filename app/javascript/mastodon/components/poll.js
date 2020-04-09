@@ -127,15 +127,7 @@ class Poll extends ImmutablePureComponent {
 
     return (
       <li key={option.get('title')}>
-        {showResults && (
-          <Motion defaultStyle={{ width: 0 }} style={{ width: spring(percent, { stiffness: 180, damping: 12 }) }}>
-            {({ width }) =>
-              <span className={classNames('poll__chart', { leading })} style={{ width: `${width}%` }} />
-            }
-          </Motion>
-        )}
-
-        <label className={classNames('poll__text', { selectable: !showResults })}>
+        <label className={classNames('poll__option', { selectable: !showResults })}>
           <input
             name='vote-options'
             type={poll.get('multiple') ? 'checkbox' : 'radio'}
@@ -157,12 +149,26 @@ class Poll extends ImmutablePureComponent {
             />
           )}
           {showResults && <span className='poll__number'>
-            {!!voted && <Icon id='check' className='poll__vote__mark' title={intl.formatMessage(messages.voted)} />}
             {Math.round(percent)}%
           </span>}
 
-          <span dangerouslySetInnerHTML={{ __html: titleEmojified }} />
+          <span
+            className='poll__option__text'
+            dangerouslySetInnerHTML={{ __html: titleEmojified }}
+          />
+
+          {!!voted && <span className='poll__voted'>
+            <Icon id='check' className='poll__voted__mark' title={intl.formatMessage(messages.voted)} />
+          </span>}
         </label>
+
+        {showResults && (
+          <Motion defaultStyle={{ width: 0 }} style={{ width: spring(percent, { stiffness: 180, damping: 12 }) }}>
+            {({ width }) =>
+              <span className={classNames('poll__chart', { leading })} style={{ width: `${width}%` }} />
+            }
+          </Motion>
+        )}
       </li>
     );
   }

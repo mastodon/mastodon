@@ -195,6 +195,42 @@ de:
       web: Web
       whitelisted: Auf der Whitelist
     action_logs:
+      action_types:
+        assigned_to_self_report: Bericht zuweisen
+        change_email_user: E-Mail des Benutzers ändern
+        confirm_user: Benutzer bestätigen
+        create_account_warning: Warnung erstellen
+        create_announcement: Ankündigung erstellen
+        create_custom_emoji: Eigene Emoji erstellen
+        create_domain_allow: Domain erlauben
+        create_domain_block: Domain blockieren
+        create_email_domain_block: E-Mail-Domain-Block erstellen
+        demote_user: Benutzer degradieren
+        destroy_announcement: Ankündigung löschen
+        destroy_custom_emoji: Eigene Emoji löschen
+        destroy_domain_allow: Erlaube das Löschen von Domains
+        destroy_domain_block: Domain-Blockade löschen
+        destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_status: Beitrag löschen
+        disable_2fa_user: 2FA deaktivieren
+        disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
+        disable_user: Benutzer deaktivieren
+        enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
+        enable_user: Benutzer aktivieren
+        memorialize_account: Konto in ein Konto von einer verstorbenen Person umwandeln
+        promote_user: Benutzer befördern
+        remove_avatar_user: Profilbild entfernen
+        reopen_report: Meldung wieder eröffnen
+        reset_password_user: Passwort zurücksetzen
+        resolve_report: Bericht lösen
+        silence_account: Konto stummschalten
+        suspend_account: Konto sperren
+        unassigned_report: Berichtszuweisung entfernen
+        unsilence_account: Konto nicht mehr stummschalten
+        unsuspend_account: Konto nicht mehr sperren
+        update_announcement: Ankündigung aktualisieren
+        update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
+        update_status: Beitrag aktualisieren
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
@@ -232,6 +268,9 @@ de:
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
         update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
+      empty: Keine Protokolle gefunden.
+      filter_by_action: Nach Aktion filtern
+      filter_by_user: Nach Benutzer filtern
       title: Überprüfungsprotokoll
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
@@ -1077,6 +1116,8 @@ de:
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
+    errors:
+      in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
     language_detection: Sprache automatisch erkennen
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten

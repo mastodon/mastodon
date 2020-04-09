@@ -18,6 +18,9 @@
 
 class Report < ApplicationRecord
   include Paginable
+  include RateLimitable
+
+  rate_limit by: :account, family: :reports
 
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'

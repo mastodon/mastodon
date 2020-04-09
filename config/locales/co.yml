@@ -195,6 +195,42 @@ co:
       web: Web
       whitelisted: In a lista bianca
     action_logs:
+      action_types:
+        assigned_to_self_report: Assignà signalamentu
+        change_email_user: Mudificà l'E-mail di l'Utilizatore
+        confirm_user: Cunfirmà Utilizatore
+        create_account_warning: Creà avertimentu
+        create_announcement: Creà Annunziu
+        create_custom_emoji: Creà Emoji Persunalizata
+        create_domain_allow: Creà Auturizazione di Duminiu
+        create_domain_block: Creà Blucchime di Duminiu
+        create_email_domain_block: Creà Blucchime di Duminiu E-mail
+        demote_user: Ritrugadà Utilizatore
+        destroy_announcement: Toglie Annunziu
+        destroy_custom_emoji: Toglie Emoji Persunalizata
+        destroy_domain_allow: Toglie Auturizazione di Duminiu
+        destroy_domain_block: Toglie Blucchime di Duminiu
+        destroy_email_domain_block: Toglie blucchime di duminiu e-mail
+        destroy_status: Toglie u statutu
+        disable_2fa_user: Disattivà l’identificazione à 2 fattori
+        disable_custom_emoji: Disattivà Emoji Persunalizata
+        disable_user: Disattivà Utilizatore
+        enable_custom_emoji: Attivà Emoji Persunalizata
+        enable_user: Attivà utilizatore
+        memorialize_account: Trasfurmà contu in mimuriale
+        promote_user: Prumove Utilizatore
+        remove_avatar_user: Toglie Avatar
+        reopen_report: Riapre Signalamentu
+        reset_password_user: Riinizializà Chjave d'Accessu
+        resolve_report: Chjode Signalamentu
+        silence_account: Silenzà Contu
+        suspend_account: Suspende Contu
+        unassigned_report: Disassignà signalamentu
+        unsilence_account: Ùn Silenzà Più u Contu
+        unsuspend_account: Ùn Suspende Più u Contu
+        update_announcement: Cambià Annunziu
+        update_custom_emoji: Cambià Emoji Persunalizata
+        update_status: Cambià Statutu
       actions:
         assigned_to_self_report: "%{name} s’hè assignatu u signalamentu %{target}"
         change_email_user: "%{name} hà cambiatu l’indirizzu e-mail di %{target}"
@@ -232,6 +268,9 @@ co:
         update_custom_emoji: "%{name} hà messu à ghjornu l’emoji %{target}"
         update_status: "%{name} hà cambiatu u statutu di %{target}"
       deleted_status: "(statutu sguassatu)"
+      empty: Nunda trovu.
+      filter_by_action: Filtrà da azzione
+      filter_by_user: Filtrà da utilizatore
       title: Ghjurnale d’audit
     announcements:
       destroyed_msg: Annunziu sguassatu!
@@ -1077,6 +1116,8 @@ co:
     disallowed_hashtags:
       one: 'cuntene l’hashtag disattivatu: %{tags}'
       other: 'cuntene l’hashtag disattivati: %{tags}'
+    errors:
+      in_reply_not_found: U statutu à quellu avete pruvatu di risponde ùn sembra micca esiste.
     language_detection: Truvà a lingua autumaticamente
     open_in_web: Apre nant’à u web
     over_character_limit: Site sopr’à a limita di %{max} caratteri
