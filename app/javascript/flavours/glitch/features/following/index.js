@@ -54,14 +54,6 @@ class Following extends ImmutablePureComponent {
     this.column.scrollTop();
   }
 
-  handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-
-    if (scrollTop === scrollHeight - clientHeight && this.props.hasMore) {
-      this.props.dispatch(expandFollowing(this.props.params.accountId));
-    }
-  }
-
   handleLoadMore = debounce(() => {
     this.props.dispatch(expandFollowing(this.props.params.accountId));
   }, 300, { leading: true });
