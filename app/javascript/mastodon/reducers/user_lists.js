@@ -28,12 +28,20 @@ import {
   FAVOURITES_FETCH_SUCCESS,
 } from '../actions/interactions';
 import {
+  BLOCKS_FETCH_REQUEST,
   BLOCKS_FETCH_SUCCESS,
+  BLOCKS_FETCH_FAIL,
+  BLOCKS_EXPAND_REQUEST,
   BLOCKS_EXPAND_SUCCESS,
+  BLOCKS_EXPAND_FAIL,
 } from '../actions/blocks';
 import {
+  MUTES_FETCH_REQUEST,
   MUTES_FETCH_SUCCESS,
+  MUTES_FETCH_FAIL,
+  MUTES_EXPAND_REQUEST,
   MUTES_EXPAND_SUCCESS,
+  MUTES_EXPAND_FAIL,
 } from '../actions/mutes';
 import {
   DIRECTORY_FETCH_REQUEST,
@@ -120,10 +128,22 @@ export default function userLists(state = initialState, action) {
     return state.setIn(['blocks', 'items'], ImmutableList(action.accounts.map(item => item.id))).setIn(['blocks', 'next'], action.next);
   case BLOCKS_EXPAND_SUCCESS:
     return state.updateIn(['blocks', 'items'], list => list.concat(action.accounts.map(item => item.id))).setIn(['blocks', 'next'], action.next);
+  case BLOCKS_FETCH_REQUEST:
+  case BLOCKS_EXPAND_REQUEST:
+    return state.setIn(['blocks', 'isLoading'], true);
+  case BLOCKS_FETCH_FAIL:
+  case BLOCKS_EXPAND_FAIL:
+    return state.setIn(['blocks', 'isLoading'], false);
   case MUTES_FETCH_SUCCESS:
     return state.setIn(['mutes', 'items'], ImmutableList(action.accounts.map(item => item.id))).setIn(['mutes', 'next'], action.next);
   case MUTES_EXPAND_SUCCESS:
     return state.updateIn(['mutes', 'items'], list => list.concat(action.accounts.map(item => item.id))).setIn(['mutes', 'next'], action.next);
+  case MUTES_FETCH_REQUEST:
+  case MUTES_EXPAND_REQUEST:
+    return state.setIn(['mutes', 'isLoading'], true);
+  case MUTES_FETCH_FAIL:
+  case MUTES_EXPAND_FAIL:
+    return state.setIn(['mutes', 'isLoading'], false);
   case DIRECTORY_FETCH_SUCCESS:
     return state.setIn(['directory', 'items'], ImmutableList(action.accounts.map(item => item.id))).setIn(['directory', 'isLoading'], false);
   case DIRECTORY_EXPAND_SUCCESS:
