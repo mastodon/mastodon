@@ -131,7 +131,7 @@ end
 
 group :development do
   gem 'active_record_query_trace', '~> 1.7'
-  gem 'annotate', '~> 3.0.3'
+  gem 'annotate', '~> 3.1.1'
   gem 'better_errors', '~> 2.6.0'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'bullet', '~> 6.1.0'
