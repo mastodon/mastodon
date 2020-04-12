@@ -201,6 +201,18 @@ sk:
       web: Web
       whitelisted: Na bielej listine
     action_logs:
+      action_types:
+        assigned_to_self_report: Priraď hlásenie
+        confirm_user: Potvrď užívateľa
+        create_account_warning: Vytvor výstrahu
+        create_announcement: Vytvor oboznámenie
+        create_domain_block: Vytvor doménovú blokádu
+        demote_user: Zniž užívateľskú rolu
+        disable_user: Deaktivuj užívateľa
+        enable_user: Povoľ užívateľa
+        remove_avatar_user: Vymaž avatar
+        reopen_report: Znovu otvor hlásenie
+        reset_password_user: Obnov heslo
       actions:
         assigned_to_self_report: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
         change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
