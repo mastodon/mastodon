@@ -12,14 +12,16 @@
             %span.poll__number><
               - if own_votes.include?(index)
                 %i.poll__voted__mark.fa.fa-check
-              = percent.round
-            = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
+              = "#{percent.round}%"
+            %span.poll__option__text
+              = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
 
-            %span.poll__chart{ style: "width: #{percent}%" }
+          %span.poll__chart{ style: "width: #{percent}%" }
         - else
           %label.poll__option><
             %span.poll__input{ class: poll.multiple? ? 'checkbox' : nil}><
-            = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
+            %span.poll__option__text
+              = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
   .poll__footer
     - unless show_results
       %button.button.button-secondary{ disabled: true }
