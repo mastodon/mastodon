@@ -19,6 +19,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'mutes', 'items']),
   hasMore: !!state.getIn(['user_lists', 'mutes', 'next']),
+  isLoading: state.getIn(['user_lists', 'mutes', 'isLoading'], true),
 });
 
 export default @connect(mapStateToProps)
@@ -29,6 +30,7 @@ class Mutes extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
@@ -43,7 +45,7 @@ class Mutes extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, accountIds, hasMore, multiColumn } = this.props;
+    const { intl, accountIds, hasMore, multiColumn, isLoading } = this.props;
 
     if (!accountIds) {
       return (
@@ -62,6 +64,7 @@ class Mutes extends ImmutablePureComponent {
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
+          isLoading={isLoading}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

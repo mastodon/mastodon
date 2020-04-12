@@ -22,6 +22,7 @@ const mapStateToProps = (state, props) => ({
   isAccount: !!state.getIn(['accounts', props.params.accountId]),
   accountIds: state.getIn(['user_lists', 'following', props.params.accountId, 'items']),
   hasMore: !!state.getIn(['user_lists', 'following', props.params.accountId, 'next']),
+  isLoading: state.getIn(['user_lists', 'following', props.params.accountId, 'isLoading'], true),
 });
 
 export default @connect(mapStateToProps)
@@ -32,6 +33,7 @@ class Following extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     isAccount: PropTypes.bool,
     multiColumn: PropTypes.bool,
   };
@@ -63,7 +65,7 @@ class Following extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds, hasMore, isAccount, multiColumn } = this.props;
+    const { accountIds, hasMore, isAccount, multiColumn, isLoading } = this.props;
 
     if (!isAccount) {
       return (
@@ -90,6 +92,7 @@ class Following extends ImmutablePureComponent {
         <ScrollableList
           scrollKey='following'
           hasMore={hasMore}
+          isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
