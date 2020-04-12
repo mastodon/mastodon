@@ -117,7 +117,7 @@ sk:
       deleted: Vymazané
       demote: Degraduj
       disable: Zablokuj
-      disable_two_factor_authentication: Zakáž 2FA
+      disable_two_factor_authentication: Vypni dvoj-faktorové overovanie
       disabled: Blokovaný
       display_name: Ukáž meno
       domain: Doména
@@ -203,12 +203,14 @@ sk:
     action_logs:
       action_types:
         assigned_to_self_report: Priraď hlásenie
+        change_email_user: Zmeň email pre užívateľa
         confirm_user: Potvrď užívateľa
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
         create_domain_block: Vytvor doménovú blokádu
         demote_user: Zniž užívateľskú rolu
         destroy_status: Vymaž príspevok
+        disable_2fa_user: Vypni dvoj-faktorové overovanie
         disable_user: Deaktivuj užívateľa
         enable_user: Povoľ užívateľa
         remove_avatar_user: Vymaž avatar
@@ -248,6 +250,7 @@ sk:
         update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
         update_status: "%{name} aktualizoval/a status pre %{target}"
       deleted_status: "(zmazaný príspevok)"
+      filter_by_user: Trieď podľa užívateľa
       title: Kontrólny záznam
     announcements:
       destroyed_msg: Oboznámenie úspešne vymazané!
