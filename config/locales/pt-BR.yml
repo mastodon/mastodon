@@ -357,7 +357,7 @@ pt-BR:
       destroyed_msg: Domínio desbloqueado
       domain: Domínio
       edit: Editar bloqueio de domínio
-      existing_domain_block_html: Você já bloqueou %{name}, é necessário <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
+      existing_domain_block_html: Você já impôs limites mais estritos em %{name}, você precisa <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
       new:
         create: Criar bloqueio
         hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
@@ -376,7 +376,7 @@ pt-BR:
       reject_reports: Rejeitar denúncias
       reject_reports_hint: Ignora todas as denúncias vindo deste domínio. Irrelevante para suspensões
       rejecting_media: rejeitando arquivos de mídia
-      rejecting_reports: recusando denúncias
+      rejecting_reports: rejeitando denúncias
       severity:
         silence: silenciado
         suspend: banido
@@ -385,24 +385,24 @@ pt-BR:
           one: Uma conta no banco de dados foi afetada
           other: "%{count} contas no banco de dados foram afetadas"
         retroactive:
-          silence: Desativar silêncio de todas as contas desse domínio
-          suspend: Remover a suspensão de todas as contas deste domínio
+          silence: Dessilenciar contas existentes afetadas deste domínio
+          suspend: Dessuspender contas existentes afetadas deste domínio
         title: Desfazer bloqueio de domínio para %{domain}
         undo: Desfazer
       undo: Desfazer bloqueio de domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
-      created_msg: Domínio de e-mail bloqueado
+      created_msg: Domínio de e-mail adicionado à lista negra com sucesso
       delete: Excluir
-      destroyed_msg: Domínio de e-mail desbloqueado
+      destroyed_msg: Domínio de e-mail excluído da lista negra com sucesso
       domain: Domínio
       empty: Nenhum domínio de e-mail atualmente na lista negra.
       from_html: de %{domain}
       new:
         create: Adicionar domínio
-        title: Novo domínio de e-mail bloqueado
-      title: Lista de bloqueio de domínios de e-mail
+        title: Nova entrada de lista negra de e-mail
+      title: Lista de negra de e-mail
     instances:
       by_domain: Domínio
       delivery_available: Envio disponível
@@ -507,7 +507,7 @@ pt-BR:
         all: Para todos
         disabled: Para ninguém
         title: Mostrar domínios bloqueados
-        users: Para usuários locais ativos
+        users: Para usuários locais logados
       domain_blocks_rationale:
         title: Mostrar motivo
       enable_bootstrap_timeline_accounts:
