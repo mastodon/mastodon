@@ -18,6 +18,7 @@ class AccountAlias < ApplicationRecord
   validates :acct, presence: true, domain: { acct: true }
   validates :uri, presence: true
   validates :uri, uniqueness: { scope: :account_id }
+  validate :validate_target_account
 
   before_validation :set_uri
   after_create :add_to_account
@@ -43,5 +44,13 @@ class AccountAlias < ApplicationRecord
 
   def remove_from_account
     account.update(also_known_as: account.also_known_as.reject { |x| x == uri })
+  end
+
+  def validate_target_account
+    if uri.nil?
+      errors.add(:acct, I18n.t('migrations.errors.not_found'))
+    elsif ActivityPub::TagManager.instance.uri_for(account) == uri
+      errors.add(:acct, I18n.t('migrations.errors.move_to_self'))
+    end
   end
 end
