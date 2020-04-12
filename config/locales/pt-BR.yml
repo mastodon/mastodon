@@ -91,7 +91,7 @@ pt-BR:
       delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
-      add_email_domain_block: Adicionar o domínio de email à lista negra
+      add_email_domain_block: Adicionar o domínio de e-mail à lista negra
       approve: Aprovar
       approve_all: Aprovar tudo
       are_you_sure: Você tem certeza?
@@ -202,14 +202,14 @@ pt-BR:
         create_announcement: Criar Anúncio
         create_custom_emoji: Criar Emoji Personalizado
         create_domain_allow: Adicionar domínio permitido
-        create_domain_block: Adicionar domínio bloqueado
-        create_email_domain_block: Adicionar domínio de e-mail bloqueado
+        create_domain_block: Criar Bloqueio de Domínio
+        create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir domínio permitido
-        destroy_domain_block: Excluir domínio bloqueado
-        destroy_email_domain_block: Excluir domínio de e-mail bloqueado
+        destroy_domain_block: Excluir Bloqueio de Domínio
+        destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
         destroy_status: Excluir Status
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar Emoji Personalizado
@@ -352,7 +352,7 @@ pt-BR:
       destroyed_msg: Domínio foi bloqueado
       undo: Bloquear
     domain_blocks:
-      add_new: Novo bloqueio de domínio
+      add_new: Adicionar novo bloqueio de domínio
       created_msg: Domínio está sendo bloqueado
       destroyed_msg: Domínio desbloqueado
       domain: Domínio
@@ -360,22 +360,22 @@ pt-BR:
       existing_domain_block_html: Você já bloqueou %{name}, é necessário <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
       new:
         create: Criar bloqueio
-        hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nestas contas.
+        hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> fará com que os toots da conta fiquem invisíveis para qualquer um que não a esteja seguindo. <strong>Banir</strong> removerá todo o conteúdo da conta, mídia e dados do perfil. Use <strong>Nenhum</strong> se você apenas deseja recusar os arquivos de mídia."
+          desc_html: "<strong>Silenciar</strong> vai fazer os posts da conta invisíveis para qualquer um que não os esteja seguindo. <strong>Suspender</strong> vai remover todo o conteúdo, mídia, e dados de perfil da conta. Use <strong>Nenhum</strong> se você só quer rejeitar arquivos de mídia."
           noop: Nenhum
           silence: Silenciar
           suspend: Banir
-        title: Bloquear domínio
+        title: Novo bloqueio de domínio
       private_comment: Comentário privado
       private_comment_hint: Comente sobre essa restrição ao domínio para uso interno dos moderadores.
       public_comment: Comentário público
       public_comment_hint: Comente sobre essa restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
-      reject_media: Recusar arquivos de mídia
-      reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para banimentos
-      reject_reports: Recusar denúncias
-      reject_reports_hint: Ignora todas as denúncias vindas deste domínio. Irrelevante para banimentos
-      rejecting_media: recusando arquivos de mídia
+      reject_media: Rejeitar arquivos de mídia
+      reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa fazer download de qualquer um no futuro. Irrelevante para suspensões
+      reject_reports: Rejeitar denúncias
+      reject_reports_hint: Ignora todas as denúncias vindo deste domínio. Irrelevante para suspensões
+      rejecting_media: rejeitando arquivos de mídia
       rejecting_reports: recusando denúncias
       severity:
         silence: silenciado
@@ -387,9 +387,9 @@ pt-BR:
         retroactive:
           silence: Desativar silêncio de todas as contas desse domínio
           suspend: Remover a suspensão de todas as contas deste domínio
-        title: Desbloquear domínio %{domain}
+        title: Desfazer bloqueio de domínio para %{domain}
         undo: Desfazer
-      undo: Desbloquear domínio
+      undo: Desfazer bloqueio de domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
@@ -397,7 +397,7 @@ pt-BR:
       delete: Excluir
       destroyed_msg: Domínio de e-mail desbloqueado
       domain: Domínio
-      empty: Sem domínios de e-mail bloqueados.
+      empty: Nenhum domínio de e-mail atualmente na lista negra.
       from_html: de %{domain}
       new:
         create: Adicionar domínio
@@ -766,7 +766,7 @@ pt-BR:
     '406': Esta página não está disponível no formato solicitado.
     '410': A página que você procura não existe mais.
     '422':
-      content: Falha na verificação de segurança. Você desativou o uso de cookies?
+      content: Falha na verificação de segurança. Você está bloqueando cookies?
       title: Falha na verificação de segurança
     '429': Muitas solicitações
     '500':
@@ -1264,7 +1264,7 @@ pt-BR:
       title: Baixar arquivo
     warning:
       explanation:
-        disable: Enquanto sua conta está bloqueada, seus dados estão intactos, mas você não pode realizar nenhuma ação até que sua conta seja desbloqueada.
+        disable: Enquanto sua conta está congelada, seus dados de conta permanecem intactos, mas você não pode realizar nenhuma ação até que esteja destrancada.
         silence: Enquanto sua conta está silenciada, somente pessoas que já estão seguindo você poderão ver seus toots nessa instância, e você pode ser excluído de várias listas públicas. No entanto, outros ainda podem te seguir manualmente.
         suspend: Sua conta foi banida e todos os seus toots e mídias foram irreversivelmente excluídos desta instância e das instâncias dos seus seguidores.
       get_in_touch: Você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
@@ -1282,7 +1282,7 @@ pt-BR:
         suspend: Conta banida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Você pode personalizar o seu perfil enviando uma imagem de perfil, uma capa, alterando seu nome de exibição e etc. Se você preferir aprovar seus novos seguidores antes de eles verem seus toots, você pode trancar a sua conta.
+      edit_profile_step: Você pode customizar o seu perfil ao fazer upload de um avatar, header, alterar seu nome de exibição e mais. Se você preferir revisar novos seguidores antes de poderem te seguir, você pode trancar a sua conta.
       explanation: Aqui estão algumas dicas para você começar
       final_action: Comece a tootar
       final_step: 'Comece a tootar! Mesmo sem seguidores, suas mensagens públicas podem ser vistas pelos outros, por exemplo, na linha local e nas hashtags. Você pode querer fazer uma introdução usando a hashtag #introdução, ou em inglês usando a hashtag #introductions.'
