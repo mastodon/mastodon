@@ -137,7 +137,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_theme
+    return @account&.user&.setting_theme unless @account&.user&.setting_theme.nil? || @account&.user&.setting_show_preferred_theme.nil? || !@account&.user&.setting_show_preferred_theme
+
     return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
+
     current_user.setting_theme
   end
 

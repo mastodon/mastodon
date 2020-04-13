@@ -6,7 +6,7 @@ RSpec.describe Settings::ScopedSettings do
   let(:object)         { Fabricate(:user) }
   let(:scoped_setting) { described_class.new(object) }
   let(:val)            { 'whatever' }
-  let(:methods)        { %i(auto_play_gif default_sensitive unfollow_modal boost_modal delete_modal reduce_motion system_font_ui noindex theme) }
+  let(:methods)        { %i(auto_play_gif default_sensitive unfollow_modal boost_modal delete_modal reduce_motion show_preferred_theme system_font_ui noindex theme) }
 
   describe '.initialize' do
     it 'sets @object' do
