@@ -189,6 +189,15 @@ id:
       web: Web
       whitelisted: Masuk daftar putih
     action_logs:
+      action_types:
+        change_email_user: Ubah Surel untuk Pengguna
+        confirm_user: Konfirmasi Pengguna
+        create_account_warning: Buat Peringatan
+        create_announcement: Buat Pengumuman
+        create_custom_emoji: Buat Emoji Khusus
+        create_domain_allow: Buat Izin Domain
+        create_domain_block: Buat Blokir Domain
+        create_email_domain_block: Buat Surel Blokir Domain
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
         change_email_user: "%{name} mengubah alamat surel pengguna %{target}"
