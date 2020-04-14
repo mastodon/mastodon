@@ -2,10 +2,10 @@ sq:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Emër aplikacioni
+        name: Emri aplikacionit
         redirect_uri: URI Ridrejtimi
         scopes: Fushëveprime
-        website: Sajt aplikacioni
+        website: Webi i aplikacionit
     errors:
       models:
         doorkeeper/application:
@@ -18,36 +18,37 @@ sq:
   doorkeeper:
     applications:
       buttons:
-        authorize: Autorizoje
-        cancel: Anuloje
-        destroy: Asgjësoje
-        edit: Përpunoni
-        submit: Parashtroje
+        authorize: Autorizo
+        cancel: Anulo
+        destroy: Shkatërro
+        edit: Modifiko
+        submit: Dërgo
       confirmations:
-        destroy: A jeni i sigurt?
+        destroy: A jeni të sigurt?
       edit:
-        title: Përpunoni aplikacion
+        title: Modifiko aplikacionin
       form:
         error: Oh! Kontrolloni formularin tuaj për gabime të mundshme
       help:
-        native_redirect_uri: Përdor %{native_redirect_uri} për teste vendore
+        native_redirect_uri: Përdorni %{native_redirect_uri} për teste lokale
         redirect_uri: Përdorni një URI për rresht
         scopes: Ndajini fushëveprimet me hapësira. Që të përdoren fushëveprimet parazgjedhje, lëreni të zbrazët.
       index:
         application: Aplikacion
-        callback_url: URL Callback-u
-        delete: Fshije
-        name: Emër
+        callback_url: URL pasuese
+        delete: Fshij
+        empty: Nuk posedoni aplikacione.
+        name: Emri
         new: Aplikacion i ri
         scopes: Fushëveprime
-        show: Shfaqe
+        show: Shfaq
         title: Aplikacionet tuaja
       new:
         title: Aplikacion i ri
       show:
         actions: Veprime
-        application_id: Kyç klienti
-        callback_urls: URL-ra Callback
+        application_id: Çelësi për klient
+        callback_urls: URL pasuese
         scopes: Fushëveprime
         secret: Sekreti për klient
         title: 'Aplikacioni: %{name}'
@@ -113,11 +114,18 @@ sq:
       application:
         title: Lypset autorizim OAuth
     scopes:
+      "admin:read": lexo gjithë të dhënat në server
+      "admin:read:accounts": lexo të dhëna sensitive të të gjithë llogarive
+      "admin:read:reports": lexo të dhëna sensitive të raporteve dhe të llogarive të raportuara
+      "admin:write": modifiko gjithë të dhënat në server
+      "admin:write:accounts": realizo veprime moderimi në llogaritë
+      "admin:write:reports": realizo veprime moderimi në raporte
       follow: të ndryshojë marrëdhënies llogarish
       push: të marrë njoftime push për ju
       read: të lexojë krejt të dhënat e llogarisë tuaj
       "read:accounts": të shohë të dhëna llogarish
       "read:blocks": të shohë blloqet tuaja
+      "read:bookmarks": shih shënjimet tuaja
       "read:favourites": të shohë të parapëlqyerit tuaj
       "read:filters": të shohë filtrat tuaj
       "read:follows": të shohë ndjekësit tuaj
@@ -130,6 +138,7 @@ sq:
       write: të ndryshojë krejt të dhënat e llogarisë tuaj
       "write:accounts": të ndryshojë profilin tuaj
       "write:blocks": të bllokojë llogari dhe përkatësi
+      "write:bookmarks": shënjo statuse
       "write:favourites": të parapëlqejë gjendje
       "write:filters": të krijojë filtra
       "write:follows": të ndjekë persona
