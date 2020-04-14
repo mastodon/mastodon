@@ -33,6 +33,7 @@ sq:
     user_count_after:
       one: përdorues
       other: përdorues
+    user_count_before: Shtëpi për
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
     choices_html: "Zgjedhje të %{name}:"
@@ -44,8 +45,10 @@ sq:
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
+    media: Media
     moved_html: "%{name} ka kaluar te %{new_profile_link}:"
     network_hidden: Këto të dhëna nuk mund të kihen
+    never_active: Asnjëherë
     nothing_here: S’ka gjë këtu!
     people_followed_by: Persona të ndjekur nga %{name}
     people_who_follow: Persona që ndjekin %{name}
@@ -59,6 +62,9 @@ sq:
     reserved_username: Emri i përdoruesit është i ruajtur për dikë
     roles:
       admin: Përgjegjës
+      bot: Bot
+      group: Grup
+    unavailable: Profil i pa arritshëm
     unfollow: Resht së ndjekuri
   admin:
     account_actions:
@@ -70,6 +76,7 @@ sq:
       delete: Fshije
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
+      add_email_domain_block: Shto e-mail domain në listën e zezë
       approve: Prano
       approve_all: Prano të gjithë
       are_you_sure: A jeni i sigurt?
@@ -122,6 +129,7 @@ sq:
       moderation_notes: Shënime moderimesh
       most_recent_activity: Veprimtaria më e freskët
       most_recent_ip: IP-ja më e freskët
+      no_account_selected: Asnjë llogari nuk është ndryshuar pasiqë asnjë llogari nuk është zgjedhur
       no_limits_imposed: Pa imponim kufijsh
       not_subscribed: Jo i pajtuar
       pending: Në pritje për rishikim
@@ -149,6 +157,8 @@ sq:
         staff: Staf
         user: Përdorues
       search: Kërkoni
+      search_same_email_domain: Përdorues tjerë me e-mail domain të ngjajshëm
+      search_same_ip: Përdorues tjerë me IP të ngjajshme
       shared_inbox_url: URL kutie të përbashkët mesazesh
       show:
         created_reports: Ka bërë raportime
@@ -158,6 +168,7 @@ sq:
       statuses: Gjendje
       subscribe: Pajtomë
       suspended: Të pezulluara
+      time_in_queue: Në pritje në radhë %{time}
       title: Llogari
       unconfirmed_email: Email i paripohuar
       undo_silenced: Zhbëje heshtjen
@@ -166,7 +177,18 @@ sq:
       username: Emër përdoruesi
       warn: Sinjalizoje
       web: Ueb
+      whitelisted: Lista e bardhë
     action_logs:
+      action_types:
+        assigned_to_self_report: Përcakto Raportin
+        change_email_user: Ndrysho E-mail për përdoruesin
+        confirm_user: Konfirmo përdoruesin
+        create_account_warning: Krijo vërrejtje
+        create_announcement: Krijo lajmërim
+        create_custom_emoji: Krijo Emoji të veçantë
+        create_domain_allow: Lejo krijimin e domain
+        create_domain_block: Krijo bllokimin e domain
+        create_email_domain_block: Krijo bllokadë për E-mailët me domain
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user: "%{name} ndryshoi adresën email të përdoruesit %{target}"
@@ -199,12 +221,28 @@ sq:
         update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
         update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
+      empty: Nuk u gjendën regjistrat.
+      filter_by_action: Filtro sipas veprimit
+      filter_by_user: Filtro sipas përdoruesit
       title: Auditim regjistri
+    announcements:
+      destroyed_msg: Lajmërimi është fshirë me sukses!
+      edit:
+        title: Modifiko lajmërimin
+      empty: Nuk u gjendën lajmërimet.
+      live: Drejtpërdrejtë
+      new:
+        create: Krijo lajmërim
+        title: Lajmërimi i ri
+      published_msg: Lajmërimi u publikua me sukses!
+      title: Lajmërimet
     custom_emojis:
+      assign_category: Përcakto kategori
       by_domain: Përkatësi
       copied_msg: Kopja vendore e emotikonëve u krijua me sukses
       copy: Kopjoje
       copy_failed_msg: S’u bë dot një kopje vendore e emotikoneve
+      create_new_category: Krijo kategori të re
       created_msg: Emotikoni u krijua me sukses!
       delete: Fshije
       destroyed_msg: Emotikoni u asgjësua me sukses!
@@ -224,11 +262,14 @@ sq:
       shortcode: Kod i shkurtër
       shortcode_hint: Të paktën 2 shenja, vetëm shenja alfanumerike dhe nënvija
       title: Emotikone vetjake
+      uncategorized: E pakategorizuar
+      unlist: Ç'listo
       unlisted: Hequr prej liste
       update_failed_msg: S’u përditësua dot ai emotikon
       updated_msg: Emotikoni u përditësua me sukses!
       upload: Ngarkoje
     dashboard:
+      authorized_fetch_mode: Gjendja e sigurtë
       backlog: punë të prapambetura
       config: Formësim
       feature_deletions: Fshirje llogarish
@@ -236,12 +277,17 @@ sq:
       feature_profile_directory: Drejtori profilesh
       feature_registrations: Regjistrime
       feature_relay: Rele federimi
+      feature_spam_check: Kundër spam
+      feature_timeline_preview: Parashikimi kohështrirjes
       features: Veçori
       hidden_service: Federim me shërbime të fshehura
       open_reports: raportime të hapur
+      pending_tags: hashtag në pritje për rishikim
+      pending_users: përdorues në pritje për rishikim
       recent_users: Përdorues së fundi
       search: Kërko tekstin e plotë
       single_user_mode: Mënyrë me përdorues të vetëm
+      software: Softuerë
       space: Përdorim hapësire
       title: Pult
       total_users: përdorues gjithsej
@@ -249,6 +295,8 @@ sq:
       week_interactions: ndërveprime këtë javë
       week_users_active: aktivë këtë javë
       week_users_new: përdorues këtë javë
+    domain_allows:
+      undo: Largo nga lista e bardhë
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
       created_msg: Bllokimi i përkatësisë tani po përpunohet
@@ -263,6 +311,8 @@ sq:
           silence: Heshtoji
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      private_comment: Koment privat
+      public_comment: Koment publik
       reject_media: Mos prano kartela media
       reject_media_hint: Heq kartela media të depozituara lokalisht dhe nuk pranon të shkarkohen të tilla në të ardhmen. Pa peshë për pezullimet
       reject_reports: Hidh tej raportimet
@@ -288,11 +338,13 @@ sq:
       delete: Fshije
       destroyed_msg: Përkatësia email u fshi me sukses nga lista e bllokimeve
       domain: Përkatësi
+      from_html: nga %{domain}
       new:
         create: Shtoni përkatësi
         title: Zë i ri email në listë bllokimesh
       title: Listë bllokimesh email-esh
     instances:
+      by_domain: Domain
       delivery_available: Ka shpërndarje të mundshme
       known_accounts:
         one: "%{count} llogari e njohur"
@@ -301,6 +353,8 @@ sq:
         all: Krejt
         limited: E kufizuar
         title: Moderim
+      private_comment: Koment privat
+      public_comment: Koment publik
       title: Federim
       total_blocked_by_us: Bllokuar nga ne
       total_followed_by_them: Ndjekur prej tyre
