@@ -7,16 +7,26 @@ sq:
     apps: Aplikacione për celular
     contact: Kontakt
     contact_missing: I parregulluar
+    contact_unavailable: N/A
+    discover_users: Zbulo përdoruesit
     documentation: Dokumentim
+    get_apps: Provo app mobil
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
     privacy_policy: Rregulla privatësie
+    see_whats_happening: Shih se ç'po ndodhë
+    server_stats: 'Statistika serveri:'
     source_code: Kod burim
     status_count_after:
       one: gjendje
       other: gjendje
     status_count_before: Cili krijoi
+    tagline: Ndjek shokët/shoqet dhe gjej të ri
     terms: Kushte shërbimi
+    unavailable_content: Përmbajtje e pa arritshme
+    unavailable_content_description:
+      domain: Server
+      reason: Arsye
     user_count_after:
       one: përdorues
       other: përdorues
@@ -57,7 +67,10 @@ sq:
       delete: Fshije
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
+      approve: Prano
+      approve_all: Prano të gjithë
       are_you_sure: A jeni i sigurt?
+      avatar: Foto profili
       by_domain: Përkatësi
       change_email:
         changed_msg: Email-i i llogarisë u ndryshua me sukses!
@@ -77,6 +90,7 @@ sq:
       display_name: Emër në ekran
       domain: Përkatësi
       edit: Përpunojeni
+      email: Email
       email_status: Gjendje email-i
       enable: Aktivizoje
       enabled: E aktivizuar
@@ -85,6 +99,7 @@ sq:
       header: Krye
       inbox_url: URL Mesazhesh të Marrë
       invited_by: Ftuar nga
+      ip: IP
       joined: U bë pjesë
       location:
         all: Krejt
@@ -97,6 +112,7 @@ sq:
       moderation:
         active: Aktiv
         all: Krejt
+        pending: Në pritje
         silenced: U heshtua
         suspended: Të pezulluara
         title: Moderim
@@ -105,12 +121,15 @@ sq:
       most_recent_ip: IP-ja më e freskët
       no_limits_imposed: Pa imponim kufijsh
       not_subscribed: Jo i pajtuar
+      pending: Në pritje për rishikim
       perform_full_suspension: Pezulloje
       promote: Promovojeni
       protocol: Protokoll
       public: Publike
       push_subscription_expires: Pajtimi PuSH skadon më
       redownload: Rifresko profilin
+      reject: Refuzo
+      reject_all: Refuzo të gjitha
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
       resend_confirmation:
@@ -123,6 +142,7 @@ sq:
       role: Leje
       roles:
         admin: Përgjegjës
+        moderator: Moderues
         staff: Staf
         user: Përdorues
       search: Kërkoni
@@ -142,6 +162,7 @@ sq:
       unsubscribe: Shpajtohuni
       username: Emër përdoruesi
       warn: Sinjalizoje
+      web: Ueb
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
