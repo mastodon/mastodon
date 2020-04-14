@@ -107,6 +107,7 @@ cy:
       delete: Dileu
       destroyed_msg: Dinistrwyd nodyn goruwchwylio yn llwyddiannus!
     accounts:
+      add_email_domain_block: Cosbrestru parth e-bost
       approve: Cymeradwyo
       approve_all: Cymeradwyo pob un
       are_you_sure: Ydych chi'n siŵr?
@@ -187,6 +188,7 @@ cy:
         staff: Staff
         user: Defnyddiwr
       search: Chwilio
+      search_same_email_domain: Defnyddwyr eraill gyda'r un parth ebost
       search_same_ip: Defnyddwyr eraill gyda'r un IP
       shared_inbox_url: URL Mewnflwch wedi ei rannu
       show:
@@ -208,6 +210,33 @@ cy:
       web: Gwe
       whitelisted: Rhestredig wen
     action_logs:
+      action_types:
+        assigned_to_self_report: Neilltuo Adroddiad
+        change_email_user: Newid Ebost ar gyfer Defnyddiwr
+        confirm_user: Cadarnhau Defnyddiwr
+        create_account_warning: Creu Rhybydd
+        create_announcement: Creu Cyhoeddiad
+        create_custom_emoji: Creu Emoji Addasiedig
+        create_domain_allow: Creu Alluogiad Parth
+        create_domain_block: Creu Gwaharddiad Parth
+        create_email_domain_block: Creu Gwaharddiad Parth Ebost
+        demote_user: Diraddio Defnyddiwr
+        destroy_announcement: Dileu Cyhoeddiad
+        destroy_custom_emoji: Dileu Emoji Addasiedig
+        destroy_domain_allow: Dileu Alluogiad Parth
+        destroy_domain_block: Dileu Gwaharddiad Parth
+        destroy_email_domain_block: Dileu gwaharddiad parth ebost
+        destroy_status: Dileu Statws
+        disable_2fa_user: Diffodd 2FA
+        disable_custom_emoji: Analluogi Emoji Addasiedig
+        disable_user: Analluogi Defnyddiwr
+        enable_custom_emoji: Alluogi Emoji Addasiedig
+        enable_user: Alluogi Defnyddiwr
+        memorialize_account: Cofadeilio Cyfrif
+        promote_user: Dyrchafu Defnyddiwr
+        remove_avatar_user: Tynnu Afatar
+        reopen_report: Ailagor Adroddiad
+        reset_password_user: Ailosod Cyfrinair
       actions:
         assigned_to_self_report: "Aseiniodd %{name} adroddiad %{target} i'w hunan"
         change_email_user: "Newidodd %{name} gyfeiriad e-bost y defnyddiwr %{target}"
