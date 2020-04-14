@@ -189,6 +189,15 @@ sq:
         create_domain_allow: Lejo krijimin e domain
         create_domain_block: Krijo bllokimin e domain
         create_email_domain_block: Krijo bllokadë për E-mailët me domain
+        destroy_status: Fshij gjendjen
+        disable_2fa_user: Ç'aktivizo 2FA
+        disable_custom_emoji: Ç'aktivizo Emoji të veçantë
+        disable_user: Ç'aktivizo përdorues
+        enable_user: Aktivizo përdorues
+        promote_user: Promovo përdoruesin
+        remove_avatar_user: Largo foton e profilit
+        reopen_report: Rihap rapotin
+        update_status: Përditëso gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user: "%{name} ndryshoi adresën email të përdoruesit %{target}"
@@ -427,6 +436,9 @@ sq:
       custom_css:
         desc_html: Modifikojeni pamjen me CSS të nagrkuar në çdo faqe
         title: CSS Vetjake
+      domain_blocks:
+        all: Për të gjithë
+        disabled: Për askend
       hero:
         desc_html: E shfaqur në faqen ballore. Këshillohet të paktën 600x100px. Kur nuk caktohet gjë, përdoret miniaturë e shërbyesit
         title: Figurë heroi
@@ -486,6 +498,8 @@ sq:
         nsfw_on: Vëri shenjë si rezervat
       deleted: Fshirë
       failed_to_execute: S’u arrit të përmbushej
+      media:
+        title: Media
       no_media: S’ka media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
@@ -513,8 +527,17 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: 'Raport i ri për %{instance} (#%{id})'
+  aliases:
+    add_new: Krijo shkurtesë
+    remove: Fshijë shkurtesën
+  appearance:
+    localization:
+      guide_link_text: Çdokush mund të kontribuojë.
+    sensitive_content: Përmbajtje sensitive
+    toot_layout: Pamja e cicërimës
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
+    salutation: "%{name},"
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
     view: 'Parje:'
     view_profile: Shihni Profilin
@@ -528,6 +551,7 @@ sq:
     warning: Hapni sytë me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
+    apply_for_account: Kërko ftesë
     change_password: Fjalëkalim
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
@@ -539,6 +563,9 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
+    providers:
+      cas: CAS
+      saml: SAML
     register: Regjistrohuni
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
@@ -559,6 +586,8 @@ sq:
       return: Shfaq profilin e përdoruesit
       web: Kalo në web
     title: Ndiq %{acct}
+  challenge:
+    confirm: Vazhdo
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -632,10 +661,19 @@ sq:
   generic:
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
+    order_by: Rendit sipas
     save_changes: Ruaji ndryshimet
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
+  identity_proofs:
+    active: Aktive
+    authorize: Po, autorizoje
+    identity: Identifiko
+    inactive: Ç'aktivizo
+    publicize_checkbox: 'Dhe cicëro këtë:'
+    status: Gjendja e verifikimit
+    view_proof: Shfaq evidencë
   imports:
     modes:
       merge: Përzieji
@@ -650,6 +688,7 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
+  in_memoriam_html: Në përkujtim.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -681,6 +720,9 @@ sq:
       too_many: S’mund të bashkëngjiten më shumë se 4 kartela
   migrations:
     acct: emërpërdoruesi@përkatësi e llogarisë së re
+    cancel: Anulo ridrejtimin
+    proceed_with_move: Lëviz ndjekësit
+    set_redirect: Cakto ridrejtim
   moderation:
     title: Moderim
   notification_mailer:
