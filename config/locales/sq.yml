@@ -763,6 +763,7 @@ sq:
     human:
       decimal_units:
         units:
+          billion: B
           quadrillion: K
   pagination:
     newer: Më të ri
@@ -771,6 +772,18 @@ sq:
     prev: I mëparshmi
   preferences:
     other: Tjetër
+  relationships:
+    activity: Aktivitet e llogarisë
+    dormant: Inaktive
+    followers: Ndjekësit
+    following: Të ndjekurit
+    invited: Të ftuarit
+    last_active: Së fundi aktiv
+    most_recent: Të fundit
+    moved: Lëvizur
+    mutual: Përbashkët
+    primary: Primare
+    relationship: Marrëdhënie
   remote_follow:
     acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
@@ -796,17 +809,48 @@ sq:
     activity: Veprimtaria e fundit
     browser: Shfletues
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Shfletues i panjohur
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e futur në këtë çast te llogaria juaj Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: platformë e panjohur
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Shfuqizoje
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
   settings:
+    account: Llogari
+    account_settings: Rregullimet e llogarisë
+    aliases: Shkurtesat e llogarisë
+    appearance: Dukja
     authorized_apps: Aplikacione të autorizuara
     back: Mbrapsht te Mastodon
     delete: Fshirje llogarie
