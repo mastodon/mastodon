@@ -237,6 +237,15 @@ cy:
         remove_avatar_user: Tynnu Afatar
         reopen_report: Ailagor Adroddiad
         reset_password_user: Ailosod Cyfrinair
+        resolve_report: Datrus Adroddiad
+        silence_account: Tawelu Cyfrif
+        suspend_account: Gwahardd Cyfrif Dros Dro
+        unassigned_report: Dadneilltuo Adroddiad
+        unsilence_account: Dadawelu Cyfrif
+        unsuspend_account: Tynnu Gwahardd Cyfrif Dros Dro
+        update_announcement: Diweddaru Cyhoeddiad
+        update_custom_emoji: Diweddaru Emoji Addasiedig
+        update_status: Diweddaru Statws
       actions:
         assigned_to_self_report: "Aseiniodd %{name} adroddiad %{target} i'w hunan"
         change_email_user: "Newidodd %{name} gyfeiriad e-bost y defnyddiwr %{target}"
@@ -274,6 +283,9 @@ cy:
         update_custom_emoji: "Diweddarodd %{name} emoji %{target}"
         update_status: "Diweddarodd %{name} statws gan %{target}"
       deleted_status: "(statws wedi ei ddileu)"
+      empty: Dim logiau ar gael.
+      filter_by_action: Hidlo wrth weithred
+      filter_by_user: Hidlo wrth ddefnyddiwr
       title: Log archwilio
     announcements:
       destroyed_msg: Cyhoeddiad wedi'i ddileu yn llwyddianus!
@@ -406,6 +418,7 @@ cy:
       destroyed_msg: Llwyddwyd i ddileu parth e-bost o'r gosbrestr
       domain: Parth
       empty: Dim parthiau ebost ar y rhestr rhwystro.
+      from_html: o %{domain}
       new:
         create: Ychwanegu parth
         title: Cofnod newydd yng nghosbrestr e-byst
@@ -653,6 +666,7 @@ cy:
     add_new: Creu enw arall
     created_msg: Wedi creu enw arall yn llwyddianus. Gallwch nawr dechrau'r symudiad o'r hen gyfrif.
     deleted_msg: Wedi tynnu enw arall yn llwyddianus. Ni fydd symud o'r cyfrif hynny i'r cyfrif hon yn bosib.
+    empty: Nid oes gennych chi enwau eraill.
     hint_html: Os hoffech symyd o gyfrif arall i'r cyfrif hon, gallwch creu enw arall fama, sydd yn angenrheidiol cyn i chi dechrau symyd ddilynwyr o'r hen gyfrif i'r cyfrif hon. Mae'r gweithred hon yn <strong>ddiniwed ac yn gildroadwy</strong>. <strong>Caiff symudiad y cyfrif ei dechrau o'r hen gyfrif</strong>.
     remove: Dadgysylltu'r enw arall
   appearance:
@@ -1162,6 +1176,8 @@ cy:
       few: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
       many: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
       other: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
+    errors:
+      in_reply_not_found: Nid yw'r statws rydych yn ceisio ymateb i yn edrych fel ei fod yn bodoli.
     language_detection: Canfod iaith yn awtomataidd
     open_in_web: Agor yn y wê
     over_character_limit: wedi mynd heibio'r uchafswm nodyn o %{max}
