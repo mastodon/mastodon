@@ -1,12 +1,15 @@
----
 sq:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Skadon më
+        options: Mundësitë
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: vetëm shkronja, numra dhe nënvija
+              invalid: vetëm shkronja, numra dhe nënvizim
         status:
           attributes:
             reblog:
