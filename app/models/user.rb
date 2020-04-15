@@ -98,6 +98,7 @@ class User < ApplicationRecord
 
   before_validation :sanitize_languages
   before_create :set_approved
+  after_commit :send_pending_devise_notifications
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -307,10 +308,37 @@ class User < ApplicationRecord
   protected
 
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    # This method can be called in `after_update` and `after_commit` hooks,
+    # but we must make sure the mailer is actually called *after* commit,
+    # otherwise it may work on stale data. To do this, figure out if we are
+    # within a transaction.
+    if ActiveRecord::Base.connection.current_transaction.try(:records)&.include?(self)
+      pending_devise_notifications << [notification, args]
+    else
+      render_and_send_devise_message(notification, *args)
+    end
   end
 
   private
+
+  def send_pending_devise_notifications
+    pending_devise_notifications.each do |notification, args|
+      render_and_send_devise_message(notification, *args)
+    end
+
+    # Empty the pending notifications array because the
+    # after_commit hook can be called multiple times which
+    # could cause multiple emails to be sent.
+    pending_devise_notifications.clear
+  end
+
+  def pending_devise_notifications
+    @pending_devise_notifications ||= []
+  end
+
+  def render_and_send_devise_message(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 
   def set_approved
     self.approved = open_registrations? || valid_invitation? || external?
