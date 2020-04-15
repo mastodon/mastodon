@@ -311,7 +311,7 @@ class User < ApplicationRecord
     # but we must make sure the mailer is actually called *after* commit,
     # otherwise it may work on stale data. To do this, figure out if we are
     # within a transaction.
-    if ActiveRecord::Base.connection.transaction_open?
+    if (new_record? || saved_changes?) && ActiveRecord::Base.connection.transaction_open?
       pending_devise_notifications << [notification, args]
     else
       render_and_send_devise_message(notification, *args)
