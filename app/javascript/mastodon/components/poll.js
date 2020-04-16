@@ -30,6 +30,7 @@ class Poll extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     dispatch: PropTypes.func,
     disabled: PropTypes.bool,
+    refresh: PropTypes.func,
   };
 
   state = {
@@ -108,7 +109,7 @@ class Poll extends ImmutablePureComponent {
       return;
     }
 
-    this.props.dispatch(fetchPoll(this.props.poll.get('id')));
+    this.props.refresh();
   };
 
   renderOption (option, optionIndex, showResults) {
