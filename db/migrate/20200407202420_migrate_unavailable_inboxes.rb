@@ -4,8 +4,13 @@ class MigrateUnavailableInboxes < ActiveRecord::Migration[5.2]
   def up
     urls = Redis.current.smembers('unavailable_inboxes')
 
-    urls.each do |url|
-      host = Addressable::URI.parse(url).normalized_host
+    hosts = urls.map do |url|
+      Addressable::URI.parse(url).normalized_host
+    end.compact.uniq
+
+    UnavailableDomain.delete_all
+
+    hosts.each do |host|
       UnavailableDomain.create(domain: host)
     end
 
