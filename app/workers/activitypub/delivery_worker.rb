@@ -23,10 +23,12 @@ class ActivityPub::DeliveryWorker
 
     perform_request
   ensure
-    if @performed
-      failure_tracker.track_success!
-    else
-      failure_tracker.track_failure!
+    if @inbox_url.present?
+      if @performed
+        failure_tracker.track_success!
+      else
+        failure_tracker.track_failure!
+      end
     end
   end
 
