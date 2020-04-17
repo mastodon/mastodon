@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_185443) do
+ActiveRecord::Schema.define(version: 2020_04_07_202420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -770,6 +770,13 @@ ActiveRecord::Schema.define(version: 2020_03_12_185443) do
     t.boolean "by_moderator"
     t.index ["account_id"], name: "index_tombstones_on_account_id"
     t.index ["uri"], name: "index_tombstones_on_uri"
+  end
+
+  create_table "unavailable_domains", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_unavailable_domains_on_domain", unique: true
   end
 
   create_table "user_invite_requests", force: :cascade do |t|

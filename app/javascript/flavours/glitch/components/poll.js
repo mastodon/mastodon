@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
-import { vote, fetchPoll } from 'flavours/glitch/actions/polls';
 import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import escapeTextContentForBrowser from 'escape-html';
@@ -28,8 +27,9 @@ class Poll extends ImmutablePureComponent {
   static propTypes = {
     poll: ImmutablePropTypes.map,
     intl: PropTypes.object.isRequired,
-    dispatch: PropTypes.func,
     disabled: PropTypes.bool,
+    refresh: PropTypes.func,
+    onVote: PropTypes.func,
   };
 
   state = {
@@ -100,7 +100,7 @@ class Poll extends ImmutablePureComponent {
       return;
     }
 
-    this.props.dispatch(vote(this.props.poll.get('id'), Object.keys(this.state.selected)));
+    this.props.onVote(Object.keys(this.state.selected));
   };
 
   handleRefresh = () => {
@@ -108,7 +108,7 @@ class Poll extends ImmutablePureComponent {
       return;
     }
 
-    this.props.dispatch(fetchPoll(this.props.poll.get('id')));
+    this.props.refresh();
   };
 
   renderOption (option, optionIndex, showResults) {

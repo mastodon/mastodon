@@ -16,7 +16,6 @@ class AccountAlias < ApplicationRecord
   belongs_to :account
 
   validates :acct, presence: true, domain: { acct: true }
-  validates :uri, presence: true
   validates :uri, uniqueness: { scope: :account_id }
   validate :validate_target_account
 
@@ -47,7 +46,7 @@ class AccountAlias < ApplicationRecord
   end
 
   def validate_target_account
-    if uri.nil?
+    if uri.blank?
       errors.add(:acct, I18n.t('migrations.errors.not_found'))
     elsif ActivityPub::TagManager.instance.uri_for(account) == uri
       errors.add(:acct, I18n.t('migrations.errors.move_to_self'))
