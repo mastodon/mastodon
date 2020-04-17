@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import Poll from 'mastodon/components/poll';
-import { fetchPoll } from 'mastodon/actions/polls';
+import { fetchPoll, vote } from 'mastodon/actions/polls';
 
 const mapDispatchToProps = (dispatch, { pollId }) => ({
   refresh: debounce(
@@ -12,6 +12,10 @@ const mapDispatchToProps = (dispatch, { pollId }) => ({
     1000,
     { leading: true },
   ),
+
+  onVote (choices) {
+    dispatch(vote(pollId, choices));
+  },
 });
 
 const mapStateToProps = (state, { pollId }) => ({
