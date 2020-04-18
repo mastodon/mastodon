@@ -23,6 +23,7 @@ const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
+  cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow.confirm', defaultMessage: 'Remove' },
 });
 
 const makeMapStateToProps = () => {
@@ -41,8 +42,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
         dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.unfollowConfirm),
+          message: account.getIn(['relationship', 'following']) ?
+            <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} /> :
+            <FormattedMessage id='confirmations.cancel_follow.message' defaultMessage='Are you sure you want to remove your pending request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+          confirm: account.getIn(['relationship', 'following']) ?
+            intl.formatMessage(messages.unfollowConfirm) :
+            intl.formatMessage(messages.cancelFollowRequestConfirm),
           onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
         }));
       } else {
