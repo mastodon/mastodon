@@ -200,9 +200,6 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    drg (1.6.0)
-      bundler (>= 1.10, < 3.0)
-      highline (>= 1.6, < 3.0)
     e2mmap (0.1.0)
     elasticsearch (7.6.0)
       elasticsearch-api (= 7.6.0)
@@ -696,7 +693,6 @@ DEPENDENCIES
   discard (~> 1.2)
   doorkeeper (~> 5.3)
   dotenv-rails (~> 2.7)
-  drg
   e2mmap (~> 0.1.0)
   fabrication (~> 2.21)
   faker (~> 2.11)
@@ -793,9 +789,3 @@ DEPENDENCIES
   webmock (~> 3.8)
   webpacker (~> 4.2)
   webpush
-
-RUBY VERSION
-   ruby 2.6.3p62
-
-BUNDLED WITH
-   2.1.4
