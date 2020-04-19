@@ -25,7 +25,18 @@ class FetchResourceService < BaseService
   end
 
   def perform_request(&block)
-    Request.new(:get, @url).add_headers('Accept' => ACCEPT_HEADER).on_behalf_of(Account.representative).perform(&block)
+    Request.new(:get, @url).tap do |request|
+      request.add_headers('Accept' => ACCEPT_HEADER)
+
+      # In a real setting we want to sign all outgoing requests,
+      # in case the remote server has secure mode enabled and requires
+      # authentication on all resources. However, during development,
+      # sending request signatures with an inaccessible host is useless
+      # and prevents even public resources from being fetched, so
+      # don't do it
+
+      request.on_behalf_of(Account.representative) unless Rails.env.development?
+    end.perform(&block)
   end
 
   def process_response(response, terminal = false)
