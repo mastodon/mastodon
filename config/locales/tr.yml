@@ -192,6 +192,12 @@ tr:
       web: Web
       whitelisted: Beyaz listede
     action_logs:
+      action_types:
+        change_email_user: Kullanıcı için e-postayı değiştir
+        confirm_user: Kullanıcıyı Onayla
+        create_announcement: Duyuru Oluştur
+        create_custom_emoji: Özel İfade Oluştur
+        destroy_status: Durumu Sil
       actions:
         assigned_to_self_report: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
