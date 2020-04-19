@@ -390,13 +390,13 @@ class Status < ApplicationRecord
 
     def timeline_scope(scope = false)
       starting_scope = case scope
-      when :local, true
-        Status.local
-      when :remote
-        Status.remote
-      else
-        Status
-      end
+                       when :local, true
+                         Status.local
+                       when :remote
+                         Status.remote
+                       else
+                         Status
+                       end
 
       starting_scope
         .with_public_visibility
