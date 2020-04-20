@@ -11,5 +11,5 @@
   %h1= "##{@tag.name}"
   %p= t('about.about_hashtag_html', hashtag: @tag.name)
 
-#mastodon-timeline{ data: { props: Oj.dump(default_props.merge(hashtag: @tag.name)) }}
+#mastodon-timeline{ data: { props: Oj.dump(default_props.merge(hashtag: @tag.name, local: @local)) }}
 #modal-container
