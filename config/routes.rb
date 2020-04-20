@@ -100,7 +100,9 @@ Rails.application.routes.draw do
   get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do
-    resource :profile, only: [:show, :update]
+    resource :profile, only: [:show, :update] do
+      resources :pictures, only: :destroy
+    end
 
     get :preferences, to: redirect('/settings/preferences/appearance')
 
