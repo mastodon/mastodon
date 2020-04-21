@@ -106,7 +106,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     const index = items.findIndex(item => {
       return (item.name === name);
     });
-    let element;
+    let element = null;
 
     switch(e.key) {
     case 'Escape':
@@ -117,18 +117,10 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       this.handleClick(e);
       break;
     case 'ArrowDown':
-      element = this.node.childNodes[index + 1];
-      if (element) {
-        element.focus();
-        this.handleChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index + 1] || this.node.firstChild;
       break;
     case 'ArrowUp':
-      element = this.node.childNodes[index - 1];
-      if (element) {
-        element.focus();
-        this.handleChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index - 1] || this.node.lastChild;
       break;
     case 'Tab':
       if (e.shiftKey) {
@@ -136,27 +128,20 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       } else {
         element = this.node.childNodes[index + 1] || this.node.firstChild;
       }
-      if (element) {
-        element.focus();
-        this.handleChange(element.getAttribute('data-index'));
-        e.preventDefault();
-        e.stopPropagation();
-      }
       break;
     case 'Home':
       element = this.node.firstChild;
-      if (element) {
-        element.focus();
-        this.handleChange(element.getAttribute('data-index'));
-      }
       break;
     case 'End':
       element = this.node.lastChild;
-      if (element) {
-        element.focus();
-        this.handleChange(element.getAttribute('data-index'));
-      }
       break;
+    }
+
+    if (element) {
+      element.focus();
+      this.handleChange(element.getAttribute('data-index'));
+      e.preventDefault();
+      e.stopPropagation();
     }
   }
 
