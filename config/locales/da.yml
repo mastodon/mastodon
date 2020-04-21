@@ -191,6 +191,8 @@ da:
       web: Web
       whitelisted: Hvidlistet
     action_logs:
+      action_types:
+        confirm_user: Bekræft bruger
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
         change_email_user: "%{name} ændrede email adressen for brugeren %{target}"
@@ -225,6 +227,8 @@ da:
         update_custom_emoji: "%{name} opdaterede humørikonet %{target}"
         update_status: "%{name} opdaterede status for %{target}"
       deleted_status: "(slettet status)"
+      filter_by_action: Filtrer efter handling
+      filter_by_user: Filtrer efter bruger
       title: Revisionslog
     custom_emojis:
       assign_category: Vælg kategori
@@ -847,6 +851,7 @@ da:
     poll:
       vote: Stem
     show_more: Vis mere
+    show_thread: Vis tråd
     sign_in_to_participate: Log ind for at deltage i samtalen
     visibilities:
       private: Kun-følgere
