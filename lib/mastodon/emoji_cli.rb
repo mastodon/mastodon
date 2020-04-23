@@ -96,7 +96,7 @@ module Mastodon
         File.open(export_file_name, 'wb') do |file|
           Zlib::GzipWriter.wrap(file) do |gzip|
             Gem::Package::TarWriter.new(gzip) do |tar|
-              if category.nil?
+              if !options[:category]
                 say('Dumping all emoji...')
                 CustomEmoji.local.all? do |emoji|
                   emoji_file_name = export_file_name(emoji)
@@ -106,7 +106,7 @@ module Mastodon
                     exported += 1
                   end
                 end
-              else
+              elsif !category.nil?
                 say("Dumping only '#{category.name}'...")
                 category.emojis&.each do |emoji|
                   emoji_file_name = export_file_name(emoji)
@@ -116,6 +116,9 @@ module Mastodon
                     exported += 1
                   end
                 end
+              else
+                say("Unable to find category '#{options[:category]}'!")
+                failed + 1
               end
             end
           end
