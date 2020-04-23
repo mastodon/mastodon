@@ -101,7 +101,7 @@ module Mastodon
                 CustomEmoji.local.all? do |emoji|
                   emoji_file_name = export_file_name(emoji)
                   say("Adding '#{emoji.shortcode}' as '#{emoji_file_name}'...")
-                  tar.add_file_simple(emoji_file_name, 00644, emoji.image_file_size) do |io|
+                  tar.add_file_simple(emoji_file_name, 0o644, emoji.image_file_size) do |io|
                     io.write Paperclip.io_adapters.for(emoji.image).read
                     exported += 1
                   end
@@ -111,7 +111,7 @@ module Mastodon
                 category.emojis&.each do |emoji|
                   emoji_file_name = export_file_name(emoji)
                   say("Adding '#{emoji.shortcode}' as '#{emoji_file_name}'...")
-                  tar.add_file_simple(emoji_file_name, 00644, emoji.image_file_size) do |io|
+                  tar.add_file_simple(emoji_file_name, 0o644, emoji.image_file_size) do |io|
                     io.write Paperclip.io_adapters.for(emoji.image).read
                     exported += 1
                   end
