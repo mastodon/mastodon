@@ -193,6 +193,10 @@ da:
     action_logs:
       action_types:
         confirm_user: Bekræft bruger
+        destroy_status: Slet status
+        disable_2fa_user: Slet 2FA
+        disable_user: Deaktiver brugeren
+        enable_user: Aktiver brugeren
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
         change_email_user: "%{name} ændrede email adressen for brugeren %{target}"
@@ -317,6 +321,8 @@ da:
       reject_reports: Afvis anmeldelser
       rejecting_media: afviser mediefiler
       rejecting_reports: afviser anmeldelser
+      severity:
+        suspend: suspenderet
       show:
         affected_accounts:
           one: En konto i databasen påvirket
@@ -334,6 +340,7 @@ da:
       delete: Slet
       destroyed_msg: Fjernede succesfuldt email domænet fra sortliste
       domain: Domæne
+      from_html: fra %{domain}
       new:
         create: Tilføj domæne
         title: Ny email blokade opslag
@@ -617,6 +624,7 @@ da:
     storage: Medie lager
   filters:
     contexts:
+      account: Profiler
       home: Hjemme tidslinje
       notifications: Notifikationer
       public: Offentlig tidslinje
@@ -640,6 +648,7 @@ da:
     all: Alle
     changes_saved_msg: Ændringerne blev gemt!
     copy: Kopier
+    delete: Slet
     order_by: Sorter efter
     save_changes: Gem ændringer
     validation_errors:
