@@ -97,24 +97,14 @@ module Mastodon
           Zlib::GzipWriter.wrap(file) do |gzip|
             Gem::Package::TarWriter.new(gzip) do |tar|
               if !options[:category]
-                say('Dumping all emoji...')
+                say('Exporting all emoji...')
                 CustomEmoji.local.all? do |emoji|
-                  emoji_file_name = export_file_name(emoji)
-                  say("Adding '#{emoji.shortcode}' as '#{emoji_file_name}'...")
-                  tar.add_file_simple(emoji_file_name, 0o644, emoji.image_file_size) do |io|
-                    io.write Paperclip.io_adapters.for(emoji.image).read
-                    exported += 1
-                  end
+                  add_emoji_to_file(emoji, exported, tar)
                 end
               elsif !category.nil?
-                say("Dumping only '#{category.name}'...")
+                say("Exporting only '#{category.name}'...")
                 category.emojis&.each do |emoji|
-                  emoji_file_name = export_file_name(emoji)
-                  say("Adding '#{emoji.shortcode}' as '#{emoji_file_name}'...")
-                  tar.add_file_simple(emoji_file_name, 0o644, emoji.image_file_size) do |io|
-                    io.write Paperclip.io_adapters.for(emoji.image).read
-                    exported += 1
-                  end
+                  add_emoji_to_file(emoji, exported, tar)
                 end
               else
                 say("Unable to find category '#{options[:category]}'!")
@@ -126,7 +116,7 @@ module Mastodon
         puts
         say("Exported #{exported}", color(exported, skipped, failed))
       else
-        say("Archive already exists! Use '--overwrite' to force!")
+        say("Archive already exists! Use '--overwrite' to overwrite it!")
       end
     end
 
@@ -161,6 +151,15 @@ module Mastodon
         emoji.shortcode + '.png'
       else
         emoji.image_file_name
+      end
+    end
+
+    def add_emoji_to_file(emoji, exported, tar)
+      emoji_file_name = export_file_name(emoji)
+      say("Adding '#{emoji.shortcode}' as '#{emoji_file_name}'...")
+      tar.add_file_simple(emoji_file_name, 0o644, emoji.image_file_size) do |io|
+        io.write Paperclip.io_adapters.for(emoji.image).read
+        exported += 1
       end
     end
   end
