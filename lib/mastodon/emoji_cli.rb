@@ -108,7 +108,7 @@ module Mastodon
                 end
               else
                 say("Unable to find category '#{options[:category]}'!")
-                failed + 1
+                exit 1
               end
             end
           end
