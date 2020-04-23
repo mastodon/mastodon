@@ -1,9 +1,8 @@
----
 bn:
   activerecord:
     attributes:
       poll:
-        expires_at: শেষ হবে
+        expires_at: নির্দিষ্ট সময়সীমা
         options: বিকল্প
     errors:
       models:
@@ -14,4 +13,4 @@ bn:
         status:
           attributes:
             reblog:
-              taken: লেখাটি ইতিপূর্বে ছিল
+              taken: এর লেখাটি ইতিপূর্বে ছিল
