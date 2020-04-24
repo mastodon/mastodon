@@ -85,6 +85,7 @@ module Mastodon
       :th,
       :tr,
       :uk,
+      :vi,
       :'zh-CN',
       :'zh-HK',
       :'zh-TW',
