@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import ClearColumnButton from './clear_column_button';
 import SettingToggle from './setting_toggle';
+import Icon from 'mastodon/components/icon';
 
 export default class ColumnSettings extends React.PureComponent {
 
@@ -12,6 +13,10 @@ export default class ColumnSettings extends React.PureComponent {
     pushSettings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
+    onRequestNotificationPermission: PropTypes.func.isRequired,
+    alertsEnabled: PropTypes.bool,
+    browserSupport: PropTypes.bool,
+    browserPermission: PropTypes.bool,
   };
 
   onPushChange = (path, checked) => {
@@ -19,7 +24,7 @@ export default class ColumnSettings extends React.PureComponent {
   }
 
   render () {
-    const { settings, pushSettings, onChange, onClear } = this.props;
+    const { settings, pushSettings, onChange, onClear, onRequestNotificationPermission, alertsEnabled, browserSupport, browserPermission } = this.props;
 
     const filterShowStr = <FormattedMessage id='notifications.column_settings.filter_bar.show' defaultMessage='Show' />;
     const filterAdvancedStr = <FormattedMessage id='notifications.column_settings.filter_bar.advanced' defaultMessage='Display all categories' />;
@@ -30,8 +35,40 @@ export default class ColumnSettings extends React.PureComponent {
     const showPushSettings = pushSettings.get('browserSupport') && pushSettings.get('isSubscribed');
     const pushStr = showPushSettings && <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
 
+    const settingsIssues = [];
+
+    if (alertsEnabled && browserSupport && browserPermission !== 'granted') {
+      if (browserPermission === 'denied') {
+        settingsIssues.push(
+          <button
+            className='text-btn column-header__issue-btn'
+            tabIndex='0'
+            onClick={onRequestNotificationPermission}
+          >
+            <Icon id='exclamation-circle' /> <FormattedMessage id='notifications.permission_denied' defaultMessage='Mastodon cannot show notifications because the permission has been denied' />
+          </button>
+        );
+      } else if (browserPermission === 'default') {
+        settingsIssues.push(
+          <button
+            className='text-btn column-header__issue-btn'
+            tabIndex='0'
+            onClick={onRequestNotificationPermission}
+          >
+            <Icon id='exclamation-circle' /> <FormattedMessage id='notifications.request_permission' defaultMessage='Enable browser notifications' />
+          </button>
+        );
+      }
+    }
+
     return (
       <div>
+        {settingsIssues && (
+          <div className='column-settings__row'>
+            {settingsIssues}
+          </div>
+        )}
+
         <div className='column-settings__row'>
           <ClearColumnButton onClick={onClear} />
         </div>

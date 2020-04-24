@@ -3,7 +3,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ColumnSettings from '../components/column_settings';
 import { changeSetting } from '../../../actions/settings';
 import { setFilter } from '../../../actions/notifications';
-import { clearNotifications } from '../../../actions/notifications';
+import { clearNotifications, requestBrowserPermission } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { openModal } from '../../../actions/modal';
 import { showAlert } from '../../../actions/alerts';
@@ -17,6 +17,9 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   settings: state.getIn(['settings', 'notifications']),
   pushSettings: state.get('push_notifications'),
+  alertsEnabled: state.getIn(['settings', 'notifications', 'alerts']).includes(true),
+  browserSupport: state.getIn(['notifications', 'browserSupport']),
+  browserPermission: state.getIn(['notifications', 'browserPermission']),
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
@@ -60,6 +63,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       confirm: intl.formatMessage(messages.clearConfirm),
       onConfirm: () => dispatch(clearNotifications()),
     }));
+  },
+
+  onRequestNotificationPermission () {
+    dispatch(requestBrowserPermission());
   },
 
 });
