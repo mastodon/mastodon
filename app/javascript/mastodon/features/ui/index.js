@@ -12,7 +12,7 @@ import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
-import { expandNotifications } from '../../actions/notifications';
+import { expandNotifications, requestBrowserPermission as requestNotificationPermission } from '../../actions/notifications';
 import { fetchFilters } from '../../actions/filters';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp } from 'mastodon/actions/app';
@@ -367,7 +367,7 @@ class UI extends React.PureComponent {
     }
 
     if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
-      window.setTimeout(() => Notification.requestPermission(), 120 * 1000);
+      window.setTimeout(() => this.props.dispatch(requestNotificationPermission()), 120 * 1000);
     }
 
     this.props.dispatch(fetchMarkers());
