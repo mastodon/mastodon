@@ -16,7 +16,8 @@
             %span.poll__option__text
               = Formatter.instance.format_poll_option(status, option, autoplay: autoplay)
 
-          %span.poll__chart{ style: "width: #{percent}%" }
+          %progress{ max: 100, value: percent < 1 ? 1 : percent }
+            %span.poll__chart
         - else
           %label.poll__option><
             %span.poll__input{ class: poll.multiple? ? 'checkbox' : nil}><
