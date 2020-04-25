@@ -1,6 +1,89 @@
 ro:
   about:
+    about_hashtag_html: 'Acestea sunt postări publice etichetate cu <strong>#%{hashtag}</strong>. Poți interacționa cu ele dacă ai un cont oriunde în rețea.'
+    about_mastodon_html: 'Rețeaua socială a viitorului: Fără reclame, fără supraveghere corporativă, design etic și descentralizare! Dețineți-vă datele cu Mastodon!'
+    about_this: Despre
+    active_count_after: activi
+    active_footnote: Utilizatori activi lunar (UAL)
+    administered_by: 'Administrat de:'
+    api: API
+    apps: Aplicații mobile
+    apps_platforms: Folosește Mastodon de pe iOS, Android și alte platforme
+    browse_directory: Răsfoiți directorul de profil și filtrați după interese
+    browse_local_posts: Răsfoiți un flux live al postărilor publice de pe acest server
+    browse_public_posts: Răsfoiește un flux live de postări publice pe Mastodon
+    contact: Contact
+    contact_missing: Nesetat
+    contact_unavailable: N/A
+    discover_users: Descoperă utilizatori
+    documentation: Documentație
+    federation_hint_html: Cu un cont pe %{instance} vei putea urmări oameni pe orice server de Mastodon sau mai departe.
+    get_apps: Încercați o aplicație pentru mobil
     hosted_on: Mastodon găzduit de %{domain}
+    instance_actor_flash: |
+      Acest cont este un actor virtual folosit pentru a reprezenta serverul în sine și nu un utilizator individual.
+      Acesta este folosit în scopuri de federație și nu ar trebui blocat decât dacă doriți să blocați întreaga instanță, în ce caz trebuie să utilizaţi un bloc de domeniu.
+    learn_more: Află mai multe
+    privacy_policy: Politica de confidenţialitate
+    see_whats_happening: Vezi ce se întâmplă
+    server_stats: 'Statistici server:'
+    source_code: Cod sursă
+    status_count_after:
+      one: stare
+      few: stări
+      other: de stări
+    status_count_before: Care au postat
+    tagline: Urmăriți prietenii și descoperiți alții noi
+    terms: Termeni de serviciu
+    unavailable_content: Conținut indisponibil
+    unavailable_content_description:
+      domain: Server
+      reason: Motiv
+      rejecting_media: 'Fişierele media de pe aceste servere nu vor fi procesate sau stocate şi nici o miniatură nu va fi afişată, necesitând click manual la fişierul original:'
+      silenced: 'Postările de pe aceste servere vor fi ascunse în cronologii și conversații publice, și nici o notificare nu va fi generată de interacțiunile utilizatorilor lor decât dacă le urmărești:'
+      suspended: 'Nici o informație de pe aceste servere nu va fi procesată, stocată sau schimbată, ceea ce face imposibilă orice interacțiune sau comunicare cu utilizatorii de pe aceste servere:'
+    unavailable_content_html: Mastodon vă permite în general să vedeți conținutul din orice alt server și să interacționați cu utilizatorii din rețea. Acestea sunt excepţiile care au fost făcute pe acest server.
+    user_count_after:
+      one: utilizator
+      few: utilizatori
+      other: de utilizatori
+    user_count_before: Casa a
+    what_is_mastodon: Ce este Mastodon?
+  accounts:
+    choices_html: "Alegerile lui %{name}:"
+    endorsements_hint: Poți promova oameni pe care îi urmărești din interfața web, și ei vor apărea aici.
+    featured_tags_hint: Puteți promova anumite hashtag-uri care vor fi afișate aici.
+    follow: Urmărește
+    followers:
+      one: Urmăritor
+      few: Urmăritori
+      other: De Urmăritori
+    following: Urmăriți
+    joined: Înscris %{date}
+    last_active: ultima activitate
+    link_verified_on: Proprietatea acestui link a fost verificată la %{date}
+    media: Media
+    moved_html: "%{name} s-a mutat la %{new_profile_link}:"
+  admin:
+    accounts:
+      follows: Urmăriri
+      header: Antet
+      inbox_url: URL mesaje primite
+      invited_by: Invitat de
+      ip: IP
+      joined: Înscris
+      location:
+        all: Toate
+        local: Local
+        remote: La distanţă
+        title: Locaţie
+      login_status: Stare conectare
+      media_attachments: Atașamente media
+      memorialize: Transformă în memorie
+      moderation:
+        active: Activ
+        all: Toate
+        pending: În așteptare
   auth:
     change_password: Parolă
     delete_account: Șterge contul
