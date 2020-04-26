@@ -64,8 +64,66 @@ ro:
     link_verified_on: Proprietatea acestui link a fost verificată la %{date}
     media: Media
     moved_html: "%{name} s-a mutat la %{new_profile_link}:"
+    network_hidden: Aceste informaţii nu sunt disponibile
+    never_active: Niciodată
+    nothing_here: Nu există nimic aici!
+    people_followed_by: Persoane pe care %{name} le urmărește
+    people_who_follow: Persoane care urmăresc pe %{name}
+    pin_errors:
+      following: Trebuie să urmăriți deja persoana pe care doriți să o aprobați
+    posts:
+      one: Postare
+      few: Postări
+      other: De Postări
+    posts_tab_heading: Postări
+    posts_with_replies: Postări și răspunsuri
+    reserved_username: Numele de utilizator este rezervat
+    roles:
+      admin: Admin
+      bot: Robot
+      group: Grup
+      moderator: Mod
+    unavailable: Profil indisponibil
+    unfollow: Nu mai urmării
   admin:
+    account_actions:
+      action: Efectuează acțiunea
+      title: Efectuează acțiune de moderare la %{acct}
+    account_moderation_notes:
+      create: Lasă o notă
+      created_msg: Notă de moderare creată cu succes!
+      delete: Șterge
+      destroyed_msg: Notă de moderare distrusă cu succes!
     accounts:
+      add_email_domain_block: Domeniu de e-mail în lista neagră
+      approve: Aprobă
+      approve_all: Aprobă toate
+      are_you_sure: Ești sigur?
+      avatar: Avatar
+      by_domain: Domeniu
+      change_email:
+        changed_msg: E-mail de cont schimbat cu succes!
+        current_email: E-mailul curent
+        label: Schimbă adresa de email
+        new_email: E-mail nou
+        submit: Schimbă adresa de email
+        title: Schimbă e-mailul pentru %{username}
+      confirm: Confirmă
+      confirmed: Confirmat
+      confirming: Confirmare
+      deleted: Șters
+      demote: Retrogradează
+      disable: Dezactivează
+      disable_two_factor_authentication: Dezactivează 2FA
+      disabled: Dezactivat
+      display_name: Nume afișat
+      domain: Domeniu
+      edit: Editează
+      email: E-mail
+      email_status: Stare e-mail
+      enable: Activează
+      enabled: Activat
+      followers: Urmăritori
       follows: Urmăriri
       header: Antet
       inbox_url: URL mesaje primite
@@ -84,6 +142,70 @@ ro:
         active: Activ
         all: Toate
         pending: În așteptare
+        silenced: Ignorate
+        suspended: Suspendate
+        title: Moderare
+      moderation_notes: Note de moderare
+      most_recent_activity: Cea mai recentă activitate
+      most_recent_ip: Cel mai recent IP
+      no_account_selected: Nici un cont nu a fost schimbat deoarece nici unul nu a fost selectat
+      no_limits_imposed: Nicio limită impusă
+      not_subscribed: Nesubscrise
+      pending: În așteptare
+      perform_full_suspension: Suspendate
+      promote: Promovează
+      protocol: Protocol
+      public: Public
+      push_subscription_expires: Abonamentul PuSH expiră
+      redownload: Reîmprospătează profilul
+      reject: Respinge
+      reject_all: Respinge toate
+      remove_avatar: Elimină avatar
+      remove_header: Elimină antet
+      resend_confirmation:
+        already_confirmed: Acest utilizator este deja confirmat
+        send: Retrimite e-mail de confirmare
+        success: E-mail de confirmare trimis cu succes!
+      reset: Resetează
+      reset_password: Resetează parola
+      resubscribe: Resubscrie-te
+      role: Permisiuni
+      roles:
+        admin: Administrator
+        moderator: Moderator
+        staff: Personal
+        user: Utilizator
+      search: Caută
+      search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
+      search_same_ip: Alţi utilizatori cu acelaşi IP
+      shared_inbox_url: URL inbox distribuit
+      show:
+        created_reports: Rapoarte realizate
+        targeted_reports: Raportat de alții
+      silence: Ignoră
+      silenced: Ignorate
+      statuses: Stări
+      subscribe: Subscrie
+      suspended: Suspendate
+      time_in_queue: Așteptare în coadă %{time}
+      title: Conturi
+      unconfirmed_email: E-mail neconfirmat
+      undo_silenced: Anulează ignorarea
+      undo_suspension: Anulați suspendarea
+      unsubscribe: Dezabonare
+      username: Nume
+      warn: Avertizează
+      web: Web
+      whitelisted: Excluse la blocare
+    action_logs:
+      action_types:
+        assigned_to_self_report: Atribuie raportul
+        change_email_user: Schimbă e-mailul pentru utilizator
+        confirm_user: Confirmare Utilizator
+        create_account_warning: Crează avertisment
+        create_announcement: Creează Anunț
+        create_custom_emoji: Creează Zâmbet Personalizat
+        create_domain_allow: Creează permis domeniu
   auth:
     change_password: Parolă
     delete_account: Șterge contul
