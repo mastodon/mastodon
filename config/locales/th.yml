@@ -76,6 +76,7 @@ th:
       delete: ลบ
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     accounts:
+      add_email_domain_block: ขึ้นบัญชีดำโดเมนอีเมล
       approve: อนุมัติ
       approve_all: อนุมัติทั้งหมด
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -153,6 +154,7 @@ th:
         staff: พนักงาน
         user: ผู้ใช้
       search: ค้นหา
+      search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
@@ -287,6 +289,7 @@ th:
       overwrite: เขียนทับ
       shortcode: รหัสย่อ
       title: อีโมจิที่กำหนดเอง
+      uncategorized: ไม่มีหมวดหมู่
       unlist: เลิกแสดงรายการ
       unlisted: ไม่อยู่ในรายการ
       update_failed_msg: ไม่สามารถอัปเดตอีโมจินั้น
@@ -304,6 +307,7 @@ th:
       feature_spam_check: การป้องกันสแปม
       feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
+      hidden_service: การติดต่อกับภายนอกกับบริการที่ซ่อนอยู่
       open_reports: รายงานที่เปิด
       pending_tags: แฮชแท็กที่กำลังรอการตรวจทาน
       pending_users: ผู้ใช้ที่กำลังรอการตรวจทาน
@@ -502,6 +506,8 @@ th:
       title: การตั้งค่าไซต์
       trends:
         title: แฮชแท็กที่กำลังนิยม
+    site_uploads:
+      delete: ลบไฟล์ที่อัปโหลด
     statuses:
       back_to_account: กลับไปที่หน้าบัญชี
       batch:
@@ -597,6 +603,7 @@ th:
     follow_request: 'คุณได้ส่งคำขอติดตามไปยัง:'
     following: 'สำเร็จ! คุณกำลังติดตาม:'
     post_follow:
+      close: หรือคุณสามารถปิดหน้าต่างนี้
       return: แสดงโปรไฟล์ของผู้ใช้
       web: ไปยังเว็บ
     title: ติดตาม %{acct}
@@ -623,6 +630,7 @@ th:
       x_seconds: "%{count} วินาที"
   deletes:
     challenge_not_passed: ข้อมูลที่คุณป้อนไม่ถูกต้อง
+    confirm_password: ป้อนรหัสผ่านปัจจุบันของคุณเพื่อยืนยันตัวตนของคุณ
     confirm_username: ป้อนชื่อผู้ใช้ของคุณเพื่อยืนยันกระบวนงาน
     proceed: ลบบัญชี
     success_msg: ลบบัญชีของคุณสำเร็จ
@@ -646,7 +654,7 @@ th:
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว คุณกำลังปิดกั้นคุกกี้หรือไม่?
       title: การตรวจสอบความปลอดภัยล้มเหลว
-    '429': Too many requests
+    '429': คำขอมากเกินไป
     '500':
       title: หน้านี้ไม่ถูกต้อง
     '503': The page could not be served due to a temporary server failure.
@@ -698,6 +706,7 @@ th:
   identity_proofs:
     active: ใช้งานอยู่
     authorize: ใช่ อนุญาต
+    identity: ตัวตน
     inactive: ไม่ได้ใช้งาน
     publicize_checkbox: 'และโพสต์สิ่งนี้:'
     status: สถานะการตรวจสอบ
@@ -738,6 +747,7 @@ th:
   migrations:
     acct: ย้ายไปยัง
     cancel: ยกเลิกการเปลี่ยนเส้นทาง
+    cancelled_msg: ยกเลิกการเปลี่ยนเส้นทางสำเร็จ
     errors:
       move_to_self: ไม่สามารถเป็นบัญชีปัจจุบัน
       not_found: ไม่พบ
@@ -776,6 +786,7 @@ th:
       title: การดันใหม่
   notifications:
     email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
+    email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
     other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
   pagination:
     newer: ใหม่กว่า
@@ -798,6 +809,7 @@ th:
       unrecognized_emoji: ไม่ใช่อีโมจิที่รู้จัก
   relationships:
     activity: กิจกรรมบัญชี
+    dormant: ไม่เคลื่อนไหว
     followers: ผู้ติดตาม
     following: กำลังติดตาม
     invited: เชิญแล้ว
@@ -870,6 +882,7 @@ th:
   settings:
     account: บัญชี
     account_settings: การตั้งค่าบัญชี
+    aliases: นามแฝงบัญชี
     appearance: ลักษณะที่ปรากฏ
     authorized_apps: แอปที่ได้รับอนุญาต
     back: กลับไปที่ Mastodon
@@ -878,6 +891,7 @@ th:
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
     featured_tags: แฮชแท็กที่แนะนำ
+    identity_proofs: การพิสูจน์ตัวตน
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     migrate: การโยกย้ายบัญชี
@@ -957,10 +971,12 @@ th:
       review_preferences_action: เปลี่ยนการกำหนดลักษณะ
       subject: ยินดีต้อนรับสู่ Mastodon
       tips: เคล็ดลับ
+      title: ยินดีต้อนรับ %{name}!
   users:
     follow_limit_reached: คุณไม่สามารถติดตามมากกว่า %{limit} คน
     invalid_email: ที่อยู่อีเมลไม่ถูกต้อง
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
+    seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นจึงไม่มีการตั้งค่ารหัสผ่านและอีเมล
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:
     verification: การตรวจสอบ
