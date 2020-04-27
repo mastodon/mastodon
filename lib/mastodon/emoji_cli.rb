@@ -36,8 +36,8 @@ module Mastodon
 
     def import(path)
       imported = 0
-      skipped = 0
-      failed = 0
+      skipped  = 0
+      failed   = 0
       category = options[:category] ? CustomEmojiCategory.find_or_create_by(name: options[:category]) : nil
 
       Gem::Package::TarReader.new(Zlib::GzipReader.open(path)) do |tar|
@@ -74,50 +74,46 @@ module Mastodon
     end
 
     option :category
-    option :shortcode, type: :boolean
     option :overwrite, type: :boolean
     desc 'export PATH', 'Export emoji to a TAR GZIP archive at PATH'
     long_desc <<-LONG_DESC
       Exports custom emoji to 'export.tar.gz' at PATH.
 
-      The --category option dumps only the specified category. If the given category doesn't exist, all emoji will be exported.
+      The --category option dumps only the specified category. 
+      If this option is not specified, all emoji will be exported.
 
       The --overwrite option will overwrite an existing archive.
     LONG_DESC
 
     def export(path)
       exported = 0
-      skipped = 0
-      failed = 0
-      category = options[:category] ? CustomEmojiCategory.find_by(name: options[:category]) : nil
-
+      category = CustomEmojiCategory.find_by(name: options[:category])
       export_file_name = File.join(path, 'export.tar.gz')
-      if options[:overwrite] || !File.file?(export_file_name)
-        File.open(export_file_name, 'wb') do |file|
-          Zlib::GzipWriter.wrap(file) do |gzip|
-            Gem::Package::TarWriter.new(gzip) do |tar|
-              if !options[:category]
-                say('Exporting all emoji...')
-                CustomEmoji.local.all? do |emoji|
-                  add_emoji_to_file(emoji, exported, tar)
-                end
-              elsif !category.nil?
-                say("Exporting only '#{category.name}'...")
-                category.emojis&.each do |emoji|
-                  add_emoji_to_file(emoji, exported, tar)
-                end
-              else
-                say("Unable to find category '#{options[:category]}'!")
-                exit 1
+
+      if File.file?(export_file_name) && !options[:overwrite]
+        say("Archive already exists! Use '--overwrite' to overwrite it!")
+        exit 1
+      end
+      if category.nil? && options[:category]
+        say("Unable to find category '#{options[:category]}'!")
+        exit 1
+      end
+
+      File.open(export_file_name, 'wb') do |file|
+        Zlib::GzipWriter.wrap(file) do |gzip|
+          Gem::Package::TarWriter.new(gzip) do |tar|
+            scope = !options[:category] || category.nil? ? CustomEmoji.local : category.emojis
+            scope.find_each do |emoji|
+              say("Adding '#{emoji.shortcode}'...")
+              tar.add_file_simple(emoji.shortcode + File.extname(emoji.image_file_name), 0o644, emoji.image_file_size) do |io|
+                io.write Paperclip.io_adapters.for(emoji.image).read
+                exported += 1
               end
             end
           end
         end
-        puts
-        say("Exported #{exported}", color(exported, skipped, failed))
-      else
-        say("Archive already exists! Use '--overwrite' to overwrite it!")
       end
+      say("Exported #{exported}")
     end
 
     option :remote_only, type: :boolean
@@ -143,23 +139,6 @@ module Mastodon
         :yellow
       else
         :red
-      end
-    end
-
-    def export_file_name(emoji)
-      if options[:shortcode]
-        emoji.shortcode + '.png'
-      else
-        emoji.image_file_name
-      end
-    end
-
-    def add_emoji_to_file(emoji, exported, tar)
-      emoji_file_name = export_file_name(emoji)
-      say("Adding '#{emoji.shortcode}' as '#{emoji_file_name}'...")
-      tar.add_file_simple(emoji_file_name, 0o644, emoji.image_file_size) do |io|
-        io.write Paperclip.io_adapters.for(emoji.image).read
-        exported += 1
       end
     end
   end
