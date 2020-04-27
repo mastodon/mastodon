@@ -436,6 +436,11 @@ ro:
     proceed_with_move: Mută urmăritorii
     redirecting_to: Contul dvs. se redirecționează către %{acct}.
     set_redirect: Setați redirecționarea
+  notification_mailer:
+    reblog:
+      body: 'Postarea ta a fost impulsionată de %{name}:'
+      subject: "%{name} ți-a impulsionat postarea"
+      title: Impuls nou
   polls:
     errors:
       expired: Sondajul s-a încheiat deja
@@ -479,8 +484,8 @@ ro:
       proceed: Continuă să favorizezi
       prompt: 'Vrei să favorizezi această postare:'
     reblog:
-      proceed: Continuă să redistribui
-      prompt: 'Vrei să redistribui această postare:'
+      proceed: Continuă să dai impuls
+      prompt: 'Vrei să impulsionezi această postare:'
     reply:
       proceed: Continuă să răspunzi
       prompt: 'Vrei să răspunzi la această postare:'
@@ -510,7 +515,7 @@ ro:
         one: "%{count} video"
         few: "%{count} videoclipuri"
         other: "%{count} de videoclipuri"
-    boosted_from_html: Redistribuit de la %{acct_link}
+    boosted_from_html: Impuls de la %{acct_link}
     content_warning: 'Avertisment privind conținutul: %{warning}'
     disallowed_hashtags:
       one: 'conținea un hashtag nepermis: %{tags}'
