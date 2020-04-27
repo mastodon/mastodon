@@ -1,1 +1,84 @@
 ro:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Numele aplicației
+        redirect_uri: URI de redirecționare
+        scopes: Domenii
+        website: Pagina web a aplicației
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: nu poate conține un fragment.
+              invalid_uri: trebuie să fie un URI valid.
+              relative_uri: trebuie să fie un URI absolut.
+              secured_uri: trebuie să fie un URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizează
+        cancel: Anulează
+        destroy: Distruge
+        edit: Editează
+        submit: Trimite
+      confirmations:
+        destroy: Ești sigur?
+      edit:
+        title: Editați aplicația
+      form:
+        error: Ups! Verificați formularul pentru posibile erori
+      help:
+        native_redirect_uri: Utilizați %{native_redirect_uri} pentru teste locale
+        redirect_uri: Folosește câte o linie per URI
+        scopes: Separați domeniile cu spații. Lăsați necompletat pentru a utiliza domeniile implicite.
+      index:
+        application: Aplicație
+        callback_url: URL pentru callback
+        delete: Șterge
+        empty: Nu aveți aplicații.
+        name: Nume
+        new: Aplicație nouă
+        scopes: Domenii
+        show: Arată
+        title: Aplicațiile tale
+      new:
+        title: Aplicație nouă
+      show:
+        actions: Acțiuni
+        application_id: Cheie client
+        callback_urls: URL-uri de callback
+        scopes: Domenii
+        secret: Codul secret al clientului
+        title: 'Aplicație: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizează
+        deny: Interzice
+      error:
+        title: A apărut o eroare
+      new:
+        able_to: Acesta va putea să
+        prompt: Aplicația %{client_name} cere acces la contul dvs
+        title: Autorizare necesară
+      show:
+        title: Copiați acest cod de autorizare și lipiți-l în aplicație.
+    authorized_applications:
+      buttons:
+        revoke: Revocați
+      confirmations:
+        revoke: Ești sigur?
+      index:
+        application: Aplicație
+        created_at: Autorizat
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Domenii
+        title: Aplicațiile dvs autorizate
+    errors:
+      messages:
+        access_denied: Proprietarul de resurse sau serverul de autorizare a refuzat cererea.
+    scopes:
+      "write:follows": urmărește persoane
+      "write:lists": creează liste
+      "write:media": încarcă fișiere media
