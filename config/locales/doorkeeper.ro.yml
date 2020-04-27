@@ -78,7 +78,73 @@ ro:
     errors:
       messages:
         access_denied: Proprietarul de resurse sau serverul de autorizare a refuzat cererea.
+        credential_flow_not_configured: Fluxul Resurselor de Acreditări Parole a eșuat din cauza faptului că Doorkeeper.configure.resource_owner_from_credentials nu este configurat.
+        invalid_client: Autentificarea clientului a eșuat din cauza unui client necunoscut, nici o autentificare client inclusă, sau metodă de autentificare nesuportată.
+        invalid_grant: Acordarea autorizației furnizată este invalidă, expirată, revocată, nu corespunde URI-ului de redirecționare folosit în cererea de autorizare, sau a fost eliberat altui client.
+        invalid_redirect_uri: Uri-ul de redirecționare inclus nu este valid.
+        invalid_request: Solicitarea îi lipsește un parametru necesar, include o valoare de parametru nesuportată sau este dealtfel formatat incorect.
+        invalid_resource_owner: Acreditările proprietarului de resurse nu sunt valide sau proprietarul de resurse nu poate fi găsit
+        invalid_scope: Domeniul de aplicare solicitat este invalid, necunoscut sau incorect.
+        invalid_token:
+          expired: Token-ul de acces a expirat
+          revoked: Token-ul de acces a fost revocat
+          unknown: Token-ul de acces nu este valid
+        resource_owner_authenticator_not_configured: Găsirea Proprietarului de Resurse a eșuat deoarece Doorkeeper.configure.resource_owner_authenticator nu a fost configurată.
+        server_error: Serverul de autorizare a întâmpinat o condiție neașteptată care l-a împiedicat să îndeplinească cererea.
+        temporarily_unavailable: Serverul de autorizare este în prezent incapabil să gestioneze cererea din cauza unei supraîncărcări sau întrețineri temporare a serverului.
+        unauthorized_client: Clientul nu este autorizat să efectueze această cerere folosind această metodă.
+        unsupported_grant_type: Tipul de acordare a autorizației nu este suportat de serverul de autorizare.
+        unsupported_response_type: Serverul de autorizare nu acceptă acest tip de răspuns.
+    flash:
+      applications:
+        create:
+          notice: Aplicație creată.
+        destroy:
+          notice: Aplicație ștearsă.
+        update:
+          notice: Aplicație actualizată.
+      authorized_applications:
+        destroy:
+          notice: Aplicație revocată.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicaţii
+          oauth2_provider: Furnizor OAuth2
+      application:
+        title: Este necesară autorizarea OAuth
     scopes:
+      "admin:read": citește toate datele de pe server
+      "admin:read:accounts": citește informații sensibile ale tuturor conturilor
+      "admin:read:reports": citește informații sensibile din toate rapoartele și conturile raportate
+      "admin:write": modifică toate datele de pe server
+      "admin:write:accounts": efectuează acțiuni de moderare pe conturi
+      "admin:write:reports": efectuează acțiuni de moderare pe rapoarte
+      follow: modifică relațiile contului
+      push: primește notificările tale push
+      read: citește toate datele contului tău
+      "read:accounts": vede informațiile privind conturile
+      "read:blocks": vede blocurile tale
+      "read:bookmarks": vede marcajele tale
+      "read:favourites": vede favoritele tale
+      "read:filters": vede filtrele tale
+      "read:follows": vede urmăririle tale
+      "read:lists": vede listele tale
+      "read:mutes": vede ignorările tale
+      "read:notifications": vede notificările tale
+      "read:reports": vede raportările tale
+      "read:search": caută în numele tău
+      "read:statuses": vede toate stările
+      write: modifică toate datele contului tău
+      "write:accounts": modifică profilul tău
+      "write:blocks": blochează conturile și domeniile
+      "write:bookmarks": marchează stările
+      "write:favourites": favorizează stările
+      "write:filters": creează filtre
       "write:follows": urmărește persoane
       "write:lists": creează liste
       "write:media": încarcă fișiere media
+      "write:mutes": ignoră persoane și conversații
+      "write:notifications": curăță notificările
+      "write:reports": raportează alte persoane
+      "write:statuses": publică stări
