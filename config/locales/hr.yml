@@ -3,22 +3,15 @@ hr:
   about:
     about_mastodon_html: Mastodon je <em>besplatna, open-source</em> socijalna mreža. <em>Decentralizirana</em> alternativa komercijalnim platformama, izbjegava rizik toga da jedna tvrtka monopolizira vašu komunikaciju. Izaberite server kojem ćete vjerovati &mdash; koji god odabrali, moći ćete komunicirati sa svima ostalima. Bilo tko može imati svoju vlastitu Mastodon instancu i sudjelovati u <em>socijalnoj mreži</em> bez problema.
     about_this: O ovoj instanci
-    closed_registrations: Registracije na ovoj instanci su trenutno zatvorene.
     contact: Kontakt
-    other_instances: Druge instance
     source_code: Izvorni kod
-    status_count_after: statusi
     status_count_before: Tko je autor
-    user_count_after: korisnici
-    user_count_before: Home to
   accounts:
     follow: Slijedi
-    followers: Sljedbenici
     following: Slijedim
     nothing_here: Ovdje nema ničeg!
     people_followed_by: Ljudi koje %{name} slijedi
     people_who_follow: Ljudi koji slijede %{name}
-    posts: Postovi
     unfollow: Prestani slijediti
   application_mailer:
     settings: 'Promijeni e-mail postavke: %{link}'
@@ -46,22 +39,26 @@ hr:
       about_x_years: "%{count}g"
       almost_x_years: "%{count}g"
       half_a_minute: upravo
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: upravo
       over_x_years: "%{count}g"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mj"
       x_seconds: "%{count}sek"
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Too many requests
+    '500': 
+    '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Blokirao si
-    csv: CSV
-    follows: Slijediš
     storage: Pohrana media zapisa
   generic:
     changes_saved_msg: Izmjene su uspješno sačuvane!
     save_changes: Sačuvaj izmjene
-    validation_errors: Nešto još uvijek ne štima! Vidi %{count} greške ispod
   imports:
     preface: Možeš uvesti određene podatke kao što su svi ljudi koje slijediš ili blokiraš u svoj račun na ovoj instanci, sa fajlova kreiranih izvozom sa druge instance.
     success: Tvoji podaci su uspješno uploadani i bit će obrađeni u dogledno vrijeme
@@ -69,13 +66,18 @@ hr:
       blocking: Lista blokiranih
       following: Lista onih koje slijedim
       muting: Lista utišanih
-    upload: Upload
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   notification_mailer:
     digest:
       body: Ovo je kratak sažetak propuštenog od tvog prošlog posjeta %{since}
       mention: "%{name} te je spomenuo:"
-      new_followers_summary: Imaš %{count} novih sljedbenika! Prekrašno!
-      subject: "%{count} novih notifikacija od tvog prošlog posjeta \U0001F418"
     favourite:
       body: 'Tvoj status je %{name} označio kao omiljen:'
       subject: "%{name} je označio kao omiljen tvoj status"
@@ -91,17 +93,6 @@ hr:
     reblog:
       body: 'Tvoj status je potaknut od %{name}:'
       subject: "%{name} je potakao tvoj status"
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: Sljedeći
     prev: Prošli
@@ -117,7 +108,6 @@ hr:
     export: Izvoz podataka
     import: Uvezi
     preferences: Postavke
-    settings: Podešenja
     two_factor_authentication: Dvo-faktorska Autentifikacija
   statuses:
     open_in_web: Otvori na webu
@@ -130,9 +120,6 @@ hr:
   stream_entries:
     reblogged: potaknut
     sensitive_content: Osjetljivi sadržaj
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     description_html: Ako omogućiš <strong>dvo-faktorsku autentifikaciju</strong>, prijavljivanje će zahtjevati da kod sebe imaš svoj mobitel, koji će generirati tokene koje ćeš unijeti.
     disable: Onemogući

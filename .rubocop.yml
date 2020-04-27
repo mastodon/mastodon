@@ -1,3 +1,6 @@
+require:
+  - rubocop-rails
+
 AllCops:
   TargetRubyVersion: 2.3
   Exclude:
@@ -68,6 +71,9 @@ Naming/MemoizedInstanceVariableName:
 Rails:
   Enabled: true
 
+Rails/EnumHash:
+  Enabled: false
+
 Rails/HasAndBelongsToMany:
   Enabled: false
 
@@ -80,7 +86,10 @@ Rails/HttpStatus:
 Rails/Exit:
   Exclude:
     - 'lib/mastodon/*'
-    - 'lib/cli'
+    - 'lib/cli.rb'
+
+Rails/HelperInstanceVariable:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -95,6 +104,9 @@ Style/Documentation:
 
 Style/DoubleNegation:
   Enabled: true
+
+Style/FormatStringToken:
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: true

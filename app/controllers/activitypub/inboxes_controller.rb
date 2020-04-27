@@ -1,28 +1,46 @@
 # frozen_string_literal: true
 
-class ActivityPub::InboxesController < Api::BaseController
+class ActivityPub::InboxesController < ActivityPub::BaseController
   include SignatureVerification
+  include JsonLdHelper
+  include AccountOwnedConcern
 
-  before_action :set_account
+  before_action :skip_unknown_actor_delete
+  before_action :require_signature!
+  skip_before_action :authenticate_user!
 
   def create
-    if signed_request_account
-      upgrade_account
-      process_payload
-      head 202
-    else
-      render plain: signature_verification_failure_reason, status: 401
-    end
+    upgrade_account
+    process_payload
+    head 202
   end
 
   private
 
-  def set_account
-    @account = Account.find_local!(params[:account_username]) if params[:account_username]
+  def skip_unknown_actor_delete
+    head 202 if unknown_deleted_account?
+  end
+
+  def unknown_deleted_account?
+    json = Oj.load(body, mode: :strict)
+    json.is_a?(Hash) && json['type'] == 'Delete' && json['actor'].present? && json['actor'] == value_or_id(json['object']) && !Account.where(uri: json['actor']).exists?
+  rescue Oj::ParseError
+    false
+  end
+
+  def account_required?
+    params[:account_username].present?
   end
 
   def body
-    @body ||= request.body.read
+    return @body if defined?(@body)
+
+    @body = request.body.read
+    @body.force_encoding('UTF-8') if @body.present?
+
+    request.body.rewind if request.body.respond_to?(:rewind)
+
+    @body
   end
 
   def upgrade_account
@@ -31,11 +49,10 @@ class ActivityPub::InboxesController < Api::BaseController
       ResolveAccountWorker.perform_async(signed_request_account.acct)
     end
 
-    Pubsubhubbub::UnsubscribeWorker.perform_async(signed_request_account.id) if signed_request_account.subscribed?
-    DeliveryFailureTracker.track_inverse_success!(signed_request_account)
+    DeliveryFailureTracker.reset!(signed_request_account.inbox_url)
   end
 
   def process_payload
-    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body.force_encoding('UTF-8'), @account&.id)
+    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body, @account&.id)
   end
 end

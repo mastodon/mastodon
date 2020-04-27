@@ -1,4 +1,5 @@
 import { openDropdownMenu, closeDropdownMenu } from '../actions/dropdown_menu';
+import { fetchRelationships } from 'mastodon/actions/accounts';
 import { openModal, closeModal } from '../actions/modal';
 import { connect } from 'react-redux';
 import DropdownMenu from '../components/dropdown_menu';
@@ -13,14 +14,19 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, { status, items }) => ({
   onOpen(id, onItemClick, dropdownPlacement, keyboard) {
+    if (status) {
+      dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
+    }
+
     dispatch(isUserTouching() ? openModal('ACTIONS', {
       status,
       actions: items,
       onClick: onItemClick,
     }) : openDropdownMenu(id, dropdownPlacement, keyboard));
   },
+
   onClose(id) {
-    dispatch(closeModal());
+    dispatch(closeModal('ACTIONS'));
     dispatch(closeDropdownMenu(id));
   },
 });

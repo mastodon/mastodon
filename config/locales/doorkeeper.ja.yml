@@ -38,6 +38,7 @@ ja:
         application: アプリ
         callback_url: コールバックURL
         delete: 削除
+        empty: アプリはありません
         name: 名前
         new: 新規アプリ
         scopes: アクセス権
@@ -114,11 +115,18 @@ ja:
       application:
         title: OAuth認証
     scopes:
+      admin:read: サーバーのすべてのデータの読み取り
+      admin:read:accounts: すべてのアカウントの機密情報の読み取り
+      admin:read:reports: すべての通報と通報されたアカウントの機密情報の読み取り
+      admin:write: サーバーのすべてのデータの変更
+      admin:write:accounts: アカウントに対するアクションの実行
+      admin:write:reports: 通報に対するアクションの実行
       follow: アカウントのつながりを変更
       push: プッシュ通知の受信
       read: アカウントのすべてのデータの読み取り
       read:accounts: アカウント情報の読み取り
       read:blocks: ブロックの読み取り
+      read:bookmarks: ブックマークの読み取り
       read:favourites: お気に入りの読み取り
       read:filters: フィルターの読み取り
       read:follows: フォローの読み取り
@@ -131,6 +139,7 @@ ja:
       write: アカウントのすべてのデータの変更
       write:accounts: プロフィールの変更
       write:blocks: ユーザーのブロックやドメインの非表示
+      write:bookmarks: トゥートのブックマーク登録
       write:favourites: トゥートのお気に入り登録
       write:filters: フィルターの変更
       write:follows: あなたの代わりにフォロー、アンフォロー

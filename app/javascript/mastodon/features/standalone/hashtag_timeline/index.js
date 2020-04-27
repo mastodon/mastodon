@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { expandHashtagTimeline } from '../../../actions/timelines';
-import { connectHashtagStream } from '../../../actions/streaming';
+import { expandHashtagTimeline } from 'mastodon/actions/timelines';
 import Masonry from 'react-masonry-infinite';
 import { List as ImmutableList } from 'immutable';
-import DetailedStatusContainer from '../../status/containers/detailed_status_container';
+import DetailedStatusContainer from 'mastodon/features/status/containers/detailed_status_container';
 import { debounce } from 'lodash';
-import LoadingIndicator from '../../../components/loading_indicator';
+import LoadingIndicator from 'mastodon/components/loading_indicator';
 
 const mapStateToProps = (state, { hashtag }) => ({
   statusIds: state.getIn(['timelines', `hashtag:${hashtag}`, 'items'], ImmutableList()),
@@ -25,27 +24,25 @@ class HashtagTimeline extends React.PureComponent {
     isLoading: PropTypes.bool.isRequired,
     hasMore: PropTypes.bool.isRequired,
     hashtag: PropTypes.string.isRequired,
+    local: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    local: false,
   };
 
   componentDidMount () {
-    const { dispatch, hashtag } = this.props;
+    const { dispatch, hashtag, local } = this.props;
 
-    dispatch(expandHashtagTimeline(hashtag));
-    this.disconnect = dispatch(connectHashtagStream(hashtag, hashtag));
-  }
-
-  componentWillUnmount () {
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
-    }
+    dispatch(expandHashtagTimeline(hashtag, { local }));
   }
 
   handleLoadMore = () => {
-    const maxId = this.props.statusIds.last();
+    const { dispatch, hashtag, local, statusIds } = this.props;
+    const maxId = statusIds.last();
 
     if (maxId) {
-      this.props.dispatch(expandHashtagTimeline(this.props.hashtag, { maxId }));
+      dispatch(expandHashtagTimeline(hashtag, { maxId, local }));
     }
   }
 

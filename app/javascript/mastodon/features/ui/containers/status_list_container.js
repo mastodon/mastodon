@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import StatusList from '../../../components/status_list';
-import { scrollTopTimeline } from '../../../actions/timelines';
+import { scrollTopTimeline, loadPending } from '../../../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 import { me } from '../../../initial_state';
 
-const makeGetStatusIds = () => createSelector([
+const makeGetStatusIds = (pending = false) => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
-  (state, { type }) => state.getIn(['timelines', type, 'items'], ImmutableList()),
+  (state, { type }) => state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
 ], (columnSettings, statusIds, statuses) => {
   return statusIds.filter(id => {
@@ -31,12 +31,14 @@ const makeGetStatusIds = () => createSelector([
 
 const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
+  const getPendingStatusIds = makeGetStatusIds(true);
 
   const mapStateToProps = (state, { timelineId }) => ({
     statusIds: getStatusIds(state, { type: timelineId }),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
+    numPending: getPendingStatusIds(state, { type: timelineId }).size,
   });
 
   return mapStateToProps;
@@ -51,6 +53,8 @@ const mapDispatchToProps = (dispatch, { timelineId }) => ({
   onScroll: debounce(() => {
     dispatch(scrollTopTimeline(timelineId, false));
   }, 100),
+
+  onLoadPending: () => dispatch(loadPending(timelineId)),
 
 });
 

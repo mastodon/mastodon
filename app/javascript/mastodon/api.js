@@ -13,10 +13,14 @@ export const getLinks = response => {
 };
 
 let csrfHeader = {};
+
 function setCSRFHeader() {
-  const csrfToken = document.querySelector('meta[name=csrf-token]').content;
-  csrfHeader['X-CSRF-Token'] = csrfToken;
+  const csrfToken = document.querySelector('meta[name=csrf-token]');
+  if (csrfToken) {
+    csrfHeader['X-CSRF-Token'] = csrfToken.content;
+  }
 }
+
 ready(setCSRFHeader);
 
 export default getState => axios.create({

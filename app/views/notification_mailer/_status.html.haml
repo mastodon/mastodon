@@ -1,4 +1,5 @@
 - i ||= 0
+- highlighted ||= false
 
 %table.email-table{ cellspacing: 0, cellpadding: 0, dir: 'ltr' }
   %tbody
@@ -14,7 +15,7 @@
                       %table.column{ cellspacing: 0, cellpadding: 0 }
                         %tbody
                           %tr
-                            %td.column-cell.padded.status
+                            %td.column-cell.padded.status{ class: highlighted ? 'status--highlighted' : '' }
                               %table.status-header{ cellspacing: 0, cellpadding: 0 }
                                 %tbody
                                   %tr
@@ -31,6 +32,14 @@
 
                               %div{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
                                 = Formatter.instance.format(status)
+
+                                - if status.media_attachments.size > 0
+                                  %p
+                                    - status.media_attachments.each do |a|
+                                      - if status.local?
+                                        = link_to medium_url(a), medium_url(a)
+                                      - else
+                                        = link_to a.remote_url, a.remote_url
 
                               %p.status-footer
                                 = link_to l(status.created_at), web_url("statuses/#{status.id}")

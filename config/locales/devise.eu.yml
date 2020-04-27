@@ -12,6 +12,7 @@ eu:
       last_attempt: Saiakera bat geratzen zaizu zure kontua giltzapetu aurretik.
       locked: Zure kontua giltzapetuta dago.
       not_found_in_database: Baliogabeko %{authentication_keys} edo pasahitza.
+      pending: Zure kontua oraindik berrikusteke dago.
       timeout: Zure saioa iraungitu da. Hasi saioa berriro jarraitzeko.
       unauthenticated: Saioa hasi edo izena eman behar duzu jarraitu aurretik.
       unconfirmed: Zure e-mail helbidea baieztatu behar duzu jarraitu aurretik.
@@ -20,17 +21,18 @@ eu:
         action: Baieztatu e-mail helbidea
         action_with_app: Berretsi eta itzuli %{app} aplikaziora
         explanation: Kontu bat sortu duzu %{host} ostalarian e-mail helbide honekin. Aktibatzeko klik bat falta zaizu. Ez baduzu zuk sortu, ez egin ezer e-mail honekin.
-        extra_html: Egiaztatu <a href="%{terms_path}">instantziaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
+        explanation_when_pending: "%{host} instantziara gonbidatua izatea eskatu duzu e-mail helbide honekin. Behin zure e-mail helbidea berresten duzula, zure eskaera berrikusiko da. Ezin duzu aurretik saioa hasi. Zure eskaera ukatuko balitz, zure datuak ezabatuko lirateke, eta ez zenuke beste ezer egiteko beharrik. Hau ez bazara zu izan, ezikusi e-mail hau."
+        extra_html: Egiaztatu <a href="%{terms_path}">zerbitzariaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
         subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'
         title: Baieztatu e-mail helbidea
       email_changed:
         explanation: 'Zure kontuaren e-mail helbidea honetara aldatuko da:'
-        extra: Ez baduzu e-mail helbidea aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri instantziako administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
+        extra: Ez baduzu e-mail helbidea aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
         subject: 'Mastodon: E-mail helbidea aldatuta'
         title: E-mail helbide berria
       password_change:
         explanation: Zure kontuaren pasahitza aldatu da.
-        extra: Ez baduzu pasahitza aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri instantziako administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
+        extra: Ez baduzu pasahitza aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
         subject: 'Mastodon: Pasahitza aldatuta'
         title: Pasahitza aldatuta
       reconfirmation_instructions:
@@ -44,6 +46,18 @@ eu:
         extra: Ez baduzu hau eskatu, mesedez ezikusi e-mail hau. Zure pasahitza ez da aldatuko goiko estekara sartu eta berri bat sortzen ez baduzu.
         subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
         title: Pasahitza berrezartzea
+      two_factor_disabled:
+        explanation: Bi faktoreetako autentifikazioa desgaitu da zure kontuan. Orain saioa hasi daiteke e-mail helbidea eta pasahitza bakarrik erabilita.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa desgaituta'
+        title: 2FA desgaituta
+      two_factor_enabled:
+        explanation: Bi faktoreetako autentifikazioa gaitu da zure kontuan. Token bat sortu du lotutako TOTP aplikazioak eta saioa hasteko eskatuko da.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa gaituta'
+        title: 2FA gaituta
+      two_factor_recovery_codes_changed:
+        explanation: Aurreko kodeak baliogabetu dira eta berriak sortu dira.
+        subject: 'Mastodon: Bi faktoreetako berreskuratze kodeak birsortuta'
+        title: 2FA berreskuratze kodeak aldatuta
       unlock_instructions:
         subject: 'Mastodon: Desblokeatzeko argibideak'
     omniauth_callbacks:
@@ -60,6 +74,7 @@ eu:
       signed_up: Ongi etorri! Ongi hasi duzu saioa.
       signed_up_but_inactive: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua oraindik ez dagoelako aktibatuta.
       signed_up_but_locked: Ongi eman duzu izena. Hala ere, ezin duzu saioa hasi zure kontua giltzapetuta dagoelako.
+      signed_up_but_pending: Berrespen esteka bat duen mezu bat bidali da zure e-mail helbidera. Behin esteka sakatzen duzula, zure eskaera berrikusiko da. Onartzen bada jakinaraziko zaizu.
       signed_up_but_unconfirmed: Baieztapen esteka bat duen e-mail bidali zaizu. Jarraitu esteka zure kontua aktibatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
       update_needs_confirmation: Zure kontua ongi eguneratu duzu, baina zure email helbide berria egiaztatu behar dugu. Baieztapen esteka bat duen e-mail bidali zaizu, jarraitu esteka zure e-mal helbide berria baieztatzeko. Egiaztatu spam karpeta ez baduzu e-mail hau jaso.
       updated: Zure kontua ongi eguneratu da.

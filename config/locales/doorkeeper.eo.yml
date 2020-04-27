@@ -38,6 +38,7 @@ eo:
         application: Aplikaĵo
         callback_url: Revena URL
         delete: Forigi
+        empty: Vi havas neniun aplikaĵon.
         name: Nomo
         new: Nova aplikaĵo
         scopes: Ampleksoj
@@ -114,11 +115,18 @@ eo:
       application:
         title: OAuth-a rajtigo bezonata
     scopes:
+      admin:read: legu ĉiujn datumojn en la servilo
+      admin:read:accounts: legas senteman informacion de ĉiuj kontoj
+      admin:read:reports: legas konfidencajn informojn de ĉiuj signaloj kaj signalitaj kontoj
+      admin:write: modifu ĉiujn datumojn en la servilo
+      admin:write:accounts: plenumi agojn de kontrolo sur kontoj
+      admin:write:reports: plenumi agojn de kontrolo sur signaloj
       follow: ŝanĝi rilatojn al aliaj kontoj
       push: ricevi viajn puŝ-sciigojn
       read: legi ĉiujn datumojn de via konto
       read:accounts: vidi la informojn de la konto
       read:blocks: vidi viajn blokojn
+      read:bookmarks: vidi viajn legosignojn
       read:favourites: vidi viajn stelumojn
       read:filters: vidi viajn filtrilojn
       read:follows: vidi viajn sekvatojn
@@ -131,6 +139,7 @@ eo:
       write: ŝanĝi ĉiujn datumojn de via konto
       write:accounts: ŝanĝi vian profilon
       write:blocks: bloki kontojn kaj domajnojn
+      write:bookmarks: aldoni mesaĝojn al la legosignoj
       write:favourites: stelumitaj mesaĝoj
       write:filters: krei filtrilojn
       write:follows: sekvi homojn

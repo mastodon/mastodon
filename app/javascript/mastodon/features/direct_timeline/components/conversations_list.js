@@ -20,18 +20,24 @@ export default class ConversationsList extends ImmutablePureComponent {
 
   handleMoveUp = id => {
     const elementIndex = this.getCurrentIndex(id) - 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, true);
   }
 
   handleMoveDown = id => {
     const elementIndex = this.getCurrentIndex(id) + 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, false);
   }
 
-  _selectChild (index) {
-    const element = this.node.node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+  _selectChild (index, align_top) {
+    const container = this.node.node;
+    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
 
     if (element) {
+      if (align_top && container.scrollTop > element.offsetTop) {
+        element.scrollIntoView(true);
+      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+        element.scrollIntoView(false);
+      }
       element.focus();
     }
   }

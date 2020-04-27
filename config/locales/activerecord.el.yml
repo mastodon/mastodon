@@ -1,6 +1,10 @@
 ---
 el:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Προθεσμία
+        options: Επιλογές
     errors:
       models:
         account:

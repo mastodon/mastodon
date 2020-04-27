@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = t('about.see_whats_happening')
+
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
+  = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
+
+.page-header
+  %h1= t('about.see_whats_happening')
+
+  - if Setting.show_known_fediverse_at_about_page
+    %p= t('about.browse_public_posts')
+  - else
+    %p= t('about.browse_local_posts')
+
+#mastodon-timeline{ data: { props: Oj.dump(default_props) }}
+#modal-container

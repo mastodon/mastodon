@@ -18,7 +18,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def description
-    strip_tags(object.site_description.presence || I18n.t('about.about_mastodon_html'))
+    strip_tags(object.site_short_description.presence || I18n.t('about.about_mastodon_html'))
   end
 
   def icons
@@ -55,6 +55,8 @@ class ManifestSerializer < ActiveModel::Serializer
     {
       url_template: 'share?title={title}&text={text}&url={url}',
       action: 'share',
+      method: 'GET',
+      enctype: 'application/x-www-form-urlencoded',
       params: {
         title: 'title',
         text: 'text',

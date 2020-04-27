@@ -1,12 +1,18 @@
 %ul.no-list
-  - if controller_name != 'sessions'
-    %li= link_to t('auth.login'), new_session_path(resource_name)
+  - if user_signed_in?
+    %li= link_to t('settings.account_settings'), edit_user_registration_path
+  - else
+    - if controller_name != 'sessions'
+      %li= link_to t('auth.login'), new_user_session_path
 
-  - if devise_mapping.registerable? && controller_name != 'registrations'
-    %li= link_to t('auth.register'), open_registrations? ? new_registration_path(resource_name) : 'https://joinmastodon.org/#getting-started'
+    - if controller_name != 'registrations'
+      %li= link_to t('auth.register'), available_sign_up_path
 
-  - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-    %li= link_to t('auth.forgot_password'), new_password_path(resource_name)
+    - if controller_name != 'passwords' && controller_name != 'registrations'
+      %li= link_to t('auth.forgot_password'), new_user_password_path
 
-  - if devise_mapping.confirmable? && controller_name != 'confirmations'
-    %li= link_to t('auth.didnt_get_confirmation'), new_confirmation_path(resource_name)
+  - if controller_name != 'confirmations' && (!user_signed_in? || !current_user.confirmed? || current_user.unconfirmed_email.present?)
+    %li= link_to t('auth.didnt_get_confirmation'), new_user_confirmation_path
+
+  - if user_signed_in? && controller_name != 'setup'
+    %li= link_to t('auth.logout'), destroy_user_session_path, data: { method: :delete }

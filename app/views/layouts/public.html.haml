@@ -1,25 +1,29 @@
 - content_for :header_tags do
+  = render_initial_state
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
   .public-layout
-    .container
-      %nav.header
-        .nav-left
-          = link_to root_url, class: 'brand' do
-            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+    - unless @hide_navbar
+      .container
+        %nav.header
+          .nav-left
+            = link_to root_url, class: 'brand' do
+              = svg_logo_full
 
-          - if Setting.profile_directory
-            = link_to t('directories.directory'), explore_path, class: 'nav-link optional'
-          = link_to t('about.about_this'), about_more_path, class: 'nav-link optional'
-          = link_to t('about.apps'), 'https://joinmastodon.org/apps', class: 'nav-link optional'
-        .nav-center
-        .nav-right
-          - if user_signed_in?
-            = link_to t('settings.back'), root_url, class: 'nav-link nav-button webapp-btn'
-          - else
-            = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn nav-link nav-button'
-            = link_to t('auth.register'), open_registrations? ? new_user_registration_path : 'https://joinmastodon.org/#getting-started', class: 'webapp-btn nav-link nav-button'
+            - unless whitelist_mode?
+              = link_to t('directories.directory'), explore_path, class: 'nav-link optional' if Setting.profile_directory
+              = link_to t('about.about_this'), about_more_path, class: 'nav-link optional'
+              = link_to t('about.apps'), 'https://joinmastodon.org/apps', class: 'nav-link optional'
+
+          .nav-center
+
+          .nav-right
+            - if user_signed_in?
+              = link_to t('settings.back'), root_url, class: 'nav-link nav-button webapp-btn'
+            - else
+              = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn nav-link nav-button'
+              = link_to t('auth.register'), available_sign_up_path, class: 'webapp-btn nav-link nav-button'
 
     .container= yield
 
@@ -35,12 +39,10 @@
             %h4= t 'footer.developers'
             %ul
               %li= link_to t('about.documentation'), 'https://docs.joinmastodon.org/'
-              %li= link_to t('about.api'), 'https://docs.joinmastodon.org/api/guidelines/'
+              %li= link_to t('about.api'), 'https://docs.joinmastodon.org/client/intro/'
           .column-2
             %h4= link_to t('about.what_is_mastodon'), 'https://joinmastodon.org/'
-
-            = link_to root_url, class: 'brand' do
-              = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
+            = link_to svg_logo, root_url, class: 'brand'
           .column-3
             %h4= site_hostname
             %ul

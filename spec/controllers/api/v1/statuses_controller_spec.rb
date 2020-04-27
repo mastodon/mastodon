@@ -39,12 +39,50 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     describe 'POST #create' do
       let(:scopes) { 'write:statuses' }
 
-      before do
-        post :create, params: { status: 'Hello world' }
+      context do
+        before do
+          post :create, params: { status: 'Hello world' }
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns rate limit headers' do
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
+      context 'with missing parameters' do
+        before do
+          post :create, params: {}
+        end
+
+        it 'returns http unprocessable entity' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'returns rate limit headers' do
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+        end
+      end
+
+      context 'when exceeding rate limit' do
+        before do
+          rate_limiter = RateLimiter.new(user.account, family: :statuses)
+          300.times { rate_limiter.record! }
+          post :create, params: { status: 'Hello world' }
+        end
+
+        it 'returns http too many requests' do
+          expect(response).to have_http_status(429)
+        end
+
+        it 'returns rate limit headers' do
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq '0'
+        end
       end
     end
 
@@ -91,13 +129,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           expect(response).to have_http_status(404)
         end
       end
-
-      describe 'GET #card' do
-        it 'returns http unautharized' do
-          get :card, params: { id: status.id }
-          expect(response).to have_http_status(404)
-        end
-      end
     end
 
     context 'with a public status' do
@@ -117,13 +148,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
         it 'returns http success' do
           get :context, params: { id: status.id }
-          expect(response).to have_http_status(200)
-        end
-      end
-
-      describe 'GET #card' do
-        it 'returns http success' do
-          get :card, params: { id: status.id }
           expect(response).to have_http_status(200)
         end
       end

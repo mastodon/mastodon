@@ -22,14 +22,14 @@ class FetchLinkCardService < BaseService
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         @card = PreviewCard.find_by(url: @url)
-        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago
+        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
       else
         raise Mastodon::RaceConditionError
       end
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
+  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
@@ -39,13 +39,13 @@ class FetchLinkCardService < BaseService
   def process_url
     @card ||= PreviewCard.new(url: @url)
 
-    failed = Request.new(:head, @url).perform do |res|
-      res.code != 405 && res.code != 501 && (res.code != 200 || res.mime_type != 'text/html')
-    end
+    attempt_oembed || attempt_opengraph
+  end
 
-    return if failed
+  def html
+    return @html if defined?(@html)
 
-    Request.new(:get, @url).perform do |res|
+    Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
         @html_charset = res.charset
@@ -54,10 +54,6 @@ class FetchLinkCardService < BaseService
         @html_charset = nil
       end
     end
-
-    return if @html.nil?
-
-    attempt_oembed || attempt_opengraph
   end
 
   def attach_card
@@ -71,7 +67,7 @@ class FetchLinkCardService < BaseService
     else
       html  = Nokogiri::HTML(@status.text)
       links = html.css('a')
-      urls  = links.map { |a| Addressable::URI.parse(a['href']).normalize unless skip_link?(a) }.compact
+      urls  = links.map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.compact.map(&:normalize).compact
     end
 
     urls.reject { |uri| bad_url?(uri) }.first
@@ -84,21 +80,26 @@ class FetchLinkCardService < BaseService
 
   def mention_link?(a)
     @status.mentions.any? do |mention|
-      a['href'] == TagManager.instance.url_for(mention.account)
+      a['href'] == ActivityPub::TagManager.instance.url_for(mention.account)
     end
   end
 
   def skip_link?(a)
     # Avoid links for hashtags and mentions (microformats)
-    a['rel']&.include?('tag') || a['class']&.include?('u-url') || mention_link?(a)
+    a['rel']&.include?('tag') || a['class']&.match?(/u-url|h-card/) || mention_link?(a)
   end
 
   def attempt_oembed
-    service = FetchOEmbedService.new
-    embed   = service.call(@url, html: @html)
-    url     = Addressable::URI.parse(service.endpoint_url)
+    service         = FetchOEmbedService.new
+    url_domain      = Addressable::URI.parse(@url).normalized_host
+    cached_endpoint = Rails.cache.read("oembed_endpoint:#{url_domain}")
+
+    embed   = service.call(@url, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
+    embed ||= service.call(@url, html: html) unless html.nil?
 
     return false if embed.nil?
+
+    url = Addressable::URI.parse(service.endpoint_url)
 
     @card.type          = embed[:type]
     @card.title         = embed[:title]         || ''
@@ -133,6 +134,8 @@ class FetchLinkCardService < BaseService
   end
 
   def attempt_opengraph
+    return if html.nil?
+
     detector = CharlockHolmes::EncodingDetector.new
     detector.strip_tags = true
 
@@ -165,7 +168,7 @@ class FetchLinkCardService < BaseService
   end
 
   def meta_property(page, property)
-    page.at_xpath("//meta[@property=\"#{property}\"]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
+    page.at_xpath("//meta[contains(concat(' ', normalize-space(@property), ' '), ' #{property} ')]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
   end
 
   def lock_options

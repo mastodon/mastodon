@@ -9,11 +9,11 @@
         %td= number_to_human_size @export.total_storage
         %td
       %tr
-        %th= t('accounts.posts', count: @export.total_statuses)
+        %th= t('accounts.posts_tab_heading')
         %td= number_with_delimiter @export.total_statuses
         %td
       %tr
-        %th= t('exports.follows')
+        %th= t('admin.accounts.follows')
         %td= number_with_delimiter @export.total_follows
         %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
       %tr
@@ -21,7 +21,7 @@
         %td= number_with_delimiter @export.total_lists
         %td= table_link_to 'download', t('exports.csv'), settings_exports_lists_path(format: :csv)
       %tr
-        %th= t('accounts.followers', count: @export.total_followers)
+        %th= t('admin.accounts.followers')
         %td= number_with_delimiter @export.total_followers
         %td
       %tr
@@ -37,12 +37,16 @@
         %td= number_with_delimiter @export.total_domain_blocks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
 
+%hr.spacer/
+
 %p.muted-hint= t('exports.archive_takeout.hint_html')
 
 - if policy(:backup).create?
   %p= link_to t('exports.archive_takeout.request'), settings_export_path, class: 'button', method: :post
 
 - unless @backups.empty?
+  %hr.spacer/
+
   .table-wrapper
     %table.table
       %thead

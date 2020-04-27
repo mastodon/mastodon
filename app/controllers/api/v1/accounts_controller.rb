@@ -12,7 +12,9 @@ class Api::V1::AccountsController < Api::BaseController
   before_action :check_account_suspension, only: [:show]
   before_action :check_enabled_registrations, only: [:create]
 
-  respond_to :json
+  skip_before_action :require_authenticated_user!, only: :create
+
+  override_rate_limit_headers :follow, family: :follows
 
   def show
     render json: @account, serializer: REST::AccountSerializer
@@ -29,9 +31,9 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def follow
-    FollowService.new.call(current_user.account, @account, reblogs: truthy_param?(:reblogs))
+    FollowService.new.call(current_user.account, @account, reblogs: truthy_param?(:reblogs), with_rate_limit: true)
 
-    options = @account.locked? ? {} : { following_map: { @account.id => { reblogs: truthy_param?(:reblogs) } }, requested_map: { @account.id => false } }
+    options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: truthy_param?(:reblogs) } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(options)
   end
@@ -76,10 +78,14 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason)
   end
 
   def check_enabled_registrations
-    forbidden if single_user_mode? || !Setting.open_registrations
+    forbidden if single_user_mode? || !allowed_registrations?
+  end
+
+  def allowed_registrations?
+    Setting.registrations_mode != 'none'
   end
 end

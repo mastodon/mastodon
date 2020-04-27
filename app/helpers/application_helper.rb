@@ -20,7 +20,23 @@ module ApplicationHelper
   end
 
   def open_registrations?
-    Setting.open_registrations
+    Setting.registrations_mode == 'open'
+  end
+
+  def approved_registrations?
+    Setting.registrations_mode == 'approved'
+  end
+
+  def closed_registrations?
+    Setting.registrations_mode == 'none'
+  end
+
+  def available_sign_up_path
+    if closed_registrations?
+      'https://joinmastodon.org/#getting-started'
+    else
+      new_user_registration_path
+    end
   end
 
   def open_deletion?
@@ -61,8 +77,12 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
-  def custom_emoji_tag(custom_emoji)
-    image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
+  def custom_emoji_tag(custom_emoji, animate = true)
+    if animate
+      image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
+    else
+      image_tag(custom_emoji.image.url(:static), class: 'emojione custom-emoji', alt: ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
+    end
   end
 
   def opengraph(property, content)
@@ -100,5 +120,31 @@ module ApplicationHelper
 
   def storage_host?
     ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
+  end
+
+  def quote_wrap(text, line_width: 80, break_sequence: "\n")
+    text = word_wrap(text, line_width: line_width - 2, break_sequence: break_sequence)
+    text.split("\n").map { |line| '> ' + line }.join("\n")
+  end
+
+  def render_initial_state
+    state_params = {
+      settings: {
+        known_fediverse: Setting.show_known_fediverse_at_about_page,
+      },
+
+      text: [params[:title], params[:text], params[:url]].compact.join(' '),
+    }
+
+    if user_signed_in?
+      state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
+      state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
+      state_params[:current_account]   = current_account
+      state_params[:token]             = current_session.token
+      state_params[:admin]             = Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
+    end
+
+    json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
+    content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
   end
 end

@@ -3,22 +3,16 @@ bg:
   about:
     about_mastodon_html: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
     about_this: За тази инстанция
-    closed_registrations: В момента регистрациите за тази инстанция са затворени.
     contact: За контакти
-    other_instances: Други инстанции
     source_code: Програмен код
-    status_count_after: публикации
     status_count_before: Написали
-    user_count_after: потребители
     user_count_before: Дом на
   accounts:
     follow: Последвай
-    followers: Последователи
     following: Следва
     nothing_here: Тук няма никого!
     people_followed_by: Хора, които %{name} следва
     people_who_follow: Хора, които следват %{name}
-    posts: Публикации
     unfollow: Не следвай
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
@@ -53,15 +47,22 @@ bg:
       x_minutes: "%{count} мин"
       x_months: "%{count} м"
       x_seconds: "%{count} сек"
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Too many requests
+    '500': 
+    '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Вашите блокирания
-    csv: CSV
-    follows: Вашите следвания
     storage: Съхранение на мултимедия
   generic:
     changes_saved_msg: Успешно запазване на промените!
     save_changes: Запази промените
-    validation_errors: Нещо все още не е наред! Моля, прегледай грешките по-долу
   imports:
     preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
     success: Твоите данни бяха успешно качени и ще бъдат обработени впоследствие
@@ -69,6 +70,14 @@ bg:
       blocking: Списък на блокираните
       following: Списък на последователите
     upload: Качване
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
@@ -98,17 +107,6 @@ bg:
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: Напред
     prev: Назад
@@ -124,7 +122,6 @@ bg:
     export: Експортиране на данни
     import: Импортиране
     preferences: Предпочитания
-    settings: Настройки
     two_factor_authentication: Двустепенно удостоверяване
   statuses:
     open_in_web: Отвори в уеб

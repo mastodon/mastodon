@@ -19,7 +19,7 @@ describe('<Column />', () => {
       const wrapper = mount(
         <Column heading='notifications'>
           <div className='scrollable' />
-        </Column>
+        </Column>,
       );
       wrapper.find(ColumnHeader).find('button').simulate('click');
       expect(global.requestAnimationFrame.mock.calls.length).toEqual(1);

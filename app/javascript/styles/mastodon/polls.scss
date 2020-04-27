@@ -1,0 +1,244 @@
+.poll {
+  margin-top: 16px;
+  font-size: 14px;
+
+  li {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  &__chart {
+    border-radius: 4px;
+    display: block;
+    background: darken($ui-primary-color, 5%);
+    height: 5px;
+    min-width: 1%;
+
+    &.leading {
+      background: $ui-highlight-color;
+    }
+  }
+
+  &__option {
+    position: relative;
+    display: flex;
+    padding: 6px 0;
+    line-height: 18px;
+    cursor: default;
+    overflow: hidden;
+
+    &__text {
+      display: inline-block;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: calc(100% - 45px - 25px);
+    }
+
+    input[type=radio],
+    input[type=checkbox] {
+      display: none;
+    }
+
+    .autossugest-input {
+      flex: 1 1 auto;
+    }
+
+    input[type=text] {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      font-size: 14px;
+      color: $inverted-text-color;
+      outline: 0;
+      font-family: inherit;
+      background: $simple-background-color;
+      border: 1px solid darken($simple-background-color, 14%);
+      border-radius: 4px;
+      padding: 6px 10px;
+
+      &:focus {
+        border-color: $highlight-text-color;
+      }
+    }
+
+    &.selectable {
+      cursor: pointer;
+    }
+
+    &.editable {
+      display: flex;
+      align-items: center;
+      overflow: visible;
+    }
+  }
+
+  &__input {
+    display: inline-block;
+    position: relative;
+    border: 1px solid $ui-primary-color;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    margin-right: 10px;
+    top: -1px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex: 0 0 18px;
+
+    &.checkbox {
+      border-radius: 4px;
+    }
+
+    &.active {
+      border-color: $valid-value-color;
+      background: $valid-value-color;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: lighten($valid-value-color, 15%);
+      border-width: 4px;
+    }
+
+    &::-moz-focus-inner {
+      outline: 0 !important;
+      border: 0;
+    }
+
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+  }
+
+  &__number {
+    display: inline-block;
+    width: 45px;
+    font-weight: 700;
+    flex: 0 0 45px;
+  }
+
+  &__voted {
+    padding: 0 5px;
+    display: inline-block;
+
+    &__mark {
+      font-size: 18px;
+    }
+  }
+
+  &__footer {
+    padding-top: 6px;
+    padding-bottom: 5px;
+    color: $dark-text-color;
+  }
+
+  &__link {
+    display: inline;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: $dark-text-color;
+    text-decoration: underline;
+    font-size: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:active,
+    &:focus {
+      background-color: rgba($dark-text-color, .1);
+    }
+  }
+
+  .button {
+    height: 36px;
+    padding: 0 16px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+}
+
+.compose-form__poll-wrapper {
+  border-top: 1px solid darken($simple-background-color, 8%);
+
+  ul {
+    padding: 10px;
+  }
+
+  .poll__footer {
+    border-top: 1px solid darken($simple-background-color, 8%);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    button,
+    select {
+      flex: 1 1 50%;
+
+      &:focus {
+        border-color: $highlight-text-color;
+      }
+    }
+  }
+
+  .button.button-secondary {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 10px;
+    height: auto;
+    line-height: inherit;
+    color: $action-button-color;
+    border-color: $action-button-color;
+    margin-right: 5px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+
+    .poll__option {
+      flex: 0 0 auto;
+      width: calc(100% - (23px + 6px));
+      margin-right: 6px;
+    }
+  }
+
+  select {
+    appearance: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: $inverted-text-color;
+    display: inline-block;
+    width: auto;
+    outline: 0;
+    font-family: inherit;
+    background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    border: 1px solid darken($simple-background-color, 14%);
+    border-radius: 4px;
+    padding: 6px 10px;
+    padding-right: 30px;
+  }
+
+  .icon-button.disabled {
+    color: darken($simple-background-color, 14%);
+  }
+}
+
+.muted .poll {
+  color: $dark-text-color;
+
+  &__chart {
+    background: rgba(darken($ui-primary-color, 14%), 0.2);
+
+    &.leading {
+      background: rgba($ui-highlight-color, 0.2);
+    }
+  }
+}

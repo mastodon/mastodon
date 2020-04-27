@@ -5,7 +5,7 @@ class BootstrapTimelineService < BaseService
     @source_account = source_account
 
     autofollow_inviter!
-    autofollow_bootstrap_timeline_accounts!
+    autofollow_bootstrap_timeline_accounts! if Setting.enable_bootstrap_timeline_accounts
   end
 
   private
@@ -17,7 +17,11 @@ class BootstrapTimelineService < BaseService
 
   def autofollow_bootstrap_timeline_accounts!
     bootstrap_timeline_accounts.each do |target_account|
-      FollowService.new.call(@source_account, target_account)
+      begin
+        FollowService.new.call(@source_account, target_account)
+      rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
+        nil
+      end
     end
   end
 
@@ -40,7 +44,9 @@ class BootstrapTimelineService < BaseService
 
   def local_unlocked_accounts(usernames)
     Account.local
+           .without_suspended
            .where(username: usernames)
            .where(locked: false)
+           .where(moved_to_account_id: nil)
   end
 end

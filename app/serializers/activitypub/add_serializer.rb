@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::AddSerializer < ActiveModel::Serializer
+class ActivityPub::AddSerializer < ActivityPub::Serializer
   include RoutingHelper
 
   attributes :type, :actor, :target

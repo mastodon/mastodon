@@ -5,31 +5,38 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
 
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }
   before_action :require_user!
+  before_action :set_reblog
 
-  respond_to :json
+  override_rate_limit_headers :create, family: :statuses
 
   def create
-    @status = ReblogService.new.call(current_user.account, status_for_reblog)
+    @status = ReblogService.new.call(current_account, @reblog, reblog_params)
+
     render json: @status, serializer: REST::StatusSerializer
   end
 
   def destroy
-    @status = status_for_destroy.reblog
-    @reblogs_map = { @status.id => false }
+    @status = current_account.statuses.find_by(reblog_of_id: @reblog.id)
 
-    authorize status_for_destroy, :unreblog?
-    RemovalWorker.perform_async(status_for_destroy.id)
+    if @status
+      authorize @status, :unreblog?
+      @status.discard
+      RemovalWorker.perform_async(@status.id)
+    end
 
-    render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, reblogs_map: @reblogs_map)
+    render json: @reblog, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_account.id, reblogs_map: { @reblog.id => false })
   end
 
   private
 
-  def status_for_reblog
-    Status.find params[:status_id]
+  def set_reblog
+    @reblog = Status.find(params[:status_id])
+    authorize @reblog, :show?
+  rescue Mastodon::NotPermittedError
+    not_found
   end
 
-  def status_for_destroy
-    current_user.account.statuses.where(reblog_of_id: params[:status_id]).first!
+  def reblog_params
+    params.permit(:visibility)
   end
 end

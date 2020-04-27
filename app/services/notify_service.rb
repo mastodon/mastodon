@@ -9,7 +9,7 @@ class NotifyService < BaseService
     return if recipient.user.nil? || blocked?
 
     create_notification!
-    push_notification! if @notification.browserable?
+    push_notification!
     push_to_conversation! if direct_message?
     send_email! if email_enabled?
   rescue ActiveRecord::RecordInvalid
@@ -35,6 +35,10 @@ class NotifyService < BaseService
   end
 
   def blocked_follow_request?
+    false
+  end
+
+  def blocked_poll?
     false
   end
 
@@ -88,7 +92,7 @@ class NotifyService < BaseService
 
   def blocked?
     blocked   = @recipient.suspended?                            # Skip if the recipient account is suspended anyway
-    blocked ||= from_self?                                       # Skip for interactions with self
+    blocked ||= from_self? && @notification.type != :poll        # Skip for interactions with self
 
     return blocked if message? && from_staff?
 

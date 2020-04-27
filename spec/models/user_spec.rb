@@ -322,20 +322,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'disables user' do
-      expect(user).to have_attributes(disabled: true, current_sign_in_at: nil, last_sign_in_at: current_sign_in_at)
-    end
-  end
-
-  describe '#disable!' do
-    subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
-    let(:current_sign_in_at) { Time.zone.now }
-
-    before do
-      user.disable!
-    end
-
-    it 'disables user' do
-      expect(user).to have_attributes(disabled: true, current_sign_in_at: nil, last_sign_in_at: current_sign_in_at)
+      expect(user).to have_attributes(disabled: true)
     end
   end
 
@@ -506,7 +493,7 @@ RSpec.describe User, type: :model do
       context 'when user is not confirmed' do
         let(:confirmed_at) { nil }
 
-        it { is_expected.to be false }
+        it { is_expected.to be true }
       end
     end
 
@@ -522,7 +509,7 @@ RSpec.describe User, type: :model do
       context 'when user is not confirmed' do
         let(:confirmed_at) { nil }
 
-        it { is_expected.to be false }
+        it { is_expected.to be true }
       end
     end
   end

@@ -2,20 +2,33 @@
 nl:
   simple_form:
     hints:
+      account_alias:
+        acct: Vul de gebruikersnaam@domein van het account in, die je wilt verhuizen
+      account_migration:
+        acct: Vul de gebruikersnaam@domein van het account in, waarnaartoe je wilt verhuizen
       account_warning_preset:
         text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags en vermeldingen
       admin_account_action:
+        include_statuses: De gebruiker ziet welke toots verantwoordelijk zijn voor de moderatieactie of waarschuwing
         send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
         text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
+      announcement:
+        all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
+        ends_at: Optioneel. De publicatie van de mededeling wordt op dit tijdstip automatisch beëindigd
+        scheduled_at: Laat leeg om de mededeling meteen te publiceren
+        starts_at: Optioneel. In het geval dat jouw mededeling aan een bepaald tijdvak is gebonden
+        text: Je kunt voor toots specifieke tekst gebruiken. Let op de ruimte die de mededeling op het scherm van de gebruiker inneemt
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
+        current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
+        current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
-        discoverable_html: In de <a href="%{path}" target="_blank">gebruikersgids</a> kunnen mensen andere accounts vinden aan de hand van interesses en activiteit. Dit vereist tenminste %{min_followers} volgers
+        discoverable: De gebruikersgids is een andere manier waarmee jouw account een groter publiek kan bereiken
         email: Je krijgt een bevestigingsmail
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -27,19 +40,31 @@ nl:
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
-        setting_default_language: De taal van jouw toots kan automatisch worden gedetecteerd, maar het is niet altijd accuraat
+        setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
-        setting_display_media_show_all: Als gevoelig gemarkeerde media altijd verbergen
+        setting_display_media_show_all: Media altijd tonen
         setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
         setting_noindex: Heeft invloed op jouw openbare profiel en toots
-        setting_theme: Heeft invloed op hoe de webapp van Mastodon eruitziet (op elk apparaat waarmee je inlogt).
+        setting_show_application: De toepassing de je gebruikt om te tooten wordt in de gedetailleerde weergave van de toot getoond
+        setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
+        setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
         username: Jouw gebruikersnaam is uniek op %{domain}
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
+      domain_allow:
+        domain: Dit domein is in staat om gegevens van deze server op te halen, en binnenkomende gegevens worden verwerkt en opgeslagen
+      featured_tag:
+        name: 'Je wilt misschien een van deze gebruiken:'
+      form_challenge:
+        current_password: Je betreedt een veilige omgeving
       imports:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
+      invite_request:
+        text: Dit helpt ons om jouw aanvraag te beoordelen
       sessions:
         otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
+      tag:
+        name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
       user:
         chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
     labels:
@@ -47,18 +72,29 @@ nl:
         fields:
           name: Label
           value: Inhoud
+      account_alias:
+        acct: Mastodonadres van het oude account
+      account_migration:
+        acct: Mastodonadres van het nieuwe account
       account_warning_preset:
         text: Tekst van voorinstelling
       admin_account_action:
+        include_statuses: Gerapporteerde toots aan de e-mail toevoegen
         send_email_notification: Meld dit per e-mail aan de gebruiker
         text: Aangepaste waarschuwing
         type: Actie
         types:
-          disable: Uitschakelen
+          disable: Inloggen uitschakelen
           none: Niets doen
           silence: Negeren
           suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
         warning_preset_id: Gebruik een voorinstelling van een waarschuwing
+      announcement:
+        all_day: Gedurende de hele dag
+        ends_at: Eindigt
+        scheduled_at: Mededeling inplannen
+        starts_at: Begint
+        text: Mededeling
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar
@@ -85,9 +121,11 @@ nl:
         otp_attempt: Tweestaps-aanmeldcode
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
+        setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
+        setting_crop_images: Afbeeldingen tot 16x9 besnijden in niet uitgebreide toots
         setting_default_language: Taal van jouw toots
         setting_default_privacy: Standaardzichtbaarheid van jouw toots
         setting_default_sensitive: Media altijd als gevoelig markeren
@@ -100,27 +138,45 @@ nl:
         setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
+        setting_show_application: Toepassing onthullen die je voor het verzenden van toots gebruikt
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
         setting_theme: Thema website
+        setting_trends: Trends van vandaag tonen
         setting_unfollow_modal: Vraag voor het ontvolgen van iemand een bevestiging
+        setting_use_blurhash: Wazige kleurovergangen voor verborgen media tonen
+        setting_use_pending_items: Langzame modus
         severity: Zwaarte
         type: Importtype
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
         whole_word: Heel woord
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
         must_be_following_dm: Directe berichten van mensen die jij niet volgt blokkeren
+      invite:
+        comment: Opmerking
+      invite_request:
+        text: Waarom wil jij je aanmelden?
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Een e-mail versturen wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
-        follow: Een e-mail versturen wanneer iemand jou volgt
-        follow_request: Een e-mail versturen wanneer iemand jou wil volgen
-        mention: Een e-mail versturen wanneer iemand jou vermeld
-        reblog: Een e-mail versturen wanneer iemand jouw toot heeft geboost
-        report: Verstuur een e-mail wanneer een nieuw rapportage is ingediend
+        favourite: Wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
+        follow: Wanneer iemand jou is gaan volgen
+        follow_request: Wanneer iemand jou wil volgen
+        mention: Wanneer iemand jou heeft vermeld
+        pending_account: Wanneer een nieuw account moet worden beoordeeld
+        reblog: Wanneer iemand jouw toot heeft geboost
+        report: Bij het indienen van een nieuwe rapportage
+        trending_tag: Wanneer een nog niet beoordeelde hashtag trending is
+      tag:
+        listable: Toestaan dat deze hashtag in zoekopdrachten en in de gebruikersgids te zien valt
+        name: Hashtag
+        trendable: Toestaan dat deze hashtag onder trends te zien valt
+        usable: Toestaan dat deze hashtag in toots gebruikt mag worden
     'no': Nee
+    recommended: Aanbevolen
     required:
       mark: "*"
       text: vereist

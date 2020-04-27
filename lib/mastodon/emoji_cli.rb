@@ -15,12 +15,16 @@ module Mastodon
     option :suffix
     option :overwrite, type: :boolean
     option :unlisted, type: :boolean
-    desc 'import PATH', 'Import emoji from a TAR archive at PATH'
+    option :category
+    desc 'import PATH', 'Import emoji from a TAR GZIP archive at PATH'
     long_desc <<-LONG_DESC
-      Imports custom emoji from a TAR archive specified by PATH.
+      Imports custom emoji from a TAR GZIP archive specified by PATH.
 
       Existing emoji will be skipped unless the --overwrite option
       is provided, in which case they will be overwritten.
+
+      You can specifiy a --category under which the emojis will be
+      grouped together.
 
       With the --prefix option, a prefix can be added to all
       generated shortcodes. Likewise, the --suffix option controls
@@ -33,6 +37,7 @@ module Mastodon
       imported = 0
       skipped  = 0
       failed   = 0
+      category = options[:category] ? CustomEmojiCategory.find_or_create_by(name: options[:category]) : nil
 
       Gem::Package::TarReader.new(Zlib::GzipReader.open(path)) do |tar|
         tar.each do |entry|
@@ -50,6 +55,7 @@ module Mastodon
           custom_emoji.image = StringIO.new(entry.read)
           custom_emoji.image_file_name = File.basename(entry.full_name)
           custom_emoji.visible_in_picker = !options[:unlisted]
+          custom_emoji.category = category
 
           if custom_emoji.save
             imported += 1
@@ -64,6 +70,19 @@ module Mastodon
 
       puts
       say("Imported #{imported}, skipped #{skipped}, failed to import #{failed}", color(imported, skipped, failed))
+    end
+
+    option :remote_only, type: :boolean
+    desc 'purge', 'Remove all custom emoji'
+    long_desc <<-LONG_DESC
+      Removes all custom emoji.
+
+      With the --remote-only option, only remote emoji will be deleted.
+    LONG_DESC
+    def purge
+      scope = options[:remote_only] ? CustomEmoji.remote : CustomEmoji
+      scope.in_batches.destroy_all
+      say('OK', :green)
     end
 
     private

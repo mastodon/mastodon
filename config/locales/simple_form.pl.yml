@@ -2,20 +2,34 @@
 pl:
   simple_form:
     hints:
+      account_alias:
+        acct: Określ nazwę@domenę konta z którego chcesz się przenieść
+      account_migration:
+        acct: Określ nazwę@domenę konta na które chcesz się przenieść
       account_warning_preset:
         text: Możesz korzystać ze składni której używasz we wpisach, takiej jak adresy URL, hashtagi i wspomnienia
+        title: Nieobowiązkowe. Niewidoczne dla odbiorcy
       admin_account_action:
+        include_statuses: Użytkownik zobaczy, których wpisów dotyczyło działanie moderacji lub ostrzeżenie
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
         text_html: Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
         type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
         warning_preset_id: Nieobowiązkowe. Możesz dodać niestandardowy tekst do końcowki szablonu
+      announcement:
+        all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
+        ends_at: Nieobowiązkowe. Ogłoszenie zostanie automatycznie wycofane w tym czasie
+        scheduled_at: Pozostaw puste, aby opublikować ogłoszenie natychmiastowo
+        starts_at: Nieobowiązkowe. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
+        text: Możesz używać składni wpisu. Pamiętaj o tym, ile miejsca zajmie ogłoszenie na ekranie użytkownika
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
         avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
+        current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
+        current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
-        discoverable_html: <a href="%{path}" target="_blank">Katalog</a> pozwala znaleźć konta na podstawie zainteresowań i aktywności. Profil musi śledzić przynajmniej %{min_followers} osób
+        discoverable: Katalog profilu jest jednym ze sposobów, dzięki którym Twoje konto dotrze do szerszego grona
         email: Otrzymasz e-mail potwierdzający
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -27,22 +41,34 @@ pl:
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
         setting_aggregate_reblogs: Nie pokazuj nowych podbić dla wpisów, które zostały niedawno podbite (dotyczy tylko nowo otrzymanych podbić)
-        setting_default_language: Język Twoich wpisów może być wykrywany automatycznie, ale nie zawsze jest to dokładne
+        setting_default_sensitive: Wrażliwe multimedia są domyślnie schowane i mogą być odkryte kliknięciem
         setting_display_media_default: Ukrywaj zawartość oznaczoną jako wrażliwa
-        setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
-        setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną jako wrażliwą
+        setting_display_media_hide_all: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
+        setting_display_media_show_all: Nie ukrywaj zawartości multimedialnej oznaczonej jako wrażliwa
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
-        setting_theme: Zmienia wygląd Mastodona po zalogowaniu z dowolnego urządzenia.
+        setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
+        setting_use_pending_items: Ukryj aktualizacje osi czasu za kliknięciem, zamiast automatycznego przewijania strumienia
         username: Twoja nazwa użytkownika będzie niepowtarzalna na %{domain}
         whole_word: Jeśli słowo lub fraza składa się jedynie z liter lub cyfr, filtr będzie zastosowany tylko do pełnych wystąpień
+      domain_allow:
+        domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
+      email_domain_block:
+        domain: Może to być nazwa domeny pojawiająca się w adresu e-mail, rekord MX na który rozwiązuje domena lub IP serwera na który rozwiązuje rekord MX. Będą one wykrywane i odrzucane przy rejestracji.
+        with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
+      form_challenge:
+        current_password: Wchodzisz w strefę bezpieczną
       imports:
-        data: Plik CSV wyeksportowany z innej instancji Mastodona
+        data: Plik CSV wyeksportowany z innego serwera Mastodona
+      invite_request:
+        text: To pomoże nam w recenzji Twojej aplikacji
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
+      tag:
+        name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
     labels:
@@ -50,9 +76,15 @@ pl:
         fields:
           name: Nazwa
           value: Zawartość
+      account_alias:
+        acct: Nazwa starego konta
+      account_migration:
+        acct: Nazwa nowego konta
       account_warning_preset:
         text: Tekst szablonu
+        title: Tytuł
       admin_account_action:
+        include_statuses: Uwzględniaj zgłoszone wpisy w wiadomości e-mail
         send_email_notification: Powiadom użytkownika mailem
         text: Niestandardowe ostrzeżenie
         type: Działanie
@@ -62,6 +94,12 @@ pl:
           silence: Wycisz
           suspend: Zawieś i nieodwracalnie usuń dane konta
         warning_preset_id: Użyj szablonu ostrzeżenia
+      announcement:
+        all_day: Wydarzenie całodniowe
+        ends_at: Koniec wydarzenia
+        scheduled_at: Zaplanuj publikację
+        starts_at: Początek wydarzenia
+        text: Ogłoszenie
       defaults:
         autofollow: Zapraszaj do śledzenia swojego konta
         avatar: Awatar
@@ -88,10 +126,11 @@ pl:
         otp_attempt: Kod uwierzytelnienia dwustopniowego
         password: Hasło
         phrase: Słowo kluczowe lub fraza
-        scopes: Do których API aplikacja będzie miała dostęp. Jeżeli wybierzesz zakres wyższego poziomu, nie musisz zaznaczać bardziej szczegółowych.
+        setting_advanced_layout: Włącz zaawansowany interfejs użytkownika
         setting_aggregate_reblogs: Grupuj podbicia na osiach czasu
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
+        setting_crop_images: Przycinaj obrazki w nierozwiniętych wpisach do 16x9
         setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
@@ -107,27 +146,44 @@ pl:
         setting_show_application: Informuj o aplikacji z której wysłano wpisy
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
+        setting_trends: Pokazuj dzisiejsze „Na czasie”
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
+        setting_use_blurhash: Pokazuj kolorowe gradienty dla ukrytej zawartości multimedialnej
+        setting_use_pending_items: Tryb spowolniony
         severity: Priorytet
         type: Importowane dane
         username: Nazwa użytkownika
         username_or_email: Nazwa użytkownika lub adres e-mail
         whole_word: Całe słowo
+      email_domain_block:
+        with_dns_records: Uwzględnij rekordy MX i adresy IP domeny
       featured_tag:
-        name: Hashtag
+        name: Hasztag
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
         must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie śledzisz
+      invite:
+        comment: Komentarz
+      invite_request:
+        text: Czemu chcesz dołączyć?
       notification_emails:
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
         follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
         follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na śledzenie mnie
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
+        pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
         report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
+        trending_tag: Nieprzejrzany hashtag jest na czasie
+      tag:
+        listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
+        name: Hashtag
+        trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
+        usable: Pozwól na umieszczanie tego hashtagu we wpisach
     'no': Nie
+    recommended: Polecane
     required:
       mark: "*"
       text: pole wymagane

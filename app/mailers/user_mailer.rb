@@ -3,8 +3,10 @@
 class UserMailer < Devise::Mailer
   layout 'mailer'
 
+  helper :accounts
   helper :application
   helper :instance
+  helper :statuses
 
   add_template_helper RoutingHelper
 
@@ -56,6 +58,39 @@ class UserMailer < Devise::Mailer
     end
   end
 
+  def two_factor_enabled(user, **)
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+
+    return if @resource.disabled?
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject')
+    end
+  end
+
+  def two_factor_disabled(user, **)
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+
+    return if @resource.disabled?
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject')
+    end
+  end
+
+  def two_factor_recovery_codes_changed(user, **)
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+
+    return if @resource.disabled?
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')
+    end
+  end
+
   def welcome(user)
     @resource = user
     @instance = Rails.configuration.x.local_domain
@@ -79,10 +114,11 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def warning(user, warning)
+  def warning(user, warning, status_ids = nil)
     @resource = user
     @warning  = warning
     @instance = Rails.configuration.x.local_domain
+    @statuses = Status.where(id: status_ids).includes(:account) if status_ids.is_a?(Array)
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email,

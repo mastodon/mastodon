@@ -3,9 +3,8 @@
 class Api::V1::Accounts::StatusesController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_account
-  after_action :insert_pagination_headers
 
-  respond_to :json
+  after_action :insert_pagination_headers, unless: -> { truthy_param?(:pinned) }
 
   def index
     @statuses = load_statuses
@@ -28,14 +27,13 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def account_statuses
     statuses = truthy_param?(:pinned) ? pinned_scope : permitted_account_statuses
-    statuses = statuses.paginate_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
 
     statuses.merge!(only_media_scope) if truthy_param?(:only_media)
     statuses.merge!(no_replies_scope) if truthy_param?(:exclude_replies)
     statuses.merge!(no_reblogs_scope) if truthy_param?(:exclude_reblogs)
     statuses.merge!(hashtag_scope)    if params[:tagged].present?
 
-    statuses
+    statuses.paginate_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def permitted_account_statuses
@@ -51,12 +49,14 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     # Also, Avoid getting slow by not narrowing down by `statuses.account_id`.
     # When narrowing down by `statuses.account_id`, `index_statuses_20180106` will be used
     # and the table will be joined by `Merge Semi Join`, so the query will be slow.
-    Status.joins(:media_attachments).merge(@account.media_attachments).permitted_for(@account, current_account)
-          .paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
-          .reorder(id: :desc).distinct(:id).pluck(:id)
+    @account.statuses.joins(:media_attachments).merge(@account.media_attachments).permitted_for(@account, current_account)
+            .paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+            .reorder(id: :desc).distinct(:id).pluck(:id)
   end
 
   def pinned_scope
+    return Status.none if @account.blocking?(current_account)
+
     @account.pinned_statuses
   end
 
@@ -69,7 +69,13 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def hashtag_scope
-    Status.tagged_with(Tag.find_by(name: params[:tagged])&.id)
+    tag = Tag.find_normalized(params[:tagged])
+
+    if tag
+      Status.tagged_with(tag.id)
+    else
+      Status.none
+    end
   end
 
   def pagination_params(core_params)

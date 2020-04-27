@@ -68,6 +68,23 @@ code {
         top: 2px;
         left: 0;
       }
+
+      label a {
+        color: $highlight-text-color;
+        text-decoration: underline;
+
+        &:hover,
+        &:active,
+        &:focus {
+          text-decoration: none;
+        }
+      }
+
+      .recommended {
+        position: absolute;
+        margin: 0 4px;
+        margin-top: -2px;
+      }
     }
   }
 
@@ -95,6 +112,15 @@ code {
       padding: 0.2em 0.4em;
       background: darken($ui-base-color, 12%);
     }
+
+    li {
+      list-style: disc;
+      margin-left: 18px;
+    }
+  }
+
+  ul.hint {
+    margin-bottom: 15px;
   }
 
   span.hint {
@@ -196,6 +222,12 @@ code {
     }
   }
 
+  .input.datetime .label_input select {
+    display: inline-block;
+    width: auto;
+    flex: 0;
+  }
+
   .required abbr {
     text-decoration: none;
     color: lighten($error-value-color, 12%);
@@ -227,6 +259,10 @@ code {
 
       &-6 {
         max-width: 50%;
+      }
+
+      .actions {
+        margin-top: 27px;
       }
     }
 
@@ -283,6 +319,13 @@ code {
     }
   }
 
+  .input.static .label_input__wrapper {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid $dark-text-color;
+    border-radius: 4px;
+  }
+
   input[type=text],
   input[type=number],
   input[type=email],
@@ -301,11 +344,15 @@ code {
     border-radius: 4px;
     padding: 10px;
 
+    &::placeholder {
+      color: lighten($darker-text-color, 4%);
+    }
+
     &:invalid {
       box-shadow: none;
     }
 
-    &:focus:invalid {
+    &:focus:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
     }
 
@@ -344,6 +391,10 @@ code {
       color: lighten($error-red, 12%);
       margin-top: 4px;
     }
+  }
+
+  .input.disabled {
+    opacity: 0.5;
   }
 
   .actions {
@@ -392,6 +443,10 @@ code {
       background-color: darken($ui-highlight-color, 5%);
     }
 
+    &:disabled:hover {
+      background-color: $ui-primary-color;
+    }
+
     &.negative {
       background: $error-value-color;
 
@@ -422,6 +477,10 @@ code {
     padding-left: 10px;
     padding-right: 30px;
     height: 41px;
+  }
+
+  h4 {
+    margin-bottom: 15px !important;
   }
 
   .label_input {
@@ -456,6 +515,48 @@ code {
       }
     }
   }
+
+  &__overlay-area {
+    position: relative;
+
+    &__blurred form {
+      filter: blur(2px);
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba($ui-base-color, 0.65);
+      border-radius: 4px;
+      margin-left: -4px;
+      margin-top: -4px;
+      padding: 4px;
+
+      &__content {
+        text-align: center;
+
+        &.rich-formatting {
+          &,
+          p {
+            color: $primary-text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.block-icon {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-size: 24px;
 }
 
 .flash-message {
@@ -478,6 +579,17 @@ code {
     color: $error-value-color;
   }
 
+  a {
+    display: inline-block;
+    color: $darker-text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-text-color;
+      text-decoration: underline;
+    }
+  }
+
   p {
     margin-bottom: 15px;
   }
@@ -487,7 +599,7 @@ code {
     box-sizing: border-box;
     display: block;
     width: 100%;
-    border: none;
+    border: 0;
     padding: 10px;
     font-family: $font-monospace, monospace;
     background: $ui-base-color;
@@ -780,5 +892,67 @@ code {
       background: $valid-value-color;
       transition: none;
     }
+  }
+}
+
+.connection-prompt {
+  margin-bottom: 25px;
+
+  .fa-link {
+    background-color: darken($ui-base-color, 4%);
+    border-radius: 100%;
+    font-size: 24px;
+    padding: 10px;
+  }
+
+  &__column {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-shrink: 1;
+    max-width: 50%;
+
+    &-sep {
+      align-self: center;
+      flex-grow: 0;
+      overflow: visible;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      word-break: break-word;
+    }
+  }
+
+  .account__avatar {
+    margin-bottom: 20px;
+  }
+
+  &__connection {
+    background-color: lighten($ui-base-color, 8%);
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+    border-radius: 4px;
+    padding: 25px 10px;
+    position: relative;
+    text-align: center;
+
+    &::after {
+      background-color: darken($ui-base-color, 4%);
+      content: '';
+      display: block;
+      height: 100%;
+      left: 50%;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+  }
+
+  &__row {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
   }
 }

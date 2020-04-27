@@ -1,0 +1,39 @@
+- content_for :page_title do
+  = t('admin.relationships.title', acct: @account.acct)
+
+.filters
+  .filter-subset
+    %strong= t 'relationships.relationship'
+    %ul
+      %li= filter_link_to t('relationships.following'), relationship: nil
+      %li= filter_link_to t('relationships.followers'), relationship: 'followed_by'
+      %li= filter_link_to t('relationships.mutual'), relationship: 'mutual'
+      %li= filter_link_to t('relationships.invited'), relationship: 'invited'
+
+  .filter-subset
+    %strong= t('admin.accounts.location.title')
+    %ul
+      %li= filter_link_to t('admin.accounts.moderation.all'), location: nil
+      %li= filter_link_to t('admin.accounts.location.local'), location: 'local'
+      %li= filter_link_to t('admin.accounts.location.remote'), location: 'remote'
+
+  .back-link{ style: 'flex: 1 1 auto; text-align: right' }
+    = link_to admin_account_path(@account.id) do
+      = fa_icon 'chevron-left fw'
+      = t('admin.statuses.back_to_account')
+
+%hr.spacer/
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.accounts.username')
+        %th= t('admin.accounts.role')
+        %th= t('admin.accounts.most_recent_ip')
+        %th= t('admin.accounts.most_recent_activity')
+        %th
+    %tbody
+      = render partial: 'admin/accounts/account', collection: @accounts
+
+= paginate @accounts

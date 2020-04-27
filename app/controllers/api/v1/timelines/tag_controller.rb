@@ -4,8 +4,6 @@ class Api::V1::Timelines::TagController < Api::BaseController
   before_action :load_tag
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
-  respond_to :json
-
   def show
     @statuses = load_statuses
     render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
@@ -14,7 +12,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
   private
 
   def load_tag
-    @tag = Tag.find_by(name: params[:id].downcase)
+    @tag = Tag.find_normalized(params[:id])
   end
 
   def load_statuses

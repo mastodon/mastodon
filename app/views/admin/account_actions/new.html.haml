@@ -13,11 +13,15 @@
     .fields-group
       = f.input :send_email_notification, as: :boolean, wrapper: :with_label
 
+    - if params[:report_id].present?
+      .fields-group
+        = f.input :include_statuses, as: :boolean, wrapper: :with_label
+
     %hr.spacer/
 
     - unless @warning_presets.empty?
       .fields-group
-        = f.input :warning_preset_id, collection: @warning_presets, label_method: :text, wrapper: :with_block_label
+        = f.input :warning_preset_id, collection: @warning_presets, label_method: ->(warning_preset) { [warning_preset.title.presence, truncate(warning_preset.text)].compact.join(' - ') }, wrapper: :with_block_label
 
     .fields-group
       = f.input :text, as: :text, wrapper: :with_block_label, hint: t('simple_form.hints.admin_account_action.text_html', path: admin_warning_presets_path)

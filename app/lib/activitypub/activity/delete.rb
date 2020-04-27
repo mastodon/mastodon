@@ -13,8 +13,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def delete_person
     lock_or_return("delete_in_progress:#{@account.id}") do
-      SuspendAccountService.new.call(@account)
-      @account.destroy!
+      SuspendAccountService.new.call(@account, reserve_username: false)
     end
   end
 
@@ -31,7 +30,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
     return if @status.nil?
 
-    if @status.public_visibility? || @status.unlisted_visibility?
+    if @status.distributable?
       forward_for_reply
       forward_for_reblogs
     end
@@ -45,7 +44,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     rebloggers_ids = @status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
     inboxes        = Account.where(id: ::Follow.where(target_account_id: rebloggers_ids).select(:account_id)).inboxes - [@account.preferred_inbox_url]
 
-    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [payload, rebloggers_ids.first, inbox_url]
     end
   end
@@ -61,11 +60,16 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
+
+    inboxes = replied_to_status.account.followers.inboxes - [@account.preferred_inbox_url]
+
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes) do |inbox_url|
+      [payload, replied_to_status.account_id, inbox_url]
+    end
   end
 
   def delete_now!
-    RemoveStatusService.new.call(@status)
+    RemoveStatusService.new.call(@status, redraft: false)
   end
 
   def payload
@@ -74,14 +78,5 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def lock_options
     { redis: Redis.current, key: "create:#{object_uri}" }
-  end
-
-  def invalid_origin?(url)
-    return true if unsupported_uri_scheme?(url)
-
-    needle   = Addressable::URI.parse(url).host
-    haystack = Addressable::URI.parse(@account.uri).host
-
-    !haystack.casecmp(needle).zero?
   end
 end

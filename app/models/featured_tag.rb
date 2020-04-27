@@ -18,11 +18,12 @@ class FeaturedTag < ApplicationRecord
 
   delegate :name, to: :tag, allow_nil: true
 
-  validates :name, presence: true
+  validates_associated :tag, on: :create
+  validates :name, presence: true, on: :create
   validate :validate_featured_tags_limit, on: :create
 
   def name=(str)
-    self.tag = Tag.find_or_initialize_by(name: str.delete('#').mb_chars.downcase.to_s)
+    self.tag = Tag.find_or_create_by_names(str.strip)&.first
   end
 
   def increment(timestamp)

@@ -31,14 +31,6 @@ RSpec.describe MediaAttachment, type: :model do
     context 'file is blank' do
       let(:file) { nil }
 
-      context 'remote_url is blank' do
-        let(:remote_url) { '' }
-
-        it 'returns false' do
-          is_expected.to be false
-        end
-      end
-
       context 'remote_url is present' do
         let(:remote_url) { 'remote_url' }
 
@@ -133,13 +125,36 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.file.meta["small"]["height"]).to eq 327
       expect(media.file.meta["small"]["aspect"]).to eq 490.0 / 327
     end
+
+    it 'gives the file a random name' do
+      expect(media.file_file_name).to_not eq 'attachment.jpg'
+    end
+  end
+
+  describe 'base64-encoded jpeg' do
+    let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
+    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: base64_attachment) }
+
+    it 'saves media attachment' do
+      expect(media.persisted?).to be true
+      expect(media.file).to_not be_nil
+    end
+
+    it 'gives the file a file name' do
+      expect(media.file_file_name).to_not be_blank
+    end
+  end
+
+  it 'is invalid without file' do
+    media = MediaAttachment.new(account: Fabricate(:account))
+    expect(media.valid?).to be false
   end
 
   describe 'descriptions for remote attachments' do
-    it 'are cut off at 140 characters' do
+    it 'are cut off at 1500 characters' do
       media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
 
-      expect(media.description.size).to be <= 420
+      expect(media.description.size).to be <= 1_500
     end
   end
 end

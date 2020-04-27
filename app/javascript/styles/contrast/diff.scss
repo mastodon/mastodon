@@ -5,7 +5,7 @@
       &-description {
         input {
           &::placeholder {
-            opacity: 1.0;
+            opacity: 1;
           }
         }
       }
@@ -66,4 +66,12 @@
   &:active {
     text-decoration: none;
   }
+}
+
+.nothing-here {
+  color: $darker-text-color;
+}
+
+.public-layout .public-account-header__tabs__tabs .counter.active::after {
+  border-bottom: 4px solid $ui-highlight-color;
 }

@@ -3,144 +3,77 @@
 
 - content_for :header_tags do
   %link{ rel: 'canonical', href: about_url }/
-  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
-  = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
   = render partial: 'shared/og'
 
-.landing-page.alternative
-  .container
-    .grid
-      .column-0
-        .brand
-          = link_to root_url do
-            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+.landing
+  .landing__brand
+    = link_to root_url, class: 'brand' do
+      = svg_logo_full
+      %span.brand__tagline=t 'about.tagline'
 
-      - if Setting.timeline_preview
-        .column-1
-          .landing-page__forms
-            .brand
-              = link_to root_url do
-                = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+  .landing__grid
+    .landing__grid__column.landing__grid__column-registration
+      .box-widget
+        = render 'registration'
 
-            = render 'forms'
+      .directory
+        - if Setting.profile_directory
+          .directory__tag
+            = optional_link_to Setting.profile_directory, explore_path do
+              %h4
+                = fa_icon 'address-book fw'
+                = t('about.discover_users')
+                %small= t('about.browse_directory')
 
-      - else
-        .column-1.non-preview
-          .landing-page__forms
-            .brand
-              = link_to root_url do
-                = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+              .avatar-stack
+                - @instance_presenter.sample_accounts.each do |account|
+                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
 
-            = render 'forms'
+        - if Setting.timeline_preview
+          .directory__tag
+            = optional_link_to Setting.timeline_preview, public_timeline_path do
+              %h4
+                = fa_icon 'globe fw'
+                = t('about.see_whats_happening')
+                %small= t('about.browse_public_posts')
 
-      - if Setting.timeline_preview
-        .column-2
-          .landing-page__hero
-            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+        .directory__tag
+          = link_to 'https://joinmastodon.org/apps', target: '_blank', rel: 'noopener noreferrer' do
+            %h4
+              = fa_icon 'tablet fw'
+              = t('about.get_apps')
+              %small= t('about.apps_platforms')
 
-          .landing-page__information
-            .landing-page__short-description
-              .row
-                .landing-page__logo
-                  = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+    .landing__grid__column.landing__grid__column-login
+      .box-widget
+        = render 'login'
 
-                %h1
-                  = @instance_presenter.site_title
-                  %small!= t 'about.hosted_on', domain: content_tag(:span, site_hostname)
+      .hero-widget
+        .hero-widget__img
+          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
 
-              %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+        .hero-widget__text
+          %p
+            = @instance_presenter.site_short_description.html_safe.presence || t('about.about_mastodon_html')
+            = link_to about_more_path do
+              = t('about.learn_more')
+              = fa_icon 'angle-double-right'
 
-          .landing-page__call-to-action{ dir: 'ltr' }
-            .row
-              .row__information-board
-                .information-board__section
-                  %span= t 'about.user_count_before'
-                  %strong= number_with_delimiter @instance_presenter.user_count
-                  %span= t 'about.user_count_after', count: @instance_presenter.user_count
-                .information-board__section
-                  %span= t 'about.status_count_before'
-                  %strong= number_with_delimiter @instance_presenter.status_count
-                  %span= t 'about.status_count_after', count: @instance_presenter.status_count
-              .row__mascot
-                .landing-page__mascot
-                  = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('elephant_ui_plane.svg'), alt: ''
+        .hero-widget__footer
+          .hero-widget__footer__column
+            %h4= t 'about.administered_by'
 
-      - else
-        .column-2.non-preview
-          .landing-page__hero
-            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('preview.jpg'), alt: @instance_presenter.site_title
+            = account_link_to @instance_presenter.contact_account
 
-          .landing-page__information
-            .landing-page__short-description
-              .row
-                .landing-page__logo
-                  = image_tag asset_pack_path('logo_transparent.svg'), alt: 'Mastodon'
+          .hero-widget__footer__column
+            %h4= t 'about.server_stats'
 
-                %h1
-                  = @instance_presenter.site_title
-                  %small!= t 'about.hosted_on', domain: content_tag(:span, site_hostname)
-
-              %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
-
-          .landing-page__call-to-action
-            .row
-              .row__information-board
-                .information-board__section
-                  %span= t 'about.user_count_before'
-                  %strong= number_with_delimiter @instance_presenter.user_count
-                  %span= t 'about.user_count_after', count: @instance_presenter.user_count
-                .information-board__section
-                  %span= t 'about.status_count_before'
-                  %strong= number_with_delimiter @instance_presenter.status_count
-                  %span= t 'about.status_count_after', count: @instance_presenter.status_count
-              .row__mascot
-                .landing-page__mascot
-                  = image_tag @instance_presenter.mascot&.file&.url || asset_pack_path('elephant_ui_plane.svg'), alt: ''
-
-      - if Setting.timeline_preview
-        .column-3
-          #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
-
-      - if Setting.timeline_preview
-        .column-4.landing-page__information
-          .landing-page__features
-            .features-list
-              %div
-                %h3= t 'about.what_is_mastodon'
-                %p= t 'about.about_mastodon_html'
-              %div.contact
-                %h3= t 'about.administered_by'
-                = account_link_to(@instance_presenter.contact_account, link_to(t('about.learn_more'), about_more_path, class: 'button button-alternative'))
-
-            = render 'features'
-
-            .landing-page__features__action
-              = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-alternative'
-
-          .landing-page__footer
-            %p
-              = link_to t('about.source_code'), @instance_presenter.source_url
-              = " (#{@instance_presenter.version_number})"
-
-      - else
-        .column-4.non-preview.landing-page__information
-          .landing-page__features
-            .features-list
-              %div
-                %h3= t 'about.what_is_mastodon'
-                %p= t 'about.about_mastodon_html'
-              %div.contact
-                %h3= t 'about.administered_by'
-                = account_link_to(@instance_presenter.contact_account, link_to(t('about.learn_more'), about_more_path, class: 'button button-alternative'))
-
-            = render 'features'
-
-            .landing-page__features__action
-              = link_to t('about.learn_more'), 'https://joinmastodon.org/', class: 'button button-alternative'
-
-          .landing-page__footer
-            %p
-              = link_to t('about.source_code'), @instance_presenter.source_url
-              = " (#{@instance_presenter.version_number})"
-
-#modal-container
+            %div{ style: 'display: flex' }
+              .hero-widget__counter{ style: 'width: 50%' }
+                %strong= number_to_human @instance_presenter.user_count, strip_insignificant_zeros: true
+                %span= t 'about.user_count_after', count: @instance_presenter.user_count
+              .hero-widget__counter{ style: 'width: 50%' }
+                %strong= number_to_human @instance_presenter.active_user_count, strip_insignificant_zeros: true
+                %span
+                  = t 'about.active_count_after'
+                  %abbr{ title: t('about.active_footnote') } *

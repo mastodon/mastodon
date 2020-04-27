@@ -2,39 +2,47 @@
 es:
   about:
     about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
-    about_mastodon_html: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
-    about_this: Acerca de esta instancia
+    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
+    about_this: Información
+    active_count_after: activo
+    active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
-    closed_registrations: Los registros están actualmente cerrados en esta instancia.
+    apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
+    browse_directory: Navega por el directorio de perfiles y filtra por intereses
+    browse_local_posts: Explora en vivo los posts públicos de este servidor
+    browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
     contact_unavailable: N/A
+    discover_users: Descubrir usuarios
     documentation: Documentación
-    extended_description_html: |
-      <h3>Un buen lugar para las reglas</h3>
-      <p>La descripción extendida no se ha colocado aún.</p>
-    features:
-      humane_approach_body: Aprendiendo de los errores de otras redes, Mastodon apunta a las decisiones de diseño ético para combatir el desuso de las redes sociales.
-      humane_approach_title: Una misión más humana
-      not_a_product_body: Mastodon no es una red comercial. Nada de publicidad, nada de minado de datos, nada de jardines murados. No hay ninguna autoridad central.
-      not_a_product_title: Eres una persona, no un producto
-      real_conversation_body: Con 500 caracteres a tu disposición y soporte para contenido granular y advertencias de contenido, puedes expresarte como quieras.
-      real_conversation_title: Hecho para verdaderas conversaciones
-      within_reach_body: Aplicaciones múltiples para iOS, Android, y otras plataformas gracias a un ecosistema de APIs amigable al desarrollador para permitirte estar con tus amigos donde sea.
-      within_reach_title: Siempre al alcance
-    generic_description: "%{domain} es un servidor en la red"
+    federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
+    get_apps: Probar una aplicación móvil
     hosted_on: Mastodon hosteado en %{domain}
+    instance_actor_flash: |
+      Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
+      Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
     learn_more: Aprende más
-    other_instances: Otras instancias
     privacy_policy: Política de privacidad
+    see_whats_happening: Ver lo que está pasando
+    server_stats: 'Datos del servidor:'
     source_code: Código fuente
     status_count_after:
       one: estado
       other: estados
     status_count_before: Qué han escrito
+    tagline: Seguir a amigos existentes y descubre nuevos
     terms: Condiciones de servicio
+    unavailable_content: Contenido no disponible
+    unavailable_content_description:
+      domain: Servidor
+      reason: 'Motivo:'
+      rejecting_media: Los archivos multimedia de este servidor no serán procesados y no se mostrarán miniaturas, lo que requiere un clic manual en el otro servidor.
+      silenced: Las publicaciones de este servidor no se mostrarán en ningún lugar salvo en el Inicio si sigues al autor.
+      suspended: No podrás seguir a nadie de este servidor, y ningún dato de este será procesado o almacenado, y no se intercambiarán datos.
+    unavailable_content_html: Mastodon generalmente le permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.
     user_count_after:
       one: usuario
       other: usuarios
@@ -42,16 +50,20 @@ es:
     what_is_mastodon: "¿Qué es Mastodon?"
   accounts:
     choices_html: 'Elecciones de %{name}:'
+    endorsements_hint: Puedes recomendar a gente que sigues desde la interfaz web, y aparecerán allí.
+    featured_tags_hint: Puede presentar hashtags específicos que se mostrarán aquí.
     follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
     following: Siguiendo
     joined: Se unió el %{date}
+    last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
-    media: Media
+    media: Multimedia
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
     network_hidden: Esta información no está disponible
+    never_active: Nunca
     nothing_here: "¡No hay nada aquí!"
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
@@ -66,15 +78,23 @@ es:
     roles:
       admin: Administrador
       bot: Bot
+      group: Grupo
       moderator: Moderador
+    unavailable: Perfil no disponible
     unfollow: Dejar de seguir
   admin:
+    account_actions:
+      action: Realizar acción
+      title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
       created_msg: "¡Nota de moderación creada con éxito!"
       delete: Borrar
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
+      add_email_domain_block: Poner en lista negra el dominio del correo
+      approve: Aprobar
+      approve_all: Aprobar todos
       are_you_sure: "¿Estás seguro?"
       avatar: Avatar
       by_domain: Dominio
@@ -88,6 +108,7 @@ es:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      deleted: Borrado
       demote: Degradar
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
@@ -99,12 +120,13 @@ es:
       email_status: E-mail Status
       enable: Habilitar
       enabled: Habilitada
-      feed_url: URL de notificaciones
       followers: Seguidores
-      followers_url: URL de los seguidores
       follows: Sigue
+      header: Cabecera
       inbox_url: URL de la bandeja de entrada
+      invited_by: Invitado por
       ip: IP
+      joined: Unido
       location:
         all: Todos
         local: Local
@@ -114,24 +136,29 @@ es:
       media_attachments: Multimedia
       memorialize: Convertir en memorial
       moderation:
+        active: Activo
         all: Todos
+        pending: Pendiente
         silenced: Silenciados
         suspended: Suspendidos
         title: Moderación
       moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
+      no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
       not_subscribed: No se está suscrito
-      outbox_url: URL de bandeja de salida
+      pending: Revisión pendiente
       perform_full_suspension: Suspender
-      profile_url: URL del perfil
       promote: Promocionar
       protocol: Protocolo
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
       redownload: Refrescar avatar
+      reject: Rechazar
+      reject_all: Rechazar todos
       remove_avatar: Eliminar el avatar
+      remove_header: Eliminar cabecera
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
         send: Reenviar el correo electrónico de confirmación
@@ -145,8 +172,9 @@ es:
         moderator: Moderador
         staff: Personal
         user: Usuario
-      salmon_url: URL de salmón
       search: Buscar
+      search_same_email_domain: Otros usuarios con el mismo dominio de correo
+      search_same_ip: Otros usuarios con la misma IP
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -155,24 +183,68 @@ es:
       silenced: Silenciado
       statuses: Estados
       subscribe: Suscribir
-      suspended: Susependido
+      suspended: Suspendido
+      time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
       undo_silenced: Des-silenciar
       undo_suspension: Des-suspender
       unsubscribe: Desuscribir
       username: Nombre de usuario
+      warn: Adevertir
       web: Web
+      whitelisted: Añadido a la lista blanca
     action_logs:
+      action_types:
+        assigned_to_self_report: Asignar Reporte
+        change_email_user: Cambiar Correo Electrónico del Usuario
+        confirm_user: Confirmar Usuario
+        create_account_warning: Crear Advertencia
+        create_announcement: Crear Anuncio
+        create_custom_emoji: Crear Emoji Personalizado
+        create_domain_allow: Crear Permiso de Dominio
+        create_domain_block: Crear Bloqueo de Dominio
+        create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        demote_user: Degradar Usuario
+        destroy_announcement: Eliminar Anuncio
+        destroy_custom_emoji: Eliminar Emoji Personalizado
+        destroy_domain_allow: Eliminar Permiso de Dominio
+        destroy_domain_block: Eliminar Bloqueo de Dominio
+        destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_status: Eliminar Estado
+        disable_2fa_user: Deshabilitar 2FA
+        disable_custom_emoji: Deshabilitar Emoji Personalizado
+        disable_user: Deshabilitar Usuario
+        enable_custom_emoji: Habilitar Emoji Personalizado
+        enable_user: Habilitar Usuario
+        memorialize_account: Transformar en Cuenta Conmemorativa
+        promote_user: Promover Usuario
+        remove_avatar_user: Eliminar Avatar
+        reopen_report: Reabrir Reporte
+        reset_password_user: Restablecer Contraseña
+        resolve_report: Resolver Reporte
+        silence_account: Silenciar Cuenta
+        suspend_account: Suspender Cuenta
+        unassigned_report: Desasignar Reporte
+        unsilence_account: Dejar de Silenciar Cuenta
+        unsuspend_account: Dejar de Suspender Cuenta
+        update_announcement: Actualizar Anuncio
+        update_custom_emoji: Actualizar Emoji Personalizado
+        update_status: Actualizar Estado
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
         change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
+        create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_announcement: "%{name} creó el nuevo anuncio %{target}"
         create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
+        create_domain_allow: "%{name} ha añadido a la lista blanca el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
         demote_user: "%{name} degradó al usuario %{target}"
+        destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
+        destroy_domain_allow: "%{name} ha eliminado el dominio %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
         destroy_status: "%{name} eliminó el estado de %{target}"
@@ -192,24 +264,48 @@ es:
         unassigned_report: "%{name} ha desasignado la denuncia %{target}"
         unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
+        update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
+      empty: No se encontraron registros.
+      filter_by_action: Filtrar por acción
+      filter_by_user: Filtrar por usuario
       title: Log de auditoría
+    announcements:
+      destroyed_msg: "¡Anuncio eliminado con éxito!"
+      edit:
+        title: Editar anuncio
+      empty: No se encontraron anuncios.
+      live: En vivo
+      new:
+        create: Crear anuncio
+        title: Nuevo anuncio
+      published_msg: "¡Anuncio publicado con éxito!"
+      scheduled_for: Programado para %{time}
+      scheduled_msg: "¡Anuncio programado para su publicación!"
+      title: Anuncios
+      unpublished_msg: "¡Anuncio despublicado con éxito!"
+      updated_msg: "¡Anuncio actualizado con éxito!"
     custom_emojis:
+      assign_category: Asignar categoría
       by_domain: Dominio
       copied_msg: Copia local del emoji creada con éxito
       copy: Copiar
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
+      create_new_category: Crear una nueva categoría
       created_msg: "¡Emoji creado con éxito!"
       delete: Borrar
       destroyed_msg: "¡Emojo destruido con éxito!"
       disable: Deshabilitar
+      disabled: Desactivado
       disabled_msg: Se deshabilitó con éxito ese emoji
       emoji: Emoji
       enable: Habilitar
+      enabled: Activado
       enabled_msg: Se habilitó con éxito ese emoji
       image_hint: PNG de hasta 50KB
+      list: Lista
       listed: Listados
       new:
         title: Añadir nuevo emoji personalizado
@@ -217,20 +313,28 @@ es:
       shortcode: Código de atajo
       shortcode_hint: Al menos 2 caracteres, solo caracteres alfanuméricos y guiones bajos
       title: Emojis personalizados
+      uncategorized: Sin clasificar
+      unlist: No listado
       unlisted: Sin listar
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: "¡Emoji actualizado con éxito!"
       upload: Subir
     dashboard:
+      authorized_fetch_mode: Modo seguro
       backlog: trabajos de backlog
       config: Configuración
       feature_deletions: Borrados de cuenta
       feature_invites: Enlaces de invitación
+      feature_profile_directory: Directorio de perfil
       feature_registrations: Registros
       feature_relay: Relés de federación
+      feature_spam_check: Contra-spam
+      feature_timeline_preview: Vista previa de la línea de tiempo
       features: Características
       hidden_service: Federación con servicios ocultos
       open_reports: informes abiertos
+      pending_tags: hashtags esperando revisión
+      pending_users: usuarios esperando por revisión
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
       single_user_mode: Modo único usuario
@@ -242,11 +346,19 @@ es:
       week_interactions: interacciones esta semana
       week_users_active: activo esta semana
       week_users_new: usuarios esta semana
+      whitelist_mode: En la lista blanca
+    domain_allows:
+      add_new: Añadir dominio a la lista blanca
+      created_msg: Dominio añadido a la lista blanca con éxito
+      destroyed_msg: Dominio quitado de la lista blanca con éxito
+      undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
       created_msg: El bloque de dominio está siendo procesado
       destroyed_msg: El bloque de dominio se deshizo
       domain: Dominio
+      edit: Editar nuevo dominio bloqueado
+      existing_domain_block_html: Ya ha impuesto límites más estrictos a %{name}, necesita <a href="%{unblock_url}">desbloquearlo primero</a>.
       new:
         create: Crear bloque
         hint: El bloque de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
@@ -256,10 +368,19 @@ es:
           silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
+      private_comment: Comentario privado
+      private_comment_hint: Comentario sobre esta limitación de dominio para el uso interno por parte de los moderadores.
+      public_comment: Comentario público
+      public_comment_hint: Comentario sobre esta limitación de dominio para el público en general, si la publicidad de la lista de limitaciones de dominio está habilitada.
       reject_media: Rechazar archivos multimedia
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar informes
       reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
+      rejecting_media: rechazar archivos multimedia
+      rejecting_reports: rechazando informes
+      severity:
+        silence: silenciado
+        suspend: suspendido
       show:
         affected_accounts:
           one: Una cuenta en la base de datos afectada
@@ -270,18 +391,37 @@ es:
         title: Deshacer bloque de dominio para %{domain}
         undo: Deshacer
       undo: Deshacer
+      view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
       created_msg: Dominio de correo añadido a la lista negra con éxito
       delete: Borrar
       destroyed_msg: Dominio de correo borrado de la lista negra con éxito
       domain: Dominio
+      empty: Actualmente no hay dominios de correo electrónico en la lista negra.
+      from_html: de %{domain}
       new:
         create: Añadir dominio
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
     instances:
+      by_domain: Dominio
+      delivery_available: Entrega disponible
+      known_accounts:
+        one: "%{count} cuenta conocida"
+        other: "%{count} cuentas conocidas"
+      moderation:
+        all: Todos
+        limited: Limitado
+        title: Moderación
+      private_comment: Comentario privado
+      public_comment: Comentario público
       title: Instancias conocidas
+      total_blocked_by_us: Bloqueado por nosotros
+      total_followed_by_them: Seguidos por ellos
+      total_followed_by_us: Seguido por nosotros
+      total_reported: Informes sobre ellas
+      total_storage: Archivos multimedia
     invites:
       deactivate_all: Desactivar todos
       filter:
@@ -290,6 +430,10 @@ es:
         expired: Expiradas
         title: Filtrar
       title: Invitaciones
+    pending_accounts:
+      title: Cuentas pendientes (%{count})
+    relationships:
+      title: Relaciones de %{acct}
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
@@ -303,6 +447,7 @@ es:
       pending: Esperando la aprobación del relés
       save_and_enable: Guardar y conectar
       setup: Preparar una conexión de relés
+      signatures_not_enabled: Los relés no funcionarán correctamente mientras el modo seguro o el modo de lista blanca estén habilitados
       status: Estado
       title: Releses
     report_notes:
@@ -310,12 +455,17 @@ es:
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
     reports:
       account:
-        note: nota
-        report: denuncia
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+        reports:
+          one: "%{count} informe"
+          other: "%{count} informes"
       action_taken_by: Acción tomada por
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
+      by_target_domain: Dominio de la cuenta reportada
       comment:
         none: Ninguno
       created_at: Denunciado
@@ -351,6 +501,18 @@ es:
       custom_css:
         desc_html: Modificar el aspecto con CSS cargado en cada página
         title: CSS personalizado
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
+        title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
+      domain_blocks:
+        all: A todos
+        disabled: A nadie
+        title: Mostrar dominios bloqueados
+        users: Para los usuarios locales que han iniciado sesión
+      domain_blocks_rationale:
+        title: Mostrar la razón de ser
+      enable_bootstrap_timeline_accounts:
+        title: Habilitar seguimientos predeterminados para usuarios nuevos
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -363,6 +525,9 @@ es:
       preview_sensitive_media:
         desc_html: Los enlaces de vistas previas en otras web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
         title: Mostrar contenido sensible en previews de OpenGraph
+      profile_directory:
+        desc_html: Permitir que los usuarios puedan ser descubiertos
+        title: Habilitar directorio de perfiles
       registrations:
         closed_message:
           desc_html: Se muestra en la portada cuando los registros están cerrados. Puedes usar tags HTML
@@ -373,9 +538,12 @@ es:
         min_invite_role:
           disabled: Nadie
           title: Permitir invitaciones de
-        open:
-          desc_html: Permite a cualquiera a registrar una cuenta
-          title: Registro abierto
+      registrations_mode:
+        modes:
+          approved: Se requiere aprobación para registrarse
+          none: Nadie puede registrarse
+          open: Cualquiera puede registrarse
+        title: Modo de registros
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
         title: Mostrar fediverso conocido en la vista previa de la historia
@@ -395,6 +563,9 @@ es:
         desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
         title: Términos de servicio personalizados
       site_title: Nombre de instancia
+      spam_check_enabled:
+        desc_html: Mastodon puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
+        title: Contra-spam
       thumbnail:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
         title: Portada de instancia
@@ -402,12 +573,22 @@ es:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
+      trendable_by_default:
+        desc_html: Afecta a etiquetas que no han sido previamente rechazadas
+        title: Permitir que las etiquetas sean tendencia sin revisión previa
+      trends:
+        desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
+        title: Hashtags de tendencia
+    site_uploads:
+      delete: Eliminar archivo subido
+      destroyed_msg: "¡Carga del sitio eliminada con éxito!"
     statuses:
       back_to_account: Volver a la cuenta
       batch:
         delete: Eliminar
         nsfw_off: Marcar contenido como no sensible
         nsfw_on: Marcar contenido como sensible
+      deleted: Eliminado
       failed_to_execute: Falló al ejecutar
       media:
         title: Multimedia
@@ -415,19 +596,59 @@ es:
       no_status_selected: No se cambió ningún estado al no seleccionar ninguno
       title: Estado de las cuentas
       with_media: Con multimedia
-    subscriptions:
-      callback_url: URL del callback
-      confirmed: Confirmado
-      expires_in: Expira en
-      last_delivery: Última entrega
-      title: WebSub
-      topic: Tópico
+    tags:
+      accounts_today: Usos únicos de hoy
+      accounts_week: Usos únicos esta semana
+      breakdown: Desglose del consumo actual por fuentes
+      context: Contexto
+      directory: En el directorio
+      in_directory: "%{count} en el directorio"
+      last_active: Última actividad
+      most_popular: Más popular
+      most_recent: Más reciente
+      name: Hashtag
+      review: Estado de revisión
+      reviewed: Revisado
+      title: Etiquetas
+      trending_right_now: En tendencia ahora mismo
+      unique_uses_today: "%{count} publicando hoy"
+      unreviewed: No revisado
+      updated_msg: Hashtags actualizados exitosamente
     title: Administración
+    warning_presets:
+      add_new: Añadir nuevo
+      delete: Borrar
+      edit_preset: Editar aviso predeterminado
+      title: Editar configuración predeterminada de avisos
   admin_mailer:
+    new_pending_account:
+      body: Los detalles de la nueva cuenta están abajos. Puedes aprobar o rechazar esta aplicación.
+      subject: Nueva cuenta para revisión en %{instance} (%{username})
     new_report:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
+    new_trending_tag:
+      body: 'El hashtag #%{name} está en tendencia hoy, pero no ha sido revisado previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario como para no volver a ver esto.'
+      subject: Nuevo hashtag para revisión en %{instance} (#%{name})
+  aliases:
+    add_new: Crear alias
+    created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
+    deleted_msg: Elimina el alias correctamente. El traslado de esa cuenta a esta ya no será posible.
+    hint_html: Si quieres migrar de otra cuenta a esta, aquí puedes crear un alias, es necesario proceder antes de empezar a mover seguidores de la cuenta anterior a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta antigua</strong>.
+    remove: Desvincular alias
+  appearance:
+    advanced_web_interface: Interfaz web avanzada
+    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
+    animations_and_accessibility: Animaciones y accesibilidad
+    confirmation_dialogs: Diálogos de confirmación
+    discovery: Descubrir
+    localization:
+      body: Mastodon es traducido con la ayuda de voluntarios.
+      guide_link: https://es.crowdin.com/project/mastodon
+      guide_link_text: Todos pueden contribuir.
+    sensitive_content: Contenido sensible
+    toot_layout: Diseño de los toots
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name},"
@@ -444,11 +665,16 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    agreement_html: Al hacer click en "Registrarse" acepta seguir <a href="%{rules_path}">las reglas de la instancia</a> y <a href="%{terms_path}">nuestros términos de servicio</a>.
+    apply_for_account: Solicitar una invitación
     change_password: Contraseña
-    confirm_email: Confirmar email
+    checkbox_agreement_html: Acepto <a href="%{rules_path}" target="_blank">las reglas del servidor</a> y <a href="%{terms_path}" target="_blank">términos de servicio</a>
+    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank">términos de servicio</a>
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
+    description:
+      prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
+      prefix_sign_up: "¡Únete a Mastodon hoy!"
+      suffix: "¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!"
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
@@ -456,19 +682,30 @@ es:
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
-    or: o
     or_log_in_with: O inicia sesión con
     providers:
       cas: CAS
       saml: SAML
     register: Registrarse
-    register_elsewhere: Registrarse en otro servidor
+    registration_closed: "%{instance} no está aceptando nuevos miembros"
     resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
     security: Cambiar contraseña
     set_new_password: Establecer nueva contraseña
+    setup:
+      email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, se puede cambiarla aquí y recibir un nuevo correo electrónico de confirmación.
+      email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
+      title: Configuración
+    status:
+      account_status: Estado de la cuenta
+      confirming: Esperando confirmación de correo electrónico.
+      functional: Su cuenta está totalmente operativa.
+      pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
+      redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+    trouble_logging_in: "¿Problemas para iniciar sesión?"
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
+    already_requested: Ya has enviado una solicitud de seguimiento a esa cuenta
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
@@ -478,31 +715,56 @@ es:
       return: Regresar al perfil del usuario
       web: Ir al sitio web
     title: Seguir a %{acct}
+  challenge:
+    confirm: Continuar
+    hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
+    invalid_password: Contraseña incorrecta
+    prompt: Confirmar contraseña para seguir
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
       about_x_months: "%{count}m"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
       half_a_minute: Justo ahora
       less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Justo ahora
-      over_x_years: "%{count}y"
+      over_x_years: "%{count}a"
       x_days: "%{count}d"
       x_minutes: "%{count}m"
       x_months: "%{count}m"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: "¡Buen intento, hackers! Contraseña incorrecta"
+    challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
-    description_html: Esto removerá el contenido de tu cuenta y la desactivará <strong>permanente e irrevesiblemente</strong>. Tu nombre de usuario quedará reservado para prevenir futuros robos de identidad.
+    confirm_username: Escribe tu nombre de usuario para confirmar
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
-    warning_html: Se garantiza únicamente la eliminación del contenido de esta instancia. El contenido que se haya compartido extensamente dejará sus huellas. Los servidores fuera de línea y los que se hayan desuscrito de tus actualizaciones ya no actualizarán sus bases de datos.
-    warning_title: Disponibilidad diseminada del contenido
+    warning:
+      before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
+      caches: El contenido que ha sido almacenado en caché por otros servidores puede persistir
+      data_removal: Tus publicaciones y el resto de datos se eliminarán definitivamente
+      email_change_html: Puedes <a href="%{path}"> cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
+      email_contact_html: Si aún no te ha llegado, puedes escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
+      email_reconfirmation_html: Si no te ha llegado el correo de confirmación, puedes <a href="%{path}"> volver a solicitarlo</a>
+      irreversible: No podrás restaurar ni reactivar tu cuenta
+      more_details_html: Para más detalles, ver <a href="%{terms_path}"> la política de privacidad</a>.
+      username_available: Tu nombre de usuario volverá a estar disponible
+      username_unavailable: Tu nombre de usuario no estará disponible
+  directories:
+    directory: Directorio de perfiles
+    explanation: Descubre usuarios según sus intereses
+    explore_mastodon: Explorar %{title}
+  domain_validator:
+    invalid_domain: no es un nombre de dominio válido
   errors:
+    '400': La solicitud que has enviado no es valida o estaba malformada.
     '403': No tienes permiso para acceder a esta página.
     '404': La página que estabas buscando no existe.
+    '406': Esta página no está disponible en el formato solicitado.
     '410': La página que estabas buscando no existe más.
     '422':
       content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
@@ -511,22 +773,33 @@ es:
     '500':
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
+    '503': La página no se ha podido cargar debido a un fallo temporal del servidor.
     noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodon para tu plataforma.
+  existing_username_validator:
+    not_found: no pudo encontrar un usuario local con ese nombre de usuario
+    not_found_multiple: no pudo encontrar %{usernames}
   exports:
     archive_takeout:
       date: Fecha
       download: Descargar tu archivo
-      hint_html: Puedes solicitar un archivo de tus <strong>toots y materiales subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      hint_html: Puedes solicitar un archivo de tus <strong>toots y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
       in_progress: Recopilando tu archivo...
       request: Solicitar tu archivo
       size: Tamaño
     blocks: Personas que has bloqueado
     csv: CSV
-    follows: Personas que sigues
+    domain_blocks: Bloqueos de dominios
+    lists: Listas
     mutes: Tienes en silencio
     storage: Almacenamiento
+  featured_tags:
+    add_new: Añadir nuevo
+    errors:
+      limit: Ya has alcanzado la cantidad máxima de hashtags
+    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
+      account: Perfiles
       home: Timeline propio
       notifications: Notificaciones
       public: Timeline público
@@ -538,37 +811,57 @@ es:
       invalid_irreversible: El filtrado irreversible solo funciona con los contextos propios o de notificaciones
     index:
       delete: Borrar
+      empty: No tienes filtros.
       title: Filtros
     new:
       title: Añadir un nuevo filtro
-  followers:
-    domain: Dominio
-    explanation_html: Si deseas asegurar la privacidad de tus estados, tienes que cuidarte de quién te sigue. <strong>Tus estados privados son enviados a todas las instancias de tus seguidores</strong>. Puede que desees revisarlas, y remover seguidores si no confías en tu privacidad para ser respetado por el staff o software de esas instancias.
-    followers_count: Número de seguidores
-    lock_link: Bloquear tu cuenta
-    purge: Remover de los seguidores
-    success:
-      one: En el proceso de bloquear suavemente usuarios de un solo dominio...
-      other: En el proceso de bloquear suavemente usuarios de %{count} dominios...
-    true_privacy_html: Por favor ten en cuenta que <strong>la verdadera privacidad se consigue con encriptación de punto a punto</strong>.
-    unlocked_warning_html: Todos pueden seguirte  para ver tus estados privados inmediatamente. %{lock_link} para poder chequear y rechazar seguidores.
-    unlocked_warning_title: Tu cuenta no está bloqueada
   footer:
     developers: Desarrolladores
     more: Mas…
     resources: Recursos
+    trending_now: Tendencia ahora
   generic:
+    all: Todos
     changes_saved_msg: "¡Cambios guardados con éxito!"
     copy: Copiar
+    delete: Eliminar
+    no_batch_actions_available: No hay acciones por lotes disponibles en esta página
+    order_by: Ordenar por
     save_changes: Guardar cambios
     validation_errors:
       one: "¡Algo no está bien! Por favor, revisa el error"
       other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
+  html_validator:
+    invalid_markup: 'contiene código HTML no válido: %{error}'
+  identity_proofs:
+    active: Activo
+    authorize: Sí, autorizar
+    authorize_connection_prompt: "¿Autorizar esta conexión criptográfica?"
+    errors:
+      failed: La conexión criptográfica falló. Por favor, inténtalo de nuevo desde %{provider}.
+      keybase:
+        invalid_token: Los tokens de Keybase son hashes de firmas y deben tener 66 caracteres hex
+        verification_failed: Keybase no reconoce este token como una firma del usuario de Keybase %{kb_username}. Por favor, inténtelo de nuevo desde Keybase.
+      wrong_user: No se puede crear una prueba para %{proving} mientras se inicia sesión como %{current}. Inicia sesión como %{proving} e inténtalo de nuevo.
+    explanation_html: Aquí puedes conectar criptográficamente sus otras identidades, como un perfil de Keybase. Esto permite a otras personas enviarle mensajes encriptados y confiar en el contenido que les envías.
+    i_am_html: Soy %{username} en %{service}.
+    identity: Identidad
+    inactive: Inactivo
+    publicize_checkbox: 'Y tootee esto:'
+    publicize_toot: "¡Comprobado! Soy %{username} en %{service}: %{url}"
+    status: Estado de la verificación
+    view_proof: Ver prueba
   imports:
+    modes:
+      merge: Unir
+      merge_long: Mantener registros existentes y añadir nuevos
+      overwrite: Sobrescribir
+      overwrite_long: Reemplazar registros actuales con los nuevos
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
     types:
       blocking: Lista de bloqueados
+      domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Cargar
@@ -601,12 +894,38 @@ es:
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
     acct: username@domain de la nueva cuenta
-    currently_redirecting: 'Tu perfil está redireccionado a:'
-    proceed: Guardar
-    updated_msg: "¡La configuración de migración de tu cuenta  ha sido actualizada con éxito!"
+    cancel: Cancelar redireccionamiento
+    cancel_explanation: Al cancelar el redireccionamiento se reactivará tu cuenta actual, pero no recuperarás los seguidores que hayan sido trasladados a la otra cuenta.
+    cancelled_msg: El redireccionamiento se ha cancelado correctamente.
+    errors:
+      already_moved: es la misma cuenta a la que ya has migrado
+      missing_also_known_as: no está haciendo referencia a esta cuenta
+      move_to_self: no puede ser la cuenta actual
+      not_found: no se pudo encontrar
+      on_cooldown: Estás en tiempo de reutilización
+    followers_count: Seguidores al momento de migrar
+    incoming_migrations: Migrar de una cuenta diferente
+    incoming_migrations_html: Para migrar de otra cuenta a esta, primero necesitas <a href="%{path}">crear un alias de la cuenta</a>.
+    moved_msg: Tu cuenta ahora se está redirigiendo a %{acct} y tus seguidores se están migrando.
+    not_redirecting: Tu cuenta no se está redirigiendo a ninguna otra cuenta actualmente.
+    on_cooldown: Has migrado tu cuenta recientemente. Esta función estará disponible de nuevo en %{count} días.
+    past_migrations: Migraciones pasadas
+    proceed_with_move: Migrar seguidores
+    redirecting_to: Tu cuenta se está redirigiendo a %{acct}.
+    set_redirect: Establecer redirección
+    warning:
+      backreference_required: La nueva cuenta debe ser configurada primero para hacer referencia a esta
+      before: 'Antes de continuar, por favor lee con atención las siguientes notas:'
+      cooldown: Después de migrar hay un período de espera durante el cual no podrás volver a migrar
+      disabled_account: Tu cuenta actual no será completamente utilizable después. Sin embargo, tendrás acceso a la exportación de datos así como a la reactivación.
+      followers: Esta acción migrará a todos los seguidores de la cuenta actual a la nueva cuenta
+      only_redirect_html: Alternativamente, solo puedes <a href="%{path}">poner una redirección en tu perfil</a>.
+      other_data: No se moverán otros datos automáticamente
+      redirect: El perfil de tu cuenta actual se actualizará con un aviso de redirección y será excluido de las búsquedas
   moderation:
     title: Moderación
   notification_mailer:
@@ -643,6 +962,10 @@ es:
       body: "%{name} ha retooteado tu estado:"
       subject: "%{name} ha retooteado tu estado"
       title: Nueva difusión
+  notifications:
+    email_events: Eventos para notificaciones por correo electrónico
+    email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
+    other_settings: Otros ajustes de notificaciones
   number:
     human:
       decimal_units:
@@ -651,30 +974,70 @@ es:
           billion: B
           million: M
           quadrillion: Q
-          thousand: K
+          thousand: m
           trillion: T
-          unit: " "
   pagination:
     newer: Más nuevo
     next: Próximo
     older: Más antiguo
     prev: Anterior
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ya has votado en esta encuesta
+      duplicate_options: contiene elementos duplicados
+      duration_too_long: está demasiado lejos en el futuro
+      duration_too_short: es demasiado pronto
+      expired: La encuesta ya ha terminado
+      invalid_choice: La opción de voto seleccionada no existe
+      over_character_limit: no puede exceder %{max} caracteres cada uno
+      too_few_options: debe tener más de un elemento
+      too_many_options: no puede contener más de %{max} elementos
   preferences:
-    languages: Idiomas
     other: Otros
-    publishing: Publicación
-    web: Web
+    posting_defaults: Configuración por defecto de publicaciones
+    public_timelines: Líneas de tiempo públicas
+  reactions:
+    errors:
+      limit_reached: Límite de reacciones diferentes alcanzado
+      unrecognized_emoji: no es un emoji conocido
+  relationships:
+    activity: Actividad de la cuenta
+    dormant: Inactivo
+    followers: Seguidores
+    following: Siguiendo
+    invited: Invitado
+    last_active: Última actividad
+    most_recent: Más reciente
+    moved: Movido
+    mutual: Mutuo
+    primary: Principal
+    relationship: Relación
+    remove_selected_domains: Eliminar todos los seguidores de los dominios seleccionados
+    remove_selected_followers: Eliminar los seguidores seleccionados
+    remove_selected_follows: Dejar de seguir a los usuarios seleccionados
+    status: Estado de la cuenta
   remote_follow:
     acct: Ingesa tu usuario@dominio desde el que quieres seguir
     missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     no_account_html: "¿No tienes una cuenta? Puedes <a href='%{sign_up_path}' target='_blank'>registrarte aqui</a>"
     proceed: Proceder a seguir
     prompt: 'Vas a seguir a:'
-  remote_unfollow:
-    error: Error
-    title: Título
-    unfollowed: Ha dejado de seguirse
+    reason_html: "¿<strong>¿Por qué es necesario este paso?</strong> <code>%{instance}</code> puede que no sea el servidor donde estás registrado, así que necesitamos redirigirte primero a tu servidor de origen."
+  remote_interaction:
+    favourite:
+      proceed: Proceder a marcar como favorito
+      prompt: 'Quieres marcar como favorito este toot:'
+    reblog:
+      proceed: Proceder a retootear
+      prompt: 'Quieres retootear este toot:'
+    reply:
+      proceed: Proceder a responder
+      prompt: 'Quieres responder a este toot:'
+  scheduled_statuses:
+    over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
+    over_total_limit: Ha superado el límite de %{limit} toots programados
+    too_soon: La fecha programada debe estar en el futuro
   sessions:
     activity: Última actividad
     browser: Navegador
@@ -688,11 +1051,11 @@ es:
       generic: Desconocido
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Navegador de Nokia S40 Ovi
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
-      qq: QQ Browser
+      qq: Navegador QQ
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
@@ -717,20 +1080,28 @@ es:
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
   settings:
+    account: Cuenta
+    account_settings: Ajustes de la cuenta
+    aliases: Alias de la cuenta
+    appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
     delete: Borrar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar información
-    followers: Seguidores autorizados
+    featured_tags: Hashtags destacados
+    identity_proofs: Pruebas de identidad
     import: Importar
+    import_and_export: Importar y exportar
     migrate: Migración de cuenta
     notifications: Notificaciones
     preferences: Preferencias
-    settings: Ajustes
+    profile: Perfil
+    relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
-    your_apps: Tus aplicaciones
+  spam_check:
+    spam_detected: Este es un informe automatizado. Se ha detectado correo no deseado.
   statuses:
     attached:
       description: 'Adjunto: %{attached}'
@@ -745,6 +1116,8 @@ es:
     disallowed_hashtags:
       one: 'contenía un hashtag no permitido: %{tags}'
       other: 'contenía los hashtags no permitidos: %{tags}'
+    errors:
+      in_reply_not_found: El estado al que intentas responder no existe.
     language_detection: Detección automática de idioma
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
@@ -753,7 +1126,16 @@ es:
       ownership: El toot de alguien más no puede fijarse
       private: Los toots no-públicos no pueden fijarse
       reblog: Un boost no puede fijarse
+    poll:
+      total_people:
+        one: persona %{count}
+        other: "%{count} gente"
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
+      vote: Vota
     show_more: Mostrar más
+    show_thread: Mostrar hilo
     sign_in_to_participate: Regístrate para participar en la conversación
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -767,7 +1149,90 @@ es:
     pinned: Toot fijado
     reblogged: retooteado
     sensitive_content: Contenido sensible
+  tags:
+    does_not_match_previous_name: no coincide con el nombre anterior
   terms:
+    body_html: |
+      <h2>Política de Privacidad</h2>
+      <h3 id="collect">¿Qué información recogemos?</h3>
+
+      <ul>
+      <li><em>Información básica sobre su cuenta</em>: Si se registra en este servidor, se le requerirá un nombre de usuario, una dirección de correo electrónico y una contraseña. Además puede incluir información adicional en el perfil como un nombre de perfil y una biografía, y subir una foto de perfil y una imagen de cabecera. El nombre de usuario, nombre de perfil, biografía, foto de perfil e imagen de cabecera siempre son visibles públicamente</li>
+      <li><em>Publicaciones, seguimiento y otra información pública</em>: La lista de gente a la que sigue es mostrada públicamente, al igual que sus seguidores. Cuando publica un mensaje, la fecha y hora es almacenada, así como la aplicación desde la cual publicó el mensaje. Los mensajes pueden contener archivos adjuntos multimedia, como imágenes y vídeos. Las publicaciones públicas y no listadas están disponibles públicamente. Cuando destaca una entrada en su perfil, también es información disponible públicamente. Sus publicaciones son entregadas a sus seguidores, en algunos casos significa que son entregadas a diferentes servidores y las copias son almacenadas allí. Cuando elimina publicaciones, esto también se transfiere a sus seguidores. La acción de rebloguear o marcar como favorito otra publicación es siempre pública.</li>
+      <li><em>Publicaciones directas y sólo para seguidores</em>: Todos los mensajes se almacenan y procesan en el servidor. Los mensajes sólo para seguidores se entregan a los seguidores y usuarios que se mencionan en ellos, y los mensajes directos se entregan sólo a los usuarios que se mencionan en ellos. En algunos casos significa que se entregan a diferentes servidores y que las copias se almacenan allí. Hacemos un esfuerzo de buena fe para limitar el acceso a esas publicaciones sólo a las personas autorizadas, pero otros servidores pueden no hacerlo. Por lo tanto, es importante revisar los servidores a los que pertenecen sus seguidores. Puede cambiar una opción para aprobar y rechazar nuevos seguidores manualmente en la configuración <em>Por favor, tenga en cuenta que los operadores del servidor y de cualquier servidor receptor pueden ver dichos mensajes</em>, y que los destinatarios pueden capturarlos, copiarlos o volver a compartirlos de alguna otra manera. <em>No comparta ninguna información peligrosa en Mastodon.</em></li>
+      <li><em>Direcciones IP y otros metadatos</em>: Al iniciar sesión, registramos la dirección IP desde la que se ha iniciado sesión, así como el nombre de la aplicación de su navegador. Todas las sesiones iniciadas están disponibles para su revisión y revocación en los ajustes. La última dirección IP utilizada se almacena hasta 12 meses. También podemos conservar los registros del servidor que incluyen la dirección IP de cada solicitud a nuestro servidor.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">¿Para qué utilizamos su información?</h3>
+
+      <p>Toda la información que obtenemos de usted puede ser utilizada de las siguientes maneras:</p>
+
+      <ul>
+      <li>Para proporcionar la funcionalidad principal de Mastodon. Sólo puedes interactuar con el contenido de otras personas y publicar tu propio contenido cuando estés conectado. Por ejemplo, puedes seguir a otras personas para ver sus mensajes combinados en tu propia línea de tiempo personalizada.</li>
+      <li>Para ayudar a la moderación de la comunidad, por ejemplo, comparando su dirección IP con otras conocidas para determinar la evasión de prohibiciones u otras violaciones.</li>
+      <li>La dirección de correo electrónico que nos proporcione podrá utilizarse para enviarle información, notificaciones sobre otras personas que interactúen con su contenido o para enviarle mensajes, así como para responder a consultas y/u otras solicitudes o preguntas.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">¿Cómo protegemos su información?</h3>
+
+      <p>Implementamos una variedad de medidas de seguridad para mantener la seguridad de su información personal cuando usted ingresa, envía o accede a su información personal. Entre otras cosas, la sesión de su navegador, así como el tráfico entre sus aplicaciones y la API, están protegidos con SSL, y su contraseña está protegida mediante un algoritmo unidireccional fuerte. Puede habilitar la autenticación de dos factores para un acceso más seguro a su cuenta.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">¿Cuál es nuestra política de retención de datos?</h3>
+
+      <p>Haremos un esfuerzo de buena fe para:</p>
+
+      <ul>
+      <li>Conservar los registros del servidor que contengan la dirección IP de todas las peticiones a este servidor, en la medida en que se mantengan dichos registros, no más de 90 días.</li>
+      <li>Conservar las direcciones IP asociadas a los usuarios registrados no más de 12 meses.</li>
+      </ul>
+
+      <p>Puede solicitar y descargar un archivo de su contenido, incluidos sus mensajes, archivos adjuntos multimedia, foto de perfil e imagen de cabecera.</p>
+
+      <p>Usted puede borrar su cuenta de forma irreversible en cualquier momento.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">¿Utilizamos cookies?</h3>
+
+      <p>Sí. Las cookies son pequeños archivos que un sitio o su proveedor de servicios transfiere al disco duro de su ordenador a través de su navegador web (si usted lo permite). Estas cookies permiten al sitio reconocer su navegador y, si tiene una cuenta registrada, asociarla con su cuenta registrada.</p>
+
+      <p>Utilizamos cookies para entender y guardar sus preferencias para futuras visitas.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">¿Revelamos alguna información a terceros?</h3>
+
+      <p>No vendemos, comerciamos ni transferimos a terceros su información personal identificable. Esto no incluye a los terceros de confianza que nos asisten en la operación de nuestro sitio, en la realización de nuestros negocios o en la prestación de servicios, siempre y cuando dichas partes acuerden mantener la confidencialidad de esta información. También podemos divulgar su información cuando creamos que es apropiado para cumplir con la ley, hacer cumplir las políticas de nuestro sitio, o proteger nuestros u otros derechos, propiedad o seguridad.</p>
+
+      <p>Su contenido público puede ser descargado por otros servidores de la red. Tus mensajes públicos y sólo para seguidores se envían a los servidores donde residen tus seguidores, y los mensajes directos se envían a los servidores de los destinatarios, en la medida en que dichos seguidores o destinatarios residan en un servidor diferente.</p>
+
+      <p>Cuando usted autoriza a una aplicación a usar su cuenta, dependiendo del alcance de los permisos que usted apruebe, puede acceder a la información de su perfil público, su lista de seguimiento, sus seguidores, sus listas, todos sus mensajes y sus favoritos. Las aplicaciones nunca podrán acceder a su dirección de correo electrónico o contraseña.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Uso del sitio por parte de los niños</h3>
+
+      <p>Si este servidor está en la UE o en el EEE: Nuestro sitio, productos y servicios están dirigidos a personas mayores de 16 años. Si es menor de 16 años, según los requisitos de la GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation_Data_Protection_Regulation">General Data Protection Regulation</a>) no utilice este sitio.</p>
+
+      <p>Si este servidor está en los EE.UU.: Nuestro sitio, productos y servicios están todos dirigidos a personas que tienen al menos 13 años de edad. Si usted es menor de 13 años, según los requisitos de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no utilice este sitio.</p>
+
+      <p>Los requisitos legales pueden ser diferentes si este servidor está en otra jurisdicción.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Cambios en nuestra Política de Privacidad</h3>
+
+      <p>Si decidimos cambiar nuestra política de privacidad, publicaremos esos cambios en esta página.</p>
+
+      <p>Este documento es CC-BY-SA. Fue actualizado por última vez el 7 de marzo de 2018.</p>
+
+      <p>Adaptado originalmente desde <a href="https://github.com/discourse/discourse">la política de privacidad de Discourse</a>.</p>
     title: Términos del Servicio y Políticas de Privacidad de %{instance}
   themes:
     contrast: Alto contraste
@@ -798,6 +1263,24 @@ es:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
       title: Descargar archivo
+    warning:
+      explanation:
+        disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
+        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
+        suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
+      get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
+      review_server_policies: Revisar las políticas del servidor
+      statuses: 'Específicamente, para:'
+      subject:
+        disable: Su cuenta %{acct} ha sido congelada
+        none: Advertencia para %{acct}
+        silence: Su cuenta %{acct} ha sido limitada
+        suspend: Su cuenta %{acct} ha sido suspendida
+      title:
+        disable: Cuenta congelada
+        none: Advertencia
+        silence: Cuenta limitada
+        suspend: Cuenta suspendida
     welcome:
       edit_profile_action: Configurar el perfil
       edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
@@ -813,7 +1296,7 @@ es:
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
       tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
-      tips: Tips
+      tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas

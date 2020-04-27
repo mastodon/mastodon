@@ -1,48 +1,30 @@
-@mixin avatar-radius() {
+@mixin avatar-radius {
   border-radius: 4px;
   background: transparent no-repeat;
   background-position: 50%;
   background-clip: padding-box;
 }
 
-@mixin avatar-size($size:48px) {
+@mixin avatar-size($size: 48px) {
   width: $size;
   height: $size;
   background-size: $size $size;
 }
 
-@mixin search-input() {
+@mixin search-input {
   outline: 0;
   box-sizing: border-box;
   width: 100%;
-  border: none;
+  border: 0;
   box-shadow: none;
   font-family: inherit;
   background: $ui-base-color;
   color: $darker-text-color;
   font-size: 14px;
   margin: 0;
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 16px;
-  }
 }
 
-@mixin search-popout() {
+@mixin search-popout {
   background: $simple-background-color;
   border-radius: 4px;
   padding: 10px 14px;

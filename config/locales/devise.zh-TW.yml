@@ -2,81 +2,96 @@
 zh-TW:
   devise:
     confirmations:
-      confirmed: 您的 E-mail 驗證成功。
-      send_instructions: 您將會在幾分鐘內收到驗證信。
-      send_paranoid_instructions: 如果您的 E-mail 存在於我們的資料庫，將會在幾分鐘內收到驗證信。
+      confirmed: 您的電子信箱位址已確認成功。
+      send_instructions: 幾分鐘後您將收到確認信件。若未收到此信件，請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 如果您的電子信箱存在於我們的資料庫，您將會在幾分鐘內收到確認信。若未收到請檢查垃圾郵件資料夾。
     failure:
-      already_authenticated: 您已經登入了。
+      already_authenticated: 您已登入。
       inactive: 您的帳戶尚未啟用。
-      invalid: 不正確的 %{authentication_keys} 或密碼。
-      last_attempt: 您剩下最後一次嘗試機會，如失敗將會進行帳戶鎖定。如有問題請洽詢站點管理員。
-      locked: 您的帳戶已被鎖定。
-      not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
-      timeout: 您的登入階段已經逾期，請重新登入以繼續使用。
-      unauthenticated: 您必須先登入或註冊，以繼續使用。
-      unconfirmed: 您必須先完成 E-mail 驗證，以繼續使用。
+      invalid: 無效的 %{authentication_keys} 或密碼。
+      last_attempt: 在帳號鎖定前，您還有最後一次嘗試機會。
+      locked: 已鎖定您的帳戶。
+      not_found_in_database: 無效的 %{authentication_keys} 或密碼。
+      pending: 您的帳戶仍在審核中。
+      timeout: 登入階段逾時。請重新登入以繼續。
+      unauthenticated: 您必須先登入或註冊才能繼續使用。
+      unconfirmed: 您必須先確認電子信箱才能繼續使用。
     mailer:
       confirmation_instructions:
-        action: 驗證 E-mail 地址
-        explanation: 您已經在 %{host} 上以此 E-mail 地址建立了一個帳號。您距離啟用它只剩一次點擊之遙了。如果這不是你，請忽略此 E-mail 。
-        extra_html: 同時也請看看<a href="%{terms_path}">該站點的規則</a>與<a href="%{policy_path}">我們的服務條款</a>。
-        subject: 'Mastodon: 信箱驗證 %{instance}'
-        title: 驗證 E-mail 地址
+        action: 驗證電子信箱位址
+        action_with_app: 確認並返回 %{app}
+        explanation: 您已經在 %{host} 上以此電子信箱位址建立了一支帳戶。您距離啟用它只剩一點之遙了。若這不是您，請忽略此信件。
+        explanation_when_pending: 您使用此電子信箱位址申請了 %{host} 的邀請。當您確認電子信箱後我們將審核您的申請，而直到核准前您都無法登入。當您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您，請忽略此信件。
+        extra_html: 同時也請看看<a href="%{terms_path}">伺服器規則</a>與<a href="%{policy_path}">服務條款</a>。
+        subject: Mastodon：%{instance} 確認說明
+        title: 驗證電子信箱位址
       email_changed:
-        explanation: 您帳號的 E-mail 地址被變更為：
-        extra: 如果您並未變更您的 E-mail ，那麼很有可能是某人取得了你帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡站點的管理員。
-        subject: Mastodon  E-mail 變更
-        title: 新 E-mail 地址
+        explanation: 您帳戶的電子信箱位址將變更為：
+        extra: 若您未變更電子信箱，那麼很有可能是某人取得了你帳戶的存取權限。請立刻變更密碼，或當帳戶被鎖定時，請聯絡伺服器的管理員。
+        subject: Mastodon：已變更電子信箱
+        title: 新電子信箱位址
       password_change:
-        explanation: 您帳號的密碼已變更。
-        extra: 如果您並未變更您的密碼，那麼很有可能是某人取得了您帳號的存取權限。請立刻變更您的密碼，或是若您的帳號已被鎖定，請聯絡站點的管理員。
-        subject: 'Mastodon: 更改密碼'
+        explanation: 您帳戶的密碼已變更。
+        extra: 如果您未變更密碼，那麼很有可能是某人取得了帳戶的存取權限。請立刻變更密碼，或若帳戶被鎖定時，請聯絡伺服器的管理員。
+        subject: Mastodon：已變更密碼
         title: 密碼已變更
       reconfirmation_instructions:
-        explanation: 確認新的 E-mail 地址以變更您的 E-mail 。
-        extra: 若此次變更不是由您開啟的，請忽略這個 E-mail 。Mastodon 帳號的 E-mail 地址在您存取上面的連結前不會變更。
-        subject: Mastodon：%{instance} 的確認 E-mail
-        title: 驗證 E-mail 地址
+        explanation: 請確認新的電子信箱位址以變更。
+        extra: 若此次變更不是由您開啟的，請忽略此信件。Mastodon 帳戶的電子信箱位址在您存取上面的連結前不會變更。
+        subject: Mastodon：確認 %{instance} 的電子信箱位址
+        title: 驗證電子信箱位址
       reset_password_instructions:
         action: 變更密碼
-        explanation: 您為您的帳號請求了一個新密碼。
-        extra: 若您並未請求這個，請忽略此 E-mail 。您的密碼在您存取上面的連結並建立一個新的之前不會變更。
-        subject: 'Mastodon: 重設密碼'
+        explanation: 您已請求帳戶的新密碼。
+        extra: 若您並未請求，請忽略此信件。您的密碼在存取上方連結並建立新連結前不會變更。
+        subject: Mastodon：重設密碼指引
         title: 重設密碼
+      two_factor_disabled:
+        explanation: 您帳戶的兩步驟驗證已停用。現在只能使用電子信箱位址及密碼登入。
+        subject: Mastodon：已停用兩步驟驗證
+        title: 已停用 2FA
+      two_factor_enabled:
+        explanation: 已對您的帳戶啟用兩步驟驗證。登入時將需要配對之 TOTP 應用程式所產生的 Token。
+        subject: Mastodon：已啟用兩步驟驗證
+        title: 已啟用 2FA
+      two_factor_recovery_codes_changed:
+        explanation: 上一次的復原碼已經失效，且已產生新的。
+        subject: Mastodon：兩步驟驗證復原碼已經重新產生
+        title: 2FA 復原碼已變更
       unlock_instructions:
-        subject: 'Mastodon: 帳號解鎖'
+        subject: Mastodon：解鎖指引
     omniauth_callbacks:
-      failure: 無法以 %{kind} 登入您的帳號，原因是︰「%{reason}」。
-      success: 成功以 %{kind} 登入您的帳號。
+      failure: 無法透過 %{kind} 認證是否為您，因為「%{reason}」。
+      success: 成功透過 %{kind} 帳戶登入。
     passwords:
-      no_token: 您請使用重設密碼信中的網址，並確認您用了完整的網址。
-      send_instructions: 您將在幾分鐘內收到重設密碼信。
-      send_paranoid_instructions: 如果您的電子信箱已經存在於我們的資料庫，您將會在幾分鐘內收到重設密碼信。
-      updated: 您的密碼已經更新，您現在正登入本站。
-      updated_not_active: 您的密碼已經更新。
+      no_token: 您必須透過密碼重設信件才能存取此頁面。若確實如此，請確定輸入的網址是完整的。
+      send_instructions: 若電子信箱位址存在於資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 若電子信箱位址存在於資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      updated: 您的密碼已成功變更，現在已經登入。
+      updated_not_active: 您的密碼已成功變更。
     registrations:
-      destroyed: 再見了！您的帳號已被取消，期待再相逢。
-      signed_up: 歡迎您！您的已成功註冊。
-      signed_up_but_inactive: 您已成功註冊，但由於您的帳號尚未啟用，我們暫時無法讓您登入。
-      signed_up_but_locked: 您已成功註冊，但由於您的帳號已被鎖定，我們無法讓您登入。
-      signed_up_but_unconfirmed: 驗證信已寄出。請使用該連結啟用您的帳號。
-      update_needs_confirmation: 已更新您的帳號，但我們需要進行信箱驗證。請開啟您的信箱，使用確認信中的連結進行驗證。
-      updated: 您的帳號已成功更新。
+      destroyed: 再見！您的帳戶已成功取消，期待再相逢。
+      signed_up: 歡迎！您已成功註冊。
+      signed_up_but_inactive: 您已註冊成功，但由於您的帳戶尚未啟用，我們暫時無法讓您登入。
+      signed_up_but_locked: 您已註冊成功，但由於您的帳戶已被鎖定，我們無法讓您登入。
+      signed_up_but_pending: 包含確認連結的訊息已寄到您的電子信箱。按下此連結後我們將審核您的申請。核准後將通知您。
+      signed_up_but_unconfirmed: 包含確認連結的訊息已寄到您的電子信箱。請前往連結以啟用帳號。若未收到請檢查垃圾郵件資料夾。
+      update_needs_confirmation: 已更新您的帳號，但仍需驗證您的新信箱。請檢查電子信箱並前往確認連結來確認新信箱位址。若未收到請檢查垃圾郵件資料夾。
+      updated: 您的帳戶已成功更新。
     sessions:
-      already_signed_out: 成功登出。
-      signed_in: 成功登入。
-      signed_out: 成功登出。
+      already_signed_out: 已成功登出。
+      signed_in: 已成功登入。
+      signed_out: 已成功登出。
     unlocks:
-      send_instructions: 您將在幾分鐘內收到帳號解鎖信。
-      send_paranoid_instructions: 如果您的電子信箱已經存在於我們的資料庫，您將在幾分鐘內收到帳號解鎖信。
-      unlocked: 已解鎖您的帳號，請登入以繼續。
+      send_instructions: 幾分鐘後您將收到解鎖帳號的指引信件。若未收到請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 若此帳號存在，您將在幾分鐘後收到解鎖指引信件。若未收到請檢查垃圾郵件資料夾。
+      unlocked: 已解鎖您的帳戶，請登入繼續。
   errors:
     messages:
       already_confirmed: 已經確認，請嘗試登入
       confirmation_period_expired: 需要在 %{period} 內完成驗證。請重新申請
-      expired: 已經過期，請重新申請
+      expired: 已經過期，請重新請求
       not_found: 找不到
-      not_locked: 並未被鎖定
+      not_locked: 並未鎖定
       not_saved:
-        one: 有 1 個錯誤讓此 %{resource} 無法儲存：
-        other: 有 %{count} 個錯誤讓此 %{resource} 無法儲存：
+        other: 因 %{count} 錯誤導致 %{resource} 無法儲存：

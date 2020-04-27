@@ -1,0 +1,17 @@
+---
+hy:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Վերջնաժամկետ
+        options: Տարբերակներ
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: միայն տառեր, թվեր և ընդգիծկներ
+        status:
+          attributes:
+            reblog:
+              taken: թութը գոյություն ունի

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::DeleteActorSerializer < ActiveModel::Serializer
+class ActivityPub::DeleteActorSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor, :to
   attribute :virtual_object, key: :object
 

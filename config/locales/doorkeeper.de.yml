@@ -23,7 +23,7 @@ de:
         cancel: Abbrechen
         destroy: Löschen
         edit: Bearbeiten
-        submit: Übertragen
+        submit: Speichern
       confirmations:
         destroy: Bist du sicher?
       edit:
@@ -31,13 +31,14 @@ de:
       form:
         error: Hoppla! Bitte überprüfe das Formular auf mögliche Fehler
       help:
-        native_redirect_uri: "%{native_redirect_uri} für lokale Tests benutzen"
-        redirect_uri: Bitte benutze eine Zeile pro URI
+        native_redirect_uri: Benutze %{native_redirect_uri} für lokale Tests
+        redirect_uri: Benutze eine Zeile pro URI
         scopes: Bitte die Befugnisse mit Leerzeichen trennen. Zur Verwendung der Standardwerte freilassen.
       index:
         application: Anwendung
         callback_url: Callback-URL
         delete: Löschen
+        empty: Du hast keine Anwendungen.
         name: Name
         new: Neue Anwendung
         scopes: Befugnisse
@@ -71,25 +72,25 @@ de:
         revoke: Bist du sicher?
       index:
         application: Anwendung
-        created_at: autorisiert am
+        created_at: Autorisiert am
         date_format: "%d.%m.%Y %H:%M:%S"
         scopes: Befugnisse
         title: Deine autorisierten Anwendungen
     errors:
       messages:
-        access_denied: Der »resource owner« oder der Autorisierungs-Server hat die Anfrage verweigert.
-        credential_flow_not_configured: Die Prozedur »Resource Owner Password Credentials« schlug fehl, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
+        access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
+        credential_flow_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
         invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request: Die Anfrage enthält ein nicht-unterstütztes Argument, ein Parameter fehlt, oder sie ist anderweitig fehlerhaft.
-        invalid_resource_owner: Die angegebenen Zugangsdaten für den Ressourcenbesitzer sind ungültig oder der Ressourcenbesitzer kann nicht gefunden werden
+        invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
           expired: Der Zugriffs-Token ist abgelaufen
           revoked: Der Zugriffs-Token wurde widerrufen
           unknown: Der Zugriffs-Token ist ungültig
-        resource_owner_authenticator_not_configured: Die Prozedur »Resource Owner find« ist fehlgeschlagen, da Doorkeeper.configure.resource_owner_authenticator nicht konfiguriert ist.
+        resource_owner_authenticator_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_authenticator nicht konfiguriert ist.
         server_error: Der Autorisierungs-Server hat ein unerwartetes Problem festgestellt und konnte die Anfrage nicht bearbeiten.
         temporarily_unavailable: Der Autorisierungs-Server ist aufgrund von zwischenzeitlicher Überlastung oder Wartungsarbeiten derzeit nicht in der Lage, die Anfrage zu bearbeiten.
         unauthorized_client: Der Client ist nicht dazu autorisiert, diese Anfrage mit dieser Methode auszuführen.
@@ -114,11 +115,18 @@ de:
       application:
         title: OAuth-Autorisierung nötig
     scopes:
+      admin:read: alle Daten auf dem Server lesen
+      admin:read:accounts: sensible Daten aller Konten lesen
+      admin:read:reports: sensible Daten aller Meldungen und gemeldeten Konten lesen
+      admin:write: alle Daten auf dem Server ändern
+      admin:write:accounts: Moderationsaktionen auf Konten ausführen
+      admin:write:reports: Moderationsaktionen auf Meldungen ausführen
       follow: Kontenbeziehungen verändern
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen
       read:accounts: deine Konteninformationen einsehen
       read:blocks: deine Blockaden einsehen
+      read:bookmarks: deine Lesezeichen lesen
       read:favourites: deine Favoriten ansehen
       read:filters: deine Filter ansehen
       read:follows: sehen, wem du folgst
@@ -131,6 +139,7 @@ de:
       write: all deine Benutzerdaten verändern
       write:accounts: dein Profil bearbeiten
       write:blocks: Domains und Konten blockieren
+      write:bookmarks: Lesezeichen hinzufügen
       write:favourites: Beiträge favorisieren
       write:filters: Filter erstellen
       write:follows: Leuten folgen

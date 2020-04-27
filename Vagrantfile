@@ -12,7 +12,7 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 sudo apt-add-repository 'deb https://dl.yarnpkg.com/debian/ stable main'
 
 # Add repo for NodeJS
-curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 
 # Add firewall rule to redirect 80 to PORT and save
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port #{ENV["PORT"]}
@@ -44,7 +44,18 @@ sudo apt-get install \
 
 # Install rvm
 read RUBY_VERSION < .ruby-version
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+gpg_command="gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
+$($gpg_command)
+if [ $? -ne 0 ];then
+  echo "GPG command failed, This prevented RVM from installing."
+  echo "Retrying once..." && $($gpg_command)
+  if [ $? -ne 0 ];then
+    echo "GPG failed for the second time, please ensure network connectivity."
+    echo "Exiting..." && exit 1
+  fi
+fi
+
 curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer | bash -s stable --ruby=$RUBY_VERSION
 source /home/vagrant/.rvm/scripts/rvm
 
@@ -80,7 +91,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"

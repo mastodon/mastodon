@@ -1,12 +1,16 @@
 ---
 pt-BR:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Expira em
+        options: Opções
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: apenas letras, números e underscores
+              invalid: apenas letras, números e underlines ( "_" )
         status:
           attributes:
             reblog:

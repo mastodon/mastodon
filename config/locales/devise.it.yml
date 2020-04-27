@@ -12,6 +12,7 @@ it:
       last_attempt: Hai un altro tentativo prima che il tuo account venga bloccato.
       locked: Il tuo account è stato bloccato.
       not_found_in_database: "%{authentication_keys} o password invalida."
+      pending: Il tuo account è ancora in fase di approvazione.
       timeout: La tua sessione è terminata. Per favore, effettua l'accesso o registrati per continuare.
       unauthenticated: Devi effettuare l'accesso o registrarti per continuare.
       unconfirmed: Devi confermare il tuo indirizzo email per continuare.
@@ -20,17 +21,18 @@ it:
         action: Verifica indirizzo email
         action_with_app: Conferma e torna a %{app}
         explanation: Hai creato un account su %{host} con questo indirizzo email. Sei lonatno solo un clic dall'attivarlo. Se non sei stato tu, per favore ignora questa email.
-        extra_html: Per favore controlla<a href="%{terms_path}">le regole dell'istanza</a> e <a href="%{policy_path}">i nostri termini di servizio</a>.
+        explanation_when_pending: Hai richiesto un invito a %{host} con questo indirizzo email. Una volta confermato il tuo indirizzo e-mail, analizzeremo la tua richiesta. Non potrai eseguire l'accesso fino a quel momento. Se la tua richiesta sarà rifiutata, i tuoi dati saranno rimossi, quindi nessun'altra azione ti sarà richiesta. Se non fossi stato tu, per favore ignora questa email.
+        extra_html: Per favore controlla<a href="%{terms_path}">le regole del server</a> e <a href="%{policy_path}">i nostri termini di servizio</a>.
         subject: 'Mastodon: Istruzioni di conferma per %{instance}'
         title: Verifica indirizzo email
       email_changed:
         explanation: 'L''indirizzo email del tuo account sta per essere cambiato in:'
-        extra: Se non hai cambiato la tua email, è probabile che qualcuno abbia accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore dell'istanza se sei bloccato fuori dal tuo account.
+        extra: Se non hai cambiato la tua email, è probabile che qualcuno abbia ottenuto l'accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore del server se non puoi più accedere al tuo account.
         subject: 'Mastodon: Email cambiata'
         title: Nuovo indirizzo email
       password_change:
         explanation: La password del tuo account è stata cambiata.
-        extra: Se non hai cambiato la password, è probabile che qualcuno abbia accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore dell'istanza se sei bloccato fuori dal tuo account.
+        extra: Se non hai cambiato la password, è probabile che qualcuno abbia ottenuto l'accesso al tuo account. Cambia immediatamente la tua password e contatta l'amministratore del server non puoi più accedere al tuo account.
         subject: 'Mastodon: Password modificata'
         title: Password cambiata
       reconfirmation_instructions:
@@ -44,6 +46,18 @@ it:
         extra: Se questo cambiamento non è stato chiesto da te, ignora questa email. La tua password non verrà cambiata finché non accedi tramite il link qui sopra e ne crei una nuova.
         subject: 'Mastodon: Istruzioni per il reset della password'
         title: Ripristino password
+      two_factor_disabled:
+        explanation: L'autenticazione a due fattori per il tuo account è stata disattivata. Il login è ora possibile utilizzando solo l'indirizzo e-mail e la password.
+        subject: 'Mastodon: Autenticazione a due fattori disattivata'
+        title: 2FA disabilitata
+      two_factor_enabled:
+        explanation: L'autenticazione a due fattori è stata attivata per il tuo account. Un token generato dall'app TOTP collegata sarà richiesto per il login.
+        subject: 'Mastodon: Autenticazione a due fattori attivata'
+        title: 2FA abilitata
+      two_factor_recovery_codes_changed:
+        explanation: I precedenti codici di recupero sono stati annullati e ne sono stati generati di nuovi.
+        subject: 'Mastodon: codici di recupero a due fattori ri-generati'
+        title: Codici di recupero 2FA modificati
       unlock_instructions:
         subject: 'Mastodon: Istruzioni di sblocco'
     omniauth_callbacks:
@@ -60,6 +74,7 @@ it:
       signed_up: Benvenuto! Ti sei registrato con successo.
       signed_up_but_inactive: Ti sei registrato con successo. Purtroppo però non possiamo farti accedere perché non hai ancora attivato il tuo account.
       signed_up_but_locked: Ti sei registrato con successo. Purtroppo però non possiamo farti accedere perché il tuo account è bloccato.
+      signed_up_but_pending: Un messaggio con un collegamento per la conferma è stato inviato al tuo indirizzo email. Dopo aver cliccato il collegamento, esamineremo la tua richiesta. Ti sarà notificato se verrà approvata.
       signed_up_but_unconfirmed: Un messaggio con un link di conferma è stato inviato al tuo indirizzo email. Per favore, visita il link per attivare il tuo account.
       update_needs_confirmation: Hai aggiornato correttamente il tuo account, ma abbiamo bisogno di verificare il tuo nuovo indirizzo email. Per favore, controlla la posta in arrivo e visita il link di conferma per verificare il tuo indirizzo email.
       updated: Il tuo account è stato aggiornato con successo.

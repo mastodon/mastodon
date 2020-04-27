@@ -1,6 +1,10 @@
 ---
 de:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Frist
+        options: Wahlmöglichkeiten
     errors:
       models:
         account:
@@ -10,4 +14,4 @@ de:
         status:
           attributes:
             reblog:
-              taken: des Status existiert schon
+              taken: des Beitrags existiert schon

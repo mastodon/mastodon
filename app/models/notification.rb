@@ -22,9 +22,10 @@ class Notification < ApplicationRecord
     follow:         'Follow',
     follow_request: 'FollowRequest',
     favourite:      'Favourite',
+    poll:           'Poll',
   }.freeze
 
-  STATUS_INCLUDES = [:account, :application, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :media_attachments, :tags, active_mentions: :account]].freeze
+  STATUS_INCLUDES = [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account]].freeze
 
   belongs_to :account, optional: true
   belongs_to :from_account, class_name: 'Account', optional: true
@@ -35,16 +36,21 @@ class Notification < ApplicationRecord
   belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id', optional: true
   belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id', optional: true
   belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id', optional: true
+  belongs_to :poll,           foreign_type: 'Poll',          foreign_key: 'activity_id', optional: true
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
 
-  scope :browserable, ->(exclude_types = []) {
-    types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
-    where(activity_type: types)
+  scope :browserable, ->(exclude_types = [], account_id = nil) {
+    types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types)
+    if account_id.nil?
+      where(activity_type: types)
+    else
+      where(activity_type: types, from_account_id: account_id)
+    end
   }
 
-  cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
+  cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account, follow_request: :account, poll: [status: STATUS_INCLUDES]
 
   def type
     @type ||= TYPE_CLASS_MAP.invert[activity_type].to_sym
@@ -58,11 +64,9 @@ class Notification < ApplicationRecord
       favourite&.status
     when :mention
       mention&.status
+    when :poll
+      poll&.status
     end
-  end
-
-  def browserable?
-    type != :follow_request
   end
 
   class << self
@@ -97,7 +101,7 @@ class Notification < ApplicationRecord
     return unless new_record?
 
     case activity_type
-    when 'Status', 'Follow', 'Favourite', 'FollowRequest'
+    when 'Status', 'Follow', 'Favourite', 'FollowRequest', 'Poll'
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id

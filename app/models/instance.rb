@@ -7,12 +7,13 @@ class Instance
 
   def initialize(resource)
     @domain         = resource.domain
-    @accounts_count = resource.accounts_count
-    @domain_block   = resource.is_a?(DomainBlock) ? resource : DomainBlock.find_by(domain: domain)
+    @accounts_count = resource.respond_to?(:accounts_count) ? resource.accounts_count : nil
+    @domain_block   = resource.is_a?(DomainBlock) ? resource : DomainBlock.rule_for(domain)
+    @domain_allow   = resource.is_a?(DomainAllow) ? resource : DomainAllow.rule_for(domain)
   end
 
-  def cached_sample_accounts
-    Rails.cache.fetch("#{cache_key}/sample_accounts", expires_in: 12.hours) { Account.where(domain: domain).searchable.joins(:account_stat).popular.limit(3) }
+  def countable?
+    @accounts_count.present?
   end
 
   def to_param

@@ -20,5 +20,11 @@
   .fields-group
     = f.input :reject_reports, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_reports'), hint: I18n.t('admin.domain_blocks.reject_reports_hint')
 
+  .field-group
+    = f.input :private_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.private_comment'), hint: t('admin.domain_blocks.private_comment_hint'), rows: 6
+
+  .field-group
+    = f.input :public_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.public_comment'), hint: t('admin.domain_blocks.public_comment_hint'), rows: 6
+
   .actions
     = f.button :button, t('.create'), type: :submit

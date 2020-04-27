@@ -5,61 +5,96 @@ ast:
       defaults:
         autofollow: La xente que se rexistre pente la invitación va siguite automáticamente
         bot: Esta cuenta fai principalmente aiciones automatizaes y podría nun supervisase
-        digest: Namái s'unvia tres un periodu llargu d'inactividá y namái si recibiesti cualesquier mensaxe personal na to ausencia
+        digest: Namái s'unvia dempués d'un periodu llargu d'inactividá y namái si recibiesti cualesquier mensaxe personal na to ausencia
+        discoverable: El direutoru de perfiles ye otru mou de facer qu'una cuenta llegué a una audiencia más amplia
         email: Vamos unviate un corréu de confirmación
-        irreversible: Los toots peñeraos van desapaecer de mou irreversible, magar que se desanicie la peñera dempués
+        irreversible: Los barritos peñeraos van desapaecer de mou irreversible, magar que se desanicie la peñera dempués
         password: Usa 8 caráuteres polo menos
         setting_hide_network: La xente que sigas y teas siguiendo nun va amosase nel perfil
-        setting_theme: Afeuta al aspeutu de Mastodon cuando anicies sesión dende cualesquier preséu.
+        setting_show_application: L'aplicación qu'uses pa barritar va amosase na vista detallada d'ellos
         username: El nome d'usuariu va ser únicu en %{domain}
+      featured_tag:
+        name: 'Quiciabes quieras usar unu d''estos:'
+      form_challenge:
+        current_password: Tas entrando nuna área segura
       imports:
         data: El ficheru CSV esportáu dende otra instancia de Mastodon
+      invite_request:
+        text: Esto va ayudanos a revisar la to aplicación
+      sessions:
+        otp: 'Introduz el códigu de dos pasos xeneráu pola aplicación autenticadora o usa unu de los códigos de recuperación:'
     labels:
       account:
         fields:
           name: Etiqueta
           value: Conteníu
+      account_warning_preset:
+        title: Títulu
+      admin_account_action:
+        type: Aición
+        types:
+          none: Nun facer nada
+      announcement:
+        text: Anunciu
       defaults:
         avatar: Avatar
         bot: Esta cuenta ye d'un robó
         chosen_languages: Peñera de llingües
         confirm_new_password: Confirmación de la contraseña nueva
+        confirm_password: Confirmación de la contraseña
         current_password: Contraseña actual
         data: Datos
+        discoverable: Llistar esta cuenta nel direutoriu
         display_name: Nome a amosar
         email: Direición de corréu
-        expires_in: Caduca tres
-        fields: Datos meta del perfil
+        expires_in: Caduca dempués de
+        fields: Metadatos del perfil
         header: Testera
         irreversible: Escartar en cuentes d'anubrir
         locale: Llingua de la interfaz
-        locked: Bloquiar cuenta
+        locked: Bloquiar la cuenta
         max_uses: Númberu máximu d'usos
         new_password: Contraseña nueva
-        note: Bio
-        otp_attempt: Códigu de verificación en dos pasos
+        note: Biografía
+        otp_attempt: Códigu de la verificación en dos pasos
         password: Contraseña
         phrase: Pallabra clave o fras
+        setting_advanced_layout: Activar la interfaz web avanzada
         setting_auto_play_gif: Reproducir GIFs automáticamente
-        setting_default_language: Llingua de les espublizaciones
-        setting_default_privacy: Privacidá d'espublizaciones
-        setting_delete_modal: Amosar el diálogu de confirmación enantes de desaniciar un toot
+        setting_boost_modal: Amosar el diálogu de confirmación enantes de compartir un barritu
+        setting_default_language: Llingua de los espublizamientos
+        setting_default_privacy: Privacidá de los espublizamientos
+        setting_delete_modal: Amosar el diálogu de confirmación enantes de desaniciar un barritu
+        setting_noindex: Nun apaecer nos índices de los motores de gueta
+        setting_show_application: Dicir les aplicaciones que s'usen pa barritar
         setting_system_font_ui: Usar la fonte predeterminada del sistema
+        setting_theme: Estilu del sitiu
+        setting_trends: Amosar les tendencies de güei
         setting_unfollow_modal: Amosar el diálogu de confirmación enantes de dexar de siguir a daquién
+        setting_use_pending_items: Mou lentu
         severity: Severidá
         type: Triba de la importación
         username: Nome d'usuariu
         username_or_email: Nome d'usuariu o corréu
+        whole_word: La pallabra entera
+      featured_tag:
+        name: Etiqueta
       interactions:
-        must_be_follower: Bloquiar avisos de persones que nun son siguidores
-        must_be_following: Bloquiar avisos de persones que nun sigues
-        must_be_following_dm: Bloquiar mensaxes direutos de persones que nun sigues
+        must_be_follower: Bloquiar los avisos de persones que nun son siguidores
+        must_be_following: Bloquiar los avisos de persones que nun sigues
+        must_be_following_dm: Bloquiar los mensaxes direutos de persones que nun sigues
+      invite_request:
+        text: "¿Por qué quies xunite?"
       notification_emails:
-        favourite: Unviar un corréu cuando daquién conseñe como favoritu los tos estaos
-        follow: Unviar un corréu cuando daquién te siga
-        follow_request: Unviar un corréu cuando daquién solicite siguite
-        mention: Unviar un corréu cuando daquién te mente
+        favourite: Daquién marcó como favoritu un estáu de to
+        follow: Daquién te sigue
+        follow_request: Daquién solicitó siguite
+        mention: Daquién te mentó
+        reblog: Daquién compartió dalgún estáu de to
+      tag:
+        name: Etiqueta
     'no': Non
+    recommended: Aconséyase
     required:
       mark: "*"
       text: ríquese

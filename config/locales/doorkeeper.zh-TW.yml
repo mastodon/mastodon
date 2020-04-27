@@ -3,9 +3,9 @@ zh-TW:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 名稱
+        name: 應用程式名稱
         redirect_uri: 重新導向 URI
-        scopes: 權限範圍
+        scopes: 範圍
         website: 應用程式網頁
     errors:
       models:
@@ -13,9 +13,9 @@ zh-TW:
           attributes:
             redirect_uri:
               fragment_present: 不能包含 fragment。
-              invalid_uri: 必需有正確的 URI.
-              relative_uri: 必需為絕對 URI.
-              secured_uri: 必需使用有 HTTPS/SSL 加密的 URI.
+              invalid_uri: 必須是正確的 URI。
+              relative_uri: 必須為絕對 URI。
+              secured_uri: 必須是 HTTPS/SSL URI。
   doorkeeper:
     applications:
       buttons:
@@ -29,29 +29,29 @@ zh-TW:
       edit:
         title: 編輯應用程式
       form:
-        error: 唉呦！請檢查表單錯誤訊息
+        error: 唉呦！請看看表單以排查錯誤
       help:
-        native_redirect_uri: 請使用 %{native_redirect_uri} 作測試
+        native_redirect_uri: 請使用 %{native_redirect_uri} 作本機測試
         redirect_uri: 每行輸入一個 URI
-        scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍。
+        scopes: 請用半形空格分開範圍。空白表示使用預設的範圍。
       index:
         application: 應用程式
         callback_url: 回傳網址
         delete: 刪除
         name: 名稱
         new: 新增應用程式
-        scopes: 權限範圍
+        scopes: 範圍
         show: 顯示
         title: 你的應用程式
       new:
         title: 新增應用程式
       show:
         actions: 動作
-        application_id: 應用程式 ID
+        application_id: 客戶端金鑰
         callback_urls: 回傳網址
-        scopes: 權限範圍
-        secret: 密碼
-        title: 應用程式︰ %{name}
+        scopes: 範圍
+        secret: 客戶端密碼
+        title: 應用程式︰%{name}
     authorizations:
       buttons:
         authorize: 授權
@@ -59,62 +59,92 @@ zh-TW:
       error:
         title: 發生錯誤
       new:
-        able_to: 要求取得權限
-        prompt: 應用程式 %{client_name} 要求取得您帳號的部份權限
+        able_to: 這將允許其作：
+        prompt: 應用程式 %{client_name} 要求取得您帳號的存取權限
         title: 需要授權
       show:
         title: 複製此授權碼並貼上到應用程式中。
     authorized_applications:
       buttons:
-        revoke: 撤銷授權
+        revoke: 撤銷
       confirmations:
-        revoke: 您確定要撤銷這個授權？
+        revoke: 確定撤銷？
       index:
         application: 應用程式
-        created_at: 授權時間
+        created_at: 授權於
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: 權限範圍
+        scopes: 範圍
         title: 已授權的應用程式
     errors:
       messages:
-        access_denied: 資源擁有者或認證伺服器不接受請求。
-        credential_flow_not_configured: 資源擁有者密碼認證程序失敗，由於 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
-        invalid_client: 客戶端驗證失敗，可能是未知的客戶端程式、未包含客戶端驗證、或使用了不支援的認證方法。
+        access_denied: 資源持有者或授權伺服器拒絕請求。
+        credential_flow_not_configured: 因為 Doorkeeper.configure.resource_owner_from_credentials 未設定，所以資源持有者密碼認證程序失敗。
+        invalid_client: 客戶端驗證失敗，可能是因為未知的客戶端程式、未包含客戶端驗證、或使用了不支援的認證方法。
         invalid_grant: 授權申請不正確、逾期、已被取消、與授權請求內的重新導向 URI 不符、或屬於別的客戶端程式。
-        invalid_redirect_uri: 不正確的重新導向網址。
-        invalid_request: 請求缺少必要的參數、包含不支援的參數、或其他輸入錯誤。
-        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或無法找到該資源擁有者
-        invalid_scope: 請求的權限範圍無效、未定義、或輸入錯誤。
+        invalid_redirect_uri: 包含的重新導向 URI 是不正確的。
+        invalid_request: 請求缺少必要的參數、有不支援的參數、或其他格式錯誤。
+        invalid_resource_owner: 資源擁有者的登入資訊錯誤，或無法找到該資源擁有者
+        invalid_scope: 請求的範圍錯誤、未定義、或格式錯誤。
         invalid_token:
-          expired: access token 已過期
-          revoked: access token 已被取消
-          unknown: access token 不正確
-        resource_owner_authenticator_not_configured: 無法找到資源擁有者，由於 Doorkeeper.configure.resource_owner_authenticator 沒有設定。
+          expired: 存取憑證已過期
+          revoked: 存取憑證已撤銷
+          unknown: 存取憑證不正確
+        resource_owner_authenticator_not_configured: 因為未設定 Doorkeeper.configure.resource_owner_authenticator，所以資源持有者尋找失敗。
         server_error: 認證伺服器發生未知錯誤。
         temporarily_unavailable: 認證伺服器暫時無法使用。
-        unauthorized_client: 客戶端程式無權使用此方法進行請求。
+        unauthorized_client: 客戶端程式沒有權限使用此方法請求。
         unsupported_grant_type: 認證伺服器不支援這個授權類型。
         unsupported_response_type: 認證伺服器不支援這個回應類型。
     flash:
       applications:
         create:
-          notice: 已新增應用程式。
+          notice: 已建立應用程式。
         destroy:
           notice: 已刪除應用程式。
         update:
           notice: 已更新應用程式。
       authorized_applications:
         destroy:
-          notice: 已撤銷應用程式授權。
+          notice: 已撤銷應用程式。
     layouts:
       admin:
         nav:
           applications: 應用程式
-          oauth2_provider: OAuth2 供應者
+          oauth2_provider: OAuth2 提供者
       application:
         title: 需要 OAuth 授權
     scopes:
-      follow: 關注、封鎖、解除封鎖及取消關注帳號
-      push: 接收你帳號的推送通知
-      read: 讀取您的帳號資料
-      write: 以您的名義發佈嘟文
+      admin:read: 讀取伺服器的所有資料
+      admin:read:accounts: 讀取所有帳戶的敏感資訊
+      admin:read:reports: 讀取所有回報 / 被回報之帳戶的敏感資訊
+      admin:write: 修改伺服器的所有資料
+      admin:write:accounts: 對帳戶進行仲裁管理動作
+      admin:write:reports: 對報告進行仲裁管理動作
+      follow: 修改帳戶關係
+      push: 接收帳號的推送通知
+      read: 讀取您所有的帳號資料
+      read:accounts: 檢視帳戶資訊
+      read:blocks: 檢視您的封鎖名單
+      read:bookmarks: 檢視您的書籤
+      read:favourites: 檢視您的收藏項目
+      read:filters: 檢視您的過濾條件
+      read:follows: 檢視您關注的人
+      read:lists: 檢視您的名單
+      read:mutes: 檢視您靜音的人
+      read:notifications: 檢視您的通知
+      read:reports: 檢視您的檢舉
+      read:search: 以你的身份搜尋
+      read:statuses: 檢視所有嘟文
+      write: 修改您帳號的所有資料
+      write:accounts: 修改您的個人檔案
+      write:blocks: 封鎖帳戶及站台
+      write:bookmarks: 書籤狀態
+      write:favourites: 收藏嘟文
+      write:filters: 建立過濾條件
+      write:follows: 關注其他人
+      write:lists: 建立名單
+      write:media: 上傳媒體檔案
+      write:mutes: 靜音使用者及對話
+      write:notifications: 清除您的通知
+      write:reports: 檢舉其他人
+      write:statuses: 發布嘟文

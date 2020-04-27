@@ -38,7 +38,7 @@ describe ApplicationController, type: :controller do
   end
 
   context 'with signature header' do
-    let!(:author) { Fabricate(:account) }
+    let!(:author) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/actor') }
 
     context 'without body' do
       before do
@@ -82,6 +82,33 @@ describe ApplicationController, type: :controller do
         fake_request.on_behalf_of(author)
 
         request.headers.merge!(fake_request.headers)
+      end
+
+      describe '#signed_request?' do
+        it 'returns true' do
+          expect(controller.signed_request?).to be true
+        end
+      end
+
+      describe '#signed_request_account' do
+        it 'returns nil' do
+          expect(controller.signed_request_account).to be_nil
+        end
+      end
+    end
+
+    context 'with inaccessible key' do
+      before do
+        get :success
+
+        author = Fabricate(:account, domain: 'localhost:5000', uri: 'http://localhost:5000/actor')
+        fake_request = Request.new(:get, request.url)
+        fake_request.on_behalf_of(author)
+        author.destroy
+
+        request.headers.merge!(fake_request.headers)
+
+        stub_request(:get, 'http://localhost:5000/actor#main-key').to_raise(Mastodon::HostValidationError)
       end
 
       describe '#signed_request?' do

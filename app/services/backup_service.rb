@@ -3,6 +3,8 @@
 require 'rubygems/package'
 
 class BackupService < BaseService
+  include Payloadable
+
   attr_reader :account, :backup, :collection
 
   def call(backup)
@@ -20,7 +22,7 @@ class BackupService < BaseService
 
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
       statuses.each do |status|
-        item = serialize(status, ActivityPub::ActivitySerializer)
+        item = serialize_payload(status, ActivityPub::ActivitySerializer, signer: @account)
         item.delete(:'@context')
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
@@ -45,6 +47,7 @@ class BackupService < BaseService
           dump_media_attachments!(tar)
           dump_outbox!(tar)
           dump_likes!(tar)
+          dump_bookmarks!(tar)
           dump_actor!(tar)
         end
       end
@@ -63,6 +66,8 @@ class BackupService < BaseService
   def dump_media_attachments!(tar)
     MediaAttachment.attached.where(account: account).reorder(nil).find_in_batches do |media_attachments|
       media_attachments.each do |m|
+        next unless m.file&.path
+
         download_to_tar(tar, m.file, m.file.path)
       end
 
@@ -85,6 +90,7 @@ class BackupService < BaseService
     actor[:image][:url] = 'header' + File.extname(actor[:image][:url]) if actor[:image]
     actor[:outbox]      = 'outbox.json'
     actor[:likes]       = 'likes.json'
+    actor[:bookmarks]   = 'bookmarks.json'
 
     download_to_tar(tar, account.avatar, 'avatar' + File.extname(account.avatar.path)) if account.avatar.exists?
     download_to_tar(tar, account.header, 'header' + File.extname(account.header.path)) if account.header.exists?
@@ -111,6 +117,25 @@ class BackupService < BaseService
     json = Oj.dump(collection)
 
     tar.add_file_simple('likes.json', 0o444, json.bytesize) do |io|
+      io.write(json)
+    end
+  end
+
+  def dump_bookmarks!(tar)
+    collection = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
+
+    Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches do |statuses|
+      statuses.each do |status|
+        collection[:totalItems] += 1
+        collection[:orderedItems] << ActivityPub::TagManager.instance.uri_for(status)
+      end
+
+      GC.start
+    end
+
+    json = Oj.dump(collection)
+
+    tar.add_file_simple('bookmarks.json', 0o444, json.bytesize) do |io|
       io.write(json)
     end
   end
@@ -142,5 +167,7 @@ class BackupService < BaseService
         io.write(buffer)
       end
     end
+  rescue Errno::ENOENT, Seahorse::Client::NetworkingError
+    Rails.logger.warn "Could not backup file #{filename}: file not found"
   end
 end

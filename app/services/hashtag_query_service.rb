@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HashtagQueryService < BaseService
+  LIMIT_PER_MODE = 4
+
   def call(tag, params, account = nil, local = false)
     tags = tags_for(Array(tag.name) | Array(params[:any])).pluck(:id)
     all  = tags_for(params[:all])
@@ -14,7 +16,7 @@ class HashtagQueryService < BaseService
 
   private
 
-  def tags_for(tags)
-    Tag.where(name: tags.map(&:downcase)) if tags.presence
+  def tags_for(names)
+    Tag.matching_name(Array(names).take(LIMIT_PER_MODE)) if names.present?
   end
 end

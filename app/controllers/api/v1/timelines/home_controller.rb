@@ -5,15 +5,13 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   before_action :require_user!, only: [:show]
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
-  respond_to :json
-
   def show
     @statuses = load_statuses
 
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
            relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id),
-           status: regeneration_in_progress? ? 206 : 200
+           status: account_home_feed.regenerating? ? 206 : 200
   end
 
   private
@@ -61,9 +59,5 @@ class Api::V1::Timelines::HomeController < Api::BaseController
 
   def pagination_since_id
     @statuses.first.id
-  end
-
-  def regeneration_in_progress?
-    Redis.current.exists("account:#{current_account.id}:regeneration")
   end
 end

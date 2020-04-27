@@ -33,34 +33,6 @@ describe InstancePresenter do
 
   context do
     around do |example|
-      open_registrations = Setting.open_registrations
-      example.run
-      Setting.open_registrations = open_registrations
-    end
-
-    it "delegates open_registrations to Setting" do
-      Setting.open_registrations = false
-
-      expect(instance_presenter.open_registrations).to eq false
-    end
-  end
-
-  context do
-    around do |example|
-      closed_registrations_message = Setting.closed_registrations_message
-      example.run
-      Setting.closed_registrations_message = closed_registrations_message
-    end
-
-    it "delegates closed_registrations_message to Setting" do
-      Setting.closed_registrations_message = "Closed message"
-
-      expect(instance_presenter.closed_registrations_message).to eq "Closed message"
-    end
-  end
-
-  context do
-    around do |example|
       site_contact_email = Setting.site_contact_email
       example.run
       Setting.site_contact_email = site_contact_email

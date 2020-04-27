@@ -40,6 +40,7 @@ class Lists extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
     lists: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -47,7 +48,7 @@ class Lists extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, shouldUpdateScroll, lists } = this.props;
+    const { intl, shouldUpdateScroll, lists, multiColumn } = this.props;
 
     if (!lists) {
       return (
@@ -60,19 +61,20 @@ class Lists extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
 
     return (
-      <Column icon='list-ul' heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='list-ul' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <NewListForm />
 
-        <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
         <ScrollableList
           scrollKey='lists'
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
+          prepend={<ColumnSubheading text={intl.formatMessage(messages.subheading)} />}
+          bindToDocument={!multiColumn}
         >
           {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+            <ColumnLink key={list.get('id')} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
           )}
         </ScrollableList>
       </Column>

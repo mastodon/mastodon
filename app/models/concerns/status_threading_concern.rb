@@ -11,6 +11,10 @@ module StatusThreadingConcern
     find_statuses_from_tree_path(descendant_ids(limit, max_child_id, since_child_id, depth), account, promote: true)
   end
 
+  def self_replies(limit)
+    account.statuses.where(in_reply_to_id: id, visibility: [:public, :unlisted]).reorder(id: :asc).limit(limit)
+  end
+
   private
 
   def ancestor_ids(limit)
@@ -77,12 +81,12 @@ module StatusThreadingConcern
   end
 
   def find_statuses_from_tree_path(ids, account, promote: false)
-    statuses    = statuses_with_accounts(ids).to_a
+    statuses    = Status.with_accounts(ids).to_a
     account_ids = statuses.map(&:account_id).uniq
     domains     = statuses.map(&:account_domain).compact.uniq
     relations   = relations_map_for_account(account, account_ids, domains)
 
-    statuses.reject! { |status| filter_from_context?(status, account, relations) }
+    statuses.reject! { |status| StatusFilter.new(status, account, relations).filtered? }
 
     # Order ancestors/descendants by tree path
     statuses.sort_by! { |status| ids.index(status.id) }
@@ -120,13 +124,5 @@ module StatusThreadingConcern
       following: Account.following_map(account_ids, account.id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, account.id),
     }
-  end
-
-  def statuses_with_accounts(ids)
-    Status.where(id: ids).includes(:account)
-  end
-
-  def filter_from_context?(status, account, relations)
-    StatusFilter.new(status, account, relations).filtered?
   end
 end

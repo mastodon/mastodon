@@ -1,0 +1,33 @@
+- content_for :page_title do
+  = t('settings.aliases')
+
+= simple_form_for @alias, url: settings_aliases_path do |f|
+  = render 'shared/error_messages', object: @alias
+
+  %p.hint= t('aliases.hint_html')
+
+  %hr.spacer/
+
+  .fields-group
+    = f.input :acct, wrapper: :with_block_label, input_html: { autocapitalize: 'none', autocorrect: 'off' }
+
+  .actions
+    = f.button :button, t('aliases.add_new'), type: :submit, class: 'button'
+
+%hr.spacer/
+
+.table-wrapper
+  %table.table.inline-table
+    %thead
+      %tr
+        %th= t('simple_form.labels.account_alias.acct')
+        %th
+    %tbody
+      - if @aliases.empty?
+        %tr
+          %td.muted-hint{ colspan: 2 }= t('aliases.empty')
+      - else
+        - @aliases.each do |account_alias|
+          %tr
+            %td= account_alias.acct
+            %td= table_link_to 'trash', t('aliases.remove'), settings_alias_path(account_alias), data: { method: :delete }

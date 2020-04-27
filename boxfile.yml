@@ -60,11 +60,14 @@ deploy.config:
     - touch /app/log/production.log
   before_live:
     web.web:
+      - bin/tootctl cache clear
       - bundle exec rake db:migrate:setup
+  after_live:
+    worker.sidekiq:
       - |-
           if [[ "${ES_ENABLED}" != "false" ]]
           then
-            bundle exec rake chewy:deploy
+            bin/tootctl search deploy
           fi
 
 
@@ -118,77 +121,6 @@ worker.sidekiq:
   network_dirs:
     data.storage:
       - public/system
-
-
-worker.cron_only:
-  start: sleep 365d
-
-  writable_dirs:
-    - tmp
-
-  log_watch:
-    rake: 'log/production.log'
-
-  network_dirs:
-    data.storage:
-      - public/system
-
-  cron:
-    # 20:00 (8 pm), server time: send out the daily digest emails to everyone
-    # who opted to receive one
-    - id: send_digest_emails
-      schedule: '00 20 * * *'
-      command: 'bundle exec rake mastodon:emails:digest'
-
-    # 00:10 (ten past midnight), server time: remove local copies of remote
-    # users' media once they are older than a certain age (use NUM_DAYS evar to
-    # change this from the default of 7 days)
-    - id: clear_remote_media
-      schedule: '10 00 * * *'
-      command: 'bundle exec rake mastodon:media:remove_remote'
-
-    # 00:20 (twenty past midnight), server time: remove subscriptions to remote
-    # users that nobody follows locally (anymore)
-    - id: clear_unfollowed_subs
-      schedule: '20 00 * * *'
-      command: 'bundle exec rake mastodon:push:clear'
-
-    # 00:30 (half past midnight), server time: update local copies of remote
-    # users' avatars to match whatever they currently have set on their profile
-    - id: update_remote_avatars
-      schedule: '30 00 * * *'
-      command: 'bundle exec rake mastodon:media:redownload_avatars'
-
-    ############################################################################
-    # This task is one you might want to enable, or might not. It keeps disk
-    # usage low, but makes "shadow bans" (scenarios where the user is silenced,
-    # but not intended to be made aware that the silencing has occurred) much
-    # more difficult to put in place, as users would then notice their media is
-    # vanishing on a regular basis. Enable it if you aren't worried about users
-    # knowing they've been silenced (on the instance level), and want to save
-    # disk space. Leave it disabled otherwise.
-    ############################################################################
-    # # 00:00 (midnight), server time: remove media posted by silenced users
-    # - id: clear_silenced_media
-    #   schedule: '00 00 * * *'
-    #   command: 'bundle exec rake mastodon:media:remove_silenced'
-
-    ############################################################################
-    # The following two tasks can be uncommented to automatically open and close
-    # registrations on a schedule. The format of 'schedule' is a standard cron
-    # time expression: minute hour day month day-of-week; search for "cron
-    # time expressions" for more info on how to set these up. The examples here
-    # open registration only from 8 am to 4 pm, server time.
-    ############################################################################
-    # # 08:00 (8 am), server time: open registrations so new users can join
-    # - id: open_registrations
-    #   schedule: '00 08 * * *'
-    #   command: 'bundle exec rake mastodon:settings:open_registrations'
-    #
-    # # 16:00 (4 pm), server time: close registrations so new users *can't* join
-    # - id: close_registrations
-    #   schedule: '00 16 * * *'
-    #   command: 'bundle exec rake mastodon:settings:close_registrations'
 
 
 data.db:

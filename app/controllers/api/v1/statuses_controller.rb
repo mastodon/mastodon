@@ -5,10 +5,11 @@ class Api::V1::StatusesController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :destroy]
-  before_action :require_user!, except:  [:show, :context, :card]
-  before_action :set_status, only:       [:show, :context, :card]
+  before_action :require_user!, except:  [:show, :context]
+  before_action :set_status, only:       [:show, :context]
+  before_action :set_thread, only:       [:create]
 
-  respond_to :json
+  override_rate_limit_headers :create, family: :statuses
 
   # This API was originally unlimited, pagination cannot be introduced without
   # breaking backwards-compatibility. Arbitrarily high number to cover most
@@ -33,27 +34,19 @@ class Api::V1::StatusesController < Api::BaseController
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
   end
 
-  def card
-    @card = @status.preview_cards.first
-
-    if @card.nil?
-      render_empty
-    else
-      render json: @card, serializer: REST::PreviewCardSerializer
-    end
-  end
-
   def create
     @status = PostStatusService.new.call(current_user.account,
                                          text: status_params[:status],
-                                         thread: status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
+                                         thread: @thread,
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          scheduled_at: status_params[:scheduled_at],
                                          application: doorkeeper_token.application,
-                                         idempotency: request.headers['Idempotency-Key'])
+                                         poll: status_params[:poll],
+                                         idempotency: request.headers['Idempotency-Key'],
+                                         with_rate_limit: true)
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
@@ -62,9 +55,10 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.where(account_id: current_user.account).find(params[:id])
     authorize @status, :destroy?
 
-    RemovalWorker.perform_async(@status.id)
+    @status.discard
+    RemovalWorker.perform_async(@status.id, redraft: true)
 
-    render_empty
+    render json: @status, serializer: REST::StatusSerializer, source_requested: true
   end
 
   private
@@ -73,12 +67,31 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.find(params[:id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
   end
 
+  def set_thread
+    @thread = status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
+  end
+
   def status_params
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, :scheduled_at, media_ids: [])
+    params.permit(
+      :status,
+      :in_reply_to_id,
+      :sensitive,
+      :spoiler_text,
+      :visibility,
+      :scheduled_at,
+      media_ids: [],
+      poll: [
+        :multiple,
+        :hide_totals,
+        :expires_in,
+        options: [],
+      ]
+    )
   end
 
   def pagination_params(core_params)

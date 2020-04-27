@@ -3,7 +3,7 @@ uk:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Ім'я
+        name: Назва додатку
         redirect_uri: URI перенаправлення
         scopes: Рамки
         website: Веб-сайт додатку
@@ -13,9 +13,9 @@ uk:
           attributes:
             redirect_uri:
               fragment_present: не може містити фрагмент.
-              invalid_uri: повинен бути дійсним URI.
-              relative_uri: повинен бути абсолютним URI.
-              secured_uri: повинен бути HTTPS/SSL URI.
+              invalid_uri: має бути дійсним URI.
+              relative_uri: має бути абсолютним URI.
+              secured_uri: має бути URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -35,9 +35,14 @@ uk:
         redirect_uri: Використовуйте одну стрічку на URI
         scopes: Відділяйте області видимості пробілами. Залишайте порожніми, щоб використовувати області видимості за промовчуванням.
       index:
+        application: Додаток
         callback_url: URL зворотнього виклику
+        delete: Видалити
+        empty: У вас немає створених додатків.
         name: Назва
         new: Новий додаток
+        scopes: Області видимості
+        show: Показати
         title: Ваші додатки
       new:
         title: Новий додаток
@@ -56,10 +61,10 @@ uk:
         title: Сталася помилка
       new:
         able_to: Він зможе
-        prompt: Податок %{client_name} просить доступу до вашого акаунту
+        prompt: Додаток %{client_name} запитує доступ до вашого облікового запису
         title: Необхідна авторизація
       show:
-        title: Copy this authorization code and paste it to the application.
+        title: Скопіюйте цей код авторизації та вставте його у додаток.
     authorized_applications:
       buttons:
         revoke: Відкликати авторизацію
@@ -80,7 +85,7 @@ uk:
         invalid_redirect_uri: Включений URI перенаправлення не є дійсним.
         invalid_request: У запиті відсутній обов'язковий параметр, міститься непідтримуване значення параметра, або він сформований неправильно.
         invalid_resource_owner: Надані дані власника ресурсу не є дійсними, або власника ресурсу неможливо знайти
-        invalid_scope: Запитуваний дозвыд недійсний, невідомий, або неправильно сформований.
+        invalid_scope: Запитуваний дозвіл недійсний, невідомий, або неправильно сформований.
         invalid_token:
           expired: Токен доступу прострочено
           revoked: Токен доступу було відкликано
@@ -110,6 +115,37 @@ uk:
       application:
         title: Необхідна авторизація OAuth
     scopes:
-      follow: підписуватися, відписуватися, блокувати та розблоковувати акаунти
-      read: Читати дані Вашого акаунта
-      write: Публікувати від Вашого імені
+      admin:read: читати всі дані на сервері
+      admin:read:accounts: читати конфіденційну інформацію усіх акаунтів
+      admin:read:reports: читати дражливу інформацію усіх скарг та облікових записів зі скаргами
+      admin:write: модифікувати всі дані на сервері
+      admin:write:accounts: модерувати облікові записи
+      admin:write:reports: модерувати скарги
+      follow: змінювати стосунки облікового запису
+      push: отримувати Ваші Push-повідомлення
+      read: читати усі дані вашого облікового запису
+      read:accounts: бачити інформацію про облікові записи
+      read:blocks: бачити Ваші блокування
+      read:bookmarks: бачити ваші закладки
+      read:favourites: бачити Ваші вподобані пости
+      read:filters: бачити Ваші фільтри
+      read:follows: бачити Ваші підписки
+      read:lists: бачити Ваші списки
+      read:mutes: бачити ваші заглушення
+      read:notifications: бачити Ваші сповіщення
+      read:reports: бачити Ваші скарги
+      read:search: шукати від вашого імені
+      read:statuses: бачити всі статуси
+      write: змінювати усі дані вашого облікового запису
+      write:accounts: змінювати ваш профіль
+      write:blocks: блокувати облікові записи і домени
+      write:bookmarks: додавати пости в закладки
+      write:favourites: вподобані статуси
+      write:filters: створювати фільтри
+      write:follows: підписуйтесь на людей
+      write:lists: створювайте списки
+      write:media: завантажити медіафайли
+      write:mutes: заглушити людей або бесіди
+      write:notifications: очищувати Ваші сповіщення
+      write:reports: надіслати скаргу про людей
+      write:statuses: публікувати статуси

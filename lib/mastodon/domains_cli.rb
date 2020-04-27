@@ -7,36 +7,58 @@ require_relative 'cli_helper'
 
 module Mastodon
   class DomainsCLI < Thor
+    include CLIHelper
+
     def self.exit_on_failure?
       true
     end
 
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
-    desc 'purge DOMAIN', 'Remove accounts from a DOMAIN without a trace'
+    option :whitelist_mode, type: :boolean
+    desc 'purge [DOMAIN...]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
       records. Unlike a suspension, if the DOMAIN still exists in the wild,
       it means the accounts could return if they are resolved again.
+
+      When the --whitelist-mode option is given, instead of purging accounts
+      from a single domain, all accounts from domains that are not whitelisted
+      are removed from the database.
     LONG_DESC
-    def purge(domain)
-      removed = 0
+    def purge(*domains)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
-      Account.where(domain: domain).find_each do |account|
-        SuspendAccountService.new.call(account, destroy: true) unless options[:dry_run]
-        removed += 1
-        say('.', :green, false)
+      scope = begin
+        if options[:whitelist_mode]
+          Account.remote.where.not(domain: DomainAllow.pluck(:domain))
+        elsif !domains.empty?
+          Account.remote.where(domain: domains)
+        else
+          say('No domain(s) given', :red)
+          exit(1)
+        end
       end
 
-      DomainBlock.where(domain: domain).destroy_all
+      processed, = parallelize_with_progress(scope) do |account|
+        SuspendAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
+      end
 
-      say
-      say("Removed #{removed} accounts#{dry_run}", :green)
+      DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]
+
+      say("Removed #{processed} accounts#{dry_run}", :green)
+
+      custom_emojis = CustomEmoji.where(domain: domains)
+      custom_emojis_count = custom_emojis.count
+      custom_emojis.destroy_all unless options[:dry_run]
+
+      say("Removed #{custom_emojis_count} custom emojis", :green)
     end
 
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
-    option :silent, type: :boolean, default: false, aliases: [:s]
     option :format, type: :string, default: 'summary', aliases: [:f]
+    option :exclude_suspended, type: :boolean, default: false, aliases: [:x]
     desc 'crawl [START]', 'Crawl all known peers, optionally beginning at START'
     long_desc <<-LONG_DESC
       Crawl the fediverse by using the Mastodon REST API endpoints that expose
@@ -47,26 +69,31 @@ module Mastodon
       The --concurrency (-c) option controls the number of threads performing HTTP
       requests at the same time. More threads means the crawl may complete faster.
 
-      The --silent (-s) option controls progress output.
-
       The --format (-f) option controls how the data is displayed at the end. By
       default (`summary`), a summary of the statistics is returned. The other options
       are `domains`, which returns a newline-delimited list of all discovered peers,
       and `json`, which dumps all the aggregated data raw.
+
+      The --exclude-suspended (-x) option means that domains that are suspended
+      instance-wide do not appear in the output and are not included in summaries.
+      This also excludes subdomains of any of those domains.
     LONG_DESC
     def crawl(start = nil)
-      stats     = Concurrent::Hash.new
-      processed = Concurrent::AtomicFixnum.new(0)
-      failed    = Concurrent::AtomicFixnum.new(0)
-      start_at  = Time.now.to_f
-      seed      = start ? [start] : Account.remote.domains
+      stats           = Concurrent::Hash.new
+      processed       = Concurrent::AtomicFixnum.new(0)
+      failed          = Concurrent::AtomicFixnum.new(0)
+      start_at        = Time.now.to_f
+      seed            = start ? [start] : Account.remote.domains
+      blocked_domains = Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$')
+      progress        = create_progress_bar
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
 
       work_unit = ->(domain) do
         next if stats.key?(domain)
+        next if options[:exclude_suspended] && domain.match(blocked_domains)
+
         stats[domain] = nil
-        processed.increment
 
         begin
           Request.new(:get, "https://#{domain}/api/v1/instance").perform do |res|
@@ -86,11 +113,11 @@ module Mastodon
             next unless res.code == 200
             stats[domain]['activity'] = Oj.load(res.to_s)
           end
-
-          say('.', :green, false) unless options[:silent]
         rescue StandardError
           failed.increment
-          say('.', :red, false) unless options[:silent]
+        ensure
+          processed.increment
+          progress.increment unless progress.finished?
         end
       end
 
@@ -104,9 +131,8 @@ module Mastodon
       pool.shutdown
       pool.wait_for_termination(20)
     ensure
+      progress.finish
       pool.shutdown
-
-      say unless options[:silent]
 
       case options[:format]
       when 'summary'

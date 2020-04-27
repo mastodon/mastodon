@@ -1,7 +1,7 @@
-- account_url = local_assigns[:admin] ? admin_account_path(account.id) : TagManager.instance.url_for(account)
+- account_url = local_assigns[:admin] ? admin_account_path(account.id) : ActivityPub::TagManager.instance.url_for(account)
 
 .card.h-card
-  = link_to account_url, target: '_blank', rel: 'noopener' do
+  = link_to account_url, target: '_blank', rel: 'noopener noreferrer' do
     .card__img
       = image_tag account.header.url, alt: ''
     .card__bar
@@ -9,7 +9,7 @@
         = image_tag account.avatar.url, alt: '', width: 48, height: 48, class: 'u-photo'
 
       .display-name
-        %span{id: "default_account_display_name", style: "display:none;"}= account.username
+        %span{ id: "default_account_display_name", style: "display: none" }= account.username
         %bdi
           %strong.emojify.p-name= display_name(account, custom_emojify: true)
         %span

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Create do
-  let(:sender) { Fabricate(:account, followers_url: 'http://example.com/followers') }
+  let(:sender) { Fabricate(:account, followers_url: 'http://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor') }
 
   let(:json) do
     {
@@ -26,6 +26,20 @@ RSpec.describe ActivityPub::Activity::Create do
 
       before do
         subject.perform
+      end
+
+      context 'unknown object type' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Banana',
+            content: 'Lorem ipsum',
+          }
+        end
+
+        it 'does not create a status' do
+          expect(sender.statuses.count).to be_zero
+        end
       end
 
       context 'standalone' do
@@ -247,6 +261,32 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+
+      context 'with media attachments with long description' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            attachment: [
+              {
+                type: 'Document',
+                mediaType: 'image/png',
+                url: 'http://example.com/attachment.png',
+                name: '*' * 1500,
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+        end
+      end
+
       context 'with media attachments with focal points' do
         let(:object_json) do
           {
@@ -338,6 +378,28 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with hashtags invalid name' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            tag: [
+              {
+                type: 'Hashtag',
+                href: 'http://example.com/blah',
+                name: 'foo, #eh !',
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+        end
+      end
+
       context 'with emojis' do
         let(:object_json) do
           {
@@ -405,6 +467,89 @@ RSpec.describe ActivityPub::Activity::Create do
         it 'creates status' do
           status = sender.statuses.first
           expect(status).to_not be_nil
+        end
+      end
+
+      context 'with poll' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Question',
+            content: 'Which color was the submarine?',
+            oneOf: [
+              {
+                name: 'Yellow',
+                replies: {
+                  type: 'Collection',
+                  totalItems: 10,
+                },
+              },
+              {
+                name: 'Blue',
+                replies: {
+                  type: 'Collection',
+                  totalItems: 3,
+                }
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.poll).to_not be_nil
+        end
+
+        it 'creates a poll' do
+          poll = sender.polls.first
+          expect(poll).to_not be_nil
+          expect(poll.status).to_not be_nil
+          expect(poll.options).to eq %w(Yellow Blue)
+          expect(poll.cached_tallies).to eq [10, 3]
+        end
+      end
+
+      context 'when a vote to a local poll' do
+        let(:poll) { Fabricate(:poll, options: %w(Yellow Blue)) }
+        let!(:local_status) { Fabricate(:status, poll: poll) }
+
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            name: 'Yellow',
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+          }
+        end
+
+        it 'adds a vote to the poll with correct uri' do
+          vote = poll.votes.first
+          expect(vote).to_not be_nil
+          expect(vote.uri).to eq object_json[:id]
+          expect(poll.reload.cached_tallies).to eq [1, 0]
+        end
+      end
+
+      context 'when a vote to an expired local poll' do
+        let(:poll) do
+          poll = Fabricate.build(:poll, options: %w(Yellow Blue), expires_at: 1.day.ago)
+          poll.save(validate: false)
+          poll
+        end
+        let!(:local_status) { Fabricate(:status, poll: poll) }
+
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            name: 'Yellow',
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+          }
+        end
+
+        it 'does not add a vote to the poll' do
+          expect(poll.votes.first).to be_nil
         end
       end
     end

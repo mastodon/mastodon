@@ -12,13 +12,16 @@ zh-HK:
       last_attempt: 若你再一次嘗試失敗，我們將鎖定你的帳號，以策安全。
       locked: 你的帳號已被鎖定。
       not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
+      pending: 您的帳戶仍在審核中。
       timeout: 你的登入階段已經過期，請重新登入以繼續使用。
       unauthenticated: 你必須先登入或登記，以繼續使用。
       unconfirmed: 你必須先確認電郵地址，繼續使用。
     mailer:
       confirmation_instructions:
         action: 驗證電子郵件地址
+        action_with_app: 確認並返回 %{app}
         explanation: 你在 %{host} 上使用這個電子郵件地址建立了一個帳戶。只需點擊下面的連結，即可啟用帳戶。如果你並沒有建立過帳戶，請忽略此郵件。
+        explanation_when_pending: 您使用此電子信箱位址申請了 %{host} 的邀請。當您確認電子信箱後我們將審核您的申請，而直到核准前您都無法登入。當您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您，請忽略此信件。
         extra_html: 請記得閱讀本服務站的<a href="%{terms_path}">相關規定</a>和<a href="%{policy_path}">使用條款</a>。
         subject: 'Mastodon: 確認電郵地址 %{instance}'
         title: 驗證電子郵件地址
@@ -43,6 +46,18 @@ zh-HK:
         extra: 如果你沒有請求本次變更，請忽略此郵件。你的密碼只有在你點擊上面的連結並輸入新密碼後才會更改。
         subject: 'Mastodon: 重設密碼'
         title: 重設密碼
+      two_factor_disabled:
+        explanation: 您帳戶的兩步驟驗證已停用。現在只能使用電子信箱位址及密碼登入。
+        subject: Mastodon：已停用兩步驟驗證
+        title: 已停用 2FA
+      two_factor_enabled:
+        explanation: 已對您的帳戶啟用兩步驟驗證。登入時將需要配對之 TOTP 應用程式所產生的 Token。
+        subject: Mastodon：已啟用兩步驟驗證
+        title: 已啟用 2FA
+      two_factor_recovery_codes_changed:
+        explanation: 上一次的復原碼已經失效，且已產生新的。
+        subject: Mastodon：兩步驟驗證復原碼已經重新產生
+        title: 2FA 復原碼已變更
       unlock_instructions:
         subject: 'Mastodon: 解除用戶鎖定'
     omniauth_callbacks:
@@ -59,6 +74,7 @@ zh-HK:
       signed_up: 歡迎你！你的登記已經成功。
       signed_up_but_inactive: 你的登記已經成功，可是由於你的用戶還被被啟用，暫時還不能讓你登入。
       signed_up_but_locked: 你的登記已經成功，可是由於你的用戶已被鎖定，我們無法讓你登入。
+      signed_up_but_pending: 包含確認連結的訊息已寄到您的電子信箱。按下此連結後我們將審核您的申請。核准後將通知您。
       signed_up_but_unconfirmed: 一條確認連結已經電郵到你的郵址。請使用讓連結啟用你的用戶。
       update_needs_confirmation: 你的用戶已經更新，但我們需要確認你的電郵地址。請打開你的郵箱，使用確認電郵的連結來確認的地郵址。
       updated: 你的用戶已經成功更新。
@@ -78,5 +94,4 @@ zh-HK:
       not_found: 找不到
       not_locked: 並未被鎖定
       not_saved:
-        one: 1 個錯誤令 %{resource} 無法被儲存︰
         other: "%{count} 個錯誤令 %{resource} 無法被儲存︰"

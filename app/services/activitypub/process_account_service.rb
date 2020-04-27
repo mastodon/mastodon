@@ -2,11 +2,12 @@
 
 class ActivityPub::ProcessAccountService < BaseService
   include JsonLdHelper
+  include DomainControlHelper
 
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json, options = {})
-    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id'])
+    return if json['inbox'].blank? || unsupported_uri_scheme?(json['id']) || domain_not_allowed?(domain)
 
     @options     = options
     @json        = json
@@ -17,13 +18,15 @@ class ActivityPub::ProcessAccountService < BaseService
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account        = Account.find_remote(@username, @domain)
-        @old_public_key = @account&.public_key
-        @old_protocol   = @account&.protocol
+        @account          = Account.remote.find_by(uri: @uri) if @options[:only_key]
+        @account        ||= Account.find_remote(@username, @domain)
+        @old_public_key   = @account&.public_key
+        @old_protocol     = @account&.protocol
 
         create_account if @account.nil?
         update_account
         process_tags
+        process_attachments
       else
         raise Mastodon::RaceConditionError
       end
@@ -49,12 +52,12 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def create_account
     @account = Account.new
-    @account.protocol    = :activitypub
-    @account.username    = @username
-    @account.domain      = @domain
-    @account.suspended   = true if auto_suspend?
-    @account.silenced    = true if auto_silence?
-    @account.private_key = nil
+    @account.protocol     = :activitypub
+    @account.username     = @username
+    @account.domain       = @domain
+    @account.private_key  = nil
+    @account.suspended_at = domain_block.created_at if auto_suspend?
+    @account.silenced_at  = domain_block.created_at if auto_silence?
   end
 
   def update_account
@@ -81,6 +84,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
     @account.actor_type              = actor_type
+    @account.discoverable            = @json['discoverable'] || false
   end
 
   def set_fetchable_attributes!
@@ -90,6 +94,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
+    @account.hide_collections  = following_private? || followers_private?
     @account.moved_to_account  = @json['movedTo'].present? ? moved_account : nil
   end
 
@@ -151,7 +156,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def property_values
     return unless @json['attachment'].is_a?(Array)
-    @json['attachment'].select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
+    as_array(@json['attachment']).select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
   end
 
   def mismatching_origin?(url)
@@ -162,26 +167,36 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def outbox_total_items
-    collection_total_items('outbox')
+    collection_info('outbox').first
   end
 
   def following_total_items
-    collection_total_items('following')
+    collection_info('following').first
   end
 
   def followers_total_items
-    collection_total_items('followers')
+    collection_info('followers').first
   end
 
-  def collection_total_items(type)
-    return if @json[type].blank?
+  def following_private?
+    !collection_info('following').last
+  end
+
+  def followers_private?
+    !collection_info('followers').last
+  end
+
+  def collection_info(type)
+    return [nil, nil] if @json[type].blank?
     return @collections[type] if @collections.key?(type)
 
     collection = fetch_resource_without_id_validation(@json[type])
 
-    @collections[type] = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
+    total_items = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
+    has_first_page = collection.is_a?(Hash) && collection['first'].present?
+    @collections[type] = [total_items, has_first_page]
   rescue HTTP::Error, OpenSSL::SSL::SSLError
-    @collections[type] = nil
+    @collections[type] = [nil, nil]
   end
 
   def moved_account
@@ -204,7 +219,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def domain_block
     return @domain_block if defined?(@domain_block)
-    @domain_block = DomainBlock.find_by(domain: @domain)
+    @domain_block = DomainBlock.rule_for(@domain)
   end
 
   def key_changed?
@@ -231,6 +246,23 @@ class ActivityPub::ProcessAccountService < BaseService
     end
   end
 
+  def process_attachments
+    return if @json['attachment'].blank?
+
+    previous_proofs = @account.identity_proofs.to_a
+    current_proofs  = []
+
+    as_array(@json['attachment']).each do |attachment|
+      next unless equals_or_includes?(attachment['type'], 'IdentityProof')
+      current_proofs << process_identity_proof(attachment)
+    end
+
+    previous_proofs.each do |previous_proof|
+      next if current_proofs.any? { |current_proof| current_proof.id == previous_proof.id }
+      previous_proof.delete
+    end
+  end
+
   def process_emoji(tag)
     return if skip_download?
     return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
@@ -246,5 +278,13 @@ class ActivityPub::ProcessAccountService < BaseService
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
     emoji.save
+  end
+
+  def process_identity_proof(attachment)
+    provider          = attachment['signatureAlgorithm']
+    provider_username = attachment['name']
+    token             = attachment['signatureValue']
+
+    @account.identity_proofs.where(provider: provider, provider_username: provider_username).find_or_create_by(provider: provider, provider_username: provider_username, token: token)
   end
 end

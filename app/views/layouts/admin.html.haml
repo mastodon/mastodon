@@ -1,20 +1,38 @@
 - content_for :header_tags do
+  = render_initial_state
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
   .admin-wrapper
     .sidebar-wrapper
-      .sidebar
-        = link_to root_path do
-          = image_tag asset_pack_path('logo.svg'), class: 'logo', alt: 'Mastodon'
+      .sidebar-wrapper__inner
+        .sidebar
+          = link_to root_path do
+            = image_pack_tag 'logo.svg', class: 'logo', alt: 'Mastodon'
 
-        = render_navigation
+          .sidebar__toggle
+            .sidebar__toggle__logo
+              = link_to root_path do
+                = svg_logo_full
+
+            = link_to '#', class: 'sidebar__toggle__icon' do
+              = fa_icon 'bars'
+
+          = render_navigation
+
     .content-wrapper
       .content
-        %h2= yield :page_title
+        .content-heading
+          %h2= yield :page_title
+
+          - if :heading_actions
+            .content-heading-actions
+              = yield :heading_actions
 
         = render 'application/flashes'
 
         = yield
+
+    .sidebar-wrapper.sidebar-wrapper--empty
 
 = render template: 'layouts/application'

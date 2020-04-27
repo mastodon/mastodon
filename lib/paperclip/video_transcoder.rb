@@ -5,10 +5,22 @@ module Paperclip
   # to check when uploaded videos are actually gifv's
   class VideoTranscoder < Paperclip::Processor
     def make
-      meta = ::Av.cli.identify(@file.path)
-      attachment.instance.type = MediaAttachment.types[:gifv] unless meta[:audio_encode]
+      movie = FFMPEG::Movie.new(@file.path)
 
-      Paperclip::Transcoder.make(file, options, attachment)
+      attachment.instance.type = MediaAttachment.types[:gifv] unless movie.audio_codec
+
+      Paperclip::Transcoder.make(file, actual_options(movie), attachment)
+    end
+
+    private
+
+    def actual_options(movie)
+      opts = options[:passthrough_options]
+      if opts && opts[:video_codecs].include?(movie.video_codec) && opts[:audio_codecs].include?(movie.audio_codec) && opts[:colorspaces].include?(movie.colorspace)
+        opts[:options]
+      else
+        options
+      end
     end
   end
 end

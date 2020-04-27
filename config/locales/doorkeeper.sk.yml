@@ -19,34 +19,34 @@ sk:
   doorkeeper:
     applications:
       buttons:
-        authorize: Overiť
-        cancel: Zrušiť
+        authorize: Autorizuj
+        cancel: Zruš
         destroy: Zničiť
-        edit: Upraviť
-        submit: Poslať
+        edit: Uprav
+        submit: Pošli
       confirmations:
         destroy: Si si istý/á?
       edit:
-        title: Upraviť aplikáciu
+        title: Uprav aplikáciu
       form:
-        error: No teda! Pozrite formulár pre prípadné chyby
+        error: No teda! Skontroluj formulár pre prípadné chyby
       help:
-        native_redirect_uri: Použite %{native_redirect_uri} pre lokálne testy
-        redirect_uri: Iba jedna URI na riadok
-        scopes: Oprávnenia oddeľujte medzerami. Nechajte prázdne pre štandardné oprávnenia.
+        native_redirect_uri: Použi %{native_redirect_uri} pre lokálne testy
+        redirect_uri: Použi jeden riadok pre každú URI
+        scopes: Oprávnenia oddeľuj medzerami. Nechaj prázdne pre štandardné oprávnenia.
       index:
         application: Aplikácia
         callback_url: Návratová URL
-        delete: Zmazať
+        delete: Vymaž
         name: Názov
         new: Nová aplikácia
         scopes: Oprávnenia
-        show: Ukázať
-        title: Vaše aplikácie
+        show: Ukáž
+        title: Tvoje aplikácie
       new:
         title: Nová aplikácia
       show:
-        actions: Akcie
+        actions: Úkony
         application_id: Kľúč klienta
         callback_urls: Návratové URL adresy
         scopes: Oprávnenia
@@ -54,13 +54,13 @@ sk:
         title: 'Aplikácia: %{name}'
     authorizations:
       buttons:
-        authorize: Overiť
+        authorize: Over
         deny: Zamietni
       error:
         title: Nastala chyba
       new:
         able_to: Bude môcť
-        prompt: Aplikácia %{client_name} žiada prístup k vašemu účtu
+        prompt: Aplikácia %{client_name} vyžaduje prístup k tvojmu účtu
         title: Je potrebná autorizácia
       show:
         title: Skopíruj tento autorizačný kód a vlož ho do aplikácie.
@@ -72,15 +72,14 @@ sk:
       index:
         application: Aplikácia
         created_at: Autorizované
-        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Oprávnenia
-        title: Vaše autorizované aplikácie
+        title: Tvoje povolené aplikácie
     errors:
       messages:
         access_denied: Prístup zamietnutý.
         credential_flow_not_configured: Resource Owner Password Credentials zlyhal lebo Doorkeeper.configure.resource_owner_from_credentials nebol nakonfigurovaný.
         invalid_client: Overenie klienta zlyhalo. Neznámy klient, chýbajú údaje o klientovi alebo nepodporovaná metóda overovania.
-        invalid_grant: Poslané oprávnenie je neplatné, expirované, zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke alebo bolo vydané niekomu inému.
+        invalid_grant: Dané oprávnenie je neplatné, vypršané, zrušené, nesúhlasí s presmerovacou URI použitou v autorizačnej požiadavke, alebo bolo vydané pre iný klient.
         invalid_redirect_uri: Presmerovacia URI je neplatná.
         invalid_request: Požiadavke chýba povinný parameter alebo obsahuje nepodporovanú hodnotu niektorého parametra alebo je nejako inak poškodená.
         invalid_resource_owner: Uvedené prihlasovacie údaje sú neplatné alebo nenájdené
@@ -92,9 +91,9 @@ sk:
         resource_owner_authenticator_not_configured: Resource Owner zlyhal pretože Doorkeeper.configure.resource_owner_authenticator nebol nakonfigurovaný.
         server_error: Nastala neočakávaná chyba na autorizačnom serveri ktorá zabránila vykonať požiadavku.
         temporarily_unavailable: Autorizačný server ťa teraz nemôže obslúžiť, pretože prebieha údržba alebo je dočasne preťažený.
-        unauthorized_client: Klient nie je autorizovaný vykonať danú požiadavku takouto metódou.
+        unauthorized_client: Klient nie je autorizovaný vykonať danú požiadavku týmto spôsobom.
         unsupported_grant_type: Tento typ oprávnenia nie je podporovaný autorizačným serverom.
-        unsupported_response_type: Autorizačný server nepodporuje typ tejto odpovede.
+        unsupported_response_type: Overovací server nepodporuje tento druh odpovede.
     flash:
       applications:
         create:
@@ -114,11 +113,18 @@ sk:
       application:
         title: Požadovaná OAuth autorizácia
     scopes:
+      admin:read: prezeraj všetky dáta na serveri
+      admin:read:accounts: prezeraj chúlostivé informácie na všetkých účtoch
+      admin:read:reports: čítaj chulostivé informácie o všetkých hláseniach a nahlásených účtoch
+      admin:write: uprav všetky dáta na serveri
+      admin:write:accounts: urob moderovacie úkony na účtoch
+      admin:write:reports: urob moderovacie úkony voči hláseniam
       follow: uprav vzťahy svojho účtu
       push: dostávaj oboznámenia ohľadom tvojho účtu na obrazovku
       read: prezri si všetky dáta ohľadom svojho účetu
       read:accounts: prezri si informácie o účte
       read:blocks: prezri svoje bloky
+      read:bookmarks: pozri svoje záložky
       read:favourites: prezri svoje obľúbené
       read:filters: prezri svoje filtrovanie
       read:follows: prezri si svoje sledovania
@@ -131,6 +137,7 @@ sk:
       write: upraviť všetky dáta tvojho účtu
       write:accounts: uprav svoj profil
       write:blocks: blokuj účty a domény
+      write:bookmarks: pridaj si príspevky k záložkám
       write:favourites: obľúbené príspevky
       write:filters: vytvor roztriedenie
       write:follows: následuj ľudí

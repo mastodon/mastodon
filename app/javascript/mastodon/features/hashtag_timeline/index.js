@@ -98,21 +98,21 @@ class HashtagTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch } = this.props;
-    const { id, tags } = this.props.params;
+    const { id, tags, local } = this.props.params;
 
     this._subscribe(dispatch, id, tags);
-    dispatch(expandHashtagTimeline(id, { tags }));
+    dispatch(expandHashtagTimeline(id, { tags, local }));
   }
 
   componentWillReceiveProps (nextProps) {
     const { dispatch, params } = this.props;
-    const { id, tags } = nextProps.params;
+    const { id, tags, local } = nextProps.params;
 
-    if (id !== params.id || !isEqual(tags, params.tags)) {
+    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, params.local)) {
       this._unsubscribe();
       this._subscribe(dispatch, id, tags);
-      this.props.dispatch(clearTimeline(`hashtag:${id}`));
-      this.props.dispatch(expandHashtagTimeline(id, { tags }));
+      dispatch(clearTimeline(`hashtag:${id}`));
+      dispatch(expandHashtagTimeline(id, { tags, local }));
     }
   }
 
@@ -125,8 +125,8 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    const { id, tags } = this.props.params;
-    this.props.dispatch(expandHashtagTimeline(id, { maxId, tags }));
+    const { id, tags, local } = this.props.params;
+    this.props.dispatch(expandHashtagTimeline(id, { maxId, tags, local }));
   }
 
   render () {
@@ -135,7 +135,7 @@ class HashtagTimeline extends React.PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef} label={`#${id}`}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
         <ColumnHeader
           icon='hashtag'
           active={hasUnread}
@@ -157,6 +157,7 @@ class HashtagTimeline extends React.PureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
           shouldUpdateScroll={shouldUpdateScroll}
+          bindToDocument={!multiColumn}
         />
       </Column>
     );

@@ -2,6 +2,13 @@
 sl:
   simple_form:
     hints:
+      account_warning_preset:
+        text: Lahko uporabite skladnjo tuta, kot so URL-ji, ključniki in omembe
+      admin_account_action:
+        send_email_notification: Uporabnik bo prejel razlago, kaj se je zgodilo z njihovim računom
+        text_html: Neobvezno. Lahko uporabite skladnjo tuta. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
+        type_html: Izberite, kaj boste storili z <strong>%{acct}</strong>
+        warning_preset_id: Neobvezno. Še vedno lahko dodate besedilo po meri na konec prednastavitve
       defaults:
         autofollow: Osebe, ki se prijavijo prek povabila, vas bodo samodejno sledile
         avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
@@ -18,17 +25,26 @@ sl:
         password: Uporabite najmanj 8 znakov
         phrase: Se bo ujemal, ne glede na začetnice v tekstu ali opozorilo o vsebini troba
         scopes: Do katerih API-jev bo imel program dostop. Če izberete obseg najvišje ravni, vam ni treba izbrati posameznih.
-        setting_default_language: Jezik vaših trobov je lahko samodejno zaznan, vendar ni vedno pravilen
+        setting_aggregate_reblogs: Ne prikažite novih spodbud za tute, ki so bili nedavno spodbujeni (vpliva samo na novo prejete spodbude)
+        setting_default_sensitive: Občutljivi mediji so privzeto skriti in jih je mogoče razkriti s klikom
         setting_display_media_default: Skrij medij, ki je označen kot občutljiv
         setting_display_media_hide_all: Vedno skrij vse medije
         setting_display_media_show_all: Vedno pokaži medij, ki je označen kot občutljiv
         setting_hide_network: Kogar spremljate in kdo vas spremlja ne bo prikazano na vašem profilu
         setting_noindex: Vpliva na vaš javni profil in na strani s stanjem
-        setting_theme: Vpliva na to, kako izgleda Mastodon, ko ste prijavljeni s katero koli napravo.
+        setting_show_application: Aplikacija, ki jo uporabljate za tutanje, bo prikazana v podrobnem pogledu vaših tutov
+        setting_use_blurhash: Gradienti temeljijo na barvah skrite vizualne slike, vendar zakrivajo vse podrobnosti
+        setting_use_pending_items: Skrij posodobitev časovnice za klikom namesto samodejnega posodabljanja
         username: Vaše uporabniško ime bo edinstveno na %{domain}
         whole_word: Ko je ključna beseda ali fraza samo alfanumerična, se bo uporabljala le, če se bo ujemala s celotno besedo
+      domain_allow:
+        domain: Ta domena bo lahko prejela podatke s tega strežnika, dohodni podatki z nje pa bodo obdelani in shranjeni
+      featured_tag:
+        name: 'Morda boste želeli uporabiti eno od teh:'
       imports:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča
+      invite_request:
+        text: To nam bo pomagalo pregledati vašo prijavo
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
       user:
@@ -38,6 +54,18 @@ sl:
         fields:
           name: Oznaka
           value: Vsebina
+      account_warning_preset:
+        text: Prednastavljeno besedilo
+      admin_account_action:
+        send_email_notification: Obvesti uporabnika po e-pošti
+        text: Opozorilo po meri
+        type: Dejanje
+        types:
+          disable: Onemogoči
+          none: Ne naredi ničesar
+          silence: Utišaj
+          suspend: Suspendiraj in nepovratno izbriši podatke računa
+        warning_preset_id: Uporabi prednastavljeno opozorilo
       defaults:
         autofollow: Povabite, da sledi vašemu računu
         avatar: Podoba
@@ -48,6 +76,7 @@ sl:
         context: Filtriraj vsebino
         current_password: Trenutno geslo
         data: Podatki
+        discoverable: Dodaj ta račun v imenik
         display_name: Prikazno ime
         email: E-poštni naslov
         expires_in: Preteče po
@@ -63,6 +92,8 @@ sl:
         otp_attempt: Dvofaktorska koda
         password: Geslo
         phrase: Ključna beseda ali fraza
+        setting_advanced_layout: Omogoči napredni spletni vmesnik
+        setting_aggregate_reblogs: Skupinske spodbude na časovnicah
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
         setting_boost_modal: Pred sunkom pokaži potrditveno okno
         setting_default_language: Jezik objavljanja
@@ -77,27 +108,36 @@ sl:
         setting_hide_network: Skrij svoje omrežje
         setting_noindex: Odsotnost indeksiranja iskalnikov
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
+        setting_show_application: Razkrij aplikacijo za pošiljanje tutov
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_theme: Tema strani
         setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
+        setting_use_blurhash: Pokaži barvite gradiente za skrite medije
+        setting_use_pending_items: Počasen način
         severity: Strogost
         type: Vrsta uvoza
         username: Uporabniško ime
         username_or_email: Uporabniško ime ali E-pošta
         whole_word: Celotna beseda
+      featured_tag:
+        name: Ključnik
       interactions:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
         must_be_following_dm: Blokiraj neposredna sporočila oseb, ki jim ne sledite
+      invite_request:
+        text: Zakaj se želite pridružiti?
       notification_emails:
         digest: Pošlji izvlečke e-pošt
         favourite: Pošlji e-pošto, ko nekdo doda vaše stanje med priljubljene
         follow: Pošlji e-pošto, ko vas nekdo sledi
         follow_request: Pošlji e-pošto, ko vam nekdo želi slediti
         mention: Pošlji e-pošto, ko vas nekdo omeni
+        pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
         report: Pošlji e-pošto, ko je oddana nova prijava
     'no': Ne
+    recommended: Priporočeno
     required:
       mark: "*"
       text: zahtevano

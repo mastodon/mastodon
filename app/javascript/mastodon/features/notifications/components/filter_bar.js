@@ -7,6 +7,7 @@ const tooltips = defineMessages({
   mentions: { id: 'notifications.filter.mentions', defaultMessage: 'Mentions' },
   favourites: { id: 'notifications.filter.favourites', defaultMessage: 'Favourites' },
   boosts: { id: 'notifications.filter.boosts', defaultMessage: 'Boosts' },
+  polls: { id: 'notifications.filter.polls', defaultMessage: 'Poll results' },
   follows: { id: 'notifications.filter.follows', defaultMessage: 'Follows' },
 });
 
@@ -63,7 +64,7 @@ class FilterBar extends React.PureComponent {
           onClick={this.onClick('mention')}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon id='at' fixedWidth />
+          <Icon id='reply-all' fixedWidth />
         </button>
         <button
           className={selectedFilter === 'favourite' ? 'active' : ''}
@@ -78,6 +79,13 @@ class FilterBar extends React.PureComponent {
           title={intl.formatMessage(tooltips.boosts)}
         >
           <Icon id='retweet' fixedWidth />
+        </button>
+        <button
+          className={selectedFilter === 'poll' ? 'active' : ''}
+          onClick={this.onClick('poll')}
+          title={intl.formatMessage(tooltips.polls)}
+        >
+          <Icon id='tasks' fixedWidth />
         </button>
         <button
           className={selectedFilter === 'follow' ? 'active' : ''}

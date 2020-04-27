@@ -17,15 +17,22 @@ end
 class Request
   REQUEST_TARGET = '(request-target)'
 
+  # We enforce a 5s timeout on DNS resolving, 5s timeout on socket opening
+  # and 5s timeout on the TLS handshake, meaning the worst case should take
+  # about 15s in total
+  TIMEOUT = { connect: 5, read: 10, write: 10 }.freeze
+
   include RoutingHelper
 
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
 
-    @verb    = verb
-    @url     = Addressable::URI.parse(url).normalize
-    @options = options.merge(use_proxy? ? Rails.configuration.x.http_client_proxy : { socket_class: Socket })
-    @headers = {}
+    @verb        = verb
+    @url         = Addressable::URI.parse(url).normalize
+    @http_client = options.delete(:http_client)
+    @options     = options.merge(socket_class: use_proxy? ? ProxySocket : Socket)
+    @options     = @options.merge(Rails.configuration.x.http_client_proxy) if use_proxy?
+    @headers     = {}
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
@@ -33,8 +40,8 @@ class Request
     set_digest! if options.key?(:body)
   end
 
-  def on_behalf_of(account, key_id_format = :acct, sign_with: nil)
-    raise ArgumentError unless account.local?
+  def on_behalf_of(account, key_id_format = :uri, sign_with: nil)
+    raise ArgumentError, 'account must not be nil' if account.nil?
 
     @account       = account
     @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @account.keypair
@@ -50,15 +57,26 @@ class Request
 
   def perform
     begin
-      response = http_client.headers(headers).public_send(@verb, @url.to_s, @options)
+      response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
       raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
 
     begin
-      yield response.extend(ClientLimit) if block_given?
+      response = response.extend(ClientLimit)
+
+      # If we are using a persistent connection, we have to
+      # read every response to be able to move forward at all.
+      # However, simply calling #to_s or #flush may not be safe,
+      # as the response body, if malicious, could be too big
+      # for our memory. So we use the #body_with_limit method
+      response.body_with_limit if http_client.persistent?
+
+      yield response if block_given?
+    rescue => e
+      raise e.class, e.message, e.backtrace[0]
     ensure
-      http_client.close
+      http_client.close unless http_client.persistent?
     end
   end
 
@@ -75,6 +93,10 @@ class Request
       end
 
       %w(http https).include?(parsed_url.scheme) && parsed_url.host.present?
+    end
+
+    def http_client
+      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 2)
     end
   end
 
@@ -116,16 +138,8 @@ class Request
     end
   end
 
-  def timeout
-    # We enforce a 1s timeout on DNS resolving, 10s timeout on socket opening
-    # and 5s timeout on the TLS handshake, meaning the worst case should take
-    # about 16s in total
-
-    { connect: 5, read: 10, write: 10 }
-  end
-
   def http_client
-    @http_client ||= HTTP.use(:auto_inflate).timeout(:per_operation, timeout).follow(max_hops: 2)
+    @http_client ||= Request.http_client
   end
 
   def use_proxy?
@@ -166,26 +180,67 @@ class Request
   class Socket < TCPSocket
     class << self
       def open(host, *args)
-        return super(host, *args) if thru_hidden_service?(host)
-
         outer_e = nil
+        port    = args.first
 
-        Resolv::DNS.open do |dns|
-          dns.timeouts = 1
+        addresses = []
+        begin
+          addresses = [IPAddr.new(host)]
+        rescue IPAddr::InvalidAddressError
+          Resolv::DNS.open do |dns|
+            dns.timeouts = 5
+            addresses = dns.getaddresses(host).take(2)
+          end
+        end
 
-          addresses = dns.getaddresses(host).take(2)
-          time_slot = 10.0 / addresses.size
+        socks = []
+        addr_by_socket = {}
 
-          addresses.each do |address|
+        addresses.each do |address|
+          begin
+            check_private_address(address)
+
+            sock     = ::Socket.new(address.is_a?(Resolv::IPv6) ? ::Socket::AF_INET6 : ::Socket::AF_INET, ::Socket::SOCK_STREAM, 0)
+            sockaddr = ::Socket.pack_sockaddr_in(port, address.to_s)
+
+            sock.setsockopt(::Socket::IPPROTO_TCP, ::Socket::TCP_NODELAY, 1)
+
+            sock.connect_nonblock(sockaddr)
+
+            # If that hasn't raised an exception, we somehow managed to connect
+            # immediately, close pending sockets and return immediately
+            socks.each(&:close)
+            return sock
+          rescue IO::WaitWritable
+            socks << sock
+            addr_by_socket[sock] = sockaddr
+          rescue => e
+            outer_e = e
+          end
+        end
+
+        until socks.empty?
+          _, available_socks, = IO.select(nil, socks, nil, Request::TIMEOUT[:connect])
+
+          if available_socks.nil?
+            socks.each(&:close)
+            raise HTTP::TimeoutError, "Connect timed out after #{Request::TIMEOUT[:connect]} seconds"
+          end
+
+          available_socks.each do |sock|
+            socks.delete(sock)
+
             begin
-              raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
-
-              ::Timeout.timeout(time_slot, HTTP::TimeoutError) do
-                return super(address.to_s, *args)
-              end
+              sock.connect_nonblock(addr_by_socket[sock])
+            rescue Errno::EISCONN
             rescue => e
+              sock.close
               outer_e = e
+              next
             end
+
+            socks.each(&:close)
+            return sock
           end
         end
 
@@ -198,11 +253,21 @@ class Request
 
       alias new open
 
-      def thru_hidden_service?(host)
-        Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(host)
+      def check_private_address(address)
+        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
       end
     end
   end
 
-  private_constant :ClientLimit, :Socket
+  class ProxySocket < Socket
+    class << self
+      def check_private_address(_address)
+        # Accept connections to private addresses as HTTP proxies will usually
+        # be on local addresses
+        nil
+      end
+    end
+  end
+
+  private_constant :ClientLimit, :Socket, :ProxySocket
 end

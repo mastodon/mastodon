@@ -2,18 +2,22 @@ import React, { PureComponent, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { getLocale } from '../locales';
-import MediaGallery from '../components/media_gallery';
-import Video from '../features/video';
-import Card from '../features/status/components/card';
-import ModalRoot from '../components/modal_root';
-import MediaModal from '../features/ui/components/media_modal';
 import { List as ImmutableList, fromJS } from 'immutable';
+import { getLocale } from 'mastodon/locales';
+import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
+import MediaGallery from 'mastodon/components/media_gallery';
+import Poll from 'mastodon/components/poll';
+import Hashtag from 'mastodon/components/hashtag';
+import ModalRoot from 'mastodon/components/modal_root';
+import MediaModal from 'mastodon/features/ui/components/media_modal';
+import Video from 'mastodon/features/video';
+import Card from 'mastodon/features/status/components/card';
+import Audio from 'mastodon/features/audio';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-const MEDIA_COMPONENTS = { MediaGallery, Video, Card };
+const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
 export default class MediaContainer extends PureComponent {
 
@@ -30,6 +34,8 @@ export default class MediaContainer extends PureComponent {
 
   handleOpenMedia = (media, index) => {
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, index });
   }
 
@@ -37,11 +43,15 @@ export default class MediaContainer extends PureComponent {
     const media = ImmutableList([video]);
 
     document.body.classList.add('with-modals--active');
+    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
+
     this.setState({ media, time });
   }
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
+    document.documentElement.style.marginRight = 0;
+
     this.setState({ media: null, index: null, time: null });
   }
 
@@ -54,11 +64,13 @@ export default class MediaContainer extends PureComponent {
           {[].map.call(components, (component, i) => {
             const componentName = component.getAttribute('data-component');
             const Component = MEDIA_COMPONENTS[componentName];
-            const { media, card, ...props } = JSON.parse(component.getAttribute('data-props'));
+            const { media, card, poll, hashtag, ...props } = JSON.parse(component.getAttribute('data-props'));
 
             Object.assign(props, {
-              ...(media ? { media: fromJS(media) } : {}),
-              ...(card  ? { card:  fromJS(card)  } : {}),
+              ...(media   ? { media:   fromJS(media)   } : {}),
+              ...(card    ? { card:    fromJS(card)    } : {}),
+              ...(poll    ? { poll:    fromJS(poll)    } : {}),
+              ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
               ...(componentName === 'Video' ? {
                 onOpenVideo: this.handleOpenVideo,
@@ -72,6 +84,7 @@ export default class MediaContainer extends PureComponent {
               component,
             );
           })}
+
           <ModalRoot onClose={this.handleCloseMedia}>
             {this.state.media && (
               <MediaModal

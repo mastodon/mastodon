@@ -2,9 +2,9 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize]
-    before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
-    before_action :require_local_account!, only: [:enable, :memorialize]
+    before_action :set_account, only: [:show, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize, :approve, :reject]
+    before_action :require_remote_account!, only: [:redownload]
+    before_action :require_local_account!, only: [:enable, :memorialize, :approve, :reject]
 
     def index
       authorize :account, :index?
@@ -19,18 +19,6 @@ module Admin
       @warnings                = @account.targeted_account_warnings.latest.custom
     end
 
-    def subscribe
-      authorize @account, :subscribe?
-      Pubsubhubbub::SubscribeWorker.perform_async(@account.id)
-      redirect_to admin_account_path(@account.id)
-    end
-
-    def unsubscribe
-      authorize @account, :unsubscribe?
-      Pubsubhubbub::UnsubscribeWorker.perform_async(@account.id)
-      redirect_to admin_account_path(@account.id)
-    end
-
     def memorialize
       authorize @account, :memorialize?
       @account.memorialize!
@@ -43,6 +31,18 @@ module Admin
       @account.user.enable!
       log_action :enable, @account.user
       redirect_to admin_account_path(@account.id)
+    end
+
+    def approve
+      authorize @account.user, :approve?
+      @account.user.approve!
+      redirect_to admin_pending_accounts_path
+    end
+
+    def reject
+      authorize @account.user, :reject?
+      SuspendAccountService.new.call(@account, reserve_email: false, reserve_username: false)
+      redirect_to admin_pending_accounts_path
     end
 
     def unsilence
@@ -109,19 +109,7 @@ module Admin
     end
 
     def filter_params
-      params.permit(
-        :local,
-        :remote,
-        :by_domain,
-        :active,
-        :silenced,
-        :suspended,
-        :username,
-        :display_name,
-        :email,
-        :ip,
-        :staff
-      )
+      params.slice(*AccountFilter::KEYS).permit(*AccountFilter::KEYS)
     end
   end
 end

@@ -1,28 +1,35 @@
-%tr
-  %td
-    = custom_emoji_tag(custom_emoji)
-  %td
-    %samp= ":#{custom_emoji.shortcode}:"
-  %td
-    - if custom_emoji.local?
-      = t('admin.accounts.location.local')
-    - else
-      = link_to custom_emoji.domain, admin_custom_emojis_path(by_domain: custom_emoji.domain)
-  %td
-    - if custom_emoji.local?
-      - if custom_emoji.visible_in_picker
-        = table_link_to 'eye', t('admin.custom_emojis.listed'), admin_custom_emoji_path(custom_emoji, custom_emoji: { visible_in_picker: false }, page: params[:page], **@filter_params), method: :patch
+.batch-table__row
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :custom_emoji_ids, { multiple: true, include_hidden: false }, custom_emoji.id
+  .batch-table__row__content.batch-table__row__content--with-image
+    .batch-table__row__content__image
+      = custom_emoji_tag(custom_emoji, animate = current_account&.user&.setting_auto_play_gif)
+
+    .batch-table__row__content__text
+      %samp= ":#{custom_emoji.shortcode}:"
+
+      - if custom_emoji.local?
+        %span.account-role.bot= custom_emoji.category&.name || t('admin.custom_emojis.uncategorized')
+
+    .batch-table__row__content__extra
+      - if custom_emoji.local?
+        = t('admin.accounts.location.local')
       - else
-        = table_link_to 'eye-slash', t('admin.custom_emojis.unlisted'), admin_custom_emoji_path(custom_emoji, custom_emoji: { visible_in_picker: true }, page: params[:page], **@filter_params), method: :patch
-    - else
-      - if custom_emoji.local_counterpart.present?
-        = link_to safe_join([custom_emoji_tag(custom_emoji.local_counterpart), t('admin.custom_emojis.overwrite')]), copy_admin_custom_emoji_path(custom_emoji, page: params[:page], **@filter_params), method: :post, class: 'table-action-link'
+        = custom_emoji.domain
+
+        - if custom_emoji.local_counterpart.present?
+          &bull;
+          = t('admin.accounts.location.local')
+
+      %br/
+
+      - if custom_emoji.disabled?
+        = t('admin.custom_emojis.disabled')
       - else
-        = table_link_to 'copy', t('admin.custom_emojis.copy'), copy_admin_custom_emoji_path(custom_emoji, page: params[:page], **@filter_params), method: :post
-  %td
-    - if custom_emoji.disabled?
-      = table_link_to 'power-off', t('admin.custom_emojis.enable'), enable_admin_custom_emoji_path(custom_emoji, page: params[:page], **@filter_params), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
-    - else
-      = table_link_to 'power-off', t('admin.custom_emojis.disable'), disable_admin_custom_emoji_path(custom_emoji, page: params[:page], **@filter_params), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
-  %td
-    = table_link_to 'times', t('admin.custom_emojis.delete'), admin_custom_emoji_path(custom_emoji, page: params[:page], **@filter_params), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+        = t('admin.custom_emojis.enabled')
+      - if custom_emoji.local?
+        &bull;
+        - if custom_emoji.visible_in_picker?
+          = t('admin.custom_emojis.listed')
+        - else
+          = t('admin.custom_emojis.unlisted')

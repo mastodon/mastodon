@@ -8,13 +8,26 @@
       %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
       %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
 
+= form_tag admin_reports_url, method: 'GET', class: 'simple_form' do
+  .fields-group
+    - ReportFilter::KEYS.each do |key|
+      = hidden_field_tag key, params[key] if params[key].present?
+
+    - %i(by_target_domain).each do |key|
+      .input.string.optional
+        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.reports.#{key}")
+
+    .actions
+      %button= t('admin.accounts.search')
+      = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button negative'
+
 - @reports.group_by(&:target_account_id).each do |target_account_id, reports|
   - target_account = reports.first.target_account
   .report-card
     .report-card__profile
       = account_link_to target_account, '', size: 36, path: admin_account_path(target_account.id)
       .report-card__profile__stats
-        = link_to pluralize(target_account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_account_path(target_account.id)
+        = link_to t('admin.reports.account.notes', count: target_account.targeted_moderation_notes.count), admin_account_path(target_account.id)
         %br/
         - if target_account.suspended?
           %span.red= t('admin.accounts.suspended')
@@ -28,7 +41,9 @@
       - reports.each do |report|
         .report-card__summary__item
           .report-card__summary__item__reported-by
-            - if report.account.local?
+            - if report.account.instance_actor?
+              = site_hostname
+            - elsif report.account.local?
               = admin_account_link_to report.account
             - else
               = report.account.domain

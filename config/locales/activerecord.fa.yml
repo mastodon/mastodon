@@ -1,6 +1,10 @@
 ---
 fa:
   activerecord:
+    attributes:
+      poll:
+        expires_at: مهلت
+        options: گزینه‌ها
     errors:
       models:
         account:
@@ -10,4 +14,4 @@ fa:
         status:
           attributes:
             reblog:
-              taken: نوشته‌ها وجود دارند
+              taken: تا از وضعیت‌ها هنوز وجود دارند

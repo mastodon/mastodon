@@ -13,7 +13,7 @@ module AccountFinderConcern
     end
 
     def representative
-      find_local(Setting.site_contact_username.gsub(/\A@/, '')) || Account.local.find_by(suspended: false)
+      Account.find(-99)
     end
 
     def find_local(username)
@@ -48,7 +48,7 @@ module AccountFinderConcern
     end
 
     def with_usernames
-      Account.where.not(username: '')
+      Account.where.not(Account.arel_table[:username].lower.eq '')
     end
 
     def matching_username
@@ -56,11 +56,7 @@ module AccountFinderConcern
     end
 
     def matching_domain
-      if domain.nil?
-        Account.where(domain: nil)
-      else
-        Account.where(Account.arel_table[:domain].lower.eq domain.to_s.downcase)
-      end
+      Account.where(Account.arel_table[:domain].lower.eq(domain.nil? ? nil : domain.to_s.downcase))
     end
   end
 end

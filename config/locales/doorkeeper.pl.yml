@@ -38,6 +38,7 @@ pl:
         application: Aplikacja
         callback_url: URL wywołania zwrotnego (callback)
         delete: Usuń
+        empty: Nie masz aplikacji.
         name: Nazwa
         new: Nowa aplikacja
         scopes: Zakres
@@ -114,11 +115,18 @@ pl:
       application:
         title: Uwierzytelnienie OAuth jest wymagane
     scopes:
+      admin:read: odczytaj wszystkie dane na serwerze
+      admin:read:accounts: odczytaj wrażliwe informacje na wszystkich kontach
+      admin:read:reports: odczytaj wrażliwe informacje ze wszystkich zgłoszeń oraz zgłoszonych kont
+      admin:write: zmodyfikuj wszystkie dane na serwerze
+      admin:write:accounts: wykonaj działania moderacyjne na kontach
+      admin:write:reports: wykonaj działania moderacyjne na zgłoszeniach
       follow: możliwość śledzenia kont
       push: otrzymywanie powiadomień push dla Twojego konta
       read: możliwość odczytu wszystkich danych konta
       read:accounts: dostęp do informacji o koncie
       read:blocks: dostęp do listy blokowanych
+      read:bookmarks: dostęp do zakładek
       read:favourites: dostęp do listy ulubionych
       read:filters: dostęp do filtrów
       read:follows: dostęp do listy śledzonych
@@ -131,6 +139,7 @@ pl:
       write: możliwość modyfikowania wszystkich danych o koncie
       write:accounts: możliwość modyfikowania informacji o koncie
       write:blocks: możliwość blokowania domen i użytkowników
+      write:bookmarks: możliwość dodawania wpisów do zakładek
       write:favourites: możliwość dodawnia wpisów do ulubionych
       write:filters: możliwość tworzenia filtrów
       write:follows: możliwość śledzenia ludzi

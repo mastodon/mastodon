@@ -29,7 +29,7 @@ ca:
       edit:
         title: Edita l'aplicació
       form:
-        error: Ep! Comprova el formulari
+        error: Ep! Comprova el formulari per a possibles errors
       help:
         native_redirect_uri: Utilitza %{native_redirect_uri} per a proves locals
         redirect_uri: Utilitza una línia per URI
@@ -38,6 +38,7 @@ ca:
         application: Aplicació
         callback_url: URL de retorn
         delete: Suprimeix
+        empty: No tens cap aplicació.
         name: Nom
         new: Aplicació nova
         scopes: Àmbits
@@ -63,23 +64,23 @@ ca:
         prompt: L'aplicació %{client_name} sol⋅licita tenir accés al teu compte
         title: Cal autorizació
       show:
-        title: Copia aquest coddi d'autorització i enganxa'l en l'aplicació.
+        title: Copia aquest codi d'autorització i enganxa'l en l'aplicació.
     authorized_applications:
       buttons:
         revoke: Revoca
       confirmations:
-        revoke: Estàs segur?
+        revoke: N'estàs segur?
       index:
         application: Aplicació
         created_at: Creat el
         date_format: "%A-%m-%d %H:%M:%S"
         scopes: Àmbits
-        title: Les teves aplicacions autoritzades
+        title: Les aplicacions autoritzades
     errors:
       messages:
-        access_denied: El propietari del recurs o servidor de autorizació ha denegat la petició.
+        access_denied: El propietari del recurs o servidor d'autorizació ha denegat la petició.
         credential_flow_not_configured: Les credencials de contrasenya del propietari del recurs han fallat degut a que Doorkeeper.configure.resource_owner_from_credentials està sense configurar.
-        invalid_client: La autentificació del client falló perquè és un client desconegut o no està inclòs l'autentificació del client o el mètode d'autenticació no està confirmat.
+        invalid_client: La autentificació del client ha fallat perquè és un client desconegut o no està inclòs l'autentificació del client o el mètode d'autenticació no està confirmat.
         invalid_grant: La concessió d'autorizació oferida és invàlida, ha vençut, s'ha revocat, no coincideix amb l'URI de redirecció utilizada en la petició d'autorizació, o fou emesa per a un altre client.
         invalid_redirect_uri: L'URI de redirecció inclòs no és vàlid.
         invalid_request: En la petició manca un paràmetre necessari o inclou un valor de paràmetre no suportat o te un altre tipus de format incorrecte.
@@ -114,7 +115,37 @@ ca:
       application:
         title: OAuth autorització requerida
     scopes:
+      admin:read: llegir totes les dades en el servidor
+      admin:read:accounts: llegir l'informació sensible de tots els comptes
+      admin:read:reports: llegir l'informació sensible de tots els informes i comptes reportats
+      admin:write: modificar totes les dades en el servidor
+      admin:write:accounts: fer l'acció de moderació en els comptes
+      admin:write:reports: fer l'acció de moderació en els informes
       follow: seguir, blocar, desblocar i deixar de seguir comptes
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
+      read:accounts: veure informació dels comptes
+      read:blocks: veure els teus bloqueigs
+      read:bookmarks: veure els teus marcadors
+      read:favourites: veure els teus favorits
+      read:filters: veure els teus filtres
+      read:follows: veure els teus seguiments
+      read:lists: veure les teves llistes
+      read:mutes: veure els teus silenciats
+      read:notifications: veure les teves notificacions
+      read:reports: veure els teus informes
+      read:search: cerca en nom teu
+      read:statuses: veure tots els tuts
       write: publicar en el teu nom
+      write:accounts: modifica el teu perfil
+      write:blocks: bloqueja comptes i dominis
+      write:bookmarks: publicacions a marcadors
+      write:favourites: afavoreix tuts
+      write:filters: crear filtres
+      write:follows: seguir usuaris
+      write:lists: crear llistes
+      write:media: pujar fitxers multimèdia
+      write:mutes: silencia usuaris i converses
+      write:notifications: esborra les teves notificacions
+      write:reports: informe d’altres persones
+      write:statuses: publicar tuts

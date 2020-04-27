@@ -1,5 +1,5 @@
 import 'intersection-observer';
 import 'requestidlecallback';
-import objectFitImages  from 'object-fit-images';
+import objectFitImages from 'object-fit-images';
 
 objectFitImages();

@@ -32,11 +32,11 @@ describe LanguageDetector do
       expect(result).to eq 'Our website is and also'
     end
 
-    it 'strips #hashtags from strings before detection' do
-      string = 'Hey look at all the #animals and #fish'
+    it 'converts #hashtags back to normal text before detection' do
+      string = 'Hey look at all the #animals and #FishAndChips'
 
       result = described_class.instance.send(:prepare_text, string)
-      expect(result).to eq 'Hey look at all the and'
+      expect(result).to eq 'Hey look at all the animals and fish and chips'
     end
   end
 
@@ -106,11 +106,11 @@ describe LanguageDetector do
       end
 
       describe 'remote user' do
-        it 'nil for foreign user when language is not present' do
+        it 'detects Korean language' do
           string = '안녕하세요'
           result = described_class.instance.detect(string, account_remote)
 
-          expect(result).to eq nil
+          expect(result).to eq :ko
         end
       end
 

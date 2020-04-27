@@ -13,6 +13,10 @@ class Rack::Attack
       )
     end
 
+    def remote_ip
+      @remote_ip ||= (@env["action_dispatch.remote_ip"] || ip).to_s
+    end
+
     def authenticated_user_id
       authenticated_token&.resource_owner_id
     end
@@ -28,37 +32,51 @@ class Rack::Attack
     def web_request?
       !api_request?
     end
+
+    def paging_request?
+      params['page'].present? || params['min_id'].present? || params['max_id'].present? || params['since_id'].present?
+    end
   end
 
   PROTECTED_PATHS = %w(
     /auth/sign_in
     /auth
     /auth/password
+    /auth/confirmation
   ).freeze
 
   PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })
 
-  # Always allow requests from localhost
-  # (blocklist & throttles are skipped)
   Rack::Attack.safelist('allow from localhost') do |req|
-    # Requests are allowed if the return value is truthy
-    req.ip == '127.0.0.1' || req.ip == '::1'
+    req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
 
   throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
     req.authenticated_user_id if req.api_request?
   end
 
-  throttle('throttle_unauthenticated_api', limit: 7_500, period: 5.minutes) do |req|
-    req.ip if req.api_request?
+  throttle('throttle_unauthenticated_api', limit: 300, period: 5.minutes) do |req|
+    req.remote_ip if req.api_request? && req.unauthenticated?
   end
 
   throttle('throttle_api_media', limit: 30, period: 30.minutes) do |req|
     req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
   end
 
+  throttle('throttle_media_proxy', limit: 30, period: 10.minutes) do |req|
+    req.remote_ip if req.path.start_with?('/media_proxy')
+  end
+
   throttle('throttle_api_sign_up', limit: 5, period: 30.minutes) do |req|
-    req.ip if req.post? && req.path == '/api/v1/accounts'
+    req.remote_ip if req.post? && req.path == '/api/v1/accounts'
+  end
+
+  throttle('throttle_authenticated_paging', limit: 300, period: 15.minutes) do |req|
+    req.authenticated_user_id if req.paging_request?
+  end
+
+  throttle('throttle_unauthenticated_paging', limit: 300, period: 15.minutes) do |req|
+    req.remote_ip if req.paging_request? && req.unauthenticated?
   end
 
   API_DELETE_REBLOG_REGEX = /\A\/api\/v1\/statuses\/[\d]+\/unreblog/.freeze
@@ -69,7 +87,7 @@ class Rack::Attack
   end
 
   throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
-    req.ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
+    req.remote_ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end
 
   self.throttled_response = lambda do |env|

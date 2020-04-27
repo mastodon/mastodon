@@ -4,15 +4,22 @@ class AccountsController < ApplicationController
   PAGE_SIZE = 20
 
   include AccountControllerConcern
+  include SignatureAuthentication
 
   before_action :set_cache_headers
+  before_action :set_body_classes
+
+  skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
+  skip_before_action :require_functional!
 
   def show
     respond_to do |format|
       format.html do
-        @body_classes      = 'with-modals'
+        expires_in 0, public: true unless user_signed_in?
+
         @pinned_statuses   = []
         @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
+        @featured_hashtags = @account.featured_tags.order(statuses_count: :desc)
 
         if current_account && @account.blocking?(current_account)
           @statuses = []
@@ -22,6 +29,7 @@ class AccountsController < ApplicationController
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         @statuses        = filtered_status_page(params)
         @statuses        = cache_collection(@statuses, Status)
+        @rss_url         = rss_url
 
         unless @statuses.empty?
           @older_url = older_url if @statuses.last.id > filtered_statuses.last.id
@@ -29,27 +37,26 @@ class AccountsController < ApplicationController
         end
       end
 
-      format.atom do
-        @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id])
-        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.reject { |entry| entry.status.nil? }))
-      end
-
       format.rss do
-        @statuses = cache_collection(default_statuses.without_reblogs.without_replies.limit(PAGE_SIZE), Status)
-        render xml: RSS::AccountSerializer.render(@account, @statuses)
+        expires_in 1.minute, public: true
+
+        @statuses = filtered_statuses.without_reblogs.without_replies.limit(PAGE_SIZE)
+        @statuses = cache_collection(@statuses, Status)
+        render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end
 
       format.json do
-        skip_session!
-
-        render_cached_json(['activitypub', 'actor', @account], content_type: 'application/activity+json') do
-          ActiveModelSerializers::SerializableResource.new(@account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter)
-        end
+        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
+        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
       end
     end
   end
 
   private
+
+  def set_body_classes
+    @body_classes = 'with-modals'
+  end
 
   def show_pinned_statuses?
     [replies_requested?, media_requested?, tag_requested?, params[:max_id].present?, params[:min_id].present?].none?
@@ -80,11 +87,25 @@ class AccountsController < ApplicationController
   end
 
   def hashtag_scope
-    Status.tagged_with(Tag.find_by(name: params[:tag].downcase)&.id)
+    tag = Tag.find_normalized(params[:tag])
+
+    if tag
+      Status.tagged_with(tag.id)
+    else
+      Status.none
+    end
   end
 
-  def set_account
-    @account = Account.find_local!(params[:username])
+  def username_param
+    params[:username]
+  end
+
+  def rss_url
+    if tag_requested?
+      short_account_tag_url(@account, params[:tag], format: 'rss')
+    else
+      short_account_url(@account, format: 'rss')
+    end
   end
 
   def older_url
@@ -108,15 +129,15 @@ class AccountsController < ApplicationController
   end
 
   def media_requested?
-    request.path.ends_with?('/media')
+    request.path.ends_with?('/media') && !tag_requested?
   end
 
   def replies_requested?
-    request.path.ends_with?('/with_replies')
+    request.path.ends_with?('/with_replies') && !tag_requested?
   end
 
   def tag_requested?
-    request.path.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+    request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
   def filtered_status_page(params)
@@ -124,6 +145,14 @@ class AccountsController < ApplicationController
       filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
     else
       filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
+    end
+  end
+
+  def restrict_fields_to
+    if signed_request_account.present? || public_fetch_mode?
+      # Return all fields
+    else
+      %i(id type preferred_username inbox public_key endpoints)
     end
   end
 end

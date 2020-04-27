@@ -1,0 +1,28 @@
+version: 1
+
+update_configs:
+  - package_manager: "ruby:bundler"
+    directory: "/"
+    update_schedule: "weekly"
+    # Supported update schedule: live daily weekly monthly
+    version_requirement_updates: "auto"
+    # Supported version requirements: auto widen_ranges increase_versions increase_versions_if_necessary
+    allowed_updates:
+      - match:
+          dependency_type: "all"
+          # Supported dependency types: all indirect direct production development
+          update_type: "all"
+          # Supported update types: all security
+
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "weekly"
+    # Supported update schedule: live daily weekly monthly
+    version_requirement_updates: "auto"
+    # Supported version requirements: auto widen_ranges increase_versions increase_versions_if_necessary
+    allowed_updates:
+      - match:
+          dependency_type: "all"
+          # Supported dependency types: all indirect direct production development
+          update_type: "all"
+          # Supported update types: all security

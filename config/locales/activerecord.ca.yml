@@ -1,6 +1,10 @@
 ---
 ca:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Data límit
+        options: Opcions
     errors:
       models:
         account:
@@ -10,4 +14,4 @@ ca:
         status:
           attributes:
             reblog:
-              taken: de l'estat ja existeix
+              taken: del tut ja existeix

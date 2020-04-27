@@ -1,0 +1,52 @@
+- content_for :page_title do
+  = "##{@tag.name}"
+
+.dashboard__counters
+  %div
+    = link_to tag_url(@tag), target: '_blank', rel: 'noopener noreferrer' do
+      .dashboard__counters__num= number_with_delimiter @accounts_today
+      .dashboard__counters__label= t 'admin.tags.accounts_today'
+  %div
+    %div
+      .dashboard__counters__num= number_with_delimiter @accounts_week
+      .dashboard__counters__label= t 'admin.tags.accounts_week'
+  %div
+    - if @tag.accounts_count > 0
+      = link_to explore_hashtag_path(@tag) do
+        .dashboard__counters__num= number_with_delimiter @tag.accounts_count
+        .dashboard__counters__label= t 'admin.tags.directory'
+    - else
+      %div
+        .dashboard__counters__num= number_with_delimiter @tag.accounts_count
+        .dashboard__counters__label= t 'admin.tags.directory'
+
+%hr.spacer/
+
+= simple_form_for @tag, url: admin_tag_path(@tag.id) do |f|
+  = render 'shared/error_messages', object: @tag
+
+  .fields-group
+    = f.input :name, wrapper: :with_block_label
+
+  .fields-group
+    = f.input :usable, as: :boolean, wrapper: :with_label
+    = f.input :trendable, as: :boolean, wrapper: :with_label, disabled: !Setting.trends
+    = f.input :listable, as: :boolean, wrapper: :with_label, disabled: !Setting.profile_directory
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit
+
+%hr.spacer/
+
+%h3= t 'admin.tags.breakdown'
+
+.table-wrapper
+  %table.table
+    %tbody
+      - total = @usage_by_domain.sum(&:last).to_f
+
+      - @usage_by_domain.each do |(domain, count)|
+        %tr
+          %th= domain || site_hostname
+          %td= number_to_percentage((count / total) * 100, precision: 1)
+          %td= number_with_delimiter count

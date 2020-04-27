@@ -14,7 +14,8 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
         @account,
         target_account,
         status_ids: target_statuses.nil? ? [] : target_statuses.map(&:id),
-        comment: @json['content'] || ''
+        comment: @json['content'] || '',
+        uri: report_uri
       )
     end
   end
@@ -22,10 +23,14 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
   private
 
   def skip_reports?
-    DomainBlock.find_by(domain: @account.domain)&.reject_reports?
+    DomainBlock.reject_reports?(@account.domain)
   end
 
   def object_uris
     @object_uris ||= Array(@object.is_a?(Array) ? @object.map { |item| value_or_id(item) } : value_or_id(@object))
+  end
+
+  def report_uri
+    @json['id'] unless @json['id'].nil? || invalid_origin?(@json['id'])
   end
 end

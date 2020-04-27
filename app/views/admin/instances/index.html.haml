@@ -6,24 +6,29 @@
     %strong= t('admin.instances.moderation.title')
     %ul
       %li= filter_link_to t('admin.instances.moderation.all'), limited: nil
-      %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
+
+      - unless whitelist_mode?
+        %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
 
   %div{ style: 'flex: 1 1 auto; text-align: right' }
-    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
+    - if whitelist_mode?
+      = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button'
+    - else
+      = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
 
-= form_tag admin_instances_url, method: 'GET', class: 'simple_form' do
-  .fields-group
-    - Admin::FilterHelper::INSTANCES_FILTERS.each do |key|
-      - if params[key].present?
-        = hidden_field_tag key, params[key]
+- unless whitelist_mode?
+  = form_tag admin_instances_url, method: 'GET', class: 'simple_form' do
+    .fields-group
+      - InstanceFilter::KEYS.each do |key|
+        = hidden_field_tag key, params[key] if params[key].present?
 
-    - %i(by_domain).each do |key|
-      .input.string.optional
-        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.instances.#{key}")
+      - %i(by_domain).each do |key|
+        .input.string.optional
+          = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.instances.#{key}")
 
-    .actions
-      %button= t('admin.accounts.search')
-      = link_to t('admin.accounts.reset'), admin_custom_emojis_path, class: 'button negative'
+      .actions
+        %button= t('admin.accounts.search')
+        = link_to t('admin.accounts.reset'), admin_instances_path, class: 'button negative'
 
 %hr.spacer/
 
@@ -33,21 +38,26 @@
       %h4
         = instance.domain
         %small
-          = t('admin.instances.known_accounts', count: instance.accounts_count)
-
           - if instance.domain_block
+            - first_item = true
             - if !instance.domain_block.noop?
-              &bull;
               = t("admin.domain_blocks.severity.#{instance.domain_block.severity}")
-            - if instance.domain_block.reject_media?
-              &bull;
-              = t('admin.domain_blocks.rejecting_media')
-            - if instance.domain_block.reject_reports?
-              &bull;
-              = t('admin.domain_blocks.rejecting_reports')
-
-      .avatar-stack
-        - instance.cached_sample_accounts.each do |account|
-          = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
+              - first_item = false
+            - unless instance.domain_block.suspend?
+              - if instance.domain_block.reject_media?
+                - unless first_item
+                  &bull;
+                = t('admin.domain_blocks.rejecting_media')
+                - first_item = false
+              - if instance.domain_block.reject_reports?
+                - unless first_item
+                  &bull;
+                = t('admin.domain_blocks.rejecting_reports')
+          - elsif whitelist_mode?
+            = t('admin.accounts.whitelisted')
+          - else
+            = t('admin.accounts.no_limits_imposed')
+      - if instance.countable?
+        .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= number_to_human instance.accounts_count, strip_insignificant_zeros: true
 
 = paginate paginated_instances

@@ -1,0 +1,97 @@
+---
+ko:
+  devise:
+    confirmations:
+      confirmed: 이메일이 성공적으로 확인 되었습니다.
+      send_instructions: 몇 분 이내로 확인 이메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
+      send_paranoid_instructions: 당신의 이메일이 우리의 DB에 있을 경우 몇 분 이내로 확인 메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
+    failure:
+      already_authenticated: 이미 로그인 된 상태입니다.
+      inactive: 계정이 활성화 되지 않았습니다.
+      invalid: 올바르지 않은 %{authentication_keys} 혹은 패스워드입니다.
+      last_attempt: 계정이 잠기기까지 한 번의 시도가 남았습니다.
+      locked: 계정이 잠겼습니다.
+      not_found_in_database: 올바르지 않은 %{authentication_keys} 혹은 패스워드입니다.
+      pending: 계정이 아직 심사 중입니다.
+      timeout: 세션이 만료 되었습니다. 다시 로그인 해 주세요.
+      unauthenticated: 계속 하려면 로그인을 해야 합니다.
+      unconfirmed: 계속 하려면 이메일을 확인 받아야 합니다.
+    mailer:
+      confirmation_instructions:
+        action: 이메일 확인
+        action_with_app: 확인하고 %{app}으로 돌아가기
+        explanation: 당신은 %{host}에서 이 이메일로 가입하셨습니다. 클릭만 하시면 계정이 활성화 됩니다. 만약 당신이 가입한 게 아니라면 이 메일을 무시해 주세요.
+        explanation_when_pending: 당신은 %{host}에 가입 요청을 하셨습니다. 이 이메일이 확인 되면 우리가 가입 요청을 리뷰하고 승인할 수 있습니다. 그 전까지는 로그인을 할 수 없습니다. 당신의 가입 요청이 거부 될 경우 당신에 대한 정보는 모두 삭제 되며 따로 요청 할 필요는 없습니다. 만약 당신이 가입 요청을 한 게 아니라면 이 메일을 무시해 주세요.
+        extra_html: <a href="%{terms_path}">서버의 규칙</a>과 <a href="%{policy_path}">이용 약관</a>도 확인해 주세요.
+        subject: '마스토돈: %{instance}에 대한 확인 메일'
+        title: 이메일 주소 확인
+      email_changed:
+        explanation: '당신의 계정에 대한 이메일이 다음과 같이 바뀌려고 합니다:'
+        extra: 만약 당신이 메일을 바꾸지 않았다면 누군가가 당신의 계정에 대한 접근 권한을 얻은 것입니다. 즉시 패스워드를 바꾼 후, 계정이 잠겼다면 서버의 관리자에게 연락 하세요.
+        subject: '마스토돈: 이메일이 변경 되었습니다'
+        title: 새 이메일 주소
+      password_change:
+        explanation: 당신의 계정 패스워드가 변경되었습니다.
+        extra: 만약 패스워드 변경을 하지 않았다면 누군가가 당신의 계정에 대한 접근 권한을 얻은 것입니다. 즉시 패스워드를 바꾼 후, 계정이 잠겼다면 서버의 관리자에게 연락 하세요.
+        subject: '마스토돈: 패스워드가 변경 되었습니다'
+        title: 패스워드가 변경 되었습니다
+      reconfirmation_instructions:
+        explanation: 이메일 주소를 바꾸려면 새 이메일 주소를 확인해야 합니다.
+        extra: 당신이 시도한 것이 아니라면 이 메일을 무시해 주세요. 위 링크를 클릭하지 않으면 이메일 변경은 일어나지 않습니다.
+        subject: '마스토돈: %{instance}에 대한 이메일 확인'
+        title: 이메일 주소 확인
+      reset_password_instructions:
+        action: 패스워드 변경
+        explanation: 계정에 대한 패스워드 변경을 요청하였습니다.
+        extra: 만약 당신이 시도한 것이 아니라면 이 메일을 무시해 주세요. 위 링크를 클릭해 패스워드를 새로 설정하기 전까지는 패스워드가 바뀌지 않습니다.
+        subject: '마스토돈: 패스워드 재설정 방법'
+        title: 패스워드 재설정
+      two_factor_disabled:
+        explanation: 당신의 계정에 설정된 이중 인증이 비활성화 되었습니다. 이제 이메일과 암호만으로 로그인이 가능합니다.
+        subject: '마스토돈: 이중 인증 비활성화'
+        title: 2FA 비활성화 됨
+      two_factor_enabled:
+        explanation: 당신의 계정에 이중 인증이 활성화되었습니다. 로그인시 페어링된 T-OTP 앱에서 생성된 토큰이 필요합니다.
+        subject: '마스토돈: 이중 인증 활성화'
+        title: 2FA 활성화 됨
+      two_factor_recovery_codes_changed:
+        explanation: 이전 복구 코드가 무효화되고 새 코드가 생성되었습니다
+        subject: '마스토돈: 이중 인증 복구 코드 재생성 됨'
+        title: 2FA 복구 코드 변경됨
+      unlock_instructions:
+        subject: '마스토돈: 잠금 해제 방법'
+    omniauth_callbacks:
+      failure: '"%{reason}" 때문에 당신을 %{kind}에서 인증할 수 없습니다.'
+      success: 성공적으로 %{kind} 계정을 인증 했습니다.
+    passwords:
+      no_token: 패스워드 재설정 이메일을 거치지 않고는 여기에 올 수 없습니다. 만약 패스워드 재설정 메일에서 온 것이라면 URL이 맞는지 확인해 주세요.
+      send_instructions: 당신의 이메일 주소가 우리의 DB에 있아면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      send_paranoid_instructions: 당신의 이메일 주소가 우리의 DB에 있아면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      updated: 패스워드가 재설정 되었습니다. 로그인 되었습니다.
+      updated_not_active: 패스워드가 성공적으로 변경 되었습니다.
+    registrations:
+      destroyed: 안녕히 가세요! 계정이 성공적으로 제거되었습니다. 다시 만나기를 희망합니다.
+      signed_up: 안녕하세요! 성공적으로 가입했습니다.
+      signed_up_but_inactive: 성공적으로 가입 했습니다. 그러나, 계정이 활성화 되지 않았기 때문에 아직 로그인 할 수 없습니다.
+      signed_up_but_locked: 성공적으로 가입 했습니다. 그러나, 계정이 잠겨있기 때문에 아직 로그인 할 수 없습니다.
+      signed_up_but_pending: 확인 링크를 포함한 메일이 발송 되었습니다. 링크를 클릭한 이후, 우리가 당신의 신청양식을 검토합니다. 승인이 되면 알림을 발송합니다.
+      signed_up_but_unconfirmed: 확인 링크를 포함한 메일이 발송 되었습니다. 링크를 클릭해 계정을 활성화 하세요. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      update_needs_confirmation: 계정 정보를 업데이트 했습니다. 하지만 새 이메일 주소에 대한 확인이 필요합니다. 이메일을 확인 한 후 링크를 통해 새 이메일을 확인 하세요. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      updated: 계정 정보가 성공적으로 업데이트 되었습니다.
+    sessions:
+      already_signed_out: 로그아웃 되었습니다.
+      signed_in: 로그인 되었습니다.
+      signed_out: 로그아웃 되었습니다.
+    unlocks:
+      send_instructions: 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      send_paranoid_instructions: 계정이 존재한다면 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      unlocked: 계정이 성공적으로 잠금 해제 되었습니다. 계속 하려면 로그인 하세요.
+  errors:
+    messages:
+      already_confirmed: 이미 확인 되었습니다, 로그인 하세요
+      confirmation_period_expired: "%{period} 안에 확인을 해야 합니다, 새로 요청하세요"
+      expired: 만료되었습니다, 새로 요청하세요
+      not_found: 찾을 수 없습니다
+      not_locked: 잠기지 않았습니다
+      not_saved:
+        other: "%{count}개의 에러로 인해 %{resource}가 저장 될 수 없습니다:"

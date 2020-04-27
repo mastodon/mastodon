@@ -15,6 +15,10 @@ export const CONVERSATIONS_UPDATE        = 'CONVERSATIONS_UPDATE';
 
 export const CONVERSATIONS_READ = 'CONVERSATIONS_READ';
 
+export const CONVERSATIONS_DELETE_REQUEST = 'CONVERSATIONS_DELETE_REQUEST';
+export const CONVERSATIONS_DELETE_SUCCESS = 'CONVERSATIONS_DELETE_SUCCESS';
+export const CONVERSATIONS_DELETE_FAIL    = 'CONVERSATIONS_DELETE_FAIL';
+
 export const mountConversations = () => ({
   type: CONVERSATIONS_MOUNT,
 });
@@ -41,13 +45,15 @@ export const expandConversations = ({ maxId } = {}) => (dispatch, getState) => {
     params.since_id = getState().getIn(['conversations', 'items', 0, 'last_status']);
   }
 
+  const isLoadingRecent = !!params.since_id;
+
   api(getState).get('/api/v1/conversations', { params })
     .then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data.reduce((aggr, item) => aggr.concat(item.accounts), [])));
       dispatch(importFetchedStatuses(response.data.map(item => item.last_status).filter(x => !!x)));
-      dispatch(expandConversationsSuccess(response.data, next ? next.uri : null));
+      dispatch(expandConversationsSuccess(response.data, next ? next.uri : null, isLoadingRecent));
     })
     .catch(err => dispatch(expandConversationsFail(err)));
 };
@@ -56,10 +62,11 @@ export const expandConversationsRequest = () => ({
   type: CONVERSATIONS_FETCH_REQUEST,
 });
 
-export const expandConversationsSuccess = (conversations, next) => ({
+export const expandConversationsSuccess = (conversations, next, isLoadingRecent) => ({
   type: CONVERSATIONS_FETCH_SUCCESS,
   conversations,
   next,
+  isLoadingRecent,
 });
 
 export const expandConversationsFail = error => ({
@@ -79,3 +86,27 @@ export const updateConversations = conversation => dispatch => {
     conversation,
   });
 };
+
+export const deleteConversation = conversationId => (dispatch, getState) => {
+  dispatch(deleteConversationRequest(conversationId));
+
+  api(getState).delete(`/api/v1/conversations/${conversationId}`)
+    .then(() => dispatch(deleteConversationSuccess(conversationId)))
+    .catch(error => dispatch(deleteConversationFail(conversationId, error)));
+};
+
+export const deleteConversationRequest = id => ({
+  type: CONVERSATIONS_DELETE_REQUEST,
+  id,
+});
+
+export const deleteConversationSuccess = id => ({
+  type: CONVERSATIONS_DELETE_SUCCESS,
+  id,
+});
+
+export const deleteConversationFail = (id, error) => ({
+  type: CONVERSATIONS_DELETE_FAIL,
+  id,
+  error,
+});

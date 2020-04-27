@@ -1,0 +1,41 @@
+---
+br:
+  devise:
+    failure:
+      inactive: N'eo ket gweredekaet ho kont c'hoazh.
+      invalid: "%{authentication_keys} pe ger-tremen diwiriek."
+      last_attempt: Un esae a chom deoc'h a-raok ma vefe prennet ho kont.
+      locked: Prennet eo ho kont.
+      not_found_in_database: "%{authentication_keys} pe ger-tremen diwiriek."
+      pending: O vezañ asantet eo ho kont.
+    mailer:
+      confirmation_instructions:
+        action: Gwiriekaat ar chomlec'h postel
+        action_with_app: Kadarnaat ha distroiñ da %{app}
+        title: Gwiriekaat ar chomlec'h postel
+      email_changed:
+        subject: 'Mastodoñ : Postel kemmet'
+        title: Chomlec'h postel nevez
+      password_change:
+        explanation: Kemmet eo bet ger-tremen ho kont.
+        subject: 'Mastodoñ : Ger-tremen kemmet'
+        title: Ger-tremen kemmet
+      reconfirmation_instructions:
+        explanation: Kadarnait ar chomlec'h nevez evit cheñch ho postel.
+        subject: 'Mastodoñ : Kadarnait ar postel evit %{instance}'
+        title: Gwiriekaat ar chomlec'h postel
+      reset_password_instructions:
+        action: Cheñch ar ger-tremen
+        explanation: Goulennet ho peus ur ger-tremen nevez evit ho kont.
+        title: Adderaouekaat ar ger-tremen
+      two_factor_disabled:
+        title: 2FA diweredekaet
+      two_factor_enabled:
+        title: 2FA gweredekaet
+    passwords:
+      updated_not_active: Kemmet eo bet ho ker-tremen ent reizh.
+    registrations:
+      signed_up: Donemat ! Kevreet oc'h.
+  errors:
+    messages:
+      not_found: digavet

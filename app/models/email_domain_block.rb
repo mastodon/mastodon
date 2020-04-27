@@ -7,12 +7,26 @@
 #  domain     :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  parent_id  :bigint(8)
 #
 
 class EmailDomainBlock < ApplicationRecord
   include DomainNormalizable
 
-  validates :domain, presence: true, uniqueness: true
+  belongs_to :parent, class_name: 'EmailDomainBlock', optional: true
+  has_many :children, class_name: 'EmailDomainBlock', foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
+
+  validates :domain, presence: true, uniqueness: true, domain: true
+
+  def with_dns_records=(val)
+    @with_dns_records = ActiveModel::Type::Boolean.new.cast(val)
+  end
+
+  def with_dns_records?
+    @with_dns_records
+  end
+
+  alias with_dns_records with_dns_records?
 
   def self.block?(email)
     _, domain = email.split('@', 2)

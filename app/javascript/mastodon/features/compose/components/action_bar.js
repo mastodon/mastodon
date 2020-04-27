@@ -15,6 +15,8 @@ const messages = defineMessages({
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
+  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
 });
 
 export default @injectIntl
@@ -22,8 +24,13 @@ class ActionBar extends React.PureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
+    onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
+
+  handleLogout = () => {
+    this.props.onLogout();
+  }
 
   render () {
     const { intl } = this.props;
@@ -36,17 +43,20 @@ class ActionBar extends React.PureComponent {
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
+    menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks' });
     menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
     menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
+    menu.push(null);
+    menu.push({ text: intl.formatMessage(messages.logout), action: this.handleLogout });
 
     return (
       <div className='compose__action-bar'>
         <div className='compose__action-bar-dropdown'>
-          <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
+          <DropdownMenuContainer items={menu} icon='chevron-down' size={16} direction='right' />
         </div>
       </div>
     );

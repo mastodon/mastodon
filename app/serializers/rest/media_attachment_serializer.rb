@@ -5,14 +5,16 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
 
   attributes :id, :type, :url, :preview_url,
              :remote_url, :text_url, :meta,
-             :description
+             :description, :blurhash
 
   def id
     object.id.to_s
   end
 
   def url
-    if object.needs_redownload?
+    if object.not_processed?
+      nil
+    elsif object.needs_redownload?
       media_proxy_url(object.id, :original)
     else
       full_asset_url(object.file.url(:original))

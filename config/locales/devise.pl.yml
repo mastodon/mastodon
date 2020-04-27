@@ -12,6 +12,7 @@ pl:
       last_attempt: Masz jeszcze jedną próbę; Twoje konto zostanie zablokowane jeśli się nie powiedzie.
       locked: Twoje konto zostało zablokowane.
       not_found_in_database: Nieprawidłowy %{authentication_keys} lub hasło.
+      pending: Twoje konto oczekuje na przegląd.
       timeout: Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować..
       unauthenticated: Zapisz się lub zaloguj, aby kontynuować.
       unconfirmed: Zweryfikuj adres e-mail, aby kontynuować.
@@ -20,17 +21,18 @@ pl:
         action: Zweryfikuj adres e-mail
         action_with_app: Potwierdź i wróć do %{app}
         explanation: Utworzyłeś(-aś) konto na %{host} podając ten adres e-mail. Jedno kliknięcie dzieli Cię od aktywacji tego konta. Jeżeli to nie Ty, zignoruj ten e-mail.
-        extra_html: Przeczytaj też <a href="%{terms_path}">regulamin instancji</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
+        explanation_when_pending: Poprosiłeś(-aś) o zaproszenie na %{host} używajac tego adresu e-mail. Kiedy potwierdzisz swój adres e-mail, przejrzymy Twoje podanie. Do tego czasu nie możesz się zalogować. Jeżeli Twoje podanie zostanie odrzucone, Twoje dane zostaną usunięte i nie będziesz musiał(-a) podejmować żadnych dodatkowych działań. Jeżeli to nie Ty, zignoruj ten e-mail.
+        extra_html: Przeczytaj też <a href="%{terms_path}">regulamin serwera</a> i <a href="%{policy_path}">nasze zasady użytkowania</a>.
         subject: 'Mastodon: Instrukcje weryfikacji adresu e-mail na %{instance}'
         title: Zweryfikuj adres e-mail
       email_changed:
         explanation: 'Adres e-mail dla Twojego konta zostanie zmieniony na:'
-        extra: Jeżeli nie próbowałeś(-aś) zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem isntancji, jeżeli nie masz dostępu do konta.
+        extra: Jeżeli nie próbowałeś(-aś) zmienić adresu e-mail, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień natychmiastowo hasło lub skontaktuj się z administratorem serwera, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono adres e-mail'
         title: Nowy adres e-mail
       password_change:
         explanation: Hasło do Twojego konta zostało zmienione.
-        extra: Jeżeli nie zmieniałeś(-aś) hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem instancji, jeżeli nie masz dostępu do konta.
+        extra: Jeżeli nie zmieniałeś(-aś) hasła, prawdopodobnie ktoś uzyskał dostęp do Twojego konta. Zmień hasło natychmiastowo lub skontaktuj się z administratorem serwera, jeżeli nie masz dostępu do konta.
         subject: 'Mastodon: Zmieniono hasło'
         title: Zmieniono hasło
       reconfirmation_instructions:
@@ -44,6 +46,18 @@ pl:
         extra: Jeżeli to nie Ty, zignoruj tą wiadomość. Twoje hasło nie ulegnie zmianie, jeżeli nie wykorzystasz powyższego odnośnika i nie utworzysz nowego hasła.
         subject: 'Mastodon: Instrukcje ustawienia nowego hasła'
         title: Przywracanie hasła
+      two_factor_disabled:
+        explanation: Uwierzytelnianie dwuskładnikowe dla Twojego konta zostało wyłączone. Możesz się teraz logować korzystając z samego adresu e-mail i hasła.
+        subject: Mastodon – wyłączono uwierzytelnianie dwustopniowe
+        title: Wyłączono 2FA
+      two_factor_enabled:
+        explanation: Uwierzytelnianie dwuskładnikowe dla Twojego konta zostało włączone. Logując się, będziesz potrzebować tokenu z połączonej aplikacji TOTP.
+        subject: Mastodon – włączono uwierzytelnianie dwustopniowe
+        title: Włączono 2FA
+      two_factor_recovery_codes_changed:
+        explanation: Poprzednie kody zapasowe zostały unieważnione, a nowe zostały wygenerowane.
+        subject: Mastodon – wygenerowano nowe kody ratunkowe 2FA
+        title: Zmieniono kody odzyskiwania 2FA
       unlock_instructions:
         subject: 'Mastodon: Instrukcje odblokowania konta'
     omniauth_callbacks:
@@ -56,10 +70,11 @@ pl:
       updated: Twoje hasło zostało zmienione. Jesteś zalogowany(-a).
       updated_not_active: Twoje hasło zostało zmienione.
     registrations:
-      destroyed: Twoje konto zostało zawieszone. Mamy jednak nadzieję, że do nas wrócisz. Do zobaczenia!
-      signed_up: Twoje konto zostało utworzone. Witamy!
+      destroyed: Do zobaczenia! Twoje konto zostało zawieszone. Mamy jednak nadzieję, że do nas wrócisz.
+      signed_up: Witamy! Twoje konto zostało utworzone.
       signed_up_but_inactive: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto nie zostało jeszcze aktywowane.
       signed_up_but_locked: Twoje konto zostało utworzone. Nie mogliśmy Cię jednak zalogować, ponieważ konto jest zablokowane.
+      signed_up_but_pending: Na Twój adres e-mail została wysłana wiadomosć z odnośnikiem potwierdzającym. Po kliknięciu w odnośnik, przejrzymy Twoje podanie. Zostaniesz poinformowany(-a), gdy zostanie ono przyjęte.
       signed_up_but_unconfirmed: Na Twój adres e-mail została wysłana wiadomosć z odnośnikiem potwierdzającym. Kliknij w odnośnik, aby aktywować konto. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       update_needs_confirmation: Konto zostało zaktualizowane, musimy jednak zweryfikować Twój nowy adres e-mail. Została na niego wysłana wiadomość z odnośnikiem potwierdzającym. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
       updated: Konto zostało zaktualizowane.

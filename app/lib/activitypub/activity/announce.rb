@@ -40,11 +40,15 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   def announceable?(status)
-    status.account_id == @account.id || status.public_visibility? || status.unlisted_visibility?
+    status.account_id == @account.id || status.distributable?
   end
 
   def related_to_local_activity?
     followed_by_local_accounts? || requested_through_relay? || reblog_of_local_status?
+  end
+
+  def requested_through_relay?
+    super || Relay.find_by(inbox_url: @account.inbox_url)&.enabled?
   end
 
   def reblog_of_local_status?

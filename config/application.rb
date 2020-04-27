@@ -7,12 +7,17 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 require_relative '../app/lib/exceptions'
+require_relative '../lib/paperclip/url_generator_extensions'
+require_relative '../lib/paperclip/attachment_extensions'
 require_relative '../lib/paperclip/lazy_thumbnail'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/video_transcoder'
+require_relative '../lib/paperclip/type_corrector'
 require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/version'
-require_relative '../lib/devise/ldap_authenticatable'
+require_relative '../lib/devise/two_factor_ldap_authenticatable'
+require_relative '../lib/devise/two_factor_pam_authenticatable'
+require_relative '../lib/chewy/strategy/custom_sidekiq'
 
 Dotenv::Railtie.load
 
@@ -36,10 +41,11 @@ module Mastodon
     # All translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
-      :en,
       :ar,
       :ast,
       :bg,
+      :bn,
+      :br,
       :ca,
       :co,
       :cs,
@@ -47,44 +53,59 @@ module Mastodon
       :da,
       :de,
       :el,
+      :en,
       :eo,
+      :'es-AR',
       :es,
+      :et,
       :eu,
       :fa,
       :fi,
       :fr,
+      :ga,
       :gl,
       :he,
+      :hi,
       :hr,
       :hu,
       :hy,
       :id,
       :io,
+      :is,
       :it,
       :ja,
       :ka,
+      :kab,
+      :kk,
+      :kn,
       :ko,
+      :lt,
       :lv,
+      :mk,
+      :ml,
+      :mr,
       :ms,
       :nl,
+      :nn,
       :no,
       :oc,
       :pl,
-      :pt,
       :'pt-BR',
+      :'pt-PT',
       :ro,
       :ru,
       :sk,
       :sl,
       :sq,
-      :sr,
       :'sr-Latn',
+      :sr,
       :sv,
       :ta,
       :te,
       :th,
       :tr,
       :uk,
+      :ur,
       :vi,
       :'zh-CN',
       :'zh-HK',
@@ -109,6 +130,9 @@ module Mastodon
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
+      Devise::FailureApp.send :include, AbstractController::Callbacks
+      Devise::FailureApp.send :include, HttpAcceptLanguage::EasyAccess
+      Devise::FailureApp.send :include, Localized
     end
   end
 end

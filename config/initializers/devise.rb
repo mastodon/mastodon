@@ -53,6 +53,8 @@ module Devise
   @@ldap_base = nil
   mattr_accessor :ldap_uid
   @@ldap_uid = nil
+  mattr_accessor :ldap_mail
+  @@ldap_mail = nil
   mattr_accessor :ldap_bind_dn
   @@ldap_bind_dn = nil
   mattr_accessor :ldap_password
@@ -61,6 +63,12 @@ module Devise
   @@ldap_tls_no_verify = false
   mattr_accessor :ldap_search_filter
   @@ldap_search_filter = nil
+  mattr_accessor :ldap_uid_conversion_enabled
+  @@ldap_uid_conversion_enabled = false
+  mattr_accessor :ldap_uid_conversion_search
+  @@ldap_uid_conversion_search = nil
+  mattr_accessor :ldap_uid_conversion_replace
+  @@ldap_uid_conversion_replace = nil
 
   class Strategies::PamAuthenticatable
     def valid?
@@ -71,8 +79,8 @@ end
 
 Devise.setup do |config|
   config.warden do |manager|
-    manager.default_strategies(scope: :user).unshift :ldap_authenticatable if Devise.ldap_authentication
-    manager.default_strategies(scope: :user).unshift :pam_authenticatable  if Devise.pam_authentication
+    manager.default_strategies(scope: :user).unshift :two_factor_ldap_authenticatable if Devise.ldap_authentication
+    manager.default_strategies(scope: :user).unshift :two_factor_pam_authenticatable  if Devise.pam_authentication
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
     manager.default_strategies(scope: :user).unshift :two_factor_backupable
   end
@@ -363,7 +371,11 @@ Devise.setup do |config|
     config.ldap_bind_dn        = ENV.fetch('LDAP_BIND_DN')
     config.ldap_password       = ENV.fetch('LDAP_PASSWORD')
     config.ldap_uid            = ENV.fetch('LDAP_UID', 'cn')
+    config.ldap_mail           = ENV.fetch('LDAP_MAIL', 'mail')
     config.ldap_tls_no_verify  = ENV['LDAP_TLS_NO_VERIFY'] == 'true'
-    config.ldap_search_filter  = ENV.fetch('LDAP_SEARCH_FILTER', '%{uid}=%{email}')
+    config.ldap_search_filter  = ENV.fetch('LDAP_SEARCH_FILTER', '(|(%{uid}=%{email})(%{mail}=%{email}))')
+    config.ldap_uid_conversion_enabled  = ENV['LDAP_UID_CONVERSION_ENABLED'] == 'true'
+    config.ldap_uid_conversion_search   = ENV.fetch('LDAP_UID_CONVERSION_SEARCH', '.,- ')
+    config.ldap_uid_conversion_replace  = ENV.fetch('LDAP_UID_CONVERSION_REPLACE', '_')
   end
 end

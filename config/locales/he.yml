@@ -4,45 +4,25 @@ he:
     about_hashtag_html: אלו סטטוסים פומביים המתוייגים בתור<strong>#%{hashtag}</strong>. ניתן להגיב, להדהד או לחבב אותם אם יש לך חשבון בכל מקום בפדרציה.
     about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     about_this: אודות שרת זה
-    api: API
     apps: יישומונים לנייד
-    closed_registrations: הרשמות סגורות לשרת זה לעת עתה.
     contact: יצירת קשר
     contact_missing: ללא הגדרה
     contact_unavailable: לא רלוונטי/חסר
     documentation: תיעוד
-    extended_description_html: |
-      <h3>מקום טוב לכללים</h3>
-      <p>התיאור המורחב טרם הוגדר.</p>
-    features:
-      humane_approach_body: מתוך למידה מכשלים של רשתות אחרות, מסטודון מכוונת להחלטות תכנוניות אתיות שנאבקות בשימוש לרעה של מדיה חברתית.
-      humane_approach_title: גישה הומאנית יותר
-      not_a_product_body: מסטודון איננה רשת מסחרית. אין פרסום, אין כריית מידע, אין גנים סגורים. אין סמכות מרכזית.
-      not_a_product_title: את(ה) אדם, לא מוצר
-      real_conversation_body: עם 500 תווים לרשותך, ואפשרויות פרטניות לאזהרות תוכן והסתרת מדיה, יש לך את החופש להתבטא כרצונך.
-      real_conversation_title: בנוי לשיחות אמתיות
-      within_reach_body: שלל אפליקציות עבור iOS, אנדרואיד ופלטפורמות אחרות שיאפשרו לך לשמור על קשר עם חברים בכל מקום, תודות למערכת מנשקי תוכנה ידידותיים למפתחים.
-      within_reach_title: תמיד במרחק נגיעה
-    generic_description: "%{domain} הוא שרת אחד בתוך הרשת"
     hosted_on: מסטודון שיושב בכתובת %{domain}
     learn_more: מידע נוסף
-    other_instances: שרתים אחרים
     source_code: קוד מקור
-    status_count_after: הודעות
     status_count_before: שכתבו
-    user_count_after: משתמשים
     user_count_before: ביתם של
     what_is_mastodon: מה זה מסטודון?
   accounts:
     follow: לעקוב
-    followers: עוקבים
     following: נעקבים
     media: מדיה
     moved_html: "%{name} עבר(ה) אל %{new_profile_link}:"
     nothing_here: אין פה שום דבר!
     people_followed_by: הנעקבים של %{name}
     people_who_follow: העוקבים של %{name}
-    posts: הודעות
     posts_with_replies: חצרוצים ותגובות
     reserved_username: שם המשתמש שמור
     roles:
@@ -72,9 +52,7 @@ he:
       email_status: סטטוס דוא"ל
       enable: לאפשר
       enabled: מאופשר
-      feed_url: כתובת פיד
       followers: עוקבים
-      followers_url: כתובת עוקבים
       follows: נעקבים
       inbox_url: כתובת תיבה נכנסת
       ip: כתובת IP
@@ -95,9 +73,7 @@ he:
       most_recent_activity: פעילות עדכנית
       most_recent_ip: כתובות אחרונות
       not_subscribed: לא רשום
-      outbox_url: כתובת תיבת דואר יוצא
       perform_full_suspension: ביצוע השעייה מלאה
-      profile_url: כתובת פרופיל
       promote: להעלות בדרגה
       protocol: פרטיכל
       public: פומבי
@@ -115,7 +91,6 @@ he:
         admin: מנהל מערכת
         moderator: מנחה דיונים
         user: משתמש(ת)
-      salmon_url: כתובת סלמון
       search: חיפוש
       shared_inbox_url: תיבה משותפת לדואר נכנס
       show:
@@ -157,9 +132,6 @@ he:
       reject_media: חסימת קבצי מדיה
       reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות
       show:
-        affected_accounts:
-          one: חשבון אחד במסד הנתונים מושפע
-          other: "%{count} חשהבונות במסד הנתונים מושפעים"
         retroactive:
           silence: הסרת השתקה מכל החשבונות על שרת זה
           suspend: הסרת השעייה מכל החשבונות על שרת זה
@@ -188,8 +160,6 @@ he:
         closed_message:
           desc_html: מוצג על הדף הראשי כאשר ההרשמות סגורות<br>ניתן להשתמש בתגיות HTML
           title: מסר סגירת הרשמות
-        open:
-          title: הרשמה פתוחה
       site_description:
         desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא. ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code> &lt; a&gt; </code> ו־<code> &lt; em&gt; </code> .
         title: תיאור האתר
@@ -198,13 +168,6 @@ he:
         title: תיאור אתר מורחב
       site_title: כותרת האתר
       title: הגדרות אתר
-    subscriptions:
-      callback_url: קישורית Callback
-      confirmed: מאושר
-      expires_in: פג תוקף ב-
-      last_delivery: משלוח אחרון
-      title: מנוי WebSub
-      topic: נושא
     title: ניהול
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
@@ -240,37 +203,24 @@ he:
       x_months: "%{count} חודשים"
       x_seconds: "%{count} שניות"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': חסרות לך הרשאות לצפיה בעמוד זה.
     '404': הדף המבוקש לא קיים.
+    '406': This page is not available in the requested format.
     '410': הדף המבוקש כבר לא קיים.
     '422':
       content: בדיקת אבטחה נכשלה. החסמת עוגיותיך מפנינו?
       title: בדיקת בטיחות נכשלה
     '429': הוחנק
+    '500': 
+    '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: רשימת חסימות
-    csv: CSV
-    follows: רשימת נעקבים
     mutes: רשימת השתקות
     storage: אחסון מדיה
-  followers:
-    domain: קהילה
-    explanation_html: אם ברצונך להבטיח את הפרטיות של הודעותיך, יש לשים לב מי עוקב אחריך. <strong>הודעותיך הפרטיות יועברו לכל השרתים בהם יש לך עוקבים</strong>. כדאי לעבור על הרשימה ולהסיר עוקבים אם אין לך אמון בתוכנה או בצוות המפעילים של השרת הרחוק שיכבד את פרטיותך.
-    followers_count: מספר העוקבים
-    lock_link: לנעול את חשבונך
-    purge: הסרה מהעוקבים
-    success:
-      one: בתהליך חסימה של עוקבים ממתחם אחד...
-      other: בתהליך חסימה של עוקבים המגיעים מ־%{count} מתחמים...
-    true_privacy_html: 'לתשומת ליבך: <strong>פרטיות אמיתית ניתן להשיג אך ורק על ידי הצפנה מקצה לקצה</strong>.'
-    unlocked_warning_html: כל אחד יכול לעקוב אחריך כדי לראות מיידית את חצרוציך הפרטיים. %{lock_link} כדי לבחון ולדחות עוקבים.
-    unlocked_warning_title: חשבונך אינו נעול
   generic:
     changes_saved_msg: השינויים נשמרו בהצלחה!
     save_changes: שמור שינויים
-    validation_errors:
-      one: משהו לא לגמרי בסדר עדיין! אנא הציצו על השגיאה מטה
-      other: משהו לא לגמרי בסדר עדיין! אנא הציצו על %{count} השגיאות מטה
   imports:
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
     success: כל המידע יובא בהצלחה, ויעובד בזמן הקרוב
@@ -279,6 +229,14 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
@@ -287,12 +245,6 @@ he:
     digest:
       body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
       mention: "%{name} פנה אליך ב:"
-      new_followers_summary:
-        one: נוסף לך עוקב! סחתיין!
-        other: נוספו לך %{count} עוקבים חדשים! מעולה!
-      subject:
-        one: "התראה חדשה אחת מאז ביקורך האחרון \U0001F418"
-        other: "%{count} התראות חדשות \U0001F418"
     favourite:
       body: 'חצרוצך חובב על ידי %{name}:'
       subject: חצרוצך חובב על ידי %{name}
@@ -308,21 +260,9 @@ he:
     reblog:
       body: 'חצרוצך הודהד על ידי %{name}:'
       subject: חצרוצך הודהד על ידי%{name}
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     next: הבא
     prev: הקודם
-    truncate: "&hellip;"
   remote_follow:
     acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
     missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך
@@ -333,10 +273,8 @@ he:
     back: חזרה למסטודון
     edit_profile: עריכת פרופיל
     export: יצוא מידע
-    followers: עוקבים מאושרים
     import: יבוא
     preferences: העדפות
-    settings: הגדרות
     two_factor_authentication: אימות דו-שלבי
   statuses:
     open_in_web: פתח ברשת

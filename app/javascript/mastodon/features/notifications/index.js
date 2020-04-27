@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandNotifications, scrollTopNotifications } from '../../actions/notifications';
+import { expandNotifications, scrollTopNotifications, loadPending, mountNotifications, unmountNotifications } from '../../actions/notifications';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -39,8 +39,9 @@ const mapStateToProps = state => ({
   showFilterBar: state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
-  isUnread: state.getIn(['notifications', 'unread']) > 0,
+  isUnread: state.getIn(['notifications', 'unread']) > 0 || state.getIn(['notifications', 'pendingItems']).size > 0,
   hasMore: state.getIn(['notifications', 'hasMore']),
+  numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
 });
 
 export default @connect(mapStateToProps)
@@ -58,17 +59,23 @@ class Notifications extends React.PureComponent {
     isUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
     hasMore: PropTypes.bool,
+    numPending: PropTypes.number,
   };
 
   static defaultProps = {
     trackScroll: true,
   };
 
+  componentWillMount() {
+    this.props.dispatch(mountNotifications());
+  }
+
   componentWillUnmount () {
     this.handleLoadOlder.cancel();
     this.handleScrollToTop.cancel();
     this.handleScroll.cancel();
     this.props.dispatch(scrollTopNotifications(false));
+    this.props.dispatch(unmountNotifications());
   }
 
   handleLoadGap = (maxId) => {
@@ -79,6 +86,10 @@ class Notifications extends React.PureComponent {
     const last = this.props.notifications.last();
     this.props.dispatch(expandNotifications({ maxId: last && last.get('id') }));
   }, 300, { leading: true });
+
+  handleLoadPending = () => {
+    this.props.dispatch(loadPending());
+  };
 
   handleScrollToTop = debounce(() => {
     this.props.dispatch(scrollTopNotifications(true));
@@ -113,24 +124,30 @@ class Notifications extends React.PureComponent {
 
   handleMoveUp = id => {
     const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) - 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, true);
   }
 
   handleMoveDown = id => {
     const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) + 1;
-    this._selectChild(elementIndex);
+    this._selectChild(elementIndex, false);
   }
 
-  _selectChild (index) {
-    const element = this.column.node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
+  _selectChild (index, align_top) {
+    const container = this.column.node;
+    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
 
     if (element) {
+      if (align_top && container.scrollTop > element.offsetTop) {
+        element.scrollIntoView(true);
+      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
+        element.scrollIntoView(false);
+      }
       element.focus();
     }
   }
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, showFilterBar } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar } = this.props;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />;
 
@@ -172,18 +189,21 @@ class Notifications extends React.PureComponent {
         isLoading={isLoading}
         showLoading={isLoading && notifications.size === 0}
         hasMore={hasMore}
+        numPending={numPending}
         emptyMessage={emptyMessage}
         onLoadMore={this.handleLoadOlder}
+        onLoadPending={this.handleLoadPending}
         onScrollToTop={this.handleScrollToTop}
         onScroll={this.handleScroll}
         shouldUpdateScroll={shouldUpdateScroll}
+        bindToDocument={!multiColumn}
       >
         {scrollableContent}
       </ScrollableList>
     );
 
     return (
-      <Column ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='bell'
           active={isUnread}

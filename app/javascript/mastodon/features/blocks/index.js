@@ -19,6 +19,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'blocks', 'items']),
   hasMore: !!state.getIn(['user_lists', 'blocks', 'next']),
+  isLoading: state.getIn(['user_lists', 'blocks', 'isLoading'], true),
 });
 
 export default @connect(mapStateToProps)
@@ -31,7 +32,9 @@ class Blocks extends ImmutablePureComponent {
     shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -43,7 +46,7 @@ class Blocks extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, accountIds, shouldUpdateScroll, hasMore } = this.props;
+    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading } = this.props;
 
     if (!accountIds) {
       return (
@@ -56,17 +59,19 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column icon='ban' heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
+          isLoading={isLoading}
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountContainer key={id} id={id} />
+            <AccountContainer key={id} id={id} />,
           )}
         </ScrollableList>
       </Column>

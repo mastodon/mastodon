@@ -2,91 +2,165 @@
 zh-TW:
   simple_form:
     hints:
+      account_alias:
+        acct: 指定欲移動之帳戶的 使用者名稱@站台
+      account_migration:
+        acct: 指定欲移動至之帳戶的 使用者名稱@站台
+      account_warning_preset:
+        text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+      admin_account_action:
+        send_email_notification: 使用者將收到帳戶發生之事情的解釋
+        text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
+        type_html: 設定要使用 <strong>%{acct}</strong> 做的事
+        warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
+      announcement:
+        all_day: 核取後，只會顯示出時間範圍中的日期部分
+        scheduled_at: 空白則立即發布公告
       defaults:
-        autofollow: 通過邀請網址註冊的使用者將會自動關注你
-        avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
-        bot: 這個帳號由程式進行自動式操作
+        autofollow: 通過邀請網址註冊的使用者將自動關注你
+        avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會等比例縮減成 %{dimensions} 像素
+        bot: 此帳戶主要執行自動操作且可能未被監控
         context: 應該套用過濾器的一項或多項內容
-        digest: 僅在你長時間未登入，並且收到了私訊時發送
-        fields: 個人資訊頁至多可顯示 4 個項目
-        header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
-        inbox_url: 從您想要使用的中繼首頁複製 URL
-        irreversible: 已過濾的嘟文將會不可逆的消失，即便過濾器之後也一樣
-        locale: 使用者介面、 E-mail 與通知的語言
-        locked: 你必須手動核准每個使用者對你的關注請求，而你的貼文隱私將會被設定為「只有關注你的人能看」
+        current_password: 因安全因素，請輸入目前帳戶的密碼
+        current_username: 請輸入目前帳戶的使用者名稱以確認
+        digest: 僅在你長時間未登入且在未登入期間收到私訊時傳送
+        email: 您將收到一封確認電子郵件
+        fields: 您可在個人資料上有至多 4 個以表格形式顯示的項目
+        header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會按比例縮小成 %{dimensions} 像素
+        inbox_url: 從您想要使用的中繼首頁複製網址
+        irreversible: 已過濾的嘟文將會不可逆的消失，即便過濾器移除之後也一樣
+        locale: 使用者介面、電子信件和推送通知的語言
+        locked: 需要您手動核准關注請求
+        password: 使用至少 8 個字元
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
-        scopes: 應用程式將會被允許存取哪些 API。若您選取了最高階的範圍，您就不需要再選取單獨的了。
-        setting_default_language: 你嘟文的語言會被自動偵測，但不一定完全準確
+        scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
+        setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
+        setting_default_sensitive: 敏感媒體預設隱藏，且按一下即可重新顯示
+        setting_display_media_default: 隱藏標為敏感的媒體
+        setting_display_media_hide_all: 總是隱藏所有媒體
+        setting_display_media_show_all: 總是顯示標為敏感的媒體
         setting_hide_network: 你關注的人與關注你的人將不會在你的個人資料頁上顯示
-        setting_noindex: 此設定會影響到你的公開個人資料與嘟文頁面
-        setting_theme: 此設定會影響到你從任意設備登入 Mastodon 時的顯示樣式。
-        whole_word: 如果關鍵字或詞組僅有字母與數字，它將只會在符合整個單字的時候才會套用
+        setting_noindex: 會影響您的公開個人資料與嘟文頁面
+        setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
+        username: 您的使用者名稱將在 %{domain} 是獨一無二的
+        whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
+      featured_tag:
+        name: 您可能想使用其中一個：
+      form_challenge:
+        current_password: 您正要進入安全區域
       imports:
-        data: 自其他站點匯出的 CSV 檔案
+        data: 從其他 Mastodon 伺服器匯出的 CSV 檔案
+      invite_request:
+        text: 這會協助我們審核您的應用程式
       sessions:
-        otp: 輸入你手機上產生的兩階段認證碼，或著任意一個備用驗證碼：
+        otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：
+      tag:
+        name: 您只能變更大小寫，例如，以使其更易讀。
       user:
-        chosen_languages: 只有被選擇的語言會在公開時間軸內顯示
+        chosen_languages: 當核取時，只有選取語言的嘟文會在公開時間軸中顯示
     labels:
       account:
         fields:
           name: 標籤
           value: 內容
+      account_warning_preset:
+        text: 預設文字
+      admin_account_action:
+        include_statuses: 在電子郵件中加入檢舉的嘟文
+        send_email_notification: 透過電子信件通知使用者
+        text: 自訂警告
+        type: 動作
+        types:
+          disable: 停用
+          none: 什麼也不做
+          silence: 安靜
+          suspend: 停權並不可逆的刪除帳戶資料
+        warning_preset_id: 使用警告預設
+      announcement:
+        all_day: 全天活動
+        ends_at: 活動結束時間
+        scheduled_at: 排程發佈
+        starts_at: 活動開始時間
+        text: 公告
       defaults:
         autofollow: 邀請別人關注你的帳戶
-        avatar: 頭像
-        bot: 這個帳號是機器人
-        chosen_languages: 語言篩選
+        avatar: 大頭貼
+        bot: 此帳號是台機器人
+        chosen_languages: 過濾語言
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
-        context: 過濾範圍
+        context: 過濾情境
         current_password: 目前密碼
         data: 資料
+        discoverable: 在目錄列出此帳戶
         display_name: 顯示名稱
-        email: E-mail
+        email: 電子信箱位址
         expires_in: 失效時間
-        fields: 資料
-        header: 個人頁面圖片
+        fields: 個人資料中繼資料
+        header: 頁面頂端
         inbox_url: 中繼收件匣的 URL
         irreversible: 放棄而非隱藏
         locale: 介面語言
-        locked: 將帳號轉為「私密」
+        locked: 鎖定帳號
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
-        otp_attempt: 兩階段認證碼
+        otp_attempt: 兩步驟驗證碼
         password: 密碼
         phrase: 關鍵字或片語
-        setting_auto_play_gif: 自動播放 GIF
+        setting_advanced_layout: 啟用進階網頁介面
+        setting_aggregate_reblogs: 時間軸中的群組轉嘟
+        setting_auto_play_gif: 自動播放 GIF 動畫
         setting_boost_modal: 在轉嘟前先詢問我
         setting_default_language: 嘟文語言
-        setting_default_privacy: 嘟文預設為
+        setting_default_privacy: 嘟文可見範圍
         setting_default_sensitive: 總是將媒體標記為敏感內容
         setting_delete_modal: 刪除嘟文前先詢問我
-        setting_hide_network: 隱藏你的社交網路
-        setting_noindex: 阻止搜尋引擎收錄
-        setting_reduce_motion: 減低動畫效果
+        setting_display_media: 媒體顯示
+        setting_display_media_default: 預設
+        setting_display_media_hide_all: 全部隱藏
+        setting_display_media_show_all: 全部顯示
+        setting_expand_spoilers: 永遠展開標有內容警告的嘟文
+        setting_hide_network: 隱藏您的社交網路
+        setting_noindex: 阻止搜尋引擎建立索引
+        setting_reduce_motion: 減少過渡動畫效果
+        setting_show_application: 顯示用來傳送嘟文的應用程式
         setting_system_font_ui: 使用系統預設字型
-        setting_theme: 主題外觀
-        setting_unfollow_modal: 取消關注前先詢問我
-        severity: 等級
-        type: 匯入資料類型
+        setting_theme: 站點主題
+        setting_trends: 顯示本日趨勢
+        setting_unfollow_modal: 取消關注某人前先詢問我
+        setting_use_pending_items: 限速模式
+        severity: 優先級
+        type: 匯入類型
         username: 使用者名稱
-        username_or_email: 使用者名稱或 E-mail
-        whole_word: 整個詞
+        username_or_email: 使用者名稱或電子信箱位址
+        whole_word: 整個詞彙
+      featured_tag:
+        name: "「#」標籤"
       interactions:
-        must_be_follower: 隱藏沒有關注你的使用者通知
-        must_be_following: 隱藏你沒關注的使用者通知
-        must_be_following_dm: 隱藏你沒關注的使用者私訊
+        must_be_follower: 封鎖非關注者的通知
+        must_be_following: 封鎖您未關注之使用者的通知
+        must_be_following_dm: 封鎖您未關注之使用者的私訊
+      invite:
+        comment: 備註
+      invite_request:
+        text: 加入的原因
       notification_emails:
-        digest: 定期發送摘要郵件
-        favourite: 當有使用者喜歡你的嘟文時，發送 E-mail 通知
-        follow: 當有使用者關注你時，發送 E-mail 通知
-        follow_request: 當有使用者要求關注你時，發送 E-mail 通知
-        mention: 當有使用者在嘟文提及你時，發送 E-mail 通知
-        reblog: 都有使用者轉嘟你的嘟文時，發送 E-mail 通知
-        report: 當遞交新報告時傳送電子郵件
+        digest: 傳送摘要信件
+        favourite: 當有使用者喜歡你的嘟文時，傳送電子信件通知
+        follow: 當有使用者關注你時，傳送電子信件通知
+        follow_request: 當有使用者請求關注你時，傳送電子信件通知
+        mention: 當有使用者在嘟文提及你時，傳送電子信件通知
+        pending_account: 需要審核的新帳戶
+        reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
+        report: 當提交新檢舉時傳送電子郵件
+      tag:
+        listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
+        name: 主題標籤
+        trendable: 允許此主題標籤在趨勢下顯示
+        usable: 允許嘟文使用此主題標籤
     'no': 否
+    recommended: 建議
     required:
       mark: "*"
       text: 必須填寫

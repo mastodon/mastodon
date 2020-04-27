@@ -1,6 +1,26 @@
 {
   "ignored_warnings": [
     {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "0117d2be5947ea4e4fbed9c15f23c6615b12c6892973411820c83d079808819d",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/api/v1/search_controller.rb",
+      "line": 30,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit(:type, :offset, :min_id, :max_id, :account_id)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V1::SearchController",
+        "method": "search_params"
+      },
+      "user_input": ":account_id",
+      "confidence": "High",
+      "note": ""
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "04dbbc249b989db2e0119bbb0f59c9818e12889d2b97c529cdc0b1526002ba4b",
@@ -21,32 +41,13 @@
       "note": ""
     },
     {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 4,
-      "fingerprint": "0adbe361b91afff22ba51e5fc2275ec703cc13255a0cb3eecd8dab223ab9f61e",
-      "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
-      "file": "app/views/admin/accounts/show.html.haml",
-      "line": 167,
-      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Account.find(params[:id]).inbox_url, Account.find(params[:id]).inbox_url)",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/show"
-      },
-      "user_input": "Account.find(params[:id]).inbox_url",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "19df3740b8d02a9fe0eb52c939b4b87d3a2a591162a6adfa8d64e9c26aeebe6d",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/status.rb",
-      "line": 84,
+      "line": 87,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
       "render_path": null,
@@ -60,51 +61,13 @@
       "note": ""
     },
     {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 4,
-      "fingerprint": "1fc29c578d0c89bf13bd5476829d272d54cd06b92ccf6df18568fa1f2674926e",
-      "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
-      "file": "app/views/admin/accounts/show.html.haml",
-      "line": 173,
-      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Account.find(params[:id]).shared_inbox_url, Account.find(params[:id]).shared_inbox_url)",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/show"
-      },
-      "user_input": "Account.find(params[:id]).shared_inbox_url",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 4,
-      "fingerprint": "2129d4c1e63a351d28d8d2937ff0b50237809c3df6725c0c5ef82b881dbb2086",
-      "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
-      "file": "app/views/admin/accounts/show.html.haml",
-      "line": 75,
-      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Account.find(params[:id]).url, Account.find(params[:id]).url)",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/show"
-      },
-      "user_input": "Account.find(params[:id]).url",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
       "fingerprint": "28d81cc22580ef76e912b077b245f353499aa27b3826476667224c00227af2a9",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/admin/reports_controller.rb",
-      "line": 80,
+      "line": 56,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:account_id, :resolved, :target_account_id)",
       "render_path": null,
@@ -127,7 +90,7 @@
       "line": 4,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => Admin::ActionLog.page(params[:page]), {})",
-      "render_path": [{"type":"controller","class":"Admin::ActionLogsController","method":"index","line":7,"file":"app/controllers/admin/action_logs_controller.rb"}],
+      "render_path": [{"type":"controller","class":"Admin::ActionLogsController","method":"index","line":7,"file":"app/controllers/admin/action_logs_controller.rb","rendered":{"name":"admin/action_logs/index","file":"/home/eugr/Projects/mastodon/app/views/admin/action_logs/index.html.haml"}}],
       "location": {
         "type": "template",
         "template": "admin/action_logs/index"
@@ -143,7 +106,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/remote_interaction_controller.rb",
-      "line": 20,
+      "line": 21,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id])))",
       "render_path": null,
@@ -157,25 +120,6 @@
       "note": ""
     },
     {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 4,
-      "fingerprint": "64b5b2a02ede9c2b3598881eb5a466d63f7d27fe0946aa00d570111ec7338d2e",
-      "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
-      "file": "app/views/admin/accounts/show.html.haml",
-      "line": 176,
-      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Account.find(params[:id]).followers_url, Account.find(params[:id]).followers_url)",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/show"
-      },
-      "user_input": "Account.find(params[:id]).followers_url",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
       "fingerprint": "67afc0d5f7775fa5bd91d1912e1b5505aeedef61876347546fa20f92fd6915e6",
@@ -185,7 +129,7 @@
       "line": 3,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :centered => true, :autoplay => ActiveModel::Type::Boolean.new.cast(params[:autoplay]) })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":59,"file":"app/controllers/statuses_controller.rb"}],
+      "render_path": [{"type":"controller","class":"StatusesController","method":"embed","line":63,"file":"app/controllers/statuses_controller.rb","rendered":{"name":"stream_entries/embed","file":"/home/eugr/Projects/mastodon/app/views/stream_entries/embed.html.haml"}}],
       "location": {
         "type": "template",
         "template": "stream_entries/embed"
@@ -201,7 +145,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/status.rb",
-      "line": 89,
+      "line": 92,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "result.joins(\"LEFT OUTER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
       "render_path": null,
@@ -215,25 +159,6 @@
       "note": ""
     },
     {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 4,
-      "fingerprint": "82f7b0d09beb3ab68e0fa16be63cedf4e820f2490326e9a1cec05761d92446cd",
-      "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
-      "file": "app/views/admin/accounts/show.html.haml",
-      "line": 149,
-      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Account.find(params[:id]).salmon_url, Account.find(params[:id]).salmon_url)",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/show"
-      },
-      "user_input": "Account.find(params[:id]).salmon_url",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
       "fingerprint": "8d843713d99e8403f7992f3e72251b633817cf9076ffcbbad5613859d2bbc127",
@@ -243,7 +168,7 @@
       "line": 45,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page]), {})",
-      "render_path": [{"type":"controller","class":"Admin::CustomEmojisController","method":"index","line":11,"file":"app/controllers/admin/custom_emojis_controller.rb"}],
+      "render_path": [{"type":"controller","class":"Admin::CustomEmojisController","method":"index","line":11,"file":"app/controllers/admin/custom_emojis_controller.rb","rendered":{"name":"admin/custom_emojis/index","file":"/home/eugr/Projects/mastodon/app/views/admin/custom_emojis/index.html.haml"}}],
       "location": {
         "type": "template",
         "template": "admin/custom_emojis/index"
@@ -279,10 +204,10 @@
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/admin/accounts/index.html.haml",
-      "line": 67,
+      "line": 47,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => filtered_accounts.page(params[:page]), {})",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"index","line":12,"file":"app/controllers/admin/accounts_controller.rb"}],
+      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"index","line":12,"file":"app/controllers/admin/accounts_controller.rb","rendered":{"name":"admin/accounts/index","file":"/home/eugr/Projects/mastodon/app/views/admin/accounts/index.html.haml"}}],
       "location": {
         "type": "template",
         "template": "admin/accounts/index"
@@ -298,7 +223,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/media_controller.rb",
-      "line": 10,
+      "line": 14,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original))",
       "render_path": null,
@@ -309,25 +234,6 @@
       },
       "user_input": "MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original)",
       "confidence": "High",
-      "note": ""
-    },
-    {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 4,
-      "fingerprint": "bb0ad5c4a42e06e3846c2089ff5269c17f65483a69414f6ce65eecf2bb11fab7",
-      "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
-      "file": "app/views/admin/accounts/show.html.haml",
-      "line": 138,
-      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Account.find(params[:id]).remote_url, Account.find(params[:id]).remote_url)",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/show"
-      },
-      "user_input": "Account.find(params[:id]).remote_url",
-      "confidence": "Weak",
       "note": ""
     },
     {
@@ -351,32 +257,13 @@
       "note": ""
     },
     {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 4,
-      "fingerprint": "e04aafe1e06cf8317fb6ac0a7f35783e45aa1274272ee6eaf28d39adfdad489b",
-      "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
-      "file": "app/views/admin/accounts/show.html.haml",
-      "line": 170,
-      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Account.find(params[:id]).outbox_url, Account.find(params[:id]).outbox_url)",
-      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"show","line":18,"file":"app/controllers/admin/accounts_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/show"
-      },
-      "user_input": "Account.find(params[:id]).outbox_url",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
       "fingerprint": "e867661b2c9812bc8b75a5df12b28e2a53ab97015de0638b4e732fe442561b28",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/reports_controller.rb",
-      "line": 37,
+      "line": 36,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:account_id, :comment, :forward, :status_ids => ([]))",
       "render_path": null,
@@ -399,7 +286,7 @@
       "line": 23,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(partial => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { :locals => ({ Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :include_threads => true }) })",
-      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":30,"file":"app/controllers/statuses_controller.rb"}],
+      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":34,"file":"app/controllers/statuses_controller.rb","rendered":{"name":"stream_entries/show","file":"/home/eugr/Projects/mastodon/app/views/stream_entries/show.html.haml"}}],
       "location": {
         "type": "template",
         "template": "stream_entries/show"
@@ -409,6 +296,6 @@
       "note": ""
     }
   ],
-  "updated": "2018-10-20 23:24:45 +1300",
-  "brakeman_version": "4.2.1"
+  "updated": "2019-02-21 02:30:29 +0100",
+  "brakeman_version": "4.4.0"
 }

@@ -1,18 +1,9 @@
 ---
 ro:
   about:
-    features:
-      not_a_product_title: Ești o persoană, nu un produs
     hosted_on: Mastodon găzduit de %{domain}
-  accounts:
-    posts:
-      few: Toots
-      one: Toot
-      other: Toots
   auth:
-    agreement_html: Prin apăsarea butonului Înscriere de mai jos ești deacord cu <a href="%{rules_path}">regulile acestei instanțe</a> și <a href="%{terms_path}">termenii de utilizare al acestui serviciu</a>.
     change_password: Parolă
-    confirm_email: Confirmă email
     delete_account: Șterge contul
     delete_account_html: Dacă vrei să ștergi acest cont <a href="%{path}">poți începe aici</a>. Va trebui să confirmi această acțiune.
     didnt_get_confirmation: Nu ai primit instrucțiunile de confirmare?
@@ -22,13 +13,8 @@ ro:
     logout: Deconectare
     migrate_account: Transfer către un alt cont
     migrate_account_html: Dacă dorești să redirecționezi acest cont către un altul, poți <a href="%{path}">configura asta aici</a>.
-    or: sau
     or_log_in_with: Sau conectează-te cu
-    providers:
-      cas: CAS
-      saml: SAML
     register: Înregistrare
-    register_elsewhere: Înregistrează-te pe un alt server
     resend_confirmation: Retrimite instrucțiunile de confirmare
     reset_password: Resetare parolă
     security: Securitate
@@ -55,26 +41,19 @@ ro:
       less_than_x_seconds: Chiar acum
       over_x_years: "%{count}ani"
       x_days: "%{count}z"
-      x_minutes: "%{count}m"
       x_months: "%{count}l"
-      x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Bună încercare, hackere! Parolă incorectă
     confirm_password: Introdu parola curentă pentru a-ți verifica identitatea
-    description_html: Această acțiune este <strong>permanentă și ireversibilă,</strong> elimină conținutul și dezactivează contul tău. Acest username va rămâne permanent rezervat pentru a evita furtul de identitate.
     proceed: Șterge contul
     success_msg: Contul tău a fost șterg. Nu mai poate fi recuperat :D
-    warning_html: Doar ștergerea conținutului de pe acest server este garantată. Conținutul tău care a fost redistribuit în alte instațe e posibil să lase urme. Serverele deconecate sau care nu mai sunt abonate la actualizările contului tău nu își vor mai actualiza baza de date.
   directories:
     explanation: Descoperă oameni și companii în funcție de interesele lor
     explore_mastodon: Explorează %{title}
-    people:
-      few: "%{count} persoană"
-      one: "%{count} persoană"
-      other: "%{count} oameni"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Nu ai permisiunea să vizitezi această pagină.
     '404': Pagina pe care o cauți nu există.
+    '406': This page is not available in the requested format.
     '410': Pagina pe care o cauți nu mai există.
     '422':
       content: Verificarea securității a eșuat. Ai blocat cookiurile?
@@ -83,6 +62,7 @@ ro:
     '500':
       content: Ne pare rău, dar ceva a funcționat greșit. Încercați din nou!?
       title: Această pagină nu este corectă
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Pentru a utiliza o aplicație web Mastodon, te rog activează JavaScript. Alternativ, încearcă una din <a href="%{apps_path}">aplicațiile native</a> Mastodon pentru platforma ta.
   exports:
     archive_takeout:
@@ -93,8 +73,6 @@ ro:
       request: Cere arhiva ta
       size: Dimensiune
     blocks: Blocați
-    csv: CSV
-    follows: Tu urmărești
     mutes: Opriți
     storage: Depozitare media
   filters:
@@ -113,9 +91,11 @@ ro:
       title: Filtre
     new:
       title: Adaugă un filtru nou
-  followers:
-    domain: Domeniu
-    explanation_html: Dacă vrei să fi sigur de confidențialitatea statusurilor tale, ar trebui să fi conștient de cine te urmărește. <strong>Statusurile tale private sunt livrate către toate instanțele unde ai urmăritori</strong>. Este recomandabil să verifici și să ștergi urmăritorii în care nu ai încredere că îți vor respecta intimitatea.
-    followers_count: Numărul de urmăritori
-    lock_link: Privează contul tău
-    purge: Elimină de la urmăritori
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day

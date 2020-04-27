@@ -126,8 +126,8 @@ RSpec.describe Account, type: :model do
       end
 
       it 'sets default avatar, header, avatar_remote_url, and header_remote_url' do
-        expect(account.avatar_remote_url).to eq ''
-        expect(account.header_remote_url).to eq ''
+        expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
+        expect(account.header_remote_url).to eq expectation.header_remote_url
         expect(account.avatar_file_name).to  eq nil
         expect(account.header_file_name).to  eq nil
       end
@@ -212,13 +212,6 @@ RSpec.describe Account, type: :model do
     it 'returns an RSA key pair' do
       account = Fabricate(:account)
       expect(account.keypair).to be_instance_of OpenSSL::PKey::RSA
-    end
-  end
-
-  describe '#subscription' do
-    it 'returns an OStatus subscription' do
-      account = Fabricate(:account)
-      expect(account.subscription('')).to be_instance_of OStatus2::Subscription
     end
   end
 
@@ -450,7 +443,7 @@ RSpec.describe Account, type: :model do
   describe '.domains' do
     it 'returns domains' do
       Fabricate(:account, domain: 'domain')
-      expect(Account.domains).to match_array(['domain'])
+      expect(Account.remote.domains).to match_array(['domain'])
     end
   end
 
@@ -558,6 +551,11 @@ RSpec.describe Account, type: :model do
       expect(account).to model_have_error_on_field(:username)
     end
 
+    it 'squishes the username before validation' do
+      account = Fabricate(:account, domain: nil, username: " \u3000bob \t \u00a0 \n ")
+      expect(account.username).to eq 'bob'
+    end
+
     context 'when is local' do
       it 'is invalid if the username is not unique in case-insensitive comparison among local accounts' do
         account_1 = Fabricate(:account, username: 'the_doctor')
@@ -578,44 +576,61 @@ RSpec.describe Account, type: :model do
         expect(account.valid?).to be true
       end
 
+      it 'is valid if we are creating an instance actor account with a period' do
+        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account.valid?).to be true
+      end
+
+      it 'is valid if we are creating a possibly-conflicting instance actor account' do
+        account_1 = Fabricate(:account, username: 'examplecom')
+        account_2 = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account_2.valid?).to be true
+      end
+
       it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
         account = Fabricate.build(:account, username: 'the-doctor')
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
+      it 'is invalid if the username contains a period' do
+        account = Fabricate.build(:account, username: 'the.doctor')
+        account.valid?
+        expect(account).to model_have_error_on_field(:username)
+      end
+
       it 'is invalid if the username is longer then 30 characters' do
-        account = Fabricate.build(:account, username: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, username: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
       it 'is invalid if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, display_name: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, display_name: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).to model_have_error_on_field(:display_name)
       end
 
-      it 'is invalid if the note is longer than 160 characters' do
-        account = Fabricate.build(:account, note: Faker::Lorem.characters(161))
+      it 'is invalid if the note is longer than 500 characters' do
+        account = Fabricate.build(:account, note: Faker::Lorem.characters(number: 501))
         account.valid?
         expect(account).to model_have_error_on_field(:note)
       end
     end
 
     context 'when is remote' do
-      it 'is invalid if the username is not unique in case-sensitive comparison among accounts in the same normalized domain' do
+      it 'is invalid if the username is same among accounts in the same normalized domain' do
         Fabricate(:account, domain: 'にゃん', username: 'username')
         account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'username')
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is valid even if the username is unique only in case-sensitive comparison among accounts in the same normalized domain' do
+      it 'is invalid if the username is not unique in case-insensitive comparison among accounts in the same normalized domain' do
         Fabricate(:account, domain: 'にゃん', username: 'username')
         account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'Username')
         account.valid?
-        expect(account).not_to model_have_error_on_field(:username)
+        expect(account).to model_have_error_on_field(:username)
       end
 
       it 'is valid even if the username contains hyphens' do
@@ -631,19 +646,19 @@ RSpec.describe Account, type: :model do
       end
 
       it 'is valid even if the username is longer then 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).not_to model_have_error_on_field(:username)
       end
 
       it 'is valid even if the display name is longer than 30 characters' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(31))
+        account = Fabricate.build(:account, domain: 'domain', display_name: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).not_to model_have_error_on_field(:display_name)
       end
 
-      it 'is valid even if the note is longer than 160 characters' do
-        account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(161))
+      it 'is valid even if the note is longer than 500 characters' do
+        account = Fabricate.build(:account, domain: 'domain', note: Faker::Lorem.characters(number: 501))
         account.valid?
         expect(account).not_to model_have_error_on_field(:note)
       end
@@ -660,7 +675,7 @@ RSpec.describe Account, type: :model do
           { username: 'b', domain: 'b' },
         ].map(&method(:Fabricate).curry(2).call(:account))
 
-        expect(Account.alphabetic).to eq matches
+        expect(Account.where('id > 0').alphabetic).to eq matches
       end
     end
 
@@ -679,6 +694,23 @@ RSpec.describe Account, type: :model do
         Fabricate(:account, username: 'prefix_and_pattern')
 
         expect(Account.matches_username('pattern')).to eq [match]
+      end
+    end
+
+    describe 'by_domain_and_subdomains' do
+      it 'returns exact domain matches' do
+        account = Fabricate(:account, domain: 'example.com')
+        expect(Account.by_domain_and_subdomains('example.com')).to eq [account]
+      end
+
+      it 'returns subdomains' do
+        account = Fabricate(:account, domain: 'foo.example.com')
+        expect(Account.by_domain_and_subdomains('example.com')).to eq [account]
+      end
+
+      it 'does not return partially matching domains' do
+        account = Fabricate(:account, domain: 'grexample.com')
+        expect(Account.by_domain_and_subdomains('example.com')).to_not eq [account]
       end
     end
 
@@ -710,7 +742,7 @@ RSpec.describe Account, type: :model do
         2.times { Fabricate(:account, domain: 'example.com') }
         Fabricate(:account, domain: 'example2.com')
 
-        results = Account.by_domain_accounts
+        results = Account.where('id > 0').by_domain_accounts
         expect(results.length).to eq 2
         expect(results.first.domain).to eq 'example.com'
         expect(results.first.accounts_count).to eq 2
@@ -723,7 +755,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who do not have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.local).to match_array([account_1])
+        expect(Account.where('id > 0').local).to match_array([account_1])
       end
     end
 
@@ -734,14 +766,14 @@ RSpec.describe Account, type: :model do
           matches[index] = Fabricate(:account, domain: matches[index])
         end
 
-        expect(Account.partitioned).to match_array(matches)
+        expect(Account.where('id > 0').partitioned).to match_array(matches)
       end
     end
 
     describe 'recent' do
       it 'returns a relation of accounts sorted by recent creation' do
         matches = 2.times.map { Fabricate(:account) }
-        expect(Account.recent).to match_array(matches)
+        expect(Account.where('id > 0').recent).to match_array(matches)
       end
     end
 
@@ -765,7 +797,7 @@ RSpec.describe Account, type: :model do
   context 'when is local' do
     # Test disabled because test environment omits autogenerating keys for performance
     xit 'generates keys' do
-      account = Account.create!(domain: nil, username: Faker::Internet.user_name(nil, ['_']))
+      account = Account.create!(domain: nil, username: Faker::Internet.user_name(separators: ['_']))
       expect(account.keypair.private?).to eq true
     end
   end
@@ -773,15 +805,16 @@ RSpec.describe Account, type: :model do
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = Account.create!(domain: 'remote', username: Faker::Internet.user_name(nil, ['_']), public_key: key.to_pem)
+      account = Account.create!(domain: 'remote', username: Faker::Internet.user_name(separators: ['_']), public_key: key.to_pem)
       expect(account.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = Account.create!(domain: 'にゃん', username: Faker::Internet.user_name(nil, ['_']))
+      account = Account.create!(domain: 'にゃん', username: Faker::Internet.user_name(separators: ['_']))
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
 
   include_examples 'AccountAvatar', :account
+  include_examples 'AccountHeader', :account
 end

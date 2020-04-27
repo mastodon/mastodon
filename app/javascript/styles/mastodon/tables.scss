@@ -82,6 +82,10 @@
       }
     }
   }
+
+  &--invites tbody td {
+    vertical-align: middle;
+  }
 }
 
 .table-wrapper {
@@ -136,6 +140,15 @@ a.table-action-link {
       input {
         margin-top: 8px;
       }
+
+      &--aligned {
+        display: flex;
+        align-items: center;
+
+        input {
+          margin-top: 0;
+        }
+      }
     }
 
     &__actions,
@@ -159,10 +172,28 @@ a.table-action-link {
     }
   }
 
+  &__form {
+    padding: 16px;
+    border: 1px solid darken($ui-base-color, 8%);
+    border-top: 0;
+    background: $ui-base-color;
+
+    .fields-row {
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
   &__row {
     border: 1px solid darken($ui-base-color, 8%);
     border-top: 0;
     background: darken($ui-base-color, 4%);
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      .optional &:first-child {
+        border-top: 1px solid darken($ui-base-color, 8%);
+      }
+    }
 
     &:hover {
       background: darken($ui-base-color, 2%);
@@ -179,6 +210,56 @@ a.table-action-link {
     &__content {
       padding-top: 12px;
       padding-bottom: 16px;
+
+      &--unpadded {
+        padding: 0;
+      }
+
+      &--with-image {
+        display: flex;
+        align-items: center;
+      }
+
+      &__image {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+
+        .emojione {
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      &__text {
+        flex: 1 1 auto;
+      }
+
+      &__extra {
+        flex: 0 0 auto;
+        text-align: right;
+        color: $darker-text-color;
+        font-weight: 500;
+      }
+    }
+
+    .directory__tag {
+      margin: 0;
+      width: 100%;
+
+      a {
+        background: transparent;
+        border-radius: 0;
+      }
+    }
+  }
+
+  &.optional .batch-table__toolbar,
+  &.optional .batch-table__row__select {
+    @media screen and (max-width: $no-gap-breakpoint) {
+      display: none;
     }
   }
 
@@ -191,6 +272,22 @@ a.table-action-link {
 
     strong {
       font-weight: 700;
+    }
+  }
+
+  .nothing-here {
+    border: 1px solid darken($ui-base-color, 8%);
+    border-top: 0;
+    box-shadow: none;
+
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-top: 1px solid darken($ui-base-color, 8%);
+    }
+  }
+
+  @media screen and (max-width: 870px) {
+    .accounts-table tbody td.optional {
+      display: none;
     }
   }
 }

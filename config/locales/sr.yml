@@ -5,41 +5,22 @@ sr:
     about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
     about_this: О инстанци
     administered_by: 'Администрирано од стране:'
-    api: API
     apps: Мобилне апликације
-    closed_registrations: Регистрације су тренутно затворене на овој инстанци. Међутим! Можете наћи другу инстанцу на којој ћете направити налог и одатле добити приступ на истој овој мрежи.
     contact: Контакт
     contact_missing: Није постављено
-    contact_unavailable: N/A
     documentation: Документација
-    extended_description_html: |
-      <h3>Добро место за правила</h3>
-      <p>Проширени опис који још није постављен.</p>
-    features:
-      humane_approach_body: Учећи од грешака са осталих мрежа, а да би се борио против злоупотреба на друштвеним мрежама, Мастодонт покушава да прави што етичкије одлуке приликом развоја.
-      humane_approach_title: Хуманији приступ
-      not_a_product_body: Мастодонт није комерцијална мрежа. Нема реклама, нема скупљања приватних података, нема заштићених делова. Нема централног ауторитета.
-      not_a_product_title: Ви сте особа, не производ
-      real_conversation_body: Са 500 карактера на располагању и подршком за грануларнији садржај и упозорења на осетљивији садржај, можете се изразити како год желите.
-      real_conversation_title: Прављен за прави разговор
-      within_reach_body: Више апликација за iOS, Андроид, као и друге платформе захваљујући екосистему добрих API-ја ће Вам омогућити да останете у контакту са пријатељима свуда.
-      within_reach_title: Увек у контакту
-    generic_description: "%{domain} је сервер на мрежи"
     hosted_on: Мастодонт хостован на %{domain}
     learn_more: Сазнајте више
-    other_instances: Листа инстанци
     privacy_policy: Полиса приватности
     source_code: Изворни код
     status_count_after:
       few: статуси
-      many: статуси
       one: статус
       other: статуса
     status_count_before: Који су написали
     terms: Услови коришћења
     user_count_after:
       few: корисници
-      many: корисници
       one: корисник
       other: корисника
     user_count_before: Дом за
@@ -49,7 +30,6 @@ sr:
     follow: Запрати
     followers:
       few: Пратиоци
-      many: Пратиоци
       one: Пратиоц
       other: Пратиоци
     following: Пратим
@@ -66,7 +46,6 @@ sr:
       following: Морате пратити ову особу ако хоћете да потврдите
     posts:
       few: Трубе
-      many: Трубе
       one: Труба
       other: Трубе
     posts_tab_heading: Трубе
@@ -112,14 +91,11 @@ sr:
       email_status: Статус е-поште
       enable: Омогући
       enabled: Укључено
-      feed_url: Адреса довода
       followers: Пратиоци
-      followers_url: Адреса пратиоца
       follows: Праћени
       header: Заглавље
       inbox_url: Адреса сандучета
       invited_by: Позван од стране
-      ip: IP
       joined: Придружио се
       location:
         all: Све
@@ -140,9 +116,7 @@ sr:
       most_recent_ip: Најскорија IP адреса
       no_limits_imposed: Нема ограничења
       not_subscribed: Није претплаћен
-      outbox_url: Одлазно сандуче
       perform_full_suspension: Искључи
-      profile_url: Адреса профила
       promote: Унапреди
       protocol: Протокол
       public: Јавно
@@ -163,7 +137,6 @@ sr:
         moderator: Модератор
         staff: Особље
         user: Корисник
-      salmon_url: Salmon адреса
       search: Претрага
       shared_inbox_url: Адреса дељеног сандучета
       show:
@@ -289,7 +262,6 @@ sr:
       show:
         affected_accounts:
           few: Утиче на %{count} налога у бази
-          many: Утиче на %{count} налога у бази
           one: Један налог у бази података је под утицајем
           other: Утиче на %{count} налога у бази података
         retroactive:
@@ -308,14 +280,10 @@ sr:
         create: Додај домен
         title: Нова ставка е-поштe у црној листи
       title: Црна листа E-поште
-    followers:
-      back_to_account: Назад на налог
-      title: "%{acct} Пратиоци"
     instances:
       delivery_available: Достава је доступна
       known_accounts:
         few: "%{count} знаних налога"
-        many: "%{count} знаних налога"
         one: "%{count} знан налог"
         other: "%{count} знаних налога"
       moderation:
@@ -354,9 +322,6 @@ sr:
       created_msg: Белешка пријаве успешно направљена!
       destroyed_msg: Белешка пријаве успешно избрисана!
     reports:
-      account:
-        note: белешка
-        report: извештај
       action_taken_by: Акцију извео
       are_you_sure: Да ли сте сигурни?
       assign_to_self: Додели мени
@@ -421,9 +386,6 @@ sr:
         min_invite_role:
           disabled: Нико
           title: Само преко позивнице
-        open:
-          desc_html: Дозволи свакоме да креира налог
-          title: Отворена регистрација
       show_known_fediverse_at_about_page:
         desc_html: Када се упали, показаће трубе из свих знаних федиверса на преглед. У супротном ће само показати локалне трубе.
         title: Покажи познате здружене инстанце у прегледнику временске линије
@@ -463,26 +425,12 @@ sr:
       no_status_selected: Ниједан статус није промењен јер ниједан није изабран
       title: Статуси налога
       with_media: Са мултимедијом
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Потврђено
-      expires_in: Истиче за
-      last_delivery: Последња достава
-      title: WebSub
-      topic: Topic
     tags:
-      accounts: Налози
-      hidden: Скривено
-      hide: Сакриј од фасцикле
-      name: Тараба
       title: Тараба
-      unhide: Прикажи у фасцикли
-      visible: Видљиво
     title: Администрација
     warning_presets:
       add_new: Додај нови
       delete: Избриши
-      edit: Уреди
       edit_preset: Уреди пресет упозорења
       title: Управљај пресетима упозорења
   admin_mailer:
@@ -492,7 +440,6 @@ sr:
       subject: Нова пријава за %{instance} (#%{id})
   application_mailer:
     notification_preferences: Промени преференце Е-поште
-    salutation: "%{name},"
     settings: 'Промени подешавања е-поште: %{link}'
     view: 'Погледај:'
     view_profile: Погледај профил
@@ -506,9 +453,7 @@ sr:
     warning: Опрезно са овим подацима. Никад је не делите ни са ким!
     your_token: Ваш приступни токен
   auth:
-    agreement_html: Приступањем инстанци се слажете са <a href="%{rules_path}">правилима инстанце</a> и <a href="%{terms_path}">условима коришћења</a>.
     change_password: Лозинка
-    confirm_email: Потврдите адресу е-поште
     delete_account: Обриши налог
     delete_account_html: Ако желите да обришете Ваш налог, можете <a href="%{path}">наставити овде</a>. Бићете упитани да потврдите.
     didnt_get_confirmation: Нисте добили поруку са упутствима за потврду налога?
@@ -518,13 +463,11 @@ sr:
     logout: Одјава
     migrate_account: Помери у други налог
     migrate_account_html: Ако желите да преусмерите овај налог на неки други, можете то <a href="%{path}">подесити овде</a>.
-    or: или
     or_log_in_with: Или се пријавите са
     providers:
       cas: CAS-ом
       saml: SAML-ом
     register: Региструј се
-    register_elsewhere: Региструјте се на другом серверу
     resend_confirmation: Пошаљи поруку са упутствима о потврди налога поново
     reset_password: Ресетуј лозинку
     security: Безбедност
@@ -542,39 +485,27 @@ sr:
     title: Запрати %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}месец"
       about_x_years: "%{count}год"
       almost_x_years: "%{count}год"
       half_a_minute: Управо сад
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Управо сад
       over_x_years: "%{count}год"
       x_days: "%{count}д"
-      x_minutes: "%{count}m"
       x_months: "%{count}месец"
-      x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Добар покушај, хакери! Неисправна лозинка
     confirm_password: Унесите тренутну лозинку да бисмо проверили Ваш идентитет
-    description_html: Ово ће <strong>трајно, бесповратно</strong> уклонити садржај са Вашеф налога и деактивирати га. Ваше корисничко име ће остати резервисано да се спречи да се неко не представља као Ви сутра.
     proceed: Обриши налог
     success_msg: Ваш налог је успешно обрисан
-    warning_html: Гарантовано је само брисање садржаја са ове инстанце. Садржај који је дељен даље ће вероватно да остави неке трагове. Недоступни и угашени сервери, као и сервери који су одјављени од примања статуса од Вас, неће ажурирати своје базе.
-    warning_title: Доступност расејаног садржаја
   directories:
     directory: Профил фасцикле
-    enabled: Ви сте тренутно видљиви у фасцикли.
     explanation: Откријте кориснике на основу њихових интереса
     explore_mastodon: Истражи %{title}
-    people:
-      few: "%{count} људе"
-      many: "%{count} људе"
-      one: "%{count} особа/е"
-      other: "%{count} људи"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Немате дозвола да видите ову страну.
     '404': Страна коју сте тражили не постоји.
+    '406': This page is not available in the requested format.
     '410': Страна коју сте тражили више не постоји.
     '422':
       content: Безбедоносна провера није успела. Да не блокирате колачиће?
@@ -583,6 +514,7 @@ sr:
     '500':
       content: Извињавамо се, нешто је пошло по злу са ове стране.
       title: Страна није исправна
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Да бисте користили Мастодонт веб апликацију, омогућите JavaScript. У супротном, пробајте неку од <a href="%{apps_path}">оригиналних апликација</a> за Мастодонт за Вашу платформу.
   exports:
     archive_takeout:
@@ -593,9 +525,7 @@ sr:
       request: Затражите Вашу архиву
       size: Величина
     blocks: Блокирали сте
-    csv: CSV
     domain_blocks: Блокови домена
-    follows: Пратите
     lists: Листе
     mutes: Ућуткали сте
     storage: Мултимедијално складиште
@@ -615,20 +545,6 @@ sr:
       title: Филтери
     new:
       title: Додај нови филтер
-  followers:
-    domain: Домен
-    explanation_html: Ако желите да осигурате приватност Ваших статуса, морате бити свесни ко Вас прати. <strong>Ваши приватни статуси се шаљу на све инстанце на којима имате пратиоце</strong>. Можда желите да их прегледате и да уклоните оне пратиоце на оним инстанцама за које немате поверења да ће поштовати Вашу приватност.
-    followers_count: Број пратилаца
-    lock_link: Закључајте налог
-    purge: Уклони из пратиоца
-    success:
-      few: У процесу блокирања пратиоца са %{count} домена...
-      many: У процесу блокирања пратиоца са %{count} домена...
-      one: У процесу блокирања пратиоца са једног домена...
-      other: У процесу блокирања пратиоца са %{count} домена...
-    true_privacy_html: Запамтите да се <strong>права приватност може постићи само шифровањем са краја на крај</strong>.
-    unlocked_warning_html: Свако може да Вас запрати да одмах види Ваше приватне статусе. %{lock_link} да бисте прегледали и одбацили пратиоце.
-    unlocked_warning_title: Ваш налог није закључан
   footer:
     developers: Програмери
     more: Више…
@@ -639,7 +555,6 @@ sr:
     save_changes: Сними измене
     validation_errors:
       few: Нешто није баш како треба! Прегледајте %{count} грешке испод
-      many: Нешто није баш како треба! Прегледајте %{count} грешака испод
       one: Нешто није баш како треба! Прегледајте грешке испод
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
   imports:
@@ -650,7 +565,6 @@ sr:
       following: Листа пратилаца
       muting: Листа ућутканих
     upload: Отпреми
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Деактивирај
     expired: Истекло
@@ -666,7 +580,6 @@ sr:
     invited_by: 'Позвао Вас је:'
     max_uses:
       few: "%{count} коришћења"
-      many: "%{count} коришћења"
       one: 1 коришћење
       other: "%{count} коришћења"
     max_uses_prompt: Без ограничења
@@ -684,9 +597,6 @@ sr:
       too_many: Не може се прикачити више од 4 фајла
   migrations:
     acct: корисник@домен новог налога
-    currently_redirecting: 'Профил Вам је подешен да преусмерава на :'
-    proceed: Сачувај
-    updated_msg: Пребацивање поставки Вашег налога успешно измењено!
   moderation:
     title: Модерација
   notification_mailer:
@@ -696,12 +606,10 @@ sr:
       mention: "%{name} Вас је поменуо у:"
       new_followers_summary:
         few: Добили сте %{count} нова пратиоца! Сјајно!
-        many: Добили сте %{count} нових пратиоца! Сјајно!
         one: Добили сте једног новог пратиоца! Јеее!
         other: Добили сте %{count} нових пратиоца! Сјајно!
       subject:
         few: "%{count} нова обавештења од последње посете \U0001F418"
-        many: "%{count} нових обавештења од последње посете \U0001F418"
         one: "1 ново обавештење од последње посете \U0001F418"
         other: "%{count} нових обавештења од последње посете \U0001F418"
       title: Док нисте били ту...
@@ -727,28 +635,13 @@ sr:
       body: "%{name} Вам је подржао/ла статус:"
       subject: "%{name} је подржао/ла Ваш статус"
       title: Нова подршка
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
-          unit: ''
   pagination:
     newer: Новије
     next: Следеће
     older: Старије
     prev: Претходни
-    truncate: "&hellip;"
   preferences:
-    languages: Језици
     other: Остало
-    publishing: Објављивање
-    web: Веб
   remote_follow:
     acct: Унесите Ваш корисник@домен са кога желите да пратите
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
@@ -763,10 +656,6 @@ sr:
     reply:
       proceed: Наставите да бисте одговорили
       prompt: 'Желите да одговорите на ову трубу:'
-  remote_unfollow:
-    error: Грешка
-    title: Наслов
-    unfollowed: Отпраћени
   scheduled_statuses:
     over_daily_limit: Прекорачили сте границу од %{limit} планираних труба за тај дан
     over_total_limit: Прекорачили сте границу од %{limit} планираних труба
@@ -795,7 +684,6 @@ sr:
     current_session: Тренутна сесија
     description: "%{browser} са %{platform}"
     explanation: Ово су веб претраживачи који су тренутно пријављени на Ваш Мастодон налог.
-    ip: IP
     platforms:
       adobe_air: Адоб Ер-а
       android: Андроида
@@ -819,32 +707,26 @@ sr:
     development: Развој
     edit_profile: Измена профила
     export: Извоз података
-    followers: Ауторизовани пратиоци
     import: Увоз
     migrate: Пребацивање налога
     notifications: Обавештења
     preferences: Подешавања
-    settings: Поставке
     two_factor_authentication: Двофакторска идентификација
-    your_apps: Ваше апликације
   statuses:
     attached:
       description: 'У прилогу: %{attached}'
       image:
         few: "%{count} слика"
-        many: "%{count} слика"
         one: "%{count} слику"
         other: "%{count} слика"
       video:
         few: "%{count} видео записа"
-        many: "%{count} видео записа"
         one: "%{count} видео запис"
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
     content_warning: 'Упозорење на садржај: %{warning}'
     disallowed_hashtags:
       few: 'садржи забрањене хештегове: %{tags}'
-      many: 'садржи забрањене хештегове: %{tags}'
       one: 'садржи забрањени хештег: %{tags}'
       other: 'садржи забрањене хештегове: %{tags}'
     language_detection: Аутоматскo откривање језика
@@ -857,7 +739,6 @@ sr:
       reblog: Подршка не може да се прикачи
     show_more: Прикажи још
     sign_in_to_participate: Пријавите се да учествујете у разговору
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Само пратиоци
       private_long: Прикажи само пратиоцима
@@ -875,10 +756,6 @@ sr:
     contrast: Велики контраст
     default: Мастодон
     mastodon-light: Мастодон (светло)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Да бисте потврдили, унесите код генерисан од стране ваше апликације за потврду идентитета
     description_html: Ако укључите <strong>двофакторску идентификацију</strong>, мораћете да имате телефон са собом да бисте могли да се пријавите. Телефон ће онда генерисати токене за Вашу пријаву.

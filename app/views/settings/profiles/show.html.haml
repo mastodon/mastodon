@@ -1,22 +1,25 @@
 - content_for :page_title do
   = t('settings.edit_profile')
 
-= simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
+- content_for :heading_actions do
+  = button_tag t('generic.save_changes'), class: 'button', form: 'edit_profile'
+
+= simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
   = render 'shared/error_messages', object: @account
 
   .fields-row
     .fields-row__column.fields-group.fields-row__column-6
       = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30 }, hint: false
-      = f.input :note, wrapper: :with_label, input_html: { maxlength: 160 }, hint: false
+      = f.input :note, wrapper: :with_label, input_html: { maxlength: 500 }, hint: false
 
   .fields-row
     .fields-row__column.fields-row__column-6
       = render 'application/card', account: @account
 
     .fields-row__column.fields-group.fields-row__column-6
-      = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+      = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: picture_hint(t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT)), @account.header)
 
-      = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
+      = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: picture_hint(t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT)), @account.avatar)
 
   %hr.spacer/
 
@@ -28,7 +31,7 @@
 
   - if Setting.profile_directory
     .fields-group
-      = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable_html', min_followers: Account::MIN_FOLLOWERS_DISCOVERY, path: explore_path)
+      = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
 
   %hr.spacer/
 
@@ -59,6 +62,11 @@
 
 %h6= t('auth.migrate_account')
 %p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)
+
+%hr.spacer/
+
+%h6= t 'migrations.incoming_migrations'
+%p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)
 
 - if open_deletion?
   %hr.spacer/

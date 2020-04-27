@@ -22,11 +22,6 @@ describe ApplicationController, type: :controller do
   end
 
   shared_examples 'respond_with_error' do |code|
-    it "returns http #{code} for any" do
-      subject
-      expect(response).to have_http_status(code)
-    end
-
     it "returns http #{code} for http" do
       subject
       expect(response).to have_http_status(code)
@@ -110,6 +105,7 @@ describe ApplicationController, type: :controller do
       sign_in current_user
 
       allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
+      allow(Setting).to receive(:[]).with('noindex').and_return false
 
       expect(controller.view_context.current_theme).to eq 'contrast'
     end
@@ -187,10 +183,10 @@ describe ApplicationController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it 'returns http 403 if user who signed in is suspended' do
+    it 'redirects to account status page' do
       sign_in(Fabricate(:user, account: Fabricate(:account, suspended: true)))
       get 'success'
-      expect(response).to have_http_status(403)
+      expect(response).to redirect_to(edit_user_registration_path)
     end
   end
 
@@ -359,10 +355,6 @@ describe ApplicationController, type: :controller do
 
     context 'Status' do
       include_examples 'cacheable', :status, Status
-    end
-
-    context 'StreamEntry' do
-      include_examples 'receives :with_includes', :stream_entry, StreamEntry
     end
   end
 end

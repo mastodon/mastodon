@@ -17,7 +17,7 @@
                                 %tbody
                                   %tr
                                     %td
-                                      = image_tag full_pack_url('icon_email.png'), alt: ''
+                                      = image_tag full_pack_url('media/images/mailer/icon_email.png'), alt: ''
 
                               %h1= t 'devise.mailer.confirmation_instructions.title'
 
@@ -36,7 +36,7 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center
-                              %p= t 'devise.mailer.confirmation_instructions.explanation', host: site_hostname
+                              %p= t @resource.approved? ? 'devise.mailer.confirmation_instructions.explanation' : 'devise.mailer.confirmation_instructions.explanation_when_pending', host: site_hostname
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody

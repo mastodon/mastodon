@@ -135,7 +135,7 @@ namespace :mastodon do
       prompt.say "\n"
 
       if prompt.yes?('Do you want to store uploaded files on the cloud?', default: false)
-        case prompt.select('Provider', ['Amazon S3', 'Wasabi', 'Minio'])
+        case prompt.select('Provider', ['Amazon S3', 'Wasabi', 'Minio', 'Google Cloud Storage'])
         when 'Amazon S3'
           env['S3_ENABLED']  = 'true'
           env['S3_PROTOCOL'] = 'https'
@@ -214,6 +214,34 @@ namespace :mastodon do
           end
 
           env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('Minio secret key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+        when 'Google Cloud Storage'
+          env['S3_ENABLED']             = 'true'
+          env['S3_PROTOCOL']            = 'https'
+          env['S3_HOSTNAME']            = 'storage.googleapis.com'
+          env['S3_ENDPOINT']            = 'https://storage.googleapis.com'
+          env['S3_MULTIPART_THRESHOLD'] = 50.megabytes
+
+          env['S3_BUCKET'] = prompt.ask('GCS bucket name:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+
+          env['S3_REGION'] = prompt.ask('GCS region:') do |q|
+            q.required true
+            q.default 'us-west1'
+            q.modify :strip
+          end
+
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('GCS access key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('GCS secret key:') do |q|
             q.required true
             q.modify :strip
           end
@@ -308,7 +336,20 @@ namespace :mastodon do
       if prompt.yes?('Save configuration?')
         cmd = TTY::Command.new(printer: :quiet)
 
-        File.write(Rails.root.join('.env.production'), "# Generated with mastodon:setup on #{Time.now.utc}\n\n" + env.each_pair.map { |key, value| "#{key}=#{value}" }.join("\n") + "\n")
+        env_contents = env.each_pair.map do |key, value|
+          if value.is_a?(String) && value =~ /[\s\#\\"]/
+            if value =~ /[']/
+              value = value.to_s.gsub(/[\\"\$]/) { |x| "\\#{x}" }
+              "#{key}=\"#{value}\""
+            else
+              "#{key}='#{value}'"
+            end
+          else
+            "#{key}=#{value}"
+          end
+        end.join("\n")
+
+        File.write(Rails.root.join('.env.production'), "# Generated with mastodon:setup on #{Time.now.utc}\n\n" + env_contents + "\n")
 
         if using_docker
           prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'

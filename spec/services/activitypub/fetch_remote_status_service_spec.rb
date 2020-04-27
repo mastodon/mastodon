@@ -71,6 +71,59 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       end
     end
 
+    context 'with Audio object' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://#{valid_domain}/@foo/1234",
+          type: 'Audio',
+          name: 'Nyan Cat 10 hours remix',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+          url: [
+            {
+              type: 'Link',
+              mimeType: 'application/x-bittorrent',
+              href: "https://#{valid_domain}/12345.torrent",
+            },
+
+            {
+              type: 'Link',
+              mimeType: 'text/html',
+              href: "https://#{valid_domain}/watch?v=12345",
+            },
+          ],
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq "https://#{valid_domain}/watch?v=12345"
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix https://#{valid_domain}/watch?v=12345"
+      end
+    end
+
+    context 'with Event object' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://#{valid_domain}/@foo/1234",
+          type: 'Event',
+          name: "Let's change the world",
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender)
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq "https://#{valid_domain}/@foo/1234"
+        expect(strip_tags(status.text)).to eq "Let's change the world https://#{valid_domain}/@foo/1234"
+      end
+    end
+
     context 'with wrong id' do
       let(:note) do
         {

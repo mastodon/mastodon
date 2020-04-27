@@ -14,6 +14,10 @@
     = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
+    = render_initial_state
     = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
   %body.embed
     = yield
+
+    %div{ style: 'display: none'}
+      = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')

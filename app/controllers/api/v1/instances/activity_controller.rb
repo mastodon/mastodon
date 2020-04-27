@@ -3,10 +3,12 @@
 class Api::V1::Instances::ActivityController < Api::BaseController
   before_action :require_enabled_api!
 
-  respond_to :json
+  skip_before_action :set_cache_headers
+  skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
 
   def show
-    render_cached_json('api:v1:instances:activity:show', expires_in: 1.day) { activity }
+    expires_in 1.day, public: true
+    render_with_cache json: :activity, expires_in: 1.day
   end
 
   private
@@ -31,6 +33,6 @@ class Api::V1::Instances::ActivityController < Api::BaseController
   end
 
   def require_enabled_api!
-    head 404 unless Setting.activity_api_enabled
+    head 404 unless Setting.activity_api_enabled && !whitelist_mode?
   end
 end
