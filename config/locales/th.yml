@@ -465,6 +465,7 @@ th:
       mascot:
         title: ภาพมาสคอต
       peers_api_enabled:
+        desc_html: ชื่อโดเมนที่เซิร์ฟเวอร์นี้ได้พบในเฟดิเวิร์ส
         title: เผยแพร่รายการเซิร์ฟเวอร์ที่ค้นพบ
       profile_directory:
         desc_html: อนุญาตให้ผู้ใช้สามารถค้นพบได้
@@ -508,6 +509,7 @@ th:
         title: แฮชแท็กที่กำลังนิยม
     site_uploads:
       delete: ลบไฟล์ที่อัปโหลด
+      destroyed_msg: ลบการอัปโหลดไซต์สำเร็จ!
     statuses:
       back_to_account: กลับไปที่หน้าบัญชี
       batch:
@@ -639,6 +641,8 @@ th:
       email_change_html: คุณสามารถ <a href="%{path}">เปลี่ยนที่อยู่อีเมลของคุณ</a> โดยไม่ต้องลบบัญชีของคุณ
       email_reconfirmation_html: หากคุณไม่ได้รับอีเมลยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
       more_details_html: สำหรับรายละเอียดเพิ่มเติม ดู <a href="%{terms_path}">นโยบายความเป็นส่วนตัว</a>
+      username_available: ชื่อผู้ใช้ของคุณจะพร้อมใช้งานอีกครั้ง
+      username_unavailable: ชื่อผู้ใช้ของคุณจะยังคงไม่พร้อมใช้งาน
   directories:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
@@ -650,7 +654,7 @@ th:
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
     '406': This page is not available in the requested format.
-    '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
+    '410': ไม่มีหน้าที่คุณกำลังมองหาอยู่ที่นี่อีกต่อไป
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว คุณกำลังปิดกั้นคุกกี้หรือไม่?
       title: การตรวจสอบความปลอดภัยล้มเหลว
@@ -659,6 +663,7 @@ th:
       title: หน้านี้ไม่ถูกต้อง
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
+    not_found: ไม่พบผู้ใช้ในเซิร์ฟเวอร์ที่มีชื่อผู้ใช้นั้น
     not_found_multiple: ไม่พบ %{usernames}
   exports:
     archive_takeout:
@@ -713,7 +718,9 @@ th:
   imports:
     modes:
       merge: ผสาน
+      merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
       overwrite: เขียนทับ
+      overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
     types:
       blocking: รายการปิดกั้น
       domain_blocking: รายการปิดกั้นโดเมน
@@ -761,6 +768,10 @@ th:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
       mention: "%{name} ได้กล่าวถึงคุณใน:"
+      new_followers_summary:
+        other: นอกจากนี้คุณยังได้รับ %{count} ผู้ติดตามใหม่ขณะที่ไม่อยู่! มหัศจรรย์!
+      subject:
+        other: "%{count} การแจ้งเตือนใหม่นับตั้งแต่การเยี่ยมชมล่าสุดของคุณ \U0001F418"
       title: เมื่อคุณไม่อยู่...
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
@@ -798,6 +809,7 @@ th:
     errors:
       already_voted: คุณได้ลงคะแนนในการสำรวจความคิดเห็นนี้อยู่แล้ว
       duplicate_options: มีรายการที่ซ้ำกัน
+      invalid_choice: ไม่มีตัวเลือกการลงคะแนนที่เลือกอยู่
       too_few_options: ต้องมีมากกว่าหนึ่งรายการ
       too_many_options: ไม่สามารถมีมากกว่า %{max} รายการ
   preferences:
@@ -950,6 +962,7 @@ th:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    code_hint: ป้อนรหัสที่สร้างโดยแอปตัวรับรองความถูกต้องของคุณเพื่อยืนยัน
     disable: ปิดใช้งาน
     enable: เปิดใช้งาน
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
