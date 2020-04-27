@@ -33,7 +33,6 @@ module Mastodon
       With the --unlisted option, the processed emoji will not be
       visible in the emoji picker (but still usable via other means)
     LONG_DESC
-
     def import(path)
       imported = 0
       skipped  = 0
@@ -44,7 +43,7 @@ module Mastodon
         tar.each do |entry|
           next unless entry.file? && entry.full_name.end_with?('.png')
 
-          shortcode = [options[:prefix], File.basename(entry.full_name, '.*'), options[:suffix]].compact.join
+          shortcode    = [options[:prefix], File.basename(entry.full_name, '.*'), options[:suffix]].compact.join
           custom_emoji = CustomEmoji.local.find_by(shortcode: shortcode)
 
           if custom_emoji && !options[:overwrite]
@@ -84,10 +83,9 @@ module Mastodon
 
       The --overwrite option will overwrite an existing archive.
     LONG_DESC
-
     def export(path)
-      exported = 0
-      category = CustomEmojiCategory.find_by(name: options[:category])
+      exported         = 0
+      category         = CustomEmojiCategory.find_by(name: options[:category])
       export_file_name = File.join(path, 'export.tar.gz')
 
       if File.file?(export_file_name) && !options[:overwrite]
@@ -123,7 +121,6 @@ module Mastodon
 
       With the --remote-only option, only remote emoji will be deleted.
     LONG_DESC
-
     def purge
       scope = options[:remote_only] ? CustomEmoji.remote : CustomEmoji
       scope.in_batches.destroy_all
