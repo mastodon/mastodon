@@ -644,3 +644,45 @@ ro:
       month: "%m %Y"
   two_factor_authentication:
     code_hint: Introduceți codul generat de aplicația dvs de autentificare pentru a confirma
+    description_html: Dacă activați <strong>autentificarea în doi pași</strong>, autentificarea va necesita ca tu să fii în posesia telefonului tău, ceea ce va genera token-uri pentru ca tu să intri.
+    disable: Dezactivează
+    enable: Activează
+    enabled: Autentificare în doi pași este activată
+    enabled_success: Autentificarea în doi pași activată cu succes
+    generate_recovery_codes: Generează coduri de recuperare
+    instructions_html: "<strong>Scanați acest cod QR în Google Authenticator sau o aplicație TOTP similiară de pe telefonul dvs.</strong>. De acum înainte, acea aplicație va genera token-uri pe care va trebui să îi introduceți atunci când vă conectați."
+    lost_recovery_codes: Codurile de recuperare vă permit să redobândiți accesul la contul dvs. dacă vă pierdeți telefonul. Dacă ți-ai pierdut codurile de recuperare, le poți regenera aici. Codurile tale vechi de recuperare vor fi invalidate.
+    manual_instructions: 'Dacă nu puteți scana codul QR și trebuie să-l introduceți manual, aici este textul simplu pentru cheia secretă:'
+    recovery_codes: Copie a codurilor de recuperare
+    recovery_codes_regenerated: Coduri de recuperare regenerate cu succes
+    recovery_instructions_html: Dacă îți pierzi vreodată accesul la telefon, poți folosi unul dintre codurile de recuperare de mai jos pentru a recâștiga accesul la contul tău. <strong>Păstrați codurile de recuperare în condiții de siguranță</strong>. De exemplu, le puteți tipări și stoca cu alte documente importante.
+    setup: Configurare
+    wrong_code: Codul introdus nu a fost valid! Orele serverului și timpul dispozitivului sunt corecte?
+  user_mailer:
+    backup_ready:
+      explanation: Ai solicitat o copie de rezervă completă a contului tău. Acum este gata pentru descărcare!
+      subject: Arhiva ta este gata pentru descărcare
+      title: Preluare arhivă
+    warning:
+      explanation:
+        disable: În timp ce contul tău este înghețat, datele contului tău rămân intacte, dar nu poți efectua nicio acțiune până când acesta este deblocat.
+        silence: În timp ce contul tău este limitat, doar persoanele care deja te urmăresc îți vor vedea postările pe acest server, și puteți fi exclus de la diverse liste publice. Cu toate acestea, este posibil ca alte persoane să vă urmărească manual.
+        suspend: Contul tău a fost suspendat și toate postările tale și fișierele media încărcate au fost șterse ireversibil de pe acest server, și servere unde ai avut urmăritori.
+      get_in_touch: Puteți răspunde la acest e-mail pentru a lua legătura cu personalul din %{instance}.
+      review_server_policies: Revizuiește politicile serverului
+      statuses: 'Mai precis, pentru:'
+      subject:
+        disable: Contul tău %{acct} a fost înghețat
+        none: Avertizare pentru %{acct}
+        silence: Contul tău %{acct} a fost limitat
+        suspend: Contul tău %{acct} a fost suspendat
+      title:
+        disable: Cont înghețat
+        none: Avertizare
+        silence: Cont limitat
+        suspend: Cont suspendat
+    welcome:
+      edit_profile_action: Configurare profil
+      edit_profile_step: Vă puteți personaliza profilul încărcând un avatar, un antet, schimbându-vă numele afișat și multe altele. Dacă dorești să revizuiești noi urmăritori înainte de a primi permisiunea de a te urmări, îți poți bloca contul.
+      explanation: Iată câteva sfaturi pentru a începe
+      final_action: Începe să postezi
