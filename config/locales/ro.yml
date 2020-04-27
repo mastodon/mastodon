@@ -208,8 +208,41 @@ ro:
         create_domain_allow: Creează permis domeniu
         create_domain_block: Crează blocare de domenii
         create_email_domain_block: Creați blocare de domeniu e-mail
-        demote_user: Retrogradează Utilizatorul
+        demote_user: Retrogradare Utilizatorul
+        destroy_announcement: Ștergere anunț
+        destroy_custom_emoji: Ștergere Zâmbet Personalizat
+        destroy_domain_allow: Ștergere Permitere Domeniu
+        destroy_domain_block: Ștergere Blocare Domeniu
+  aliases:
+    add_new: Creează un alias
+    created_msg: A fost creat cu succes un alias nou. Acum puteţi iniţia mutarea din vechiul cont.
+    deleted_msg: Eliminați cu succes aliasul. Mutarea din acel cont în acesta nu va mai fi posibilă.
+    empty: Nu ai aliasuri.
+    hint_html: Dacă doriți să vă mutați dintr-un cont în altul, aici puteți crea un alias, care este necesar înainte de a putea continua mutarea urmăritorilor din vechiul cont în acesta. Această acțiune este <strong>inofensivă și reversibilă</strong>. <strong>Migrarea contului este inițiată din vechiul cont</strong>.
+    remove: Deconectare alias
+  appearance:
+    localization:
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Toată lumea poate contribui.
+    sensitive_content: Conținut sensibil
+    toot_layout: Aspect postare
+  application_mailer:
+    notification_preferences: Modifică preferințe e-mail
+    salutation: "%{name},"
+    settings: 'Modifică preferințe e-mail: %{link}'
+    view: 'Vizualizare:'
+    view_profile: Vizualizați profilul
+    view_status: Vezi starea
+  applications:
+    created: Aplicație creată cu succes
+    destroyed: Aplicație ștearsă cu succes
+    invalid_url: URL-ul furnizat nu este valid
+    regenerate_token: Regenerează token-ul de acces
+    token_regenerated: Token de acces regenerat cu succes
+    warning: Fiți foarte atent cu aceste date. Nu le împărtășiți niciodată cu cineva!
+    your_token: Token-ul tău de acces
   auth:
+    apply_for_account: Solicită o invitație
     change_password: Parolă
     delete_account: Șterge contul
     delete_account_html: Dacă vrei să ștergi acest cont <a href="%{path}">poți începe aici</a>. Va trebui să confirmi această acțiune.
