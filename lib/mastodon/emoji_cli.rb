@@ -79,7 +79,7 @@ module Mastodon
     long_desc <<-LONG_DESC
       Exports custom emoji to 'export.tar.gz' at PATH.
 
-      The --category option dumps only the specified category. 
+      The --category option dumps only the specified category.
       If this option is not specified, all emoji will be exported.
 
       The --overwrite option will overwrite an existing archive.
