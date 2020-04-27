@@ -693,3 +693,18 @@ ro:
       review_preferences_step: Asigură-te că setezi preferințele tale, cum ar fi e-mailurile pe care dorești să le primești sau ce nivel de confidențialitate vrei ca mesajele tale să fie implicite. Dacă nu ai rău de mişcare, ai putea alege să activezi imaginile GIF să pornească automat.
       subject: Bine ai venit
       tip_federated_timeline: Fluxul federat este o vedere de ansamblu a rețelei Mastodon. Dar include doar oameni la care s-au abonat vecinii tăi, așa că nu este completă.
+      tip_following: Urmăriți implicit administratorul(ii) serverului. Pentru a găsi oameni mai interesanți, verificați fluxurile locale și federalizate.
+      tip_local_timeline: Fluxul local este o vedere în ansamblu a persoanelor de pe %{instance}. Aceștia sunt vecinii tăi apropiați!
+      tip_mobile_webapp: Dacă navigatorul tău mobil îți oferă să adaugi Mastodon pe ecranul tău de pornire, poți primi notificări push. Se comportă ca o aplicație nativă în multe moduri!
+      tips: Sfaturi
+      title: Bine ai venit la bord, %{name}!
+  users:
+    follow_limit_reached: Nu poți urmări mai mult de %{limit} persoane
+    invalid_email: Adresa de e-mail nu este validă
+    invalid_otp_token: Cod doi pași nevalid
+    otp_lost_help_html: Dacă ai pierdut accesul la ambele, poți lua legătura cu %{email}
+    seamless_external_login: Sunteți autentificat prin intermediul unui serviciu extern, astfel încât parola și setările de e-mail nu sunt disponibile.
+    signed_in_as: 'Conectat ca:'
+  verification:
+    explanation_html: 'Poți <strong>să te verifici ca proprietar al link-urilor din metadatele profilului tău</strong>. Pentru aceasta, site-ul web asociat trebuie să conțină un link înapoi la profilul tău. Link-ul înapoi <strong>trebuie</strong> să aibă un atribut <code>rel="me"</code>. Conținut textului link-ului nu contează. Iată un exemplu:'
+    verification: Verificare
