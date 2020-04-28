@@ -31,7 +31,7 @@
       %div
         .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
 
-.dashboard__counters{ style: 'margin-top: 10px' }
+.dashboard__counters.admin-account-counters
   %div
     = link_to admin_account_statuses_path(@account.id) do
       .dashboard__counters__num= number_with_delimiter @account.statuses_count
