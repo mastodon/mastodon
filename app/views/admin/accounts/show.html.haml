@@ -178,18 +178,8 @@
               = @account.shared_inbox_url
               = fa_icon DeliveryFailureTracker.available?(@account.shared_inbox_url) ? 'check': 'times'
 
-  %div{ style: 'overflow: hidden' }
-    %div{ style: 'float: right' }
-      - if @account.local?
-        = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
-        - if @account.user&.otp_required_for_login?
-          = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
-        - if !@account.memorial? && @account.user_approved?
-          = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
-      - else
-        = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button' if can?(:redownload, @account)
-
-    %div{ style: 'float: left' }
+  %div.action-buttons
+    %div
       - if @account.local? && @account.user_approved?
         = link_to t('admin.accounts.warn'), new_admin_account_action_path(@account.id, type: 'none'), class: 'button' if can?(:warn, @account)
       - if @account.silenced?
@@ -215,6 +205,16 @@
           = link_to t('admin.domain_blocks.view'), admin_instance_path(@account.domain), class: 'button'
         - else
           = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain), class: 'button button--destructive'
+
+    %div
+      - if @account.local?
+        = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
+        - if @account.user&.otp_required_for_login?
+          = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
+        - if !@account.memorial? && @account.user_approved?
+          = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
+      - else
+        = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button' if can?(:redownload, @account)
 
   %hr.spacer/
 
