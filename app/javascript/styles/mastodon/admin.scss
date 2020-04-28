@@ -540,8 +540,6 @@ body,
 .back-link {
   margin-bottom: 10px;
   font-size: 14px;
-  text-align: right;
-  flex: 1 1 auto;
 
   a {
     color: $highlight-text-color;
@@ -551,6 +549,12 @@ body,
       text-decoration: underline;
     }
   }
+}
+
+.special-action-button,
+.back-link {
+  text-align: right;
+  flex: 1 1 auto;
 }
 
 .spacer {
