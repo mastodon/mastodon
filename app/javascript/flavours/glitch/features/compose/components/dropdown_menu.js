@@ -64,9 +64,9 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, withPassive);
     if (this.focusedItem) {
-      this.focusedItem.focus();
+      this.focusedItem.focus({ preventScroll: true });
     } else {
-      this.node.firstChild.focus();
+      this.node.firstChild.focus({ preventScroll: true });
     }
     this.setState({ mounted: true });
   }
