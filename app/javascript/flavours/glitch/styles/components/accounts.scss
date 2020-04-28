@@ -80,6 +80,12 @@
   &-base {
     @include avatar-radius();
     @include avatar-size(36px);
+
+    img {
+      @include avatar-radius;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-overlay {
@@ -90,6 +96,12 @@
     bottom: 0;
     right: 0;
     z-index: 1;
+
+    img {
+      @include avatar-radius;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
