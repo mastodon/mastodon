@@ -85,7 +85,9 @@ module Mastodon
           record_map = preload_records_from_mixed_objects(objects)
 
           objects.each do |object|
-            path_segments   = object.key.split('/')
+            path_segments = object.key.split('/')
+            path_segments.delete('cache')
+
             model_name      = path_segments.first.classify
             attachment_name = path_segments[1].singularize
             record_id       = path_segments[2..-2].join.to_i
@@ -120,8 +122,11 @@ module Mastodon
         Find.find(File.join(*[root_path, prefix].compact)) do |path|
           next if File.directory?(path)
 
-          key             = path.gsub("#{root_path}#{File::SEPARATOR}", '')
-          path_segments   = key.split(File::SEPARATOR)
+          key = path.gsub("#{root_path}#{File::SEPARATOR}", '')
+
+          path_segments = key.split(File::SEPARATOR)
+          path_segments.delete('cache')
+
           model_name      = path_segments.first.classify
           record_id       = path_segments[2..-2].join.to_i
           attachment_name = path_segments[1].singularize
@@ -229,10 +234,13 @@ module Mastodon
 
     desc 'lookup URL', 'Lookup where media is displayed by passing a media URL'
     def lookup(url)
-      path          = Addressable::URI.parse(url).path
+      path = Addressable::URI.parse(url).path
+
       path_segments = path.split('/')[2..-1]
-      model_name    = path_segments.first.classify
-      record_id     = path_segments[2..-2].join.to_i
+      path_segments.delete('cache')
+
+      model_name = path_segments.first.classify
+      record_id  = path_segments[2..-2].join.to_i
 
       unless PRELOAD_MODEL_WHITELIST.include?(model_name)
         say("Cannot find corresponding model: #{model_name}", :red)
@@ -276,7 +284,9 @@ module Mastodon
       preload_map = Hash.new { |hash, key| hash[key] = [] }
 
       objects.map do |object|
-        segments   = object.key.split('/')
+        segments = object.key.split('/')
+        segments.delete('cache')
+
         model_name = segments.first.classify
         record_id  = segments[2..-2].join.to_i
 

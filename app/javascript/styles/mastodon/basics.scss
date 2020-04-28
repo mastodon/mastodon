@@ -233,3 +233,15 @@ button {
 .logo-resources {
   display: none;
 }
+
+// NoScript adds a __ns__pop2top class to the full ancestry of blocked elements,
+// to set the z-index to a high value, which messes with modals and dropdowns.
+// Blocked elements can in theory only be media and frames/embeds, so they
+// should only appear in statuses, under divs and articles.
+body,
+div,
+article {
+  .__ns__pop2top {
+    z-index: unset !important;
+  }
+}
