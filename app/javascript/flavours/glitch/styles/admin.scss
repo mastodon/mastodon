@@ -567,6 +567,18 @@ body,
   }
 }
 
+.special-action-button,
+.back-link {
+  text-align: right;
+  flex: 1 1 auto;
+}
+
+.action-buttons {
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -903,4 +915,12 @@ a.name-tag,
       border-bottom: 0;
     }
   }
+}
+
+.account-badges {
+  margin: -2px 0;
+}
+
+.dashboard__counters.admin-account-counters {
+  margin-top: 10px;
 }
