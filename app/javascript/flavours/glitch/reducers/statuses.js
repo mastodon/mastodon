@@ -24,7 +24,7 @@ const importStatuses = (state, statuses) =>
 
 const deleteStatus = (state, id, references) => {
   references.forEach(ref => {
-    state = deleteStatus(state, ref[0], []);
+    state = deleteStatus(state, ref, []);
   });
 
   return state.delete(id);
