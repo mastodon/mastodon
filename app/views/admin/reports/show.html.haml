@@ -68,9 +68,11 @@
 
 %hr.spacer
 
-%div{ style: 'overflow: hidden; margin-bottom: 20px; clear: both' }
+%div.action-buttons
+  %div
+
   - if @report.unresolved?
-    %div{ style: 'float: right' }
+    %div
       - if @report.target_account.local?
         = link_to t('admin.accounts.warn'), new_admin_account_action_path(@report.target_account_id, type: 'none', report_id: @report.id), class: 'button'
         = link_to t('admin.accounts.disable'), new_admin_account_action_path(@report.target_account_id, type: 'disable', report_id: @report.id), class: 'button button--destructive'

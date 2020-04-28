@@ -2,7 +2,7 @@
   %td
     = admin_account_link_to(account)
   %td
-    %div{ style: 'margin: -2px 0' }= account_badge(account, all: true)
+    %div.account-badges= account_badge(account, all: true)
   %td
     - if account.user_current_sign_in_ip
       %samp.ellipsized-ip{ title: account.user_current_sign_in_ip }= account.user_current_sign_in_ip
