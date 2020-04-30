@@ -3,8 +3,8 @@
 class ActivityPub::FetchRemotePollService < BaseService
   include JsonLdHelper
 
-  def call(poll, on_behalf_of = nil)
-    json = fetch_resource(poll.status.uri, true, on_behalf_of)
+  def call(poll)
+    json = fetch_resource(poll.status.uri, true)
 
     return unless supported_context?(json)
 

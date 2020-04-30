@@ -21,6 +21,6 @@ class Api::V1::PollsController < Api::BaseController
   end
 
   def refresh_poll
-    ActivityPub::FetchRemotePollService.new.call(@poll, current_account) if user_signed_in? && @poll.possibly_stale?
+    ActivityPub::FetchRemotePollService.new.call(@poll) if user_signed_in? && @poll.possibly_stale?
   end
 end
