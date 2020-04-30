@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
         end
 
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
-        @statuses        = filtered_status_page(params)
+        @statuses        = filtered_status_page
         @statuses        = cache_collection(@statuses, Status)
         @rss_url         = rss_url
 
@@ -140,12 +140,12 @@ class AccountsController < ApplicationController
     request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
-  def filtered_status_page(params)
-    if params[:min_id].present?
-      filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
-    else
-      filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
-    end
+  def filtered_status_page
+    filtered_statuses.paginate_by_id(PAGE_SIZE, params_slice(:max_id, :min_id, :since_id))
+  end
+
+  def params_slice(*keys)
+    params.slice(*keys).permit(*keys)
   end
 
   def restrict_fields_to
