@@ -11,7 +11,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   before_action :set_cache_headers
 
   def show
-    expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode? && !(signed_request_account.present? && page_requested?))
+    expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode?)
     render json: outbox_presenter, serializer: ActivityPub::OutboxSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
@@ -49,7 +49,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   def set_statuses
     return unless page_requested?
 
-    @statuses = @account.statuses.permitted_for(@account, signed_request_account)
+    @statuses = blocked_requester? ? Status.none : @account.statuses.where(visibility: [:public, :unlisted])
     @statuses = @statuses.paginate_by_id(LIMIT, params_slice(:max_id, :min_id, :since_id))
     @statuses = cache_collection(@statuses, Status)
   end
@@ -60,5 +60,9 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
 
   def page_params
     { page: true, max_id: params[:max_id], min_id: params[:min_id] }.compact
+  end
+
+  def blocked_requester?
+    authorized_fetch_mode? && signed_request_account.present? && (@account.domain_blocking?(signed_request_account.domain) || @account.blocking?(signed_request_account))
   end
 end

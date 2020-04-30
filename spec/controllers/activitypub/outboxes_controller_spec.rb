@@ -92,8 +92,8 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
           expect(json[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
         end
 
-        it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+        it 'returns public Cache-Control header' do
+          expect(response.headers['Cache-Control']).to eq 'max-age=0, public'
         end
       end
 
@@ -111,65 +111,71 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns orderedItems with private statuses' do
+        it 'returns orderedItems with public or unlisted statuses' do
           json = body_as_json
           expect(json[:orderedItems]).to be_an Array
-          expect(json[:orderedItems].size).to eq 3
-          expect(json[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:to].include?(account_followers_url(account, ActionMailer::Base.default_url_options)) }).to be true
+          expect(json[:orderedItems].size).to eq 2
+          expect(json[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
         end
 
-        it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+        it 'returns public Cache-Control header' do
+          expect(response.headers['Cache-Control']).to eq 'max-age=0, public'
         end
       end
 
-      context 'when signed request account is blocked' do
+      context 'in authorized fetch mode' do
         before do
-          account.block!(remote_account)
-          get :show, params: { account_username: account.username, page: page }
+          allow(controller).to receive(:authorized_fetch_mode?).and_return(true)
         end
 
-        it 'returns http success' do
-          expect(response).to have_http_status(200)
+        context 'when signed request account is blocked' do
+          before do
+            account.block!(remote_account)
+            get :show, params: { account_username: account.username, page: page }
+          end
+
+          it 'returns http success' do
+            expect(response).to have_http_status(200)
+          end
+
+          it 'returns application/activity+json' do
+            expect(response.content_type).to eq 'application/activity+json'
+          end
+
+          it 'returns empty orderedItems' do
+            json = body_as_json
+            expect(json[:orderedItems]).to be_an Array
+            expect(json[:orderedItems].size).to eq 0
+          end
+
+          it 'returns private Cache-Control header' do
+            expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          end
         end
 
-        it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
-        end
+        context 'when signed request account is domain blocked' do
+          before do
+            account.block_domain!(remote_account.domain)
+            get :show, params: { account_username: account.username, page: page }
+          end
 
-        it 'returns empty orderedItems' do
-          json = body_as_json
-          expect(json[:orderedItems]).to be_an Array
-          expect(json[:orderedItems].size).to eq 0
-        end
+          it 'returns http success' do
+            expect(response).to have_http_status(200)
+          end
 
-        it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
-        end
-      end
+          it 'returns application/activity+json' do
+            expect(response.content_type).to eq 'application/activity+json'
+          end
 
-      context 'when signed request account is domain blocked' do
-        before do
-          account.block_domain!(remote_account.domain)
-          get :show, params: { account_username: account.username, page: page }
-        end
+          it 'returns empty orderedItems' do
+            json = body_as_json
+            expect(json[:orderedItems]).to be_an Array
+            expect(json[:orderedItems].size).to eq 0
+          end
 
-        it 'returns http success' do
-          expect(response).to have_http_status(200)
-        end
-
-        it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
-        end
-
-        it 'returns empty orderedItems' do
-          json = body_as_json
-          expect(json[:orderedItems]).to be_an Array
-          expect(json[:orderedItems].size).to eq 0
-        end
-
-        it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          it 'returns private Cache-Control header' do
+            expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          end
         end
       end
     end
