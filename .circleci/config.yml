@@ -32,9 +32,9 @@ aliases:
   - &restore_ruby_dependencies
     restore_cache:
       keys:
-        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
-        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
-        - v2-ruby-dependencies-
+        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
+        - v3-ruby-dependencies-
 
   - &install_steps
     steps:
@@ -42,8 +42,8 @@ aliases:
       - *attach_workspace
       - restore_cache:
           keys:
-            - v1-node-dependencies-{{ checksum "yarn.lock" }}
-            - v1-node-dependencies-
+            - v3-node-dependencies-{{ checksum "yarn.lock" }}
+            - v3-node-dependencies-
       - run: yarn install --frozen-lockfile
       - save_cache:
           key: v1-node-dependencies-{{ checksum "yarn.lock" }}
@@ -56,11 +56,7 @@ aliases:
         name: Install system dependencies
         command: |
           sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler libprotobuf17
-
-          ## TODO: FIX THESE BUSTER DEPENDANCES
-          sudo wget http://ftp.au.debian.org/debian/pool/main/i/icu/libicu57_57.1-6+deb9u3_amd64.deb
-          sudo dpkg -i libicu57_57.1-6+deb9u3_amd64.deb
+          sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler libprotobuf17 libicu63
 
   - &install_ruby_dependencies
       steps:
