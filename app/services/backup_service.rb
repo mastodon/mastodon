@@ -153,7 +153,8 @@ class BackupService < BaseService
     ActiveModelSerializers::SerializableResource.new(
       object,
       serializer: serializer,
-      adapter: ActivityPub::Adapter
+      adapter: ActivityPub::Adapter,
+      allow_private: true
     ).as_json
   end
 

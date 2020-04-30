@@ -26,6 +26,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   attribute :voters_count, if: :poll_and_voters_count?
 
   def id
+    raise Mastodon::NotPermittedError if !instance_options[:allow_private] && object.hidden?
+
     ActivityPub::TagManager.instance.uri_for(object)
   end
 
