@@ -455,25 +455,8 @@ describe StatusesController do
           context 'as HTML' do
             let(:format) { 'html' }
 
-            it 'returns http success' do
-              expect(response).to have_http_status(200)
-            end
-
-            it 'returns Link header' do
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-            end
-
-            it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
-            end
-
-            it 'returns no Cache-Control header' do
-              expect(response.headers).to_not include 'Cache-Control'
-            end
-
-            it 'renders status' do
-              expect(response).to render_template(:show)
-              expect(response.body).to include status.text
+            it 'returns http not authorized' do
+              expect(response).to have_http_status(403)
             end
           end
 
@@ -521,25 +504,8 @@ describe StatusesController do
           context 'as HTML' do
             let(:format) { 'html' }
 
-            it 'returns http success' do
-              expect(response).to have_http_status(200)
-            end
-
-            it 'returns Link header' do
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-            end
-
-            it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
-            end
-
-            it 'returns no Cache-Control header' do
-              expect(response.headers).to_not include 'Cache-Control'
-            end
-
-            it 'renders status' do
-              expect(response).to render_template(:show)
-              expect(response.body).to include status.text
+            it 'returns http not authorized' do
+              expect(response).to have_http_status(403)
             end
           end
 

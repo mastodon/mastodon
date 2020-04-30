@@ -1,4 +1,5 @@
 :ruby
+  allow_private   ||= false
   pinned          ||= false
   include_threads ||= false
   is_predecessor  ||= false
@@ -14,12 +15,14 @@
   mf_classes        = microformats_classes(status, is_direct_parent, is_direct_child)
   entry_classes     = h_class + ' ' + mf_classes + ' ' + style_classes
 
+  raise Mastodon::NotPermittedError if !allow_private && status.hidden?
+
 - if status.reply? && include_threads
   - if @next_ancestor
     .entry{ class: entry_classes }
       = link_to_more ActivityPub::TagManager.instance.url_for(@next_ancestor)
 
-  = render partial: 'statuses/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }, autoplay: autoplay
+  = render partial: 'statuses/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id, allow_private: allow_private }, autoplay: autoplay
 
 .entry{ class: entry_classes }
 
@@ -46,7 +49,7 @@
     .entry{ class: entry_classes }
       = link_to_more short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
   - @descendant_threads.each do |thread|
-    = render partial: 'statuses/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id }, autoplay: autoplay
+    = render partial: 'statuses/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id, allow_private: allow_private }, autoplay: autoplay
 
     - if thread[:next_status]
       .entry{ class: entry_classes }

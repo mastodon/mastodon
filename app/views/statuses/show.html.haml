@@ -19,6 +19,6 @@
 .grid
   .column-0
     .activity-stream.h-entry
-      = render partial: 'status', locals: { status: @status, include_threads: true }
+      = render partial: 'status', locals: { status: @status, include_threads: true, allow_private: current_user&.functional? }
   .column-1
     = render 'application/sidebar'
