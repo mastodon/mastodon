@@ -258,29 +258,8 @@ describe StatusesController do
           context 'as JSON' do
             let(:format) { 'json' }
 
-            it 'returns http success' do
-              expect(response).to have_http_status(200)
-            end
-
-            it 'returns Link header' do
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-            end
-
-            it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
-            end
-
-            it 'returns private Cache-Control header' do
-              expect(response.headers['Cache-Control']).to include 'private'
-            end
-
-            it 'returns Content-Type header' do
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-            end
-
-            it 'renders ActivityPub Note object' do
-              json = body_as_json
-              expect(json[:content]).to include status.text
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
             end
           end
         end
@@ -345,29 +324,8 @@ describe StatusesController do
           context 'as JSON' do
             let(:format) { 'json' }
 
-            it 'returns http success' do
-              expect(response).to have_http_status(200)
-            end
-
-            it 'returns Link header' do
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-            end
-
-            it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
-            end
-
-            it 'returns private Cache-Control header' do
-              expect(response.headers['Cache-Control']).to include 'private'
-            end
-
-            it 'returns Content-Type header' do
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-            end
-
-            it 'renders ActivityPub Note object' do
-              json = body_as_json
-              expect(json[:content]).to include status.text
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
             end
           end
         end
@@ -522,29 +480,8 @@ describe StatusesController do
           context 'as JSON' do
             let(:format) { 'json' }
 
-            it 'returns http success' do
-              expect(response).to have_http_status(200)
-            end
-
-            it 'returns Link header' do
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-            end
-
-            it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
-            end
-
-            it 'returns private Cache-Control header' do
-              expect(response.headers['Cache-Control']).to include 'private'
-            end
-
-            it 'returns Content-Type header' do
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-            end
-
-            it 'renders ActivityPub Note object' do
-              json = body_as_json
-              expect(json[:content]).to include status.text
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
             end
           end
         end
@@ -609,29 +546,8 @@ describe StatusesController do
           context 'as JSON' do
             let(:format) { 'json' }
 
-            it 'returns http success' do
-              expect(response).to have_http_status(200)
-            end
-
-            it 'returns Link header' do
-              expect(response.headers['Link'].to_s).to include 'activity+json'
-            end
-
-            it 'returns Vary header' do
-              expect(response.headers['Vary']).to eq 'Accept'
-            end
-
-            it 'returns private Cache-Control header' do
-              expect(response.headers['Cache-Control']).to include 'private'
-            end
-
-            it 'returns Content-Type header' do
-              expect(response.headers['Content-Type']).to include 'application/activity+json'
-            end
-
-            it 'renders ActivityPub Note object' do
-              json = body_as_json
-              expect(json[:content]).to include status.text
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
             end
           end
         end

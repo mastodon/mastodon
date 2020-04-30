@@ -10,6 +10,7 @@ class StatusesController < ApplicationController
 
   before_action :require_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
+  before_action :require_public_status!, if: -> { request.format == :json }
   before_action :set_instance_presenter
   before_action :set_link_headers
   before_action :redirect_to_original, only: :show
@@ -69,6 +70,10 @@ class StatusesController < ApplicationController
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
     not_found
+  end
+
+  def require_public_status!
+    not_found if @status.hidden?
   end
 
   def set_instance_presenter
