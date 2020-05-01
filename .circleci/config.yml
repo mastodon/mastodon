@@ -33,9 +33,9 @@ aliases:
   - &restore_ruby_dependencies
     restore_cache:
       keys:
-        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
-        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
-        - v2-ruby-dependencies-
+        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
+        - v3-ruby-dependencies-
 
   - &install_steps
     steps:
@@ -43,13 +43,13 @@ aliases:
       - *attach_workspace
       - restore_cache:
           keys:
-            - v1-node-dependencies-{{ checksum "yarn.lock" }}
-            - v1-node-dependencies-
+            - v2-node-dependencies-{{ checksum "yarn.lock" }}
+            - v2-node-dependencies-
       - run:
           name: Install yarn dependencies
           command: yarn install --frozen-lockfile
       - save_cache:
-          key: v1-node-dependencies-{{ checksum "yarn.lock" }}
+          key: v2-node-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules/
       - *persist_to_workspace
@@ -60,12 +60,6 @@ aliases:
         command: |
           sudo apt-get update
           sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
-
-          ## TODO: FIX THESE BUSTER DEPENDANCES
-          sudo wget http://ftp.au.debian.org/debian/pool/main/i/icu/libicu57_57.1-6+deb9u3_amd64.deb
-          sudo dpkg -i libicu57_57.1-6+deb9u3_amd64.deb
-          sudo wget http://ftp.au.debian.org/debian/pool/main/p/protobuf/libprotobuf10_3.0.0-9_amd64.deb
-          sudo dpkg -i libprotobuf10_3.0.0-9_amd64.deb
 
   - &install_ruby_dependencies
       steps:
@@ -87,7 +81,7 @@ aliases:
             name: Install bundler dependencies
             command: bundle check || (bundle install && bundle clean)
         - save_cache:
-            key: v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+            key: v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
             paths:
               - ./.bundle/
               - ./vendor/bundle/
