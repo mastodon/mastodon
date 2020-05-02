@@ -23,7 +23,6 @@ module Mastodon
       blacklisted.
     LONG_DESC
     def block(*domains)
-
       if domains.empty?
         say('No domain(s) given', :red)
         exit(1)
