@@ -13,6 +13,19 @@ module Mastodon
       true
     end
 
+    desc 'list', 'list E-mail domain blocks'
+    long_desc <<-LONG_DESC
+      list up all E-mail domain blocks.
+    LONG_DESC
+    def list()
+      EmailDomainBlock.where(parent_id: nil).includes(:children).order(id: "DESC").find_each do |entry|
+        say("#{entry.domain}", :green)
+        entry.children.order(id: "DESC").find_each do |child|
+          say("  #{child.domain}", :yellow)
+        end
+      end
+    end
+
     option :with_dns_records, type: :boolean
     desc 'block [DOMAIN...]', 'Block E-mail domains'
     long_desc <<-LONG_DESC
@@ -23,17 +36,23 @@ module Mastodon
       blacklisted.
     LONG_DESC
     def block(*domains)
+
       if domains.empty?
         say('No domain(s) given', :red)
         exit(1)
       end
 
+
       domains.each do |domain|
+        if EmailDomainBlock.where(domain: domain).exists?
+          say("#{domain} is already blocked.", :yellow)
+          next
+        end
+
         email_domain_block = EmailDomainBlock.new(domain: domain, with_dns_records: options[:with_dns_records] || false)
         email_domain_block.save!
 
-        log_action :create, email_domain_block
-        say("Blocked domain #{domain}", :green)
+        say("#{domain} was blocked.", :green)
 
         next unless email_domain_block.with_dns_records?
 
@@ -52,9 +71,12 @@ module Mastodon
 
         (hostnames + ips).each do |hostname|
           another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block)
+          if EmailDomainBlock.where(domain: hostname).exists?
+            say("#{hostname} is already blocked.", :yellow)
+            next
+          end
           another_email_domain_block.save!
-          log_action :create, another_email_domain_block
-          say("Blocked domain #{hostname}", :green)
+          say("#{hostname} was blocked. (from #{domain})", :green)
         end
       end
     end
@@ -69,10 +91,18 @@ module Mastodon
         exit(1)
       end
 
-      EmailDomainBlock.where(domain: domains).find_each do |entry|
-        entry.destroy!
-        log_action :create, entry
-        say("Unblocked domain #{domain}", :green)
+      domains.each do |domain|
+        unless EmailDomainBlock.where(domain: domain).exists?
+          say("#{domain} is not exists.", :yellow)
+          next
+        end
+
+        result = EmailDomainBlock.where(domain: domain).destroy_all
+        if result 
+          say("#{domain} was unblocked.", :green)
+        else
+          say("#{domain} was not unblocked. 'destroy' returns false.", :red)
+        end
       end
     end
   end
