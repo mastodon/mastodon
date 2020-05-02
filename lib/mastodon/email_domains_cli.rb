@@ -17,10 +17,10 @@ module Mastodon
     long_desc <<-LONG_DESC
       list up all E-mail domain blocks.
     LONG_DESC
-    def list()
-      EmailDomainBlock.where(parent_id: nil).includes(:children).order(id: "DESC").find_each do |entry|
-        say("#{entry.domain}", :green)
-        entry.children.order(id: "DESC").find_each do |child|
+    def list
+      EmailDomainBlock.where(parent_id: nil).includes(:children).order(id: 'DESC').find_each do |entry|
+        say(entry.domain.to_s, :green)
+        entry.children.order(id: 'DESC').find_each do |child|
           say("  #{child.domain}", :yellow)
         end
       end
@@ -36,12 +36,10 @@ module Mastodon
       blacklisted.
     LONG_DESC
     def block(*domains)
-
       if domains.empty?
         say('No domain(s) given', :red)
         exit(1)
       end
-
 
       domains.each do |domain|
         if EmailDomainBlock.where(domain: domain).exists?
@@ -98,7 +96,7 @@ module Mastodon
         end
 
         result = EmailDomainBlock.where(domain: domain).destroy_all
-        if result 
+        if result
           say("#{domain} was unblocked.", :green)
         else
           say("#{domain} was not unblocked. 'destroy' returns false.", :red)
