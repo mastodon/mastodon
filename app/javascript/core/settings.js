@@ -10,7 +10,7 @@ delegate(document, '#account_display_name', 'input', ({ target }) => {
     if (target.value) {
       name.innerHTML = emojify(escapeTextContentForBrowser(target.value));
     } else {
-      name.textContent = document.querySelector('#default_account_display_name').textContent;
+      name.textContent = name.textContent = target.dataset.default;
     }
   }
 });

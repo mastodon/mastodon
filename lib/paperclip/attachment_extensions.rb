@@ -14,6 +14,15 @@ module Paperclip
       end
     end
 
+    def storage_schema_version
+      instance_read(:storage_schema_version) || 0
+    end
+
+    def assign_attributes
+      super
+      instance_write(:storage_schema_version, 1)
+    end
+
     def variant?(other_filename)
       return true  if original_filename == other_filename
       return false if original_filename.nil?

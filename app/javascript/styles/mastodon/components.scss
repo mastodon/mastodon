@@ -1362,6 +1362,12 @@ a .account__avatar {
   &-base {
     @include avatar-radius;
     @include avatar-size(36px);
+
+    img {
+      @include avatar-radius;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-overlay {
@@ -1372,6 +1378,12 @@ a .account__avatar {
     bottom: 0;
     right: 0;
     z-index: 1;
+
+    img {
+      @include avatar-radius;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 

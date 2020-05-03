@@ -100,7 +100,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem) this.focusedItem.focus();
+    if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
     this.setState({ mounted: true });
   }
 

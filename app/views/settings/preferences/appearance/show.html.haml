@@ -9,8 +9,8 @@
     = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }, selected: I18n.locale, hint: false
 
   - unless I18n.locale == :en
-    .flash-message{ style: "text-align: unset; color: unset" }
-      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener", style: "text-decoration: underline")}
+    .flash-message.translation-prompt
+      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener")}
 
   %h4= t 'appearance.advanced_web_interface'
 
