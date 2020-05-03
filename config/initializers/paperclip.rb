@@ -10,9 +10,25 @@ Paperclip.interpolates :filename do |attachment, style|
   end
 end
 
+Paperclip.interpolates :prefix_path do |attachment, style|
+  if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
+    'cache' + File::SEPARATOR
+  else
+    ''
+  end
+end
+
+Paperclip.interpolates :prefix_url do |attachment, style|
+  if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
+    'cache/'
+  else
+    ''
+  end
+end
+
 Paperclip::Attachment.default_options.merge!(
   use_timestamp: false,
-  path: ':class/:attachment/:id_partition/:style/:filename',
+  path: ':prefix_url:class/:attachment/:id_partition/:style/:filename',
   storage: :fog
 )
 
@@ -91,7 +107,7 @@ else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
     use_timestamp: true,
-    path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':class', ':attachment', ':id_partition', ':style', ':filename'),
-    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:class/:attachment/:id_partition/:style/:filename',
+    path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
+    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename',
   )
 end

@@ -46,7 +46,7 @@ class DropdownMenu extends React.PureComponent {
     document.addEventListener('keydown', this.handleKeyDown, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
     if (this.focusedItem && this.props.openedViaKeyboard) {
-      this.focusedItem.focus();
+      this.focusedItem.focus({ preventScroll: true });
     }
     this.setState({ mounted: true });
   }

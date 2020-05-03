@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_202420) do
+ActiveRecord::Schema.define(version: 2020_04_17_125749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,8 @@ ActiveRecord::Schema.define(version: 2020_04_07_202420) do
     t.datetime "suspended_at"
     t.integer "trust_level"
     t.boolean "hide_collections"
+    t.integer "avatar_storage_schema_version"
+    t.integer "header_storage_schema_version"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -299,6 +301,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_202420) do
     t.string "image_remote_url"
     t.boolean "visible_in_picker", default: true, null: false
     t.bigint "category_id"
+    t.integer "image_storage_schema_version"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
@@ -465,6 +468,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_202420) do
     t.bigint "scheduled_status_id"
     t.string "blurhash"
     t.integer "processing"
+    t.integer "file_storage_schema_version"
     t.index ["account_id"], name: "index_media_attachments_on_account_id"
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
@@ -605,6 +609,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_202420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "embed_url", default: "", null: false
+    t.integer "image_storage_schema_version"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 

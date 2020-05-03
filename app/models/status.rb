@@ -206,12 +206,8 @@ class Status < ApplicationRecord
   def title
     if destroyed?
       "#{account.acct} deleted status"
-    elsif reblog?
-      preview = sensitive ? '<sensitive>' : text.slice(0, 10).split("\n")[0]
-      "#{account.acct} shared #{reblog.account.acct}'s: #{preview}"
     else
-      preview = sensitive ? '<sensitive>' : text.slice(0, 20).split("\n")[0]
-      "#{account.acct}: #{preview}"
+      reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
     end
   end
 
@@ -404,7 +400,7 @@ class Status < ApplicationRecord
 
       if account.nil?
         where(visibility: visibility).not_local_only
-      elsif target_account.blocking?(account) # get rid of blocked peeps
+      elsif target_account.blocking?(account) || (account.domain.present? && target_account.domain_blocking?(account.domain)) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
         all

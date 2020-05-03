@@ -9,7 +9,7 @@
 
   .fields-row
     .fields-row__column.fields-group.fields-row__column-6
-      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: Account::MAX_DISPLAY_NAME_LENGTH }, hint: false
+      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: Account::MAX_DISPLAY_NAME_LENGTH, data: { default: @account.username } }, hint: false
       = f.input :note, wrapper: :with_label, input_html: { maxlength: Account::MAX_NOTE_LENGTH }, hint: false
 
   .fields-row

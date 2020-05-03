@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::RepliesController < ActivityPub::BaseController
-  include SignatureAuthentication
+  include SignatureVerification
   include Authorization
   include AccountOwnedConcern
 
@@ -19,15 +19,19 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
 
   private
 
+  def pundit_user
+    signed_request_account
+  end
+
   def set_status
     @status = @account.statuses.find(params[:status_id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    raise ActiveRecord::RecordNotFound
+    not_found
   end
 
   def set_replies
-    @replies = page_params[:only_other_accounts] ? Status.where.not(account_id: @account.id) : @account.statuses
+    @replies = only_other_accounts? ? Status.where.not(account_id: @account.id) : @account.statuses
     @replies = @replies.where(in_reply_to_id: @status.id, visibility: [:public, :unlisted])
     @replies = @replies.paginate_by_min_id(DESCENDANTS_LIMIT, params[:min_id])
   end
@@ -38,7 +42,7 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
       type: :unordered,
       part_of: account_status_replies_url(@account, @status),
       next: next_page,
-      items: @replies.map { |status| status.local ? status : status.uri }
+      items: @replies.map { |status| status.local? ? status : status.uri }
     )
 
     return page if page_requested?
@@ -51,16 +55,21 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
   end
 
   def page_requested?
-    params[:page] == 'true'
+    truthy_param?(:page)
+  end
+
+  def only_other_accounts?
+    truthy_param?(:only_other_accounts)
   end
 
   def next_page
     only_other_accounts = !(@replies&.last&.account_id == @account.id && @replies.size == DESCENDANTS_LIMIT)
+
     account_status_replies_url(
       @account,
       @status,
       page: true,
-      min_id: only_other_accounts && !page_params[:only_other_accounts] ? nil : @replies&.last&.id,
+      min_id: only_other_accounts && !only_other_accounts? ? nil : @replies&.last&.id,
       only_other_accounts: only_other_accounts
     )
   end

@@ -757,8 +757,13 @@ $small-breakpoint: 960px;
       }
     }
 
+    &__counters__wrapper {
+      display: flex;
+    }
+
     &__counter {
       padding: 10px;
+      width: 50%;
 
       strong {
         font-family: $font-display, sans-serif;

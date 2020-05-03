@@ -9,7 +9,7 @@
     %ul
       %li= link_to t('admin.statuses.no_media'), admin_account_statuses_path(@account.id, current_params.merge(media: nil)), class: !params[:media] && 'selected'
       %li= link_to t('admin.statuses.with_media'), admin_account_statuses_path(@account.id, current_params.merge(media: true)), class: params[:media] && 'selected'
-  .back-link{ style: 'flex: 1 1 auto; text-align: right' }
+  .back-link
     = link_to admin_account_path(@account.id) do
       = fa_icon 'chevron-left fw'
       = t('admin.statuses.back_to_account')
