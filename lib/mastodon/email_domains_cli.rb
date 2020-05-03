@@ -67,7 +67,7 @@ module Mastodon
           end
         end
 
-        (hostnames + ips).each do |hostname|
+        (hostnames + ips).uniq.each do |hostname|
           another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block)
           if EmailDomainBlock.where(domain: hostname).exists?
             say("#{hostname} is already blocked.", :yellow)
@@ -91,7 +91,7 @@ module Mastodon
 
       domains.each do |domain|
         unless EmailDomainBlock.where(domain: domain).exists?
-          say("#{domain} is not exists.", :yellow)
+          say("#{domain} is not yet blocked.", :yellow)
           next
         end
 
