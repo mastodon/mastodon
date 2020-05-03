@@ -197,14 +197,6 @@ class Status < ApplicationRecord
     preview_cards.first
   end
 
-  def title
-    if destroyed?
-      "#{account.acct} deleted status"
-    else
-      reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
-    end
-  end
-
   def hidden?
     !distributable?
   end
