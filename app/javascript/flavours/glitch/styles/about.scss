@@ -545,13 +545,6 @@ $small-breakpoint: 960px;
         flex: 0 0 auto;
       }
 
-      &__avatar {
-        width: 44px;
-        height: 44px;
-        background-size: 44px 44px;
-        @include avatar-size(44px);
-      }
-
       .display-name {
         font-size: 15px;
 
@@ -751,12 +744,6 @@ $small-breakpoint: 960px;
       .account__display-name {
         display: flex;
         align-items: center;
-      }
-
-      .account__avatar {
-        width: 44px;
-        height: 44px;
-        background-size: 44px 44px;
       }
     }
 
