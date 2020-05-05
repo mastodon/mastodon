@@ -5,12 +5,13 @@ aliases:
     docker:
       - image: circleci/ruby:2.7-buster-node
         environment: &ruby_environment
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
           BUNDLE_APP_CONFIG: ./.bundle/
           BUNDLE_PATH: ./vendor/bundle/
           DB_HOST: localhost
           DB_USER: root
           RAILS_ENV: test
-          PARALLEL_TEST_PROCESSORS: 4
           ALLOW_NOPAM: true
           CONTINUOUS_INTEGRATION: true
           DISABLE_SIMPLECOV: true
@@ -32,9 +33,9 @@ aliases:
   - &restore_ruby_dependencies
     restore_cache:
       keys:
-        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
-        - v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
-        - v2-ruby-dependencies-
+        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
+        - v3-ruby-dependencies-
 
   - &install_steps
     steps:
@@ -42,11 +43,13 @@ aliases:
       - *attach_workspace
       - restore_cache:
           keys:
-            - v1-node-dependencies-{{ checksum "yarn.lock" }}
-            - v1-node-dependencies-
-      - run: yarn install --frozen-lockfile
+            - v2-node-dependencies-{{ checksum "yarn.lock" }}
+            - v2-node-dependencies-
+      - run:
+          name: Install yarn dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
-          key: v1-node-dependencies-{{ checksum "yarn.lock" }}
+          key: v2-node-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules/
       - *persist_to_workspace
@@ -57,27 +60,28 @@ aliases:
         command: |
           sudo apt-get update
           sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
-          
-          ## TODO: FIX THESE BUSTER DEPENDANCES
-          sudo wget http://ftp.au.debian.org/debian/pool/main/i/icu/libicu57_57.1-6+deb9u3_amd64.deb
-          sudo dpkg -i libicu57_57.1-6+deb9u3_amd64.deb
-          sudo wget http://ftp.au.debian.org/debian/pool/main/p/protobuf/libprotobuf10_3.0.0-9_amd64.deb
-          sudo dpkg -i libprotobuf10_3.0.0-9_amd64.deb
 
   - &install_ruby_dependencies
       steps:
         - *attach_workspace
         - *install_system_dependencies
-        - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
+        - run:
+            name: Set Ruby version
+            command: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
         - *restore_ruby_dependencies
-        - run: bundle config set clean 'true'
-        - run: bundle config set deployment 'true'
-        - run: bundle config set with 'pam_authentication'
-        - run: bundle config set without 'development production'
-        - run: bundle config set frozen 'true'
-        - run: bundle install --jobs 16 --retry 3 && bundle clean
+        - run:
+            name: Set bundler settings
+            command: |
+              bundle config clean 'true'
+              bundle config deployment 'true'
+              bundle config with 'pam_authentication'
+              bundle config without 'development production'
+              bundle config frozen 'true'
+        - run:
+            name: Install bundler dependencies
+            command: bundle check || (bundle install && bundle clean)
         - save_cache:
-            key: v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
+            key: v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
             paths:
               - ./.bundle/
               - ./vendor/bundle/
@@ -88,17 +92,26 @@ aliases:
                 - ./mastodon/vendor/bundle/
 
   - &test_steps
+      parallelism: 4
       steps:
         - *attach_workspace
         - *install_system_dependencies
-        - run: sudo apt-get install -y ffmpeg
         - run:
-            name: Prepare Tests
-            command: ./bin/rails parallel:create parallel:load_schema parallel:prepare
+            name: Install FFMPEG
+            command: sudo apt-get install -y ffmpeg
         - run:
-            name: Run Tests
-            command: ./bin/retry bundle exec parallel_test ./spec/ --group-by filesize --type rspec
-
+            name: Load database schema
+            command: ./bin/rails db:create db:schema:load db:seed
+        - run:
+            name: Run rspec in parallel
+            command: |
+              bundle exec rspec --profile 10 \
+                                --format RspecJunitFormatter \
+                                --out test_results/rspec.xml \
+                                --format progress \
+                                $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+        - store_test_results:
+            path: test_results
 jobs:
   install:
     <<: *defaults
@@ -115,19 +128,14 @@ jobs:
         environment: *ruby_environment
     <<: *install_ruby_dependencies
 
-  install-ruby2.5:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.5-buster-node
-        environment: *ruby_environment
-    <<: *install_ruby_dependencies
-
   build:
     <<: *defaults
     steps:
       - *attach_workspace
       - *install_system_dependencies
-      - run: ./bin/rails assets:precompile
+      - run:
+          name: Precompile assets
+          command: ./bin/rails assets:precompile
       - persist_to_workspace:
           root: ~/projects/
           paths:
@@ -149,10 +157,10 @@ jobs:
       - *install_system_dependencies
       - run:
           name: Create database
-          command: ./bin/rails parallel:create
+          command: ./bin/rails db:create
       - run:
           name: Run migrations
-          command: ./bin/rails parallel:migrate
+          command: ./bin/rails db:migrate
 
   test-ruby2.7:
     <<: *defaults
@@ -178,35 +186,33 @@ jobs:
       - image: circleci/redis:5-alpine
     <<: *test_steps
 
-  test-ruby2.5:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.5-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:12.2
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
-    <<: *test_steps
-
   test-webui:
     <<: *defaults
     docker:
       - image: circleci/node:12-buster
     steps:
       - *attach_workspace
-      - run: ./bin/retry yarn test:jest
+      - run:
+          name: Run jest
+          command: yarn test:jest
 
   check-i18n:
     <<: *defaults
     steps:
       - *attach_workspace
       - *install_system_dependencies
-      - run: bundle exec i18n-tasks check-normalized
-      - run: bundle exec i18n-tasks unused -l en
-      - run: bundle exec i18n-tasks check-consistent-interpolations
-      - run: bundle exec rake repo:check_locales_files
+      - run:
+          name: Check locale file normalization
+          command: bundle exec i18n-tasks check-normalized
+      - run:
+          name: Check for unused strings
+          command: bundle exec i18n-tasks unused -l en
+      - run:
+          name: Check for wrong string interpolations
+          command: bundle exec i18n-tasks check-consistent-interpolations
+      - run:
+          name: Check that all required locale files exist
+          command: bundle exec rake repo:check_locales_files
 
 workflows:
   version: 2
@@ -217,10 +223,6 @@ workflows:
           requires:
             - install
       - install-ruby2.6:
-          requires:
-            - install
-            - install-ruby2.7
-      - install-ruby2.5:
           requires:
             - install
             - install-ruby2.7
@@ -237,10 +239,6 @@ workflows:
       - test-ruby2.6:
           requires:
             - install-ruby2.6
-            - build
-      - test-ruby2.5:
-          requires:
-            - install-ruby2.5
             - build
       - test-webui:
           requires:

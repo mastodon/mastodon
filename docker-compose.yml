@@ -4,6 +4,7 @@ services:
   db:
     restart: always
     image: lindwurm/pg_repack:9.6
+    shm_size: 256mb
     networks:
       - internal_network
     healthcheck:

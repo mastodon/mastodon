@@ -20,7 +20,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.4'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.61', require: false
+gem 'aws-sdk-s3', '~> 1.63', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -62,7 +62,7 @@ gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
 gem 'httplog', '~> 1.4.2'
 gem 'idn-ruby', require: 'idn'
-gem 'kaminari', '~> 1.1'
+gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
 gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
@@ -127,11 +127,12 @@ group :test do
   gem 'simplecov', '~> 0.18', require: false
   gem 'webmock', '~> 3.8'
   gem 'parallel_tests', '~> 2.32'
+  gem 'rspec_junit_formatter', '~> 0.4'
 end
 
 group :development do
   gem 'active_record_query_trace', '~> 1.7'
-  gem 'annotate', '~> 3.0'
+  gem 'annotate', '~> 3.1'
   gem 'better_errors', '~> 2.6'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 6.1'
@@ -139,11 +140,11 @@ group :development do
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.79', require: false
-  gem 'rubocop-rails', '~> 2.4', require: false
+  gem 'rubocop-rails', '~> 2.5', require: false
   gem 'brakeman', '~> 4.8', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
-  gem 'capistrano', '~> 3.12'
+  gem 'capistrano', '~> 3.13'
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
