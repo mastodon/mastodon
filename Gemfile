@@ -108,7 +108,7 @@ group :development, :test do
   gem 'fabrication', '~> 2.21'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 0.9', require: false
-  gem 'pry-byebug', '~> 3.8'
+  gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 4.0'
 end
