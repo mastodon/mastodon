@@ -144,7 +144,7 @@ group :development do
   gem 'brakeman', '~> 4.8', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
-  gem 'capistrano', '~> 3.13'
+  gem 'capistrano', '~> 3.14'
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
