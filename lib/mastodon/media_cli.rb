@@ -144,7 +144,14 @@ module Mastodon
           begin
             size = File.size(path)
 
-            File.delete(path) unless options[:dry_run]
+            unless options[:dry_run]
+              File.delete(path)
+              begin
+                FileUtils.rmdir(File.dirname(path), parents: true)
+              rescue Errno::ENOTEMPTY
+                # OK
+              end
+            end
 
             reclaimed_bytes += size
             removed += 1
