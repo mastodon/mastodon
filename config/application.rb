@@ -106,6 +106,7 @@ module Mastodon
       :tr,
       :uk,
       :ur,
+      :vi,
       :'zh-CN',
       :'zh-HK',
       :'zh-TW',
