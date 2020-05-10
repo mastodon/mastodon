@@ -43,6 +43,7 @@ config/deploy/*
 .vscode-server/
 
 # Ignore postgres + redis + elasticsearch volume optionally created by docker-compose
+data
 postgres
 redis
 elasticsearch
