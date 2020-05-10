@@ -284,7 +284,7 @@ class Status < ApplicationRecord
     def as_public_timeline(account = nil, local_only = false)
       query = timeline_scope(local_only).without_replies
 
-      apply_timeline_filters(query, account, local_only)
+      apply_timeline_filters(query, account, [:local, true].include?(local_only))
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
@@ -376,8 +376,16 @@ class Status < ApplicationRecord
 
     private
 
-    def timeline_scope(local_only = false)
-      starting_scope = local_only ? Status.local : Status
+    def timeline_scope(scope = false)
+      starting_scope = case scope
+                       when :local, true
+                         Status.local
+                       when :remote
+                         Status.remote
+                       else
+                         Status
+                       end
+
       starting_scope
         .with_public_visibility
         .without_reblogs
