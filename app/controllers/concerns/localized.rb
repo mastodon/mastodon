@@ -3,6 +3,10 @@
 module Localized
   extend ActiveSupport::Concern
 
+  COMPATIBILITY_MAP = {
+    'sr-Latn': 'sr-LATN',
+  }.freeze
+
   included do
     around_action :set_locale
   end
@@ -28,7 +32,8 @@ module Localized
   end
 
   def request_locale
-    preferred_locale || compatible_locale
+    locale = preferred_locale || compatible_locale
+    COMPATIBILITY_MAP.key(locale) || locale
   end
 
   def preferred_locale
@@ -40,6 +45,6 @@ module Localized
   end
 
   def available_locales
-    I18n.available_locales.reverse
+    I18n.available_locales.reverse.map { |locale| COMPATIBILITY_MAP[locale] || locale }
   end
 end
