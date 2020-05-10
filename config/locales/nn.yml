@@ -90,6 +90,7 @@ nn:
       delete: Slett
       destroyed_msg: Moderatormerknad er utsletta!
     accounts:
+      add_email_domain_block: Svartelist E-postdomenet
       approve: Godtak
       approve_all: Godtak alle
       are_you_sure: Er du sikker?
@@ -170,6 +171,7 @@ nn:
         staff: Personell
         user: Brukar
       search: Søk
+      search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukarar med same IP
       shared_inbox_url: Delt Innboks URL
       show:
@@ -191,6 +193,24 @@ nn:
       web: Nett
       whitelisted: Kvitlista
     action_logs:
+      action_types:
+        change_email_user: Endre brukerens E-postadresse
+        confirm_user: Bekreft brukeren
+        create_account_warning: Opprett en advarsel
+        create_announcement: Opprett en kunngjøring
+        create_custom_emoji: Opprett en tilpasset emoji
+        destroy_announcement: Slett kunngjøringen
+        destroy_custom_emoji: Slett den tilpassede emojien
+        destroy_status: Slett statusen
+        disable_2fa_user: Skru av 2-trinnsinnlogging
+        disable_user: Deaktiver bruker
+        enable_user: Aktiver bruker
+        reopen_report: Gjenåpne rapporten
+        reset_password_user: Tilbakestill passord
+        suspend_account: Suspender kontoen
+        unsuspend_account: Opphev suspensjonen av kontoen
+        update_announcement: Oppdater kunngjøringen
+        update_status: Oppdater statusen
       actions:
         assigned_to_self_report: "%{name} tilegnet rapport %{target} til seg selv"
         change_email_user: "%{name} endra e-postadressa til brukaren %{target}"
@@ -228,6 +248,9 @@ nn:
         update_custom_emoji: "%{name} oppdaterte kjensleteiknet %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(sletta status)"
+      empty: Ingen loggføringer ble funnet.
+      filter_by_action: Sorter etter handling
+      filter_by_user: Sorter etter bruker
       title: Revisionslogg
     announcements:
       destroyed_msg: Kunngjøringen er slettet!
@@ -356,6 +379,7 @@ nn:
       destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
       empty: Ingen e-mail-domener er sortelistet på dette tidspunkt.
+      from_html: fra %{domain}
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
@@ -528,6 +552,8 @@ nn:
         title: Tillat emneknaggar å verta populære utan gjennomgang på førehand
       trends:
         title: Populære emneknaggar
+    site_uploads:
+      delete: Slett den opplastede filen
     statuses:
       back_to_account: Tilbake til kontosida
       batch:
@@ -581,6 +607,7 @@ nn:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
     deleted_msg: Fjerna kallenamnet. No vert det ikkje lenger mogeleg å flytta frå den andre kontoen til denne.
+    empty: Du har ingen aliaser.
     hint_html: Dersom du vil flytte fra en annen konto til den, kan du lage et alias her, som er påkrevd før du kan gå videre med å flytte følgere fra den gamle kontoen til den nye. Handlingen i seg selv er <strong>harmløs og reversibel</strong>. <strong>Kontoflyttingen har blitt satt i gang fra den gamle kontoen</strong>.
     remove: Fjern aliaslenking
   appearance:
@@ -838,6 +865,7 @@ nn:
       already_moved: er den same kontoen som du allereie har flytta til
       move_to_self: kan ikkje vera denne kontoen
       not_found: fann ikkje
+      on_cooldown: Du er i en nedkjølingsperiode
     followers_count: Fylgjarar då kontoen vart flytta
     incoming_migrations: Flyttar frå ein annan konto
     incoming_migrations_html: For å flytta frå ein annnan konto til denne må du fyrst <a href="%{path}">laga eit kallenamn til kontoen</a>.
@@ -921,6 +949,7 @@ nn:
   reactions:
     errors:
       limit_reached: Grensen for forskjellige reaksjoner nådd
+      unrecognized_emoji: er ikke en gjenkjent emoji
   relationships:
     activity: Kontoaktivitet
     dormant: I dvale
@@ -1016,6 +1045,8 @@ nn:
     profile: Profil
     relationships: Fylgjar og fylgjarar
     two_factor_authentication: Tostegsautorisering
+  spam_check:
+    spam_detected: Dette er en automatisert rapport. Spam har blitt oppdaget.
   statuses:
     attached:
       description: 'Vedlagt: %{attached}'
@@ -1047,6 +1078,7 @@ nn:
         other: "%{count} røyster"
       vote: Røyst
     show_more: Vis meir
+    show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
     title: '%{name}: «%{quote}»'
     visibilities:
