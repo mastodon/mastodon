@@ -82,35 +82,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '#title' do
-    # rubocop:disable Style/InterpolationCheck
-
-    let(:account) { subject.account }
-
-    context 'if destroyed?' do
-      it 'returns "#{account.acct} deleted status"' do
-        subject.destroy!
-        expect(subject.title).to eq "#{account.acct} deleted status"
-      end
-    end
-
-    context 'unless destroyed?' do
-      context 'if reblog?' do
-        it 'returns "#{account.acct} shared a status by #{reblog.account.acct}"' do
-          reblog = subject.reblog = other
-          expect(subject.title).to eq "#{account.acct} shared a status by #{reblog.account.acct}"
-        end
-      end
-
-      context 'unless reblog?' do
-        it 'returns "New status by #{account.acct}"' do
-          subject.reblog = nil
-          expect(subject.title).to eq "New status by #{account.acct}"
-        end
-      end
-    end
-  end
-
   describe '#hidden?' do
     context 'if private_visibility?' do
       it 'returns true' do
@@ -486,6 +457,33 @@ RSpec.describe Status, type: :model do
           viewer.block_domain!('test.com')
           expect(subject).to include(local_status)
           expect(subject).not_to include(remote_status)
+        end
+      end
+    end
+
+    context 'with a remote_only option set' do
+      let!(:local_account)  { Fabricate(:account, domain: nil) }
+      let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
+      let!(:local_status)   { Fabricate(:status, account: local_account) }
+      let!(:remote_status)  { Fabricate(:status, account: remote_account) }
+
+      subject { Status.as_public_timeline(viewer, :remote) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'does not include local instances statuses' do
+          expect(subject).not_to include(local_status)
+          expect(subject).to include(remote_status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer') }
+
+        it 'does not include local instances statuses' do
+          expect(subject).not_to include(local_status)
+          expect(subject).to include(remote_status)
         end
       end
     end

@@ -130,7 +130,7 @@ Rails.application.routes.draw do
       resource :confirmation, only: [:new, :create]
     end
 
-    resources :identity_proofs, only: [:index, :show, :new, :create, :update]
+    resources :identity_proofs, only: [:index, :new, :create, :destroy]
 
     resources :applications, except: [:edit] do
       member do

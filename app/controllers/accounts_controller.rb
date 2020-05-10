@@ -41,7 +41,7 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
-        @statuses = filtered_statuses.without_reblogs.without_replies.limit(PAGE_SIZE)
+        @statuses = filtered_statuses.without_reblogs.limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end
@@ -130,11 +130,11 @@ class AccountsController < ApplicationController
   end
 
   def media_requested?
-    request.path.ends_with?('/media') && !tag_requested?
+    request.path.split('.').first.ends_with?('/media') && !tag_requested?
   end
 
   def replies_requested?
-    request.path.ends_with?('/with_replies') && !tag_requested?
+    request.path.split('.').first.ends_with?('/with_replies') && !tag_requested?
   end
 
   def tag_requested?

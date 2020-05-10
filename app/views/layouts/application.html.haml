@@ -28,6 +28,8 @@
         = javascript_pack_tag "locales/#{@theme[:flavour]}/en", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
+    = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
+
     = yield :header_tags
 
     -#  These must come after :header_tags to ensure our initial state has been defined.
