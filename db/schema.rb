@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_110808) do
+ActiveRecord::Schema.define(version: 2020_05_10_181721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.integer "lock_version", default: 0, null: false
     t.boolean "unread", default: false, null: false
     t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
-    t.index ["account_id"], name: "index_account_conversations_on_account_id"
     t.index ["conversation_id"], name: "index_account_conversations_on_conversation_id"
   end
 
@@ -55,7 +54,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "provider", "provider_username"], name: "index_account_proofs_on_account_and_provider_and_username", unique: true
-    t.index ["account_id"], name: "index_account_identity_proofs_on_account_id"
   end
 
   create_table "account_migrations", force: :cascade do |t|
@@ -85,7 +83,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "target_account_id"], name: "index_account_pins_on_account_id_and_target_account_id", unique: true
-    t.index ["account_id"], name: "index_account_pins_on_account_id"
     t.index ["target_account_id"], name: "index_account_pins_on_target_account_id"
   end
 
@@ -206,7 +203,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "announcement_id"], name: "index_announcement_mutes_on_account_id_and_announcement_id", unique: true
-    t.index ["account_id"], name: "index_announcement_mutes_on_account_id"
     t.index ["announcement_id"], name: "index_announcement_mutes_on_announcement_id"
   end
 
@@ -218,7 +214,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "announcement_id", "name"], name: "index_announcement_reactions_on_account_id_and_announcement_id", unique: true
-    t.index ["account_id"], name: "index_announcement_reactions_on_account_id"
     t.index ["announcement_id"], name: "index_announcement_reactions_on_announcement_id"
     t.index ["custom_emoji_id"], name: "index_announcement_reactions_on_custom_emoji_id"
   end
@@ -263,7 +258,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
-    t.index ["account_id"], name: "index_bookmarks_on_account_id"
     t.index ["status_id"], name: "index_bookmarks_on_status_id"
   end
 
@@ -447,7 +441,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "timeline"], name: "index_markers_on_user_id_and_timeline", unique: true
-    t.index ["user_id"], name: "index_markers_on_user_id"
   end
 
   create_table "media_attachments", force: :cascade do |t|
