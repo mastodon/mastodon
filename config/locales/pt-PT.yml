@@ -842,13 +842,15 @@ pt-PT:
       keybase:
         invalid_token: Os tokens Keybase são hashes de assinaturas e devem conter 66 caracteres hexadecimais
         verification_failed: O Keybase não reconhece este token como uma assinatura do utilizador do Keybase %{kb_username}. Por favor, tente novamente a partir do Keybase.
-      wrong_user: Não é possível criar uma prova para %{proving} enquanto estiver conetado como %{current}. Inicie sessão como %{proving} e tente novamente.
+      wrong_user: Não é possível criar um comprovativo para %{proving} enquanto estiver conetado como %{current}. Inicie sessão como %{proving} e tente novamente.
     explanation_html: Aqui pode conetar criptograficamente as suas outras identidades, tais como um perfil Keybase. Isto permite que outras pessoas lhe enviem mensagens encriptadas e confiar em conteúdo que você lhes envia.
     i_am_html: Sou %{username} em %{service}.
     identity: Identidade
     inactive: Inativo
     publicize_checkbox: 'E publique isso:'
-    publicize_toot: 'Está provado! Eu sou %{username} em %{service}: %{url}'
+    publicize_toot: 'Está comprovado! Eu sou %{username} em %{service}: %{url}'
+    remove: Remover comprovatido da conta
+    removed: Comprovativo removido da conta com sucesso
     status: Estado da verificação
     view_proof: Ver prova
   imports:
