@@ -82,35 +82,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '#title' do
-    # rubocop:disable Style/InterpolationCheck
-
-    let(:account) { subject.account }
-
-    context 'if destroyed?' do
-      it 'returns "#{account.acct} deleted status"' do
-        subject.destroy!
-        expect(subject.title).to eq "#{account.acct} deleted status"
-      end
-    end
-
-    context 'unless destroyed?' do
-      context 'if reblog?' do
-        it 'returns "#{account.acct} shared a status by #{reblog.account.acct}"' do
-          reblog = subject.reblog = other
-          expect(subject.title).to eq "#{account.acct} shared a status by #{reblog.account.acct}"
-        end
-      end
-
-      context 'unless reblog?' do
-        it 'returns "New status by #{account.acct}"' do
-          subject.reblog = nil
-          expect(subject.title).to eq "New status by #{account.acct}"
-        end
-      end
-    end
-  end
-
   describe '#hidden?' do
     context 'if private_visibility?' do
       it 'returns true' do
