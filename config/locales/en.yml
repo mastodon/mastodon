@@ -844,12 +844,14 @@ en:
         invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
         verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
       wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    explanation_html: Here you can cryptographically connect your other identities from other platforms, such as Keybase. This lets other people send you encrypted messages on those platforms and allows them to trust that the content you send them comes from you.
     i_am_html: I am %{username} on %{service}.
     identity: Identity
     inactive: Inactive
     publicize_checkbox: 'And toot this:'
     publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    remove: Remove proof from account
+    removed: Successfully removed proof from account
     status: Verification status
     view_proof: View proof
   imports:
