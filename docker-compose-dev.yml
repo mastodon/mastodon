@@ -3,6 +3,8 @@ services:
 
   db:
     image: postgres:9.6-alpine
+    environment:
+      POSTGRES_PASSWORD: catgram
     ports:
       - "5432:5432"
     networks:
