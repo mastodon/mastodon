@@ -7,8 +7,6 @@ class Api::V1::Statuses::BookmarksController < Api::BaseController
   before_action :require_user!
   before_action :set_status
 
-  respond_to :json
-
   def create
     current_account.bookmarks.find_or_create_by!(account: current_account, status: @status)
     render json: @status, serializer: REST::StatusSerializer

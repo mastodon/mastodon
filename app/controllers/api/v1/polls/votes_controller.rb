@@ -7,8 +7,6 @@ class Api::V1::Polls::VotesController < Api::BaseController
   before_action :require_user!
   before_action :set_poll
 
-  respond_to :json
-
   def create
     VoteService.new.call(current_account, @poll, vote_params[:choices])
     render json: @poll, serializer: REST::PollSerializer

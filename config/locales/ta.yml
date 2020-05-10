@@ -78,6 +78,7 @@ ta:
       delete: அகற்று
       destroyed_msg: நடுநிலை குறிப்பு வெற்றிகரமாக அகற்றப்பட்டது!
     accounts:
+      add_email_domain_block: இம்மின்னஞ்சல் களத்தைத் தடுப்புப்பட்டியலில் சேர்
       approve: அங்கீகரி
       approve_all: அனைத்தும் அங்கீகரி
       are_you_sure: நிச்சயமா?
@@ -149,6 +150,7 @@ ta:
         staff: பணியாளர்
         user: பயனர்
       search: தேடு
+      search_same_email_domain: இம்மின்னஞ்சல் களத்தில் உள்ள மற்ற பயனர்கள்
       shared_inbox_url: குழு மின்னஞ்சல் முகவரி
       show:
         created_reports: உறுவாக்கிய அறிக்கைகள்
@@ -200,6 +202,7 @@ ta:
           suspend: தற்காலீகமாக நீக்குக
     email_domain_blocks:
       empty: மின்னஞ்சற் களங்கள் எதுவும் தடுக்கப்படவில்லை.
+      from_html: "%{domain} -இலிருந்து"
     invites:
       filter:
         all: அனைத்தும்
@@ -221,10 +224,15 @@ ta:
           other: "%{count} புகார்கள்"
       comment:
         none: எதுவுமில்லை
+    site_uploads:
+      delete: பதிவேற்றப்பட்டப் படம் அழிக்கப்பட்டது
+      destroyed_msg: பதிவேற்றப்பட்ட வலைதளம் வெற்றிக்கரமாக அழிக்கப்பட்டது!
   appearance:
     localization:
       body: மாஸ்டோடான் தன்னார்வலர்களால் மொழிபெயர்க்கப்படுகிறது.
       guide_link_text: அனைவரும் பங்களிக்கலாம்.
+  authorize_follow:
+    already_requested: இக்கணக்கைப் பின்தொடரும் கோரிக்கையை நீங்கள் ஏற்கனவே அனுப்பிவிட்டீர்கள்
   date:
     formats:
       default: "%b %d, %Y"
@@ -235,7 +243,7 @@ ta:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
-    '429': Throttled
+    '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
   filters:
@@ -251,6 +259,9 @@ ta:
       '43200': 12 hours
       '604800': 1 week
       '86400': 1 day
+  media_attachments:
+    validations:
+      not_ready: பதிவேற்றம் முடிவடையாத கோப்புகளை இணைக்க முடியாது. சிறிது நேரம் கழித்து மீண்டும் முயற்சி செய்யவும்!
   notifications:
     email_events: மின்னஞ்சல் அறிவிப்புகளுக்கான நிகழ்வுகள்
     email_events_hint: 'எந்த நிகழ்வுகளுக்கு அறிவிப்புகளைப் பெற வேண்டும் என்று தேர்வு செய்க:'
@@ -263,4 +274,6 @@ ta:
       limit_reached: எதிர்வினைகளுக்கான உச்சவரம்பு எட்டப்பட்டது
       unrecognized_emoji: அங்கீகரிக்கப்பட்ட ஈமோஜி அல்ல
   statuses:
+    errors:
+      in_reply_not_found: நீங்கள் மறுமொழி அளிக்க முயலும் பதிவு இருப்பதுபோல் தெரியவில்லை.
     show_thread: தொடரைக் காட்டு

@@ -88,6 +88,7 @@ ja:
       delete: 削除
       destroyed_msg: モデレーションメモを削除しました！
     accounts:
+      add_email_domain_block: ドメインをブラックリストに追加
       approve: 承認
       approve_all: すべて承認
       are_you_sure: 本当に実行しますか？
@@ -168,6 +169,7 @@ ja:
         staff: スタッフ
         user: ユーザー
       search: 検索
+      search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じ IP のユーザーを検索
       shared_inbox_url: Shared inbox URL
       show:
@@ -189,6 +191,42 @@ ja:
       web: Web
       whitelisted: ホワイトリストに登録済み
     action_logs:
+      action_types:
+        assigned_to_self_report: 通報の担当者に設定
+        change_email_user: ユーザーのメールアドレスを変更
+        confirm_user: ユーザーの確認
+        create_account_warning: 警告を作成
+        create_announcement: お知らせを作成
+        create_custom_emoji: カスタム絵文字を作成
+        create_domain_allow: ドメインホワイトリストに追加
+        create_domain_block: ドメインブロックを作成
+        create_email_domain_block: メールドメインブロックを作成
+        demote_user: ユーザーを降格
+        destroy_announcement: お知らせを削除
+        destroy_custom_emoji: カスタム絵文字を削除
+        destroy_domain_allow: ドメインホワイトリストから削除
+        destroy_domain_block: ドメインブロックを削除
+        destroy_email_domain_block: メールドメインブロックを削除
+        destroy_status: トゥートを削除
+        disable_2fa_user: 二段階認証を無効にする
+        disable_custom_emoji: カスタム絵文字を無効化
+        disable_user: ユーザーを無効化
+        enable_custom_emoji: カスタム絵文字を有効化
+        enable_user: ユーザーを有効化
+        memorialize_account: 追悼アカウント
+        promote_user: ユーザーを昇格
+        remove_avatar_user: アイコンを削除
+        reopen_report: 通報を再度開く
+        reset_password_user: パスワードをリセット
+        resolve_report: 通報を解決済みにする
+        silence_account: アカウントをサイレンス
+        suspend_account: アカウントをサスペンド
+        unassigned_report: 通報の担当を解除
+        unsilence_account: アカウントのサイレンスを解除
+        unsuspend_account: アカウントのサスペンドを解除
+        update_announcement: お知らせを更新
+        update_custom_emoji: カスタム絵文字を更新
+        update_status: ステータスを更新
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
@@ -226,6 +264,9 @@ ja:
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
       deleted_status: "(削除済)"
+      empty: ログが見つかりませんでした
+      filter_by_action: アクションでフィルター
+      filter_by_user: ユーザーでフィルター
       title: 操作履歴
     announcements:
       destroyed_msg: お知らせが削除されました
@@ -353,6 +394,7 @@ ja:
       destroyed_msg: ブラックリストから外しました
       domain: ドメイン
       empty: メールブラックリストに登録されたドメインはありません
+      from_html: "%{domain} から"
       new:
         create: ドメインを追加
         title: メールアドレス用ブラックリスト新規追加
@@ -529,6 +571,9 @@ ja:
       trends:
         desc_html: 現在トレンドになっている承認済みのハッシュタグを公開します
         title: トレンドタグを有効にする
+    site_uploads:
+      delete: ファイルを削除
+      destroyed_msg: ファイルを削除しました！
     statuses:
       back_to_account: アカウントページに戻る
       batch:
@@ -565,7 +610,6 @@ ja:
     warning_presets:
       add_new: 追加
       delete: 削除
-      edit: 編集
       edit_preset: プリセット警告文を編集
       title: プリセット警告文を管理
   admin_mailer:
@@ -653,6 +697,7 @@ ja:
     trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
+    already_requested: 既にこのアカウントへフォローリクエストを送信しています
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
@@ -839,6 +884,7 @@ ja:
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
+      not_ready: ファイルのアップロードに失敗しました。しばらくしてからもう一度お試しください！
       too_many: 追加できるファイルは4つまでです
   migrations:
     acct: 引っ越し先の ユーザー名@ドメイン
@@ -1055,6 +1101,8 @@ ja:
     content_warning: '閲覧注意: %{warning}'
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
+    errors:
+      in_reply_not_found: あなたが返信しようとしているトゥートは存在しないようです。
     language_detection: 自動検出
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです

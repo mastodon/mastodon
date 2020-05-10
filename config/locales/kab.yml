@@ -58,7 +58,7 @@ kab:
     posts:
       one: Tajewwiqt
       other: Tijewwiqin
-    posts_tab_heading: Tiberraḥin
+    posts_tab_heading: Tijewwiqin
     posts_with_replies: Tijewwaqin akked tririyin
     reserved_username: Isem-agi n umseqdac yettwaṭṭef yakan
     roles:
@@ -107,6 +107,7 @@ kab:
       location:
         all: Akk
         local: Adigan
+        remote: Ameccaq
         title: Amḍiq
       login_status: Addad n tuqqna
       memorialize: Err amiḍan d asebter n usmekti
@@ -122,8 +123,8 @@ kab:
       protocol: Aneggaf
       public: Azayez
       redownload: Smiren amaγnu
-      reject: Ggami
-      reject_all: Ggami-ten akk
+      reject: Aggi
+      reject_all: Aggi-ten akk
       remove_avatar: Kkes tugna n wummuγ
       resend_confirmation:
         already_confirmed: Amseqdac-agi yettwasentem yakan
@@ -143,26 +144,26 @@ kab:
       statuses: Tisuffγin
       subscribe: Jerred
       time_in_queue: Deg tebdert n uraju %{time}
-      title: Imiḍan
+      title: Imiḍanen
       unconfirmed_email: Imayl ur yettwasentem ara
       undo_silenced: Kkes asgugem
       unsubscribe: Ur ṭafar ara
       username: Isem n useqdac
       web: Web
-      whitelisted: Deg tebdert tamellalt
+      whitelisted: Deg umuγ tamellalt
     action_logs:
       actions:
         change_email_user: "%{name} ibeddel imayl n umseqdac %{target}"
         confirm_user: "%{name} isentem tansa imayl n umseqdac %{target}"
         create_account_warning: "%{name} yuzen alγu i %{target}"
         create_custom_emoji: "%{name} yessuli-d imujiten imaynuten %{target}"
-        create_domain_allow: "%{name} yerna taγult %{target} γer tebdart tamellalt"
+        create_domain_allow: "%{name} yerna taγult %{target} γer wumuγ amellal"
         create_domain_block: "%{name} yesseḥbes taγult %{target}"
-        create_email_domain_block: "%{name} yerna taγult n imayl %{target} γer tebdart taberkant"
+        create_email_domain_block: "%{name} yerna taγult n imayl %{target} γer wumuγ aberkan"
         destroy_custom_emoji: "%{name} ihudd imuji %{target}"
-        destroy_domain_allow: "%{name} yekkes taγult %{target} seg tebdart tamellalt"
+        destroy_domain_allow: "%{name} yekkes taγult %{target} seg wumuγ amellal"
         destroy_domain_block: "%{name} yekkes aseḥbes n taγult %{target}"
-        destroy_email_domain_block: "%{name} yerna taγult n imayl %{target} γer tebdart tamellalt"
+        destroy_email_domain_block: "%{name} yerna taγult n imayl %{target} γer wumuγ amellal"
         destroy_status: "%{name} yekkes tasuffeγt n %{target}"
         disable_custom_emoji: "%{name} yessens imuji %{target}"
         disable_user: "%{name} yessens tuqqna i umseqdac %{target}"
@@ -178,6 +179,7 @@ kab:
       edit:
         title: Ẓreg ulγu
       empty: Ulac kra n ulγuyen.
+      live: Srid
       new:
         create: Rnu-d ulγu
         title: Ulγu amaynut
@@ -198,32 +200,35 @@ kab:
       enabled: Yermed
       enabled_msg: Imuji yermed mebla ugur
       image_hint: PNG n ddaw n 50KT
-      list: Tabdart
+      list: Umuγ
       new:
         title: Timerna n imuji udmawan amaynut
       overwrite: Semselsi
       title: Imujiten udmawanen
-      unlist: Kkes si tabdert
-      unlisted: Yettwakkes si tabdert
+      unlist: Kkes seg wumuγ
+      unlisted: Yettwakkes seg wumuγ
       update_failed_msg: Ur izmir ara ad-issali umuji-a
       upload: Sali
     dashboard:
       config: Tawila
+      feature_invites: Iseγwan n iɛaṛuḍen
       feature_profile_directory: Akaram n imaγnuten
       feature_registrations: Ajerred
+      feature_relay: Anmegli n tfidiṛalitt
       features: Timahaltin
-      open_reports: ad yeldi ineqqisen
+      open_reports: yeldin d ineqqisen
+      pending_users: imseqdacen ttrajun aɛiwed n tmuγli
       recent_users: Iseqdacen n memli kan
       software: Aseγẓan
       title: Tafelwit
       total_users: igellan akk d iseqdacen
-      week_users_active: yermed deg yimalas-agi
+      week_users_active: urmiden deg yimalas-agi
       week_users_new: imseqdacen deg yimalas-agi
     domain_allows:
-      add_new: Timerna n taγult γer tebdart tamellalt
-      created_msg: Taγult-a tettwarna γer tebdart tamellalt mebla ugur
-      destroyed_msg: Taγult-a tettwakkes seg tebdart tamellalt
-      undo: Kkes seg tebdart tamellalt
+      add_new: Timerna n taγult γer wumuγ amellal
+      created_msg: Taγult-a tettwarna γer wumuγ amellal mebla ugur
+      destroyed_msg: Taγult-a tettwakkes seg umuγ amellal
+      undo: Kkes seg umuγ amellal
     domain_blocks:
       domain: Taγult
       new:
@@ -242,13 +247,13 @@ kab:
       domain: Taγult
       new:
         create: Rnu taγult
-        title: Timerna n taγult tamaynut n imayl γer tebdart taberkant
-      title: Tabdart taberkant n imayl
+        title: Timerna n taγult tamaynut n imayl γer wumuγ aberkan
+      title: Umuγ aberkan n imayl
     instances:
       by_domain: Taγult
       delivery_available: Yella usiweḍ
       known_accounts:
-        one: "%{count} n umiḍan i yettwassen"
+        one: "%{count} n umiḍan i yettwasnen"
         other: "%{count} n yimiḍanen i yettwassnen"
       moderation:
         all: Akk
@@ -265,13 +270,19 @@ kab:
         expired: Ifat
         title: Asizdeg
       title: Iɛaruḍen
+    pending_accounts:
+      title: Imiḍanen yettrajun (%{count})
     relays:
+      add_new: Rnu anmegli amaynut
       delete: Kkes
       disable: Gdel
+      disabled: Yettwassens
       enable: Rmed
       enabled: Yermed
+      inbox_url: URL n unmegli
       save_and_enable: Sekles rnu rmed-it
       status: Addad
+      title: Imnegliyen
     reports:
       account:
         reports:
@@ -312,6 +323,8 @@ kab:
         title: Aglam n uqeddac
       site_title: Isem n uqeddac
       title: Iγewwaṛen n usmel
+    site_uploads:
+      delete: Kkes afaylu yulin
     statuses:
       back_to_account: Tuγalin γer usebter n umiḍan
       batch:
@@ -320,6 +333,7 @@ kab:
       media:
         title: Taγwalt
       no_media: Mebla taγwalt
+      title: Tisuffiγin n umiḍan
       with_media: S taγwalt
     tags:
       directory: Deg ukaram
@@ -327,10 +341,11 @@ kab:
       last_active: Armud aneggaru
       most_popular: Ittwasnen aṭas
       most_recent: Melmi kan
+      name: Ahacṭag
+      title: Ihacṭagen
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
-      edit: Ẓreg
   admin_mailer:
     new_report:
       subject: Aneqqis amaynut i %{instance} (#%{id})
@@ -342,9 +357,13 @@ kab:
     sensitive_content: Agbur amḥulfu
   application_mailer:
     salutation: "%{name},"
+    view: 'Ẓaṛ:'
     view_profile: Sken-d amaγnu
+    view_status: Sken-d tasuffiγt
   auth:
     change_password: Awal uffir
+    checkbox_agreement_html: Qebleγ <a href="%{rules_path}" target="_blank">ilugan n uqeddac-a</a> akked <a href="%{terms_path}" target="_blank">tiwtilin n useqdec</a>
+    checkbox_agreement_without_rules_html: Qebleγ <a href="%{terms_path}" target="_blank">tiwtilin n useqdec</a>
     delete_account: Kkes amiḍan
     description:
       prefix_sign_up: Zeddi di Maṣṭudun assa!
@@ -359,7 +378,7 @@ kab:
     register: Jerred
     reset_password: Wennez awal uffir
     security: Taγellist
-    set_new_password: Egr-ed awal uffir amaynut
+    set_new_password: Egr-d awal uffir amaynut
     status:
       account_status: Addad n umiḍan
       functional: Amiḍan-inek·m yettwaheyya.
@@ -369,7 +388,7 @@ kab:
     follow: Ḍfeṛ
     following: 'Igerrez! Aqlik teṭafareḍ tura:'
     post_follow:
-      return: Sken-ed amγnu n useqdac
+      return: Sken-d amγnu n useqdac
       web: Ddu γer Web
     title: Ḍfeṛ %{acct}
   challenge:
@@ -381,18 +400,18 @@ kab:
       default: "%d %b %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}a"
+      about_x_hours: "%{count}isr"
       about_x_months: "%{count}ug"
-      about_x_years: "%{count}i"
-      almost_x_years: "%{count}i"
+      about_x_years: "%{count}isg"
+      almost_x_years: "%{count}isg"
       half_a_minute: Tura kan
-      less_than_x_minutes: "%{count}t"
+      less_than_x_minutes: "%{count}tis"
       less_than_x_seconds: Tura kan
-      over_x_years: "%{count}i"
+      over_x_years: "%{count}isg"
       x_days: "%{count}wu"
-      x_minutes: "%{count}t"
-      x_months: "%{count}ug"
-      x_seconds: "%{count}t"
+      x_minutes: "%{count}tis"
+      x_months: "%{count}agu"
+      x_seconds: "%{count}tas"
   deletes:
     proceed: Kkes amiḍan
   directories:
@@ -405,8 +424,9 @@ kab:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
-    '429': Throttled
-    '500': 
+    '429': Too many requests
+    '500':
+      title: Asebter-ayi d arameγtu
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
     not_found_multiple: ur yezmir ara ad yaf %{usernames}
@@ -415,7 +435,7 @@ kab:
       date: Azemz
       size: Teγzi
     csv: CSV
-    lists: Tibdarin
+    lists: Umuγen
     mutes: Wid tesgugmeḍ
   featured_tags:
     add_new: Rnu amaynut
@@ -437,6 +457,7 @@ kab:
     more: Ugar…
   generic:
     all: Akk
+    changes_saved_msg: Ttwaskelsen ibelliden-ik·im akken ilaq!
     copy: Nγel
     delete: Kkes
     order_by: Sizwer s
@@ -452,7 +473,8 @@ kab:
     modes:
       overwrite: Semselsi
     types:
-      following: Tabdart n wid teṭafareḍ
+      following: Umuγ n wid teṭafareḍ
+      muting: Umuγ n wid tesgugmeḍ
     upload: Sali
   invites:
     expires_in:
@@ -466,7 +488,8 @@ kab:
     title: Ɛreḍ-d kra n yimdanen
   migrations:
     acct: Ibeddel γer
-    incoming_migrations: Tusiḍ-ed seg umiḍan nniḍen
+    incoming_migrations: Tusiḍ-d seg umiḍan nniḍen
+    proceed_with_move: Awid imeḍfaṛen-ik
   notification_mailer:
     digest:
       action: Wali akk tilγa
@@ -494,6 +517,12 @@ kab:
     status: Addad n umiḍan
   remote_follow:
     no_account_html: Ur tesɛid ara amiḍan? Tzmreḍ <a href='%{sign_up_path}' target='_blank'>ad jerdeḍ da</a>
+    proceed: Kemmel taḍfart
+  remote_interaction:
+    favourite:
+      proceed: Kemmel asmenyef
+    reply:
+      proceed: Kemmel tiririt
   sessions:
     activity: Armud aneggaru
     browser: Iminig
@@ -559,7 +588,7 @@ kab:
       total_people:
         one: "%{count} n wemdan"
         other: "%{count} n yemdanen"
-    show_more: Sken-ed ugar
+    show_more: Sken-d ugar
     sign_in_to_participate: Qqen i waken ad tzeddiḍ deg udiwenni
     title: '%{name}: "%{quote}"'
     visibilities:

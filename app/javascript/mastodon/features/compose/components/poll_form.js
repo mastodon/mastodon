@@ -75,7 +75,7 @@ class Option extends React.PureComponent {
 
     return (
       <li>
-        <label className='poll__text editable'>
+        <label className='poll__option editable'>
           <span
             className={classNames('poll__input', { checkbox: isPollMultiple })}
             onClick={this.handleToggleMultiple}
@@ -88,7 +88,7 @@ class Option extends React.PureComponent {
 
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-            maxLength={25}
+            maxLength={50}
             value={title}
             onChange={this.handleOptionTitleChange}
             suggestions={this.props.suggestions}
@@ -155,6 +155,7 @@ class PollForm extends ImmutablePureComponent {
         <div className='poll__footer'>
           <button disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
 
+          {/* eslint-disable-next-line jsx-a11y/no-onchange */}
           <select value={expiresIn} onChange={this.handleSelectDuration}>
             <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
             <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>

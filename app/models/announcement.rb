@@ -14,6 +14,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  published_at :datetime
+#  status_ids   :bigint           is an Array
 #
 
 class Announcement < ApplicationRecord
@@ -46,6 +47,16 @@ class Announcement < ApplicationRecord
 
   def mentions
     @mentions ||= Account.from_text(text)
+  end
+
+  def statuses
+    @statuses ||= begin
+      if status_ids.nil?
+        []
+      else
+        Status.where(id: status_ids, visibility: [:public, :unlisted])
+      end
+    end
   end
 
   def tags
