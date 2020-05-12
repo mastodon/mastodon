@@ -28,6 +28,7 @@ class Option extends React.PureComponent {
     title: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     isPollMultiple: PropTypes.bool,
+    autoFocus: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
     suggestions: ImmutablePropTypes.list,
@@ -58,7 +59,7 @@ class Option extends React.PureComponent {
   }
 
   render () {
-    const { isPollMultiple, title, index, intl } = this.props;
+    const { isPollMultiple, title, index, autoFocus, intl } = this.props;
 
     return (
       <li>
@@ -75,6 +76,7 @@ class Option extends React.PureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             searchTokens={[':']}
+            autoFocus={autoFocus}
           />
         </label>
 
@@ -125,10 +127,12 @@ class PollForm extends ImmutablePureComponent {
       return null;
     }
 
+    const autoFocusIndex = options.indexOf('');
+
     return (
       <div className='compose-form__poll-wrapper'>
         <ul>
-          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} {...other} />)}
+          {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
           {options.size < pollLimits.max_options && (
             <label className='poll__text editable'>
               <span className={classNames('poll__input')} style={{ opacity: 0 }} />
