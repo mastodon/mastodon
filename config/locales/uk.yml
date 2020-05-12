@@ -207,9 +207,15 @@ uk:
         create_account_warning: Створити попередження
         create_announcement: Створити оголошення
         create_custom_emoji: Створити користувацьке емодзі
+        create_domain_allow: Створити дозвіл на домен
+        create_domain_block: Створити блокування домену
+        create_email_domain_block: Створити блокування поштового домену
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
         destroy_custom_emoji: Видалити користувацьке емодзі
+        destroy_domain_allow: Видалити дозвіл на домен
+        destroy_domain_block: Видалити блокування домену
+        destroy_email_domain_block: Видалити блокування поштового домену
         destroy_status: Видалити пост
         disable_custom_emoji: Вимкнути користувацькі емодзі
         disable_user: Відключити користувача
@@ -1136,6 +1142,8 @@ uk:
       few: 'заборонених хештеґа: %{tags}'
       many: 'заборонених хештеґів: %{tags}'
       other: 'заборонених хештеґів: %{tags}'
+    errors:
+      in_reply_not_found: Статуса, на який ви намагаєтеся відповісти, не існує.
     language_detection: Автоматично визначати мову
     open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів (%{max})
