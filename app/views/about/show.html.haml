@@ -27,7 +27,7 @@
 
               .avatar-stack
                 - @instance_presenter.sample_accounts.each do |account|
-                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
+                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, alt: '', class: 'account__avatar'
 
         - if Setting.timeline_preview
           .directory__tag

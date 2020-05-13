@@ -28,18 +28,6 @@ module Localized
   end
 
   def request_locale
-    preferred_locale || compatible_locale
-  end
-
-  def preferred_locale
-    http_accept_language.preferred_language_from(available_locales)
-  end
-
-  def compatible_locale
-    http_accept_language.compatible_language_from(available_locales)
-  end
-
-  def available_locales
-    I18n.available_locales.reverse
+    http_accept_language.language_region_compatible_from(I18n.available_locales)
   end
 end
