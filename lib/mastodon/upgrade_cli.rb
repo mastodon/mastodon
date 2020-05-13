@@ -121,7 +121,7 @@ module Mastodon
             FileUtils.mv(previous_path, upgraded_path)
 
             begin
-              FileUtils.rmdir(previous_path, parents: true)
+              FileUtils.rmdir(File.dirname(previous_path), parents: true)
             rescue Errno::ENOTEMPTY
               # OK
             end
@@ -131,7 +131,7 @@ module Mastodon
 
           unless dry_run?
             begin
-              FileUtils.rmdir(upgraded_path, parents: true)
+              FileUtils.rmdir(File.dirname(upgraded_path), parents: true)
             rescue Errno::ENOTEMPTY
               # OK
             end

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ColumnSettings from 'flavours/glitch/features/community_timeline/components/column_settings';
+import ColumnSettings from '../components/column_settings';
 import { changeSetting } from 'flavours/glitch/actions/settings';
 import { changeColumnParams } from 'flavours/glitch/actions/columns';
  

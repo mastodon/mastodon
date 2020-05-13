@@ -22,8 +22,7 @@ class Settings::IdentityProofsController < Settings::BaseController
     if current_account.username.casecmp(params[:username]).zero?
       render layout: 'auth'
     else
-      flash[:alert] = I18n.t('identity_proofs.errors.wrong_user', proving: params[:username], current: current_account.username)
-      redirect_to settings_identity_proofs_path
+      redirect_to settings_identity_proofs_path, alert: I18n.t('identity_proofs.errors.wrong_user', proving: params[:username], current: current_account.username)
     end
   end
 
@@ -35,9 +34,14 @@ class Settings::IdentityProofsController < Settings::BaseController
       PostStatusService.new.call(current_user.account, text: post_params[:status_text]) if publish_proof?
       redirect_to @proof.on_success_path(params[:user_agent])
     else
-      flash[:alert] = I18n.t('identity_proofs.errors.failed', provider: @proof.provider.capitalize)
-      redirect_to settings_identity_proofs_path
+      redirect_to settings_identity_proofs_path, alert: I18n.t('identity_proofs.errors.failed', provider: @proof.provider.capitalize)
     end
+  end
+
+  def destroy
+    @proof = current_account.identity_proofs.find(params[:id])
+    @proof.destroy!
+    redirect_to settings_identity_proofs_path, success: I18n.t('identity_proofs.removed')
   end
 
   private

@@ -9,9 +9,9 @@
         .status__avatar
           %div
             - if current_account&.user&.setting_auto_play_gif || autoplay
-              = image_tag status.account.avatar_original_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+              = image_tag status.account.avatar_original_url, alt: '', class: 'u-photo account__avatar'
             - else
-              = image_tag status.account.avatar_static_url, width: 48, height: 48, alt: '', class: 'u-photo account__avatar'
+              = image_tag status.account.avatar_static_url, alt: '', class: 'u-photo account__avatar'
         %span.display-name
           %bdi
             %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)

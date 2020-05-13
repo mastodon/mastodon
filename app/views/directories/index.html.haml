@@ -25,7 +25,7 @@
         .directory__card__bar
           = link_to TagManager.instance.url_for(account), class: 'directory__card__bar__name' do
             .avatar
-              = image_tag account.avatar.url, alt: '', width: 48, height: 48, class: 'u-photo'
+              = image_tag account.avatar.url, alt: '', class: 'u-photo'
 
             .display-name
               %bdi

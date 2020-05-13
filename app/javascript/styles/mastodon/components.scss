@@ -1318,7 +1318,12 @@
 
 .account__avatar {
   @include avatar-radius;
+  display: block;
   position: relative;
+
+  width: 36px;
+  height: 36px;
+  background-size: 36px 36px;
 
   &-inline {
     display: inline-block;
