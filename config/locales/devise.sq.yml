@@ -1,3 +1,4 @@
+---
 sq:
   devise:
     confirmations:
@@ -7,10 +8,10 @@ sq:
     failure:
       already_authenticated: Jeni tashmë i futur.
       inactive: Llogaria juaj s’është aktivizuar ende.
-      invalid: '%{authentication_keys} ose fjalëkalim i pavlefshëm.'
+      invalid: "%{authentication_keys} ose fjalëkalim i pavlefshëm."
       last_attempt: Mund të provoni edhe një herë, përpara se llogaria juaj të kyçet.
       locked: Llogaria juaj është e kyçur.
-      not_found_in_database: '%{authentication_keys} ose fjalëkalim i pavlefshëm.'
+      not_found_in_database: "%{authentication_keys} ose fjalëkalim i pavlefshëm."
       timeout: Sesioni juaj ka skaduar. Ju lutemi, që të vazhdohet, ribëni hyrjen.
       unauthenticated: Përpara se të vazhdohet më tej, lypset të bëni hyrjen ose të regjistroheni.
       unconfirmed: Përpara se të vazhdohet, lypset të ripohoni adresën tuaj email.
@@ -83,4 +84,4 @@ sq:
       not_locked: s’qe kyçur
       not_saved:
         one: 'Ruajtjen e këtij %{resource} e pengoi 1 gabim:'
-        other: "Ruajtjen e këtij %{resource} e penguan %{count} gabime:"
+        other: 'Ruajtjen e këtij %{resource} e penguan %{count} gabime:'

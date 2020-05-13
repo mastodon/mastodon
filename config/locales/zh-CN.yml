@@ -1,11 +1,12 @@
+---
 zh-CN:
   about:
-    about_hashtag_html: '这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 站点或与其兼容的网站上拥有一个帐户。'
-    about_mastodon_html: 'Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。'
+    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 站点或与其兼容的网站上拥有一个帐户。
+    about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本站
     active_count_after: 活跃
     active_footnote: 每月活跃用户
-    administered_by: '本站管理员：'
+    administered_by: 本站管理员：
     api: API
     apps: 移动应用
     apps_platforms: 在 iOS、Android 和其他平台上使用 Mastodon
@@ -20,12 +21,13 @@ zh-CN:
     federation_hint_html: 在%{instance} 上拥有账号后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
-    instance_actor_flash: |
-      这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
+    instance_actor_flash: '这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
+
+'
     learn_more: 了解详情
     privacy_policy: 隐私政策
     see_whats_happening: 看一看现在在发生什么
-    server_stats: '服务器统计数据：'
+    server_stats: 服务器统计数据：
     source_code: 源代码
     status_count_after:
       other: 条嘟文
@@ -36,9 +38,9 @@ zh-CN:
     unavailable_content_description:
       domain: 服务器
       reason: 原因
-      rejecting_media: '来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。'
-      silenced: '来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则他们的互动不会产生通知。'
-      suspended: '这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。'
+      rejecting_media: 来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。
+      silenced: 来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则他们的互动不会产生通知。
+      suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
     unavailable_content_html: 通常来说，在Mastodon上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是某些站点上不排除会有例外。
     user_count_after:
       other: 位用户
@@ -60,7 +62,7 @@ zh-CN:
     network_hidden: 此信息不可用
     never_active: 从未活跃
     nothing_here: 这里什么都没有！
-    people_followed_by: '%{name} 关注的人'
+    people_followed_by: "%{name} 关注的人"
     people_who_follow: 关注 %{name} 的人
     pin_errors:
       following: 您必须关注您要推荐的人
@@ -357,7 +359,7 @@ zh-CN:
         create: 添加屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
         severity:
-          desc_html: "选择<strong>自动隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。"
+          desc_html: 选择<strong>自动隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
           noop: 无
           silence: 自动隐藏
           suspend: 自动封禁
@@ -377,7 +379,7 @@ zh-CN:
         suspend: 已封禁
       show:
         affected_accounts:
-          other: "将会影响到数据库中的 %{count} 个帐户"
+          other: 将会影响到数据库中的 %{count} 个帐户
         retroactive:
           silence: 对此域名的所有帐户解除隐藏
           suspend: 对此域名的所有帐户解除封禁
@@ -429,7 +431,7 @@ zh-CN:
     relays:
       add_new: 订阅新的中继站
       delete: 删除
-      description_html: <strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来交换大量公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。
+      description_html: "<strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来交换大量公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。"
       disable: 禁用
       disabled: 已禁用
       enable: 启用
@@ -592,7 +594,7 @@ zh-CN:
       breakdown: 按来源分类今天的使用情况
       context: 上下文
       directory: 在目录中
-      in_directory: "目录中 %{count} 条"
+      in_directory: 目录中 %{count} 条
       last_active: 最近活动
       most_popular: 最热门的
       most_recent: 最近的
@@ -601,7 +603,7 @@ zh-CN:
       reviewed: 已审核
       title: 话题标签
       trending_right_now: 当前热门
-      unique_uses_today: "今天发布了 %{count} 条"
+      unique_uses_today: 今天发布了 %{count} 条
       unreviewed: 未审核
       updated_msg: 话题标签设置更新成功
     title: 管理
@@ -617,10 +619,10 @@ zh-CN:
     new_report:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
-      subject: '来自 %{instance} 的用户举报（#%{id}）'
+      subject: 来自 %{instance} 的用户举报（#%{id}）
     new_trending_tag:
       body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，活着就保持原样让它石沉大海。'
-      subject: '在 %{instance} 有新话题 (#%{name}) 待审核'
+      subject: 在 %{instance} 有新话题 (#%{name}) 待审核
   aliases:
     add_new: 创建别名
     created_msg: 成功创建了一个新别名。您现在可以从旧账户开始迁移了。
@@ -630,7 +632,7 @@ zh-CN:
     remove: 取消关联别名
   appearance:
     advanced_web_interface: 高级 web 界面
-    advanced_web_interface_hint: '如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。'
+    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
     discovery: 发现
@@ -643,8 +645,8 @@ zh-CN:
   application_mailer:
     notification_preferences: 更改电子邮件首选项
     salutation: "%{name}："
-    settings: '使用此链接更改你的电子邮件首选项：%{link}'
-    view: '点此链接查看详情：'
+    settings: 使用此链接更改你的电子邮件首选项：%{link}
+    view: 点此链接查看详情：
     view_profile: 查看个人资料页
     view_status: 查看嘟文
   applications:
@@ -699,8 +701,8 @@ zh-CN:
     already_requested: 你已经向那个账户发送过关注请求了
     error: 对不起，寻找这个跨站用户时出错
     follow: 关注
-    follow_request: '关注请求已发送给：'
-    following: '成功！你正在关注：'
+    follow_request: 关注请求已发送给：
+    following: 成功！你正在关注：
     post_follow:
       close: 你也可以直接关闭这个窗口。
       return: 查看用户个人资料
@@ -735,7 +737,7 @@ zh-CN:
     proceed: 删除帐户
     success_msg: 你的帐户已经成功删除
     warning:
-      before: '在删除前，请仔细阅读下列说明：'
+      before: 在删除前，请仔细阅读下列说明：
       caches: 已被其他服务器缓存的内容可能还会保留
       data_removal: 您的嘟文和其他数据将被永久删除
       email_change_html: 您可以 <a href="%{path}">更换邮箱地址</a> 无需删除账号
@@ -837,7 +839,7 @@ zh-CN:
     i_am_html: 我是 %{service} 上的 %{username} 。
     identity: 身份
     inactive: 失效
-    publicize_checkbox: '并发一条这样的嘟文：'
+    publicize_checkbox: 并发一条这样的嘟文：
     publicize_toot: '证明完毕！我是 %{service} 上的 %{username}: %{url}'
     remove: 从帐户中移除凭据
     removed: 成功从帐户中删除凭据
@@ -870,7 +872,7 @@ zh-CN:
       '86400': 1 天后
     expires_in_prompt: 永不过期
     generate: 生成邀请链接
-    invited_by: '你的邀请人是：'
+    invited_by: 你的邀请人是：
     max_uses:
       other: "%{count} 次"
     max_uses_prompt: 无限制
@@ -910,7 +912,7 @@ zh-CN:
     set_redirect: 设置跳转
     warning:
       backreference_required: 新账号必须先引用现在这个帐号
-      before: '在继续前，请仔细阅读下列说明：'
+      before: 在继续前，请仔细阅读下列说明：
       cooldown: 移动后会有一个冷却期，在此期间您将无法再次移动
       disabled_account: 此后，您的当前帐户将无法使用。但是，您仍然有权导出数据或者重新激活。
       followers: 这步操作将把所有关注者从当前账户移动到新账户
@@ -930,7 +932,7 @@ zh-CN:
         other: "自从上次访问后，有 %{count} 条新通知 \U0001F418"
       title: 在你不在的这段时间……
     favourite:
-      body: '你的嘟文被 %{name} 喜欢了：'
+      body: 你的嘟文被 %{name} 喜欢了：
       subject: "%{name} 喜欢了你的嘟文"
       title: 新的喜欢
     follow:
@@ -940,20 +942,20 @@ zh-CN:
     follow_request:
       action: 处理关注请求
       body: "%{name} 向你发送了关注请求"
-      subject: '来自 %{name} 的关注请求'
+      subject: 来自 %{name} 的关注请求
       title: 新的关注请求
     mention:
       action: 回复
-      body: '%{name} 在嘟文中提到了你：'
-      subject: '%{name} 提到了你'
+      body: "%{name} 在嘟文中提到了你："
+      subject: "%{name} 提到了你"
       title: 新的提及
     reblog:
-      body: '你的嘟文被 %{name} 转嘟了：'
+      body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
   notifications:
     email_events: 电子邮件通知事件
-    email_events_hint: '选择你想要收到通知的事件：'
+    email_events_hint: 选择你想要收到通知的事件：
     other_settings: 其它通知设置
   number:
     human:
@@ -1011,18 +1013,18 @@ zh-CN:
     missing_resource: 无法确定你的帐户的跳转 URL
     no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
     proceed: 确认关注
-    prompt: '你正准备关注：'
+    prompt: 你正准备关注：
     reason_html: "<strong>为什么需要这个步骤？</strong> <code>%{instance}</code> 可能不是您所注册的服务器，所以我们需要先跳转到您所在的服务器。"
   remote_interaction:
     favourite:
       proceed: 确认标记为喜欢
-      prompt: '您想要标记此嘟文为喜欢：'
+      prompt: 您想要标记此嘟文为喜欢：
     reblog:
       proceed: 确认转嘟
-      prompt: '您想要转嘟此条：'
+      prompt: 您想要转嘟此条：
     reply:
       proceed: 确认回复
-      prompt: '您想要回复此嘟文：'
+      prompt: 您想要回复此嘟文：
   scheduled_statuses:
     over_daily_limit: 您已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 您已超出定时嘟文的上限（%{limit} 条）
@@ -1093,15 +1095,15 @@ zh-CN:
     spam_detected: 这是一个自动报告。已检测到垃圾信息。
   statuses:
     attached:
-      description: '附加媒体：%{attached}'
+      description: 附加媒体：%{attached}
       image:
         other: "%{count} 张图片"
       video:
         other: "%{count} 段视频"
     boosted_from_html: 转嘟自 %{acct_link}
-    content_warning: '内容警告：%{warning}'
+    content_warning: 内容警告：%{warning}
     disallowed_hashtags:
-      other: '包含了这些禁止的话题标签：%{tags}'
+      other: 包含了这些禁止的话题标签：%{tags}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
     language_detection: 自动检测语言
@@ -1121,7 +1123,7 @@ zh-CN:
     show_more: 显示更多
     show_thread: 显示全部对话
     sign_in_to_participate: 登录以加入对话
-    title: '%{name}：“%{quote}”'
+    title: "%{name}：“%{quote}”"
     visibilities:
       private: 仅关注者
       private_long: 只有关注你的用户能看到
@@ -1236,7 +1238,7 @@ zh-CN:
     generate_recovery_codes: 生成恢复代码
     instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
-    manual_instructions: '如果你无法扫描二维码，请手动输入下列文本：'
+    manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
@@ -1254,7 +1256,7 @@ zh-CN:
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
       get_in_touch: 您可回复该邮件以联系 %{instance} 的工作人员。
       review_server_policies: 查看服务器政策
-      statuses: '具体来说，适用于：'
+      statuses: 具体来说，适用于：
       subject:
         disable: 您的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
@@ -1281,14 +1283,14 @@ zh-CN:
       tip_local_timeline: 本站时间轴可以让你一窥 %{instance} 上的用户。他们就是离你最近的邻居！
       tip_mobile_webapp: 如果你的移动设备浏览器允许你将 Mastodon 添加到主屏幕，你就能够接收推送消息。它就像本地应用一样好使！
       tips: 小贴士
-      title: '%{name}，欢迎你的加入！'
+      title: "%{name}，欢迎你的加入！"
   users:
     follow_limit_reached: 您不能关注超过 %{limit} 个人
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
-    signed_in_as: '当前登录的帐户：'
+    signed_in_as: 当前登录的帐户：
   verification:
-    explanation_html: '您可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到您的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：'
+    explanation_html: 您可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到您的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：
     verification: 验证

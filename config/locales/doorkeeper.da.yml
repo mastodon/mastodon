@@ -1,3 +1,4 @@
+---
 da:
   activerecord:
     attributes:
@@ -114,37 +115,37 @@ da:
       application:
         title: OAuth godkendelse påkrævet
     scopes:
-      "admin:read": læs al data på serveren
-      "admin:read:accounts": læs sensitiv information fra alle konti
-      "admin:read:reports": læs sensitiv information fra alle anmeldelser og anmeldte konti
-      "admin:write": redigér al data på serveren
-      "admin:write:accounts": udfør modereringshandlinger på konti
-      "admin:write:reports": udfør modereringshandlinger på anmeldelser
+      admin:read: læs al data på serveren
+      admin:read:accounts: læs sensitiv information fra alle konti
+      admin:read:reports: læs sensitiv information fra alle anmeldelser og anmeldte konti
+      admin:write: redigér al data på serveren
+      admin:write:accounts: udfør modereringshandlinger på konti
+      admin:write:reports: udfør modereringshandlinger på anmeldelser
       follow: ændre din kontos forhold
       push: modtage dine push notifikationer
       read: læse alle din kontos data
-      "read:accounts": se konto oplysninger
-      "read:blocks": se dine blokeringer
-      "read:bookmarks": se dine bogmærker
-      "read:favourites": se dine favoritter
-      "read:filters": se dine filtre
-      "read:follows": se hvem du følger
-      "read:lists": se dine lister
-      "read:mutes": se dine dæmpninger
-      "read:notifications": se dine notifikationer
-      "read:reports": se dine anmeldelser
-      "read:search": søge på dine vegne
-      "read:statuses": se alle statusser
+      read:accounts: se konto oplysninger
+      read:blocks: se dine blokeringer
+      read:bookmarks: se dine bogmærker
+      read:favourites: se dine favoritter
+      read:filters: se dine filtre
+      read:follows: se hvem du følger
+      read:lists: se dine lister
+      read:mutes: se dine dæmpninger
+      read:notifications: se dine notifikationer
+      read:reports: se dine anmeldelser
+      read:search: søge på dine vegne
+      read:statuses: se alle statusser
       write: ændre din kontos data
-      "write:accounts": ændre din profil
-      "write:blocks": bloker konti og domæner
-      "write:bookmarks": bogmærk statusser
-      "write:favourites": favoriser statusser
-      "write:filters": opret filtre
-      "write:follows": følg folk
-      "write:lists": opret lister
-      "write:media": upload multimedie filer
-      "write:mutes": dæmp folk og samtaler
-      "write:notifications": ryd dine notifikationer
-      "write:reports": anmeld andre folk
-      "write:statuses": udgiv statusser
+      write:accounts: ændre din profil
+      write:blocks: bloker konti og domæner
+      write:bookmarks: bogmærk statusser
+      write:favourites: favoriser statusser
+      write:filters: opret filtre
+      write:follows: følg folk
+      write:lists: opret lister
+      write:media: upload multimedie filer
+      write:mutes: dæmp folk og samtaler
+      write:notifications: ryd dine notifikationer
+      write:reports: anmeld andre folk
+      write:statuses: udgiv statusser
