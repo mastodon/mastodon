@@ -191,6 +191,27 @@ id:
       web: Web
       whitelisted: Masuk daftar putih
     action_logs:
+      action_types:
+        change_email_user: Ubah Surel untuk Pengguna
+        confirm_user: Konfirmasi Pengguna
+        create_account_warning: Buat Peringatan
+        create_announcement: Buat Pengumuman
+        create_custom_emoji: Buat Emoji Khusus
+        create_domain_allow: Buat Izin Domain
+        create_domain_block: Buat Blokir Domain
+        create_email_domain_block: Buat Surel Blokir Domain
+        demote_user: Turunkan Pengguna
+        destroy_announcement: Hapus Pengumuman
+        destroy_custom_emoji: Hapus Emoji Khusus
+        destroy_domain_allow: Hapus Izin Domain
+        destroy_domain_block: Hapus Blokir Domain
+        destroy_email_domain_block: Hapus surel blokir domain
+        destroy_status: Hapus Status
+        disable_2fa_user: Nonaktifkan 2FA
+        disable_custom_emoji: Nonaktifkan Emoji Khusus
+        disable_user: Nonaktifkan Pengguna
+        enable_custom_emoji: Aktifkan Emoji Khusus
+        enable_user: Aktifkan Pengguna
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
         change_email_user: "%{name} mengubah alamat surel pengguna %{target}"

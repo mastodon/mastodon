@@ -635,6 +635,7 @@ ca:
     add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
     deleted_msg: Àlies eliminat amb èxit. Moure't des d'aquell compte a aquests ja no serà possible.
+    empty: No hi tens cap àlies.
     hint_html: Si et vols moure des d'un altre compte a aquest, aquí pots crear un àlies, el qual és requerit abans que puguis procedir a moure els seguidors del compte vell a aquest. Aquesta acció és per si mateixa <strong>inofensiva i reversible</strong>. <strong>La migració del compte és iniciada des de'l compte vell</strong>.
     remove: Desvincula l'àlies
   appearance:
@@ -756,7 +757,7 @@ ca:
       username_unavailable: El teu nom d'usuari quedarà inutilitzable
   directories:
     directory: Directori de perfils
-    explanation: Descobreix usuaris segons els seus interessos
+    explanation: Descobreix usuaris segons els teus interessos
     explore_mastodon: Explora %{title}
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
@@ -849,6 +850,8 @@ ca:
     inactive: Inactiu
     publicize_checkbox: 'I envia un tut d''això:'
     publicize_toot: 'Està provat! Sóc %{username} a %{service}: %{url}'
+    remove: Elimina prova d’identitat del compte
+    removed: Prova d’identitat del compte eliminada amb èxit
     status: Estat de verificació
     view_proof: Veure la prova
   imports:

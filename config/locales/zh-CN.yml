@@ -138,7 +138,7 @@ zh-CN:
         silenced: 已隐藏
         suspended: 已封禁
         title: 帐户状态
-      moderation_notes: 管理备忘
+      moderation_notes: 管理员备注
       most_recent_activity: 最后一次活跃的时间
       most_recent_ip: 最后一次活跃的 IP 地址
       no_account_selected: 因为没有帐号被选择，所以没有更改
@@ -166,7 +166,7 @@ zh-CN:
       roles:
         admin: 管理员
         moderator: 监察员
-        staff: 管理人员
+        staff: 站务人员
         user: 普通用户
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
@@ -191,6 +191,42 @@ zh-CN:
       web: 站内页面
       whitelisted: 已加入白名单
     action_logs:
+      action_types:
+        assigned_to_self_report: 指派举报
+        change_email_user: 为用户修改邮箱地址
+        confirm_user: 确认用户
+        create_account_warning: 创建警告
+        create_announcement: 创建公告
+        create_custom_emoji: 创建自定义表情符号
+        create_domain_allow: 允许新域名
+        create_domain_block: 封禁新域名
+        create_email_domain_block: 封禁电子邮箱域名
+        demote_user: 给用户降职
+        destroy_announcement: 删除公告
+        destroy_custom_emoji: 删除自定义表情符号
+        destroy_domain_allow: 解除域名允许
+        destroy_domain_block: 解除域名封禁
+        destroy_email_domain_block: 解除电子邮箱域名封禁
+        destroy_status: 删除嘟文
+        disable_2fa_user: 禁用双重认证
+        disable_custom_emoji: 禁用自定义表情符号
+        disable_user: 禁用用户
+        enable_custom_emoji: 启用自定义表情符号
+        enable_user: 启用用户
+        memorialize_account: 将账户设为追悼模式
+        promote_user: 给用户升任
+        remove_avatar_user: 移除头像
+        reopen_report: 重开举报
+        reset_password_user: 重置密码
+        resolve_report: 处理举报
+        silence_account: 隐藏用户
+        suspend_account: 封禁用户
+        unassigned_report: 取消举报的指派
+        unsilence_account: 解除账号隐藏
+        unsuspend_account: 解除账号封禁
+        update_announcement: 更新公告
+        update_custom_emoji: 更新自定义表情符号
+        update_status: 更新嘟文
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
         change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
@@ -228,6 +264,9 @@ zh-CN:
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
       deleted_status: "（嘟文已删除）"
+      empty: 没有找到日志
+      filter_by_action: 根据行为过滤
+      filter_by_user: 根据用户过滤
       title: 运营日志
     announcements:
       destroyed_msg: 公告已删除！
@@ -284,7 +323,7 @@ zh-CN:
       feature_invites: 邀请链接
       feature_profile_directory: 用户目录
       feature_registrations: 公开注册
-      feature_relay: 中继服务器
+      feature_relay: 联邦中继站
       feature_spam_check: 反垃圾
       feature_timeline_preview: 时间轴预览
       features: 功能
@@ -362,7 +401,7 @@ zh-CN:
       title: 电子邮件域名屏蔽
     instances:
       by_domain: 域名
-      delivery_available: 无法投递
+      delivery_available: 可投递
       known_accounts:
         other: "%{count} 个已知帐户"
       moderation:
@@ -390,21 +429,21 @@ zh-CN:
     relationships:
       title: "%{acct} 的关系"
     relays:
-      add_new: 订阅新的中继
+      add_new: 订阅新的中继站
       delete: 删除
       description_html: "<strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来交换大量公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。"
       disable: 禁用
       disabled: 已禁用
       enable: 启用
-      enable_hint: 启用此功能后，你的实例会订阅此中继的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
+      enable_hint: 启用此功能后，你的实例会订阅此中继站的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
       enabled: 已启用
-      inbox_url: 中继 URL
-      pending: 等待中继确认
+      inbox_url: 中继站 URL
+      pending: 等待中继站的确认
       save_and_enable: 保存并启用
       setup: 设置中继连接
       signatures_not_enabled: 安全模式或白名单模式启用时，中继将不会正常工作
       status: 状态
-      title: 中继
+      title: 中继站
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
@@ -588,6 +627,7 @@ zh-CN:
     add_new: 创建别名
     created_msg: 成功创建了一个新别名。您现在可以从旧账户开始迁移了。
     deleted_msg: 成功移除别名。已经无法从该帐户移动到此帐户了。
+    empty: 你没有设置别名
     hint_html: 如果你想把另一个帐号迁移到这里，你可以先在这里创建一个别名。如果你想把关注者迁移过来，这一步是必须的。设置别名的操作时<strong>无害而且可以恢复的</strong>。<strong>帐号迁移的操作会从旧帐号开始</strong>。
     remove: 取消关联别名
   appearance:
@@ -801,6 +841,8 @@ zh-CN:
     inactive: 失效
     publicize_checkbox: 并发一条这样的嘟文：
     publicize_toot: '证明完毕！我是 %{service} 上的 %{username}: %{url}'
+    remove: 从帐户中移除凭据
+    removed: 成功从帐户中删除凭据
     status: 验证状态
     view_proof: 查看证明
   imports:
