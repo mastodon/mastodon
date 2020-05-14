@@ -472,6 +472,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Show thread",
+        "id": "status.show_thread"
+      },
+      {
         "defaultMessage": "Read more",
         "id": "status.read_more"
       },
@@ -499,10 +503,6 @@
       {
         "defaultMessage": "{name} boosted",
         "id": "status.reblogged_by"
-      },
-      {
-        "defaultMessage": "Show thread",
-        "id": "status.show_thread"
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
@@ -1706,6 +1706,10 @@
       {
         "defaultMessage": "Include additional tags in this column",
         "id": "hashtag.column_settings.tag_toggle"
+      },
+      {
+        "defaultMessage": "Local only",
+        "id": "community.column_settings.local_only"
       }
     ],
     "path": "app/javascript/mastodon/features/hashtag_timeline/components/column_settings.json"
@@ -2266,6 +2270,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/pinned_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Media only",
+        "id": "community.column_settings.media_only"
+      },
+      {
+        "defaultMessage": "Remote only",
+        "id": "community.column_settings.remote_only"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/public_timeline/components/column_settings.json"
   },
   {
     "descriptors": [

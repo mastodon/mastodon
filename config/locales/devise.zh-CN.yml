@@ -8,14 +8,14 @@ zh-CN:
     failure:
       already_authenticated: 你已经登录。
       inactive: 你还没有激活帐户。
-      invalid: "%{authentication_keys}或密码错误。"
+      invalid: 无效的%{authentication_keys}或密码错误。
       last_attempt: 你还有最后一次尝试机会，再次失败你的帐户将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
       pending: 你的帐号仍在审核中。
-      timeout: 你已登录超时，请重新登录。
+      timeout: 您的会话已过期。请重新登录再继续操作。
       unauthenticated: 继续操作前请注册或者登录。
-      unconfirmed: 继续操作前请先确认你的帐户。
+      unconfirmed: 您必须先确认您的电子邮件地址才能继续。
     mailer:
       confirmation_instructions:
         action: 验证电子邮件地址
@@ -26,7 +26,7 @@ zh-CN:
         subject: Mastodon：确认 %{instance} 帐户信息
         title: 验证电子邮件地址
       email_changed:
-        explanation: 你的帐户的电子邮件地址即将变更为：
+        explanation: 你的帐户的电子邮件地址将变更为：
         extra: 如果你并没有请求更改你的电子邮件地址，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器管理员请求协助。
         subject: Mastodon：电子邮件地址已被更改
         title: 新电子邮件地址
@@ -80,8 +80,8 @@ zh-CN:
       updated: 帐户资料更新成功。
     sessions:
       already_signed_out: 已成功登出。
-      signed_in: 登录成功。
-      signed_out: 登出成功。
+      signed_in: 已成功登录。
+      signed_out: 已成功登出。
     unlocks:
       send_instructions: 几分钟后，你将收到一封解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
       send_paranoid_instructions: 如果你的邮箱存在于我们的数据库中，你将收到一封解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
@@ -91,7 +91,7 @@ zh-CN:
       already_confirmed: 已经确认成功，请尝试登录
       confirmation_period_expired: 必须在 %{period}以内确认。请重新发起请求
       expired: 已过期。请重新发起请求
-      not_found: 找不到
+      not_found: 未找到
       not_locked: 未被锁定
       not_saved:
-        other: 发生 %{count} 个错误，导致%{resource}保存失败：
+        other: 发生了 %{count} 个错误， %{resource} 将保存失败：
