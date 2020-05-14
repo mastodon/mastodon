@@ -198,7 +198,7 @@ module Mastodon
       if options[:status]
         scope = MediaAttachment.where(status_id: options[:status])
       elsif options[:account]
-        username, domain = username.split('@')
+        username, domain = options[:account].split('@')
         account = Account.find_remote(username, domain)
 
         if account.nil?
@@ -217,7 +217,7 @@ module Mastodon
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
 
         unless options[:dry_run]
-          media_attachment.reset_file!
+          media_attachment.file_remote_url = media_attachment.remote_url
           media_attachment.save
         end
 
