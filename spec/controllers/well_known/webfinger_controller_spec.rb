@@ -84,5 +84,15 @@ PEM
 
       expect(response).to have_http_status(:not_found)
     end
+
+    it 'returns http bad request when not given a resource parameter' do
+      get :show, params: { }, format: :json
+      expect(response).to have_http_status(:bad_request)
+    end
+
+    it 'returns http bad request when given a nonsense parameter' do
+      get :show, params: { resource: 'df/:dfkj' }
+      expect(response).to have_http_status(:bad_request)
+    end
   end
 end
