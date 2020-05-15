@@ -544,7 +544,7 @@ sq:
         title: Mënyrë regjistrimi
       show_known_fediverse_at_about_page:
         desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur, si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore.
-        title: Shfaq te paraparja e rrjedhës kohore fedivers të njohur
+        title: Përfshi lëndë të federuar në faqe rrjedhe publike kohore të pamirëfilltësuar
       show_staff_badge:
         desc_html: Shfaq një stemë stafi në faqen e një përdoruesi
         title: Shfaq stemë stafi
@@ -561,20 +561,26 @@ sq:
         desc_html: Mund të shkruani rregullat tuaja të privatësisë, kushtet e shërbimit ose gjëra të tjera ligjore. Mund të përdorni etiketa HTML
         title: Kushte vetjake shërbimi
       site_title: Emër shërbyesi
+      spam_check_enabled:
+        desc_html: Mastodon-i mund të bëjë raportime automatike për llogari që dërgojnë në mënyrë të përsëritur mesazhe të padëshiruar. Në to mund të ketë edhe alarme të rremë.
+        title: Automatizim anti-spami
       thumbnail:
         desc_html: I përdorur për paraparje përmes OpenGraph-it dhe API-t. Këshillohet 1200x630px
         title: Miniaturë shërbyesi
       timeline_preview:
-        desc_html: Shfaqni rrjedhë kohore publike te faqja ardhjesh
-        title: Paraparje rrjedhe kohore
+        desc_html: Shfaqni lidhje te rrjedhë kohore publike në faqen hyrëse dhe lejoni te rrjedhë kohore publike hyrje API pa mirëfilltësim
+        title: Lejo në rrjedhë kohore publike hyrje pa mirëfilltësim
       title: Rregullime sajti
+      trendable_by_default:
+        desc_html: Prek hashtag-ë që nuk kanë qenë të palejuar më parë
+        title: Lejo hashtag-ë në prirje pa paraparje paraprake
     statuses:
       back_to_account: Mbrapsht te faqja e llogarisë
       batch:
         delete: Fshije
         nsfw_off: Vëri shenjë si jo rezervat
         nsfw_on: Vëri shenjë si rezervat
-      deleted: Fshirë
+      deleted: E fshirë
       failed_to_execute: S’u arrit të përmbushej
       media:
         title: Media
