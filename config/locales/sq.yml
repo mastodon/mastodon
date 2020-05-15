@@ -746,6 +746,7 @@ sq:
       request: Kërkoni arkivin tuaj
       size: Madhësi
     blocks: Bllokoni
+    csv: CSV
     domain_blocks: Bllokime përkatësish
     lists: Lista
     mutes: Heshtoni
@@ -753,12 +754,13 @@ sq:
   featured_tags:
     add_new: Shtoni të re
     errors:
-      limit: Keni përdorur tashmë si të zgjedhur sasinë maksimum të hashtagëve
+      limit: Keni përdorur tashmë si të zgjedhur sasinë maksimum të hashtag-ëve
   filters:
     contexts:
+      account: Profile
       home: Rrjedhë kohore vetjake
       notifications: Njoftime
-      public: Rrjedha publike kohore
+      public: Rrjedha kohore publike
       thread: Biseda
     edit:
       title: Përpunoni filtër
@@ -767,6 +769,7 @@ sq:
       invalid_irreversible: Filtrim i pakthyeshëm funksionon vetëm me kontekste <em>home</em> ose njoftimesh
     index:
       delete: Fshije
+      empty: S’keni filtra.
       title: Filtra
     new:
       title: Shtoni filtër të ri
@@ -774,22 +777,27 @@ sq:
     developers: Zhvillues
     more: Më tepër…
     resources: Burime
+    trending_now: Prirjet e tashme
   generic:
+    all: Krejt
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
-    order_by: Rendit sipas
+    delete: Fshije
+    order_by: Renditi sipas
     save_changes: Ruaji ndryshimet
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
+  html_validator:
+    invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
   identity_proofs:
     active: Aktive
     authorize: Po, autorizoje
-    identity: Identifiko
-    inactive: Ç'aktivizo
+    identity: Identitet
+    inactive: Jo aktiv
     publicize_checkbox: 'Dhe cicëro këtë:'
-    status: Gjendja e verifikimit
-    view_proof: Shfaq evidencë
+    status: Gjendje verifikimi
+    view_proof: Shihni vërtetimin
   imports:
     modes:
       merge: Përzieji
@@ -804,7 +812,7 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
-  in_memoriam_html: Në përkujtim.
+  in_memoriam_html: In Memoriam.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -816,7 +824,7 @@ sq:
       '604800': 1 javë
       '86400': 1 ditë
     expires_in_prompt: Kurrë
-    generate: Prodhoje
+    generate: Prodho lidhje ftese
     invited_by: 'Qetë ftuar nga:'
     max_uses:
       one: 1 përdorim
@@ -835,7 +843,7 @@ sq:
       images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura tashmë
       too_many: S’mund të bashkëngjiten më shumë se 4 kartela
   migrations:
-    acct: emërpërdoruesi@përkatësi e llogarisë së re
+    acct: U kalua te
     cancel: Anulo ridrejtimin
     proceed_with_move: Lëviz ndjekësit
     set_redirect: Cakto ridrejtim
@@ -851,7 +859,7 @@ sq:
         other: Veç kësaj, u bëtë me %{count} ndjekës të rinj, teksa s’ishit këtu! Shkëlqyeshëm!
       subject:
         one: "1 njoftim i ri që nga vizita juaj e fundit \U0001F418"
-        other: "%{count} 1 njoftime të reja që nga vizita juaj e fundit \U0001F418"
+        other: "%{count} njoftime të reja që nga vizita juaj e fundit \U0001F418"
       title: Gjatë mungesës tuaj…
     favourite:
       body: 'Gjendja juaj u parapëlqye nga %{name}:'
@@ -878,8 +886,10 @@ sq:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: B
+          million: M
           quadrillion: K
   pagination:
     newer: Më të ri
