@@ -891,6 +891,8 @@ sq:
           billion: B
           million: M
           quadrillion: K
+          thousand: M
+          trillion: T
   pagination:
     newer: Më të ri
     next: Pasuesi
@@ -899,16 +901,16 @@ sq:
   preferences:
     other: Tjetër
   relationships:
-    activity: Aktivitet e llogarisë
-    dormant: Inaktive
-    followers: Ndjekësit
-    following: Të ndjekurit
-    invited: Të ftuarit
-    last_active: Së fundi aktiv
-    most_recent: Të fundit
+    activity: Veprimtari llogarie
+    dormant: Në gjumë
+    followers: Ndjekës
+    following: Ndjek
+    invited: Të ftuar
+    last_active: Aktiv së fundi më
+    most_recent: Më të freskëtat
     moved: Lëvizur
-    mutual: Përbashkët
-    primary: Primare
+    mutual: Reciproke
+    primary: Parësore
     relationship: Marrëdhënie
   remote_follow:
     acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
@@ -974,16 +976,17 @@ sq:
     title: Sesione
   settings:
     account: Llogari
-    account_settings: Rregullimet e llogarisë
-    aliases: Shkurtesat e llogarisë
-    appearance: Dukja
+    account_settings: Rregullime llogarie
+    aliases: Aliase llogarish
+    appearance: Dukje
     authorized_apps: Aplikacione të autorizuara
     back: Mbrapsht te Mastodon
     delete: Fshirje llogarie
     development: Zhvillim
     edit_profile: Përpunoni profilin
     export: Eksportim të dhënash
-    featured_tags: Hashtagë të zgjedhur
+    featured_tags: Hashtag-ë të zgjedhur
+    identity_proofs: Prova identiteti
     import: Importo
     migrate: Migrim llogarie
     notifications: Njoftime
