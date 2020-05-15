@@ -199,32 +199,52 @@ sq:
         change_email_user: Ndrysho Email për Përdoruesin
         confirm_user: Ripohoje Përdoruesin
         create_account_warning: Krijo Sinjalizim
-        create_announcement: Krijo lajmërim
-        create_custom_emoji: Krijo Emoji të veçantë
-        create_domain_allow: Lejo krijimin e domain
-        create_domain_block: Krijo bllokimin e domain
-        create_email_domain_block: Krijo bllokadë për E-mailët me domain
-        destroy_status: Fshij gjendjen
-        disable_2fa_user: Ç'aktivizo 2FA
-        disable_custom_emoji: Ç'aktivizo Emoji të veçantë
-        disable_user: Ç'aktivizo përdorues
-        enable_user: Aktivizo përdorues
-        promote_user: Promovo përdoruesin
-        remove_avatar_user: Largo foton e profilit
-        reopen_report: Rihap rapotin
-        update_status: Përditëso gjendjen
+        create_announcement: Krijo Lajmërim
+        create_custom_emoji: Krijo Emoji Vetjak
+        create_domain_allow: Krijo Lejim Përkatësie
+        create_domain_block: Krijo Bllokim Përkatësie
+        create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
+        demote_user: Zhgradoje Përdoruesin
+        destroy_announcement: Fshije Lajmërimin
+        destroy_custom_emoji: Fshi Emoji Vetjak
+        destroy_domain_allow: Fshi Lejim Përkatësie
+        destroy_domain_block: Fshi Bllokim Përkatësie
+        destroy_email_domain_block: Fshi bllokim përkatësie email-esh
+        destroy_status: Fshi Gjendje
+        disable_2fa_user: Çaktivizo 2FA-në
+        disable_custom_emoji: Çaktivizo Emoji Vetjak
+        disable_user: Çaktivizo Përdorues
+        enable_custom_emoji: Aktivizo Emoji Vetjak
+        enable_user: Aktivizo Përdorues
+        promote_user: Promovojeni Përdoruesin
+        remove_avatar_user: Hiqe Avatarin
+        reopen_report: Rihape Raportin
+        reset_password_user: Ricakto Fjalëkalimin
+        resolve_report: Zgjidhe Raportin
+        silence_account: Heshtoje Llogarinë
+        suspend_account: Pezulloje Llogarinë
+        unassigned_report: Hiqe Caktimin e Raportit
+        unsilence_account: Hiqe Heshtimin e Llogarisë
+        unsuspend_account: Hiqe Pezullimin e Llogarisë
+        update_announcement: Përditëso Lajmërimin
+        update_custom_emoji: Përditëso Emoji Vetjak
+        update_status: Përditëso Gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user: "%{name} ndryshoi adresën email të përdoruesit %{target}"
         confirm_user: "%{name} ripohoi adresën email të përdoruesit %{target}"
         create_account_warning: "%{name} dërgoi një sinjalizim për %{target}"
+        create_announcement: "%{name} krijoi lajmërim të ri për %{target}"
         create_custom_emoji: "%{name} ngarkoi emotikon të ri %{target}"
+        create_domain_allow: "%{name} kaloi në listë lejimesh përkatësinë %{target}"
         create_domain_block: "%{name} bllokoi përkatësinë %{target}"
-        create_email_domain_block: "%{name} e shtoi në listë bllokimesh përkatësinë %{target}"
+        create_email_domain_block: "%{name} shtoi në listë bllokimesh përkatësinë %{target}"
         demote_user: "%{name} zhgradoi përdoruesin %{target}"
+        destroy_announcement: "%{name} fshiu lajmërimin për %{target}"
         destroy_custom_emoji: "%{name} asgjësoi emotikonin %{target}"
+        destroy_domain_allow: "%{name} hoqi përkatësinë %{target} nga listë lejimesh"
         destroy_domain_block: "%{name} zhbllokoi përkatësinë %{target}"
-        destroy_email_domain_block: "%{name} e shtoi në listë të lejuarash përkatësinë %{target}"
+        destroy_email_domain_block: "%{name} e shtoi në listë lejimesh përkatësinë %{target}"
         destroy_status: "%{name} hoqi gjendje nga %{target}"
         disable_2fa_user: "%{name} çaktivizoi domosdoshmëritë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji: "%{name} çaktivizoi emotikonin %{target}"
@@ -242,26 +262,31 @@ sq:
         unassigned_report: "%{name} rihapi raportimin %{target}"
         unsilence_account: "%{name} hoqi heshtimin për llogarinë %{target}"
         unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
+        update_announcement: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
         update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
-      empty: Nuk u gjendën regjistrat.
-      filter_by_action: Filtro sipas veprimit
-      filter_by_user: Filtro sipas përdoruesit
+      empty: S’u gjetën regjistra.
+      filter_by_action: Filtroji sipas veprimit
+      filter_by_user: Filtroji sipas përdoruesit
       title: Auditim regjistri
     announcements:
-      destroyed_msg: Lajmërimi është fshirë me sukses!
+      destroyed_msg: Lajmërimi u fshi me sukses!
       edit:
-        title: Modifiko lajmërimin
-      empty: Nuk u gjendën lajmërimet.
-      live: Drejtpërdrejtë
+        title: Përpunoni lajmërimin
+      empty: S’u gjetën lajmërime.
+      live: Drejtpërdrejt
       new:
-        create: Krijo lajmërim
-        title: Lajmërimi i ri
-      published_msg: Lajmërimi u publikua me sukses!
-      title: Lajmërimet
+        create: Krijoni lajmërim
+        title: Lajmërim i ri
+      published_msg: Lajmërimi u botua me sukses!
+      scheduled_for: Vënë në plan për më %{time}
+      scheduled_msg: Lajmërimi u vu në plan për botim!
+      title: Lajmërime
+      unpublished_msg: Lajmërimi u botua me sukses!
+      updated_msg: Lajmërimi u përditësua me sukses!
     custom_emojis:
-      assign_category: Përcakto kategori
+      assign_category: Caktojini kategori
       by_domain: Përkatësi
       copied_msg: Kopja vendore e emotikonëve u krijua me sukses
       copy: Kopjoje
