@@ -287,6 +287,31 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with media attachments with long description as summary' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            attachment: [
+              {
+                type: 'Document',
+                mediaType: 'image/png',
+                url: 'http://example.com/attachment.png',
+                summary: '*' * 1500,
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+        end
+      end
+
       context 'with media attachments with focal points' do
         let(:object_json) do
           {
