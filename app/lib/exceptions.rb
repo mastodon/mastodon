@@ -8,6 +8,7 @@ module Mastodon
   class LengthValidationError < ValidationError; end
   class DimensionsValidationError < ValidationError; end
   class RaceConditionError < Error; end
+  class RateLimitExceededError < Error; end
 
   class UnexpectedResponseError < Error
     def initialize(response = nil)

@@ -82,15 +82,19 @@ export default class ScrollableList extends PureComponent {
   lastScrollWasSynthetic = false;
   scrollToTopOnMouseIdle = false;
 
+  _getScrollingElement = () => {
+    if (this.props.bindToDocument) {
+      return (document.scrollingElement || document.body);
+    } else {
+      return this.node;
+    }
+  }
+
   setScrollTop = newScrollTop => {
     if (this.getScrollTop() !== newScrollTop) {
       this.lastScrollWasSynthetic = true;
 
-      if (this.props.bindToDocument) {
-        document.scrollingElement.scrollTop = newScrollTop;
-      } else {
-        this.node.scrollTop = newScrollTop;
-      }
+      this._getScrollingElement().scrollTop = newScrollTop;
     }
   };
 
@@ -151,15 +155,15 @@ export default class ScrollableList extends PureComponent {
   }
 
   getScrollTop = () => {
-    return this.props.bindToDocument ? document.scrollingElement.scrollTop : this.node.scrollTop;
+    return this._getScrollingElement().scrollTop;
   }
 
   getScrollHeight = () => {
-    return this.props.bindToDocument ? document.scrollingElement.scrollHeight : this.node.scrollHeight;
+    return this._getScrollingElement().scrollHeight;
   }
 
   getClientHeight = () => {
-    return this.props.bindToDocument ? document.scrollingElement.clientHeight : this.node.clientHeight;
+    return this._getScrollingElement().clientHeight;
   }
 
   updateScrollBottom = (snapshot) => {

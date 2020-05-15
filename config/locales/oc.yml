@@ -186,6 +186,33 @@ oc:
       web: Web
       whitelisted: Mes en lista blanca
     action_logs:
+      action_types:
+        assigned_to_self_report: Assignar lo rapòrt
+        change_email_user: Cambiar l’adreça de l’utilizaire
+        confirm_user: Confirmar l’utilizaire
+        create_account_warning: Crear un avertiment
+        create_announcement: Crear una anóncia
+        create_custom_emoji: Crear un emoji personalizat
+        demote_user: Retrogradar l’utilizaire
+        destroy_announcement: Suprimir l’anóncia
+        destroy_custom_emoji: Suprimir l’emoji personalizat
+        destroy_domain_block: Suprimir lo blocatge de domeni
+        destroy_status: Suprimir l’estatut
+        disable_2fa_user: Desactivar 2FA
+        disable_custom_emoji: Desactivar l’emoji personalizat
+        disable_user: Desactivar l’utilizaire
+        enable_custom_emoji: Activar l’emoji personalizat
+        enable_user: Activar l’utilizaire
+        promote_user: Promòure l’utilizaire
+        remove_avatar_user: Suprimir l’avatar
+        reopen_report: Tornar dobrir lo rapòrt
+        reset_password_user: Reïnicializar lo senhal
+        resolve_report: Resòlver lo rapòrt
+        suspend_account: Suspendre lo compte
+        unassigned_report: Desafectar lo rapòrt
+        update_announcement: Actualizar l’anóncia
+        update_custom_emoji: Actualizar l’emoji personalizat
+        update_status: Actualizar l’estatut
       actions:
         assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
         change_email_user: "%{name} cambièt l’adreça de corrièl de %{target}"
@@ -223,6 +250,9 @@ oc:
         update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
         update_status: "%{name} metèt a jorn l’estatut a %{target}"
       deleted_status: "(estatut suprimit)"
+      empty: Cap de jornal pas trobat.
+      filter_by_action: Filtrar per accion
+      filter_by_user: Filtrar per utilizaire
       title: Audit dels jornals
     announcements:
       destroyed_msg: Anóncia corrèctament tirada !
@@ -558,7 +588,6 @@ oc:
     warning_presets:
       add_new: N’ajustar un nòu
       delete: Escafar
-      edit: Modificar
       edit_preset: Modificar lo tèxt predefinit d’avertiment
       title: Gerir los tèxtes predefinits
   admin_mailer:

@@ -17,9 +17,15 @@ describe ApplicationController, type: :controller do
 
   shared_examples 'default locale' do
     it 'sets available and preferred language' do
+      request.headers['Accept-Language'] = 'sr-Latn'
+      get 'success'
+      expect(response.body).to eq 'sr-Latn'
+    end
+
+    it 'sets available and preferred language' do
       request.headers['Accept-Language'] = 'ca-ES, fa'
       get 'success'
-      expect(response.body).to eq 'fa'
+      expect(response.body).to eq 'ca'
     end
 
     it 'sets available and compatible language if none of available languages are preferred' do

@@ -7,6 +7,8 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 require_relative '../app/lib/exceptions'
+require_relative '../lib/paperclip/url_generator_extensions'
+require_relative '../lib/paperclip/attachment_extensions'
 require_relative '../lib/paperclip/lazy_thumbnail'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/video_transcoder'
@@ -53,8 +55,8 @@ module Mastodon
       :el,
       :en,
       :eo,
-      :'es-AR',
       :es,
+      :'es-AR',
       :et,
       :eu,
       :fa,
@@ -95,8 +97,8 @@ module Mastodon
       :sk,
       :sl,
       :sq,
-      :'sr-Latn',
       :sr,
+      :'sr-Latn',
       :sv,
       :ta,
       :te,
@@ -104,6 +106,7 @@ module Mastodon
       :tr,
       :uk,
       :ur,
+      :vi,
       :'zh-CN',
       :'zh-HK',
       :'zh-TW',

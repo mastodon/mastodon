@@ -26,6 +26,8 @@
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
+    = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
+
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
 
@@ -34,6 +36,6 @@
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
-    %div{ style: 'display: none'}
+    .logo-resources
       = render file: Rails.root.join('app', 'javascript', 'images', 'hometown.svg')
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')

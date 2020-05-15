@@ -92,6 +92,7 @@ de:
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
+      add_email_domain_block: E-Mail-Domain blacklisten
       approve: Akzeptieren
       approve_all: Alle akzeptieren
       are_you_sure: Bist du sicher?
@@ -172,6 +173,7 @@ de:
         staff: Mitarbeiter
         user: Nutzer
       search: Suche
+      search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer mit derselben IP
       shared_inbox_url: Geteilte Posteingang-URL
       show:
@@ -193,6 +195,42 @@ de:
       web: Web
       whitelisted: Auf der Whitelist
     action_logs:
+      action_types:
+        assigned_to_self_report: Bericht zuweisen
+        change_email_user: E-Mail des Benutzers ändern
+        confirm_user: Benutzer bestätigen
+        create_account_warning: Warnung erstellen
+        create_announcement: Ankündigung erstellen
+        create_custom_emoji: Eigene Emoji erstellen
+        create_domain_allow: Domain erlauben
+        create_domain_block: Domain blockieren
+        create_email_domain_block: E-Mail-Domain-Block erstellen
+        demote_user: Benutzer degradieren
+        destroy_announcement: Ankündigung löschen
+        destroy_custom_emoji: Eigene Emoji löschen
+        destroy_domain_allow: Erlaube das Löschen von Domains
+        destroy_domain_block: Domain-Blockade löschen
+        destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_status: Beitrag löschen
+        disable_2fa_user: 2FA deaktivieren
+        disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
+        disable_user: Benutzer deaktivieren
+        enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
+        enable_user: Benutzer aktivieren
+        memorialize_account: Konto in ein Konto von einer verstorbenen Person umwandeln
+        promote_user: Benutzer befördern
+        remove_avatar_user: Profilbild entfernen
+        reopen_report: Meldung wieder eröffnen
+        reset_password_user: Passwort zurücksetzen
+        resolve_report: Bericht lösen
+        silence_account: Konto stummschalten
+        suspend_account: Konto sperren
+        unassigned_report: Berichtszuweisung entfernen
+        unsilence_account: Konto nicht mehr stummschalten
+        unsuspend_account: Konto nicht mehr sperren
+        update_announcement: Ankündigung aktualisieren
+        update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
+        update_status: Beitrag aktualisieren
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
@@ -230,6 +268,9 @@ de:
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
         update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
+      empty: Keine Protokolle gefunden.
+      filter_by_action: Nach Aktion filtern
+      filter_by_user: Nach Benutzer filtern
       title: Überprüfungsprotokoll
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
@@ -358,6 +399,7 @@ de:
       destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
       domain: Domain
       empty: Keine E-Mail-Domains sind momentan auf der Blacklist.
+      from_html: von %{domain}
       new:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
@@ -537,6 +579,9 @@ de:
       trends:
         desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
         title: Trendende Hashtags
+    site_uploads:
+      delete: Hochgeladene Datei löschen
+      destroyed_msg: Upload erfolgreich gelöscht!
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -573,7 +618,6 @@ de:
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
-      edit: Bearbeiten
       edit_preset: Warnungsvorlage bearbeiten
       title: Warnungsvorlagen verwalten
   admin_mailer:
@@ -661,6 +705,7 @@ de:
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
+    already_requested: Du hast bereits eine Anfrage zum Folgen diesen Accounts versendet
     error: Das Remote-Konto konnte nicht geladen werden
     follow: Folgen
     follow_request: 'Du hast eine Folgeanfrage gesendet an:'
@@ -849,6 +894,7 @@ de:
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
+      not_ready: Dateien die noch nicht bearbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
       too_many: Es können nicht mehr als 4 Dateien angehängt werden
   migrations:
     acct: benutzername@domain des neuen Kontos
@@ -1070,6 +1116,8 @@ de:
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
+    errors:
+      in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
     language_detection: Sprache automatisch erkennen
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten

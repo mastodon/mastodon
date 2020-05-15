@@ -8,6 +8,7 @@ en:
         acct: Specify the username@domain of the account you want to move to
       account_warning_preset:
         text: You can use post syntax, such as URLs, hashtags and mentions
+        title: Optional. Not visible to the recipient
       admin_account_action:
         include_statuses: The user will see which posts have caused the moderation action or warning
         send_email_notification: The user will receive an explanation of what happened with their account
@@ -43,8 +44,8 @@ en:
         setting_default_federation: Posts do not federate to other instances unless manually changed while composing
         setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Hide media marked as sensitive
-        setting_display_media_hide_all: Always hide all media
-        setting_display_media_show_all: Always show media marked as sensitive
+        setting_display_media_hide_all: Always hide media
+        setting_display_media_show_all: Always show media
         setting_hide_network: Who you follow and who follows you will not be shown on your profile
         setting_noindex: Affects your public profile and status pages
         setting_show_application: The application you use to post will be displayed in the detailed view of your posts
@@ -54,6 +55,9 @@ en:
         whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       domain_allow:
         domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
+      email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address, the MX record that domain resolves to, or IP of the server that MX record resolves to. Those will be checked upon user sign-up and the sign-up will be rejected.
+        with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blacklisted
       featured_tag:
         name: 'You might want to use one of these:'
       form_challenge:
@@ -79,6 +83,7 @@ en:
         acct: Handle of the new account
       account_warning_preset:
         text: Preset text
+        title: Title
       admin_account_action:
         include_statuses: Include reported posts in the e-mail
         send_email_notification: Notify the user per e-mail
@@ -152,6 +157,8 @@ en:
         username: Username
         username_or_email: Username or Email
         whole_word: Whole word
+      email_domain_block:
+        with_dns_records: Include MX records and IPs of the domain
       featured_tag:
         name: Hashtag
       interactions:

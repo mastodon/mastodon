@@ -11,13 +11,13 @@ import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  public_long: { id: 'privacy.public.long', defaultMessage: 'Post to public timelines' },
+  public_long: { id: 'privacy.public.long', defaultMessage: 'Visible for all, shown in public timelines' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Do not show in public timelines' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but not in public timelines' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
-  private_long: { id: 'privacy.private.long', defaultMessage: 'Post to followers only' },
+  private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
-  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' },
+  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
@@ -50,7 +50,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
     const index = items.findIndex(item => {
       return (item.value === value);
     });
-    let element;
+    let element = null;
 
     switch(e.key) {
     case 'Escape':
@@ -60,18 +60,10 @@ class PrivacyDropdownMenu extends React.PureComponent {
       this.handleClick(e);
       break;
     case 'ArrowDown':
-      element = this.node.childNodes[index + 1];
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index + 1] || this.node.firstChild;
       break;
     case 'ArrowUp':
-      element = this.node.childNodes[index - 1];
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index - 1] || this.node.lastChild;
       break;
     case 'Tab':
       if (e.shiftKey) {
@@ -79,27 +71,20 @@ class PrivacyDropdownMenu extends React.PureComponent {
       } else {
         element = this.node.childNodes[index + 1] || this.node.firstChild;
       }
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-        e.preventDefault();
-        e.stopPropagation();
-      }
       break;
     case 'Home':
       element = this.node.firstChild;
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
       break;
     case 'End':
       element = this.node.lastChild;
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
       break;
+    }
+
+    if (element) {
+      element.focus();
+      this.props.onChange(element.getAttribute('data-index'));
+      e.preventDefault();
+      e.stopPropagation();
     }
   }
 
@@ -115,7 +100,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem) this.focusedItem.focus();
+    if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
     this.setState({ mounted: true });
   }
 

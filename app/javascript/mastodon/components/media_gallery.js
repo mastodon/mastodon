@@ -10,7 +10,7 @@ import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_s
 import { decode } from 'blurhash';
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Hide media' },
 });
 
 class Item extends React.PureComponent {

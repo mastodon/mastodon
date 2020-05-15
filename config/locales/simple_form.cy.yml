@@ -8,6 +8,7 @@ cy:
         acct: Rhowch enwdefnyddiwr@parth y cyfrif rydych chi am symud iddo
       account_warning_preset:
         text: Gallwch defnyddio cystrawen tŵt, fel URLs, hashnodau a sôniadau
+        title: Yn ddewisiol. Ddim yn weladwy i'r derbynydd
       admin_account_action:
         include_statuses: Bydd y defnyddiwr yn gweld pa tŵtiau sydd wedi achosi'r weithred gymedroli neu'r rhybudd
         send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
@@ -53,6 +54,9 @@ cy:
         whole_word: Os yw'r allweddair neu'r ymadrodd yn alffaniwmerig yn unig, mi fydd ond yn cael ei osod os yw'n cyfateb a'r gair cyfan
       domain_allow:
         domain: Bydd y parth hwn yn gallu nôl data o'r gweinydd hwn a bydd data sy'n dod i mewn ohono yn cael ei brosesu a'i storio
+      email_domain_block:
+        domain: Gall hyn fod yr enw parth sy'n dangos yn yr ebost, y cofnod MX mae'r parth yn adfer i, neu'r cyfeiriad IP o'r gweinydd mae'r cofnod MX yn adfer i. Bydd y rhain yn cael eu gwirio wrth i defnyddiwr cofrestru, a chaiff y cofrestriad ei wrthod.
+        with_dns_records: Bydd ceisiad i adfer cofnodau DNS y parth penodol yn cael ei wneud, a bydd y canlyniadau hefyd yn cael ei gosbrestru
       featured_tag:
         name: 'Efallai hoffech defnyddio un o''r rhain:'
       form_challenge:
@@ -78,6 +82,7 @@ cy:
         acct: Enw'r cyfrif newydd
       account_warning_preset:
         text: Testun rhagosodedig
+        title: Teitl
       admin_account_action:
         include_statuses: Cynhwyswch tŵtiau yr adroddwyd amdanynt yn yr e-bost
         send_email_notification: Hysbysu'r defnyddiwr trwy e-bost
@@ -150,6 +155,8 @@ cy:
         username: Enw defnyddiwr
         username_or_email: Enw defnyddiwr neu e-bost
         whole_word: Gair cyfan
+      email_domain_block:
+        with_dns_records: Cynnwys cofnodion MX a chyfeiriadau IP y parth
       featured_tag:
         name: Hashnod
       interactions:

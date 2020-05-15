@@ -382,8 +382,8 @@
 
   .emoji-picker-dropdown {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: 0;
   }
 
   .compose-form__autosuggest-wrapper {
@@ -931,6 +931,7 @@
 
 .announcements__item__content {
   word-wrap: break-word;
+  overflow-y: auto;
 
   .emojione {
     width: 20px;
@@ -1088,12 +1089,10 @@
     }
 
     .display-name {
+      color: $light-text-color;
+
       strong {
         color: $inverted-text-color;
-      }
-
-      span {
-        color: $light-text-color;
       }
     }
 
@@ -1381,7 +1380,12 @@
 
 .account__avatar {
   @include avatar-radius;
+  display: block;
   position: relative;
+
+  width: 36px;
+  height: 36px;
+  background-size: 36px 36px;
 
   &-inline {
     display: inline-block;
@@ -1394,7 +1398,6 @@
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    cursor: default;
 
     & > div {
       float: left;
@@ -1426,6 +1429,12 @@ a .account__avatar {
   &-base {
     @include avatar-radius;
     @include avatar-size(36px);
+
+    img {
+      @include avatar-radius;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-overlay {
@@ -1436,6 +1445,12 @@ a .account__avatar {
     bottom: 0;
     right: 0;
     z-index: 1;
+
+    img {
+      @include avatar-radius;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -3891,7 +3906,8 @@ a.status-card.compact:hover {
 }
 
 .empty-column-indicator,
-.error-column {
+.error-column,
+.follow_requests-unlocked_explanation {
   color: $dark-text-color;
   background: $ui-base-color;
   text-align: center;
@@ -3920,6 +3936,11 @@ a.status-card.compact:hover {
       text-decoration: underline;
     }
   }
+}
+
+.follow_requests-unlocked_explanation {
+  background: darken($ui-base-color, 4%);
+  contain: initial;
 }
 
 .error-column {
@@ -4149,10 +4170,7 @@ a.status-card.compact:hover {
 
 .emoji-button {
   display: block;
-  font-size: 24px;
-  line-height: 24px;
-  margin-left: 2px;
-  width: 24px;
+  padding: 5px 5px 2px 2px;
   outline: 0;
   cursor: pointer;
 
@@ -4168,7 +4186,6 @@ a.status-card.compact:hover {
     margin: 0;
     width: 22px;
     height: 22px;
-    margin-top: 2px;
   }
 
   &:hover,
@@ -5147,12 +5164,6 @@ a.status-card.compact:hover {
 }
 
 .media-gallery__gifv {
-  &.autoplay {
-    .media-gallery__gifv__label {
-      display: none;
-    }
-  }
-
   &:hover {
     .media-gallery__gifv__label {
       opacity: 1;
@@ -5667,6 +5678,13 @@ a.status-card.compact:hover {
         padding-bottom: 10px;
       }
     }
+  }
+}
+
+.gifv {
+  video {
+    max-width: 100vw;
+    max-height: 80vh;
   }
 }
 
@@ -6647,6 +6665,7 @@ noscript {
 
       path:last-child {
         stroke: lighten($highlight-text-color, 6%) !important;
+        fill: none !important;
       }
     }
   }
@@ -6668,6 +6687,7 @@ noscript {
     padding: 10px;
     padding-top: 12px;
     position: relative;
+    cursor: pointer;
   }
 
   &__unread {
@@ -6771,17 +6791,21 @@ noscript {
     box-sizing: border-box;
     width: 100%;
     padding: 15px;
-    padding-right: 15px + 18px;
     position: relative;
     font-size: 15px;
     line-height: 20px;
     word-wrap: break-word;
     font-weight: 400;
+    max-height: 50vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     &__range {
       display: block;
       font-weight: 500;
       margin-bottom: 10px;
+      padding-right: 18px;
     }
 
     &__unread {

@@ -8,26 +8,61 @@
   }
 
   &__chart {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: inline-block;
     border-radius: 4px;
-    background: darken($ui-primary-color, 14%);
+    display: block;
+    background: darken($ui-primary-color, 5%);
+    height: 5px;
+    min-width: 1%;
 
     &.leading {
       background: $ui-highlight-color;
     }
   }
 
-  &__text {
+  progress {
+    border: 0;
+    display: block;
+    width: 100%;
+    height: 5px;
+    appearance: none;
+    background: transparent;
+
+    &::-webkit-progress-bar {
+      background: transparent;
+    }
+
+    // Those rules need to be entirely separate or they won't work, hence the
+    // duplication
+    &::-moz-progress-bar {
+      border-radius: 4px;
+      background: darken($ui-primary-color, 5%);
+    }
+
+    &::-ms-fill {
+      border-radius: 4px;
+      background: darken($ui-primary-color, 5%);
+    }
+
+    &::-webkit-progress-value {
+      border-radius: 4px;
+      background: darken($ui-primary-color, 5%);
+    }
+  }
+
+  &__option {
     position: relative;
     display: flex;
     padding: 6px 0;
     line-height: 18px;
     cursor: default;
     overflow: hidden;
+
+    &__text {
+      display: inline-block;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: calc(100% - 45px - 25px);
+    }
 
     input[type=radio],
     input[type=checkbox] {
@@ -95,8 +130,8 @@
     &:active,
     &:focus,
     &:hover {
+      border-color: lighten($valid-value-color, 15%);
       border-width: 4px;
-      background: none;
     }
 
     &::-moz-focus-inner {
@@ -112,19 +147,18 @@
 
   &__number {
     display: inline-block;
-    width: 52px;
+    width: 45px;
     font-weight: 700;
-    padding: 0 10px;
-    padding-left: 8px;
-    text-align: right;
-    margin-top: auto;
-    margin-bottom: auto;
-    flex: 0 0 52px;
+    flex: 0 0 45px;
   }
 
-  &__vote__mark {
-    float: left;
-    line-height: 18px;
+  &__voted {
+    padding: 0 5px;
+    display: inline-block;
+
+    &__mark {
+      font-size: 18px;
+    }
   }
 
   &__footer {
@@ -199,7 +233,7 @@
     display: flex;
     align-items: center;
 
-    .poll__text {
+    .poll__option {
       flex: 0 0 auto;
       width: calc(100% - (23px + 6px));
       margin-right: 6px;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_203551) do
+ActiveRecord::Schema.define(version: 2020_05_10_110808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.text "text", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title", default: "", null: false
   end
 
   create_table "account_warnings", force: :cascade do |t|
@@ -170,6 +171,9 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.datetime "silenced_at"
     t.datetime "suspended_at"
     t.integer "trust_level"
+    t.boolean "hide_collections"
+    t.integer "avatar_storage_schema_version"
+    t.integer "header_storage_schema_version"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -229,6 +233,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "published_at"
+    t.bigint "status_ids", array: true
   end
 
   create_table "backups", force: :cascade do |t|
@@ -296,6 +301,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.string "image_remote_url"
     t.boolean "visible_in_picker", default: true, null: false
     t.bigint "category_id"
+    t.integer "image_storage_schema_version"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
@@ -334,6 +340,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.string "domain", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_id"
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
@@ -460,6 +467,8 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.text "description"
     t.bigint "scheduled_status_id"
     t.string "blurhash"
+    t.integer "processing"
+    t.integer "file_storage_schema_version"
     t.index ["account_id"], name: "index_media_attachments_on_account_id"
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
@@ -600,6 +609,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "embed_url", default: "", null: false
+    t.integer "image_storage_schema_version"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
@@ -791,6 +801,13 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
     t.index ["uri"], name: "index_tombstones_on_uri"
   end
 
+  create_table "unavailable_domains", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_unavailable_domains_on_domain", unique: true
+  end
+
   create_table "user_invite_requests", force: :cascade do |t|
     t.bigint "user_id"
     t.text "text"
@@ -893,6 +910,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_203551) do
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
+  add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade

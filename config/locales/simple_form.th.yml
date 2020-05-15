@@ -8,6 +8,7 @@ th:
         acct: ระบุ username@domain ของบัญชีที่คุณต้องการย้ายไป
       account_warning_preset:
         text: คุณสามารถใช้ไวยากรณ์โพสต์ เช่น URL, แฮชแท็ก และการกล่าวถึง
+        title: ตัวเลือกเพิ่มเติม ไม่ปรากฏแก่ผู้รับ
       admin_account_action:
         include_statuses: ผู้ใช้จะเห็นว่าโพสต์ใดก่อให้เกิดการกระทำการควบคุมหรือคำเตือน
         send_email_notification: ผู้ใช้จะได้รับคำอธิบายว่าเกิดอะไรขึ้นกับบัญชีของเขา
@@ -23,7 +24,7 @@ th:
       defaults:
         autofollow: ผู้คนที่ลงทะเบียนผ่านคำเชิญจะติดตามคุณโดยอัตโนมัติ
         avatar: PNG, GIF หรือ JPG สูงสุด %{size} จะถูกย่อขนาดเป็น %{dimensions}px
-        bot: บัญชีนี้ทำการกระทำอัตโนมัติเป็นหลักและอาจไม่ได้รับการสังเกตการณ์
+        bot: บัญชีนี้ทำการกระทำแบบอัตโนมัติเป็นหลักและอาจไม่ได้รับการสังเกตการณ์
         context: บริบทจำนวนหนึ่งหรือมากกว่าที่ตัวกรองควรใช้
         current_password: เพื่อวัตถุประสงค์ด้านความปลอดภัย โปรดป้อนรหัสผ่านของบัญชีปัจจุบัน
         current_username: เพื่อยืนยัน โปรดป้อนชื่อผู้ใช้ของบัญชีปัจจุบัน
@@ -42,8 +43,8 @@ th:
         setting_aggregate_reblogs: ไม่แสดงการดันใหม่สำหรับโพสต์ที่เพิ่งดัน (มีผลต่อการดันที่ได้รับใหม่เท่านั้น)
         setting_default_sensitive: ซ่อนสื่อที่ละเอียดอ่อนโดยค่าเริ่มต้นและสามารถเปิดเผยได้ด้วยการคลิก
         setting_display_media_default: ซ่อนสื่อที่ถูกทำเครื่องหมายว่าละเอียดอ่อน
-        setting_display_media_hide_all: ซ่อนสื่อทั้งหมดเสมอ
-        setting_display_media_show_all: แสดงสื่อที่ถูกทำเครื่องหมายว่าละเอียดอ่อนเสมอ
+        setting_display_media_hide_all: ซ่อนสื่อเสมอ
+        setting_display_media_show_all: แสดงสื่อเสมอ
         setting_hide_network: จะไม่แสดงผู้ที่คุณติดตามและผู้ที่ติดตามคุณในโปรไฟล์ของคุณ
         setting_noindex: มีผลต่อโปรไฟล์สาธารณะและหน้าสถานะของคุณ
         setting_show_application: จะแสดงแอปพลิเคชันที่คุณใช้เพื่อโพสต์ในมุมมองโดยละเอียดของโพสต์ของคุณ
@@ -78,6 +79,7 @@ th:
         acct: การจัดการบัญชีใหม่
       account_warning_preset:
         text: ข้อความที่ตั้งไว้ล่วงหน้า
+        title: ชื่อเรื่อง
       admin_account_action:
         include_statuses: รวมโพสต์ที่รายงานไว้ในอีเมล
         send_email_notification: แจ้งเตือนผู้ใช้ทางอีเมล
@@ -86,7 +88,7 @@ th:
         types:
           disable: ปิดใช้งานการเข้าสู่ระบบ
           none: ไม่ทำสิ่งใด
-          silence: เงียบ
+          silence: ทำให้เงียบ
           suspend: ระงับและลบข้อมูลบัญชีอย่างถาวร
         warning_preset_id: ใช้คำเตือนที่ตั้งไว้ล่วงหน้า
       announcement:
@@ -126,8 +128,8 @@ th:
         setting_auto_play_gif: เล่น GIF แบบเคลื่อนไหวโดยอัตโนมัติ
         setting_boost_modal: แสดงกล่องโต้ตอบการยืนยันก่อนดัน
         setting_crop_images: ครอบตัดภาพในโพสต์ที่ไม่ได้ขยายเป็น 16x9
-        setting_default_language: ภาษาที่โพสต์
-        setting_default_privacy: ความเป็นส่วนตัวของโพสต์
+        setting_default_language: ภาษาของการโพสต์
+        setting_default_privacy: ความเป็นส่วนตัวของการโพสต์
         setting_default_sensitive: ทำเครื่องหมายสื่อว่าละเอียดอ่อนเสมอ
         setting_delete_modal: แสดงกล่องโต้ตอบการยืนยันก่อนลบโพสต์
         setting_display_media: การแสดงสื่อ
@@ -150,6 +152,8 @@ th:
         username: ชื่อผู้ใช้
         username_or_email: ชื่อผู้ใช้หรืออีเมล
         whole_word: ทั้งคำ
+      email_domain_block:
+        with_dns_records: รวมระเบียน MX และ IP ของโดเมน
       featured_tag:
         name: แฮชแท็ก
       interactions:
@@ -166,10 +170,10 @@ th:
         follow: ใครสักคนได้ติดตามคุณ
         follow_request: ใครสักคนได้ขอติดตามคุณ
         mention: ใครสักคนได้กล่าวถึงคุณ
-        pending_account: ส่งอีเมลเมื่อบัญชีใหม่ต้องการการตรวจทาน
+        pending_account: บัญชีใหม่ต้องมีการตรวจทาน
         reblog: ใครสักคนได้ดันสถานะของคุณ
-        report: ส่งอีเมลเมื่อมีการส่งรายงานใหม่
-        trending_tag: ส่งอีเมลเมื่อแฮชแท็กที่ยังไม่ได้ตรวจทานกำลังนิยม
+        report: มีการส่งรายงานใหม่
+        trending_tag: แฮชแท็กที่ยังไม่ได้ตรวจทานกำลังนิยม
       tag:
         listable: อนุญาตให้แฮชแท็กนี้ปรากฏในการค้นหาและในไดเรกทอรีโปรไฟล์
         name: แฮชแท็ก

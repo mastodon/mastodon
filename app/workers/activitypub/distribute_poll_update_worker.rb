@@ -4,7 +4,7 @@ class ActivityPub::DistributePollUpdateWorker
   include Sidekiq::Worker
   include Payloadable
 
-  sidekiq_options queue: 'push', unique: :until_executed, retry: 0
+  sidekiq_options queue: 'push', lock: :until_executed, retry: 0
 
   def perform(status_id)
     @status  = Status.find(status_id)

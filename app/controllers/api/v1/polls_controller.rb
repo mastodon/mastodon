@@ -7,8 +7,6 @@ class Api::V1::PollsController < Api::BaseController
   before_action :set_poll
   before_action :refresh_poll
 
-  respond_to :json
-
   def show
     render json: @poll, serializer: REST::PollSerializer, include_results: true
   end
@@ -19,7 +17,7 @@ class Api::V1::PollsController < Api::BaseController
     @poll = Poll.attached.find(params[:id])
     authorize @poll.status, :show?
   rescue Mastodon::NotPermittedError
-    raise ActiveRecord::RecordNotFound
+    not_found
   end
 
   def refresh_poll
