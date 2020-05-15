@@ -127,6 +127,10 @@ module Mastodon
           path_segments = key.split(File::SEPARATOR)
           path_segments.delete('cache')
 
+          # There may be stray files not corresponding to Paperclip's naming
+          # scheme... maybe leftover from previous versions of Mastodon?
+          next if path_segments.size < 7
+
           model_name      = path_segments.first.classify
           record_id       = path_segments[2..-2].join.to_i
           attachment_name = path_segments[1].singularize
