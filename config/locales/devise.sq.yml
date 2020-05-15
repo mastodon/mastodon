@@ -55,13 +55,15 @@ sq:
         title: 2FA u aktivizua
       two_factor_recovery_codes_changed:
         explanation: Kodet e dikurshëm të rikthimit janë bërë të pavlefshëm dhe janë prodhuar të rinj.
+        subject: 'Mastodon: U riprodhuan kode rikthimi dyfaktorësh'
+        title: Kodet e rikthimit 2FA u ndryshuan
       unlock_instructions:
         subject: 'Mastodon: Udhëzime shkyçjeje'
     omniauth_callbacks:
       failure: S’u bë dot mirëfilltësimi juaj nga %{kind}, sepse "%{reason}".
       success: Mirëfilltësimi nga llogaria %{kind} u bë me sukses.
     passwords:
-      no_token: S’mund të hyni në këtë faqe paardhur nga një email ricaktimi fjalëkalimi. Nëse vini nga një email ricaktimi fjalëkalimi, ju lutemi, sigurohuni se përdorët URL-në e plotë dhënë për ju.
+      no_token: S’mund të hyni në këtë faqe pa ardhur nga një email ricaktimi fjalëkalimi. Nëse vini nga një email ricaktimi fjalëkalimi, ju lutemi, sigurohuni se përdorët URL-në e plotë dhënë për ju.
       send_instructions: Nëse adresa juaj email gjendet në bazën tonë të të dhënave, brenda pak minutash, te adresa juaj email do të merrni një lidhje rimarrjeje fjalëkalimi. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
       send_paranoid_instructions: Nëse adresa juaj email gjendet në bazën tonë të të dhënave, brenda pak minutash, te adresa juaj email do të merrni një lidhje rimarrjeje fjalëkalimi. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
       updated: Fjalëkalimi juaj u ndryshua me sukses. Tani jeni i futur.
@@ -71,6 +73,7 @@ sq:
       signed_up: Mirë se vini! U regjistruat me sukses.
       signed_up_but_inactive: U regjistruat me sukses. Megjithatë, s’u bë dot hyrja juaj, ngaqë llogaria juaj s’është aktivizuar ende.
       signed_up_but_locked: U regjistruat me sukses. Megjithatë, s’u bë dot hyrja juaj, ngaqë llogaria juaj është kyçur.
+      signed_up_but_pending: Te adresa juaj email është dërguar një mesazh me një lidhje ripohimi. Pasi të klikoni mbi lidhjen, do të shqyrtojmë aplikimin tuaj. Nëse miratohet, do të njoftoheni.
       signed_up_but_unconfirmed: Te adresa juaj email u dërgua një mesazh me një lidhje ripohimi. Ju lutemi, që të aktivizoni llogarinë tuaj, ndiqni lidhjen. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
       update_needs_confirmation: E përditësuat me sukses llogarinë tuaj, por na duhet të verifikojmë adresën tuaj të re email. Ju lutemi, që të ripohoni adresën tuaj të re email, kontrolloni email-in tuaj dhe ndiqni lidhjen. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
       updated: Llogaria juaj u përditësua me sukses.
