@@ -589,17 +589,23 @@ sq:
       title: Gjendje llogarish
       with_media: Me media
     tags:
+      accounts_today: Përdorime unike sot
+      accounts_week: Përdorime unike këtë javë
+      breakdown: Përdorimi i sotëm analitikisht sipas burimesh
       context: Kontekst
-      directory: Në direktorium
-      last_active: Aktive së fundi
-      most_popular: Më e famshmja
-      most_recent: Të fundit
+      directory: Në drejtori
+      in_directory: "%{count} në drejtori"
+      last_active: Aktive së fundi më
+      most_popular: Më populloret
+      most_recent: Më të rejat
       name: Hashtag
       review: Gjendja e rishikimit
-      reviewed: Rishikuar
-      title: Hashtage
-      trending_right_now: Në trend tani
-      unreviewed: E parishikuar
+      reviewed: E shqyrtuar
+      title: Hashtag-ë
+      trending_right_now: Popullore mu tani
+      unique_uses_today: "%{count} postime sot"
+      unreviewed: E pashqyrtuar
+      updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
     title: Administrim
     warning_presets:
       add_new: Shtoni të ri
@@ -607,12 +613,21 @@ sq:
       edit_preset: Përpunoni sinjalizim të paracaktuar
       title: Administroni sinjalizime të paracaktuara
   admin_mailer:
+    new_pending_account:
+      body: Hollësitë e llogarisë së re gjenden më poshtë. Mund ta miratoni ose hidhni poshtë këtë aplikim.
+      subject: Llogari e re për shqyrtim në %{instance} (%{username})
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: 'Raport i ri për %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Hashtag-u #%{name} është popullor sot, por s’është shqyrtuar më parë. S’do të shfaqet publikisht pa e lejuar ju, ose thjesht ruani formularin siç është, që të mos dëgjoni më për të.'
+      subject: 'Hashtag i ri për shqyrtim te %{instance} (#%{name})'
   aliases:
-    add_new: Krijo shkurtesë
+    add_new: Krijo alias
+    created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
+    deleted_msg: Aliasi u hoq me sukses. Kalimi nga ajo llogari në këtë këtu s’do të jetë më i mundshëm.
+    empty: S’keni aliase.
     remove: Fshijë shkurtesën
   appearance:
     localization:
