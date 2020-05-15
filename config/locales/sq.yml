@@ -11,35 +11,46 @@ sq:
     apps_platforms: Përdoreni Mastodon-in prej iOS-i, Android-i dhe platformash të tjera
     browse_directory: Shfletoni një drejtori profilesh dhe filtrojeni sipas interesash
     browse_local_posts: Shfletoni një rrjedhë të drejtpërdrejtë postimesh publike nga ky shërbyes
+    browse_public_posts: Shfletoni një rrjedhë të drejtpërdrejtë postimesh publike në Mastodon
     contact: Kontakt
     contact_missing: I parregulluar
     contact_unavailable: N/A
-    discover_users: Zbulo përdoruesit
+    discover_users: Zbuloni përdorues
     documentation: Dokumentim
-    get_apps: Provo app mobil
+    federation_hint_html: Me një llogari në %{instance}, do të jeni në gjendje të ndiqni persona në çfarëdo shërbyesi Mastodon dhe më tej.
+    get_apps: Provoni një aplikacion për celular
     hosted_on: Mastodon i strehuar në %{domain}
+    instance_actor_flash: |
+      Kjo llogari është një aktor virtual i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual.
+      Përdoret për qëllime federimi dhe s’duhet bllokuar, veç në daçi të bllokoni krejt instancën, me ç’rast do të duhej të përdornit bllokim përkatësie.
     learn_more: Mësoni më tepër
     privacy_policy: Rregulla privatësie
-    see_whats_happening: Shih se ç'po ndodhë
-    server_stats: 'Statistika serveri:'
+    see_whats_happening: Shihni ç'ndodh
+    server_stats: 'Statistika shërbyesi:'
     source_code: Kod burim
     status_count_after:
       one: gjendje
       other: gjendje
-    status_count_before: Cili krijoi
-    tagline: Ndjek shokët/shoqet dhe gjej të ri
+    status_count_before: Që kanë krijuar
+    tagline: Ndiqni shokë dhe zbuloni të rinj
     terms: Kushte shërbimi
-    unavailable_content: Përmbajtje e pa arritshme
+    unavailable_content: Lëndë jo e passhme
     unavailable_content_description:
-      domain: Server
+      domain: Shërbyes
       reason: Arsye
+      rejecting_media: 'Kartelat media prej këtyre shërbyesve s’do të përpunohen apo depozitohen, dhe s’do të shfaqet ndonjë miniaturë, duke kërkuar kështu doemos klikim dorazi te kartela origjinale:'
+      silenced: 'Postimet prej këtyre shërbyesve do të fshihen në rrjedha kohore dhe biseda publike, dhe prej ndërveprimeve të përdoruesve të tyre s’do të prodhohen njoftime, veç në i ndjekshi:'
+      suspended: 'S’do të përpunohen, depozitohen apo shkëmbehen të dhëna prej këtyre shërbyesve, duke e bërë të pamundur çfarëdo ndërveprimi apo komunikimi me përdorues prej këtyre shërbyesve:'
+    unavailable_content_html: Mastodon-i përgjithësisht ju lejon të shihni lëndë nga përdorues dhe të ndërveproni me të tillë prej cilitdo shërbyes në fedivers. Këto janë përjashtimet që janë bërë në këtë shërbyes.
     user_count_after:
       one: përdorues
       other: përdorues
-    user_count_before: Shtëpi për
+    user_count_before: Shtëpi e
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
     choices_html: "Zgjedhje të %{name}:"
+    endorsements_hint: Mund t’i mbështesni personat që nga ndërfaqja web, dhe do të shfaqen këtu.
+    featured_tags_hint: Mund të zgjidhni hashtag-ë të veçantë që do të shfaqen këtu.
     follow: Ndiqeni
     followers:
       one: Ndjekës
@@ -50,8 +61,8 @@ sq:
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
     media: Media
     moved_html: "%{name} ka kaluar te %{new_profile_link}:"
-    network_hidden: Këto të dhëna nuk mund të kihen
-    never_active: Asnjëherë
+    network_hidden: Këto të dhëna s’janë të passhme
+    never_active: Kurrë
     nothing_here: S’ka gjë këtu!
     people_followed_by: Persona të ndjekur nga %{name}
     people_who_follow: Persona që ndjekin %{name}
@@ -65,9 +76,10 @@ sq:
     reserved_username: Emri i përdoruesit është i ruajtur për dikë
     roles:
       admin: Përgjegjës
-      bot: Bot
+      bot: Robot
       group: Grup
-    unavailable: Profil i pa arritshëm
+      moderator: Moderator
+    unavailable: Profil jashtë funksionimi
     unfollow: Resht së ndjekuri
   admin:
     account_actions:
@@ -79,11 +91,11 @@ sq:
       delete: Fshije
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
-      add_email_domain_block: Shto e-mail domain në listën e zezë
-      approve: Prano
-      approve_all: Prano të gjithë
+      add_email_domain_block: Vëre përkatësinë email në listë bllokimesh
+      approve: Miratojeni
+      approve_all: Miratojini krejt
       are_you_sure: A jeni i sigurt?
-      avatar: Foto profili
+      avatar: Avatar
       by_domain: Përkatësi
       change_email:
         changed_msg: Email-i i llogarisë u ndryshua me sukses!
@@ -98,7 +110,7 @@ sq:
       deleted: U fshi
       demote: Zhgradoje
       disable: Çaktivizoje
-      disable_two_factor_authentication: Çaktivizoni 2FA
+      disable_two_factor_authentication: Çaktivizoni 2FA-në
       disabled: E çaktivizuar
       display_name: Emër në ekran
       domain: Përkatësi
@@ -125,14 +137,14 @@ sq:
       moderation:
         active: Aktiv
         all: Krejt
-        pending: Në pritje
+        pending: Pezull
         silenced: U heshtua
         suspended: Të pezulluara
         title: Moderim
       moderation_notes: Shënime moderimesh
       most_recent_activity: Veprimtaria më e freskët
       most_recent_ip: IP-ja më e freskët
-      no_account_selected: Asnjë llogari nuk është ndryshuar pasiqë asnjë llogari nuk është zgjedhur
+      no_account_selected: S’u ndryshua ndonjë llogari, ngaqë s’u përzgjodh ndonjë
       no_limits_imposed: Pa imponim kufijsh
       not_subscribed: Jo i pajtuar
       pending: Në pritje për rishikim
@@ -142,8 +154,8 @@ sq:
       public: Publike
       push_subscription_expires: Pajtimi PuSH skadon më
       redownload: Rifresko profilin
-      reject: Refuzo
-      reject_all: Refuzo të gjitha
+      reject: Hidhe tej
+      reject_all: Hidhi krejt tej
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
       resend_confirmation:
@@ -156,12 +168,12 @@ sq:
       role: Leje
       roles:
         admin: Përgjegjës
-        moderator: Moderues
+        moderator: Moderator
         staff: Staf
         user: Përdorues
       search: Kërkoni
-      search_same_email_domain: Përdorues tjerë me e-mail domain të ngjajshëm
-      search_same_ip: Përdorues tjerë me IP të ngjajshme
+      search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-e
+      search_same_ip: Të tjerë përdorues me të njëjtën IP
       shared_inbox_url: URL kutie të përbashkët mesazesh
       show:
         created_reports: Ka bërë raportime
@@ -179,14 +191,14 @@ sq:
       unsubscribe: Shpajtohuni
       username: Emër përdoruesi
       warn: Sinjalizoje
-      web: Ueb
-      whitelisted: Lista e bardhë
+      web: Web
+      whitelisted: Në listë lejimesh
     action_logs:
       action_types:
-        assigned_to_self_report: Përcakto Raportin
-        change_email_user: Ndrysho E-mail për përdoruesin
-        confirm_user: Konfirmo përdoruesin
-        create_account_warning: Krijo vërrejtje
+        assigned_to_self_report: Caktoji Raport
+        change_email_user: Ndrysho Email për Përdoruesin
+        confirm_user: Ripohoje Përdoruesin
+        create_account_warning: Krijo Sinjalizim
         create_announcement: Krijo lajmërim
         create_custom_emoji: Krijo Emoji të veçantë
         create_domain_allow: Lejo krijimin e domain
