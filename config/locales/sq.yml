@@ -628,32 +628,39 @@ sq:
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
     deleted_msg: Aliasi u hoq me sukses. Kalimi nga ajo llogari në këtë këtu s’do të jetë më i mundshëm.
     empty: S’keni aliase.
-    remove: Fshijë shkurtesën
+    remove: Hiqe aliasin
   appearance:
+    advanced_web_interface: Ndërfaqe web e thelluar
     localization:
       guide_link_text: Çdokush mund të kontribuojë.
-    sensitive_content: Përmbajtje sensitive
-    toot_layout: Pamja e cicërimës
+    sensitive_content: Lëndë rezervat
+    toot_layout: Skemë mesazhesh
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
     salutation: "%{name},"
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
     view: 'Parje:'
-    view_profile: Shihni Profilin
+    view_profile: Shihni profilin
     view_status: Shihini gjendjen
   applications:
-    created: Aplikacioni u krijua me sukses
-    destroyed: Aplikacioni u fshi me sukses
+    created: Aplikimi u krijua me sukses
+    destroyed: Aplikimi u fshi me sukses
     invalid_url: URL-ja e dhënë është e pavlefshme
     regenerate_token: Riprodho token hyrjesh
-    token_regenerated: Token-i i hyrjeve u riprodhuan me sukses
-    warning: Hapni sytë me ato të dhëna. Mos ia jepni kurrë njeriu!
+    token_regenerated: Token-i i hyrjeve u riprodhua me sukses
+    warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
     apply_for_account: Kërko ftesë
     change_password: Fjalëkalim
+    checkbox_agreement_html: Pajtohem me <a href="%{rules_path}" target="_blank">rregullat e shërbyesit</a> dhe <a href="%{terms_path}" target="_blank">kushtet e shërbimit</a>
+    checkbox_agreement_without_rules_html: Pajtohem me <a href="%{terms_path}" target="_blank">kushtet e shërbimit</a>
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
+    description:
+      prefix_invited_by_user: "@%{name} ju fton të bëheni pjesë e këtij shërbyesi Mastodon!"
+      prefix_sign_up: Regjistrohuni në Mastodon që sot!
+      suffix: Me një llogari, do të jeni në gjendje të ndiqni persona, përditësime postimesh dhe të shkëmbeni mesazhe me përdorues nga cilido shërbyes Mastodon, etj!
     didnt_get_confirmation: S’morët udhëzime ripohimi?
     forgot_password: Harruat fjalëkalimin tuaj?
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm ose ka skaduar. Ju lutemi, kërkoni një të ri.
@@ -666,14 +673,16 @@ sq:
       cas: CAS
       saml: SAML
     register: Regjistrohuni
+    registration_closed: "%{instance} s’pranon anëtarë të rinj"
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
     setup:
-      title: Rregullo
+      email_below_hint_html: Nëse adresa email më poshtë s’është e saktë, mund ta ndryshoni këtu dhe të merrni një email të ri ripohimi.
+      title: Ujdisje
     status:
-      account_status: Gjendja e llogarisë
+      account_status: Gjendje llogarie
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
     error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
@@ -694,22 +703,30 @@ sq:
       about_x_years: "%{count}v"
       almost_x_years: "%{count}v"
       half_a_minute: Mu tani
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Mu tani
       over_x_years: "%{count}v"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}mj"
+      x_seconds: "%{count}s"
   deletes:
-    confirm_password: Jepni fjalëkalimin tuaj të tanishëm që të verifikohet identiteti juaj
+    challenge_not_passed: Të dhënat që dhatë s’qenë të sakta
+    confirm_password: Që të verifikohet identiteti juaj, jepni fjalëkalimin tuaj të tanishëm
+    confirm_username: Që të ripohohet procedura, jepni emrin tuaj të përdoruesit
     proceed: Fshini llogarinë
     success_msg: Llogaria juaj u fshi me sukses
   directories:
     directory: Drejtori profilesh
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
+  domain_validator:
+    invalid_domain: s’është emër i vlefshëm përkatësie
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Kërkesa që parashtruar qe e pavlefshme ose e keqformuar.
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, s’gjendet këtu.
-    '406': This page is not available in the requested format.
+    '406': Kjo faqe s’mund të kihet në formatin e kërkuar.
     '410': Faqja që po kërkonit, s’gjendet më këtu.
     '422':
       content: Verifikimi i sigurisë dështoi. Mos i bllokoni gjë cookie-t?
