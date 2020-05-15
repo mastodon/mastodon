@@ -356,6 +356,7 @@ sq:
       destroyed_msg: Bllokimi i përkatësisë u hoq
       domain: Përkatësi
       edit: Përpunoni bllokim përkatësie
+      existing_domain_block_html: Keni vendosur tashmë kufizime më të rrepta mbi %{name}, lypset ta <a href="%{unblock_url}">zhbllokoni</a> së pari.
       new:
         create: Krijoni bllokim
         hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme metoda specifike moderimi mbi këto llogari.
@@ -366,7 +367,9 @@ sq:
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
       private_comment: Koment privat
+      private_comment_hint: Koment mbi këtë kufizim përkatësie për përdorim të brendshëm nga moderatorët.
       public_comment: Koment publik
+      public_comment_hint: Koment mbi këtë kufizim përkatësie për publikun e përgjithshëm, nëse është aktivizuar shfaqja e kufizimeve të përkatësive.
       reject_media: Mos prano kartela media
       reject_media_hint: Heq kartela media të depozituara lokalisht dhe nuk pranon të shkarkohen të tilla në të ardhmen. Pa peshë për pezullimet
       reject_reports: Hidh tej raportimet
@@ -386,26 +389,28 @@ sq:
         title: Zhbëje bllokimin e përkatësisë për %{domain}
         undo: Zhbëje
       undo: Zhbëje bllokimin e përkatësisë
+      view: Shihni bllokim përkatësie
     email_domain_blocks:
       add_new: Shtoni të ri
       created_msg: Përkatësia email u shtua me sukses te lista e bllokimeve
       delete: Fshije
       destroyed_msg: Përkatësia email u fshi me sukses nga lista e bllokimeve
       domain: Përkatësi
+      empty: S’ka përkatësi email në ndonjë listë bllokimesh.
       from_html: nga %{domain}
       new:
         create: Shtoni përkatësi
         title: Zë i ri email në listë bllokimesh
       title: Listë bllokimesh email-esh
     instances:
-      by_domain: Domain
+      by_domain: Përkatësi
       delivery_available: Ka shpërndarje të mundshme
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
       moderation:
         all: Krejt
-        limited: E kufizuar
+        limited: Të kufizuarat
         title: Moderim
       private_comment: Koment privat
       public_comment: Koment publik
@@ -421,8 +426,12 @@ sq:
         all: Krejt
         available: I përdorshëm
         expired: I skaduar
-        title: Filtër
+        title: Filtrim
       title: Ftesa
+    pending_accounts:
+      title: Llogari pezull (%{count})
+    relationships:
+      title: "Marrëdhënie të %{acct}"
     relays:
       add_new: Shtoni rele të re
       delete: Fshije
@@ -436,16 +445,25 @@ sq:
       pending: Në pritje të miratimit të relesë
       save_and_enable: Ruaje dhe aktivizoje
       setup: Ujdisni një lidhje releje
+      signatures_not_enabled: Reletë s’do të punojnë si duhet, kur është e aktivizuar mënyra siguri ose ajo listë lejimesh
       status: Gjendje
       title: Rele
     report_notes:
       created_msg: Shënimi i raportimit u krijua me sukses!
       destroyed_msg: Shënimi i raportimit u fshi me sukses!
     reports:
+      account:
+        notes:
+          one: "%{count} shënim"
+          other: "%{count} shënime"
+        reports:
+          one: "%{count} raportim"
+          other: "%{count} raportime"
       action_taken_by: Veprimi i ndërmarrë nga
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
       assigned: Iu caktua moderator
+      by_target_domain: Përkatësi e llogarisë së raportuar
       comment:
         none: Asnjë
       created_at: Raportuar më
@@ -479,11 +497,20 @@ sq:
         email: Email biznesi
         username: Emër përdoruesi kontakti
       custom_css:
-        desc_html: Modifikojeni pamjen me CSS të nagrkuar në çdo faqe
+        desc_html: Modifikojeni pamjen me CSS të ngarkuar në çdo faqe
         title: CSS Vetjake
+      default_noindex:
+        desc_html: Prek krejt përdoruesi që s’e kanë ndryshuar vetë këtë rregullim
+        title: Lejo, si parazgjedhje, lënien e përdoruesve jashtë indeksimi nga motorë kërkimesh
       domain_blocks:
-        all: Për të gjithë
-        disabled: Për askend
+        all: Për këdo
+        disabled: Për askënd
+        title: Shfaq bllokime përkatësish
+        users: Për përdorues vendorë që kanë bërë hyrjen
+      domain_blocks_rationale:
+        title: Shfaq arsye
+      enable_bootstrap_timeline_accounts:
+        title: Aktivizo ndjekje parazgjedhje për përdorues të rinj
       hero:
         desc_html: E shfaqur në faqen ballore. Këshillohet të paktën 600x100px. Kur nuk caktohet gjë, përdoret miniaturë e shërbyesit
         title: Figurë heroi
@@ -508,7 +535,13 @@ sq:
           title: Hapni fshirje llogarie
         min_invite_role:
           disabled: Asnjë
-          title: Lejo vetëm me ftesa
+          title: Lejo ftesa nga
+      registrations_mode:
+        modes:
+          approved: Për regjistrim, lypset miratimi
+          none: S’mund të regjistrohet ndokush
+          open: Mund të regjistrohet gjithkush
+        title: Mënyrë regjistrimi
       show_known_fediverse_at_about_page:
         desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur, si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore.
         title: Shfaq te paraparja e rrjedhës kohore fedivers të njohur
