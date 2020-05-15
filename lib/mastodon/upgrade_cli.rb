@@ -41,23 +41,32 @@ module Mastodon
         klass.find_each do |record|
           attachment_names.each do |attachment_name|
             attachment = record.public_send(attachment_name)
+            upgraded   = false
 
             next if attachment.blank? || attachment.storage_schema_version >= CURRENT_STORAGE_SCHEMA_VERSION
 
-            attachment.styles.each_key do |style|
-              case Paperclip::Attachment.default_options[:storage]
-              when :s3
-                upgrade_storage_s3(progress, attachment, style)
-              when :fog
-                upgrade_storage_fog(progress, attachment, style)
-              when :filesystem
-                upgrade_storage_filesystem(progress, attachment, style)
+            styles = attachment.styles.keys
+
+            styles << :original unless styles.include?(:original)
+
+            styles.each do |style|
+              success = begin
+                case Paperclip::Attachment.default_options[:storage]
+                when :s3
+                  upgrade_storage_s3(progress, attachment, style)
+                when :fog
+                  upgrade_storage_fog(progress, attachment, style)
+                when :filesystem
+                  upgrade_storage_filesystem(progress, attachment, style)
+                end
               end
+
+              upgraded = true if style == :original && success
 
               progress.increment
             end
 
-            attachment.instance_write(:storage_schema_version, CURRENT_STORAGE_SCHEMA_VERSION)
+            attachment.instance_write(:storage_schema_version, CURRENT_STORAGE_SCHEMA_VERSION) if upgraded
           end
 
           if record.changed?
@@ -78,18 +87,20 @@ module Mastodon
     def upgrade_storage_s3(progress, attachment, style)
       previous_storage_schema_version = attachment.storage_schema_version
       object                          = attachment.s3_object(style)
+      success                         = true
 
       attachment.instance_write(:storage_schema_version, CURRENT_STORAGE_SCHEMA_VERSION)
 
-      upgraded_path = attachment.path(style)
+      new_object = attachment.s3_object(style)
 
-      if upgraded_path != object.key && object.exists?
-        progress.log("Moving #{object.key} to #{upgraded_path}") if options[:verbose]
+      if new_object.key != object.key && object.exists?
+        progress.log("Moving #{object.key} to #{new_object.key}") if options[:verbose]
 
         begin
-          object.move_to(upgraded_path) unless dry_run?
+          object.move_to(new_object) unless dry_run?
         rescue => e
           progress.log(pastel.red("Error processing #{object.key}: #{e}"))
+          success = false
         end
       end
 
@@ -97,6 +108,7 @@ module Mastodon
       # previous version at the end. The upgrade will be recorded after
       # all styles are updated
       attachment.instance_write(:storage_schema_version, previous_storage_schema_version)
+      success
     end
 
     def upgrade_storage_fog(_progress, _attachment, _style)
@@ -107,6 +119,7 @@ module Mastodon
     def upgrade_storage_filesystem(progress, attachment, style)
       previous_storage_schema_version = attachment.storage_schema_version
       previous_path                   = attachment.path(style)
+      success                         = true
 
       attachment.instance_write(:storage_schema_version, CURRENT_STORAGE_SCHEMA_VERSION)
 
@@ -128,6 +141,7 @@ module Mastodon
           end
         rescue => e
           progress.log(pastel.red("Error processing #{previous_path}: #{e}"))
+          success = false
 
           unless dry_run?
             begin
@@ -143,6 +157,7 @@ module Mastodon
       # previous version at the end. The upgrade will be recorded after
       # all styles are updated
       attachment.instance_write(:storage_schema_version, previous_storage_schema_version)
+      success
     end
   end
 end
