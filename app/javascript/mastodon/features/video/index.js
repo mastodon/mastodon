@@ -109,6 +109,8 @@ class Video extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     blurhash: PropTypes.string,
     link: PropTypes.node,
+    autoPlay: PropTypes.bool,
+    defaultVolume: PropTypes.number,
   };
 
   state = {
@@ -367,6 +369,13 @@ class Video extends React.PureComponent {
   handleLoadedData = () => {
     if (this.props.startTime) {
       this.video.currentTime = this.props.startTime;
+    }
+
+    if (this.props.defaultVolume !== undefined) {
+      this.video.volume = this.props.defaultVolume;
+    }
+
+    if (this.props.autoPlay) {
       this.video.play();
     }
   }
@@ -393,8 +402,14 @@ class Video extends React.PureComponent {
       height,
     });
 
+    const options = {
+      startTime: this.video.currentTime,
+      autoPlay: !this.state.paused,
+      defaultVolume: this.state.volume,
+    };
+
     this.video.pause();
-    this.props.onOpenVideo(media, this.video.currentTime);
+    this.props.onOpenVideo(media, options);
   }
 
   handleCloseVideo = () => {

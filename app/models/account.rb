@@ -3,50 +3,52 @@
 #
 # Table name: accounts
 #
-#  id                      :bigint(8)        not null, primary key
-#  username                :string           default(""), not null
-#  domain                  :string
-#  secret                  :string           default(""), not null
-#  private_key             :text
-#  public_key              :text             default(""), not null
-#  remote_url              :string           default(""), not null
-#  salmon_url              :string           default(""), not null
-#  hub_url                 :string           default(""), not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  note                    :text             default(""), not null
-#  display_name            :string           default(""), not null
-#  uri                     :string           default(""), not null
-#  url                     :string
-#  avatar_file_name        :string
-#  avatar_content_type     :string
-#  avatar_file_size        :integer
-#  avatar_updated_at       :datetime
-#  header_file_name        :string
-#  header_content_type     :string
-#  header_file_size        :integer
-#  header_updated_at       :datetime
-#  avatar_remote_url       :string
-#  subscription_expires_at :datetime
-#  locked                  :boolean          default(FALSE), not null
-#  header_remote_url       :string           default(""), not null
-#  last_webfingered_at     :datetime
-#  inbox_url               :string           default(""), not null
-#  outbox_url              :string           default(""), not null
-#  shared_inbox_url        :string           default(""), not null
-#  followers_url           :string           default(""), not null
-#  protocol                :integer          default("ostatus"), not null
-#  memorial                :boolean          default(FALSE), not null
-#  moved_to_account_id     :bigint(8)
-#  featured_collection_url :string
-#  fields                  :jsonb
-#  actor_type              :string
-#  discoverable            :boolean
-#  also_known_as           :string           is an Array
-#  silenced_at             :datetime
-#  suspended_at            :datetime
-#  trust_level             :integer
-#  hide_collections        :boolean
+#  id                            :bigint(8)        not null, primary key
+#  username                      :string           default(""), not null
+#  domain                        :string
+#  secret                        :string           default(""), not null
+#  private_key                   :text
+#  public_key                    :text             default(""), not null
+#  remote_url                    :string           default(""), not null
+#  salmon_url                    :string           default(""), not null
+#  hub_url                       :string           default(""), not null
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  note                          :text             default(""), not null
+#  display_name                  :string           default(""), not null
+#  uri                           :string           default(""), not null
+#  url                           :string
+#  avatar_file_name              :string
+#  avatar_content_type           :string
+#  avatar_file_size              :integer
+#  avatar_updated_at             :datetime
+#  header_file_name              :string
+#  header_content_type           :string
+#  header_file_size              :integer
+#  header_updated_at             :datetime
+#  avatar_remote_url             :string
+#  subscription_expires_at       :datetime
+#  locked                        :boolean          default(FALSE), not null
+#  header_remote_url             :string           default(""), not null
+#  last_webfingered_at           :datetime
+#  inbox_url                     :string           default(""), not null
+#  outbox_url                    :string           default(""), not null
+#  shared_inbox_url              :string           default(""), not null
+#  followers_url                 :string           default(""), not null
+#  protocol                      :integer          default("ostatus"), not null
+#  memorial                      :boolean          default(FALSE), not null
+#  moved_to_account_id           :bigint(8)
+#  featured_collection_url       :string
+#  fields                        :jsonb
+#  actor_type                    :string
+#  discoverable                  :boolean
+#  also_known_as                 :string           is an Array
+#  silenced_at                   :datetime
+#  suspended_at                  :datetime
+#  trust_level                   :integer
+#  hide_collections              :boolean
+#  avatar_storage_schema_version :integer
+#  header_storage_schema_version :integer
 #
 
 class Account < ApplicationRecord
@@ -413,7 +415,7 @@ class Account < ApplicationRecord
 
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
-      DeliveryFailureTracker.filter(urls)
+      DeliveryFailureTracker.without_unavailable(urls)
     end
 
     def search_for(terms, limit = 10, offset = 0)

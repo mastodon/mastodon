@@ -21,7 +21,11 @@ RSpec.describe FetchResourceService, type: :service do
 
     context 'when OpenSSL::SSL::SSLError is raised' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(OpenSSL::SSL::SSLError)
+        request = double()
+        allow(Request).to receive(:new).and_return(request)
+        allow(request).to receive(:add_headers)
+        allow(request).to receive(:on_behalf_of)
+        allow(request).to receive(:perform).and_raise(OpenSSL::SSL::SSLError)
       end
 
       it { is_expected.to be_nil }
@@ -29,7 +33,11 @@ RSpec.describe FetchResourceService, type: :service do
 
     context 'when HTTP::ConnectionError is raised' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(HTTP::ConnectionError)
+        request = double()
+        allow(Request).to receive(:new).and_return(request)
+        allow(request).to receive(:add_headers)
+        allow(request).to receive(:on_behalf_of)
+        allow(request).to receive(:perform).and_raise(HTTP::ConnectionError)
       end
 
       it { is_expected.to be_nil }

@@ -4,7 +4,8 @@ services:
   db:
     image: postgres:9.6-alpine
     volumes:
-    - /var/data/docker-data/catgram-postgres:/var/lib/postgresql/data
+    - /var/lib/postgresql/data
+    shm_size: 256mb
     networks:
       - internal_network
     healthcheck:

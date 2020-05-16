@@ -41,11 +41,11 @@ RSpec.describe Oauth::AuthorizationsController, type: :controller do
       context 'when app is already authorized' do
         before do
           Doorkeeper::AccessToken.find_or_create_for(
-            app,
-            user.id,
-            app.scopes,
-            Doorkeeper.configuration.access_token_expires_in,
-            Doorkeeper.configuration.refresh_token_enabled?
+            application: app,
+            resource_owner: user.id,
+            scopes: app.scopes,
+            expires_in: Doorkeeper.configuration.access_token_expires_in,
+            use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
           )
         end
 

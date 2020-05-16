@@ -50,7 +50,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
     const index = items.findIndex(item => {
       return (item.value === value);
     });
-    let element;
+    let element = null;
 
     switch(e.key) {
     case 'Escape':
@@ -60,18 +60,10 @@ class PrivacyDropdownMenu extends React.PureComponent {
       this.handleClick(e);
       break;
     case 'ArrowDown':
-      element = this.node.childNodes[index + 1];
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index + 1] || this.node.firstChild;
       break;
     case 'ArrowUp':
-      element = this.node.childNodes[index - 1];
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index - 1] || this.node.lastChild;
       break;
     case 'Tab':
       if (e.shiftKey) {
@@ -79,27 +71,20 @@ class PrivacyDropdownMenu extends React.PureComponent {
       } else {
         element = this.node.childNodes[index + 1] || this.node.firstChild;
       }
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-        e.preventDefault();
-        e.stopPropagation();
-      }
       break;
     case 'Home':
       element = this.node.firstChild;
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
       break;
     case 'End':
       element = this.node.lastChild;
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
       break;
+    }
+
+    if (element) {
+      element.focus();
+      this.props.onChange(element.getAttribute('data-index'));
+      e.preventDefault();
+      e.stopPropagation();
     }
   }
 
@@ -115,7 +100,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem) this.focusedItem.focus();
+    if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
     this.setState({ mounted: true });
   }
 

@@ -33,7 +33,7 @@ class MediaController < ApplicationController
   def verify_permitted_status!
     authorize @media_attachment.status, :show?
   rescue Mastodon::NotPermittedError
-    raise ActiveRecord::RecordNotFound
+    not_found
   end
 
   def check_playable

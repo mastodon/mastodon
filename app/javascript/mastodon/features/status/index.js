@@ -277,8 +277,8 @@ class Status extends ImmutablePureComponent {
     this.props.dispatch(openModal('MEDIA', { media, index }));
   }
 
-  handleOpenVideo = (media, time) => {
-    this.props.dispatch(openModal('VIDEO', { media, time }));
+  handleOpenVideo = (media, options) => {
+    this.props.dispatch(openModal('VIDEO', { media, options }));
   }
 
   handleHotkeyOpenMedia = e => {
@@ -290,7 +290,7 @@ class Status extends ImmutablePureComponent {
       if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         // TODO: toggle play/paused?
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        this.handleOpenVideo(status.getIn(['media_attachments', 0]), 0);
+        this.handleOpenVideo(status.getIn(['media_attachments', 0]), { startTime: 0 });
       } else {
         this.handleOpenMedia(status.get('media_attachments'), 0);
       }
