@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="0">
+  <defs>
+    <filter id="accessibility-outline">
+    	  <feGaussianBlur stdDeviation="1" />
+    	  <feComponentTransfer result="DILATED">
+      	  <feFuncA type="table" tableValues="0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"/>
+  	    </feComponentTransfer>
+        <feFlood id="accessibility-outline-color" flood-color="#ffffff" flood-opacity="1" result="OUTLINE_COLOR"></feFlood>
+        <feComposite in="OUTLINE_COLOR" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+
+        <feMerge>
+            <feMergeNode in="OUTLINE" />
+            <feMergeNode in="SourceGraphic" />
+        </feMerge>
+    </filter>
+  </defs>
+</svg>

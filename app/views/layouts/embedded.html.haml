@@ -19,5 +19,6 @@
   %body.embed
     = yield
 
+    = render file: Rails.root.join('app', 'javascript', 'images', 'filters.svg')
     .logo-resources
       = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
