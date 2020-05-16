@@ -1,7 +1,7 @@
 sq:
   about:
-    about_hashtag_html: 'Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fediverse.'
-    about_mastodon_html: 'Mastodon-i është një rrjet shoqëror i bazuar në protokolle web të hapur dhe në software të lirë, me burim të hapur. Është i decentralizuar, si email-ii.'
+    about_hashtag_html: 'Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.'
+    about_mastodon_html: 'Mastodon-i është një rrjet shoqëror i bazuar në protokolle web të hapur dhe në software të lirë, me burim të hapur. Është i decentralizuar, si email-i.'
     about_this: Mbi
     active_count_after: aktive
     active_footnote: Përdorues Aktivë Mujor (PAM)
@@ -138,7 +138,7 @@ sq:
         active: Aktiv
         all: Krejt
         pending: Pezull
-        silenced: U heshtua
+        silenced: Të heshtuara
         suspended: Të pezulluara
         title: Moderim
       moderation_notes: Shënime moderimesh
@@ -174,7 +174,7 @@ sq:
       search: Kërkoni
       search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-e
       search_same_ip: Të tjerë përdorues me të njëjtën IP
-      shared_inbox_url: URL kutie të përbashkët mesazesh
+      shared_inbox_url: URL kutie të përbashkët mesazhesh
       show:
         created_reports: Ka bërë raportime
         targeted_reports: Raportuar nga të tjerë
@@ -195,39 +195,40 @@ sq:
       whitelisted: Në listë lejimesh
     action_logs:
       action_types:
-        assigned_to_self_report: Caktoji Raport
+        assigned_to_self_report: Caktoji Raportim
         change_email_user: Ndrysho Email për Përdoruesin
         confirm_user: Ripohoje Përdoruesin
         create_account_warning: Krijo Sinjalizim
         create_announcement: Krijo Lajmërim
-        create_custom_emoji: Krijo Emoji Vetjak
+        create_custom_emoji: Krijo Emotikon Vetjak
         create_domain_allow: Krijo Lejim Përkatësie
         create_domain_block: Krijo Bllokim Përkatësie
         create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
-        destroy_custom_emoji: Fshi Emoji Vetjak
+        destroy_custom_emoji: Fshi Emotikon Vetjak
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
         destroy_email_domain_block: Fshi bllokim përkatësie email-esh
         destroy_status: Fshi Gjendje
         disable_2fa_user: Çaktivizo 2FA-në
-        disable_custom_emoji: Çaktivizo Emoji Vetjak
+        disable_custom_emoji: Çaktivizo Emotikon Vetjak
         disable_user: Çaktivizo Përdorues
-        enable_custom_emoji: Aktivizo Emoji Vetjak
+        enable_custom_emoji: Aktivizo Emotikon Vetjak
         enable_user: Aktivizo Përdorues
+        memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
         remove_avatar_user: Hiqe Avatarin
-        reopen_report: Rihape Raportin
-        reset_password_user: Ricakto Fjalëkalimin
-        resolve_report: Zgjidhe Raportin
+        reopen_report: Rihape Raportimin
+        reset_password_user: Ricaktoni Fjalëkalimin
+        resolve_report: Zgjidhe Raportimin
         silence_account: Heshtoje Llogarinë
         suspend_account: Pezulloje Llogarinë
-        unassigned_report: Hiqe Caktimin e Raportit
+        unassigned_report: Hiqe Caktimin e Raportimit
         unsilence_account: Hiqe Heshtimin e Llogarisë
         unsuspend_account: Hiqe Pezullimin e Llogarisë
         update_announcement: Përditëso Lajmërimin
-        update_custom_emoji: Përditëso Emoji Vetjak
+        update_custom_emoji: Përditëso Emotikon Vetjak
         update_status: Përditëso Gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
@@ -290,7 +291,7 @@ sq:
       by_domain: Përkatësi
       copied_msg: Kopja vendore e emotikonëve u krijua me sukses
       copy: Kopjoje
-      copy_failed_msg: S’u bë dot një kopje vendore e emotikoneve
+      copy_failed_msg: S’u bë dot një kopje vendore e emotikonëve
       create_new_category: Krijo kategori të re
       created_msg: Emotikoni u krijua me sukses!
       delete: Fshije
@@ -497,7 +498,7 @@ sq:
         email: Email biznesi
         username: Emër përdoruesi kontakti
       custom_css:
-        desc_html: Modifikojeni pamjen me CSS të ngarkuar në çdo faqe
+        desc_html: Ndryshojeni pamjen me CSS të ngarkuar në çdo faqe
         title: CSS Vetjake
       default_noindex:
         desc_html: Prek krejt përdoruesi që s’e kanë ndryshuar vetë këtë rregullim
@@ -597,7 +598,7 @@ sq:
     tags:
       accounts_today: Përdorime unike sot
       accounts_week: Përdorime unike këtë javë
-      breakdown: Përdorimi i sotëm analitikisht sipas burimesh
+      breakdown: Përdorimi sot, analizuar sipas burimesh
       context: Kontekst
       directory: Në drejtori
       in_directory: "%{count} në drejtori"
@@ -625,7 +626,7 @@ sq:
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
-      subject: 'Raport i ri për %{instance} (#%{id})'
+      subject: 'Raportim i ri për %{instance} (#%{id})'
     new_trending_tag:
       body: 'Hashtag-u #%{name} është popullor sot, por s’është shqyrtuar më parë. S’do të shfaqet publikisht pa e lejuar ju, ose thjesht ruani formularin siç është, që të mos dëgjoni më për të.'
       subject: 'Hashtag i ri për shqyrtim te %{instance} (#%{name})'
@@ -744,6 +745,7 @@ sq:
     success_msg: Llogaria juaj u fshi me sukses
     warning:
       before: 'Përpara se të vazhdoni, ju lutemi, lexoni me kujdes këto shënime:'
+      caches: Lënda e ruajtur në fshehtinë nga shërbyes të tjerë mund të vazhdojë të gjendet në ta
       data_removal: Postimet dhe të tjera të dhëna tuajat do të hiqen përgjithmonë
       email_change_html: Mundeni të <a href="%{path}">ndryshoni adresën tuaj email</a> pa fshirë llogarinë tuaj
       email_contact_html: Nëse prapë s’arrin, mund të dërgoni një email te <a href="mailto:%{email}">%{email}</a> për ndihmë
@@ -842,11 +844,15 @@ sq:
         verification_failed: Keybase-i s’e njeh këtë token si një nënshkrim nga përdoruesi %{kb_username} i Keybase-it. Ju lutemi, riprovoni që prej Keybase-it.
       wrong_user: S’mund të krijohet provë për %{proving} teksa është i futur si %{current}. Hyni si %{proving} dhe riprovoni.
     explanation_html: Këtu mund të lidhni në mënyrë kriptografike identitetet tuaja të tjera prej platformash të tjera, bie fjala Keybase. Kjo u lejon të tjerëve t’ju dërgojnë mesazhe të fshehtëzuar në këto platforma dhe u lejon atyre të besojnë se lënda që u dërgoni vjen prej jush.
+    i_am_html: Jam %{username} në %{service}.
     identity: Identitet
     inactive: Jo aktiv
     publicize_checkbox: 'Dhe cicëro këtë:'
+    publicize_toot: 'Është i provuar! Jam %{username} te %{service}: %{url}'
+    remove: Hiq provën prej llogarie
+    removed: Prova u hoq me sukses nga llogaria
     status: Gjendje verifikimi
-    view_proof: Shihni vërtetimin
+    view_proof: Shihni provën
   imports:
     modes:
       merge: Përzieji
@@ -890,12 +896,38 @@ sq:
   media_attachments:
     validations:
       images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura tashmë
+      not_ready: S’mund të bashkëngjiten kartela që s’kanë përfunduar së përpunuari. Riprovoni pas një çasti!
       too_many: S’mund të bashkëngjiten më shumë se 4 kartela
   migrations:
     acct: U kalua te
     cancel: Anulo ridrejtimin
-    proceed_with_move: Lëviz ndjekësit
-    set_redirect: Cakto ridrejtim
+    cancel_explanation: Anulimi i ridrejtimit do të riaktivizojë llogarinë tuaj, por s’do të kthejë ndjekësit që janë kaluar te ajo llogari.
+    cancelled_msg: Ridrejtimi u anulua me sukses.
+    errors:
+      already_moved: është e njëjta llogari që keni kaluar tashmë te
+      missing_also_known_as: s’është alias i kësaj llogarie
+      move_to_self: s’mund të jetë llogaria e tanishme
+      not_found: s’u gjet dot
+      on_cooldown: Gjendeni nën periudhë qetësimi
+    followers_count: Ndjekës në kohën e lëvizjes
+    incoming_migrations: Kalim prej llogarie tjetër
+    incoming_migrations_html: Për të kaluar prej një llogarie tjetër te kjo këtu, së pari lypset të <a href="%{path}">krijoni një alias llogarie</a>.
+    moved_msg: Llogaria juaj tani ridrejton te %{acct} dhe ndjekësit tuaj po sillen në të.
+    not_redirecting: Llogaria juaj nuk ridrejton aktualisht te ndonjë llogari tjetër.
+    on_cooldown: E keni migruar llogarinë tuaj tani afër. Ky funksion do të jetë sërish i përdorshëm pas %{count} ditësh.
+    past_migrations: Migrime të kaluar
+    proceed_with_move: Lëvizi ndjekësit
+    redirecting_to: Llogaria juaj ridrejton te %{acct}.
+    set_redirect: Ujdisni ridrejtim
+    warning:
+      backreference_required: Llogaria e re së pari duhet formësuar që t’i referohet kësaj këtu
+      before: 'Përpara se të vazhdohet, ju lutemi, lexoni me kujdes këto shënime:'
+      cooldown: Pas kalimit atje, ka një periudhë qetësimi gjatë së cilës s’do të jeni në gjendje të lëvizni sërish
+      disabled_account: Llogaria juaj e tanishme s’do të jetë plotësisht e përdorshme, pas kësaj. Megjithatë, do të mund të bëni eksportim të dhënash, si dhe riaktivizim.
+      followers: Ky veprim do të kalojë krejt ndjekësit prej llogarisë së tanishme te llogaria e re
+      only_redirect_html: Ndryshe, mund të <a href="%{path}">ujdisni një ridrejtim vetëm te profili juaj</a>.
+      other_data: S’do të lëvizen të dhëna të tjera automatikisht
+      redirect: Profili i llogarisë tuaj të tanishme do të përditësohet me një shënim ridrejtimi dhe do të përjashtohet prej kërkimesh
   moderation:
     title: Moderim
   notification_mailer:
@@ -932,6 +964,10 @@ sq:
       body: 'Gjendja juaj u përforcua nga %{name}:'
       subject: "%{name} përforcoi gjendjen tuaj"
       title: Përforcim i ri
+  notifications:
+    email_events: Akte për njoftim me email
+    email_events_hint: 'Përzgjidhni akte për të cilët doni të merrni njoftime:'
+    other_settings: Rregullimet të tjera njoftimesh
   number:
     human:
       decimal_units:
@@ -947,8 +983,26 @@ sq:
     next: Pasuesi
     older: Më të vjetër
     prev: I mëparshmi
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Keni votuar tashmë në këtë pyetësor
+      duplicate_options: përmban elementë të përsëdytur
+      duration_too_long: është shumë tej në të ardhmen
+      duration_too_short: është shumë herët
+      expired: Pyetësori ka përfunduar tashmë
+      invalid_choice: Mundësia e zgjedhur për votën nuk ekziston
+      over_character_limit: s’mund të jetë më i gjatë se %{max} shenja secili
+      too_few_options: duhet të ketë më tepër se një element
+      too_many_options: s’mund të përmbajë më tepër se %{max} elementë
   preferences:
     other: Tjetër
+    posting_defaults: Parazgjedhje postimesh
+    public_timelines: Rrjedha kohore publike
+  reactions:
+    errors:
+      limit_reached: U mbërrit në kufirin e reagimeve të ndryshme
+      unrecognized_emoji: s’është emotikon i pranuar
   relationships:
     activity: Veprimtari llogarie
     dormant: Në gjumë
@@ -961,6 +1015,10 @@ sq:
     mutual: Reciproke
     primary: Parësore
     relationship: Marrëdhënie
+    remove_selected_domains: Hiqi krejt ndjekësit prej përkatësive të përzgjedhura
+    remove_selected_followers: Hiq ndjekësit e përzgjedhur
+    remove_selected_follows: Hiqe ndjekjen e përdoruesve të përzgjedhur
+    status: Gjendje llogarie
   remote_follow:
     acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
@@ -1037,10 +1095,15 @@ sq:
     featured_tags: Hashtag-ë të zgjedhur
     identity_proofs: Prova identiteti
     import: Importo
+    import_and_export: Importim dhe eksportim
     migrate: Migrim llogarie
     notifications: Njoftime
     preferences: Parapëlqime
+    profile: Profil
+    relationships: Ndjekje dhe ndjekës
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
+  spam_check:
+    spam_detected: Ky është një raportim i automatizuar. Është pikasur mesazh i padëshiruar.
   statuses:
     attached:
       description: 'Bashkëngjitur: %{attached}'
@@ -1055,6 +1118,8 @@ sq:
     disallowed_hashtags:
       one: 'përmbante një hashtag të palejuar: %{tags}'
       other: 'përmbante hashtag-ë të palejuar: %{tags}'
+    errors:
+      in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
     language_detection: Pikase gjuhën vetvetiu
     open_in_web: Hape në internet
     over_character_limit: u tejkalua kufi shenjash prej %{max}
@@ -1063,8 +1128,18 @@ sq:
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       private: S’mund të fiksohet mesazh jopublik
       reblog: S’mund të fiksohet një përforcim
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} vetë"
+      total_votes:
+        one: "%{count} votë"
+        other: "%{count} vota"
+      vote: Votë
     show_more: Shfaq më tepër
+    show_thread: Shfaq rrjedhën
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Vetëm ndjekësve
       private_long: Shfaqua vetëm ndjekësve
@@ -1076,6 +1151,8 @@ sq:
     pinned: Mesazh i fiksuar
     reblogged: të përforcuara
     sensitive_content: Lëndë rezervat
+  tags:
+    does_not_match_previous_name: s’përputhet me emrin e mëparshëm
   terms:
     body_html: |
       <h2>Rregulla Privatësie</h2>
@@ -1177,7 +1254,7 @@ sq:
     generate_recovery_codes: Prodho kode rikthimesh
     instructions_html: "<strong>Skanojeni këtë kod QR me Google Authenticator ose një aplikacion TOTP të ngjashëm në telefonin tuaj</strong>. Tani e tutje, ai aplikacion do të prodhojë kode të cilët duhet t’i jepni kur bëni hyrje."
     lost_recovery_codes: Kodet e rikthimit ju lejojnë të rifitoni hyrje në llogarinë tuaj, nëse humbni telefonin tuaj. Nëse keni humbur kodet tuaj të rikthimit, mund t’i prodhoni sërish këtu. Kodet tuaj të vjetër të rikthimit do të bëhen të pavlefshëm.
-    manual_instructions: 'Nëse s’skanoni dot kodin QR dhe ju duhet ta jepni dorazi, ja e fshehta si tekst i thjeshtë:'
+    manual_instructions: 'Nëse nuk skanoni dot kodin QR dhe ju duhet ta jepni dorazi, ja e fshehta si tekst i thjeshtë:'
     recovery_codes: Kopjeruani kode rikthimesh
     recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezikuar kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
@@ -1193,6 +1270,7 @@ sq:
         disable: Kur llogaria juaj është e ngrirë, të dhënat në llogarinë tuaj mbeten të paprekura, por s’mund të kryeni ndonjë veprim, para se të shkyçet.
         silence: Kur llogaria juaj është e kufizuar, mesazhet tuaj në këtë shërbyes do t’i shohin vetëm personat që ju ndjekin tashmë. dhe mund të liheni jashtë nga lista të ndryshme publike. Megjithatë, të tjerët prapë mund t’ju ndjekin dorazi.
         suspend: Llogaria juaj është pezulluar, dhe krejt mesazhet tuaja dhe kartelat media të ngarkuara janë hequr në mënyrë të pakthyeshme nga ky shërbyes, dhe nga shërbyesit te të cilët kishit ndjekës.
+      get_in_touch: Që të lidheni me ekipin e %{instance}, mund t’i përgjigjeni këtij email-i.
       review_server_policies: Shqyrtoni rregullat e shërbyesit
       statuses: 'Posaçërisht, për:'
       subject:
@@ -1210,7 +1288,7 @@ sq:
       edit_profile_step: Profilin mund ta personalizoni duke ngarkuar një avatar, figurë kryesh, duke ndryshuar emrin tuaj në ekran, etj. Nëse dëshironi të shqyrtoni ndjekës të rinj, përpara se të jenë lejuar t’ju ndjekin, mund të kyçni llogarinë tuaj.
       explanation: Ja disa ndihmëza, sa për t’ia filluar
       final_action: Filloni të postoni
-      final_step: 'Filloni të postoni! Edhe pse pa ndjekës, mesazhet tuaj publike mund të shihen nga të tjerët, për shembull te rrjedha kohore vendore dhe në hashtagë. Mund të donit të prezantoni veten nën hashtagun #introductions.'
+      final_step: 'Filloni të postoni! Edhe pse pa ndjekës, mesazhet tuaj publike mund të shihen nga të tjerët, për shembull te rrjedha kohore vendore dhe në hashtag-ë. Mund të donit të prezantoni veten nën hashtagun #introductions.'
       full_handle: Identifikuesi juaj i plotë
       full_handle_hint: Kjo është ajo çka do të duhej t’u tregonit shokëve tuaj, që të mund t’ju dërgojnë mesazhe ose t’ju ndjekin nga një shërbyes tjetër.
       review_preferences_action: Ndryshoni parapëlqime
