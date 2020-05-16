@@ -82,7 +82,7 @@ module Mastodon
         end
       end
 
-      say("Added #{processed}, skipped #{skipped}", color(processed, skipped, 0))
+      say("Added #{processed}, skipped #{skipped}", color(processed, 0))
     end
 
     desc 'remove [DOMAIN...]', 'remove E-mail domain blocks'
@@ -115,12 +115,12 @@ module Mastodon
         end
       end
 
-      say("Removed #{processed}, skipped #{skipped}, failed #{failed}", color(processed, skipped, failed))
+      say("Removed #{processed}, skipped #{skipped}, failed #{failed}", color(processed, failed))
     end
 
     private
 
-    def color(processed, skipped, failed)
+    def color(processed, failed)
       if !processed.zero? && failed.zero?
         :green
       elsif failed.zero?
