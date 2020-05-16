@@ -574,6 +574,12 @@ sq:
       trendable_by_default:
         desc_html: Prek hashtag-ë që nuk kanë qenë të palejuar më parë
         title: Lejo hashtag-ë në prirje pa paraparje paraprake
+      trends:
+        desc_html: Shfaqni publikisht hashtag-ë të shqyrtuar më parë që janë popullorë tani
+        title: Hashtag-ë popullorë tani
+    site_uploads:
+      delete: Fshi kartelën e ngarkuar
+      destroyed_msg: Ngarkimi në sajt u fshi me sukses!
     statuses:
       back_to_account: Mbrapsht te faqja e llogarisë
       batch:
@@ -628,10 +634,17 @@ sq:
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
     deleted_msg: Aliasi u hoq me sukses. Kalimi nga ajo llogari në këtë këtu s’do të jetë më i mundshëm.
     empty: S’keni aliase.
+    hint_html: Nëse doni të kaloni nga një llogari tjetër në këtë këtu, këtu mund të krijoni një alias, i cili është i domosdoshëm përpara se të ecni më tej me kalimin e ndjekësve prej llogarisë së vjetër te kjo këtu. Ky veprim, në vetvete, është <strong>i padëmshëm dhe i prapakthyeshëm</strong>. <strong>Migrimi i llogarisë fillohet prej llogarisë së vjetër</strong>.
     remove: Hiqe aliasin
   appearance:
     advanced_web_interface: Ndërfaqe web e thelluar
+    advanced_web_interface_hint: 'Nëse doni të shfrytëzoni krejt gjerësinë e ekranit tuaj, ndërfaqja e thelluar web ju lejon të formësoni shumë shtylla për të parë aq më tepër të dhëna në të njëjtën kohë sa doni: Kreu, njoftime, rrjedhë kohore të federuarash, çfarëdo numri listash dhe hashtag-ësh.'
+    animations_and_accessibility: Animacione dhe përdorim nga persona me aftësi të kufizuara
+    confirmation_dialogs: Dialogë ripohimesh
+    discovery: Zbulim
     localization:
+      body: Mastodon-i përkthehet nga vullnetarë.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Çdokush mund të kontribuojë.
     sensitive_content: Lëndë rezervat
     toot_layout: Skemë mesazhesh
@@ -680,11 +693,18 @@ sq:
     set_new_password: Caktoni fjalëkalim të ri
     setup:
       email_below_hint_html: Nëse adresa email më poshtë s’është e saktë, mund ta ndryshoni këtu dhe të merrni një email të ri ripohimi.
+      email_settings_hint_html: Email-i i ripohimit u dërgua te %{email}. Nëse ajo adresë email s’është e saktë, mund ta ndryshoni që nga rregullimet e llogarisë.
       title: Ujdisje
     status:
       account_status: Gjendje llogarie
+      confirming: Po pritet që të plotësohet ripohimi i email-it.
+      functional: Llogaria juaj është tërësisht funksionale.
+      pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
+      redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
+    trouble_logging_in: Probleme me hyrjen?
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
+    already_requested: Keni dërguar tashmë një kërkesë ndjekjeje te ajo llogari
     error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
     follow: Ndiqeni
     follow_request: 'Keni dërguar një kërkesë ndjekjeje te:'
@@ -696,6 +716,7 @@ sq:
     title: Ndiq %{acct}
   challenge:
     confirm: Vazhdo
+    hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
