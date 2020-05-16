@@ -794,6 +794,7 @@ sq:
     add_new: Shtoni të re
     errors:
       limit: Keni përdorur tashmë si të zgjedhur sasinë maksimum të hashtag-ëve
+    hint_html: "<strong>Çfarë janë hashtag-ët e zgjedhur?</strong> Këta shfaqen dukshëm te profili juaj publik dhe u lejojnë të tjerëve të shfletojnë postime tuajt publikë posaçërisht nën këta hashtag-ë. Janë një mjet i goditur për të ndjekur punë krijuese ose projekte afatgjata."
   filters:
     contexts:
       account: Profile
@@ -822,6 +823,7 @@ sq:
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
     delete: Fshije
+    no_batch_actions_available: Në këtë faqe s’ka veprime masive gati
     order_by: Renditi sipas
     save_changes: Ruaji ndryshimet
     validation_errors:
@@ -832,6 +834,13 @@ sq:
   identity_proofs:
     active: Aktive
     authorize: Po, autorizoje
+    authorize_connection_prompt: Të autorizohet kjo lidhje kriptografike?
+    errors:
+      failed: Lidhja kriptografike dështoi. Ju lutemi, riprovoni prej %{provider}.
+      keybase:
+        invalid_token: Token-ët e bazës së kyçeve janë hashe nënshkrimesh dhe duhet të jenë 66 shenja gjashtëmbëdhjetëshe
+        verification_failed: Baza e kyçeve nuk e njeh këtë token si një nënshkrim nga përdoruesi %{kb_username} i Bazës së kyçeve. Ju lutemi, riprovoni prej Bazës së kyçeve.
+      wrong_user: S’mund të krijohet provë për %{proving} teksa është i futur si %{current}. Hyni si %{proving} dhe riprovoni.
     identity: Identitet
     inactive: Jo aktiv
     publicize_checkbox: 'Dhe cicëro këtë:'
