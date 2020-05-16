@@ -838,9 +838,10 @@ sq:
     errors:
       failed: Lidhja kriptografike dështoi. Ju lutemi, riprovoni prej %{provider}.
       keybase:
-        invalid_token: Token-ët e bazës së kyçeve janë hashe nënshkrimesh dhe duhet të jenë 66 shenja gjashtëmbëdhjetëshe
-        verification_failed: Baza e kyçeve nuk e njeh këtë token si një nënshkrim nga përdoruesi %{kb_username} i Bazës së kyçeve. Ju lutemi, riprovoni prej Bazës së kyçeve.
+        invalid_token: Token-ët Keybase janë hashe nënshkrimesh dhe duhet të jenë 66 shenja gjashtëmbëdhjetëshe
+        verification_failed: Keybase-i s’e njeh këtë token si një nënshkrim nga përdoruesi %{kb_username} i Keybase-it. Ju lutemi, riprovoni që prej Keybase-it.
       wrong_user: S’mund të krijohet provë për %{proving} teksa është i futur si %{current}. Hyni si %{proving} dhe riprovoni.
+    explanation_html: Këtu mund të lidhni në mënyrë kriptografike identitetet tuaja të tjera prej platformash të tjera, bie fjala Keybase. Kjo u lejon të tjerëve t’ju dërgojnë mesazhe të fshehtëzuar në këto platforma dhe u lejon atyre të besojnë se lënda që u dërgoni vjen prej jush.
     identity: Identitet
     inactive: Jo aktiv
     publicize_checkbox: 'Dhe cicëro këtë:'
