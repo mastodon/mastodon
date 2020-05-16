@@ -6,7 +6,7 @@ require_relative '../../config/environment'
 require_relative 'cli_helper'
 
 module Mastodon
-  class EmailDomainsCLI < Thor
+  class EmailDomainBlocksCLI < Thor
     include CLIHelper
 
     def self.exit_on_failure?
@@ -18,39 +18,42 @@ module Mastodon
       list up all E-mail domain blocks.
     LONG_DESC
     def list
-      EmailDomainBlock.where(parent_id: nil).includes(:children).order(id: 'DESC').find_each do |entry|
-        say(entry.domain.to_s, :green)
-        entry.children.order(id: 'DESC').find_each do |child|
-          say("  #{child.domain}", :yellow)
+      EmailDomainBlock.where(parent_id: nil).order(id: 'DESC').find_each do |entry|
+        say(entry.domain.to_s, :white)
+        EmailDomainBlock.where(parent_id: entry.id).order(id: 'DESC').find_each do |child|
+          say("  #{child.domain}", :cyan)
         end
       end
     end
 
     option :with_dns_records, type: :boolean
-    desc 'block [DOMAIN...]', 'Block E-mail domains'
+    desc 'add [DOMAIN...]', 'add E-mail domain blocks'
     long_desc <<-LONG_DESC
-      Block E-mail domains from a given DOMAIN.
+      add E-mail domain blocks from a given DOMAIN.
 
       When the --with-dns-records option is given, An attempt to resolve the
       given domain's DNS records will be made and the results will also be
       blacklisted.
     LONG_DESC
-    def block(*domains)
+    def add(*domains)
       if domains.empty?
         say('No domain(s) given', :red)
         exit(1)
       end
 
+      skipped = 0
+      processed = 0
+
       domains.each do |domain|
         if EmailDomainBlock.where(domain: domain).exists?
           say("#{domain} is already blocked.", :yellow)
+          skipped += 1
           next
         end
 
         email_domain_block = EmailDomainBlock.new(domain: domain, with_dns_records: options[:with_dns_records] || false)
         email_domain_block.save!
-
-        say("#{domain} was blocked.", :green)
+        processed += 1
 
         next unless email_domain_block.with_dns_records?
 
@@ -71,36 +74,59 @@ module Mastodon
           another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block)
           if EmailDomainBlock.where(domain: hostname).exists?
             say("#{hostname} is already blocked.", :yellow)
+            skipped += 1
             next
           end
           another_email_domain_block.save!
-          say("#{hostname} was blocked. (from #{domain})", :green)
+          processed += 1
         end
       end
+
+      say("Added #{processed}, skipped #{skipped}", color(processed, skipped, 0))
     end
 
-    desc 'unblock [DOMAIN...]', 'Unblock E-mail domains'
-    long_desc <<-LONG_DESC
-      Unblock E-mail domains from a given DOMAIN.
-    LONG_DESC
-    def unblock(*domains)
+    desc 'remove [DOMAIN...]', 'remove E-mail domain blocks'
+    def remove(*domains)
       if domains.empty?
         say('No domain(s) given', :red)
         exit(1)
       end
 
+      skipped = 0
+      processed = 0
+      failed = 0
+
       domains.each do |domain|
-        unless EmailDomainBlock.where(domain: domain).exists?
+        entry = EmailDomainBlock.find_by(domain: domain)
+        if entry.nil?
           say("#{domain} is not yet blocked.", :yellow)
+          skipped += 1
           next
         end
 
-        result = EmailDomainBlock.where(domain: domain).destroy_all
+        children_count = EmailDomainBlock.where(parent_id: entry.id).count
+
+        result = entry.destroy
         if result
-          say("#{domain} was unblocked.", :green)
+          processed += 1 + children_count
         else
           say("#{domain} was not unblocked. 'destroy' returns false.", :red)
+          failed += 1
         end
+      end
+
+      say("Removed #{processed}, skipped #{skipped}, failed #{failed}", color(processed, skipped, failed))
+    end
+
+    private
+
+    def color(processed, skipped, failed)
+      if !processed.zero? && failed.zero?
+        :green
+      elsif failed.zero?
+        :yellow
+      else
+        :red
       end
     end
   end
