@@ -717,6 +717,11 @@ sq:
   challenge:
     confirm: Vazhdo
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
+    invalid_password: Fjalëkalim i pavlefshëm
+    prompt: Që të vazhdohet, ripohoni fjalëkalimin
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -737,6 +742,16 @@ sq:
     confirm_username: Që të ripohohet procedura, jepni emrin tuaj të përdoruesit
     proceed: Fshini llogarinë
     success_msg: Llogaria juaj u fshi me sukses
+    warning:
+      before: 'Përpara se të vazhdoni, ju lutemi, lexoni me kujdes këto shënime:'
+      data_removal: Postimet dhe të tjera të dhëna tuajat do të hiqen përgjithmonë
+      email_change_html: Mundeni të <a href="%{path}">ndryshoni adresën tuaj email</a> pa fshirë llogarinë tuaj
+      email_contact_html: Nëse prapë s’arrin, mund të dërgoni një email te <a href="mailto:%{email}">%{email}</a> për ndihmë
+      email_reconfirmation_html: Nëse s’e merrni email-in e ripohimit, mund të <a href="%{path}">rikërkoni</a>
+      irreversible: S’do të jeni në gjendje të riktheni ose riaktivizoni llogarinë tuaj
+      more_details_html: Për më tepër hollësi, shihni <a href="%{terms_path}">rregulla privatësie</a>.
+      username_available: Emri juaj i përdoruesit do të jetë sërish i passhëm
+      username_unavailable: Emri juaj i përdoruesit do të mbetet i papërdorshëm
   directories:
     directory: Drejtori profilesh
     explanation: Zbuloni përdorues bazuar në interesat e tyre
@@ -756,8 +771,11 @@ sq:
     '500':
       content: Na ndjeni, diçka shkoi ters në anën tonë.
       title: Kjo faqe s’është e saktë
-    '503': The page could not be served due to a temporary server failure.
+    '503': Kjo faqe s’u shërbye dot për shkak të një dështimi të përkohshëm të shërbyesit.
     noscript_html: Që të përdorni aplikacionin web Mastodon, ju lutemi, aktivizoni JavaScript-in. Ndryshe, provoni për Mastodon-in një nga <a href="%{apps_path}">aplikacionet e brendshëm</a> të platformës tuaj.
+  existing_username_validator:
+    not_found: s’u gjet dot përdorues vendor me atë emër përdoruesi
+    not_found_multiple: s’u gjet dot %{usernames}
   exports:
     archive_takeout:
       date: Datë
