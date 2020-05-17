@@ -97,7 +97,7 @@ module Mastodon
         progress.log("Moving #{object.key} to #{new_object.key}") if options[:verbose]
 
         begin
-          object.move_to(new_object) unless dry_run?
+          object.move_to(new_object, acl: attachment.s3_permissions(style)) unless dry_run?
         rescue => e
           progress.log(pastel.red("Error processing #{object.key}: #{e}"))
           success = false
