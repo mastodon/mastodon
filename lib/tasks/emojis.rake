@@ -21,11 +21,7 @@ def gen_border(codepoint)
 
     border_elem['stroke'] = 'white'
     border_elem['stroke-linejoin'] = 'round'
-
-    style = border_elem['style'] || ''
-    old_width = border_elem['stroke-width'] || '0px'
-    style += " stroke-width: calc(#{old_width} + 4px)"
-    border_elem['style'] = style.strip
+    border_elem['stroke-width'] = '4px'
 
     g.add_child(border_elem)
   end
