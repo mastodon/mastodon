@@ -4,34 +4,26 @@ def gen_border(codepoint)
   input = Rails.root.join('public', 'emoji', "#{codepoint}.svg")
   dest = Rails.root.join('public', 'emoji', "#{codepoint}_border.svg")
   doc = File.open(input) { |f| Nokogiri::XML(f) }
-  svg = doc.at_css("svg")
-  if svg.key?("viewBox")
-    viewBox = svg["viewBox"].split(" ").map { |s| s.to_i }
-    viewBox[0] -= 2
-    viewBox[1] -= 2
-    viewBox[2] += 4
-    viewBox[3] += 4
-    svg["viewBox"] = viewBox.join(" ")
+  svg = doc.at_css('svg')
+  if svg.key?('viewBox')
+    view_box = svg['viewBox'].split(' ').map(&:to_i)
+    view_box[0] -= 2
+    view_box[1] -= 2
+    view_box[2] += 4
+    view_box[3] += 4
+    svg['viewBox'] = view_box.join(' ')
   end
-  g = Nokogiri::XML::Node.new "g", doc
-  for elem in doc.css("svg > *")
+  g = Nokogiri::XML::Node.new 'g', doc
+  doc.css('svg > *').each do |elem|
     border_elem = elem.dup
 
-    if border_elem.key?("fill")
-      border_elem.delete("fill")
-    end
-    border_elem["stroke"] = "white"
+    border_elem.delete('fill')
+    border_elem['stroke'] = 'white'
 
-    style = ""
-    if border_elem.key?("style")
-      style = border_elem["style"]
-    end
-    old_width = "0px"
-    if border_elem.key?("stroke-width")
-      old_width = border_elem["stroke-width"]
-    end
+    style = border_elem['style'] || ''
+    old_width = border_elem['stroke-width'] || '0px'
     style += " stroke-width: calc(#{old_width} + 4px)"
-    border_elem["style"] = style.strip
+    border_elem['style'] = style.strip
 
     g.add_child(border_elem)
   end
@@ -63,8 +55,10 @@ namespace :emojis do
 
     HTTP.get(source).to_s.split("\n").each do |line|
       next if line.start_with? '#'
+
       parts = line.split(';').map(&:strip)
       next if parts.size < 2
+
       codes << [parts[0], parts[1].start_with?('fully-qualified')]
     end
 
@@ -97,8 +91,9 @@ namespace :emojis do
   end
 
   desc 'Generate emoji variants with white borders'
-  task :generate_borders, [] do |task, args|
-    for cc in args.extras
+  task :generate_borders do
+    codepoints = ['1f3b1']
+    codepoints.each do |cc|
       gen_border cc
     end
   end
