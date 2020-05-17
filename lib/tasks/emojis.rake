@@ -18,7 +18,9 @@ def gen_border(codepoint)
     border_elem = elem.dup
 
     border_elem.delete('fill')
+
     border_elem['stroke'] = 'white'
+    border_elem['stroke-linejoin'] = 'round'
 
     style = border_elem['style'] || ''
     old_width = border_elem['stroke-width'] || '0px'
@@ -27,19 +29,8 @@ def gen_border(codepoint)
 
     g.add_child(border_elem)
   end
-  g["filter"] = "url(#dilate)"
   svg.prepend_child(g)
-  svg.prepend_child(<<~EOF)
-  <defs>
-      <filter width="200%" height="200%" x="-50%" y="-50%" id="dilate">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
-          <feComponentTransfer>
-              <feFuncA type="table" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" />
-          </feComponentTransfer>
-      </filter>
-  </defs>
-  EOF
-  svg["style"] = "background: black;"
+  svg['style'] = 'background: black;'
   File.write(dest, doc.to_xml)
   puts "Wrote bordered #{codepoint}.svg to #{dest}!"
 end

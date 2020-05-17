@@ -1,10 +1,7 @@
 <?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 40 40" style="background: black;"><defs>
-    <filter width="200%" height="200%" x="-50%" y="-50%" id="dilate">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-        <feComponentTransfer>
-            <feFuncA type="table" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"/>
-        </feComponentTransfer>
-    </filter>
-</defs>
-<g filter="url(#dilate)"><circle cx="18" cy="18" r="18" stroke="white" style="stroke-width: calc(0px + 4px)"/></g><circle fill="#31373D" cx="18" cy="18" r="18"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 40 40" style="background: black;">
+  <g>
+    <circle cx="18" cy="18" r="18" stroke="white" stroke-linejoin="round" style="stroke-width: calc(0px + 4px)"/>
+  </g>
+  <circle fill="#31373D" cx="18" cy="18" r="18"/>
+</svg>
