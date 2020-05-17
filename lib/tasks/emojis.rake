@@ -26,7 +26,6 @@ def gen_border(codepoint)
     g.add_child(border_elem)
   end
   svg.prepend_child(g)
-  svg['style'] = 'background: black;'
   File.write(dest, doc.to_xml)
   puts "Wrote bordered #{codepoint}.svg to #{dest}!"
 end
