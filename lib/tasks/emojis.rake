@@ -92,7 +92,7 @@ namespace :emojis do
 
   desc 'Generate emoji variants with white borders'
   task :generate_borders do
-    codepoints = ['1f3b1']
+    codepoints = %w(1f3b1 1f41c 1f519 26ab 1f5a4 2b1b 25fe 25fc 2712 25aa 1f4a3 1f3b3 1f464 1f465 1f4f7 1f4f8 2663 27b0 1f4b1 1f576 2734 1f50c 1f51a 1f482-200d-2640-fe0f 1f482-1f3fb-200d-2640-fe0f 1f482-1f3fc-200d-2640-fe0f 1f482-1f3fd-200d-2640-fe0f 1f482-1f3fe-200d-2640-fe0f 1f482-1f3ff-200d-2640-fe0f 1f4fd 1f373 1f98d 1f482 1f482-1f3fb 1f482-1f3fc 1f482-1f3fd 1f482-1f3fe 1f482-1f3ff 2714 2797 1f4b2 2796 2716 2795 1f52a 1f573 1f579 1f54b 1f58a 1f58b 1f482-200d-2642-fe0f 1f482-1f3fb-200d-2642-fe0f 1f482-1f3fc-200d-2642-fe0f 1f482-1f3fd-200d-2642-fe0f 1f482-1f3fe-200d-2642-fe0f 1f482-1f3ff-200d-2642-fe0f 1f3a4 1f393 1f3a5 1f3bc 1f51b 1f51c 2660 1f5e3 1f577 1f4de 2122 1f51d 1f3a9 1f983 1f4fc 1f4f9 1f3ae 1f403 1f3f4 3030)
     codepoints.each do |cc|
       gen_border cc
     end
