@@ -89,10 +89,10 @@ class PostStatusService < BaseService
 
   def local_only_option(local_only, in_reply_to, federation_setting)
     if local_only.nil?
-      if in_reply_to&.local_only?
+      if in_reply_to && in_reply_to.local_only
         return true
       end
-      if !in_reply_to&.local_only?
+      if in_reply_to && !in_reply_to.local_only
         return false
       end
       return !federation_setting
