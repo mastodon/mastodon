@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 40 40">
-  <g>
-    <path d="M34 18c0 1.657-1.343 3-3 3H5c-1.657 0-3-1.343-3-3s1.343-3 3-3h26c1.657 0 3 1.343 3 3z" stroke="white" style="stroke-width: calc(0px + 4px)"/>
-    <circle cx="18" cy="7" r="4" stroke="white" style="stroke-width: calc(0px + 4px)"/>
-    <circle cx="18" cy="29" r="4" stroke="white" style="stroke-width: calc(0px + 4px)"/>
-  </g>
-  <path fill="#31373D" d="M34 18c0 1.657-1.343 3-3 3H5c-1.657 0-3-1.343-3-3s1.343-3 3-3h26c1.657 0 3 1.343 3 3z"/>
-  <circle fill="#31373D" cx="18" cy="7" r="4"/>
-  <circle fill="#31373D" cx="18" cy="29" r="4"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 40 40" style="background: black;"><defs>
+    <filter width="200%" height="200%" x="-50%" y="-50%" id="dilate">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+        <feComponentTransfer>
+            <feFuncA type="table" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"/>
+        </feComponentTransfer>
+    </filter>
+</defs>
+<g filter="url(#dilate)"><path d="M34 18c0 1.657-1.343 3-3 3H5c-1.657 0-3-1.343-3-3s1.343-3 3-3h26c1.657 0 3 1.343 3 3z" stroke="white" style="stroke-width: calc(0px + 4px)"/><circle cx="18" cy="7" r="4" stroke="white" style="stroke-width: calc(0px + 4px)"/><circle cx="18" cy="29" r="4" stroke="white" style="stroke-width: calc(0px + 4px)"/></g><path fill="#31373D" d="M34 18c0 1.657-1.343 3-3 3H5c-1.657 0-3-1.343-3-3s1.343-3 3-3h26c1.657 0 3 1.343 3 3z"/><circle fill="#31373D" cx="18" cy="7" r="4"/><circle fill="#31373D" cx="18" cy="29" r="4"/></svg>

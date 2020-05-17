@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 40 40">
-  <g>
-    <path d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z" stroke="white" style="stroke-width: calc(0px + 4px)"/>
-  </g>
-  <path fill="#31373D" d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 40 40" style="background: black;"><defs>
+    <filter width="200%" height="200%" x="-50%" y="-50%" id="dilate">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+        <feComponentTransfer>
+            <feFuncA type="table" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"/>
+        </feComponentTransfer>
+    </filter>
+</defs>
+<g filter="url(#dilate)"><path d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z" stroke="white" style="stroke-width: calc(0px + 4px)"/></g><path fill="#31373D" d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z"/></svg>
