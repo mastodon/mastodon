@@ -1,5 +1,45 @@
 # frozen_string_literal: true
 
+def gen_border(codepoint)
+  input = Rails.root.join('public', 'emoji', "#{codepoint}.svg")
+  dest = Rails.root.join('public', 'emoji', "#{codepoint}_border.svg")
+  doc = File.open(input) { |f| Nokogiri::XML(f) }
+  svg = doc.at_css("svg")
+  if svg.key?("viewBox")
+    viewBox = svg["viewBox"].split(" ").map { |s| s.to_i }
+    viewBox[0] -= 2
+    viewBox[1] -= 2
+    viewBox[2] += 4
+    viewBox[3] += 4
+    svg["viewBox"] = viewBox.join(" ")
+  end
+  g = Nokogiri::XML::Node.new "g", doc
+  for elem in doc.css("svg > *")
+    border_elem = elem.dup
+
+    if border_elem.key?("fill")
+      border_elem.delete("fill")
+    end
+    border_elem["stroke"] = "white"
+
+    style = ""
+    if border_elem.key?("style")
+      style = border_elem["style"]
+    end
+    old_width = "0px"
+    if border_elem.key?("stroke-width")
+      old_width = border_elem["stroke-width"]
+    end
+    style += " stroke-width: calc(#{old_width} + 4px)"
+    border_elem["style"] = style.strip
+
+    g.add_child(border_elem)
+  end
+  svg.prepend_child(g)
+  File.write(dest, doc.to_xml)
+  puts "Wrote bordered #{codepoint}.svg to #{dest}!"
+end
+
 def codepoints_to_filename(codepoints)
   codepoints.downcase.gsub(/\A[0]+/, '').tr(' ', '-')
 end
@@ -54,5 +94,12 @@ namespace :emojis do
 
     File.write(dest, Oj.dump(map))
     puts "Wrote emojo to destination! (#{dest})"
+  end
+
+  desc 'Generate emoji variants with white borders'
+  task :generate_borders, [] do |task, args|
+    for cc in args.extras
+      gen_border cc
+    end
   end
 end
