@@ -188,8 +188,25 @@ eo:
     action_logs:
       action_types:
         confirm_user: Konfermi uzanto
+        create_account_warning: Krei Averton
+        create_announcement: Krei Anoncon
+        create_custom_emoji: Krei Propran emoĝion
+        create_domain_allow: Krei Domajnan Permeson
+        create_domain_block: Krei Domajnan Blokadon
+        create_email_domain_block: Krei Retpoŝtmesaĝan Domajnan Blokadon
+        demote_user: Malpromocii uzanton
+        destroy_announcement: Forigi Anoncon
+        destroy_custom_emoji: Forigi Propran emoĝion
+        destroy_domain_allow: Forigi Domajnan Permeson
+        destroy_domain_block: Forigi Domajnan Blokadon
+        destroy_email_domain_block: Forigi retpoŝtmesaĝan domajnan blokadon
+        destroy_status: Forigi mesaĝon
+        disable_2fa_user: Malebligi 2FA
+        disable_custom_emoji: Malebligi Propran Emoĝion
         disable_user: Malebligi uzanton
+        enable_custom_emoji: Ebligi Propran Emoĝion
         enable_user: Ebligi uzanton
+        promote_user: Promocii Uzanton
         reopen_report: Remalfermi signalon
       actions:
         assigned_to_self_report: "%{name} asignis signalon %{target} al si mem"
@@ -354,6 +371,7 @@ eo:
       destroyed_msg: Retadreso sukcese forigita de la nigra listo
       domain: Domajno
       empty: Neniu retadresa domajno nune estas en la nigra listo.
+      from_html: de %{domain}
       new:
         create: Aldoni domajnon
         title: Nova blokado de retadresa domajno
