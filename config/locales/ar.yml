@@ -212,6 +212,7 @@ ar:
         create_account_warning: إنشاء تحذير
         create_announcement: إنشاء إعلان
         create_custom_emoji: إنشاء إيموجي مخصص
+        demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
         destroy_custom_emoji: احذف الإيموجي المخصص
         destroy_status: حذف المنشور
@@ -634,6 +635,7 @@ ar:
   aliases:
     add_new: أنشئ كُنية
     created_msg: تم إنشاء الكُنية الجديدة بنجاح. يمكنكم الآن الشروع في الإنتقال مِن حسابكم القديم.
+    empty: ليس لديك أية كنية.
     hint_html: إذا كنت ترغب في الانتقال من حساب آخر إلى هذا الحساب الحالي، يمكنك إنشاء اسم مستعار هنا، والذي هو مطلوب قبل أن تتمكن من المضي قدما في نقل متابِعيك من الحساب القديم إلى هذا الحساب. هذا الإجراء بحد ذاته هو <strong>غير مؤذي و قابل للعكس</strong>. <strong>تتم بداية تهجير الحساب من الحساب القديم</strong>.
     remove: إلغاء ربط الكنية
   appearance:
@@ -1154,8 +1156,8 @@ ar:
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: اعرض فقط لمتتبعيك
-      private_long: إعرضه لمتتبعيك فقط
+      private: لمتابِعيك فقط
+      private_long: اعرضه لمتابعيك فقط
       public: للعامة
       public_long: يمكن للجميع رؤيته
       unlisted: غير مُدرَج
