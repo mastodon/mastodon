@@ -88,6 +88,11 @@ module Mastodon
             path_segments = object.key.split('/')
             path_segments.delete('cache')
 
+            if path_segments.size != 7
+              progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
+              next
+            end
+
             model_name      = path_segments.first.classify
             attachment_name = path_segments[1].singularize
             record_id       = path_segments[2..-2].join.to_i
@@ -126,6 +131,11 @@ module Mastodon
 
           path_segments = key.split(File::SEPARATOR)
           path_segments.delete('cache')
+
+          if path_segments.size != 7
+            progress.log(pastel.yellow("Unrecognized file found: #{key}"))
+            next
+          end
 
           model_name      = path_segments.first.classify
           record_id       = path_segments[2..-2].join.to_i
@@ -246,6 +256,11 @@ module Mastodon
       path_segments = path.split('/')[2..-1]
       path_segments.delete('cache')
 
+      if path_segments.size != 7
+        say('Not a media URL', :red)
+        exit(1)
+      end
+
       model_name = path_segments.first.classify
       record_id  = path_segments[2..-2].join.to_i
 
@@ -293,6 +308,8 @@ module Mastodon
       objects.map do |object|
         segments = object.key.split('/')
         segments.delete('cache')
+
+        next if segments.size != 7
 
         model_name = segments.first.classify
         record_id  = segments[2..-2].join.to_i
