@@ -1328,9 +1328,9 @@
     "@types/istanbul-lib-coverage" "*"
 
 "@types/istanbul-reports@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@types/istanbul-reports/-/istanbul-reports-1.1.1.tgz#7a8cbf6a406f36c8add871625b278eaf0b0d255a"
-  integrity sha512-UpYjBi8xefVChsCoBpKShdxTllC9pwISirfoZsUa2AAdQg/Jd2KQGtSbw+ya7GPo7x/wAPlH6JBhKhAsXUEZNA==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@types/istanbul-reports/-/istanbul-reports-1.1.2.tgz#e875cc689e47bce549ec81f3df5e6f6f11cfaeb2"
+  integrity sha512-P/W9yOX/3oPZSpaYOCQzGqgCQRXn0FFO/V8bWrCQs+wLmvVVxk6CRBXALEvNs9OHIatlnlFokfhuDo2ug01ciw==
   dependencies:
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
@@ -1388,9 +1388,9 @@
   integrity sha512-FA/BWv8t8ZWJ+gEOnLLd8ygxH/2UFbAvgEonyfN6yWGLKc7zVjbpl2Y4CTjid9h2RfgPP6SEt6uHwEOply00yw==
 
 "@types/yargs@^15.0.0":
-  version "15.0.4"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-15.0.4.tgz#7e5d0f8ca25e9d5849f2ea443cf7c402decd8299"
-  integrity sha512-9T1auFmbPZoxHz0enUFlUuKRy3it01R+hlggyVUMtnCTQRunsQYifnSGb8hET4Xo8yiC0o0r1paW3ud5+rbURg==
+  version "15.0.5"
+  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-15.0.5.tgz#947e9a6561483bdee9adffc983e91a6902af8b79"
+  integrity sha512-Dk/IDOPtOgubt/IaevIUbTgV7doaKkoorvOyYM2CMwuDyP89bekI7H4xLIwunNYiK9jhCkmc6pUrJk3cj2AB9w==
   dependencies:
     "@types/yargs-parser" "*"
 
@@ -6101,11 +6101,11 @@ istanbul-reports@^3.0.2:
     istanbul-lib-report "^3.0.0"
 
 jest-changed-files@^25.4.0:
-  version "25.4.0"
-  resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-25.4.0.tgz#e573db32c2fd47d2b90357ea2eda0622c5c5cbd6"
-  integrity sha512-VR/rfJsEs4BVMkwOTuStRyS630fidFVekdw/lBaBQjx9KK3VZFOZ2c0fsom2fRp8pMCrCTP6LGna00o/DXGlqA==
+  version "25.5.0"
+  resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-25.5.0.tgz#141cc23567ceb3f534526f8614ba39421383634c"
+  integrity sha512-EOw9QEqapsDT7mKF162m8HFzRPbmP8qJQny6ldVOdOVBz3ACgPm/1nAn5fPQ/NDaYhX/AHkrGwwkCncpAVSXcw==
   dependencies:
-    "@jest/types" "^25.4.0"
+    "@jest/types" "^25.5.0"
     execa "^3.2.0"
     throat "^5.0.0"
 
@@ -7919,15 +7919,10 @@ path-key@^2.0.0, path-key@^2.0.1:
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
-path-key@^3.0.0:
+path-key@^3.0.0, path-key@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-3.1.1.tgz#581f6ade658cbba65a0d3380de7753295054f375"
   integrity sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
-
-path-key@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/path-key/-/path-key-3.1.0.tgz#99a10d870a803bdd5ee6f0470e58dfcd2f9a54d3"
-  integrity sha512-8cChqz0RP6SHJkMt48FW0A7+qUOn+OsnOsVtzI59tZ8m+5bCSk7hzwET0pulwOM2YMn9J1efb07KB9l9f30SGg==
 
 path-parse@^1.0.6:
   version "1.0.6"
@@ -11309,14 +11304,7 @@ which@^1.2.14, which@^1.2.9, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-which@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/which/-/which-2.0.1.tgz#f1cf94d07a8e571b6ff006aeb91d0300c47ef0a4"
-  integrity sha512-N7GBZOTswtB9lkQBZA4+zAXrjEIWAUOB93AvzUiudRzRxhUdLURQ7D/gAIMY1gatT/LTbmbcv8SiYazy3eYB7w==
-  dependencies:
-    isexe "^2.0.0"
-
-which@^2.0.2:
+which@^2.0.1, which@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/which/-/which-2.0.2.tgz#7c6a8dd0a636a0327e10b59c9286eee93f3f51b1"
   integrity sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
