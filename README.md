@@ -64,13 +64,7 @@ What does this have to do with content types? Well, if we support an `Article` c
 
 If Hometown is going to be a universal reader, you're going to need better control over organizing your feeds than mainline Mastodon provides.
 
-### Exclusive lists
-
-My first plan is to introduce a new kind of _exclusive list_. Right now if you add an account to your "friends I like" list in Mastodon, posts from people on that list appear on that list. But they also appear on your home timeline, and maybe you don't want that! You'd rather treat your "friends I like" list as your "real" home timeline, and then check your home timeline when you're bored.
-
-Or another case: I might have all the blogs I read in one list, but I only check it on Saturdays when I have time to read things. In that case I don't want updates from those blogs clogging up my home timeline.
-
-> This is not yet implemented but will be available in the first release.
+I've introduced a new kind of [exclusive list](https://github.com/hometown-fork/hometown/wiki/Exclusive-lists). In vanilla Mastodon, if you add an account to your "friends I like" list, posts from people on that list appear on that list. But they also appear on your home timeline, and maybe you don't want that! You'd rather treat your "friends I like" list as your "real" home timeline, and then check your home timeline when you're bored. Check out [more details about exclusive lists on the wiki](https://github.com/hometown-fork/hometown/wiki/Exclusive-lists).
 
 ## Better accessibility defaults
 
