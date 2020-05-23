@@ -214,6 +214,7 @@ eu:
         disable_user: Desgaitu erabiltzailea
         enable_custom_emoji: Gaitu emoji pertsonalizatua
         enable_user: Gaitu erabiltzailea
+        update_announcement: Eguneratu iragarpena
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
         change_email_user: "%{name}(e)k %{target}(r)en e-mail helbidea aldatu du"
@@ -251,6 +252,9 @@ eu:
         update_custom_emoji: "%{name}(e)k %{target} emoji-a eguneratu du"
         update_status: "%{name} (e)k %{target}(r)en mezua aldatu du"
       deleted_status: "(ezabatutako mezua)"
+      empty: Ez da egunkaririk aurkitu.
+      filter_by_action: Iragazi ekintzen arabera
+      filter_by_user: Iragazi erabiltzaileen arabera
       title: Auditoria-egunkaria
     announcements:
       destroyed_msg: Iragarpena ongi ezabatu da!
@@ -831,6 +835,7 @@ eu:
     publicize_checkbox: 'Eta bidali toot hau:'
     publicize_toot: 'Frogatua dago! %{username} erabiltzailea naiz %{service} zerbitzuan: %{url}'
     remove: Kendu froga kontutik
+    removed: Ongi kendu da froga kontutik
     status: Egiaztatze egoera
     view_proof: Ikusi froga
   imports:
