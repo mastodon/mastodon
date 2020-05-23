@@ -193,6 +193,27 @@ eu:
       web: Weba
       whitelisted: Zerrenda zurian
     action_logs:
+      action_types:
+        assigned_to_self_report: Esleitu salaketa
+        change_email_user: Aldatu erabiltzailearen e-maila
+        confirm_user: Berretsi erabiltzailea
+        create_account_warning: Sortu abisua
+        create_announcement: Sortu iragarpena
+        create_custom_emoji: Sortu emoji pertsonalizatua
+        create_domain_allow: Sortu domeinu baimena
+        create_domain_block: Sortu domeinu blokeoa
+        create_email_domain_block: Sortu e-mail domeinu blokeoa
+        destroy_announcement: Ezabatu iragarpena
+        destroy_custom_emoji: Ezabatu emoji pertsonalizatua
+        destroy_domain_allow: Ezabatu domeinu baimena
+        destroy_domain_block: Ezabatu domeinu blokeoa
+        destroy_email_domain_block: Ezabatu e-mail domeinu blokeoa
+        destroy_status: Ezabatu mezua
+        disable_2fa_user: Desgaitu 2FA
+        disable_custom_emoji: Desgaitu emoji pertsonalizatua
+        disable_user: Desgaitu erabiltzailea
+        enable_custom_emoji: Gaitu emoji pertsonalizatua
+        enable_user: Gaitu erabiltzailea
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
         change_email_user: "%{name}(e)k %{target}(r)en e-mail helbidea aldatu du"
@@ -594,6 +615,7 @@ eu:
     add_new: Sortu ezizena
     created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.
     deleted_msg: Ongi kendu da ezizena. Orain ezin izango da aurreko kontutik hona migratu.
+    empty: Ez duzu ezizenik.
     hint_html: Beste kontu batetik hona migratu nahi baduzu, hemen ezizen bat sortu dezakezu, hau beharrezkoa da kontu zaharreko jarraitzaileak hona ekartzeko. Ekintza hau berez <strong>kaltegabea eta desegingarria</strong> da. <strong>Kontuaren migrazioa kontu zaharretik abiatzen da</strong>.
     remove: Deslotu ezizena
   appearance:
@@ -808,6 +830,7 @@ eu:
     inactive: Ez aktiboa
     publicize_checkbox: 'Eta bidali toot hau:'
     publicize_toot: 'Frogatua dago! %{username} erabiltzailea naiz %{service} zerbitzuan: %{url}'
+    remove: Kendu froga kontutik
     status: Egiaztatze egoera
     view_proof: Ikusi froga
   imports:
@@ -1075,6 +1098,8 @@ eu:
     disallowed_hashtags:
       one: 'debekatutako traola bat zuen: %{tags}'
       other: 'debekatutako traola hauek zituen: %{tags}'
+    errors:
+      in_reply_not_found: Erantzuten saiatu zaren mezua antza ez da existitzen.
     language_detection: Antzeman hizkuntza automatikoki
     open_in_web: Ireki web-ean
     over_character_limit: '%{max}eko karaktere muga gaindituta'
