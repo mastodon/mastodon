@@ -13,6 +13,7 @@ RUN	ARCH= && \
     s390x) ARCH='s390x';; \
     arm64) ARCH='arm64';; \
     armhf) ARCH='armv7l';; \
+    arm64) ARCH='arm64';; \
     i386) ARCH='x86';; \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac && \
