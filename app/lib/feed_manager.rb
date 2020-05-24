@@ -248,7 +248,8 @@ class FeedManager
 
     !combined_regex.match(Formatter.instance.plaintext(status)).nil? ||
       (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?) ||
-      (status.preloadable_poll && !combined_regex.match(status.preloadable_poll.options.join("\n\n")).nil?)
+      (status.preloadable_poll && !combined_regex.match(status.preloadable_poll.options.join("\n\n")).nil?) ||
+      (!combined_regex.match(status.media_attachments.map(&:description).join("\n\n")).nil?)
   end
 
   # Adds a status to an account's feed, returning true if a status was
