@@ -644,7 +644,7 @@ vi:
       over_x_years: "%{count}y"
       x_days: "%{count}n"
       x_minutes: "%{count}p"
-      x_months: "%{count}th"
+      x_months: "%{count}mo"
       x_seconds: "%{count}g"
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
@@ -1045,7 +1045,7 @@ vi:
   time:
     formats:
       default: "% b %d,% Y,% H:% M"
-      month: "% b% Y"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
     description_html: Nếu bạn kích hoạt <strong>xác thực hai yếu tố</strong> , đăng nhập sẽ yêu cầu bạn phải sở hữu điện thoại của mình, điều này sẽ tạo ra các mã thông báo để bạn nhập.
