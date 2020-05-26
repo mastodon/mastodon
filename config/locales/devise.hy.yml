@@ -8,18 +8,27 @@ hy:
       already_authenticated: Դուք արդեն մուտք եք գործել։
       inactive: Ձեր հաշիվը դեռ ակտիվացված չէ։
       invalid: Սխալ %{authentication_keys} կամ գաղտնաբառ։
+      last_attempt: Դուք ունեք վերջին հնարավորությունը, որից հետո հաշիվը կարգեալափակվի։
       locked: Ձեր հաշիվը արգելափակված է։
       not_found_in_database: Սխալ %{authentication_keys} կամ գաղտնաբառ։
       pending: Ձեր հաշիվը դեռ դիտարկման մեջ է։
       timeout: Ձեր կապակցումը ընդհատվել է։ Խնդրում ենք մուտք գործել կրկին և շարունակել։
+      unauthenticated: Ձեզ անհրաժեշտ է մուտք գործել կամ գրանցվել։
+      unconfirmed: Շարունակելու համար ձե անհրաժեշտ է հաստատել էլ․ փոստի հասցեն։
     mailer:
       confirmation_instructions:
         action: Հաստատել էլ․ հասցեն
         action_with_app: Հաստատեք և ետ անցեք %{app}
+        title: Հաստատել էլ․ հասցեն
       email_changed:
+        subject: 'Մաստոդոն․ Էլ․փոստը փոփոխվեց'
         title: Նոր էլ․ հասցե
       password_change:
+        subject: 'Մաստոդոն․ Գաղտնաբառը փոփոխվեց'
         title: Գաղտնաբառը փոփոխվեց
+      reconfirmation_instructions:
+        explanation: Հաստատեք նոր էլ․հասցեն, ձեր էլ․թոստը փոխելու համար։
+        title: Հաստատել էլ․ հասցեն
       reset_password_instructions:
         action: Փոխել գաղտնաբառը
         title: Վերակայել գաղտնաբառը
@@ -27,6 +36,8 @@ hy:
         title: 2FA անջատված է
       two_factor_enabled:
         title: 2FA միացված է
+      unlock_instructions:
+        subject: 'Մաստոդոն․ Ապակողպելու նկարագրությունը'
     sessions:
       signed_in: Մուտքը հաջողվեց։
   errors:
