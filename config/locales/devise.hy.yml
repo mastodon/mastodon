@@ -3,16 +3,30 @@ hy:
     confirmations:
       confirmed: Ձեր էլփոստի հասցեն հաջողությամբ հաստատվեց։
     failure:
+      already_authenticated: Դուք արդեն մուտք եք գործել։
+      inactive: Ձեր հաշիվը դեռ ակտիվացված չէ։
+      invalid: Սխալ %{authentication_keys} կամ գաղտնաբառ։
       locked: Ձեր հաշիվը արգելափակված է։
       not_found_in_database: Սխալ %{authentication_keys} կամ գաղտնաբառ։
       pending: Ձեր հաշիվը դեռ դիտարկման մեջ է։
       timeout: Ձեր կապակցումը ընդհատվել է։ Խնդրում ենք մուտք գործել կրկին և շարունակել։
     mailer:
+      confirmation_instructions:
+        action: Հաստատել էլ․ հասցեն
       email_changed:
         title: Նոր էլ․ հասցե
       password_change:
         title: Գաղտնաբառը փոփոխվեց
       reset_password_instructions:
         action: Փոխել գաղտնաբառը
+        title: Վերակայել գաղտնաբառը
+      two_factor_disabled:
+        title: 2FA անջատված է
+      two_factor_enabled:
+        title: 2FA միացված է
     sessions:
       signed_in: Մուտքը հաջողվեց։
+  errors:
+    messages:
+      not_found: չգտնվեց
+      not_locked: արգելափակված չէ
