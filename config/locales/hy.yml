@@ -19,23 +19,104 @@ hy:
       other: ստատուս
     unavailable_content_description:
       domain: Սպասարկիչ
+    user_count_after:
+      one: օգտատեր
+      other: օգտատերեր
+    user_count_before: Այստեղ են
     what_is_mastodon: Ի՞նչ է Մաստոդոնը
   accounts:
     follow: Հետևել
     followers:
       one: Հետևորդ
       other: Հետևորդներ
+    following: Հետևում եք
+    joined: Միացել են %{date}
     media: Մեդիա
     never_active: Երբեք
+    posts_tab_heading: Թթեր
+    posts_with_replies: Թթեր եւ պատասխաններ
     roles:
       admin: Ադմինիստրատոր
       bot: Բոտ
       group: Խումբ
       moderator: Մոդերատոր
+    unavailable: Պրոֆիլը հասանելի չի
     unfollow: Չհետևել
   admin:
     account_moderation_notes:
+      create: Թողնել նշում
       delete: Ջնջել
+    accounts:
+      confirmed: Հաստատված է
+      confirming: Հաստատում
+      deleted: Ջնջված է
+      disable: Անջատել
+      disable_two_factor_authentication: Անջատել 2FA
+      disabled: Անջատված է
+      display_name: Ցուցադրվող անունը
+      domain: Դոմեն
+      edit: Խմբագրել
+      email: Էլ. փոստ
+      enable: Միացնել
+      enabled: Միացված է
+      followers: Հետևորդներ
+      follows: Հետևողներ
+      header: Վերնագիր
+      inbox_url: Մուտքային URL
+      ip: IP
+      joined: Միացած է
+      location:
+        all: Բոլորը
+        local: Տեղային
+        remote: Հեռակա
+        title: Տեղադրությունը
+      moderation:
+        active: Ակտիվ
+        all: Բոլորը
+        pending: Սպասում
+      public: Հրապարակային
+      username: Մուտքանուն
+      warn: Նախազգուշացում
+      web: Վեբ
+    action_logs:
+      action_types:
+        disable_2fa_user: Անջատել 2FA
+    announcements:
+      live: Ուղիղ
+    custom_emojis:
+      copy: Պատճենել
+      delete: Ջնջել
+      disable: Անջատել
+      list: Ցանկ
+      overwrite: Վերագրել
+      upload: Վերբեռնել
+    domain_blocks:
+      new:
+        severity:
+          noop: Ոչ մի
+          silence: Լուռ
+      show:
+        undo: Ետարկել
+    email_domain_blocks:
+      add_new: Ավելացնել նորը
+      delete: Ջնջել
+      domain: Դոմեն
+      new:
+        create: Ավելացնել դոմեն
+    instances:
+      by_domain: Դոմեն
+      moderation:
+        all: Բոլորը
+        limited: Սահամանփակ
+    relays:
+      disable: Անջատել
+      disabled: Անջատված է
+      enable: Միացնել
+      enabled: Միացված է
+      status: Կարգավիճակ
+    reports:
+      comment:
+        none: Ոչ մի
   auth:
     login: Մտնել
   errors:
