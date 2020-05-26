@@ -1,7 +1,10 @@
----
 hy:
   devise:
     confirmations:
       confirmed: Ձեր էլփոստի հասցեն հաջողությամբ հաստատվեց։
+    failure:
+      locked: Ձեր հաշիվը արգելափակված է։
+      not_found_in_database: Սխալ %{authentication_keys} կամ գաղտնաբառ։
+      pending: Ձեր հաշիվը դեռ դիտարկման մեջ է։
     sessions:
       signed_in: Մուտքը հաջողվեց։
