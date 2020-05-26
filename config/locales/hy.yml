@@ -117,8 +117,50 @@ hy:
     reports:
       comment:
         none: Ոչ մի
+      notes:
+        create: Ավելացնել նշում
+        delete: Ջնջել
+      status: Կարգավիճակ
+    settings:
+      registrations:
+        min_invite_role:
+          disabled: Ոչ ոք
+    statuses:
+      batch:
+        delete: Ջնջել
+      deleted: Ջնջված է
+    tags:
+      context: Համատեքստ
+    title: Ադմինիստարցիա
+    warning_presets:
+      add_new: Ավելացնել նորը
+      delete: Ջնջել
   auth:
+    change_password: Գաղտնաբառ
+    checkbox_agreement_html: Ես համաձայն եմ <a href="%{rules_path}" target="_blank">սպասարկչի կայանքներին</a> և <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
+    checkbox_agreement_without_rules_html: Ես համաձայն եմ <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
+    delete_account: Ջնջել հաշիվը
     login: Մտնել
+    logout: Դուրս գալ
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Գրանցվել
+    security: Անվտանգություն
+    setup:
+      title: Կարգավորում
+  authorize_follow:
+    follow: Հետևել
+  datetime:
+    distance_in_words:
+      less_than_x_seconds: Հենց հիմա
+      over_x_years: "%{count}տ"
+      x_days: "%{count}օ"
+      x_minutes: "%{count}ր"
+      x_months: "%{count}ա"
+      x_seconds: "%{count}վրկ"
+  deletes:
+    proceed: Ջնջել հաշիվը
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -129,15 +171,101 @@ hy:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Ամսաթիվ
+      download: Ներբեռնեք Ձեր արխիվը
+      size: Չափը
+    csv: CSV
+    lists: Ցանկեր
+  filters:
+    index:
+      delete: Ջնջել
+      title: Ֆիլտրեր
+    new:
+      title: Ավելացնել ֆիլտր
+  footer:
+    developers: Մշակողներ
+    more: Ավելին…
+    resources: Ռեսուրսներ
+    trending_now: Այժմ արդիական
+  generic:
+    all: Բոլորը
+    copy: Պատճենել
+    delete: Ջնջել
+  identity_proofs:
+    active: Ակտիվ
+  imports:
+    modes:
+      overwrite: Վերագրել
+    upload: Վերբեռնել
   invites:
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
+      '1800': 30 րոպե
+      '21600': 6 ժամ
       '3600': 1 hour
       '43200': 12 hours
       '604800': 1 week
       '86400': 1 day
+  notification_mailer:
+    mention:
+      action: Պատասխանել
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: Մլր
+          million: Մլն
+          quadrillion: Քլր
+          thousand: Հազ
+          trillion: Տրլ
+  pagination:
+    newer: Ավելի նոր
+    next: Հաջորդ
+    older: Ավելի հին
+    prev: Նախորդ
+    truncate: "&hellip;"
+  preferences:
+    other: Այլ
   sessions:
+    browser: Դիտարկիչ
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Անհայտ դիտարկիչ
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Անդրոիդ
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
       linux: Լինուքս
+      mac: macOS
+      other: անհայտ հարթակ
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Չեղարկել
+  settings:
+    account: Հաշիվ
+    edit_profile: Խմբագրել պրոֆիլը
+    import: Ներմուծել
+    import_and_export: Ներմուծել և արտահանել
+  stream_entries:
+    sensitive_content: Կասկածելի բովանդակութիւն
