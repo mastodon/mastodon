@@ -51,3 +51,7 @@ PgHero::HomeController.content_security_policy do |p|
   p.script_src :self, :unsafe_inline, assets_host
   p.style_src  :self, :unsafe_inline, assets_host
 end
+
+AboutController.content_security_policy do |p|
+  p.style_src :self, :unsafe_inline, assets_host
+end
