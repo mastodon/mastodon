@@ -10,6 +10,10 @@ class AboutController < ApplicationController
 
   skip_before_action :require_functional!, only: [:more, :terms]
 
+  content_security_policy do |p|
+    p.style_src :self, :unsafe_inline, assets_host
+  end
+
   def show; end
 
   def more
