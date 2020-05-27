@@ -11,7 +11,7 @@ class AboutController < ApplicationController
   skip_before_action :require_functional!, only: [:more, :terms]
 
   content_security_policy do |p|
-    p.style_src *p.style_src, :unsafe_inline
+    p.style_src(*p.style_src, :unsafe_inline)
   end
 
   def show; end
