@@ -6,7 +6,7 @@ ruby '>= 2.5.0', '< 3.0.0'
 gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.3'
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '~> 5.2.4.3'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
 gem 'rack', '~> 2.2.2'
@@ -17,10 +17,10 @@ gem 'e2mmap', '~> 0.1.0'
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.4'
+gem 'pghero', '~> 2.5'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.64', require: false
+gem 'aws-sdk-s3', '~> 1.66', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -141,13 +141,13 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.82', require: false
+  gem 'rubocop', '~> 0.84', require: false
   gem 'rubocop-rails', '~> 2.5', require: false
   gem 'brakeman', '~> 4.8', require: false
   gem 'bundler-audit', '~> 0.6', require: false
 
   gem 'capistrano', '~> 3.14'
-  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-rails', '~> 1.5'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
 
