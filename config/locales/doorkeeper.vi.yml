@@ -30,12 +30,12 @@ vi:
       form:
         error: Rất tiếc! Hãy kiểm tra thông tin của bạn bởi vì nó có lỗi
       help:
-        native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm thử ở máy nội bộ
+        native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm tra nội bộ
         redirect_uri: Sử dụng một dòng trên mỗi URI
         scopes: Phạm vi riêng biệt với không gian. Để trống để sử dụng phạm vi mặc định.
       index:
         application: Ứng dụng
-        callback_url: gọi lại URL
+        callback_url: Gọi lại URL
         delete: Xóa bỏ
         empty: Bạn không có ứng dụng nào.
         name: Tên
@@ -47,23 +47,23 @@ vi:
         title: Ứng dụng mới
       show:
         actions: Hành động
-        application_id: Khóa khách
-        callback_urls: URL gọi lại
+        application_id: Mã Client
+        callback_urls: Gọi lại URLs
         scopes: Phạm vi
-        secret: Bí mật khách hàng
+        secret: Bí ẩn của Client
         title: 'Ứng dụng: %{name}'
     authorizations:
       buttons:
-        authorize: Ủy quyền
+        authorize: Cho phép
         deny: Từ chối
       error:
         title: Một lỗi đã xảy ra
       new:
         able_to: Nó sẽ có thể
         prompt: Ứng dụng %{client_name} yêu cầu quyền truy cập vào tài khoản của bạn
-        title: Cần được ủy quyền
+        title: Cần được cho phép
       show:
-        title: Sao chép mã ủy quyền này và dán nó vào ứng dụng.
+        title: Sao chép mã này và dán nó vào ứng dụng.
     authorized_applications:
       buttons:
         revoke: Thu hồi
@@ -71,13 +71,13 @@ vi:
         revoke: Bạn có chắc không?
       index:
         application: Ứng dụng
-        created_at: Được ủy quyền
+        created_at: Được cho phép
         date_format: "% Y-% m-%d% H:% M:% S"
         scopes: Phạm vi
-        title: Các ứng dụng đã được cấp phép
+        title: Các ứng dụng mà bạn cho phép
     errors:
       messages:
-        access_denied: Chủ sở hữu tài nguyên hoặc máy chủ ủy quyền từ chối yêu cầu.
+        access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác thực ứng dụng khách không thành công do máy khách không xác định, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
         invalid_grant: Cấp quyền được cung cấp không hợp lệ, hết hạn, bị thu hồi, không khớp với URI chuyển hướng được sử dụng trong yêu cầu ủy quyền hoặc được cấp cho một khách hàng khác.
