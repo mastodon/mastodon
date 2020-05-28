@@ -2,9 +2,9 @@ vi:
   simple_form:
     hints:
       account_alias:
-        acct: Chỉ định tên_người_dùng@tênmiền của tài khoản bạn muốn chuyển từ
+        acct: Chọn tên_người_dùng@máy chủ của tài khoản lúc trước
       account_migration:
-        acct: Chỉ định tênngườidùng@tênmiền của tài khoản bạn muốn chuyển đến
+        acct: Chọn tênngườidùng@máy chủ của tài khoản bạn muốn dời sang
       account_warning_preset:
         text: Bạn có thể sử dụng cú pháp mã thông báo, chẳng hạn như URL, hashtag và đề cập
       admin_account_action:
@@ -41,11 +41,14 @@ vi:
         setting_noindex: Ảnh hưởng đến hồ sơ công khai và trang trạng thái của bạn
         setting_show_application: Ứng dụng bạn sử dụng để mã thông báo sẽ được hiển thị trong chế độ xem chi tiết các mã thông báo của bạn
         setting_use_blurhash: Các lớp được dựa trên màu sắc của hình ảnh ẩn nhưng che giấu bất kỳ chi tiết nào
-        setting_use_pending_items: Ẩn các cập nhật dòng thời gian đằng sau một nhấp chuột thay vì tự động cuộn nguồn cấp dữ liệu
+        setting_use_pending_items: Ẩn cập nhật bảng tin bằng một cái nhấp chuột thay vì phải cuộn toàn bộ
         username: Tên người dùng của bạn sẽ là duy nhất trên %{domain}
-        whole_word: Khi từ khóa hoặc cụm từ chỉ là chữ và số, nó sẽ chỉ được áp dụng nếu nó phù hợp với toàn bộ từ
+        whole_word: Khi từ khóa hoặc cụm từ chỉ là chữ và số, nó sẽ chỉ hiện ra những từ chính xác như vậy
       domain_allow:
-        domain: Tên miền này sẽ có thể tìm nạp dữ liệu từ máy chủ này và dữ liệu đến từ nó sẽ được xử lý và lưu trữ
+        domain: Máy chủ này sẽ tiếp nhận dữ liệu cũ, rồi sau đó xử lý và lưu trữ
+      email_domain_block:
+        domain: Đây có thể là tên máy chủ của địa chỉ email. Nếu máy chủ đó có vấn đề, đăng ký sẽ bị từ chối.
+        with_dns_records: Nếu DNS có vấn đề, nó sẽ bị đưa vào danh sách cấm
       featured_tag:
         name: 'Bạn có thể muốn sử dụng một trong những điều sau đây:'
       form_challenge:
