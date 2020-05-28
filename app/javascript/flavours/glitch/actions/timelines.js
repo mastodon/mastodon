@@ -134,6 +134,7 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
     any: parseTags(tags, 'any'),
     all: parseTags(tags, 'all'),
     none: parseTags(tags, 'none'),
+    local: local,
   }, done);
 };
 
