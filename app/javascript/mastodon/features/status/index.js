@@ -181,6 +181,10 @@ class Status extends ImmutablePureComponent {
 
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
+
+    if (this.statusNode) {
+      this.statusNode.focus({ preventScroll: true });
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -465,15 +469,23 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   }
 
-  componentDidUpdate () {
+  setStatusRef = c => {
+    this.statusNode = c;
+  }
+
+  componentDidUpdate (prevProps) {
     if (this._scrolledIntoView) {
       return;
     }
 
     const { status, ancestorsIds } = this.props;
 
+    if (status && (!prevProps.status || prevProps.status.get('id') !== status.get('id'))) {
+      this.statusNode.focus({ preventScroll: true });
+    }
+
     if (status && ancestorsIds && ancestorsIds.size > 0) {
-      const element = this.node.querySelectorAll('.focusable')[ancestorsIds.size - 1];
+      const element = this.statusNode;
 
       window.requestAnimationFrame(() => {
         element.scrollIntoView(true);
@@ -540,7 +552,7 @@ class Status extends ImmutablePureComponent {
             {ancestors}
 
             <HotKeys handlers={handlers}>
-              <div className={classNames('focusable', 'detailed-status__wrapper')} tabIndex='0' aria-label={textForScreenReader(intl, status, false)}>
+              <div className={classNames('focusable', 'detailed-status__wrapper')} tabIndex='0' aria-label={textForScreenReader(intl, status, false)} ref={this.setStatusRef}>
                 <DetailedStatus
                   key={`details-${status.get('id')}`}
                   status={status}
