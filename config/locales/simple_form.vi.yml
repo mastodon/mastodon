@@ -7,12 +7,16 @@ vi:
         acct: Chọn tênngườidùng@máy chủ của tài khoản bạn muốn dời sang
       account_warning_preset:
         text: Bạn có thể sử dụng cú pháp mã thông báo, chẳng hạn như URL, hashtag và đề cập
+        title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
         include_statuses: Người dùng sẽ thấy các toots nào đã gây ra hành động kiểm duyệt hoặc cảnh báo
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì đã xảy ra với tài khoản của họ
         text_html: Không bắt buộc. Bạn có thể sử dụng cú pháp thổi còi. Bạn có thể <a href="%{path}">thêm các cài đặt trước cảnh báo</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         warning_preset_id: Không bắt buộc. Bạn vẫn có thể thêm văn bản tùy chỉnh vào cuối cài đặt trước
+      announcement:
+        all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
+        ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
       defaults:
         autofollow: Những người đăng ký thông qua lời mời sẽ tự động theo dõi bạn
         avatar: PNG, GIF hoặc JPG. Nhiều nhất là %{size}. Sẽ bị hạ thấp xuống %{dimensions}px
@@ -75,40 +79,40 @@ vi:
       account_warning_preset:
         text: Văn bản cài sẵn
       admin_account_action:
-        include_statuses: Bao gồm các mã thông báo được báo cáo trong e-mail
+        include_statuses: Đính kèm những tút bị báo xấu trong e-mail
         send_email_notification: Thông báo cho người dùng mỗi email
-        text: Cảnh báo tùy chỉnh
+        text: Tùy chỉnh cảnh báo
         type: Hoạt động
         types:
-          disable: Vô hiệu hóa
+          disable: Vô hiệu hóa đăng nhập
           none: Không làm gì cả
-          silence: khoảng lặng
+          silence: Im lặng
           suspend: Đình chỉ và xóa dữ liệu tài khoản
-        warning_preset_id: Sử dụng cài đặt trước cảnh báo
+        warning_preset_id: Sử dụng cảnh báo cài đặt trước
       defaults:
-        autofollow: Mời theo dõi tài khoản của bạn
-        avatar: hình đại diện
+        autofollow: Mời mến mộ tài khoản của bạn
+        avatar: Ảnh đại diện
         bot: Đây là tài khoản bot
-        chosen_languages: Ngôn ngữ bộ lọc
+        chosen_languages: Chọn ngôn ngữ
         confirm_new_password: Xác nhận mật khẩu mới
         confirm_password: Xác nhận mật khẩu
-        context: Bối cảnh bộ lọc
+        context: Bộ lọc bối cảnh
         current_password: Mật khẩu hiện tại
         data: Dữ liệu
-        discoverable: Liệt kê tài khoản này trên thư mục
+        discoverable: Liệt kê tài khoản này trên danh sách thành viên
         display_name: Tên hiển thị
         email: Địa chỉ email
         expires_in: Hết hạn sau
-        fields: Hồ sơ siêu dữ liệu
-        header: Tiêu đề
-        inbox_url: URL của hộp thư đến chuyển tiếp
-        irreversible: Thả thay vì trốn
-        locale: Ngôn ngữ giao diện
+        fields: Hồ sơ metadata
+        header: Ảnh bìa
+        inbox_url: URL của hộp thư relay
+        irreversible: Kéo xuống thay vì ẩn
+        locale: Ngôn ngữ
         locked: Khóa tài khoản
         max_uses: Số lần sử dụng tối đa
         new_password: Mật khẩu mới
-        note: Sinh học
-        otp_attempt: Mã hai yếu tố
+        note: Tiểu sử
+        otp_attempt: Xác thực hai bước
         password: Mật khẩu
         phrase: Từ khóa hoặc cụm từ
         setting_advanced_layout: Kích hoạt giao diện web nâng cao
