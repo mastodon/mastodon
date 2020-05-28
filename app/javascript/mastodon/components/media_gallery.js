@@ -10,7 +10,8 @@ import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_s
 import { decode } from 'blurhash';
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Hide media' },
+  toggle_visible: { id: 'media_gallery.toggle_visible',
+    defaultMessage: 'Hide {number, plural, one {image} other {images}}' },
 });
 
 class Item extends React.PureComponent {
@@ -338,7 +339,7 @@ class MediaGallery extends React.PureComponent {
         </button>
       );
     } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='eye-slash' overlay onClick={this.handleOpen} />;
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' overlay onClick={this.handleOpen} />;
     } else {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
