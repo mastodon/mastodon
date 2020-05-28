@@ -86,6 +86,8 @@ const keyMap = {
   openProfile: 'p',
   moveDown: ['down', 'j'],
   moveUp: ['up', 'k'],
+  moveLeft: 'left',
+  moveRight: 'right',
   back: 'backspace',
   goToHome: 'g h',
   goToNotifications: 'g n',
@@ -371,6 +373,8 @@ class UI extends React.PureComponent {
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
 
+    this.isRtlLayout = document.getElementsByTagName('body')[0].classList.contains('rtl');
+
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);
   }
 
@@ -429,6 +433,43 @@ class UI extends React.PureComponent {
   handleHotkeyFocusColumn = e => {
     const index  = (e.key * 1) + 1; // First child is drawer, skip that
     const column = this.node.querySelector(`.column:nth-child(${index})`);
+    this._selectColumn(column);
+  }
+
+  handleHotkeyMoveLeft = e => {
+    const direction = this.isRtlLayout ? -1 : 1;
+    const index = this._findColumn(e.target);
+    if (index === -1) {
+      return;
+    }
+    const column = this.node.querySelectorAll('.column')[index - direction];
+    this._selectColumn(column);
+  }
+
+  handleHotkeyMoveRight = e => {
+    const direction = this.isRtlLayout ? -1 : 1;
+    const index = this._findColumn(e.target);
+    if (index === -1) {
+      return;
+    }
+    const column = this.node.querySelectorAll('.column')[index + direction];
+    this._selectColumn(column);
+  }
+
+  _findColumn = element => {
+    const columns = Array.from(this.node.querySelectorAll('.column'));
+
+    while (element) {
+      if (element.classList.contains('column')) {
+        return columns.indexOf(element);
+      }
+      element = element.parentNode;
+    }
+
+    return -1;
+  }
+
+  _selectColumn = column => {
     if (!column) return;
     const container = column.querySelector('.scrollable');
 
@@ -523,6 +564,8 @@ class UI extends React.PureComponent {
       forceNew: this.handleHotkeyForceNew,
       toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
+      moveLeft: this.handleHotkeyMoveLeft,
+      moveRight: this.handleHotkeyMoveRight,
       back: this.handleHotkeyBack,
       goToHome: this.handleHotkeyGoToHome,
       goToNotifications: this.handleHotkeyGoToNotifications,
