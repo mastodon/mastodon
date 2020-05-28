@@ -6,20 +6,23 @@ vi:
       account_migration:
         acct: Chọn tênngườidùng@máy chủ của tài khoản bạn muốn dời sang
       account_warning_preset:
-        text: Bạn có thể sử dụng cú pháp mã thông báo, chẳng hạn như URL, hashtag và đề cập
+        text: Bạn có thể sử dụng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
-        include_statuses: Người dùng sẽ thấy các toots nào đã gây ra hành động kiểm duyệt hoặc cảnh báo
-        send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì đã xảy ra với tài khoản của họ
-        text_html: Không bắt buộc. Bạn có thể sử dụng cú pháp thổi còi. Bạn có thể <a href="%{path}">thêm các cài đặt trước cảnh báo</a> để tiết kiệm thời gian
+        include_statuses: Người dùng sẽ thấy các tút bị kiểm duyệt hoặc cảnh cáo
+        send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
+        text_html: Tùy chọn. Bạn có thể sử dụng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
-        warning_preset_id: Không bắt buộc. Bạn vẫn có thể thêm văn bản tùy chỉnh vào cuối cài đặt trước
+        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm văn bản tùy chỉnh vào cuối cảnh cáo cài sẵn
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
+        scheduled_at: Để trống nếu muốn đăng thông báo ngay lập tức
+        starts_at: Tùy chọn. Trong trường hợp thông báo của bạn đăng vào một khoảng thời gian cụ thể
+        text: Bạn có thể sử dụng tút dạng cú pháp. Cố gắng ngắn gọn bởi vì thông báo sẽ xuất hiện trên màn hình điện thoại của người dùng
       defaults:
-        autofollow: Những người đăng ký thông qua lời mời sẽ tự động theo dõi bạn
-        avatar: PNG, GIF hoặc JPG. Nhiều nhất là %{size}. Sẽ bị hạ thấp xuống %{dimensions}px
+        autofollow: Những người đăng ký thông qua lời mời sẽ tự động mến mộ bạn
+        avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         bot: Tài khoản này chủ yếu thực hiện các hành động tự động và có thể không được theo dõi
         context: Một hoặc nhiều bối cảnh nơi bộ lọc nên áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
@@ -78,6 +81,7 @@ vi:
         acct: Xử lý tài khoản mới
       account_warning_preset:
         text: Văn bản cài sẵn
+        title: Tựa đề
       admin_account_action:
         include_statuses: Đính kèm những tút bị báo xấu trong e-mail
         send_email_notification: Thông báo cho người dùng mỗi email
@@ -89,6 +93,12 @@ vi:
           silence: Im lặng
           suspend: Đình chỉ và xóa dữ liệu tài khoản
         warning_preset_id: Sử dụng cảnh báo cài đặt trước
+      announcement:
+        all_day: Sự kiện diễn ra hằng ngày
+        ends_at: Kết thúc sự kiện
+        scheduled_at: Lên lịch đăng
+        starts_at: Bắt đầu sự kiện
+        text: Thông báo
       defaults:
         autofollow: Mời mến mộ tài khoản của bạn
         avatar: Ảnh đại diện
