@@ -14,11 +14,11 @@ vi:
               fragment_present: không thể chứa một mảnh.
               invalid_uri: phải là một URI hợp lệ.
               relative_uri: phải là một URI tuyệt đối.
-              secured_uri: phải là URI HTTPS / SSL.
+              secured_uri: phải sử dụng giao thức HTTPS / SSL.
   doorkeeper:
     applications:
       buttons:
-        authorize: Ủy quyền
+        authorize: Cho phép
         cancel: Hủy bỏ
         destroy: Xoá bỏ
         edit: Sửa
@@ -28,7 +28,7 @@ vi:
       edit:
         title: Chỉnh sửa ứng dụng
       form:
-        error: Rất tiếc! Hãy kiểm tra thông tin của bạn vì có thể nó có lỗi
+        error: Rất tiếc! Hãy kiểm tra thông tin của bạn bởi vì nó có lỗi
       help:
         native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm thử ở máy nội bộ
         redirect_uri: Sử dụng một dòng trên mỗi URI
@@ -37,6 +37,7 @@ vi:
         application: Ứng dụng
         callback_url: gọi lại URL
         delete: Xóa bỏ
+        empty: Bạn không có ứng dụng nào.
         name: Tên
         new: Ứng dụng mới
         scopes: Phạm vi
@@ -56,7 +57,7 @@ vi:
         authorize: Ủy quyền
         deny: Từ chối
       error:
-        title: một lỗi đã xảy ra
+        title: Một lỗi đã xảy ra
       new:
         able_to: Nó sẽ có thể
         prompt: Ứng dụng %{client_name} yêu cầu quyền truy cập vào tài khoản của bạn
