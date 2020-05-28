@@ -89,6 +89,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.right' defaultMessage='to focus the column on the right' /></td>
               </tr>
               <tr>
+                <td><kbd>$</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.last_column' defaultMessage='to focus the last column' /></td>
+              </tr>
+              <tr>
                 <td><kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.compose' defaultMessage='to focus the compose textarea' /></td>
               </tr>

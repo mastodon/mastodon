@@ -88,6 +88,7 @@ const keyMap = {
   moveUp: ['up', 'k'],
   moveLeft: 'left',
   moveRight: 'right',
+  moveLast: '$',
   back: 'backspace',
   goToHome: 'g h',
   goToNotifications: 'g n',
@@ -456,6 +457,13 @@ class UI extends React.PureComponent {
     this._selectColumn(column);
   }
 
+  handleHotkeyMoveLast = () => {
+    const columns = Array.from(this.node.querySelectorAll('.column'));
+    // Find last column with something selectable
+    const column = columns.reverse().find((column) => column.querySelector('.scrollable .focusable'));
+    this._selectColumn(column);
+  };
+
   _findColumn = element => {
     const columns = Array.from(this.node.querySelectorAll('.column'));
 
@@ -566,6 +574,7 @@ class UI extends React.PureComponent {
       focusColumn: this.handleHotkeyFocusColumn,
       moveLeft: this.handleHotkeyMoveLeft,
       moveRight: this.handleHotkeyMoveRight,
+      moveLast: this.handleHotkeyMoveLast,
       back: this.handleHotkeyBack,
       goToHome: this.handleHotkeyGoToHome,
       goToNotifications: this.handleHotkeyGoToNotifications,
