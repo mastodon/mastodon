@@ -26,41 +26,41 @@ vi:
         title: Xác thực địa chỉ email
       email_changed:
         explanation: 'Địa chỉ email cho tài khoản của bạn đang được thay đổi thành:'
-        extra: Nếu bạn không thay đổi email của mình, có khả năng ai đó đã truy cập được vào tài khoản của bạn. Vui lòng thay đổi mật khẩu của bạn ngay lập tức hoặc liên hệ với quản trị viên máy chủ nếu bạn bị khóa khỏi tài khoản của bạn.
+        extra: Nếu bạn không thay đổi email của mình, có khả năng ai đó đã truy cập được vào tài khoản của bạn. Hãy thay đổi mật khẩu ngay lập tức hoặc liên hệ với quản trị viên.
         subject: 'Mastodon: Email đã thay đổi'
-        title: Địa chỉ thư điện tử mới
+        title: Địa chỉ email mới
       password_change:
-        explanation: Mật khẩu cho tài khoản của bạn đã được thay đổi.
-        extra: Nếu bạn không thay đổi mật khẩu, có khả năng ai đó đã truy cập được vào tài khoản của bạn. Vui lòng thay đổi mật khẩu của bạn ngay lập tức hoặc liên hệ với quản trị viên máy chủ nếu bạn bị khóa khỏi tài khoản của bạn.
+        explanation: Mật khẩu tài khoản của bạn đã được thay đổi.
+        extra: Nếu bạn không thay đổi mật khẩu tài khoản của mình, có khả năng ai đó đã truy cập được vào tài khoản của bạn. Hãy thay đổi mật khẩu ngay lập tức hoặc liên hệ với quản trị viên.
         subject: 'Mastodon: Mật khẩu đã thay đổi'
-        title: mật khẩu đã được thay đổi
+        title: Mật khẩu đã được thay đổi
       reconfirmation_instructions:
-        explanation: Xác nhận địa chỉ mới để thay đổi email của bạn.
-        extra: Nếu thay đổi này không phải do bạn khởi xướng, vui lòng bỏ qua email này. Địa chỉ email cho tài khoản Mastodon sẽ không thay đổi cho đến khi bạn truy cập vào liên kết ở trên.
-        subject: 'Mastodon: Xác nhận email cho %{instance}'
+        explanation: Xác nhận địa chỉ email mới của bạn.
+        extra: Nếu thay đổi này không phải do bạn thực hiện, vui lòng bỏ qua email này. Địa chỉ email cho tài khoản Mastodon sẽ giữ nguyên cho đến khi bạn truy cập vào liên kết ở trên.
+        subject: 'Mastodon: Xác thực email cho %{instance}'
         title: Xác nhận địa chỉ email
       reset_password_instructions:
         action: Đổi mật khẩu
-        explanation: Bạn đã yêu cầu một mật khẩu mới cho tài khoản của bạn.
-        extra: Nếu bạn không yêu cầu điều này, xin vui lòng bỏ qua email này. Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết ở trên và tạo một mật khẩu mới.
-        subject: 'Mastodon: Đặt lại hướng dẫn mật khẩu'
-        title: Đặt lại mật khẩu
+        explanation: Bạn đã yêu cầu mật khẩu mới cho tài khoản của bạn.
+        extra: Nếu bạn không yêu cầu điều này, xin vui lòng bỏ qua email này. Mật khẩu của bạn sẽ giữ nguyên cho đến khi bạn truy cập vào liên kết ở trên và tạo một mật khẩu mới.
+        subject: 'Mastodon: Hướng dẫn đổi lại mật khẩu'
+        title: Đổi lại mật khẩu
       two_factor_disabled:
-        explanation: Xác thực hai yếu tố cho tài khoản của bạn đã bị vô hiệu hóa. Đăng nhập bây giờ có thể chỉ bằng địa chỉ e-mail và mật khẩu.
-        subject: 'Mastodon: Xác thực hai yếu tố bị vô hiệu hóa'
-        title: Vô hiệu hóa 2FA
+        explanation: Đã vô hiệu hóa xác thực hai bước cho tài khoản của bạn. Bây giờ chỉ có thể đăng nhập bằng địa chỉ email và mật khẩu.
+        subject: 'Mastodon: Xác thực hai bước đã bị vô hiệu hóa'
+        title: Vô hiệu hóa xác thực hai bước
       two_factor_enabled:
-        explanation: Xác thực hai yếu tố đã được kích hoạt cho tài khoản của bạn. Mã thông báo được tạo bởi ứng dụng TOTP được ghép nối sẽ được yêu cầu để đăng nhập.
+        explanation: Tài khoản của bạn đã kích hoạt xác thực hai bước. Lần đăng nhập tới sẽ cần thêm mã đăng nhập được tạo bởi ứng dụng TOTP.
         subject: 'Mastodon: Kích hoạt xác thực hai yếu tố'
-        title: Đã bật 2FA
+        title: Kích hoạt xác thực hai bước
       two_factor_recovery_codes_changed:
-        explanation: Các mã khôi phục trước đó đã bị vô hiệu và các mã mới được tạo.
-        subject: 'Mastodon: Mã phục hồi hai yếu tố được tạo lại'
-        title: Mã khôi phục 2FA đã thay đổi
+        explanation: Các mã khôi phục trước đó đã bị vô hiệu hóa và thay bằng mã mới.
+        subject: 'Mastodon: Mã khôi phục xác thực hai yếu tố đã được tạo lại'
+        title: Mã khôi phục xác thực hai yếu tố đã thay đổi
       unlock_instructions:
         subject: 'Mastodon: Hướng dẫn mở khóa'
     omniauth_callbacks:
-      failure: Không thể xác thực bạn từ %{kind} vì &quot;%{reason}&quot;.
+      failure: Không thể xác thực bạn từ %{kind} bởi vì "%{reason}".
       success: Xác thực thành công từ tài khoản %{kind}.
     passwords:
       no_token: Bạn không thể truy cập trang này mà không đến từ email đặt lại mật khẩu. Nếu bạn đến từ một email đặt lại mật khẩu, vui lòng đảm bảo rằng bạn đã sử dụng URL đầy đủ được cung cấp.
