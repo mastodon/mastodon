@@ -63,32 +63,32 @@ vi:
       failure: Không thể xác thực bạn từ %{kind} bởi vì "%{reason}".
       success: Xác thực thành công từ tài khoản %{kind}.
     passwords:
-      no_token: Bạn không thể truy cập trang này mà không đến từ email đặt lại mật khẩu. Nếu bạn đến từ một email đặt lại mật khẩu, vui lòng đảm bảo rằng bạn đã sử dụng URL đầy đủ được cung cấp.
-      send_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được liên kết khôi phục mật khẩu tại địa chỉ email của bạn sau vài phút. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
-      send_paranoid_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được liên kết khôi phục mật khẩu tại địa chỉ email của bạn sau vài phút. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
-      updated: Mật khẩu của bạn đã được thay đổi thành công. Bây giờ bạn đã đăng nhập.
+      no_token: Bạn chỉ có thể truy cập trang này khi chuyển tiếp từ email phục hồi mật khẩu. Nếu vẫn không được, vui lòng chắc chắn rằng bạn đã sử dụng chính xác URL được cung cấp.
+      send_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được liên kết khôi phục mật khẩu tại địa chỉ email của bạn sau vài phút. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
+      send_paranoid_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được liên kết khôi phục mật khẩu tại địa chỉ email của bạn sau vài phút. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
+      updated: Mật khẩu của bạn đã được thay đổi thành công. Hiện tại bạn đã đăng nhập.
       updated_not_active: Mật khẩu của bạn đã được thay đổi thành công.
     registrations:
-      destroyed: Tạm biệt! Tài khoản của bạn đã bị hủy thành công. Mong rằng chúng tôi sẽ sớm gặp lại bạn.
-      signed_up: Chào mừng bạn Bạn đã đăng ký thành công.
+      destroyed: Tạm biệt! Tài khoản của bạn đã hủy thành công. Hi vọng chúng tôi sẽ sớm gặp lại bạn.
+      signed_up: Chúc mừng! Bạn đã đăng ký thành công.
       signed_up_but_inactive: Bạn đã đăng ký thành công. Tuy nhiên, chúng tôi không thể đăng nhập cho bạn vì tài khoản của bạn chưa được kích hoạt.
       signed_up_but_locked: Bạn đã đăng ký thành công. Tuy nhiên, chúng tôi không thể đăng nhập cho bạn vì tài khoản của bạn bị khóa.
-      signed_up_but_pending: Một tin nhắn với một liên kết xác nhận đã được gửi đến địa chỉ email của bạn. Sau khi bạn nhấp vào liên kết, chúng tôi sẽ xem xét ứng dụng của bạn. Bạn sẽ được thông báo nếu nó được chấp thuận.
-      signed_up_but_unconfirmed: Một tin nhắn với một liên kết xác nhận đã được gửi đến địa chỉ email của bạn. Vui lòng theo liên kết để kích hoạt tài khoản của bạn. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
-      update_needs_confirmation: Bạn đã cập nhật tài khoản thành công, nhưng chúng tôi cần xác minh địa chỉ email mới của bạn. Vui lòng kiểm tra email của bạn và theo liên kết xác nhận để xác nhận địa chỉ email mới của bạn. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
+      signed_up_but_pending: Một liên kết xác thực đã được gửi đến địa chỉ email của bạn. Sau khi bạn nhấp vào liên kết, chúng tôi sẽ xem xét đơn đăng ký của bạn và thông báo nếu đơn được chấp thuận.
+      signed_up_but_unconfirmed: Một liên kết xác thực đã được gửi đến địa chỉ email của bạn. Hãy nhấp vào liên kết để kích hoạt tài khoản của bạn. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
+      update_needs_confirmation: Bạn đã cập nhật tài khoản thành công, nhưng chúng tôi cần xác minh địa chỉ email mới của bạn. Vui lòng kiểm tra email của bạn và nhấp vào liên kết xác thực. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
       updated: Tài khoản của bạn đã được cập nhật thành công.
     sessions:
-      already_signed_out: Đăng xuất thành công.
+      already_signed_out: Hoàn tất đăng xuất.
       signed_in: Đã đăng nhập thành công.
-      signed_out: Đăng xuất thành công.
+      signed_out: Hoàn tất đăng xuất.
     unlocks:
-      send_instructions: Bạn sẽ nhận được một email với các hướng dẫn về cách mở khóa tài khoản của bạn trong vài phút. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
-      send_paranoid_instructions: Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email có hướng dẫn cách mở khóa trong vài phút. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
+      send_instructions: Bạn sẽ nhận được một email hướng dẫn về cách mở khóa tài khoản của bạn trong vài phút tới. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
+      send_paranoid_instructions: Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email hướng dẫn cách mở khóa trong vài phút tới. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
       unlocked: Tài khoản của bạn đã được mở khóa thành công. Vui lòng đăng nhập để tiếp tục.
   errors:
     messages:
-      already_confirmed: đã được xác nhận, vui lòng thử đăng nhập
-      confirmation_period_expired: cần được xác nhận trong vòng %{period}, vui lòng yêu cầu một cái mới
+      already_confirmed: đã được xác thực, vui lòng đăng nhập lại
+      confirmation_period_expired: cần phải xác thực trong vòng %{period}, vui lòng yêu cầu một cái mới
       expired: đã hết hạn, vui lòng yêu cầu một cái mới
       not_found: không tìm thấy
       not_locked: không bị khóa
