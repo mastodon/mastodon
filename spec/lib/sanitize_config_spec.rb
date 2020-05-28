@@ -4,15 +4,7 @@ require 'rails_helper'
 require Rails.root.join('app', 'lib', 'sanitize_config.rb')
 
 describe Sanitize::Config do
-  describe '::MASTODON_STRICT' do
-    subject { Sanitize::Config::MASTODON_STRICT }
-
-    around do |example|
-      original_web_domain = Rails.configuration.x.web_domain
-      example.run
-      Rails.configuration.x.web_domain = original_web_domain
-    end
-
+  shared_examples 'common HTML sanitization' do
     it 'keeps h1' do
       expect(Sanitize.fragment('<h1>Foo</h1>', subject)).to eq '<h1>Foo</h1>'
     end
@@ -37,13 +29,39 @@ describe Sanitize::Config do
       expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
     end
 
+    it 'removes a with unparsable href' do
+      expect(Sanitize.fragment('<a href=" https://google.fr">Test</a>', subject)).to eq 'Test'
+    end
+
+    it 'keeps a with supported scheme and no host' do
+      expect(Sanitize.fragment('<a href="dweb:/a/foo">Test</a>', subject)).to eq '<a href="dweb:/a/foo" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
+    end
+  end
+
+  describe '::MASTODON_STRICT' do
+    subject { Sanitize::Config::MASTODON_STRICT }
+
+    it_behaves_like 'common HTML sanitization'
+
     it 'keeps a with href and rel tag' do
       expect(Sanitize.fragment('<a href="http://example.com" rel="tag">Test</a>', subject)).to eq '<a href="http://example.com" rel="tag nofollow noopener noreferrer" target="_blank">Test</a>'
     end
+  end
+
+  describe '::MASTODON_STRICT with outgoing toots' do
+    subject { Sanitize::Config::MASTODON_STRICT.merge(outgoing: true) }
+
+    around do |example|
+      original_web_domain = Rails.configuration.x.web_domain
+      example.run
+      Rails.configuration.x.web_domain = original_web_domain
+    end
+
+    it_behaves_like 'common HTML sanitization'
 
     it 'keeps a with href and rel tag, not adding to rel if url is local' do
       Rails.configuration.x.web_domain = 'domain.test'
-      expect(Sanitize.fragment('<a href="http://domain.test/tags/foo" rel="tag">Test</a>', subject.merge(outgoing: true))).to eq '<a href="http://domain.test/tags/foo" rel="tag" target="_blank">Test</a>'
+      expect(Sanitize.fragment('<a href="http://domain.test/tags/foo" rel="tag">Test</a>', subject)).to eq '<a href="http://domain.test/tags/foo" rel="tag" target="_blank">Test</a>'
     end
   end
 end
