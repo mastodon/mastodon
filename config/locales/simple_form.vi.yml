@@ -23,27 +23,27 @@ vi:
       defaults:
         autofollow: Những người đăng ký thông qua lời mời sẽ tự động mến mộ bạn
         avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
-        bot: Tài khoản này chủ yếu thực hiện các hành động tự động và có thể không được theo dõi
+        bot: Tài khoản này chủ yếu tự động thực hiện các hành động và không cần thiết mến mộ
         context: Một hoặc nhiều bối cảnh nơi bộ lọc nên áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ được gửi sau một thời gian dài không hoạt động và chỉ khi bạn đã nhận được bất kỳ tin nhắn cá nhân nào khi bạn vắng mặt
-        discoverable: Thư mục hồ sơ là một cách khác để tài khoản của bạn có thể tiếp cận đối tượng rộng hơn
+        discoverable: Danh sách thành viên là một cách hay để bạn tìm kiếm người bạn muốn mến mộ
         email: Bạn sẽ được gửi một email xác nhận
-        fields: Bạn có thể có tối đa 4 mục được hiển thị dưới dạng bảng trên hồ sơ của bạn
-        header: PNG, GIF hoặc JPG. Nhiều nhất là %{size}. Sẽ bị hạ thấp xuống %{dimensions}px
-        inbox_url: Sao chép URL từ frontpage của rơle bạn muốn sử dụng
-        irreversible: Các toots được lọc sẽ biến mất không thể đảo ngược, ngay cả khi bộ lọc sau đó bị xóa
-        locale: Ngôn ngữ của giao diện người dùng, e-mail và thông báo đẩy
-        locked: Yêu cầu bạn chấp thuận thủ công người theo dõi
+        fields: Bạn có thể tạo tối đa 4 mục được hiển thị dưới dạng bảng trên hồ sơ của bạn
+        header: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
+        inbox_url: Sao chép URL của relay mà bạn muốn sử dụng
+        irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả khi bộ lọc có bị xóa
+        locale: Ngôn ngữ của giao diện, email và thông báo đẩy
+        locked: Yêu cầu bạn chấp thuận thủ công người mến mộ
         password: Sử dụng ít nhất 8 ký tự
-        phrase: Sẽ được kết hợp bất kể vỏ bọc trong văn bản hoặc cảnh báo nội dung của một toot
+        phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn phạm vi cấp cao nhất, bạn không cần chọn từng phạm vi.
-        setting_aggregate_reblogs: Không hiển thị các mức tăng mới cho các mã thông báo đã được tăng gần đây (chỉ ảnh hưởng đến các lần tăng mới nhận được)
-        setting_default_sensitive: Phương tiện nhạy cảm được ẩn theo mặc định và có thể được tiết lộ bằng một cú nhấp chuột
-        setting_display_media_default: Ẩn phương tiện được đánh dấu là nhạy cảm
-        setting_display_media_hide_all: Luôn ẩn tất cả các phương tiện truyền thông
-        setting_display_media_show_all: Luôn hiển thị phương tiện được đánh dấu là nhạy cảm
+        setting_aggregate_reblogs: Đừng hiện những chia sẻ mới cho những tút đã chia sẻ gần đây (chỉ ảnh hưởng đến các chia sẻ mới)
+        setting_default_sensitive: Ảnh & video nhạy cảm được ẩn theo mặc định và có thể được hiển thị bằng một cú nhấp chuột
+        setting_display_media_default: Ẩn ảnh hoặc video được đánh dấu là nhạy cảm
+        setting_display_media_hide_all: Luôn ẩn ảnh và video
+        setting_display_media_show_all: Luôn hiện ảnh và video
         setting_hide_network: Ai bạn theo dõi và ai theo dõi bạn sẽ không được hiển thị trên hồ sơ của bạn
         setting_noindex: Ảnh hưởng đến hồ sơ công khai và trang trạng thái của bạn
         setting_show_application: Ứng dụng bạn sử dụng để mã thông báo sẽ được hiển thị trong chế độ xem chi tiết các mã thông báo của bạn
