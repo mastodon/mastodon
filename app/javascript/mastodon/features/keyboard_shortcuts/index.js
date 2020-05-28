@@ -76,22 +76,24 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><kbd>down</kbd>, <kbd>j</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
               </tr>
-              <tr>
-                <td><kbd>1</kbd>-<kbd>9</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.column' defaultMessage='to focus a status in one of the columns' /></td>
-              </tr>
-              <tr>
-                <td><kbd>left</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.left' defaultMessage='to focus the column on the left' /></td>
-              </tr>
-              <tr>
-                <td><kbd>right</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.right' defaultMessage='to focus the column on the right' /></td>
-              </tr>
-              <tr>
-                <td><kbd>$</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.last_column' defaultMessage='to focus the last column' /></td>
-              </tr>
+              {multiColumn && [
+                <tr>
+                  <td><kbd>1</kbd>-<kbd>9</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.column' defaultMessage='to focus a status in one of the columns' /></td>
+                </tr>,
+                <tr>
+                  <td><kbd>left</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.left' defaultMessage='to focus a status in the column on the left' /></td>
+                </tr>,
+                <tr>
+                  <td><kbd>right</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.right' defaultMessage='to focus a status in the column on the right' /></td>
+                </tr>,
+                <tr>
+                  <td><kbd>$</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.last_column' defaultMessage='to focus a status in the last column' /></td>
+                </tr>,
+              ]}
               <tr>
                 <td><kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.compose' defaultMessage='to focus the compose textarea' /></td>
