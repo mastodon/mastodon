@@ -1,30 +1,29 @@
----
 vi:
   devise:
     confirmations:
-      confirmed: Địa chỉ email của bạn đã được xác nhận thành công.
-      send_instructions: Bạn sẽ nhận được một email với các hướng dẫn về cách xác nhận địa chỉ email của bạn trong vài phút. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
-      send_paranoid_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được email có hướng dẫn cách xác nhận địa chỉ email của bạn trong vài phút. Vui lòng kiểm tra thư mục thư rác nếu bạn không nhận được email này.
+      confirmed: Địa chỉ email của bạn đã được xác thực thành công.
+      send_instructions: Bạn sẽ nhận được một email hướng dẫn cách xác thực địa chỉ email trong vài phút tới. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
+      send_paranoid_instructions: Nếu địa chỉ email của bạn đã tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được một email hướng dẫn cách xác thực lại địa chỉ email. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
     failure:
-      already_authenticated: Bạn đã đăng nhập.
+      already_authenticated: Bạn đã đăng nhập rồi.
       inactive: Tài khoản của bạn chưa được kich hoạt.
-      invalid: "%{authentication_keys} hoặc mật khẩu không hợp lệ."
-      last_attempt: Bạn có thêm một lần thử trước khi tài khoản của bạn bị khóa.
+      invalid: Nhập sai %{authentication_keys} hoặc mật khẩu.
+      last_attempt: Nếu thử sai lần nữa, tài khoản của bạn sẽ bị khóa.
       locked: Tài khoản của bạn bị khóa.
-      not_found_in_database: "%{authentication_keys} hoặc mật khẩu không hợp lệ."
+      not_found_in_database: '%{authentication_keys} không có trong dữ liệu.'
       pending: Tài khoản của bạn vẫn đang được xem xét.
       timeout: Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.
       unauthenticated: Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục.
-      unconfirmed: Bạn phải xác nhận địa chỉ email của bạn trước khi tiếp tục.
+      unconfirmed: Bạn phải xác thực địa chỉ email trước khi tiếp tục.
     mailer:
       confirmation_instructions:
-        action: Xác nhận địa chỉ email
+        action: Xác thực địa chỉ email
         action_with_app: Xác nhận và quay lại %{app}
-        explanation: Bạn đã tạo một tài khoản trên %{host} với địa chỉ email này. Bạn chỉ cần một cú nhấp chuột để kích hoạt nó. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
-        explanation_when_pending: Bạn đã đăng ký lời mời đến %{host} với địa chỉ email này. Khi bạn xác nhận địa chỉ e-mail của mình, chúng tôi sẽ xem xét đơn đăng ký của bạn. Bạn có thể đăng nhập để thay đổi chi tiết hoặc xóa tài khoản của mình, nhưng bạn không thể truy cập hầu hết các chức năng cho đến khi tài khoản của bạn được chấp thuận. Nếu ứng dụng của bạn bị từ chối, dữ liệu của bạn sẽ bị xóa, do đó bạn sẽ không cần phải thực hiện thêm hành động nào nữa. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
-        extra_html: Vui lòng kiểm tra <a href="%{terms_path}">các quy tắc của máy chủ</a> và <a href="%{policy_path}">điều khoản dịch vụ của chúng tôi</a> .
+        explanation: Bạn đã tạo một tài khoản trên %{host} với địa chỉ email này. Chỉ cần một cú nhấp chuột nữa để kích hoạt nó. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
+        explanation_when_pending: Bạn đã đăng ký %{host} với địa chỉ email này. Chúng tôi chỉ xem xét đơn đăng ký sau khi bạn xác thực địa chỉ email. Bạn có thể đăng nhập để thay đổi chi tiết hoặc xóa tài khoản của mình, nhưng bạn không thể truy cập hầu hết các chức năng cho đến khi tài khoản của bạn được chấp thuận. Nếu bạn bị từ chối, dữ liệu của bạn sẽ bị xóa, do đó bạn sẽ không cần phải thực hiện thêm hành động nào nữa. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
+        extra_html: Xin đọc kỹ <a href="%{terms_path}">nội quy máy chủ</a> và <a href="%{policy_path}">điều khoản dịch vụ</a> của chúng tôi.
         subject: 'Mastodon: Hướng dẫn xác nhận cho %{instance}'
-        title: Xác nhận địa chỉ email
+        title: Xác thực địa chỉ email
       email_changed:
         explanation: 'Địa chỉ email cho tài khoản của bạn đang được thay đổi thành:'
         extra: Nếu bạn không thay đổi email của mình, có khả năng ai đó đã truy cập được vào tài khoản của bạn. Vui lòng thay đổi mật khẩu của bạn ngay lập tức hoặc liên hệ với quản trị viên máy chủ nếu bạn bị khóa khỏi tài khoản của bạn.
