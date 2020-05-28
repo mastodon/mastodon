@@ -45,24 +45,24 @@ vi:
         username: Tên người dùng của bạn sẽ là duy nhất trên %{domain}
         whole_word: Khi từ khóa hoặc cụm từ chỉ là chữ và số, nó sẽ chỉ hiện ra những từ chính xác như vậy
       domain_allow:
-        domain: Máy chủ này sẽ tiếp nhận dữ liệu cũ, rồi sau đó xử lý và lưu trữ
+        domain: Máy chủ này sẽ tiếp nhận dữ liệu, rồi sau đó xử lý và lưu trữ
       email_domain_block:
         domain: Đây có thể là tên máy chủ của địa chỉ email. Nếu máy chủ đó có vấn đề, đăng ký sẽ bị từ chối.
         with_dns_records: Nếu DNS có vấn đề, nó sẽ bị đưa vào danh sách cấm
       featured_tag:
-        name: 'Bạn có thể muốn sử dụng một trong những điều sau đây:'
+        name: 'Những hashtag khuyến nghị bạn sử dụng:'
       form_challenge:
-        current_password: Bạn đang vào một khu vực an toàn
+        current_password: Biểu mẫu này an toàn
       imports:
         data: Tệp CSV được xuất từ máy chủ Mastodon khác
       invite_request:
-        text: Điều này sẽ giúp chúng tôi xem xét ứng dụng của bạn
+        text: Điều này sẽ giúp chúng tôi xem xét lời mời của bạn
       sessions:
-        otp: 'Nhập mã hai yếu tố được tạo bởi ứng dụng điện thoại của bạn hoặc sử dụng một trong các mã khôi phục của bạn:'
+        otp: 'Nhập mã xác thực hai yếu tố được tạo bởi ứng dụng điện thoại của bạn hoặc sử dụng một trong các mã khôi phục của bạn:'
       tag:
-        name: Bạn chỉ có thể thay đổi vỏ của các chữ cái, ví dụ, để dễ đọc hơn
+        name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
-        chosen_languages: Khi được chọn, chỉ các toots trong các ngôn ngữ được chọn sẽ được hiển thị theo các mốc thời gian công khai
+        chosen_languages: Chỉ những tút viết bằng các ngôn ngữ được chọn sẽ được hiển thị trên bảng tin
     labels:
       account:
         fields:
@@ -140,6 +140,8 @@ vi:
         username: Tên người dùng
         username_or_email: Tên người dùng hoặc email
         whole_word: Cả từ
+      email_domain_block:
+        with_dns_records: Bao gồm bản ghi MX và địa chỉ IP của máy chủ
       featured_tag:
         name: Hashtag
       interactions:
