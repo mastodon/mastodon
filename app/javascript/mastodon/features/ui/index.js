@@ -254,6 +254,7 @@ class UI extends React.PureComponent {
     dispatch(synchronouslySubmitMarkers());
 
     if (isComposing && (hasComposingText || hasMediaAttachments)) {
+      e.preventDefault();
       // Setting returnValue to any string causes confirmation dialog.
       // Many browsers no longer display this text to users,
       // but we set user-friendly message for other browsers, e.g. Edge.
