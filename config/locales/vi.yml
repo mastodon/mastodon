@@ -148,7 +148,7 @@ vi:
       protocol: Giao thức
       public: Công khai
       push_subscription_expires: Đăng ký PuSH hết hạn
-      redownload: Làm mới hồ sơ
+      redownload: Làm mới trang cá nhân
       reject: Từ chối
       reject_all: Từ chối tất cả
       remove_avatar: Xóa ảnh đại diện
@@ -357,7 +357,7 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Im lặng</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Đình chỉ</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu hồ sơ của tài khoản. Sử dụng <strong>Không</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          desc_html: "<strong>Im lặng</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Đình chỉ</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Không</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không
           silence: Im lặng
           suspend: Đình chỉ
@@ -703,7 +703,7 @@ vi:
     following: 'Chúc mừng! Bạn đã trở thành người mến mộ của'
     post_follow:
       close: Bạn có muốn đóng cửa sổ này?
-      return: Hiện trang cá nhân
+      return: Hiện trên trang cá nhân
       web: Truy cập web
     title: Mến mộ %{acct}
   challenge:
@@ -914,9 +914,9 @@ vi:
       cooldown: Sau khi di chuyển, có thời gian chiêu hồi, trong đó bạn sẽ không thể di chuyển nữa
       disabled_account: Tài khoản hiện tại của bạn sẽ không thể sử dụng đầy đủ sau đó. Tuy nhiên, bạn sẽ có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
       followers: Hành động này sẽ chuyển tất cả người mến mộ từ tài khoản hiện tại sang tài khoản mới
-      only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên hồ sơ của bạn</a>.
+      only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên trang cá nhân của bạn</a>.
       other_data: Dữ liệu khác sẽ không được di chuyển tự động
-      redirect: Hồ sơ tài khoản hiện tại của bạn sẽ được cập nhật với thông báo chuyển hướng và bị loại khỏi các tìm kiếm
+      redirect: Trang cá nhân hiện tại của bạn sẽ được cập nhật với thông báo chuyển hướng và bị loại khỏi các tìm kiếm
   moderation:
     title: Kiểm duyệt
   notification_mailer:
@@ -1077,7 +1077,7 @@ vi:
     back: Quay lại Mastodon
     delete: Xóa tài khoản
     development: Phát triển
-    edit_profile: Chỉnh sửa hồ sơ
+    edit_profile: Chỉnh sửa trang cá nhân
     export: Xuất dữ liệu
     featured_tags: Hashtags thường dùng
     identity_proofs: Bằng chứng nhận dạng
@@ -1188,8 +1188,8 @@ vi:
         silence: Tài khoản bị cấm túc
         suspend: Toàn khoản bị đình chỉ
     welcome:
-      edit_profile_action: Cài đặt hồ sơ
-      edit_profile_step: Bạn có thể tùy chỉnh hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người mến mộ mới phải được phê duyệt, bạn có thể khóa tài khoản của mình.
+      edit_profile_action: Cài đặt trang cá nhân
+      edit_profile_step: Bạn có thể tùy chỉnh trang cá nhân của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người mến mộ mới phải được phê duyệt, bạn có thể khóa tài khoản của mình.
       explanation: Dưới đây là một số lời khuyên để giúp bạn bắt đầu
       final_action: Viết tút mới
       final_step: 'Viết tút mới! Ngay cả khi không có người mến mộ, người khác vẫn có thể xem tút công khai của bạn, ví dụ như trên bảng tin máy chủ và trong hashtag. Hãy giới thiệu bản thân với hashtag #introductions.'
@@ -1212,5 +1212,5 @@ vi:
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập với tư cách là:'
   verification:
-    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các liên kết trong siêu dữ liệu hồ sơ của bạn</strong> . Vì vậy, trang web được liên kết phải chứa một liên kết trở lại hồ sơ Mastodon của bạn. Liên kết trở lại <strong>phải</strong> có thuộc tính <code>rel=&quot;me&quot;</code> . Nội dung văn bản của liên kết không quan trọng. Đây là một ví dụ:'
+    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web ở đầu trang cá nhân của bạn</strong>. Để xác minh, trang web <strong>phải</strong> chèn mã <code>rel="me"</code>. Nội dung văn bản của liên kết không quan trọng. Đây là một ví dụ:'
     verification: Xác minh
