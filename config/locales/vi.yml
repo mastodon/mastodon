@@ -167,58 +167,97 @@ vi:
         staff: Đội ngũ quản lý
         user: Người dùng
       search: Tìm kiếm
-      search_same_ip: Thành viên khác cùng IP
-      shared_inbox_url: URL hộp thư đến được chia sẻ
+      search_same_email_domain: Tìm người dùng có cùng địa chỉ email
+      search_same_ip: Tìm người dùng có cùng IP
+      shared_inbox_url: Chia sẻ URL hộp thư đến
       show:
-        created_reports: Làm báo cáo
+        created_reports: Xuất báo cáo
         targeted_reports: Báo cáo bởi người khác
-      silence: khoảng lặng
+      silence: Im lặng
       silenced: Im lặng
       statuses: Tút
       subscribe: Đăng ký
       suspended: Đình chỉ
-      time_in_queue: Chờ đợi trong hàng đợi %{time}
+      time_in_queue: Đang chờ cách đây %{time}
       title: Tài khoản
       unconfirmed_email: Email chưa được xác nhận
-      undo_silenced: Hoàn tác im lặng
-      undo_suspension: Hoàn tác hệ thống treo
+      undo_silenced: Trở về im lặng
+      undo_suspension: Ngưng đình chỉ
       unsubscribe: Hủy đăng ký
-      username: tên tài khoản
-      warn: Cảnh báo
+      username: Tên tài khoản
+      warn: Cảnh cáo
       web: Web
       whitelisted: Danh sách trắng
     action_logs:
+      action_types:
+        assigned_to_self_report: Báo cáo từ đội ngũ
+        change_email_user: Đổi email cho người dùng
+        confirm_user: Xác nhận người dùng
+        create_account_warning: Tạo cảnh cáo
+        create_announcement: Tạo thông báo
+        create_custom_emoji: Tạo Emoji mới
+        create_domain_allow: Tạo danh sách máy chủ cho phép
+        create_domain_block: Tạo danh sách máy chủ chặn
+        create_email_domain_block: Tạo danh sách địa chỉ email chặn
+        demote_user: Gỡ bỏ chức vụ
+        destroy_announcement: Gỡ thông báo
+        destroy_custom_emoji: Gỡ Emoji
+        destroy_domain_allow: Gỡ máy chủ cho phép
+        destroy_domain_block: Gỡ máy chủ chặn
+        destroy_email_domain_block: Gỡ email đã chặn
+        destroy_status: Xóa tút
+        disable_2fa_user: Vô hiệu hóa xác thực hai bước
+        disable_custom_emoji: Vô hiệu hóa Emoji
+        disable_user: Vô hiệu hóa người dùng
+        enable_custom_emoji: Bật Emoji
+        enable_user: Mở lại người dùng
+        memorialize_account: Tài khoản tưởng niệm
+        promote_user: Chỉ định chức vụ
+        remove_avatar_user: Gỡ bỏ ảnh đại diện
+        reopen_report: Mở lại báo cáo
+        reset_password_user: Đặt lại mật khẩu
+        resolve_report: Xem xét lại báo cáo
+        silence_account: Tài khoản im lặng
+        suspend_account: Đình chỉ người dùng
+        unassigned_report: Báo cáo chưa xem
+        unsilence_account: Bỏ tài khoản im lặng
+        unsuspend_account: Hủy đình chỉ tài khoản
+        update_announcement: Cập nhật thông báo
+        update_custom_emoji: Cập nhật Emoji mới
+        update_status: Cập nhật trạng thái máy chủ
       actions:
-        assigned_to_self_report: "%{name} được chỉ định báo cáo %{target} cho chính họ"
-        change_email_user: "%{name} đã thay đổi địa chỉ email của người dùng %{target}"
+        assigned_to_self_report: "%{name} đã xuất báo cáo %{target} cho chính họ"
+        change_email_user: "%{name} đã thay đổi địa chỉ email cho %{target}"
         confirm_user: "%{name} xác nhận địa chỉ email của người dùng %{target}"
-        create_account_warning: "%{name} đã gửi cảnh báo tới %{target}"
+        create_account_warning: "%{name} đã gửi cảnh cáo %{target}"
+        create_announcement: "%{name} tạo thông báo tới %{target}"
         create_custom_emoji: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
-        create_domain_allow: "%{name} tên miền trong danh sách trắng %{target}"
-        create_domain_block: "%{name} tên miền bị chặn %{target}"
-        create_email_domain_block: "%{name} tên miền e-mail trong danh sách đen %{target}"
-        demote_user: "%{name} hạ cấp người dùng %{target}"
+        create_domain_allow: "%{name} đưa máy chủ %{target} vào danh sách trắng"
+        create_domain_block: "%{name} chặn máy chủ %{target}"
+        create_email_domain_block: "%{name} đưa email %{target} vào danh sách đen"
+        demote_user: "%{name} đã gỡ bỏ chức vụ %{target}"
+        destroy_announcement: "%{name} gỡ thông báo tới %{target}"
         destroy_custom_emoji: "%{name} biểu tượng cảm xúc bị phá hủy %{target}"
         destroy_domain_allow: "%{name} đã xóa tên miền %{target} khỏi danh sách trắng"
-        destroy_domain_block: "%{name} tên miền không bị chặn %{target}"
-        destroy_email_domain_block: "%{name} tên miền e-mail được liệt kê trắng %{target}"
-        destroy_status: "%{name} đã xóa trạng thái bởi %{target}"
-        disable_2fa_user: "%{name} đã vô hiệu hóa yêu cầu hai yếu tố cho người dùng %{target}"
-        disable_custom_emoji: "%{name} biểu tượng cảm xúc bị vô hiệu hóa %{target}"
-        disable_user: "%{name} đăng nhập bị vô hiệu hóa cho người dùng %{target}"
-        enable_custom_emoji: "%{name} kích hoạt biểu tượng cảm xúc %{target}"
+        destroy_domain_block: "%{name} bỏ chặn máy chủ %{target}"
+        destroy_email_domain_block: "%{name} cho email %{target} vào danh sách trắng"
+        destroy_status: "%{name} đã gỡ bỏ tút của %{target}"
+        disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
+        disable_custom_emoji: "%{name} đã gỡ bỏ Emoji %{target}"
+        disable_user: "%{name} vô hiệu hóa đăng nhập của người dùng %{target}"
+        enable_custom_emoji: "%{name} kích hoạt Emoji %{target}"
         enable_user: "%{name} kích hoạt đăng nhập cho người dùng %{target}"
-        memorialize_account: "%{name} đã biến tài khoản của %{target} thành một trang ghi nhớ"
-        promote_user: "%{name} người dùng được quảng cáo %{target}"
-        remove_avatar_user: "%{name} đã xóa hình đại diện của %{target}"
+        memorialize_account: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
+        promote_user: "%{name} đã chỉ định chức vụ cho %{target}"
+        remove_avatar_user: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report: "%{name} mở lại báo cáo %{target}"
         reset_password_user: "%{name} đặt lại mật khẩu của người dùng %{target}"
         resolve_report: "%{name} đã giải quyết báo cáo %{target}"
         silence_account: "%{name} im lặng tài khoản của %{target}"
-        suspend_account: "%{name} bị treo tài khoản của %{target}"
+        suspend_account: "%{name} đình chỉ tài khoản của %{target}"
         unassigned_report: "%{name} báo cáo chưa được chỉ định %{target}"
-        unsilence_account: "%{name} chưa được phân loại tài khoản của %{target}"
-        unsuspend_account: "%{name} không có tài khoản %{target} của tài khoản"
+        unsilence_account: "%{name} gỡ im lặng cho %{target}"
+        unsuspend_account: "%{name} gỡ đình chỉ cho %{target}"
         update_custom_emoji: "%{name} đã cập nhật biểu tượng cảm xúc %{target}"
         update_status: "%{name} trạng thái được cập nhật bởi %{target}"
       deleted_status: "(trạng thái đã xóa)"
