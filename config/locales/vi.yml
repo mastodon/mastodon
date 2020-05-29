@@ -739,36 +739,36 @@ vi:
       caches: Nội dung đã được lưu trữ bởi các máy chủ khác có thể tồn tại
       data_removal: Bài viết của bạn và dữ liệu khác sẽ bị xóa vĩnh viễn
       email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần phải xóa tài khoản
-      email_contact_html: Nếu nó vẫn không đến, bạn có thể gửi e-mail <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
-      email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, bạn có thể <a href="%{path}">yêu cầu lại</a>
+      email_contact_html: Nếu vẫn không nhận được, bạn có thể liên hệ <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
+      email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, hãy thử <a href="%{path}">yêu cầu lại</a>
       irreversible: Bạn sẽ không thể khôi phục hoặc kích hoạt lại tài khoản của mình
-      more_details_html: Để biết thêm chi tiết, xem <a href="%{terms_path}">chính sách bảo mật</a> .
-      username_available: Tên người dùng của bạn sẽ có sẵn một lần nữa
-      username_unavailable: Tên người dùng của bạn sẽ không có sẵn
+      more_details_html: Để biết thêm chi tiết, xem <a href="%{terms_path}">chính sách bảo mật</a>.
+      username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
+      username_unavailable: Tên người dùng của bạn sẽ không thể đăng ký mới
   directories:
-    directory: Thư mục hồ sơ
+    directory: Danh sách thành viên
     explanation: Khám phá người dùng dựa trên sở thích của họ
     explore_mastodon: Khám phá %{title}
   domain_validator:
     invalid_domain: không phải là một tên miền hợp lệ
   errors:
-    '400': Yêu cầu bạn gửi không hợp lệ hoặc không đúng.
+    '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
     '403': Bạn không có quyền xem trang này.
-    '404': Trang bạn đang tìm kiếm không có ở đây.
-    '406': Trang này không có sẵn ở định dạng được yêu cầu.
-    '410': Trang bạn đang tìm kiếm không còn tồn tại ở đây nữa.
+    '404': Trang này đã bị xóa trước đó.
+    '406': Trang này không thể hiển thị do lỗi định dạng.
+    '410': Trang này không còn tồn tại nữa.
     '422':
       content: Xác minh bảo mật thất bại. Bạn đang chặn cookie?
-      title: Xác minh bảo mật không thành công
-    '429': Điều chỉnh
+      title: Xác minh bảo mật thất bại
+    '429': Quá nhiều yêu cầu cùng lúc
     '500':
       content: Chúng tôi xin lỗi, nhưng đã xảy ra sự cố.
-      title: Trang này không đúng
-    '503': Trang không thể được phục vụ do lỗi máy chủ tạm thời.
-    noscript_html: Để sử dụng ứng dụng web Mastodon, vui lòng bật JavaScript. Ngoài ra, hãy thử một trong những <a href="%{apps_path}">ứng dụng gốc</a> cho Mastodon cho nền tảng của bạn.
+      title: Múi giờ trên thiết bị không đúng
+    '503': Trang không thể hiển thị do lỗi máy chủ tạm thời.
+    noscript_html: Để sử dụng ứng dụng web Mastodon, vui lòng bật JavaScript. Ngoài ra, hãy thử một trong những <a href="%{apps_path}">ứng dụng gốc</a> của Mastodon cho hệ điều hành của bạn.
   existing_username_validator:
     not_found: không thể tìm thấy người dùng cục bộ với tên người dùng đó
-    not_found_multiple: không thể tìm thấy %{usernames}
+    not_found_multiple: không tìm thấy %{usernames}
   exports:
     archive_takeout:
       date: Ngày
