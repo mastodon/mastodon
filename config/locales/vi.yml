@@ -767,75 +767,80 @@ vi:
     '503': Trang không thể hiển thị do lỗi máy chủ tạm thời.
     noscript_html: Để sử dụng ứng dụng web Mastodon, vui lòng bật JavaScript. Ngoài ra, hãy thử một trong những <a href="%{apps_path}">ứng dụng gốc</a> của Mastodon cho hệ điều hành của bạn.
   existing_username_validator:
-    not_found: không thể tìm thấy người dùng cục bộ với tên người dùng đó
+    not_found: không có tên người dùng này trên máy chủ
     not_found_multiple: không tìm thấy %{usernames}
   exports:
     archive_takeout:
       date: Ngày
-      download: Tải về kho lưu trữ của bạn
-      hint_html: Bạn có thể yêu cầu một kho lưu trữ các <strong>tút và phương tiện được tải lên</strong> . Dữ liệu đã xuất sẽ ở định dạng ActivityPub, có thể đọc được bởi bất kỳ phần mềm tuân thủ nào. Bạn có thể yêu cầu một kho lưu trữ cứ sau 7 ngày.
-      in_progress: Biên dịch kho lưu trữ của bạn ...
-      request: Yêu cầu kho lưu trữ của bạn
-      size: Kích thước
-    blocks: Bạn chặn
+      download: Tải về dữ liệu của bạn
+      hint_html: Bạn có thể tải về <strong>tút và ảnh và video</strong> mà bạn đã đăng lên. Dữ liệu xuất ra sẽ ở định dạng ActivityPub, đọc được bởi bất kỳ phần mềm tương thích nào. Chu kỳ lưu trữ dữ liệu mới là cách 7 ngày.
+      in_progress: Đang tổng hợp dữ liệu của bạn...
+      request: Tải về dữ liệu của bạn
+      size: Dung lượng
+    blocks: Người bạn chặn
     csv: CSV
-    domain_blocks: Khối miền
+    domain_blocks: Máy chủ bạn chặn
     lists: Danh sách
-    mutes: Bạn câm
-    storage: Phương tiện lưu trữ
+    mutes: Người bạn ẩn
+    storage: Tập tin
   featured_tags:
     add_new: Thêm mới
     errors:
-      limit: Bạn đã làm nổi bật số lượng hashtag tối đa
-    hint_html: "<strong>Hashtags đặc trưng là gì?</strong> Chúng được hiển thị nổi bật trên hồ sơ công khai của bạn và cho phép mọi người duyệt các bài đăng công khai của bạn cụ thể theo các hashtag đó. Chúng là một công cụ tuyệt vời để theo dõi các công trình sáng tạo hoặc các dự án dài hạn."
+      limit: Bạn đã đạt tới số lượng hashtag tối đa
+    hint_html: "<strong>Hashtags thường dùng là gì?</strong> Chúng được hiển thị nổi bật trên trang cá nhân của bạn và cho phép mọi người tìm kiếm các bài đăng công khai của bạn có chứa các hashtag đó. Chúng là một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo hoặc các dự án dài hạn."
   filters:
     contexts:
-      home: Dòng thời gian
+      account: Trang cá nhân
+      home: Bảng tin
       notifications: Thông báo
-      public: Mốc thời gian công cộng
+      public: Tin công khai
       thread: Cuộc trò chuyện
     edit:
       title: Chỉnh sửa bộ lọc
     errors:
-      invalid_context: Không có hoặc bối cảnh không hợp lệ được cung cấp
-      invalid_irreversible: Lọc không thể đảo ngược chỉ hoạt động với bối cảnh nhà hoặc thông báo
+      invalid_context: Không có hoặc bối cảnh không hợp lệ
+      invalid_irreversible: Bộ lọc chỉ hoạt động với bảng tin hoặc nội dung thông báo
     index:
       delete: Xóa bỏ
+      empty: Chưa có bộ lọc nào.
       title: Bộ lọc
     new:
       title: Thêm bộ lọc mới
   footer:
     developers: Nhà phát triển
-    more: Hơn…
-    resources: Tài nguyên
-    trending_now: Đang là xu hướng
+    more: Nhiều hơn
+    resources: Tham khảo
+    trending_now: Xu hướng
   generic:
     all: Tất cả
     changes_saved_msg: Thay đổi được lưu thành công!
     copy: Sao chép
-    no_batch_actions_available: Không có hành động hàng loạt có sẵn trên trang này
-    order_by: Đặt bởi
+    delete: Xóa
+    no_batch_actions_available: Không có sẵn hành động hàng loạt trên trang này
+    order_by: Sắp xếp
     save_changes: Lưu thay đổi
     validation_errors:
-      other: Một cái gì đó không hoàn toàn đúng! Vui lòng xem lại lỗi %{count} bên dưới
+      other: Có cái gì đó không đúng! Vui lòng xem lại lỗi %{count} bên dưới
   html_validator:
     invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   identity_proofs:
     active: Hoạt động
-    authorize: Vâng, ủy quyền
-    authorize_connection_prompt: Cho phép kết nối mật mã này?
+    authorize: OK, cho phép
+    authorize_connection_prompt: Cho phép kết nối mã hóa này?
     errors:
-      failed: Kết nối mật mã không thành công. Vui lòng thử lại từ %{provider}.
+      failed: Kết nối mã hóa không thành công. Vui lòng thử lại từ %{provider}.
       keybase:
-        invalid_token: Mã thông báo cơ sở chính là băm chữ ký và phải là 66 ký tự hex
-        verification_failed: Keybase không nhận ra mã thông báo này là chữ ký của người dùng Keybase %{kb_username}. Vui lòng thử lại từ Keybase.
+        invalid_token: Mã đăng nhập Keybase giống như chữ ký số và phải đảm bảo 66 ký tự hex
+        verification_failed: Keybase không nhận ra mã đăng nhập này là chữ ký của người dùng Keybase %{kb_username}. Vui lòng thử lại từ Keybase.
       wrong_user: Không thể tạo bằng chứng cho %{proving} trong khi đăng nhập là %{current}. Đăng nhập bằng %{proving} và thử lại.
     explanation_html: Tại đây, bạn có thể kết nối mật mã các danh tính khác của mình, chẳng hạn như hồ sơ Keybase. Điều này cho phép người khác gửi cho bạn tin nhắn được mã hóa và tin tưởng nội dung bạn gửi cho họ.
     i_am_html: Tôi là %{username} trên %{service}.
     identity: Danh tính
     inactive: Không hoạt động
     publicize_checkbox: 'Và tút này:'
-    publicize_toot: 'Nó đã được chứng minh! Tôi là %{username} trên %{service}: %{url}'
+    publicize_toot: 'Đã chứng minh! Tôi là %{username} trên %{service}: %{url}'
+    remove: Xóa bằng chứng của tài khoản
+    removed: Hoàn tất xóa bằng chứng của tài khoản
     status: Tình trạng xác minh
     view_proof: Xem bằng chứng
   imports:
