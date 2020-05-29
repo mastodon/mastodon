@@ -699,43 +699,46 @@ vi:
     already_requested: Bạn vừa gửi một yêu cầu mến mộ tới người dùng này
     error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
     follow: Mến mộ
-    follow_request: 'Bạn đã gửi yêu cầu theo dõi tới:'
-    following: 'Sự thành công! Bạn đang theo dõi:'
+    follow_request: 'Bạn đã gửi yêu cầu mến mộ tới'
+    following: 'Chúc mừng! Bạn đã trở thành người mến mộ của'
     post_follow:
-      close: Hoặc, bạn chỉ có thể đóng cửa sổ này.
-      return: Hiển thị hồ sơ của người dùng
+      close: Bạn có muốn đóng cửa sổ này?
+      return: Hiện trang cá nhân
       web: Truy cập web
-    title: Thực hiện theo %{acct}
+    title: Mến mộ %{acct}
   challenge:
     confirm: Tiếp tục
-    hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn trong giờ tiếp theo."
+    hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
     invalid_password: Mật khẩu không hợp lệ
     prompt: Xác nhận mật khẩu để tiếp tục
+  date:
+    formats:
+      default: "%d.%m.%y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}g"
-      about_x_months: "%{count}mo"
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}th"
       about_x_years: "%{count}y"
       almost_x_years: "%{count}y"
-      half_a_minute: Vừa nãy
-      less_than_x_minutes: "%{count}p"
-      less_than_x_seconds: Vừa nãy
+      half_a_minute: Vừa xong
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Vừa xong
       over_x_years: "%{count}y"
-      x_days: "%{count}n"
+      x_days: "%{count}d"
       x_minutes: "%{count}p"
       x_months: "%{count}mo"
-      x_seconds: "%{count}g"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
     confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh danh tính của bạn
-    confirm_username: Nhập tên người dùng của bạn để xác nhận thủ tục
+    confirm_username: Nhập tên người dùng của bạn để hoàn tất thủ tục
     proceed: Xóa tài khoản
     success_msg: Tài khoản của bạn đã được xóa thành công
     warning:
-      before: 'Trước khi tiếp tục, xin vui lòng đọc các ghi chú cẩn thận:'
+      before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
       caches: Nội dung đã được lưu trữ bởi các máy chủ khác có thể tồn tại
       data_removal: Bài viết của bạn và dữ liệu khác sẽ bị xóa vĩnh viễn
-      email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần xóa tài khoản của bạn
+      email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần phải xóa tài khoản
       email_contact_html: Nếu nó vẫn không đến, bạn có thể gửi e-mail <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
       email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, bạn có thể <a href="%{path}">yêu cầu lại</a>
       irreversible: Bạn sẽ không thể khôi phục hoặc kích hoạt lại tài khoản của mình
