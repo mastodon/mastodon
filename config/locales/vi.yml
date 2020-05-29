@@ -911,50 +911,54 @@ vi:
     warning:
       backreference_required: Tài khoản mới trước tiên phải được cấu hình để tham chiếu lại tài khoản này
       before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
-      cooldown: Sau khi di chuyển, có thời gian hồi chiêu, trong đó bạn sẽ không thể di chuyển nữa
+      cooldown: Sau khi di chuyển, có thời gian chiêu hồi, trong đó bạn sẽ không thể di chuyển nữa
       disabled_account: Tài khoản hiện tại của bạn sẽ không thể sử dụng đầy đủ sau đó. Tuy nhiên, bạn sẽ có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
-      followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
-      only_redirect_html: Ngoài ra, bạn <a href="%{path}">chỉ</a> có thể <a href="%{path}">đưa ra một chuyển hướng trên hồ sơ của bạn</a> .
-      other_data: Không có dữ liệu khác sẽ được di chuyển tự động
+      followers: Hành động này sẽ chuyển tất cả người mến mộ từ tài khoản hiện tại sang tài khoản mới
+      only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên hồ sơ của bạn</a>.
+      other_data: Dữ liệu khác sẽ không được di chuyển tự động
       redirect: Hồ sơ tài khoản hiện tại của bạn sẽ được cập nhật với thông báo chuyển hướng và bị loại khỏi các tìm kiếm
   moderation:
-    title: Điều độ
+    title: Kiểm duyệt
   notification_mailer:
     digest:
-      action: Xem tất cả các thông báo
+      action: Xem toàn bộ thông báo
       body: Dưới đây là một bản tóm tắt ngắn gọn về các tin nhắn bạn đã bỏ lỡ kể từ lần truy cập trước vào %{since}
-      mention: "%{name} đã đề cập đến bạn trong:"
+      mention: "%{name} đã nhắc đến bạn trong:"
       new_followers_summary:
-        other: Ngoài ra, bạn đã có được %{count} người theo dõi mới trong khi đi xa! Kinh ngạc!
+        other: Ngoài ra, bạn đã có %{count} người mến mộ mới trong khi đi chơi! Ngạc nhiên chưa!
       subject:
-        other: "%{count} thông báo mới kể từ lần truy cập trước của bạn"
-      title: Khi bạn vắng mặt ...
+        other: "%{count} thông báo mới kể từ lần truy cập trước \U0001F418"
+      title: Khi bạn vắng mặt...
     favourite:
-      body: 'Trạng thái của bạn đã được yêu thích bởi %{name}:'
-      subject: "%{name} yêu thích trạng thái của bạn"
-      title: Yêu thích mới
+      body: '%{name} đã tâm đắc tút của bạn:'
+      subject: "%{name} đã tâm đắc tút của bạn"
+      title: Lượt tâm đắc mới
     follow:
-      body: "%{name} hiện đang theo dõi bạn!"
-      subject: "%{name} hiện đang theo dõi bạn"
-      title: Người theo dõi mới
+      body: "%{name} vừa mới mến mộ bạn!"
+      subject: "%{name} vừa mới mến mộ bạn"
+      title: Người mến mộ mới
     follow_request:
-      action: Quản lý theo yêu cầu
-      body: "%{name} đã yêu cầu theo dõi bạn"
-      subject: 'Người theo dõi đang chờ xử lý: %{name}'
-      title: Yêu cầu theo dõi mới
+      action: Quản lý yêu cầu mến mộ
+      body: "%{name} đã yêu cầu mến mộ bạn"
+      subject: 'Người mến mộ đang chờ đồng ý: %{name}'
+      title: Yêu cầu mến mộ mới
     mention:
-      action: Đáp lại
-      body: 'Bạn đã được đề cập bởi %{name} trong:'
-      subject: Bạn đã được đề cập bởi %{name}
-      title: Đề cập mới
+      action: Phản hồi
+      body: 'Bạn đã được nhắc đến bởi %{name} trong:'
+      subject: Bạn đã được nhắc đến bởi %{name}
+      title: Lượt nhắc mới
     reblog:
-      body: 'Trạng thái của bạn đã được loan tin bởi %{name}:'
-      subject: "%{name} đã loan tin trạng thái của bạn"
-      title: Tăng mới
+      body: 'Tút của bạn đã được chia sẻ bởi %{name}:'
+      subject: "%{name} đã chia sẻ tút của bạn"
+      title: Lượt chia sẻ mới
+  notifications:
+    email_events: Những hoạt động thông báo qua email
+    email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
+    other_settings: Cài đặt thông báo khác
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n%A"
         units:
           billion: B
           million: M
@@ -964,58 +968,65 @@ vi:
   pagination:
     newer: Mới hơn
     next: Kế tiếp
-    older: Lớn hơn
+    older: Cũ hơn
     prev: Trước đó
-    truncate: "Giáo dục"
+    truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Bạn đã bình chọn trong cuộc bình chọn này
+      already_voted: Bạn đã bình chọn trong cuộc thăm dò này
       duplicate_options: chứa các mục trùng lặp
-      duration_too_long: quá xa trong tương lai
+      duration_too_long: khoảng cách thời gian quá xa
       duration_too_short: quá sớm
       expired: Cuộc thăm dò đã kết thúc
       invalid_choice: Lựa chọn không tồn tại
-      over_character_limit: không thể dài hơn %{max} ký tự mỗi ký tự
+      over_character_limit: độ dài tối đa %{max} ký tự
       too_few_options: phải có nhiều hơn một mục
-      too_many_options: không thể chứa nhiều hơn %{max}
+      too_many_options: tối đa %{max} mục
   preferences:
     other: Khác
-    posting_defaults: Đăng mặc định
-    public_timelines: Mốc thời gian công cộng
+    posting_defaults: Trạng thái tút mặc định
+    public_timelines: Bảng tin công khai
+  reactions:
+    errors:
+      limit_reached: Đã đạt giới hạn khác
+      unrecognized_emoji: không phải là emoji
   relationships:
     activity: Hoạt động tài khoản
-    dormant: Không hoạt động
+    dormant: Không có tương tác
+    followers: Người mến mộ bạn
+    following: Người bạn mến mộ
+    invited: Người bạn mời đăng ký
     last_active: Hoạt động lần cuối
     most_recent: Gần đây nhất
-    moved: Đã chuyển
-    mutual: Tương thân
+    moved: Dời sang
+    mutual: Bằng Hữu
     primary: Sơ cấp
     relationship: Mối quan hệ
-    remove_selected_domains: Xóa tất cả người theo dõi khỏi các miền đã chọn
-    remove_selected_followers: Xóa những người theo dõi đã chọn
-    remove_selected_follows: Hủy theo dõi người dùng đã chọn
+    remove_selected_domains: Xóa hết người mến mộ từ các máy chủ đã chọn
+    remove_selected_followers: Xóa những người mến mộ đã chọn
+    remove_selected_follows: Hủy mến mộ người dùng đã chọn
     status: Tình trạng tài khoản
   remote_follow:
-    acct: Nhập tên người dùng @ tên miền bạn muốn hành động từ
+    acct: Nhập tên người dùng@máy chủ bạn muốn tương tác
     missing_resource: Không thể tìm thấy URL chuyển hướng cần thiết cho tài khoản của bạn
-    no_account_html: Không có tài khoản? Bạn có thể <a href='%{sign_up_path}' target='_blank'>đăng ký tại đây</a>
+    no_account_html: Chưa có tài khoản? Bạn có thể <a href='%{sign_up_path}' target='_blank'>đăng ký tại đây</a>
     proceed: Tiến hành theo
-    prompt: 'Bạn sẽ làm theo:'
-    reason_html: "<strong>Tại sao bước này là cần thiết?</strong> <code>%{instance}</code> có thể không phải là máy chủ nơi bạn đã đăng ký, vì vậy chúng tôi cần chuyển hướng bạn đến máy chủ nhà của bạn trước."
+    prompt: 'Bạn sắp tiếp tục:'
+    reason_html: "<strong>Tại sao bước này là cần thiết?</strong> <code>%{instance}</code> có thể không phải là máy chủ nơi bạn đã đăng ký, vì vậy chúng tôi cần chuyển hướng bạn đến máy chủ của bạn trước."
   remote_interaction:
     favourite:
-      proceed: Tiếp tục yêu thích
-      prompt: 'Bạn muốn yêu thích tút này:'
+      proceed: Tiếp tục tâm đắc
+      prompt: 'Bạn tâm đắc tút này:'
     reblog:
-      proceed: Tiến hành để loan tin
-      prompt: 'Bạn muốn loan tin hoạt động này:'
+      proceed: Tiếp tục chia sẻ
+      prompt: 'Bạn chia sẻ tút này:'
     reply:
-      proceed: Tiến hành trả lời
-      prompt: 'Bạn muốn trả lời tút này:'
+      proceed: Tiếp tục bình luận
+      prompt: 'Bạn bình luận tút này:'
   scheduled_statuses:
     over_daily_limit: Bạn đã vượt quá giới hạn của các tút được lên lịch %{limit} cho ngày hôm đó
-    over_total_limit: Bạn đã vượt quá giới hạn của các tút theo lịch trình %{limit}
-    too_soon: Ngày dự kiến phải trong tương lai
+    over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
+    too_soon: Ngày lên lịch phải trong tương lai
   sessions:
     activity: Hoạt động cuối
     browser: Trình duyệt
@@ -1024,17 +1035,17 @@ vi:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
-      electron: Điện tử
+      electron: Electron
       firefox: Firefox
-      generic: Trình duyệt không xác định
-      ie: trình duyệt web IE
+      generic: Trình duyệt khác
+      ie: Internet Explorer
       micro_messenger: MicroMes hành khách
       nokia: Trình duyệt Nokia S40 Ovi
       opera: Opera
-      otter: Rái cá
+      otter: Otter
       phantom_js: PhantomJS
-      qq: Trình duyệt QQ
-      safari: cuộc đi săn, cuộc hành trình
+      qq: QQ
+      safari: Safari
       uc_browser: Trình duyệt UC
       weibo: Weibo
     current_session: Phiên hiện tại
