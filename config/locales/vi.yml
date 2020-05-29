@@ -1082,48 +1082,51 @@ vi:
     featured_tags: Hashtags thường dùng
     identity_proofs: Bằng chứng nhận dạng
     import: Nhập dữ liệu
-    import_and_export: Nhập khẩu và xuất khẩu
-    migrate: Di chuyển tài khoản
+    import_and_export: Nhập và xuất dữ liệu
+    migrate: Chuyển tài khoản sang máy chủ khác
     notifications: Thông báo
-    preferences: Sở thích
-    profile: Hồ sơ
-    relationships: Theo dõi và theo dõi
-    two_factor_authentication: Xác thực hai yếu tố
+    preferences: Chung
+    profile: Trang cá nhân
+    relationships: Mến mộ
+    two_factor_authentication: Xác thực hai bước
   spam_check:
-    spam_detected: Đây là một báo cáo tự động. Thư rác đã được phát hiện.
+    spam_detected: Đây là một báo cáo tự động. Đã phát hiện thư rác.
   statuses:
     attached:
-      description: 'Đã đính kèm: %{attached}'
+      description: 'Đính kèm: %{attached}'
       image:
-        other: "hình ảnh %{count}"
+        other: "%{count} hình ảnh"
       video:
-        other: "video %{count}"
-    boosted_from_html: Được loan tin từ %{acct_link}
+        other: "%{count} video"
+    boosted_from_html: Đã chia sẻ từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
     disallowed_hashtags:
-      other: 'chứa các hashtag không được phép: %{tags}'
+      other: 'chứa các hashtag bị cấm: %{tags}'
+    errors:
+      in_reply_not_found: Bạn đang bình luận một tút không còn tồn tại.
     language_detection: Tự động phát hiện ngôn ngữ
     open_in_web: Mở trên web
-    over_character_limit: vượt quá giới hạn ký tự của %{max}
+    over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
-      limit: Bạn đã ghim số lượng tút tối đa
-      ownership: Tút của người khác không thể được ghim
-      private: tút không công khai không thể được ghim
-      reblog: Không thể được ghim Loan in
+      limit: Bạn đã ghim hết số lượng tút cho phép
+      ownership: Không thể ghim tút của người khác
+      private: Tút riêng tư nên không thể ghim
+      reblog: Không thể ghim chia sẻ
     poll:
       total_people:
         other: "%{count} người"
       total_votes:
-        other: "%{count} phiếu bầu"
-      vote: Bỏ phiếu
-    show_more: Cho xem nhiều hơn
+        other: "%{count} bình chọn"
+      vote: Cuộc thăm dò
+    show_more: Xem thêm
+    show_thread: Xem chi tiết
     sign_in_to_participate: Đăng nhập để tham gia vào cuộc trò chuyện
-    title: '%{name}: &quot;%{quote}&quot;'
+    title: '%{name}: "%{quote}"'
     visibilities:
-      private: Chỉ theo dõi
-      private_long: Chỉ hiển thị cho người theo dõi
-      public: Công cộng
-      public_long: Mọi người có thể thấy
+      private: Dành cho người mến mộ
+      private_long: Chỉ người đã mến mộ mới xem được tút
+      public: Công khai
+      public_long: Ai cũng có thể thấy
       unlisted: Chưa niêm yết
       unlisted_long: Mọi người đều có thể xem, nhưng không được liệt kê trên các mốc thời gian công khai
   stream_entries:
