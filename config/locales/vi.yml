@@ -846,30 +846,30 @@ vi:
   imports:
     modes:
       merge: Hợp nhất
-      merge_long: Giữ hồ sơ hiện có và thêm những cái mới
+      merge_long: Giữ hồ sơ hiện có và thêm hồ sơ mới
       overwrite: Ghi đè
       overwrite_long: Thay thế các bản ghi hiện tại bằng những cái mới
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn như danh sách những người bạn đang theo dõi hoặc chặn.
-    success: Dữ liệu của bạn đã được tải lên thành công và bây giờ sẽ được xử lý trong thời gian tới hạn
+    success: Dữ liệu của bạn đã được tải lên thành công và hiện đang xử lý
     types:
       blocking: Danh sách chặn
-      domain_blocking: Danh sách chặn tên miền
-      following: Theo danh sach
-      muting: Danh sách tắt tiếng
+      domain_blocking: Danh sách máy chủ đã chặn
+      following: Danh sách người mến mộ
+      muting: Danh sách người dùng ẩn
     upload: Tải lên
-  in_memoriam_html: Trong bản ghi nhớ.
+  in_memoriam_html: Tưởng Niệm
   invites:
     delete: Vô hiệu hóa
-    expired: Đã hết hạn
+    expired: Hết hạn
     expires_in:
       '1800': 30 phút
-      '21600': 6 tiếng
+      '21600': 6 giờ
       '3600': 1 giờ
       '43200': 12 giờ
       '604800': 1 tuần
       '86400': 1 ngày
     expires_in_prompt: Không bao giờ
-    generate: Tạo liên kết mời
+    generate: Tạo lời mời
     invited_by: 'Bạn đã được mời bởi:'
     max_uses:
       other: "%{count} sử dụng"
@@ -877,39 +877,40 @@ vi:
     prompt: Tạo và chia sẻ liên kết với những người khác để cấp quyền truy cập vào máy chủ này
     table:
       expires_at: Hết hạn
-      uses: Công dụng
-    title: Mời mọi người
+      uses: Sử dụng
+    title: Mời bạn bè
   lists:
     errors:
       limit: Bạn đã đạt đến số lượng danh sách tối đa
   media_attachments:
     validations:
-      images_and_video: Không thể đính kèm video vào trạng thái đã chứa hình ảnh
+      images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh
+      not_ready: Tập tin này vẫn chưa xử lý xong. Hãy thử lại sau!
       too_many: Không thể đính kèm hơn 4 tệp
   migrations:
-    acct: Chuyển đến
+    acct: Dời sang
     cancel: Hủy chuyển hướng
-    cancel_explanation: Hủy chuyển hướng sẽ kích hoạt lại tài khoản hiện tại của bạn, nhưng sẽ không mang lại những người theo dõi đã được chuyển đến tài khoản đó.
-    cancelled_msg: Đã hủy thành công chuyển hướng.
+    cancel_explanation: Hủy chuyển hướng sẽ kích hoạt lại tài khoản hiện tại của bạn, nhưng sẽ không chuyển được những người mến mộ ở tài khoản mới.
+    cancelled_msg: Đã hủy chuyển hướng xong.
     errors:
-      already_moved: là cùng một tài khoản bạn đã chuyển đến
-      missing_also_known_as: không tham chiếu lại tài khoản này
+      already_moved: là cùng một tài khoản bạn đã dời sang
+      missing_also_known_as: không phải tham chiếu của tài khoản này
       move_to_self: không thể là tài khoản hiện tại
-      not_found: không thể được tìm thấy
-      on_cooldown: Bạn đang trong thời gian hồi chiêu
-    followers_count: Người theo dõi tại thời điểm di chuyển
+      not_found: không thể tìm thấy
+      on_cooldown: Bạn đang trong thời gian chiêu hồi
+    followers_count: Số người mến mộ tại thời điểm dời sang
     incoming_migrations: Chuyển từ một tài khoản khác
-    incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">tạo bí danh tài khoản</a> .
-    moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người theo dõi của bạn đang được chuyển đi.
+    incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">tạo tham chiếu tài khoản</a>.
+    moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người mến mộ bạn cũng đang được chuyển đi.
     not_redirecting: Tài khoản của bạn hiện không chuyển hướng đến bất kỳ tài khoản nào khác.
     on_cooldown: Gần đây bạn đã di chuyển tài khoản của bạn. Chức năng này sẽ trở nên khả dụng một lần nữa sau %{count} ngày.
-    past_migrations: Di cư trong quá khứ
-    proceed_with_move: Di chuyển người theo dõi
+    past_migrations: Những lần dời nhà cũ
+    proceed_with_move: Chuyển người mến mộ
     redirecting_to: Tài khoản của bạn đang chuyển hướng đến %{acct}.
-    set_redirect: Đặt chuyển hướng
+    set_redirect: Thiết lập chuyển hướng
     warning:
       backreference_required: Tài khoản mới trước tiên phải được cấu hình để tham chiếu lại tài khoản này
-      before: 'Trước khi tiếp tục, xin vui lòng đọc các ghi chú cẩn thận:'
+      before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
       cooldown: Sau khi di chuyển, có thời gian hồi chiêu, trong đó bạn sẽ không thể di chuyển nữa
       disabled_account: Tài khoản hiện tại của bạn sẽ không thể sử dụng đầy đủ sau đó. Tuy nhiên, bạn sẽ có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
       followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
