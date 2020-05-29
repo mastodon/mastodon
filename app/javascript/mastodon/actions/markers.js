@@ -13,12 +13,24 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
     return;
   }
 
-  const client = new XMLHttpRequest();
+  if (window.fetch) {
+    fetch('/api/v1/markers', {
+      keepalive: true,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(params),
+    });
+  } else {
+    const client = new XMLHttpRequest();
 
-  client.open('POST', '/api/v1/markers', false);
-  client.setRequestHeader('Content-Type', 'application/json');
-  client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
-  client.SUBMIT(JSON.stringify(params));
+    client.open('POST', '/api/v1/markers', false);
+    client.setRequestHeader('Content-Type', 'application/json');
+    client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
+    client.SUBMIT(JSON.stringify(params));
+  }
 };
 
 const _buildParams = (state) => {
