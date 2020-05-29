@@ -1,4 +1,5 @@
 import { importFetchedStatus, importFetchedStatuses } from './importer';
+import { submitMarkers } from './markers';
 import api, { getLinks } from 'mastodon/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'mastodon/compare_id';
@@ -36,6 +37,10 @@ export function updateTimeline(timeline, status, accept) {
       status,
       usePendingItems: preferPendingItems,
     });
+
+    if (timeline === 'home') {
+      dispatch(submitMarkers());
+    }
   };
 };
 
@@ -98,6 +103,10 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
+
+      if (timelineId === 'home') {
+        dispatch(submitMarkers());
+      }
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
     }).finally(() => {
