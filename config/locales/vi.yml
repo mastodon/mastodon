@@ -433,25 +433,31 @@ vi:
       disable: Vô hiệu hóa
       disabled: Đã vô hiệu hóa
       enable: Kích hoạt
-      enable_hint: Sau khi được bật, máy chủ của bạn sẽ đăng ký tất cả các tút công khai từ rơle này và sẽ bắt đầu gửi các tút công khai của máy chủ này tới nó.
-      enabled: Đã bật
-      inbox_url: Chuyển tiếp URL
-      pending: Chờ phê duyệt của rơle
+      enable_hint: Sau khi kích hoạt, máy chủ của bạn sẽ nhận tất cả các tút công khai từ relay này và sẽ bắt đầu gửi các tút công khai của bạn tới nó.
+      enabled: Đã kích hoạt
+      inbox_url: URL của relay
+      pending: Chờ phê duyệt relay
       save_and_enable: Lưu và kích hoạt
-      setup: Thiết lập kết nối chuyển tiếp
-      signatures_not_enabled: Rơle sẽ không hoạt động chính xác trong khi chế độ bảo mật hoặc chế độ danh sách trắng được bật
+      setup: Thiết lập kết nối relay
+      signatures_not_enabled: Relay sẽ không hoạt động chính xác nếu chế độ bảo mật hoặc chế độ danh sách trắng được bật
       status: Trạng thái
-      title: Rơle
+      title: Relay
     report_notes:
       created_msg: Báo cáo ghi chú được tạo thành công!
       destroyed_msg: Báo cáo đã xóa thành công!
     reports:
+      account:
+        notes:
+          other: "%{count} ghi chú"
+        reports:
+          other: "%{count} báo cáo"
       action_taken_by: Hành động được thực hiện bởi
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người điều hành được phân công
+      by_target_domain: Máy chủ của tài khoản bị báo xấu
       comment:
-        none: không ai
+        none: Không ai
       created_at: Báo cáo
       mark_as_resolved: Đánh dấu là đã giải quyết
       mark_as_unresolved: Đánh dấu là chưa giải quyết
@@ -460,34 +466,34 @@ vi:
         create_and_resolve: Giải quyết với ghi chú
         create_and_unresolve: Mở lại với ghi chú
         delete: Xóa bỏ
-        placeholder: Mô tả những hành động đã được thực hiện, hoặc bất kỳ cập nhật liên quan khác ...
+        placeholder: Mô tả những hành động đã được thực hiện, hoặc bất kỳ cập nhật liên quan khác...
       reopen: Mở lại báo cáo
-      report: 'Báo cáo # %{id}'
-      reported_account: Tài khoản báo cáo
-      reported_by: Báo cáo bởi
+      report: 'Báo cáo #%{id}'
+      reported_account: Tài khoản bị báo xấu
+      reported_by: Báo xấu bởi
       resolved: Đã giải quyết
-      resolved_msg: Báo cáo giải quyết thành công!
+      resolved_msg: Giải quyết báo xấu thành công!
       status: Trạng thái
-      title: Báo cáo
+      title: Báo xấu
       unassign: Bỏ qua
       unresolved: Chưa giải quyết
       updated_at: Đã cập nhật
     settings:
       activity_api_enabled:
         desc_html: Số lượng trạng thái được đăng tại địa phương, người dùng hoạt động và đăng ký mới trong nhóm hàng tuần
-        title: Xuất bản số liệu thống kê tổng hợp về hoạt động của người dùng
+        title: Xuất số liệu thống kê tổng hợp về hoạt động của người dùng
       bootstrap_timeline_accounts:
-        desc_html: Phân tách nhiều tên người dùng bằng dấu phẩy. Chỉ các tài khoản địa phương và mở khóa sẽ hoạt động. Mặc định khi trống là tất cả quản trị viên địa phương.
-        title: Theo mặc định cho người dùng mới
+        desc_html: Tách tên người dùng bằng dấu phẩy. Chỉ có hiệu lực với các tài khoản công khai thuộc máy chủ. Mặc định khi trống là tất cả quản trị viên địa phương.
+        title: Gợi ý mến mộ cho người dùng mới
       contact_information:
-        email: Email kinh doanh
-        username: Liên hệ tên người dùng
+        email: Email liên hệ
+        username: Tên tài khoản liên hệ
       custom_css:
-        desc_html: Sửa đổi giao diện với CSS được tải trên mỗi trang
-        title: CSS tùy chỉnh
+        desc_html: Sửa đổi giao diện với CSS trên mỗi trang
+        title: Tùy chỉnh CSS
       default_noindex:
         desc_html: Ảnh hưởng đến tất cả người dùng không tự thay đổi cài đặt này
-        title: Chọn người dùng không tham gia lập chỉ mục công cụ tìm kiếm theo mặc định
+        title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
@@ -495,6 +501,8 @@ vi:
         users: Để đăng nhập người dùng cục bộ
       domain_blocks_rationale:
         title: Hiển thị lý do
+      enable_bootstrap_timeline_accounts:
+        title: Gợi ý mến mộ cho người dùng mới
       hero:
         desc_html: Hiển thị trên frontpage. Khuyến nghị ít nhất 600x100px. Khi không được đặt, quay lại hình thu nhỏ của máy chủ
         title: Hình ảnh anh hùng
