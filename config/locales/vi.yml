@@ -1127,11 +1127,11 @@ vi:
       private_long: Chỉ người đã mến mộ mới xem được tút
       public: Công khai
       public_long: Ai cũng có thể thấy
-      unlisted: Chưa niêm yết
-      unlisted_long: Mọi người đều có thể xem, nhưng không được liệt kê trên các mốc thời gian công khai
+      unlisted: Công khai riêng
+      unlisted_long: Ai cũng có thể xem nhưng không hiện trên bảng tin máy chủ
   stream_entries:
-    pinned: Tút đã ghim
-    reblogged: loan tin
+    pinned: Tút ghim
+    reblogged: chia sẻ
     sensitive_content: Nội dung nhạy cảm
   tags:
     does_not_match_previous_name: không khớp với tên trước
@@ -1143,53 +1143,53 @@ vi:
   themes:
     contrast: Mastodon (Độ tương phản cao)
     default: Mastodon (Tối)
-    mastodon-light: Mastodon (Ánh sáng)
+    mastodon-light: Mastodon (Sáng)
   time:
     formats:
-      default: "% b %d,% Y,% H:% M"
+      default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
-    description_html: Nếu bạn kích hoạt <strong>xác thực hai yếu tố</strong> , đăng nhập sẽ yêu cầu bạn phải sở hữu điện thoại của mình, điều này sẽ tạo ra các mã thông báo để bạn nhập.
+    description_html: Nếu bạn kích hoạt <strong>xác thực hai bước</strong>, mã xác thực đăng nhập sẽ được tạo ra từ điện thoại của bạn.
     disable: Vô hiệu hóa
     enable: Kích hoạt
-    enabled: Xác thực hai yếu tố được kích hoạt
-    enabled_success: Xác thực hai yếu tố được kích hoạt thành công
+    enabled: Đã kích hoạt xác thực hai bước
+    enabled_success: Xác thực hai bước được kích hoạt thành công
     generate_recovery_codes: Tạo mã khôi phục
-    instructions_html: "<strong>Quét mã QR này vào Google Authenticator hoặc ứng dụng TOTP tương tự trên điện thoại của bạn</strong> . Từ giờ trở đi, ứng dụng đó sẽ tạo mã thông báo mà bạn sẽ phải nhập khi đăng nhập."
+    instructions_html: "<strong>Quét mã QR này vào Google Authenticator hoặc ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Từ giờ trở đi, ứng dụng đó sẽ tạo mã thông báo mà bạn sẽ phải nhập khi đăng nhập."
     lost_recovery_codes: Mã khôi phục cho phép bạn lấy lại quyền truy cập vào tài khoản của mình nếu bạn mất điện thoại. Nếu bạn bị mất mã khôi phục, bạn có thể tạo lại chúng ở đây. Mã khôi phục cũ của bạn sẽ bị vô hiệu.
-    manual_instructions: 'Nếu bạn không thể quét mã QR và cần nhập thủ công, đây là bí mật văn bản đơn giản:'
+    manual_instructions: 'Nếu bạn không thể quét mã QR và cần nhập thủ công, đây là mã bí mật:'
     recovery_codes: Mã phục hồi dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
-    recovery_instructions_html: Nếu bạn mất quyền truy cập vào điện thoại, bạn có thể sử dụng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong> . Ví dụ, bạn có thể in chúng và lưu trữ chúng với các tài liệu quan trọng khác.
+    recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy sử dụng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
     setup: Thiết lập
-    wrong_code: Mã đã nhập không hợp lệ! Thời gian máy chủ và thời gian thiết bị có đúng không?
+    wrong_code: Mã vừa nhập không hợp lệ! Thời gian máy chủ và thời gian thiết bị có đúng không?
   user_mailer:
     backup_ready:
-      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ đã sẵn sàng để tải về!
-      subject: Kho lưu trữ của bạn đã sẵn sàng để tải về
-      title: Lưu trữ mang đi
+      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
+      subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
+      title: Nhận dữ liệu cá nhân
     warning:
       explanation:
-        disable: Trong khi tài khoản của bạn bị đóng băng, dữ liệu tài khoản của bạn vẫn còn nguyên, nhưng bạn không thể thực hiện bất kỳ hành động nào cho đến khi được mở khóa.
-        silence: Mặc dù tài khoản của bạn bị hạn chế, nhưng chỉ những người đã theo dõi bạn mới thấy tút của bạn trên máy chủ này và bạn có thể bị loại khỏi các danh sách công khai khác nhau. Tuy nhiên, những người khác vẫn có thể tự theo dõi bạn.
-        suspend: Tài khoản của bạn đã bị treo và tất cả các tút và tệp phương tiện đã tải lên của bạn đã bị xóa khỏi máy chủ này và các máy chủ nơi bạn có người theo dõi.
-      get_in_touch: Bạn có thể trả lời e-mail này để liên lạc với nhân viên của %{instance}.
+        disable: Nếu tài khoản của bạn bị đình chỉ, dữ liệu tài khoản của bạn vẫn còn nguyên, nhưng bạn không thể thực hiện bất kỳ hành động nào cho đến khi được mở khóa.
+        silence: Nếu tài khoản của bạn bị hạn chế, bạn có thể bị loại khỏi các bảng tin công khai, chỉ những người đã mến mộ bạn mới thấy tút của bạn. Tuy nhiên, những người khác vẫn có thể tiếp tục mến mộ bạn.
+        suspend: Tài khoản của bạn đã bị đình chỉ. Tất cả tút và tập tin đã tải lên của bạn sẽ bị xóa khỏi máy chủ này lẫn các máy chủ nơi bạn có người mến mộ.
+      get_in_touch: Bạn có thể trả lời e-mail này để liên hệ với đội ngũ của %{instance}.
       review_server_policies: Xem lại chính sách máy chủ
       statuses: 'Cụ thể, cho:'
       subject:
-        disable: Tài khoản của bạn %{acct} đã bị đóng băng
+        disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         none: Cảnh báo cho %{acct}
-        silence: Tài khoản của bạn %{acct} đã bị giới hạn
-        suspend: Tài khoản của bạn %{acct} đã bị treo
+        silence: Tài khoản %{acct} của bạn đã bị tắt tiếng
+        suspend: Tài khoản %{acct} của bạn đã bị đình chỉ
       title:
         disable: Tài khoản bị đóng băng
         none: Cảnh báo
-        silence: Tài khoản bị giới hạn
+        silence: Tài khoản bị cấm túc
         suspend: Toàn khoản bị đình chỉ
     welcome:
       edit_profile_action: Cài đặt hồ sơ
-      edit_profile_step: Bạn có thể tùy chỉnh hồ sơ của mình bằng cách tải lên hình đại diện, tiêu đề, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn xem lại những người theo dõi mới trước khi họ được phép theo dõi bạn, bạn có thể khóa tài khoản của mình.
+      edit_profile_step: Bạn có thể tùy chỉnh hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người mến mộ mới phải được phê duyệt, bạn có thể khóa tài khoản của mình.
       explanation: Dưới đây là một số lời khuyên để giúp bạn bắt đầu
       final_action: Bắt đầu đăng bài
       final_step: 'Bắt đầu đăng bài! Ngay cả khi không có người theo dõi, tin nhắn công khai của bạn có thể bị người khác nhìn thấy, ví dụ như trên dòng thời gian cùng miền và trong hashtag. Bạn có thể muốn giới thiệu bản thân về hashtag #intributiontions.'
