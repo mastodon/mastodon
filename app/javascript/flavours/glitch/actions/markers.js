@@ -16,7 +16,10 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
     return;
   }
 
-  if (window.fetch) {
+  // The Fetch API allows us to perform requests that will be carried out
+  // after the page closes. But that only works if the `keepalive` attribute
+  // is supported.
+  if (window.fetch && 'keepalive' in new Request('')) {
     fetch('/api/v1/markers', {
       keepalive: true,
       method: 'POST',
@@ -26,13 +29,31 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
       },
       body: JSON.stringify(params),
     });
-  } else {
+    return;
+  } else if (navigator && navigator.sendBeacon) {
+    // Failing that, we can use sendBeacon, but we have to encode the data as
+    // FormData for DoorKeeper to recognize the token.
+    const formData = new FormData();
+    formData.append('bearer_token', accessToken);
+    for (const [id, value] of Object.entries(params)) {
+      formData.append(`${id}[last_read_id]`, value.last_read_id);
+    }
+    if (navigator.sendBeacon('/api/v1/markers', formData)) {
+      return;
+    }
+  }
+
+  // If neither Fetch nor sendBeacon worked, try to perform a synchronous
+  // request.
+  try {
     const client = new XMLHttpRequest();
 
     client.open('POST', '/api/v1/markers', false);
     client.setRequestHeader('Content-Type', 'application/json');
     client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
     client.SUBMIT(JSON.stringify(params));
+  } catch (e) {
+    // Do not make the BeforeUnload handler error out
   }
 };
 
