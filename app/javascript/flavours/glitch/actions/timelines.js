@@ -1,4 +1,5 @@
 import { importFetchedStatus, importFetchedStatuses } from './importer';
+import { submitMarkers } from './markers';
 import api, { getLinks } from 'flavours/glitch/util/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'flavours/glitch/util/compare_id';
@@ -49,6 +50,10 @@ export function updateTimeline(timeline, status, accept) {
       usePendingItems: preferPendingItems,
       filtered
     });
+
+    if (timeline === 'home') {
+      dispatch(submitMarkers());
+    }
   };
 };
 
@@ -112,6 +117,10 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
 
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
+
+      if (timelineId === 'home') {
+        dispatch(submitMarkers());
+      }
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
     }).finally(() => {
