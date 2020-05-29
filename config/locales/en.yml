@@ -332,7 +332,6 @@ en:
       feature_timeline_preview: Timeline preview
       features: Features
       hidden_service: Federation with hidden services
-      keybase: Keybase integration
       open_reports: open reports
       pending_tags: hashtags waiting for review
       pending_users: users waiting for review
@@ -514,15 +513,9 @@ en:
         title: Show rationale
       enable_bootstrap_timeline_accounts:
         title: Enable default follows for new users
-      enable_keybase:
-        desc_html: Allow your users to prove their identity via keybase
-        title: Enable keybase integration
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
-      hide_followers_count:
-        desc_html: Do not show followers count on user profiles
-        title: Hide followers count
       mascot:
         desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
@@ -554,12 +547,6 @@ en:
       show_known_fediverse_at_about_page:
         desc_html: When disabled, restricts the public timeline linked from the landing page to showing only local content
         title: Include federated content on unauthenticated public timeline page
-      show_reblogs_in_public_timelines:
-        desc_html: Show public boosts of public toots in local and public timelines.
-        title: Show boosts in public timelines
-      show_replies_in_public_timelines:
-        desc_html: In addition to public self-replies (threads), show public replies in local and public timelines.
-        title: Show replies in public timelines
       show_staff_badge:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
@@ -842,7 +829,6 @@ en:
     no_batch_actions_available: No batch actions available on this page
     order_by: Order by
     save_changes: Save changes
-    use_this: Use this
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
@@ -1109,7 +1095,6 @@ en:
     edit_profile: Edit profile
     export: Data export
     featured_tags: Featured hashtags
-    flavours: Flavours
     identity_proofs: Identity proofs
     import: Import
     import_and_export: Import and export

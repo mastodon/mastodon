@@ -1,0 +1,20 @@
+---
+en:
+  simple_form:
+    hints:
+      defaults:
+        setting_default_content_type_html: When writing toots, assume they are written in raw HTML, unless specified otherwise
+        setting_default_content_type_markdown: When writing toots, assume they are using Markdown for rich text formatting, unless specified otherwise
+        setting_default_content_type_plain: When writing toots, assume they are plain text with no special formatting, unless specified otherwise (default Mastodon behavior)
+        setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
+        setting_skin: Reskins the selected Mastodon flavour
+    labels:
+      defaults:
+        setting_default_content_type: Default format for toots
+        setting_default_content_type_html: HTML
+        setting_default_content_type_markdown: Markdown
+        setting_default_content_type_plain: Plain text
+        setting_favourite_modal: Show confirmation dialog before favouriting (applies to Glitch flavour only)
+        setting_hide_followers_count: Hide your followers count
+        setting_skin: Skin
+        setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
