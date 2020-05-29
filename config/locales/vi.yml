@@ -143,7 +143,7 @@ vi:
       no_limits_imposed: Không áp đặt giới hạn
       not_subscribed: Chưa đăng ký
       pending: Đang chờ xem xét
-      perform_full_suspension: Đình chỉ
+      perform_full_suspension: Vô hiệu hóa
       promote: Chỉ định chức vụ
       protocol: Giao thức
       public: Công khai
@@ -177,12 +177,12 @@ vi:
       silenced: Tạm ẩn
       statuses: Tút
       subscribe: Đăng ký
-      suspended: Đình chỉ
+      suspended: Đã vô hiệu hóa
       time_in_queue: Đang chờ cách đây %{time}
       title: Tài khoản
       unconfirmed_email: Email chưa được xác nhận
       undo_silenced: Bỏ tạm ẩn
-      undo_suspension: Ngưng đình chỉ
+      undo_suspension: Ngừng vô hiệu hóa
       unsubscribe: Hủy đăng ký
       username: Tên tài khoản
       warn: Cảnh cáo
@@ -218,10 +218,10 @@ vi:
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xem xét lại báo cáo
         silence_account: Tài khoản tạm ẩn
-        suspend_account: Đình chỉ người dùng
+        suspend_account: Tài khoản bị vô hiệu hóa
         unassigned_report: Báo cáo chưa xem
         unsilence_account: Tài khoản bỏ tạm ẩn
-        unsuspend_account: Hủy đình chỉ tài khoản
+        unsuspend_account: Tài khoản đã ngừng vô hiệu hóa
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật Emoji mới
         update_status: Cập nhật trạng thái máy chủ
@@ -254,10 +254,10 @@ vi:
         reset_password_user: "%{name} đặt lại mật khẩu của người dùng %{target}"
         resolve_report: "%{name} đã giải quyết báo cáo %{target}"
         silence_account: "%{name} đã tạm ẩn %{target}"
-        suspend_account: "%{name} đình chỉ tài khoản của %{target}"
+        suspend_account: "%{name} đã vô hiệu hóa %{target}"
         unassigned_report: "%{name} báo cáo chưa được chỉ định %{target}"
         unsilence_account: "%{name} đã bỏ tạm ẩn %{target}"
-        unsuspend_account: "%{name} gỡ đình chỉ cho %{target}"
+        unsuspend_account: "%{name} đã ngừng vô hiệu hóa %{target}"
         update_announcement: "%{name} cập nhật thông báo cho %{target}"
         update_custom_emoji: "%{name} đã cập nhật biểu tượng cảm xúc %{target}"
         update_status: "%{name} cập nhật tút của %{target}"
@@ -360,27 +360,27 @@ vi:
           desc_html: "<strong>Tạm ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không mến mộ họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Cấm upload</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
           silence: Tạm ẩn
-          suspend: Đình chỉ
+          suspend: Vô hiệu hóa
         title: Máy chủ bị chặn mới
       private_comment: Bình luận riêng
       private_comment_hint: Nhận xét về giới hạn miền này để sử dụng nội bộ của người điều hành.
       public_comment: Bình luận công khai
       public_comment_hint: Nhận xét về giới hạn tên miền này cho công chúng, nếu quảng cáo danh sách các giới hạn tên miền được bật.
       reject_media: Không cho phép ảnh và video
-      reject_media_hint: Xóa các tệp phương tiện được lưu trữ cục bộ và từ chối tải xuống bất kỳ trong tương lai. Không liên quan cho đình chỉ
+      reject_media_hint: Xóa ảnh và video đang được lưu trữ và không cho phép tải xuống trong tương lai. Không liên quan tới việc vô hiệu hóa
       reject_reports: Từ chối báo cáo
-      reject_reports_hint: Bỏ qua tất cả các báo cáo đến từ tên miền này. Không liên quan cho đình chỉ
+      reject_reports_hint: Bỏ qua tất cả các báo cáo từ máy chủ này. Không liên quan việc vô hiệu hóa
       rejecting_media: từ chối các tập tin phương tiện truyền thông
       rejecting_reports: từ chối báo cáo
       severity:
         silence: đã tạm ẩn
-        suspend: bị đình chỉ
+        suspend: bị vô hiệu hóa
       show:
         affected_accounts:
           other: "%{count} tài khoản trong cơ sở dữ liệu bị ảnh hưởng"
         retroactive:
           silence: Những tài khoản tạm ẩn ở máy chủ này
-          suspend: Hủy bỏ các tài khoản bị ảnh hưởng hiện có từ máy chủ này
+          suspend: Ngưng vô hiệu hóa các tài khoản ở máy chủ này
         title: Hủy chặn máy chủ %{domain}
         undo: Hủy bỏ
       undo: Hủy chặn máy chủ
@@ -930,7 +930,7 @@ vi:
         other: "%{count} thông báo mới kể từ lần truy cập trước \U0001F418"
       title: Khi bạn vắng mặt...
     favourite:
-      body: '%{name} đã tâm đắc tút của bạn:'
+      body: '%{name} đã tâm đắc tút của bạn'
       subject: "%{name} đã tâm đắc tút của bạn"
       title: Lượt tâm đắc mới
     follow:
@@ -1172,21 +1172,21 @@ vi:
     warning:
       explanation:
         disable: Nếu tài khoản của bạn bị đình chỉ, dữ liệu tài khoản của bạn vẫn còn nguyên, nhưng bạn không thể thực hiện bất kỳ hành động nào cho đến khi được mở khóa.
-        silence: Nếu tài khoản của bạn bị hạn chế, bạn có thể bị loại khỏi các bảng tin công khai, chỉ những người đã mến mộ bạn mới thấy tút của bạn. Tuy nhiên, những người khác vẫn có thể tiếp tục mến mộ bạn.
-        suspend: Tài khoản của bạn đã bị đình chỉ. Tất cả tút và tập tin đã tải lên của bạn sẽ bị xóa khỏi máy chủ này lẫn các máy chủ nơi bạn có người mến mộ.
+        silence: Nếu tài khoản của bạn bị tạm ẩn, bạn có thể bị loại khỏi các bảng tin công khai, chỉ những người đã mến mộ bạn mới thấy tút của bạn. Tuy nhiên, những người khác vẫn có thể tiếp tục mến mộ bạn.
+        suspend: Tài khoản của bạn đã bị vô hiệu hóa. Tất cả tút và tập tin đã tải lên của bạn sẽ bị xóa khỏi máy chủ này lẫn các máy chủ nơi bạn có người mến mộ.
       get_in_touch: Bạn có thể trả lời e-mail này để liên hệ với đội ngũ của %{instance}.
       review_server_policies: Xem lại chính sách máy chủ
       statuses: 'Cụ thể, cho:'
       subject:
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         none: Cảnh báo cho %{acct}
-        silence: Tài khoản %{acct} của bạn đã bị tắt tiếng
-        suspend: Tài khoản %{acct} của bạn đã bị đình chỉ
+        silence: Tài khoản %{acct} của bạn đã bị tạm ẩn
+        suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
       title:
         disable: Tài khoản bị đóng băng
         none: Cảnh báo
-        silence: Tài khoản bị cấm túc
-        suspend: Toàn khoản bị đình chỉ
+        silence: Tài khoản bị tạm ẩn
+        suspend: Toài khoản bị vô hiệu hóa
     welcome:
       edit_profile_action: Cài đặt trang cá nhân
       edit_profile_step: Bạn có thể tùy chỉnh trang cá nhân của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người mến mộ mới phải được phê duyệt, bạn có thể khóa tài khoản của mình.
