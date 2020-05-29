@@ -133,10 +133,10 @@ vi:
         active: Hoạt động
         all: Tất cả
         pending: Đang chờ xử lý
-        silenced: Im lặng
-        suspended: Đình chỉ
+        silenced: Tạm ẩn
+        suspended: Vô hiệu hóa
         title: Kiểm duyệt
-      moderation_notes: Ghi chú kiểm duyệt
+      moderation_notes: Nhật ký kiểm duyệt
       most_recent_activity: Hoạt động gần đây nhất
       most_recent_ip: IP gần đây nhất
       no_account_selected: Không có tài khoản nào thay đổi vì không có tài khoản nào được chọn
@@ -173,15 +173,15 @@ vi:
       show:
         created_reports: Xuất báo cáo
         targeted_reports: Báo cáo bởi người khác
-      silence: Im lặng
-      silenced: Im lặng
+      silence: Tạm ẩn
+      silenced: Tạm ẩn
       statuses: Tút
       subscribe: Đăng ký
       suspended: Đình chỉ
       time_in_queue: Đang chờ cách đây %{time}
       title: Tài khoản
       unconfirmed_email: Email chưa được xác nhận
-      undo_silenced: Trở về im lặng
+      undo_silenced: Bỏ tạm ẩn
       undo_suspension: Ngưng đình chỉ
       unsubscribe: Hủy đăng ký
       username: Tên tài khoản
@@ -217,10 +217,10 @@ vi:
         reopen_report: Mở lại báo cáo
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xem xét lại báo cáo
-        silence_account: Tài khoản im lặng
+        silence_account: Tài khoản tạm ẩn
         suspend_account: Đình chỉ người dùng
         unassigned_report: Báo cáo chưa xem
-        unsilence_account: Bỏ tài khoản im lặng
+        unsilence_account: Tài khoản bỏ tạm ẩn
         unsuspend_account: Hủy đình chỉ tài khoản
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật Emoji mới
@@ -253,10 +253,10 @@ vi:
         reopen_report: "%{name} mở lại báo cáo %{target}"
         reset_password_user: "%{name} đặt lại mật khẩu của người dùng %{target}"
         resolve_report: "%{name} đã giải quyết báo cáo %{target}"
-        silence_account: "%{name} im lặng tài khoản của %{target}"
+        silence_account: "%{name} đã tạm ẩn %{target}"
         suspend_account: "%{name} đình chỉ tài khoản của %{target}"
         unassigned_report: "%{name} báo cáo chưa được chỉ định %{target}"
-        unsilence_account: "%{name} gỡ im lặng cho %{target}"
+        unsilence_account: "%{name} đã bỏ tạm ẩn %{target}"
         unsuspend_account: "%{name} gỡ đình chỉ cho %{target}"
         update_announcement: "%{name} cập nhật thông báo cho %{target}"
         update_custom_emoji: "%{name} đã cập nhật biểu tượng cảm xúc %{target}"
@@ -357,9 +357,9 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Im lặng</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Đình chỉ</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Không</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
-          noop: Không
-          silence: Im lặng
+          desc_html: "<strong>Tạm ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không mến mộ họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Cấm upload</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          noop: Không hoạt động
+          silence: Tạm ẩn
           suspend: Đình chỉ
         title: Máy chủ bị chặn mới
       private_comment: Bình luận riêng
@@ -373,13 +373,13 @@ vi:
       rejecting_media: từ chối các tập tin phương tiện truyền thông
       rejecting_reports: từ chối báo cáo
       severity:
-        silence: im lặng
+        silence: đã tạm ẩn
         suspend: bị đình chỉ
       show:
         affected_accounts:
           other: "%{count} tài khoản trong cơ sở dữ liệu bị ảnh hưởng"
         retroactive:
-          silence: Tài khoản bị ảnh hưởng hiện có từ máy chủ này
+          silence: Những tài khoản tạm ẩn ở máy chủ này
           suspend: Hủy bỏ các tài khoản bị ảnh hưởng hiện có từ máy chủ này
         title: Hủy chặn máy chủ %{domain}
         undo: Hủy bỏ
