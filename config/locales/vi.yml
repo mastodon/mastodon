@@ -504,24 +504,24 @@ vi:
       enable_bootstrap_timeline_accounts:
         title: Gợi ý mến mộ cho người dùng mới
       hero:
-        desc_html: Hiển thị trên frontpage. Khuyến nghị ít nhất 600x100px. Khi không được đặt, quay lại hình thu nhỏ của máy chủ
-        title: Hình ảnh anh hùng
+        desc_html: Hiển thị trên trang chủ. Kích cỡ tối thiểu 600x100px. Khi không được đặt, sử dụng hình thu nhỏ của máy chủ
+        title: Hình ảnh giới thiệu
       mascot:
-        desc_html: Hiển thị trên nhiều trang. Khuyến nghị ít nhất 293 × 205px. Khi không được đặt, rơi trở lại linh vật mặc định
-        title: Hình ảnh linh vật
+        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 × 205px. Khi không được đặt, sử dụng linh vật mặc định Mastodon
+        title: Logo máy chủ
       peers_api_enabled:
-        desc_html: Tên miền mà máy chủ này đã gặp phải trong fediverse
-        title: Xuất bản danh sách các máy chủ được phát hiện
+        desc_html: Tên miền mà máy chủ này đã kết giao trong mạng liên kết
+        title: Danh sách công khai các máy chủ được phát hiện
       preview_sensitive_media:
         desc_html: Liên kết xem trước trên các trang web khác sẽ hiển thị hình thu nhỏ ngay cả khi phương tiện được đánh dấu là nhạy cảm
         title: Hiển thị phương tiện nhạy cảm trong bản xem trước OpenGraph
       profile_directory:
-        desc_html: Cho phép người dùng có thể khám phá
-        title: Cho phép thư mục hồ sơ
+        desc_html: Cho phép tìm kiếm người dùng
+        title: Cho phép hiện danh sách thành viên
       registrations:
         closed_message:
-          desc_html: Hiển thị trên frontpage khi đăng ký được đóng lại. Bạn có thể sử dụng thẻ HTML
-          title: Tin nhắn đăng ký đã đóng
+          desc_html: Hiển thị trên trang chủ khi đăng ký được đóng lại. Bạn có thể sử dụng thẻ HTML
+          title: Thông điệp báo máy chủ đã ngừng đăng ký
         deletion:
           desc_html: Cho phép mọi người xóa tài khoản của họ
           title: Xóa tài khoản
@@ -562,42 +562,45 @@ vi:
       timeline_preview:
         desc_html: Hiển thị liên kết đến dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần xác thực
         title: Cho phép truy cập không xác thực vào dòng thời gian công cộng
-      title: Cài đặt Trang web
+      title: Cài đặt trang web
       trendable_by_default:
         desc_html: Ảnh hưởng đến các hashtag chưa được cho phép trước đây
         title: Cho phép hashtags theo xu hướng mà không cần xem xét trước
       trends:
         desc_html: Hiển thị công khai các hashtag được xem xét trước đây hiện đang là xu hướng
         title: Xu hướng hashtags
+    site_uploads:
+      delete: Xóa tập tin đã tải lên
+      destroyed_msg: Đã xóa tập tin tải lên thành công!
     statuses:
       back_to_account: Quay lại trang tài khoản
       batch:
         delete: Xóa bỏ
-        nsfw_off: Đánh dấu là không nhạy cảm
+        nsfw_off: Đánh dấu là bình thường
         nsfw_on: Đánh dấu là nhạy cảm
       deleted: Đã xóa
       failed_to_execute: Không thể thực thi
       media:
-        title: Phương tiện truyền thông
-      no_media: Không có phương tiện truyền thông
-      no_status_selected: Không có trạng thái nào được thay đổi vì không có trạng thái nào được chọn
+        title: Ảnh & video
+      no_media: Không có ảnh hoặc video
+      no_status_selected: Không có tút nào thay đổi vì không có tút nào được chọn
       title: Trạng thái tài khoản
-      with_media: Với phương tiện truyền thông
+      with_media: Với ảnh hoặc video
     tags:
-      accounts_today: Sử dụng độc đáo ngày nay
-      accounts_week: Sử dụng độc đáo trong tuần này
-      breakdown: Phân tích sử dụng ngày nay theo nguồn
+      accounts_today: Sử dụng hôm nay
+      accounts_week: Sử dụng trong tuần này
+      breakdown: Phân tích dung lượng sử dụng hôm nay
       context: Bối cảnh
-      directory: Trong thư mục
-      in_directory: "%{count} trong thư mục"
-      last_active: Hoạt động lần cuối
+      directory: Trong phân loại
+      in_directory: "%{count} trong phân loại"
+      last_active: Sử dụng gần đây
       most_popular: Phổ biến nhất
-      most_recent: Gần đây nhất
-      name: Dấu thăng
-      review: Xem lại tình trạng
-      reviewed: Đã đánh giá
-      title: Hashtags
-      trending_right_now: Xu hướng ngay bây giờ
+      most_recent: Vừa mới sử dụng
+      name: Hashtag
+      review: Phê duyệt
+      reviewed: Đã phê duyệt
+      title: Hashtag
+      trending_right_now: Xu hướng
       unique_uses_today: "%{count} đăng ngày hôm nay"
       unreviewed: Chưa được xem xét
       updated_msg: Cài đặt hashtag được cập nhật thành công
@@ -605,8 +608,8 @@ vi:
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
-      edit_preset: Chỉnh sửa cảnh báo đặt trước
-      title: Quản lý cài đặt trước cảnh báo
+      edit_preset: Chỉnh sửa cảnh báo cài sẵn
+      title: Quản lý cảnh báo cài sẵn
   admin_mailer:
     new_pending_account:
       body: Các chi tiết của tài khoản mới dưới đây. Bạn có thể phê duyệt hoặc từ chối ứng dụng này.
@@ -619,34 +622,39 @@ vi:
       body: 'Hashtag # %{name} đang là xu hướng ngày nay, nhưng chưa được xem xét trước đây. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép hoặc chỉ lưu biểu mẫu vì nó sẽ không bao giờ nghe về nó nữa.'
       subject: 'Hashtag mới được xem xét trên %{instance} (# %{name})'
   aliases:
-    add_new: Tạo bí danh
-    created_msg: Tạo thành công một bí danh mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
-    deleted_msg: Xóa thành công bí danh. Chuyển từ tài khoản này sang tài khoản này sẽ không còn có thể.
-    hint_html: Nếu bạn muốn chuyển từ tài khoản khác sang tài khoản này, tại đây bạn có thể tạo bí danh, điều này là bắt buộc trước khi bạn có thể tiến hành chuyển người theo dõi từ tài khoản cũ sang tài khoản này. Hành động này của chính nó là <strong>vô hại và có thể đảo ngược</strong> . <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong> .
+    add_new: Tạo tên hiển thị
+    created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
+    deleted_msg: Xóa thành công tên hiển thị. Chuyển từ tài khoản này sang tài khoản này sẽ không còn có thể.
+    empty: Bạn không tên hiển thị nào.
+    hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, tại đây bạn có thể tạo bí danh, điều này là bắt buộc trước khi bạn có thể tiến hành chuyển người theo dõi từ tài khoản cũ sang tài khoản này. Hành động này của chính nó là <strong>vô hại và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Giao diện web nâng cao
     advanced_web_interface_hint: 'Nếu bạn muốn sử dụng toàn bộ chiều rộng màn hình của mình, giao diện web nâng cao cho phép bạn định cấu hình nhiều cột khác nhau để xem nhiều thông tin cùng lúc như bạn muốn: Trang chủ, thông báo, dòng thời gian được liên kết, bất kỳ số lượng danh sách và hashtag nào.'
-    animations_and_accessibility: Ảnh động và khả năng tiếp cận
+    animations_and_accessibility: Nâng cao
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
+    localization:
+      body: Mastodon được dịch bởi Hồ Nhất Duy.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Tuy nhiên, bạn cũng vẫn có thể đóng góp.
     sensitive_content: Nội dung nhạy cảm
     toot_layout: Bố cục Tút
   application_mailer:
     notification_preferences: Thay đổi tùy chọn email
     salutation: "%{name},"
     settings: 'Thay đổi tùy chọn email: %{link}'
-    view: 'Lượt xem:'
-    view_profile: Xem lí lịch
-    view_status: Trạng thái xem
+    view: 'Xem:'
+    view_profile: Xem trang cá nhân
+    view_status: Xem trạng thái
   applications:
-    created: Ứng dụng được tạo thành công
-    destroyed: Ứng dụng đã xóa thành công
-    invalid_url: URL được cung cấp không hợp lệ
-    regenerate_token: Tạo lại mã thông báo truy cập
-    token_regenerated: Mã thông báo truy cập được tạo lại thành công
+    created: Đơn đăng ký được tạo thành công
+    destroyed: Đã xóa đơn đăng ký
+    invalid_url: Cung cấp URL không hợp lệ
+    regenerate_token: Tạo lại mã truy cập
+    token_regenerated: Mã truy cập được tạo lại thành công
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
-    your_token: Mã thông báo truy cập của bạn
+    your_token: Mã truy cập của bạn
   auth:
     apply_for_account: Yêu cầu một lời mời
     change_password: Mật khẩu
