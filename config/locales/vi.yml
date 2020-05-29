@@ -658,46 +658,47 @@ vi:
   auth:
     apply_for_account: Yêu cầu một lời mời
     change_password: Mật khẩu
-    checkbox_agreement_html: Tôi đồng ý với các <a href="%{rules_path}" target="_blank">quy tắc</a> và <a href="%{terms_path}" target="_blank">điều khoản dịch vụ của</a> <a href="%{rules_path}" target="_blank">máy chủ</a>
-    checkbox_agreement_without_rules_html: Tôi đồng ý với các <a href="%{terms_path}" target="_blank">điều khoản dịch vụ</a>
+    checkbox_agreement_html: Tôi đồng ý với các <a href="%{rules_path}" target="_blank">quy tắc</a> và <a href="%{terms_path}" target="_blank">điều khoản dịch vụ</a>.
+    checkbox_agreement_without_rules_html: Tôi đồng ý với <a href="%{terms_path}" target="_blank">điều khoản dịch vụ</a>
     delete_account: Xóa tài khoản
-    delete_account_html: Nếu bạn muốn xóa tài khoản của mình, bạn có thể <a href="%{path}">tiến hành tại đây</a> . Bạn sẽ được yêu cầu xác nhận.
+    delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
     description:
-      prefix_invited_by_user: "@ %{name} mời bạn tham gia máy chủ này của Mastodon!"
-      prefix_sign_up: Đăng ký trên Mastodon ngay hôm nay!
-      suffix: Với một tài khoản, bạn sẽ có thể theo dõi mọi người, đăng cập nhật và trao đổi tin nhắn với người dùng từ bất kỳ máy chủ Mastodon nào và hơn thế nữa!
-    didnt_get_confirmation: Không nhận được hướng dẫn xác nhận?
+      prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
+      prefix_sign_up: Tham gia Mastodon ngay hôm nay!
+      suffix: Với tài khoản, bạn sẽ có thể mến mộ mọi người, đăng tút và nhắn tin với người dùng từ bất kỳ máy chủ Mastodon khác!
+    didnt_get_confirmation: Không nhận được email xác thực?
     forgot_password: Quên mật khẩu?
-    invalid_reset_password_token: Mã thông báo đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
+    invalid_reset_password_token: Mã đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
     login: Đăng nhập
     logout: Đăng xuất
-    migrate_account: Chuyển đến một tài khoản khác
-    migrate_account_html: Nếu bạn muốn chuyển hướng tài khoản này sang một tài khoản khác, bạn có thể <a href="%{path}">định cấu hình nó ở đây</a> .
+    migrate_account: Sử dụng một tài khoản khác
+    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để sử dụng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập nó ở đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
     providers:
       cas: CAS
       saml: SAML
     register: Đăng ký
-    registration_closed: "%{instance} không chấp nhận thành viên mới"
-    resend_confirmation: Gửi lại hướng dẫn xác nhận
+    registration_closed: "%{instance} tạm ngưng đăng ký mới"
+    resend_confirmation: Gửi lại email xác thực
     reset_password: Đặt lại mật khẩu
-    security: Bảo vệ
+    security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
       email_below_hint_html: Nếu địa chỉ email dưới đây không chính xác, bạn có thể thay đổi địa chỉ tại đây và nhận email xác nhận mới.
-      email_settings_hint_html: Email xác nhận đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
+      email_settings_hint_html: Email xác thực đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
       title: Thiết lập
     status:
-      account_status: Tình trạng tài khoản
-      confirming: Chờ xác nhận e-mail được hoàn thành.
-      functional: Tài khoản của bạn đã hoạt động đầy đủ.
-      pending: Ứng dụng của bạn đang chờ xem xét bởi nhân viên của chúng tôi. Điều này có thể mất một thời gian. Bạn sẽ nhận được e-mail nếu đơn đăng ký của bạn được chấp thuận.
+      account_status: Trạng thái tài khoản
+      confirming: Đang chờ xác thực email.
+      functional: Tài khoản của bạn đã xác thực và có thể sử dụng.
+      pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
     trouble_logging_in: Gặp sự cố khi đăng nhập?
   authorize_follow:
-    already_following: Bạn đã theo dõi tài khoản này
-    error: Thật không may, đã xảy ra lỗi khi tra cứu tài khoản từ xa
-    follow: Theo
+    already_following: Bạn đã mến mộ người dùng này
+    already_requested: Bạn vừa gửi một yêu cầu mến mộ tới người dùng này
+    error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
+    follow: Mến mộ
     follow_request: 'Bạn đã gửi yêu cầu theo dõi tới:'
     following: 'Sự thành công! Bạn đang theo dõi:'
     post_follow:
