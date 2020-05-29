@@ -258,55 +258,74 @@ vi:
         unassigned_report: "%{name} báo cáo chưa được chỉ định %{target}"
         unsilence_account: "%{name} gỡ im lặng cho %{target}"
         unsuspend_account: "%{name} gỡ đình chỉ cho %{target}"
+        update_announcement: "%{name} cập nhật thông báo cho %{target}"
         update_custom_emoji: "%{name} đã cập nhật biểu tượng cảm xúc %{target}"
-        update_status: "%{name} trạng thái được cập nhật bởi %{target}"
-      deleted_status: "(trạng thái đã xóa)"
-      title: Sổ ghi chép đánh giá
+        update_status: "%{name} cập nhật tút của %{target}"
+      deleted_status: "(tút đã xóa)"
+      empty: Không tìm thấy bản ghi.
+      filter_by_action: Lọc theo hành động
+      filter_by_user: Lọc theo người dùng
+      title: Nhật ký đánh giá
+    announcements:
+      destroyed_msg: Xóa thông báo thành công!
+      edit:
+        title: Sửa thông báo
+      empty: Không tìm thấy thông báo.
+      live: Trực tiếp
+      new:
+        create: Tạo thông báo
+        title: Thông báo mới
+      published_msg: Truyền đi thông báo thành công!
+      scheduled_for: Đã lên lịch %{time}
+      scheduled_msg: Thông báo đã lên lịch!
+      title: Thông báo
+      unpublished_msg: Gỡ bỏ thông báo thành xong!
+      updated_msg: Cập nhật thông báo thành công!
     custom_emojis:
       assign_category: Chỉ định danh mục
-      by_domain: Miền
-      copied_msg: Tạo thành công bản sao biểu tượng cảm xúc cục bộ
+      by_domain: Máy chủ
+      copied_msg: Tạo thành công Emoji
       copy: Sao chép
       copy_failed_msg: Không thể tạo một bản sao cục bộ của biểu tượng cảm xúc đó
       create_new_category: Tạo danh mục mới
-      created_msg: Biểu tượng cảm xúc được tạo thành công!
+      created_msg: Emoji được tạo thành công!
       delete: Xóa bỏ
-      destroyed_msg: Emojo phá hủy thành công!
+      destroyed_msg: Đã gỡ Emoji thành công!
       disable: Vô hiệu hóa
-      disabled: Tàn tật
-      disabled_msg: Vô hiệu hóa thành công biểu tượng cảm xúc đó
-      emoji: Biểu tượng cảm xúc
+      disabled: Đã vô hiệu hóa
+      disabled_msg: Vô hiệu hóa thành công Emoji này
+      emoji: Emoji
       enable: Kích hoạt
-      enabled: Đã bật
-      enabled_msg: Kích hoạt thành công biểu tượng cảm xúc đó
-      image_hint: PNG lên tới 50KB
+      enabled: Đã kích hoạt
+      enabled_msg: Kích hoạt thành công Emoji này
+      image_hint: PNG tối đa 50KB
       list: Danh sách
       listed: Liệt kê
       new:
-        title: Thêm biểu tượng cảm xúc tùy chỉnh mới
+        title: Thêm Emoji mới
       overwrite: Ghi đè
-      shortcode: Mã ngắn
+      shortcode: Viết tắt
       shortcode_hint: Ít nhất 2 ký tự, chỉ các ký tự chữ và số và dấu gạch dưới
-      title: Biểu tượng cảm xúc tùy chỉnh
+      title: Tùy chỉnh Emoji
       uncategorized: Chưa phân loại
       unlist: Bỏ danh sách
       unlisted: Chưa niêm yết
-      update_failed_msg: Không thể cập nhật biểu tượng cảm xúc đó
-      updated_msg: Biểu tượng cảm xúc được cập nhật thành công!
+      update_failed_msg: Không thể cập nhật Emoji này
+      updated_msg: Cập nhật thành công Emoji!
       upload: Tải lên
     dashboard:
       authorized_fetch_mode: Chế độ bảo mật
       backlog: công việc tồn đọng
-      config: Cấu hình
+      config: Thiết lập
       feature_deletions: Xóa tài khoản
-      feature_invites: Mời liên kết
-      feature_profile_directory: Thư mục hồ sơ
+      feature_invites: Những lời mời
+      feature_profile_directory: Danh sách thành viên
       feature_registrations: Đăng ký
-      feature_relay: Liên đoàn tiếp sức
+      feature_relay: Mạng liên kết relay
       feature_spam_check: Chống thư rác
-      feature_timeline_preview: Xem trước dòng thời gian
-      features: Đặc trưng
-      hidden_service: Liên kết với các dịch vụ ẩn
+      feature_timeline_preview: Xem trước bảng tin
+      features: Tính năng
+      hidden_service: Mạng liên kết với các dịch vụ ẩn
       open_reports: mở báo cáo
       pending_tags: hashtag đang chờ xem xét
       pending_users: người dùng đang chờ xem xét
