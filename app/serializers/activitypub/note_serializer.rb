@@ -35,7 +35,11 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def summary
-    object.spoiler_text.presence
+    object.spoiler_text.presence || Setting.outgoing_spoilers.presence
+  end
+
+  def sensitive
+    object.sensitive || Setting.outgoing_spoilers.present?
   end
 
   def content

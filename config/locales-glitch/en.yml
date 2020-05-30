@@ -7,6 +7,9 @@ en:
       enable_keybase:
         desc_html: Allow your users to prove their identity via keybase
         title: Enable keybase integration
+      outgoing_spoilers:
+        desc_html: When federating toots, add this content warning to toots that do not have one. It is useful if your server is specialized in content other servers might want to have under a Content Warning. Media will also be marked as sensitive.
+        title: Content warning for outgoing toots
       hide_followers_count:
         desc_html: Do not show followers count on user profiles
         title: Hide followers count
