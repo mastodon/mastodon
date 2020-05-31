@@ -24,7 +24,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
   def set_size
     case params[:id]
     when 'featured'
-      @size = @account.pinned_statuses.count
+      @size = @account.pinned_statuses.not_local_only.count
     else
       not_found
     end
@@ -39,7 +39,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
       if authorized_fetch_mode? && !signed_request_account.nil? && (@account.blocking?(signed_request_account) || (!signed_request_account.domain.nil? && @account.domain_blocking?(signed_request_account.domain)))
         Status.none
       else
-        @account.pinned_statuses
+        @account.pinned_statuses.not_local_only
       end
     end
   end
