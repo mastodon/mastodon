@@ -5,23 +5,23 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
 
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }
   before_action :require_user!
-  before_action :set_reblog
 
   respond_to :json
 
   def create
-    @status = ReblogService.new.call(current_account, @reblog, reblog_params)
+    @status = ReblogService.new.call(current_user.account, status_for_reblog, reblog_params)
     render json: @status, serializer: REST::StatusSerializer
   end
 
   def destroy
-    @status = current_account.statuses.find_by(reblog_of_id: @reblog.id)
+    @status = status_for_destroy.reblog
+    @reblogs_map = { @status.id => false }
 
     authorize status_for_destroy, :unreblog?
     status_for_destroy.discard
     RemovalWorker.perform_async(status_for_destroy.id)
 
-    render json: @reblog, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_account.id, reblogs_map: { @reblog.id => false })
+    render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, reblogs_map: @reblogs_map)
   end
 
   private
