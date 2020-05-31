@@ -216,6 +216,11 @@ id:
         reset_password_user: Atur Ulang Kata sandi
         silence_account: Bisukan Akun
         suspend_account: Tangguhkan Akun
+        unsilence_account: Lepas Status Bisu Akun
+        unsuspend_account: Lepas Status Tangguh Akun
+        update_announcement: Perbarui Pengumuman
+        update_custom_emoji: Perbarui Emoji Khusus
+        update_status: Perbarui Status
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
         change_email_user: "%{name} mengubah alamat surel pengguna %{target}"
@@ -253,6 +258,9 @@ id:
         update_custom_emoji: "%{name} memperbarui emoji %{target}"
         update_status: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
+      empty: Log tidak ditemukan.
+      filter_by_action: Filter berdasarkan tindakan
+      filter_by_user: Filter berdasarkan pengguna
       title: Log audit
     announcements:
       destroyed_msg: Pengumuman berhasil dihapus!
