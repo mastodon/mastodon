@@ -25,7 +25,7 @@ describe AccountFollowController do
       sign_in(user)
       subject
 
-      expect(service).to have_received(:call).with(user.account, 'alice')
+      expect(service).to have_received(:call).with(user.account, alice, with_rate_limit: true)
       expect(response).to redirect_to(account_path(alice))
     end
   end

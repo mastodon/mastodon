@@ -143,7 +143,7 @@ class SpamCheck
   end
 
   def trusted?
-    @account.trust_level > Account::TRUST_LEVELS[:untrusted]
+    @account.trust_level > Account::TRUST_LEVELS[:untrusted] || (@account.local? && @account.user_staff?)
   end
 
   def no_unsolicited_mentions?

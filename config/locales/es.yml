@@ -1,8 +1,8 @@
 ---
 es:
   about:
-    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en el fediverso.
-    about_mastodon_html: Mastodon es una red social basada en protocolos web abiertos y software libre y de código abierto. Está descentralizado como correo electrónico.
+    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
+    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
     about_this: Información
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
@@ -11,6 +11,7 @@ es:
     apps: Aplicaciones móviles
     apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
     browse_directory: Navega por el directorio de perfiles y filtra por intereses
+    browse_local_posts: Explora en vivo los posts públicos de este servidor
     browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
@@ -77,6 +78,7 @@ es:
     roles:
       admin: Administrador
       bot: Bot
+      group: Grupo
       moderator: Moderador
     unavailable: Perfil no disponible
     unfollow: Dejar de seguir
@@ -90,6 +92,7 @@ es:
       delete: Borrar
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
+      add_email_domain_block: Poner en lista negra el dominio del correo
       approve: Aprobar
       approve_all: Aprobar todos
       are_you_sure: "¿Estás seguro?"
@@ -117,9 +120,7 @@ es:
       email_status: E-mail Status
       enable: Habilitar
       enabled: Habilitada
-      feed_url: URL de notificaciones
       followers: Seguidores
-      followers_url: URL de los seguidores
       follows: Sigue
       header: Cabecera
       inbox_url: URL de la bandeja de entrada
@@ -147,10 +148,8 @@ es:
       no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
       not_subscribed: No se está suscrito
-      outbox_url: URL de bandeja de salida
       pending: Revisión pendiente
       perform_full_suspension: Suspender
-      profile_url: URL del perfil
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -173,8 +172,9 @@ es:
         moderator: Moderador
         staff: Personal
         user: Usuario
-      salmon_url: URL de salmón
       search: Buscar
+      search_same_email_domain: Otros usuarios con el mismo dominio de correo
+      search_same_ip: Otros usuarios con la misma IP
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -183,7 +183,7 @@ es:
       silenced: Silenciado
       statuses: Estados
       subscribe: Suscribir
-      suspended: Susependido
+      suspended: Suspendido
       time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
@@ -195,16 +195,56 @@ es:
       web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
+      action_types:
+        assigned_to_self_report: Asignar Reporte
+        change_email_user: Cambiar Correo Electrónico del Usuario
+        confirm_user: Confirmar Usuario
+        create_account_warning: Crear Advertencia
+        create_announcement: Crear Anuncio
+        create_custom_emoji: Crear Emoji Personalizado
+        create_domain_allow: Crear Permiso de Dominio
+        create_domain_block: Crear Bloqueo de Dominio
+        create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        demote_user: Degradar Usuario
+        destroy_announcement: Eliminar Anuncio
+        destroy_custom_emoji: Eliminar Emoji Personalizado
+        destroy_domain_allow: Eliminar Permiso de Dominio
+        destroy_domain_block: Eliminar Bloqueo de Dominio
+        destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_status: Eliminar Estado
+        disable_2fa_user: Deshabilitar 2FA
+        disable_custom_emoji: Deshabilitar Emoji Personalizado
+        disable_user: Deshabilitar Usuario
+        enable_custom_emoji: Habilitar Emoji Personalizado
+        enable_user: Habilitar Usuario
+        memorialize_account: Transformar en Cuenta Conmemorativa
+        promote_user: Promover Usuario
+        remove_avatar_user: Eliminar Avatar
+        reopen_report: Reabrir Reporte
+        reset_password_user: Restablecer Contraseña
+        resolve_report: Resolver Reporte
+        silence_account: Silenciar Cuenta
+        suspend_account: Suspender Cuenta
+        unassigned_report: Desasignar Reporte
+        unsilence_account: Dejar de Silenciar Cuenta
+        unsuspend_account: Dejar de Suspender Cuenta
+        update_announcement: Actualizar Anuncio
+        update_custom_emoji: Actualizar Emoji Personalizado
+        update_status: Actualizar Estado
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
         change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
         confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning: "%{name} envió una advertencia a %{target}"
+        create_announcement: "%{name} creó el nuevo anuncio %{target}"
         create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
+        create_domain_allow: "%{name} ha añadido a la lista blanca el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
         demote_user: "%{name} degradó al usuario %{target}"
+        destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
+        destroy_domain_allow: "%{name} ha eliminado el dominio %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
         destroy_status: "%{name} eliminó el estado de %{target}"
@@ -224,10 +264,29 @@ es:
         unassigned_report: "%{name} ha desasignado la denuncia %{target}"
         unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
+        update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
+      empty: No se encontraron registros.
+      filter_by_action: Filtrar por acción
+      filter_by_user: Filtrar por usuario
       title: Log de auditoría
+    announcements:
+      destroyed_msg: "¡Anuncio eliminado con éxito!"
+      edit:
+        title: Editar anuncio
+      empty: No se encontraron anuncios.
+      live: En vivo
+      new:
+        create: Crear anuncio
+        title: Nuevo anuncio
+      published_msg: "¡Anuncio publicado con éxito!"
+      scheduled_for: Programado para %{time}
+      scheduled_msg: "¡Anuncio programado para su publicación!"
+      title: Anuncios
+      unpublished_msg: "¡Anuncio despublicado con éxito!"
+      updated_msg: "¡Anuncio actualizado con éxito!"
     custom_emojis:
       assign_category: Asignar categoría
       by_domain: Dominio
@@ -321,7 +380,7 @@ es:
       rejecting_reports: rechazando informes
       severity:
         silence: silenciado
-        suspend: susependido
+        suspend: suspendido
       show:
         affected_accounts:
           one: Una cuenta en la base de datos afectada
@@ -339,13 +398,12 @@ es:
       delete: Borrar
       destroyed_msg: Dominio de correo borrado de la lista negra con éxito
       domain: Dominio
+      empty: Actualmente no hay dominios de correo electrónico en la lista negra.
+      from_html: de %{domain}
       new:
         create: Añadir dominio
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
-    followers:
-      back_to_account: Volver a la cuenta
-      title: Seguidores de %{acct}
     instances:
       by_domain: Dominio
       delivery_available: Entrega disponible
@@ -374,6 +432,8 @@ es:
       title: Invitaciones
     pending_accounts:
       title: Cuentas pendientes (%{count})
+    relationships:
+      title: Relaciones de %{acct}
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
@@ -395,12 +455,17 @@ es:
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
     reports:
       account:
-        note: nota
-        report: denuncia
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+        reports:
+          one: "%{count} informe"
+          other: "%{count} informes"
       action_taken_by: Acción tomada por
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
+      by_target_domain: Dominio de la cuenta reportada
       comment:
         none: Ninguno
       created_at: Denunciado
@@ -446,6 +511,8 @@ es:
         users: Para los usuarios locales que han iniciado sesión
       domain_blocks_rationale:
         title: Mostrar la razón de ser
+      enable_bootstrap_timeline_accounts:
+        title: Habilitar seguimientos predeterminados para usuarios nuevos
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -512,6 +579,9 @@ es:
       trends:
         desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
         title: Hashtags de tendencia
+    site_uploads:
+      delete: Eliminar archivo subido
+      destroyed_msg: "¡Carga del sitio eliminada con éxito!"
     statuses:
       back_to_account: Volver a la cuenta
       batch:
@@ -548,7 +618,6 @@ es:
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
-      edit: Editar
       edit_preset: Editar aviso predeterminado
       title: Editar configuración predeterminada de avisos
   admin_mailer:
@@ -566,6 +635,7 @@ es:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
     deleted_msg: Elimina el alias correctamente. El traslado de esa cuenta a esta ya no será posible.
+    empty: No tienes ningún alias.
     hint_html: Si quieres migrar de otra cuenta a esta, aquí puedes crear un alias, es necesario proceder antes de empezar a mover seguidores de la cuenta anterior a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta antigua</strong>.
     remove: Desvincular alias
   appearance:
@@ -574,7 +644,12 @@ es:
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
+    localization:
+      body: Mastodon es traducido con la ayuda de voluntarios.
+      guide_link: https://es.crowdin.com/project/mastodon
+      guide_link_text: Todos pueden contribuir.
     sensitive_content: Contenido sensible
+    toot_layout: Diseño de los toots
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name},"
@@ -631,6 +706,7 @@ es:
     trouble_logging_in: "¿Problemas para iniciar sesión?"
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
+    already_requested: Ya has enviado una solicitud de seguimiento a esa cuenta
     error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     follow_request: 'Tienes una solicitud de seguimiento de:'
@@ -645,6 +721,9 @@ es:
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña incorrecta
     prompt: Confirmar contraseña para seguir
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -704,14 +783,13 @@ es:
     archive_takeout:
       date: Fecha
       download: Descargar tu archivo
-      hint_html: Puedes solicitar un archivo de tus <strong>toots y materiales subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      hint_html: Puedes solicitar un archivo de tus <strong>toots y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
       in_progress: Recopilando tu archivo...
       request: Solicitar tu archivo
       size: Tamaño
     blocks: Personas que has bloqueado
     csv: CSV
     domain_blocks: Bloqueos de dominios
-    follows: Personas que sigues
     lists: Listas
     mutes: Tienes en silencio
     storage: Almacenamiento
@@ -722,6 +800,7 @@ es:
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
+      account: Perfiles
       home: Timeline propio
       notifications: Notificaciones
       public: Timeline público
@@ -733,6 +812,7 @@ es:
       invalid_irreversible: El filtrado irreversible solo funciona con los contextos propios o de notificaciones
     index:
       delete: Borrar
+      empty: No tienes filtros.
       title: Filtros
     new:
       title: Añadir un nuevo filtro
@@ -745,6 +825,7 @@ es:
     all: Todos
     changes_saved_msg: "¡Cambios guardados con éxito!"
     copy: Copiar
+    delete: Eliminar
     no_batch_actions_available: No hay acciones por lotes disponibles en esta página
     order_by: Ordenar por
     save_changes: Guardar cambios
@@ -769,6 +850,8 @@ es:
     inactive: Inactivo
     publicize_checkbox: 'Y tootee esto:'
     publicize_toot: "¡Comprobado! Soy %{username} en %{service}: %{url}"
+    remove: Eliminar prueba de la cuenta
+    removed: Prueba eliminada con éxito de la cuenta
     status: Estado de la verificación
     view_proof: Ver prueba
   imports:
@@ -814,6 +897,7 @@ es:
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
     acct: username@domain de la nueva cuenta
@@ -881,6 +965,10 @@ es:
       body: "%{name} ha retooteado tu estado:"
       subject: "%{name} ha retooteado tu estado"
       title: Nueva difusión
+  notifications:
+    email_events: Eventos para notificaciones por correo electrónico
+    email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
+    other_settings: Otros ajustes de notificaciones
   number:
     human:
       decimal_units:
@@ -904,6 +992,7 @@ es:
       duration_too_long: está demasiado lejos en el futuro
       duration_too_short: es demasiado pronto
       expired: La encuesta ya ha terminado
+      invalid_choice: La opción de voto seleccionada no existe
       over_character_limit: no puede exceder %{max} caracteres cada uno
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
@@ -911,9 +1000,16 @@ es:
     other: Otros
     posting_defaults: Configuración por defecto de publicaciones
     public_timelines: Líneas de tiempo públicas
+  reactions:
+    errors:
+      limit_reached: Límite de reacciones diferentes alcanzado
+      unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
     dormant: Inactivo
+    followers: Seguidores
+    following: Siguiendo
+    invited: Invitado
     last_active: Última actividad
     most_recent: Más reciente
     moved: Movido
@@ -1008,7 +1104,7 @@ es:
     relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
   spam_check:
-    spam_detected: Este es un informe automatizado. Se ha detectado Spam.
+    spam_detected: Este es un informe automatizado. Se ha detectado correo no deseado.
   statuses:
     attached:
       description: 'Adjunto: %{attached}'
@@ -1023,6 +1119,8 @@ es:
     disallowed_hashtags:
       one: 'contenía un hashtag no permitido: %{tags}'
       other: 'contenía los hashtags no permitidos: %{tags}'
+    errors:
+      in_reply_not_found: El estado al que intentas responder no existe.
     language_detection: Detección automática de idioma
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
@@ -1040,6 +1138,7 @@ es:
         other: "%{count} votos"
       vote: Vota
     show_more: Mostrar más
+    show_thread: Mostrar hilo
     sign_in_to_participate: Regístrate para participar en la conversación
     title: '%{name}: "%{quote}"'
     visibilities:

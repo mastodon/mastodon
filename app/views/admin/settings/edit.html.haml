@@ -1,7 +1,13 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
 - content_for :page_title do
   = t('admin.settings.title')
 
-= simple_form_for @admin_settings, url: admin_settings_path, html: { method: :patch } do |f|
+  - content_for :heading_actions do
+    = button_tag t('generic.save_changes'), class: 'button', form: 'edit_admin'
+
+= simple_form_for @admin_settings, url: admin_settings_path, html: { method: :patch, id: 'edit_admin' } do |f|
   = render 'shared/error_messages', object: @admin_settings
 
   .fields-group
@@ -27,18 +33,20 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :thumbnail, as: :file, wrapper: :with_block_label, label: t('admin.settings.thumbnail.title'), hint: t('admin.settings.thumbnail.desc_html')
+      = f.input :thumbnail, as: :file, wrapper: :with_block_label, label: t('admin.settings.thumbnail.title'), hint: site_upload_delete_hint(t('admin.settings.thumbnail.desc_html'), :thumbnail)
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :hero, as: :file, wrapper: :with_block_label, label: t('admin.settings.hero.title'), hint: t('admin.settings.hero.desc_html')
+      = f.input :hero, as: :file, wrapper: :with_block_label, label: t('admin.settings.hero.title'), hint: site_upload_delete_hint(t('admin.settings.hero.desc_html'), :hero)
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :mascot, as: :file, wrapper: :with_block_label, label: t('admin.settings.mascot.title'), hint: t('admin.settings.mascot.desc_html')
+      = f.input :mascot, as: :file, wrapper: :with_block_label, label: t('admin.settings.mascot.title'), hint: site_upload_delete_hint(t('admin.settings.mascot.desc_html'), :mascot)
 
   %hr.spacer/
 
   .fields-group
-    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html')
+    = f.input :enable_bootstrap_timeline_accounts, as: :boolean, wrapper: :with_label, label: t('admin.settings.enable_bootstrap_timeline_accounts.title')
+  .fields-group
+    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html'), disabled: !Setting.enable_bootstrap_timeline_accounts
 
   %hr.spacer/
 

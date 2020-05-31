@@ -35,8 +35,10 @@ import identity_proofs from './identity_proofs';
 import announcements from './announcements';
 import trends from './trends';
 import missed_updates from './missed_updates';
+import announcements from './announcements';
 
 const reducers = {
+  announcements,
   dropdown_menu,
   timelines,
   meta,

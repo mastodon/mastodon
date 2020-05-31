@@ -7,18 +7,33 @@ import {
   FAVOURITED_STATUSES_EXPAND_FAIL,
 } from '../actions/favourites';
 import {
+  BOOKMARKED_STATUSES_FETCH_REQUEST,
+  BOOKMARKED_STATUSES_FETCH_SUCCESS,
+  BOOKMARKED_STATUSES_FETCH_FAIL,
+  BOOKMARKED_STATUSES_EXPAND_REQUEST,
+  BOOKMARKED_STATUSES_EXPAND_SUCCESS,
+  BOOKMARKED_STATUSES_EXPAND_FAIL,
+} from '../actions/bookmarks';
+import {
   PINNED_STATUSES_FETCH_SUCCESS,
 } from '../actions/pin_statuses';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import {
   FAVOURITE_SUCCESS,
   UNFAVOURITE_SUCCESS,
+  BOOKMARK_SUCCESS,
+  UNBOOKMARK_SUCCESS,
   PIN_SUCCESS,
   UNPIN_SUCCESS,
 } from '../actions/interactions';
 
 const initialState = ImmutableMap({
   favourites: ImmutableMap({
+    next: null,
+    loaded: false,
+    items: ImmutableList(),
+  }),
+  bookmarks: ImmutableMap({
     next: null,
     loaded: false,
     items: ImmutableList(),
@@ -71,10 +86,24 @@ export default function statusLists(state = initialState, action) {
     return normalizeList(state, 'favourites', action.statuses, action.next);
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
     return appendToList(state, 'favourites', action.statuses, action.next);
+  case BOOKMARKED_STATUSES_FETCH_REQUEST:
+  case BOOKMARKED_STATUSES_EXPAND_REQUEST:
+    return state.setIn(['bookmarks', 'isLoading'], true);
+  case BOOKMARKED_STATUSES_FETCH_FAIL:
+  case BOOKMARKED_STATUSES_EXPAND_FAIL:
+    return state.setIn(['bookmarks', 'isLoading'], false);
+  case BOOKMARKED_STATUSES_FETCH_SUCCESS:
+    return normalizeList(state, 'bookmarks', action.statuses, action.next);
+  case BOOKMARKED_STATUSES_EXPAND_SUCCESS:
+    return appendToList(state, 'bookmarks', action.statuses, action.next);
   case FAVOURITE_SUCCESS:
     return prependOneToList(state, 'favourites', action.status);
   case UNFAVOURITE_SUCCESS:
     return removeOneFromList(state, 'favourites', action.status);
+  case BOOKMARK_SUCCESS:
+    return prependOneToList(state, 'bookmarks', action.status);
+  case UNBOOKMARK_SUCCESS:
+    return removeOneFromList(state, 'bookmarks', action.status);
   case PINNED_STATUSES_FETCH_SUCCESS:
     return normalizeList(state, 'pins', action.statuses, action.next);
   case PIN_SUCCESS:

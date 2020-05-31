@@ -12,6 +12,7 @@ const messages = defineMessages({
   pause: { id: 'video.pause', defaultMessage: 'Pause' },
   mute: { id: 'video.mute', defaultMessage: 'Mute sound' },
   unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
+  download: { id: 'video.download', defaultMessage: 'Download file' },
 });
 
 export default @injectIntl
@@ -36,15 +37,14 @@ class Audio extends React.PureComponent {
     volume: 0.5,
   };
 
-  // hard coded in components.scss
-  // any way to get ::before values programatically?
-
-  volWidth = 50;
-
+  // Hard coded in components.scss
+  // Any way to get ::before values programatically?
+  volWidth  = 50;
   volOffset = 70;
 
   volHandleOffset = v => {
     const offset = v * this.volWidth + this.volOffset;
+
     return (offset > 110) ? 110 : offset;
   }
 
@@ -60,6 +60,8 @@ class Audio extends React.PureComponent {
     if (this.waveform) {
       this._updateWaveform();
     }
+
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentDidUpdate (prevProps) {
@@ -69,6 +71,8 @@ class Audio extends React.PureComponent {
   }
 
   componentWillUnmount () {
+    window.removeEventListener('scroll', this.handleScroll);
+
     if (this.wavesurfer) {
       this.wavesurfer.destroy();
       this.wavesurfer = null;
@@ -127,16 +131,15 @@ class Audio extends React.PureComponent {
         this.loaded = true;
       }
 
-      this.wavesurfer.play();
-      this.setState({ paused: false });
+      this.setState({ paused: false }, () => this.wavesurfer.play());
     } else {
-      this.wavesurfer.pause();
-      this.setState({ paused: true });
+      this.setState({ paused: true }, () => this.wavesurfer.pause());
     }
   }
 
   toggleMute = () => {
-    this.wavesurfer.setMute(!this.state.muted);
+    const muted = !this.state.muted;
+    this.setState({ muted }, () => this.wavesurfer.setMute(muted));
   }
 
   handleVolumeMouseDown = e => {
@@ -175,6 +178,19 @@ class Audio extends React.PureComponent {
     }
   }, 60);
 
+  handleScroll = throttle(() => {
+    if (!this.waveform || !this.wavesurfer) {
+      return;
+    }
+
+    const { top, height } = this.waveform.getBoundingClientRect();
+    const inView = (top <= (window.innerHeight || document.documentElement.clientHeight)) && (top + height >= 0);
+
+    if (!this.state.paused && !inView) {
+      this.setState({ paused: true }, () => this.wavesurfer.pause());
+    }
+  }, 150, { trailing: true })
+
   render () {
     const { height, intl, alt, editable } = this.props;
     const { paused, muted, volume, currentTime } = this.state;
@@ -198,10 +214,11 @@ class Audio extends React.PureComponent {
         <div className='video-player__controls active'>
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
-              <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
               <div className='video-player__volume' onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
+                &nbsp;
                 <div className='video-player__volume__current' style={{ width: `${volumeWidth}px` }} />
 
                 <span
@@ -216,6 +233,14 @@ class Audio extends React.PureComponent {
                 <span className='video-player__time-sep'>/</span>
                 <span className='video-player__time-total'>{formatTime(this.state.duration || Math.floor(this.props.duration))}</span>
               </span>
+            </div>
+
+            <div className='video-player__buttons right'>
+              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)}>
+                <a className='video-player__download__icon' href={this.props.src} download>
+                  <Icon id={'download'} fixedWidth />
+                </a>
+              </button>
             </div>
           </div>
         </div>

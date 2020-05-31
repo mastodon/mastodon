@@ -4,6 +4,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :push }
   before_action :require_user!
   before_action :set_web_push_subscription
+  before_action :check_web_push_subscription, only: [:show, :update]
 
   def create
     @web_subscription&.destroy!
@@ -21,16 +22,11 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   end
 
   def show
-    raise ActiveRecord::RecordNotFound if @web_subscription.nil?
-
     render json: @web_subscription, serializer: REST::WebPushSubscriptionSerializer
   end
 
   def update
-    raise ActiveRecord::RecordNotFound if @web_subscription.nil?
-
     @web_subscription.update!(data: data_params)
-
     render json: @web_subscription, serializer: REST::WebPushSubscriptionSerializer
   end
 
@@ -45,12 +41,17 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
     @web_subscription = ::Web::PushSubscription.find_by(access_token_id: doorkeeper_token.id)
   end
 
+  def check_web_push_subscription
+    not_found if @web_subscription.nil?
+  end
+
   def subscription_params
     params.require(:subscription).permit(:endpoint, keys: [:auth, :p256dh])
   end
 
   def data_params
     return {} if params[:data].blank?
-    params.require(:data).permit(alerts: [:follow, :favourite, :reblog, :mention, :poll])
+
+    params.require(:data).permit(alerts: [:follow, :follow_request, :favourite, :reblog, :mention, :poll])
   end
 end

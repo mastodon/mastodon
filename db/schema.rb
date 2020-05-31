@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_013357) do
+ActiveRecord::Schema.define(version: 2020_05_10_110808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.text "text", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title", default: "", null: false
   end
 
   create_table "account_warnings", force: :cascade do |t|
@@ -170,6 +171,9 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.datetime "silenced_at"
     t.datetime "suspended_at"
     t.integer "trust_level"
+    t.boolean "hide_collections"
+    t.integer "avatar_storage_schema_version"
+    t.integer "header_storage_schema_version"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -196,31 +200,51 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
   end
 
-  create_table "announcement_links", force: :cascade do |t|
-    t.bigint "announcement_id", null: false
-    t.string "text", default: "", null: false
-    t.string "url", default: "", null: false
+  create_table "announcement_mutes", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "announcement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["announcement_id"], name: "index_announcement_links_on_announcement_id"
+    t.index ["account_id", "announcement_id"], name: "index_announcement_mutes_on_account_id_and_announcement_id", unique: true
+    t.index ["account_id"], name: "index_announcement_mutes_on_account_id"
+    t.index ["announcement_id"], name: "index_announcement_mutes_on_announcement_id"
+  end
+
+  create_table "announcement_reactions", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "announcement_id"
+    t.string "name", default: "", null: false
+    t.bigint "custom_emoji_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "announcement_id", "name"], name: "index_announcement_reactions_on_account_id_and_announcement_id", unique: true
+    t.index ["account_id"], name: "index_announcement_reactions_on_account_id"
+    t.index ["announcement_id"], name: "index_announcement_reactions_on_announcement_id"
+    t.index ["custom_emoji_id"], name: "index_announcement_reactions_on_custom_emoji_id"
   end
 
   create_table "announcements", force: :cascade do |t|
-    t.string "body", default: "", null: false
-    t.integer "order", default: 0, null: false
+    t.text "text", default: "", null: false
+    t.boolean "published", default: false, null: false
+    t.boolean "all_day", default: false, null: false
+    t.datetime "scheduled_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "published_at"
+    t.bigint "status_ids", array: true
   end
 
   create_table "backups", force: :cascade do |t|
     t.bigint "user_id"
     t.string "dump_file_name"
     t.string "dump_content_type"
-    t.integer "dump_file_size"
     t.datetime "dump_updated_at"
     t.boolean "processed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "dump_file_size"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -231,6 +255,16 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.string "uri"
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_blocks_on_target_account_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
+    t.index ["account_id"], name: "index_bookmarks_on_account_id"
+    t.index ["status_id"], name: "index_bookmarks_on_status_id"
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
@@ -267,6 +301,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.string "image_remote_url"
     t.boolean "visible_in_picker", default: true, null: false
     t.bigint "category_id"
+    t.integer "image_storage_schema_version"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
@@ -305,6 +340,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.string "domain", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_id"
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
@@ -389,7 +425,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
   create_table "list_accounts", force: :cascade do |t|
     t.bigint "list_id", null: false
     t.bigint "account_id", null: false
-    t.bigint "follow_id", null: false
+    t.bigint "follow_id"
     t.index ["account_id", "list_id"], name: "index_list_accounts_on_account_id_and_list_id", unique: true
     t.index ["follow_id"], name: "index_list_accounts_on_follow_id"
     t.index ["list_id", "account_id"], name: "index_list_accounts_on_list_id_and_account_id"
@@ -430,6 +466,8 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.text "description"
     t.bigint "scheduled_status_id"
     t.string "blurhash"
+    t.integer "processing"
+    t.integer "file_storage_schema_version"
     t.index ["account_id"], name: "index_media_attachments_on_account_id"
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
@@ -570,6 +608,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "embed_url", default: "", null: false
+    t.integer "image_storage_schema_version"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
@@ -696,6 +735,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.datetime "deleted_at"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
+    t.index ["id", "account_id"], name: "index_statuses_public_20200119", order: { id: :desc }, where: "((deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
@@ -707,30 +747,6 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.bigint "tag_id", null: false
     t.index ["status_id"], name: "index_statuses_tags_on_status_id"
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
-  end
-
-  create_table "stream_entries", force: :cascade do |t|
-    t.bigint "activity_id"
-    t.string "activity_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "hidden", default: false, null: false
-    t.bigint "account_id"
-    t.index ["account_id", "activity_type", "id"], name: "index_stream_entries_on_account_id_and_activity_type_and_id"
-    t.index ["activity_id", "activity_type"], name: "index_stream_entries_on_activity_id_and_activity_type"
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string "callback_url", default: "", null: false
-    t.string "secret"
-    t.datetime "expires_at"
-    t.boolean "confirmed", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_successful_delivery_at"
-    t.string "domain"
-    t.bigint "account_id", null: false
-    t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
@@ -756,6 +772,13 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
     t.boolean "by_moderator"
     t.index ["account_id"], name: "index_tombstones_on_account_id"
     t.index ["uri"], name: "index_tombstones_on_uri"
+  end
+
+  create_table "unavailable_domains", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_unavailable_domains_on_domain", unique: true
   end
 
   create_table "user_invite_requests", force: :cascade do |t|
@@ -847,13 +870,24 @@ ActiveRecord::Schema.define(version: 2019_10_07_013357) do
   add_foreign_key "account_warnings", "accounts", on_delete: :nullify
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
+<<<<<<< HEAD
   add_foreign_key "announcement_links", "announcements", on_delete: :cascade
+=======
+  add_foreign_key "announcement_mutes", "accounts", on_delete: :cascade
+  add_foreign_key "announcement_mutes", "announcements", on_delete: :cascade
+  add_foreign_key "announcement_reactions", "accounts", on_delete: :cascade
+  add_foreign_key "announcement_reactions", "announcements", on_delete: :cascade
+  add_foreign_key "announcement_reactions", "custom_emojis", on_delete: :cascade
+>>>>>>> v3.1.4
   add_foreign_key "backups", "users", on_delete: :nullify
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
+  add_foreign_key "bookmarks", "accounts", on_delete: :cascade
+  add_foreign_key "bookmarks", "statuses", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
+  add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade

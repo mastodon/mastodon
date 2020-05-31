@@ -7,6 +7,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
 
   before_action :skip_unknown_actor_delete
   before_action :require_signature!
+  skip_before_action :authenticate_user!
 
   def create
     upgrade_account
@@ -48,7 +49,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
       ResolveAccountWorker.perform_async(signed_request_account.acct)
     end
 
-    DeliveryFailureTracker.track_inverse_success!(signed_request_account)
+    DeliveryFailureTracker.reset!(signed_request_account.inbox_url)
   end
 
   def process_payload

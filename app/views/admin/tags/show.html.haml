@@ -3,7 +3,7 @@
 
 .dashboard__counters
   %div
-    = link_to tag_url(@tag), target: '_blank', rel: 'noopener' do
+    = link_to tag_url(@tag), target: '_blank', rel: 'noopener noreferrer' do
       .dashboard__counters__num= number_with_delimiter @accounts_today
       .dashboard__counters__label= t 'admin.tags.accounts_today'
   %div

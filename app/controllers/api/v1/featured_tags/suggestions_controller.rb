@@ -2,11 +2,8 @@
 
 class Api::V1::FeaturedTags::SuggestionsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:accounts' }, only: :index
-
   before_action :require_user!
   before_action :set_most_used_tags, only: :index
-
-  respond_to :json
 
   def index
     render json: @most_used_tags, each_serializer: REST::TagSerializer

@@ -2,19 +2,34 @@
 ro:
   simple_form:
     hints:
+      account_alias:
+        acct: Specificați numele de utilizator@domeniu al contului de la care doriți să treceți
+      account_migration:
+        acct: Specificați numele de utilizator@domeniu al contului la care doriți să vă mutați
       account_warning_preset:
         text: Poți utiliza sintaxe precum URL, hastag sau menționări
+        title: Opțional. Nu este vizibil pentru destinatar
       admin_account_action:
+        include_statuses: Utilizatorul va vedea ce postări au provocat acțiunea de moderare sau avertismentul
         send_email_notification: Utilizatorul va primi o explicație cu privire la ceea ce sa întâmplat cu contul lui
         text_html: Opțional. Poți utiliza sintaxe. Poți <a href="%{path}">adăuga avertismente predefinite</a> pentru a salva timp
         type_html: Alege ce se întâmplă cu <strong>%{acct}</strong>
         warning_preset_id: Opțional. Poți adăuga text personalizat la sfârșitul presetului
+      announcement:
+        all_day: Când este bifat, numai datele intervalului de timp vor fi afișate
+        ends_at: Opțional. Anunțul va fi automat nepublicat în acest moment
+        scheduled_at: Lăsați necompletat pentru a publica anunțul imediat
+        starts_at: Opțional. În cazul în care anunțul tău este legat de un anumit interval de timp
+        text: Poți folosi sintaxa de postare. Te rugăm să fii atent la spațiul pe care anunțul îl va ocupa pe ecranul utilizatorului
       defaults:
         autofollow: Persoanele care se înregistrează datorită invitației tale te vor urmări automat
         avatar: PNG, GIF sau JPG. Cel mult %{size}. Va fi redimensionată la %{dimensions}px
         bot: Acest cont performează în cea mai mare parte acțiuni automate și nu poate fi monitorizat
         context: Contextele în care filtrul trebuie aplicat
+        current_password: În scopuri de securitate, vă rugăm să introduceţi parola contului curent
+        current_username: Pentru a confirma, vă rugăm să introduceţi numele de utilizator al contului curent
         digest: Este trimis doar după o lungă perioadă de inactivitate și numai dacă primești mesaje personale în perioada de absență
+        discoverable: Directorul de profil este un alt mod prin care contul tău poate ajunge la un public mai larg
         email: Vei primi un e-mail de confirmare
         fields: Poti afișa pană la maxim 4 adrese sub formă de tabel pe pofilul tău
         header: PNG, GIF sau JPG. Cel mult %{size}. Vor fi redimensionate la %{dimensions}px
@@ -25,18 +40,35 @@ ro:
         password: Utilizează cel puțin 8 caractere
         phrase: Vor fi potrivite indiferent de textul din casetă sau advertismentul unei postări
         scopes: La care API-uri aplicația are nevoie de acces. Dacă selectezi un scop principal nu mai e nevoie să selectezi fiecare sub-scop al acestuia.
-        setting_aggregate_reblogs: Nu afișa redistribuirile noi pentru postările care au fost deja recent redistribuite (afectează doar noile redistribuiri primite)
+        setting_aggregate_reblogs: Nu afișa impulsurile noi pentru postările care au fost deja recent impulsionate (afectează doar noile impulsuri primite)
+        setting_default_sensitive: Fișierele media sensibile sunt ascunse implicit și pot fi dezvăluite cu un clic
         setting_display_media_default: Ascunde conținutul media marcat ca sensibil (NSFW)
         setting_display_media_hide_all: Întotdeauna ascunde tot conținutul media
         setting_display_media_show_all: Întotdeauna afișează conținutul media marcat ca sensibil
         setting_hide_network: Pe cine urmărești și cine te urmărește nu vor fi afișați pe profilul tău
         setting_noindex: Afecteazâ profilul tău public și statusurile tale
+        setting_show_application: Aplicația pe care o utilizați pentru a posta va fi afișată în vizualizarea detaliată a postărilor
+        setting_use_blurhash: Gradienții sunt bazați pe culorile vizualelor ascunse, dar ofuscă orice detalii
+        setting_use_pending_items: Ascunde actualizările cronologice din spatele unui click în loc de a derula automat fluxul
         username: Numele tău de utilizator va fi unic pe %{domain}
         whole_word: Când fraza sau cuvântul este doar alfanumeric, acesta se aplică doar dacă există o potrivire completă
+      domain_allow:
+        domain: Acest domeniu va putea prelua date de pe acest server și datele primite de la el vor fi procesate și stocate
+      email_domain_block:
+        domain: Acesta poate fi numele domeniului care apare pe adresa de e-mail, înregistrarea MX la care domeniul se rezolvă sau IP-ul serverului la care înregistrează MX rezolvă. Acestea vor fi verificate după înregistrarea utilizatorului, iar înscrierea va fi respinsă.
+        with_dns_records: Se va face o încercare de a rezolva înregistrările DNS ale domeniului dat și rezultatele vor fi de asemenea afișate pe lista neagră
+      featured_tag:
+        name: 'S-ar putea să vreți să folosiți unul dintre acestea:'
+      form_challenge:
+        current_password: Ați intrat într-o zonă securizată
       imports:
         data: Fișierul CSV exportat de la o altă instanță
+      invite_request:
+        text: Acest lucru ne va ajuta să revizuim cererea dvs
       sessions:
         otp: 'Introdu codul pentru dubla protecție generat de telefonul mobil sau unul din codurile de rezervă:'
+      tag:
+        name: Poți doar să schimbi caseta literelor, de exemplu, pentru a o face mai lizibilă
       user:
         chosen_languages: Doar postările în limbile selectate vor fi afișate în fluxurile publice
     labels:
@@ -44,9 +76,15 @@ ro:
         fields:
           name: Etichetă
           value: Conținut
+      account_alias:
+        acct: Manipularea contului vechi
+      account_migration:
+        acct: Manipularea contului nou
       account_warning_preset:
         text: Text presetat
+        title: Titlu
       admin_account_action:
+        include_statuses: Include postările raportate în e-mail
         send_email_notification: Notificați utilizatorul prin e-mail
         text: Avertisment personalizat
         type: Acțiune
@@ -56,6 +94,12 @@ ro:
           silence: Liniște
           suspend: Suspendă și șterge ireversibil datele contului
         warning_preset_id: Utilizează un avertisment predefinit
+      announcement:
+        all_day: Eveniment pe toată ziua
+        ends_at: Sfârșitul evenimentului
+        scheduled_at: Programare publicare
+        starts_at: Începerea evenimentului
+        text: Anunţ
       defaults:
         autofollow: Invită să te urmărească
         avatar: Fotografie de profil
@@ -65,6 +109,7 @@ ro:
         confirm_password: Confirmă parola
         context: Contextele filtrului
         current_password: Parola actuală
+        data: Date
         discoverable: Listează acest cont in director
         display_name: Numele afișat
         email: Adresa de e-mail
@@ -81,37 +126,65 @@ ro:
         otp_attempt: Cod dublă protecție
         password: Parolă
         phrase: Cuvânt sau frază
+        setting_advanced_layout: Activează interfața web avansată
+        setting_aggregate_reblogs: Grupează impulsurile în fluxuri
         setting_auto_play_gif: Redă automat animațiile GIF
-        setting_boost_modal: Arată dialogul de confirmare înainte de a redistribui
+        setting_boost_modal: Arată dialogul de confirmare înainte de a impulsiona
+        setting_crop_images: Decupează imaginile în postările non-extinse la 16x9
         setting_default_language: În ce limbă postezi
         setting_default_privacy: Cine vede postările tale
         setting_default_sensitive: Întotdeauna marchează conținutul media ca sensibil
         setting_delete_modal: Arată dialogul de confirmare înainte de a șterge o postare
+        setting_display_media: Afișare media
         setting_display_media_default: Standard
+        setting_display_media_hide_all: Ascunde toate
+        setting_display_media_show_all: Arată toate
+        setting_expand_spoilers: Întotdeauna extinde postările marcate cu avertismente referitoare la conținut
         setting_hide_network: Ascunde rețeaua
         setting_noindex: Nu permite motoarelor de căutare să indexeze rețeaua ta
         setting_reduce_motion: Redu mișcarea în animații
+        setting_show_application: Dezvăluie aplicația folosită pentru a trimite postări
         setting_system_font_ui: Utilizează fontul standard as sistemului
         setting_theme: Tema siteului
+        setting_trends: Arată tendințele de astăzi
         setting_unfollow_modal: Arată dialogul de confirmare înainte de a nu mai urmări pe cineva
+        setting_use_blurhash: Arată gradiente colorate pentru media ascunse
+        setting_use_pending_items: Modul lent
         severity: Severitate
         type: Ce importați
         username: Nume de utilizator
         username_or_email: Numele de utilizator sau adresa de E-mail
         whole_word: Cuvânt întreg
+      email_domain_block:
+        with_dns_records: Include înregistrările MX și IP-urile domeniului
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blochează notificările de la persoane care nu te urmăresc
         must_be_following: Blochează notificările de la persoane pe care nu le urmărești
         must_be_following_dm: Blochează mesajele directe de la persoane pe care nu le urmărești
+      invite:
+        comment: Comentariu
+      invite_request:
+        text: De ce vrei să te alături?
       notification_emails:
         digest: Trimite rezumate
         favourite: Trimite e-mail când cineva favorizează unul din statusurile tale
         follow: Trimite e-mail când cineva te urmărește
         follow_request: Trimite e-mail când cineva trimite o cerere de urmărire
         mention: Trimite e-mail când cineva te menționează
-        reblog: Trimite e-mail când cineva redistribuie unul din statusurile tale
+        pending_account: Noul cont trebuie revizuit
+        reblog: Trimite e-mail când cineva impulsionează una din postările tale
         report: Trimite e-mail când un raport nou este trimis
+        trending_tag: Un hashtag nerevizuit este în tendință
+      tag:
+        listable: Permite acestui hashtag să apară în căutări și în directorul de profil
+        name: Hashtag
+        trendable: Permite acestui hashtag să apară sub tendințe
+        usable: Permite postărilor să folosească acest hashtag
     'no': Nu
+    recommended: Recomandat
     required:
+      mark: "*"
       text: obligatoriu
     'yes': Da

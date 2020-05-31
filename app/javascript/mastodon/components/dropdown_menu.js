@@ -46,7 +46,7 @@ class DropdownMenu extends React.PureComponent {
     document.addEventListener('keydown', this.handleKeyDown, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
     if (this.focusedItem && this.props.openedViaKeyboard) {
-      this.focusedItem.focus();
+      this.focusedItem.focus({ preventScroll: true });
     }
     this.setState({ mounted: true });
   }
@@ -68,20 +68,14 @@ class DropdownMenu extends React.PureComponent {
   handleKeyDown = e => {
     const items = Array.from(this.node.getElementsByTagName('a'));
     const index = items.indexOf(document.activeElement);
-    let element;
+    let element = null;
 
     switch(e.key) {
     case 'ArrowDown':
-      element = items[index+1];
-      if (element) {
-        element.focus();
-      }
+      element = items[index+1] || items[0];
       break;
     case 'ArrowUp':
-      element = items[index-1];
-      if (element) {
-        element.focus();
-      }
+      element = items[index-1] || items[items.length-1];
       break;
     case 'Tab':
       if (e.shiftKey) {
@@ -89,27 +83,22 @@ class DropdownMenu extends React.PureComponent {
       } else {
         element = items[index+1] || items[0];
       }
-      if (element) {
-        element.focus();
-        e.preventDefault();
-        e.stopPropagation();
-      }
       break;
     case 'Home':
       element = items[0];
-      if (element) {
-        element.focus();
-      }
       break;
     case 'End':
       element = items[items.length-1];
-      if (element) {
-        element.focus();
-      }
       break;
     case 'Escape':
       this.props.onClose();
       break;
+    }
+
+    if (element) {
+      element.focus();
+      e.preventDefault();
+      e.stopPropagation();
     }
   }
 
@@ -143,7 +132,7 @@ class DropdownMenu extends React.PureComponent {
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+        <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
           {text}
         </a>
       </li>

@@ -5,8 +5,6 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   before_action :set_account
   after_action :insert_pagination_headers
 
-  respond_to :json
-
   def index
     @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer
@@ -21,11 +19,13 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   def load_accounts
     return [] if hide_results?
 
-    default_accounts.merge(paginated_follows).to_a
+    scope = default_accounts
+    scope = scope.where.not(id: current_account.excluded_from_timeline_account_ids) unless current_account.nil? || current_account.id == @account.id
+    scope.merge(paginated_follows).to_a
   end
 
   def hide_results?
-    (@account.user_hides_network? && current_account.id != @account.id) || (current_account && @account.blocking?(current_account))
+    (@account.hides_following? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
   end
 
   def default_accounts

@@ -8,8 +8,8 @@
   = render 'shared/error_messages', object: resource
 
   - if @invite.present? && @invite.autofollow?
-    .fields-group{ style: 'margin-bottom: 30px' }
-      %p.hint{ style: 'text-align: center' }= t('invites.invited_by')
+    .fields-group.invited-by
+      %p.hint= t('invites.invited_by')
       = render 'application/card', account: @invite.user.account
 
   = f.simple_fields_for :account do |ff|
@@ -27,7 +27,7 @@
 
   - if approved_registrations? && !@invite.present?
     .fields-group
-      = f.simple_fields_for :invite_request do |invite_request_fields|
+      = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
         = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: false
 
   = f.input :invite_code, as: :hidden

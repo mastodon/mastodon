@@ -27,7 +27,7 @@ class Relay < ApplicationRecord
     payload     = Oj.dump(follow_activity(activity_id))
 
     update!(state: :pending, follow_activity_id: activity_id)
-    DeliveryFailureTracker.new(inbox_url).track_success!
+    DeliveryFailureTracker.reset!(inbox_url)
     ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
   end
 
@@ -36,7 +36,7 @@ class Relay < ApplicationRecord
     payload     = Oj.dump(unfollow_activity(activity_id))
 
     update!(state: :idle, follow_activity_id: nil)
-    DeliveryFailureTracker.new(inbox_url).track_success!
+    DeliveryFailureTracker.reset!(inbox_url)
     ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
   end
 

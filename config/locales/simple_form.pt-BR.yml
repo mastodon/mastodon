@@ -3,127 +3,160 @@ pt-BR:
   simple_form:
     hints:
       account_alias:
-        acct: Especifique o usuário@domínio da conta da qual você deseja mover
+        acct: Especifique o usuário@domínio da conta da qual você deseja se mudar
       account_migration:
-        acct: Especifique o usuário@domínio da conta para o qual você deseja mover
+        acct: Especifique o usuário@domínio da conta para a qual você deseja se mudar
       account_warning_preset:
-        text: Você pode usar a sintaxe de um toot, como URLs, hashtags e menções
+        text: Você pode usar a sintaxe do toot, como links, hashtags e menções
+        title: Opcional. Não visível para o destinatário
       admin_account_action:
         include_statuses: O usuário verá quais toots causaram o aviso ou ação da moderação
-        send_email_notification: O usuário vai receber uma explicação do que aconteceu com a sua conta
-        text_html: Opcional. Você pode usar a sintaxe de toots. Você pode <a href="%{path}">adicionar avisos pré-definidos</a> para ganhar tempo
-        type_html: Escolha o que fazer com <strong>%{acct}</strong>
-        warning_preset_id: Opcional. Você ainda pode adicionar texto customizado no fim do texto pré-definido
+        send_email_notification: O usuário receberá uma explicação do que aconteceu com a própria conta
+        text_html: Opcional. Você pode usar a sintaxe do toot e também pode <a href="%{path}">adicionar avisos pré-definidos</a> para poupar tempo
+        type_html: Decida o que fazer com <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
+      announcement:
+        all_day: Quando marcada, apenas as datas do período serão mostradas
+        ends_at: Opcional. O anúncio será automaticamente não publicado no momento
+        scheduled_at: Deixe em branco para publicar o anúncio imediatamente
+        starts_at: Opcional. Caso seu anúncio esteja vinculado a um período específico
+        text: Você pode usar a sintaxe toot. Esteja ciente do espaço que o anúncio ocupará na tela do usuário
       defaults:
-        autofollow: Pessoas que se cadastrarem através de seu convite te seguirão automaticamente
-        avatar: PNG, GIF or JPG. Arquivos de até %{size}. Eles serão diminuídos para %{dimensions}px
+        autofollow: Pessoas que criarem conta através de seu convite te seguirão automaticamente
+        avatar: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
-        context: Um ou mais contextos onde o filtro deve ser aplicado
-        current_password: Para fins de segurança digite a senha da conta atual
-        current_username: Para confirmar, por favor, digite o usuário da conta atual
-        digest: Enviado após um longo período de inatividade com um resumo das menções que você recebeu em sua ausência
-        email: Você receberá um email de confirmação
-        fields: Você pode ter até 4 itens exibidos em forma de tabela no seu perfil
-        header: PNG, GIF or JPG. Arquivos de até %{size}. Eles serão diminuídos para %{dimensions}px
-        inbox_url: Copie a URL da página inicial do repetidor que você quer usar
-        irreversible: Os toots filtrados vão desaparecer irreversivelmente, mesmo se o filtro for removido depois
-        locale: O idioma das telas de usuário, e-mails e notificações push
+        context: Um ou mais contextos onde o filtro deve atuar
+        current_password: Para fins de segurança, por favor, digite a senha da conta atual
+        current_username: Para confirmar, por favor, digite o nome de usuário da conta atual
+        digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
+        discoverable: O diretório de perfis é outra maneira de sua conta alcançar um público maior
+        email: Você receberá um e-mail de confirmação
+        fields: Você pode ter até 4 itens mostrados em forma de tabela no seu perfil
+        header: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
+        inbox_url: Copie o link da página inicial do repetidor que você deseja usar
+        irreversible: Toots filtrados desaparecerão irreversivelmente, mesmo se o filtro for removido depois
+        locale: O idioma da interface do usuário, e-mails e notificações
         locked: Requer aprovação manual de seguidores
         password: Use pelo menos 8 caracteres
-        phrase: Vai coincidir, independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
-        scopes: Quais APIs a aplicação vai ter permissão de acessar. Se você selecionar um escopo de alto nível, você não precisa selecionar individualmente os outros.
-        setting_aggregate_reblogs: Não mostrar novos compartilhamentos para toots que foram compartilhados recentemente (afeta somente novos compartilhamentos recebidos)
+        phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
+        scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
+        setting_aggregate_reblogs: Não mostra novos boosts para toots que receberam boost recentemente (afeta somente os boosts mais recentes)
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
-        setting_display_media_default: Esconder mídia marcada como sensível
-        setting_display_media_hide_all: Sempre esconder todas as mídias
-        setting_display_media_show_all: Sempre mostrar mídia marcada como sensível
-        setting_hide_network: Quem você segue e quem segue você não serão exibidos no seu perfil
-        setting_noindex: Afeta seu perfil público e as páginas de suas postagens
-        setting_show_application: A aplicação que você usar para enviar seus toots vai aparecer na visão detalhada dos seus toots
-        setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer detalhes
-        setting_use_pending_items: Ocultar atualizações de linha de tempo atrás de um clique ao invés de rolar automaticamente o feed
+        setting_display_media_default: Sempre ocultar mídia sensível
+        setting_display_media_hide_all: Sempre ocultar todas as mídias
+        setting_display_media_show_all: Sempre mostrar mídia sensível
+        setting_hide_network: Quem você segue e seus seguidores não serão mostrados no seu perfil
+        setting_noindex: Afeta seu perfil público e as páginas dos seus toots
+        setting_show_application: O aplicativo que você usar para tootar será mostrado na visão detalhada dos seus toots
+        setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
+        setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
         username: Seu nome de usuário será único em %{domain}
-        whole_word: Quando a palavra ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
+        whole_word: Quando a palavra-chave ou frase é inteiramente alfanumérica, ela será aplicada somente se corresponder a palavra inteira
+      domain_allow:
+        domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
+      email_domain_block:
+        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Esses vão ser verificados no momento da cadastro do usuário e o cadastro será rejeitado.
+        with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Você pode querer usar um destes:'
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
-        data: Arquivo CSV exportado de outra instância do Mastodon
+        data: Arquivo CSV exportado de outra instância Mastodon
       invite_request:
-        text: Isso vai nos ajudar a revisar sua aplicação
+        text: Isso nos ajudará a revisar seu aplicativo
       sessions:
-        otp: 'Insira o código de autenticação gerado pelo app no seu celular ou use um dos códigos de recuperação:'
+        otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
+      tag:
+        name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
-        chosen_languages: Ao marcar, apenas toots dos idiomas selecionados serão exibidos nas timelines públicas
+        chosen_languages: Apenas toots dos idiomas selecionados serão mostrados nas linhas públicas
     labels:
       account:
         fields:
           name: Rótulo
           value: Conteúdo
+      account_alias:
+        acct: Nome de usuário da conta antiga
+      account_migration:
+        acct: Nome de usuário da nova conta
       account_warning_preset:
-        text: Texto pré-definido
+        text: Aviso pré-definido
+        title: Título
       admin_account_action:
-        include_statuses: Incluir toots reportados no e-mail
+        include_statuses: Incluir toots denunciados no e-mail
         send_email_notification: Notificar o usuário por e-mail
-        text: Aviso customizado
+        text: Aviso personalizado
         type: Ação
         types:
-          disable: Desabilitar
+          disable: Bloquear conta
           none: Não fazer nada
           silence: Silenciar
-          suspend: Suspender e excluir irreversivelmente dados da conta
+          suspend: Banir e excluir irreversivelmente dados da conta
         warning_preset_id: Usar um aviso pré-definido
+      announcement:
+        all_day: Evento o dia inteiro
+        ends_at: Fim do evento
+        scheduled_at: Agendar publicação
+        starts_at: Início do evento
+        text: Anúncio
       defaults:
         autofollow: Convite para seguir a sua conta
-        avatar: Imagem de Perfil
+        avatar: Imagem de perfil
         bot: Esta é uma conta-robô
-        chosen_languages: Filtros de idioma
+        chosen_languages: Filtro de idiomas
         confirm_new_password: Confirmar nova senha
         confirm_password: Confirmar senha
-        context: Contextos de filtro
+        context: Contextos do filtro
         current_password: Senha atual
         data: Dados
-        discoverable: Listar essa conta no diretório
+        discoverable: Mostrar conta no diretório de perfis
         display_name: Nome de exibição
         email: Endereço de e-mail
         expires_in: Expira em
         fields: Metadados do perfil
         header: Cabeçalho
-        inbox_url: URL da caixa de entrada do repetidor
-        irreversible: Ignorar ao invés de esconder
-        locale: Idioma das telas
+        inbox_url: Link da caixa de entrada do repetidor
+        irreversible: Ignorar ao invés de ocultar
+        locale: Idioma da interface
         locked: Trancar conta
         max_uses: Número máximo de usos
         new_password: Nova senha
         note: Biografia
-        otp_attempt: Código de autenticação em dois passos
+        otp_attempt: Código de autenticação de dois fatores
         password: Senha
         phrase: Palavra-chave ou frase
-        setting_aggregate_reblogs: Agrupar compartilhamentos nas timelines
+        setting_advanced_layout: Ativar interface web avançada
+        setting_aggregate_reblogs: Agrupar boosts nas linhas
         setting_auto_play_gif: Reproduzir GIFs automaticamente
-        setting_boost_modal: Mostrar diálogo de confirmação antes de compartilhar postagem
-        setting_default_language: Idioma das postagens
-        setting_default_privacy: Privacidade das postagens
+        setting_boost_modal: Solicitar confirmação antes de dar boost
+        setting_crop_images: Cortar imagens no formato 16x9 em toots não expandidos
+        setting_default_language: Idioma dos toots
+        setting_default_privacy: Privacidade dos toots
         setting_default_sensitive: Sempre marcar mídia como sensível
-        setting_delete_modal: Mostrar diálogo de confirmação antes de deletar uma postagem
+        setting_delete_modal: Solicitar confirmação antes de excluir toot
         setting_display_media: Exibição das mídias
         setting_display_media_default: Padrão
-        setting_display_media_hide_all: Esconder tudo
+        setting_display_media_hide_all: Ocultar tudo
         setting_display_media_show_all: Mostrar tudo
-        setting_expand_spoilers: Sempre expandir toots marcados com aviso de conteúdo
-        setting_hide_network: Esconder as suas redes
-        setting_noindex: Não quero ser indexado por mecanismos de busca
-        setting_reduce_motion: Reduz movimento em animações
-        setting_show_application: Mostrar o nome da aplicação utilizada para enviar os toots
-        setting_system_font_ui: Usar a fonte padrão de seu sistema
+        setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
+        setting_hide_network: Ocultar suas relações
+        setting_noindex: Não quero ser indexado por mecanismos de pesquisa
+        setting_reduce_motion: Reduzir animações
+        setting_show_application: Mostrar o aplicativo usado para enviar os toots
+        setting_system_font_ui: Usar fonte padrão do sistema
         setting_theme: Tema do site
-        setting_unfollow_modal: Mostrar diálogo de confirmação antes de deixar de seguir alguém
+        setting_trends: Mostrar em alta hoje
+        setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
+        setting_use_blurhash: Mostrar blur em mídias ocultas
+        setting_use_pending_items: Modo lento
         severity: Gravidade
         type: Tipo de importação
         username: Nome de usuário
         username_or_email: Nome de usuário ou e-mail
         whole_word: Palavra inteira
+      email_domain_block:
+        with_dns_records: Incluir registros MX e IPs do domínio
       featured_tag:
         name: Hashtag
       interactions:
@@ -133,22 +166,22 @@ pt-BR:
       invite:
         comment: Comentário
       invite_request:
-        text: Por que você quer se cadastrar?
+        text: Por que você deseja criar uma conta aqui?
       notification_emails:
-        digest: Mandar e-mails com relatórios
-        favourite: Mandar um e-mail quando alguém favoritar suas postagens
-        follow: Mandar um e-mail quando alguém te seguir
-        follow_request: Mandar um e-maill quando alguém solicitar ser seu seguidor
-        mention: Mandar um e-mail quando alguém te mencionar
-        pending_account: Mandar um -mail quando uma nova conta precisar ser revisada
-        reblog: Mandar um e-mail quando alguém compartilhar suas postagens
-        report: Mandar um e-mail quando uma nova denúncia é submetida
-        trending_tag: Enviar e-mail quando uma hashtag não revisada estiver em alta
+        digest: Enviar e-mails de resumo
+        favourite: Enviar e-mail quando alguém favoritar seus toots
+        follow: Enviar e-mail quando alguém te seguir
+        follow_request: Enviar e-mail quando alguém solicitar ser seu seguidor
+        mention: Enviar e-mail quando alguém te mencionar
+        pending_account: Enviar e-mail quando uma nova conta precisar ser revisada
+        reblog: Enviar e-mail quando alguém der boost nos seus toots
+        report: Enviar e-mail quando uma nova denúncia for enviada
+        trending_tag: Uma hashtag não-revisada está em alta
       tag:
         listable: Permitir que esta hashtag apareça em pesquisas e no diretório de perfis
         name: Hashtag
-        trendable: Permitir que esta hashtag apareça em alta
-        usable: Permitir que toots usem esta hastag
+        trendable: Permitir que esta hashtag fique em alta
+        usable: Permitir que toots usem esta hashtag
     'no': Não
     recommended: Recomendado
     required:

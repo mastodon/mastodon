@@ -1,22 +1,22 @@
 - content_for :page_title do
   = t('admin.announcements.title')
 
-= link_to t('admin.announcements.add_new'), new_admin_announcement_path, class: 'button'
+- content_for :heading_actions do
+  = link_to t('admin.announcements.new.title'), new_admin_announcement_path, class: 'button'
 
-%table.table
-  %thead
-    %tr
-      %th= t('admin.announcements.order')
-      %th= t('admin.announcements.body')
-      %th= t('admin.announcements.links')
-  %tbody
-    - @announcements.each do |announcement|
-      %tr
-        %td= announcement.order
-        %td= announcement.body
-        %td
-          - announcement.links.each do |link|
-            = link_to link.text, link.url, class: 'text'
-        %td
-          = table_link_to 'edit', t('admin.announcements.edit_it'), edit_admin_announcement_path(announcement)
-          = table_link_to 'trash', t('admin.announcements.delete_it'), admin_announcement_path(announcement), method: :delete
+.filters
+  .filter-subset
+    %strong= t('admin.relays.status')
+    %ul
+      %li= filter_link_to t('generic.all'), published: nil, unpublished: nil
+      %li= filter_link_to safe_join([t('admin.announcements.live'), "(#{number_with_delimiter(Announcement.published.count)})"], ' '), published: '1', unpublished: nil
+
+- if @announcements.empty?
+  %div.muted-hint.center-text
+    = t 'admin.announcements.empty'
+- else
+  .announcements-list
+    = render partial: 'announcement', collection: @announcements
+
+= paginate @announcements
+

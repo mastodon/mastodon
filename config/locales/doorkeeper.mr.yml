@@ -1,0 +1,34 @@
+---
+mr:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: अर्जाचं नाव
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: मान्यता द्या
+        cancel: रद्द करा
+        destroy: नष्ट करा
+        edit: संपादन करा
+        submit: दाखल करा
+      confirmations:
+        destroy: नक्की?
+      edit:
+        title: अर्जाचं संपादन करा
+      index:
+        application: अर्ज
+        delete: हटवा
+        name: नाव
+        new: नवीन अर्ज
+        show: दाखवा
+        title: तुमचे अर्ज
+      show:
+        actions: कृती
+        title: 'अर्ज: %{name}'
+    authorizations:
+      buttons:
+        authorize: संमती द्या
+        deny: नाकारा
+      new:
+        title: संमतीची आवश्यकता आहे

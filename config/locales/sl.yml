@@ -58,6 +58,7 @@ sl:
     media: Mediji
     moved_html: "%{name} se je prestavil na %{new_profile_link}:"
     network_hidden: Ta informacija ni na voljo
+    never_active: Nikoli
     nothing_here: Tukaj ni ničesar!
     people_followed_by: Ljudje, ki jim sledi %{name}
     people_who_follow: Ljudje, ki sledijo %{name}
@@ -114,9 +115,7 @@ sl:
       email_status: Stanje e-pošte
       enable: Omogoči
       enabled: Omogočeno
-      feed_url: URL vira
       followers: Sledilci
-      followers_url: URL sledilcev
       follows: Sledi
       header: Glava
       inbox_url: URL mape "Prejeto"
@@ -144,10 +143,8 @@ sl:
       no_account_selected: Noben račun ni bil spremenjen, ker ni bil izbran noben
       no_limits_imposed: Brez omejitev
       not_subscribed: Ni naročen
-      outbox_url: URL za pošiljanje
       pending: Čakanje na pregled
       perform_full_suspension: Suspendiraj
-      profile_url: URL profila
       promote: Promoviraj
       protocol: Protokol
       public: Javen
@@ -170,7 +167,6 @@ sl:
         moderator: Moderator
         staff: Osebje
         user: Uporabnik
-      salmon_url: URL lososa
       search: Iskanje
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
@@ -325,9 +321,6 @@ sl:
         create: Dodaj domeno
         title: Nov vnos e-pošte na črni seznam
       title: Črni seznam e-pošt
-    followers:
-      back_to_account: Nazaj na račun
-      title: Sledilci od %{acct}
     instances:
       by_domain: Domena
       delivery_available: Na voljo je dostava
@@ -375,9 +368,6 @@ sl:
       created_msg: Opomba o prijavi je uspešno ustvarjena!
       destroyed_msg: Opomba o prijavi je uspešno izbrisana!
     reports:
-      account:
-        note: opomba
-        report: prijava
       action_taken_by: Dejanje, ki ga je sprejel
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
@@ -496,7 +486,6 @@ sl:
     warning_presets:
       add_new: Dodaj novo
       delete: Izbriši
-      edit: Uredi
       edit_preset: Uredi prednastavitev opozoril
       title: Upravljaj prednastavitev opozoril
   admin_mailer:
@@ -623,7 +612,6 @@ sl:
     blocks: Blokirate
     csv: CSV
     domain_blocks: Bloki domene
-    follows: Sledite
     lists: Seznami
     mutes: Utišate
     storage: Shranjeni mediji

@@ -21,7 +21,11 @@ RSpec.describe FetchResourceService, type: :service do
 
     context 'when OpenSSL::SSL::SSLError is raised' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(OpenSSL::SSL::SSLError)
+        request = double()
+        allow(Request).to receive(:new).and_return(request)
+        allow(request).to receive(:add_headers)
+        allow(request).to receive(:on_behalf_of)
+        allow(request).to receive(:perform).and_raise(OpenSSL::SSL::SSLError)
       end
 
       it { is_expected.to be_nil }
@@ -29,7 +33,11 @@ RSpec.describe FetchResourceService, type: :service do
 
     context 'when HTTP::ConnectionError is raised' do
       before do
-        allow(Request).to receive_message_chain(:new, :add_headers, :on_behalf_of, :perform).and_raise(HTTP::ConnectionError)
+        request = double()
+        allow(Request).to receive(:new).and_return(request)
+        allow(request).to receive(:add_headers)
+        allow(request).to receive(:on_behalf_of)
+        allow(request).to receive(:perform).and_raise(HTTP::ConnectionError)
       end
 
       it { is_expected.to be_nil }
@@ -71,14 +79,14 @@ RSpec.describe FetchResourceService, type: :service do
         let(:content_type) { 'application/activity+json; charset=utf-8' }
         let(:body) { json }
 
-        it { is_expected.to eq [1, { prefetched_body: body, id: true }, :activitypub] }
+        it { is_expected.to eq [1, { prefetched_body: body, id: true }] }
       end
 
       context 'when content type is ld+json with profile' do
         let(:content_type) { 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' }
         let(:body) { json }
 
-        it { is_expected.to eq [1, { prefetched_body: body, id: true }, :activitypub] }
+        it { is_expected.to eq [1, { prefetched_body: body, id: true }] }
       end
 
       before do
@@ -89,14 +97,14 @@ RSpec.describe FetchResourceService, type: :service do
       context 'when link header is present' do
         let(:headers) { { 'Link' => '<http://example.com/foo>; rel="alternate"; type="application/activity+json"', } }
 
-        it { is_expected.to eq [1, { prefetched_body: json, id: true }, :activitypub] }
+        it { is_expected.to eq [1, { prefetched_body: json, id: true }] }
       end
 
       context 'when content type is text/html' do
         let(:content_type) { 'text/html' }
         let(:body) { '<html><head><link rel="alternate" href="http://example.com/foo" type="application/activity+json"/></head></html>' }
 
-        it { is_expected.to eq [1, { prefetched_body: json, id: true }, :activitypub] }
+        it { is_expected.to eq [1, { prefetched_body: json, id: true }] }
       end
     end
   end

@@ -13,6 +13,8 @@ import {
 import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
+  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
+  FOLLOW_REQUEST_REJECT_SUCCESS,
 } from '../actions/accounts';
 import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
@@ -70,11 +72,11 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
 
       mutable.update(usePendingItems ? 'pendingItems' : 'items', list => {
         const lastIndex = 1 + list.findLastIndex(
-          item => item !== null && (compareId(item.get('id'), items.last().get('id')) > 0 || item.get('id') === items.last().get('id'))
+          item => item !== null && (compareId(item.get('id'), items.last().get('id')) > 0 || item.get('id') === items.last().get('id')),
         );
 
         const firstIndex = 1 + list.take(lastIndex).findLastIndex(
-          item => item !== null && compareId(item.get('id'), items.first().get('id')) > 0
+          item => item !== null && compareId(item.get('id'), items.first().get('id')) > 0,
         );
 
         return list.take(firstIndex).concat(items, list.skip(lastIndex));
@@ -89,8 +91,8 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
   });
 };
 
-const filterNotifications = (state, accountIds) => {
-  const helper = list => list.filterNot(item => item !== null && accountIds.includes(item.get('account')));
+const filterNotifications = (state, accountIds, type) => {
+  const helper = list => list.filterNot(item => item !== null && accountIds.includes(item.get('account')) && (type === undefined || type === item.get('type')));
   return state.update('items', helper).update('pendingItems', helper);
 };
 
@@ -129,6 +131,11 @@ export default function notifications(state = initialState, action) {
     return action.relationship.muting_notifications ? filterNotifications(state, [action.relationship.id]) : state;
   case DOMAIN_BLOCK_SUCCESS:
     return filterNotifications(state, action.accounts);
+  case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
+  case FOLLOW_REQUEST_REJECT_SUCCESS:
+    return filterNotifications(state, [action.id], 'follow_request');
+  case ACCOUNT_MUTE_SUCCESS:
+    return action.relationship.muting_notifications ? filterNotifications(state, [action.relationship.id]) : state;
   case NOTIFICATIONS_CLEAR:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', false);
   case TIMELINE_DELETE:

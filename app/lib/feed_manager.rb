@@ -11,6 +11,10 @@ class FeedManager
   # Must be <= MAX_ITEMS or the tracking sets will grow forever
   REBLOG_FALLOFF = 40
 
+  def with_active_accounts(&block)
+    Account.joins(:user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).find_each(&block)
+  end
+
   def key(type, id, subtype = nil)
     return "feed:#{type}:#{id}" unless subtype
 
@@ -153,7 +157,7 @@ class FeedManager
       crutches = build_crutches(account.id, statuses)
 
       statuses.each do |status|
-        next if filter_from_home?(status, account, crutches)
+        next if filter_from_home?(status, account.id, crutches)
 
         add_to_feed(:home, account.id, status, aggregate)
       end

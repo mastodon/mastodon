@@ -1,0 +1,98 @@
+---
+is:
+  devise:
+    confirmations:
+      confirmed: Tölvupóstfang þitt hefur verið staðfest.
+      send_instructions: Þú munt innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að staðfesta tölvupóstfangið þitt. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      send_paranoid_instructions: Ef tölvupóstfangið þitt fyrirfinnst í gagnagrunninum okkar, munt þú innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að staðfesta tölvupóstfangið þitt. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+    failure:
+      already_authenticated: Þú ert nú þegar skráð(ur) inn.
+      inactive: Aðgangur þinn hefur ekki enn verið virkjaður.
+      invalid: Ógilt %{authentication_keys} eða lykilorð.
+      last_attempt: Þú getur reynt einu sinni í viðbót áður en aðgangnum þínum verður læst.
+      locked: Notandaaðgangurinn þinn er læstur.
+      not_found_in_database: Ógilt %{authentication_keys} eða lykilorð.
+      pending: Notandaaðgangurinn þinn er enn til yfirferðar.
+      timeout: Setan þín er útrunnin. Skráðu þig aftur inn til að halda áfram.
+      unauthenticated: Þú þarft að skrá þig inn eða nýskrá þig áður en lengra er haldið.
+      unconfirmed: Þú verður að staðfesta tölvupóstfangið þitt áður en lengra er haldið.
+    mailer:
+      confirmation_instructions:
+        action: Staðfestu tölvupóstfang
+        action_with_app: Staðfestu og snúðu aftur í %{app}
+        explanation: Þú hefur búið til notandaaðgang á %{host} með þessu tölvupóstfangi. Þú ert einn smell frá því að virkja hann. Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst.
+        explanation_when_pending: Þú sóttir um að vera boðinn á %{host} með þessu tölvupóstfangi. Þegar þú hefur staðfest tölvupóstfangið, munum við fara yfir umsóknina þína. Þú getur skrá þig inn og breytt ýmsum upplýsingum um þig eða jafnvel eytt aðgangnum þínum, en þú getur hinsvegar ekki nýtt þér flesta eiginleika hans fyrr en búið er að samþykkja aðganginn. Ef umsókninni er hafnað, verður öllum gögnum um þig eytt, þannig að ekki verður krafist frekari aðgerða af þinni hálfu. Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst.
+        extra_html: Skoðaðu líka <a href="%{terms_path}">gildandi reglur vefþjónsins</a> og <a href="%{policy_path}">þjónustuskilmálana okkar</a>.
+        subject: 'Mastodon: Leiðbeiningar vegna staðfestingar á %{instance}'
+        title: Staðfestu tölvupóstfang
+      email_changed:
+        explanation: 'Tölvupóstfanginu fyrir notandaaðganginn þinn verður breytt í:'
+        extra: Ef það varst ekki þú sem breyttir tölvupóstfanginu þínu, þá er líklegt að einhver hafi komist inn í notandaaðganginn þinn. Skiptu núna strax um lykilorð eða hafðu samband við kerfisstjóra netþjónsins ef þú hefur verið læst/ur úti af notandaaðgangnum þínum.
+        subject: 'Mastodon: Tölvupóstfang breyttist'
+        title: Nýtt tölvupóstfang
+      password_change:
+        explanation: Lykilorðinu á notandaaðgangnum þínum hefur verið breytt.
+        extra: Ef það varst ekki þú sem breyttir lykilorðinu þínu, þá er líklegt að einhver hafi komist inn í notandaaðganginn þinn. Skiptu núna strax um lykilorð eða hafðu samband við kerfisstjóra netþjónsins ef þú hefur verið læst/ur úti af notandaaðgangnum þínum.
+        subject: 'Mastodon: Lykilorð breyttist'
+        title: Lykilorð breyttist
+      reconfirmation_instructions:
+        explanation: Staðfestu nýja vistfangið til að skipta um tölvupóstfang.
+        extra: Ef það varst ekki þú sem baðst um þessa breytingu, geturðu hunsað þennan tölvupóst. Tölvupóstfangið fyrir Mastodon-aðganginn mun ekki breytast fyrr en þú hefur fylgt tenglinum hér fyrir ofan.
+        subject: 'Mastodon: Staðfestu tölvupóst fyrir %{instance}'
+        title: Staðfestu tölvupóstfang
+      reset_password_instructions:
+        action: Breyta lykilorði
+        explanation: Þú baðst um nýtt lykilorð fyrir notandaaðganginn þinn.
+        extra: Ef það varst ekki þú sem baðst um þetta, geturðu hunsað þennan tölvupóst. Lykilorðið þitt mun ekki breytast fyrr en þú hefur fylgt tenglinum hér fyrir ofan og búið til nýtt lykilorð.
+        subject: 'Mastodon: Leiðbeiningar til að endurstilla lykilorð'
+        title: Endurstilling lykilorðs
+      two_factor_disabled:
+        explanation: Tveggja-þátta auðkenning fyrir aðganginn þinn hefur verið gerð óvirk. Núna er einungis hægt að skrá inn með tölvupóstfangi og lykilorði.
+        subject: 'Mastodon: Tveggja-þátta auðkenning er óvirk'
+        title: 2FA tveggja-þátta auðkenning er óvirk
+      two_factor_enabled:
+        explanation: Tveggja-þátta auðkenning hefur verið gerð virk fyrir aðganginn þinn. Krafist er teikns útbúnu af paraða TOTP-forritinu til að skrá inn.
+        subject: 'Mastodon: Tveggja-þátta auðkenning er virk'
+        title: 2FA tveggja-þátta auðkenning er virk
+      two_factor_recovery_codes_changed:
+        explanation: Fyrri endurheimtukóðar tveggja-þátta auðkenningar voru ógiltir og nýir útbúnir í staðinn.
+        subject: 'Mastodon: Endurheimtukóðar tveggja-þátta auðkenningar voru endurnýjaðir'
+        title: Endurheimtukóðar tveggja-þátta auðkenningar breyttust
+      unlock_instructions:
+        subject: 'Mastodon: Leiðbeiningar til að aflæsa'
+    omniauth_callbacks:
+      failure: Gat ekki auðkennt þig frá %{kind} vegna "%{reason}".
+      success: Tókst að auðkenna frá %{kind} notandaaðgangnum.
+    passwords:
+      no_token: Þú getur ekki séð þessa síðu án þess að koma á slóð úr tölvupósti fyrir endurstillingu lykilorðs. Ef svo er skaltu ganga úr skugga um að að þú hafir notað alla slóðina sem var gefin.
+      send_instructions: Ef tölvupóstfangið þitt fyrirfinnst í gagnagrunninum okkar, munt þú innan nokkurra mínútna fá tölvupóst með tengli til að endurheimta lykilorðið þitt. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      send_paranoid_instructions: Ef tölvupóstfangið þitt fyrirfinnst í gagnagrunninum okkar, munt þú innan nokkurra mínútna fá tölvupóst með tengli til að endurheimta lykilorðið þitt. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      updated: Það tókst að breyta lykilorðinu þínu. Þú ert núna skráð/ur inn.
+      updated_not_active: Það tókst að breyta lykilorðinu þínu.
+    registrations:
+      destroyed: Bless! Hætt hefur verið við notandaaðganginn þinn. Við vonumst samt eftir að sjá þig fljótt aftur.
+      signed_up: Velkonin/n! Það tókst að nýskrá þig.
+      signed_up_but_inactive: Þér hefur tekist að nýskrá þig. Hinsvegar gátum við ekki skráð þig inn því notandaaðgangurinn þinn hefur ekki enn verið virkjaður.
+      signed_up_but_locked: Þér hefur tekist að nýskrá þig. Hinsvegar gátum við ekki skráð þig inn því notandaaðgangurinn þinn er læstur.
+      signed_up_but_pending: Skilaboð með staðfestingartengli hafa verið send á tölvupóstfangið þitt. Þegar þú smellir á þennan tengil munum við yfirfara og staðfesta umsóknina þína. Þú færð svo að vita hvort hún verður samþykkt.
+      signed_up_but_unconfirmed: Skilaboð með staðfestingartengli hafa verið send á tölvupóstfangið þitt. Smelltu á þennan tengil til að virkja notandaaðganginn þinn. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þessi skilaboð.
+      update_needs_confirmation: Þú uppfærðir notandaaðganginn þinn, en við þurfum að sannreyna nýja tölvupóstfangið þitt. Skoðaðu tölvupóstinn þinn og fylgdu tenglinum sem þangað á að berast til að staðfesta tölvupóstfangið þitt. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      updated: Það tókst að uppfæra notandaaðganginn þinn.
+    sessions:
+      already_signed_out: Tókst að skrá út.
+      signed_in: Tókst að skrá inn.
+      signed_out: Tókst að skrá út.
+    unlocks:
+      send_instructions: Þú munt innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að aflæsa notandaaðgangnum þínum. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      send_paranoid_instructions: Ef notandaaðgangurinn þinn er til, munt þú innan nokkurra mínútna fá tölvupóst með leiðbeiningunum um hvernig eigi að aflæsa honum. Skoðaðu í ruslpóstmöppuna þína ef þú færð ekki þennan tölvupóst.
+      unlocked: Það tókst að aflæsa notandaaðgangnum þínum. Skráðu þig inn til að halda áfram.
+  errors:
+    messages:
+      already_confirmed: var þegar staðfest, prófaðu að skrá þig inn
+      confirmation_period_expired: þarf að staðfesta inna %{period}, biddu um nýtt
+      expired: er útrunnið, biddu um nýtt
+      not_found: fannst ekki
+      not_locked: var ekki læst
+      not_saved:
+        one: '1 villa kom í veg fyrir að þessi %{resource} væri vistað:'
+        other: "%{count} villur komu í veg fyrir að þessi %{resource} væri vistað:"

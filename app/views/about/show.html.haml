@@ -27,7 +27,7 @@
 
               .avatar-stack
                 - @instance_presenter.sample_accounts.each do |account|
-                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, width: 48, height: 48, alt: '', class: 'account__avatar'
+                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, alt: '', class: 'account__avatar'
 
         - if Setting.timeline_preview
           .directory__tag
@@ -38,7 +38,7 @@
                 %small= t('about.browse_public_posts')
 
         .directory__tag
-          = link_to 'https://joinmastodon.org/apps', target: '_blank', rel: 'noopener' do
+          = link_to 'https://joinmastodon.org/apps', target: '_blank', rel: 'noopener noreferrer' do
             %h4
               = fa_icon 'tablet fw'
               = t('about.get_apps')
@@ -68,11 +68,11 @@
           .hero-widget__footer__column
             %h4= t 'about.server_stats'
 
-            %div{ style: 'display: flex' }
-              .hero-widget__counter{ style: 'width: 50%' }
+            .hero-widget__counters__wrapper
+              .hero-widget__counter
                 %strong= number_to_human @instance_presenter.user_count, strip_insignificant_zeros: true
                 %span= t 'about.user_count_after', count: @instance_presenter.user_count
-              .hero-widget__counter{ style: 'width: 50%' }
+              .hero-widget__counter
                 %strong= number_to_human @instance_presenter.active_user_count, strip_insignificant_zeros: true
                 %span
                   = t 'about.active_count_after'

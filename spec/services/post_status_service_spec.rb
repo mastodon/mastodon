@@ -79,6 +79,13 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.spoiler_text).to eq spoiler_text
   end
 
+  it 'creates a sensitive status when there is a CW but no text' do
+    status = subject.call(Fabricate(:account), text: '', spoiler_text: 'foo')
+
+    expect(status).to be_persisted
+    expect(status).to be_sensitive
+  end
+
   it 'creates a status with empty default spoiler text' do
     status = create_status_with_options(spoiler_text: nil)
 
@@ -212,14 +219,18 @@ RSpec.describe PostStatusService, type: :service do
 
   it 'does not allow attaching both videos and images' do
     account = Fabricate(:account)
+    video   = Fabricate(:media_attachment, type: :video, account: account)
+    image   = Fabricate(:media_attachment, type: :image, account: account)
+
+    video.update(type: :video)
 
     expect do
       subject.call(
         account,
         text: "test status update",
         media_ids: [
-          Fabricate(:media_attachment, type: :video, account: account),
-          Fabricate(:media_attachment, type: :image, account: account),
+          video,
+          image,
         ].map(&:id),
       )
     end.to raise_error(
