@@ -36,7 +36,7 @@ vi:
     unavailable_content_description:
       domain: Máy chủ
       reason: Lý do
-      rejecting_media: 'Ảnh và video từ những máy chủ sau sẽ không được xử lý, lưu trữ và không có hình thu nhỏ, yêu cầu nhấp thủ công vào tệp gốc:'
+      rejecting_media: 'Ảnh và video từ những máy chủ sau sẽ không được xử lý, lưu trữ và hiển thị hình thu nhỏ, bắt buộc nhấp thủ công vào tệp gốc để xem:'
       silenced: 'Tút từ những máy chủ sau sẽ bị ẩn trên bảng tin, trong tin nhắn và không có thông báo nào được tạo từ các tương tác của người dùng của họ, trừ khi bạn có mến mộ người dùng của họ:'
       suspended: 'Những máy chủ sau sẽ không được xử lý, lưu trữ hoặc trao đổi nội dung. Mọi tương tác hoặc giao tiếp với người dùng từ các máy chủ này cũng bị cấm:'
     unavailable_content_html: Mastodon cho phép bạn xem nội dung và tương tác với người dùng từ bất kỳ máy chủ nào khác trong mạng liên kết. Còn máy chủ này có những ngoại lệ riêng.
@@ -483,7 +483,7 @@ vi:
         desc_html: Số lượng trạng thái được đăng tại địa phương, người dùng hoạt động và đăng ký mới trong nhóm hàng tuần
         title: Công khai số liệu thống kê về hoạt động người dùng
       bootstrap_timeline_accounts:
-        desc_html: Tách tên người dùng bằng dấu phẩy. Chỉ có hiệu lực với các tài khoản công khai thuộc máy chủ. Mặc định khi trống là tất cả quản trị viên địa phương.
+        desc_html: Tách tên người dùng bằng dấu phẩy. Chỉ có hiệu lực với các tài khoản công khai thuộc máy chủ. Mặc định khi trống là tất cả quản trị viên.
         title: Gợi ý mến mộ cho người dùng mới
       contact_information:
         email: Email liên hệ
@@ -619,7 +619,7 @@ vi:
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: 'Báo cáo mới cho %{instance} (# %{id})'
     new_trending_tag:
-      body: 'Hashtag # %{name} đang là xu hướng ngày nay, nhưng chưa được xem xét trước đây. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép hoặc chỉ lưu biểu mẫu vì nó sẽ không bao giờ nghe về nó nữa.'
+      body: 'Hashtag # %{name} đang là xu hướng nhưng chưa được kiểm duyệt. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép. Bỏ qua nếu bạn không bao giờ muốn thấy nó xuất hiện.'
       subject: 'Hashtag mới được xem xét trên %{instance} (# %{name})'
   aliases:
     add_new: Tạo tên hiển thị
