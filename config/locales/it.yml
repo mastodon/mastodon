@@ -8,7 +8,7 @@ it:
     active_footnote: Utenti Attivi Mensili (MAU)
     administered_by: 'Amministrato da:'
     api: API
-    apps: Applicazioni Mobile
+    apps: Applicazioni per dispositivi mobili
     apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
     browse_directory: Sfoglia la directory dei profili e filtra per interessi
     browse_public_posts: Sfoglia il flusso in tempo reale di post pubblici su Mastodon
@@ -17,13 +17,13 @@ it:
     contact_unavailable: N/D
     discover_users: Scopri utenti
     documentation: Documentazione
-    extended_description_html: |
-      <h3>Un buon posto per le regole</h3>
-      <p>La descrizione estesa non è ancora stata preparata.</p>
     federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
     generic_description: "%{domain} è un server nella rete"
     get_apps: Prova un'app per smartphone
     hosted_on: Mastodon ospitato su %{domain}
+    instance_actor_flash: |
+      Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
+      È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     learn_more: Scopri altro
     privacy_policy: Politica della privacy
     see_whats_happening: Guarda cosa succede
@@ -35,6 +35,10 @@ it:
     status_count_before: Che hanno pubblicato
     tagline: Segui amici e trovane di nuovi
     terms: Termini di Servizio
+    unavailable_content: Contenuto non disponibile
+    unavailable_content_description:
+      reason: 'Motivo:'
+      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
     user_count_after:
       one: utente
       other: utenti
@@ -42,6 +46,7 @@ it:
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
+    featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
     followers:
       one: Seguace
@@ -51,8 +56,9 @@ it:
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
     media: Media
-    moved_html: "%{name} è stato spostato su %{new_profile_link}:"
+    moved_html: "%{name} si è spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
+    never_active: Mai
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
@@ -63,7 +69,7 @@ it:
       other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
-    reserved_username: Il nome utente è gia stato preso
+    reserved_username: Questo nome utente è già stato preso
     roles:
       admin: Amministratore
       bot: Bot
@@ -87,7 +93,7 @@ it:
       by_domain: Dominio
       change_email:
         changed_msg: Account email cambiato con successo!
-        current_email: Email corrente
+        current_email: Email attuale
         label: Cambia email
         new_email: Nuova email
         submit: Cambia email
@@ -98,7 +104,7 @@ it:
       deleted: Cancellato
       demote: Declassa
       disable: Disabilita
-      disable_two_factor_authentication: Disabilita 2FA
+      disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
       disabled: Disabilitato
       display_name: Nome visualizzato
       domain: Dominio
@@ -115,7 +121,7 @@ it:
       inbox_url: URL inbox
       invited_by: Invitato da
       ip: IP
-      joined: Unito
+      joined: Iscritto da
       location:
         all: Tutto
         local: Locale
@@ -133,7 +139,7 @@ it:
         title: Moderazione
       moderation_notes: Note di moderazione
       most_recent_activity: Attività più recenti
-      most_recent_ip: IP più recenti
+      most_recent_ip: IP più recente
       no_account_selected: Nessun account è stato modificato visto che non ne è stato selezionato nessuno
       no_limits_imposed: Nessun limite imposto
       not_subscribed: Non sottoscritto
@@ -183,6 +189,7 @@ it:
       username: Nome utente
       warn: Avverti
       web: Web
+      whitelisted: Nella whitelist
     action_logs:
       actions:
         assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
@@ -218,10 +225,12 @@ it:
       deleted_status: "(stato cancellato)"
       title: Registro di controllo
     custom_emojis:
+      assign_category: Assegna categoria
       by_domain: Dominio
       copied_msg: Creata con successo una copia locale dell'emoji
       copy: Copia
       copy_failed_msg: Impossibile creare una copia locale di questo emoji
+      create_new_category: Crea nuova categoria
       created_msg: Emoji creato con successo!
       delete: Elimina
       destroyed_msg: Emoji distrutto con successo!
@@ -229,6 +238,7 @@ it:
       disabled_msg: Questa emoji è stata disabilitata con successo
       emoji: Emoji
       enable: Abilita
+      enabled: Abilitato
       enabled_msg: Questa emoji è stata abilitata con successo
       image_hint: PNG fino a 50 KB
       listed: Elencato
@@ -238,11 +248,13 @@ it:
       shortcode: Scorciatoia
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
       title: Emoji personalizzate
+      uncategorized: Nessuna categoria
       unlisted: Non elencato
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
     dashboard:
+      authorized_fetch_mode: Modalità sicura
       backlog: lavori arretrati
       config: Configurazione
       feature_deletions: Cancellazioni di account
@@ -250,10 +262,13 @@ it:
       feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Anteprima timeline
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
       open_reports: apri report
+      pending_tags: hashtag in attesa di essere esaminati
+      pending_users: utenti in attesa di essere esaminati
       recent_users: Utenti Recenti
       search: Ricerca testo intero
       single_user_mode: Modalita utente singolo
@@ -265,11 +280,18 @@ it:
       week_interactions: interazioni per questa settimana
       week_users_active: attivi questa settimana
       week_users_new: utenti questa settimana
+      whitelist_mode: Modalità whitelist
+    domain_allows:
+      add_new: Dominio nella whitelist
+      created_msg: Il dominio è stato inserito nella whitelist
+      destroyed_msg: Il dominio è stato eliminato dalla whitelist
+      undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
       created_msg: Il blocco del dominio sta venendo processato
       destroyed_msg: Il blocco del dominio è stato rimosso
       domain: Dominio
+      edit: Modifica blocco di dominio
       existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccare</a> prima.
       new:
         create: Crea blocco
@@ -280,6 +302,10 @@ it:
           silence: Silenzia
           suspend: Sospendi
         title: Nuovo blocco dominio
+      private_comment: Commento privato
+      private_comment_hint: Commento su questa limitazione di dominio per uso interno da parte dei moderatori.
+      public_comment: Commento pubblico
+      public_comment_hint: Commento pubblico su questa limitazione di dominio, se l'elenco delle limitazioni di dominio è pubblico.
       reject_media: Rifiuta file media
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
@@ -299,6 +325,7 @@ it:
         title: Annulla il blocco del dominio per %{domain}
         undo: Annulla
       undo: Annulla
+      view: Visualizza blocco di dominio
     email_domain_blocks:
       add_new: Aggiungi nuovo
       created_msg: Dominio email aggiunto con successo alla lista nera
@@ -322,6 +349,8 @@ it:
         all: Tutto
         limited: Limitato
         title: Moderazione
+      private_comment: Commento privato
+      public_comment: Commento pubblico
       title: Istanze conosciute
       total_blocked_by_us: Bloccato da noi
       total_followed_by_them: Seguito da loro
@@ -399,6 +428,13 @@ it:
       custom_css:
         desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
         title: CSS personalizzato
+      domain_blocks:
+        all: A tutti
+        disabled: A nessuno
+        title: Mostra blocchi di dominio
+        users: Agli utenti locali connessi
+      domain_blocks_rationale:
+        title: Mostra motivazione
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
@@ -449,6 +485,9 @@ it:
         desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
         title: Termini di servizio personalizzati
       site_title: Nome del server
+      spam_check_enabled:
+        desc_html: Mastodon può silenziare e segnalare automaticamente account che inviano ripetutamente messaggi non richiesti. Potrebbero esserci falsi positivi.
+        title: Automazione anti-spam
       thumbnail:
         desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
         title: Thumbnail del server
@@ -456,12 +495,16 @@ it:
         desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
       title: Impostazioni sito
+      trends:
+        desc_html: Visualizza pubblicamente gli hashtag precedentemente esaminati che sono attualmente in tendenza
+        title: Hashtag di tendenza
     statuses:
       back_to_account: Torna alla pagina dell'account
       batch:
         delete: Elimina
         nsfw_off: Segna come non sensibile
         nsfw_on: Segna come sensibile
+      deleted: Cancellato
       failed_to_execute: Impossibile eseguire
       media:
         title: Media
@@ -469,21 +512,22 @@ it:
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
       with_media: con media
-    subscriptions:
-      callback_url: URL Callback
-      confirmed: Confermato
-      expires_in: Scade in
-      last_delivery: Ultima distribuzione
-      title: WebSub
-      topic: Argomento
     tags:
-      accounts: Account
-      hidden: Nascosto
-      hide: Nascondi dalla directory
-      name: Etichetta
+      accounts_today: Usi unici oggi
+      accounts_week: Usi unici questa settimana
+      breakdown: Suddivisione dell'utilizzo di oggi per fonte
+      context: Contesto
+      directory: Nella directory
+      in_directory: "%{count} nella directory"
+      last_active: Ultima attività
+      most_popular: Più popolari
+      most_recent: Più recenti
+      name: Hashtag
+      reviewed: Controllato
       title: Hashtag
-      unhide: Mostra nella directory
-      visible: Visibile
+      trending_right_now: Di tendenza ora
+      unreviewed: Non controllato
+      updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
     warning_presets:
       add_new: Aggiungi nuovo
@@ -499,6 +543,11 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: Nuova segnalazione per %{instance} (#%{id})
+    new_trending_tag:
+      body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
+      subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
+  aliases:
+    add_new: Crea alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
     advanced_web_interface_hint: |-
@@ -526,7 +575,7 @@ it:
     apply_for_account: Richiedi un invito
     change_password: Password
     checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
-    confirm_email: Conferma email
+    checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
@@ -546,6 +595,14 @@ it:
     reset_password: Resetta la password
     security: Credenziali
     set_new_password: Imposta una nuova password
+    setup:
+      email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
+      email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
+    status:
+      account_status: Stato dell'account
+      confirming: In attesa che la conferma e-mail sia completata.
+      functional: Il tuo account è pienamente operativo.
+      pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
     trouble_logging_in: Problemi di accesso?
   authorize_follow:
     already_following: Stai già seguendo questo account
@@ -558,6 +615,11 @@ it:
       return: Mostra il profilo dell'utente
       web: Vai al web
     title: Segui %{acct}
+  challenge:
+    confirm: Continua
+    hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
+    invalid_password: Password non valida
+    prompt: Conferma la tua password per continuare
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ore"
@@ -573,26 +635,24 @@ it:
       x_months: "%{count} mesi"
       x_seconds: "%{count} secondi"
   deletes:
-    bad_password_msg: Ci avete provato, hacker! Password errata
+    challenge_not_passed: Le informazioni che hai inserito non sono corrette
     confirm_password: Inserisci la tua password attuale per verificare la tua identità
-    description_html: Questa azione eliminerà <strong>in modo permanente e irreversibile</strong> tutto il contenuto del tuo account e lo disattiverà. Il tuo nome utente resterà riservato per prevenire che qualcuno in futuro assuma la tua identità.
+    confirm_username: Inserisci il tuo nome utente per confermare la procedura
     proceed: Cancella l'account
     success_msg: Il tuo account è stato cancellato
-    warning_html: È garantita la cancellazione del contenuto solo da questo server. I contenuti che sono stati ampiamente condivisi probabilmente lasceranno delle tracce. I server offline e quelli che non ricevono più i tuoi aggiornamenti non aggiorneranno i loro database.
-    warning_title: Disponibilità di contenuto diffuso
+    warning:
+      before: 'Prima di procedere, per favore leggi attentamente queste note:'
   directories:
     directory: Directory dei profili
-    enabled: Attualmente sei elencato nella directory.
-    enabled_but_waiting: Hai scelto di essere elencato nella directory, ma non hai ancora il numero minimo di seguaci (%{min_followers}) per comparire.
     explanation: Scopri utenti in base ai loro interessi
     explore_mastodon: Esplora %{title}
-    how_to_enable: Attualmente non hai scelto di comparire nella directory. Puoi farlo qui sotto. Se vuoi comparire sotto determinati hashtag, usali nel testo della tua biografia.
-    people:
-      one: "%{count} persona"
-      other: "%{count} persone"
+  domain_validator:
+    invalid_domain: non è un nome di dominio valido
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Non sei autorizzato a visualizzare questa pagina.
     '404': La pagina che stavi cercando non esiste.
+    '406': This page is not available in the requested format.
     '410': La pagina che stavi cercando qui non esiste più.
     '422':
       content: Verifica di sicurezza non riuscita. Stai bloccando i cookies?
@@ -601,6 +661,7 @@ it:
     '500':
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
@@ -624,6 +685,7 @@ it:
     add_new: Aggiungi nuovo
     errors:
       limit: Hai già messo in evidenza il numero massimo di hashtag
+    hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
       home: Timeline home
@@ -644,6 +706,7 @@ it:
     developers: Sviluppatori
     more: Altro…
     resources: Risorse
+    trending_now: Di tendenza ora
   generic:
     all: Tutto
     changes_saved_msg: Modifiche effettuate con successo!
@@ -719,9 +782,6 @@ it:
       too_many: Impossibile allegare più di 4 file
   migrations:
     acct: utente@dominio del nuovo account
-    currently_redirecting: 'Il tuo profilo sarà ridirezionato a:'
-    proceed: Salva
-    updated_msg: L'impostazione per la migrazione dell'account è sta aggiornata!
   moderation:
     title: Moderazione
   notification_mailer:
@@ -818,10 +878,6 @@ it:
     reply:
       proceed: Continua per rispondere
       prompt: 'Vuoi rispondere a questo toot:'
-  remote_unfollow:
-    error: Errore
-    title: Titolo
-    unfollowed: Non più seguito
   scheduled_statuses:
     over_daily_limit: Hai superato il limite di %{limit} toot programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} toot programmati
@@ -885,8 +941,10 @@ it:
     notifications: Notifiche
     preferences: Preferenze
     profile: Profilo
-    relationships: Follows and followers
+    relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
+  spam_check:
+    spam_detected_and_silenced: Questa è una segnalazione automatica. É stato rilevato dello spam e il mittente è stato automaticamente silenziato. Se fosse un errore, per favore annulla questa operazione sull'account.
   statuses:
     attached:
       description: 'Allegato: %{attached}'
@@ -928,6 +986,8 @@ it:
     pinned: Toot fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+  tags:
+    does_not_match_previous_name: non corrisponde al nome precedente
   terms:
     title: "%{instance} Termini di servizio e politica della privacy"
   themes:
@@ -964,7 +1024,9 @@ it:
         disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
         silence: Mentre il tuo account è limitato, solo le persone che già ti seguono possono vedere i tuoi toot su questo server, e potresti essere escluso da vari elenchi pubblici. Comunque, altri possono manualmente seguirti.
         suspend: Il tuo account è stato sospeso, e tutti i tuoi toot ed i tuoi file media caricati sono stati irreversibilmente rimossi da questo server, e dai server dove avevi dei seguaci.
+      get_in_touch: Puoi rispondere a questa email per entrare in contatto con lo staff di %{instance}.
       review_server_policies: Rivedi regole del server
+      statuses: 'Nello specifico, per:'
       subject:
         disable: Il tuo account %{acct} è stato congelato
         none: Avviso per %{acct}

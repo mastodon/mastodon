@@ -7,11 +7,14 @@ class Api::BaseController < ApplicationController
   include RateLimitHeaders
 
   skip_before_action :store_current_location
-  skip_before_action :check_user_permissions
+  skip_before_action :require_functional!
 
+  before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
   before_action :set_cache_headers
 
   protect_from_forgery with: :null_session
+
+  skip_around_action :set_locale
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
@@ -31,6 +34,14 @@ class Api::BaseController < ApplicationController
 
   rescue_from Mastodon::NotPermittedError do
     render json: { error: 'This action is not allowed' }, status: 403
+  end
+
+  rescue_from Mastodon::RaceConditionError do
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+  end
+
+  rescue_from ActionController::ParameterMissing do |e|
+    render json: { error: e.to_s }, status: 400
   end
 
   def doorkeeper_unauthorized_render_options(error: nil)
@@ -69,6 +80,10 @@ class Api::BaseController < ApplicationController
     nil
   end
 
+  def require_authenticated_user!
+    render json: { error: 'This API requires an authenticated user' }, status: 401 unless current_user
+  end
+
   def require_user!
     if !current_user
       render json: { error: 'This method requires an authenticated user' }, status: 422
@@ -93,5 +108,9 @@ class Api::BaseController < ApplicationController
 
   def set_cache_headers
     response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+  end
+
+  def disallow_unauthenticated_api_access?
+    authorized_fetch_mode?
   end
 end

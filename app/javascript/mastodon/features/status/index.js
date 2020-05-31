@@ -23,7 +23,6 @@ import {
   mentionCompose,
   directCompose,
 } from '../../actions/compose';
-import { blockAccount } from '../../actions/accounts';
 import {
   muteStatus,
   unmuteStatus,
@@ -32,6 +31,7 @@ import {
   revealStatus,
 } from '../../actions/statuses';
 import { initMuteModal } from '../../actions/mutes';
+import { initBlockModal } from '../../actions/blocks';
 import { initReport } from '../../actions/reports';
 import { makeGetStatus } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
@@ -39,7 +39,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import ColumnHeader from '../../components/column_header';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
 import { boostModal, deleteModal } from '../../initial_state';
@@ -52,13 +52,11 @@ const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
   redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
-  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockAndReport: { id: 'confirmations.block.block_and_report', defaultMessage: 'Block & Report' },
 });
 
 const makeMapStateToProps = () => {
@@ -84,28 +82,38 @@ const makeMapStateToProps = () => {
   const getDescendantsIds = createSelector([
     (_, { id }) => id,
     state => state.getIn(['contexts', 'replies']),
-  ], (statusId, contextReplies) => {
-    let descendantsIds = Immutable.List();
-    descendantsIds = descendantsIds.withMutations(mutable => {
-      const ids = [statusId];
+    state => state.get('statuses'),
+  ], (statusId, contextReplies, statuses) => {
+    let descendantsIds = [];
+    const ids = [statusId];
 
-      while (ids.length > 0) {
-        let id        = ids.shift();
-        const replies = contextReplies.get(id);
+    while (ids.length > 0) {
+      let id        = ids.shift();
+      const replies = contextReplies.get(id);
 
-        if (statusId !== id) {
-          mutable.push(id);
-        }
-
-        if (replies) {
-          replies.reverse().forEach(reply => {
-            ids.unshift(reply);
-          });
-        }
+      if (statusId !== id) {
+        descendantsIds.push(id);
       }
-    });
 
-    return descendantsIds;
+      if (replies) {
+        replies.reverse().forEach(reply => {
+          ids.unshift(reply);
+        });
+      }
+    }
+
+    let insertAt = descendantsIds.findIndex((id) => statuses.get(id).get('in_reply_to_account_id') !== statuses.get(id).get('account'));
+    if (insertAt !== -1) {
+      descendantsIds.forEach((id, idx) => {
+        if (idx > insertAt && statuses.get(id).get('in_reply_to_account_id') === statuses.get(id).get('account')) {
+          descendantsIds.splice(idx, 1);
+          descendantsIds.splice(insertAt, 0, id);
+          insertAt += 1;
+        }
+      });
+    }
+
+    return Immutable.List(descendantsIds);
   });
 
   const mapStateToProps = (state, props) => {
@@ -146,6 +154,7 @@ class Status extends ImmutablePureComponent {
     descendantsIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
     askReplyConfirmation: PropTypes.bool,
+    multiColumn: PropTypes.bool,
     domain: PropTypes.string.isRequired,
   };
 
@@ -285,19 +294,9 @@ class Status extends ImmutablePureComponent {
   }
 
   handleBlockClick = (status) => {
-    const { dispatch, intl } = this.props;
+    const { dispatch } = this.props;
     const account = status.get('account');
-
-    dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.blockConfirm),
-      onConfirm: () => dispatch(blockAccount(account.get('id'))),
-      secondary: intl.formatMessage(messages.blockAndReport),
-      onSecondary: () => {
-        dispatch(blockAccount(account.get('id')));
-        dispatch(initReport(account, status));
-      },
-    }));
+    dispatch(initBlockModal(account));
   }
 
   handleReport = (status) => {
@@ -437,13 +436,13 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl, domain } = this.props;
+    const { shouldUpdateScroll, status, ancestorsIds, descendantsIds, intl, domain, multiColumn } = this.props;
     const { fullscreen } = this.state;
 
     if (status === null) {
       return (
         <Column>
-          <ColumnBackButton />
+          <ColumnBackButton multiColumn={multiColumn} />
           <MissingIndicator />
         </Column>
       );
@@ -470,9 +469,10 @@ class Status extends ImmutablePureComponent {
     };
 
     return (
-      <Column label={intl.formatMessage(messages.detailedStatus)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
           showBackButton
+          multiColumn={multiColumn}
           extraButton={(
             <button className='column-header__button' title={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} aria-label={intl.formatMessage(status.get('hidden') ? messages.revealAll : messages.hideAll)} onClick={this.handleToggleAll} aria-pressed={status.get('hidden') ? 'false' : 'true'}><Icon id={status.get('hidden') ? 'eye-slash' : 'eye'} /></button>
           )}

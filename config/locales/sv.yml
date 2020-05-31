@@ -8,9 +8,6 @@ sv:
     api: API
     contact: Kontakt
     contact_missing: Inte inställd
-    extended_description_html: |
-      <h3>En bra plats för regler</h3>
-      <p>Den utökade beskrivningen har inte konfigurerats ännu.</p>
     generic_description: "%{domain} är en server i nätverket"
     hosted_on: Mastodon värd på %{domain}
     learn_more: Lär dig mer
@@ -22,25 +19,38 @@ sv:
   accounts:
     follow: Följa
     following: Följer
+    joined: Gick med %{date}
+    last_active: senast aktiv
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
+    never_active: Aldrig
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
+    posts_tab_heading: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
     roles:
+      admin: Administratör
+      bot: Robot
       moderator: Moderator
+    unavailable: Profilen är inte tillgänglig
     unfollow: Sluta följa
   admin:
+    account_actions:
+      action: Utför åtgärd
+      title: Utför aktivitet för moderering på %{acct}
     account_moderation_notes:
       create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
       delete: Ta bort
       destroyed_msg: Modereringsnotering borttagen utan problem!
     accounts:
+      approve: Godkänn
+      approve_all: Godkänn alla
       are_you_sure: Är du säker?
+      avatar: Profilbild
       by_domain: Domän
       change_email:
         changed_msg: E-postadressen har ändrats!
@@ -52,6 +62,7 @@ sv:
       confirm: Bekräfta
       confirmed: Bekräftad
       confirming: Bekräftande
+      deleted: Raderad
       demote: Degradera
       disable: inaktivera
       disable_two_factor_authentication: Inaktivera 2FA
@@ -313,12 +324,6 @@ sv:
       no_media: Ingen media
       title: Kontostatus
       with_media: med media
-    subscriptions:
-      callback_url: Återanrop URL
-      confirmed: Bekräftad
-      expires_in: Utgår om
-      last_delivery: Sista leverans
-      topic: Ämne
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
@@ -340,7 +345,6 @@ sv:
     your_token: Din access token
   auth:
     change_password: Lösenord
-    confirm_email: Bekräfta e-postadress
     delete_account: Ta bort konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     didnt_get_confirmation: Fick inte instruktioner om bekräftelse?
@@ -384,16 +388,14 @@ sv:
       x_months: "%{count}mån"
       x_seconds: "%{count}sek"
   deletes:
-    bad_password_msg: Bra försök, hackare! Fel lösenord
     confirm_password: Ange ditt lösenord för att verifiera din identitet
-    description_html: Detta vill <strong>permanent, irreversibelt</strong> ta bort innehåll från ditt konto och avaktivera det. Ditt användarnamn kommer att förbli reserverat för att förhindra framtida efterföljare.
     proceed: Ta bort konto
     success_msg: Ditt konto har tagits bort
-    warning_html: Endast borttagning av innehåll från denna speciella instans garanteras. Innehåll som har delats i stor utsträckning kommer sannolikt att lämna spår. Offline-servrar och servrar som har avstängt från dina uppdateringar uppdaterar inte sina databaser.
-    warning_title: Spridet innehåll och tillgänglighet
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': Du har inte behörighet att visa den här sidan.
     '404': Sidan du letade efter existerar inte.
+    '406': This page is not available in the requested format.
     '410': Sidan du letade efter existerar inte längre.
     '422':
       content: Säkerhetsverifiering misslyckades Blockerar du cookies?
@@ -402,6 +404,7 @@ sv:
     '500':
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
   exports:
     archive_takeout:
@@ -462,9 +465,6 @@ sv:
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
-    currently_redirecting: 'Din profil är satt att omdirigeras till:'
-    proceed: Spara
-    updated_msg: Dina kontoflyttsinställning har uppdaterats!
   moderation:
     title: Moderera
   notification_mailer:
@@ -513,10 +513,6 @@ sv:
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
-  remote_unfollow:
-    error: Fel
-    title: Titel
-    unfollowed: Slutade följa
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare

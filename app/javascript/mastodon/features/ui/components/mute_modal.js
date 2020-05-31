@@ -11,7 +11,6 @@ import { toggleHideNotifications } from '../../../actions/mutes';
 
 const mapStateToProps = state => {
   return {
-    isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
     account: state.getIn(['mutes', 'new', 'account']),
     notifications: state.getIn(['mutes', 'new', 'notifications']),
   };
@@ -38,7 +37,6 @@ export default @connect(mapStateToProps, mapDispatchToProps)
 class MuteModal extends React.PureComponent {
 
   static propTypes = {
-    isSubmitting: PropTypes.bool.isRequired,
     account: PropTypes.object.isRequired,
     notifications: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -81,11 +79,16 @@ class MuteModal extends React.PureComponent {
               values={{ name: <strong>@{account.get('acct')}</strong> }}
             />
           </p>
-          <div>
-            <label htmlFor='mute-modal__hide-notifications-checkbox'>
+          <p className='mute-modal__explanation'>
+            <FormattedMessage
+              id='confirmations.mute.explanation'
+              defaultMessage='This will hide posts from them and posts mentioning them, but it will still allow them to see your posts and follow you.'
+            />
+          </p>
+          <div className='setting-toggle'>
+            <Toggle id='mute-modal__hide-notifications-checkbox' checked={notifications} onChange={this.toggleNotifications} />
+            <label className='setting-toggle__label' htmlFor='mute-modal__hide-notifications-checkbox'>
               <FormattedMessage id='mute_modal.hide_notifications' defaultMessage='Hide notifications from this user?' />
-              {' '}
-              <Toggle id='mute-modal__hide-notifications-checkbox' checked={notifications} onChange={this.toggleNotifications} />
             </label>
           </div>
         </div>

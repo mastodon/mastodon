@@ -1,0 +1,133 @@
+---
+pt-PT:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Especifique o nome de usuário@domínio da conta de onde você deseja mover
+      account_migration:
+        acct: Especifique o nome de usuário@domínio da conta para onde você deseja mover
+      account_warning_preset:
+        text: Tu podes usar sintaxe de escrita, como URLs, hashtags e referências
+      admin_account_action:
+        include_statuses: O usuário verá quais ferramentas causaram a ação de moderação ou aviso
+        send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
+        text_html: Opcional. Tu podes usar sintaxe de escrita. Tu podes <a href="%{path}"> adicionar predefinições de aviso</a> para poupar tempo
+        type_html: Escolhe o que fazer com <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
+      defaults:
+        autofollow: As pessoas que aderem através do convite seguir-te-ão automaticamente
+        avatar: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
+        bot: Esta conta executa essencialmente acções automáticas e pode não poder ser monitorizada
+        context: Um ou múltiplos contextos nos quais o filtro deve ser aplicado
+        current_password: Para fins de segurança, por favor, digite a senha da conta atual
+        digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
+        email: Será enviado um e-mail de confirmação
+        fields: Podes ter até 4 itens expostos, em forma de tabela, no teu perfil
+        header: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
+        inbox_url: Copia a URL da página inicial do repetidor que queres usar
+        irreversible: Publicações filtradas irão desaparecer irremediavelmente, mesmo que o filtro seja removido posteriormente
+        locale: A língua da interface de utilizador, e-mails e notificações push
+        locked: Requer aprovação manual de seguidores
+        password: Usa, pelo menos, 8 caracteres
+        phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
+        scopes: Quais as APIs a que será concedido acesso. Se escolheres uma abrangência de nível superior, não precisarás de as seleccionar individualmente.
+        setting_aggregate_reblogs: Não mostrar novas partilhas que foram partilhadas recentemente (só afecta as novas partilhas)
+        setting_display_media_default: Esconder media marcada como sensível
+        setting_display_media_hide_all: Esconder sempre toda a media
+        setting_display_media_show_all: Mostrar sempre a media marcada como sensível
+        setting_hide_network: Quem tu segues e quem te segue não será mostrado no teu perfil
+        setting_noindex: Afecta o teu perfil público e as páginas das tuas publicações
+        setting_show_application: A aplicação que tu usas para publicar será mostrada na vista detalhada das tuas publicações
+        username: O teu nome de utilizador será único em %{domain}
+        whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
+      featured_tag:
+        name: 'Poderás querer usar um destes:'
+      imports:
+        data: Arquivo CSV exportado de outro servidor do Mastodon
+      sessions:
+        otp: 'Insere o código de autenticação em dois passos gerado pelo teu telemóvel ou usa um dos teus códigos de recuperação:'
+      user:
+        chosen_languages: Quando seleccionado, só publicações nas línguas escolhidas serão mostradas nas cronologias públicas
+    labels:
+      account:
+        fields:
+          name: Rótulo
+          value: Conteúdo
+      account_warning_preset:
+        text: Texto pré-definido
+      admin_account_action:
+        send_email_notification: Notificar o utilizador por e-mail
+        text: Aviso personalizado
+        type: Acção
+        types:
+          disable: Desactivar
+          none: Não fazer algo
+          silence: Silenciar
+          suspend: Suspender e apagar irreversivelmente os dados da conta
+        warning_preset_id: Usar um aviso pré-definido
+      defaults:
+        autofollow: Convidar para seguir a tua conta
+        avatar: Imagem de Perfil
+        bot: Esta é uma conta robô
+        chosen_languages: Filtrar línguas
+        confirm_new_password: Confirmar nova palavra-passe
+        confirm_password: Confirmar palavra-passe
+        context: Filtrar contextos
+        current_password: Palavra-passe actual
+        data: Dados
+        discoverable: Listar esta conta no directório
+        display_name: Nome Público
+        email: Endereço de e-mail
+        expires_in: Expira em
+        fields: Meta-dados de perfil
+        header: Cabeçalho
+        inbox_url: URL da caixa de entrada do repetidor
+        irreversible: Expandir em vez de esconder
+        locale: Idioma
+        locked: Trancar conta
+        max_uses: Número máximo de utilizações
+        new_password: Nova palavra-passe
+        note: Biografia
+        otp_attempt: Código de autenticação em dois passos
+        password: Palavra-passe
+        phrase: Palavra ou expressão-chave
+        setting_aggregate_reblogs: Agrupar partilhas em cronologias
+        setting_auto_play_gif: Reproduzir GIFs automaticamente
+        setting_boost_modal: Solicitar confirmação antes de partilhar uma publicação
+        setting_default_language: Língua de publicação
+        setting_default_privacy: Privacidade da publicação
+        setting_default_sensitive: Sempre marcar media como sensível
+        setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
+        setting_display_media: Exposição de media
+        setting_display_media_default: Pré-definição
+        setting_display_media_hide_all: Esconder todos
+        setting_display_media_show_all: Mostrar todos
+        setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
+        setting_hide_network: Esconder a tua rede
+        setting_noindex: Não quero ser indexado por motores de pesquisa
+        setting_reduce_motion: Reduz movimento em animações
+        setting_show_application: Revelar sempre qual a aplicação usada para enviar as publicações
+        setting_system_font_ui: Usar a fonte padrão do teu sistema
+        setting_theme: Tema do site
+        setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
+        severity: Gravidade
+        type: Tipo de importação
+        username: Nome de utilizador
+        username_or_email: Nome de utilizador ou e-mail
+        whole_word: Palavra completa
+      interactions:
+        must_be_follower: Bloquear notificações de não-seguidores
+        must_be_following: Bloquear notificações de pessoas que não segues
+        must_be_following_dm: Bloquear mensagens directas de pessoas que tu não segues
+      notification_emails:
+        digest: Enviar e-mails de resumo
+        favourite: Enviar e-mail quando alguém adiciona uma publicação tua aos favoritos
+        follow: Enviar e-mail quando alguém te segue
+        follow_request: Enviar e-mail quando alguém solicita ser teu seguidor
+        mention: Enviar e-mail quando alguém te menciona
+        reblog: Enviar e-mail quando alguém partilha uma publicação tua
+        report: Enviar um e-mail quando um novo relatório é submetido
+    'no': Não
+    required:
+      text: obrigatório
+    'yes': Sim

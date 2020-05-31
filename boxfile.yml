@@ -67,6 +67,9 @@ deploy.config:
             bin/tootctl search deploy
           fi
       - bin/tootctl cache clear
+  after_live:
+    worker.sidekiq:
+      - bin/tootctl search deploy
 
 
 web.web:

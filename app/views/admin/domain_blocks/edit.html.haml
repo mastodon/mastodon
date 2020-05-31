@@ -1,0 +1,30 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.domain_blocks.edit')
+
+= simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :put do |f|
+  = render 'shared/error_messages', object: @domain_block
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :domain, wrapper: :with_label, label: t('admin.domain_blocks.domain'), hint: t('admin.domain_blocks.new.hint'), required: true, readonly: true, disabled: true
+
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :severity, collection: DomainBlock.severities.keys, wrapper: :with_label, include_blank: false, label_method: lambda { |type| t("admin.domain_blocks.new.severity.#{type}") }, hint: t('admin.domain_blocks.new.severity.desc_html')
+
+  .fields-group
+    = f.input :reject_media, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_media'), hint: I18n.t('admin.domain_blocks.reject_media_hint')
+
+  .fields-group
+    = f.input :reject_reports, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_reports'), hint: I18n.t('admin.domain_blocks.reject_reports_hint')
+
+  .field-group
+    = f.input :private_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.private_comment'), hint: t('admin.domain_blocks.private_comment_hint'), rows: 6
+
+  .field-group
+    = f.input :public_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.public_comment'), hint: t('admin.domain_blocks.public_comment_hint'), rows: 6
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

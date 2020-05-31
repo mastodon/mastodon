@@ -13,6 +13,10 @@
     .fields-group
       = f.input :send_email_notification, as: :boolean, wrapper: :with_label
 
+    - if params[:report_id].present?
+      .fields-group
+        = f.input :include_statuses, as: :boolean, wrapper: :with_label
+
     %hr.spacer/
 
     - unless @warning_presets.empty?

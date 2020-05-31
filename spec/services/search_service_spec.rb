@@ -27,7 +27,7 @@ describe SearchService, type: :service do
         it 'returns the empty results' do
           service = double(call: nil)
           allow(ResolveURLService).to receive(:new).and_return(service)
-          results = subject.call(@query, nil, 10)
+          results = subject.call(@query, nil, 10, resolve: true)
 
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
           expect(results).to eq empty_results
@@ -40,7 +40,7 @@ describe SearchService, type: :service do
           service = double(call: account)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
-          results = subject.call(@query, nil, 10)
+          results = subject.call(@query, nil, 10, resolve: true)
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
           expect(results).to eq empty_results.merge(accounts: [account])
         end
@@ -52,7 +52,7 @@ describe SearchService, type: :service do
           service = double(call: status)
           allow(ResolveURLService).to receive(:new).and_return(service)
 
-          results = subject.call(@query, nil, 10)
+          results = subject.call(@query, nil, 10, resolve: true)
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
           expect(results).to eq empty_results.merge(statuses: [status])
         end
@@ -77,10 +77,10 @@ describe SearchService, type: :service do
         it 'includes the tag in the results' do
           query = '#tag'
           tag = Tag.new
-          allow(Tag).to receive(:search_for).with('tag', 10, 0).and_return([tag])
+          allow(Tag).to receive(:search_for).with('tag', 10, 0, exclude_unreviewed: nil).and_return([tag])
 
           results = subject.call(query, nil, 10)
-          expect(Tag).to have_received(:search_for).with('tag', 10, 0)
+          expect(Tag).to have_received(:search_for).with('tag', 10, 0, exclude_unreviewed: nil)
           expect(results).to eq empty_results.merge(hashtags: [tag])
         end
         it 'does not include tag when starts with @ character' do

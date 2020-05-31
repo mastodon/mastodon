@@ -1,0 +1,12 @@
+%table
+  %thead
+    %tr
+      %th= t('about.unavailable_content_description.domain')
+      %th= t('about.unavailable_content_description.reason')
+  %tbody
+    - domain_blocks.each do |domain_block|
+      %tr
+        %td.nowrap
+          %span{ title: domain_block.domain }= domain_block.domain
+        %td
+          = domain_block.public_comment if display_blocks_rationale?

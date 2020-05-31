@@ -1,0 +1,15 @@
+- content_for :page_title do
+  = t('challenge.prompt')
+
+= simple_form_for @challenge, url: request.get? ? auth_challenge_path : '' do |f|
+  = f.input :return_to, as: :hidden
+
+  .field-group
+    = f.input :current_password, wrapper: :with_block_label, input_html: { :autocomplete => 'off', :autofocus => true }, label: t('challenge.prompt'), required: true
+
+  .actions
+    = f.button :button, t('challenge.confirm'), type: :submit
+
+  %p.hint.subtle-hint= t('challenge.hint_html')
+
+.form-footer= render 'auth/shared/links'

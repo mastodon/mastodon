@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe ImportService, type: :service do
   let!(:account) { Fabricate(:account, locked: false) }
   let!(:bob)     { Fabricate(:account, username: 'bob', locked: false) }
-  let!(:eve)     { Fabricate(:account, username: 'eve', domain: 'example.com', locked: false) }
+  let!(:eve)     { Fabricate(:account, username: 'eve', domain: 'example.com', locked: false, protocol: :activitypub, inbox_url: 'https://example.com/inbox') }
+
+  before do
+    stub_request(:post, "https://example.com/inbox").to_return(status: 200)
+  end
 
   context 'import old-style list of muted users' do
     subject { ImportService.new }
@@ -95,7 +99,8 @@ RSpec.describe ImportService, type: :service do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
       it 'follows the listed accounts, including boosts' do
         subject.call(import)
-        expect(account.following.count).to eq 2
+        expect(account.following.count).to eq 1
+        expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
       end
     end
@@ -106,7 +111,8 @@ RSpec.describe ImportService, type: :service do
       it 'follows the listed accounts, including notifications' do
         account.follow!(bob, reblogs: false)
         subject.call(import)
-        expect(account.following.count).to eq 2
+        expect(account.following.count).to eq 1
+        expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
       end
     end
@@ -117,7 +123,8 @@ RSpec.describe ImportService, type: :service do
       it 'mutes the listed accounts, including notifications' do
         account.follow!(bob, reblogs: false)
         subject.call(import)
-        expect(account.following.count).to eq 2
+        expect(account.following.count).to eq 1
+        expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
       end
     end
@@ -136,9 +143,10 @@ RSpec.describe ImportService, type: :service do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
       it 'follows the listed accounts, respecting boosts' do
         subject.call(import)
-        expect(account.following.count).to eq 2
+        expect(account.following.count).to eq 1
+        expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
-        expect(Follow.find_by(account: account, target_account: eve).show_reblogs).to be false
+        expect(FollowRequest.find_by(account: account, target_account: eve).show_reblogs).to be false
       end
     end
 
@@ -148,9 +156,10 @@ RSpec.describe ImportService, type: :service do
       it 'mutes the listed accounts, respecting notifications' do
         account.follow!(bob, reblogs: true)
         subject.call(import)
-        expect(account.following.count).to eq 2
+        expect(account.following.count).to eq 1
+        expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
-        expect(Follow.find_by(account: account, target_account: eve).show_reblogs).to be false
+        expect(FollowRequest.find_by(account: account, target_account: eve).show_reblogs).to be false
       end
     end
 
@@ -160,9 +169,10 @@ RSpec.describe ImportService, type: :service do
       it 'mutes the listed accounts, respecting notifications' do
         account.follow!(bob, reblogs: true)
         subject.call(import)
-        expect(account.following.count).to eq 2
+        expect(account.following.count).to eq 1
+        expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
-        expect(Follow.find_by(account: account, target_account: eve).show_reblogs).to be false
+        expect(FollowRequest.find_by(account: account, target_account: eve).show_reblogs).to be false
       end
     end
   end

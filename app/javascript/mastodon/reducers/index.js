@@ -15,6 +15,7 @@ import settings from './settings';
 import push_notifications from './push_notifications';
 import status_lists from './status_lists';
 import mutes from './mutes';
+import blocks from './blocks';
 import reports from './reports';
 import contexts from './contexts';
 import favourite_tags from './favourite_tags';
@@ -34,6 +35,8 @@ import conversations from './conversations';
 import suggestions from './suggestions';
 import polls from './polls';
 import identity_proofs from './identity_proofs';
+import trends from './trends';
+import missed_updates from './missed_updates';
 
 const reducers = {
   dropdown_menu,
@@ -52,6 +55,7 @@ const reducers = {
   settings,
   push_notifications,
   mutes,
+  blocks,
   reports,
   contexts,
   favourite_tags,
@@ -71,6 +75,8 @@ const reducers = {
   conversations,
   suggestions,
   polls,
+  trends,
+  missed_updates,
 };
 
 export default combineReducers(reducers);

@@ -17,13 +17,13 @@ de:
     contact_unavailable: Nicht verfügbar
     discover_users: Benutzer_innen entdecken
     documentation: Dokumentation
-    extended_description_html: |
-      <h3>Ein hervorragender Ort für Regeln</h3>
-      <p>Die erweiterte Beschreibung wurde von dem Administrator noch nicht eingestellt.</p>
     federation_hint_html: Mit einem Konto auf %{instance} wirst du in der Lage sein Nutzer_innen auf beliebigen Mastodon-Servern und darüber hinaus zu folgen.
     generic_description: "%{domain} ist ein Server im Fediversum"
     get_apps: Versuche eine mobile App
     hosted_on: Mastodon, gehostet auf %{domain}
+    instance_actor_flash: |
+      Dieses Konto ist ein virtueller Akteur, der den Server selbst und nicht einen einzelnen Benutzer repräsentiert.
+      Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn du möchtest die gesamte Instanz blockieren.
     learn_more: Mehr erfahren
     privacy_policy: Datenschutzerklärung
     see_whats_happening: Finde heraus, was gerade in der Welt los ist
@@ -35,6 +35,14 @@ de:
     status_count_before: mit
     tagline: Finde deine Freunde und entdecke neue
     terms: Nutzungsbedingungen
+    unavailable_content: Nicht verfügbarer Inhalt
+    unavailable_content_description:
+      domain: Server
+      reason: 'Grund:'
+      rejecting_media: Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.
+      silenced: Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.
+      suspended: Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.
+    unavailable_content_html: Mastodon erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
     user_count_after:
       one: Profil
       other: Profile
@@ -42,6 +50,8 @@ de:
     what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
+    endorsements_hint: Du kannst Personen, denen du über die Weboberfläche folgst, auswählen, und sie werden hier angezeigt.
+    featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
       one: Folger_innen
@@ -53,6 +63,7 @@ de:
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     network_hidden: Diese Informationen sind nicht verfügbar
+    never_active: Nie
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -183,6 +194,7 @@ de:
       username: Profilname
       warn: Warnen
       web: Web
+      whitelisted: Auf der Whitelist
     action_logs:
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
@@ -218,19 +230,24 @@ de:
       deleted_status: "(gelöschter Beitrag)"
       title: Überprüfungsprotokoll
     custom_emojis:
+      assign_category: Kategorie zuweisen
       by_domain: Domain
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
+      create_new_category: Neue Kategorie erstellen
       created_msg: Emoji erstellt!
       delete: Löschen
       destroyed_msg: Emoji gelöscht!
       disable: Deaktivieren
+      disabled: Deaktiviert
       disabled_msg: Das Emoji wurde deaktiviert
       emoji: Emoji
       enable: Aktivieren
+      enabled: Aktiviert
       enabled_msg: Das Emoji wurde aktiviert
       image_hint: PNG bis zu 50 kB
+      list: Liste
       listed: Gelistet
       new:
         title: Eigenes Emoji hinzufügen
@@ -238,11 +255,14 @@ de:
       shortcode: Kürzel
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
+      uncategorized: Nicht kategorisiert
+      unlist: Nicht listen
       unlisted: Ungelistet
       update_failed_msg: Konnte dieses Emoji nicht aktualisieren
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     dashboard:
+      authorized_fetch_mode: Autorisierter Abruf-Modus
       backlog: Rückständige Jobs
       config: Konfiguration
       feature_deletions: Kontolöschung
@@ -250,10 +270,13 @@ de:
       feature_profile_directory: Profilverzeichnis
       feature_registrations: Offene Anmeldung
       feature_relay: Föderationsrelais
+      feature_spam_check: Anti-Spam
       feature_timeline_preview: Zeitleistenvorschau
       features: Funktionen
       hidden_service: Föderation mit versteckten Diensten
       open_reports: Ausstehende Meldungen
+      pending_tags: Hashtags, die auf eine Überprüfung warten
+      pending_users: Benutzer, die auf eine Überprüfung warten
       recent_users: Neueste Nutzer
       search: Volltextsuche
       single_user_mode: Einzelnutzermodus
@@ -265,11 +288,18 @@ de:
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
       week_users_new: Benutzer_innen diese Woche
+      whitelist_mode: Whitelist-Modus
+    domain_allows:
+      add_new: Whitelist-Domain
+      created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
+      destroyed_msg: Domain wurde von der Whitelist entfernt
+      undo: Von der Whitelist entfernen
     domain_blocks:
       add_new: Neue Domainblockade hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
       destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
       domain: Domain
+      edit: Domainblockade bearbeiten
       existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
       new:
         create: Blockade einrichten
@@ -280,6 +310,10 @@ de:
           silence: Stummschaltung
           suspend: Sperre
         title: Neue Domain-Blockade
+      private_comment: Privater Kommentar
+      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderatoren.
+      public_comment: Öffentlicher Kommentar
+      public_comment_hint: Kommentar zu dieser Domain-Beschränkung für die allgemeine Öffentlichkeit, wenn das Veröffentlichen der Blockliste aktiviert ist.
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
@@ -299,6 +333,7 @@ de:
         title: Domain-Blockade für %{domain} zurücknehmen
         undo: Zurücknehmen
       undo: Domainblockade zurücknehmen
+      view: Zeige Domain-Blockade
     email_domain_blocks:
       add_new: Neue hinzufügen
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
@@ -322,6 +357,8 @@ de:
         all: Alle
         limited: Beschränkt
         title: Moderation
+      private_comment: Privater Kommentar
+      public_comment: Öffentlicher Kommentar
       title: Föderation
       total_blocked_by_us: Von uns blockiert
       total_followed_by_them: Gefolgt von denen
@@ -351,6 +388,7 @@ de:
       pending: Warte auf Zustimmung des Relays
       save_and_enable: Speichern und aktivieren
       setup: Relaisverbindung einrichten
+      signatures_not_enabled: Relais funktionieren nicht korrekt, während der sichere Modus oder der Whitelist-Modus aktiviert ist
       status: Zustand
       title: Relais
     report_notes:
@@ -399,6 +437,16 @@ de:
       custom_css:
         desc_html: Verändere das Aussehen mit CSS, dass auf jeder Seite geladen wird
         title: Benutzerdefiniertes CSS
+      default_noindex:
+        desc_html: Beeinflusst alle Benutzer, die diese Einstellung nicht selbst geändert haben
+        title: Benutzer aus Suchmaschinen-Indizierung standardmäßig herausnehmen
+      domain_blocks:
+        all: An alle
+        disabled: An niemanden
+        title: Zeige Domain-Blockaden
+        users: Für angemeldete lokale Benutzer
+      domain_blocks_rationale:
+        title: Rationale anzeigen
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
         title: Bild für Einstiegsseite
@@ -449,6 +497,9 @@ de:
         desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags nutzen
         title: Benutzerdefinierte Geschäftsbedingungen
       site_title: Name des Servers
+      spam_check_enabled:
+        desc_html: Mastodon kann automatisch Server stummschalten und automatisch Konten melden basierend auf Maßnahmen wie die Erkennung von Konten, die wiederholt unerwünschte Nachrichten senden. Es können hierbei mögliche Probleme auftreten.
+        title: Anti-Spam
       thumbnail:
         desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
         title: Vorschaubild des Servers
@@ -456,12 +507,16 @@ de:
         desc_html: Auf der Einstiegsseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
       title: Server-Einstellungen
+      trends:
+        desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
+        title: Trendende Hashtags
     statuses:
       back_to_account: Zurück zum Konto
       batch:
         delete: Löschen
         nsfw_off: Als nicht heikel markieren
         nsfw_on: Als heikel markieren
+      deleted: Gelöscht
       failed_to_execute: Ausführen fehlgeschlagen
       media:
         title: Medien
@@ -469,21 +524,24 @@ de:
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       title: Beiträge des Kontos
       with_media: Mit Medien
-    subscriptions:
-      callback_url: Callback-URL
-      confirmed: Bestätigt
-      expires_in: Verfällt in
-      last_delivery: Letzte Zustellung
-      title: WebSub
-      topic: Thema
     tags:
-      accounts: Konten
-      hidden: Versteckt
-      hide: Vom Profilverzeichnis verstecken
+      accounts_today: Einzigartige Nutzungen heute
+      accounts_week: Einzigartige Nutzung dieser Woche
+      breakdown: Heruntergebrochene Statistiken der heutigen Nutzung nach Quelle
+      context: Kontext
+      directory: Im Verzeichnis
+      in_directory: "%{count} im Verzeichnis"
+      last_active: Zuletzt aktiv
+      most_popular: Am beliebtesten
+      most_recent: Neuste
       name: Hashtag
+      review: Prüfstatus
+      reviewed: Überprüft
       title: Hashtags
-      unhide: Zeige in Verzeichnis
-      visible: Sichtbar
+      trending_right_now: Aktuell in den Trends
+      unique_uses_today: "%{count} Beiträge heute"
+      unreviewed: Nicht überprüft
+      updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
     title: Administration
     warning_presets:
       add_new: Neu hinzufügen
@@ -499,11 +557,21 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
+    new_trending_tag:
+      body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
+      subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})
+  aliases:
+    add_new: Alias erstellen
+    created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
+    deleted_msg: Der Alias wurde erfolgreich entfernt. Aus diesem Konto zu diesem zu verschieben ist nicht mehr möglich.
+    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird bevor du deine Folger_innen vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
+    remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
     advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
+    discovery: Entdecken
     sensitive_content: Heikle Inhalte
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -524,9 +592,13 @@ de:
     apply_for_account: Eine Einladung anfragen
     change_password: Passwort
     checkbox_agreement_html: Ich akzeptiere die <a href="%{rules_path}" target="_blank">Server-Regeln</a> und die <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a>
-    confirm_email: E-Mail bestätigen
+    checkbox_agreement_without_rules_html: Ich stimme den <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a> zu
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
+    description:
+      prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von Mastodon beizutreten!"
+      prefix_sign_up: Melde dich heute bei Mastodon an!
+      suffix: Mit einem Konto kannst du Leuten folgen, Updates veröffentlichen und Nachrichten mit Benutzern von jedem Mastodon-Server austauschen und mehr!
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
@@ -544,6 +616,16 @@ de:
     reset_password: Passwort zurücksetzen
     security: Sicherheit
     set_new_password: Neues Passwort setzen
+    setup:
+      email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
+      email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
+      title: Konfiguration
+    status:
+      account_status: Kontostatus
+      confirming: Warte auf die Bestätigung der E-Mail.
+      functional: Dein Konto ist voll funktionsfähig.
+      pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
+      redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -556,6 +638,11 @@ de:
       return: Zeige das Profil
       web: In der Benutzeroberfläche öffnen
     title: "%{acct} folgen"
+  challenge:
+    confirm: Fortfahren
+    hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
+    invalid_password: Ungültiges Passwort
+    prompt: Gib dein Passwort ein um fortzufahren
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -571,26 +658,33 @@ de:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Falsches Passwort
+    challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
-    description_html: Hiermit wird <strong>dauerhaft und unwiederbringlich</strong> der Inhalt deines Kontos gelöscht und dein Konto deaktiviert. Dein Profilname wird reserviert, um künftige Imitationen zu verhindern.
+    confirm_username: Gib deinen Benutzernamen ein, um das Verfahren zu bestätigen
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
-    warning_html: Wir können nur dafür garantieren, dass die Inhalte auf diesem einen Server gelöscht werden. Bei Inhalten, die weit verbreitet wurden, ist es wahrscheinlich, dass Spuren bleiben werden. Server, die offline sind oder keine Benachrichtigungen von deinem Konto mehr empfangen, werden ihre Datenbanken nicht bereinigen.
-    warning_title: Verfügbarkeit verstreuter Inhalte
+    warning:
+      before: 'Bevor du fortfährst, lese bitte diese Punkte sorgfältig durch:'
+      caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können weiterhin bestehen
+      data_removal: Deine Beiträge und andere Daten werden dauerhaft entfernt
+      email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
+      email_contact_html: Wenn die Bestätigungs-E-Mail immer noch nicht ankam, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
+      email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
+      irreversible: Du kannst dein Konto nicht reaktivieren
+      more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzrichtlinie</a>.
+      username_available: Dein Benutzername wird wieder verfügbar
+      username_unavailable: Dein Benutzername bleibt nicht verfügbar
   directories:
     directory: Profilverzeichnis
-    enabled: Du bist gerade in dem Verzeichnis gelistet.
-    enabled_but_waiting: Du bist damit einverstanden im Verzeichnis aufgelistet zu werden, aber du hast noch nicht genug Folger_innen (%{min_followers}).
     explanation: Entdecke Benutzer_innen basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
-    how_to_enable: Du hast dich gerade nicht dazu entschieden im Verzeichnis gelistet zu werden. Du kannst dich unten dafür eintragen. Benutze Hashtags in deiner Profilbeschreibung, um unter spezifischen Hashtags gelistet zu werden!
-    people:
-      one: "%{count} Person"
-      other: "%{count} Leute"
+  domain_validator:
+    invalid_domain: ist kein gültiger Domain-Name
   errors:
+    '400': Die Anfrage, die du gesendet hast, war ungültig oder fehlerhaft.
     '403': Dir fehlt die Befugnis, diese Seite sehen zu können.
     '404': Die Seite nach der du gesucht hast wurde nicht gefunden.
+    '406': Diese Seite ist im gewünschten Format nicht verfügbar.
     '410': Die Seite nach der du gesucht hast existiert hier nicht mehr.
     '422':
       content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
@@ -599,6 +693,7 @@ de:
     '500':
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
+    '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
     not_found: kann lokalen Benutzer nicht mit diesem Nuternamen finden
@@ -622,6 +717,7 @@ de:
     add_new: Neu hinzufügen
     errors:
       limit: Du hast bereits die maximale Anzahl an empfohlenen Hashtags erreicht
+    hint_html: "<strong>Was sind empfohlene Hashtags?</strong> Sie werden in deinem öffentlichen Profil deutlich angezeigt und ermöglichen es den Menschen, deine öffentlichen Beiträge speziell unter diesen Hashtags zu durchsuchen. Sie sind ein großartiges Werkzeug, um kreative Werke oder langfristige Projekte zu verfolgen."
   filters:
     contexts:
       home: Startseite
@@ -642,10 +738,12 @@ de:
     developers: Entwickler
     more: Mehr…
     resources: Ressourcen
+    trending_now: In den Trends
   generic:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
+    no_batch_actions_available: Keine Massenaktionen auf dieser Seite verfügbar
     order_by: Sortieren nach
     save_changes: Änderungen speichern
     validation_errors:
@@ -717,9 +815,34 @@ de:
       too_many: Es können nicht mehr als 4 Dateien angehängt werden
   migrations:
     acct: benutzername@domain des neuen Kontos
-    currently_redirecting: 'Deine Profilweiterleitung wurde gesetzt auf:'
-    proceed: Speichern
-    updated_msg: Deine Konto-Migrationseinstellungen wurden erfolgreich aktualisiert!
+    cancel: Umleitung abbrechen
+    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Folger_innen, die auf dieses Konto verschoben wurden, zurückholen.
+    cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
+    errors:
+      already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
+      missing_also_known_as: referenziert nicht zurück auf dieses Konto
+      move_to_self: darf nicht das aktuelles Konto sein
+      not_found: kann nicht gefunden werden
+      on_cooldown: Die Abklingzeit läuft gerade
+    followers_count: Folger_innen zur Zeit des Verschiebens
+    incoming_migrations: Ziehe von einem anderen Konto um
+    incoming_migrations_html: Um von einem anderen Konto zu diesem zu wechseln, musst du zuerst <a href="%{path}">einen Kontoalias</a> erstellen.
+    moved_msg: Dein Konto wird jetzt zu %{acct} weitergeleitet und deine Folger_innen werden verschoben.
+    not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
+    on_cooldown: Du hast dein Konto vor kurzem migriert. Diese Funktion wird in %{count} Tagen wieder verfügbar sein.
+    past_migrations: Vorherige Migrationen
+    proceed_with_move: Folger_innen verschieben
+    redirecting_to: Dein Konto wird zu %{acct} weitergeleitet.
+    set_redirect: Umleitung einrichten
+    warning:
+      backreference_required: Das neue Konto muss zuerst so konfiguriert werden, dass es auf das alte Konto referenziert
+      before: 'Bevor du fortfährst, lese bitte diese Hinweise sorgfältig durch:'
+      cooldown: Nach dem Migrieren wird es eine Abklingzeit geben, in der du das Konto nicht noch einmal migrieren kannst
+      disabled_account: Dein aktuelles Konto wird nachher nicht vollständig nutzbar sein. Du hast jedoch Zugriff auf den Datenexport sowie die Reaktivierung.
+      followers: Diese Aktion wird alle Folger_innen vom aktuellen Konto auf das neue Konto verschieben
+      only_redirect_html: Alternativ kannst du <a href="%{path}">nur eine Weiterleitung auf dein Profil</a> erstellen.
+      other_data: Keine anderen Daten werden automatisch verschoben
+      redirect: Das Profil deines aktuellen Kontos wird mit einer Weiterleitungsnachricht versehen und von Suchanfragen ausgeschlossen
   moderation:
     title: Moderation
   notification_mailer:
@@ -816,10 +939,6 @@ de:
     reply:
       proceed: Fortfahren zum Antworten
       prompt: 'Du möchtest auf diesen Beitrag antworten:'
-  remote_unfollow:
-    error: Fehler
-    title: Titel
-    unfollowed: Entfolgt
   scheduled_statuses:
     over_daily_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, erreicht
@@ -868,6 +987,7 @@ de:
   settings:
     account: Konto
     account_settings: Konto & Sicherheit
+    aliases: Kontoaliase
     appearance: Aussehen
     authorized_apps: Autorisierte Anwendungen
     back: Zurück zu Mastodon
@@ -885,6 +1005,8 @@ de:
     profile: Profil
     relationships: Folger_innen und Gefolgte
     two_factor_authentication: Zwei-Faktor-Auth
+  spam_check:
+    spam_detected_and_silenced: Dies ist ein automatisierter Bericht. Spam wurde erkannt und der Absender wurde automatisch stummgeschaltet. Wenn dies ein Fehler ist, schalte dieses Konto bitte wieder frei.
   statuses:
     attached:
       description: 'Angehängt: %{attached}'
@@ -908,6 +1030,9 @@ de:
       private: Du kannst nur öffentliche Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
     poll:
+      total_people:
+        one: "%{count} Person"
+        other: "%{count} Personen"
       total_votes:
         one: "%{count} Stimme"
         other: "%{count} Stimmen"
@@ -916,8 +1041,8 @@ de:
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Nur Folgende
-      private_long: Nur für Folgende sichtbar
+      private: Nur für Folger_innen
+      private_long: Nur für Folger_innen sichtbar
       public: Öffentlich
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
@@ -926,6 +1051,8 @@ de:
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: Heikle Inhalte
+  tags:
+    does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms:
     body_html: |
       <h2>Datenschutzerklärung</h2>
@@ -1045,7 +1172,9 @@ de:
         disable: Solange dein Konto eingefroren ist, sind deine Benutzerdaten intakt; aber du kannst nichts tun, bis dein Konto entsperrt wurde.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Dein Konto wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern, bei denen du Folgende hattest, gelöscht.
+      get_in_touch: Du kannst auf diese E-Mail antworten, um mit dem Personal von %{instance} in Kontakt zu treten.
       review_server_policies: Serverrichtlinien ansehen
+      statuses: 'Besonders für:'
       subject:
         disable: Dein Konto %{acct} wurde eingefroren
         none: Warnung für %{acct}

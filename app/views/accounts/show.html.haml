@@ -7,9 +7,7 @@
   - if @account.user&.setting_noindex
     %meta{ name: 'robots', content: 'noindex, noarchive' }/
 
-  %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
-  %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
-  %link{ rel: 'alternate', type: 'application/rss+xml', href: account_url(@account, format: 'rss') }/
+  %link{ rel: 'alternate', type: 'application/rss+xml', href: @rss_url }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
   - if @older_url
@@ -40,12 +38,12 @@
       - else
         .activity-stream.activity-stream--under-tabs
           - if params[:page].to_i.zero?
-            = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
+            = render partial: 'statuses/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
 
           - if @newer_url
             .entry= link_to_more @newer_url
 
-          = render partial: 'stream_entries/status', collection: @statuses, as: :status
+          = render partial: 'statuses/status', collection: @statuses, as: :status
 
           - if @older_url
             .entry= link_to_more @older_url
@@ -58,24 +56,33 @@
 
     = render 'bio', account: @account
 
-    - unless @endorsed_accounts.empty?
+    - if @endorsed_accounts.empty? && @account.id == current_account&.id
+      .placeholder-widget= t('accounts.endorsements_hint')
+    - elsif !@endorsed_accounts.empty?
       .endorsements-widget
         %h4= t 'accounts.choices_html', name: content_tag(:bdi, display_name(@account, custom_emojify: true))
 
         - @endorsed_accounts.each do |account|
           = account_link_to account
 
-    - @account.featured_tags.order(statuses_count: :desc).each do |featured_tag|
-      .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
-        = link_to short_account_tag_path(@account, featured_tag.tag) do
-          %h4
-            = fa_icon 'hashtag'
-            = featured_tag.name
-            %small
-              - if featured_tag.last_status_at.nil?
-                = t('accounts.nothing_here')
-              - else
-                %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
-          .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true
+    - if @featured_hashtags.empty? && @account.id == current_account&.id
+      .placeholder-widget
+        = t('accounts.featured_tags_hint')
+        = link_to settings_featured_tags_path do
+          = t('featured_tags.add_new')
+          = fa_icon 'chevron-right fw'
+    - else
+      - @featured_hashtags.each do |featured_tag|
+        .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
+          = link_to short_account_tag_path(@account, featured_tag.tag) do
+            %h4
+              = fa_icon 'hashtag'
+              = featured_tag.name
+              %small
+                - if featured_tag.last_status_at.nil?
+                  = t('accounts.nothing_here')
+                - else
+                  %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
+            .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true
 
     = render 'application/sidebar'

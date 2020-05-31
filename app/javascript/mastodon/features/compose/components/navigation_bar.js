@@ -12,6 +12,7 @@ export default class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
+    onLogout: PropTypes.func.isRequired,
     onClose: PropTypes.func,
   };
 
@@ -33,7 +34,7 @@ export default class NavigationBar extends ImmutablePureComponent {
 
         <div className='navigation-bar__actions'>
           <IconButton className='close' title='' icon='close' onClick={this.props.onClose} />
-          <ActionBar account={this.props.account} />
+          <ActionBar account={this.props.account} onLogout={this.props.onLogout} />
         </div>
       </div>
     );

@@ -42,6 +42,14 @@
                               - unless @warning.text.blank?
                                 = Formatter.instance.linkify(@warning.text)
 
+                              - if !@statuses.nil? && !@statuses.empty?
+                                %p
+                                  %strong= t('user_mailer.warning.statuses')
+
+- if !@statuses.nil? && !@statuses.empty?
+  - @statuses.each_with_index do |status, i|
+    = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true
+
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
     %tr
@@ -50,7 +58,7 @@
           %table.content-section{ cellspacing: 0, cellpadding: 0 }
             %tbody
               %tr
-                %td.content-cell
+                %td.content-cell{ class: @statuses.nil? || @statuses.empty? ? '' : 'content-start' }
                   %table.column{ cellspacing: 0, cellpadding: 0 }
                     %tbody
                       %tr
@@ -61,3 +69,20 @@
                                 %td.button-primary
                                   = link_to about_more_url do
                                     %span= t 'user_mailer.warning.review_server_policies'
+
+%table.email-table{ cellspacing: 0, cellpadding: 0 }
+  %tbody
+    %tr
+      %td.email-body
+        .email-container
+          %table.content-section{ cellspacing: 0, cellpadding: 0 }
+            %tbody
+              %tr
+                %td.content-cell
+                  .email-row
+                    .col-6
+                      %table.column{ cellspacing: 0, cellpadding: 0 }
+                        %tbody
+                          %tr
+                            %td.column-cell.text-center
+                              %p= t 'user_mailer.warning.get_in_touch', instance: @instance

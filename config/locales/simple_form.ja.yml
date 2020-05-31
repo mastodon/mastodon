@@ -2,9 +2,14 @@
 ja:
   simple_form:
     hints:
+      account_alias:
+        acct: 引っ越し元のユーザー名@ドメインを指定してください
+      account_migration:
+        acct: 引っ越し先のユーザー名@ドメインを指定してください
       account_warning_preset:
         text: URL、ハッシュタグ、メンションなど、投稿に用いる構文が使用できます
       admin_account_action:
+        include_statuses: ユーザーは取られた制限や警告の原因となったトゥートを確認できるようになります
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
         type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
@@ -14,8 +19,10 @@ ja:
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
+        current_password: 現在のアカウントのパスワードを入力してください
+        current_username: 確認のため、現在のアカウントのユーザー名を入力してください
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
-        discoverable_html: <a href="%{path}" target="_blank">ディレクトリ</a> は興味や活動をもとにアカウントを見つけることを可能にします。 掲載には %{min_followers} 人以上のフォロワーが必要です
+        discoverable: ディレクトリはあなたのアカウントをより多くの人に見つけてもらうためのひとつの手段です
         email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
@@ -34,16 +41,24 @@ ja:
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_show_application: トゥートするのに使用したアプリがトゥートの詳細ビューに表示されるようになります
+        setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
+        setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
         username: あなたのユーザー名は %{domain} の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
+      domain_allow:
+        domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
       featured_tag:
         name: 'これらを使うといいかもしれません:'
+      form_challenge:
+        current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
       invite_request:
         text: このサーバーは現在承認制です。申請を承認する際に役立つメッセージを添えてください
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
+      tag:
+        name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語のトゥートのみが公開タイムラインに表示されるようになります
     labels:
@@ -51,9 +66,14 @@ ja:
         fields:
           name: ラベル
           value: 内容
+      account_alias:
+        acct: 引っ越し元のユーザー ID
+      account_migration:
+        acct: 引っ越し先のユーザー ID
       account_warning_preset:
         text: プリセット警告文
       admin_account_action:
+        include_statuses: 通報されたトゥートをメールに含める
         send_email_notification: メールでユーザーに通知
         text: カスタム警告文
         type: アクション
@@ -108,7 +128,10 @@ ja:
         setting_show_application: 送信したアプリを開示する
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
+        setting_trends: 本日のトレンドタグを表示する
         setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
+        setting_use_blurhash: 非表示のメディアを色付きのぼかしで表示する
+        setting_use_pending_items: 手動更新モード
         severity: 重大性
         type: インポートする項目
         username: ユーザー名
@@ -120,6 +143,8 @@ ja:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
         must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージをブロック
+      invite:
+        comment: コメント
       invite_request:
         text: 意気込みをお聞かせください
       notification_emails:
@@ -131,6 +156,12 @@ ja:
         pending_account: 新しいアカウントの承認が必要な時にメールで通知する
         reblog: トゥートがブーストされた時にメールで通知する
         report: 通報を受けた時にメールで通知する
+        trending_tag: 未審査のハッシュタグが人気の時にメールで通知する
+      tag:
+        listable: 検索とディレクトリへの使用を許可する
+        name: ハッシュタグ
+        trendable: トレンドへの表示を許可する
+        usable: トゥートへの使用を許可する
     'no': いいえ
     recommended: おすすめ
     required:

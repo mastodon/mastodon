@@ -13,7 +13,7 @@ module WellKnown
         format.xml { render content_type: 'application/xrd+xml' }
       end
 
-      expires_in(3.days, public: true)
+      expires_in 3.days, public: true
     end
   end
 end

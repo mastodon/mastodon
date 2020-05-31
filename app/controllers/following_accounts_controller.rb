@@ -2,13 +2,18 @@
 
 class FollowingAccountsController < ApplicationController
   include AccountControllerConcern
+  include SignatureVerification
 
+  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers
+
+  skip_around_action :set_locale, if: -> { request.format == :json }
+  skip_before_action :require_functional!
 
   def index
     respond_to do |format|
       format.html do
-        mark_cacheable! unless user_signed_in?
+        expires_in 0, public: true unless user_signed_in?
 
         next if @account.user_hides_network?
 
@@ -17,9 +22,9 @@ class FollowingAccountsController < ApplicationController
       end
 
       format.json do
-        raise Mastodon::NotPermittedError if params[:page].present? && @account.user_hides_network?
+        raise Mastodon::NotPermittedError if page_requested? && @account.user_hides_network?
 
-        expires_in 3.minutes, public: true if params[:page].blank?
+        expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode?)
 
         render json: collection_presenter,
                serializer: ActivityPub::CollectionSerializer,
@@ -35,12 +40,16 @@ class FollowingAccountsController < ApplicationController
     @follows ||= Follow.where(account: @account).recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:target_account)
   end
 
+  def page_requested?
+    params[:page].present?
+  end
+
   def page_url(page)
     account_following_index_url(@account, page: page) unless page.nil?
   end
 
   def collection_presenter
-    if params[:page].present?
+    if page_requested?
       ActivityPub::CollectionPresenter.new(
         id: account_following_index_url(@account, page: params.fetch(:page, 1)),
         type: :ordered,

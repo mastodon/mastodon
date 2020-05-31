@@ -5,16 +5,14 @@ class ProcessHashtagsService < BaseService
     tags    = Extractor.extract_hashtags(status.text) if status.local?
     records = []
 
-    tags.map { |str| str.mb_chars.downcase }.uniq(&:to_s).each do |name|
-      tag = Tag.where(name: name).first_or_create(name: name)
-
+    Tag.find_or_create_by_names(tags) do |tag|
       status.tags << tag
       records << tag
 
       TrendingTags.record_use!(tag, status.account, status.created_at) if status.public_visibility?
     end
 
-    return unless status.public_visibility? || status.unlisted_visibility?
+    return unless status.distributable?
 
     status.account.featured_tags.where(tag_id: records.map(&:id)).each do |featured_tag|
       featured_tag.increment(status.created_at)

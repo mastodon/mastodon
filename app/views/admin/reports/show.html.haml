@@ -29,7 +29,9 @@
         %td= table_link_to 'file', pluralize(@report.target_account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.target_account.id)
       %tr
         %th= t('admin.reports.reported_by')
-        - if @report.account.local?
+        - if @report.account.instance_actor?
+          %td{ colspan: 3 }= site_hostname
+        - elsif @report.account.local?
           %td= admin_account_link_to @report.account
           %td= table_link_to 'flag', pluralize(@report.account.targeted_reports.count, t('admin.reports.account.report')), admin_reports_path(target_account_id: @report.account.id)
           %td= table_link_to 'file', pluralize(@report.account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.account.id)

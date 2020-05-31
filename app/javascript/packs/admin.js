@@ -1,4 +1,5 @@
 import { delegate } from 'rails-ujs';
+import ready from '../mastodon/ready';
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';
 
@@ -29,7 +30,7 @@ delegate(document, '.media-spoiler-hide-button', 'click', () => {
   });
 });
 
-delegate(document, '#domain_block_severity', 'change', ({ target }) => {
+const onDomainBlockSeverityChange = (target) => {
   const rejectMediaDiv   = document.querySelector('.input.with_label.domain_block_reject_media');
   const rejectReportsDiv = document.querySelector('.input.with_label.domain_block_reject_reports');
 
@@ -40,4 +41,11 @@ delegate(document, '#domain_block_severity', 'change', ({ target }) => {
   if (rejectReportsDiv) {
     rejectReportsDiv.style.display = (target.value === 'suspend') ? 'none' : 'block';
   }
+};
+
+delegate(document, '#domain_block_severity', 'change', ({ target }) => onDomainBlockSeverityChange(target));
+
+ready(() => {
+  const input = document.getElementById('domain_block_severity');
+  if (input) onDomainBlockSeverityChange(input);
 });

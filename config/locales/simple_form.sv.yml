@@ -2,11 +2,18 @@
 sv:
   simple_form:
     hints:
+      account_alias:
+        acct: Ange användarnamn@domän för kontot du flyttar från
+      account_migration:
+        acct: Ange användarnamn@domän för kontot du flyttar till
       account_warning_preset:
         text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
       admin_account_action:
+        include_statuses: Användaren ser de toots som orsakat moderering eller varning
         send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
+        text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
+        warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px

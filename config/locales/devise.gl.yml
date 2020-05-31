@@ -46,6 +46,18 @@ gl:
         extra: Si non fixo esta solicitude, por favor ignore este correo. O seu contrasinal non cambiará ate que acceda a ligazón superior e cree unha nova.
         subject: 'Mastodon: Instruccións para restablecer o contrasinal'
         title: Restablecer contrasinal
+      two_factor_disabled:
+        explanation: Desactivouse o segundo factor de autenticación para túa conta. Agora xa podes conectarte utilizando só o correo-e e contrasinal.
+        subject: 'Mastodon: Autenticación con dobre factor desactivada'
+        title: 2FA desactivada
+      two_factor_enabled:
+        explanation: A autenticación con dobre factor foi activada para a túa conta. Pedirase o testemuño xerado pola aplicación TOTP emparellada.
+        subject: 'Mastodon: Activouse o dobre factor de autenticación'
+        title: 2FA activado
+      two_factor_recovery_codes_changed:
+        explanation: Os códigos de recuperación anteriores quedan anulados e os novos foron creados.
+        subject: 'Mastodon: Código de recuperación do dobre factor rexenerados'
+        title: Códigos de recuperación 2FA cambiados
       unlock_instructions:
         subject: 'Mastodon: Instruccións para desbloquear'
     omniauth_callbacks:

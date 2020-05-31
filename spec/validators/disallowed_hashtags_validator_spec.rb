@@ -3,42 +3,44 @@
 require 'rails_helper'
 
 RSpec.describe DisallowedHashtagsValidator, type: :validator do
+  let(:disallowed_tags) { [] }
+
   describe '#validate' do
     before do
-      allow_any_instance_of(described_class).to receive(:select_tags) { tags }
+      disallowed_tags.each { |name| Fabricate(:tag, name: name, usable: false) }
       described_class.new.validate(status)
     end
 
-    let(:status) { double(errors: errors, local?: local, reblog?: reblog, text: '') }
+    let(:status) { double(errors: errors, local?: local, reblog?: reblog, text: disallowed_tags.map { |x| '#' + x }.join(' ')) }
     let(:errors) { double(add: nil) }
 
-    context 'unless status.local? && !status.reblog?' do
+    context 'for a remote reblog' do
       let(:local)  { false }
       let(:reblog) { true }
 
-      it 'not calls errors.add' do
+      it 'does not add errors' do
         expect(errors).not_to have_received(:add).with(:text, any_args)
       end
     end
 
-    context 'status.local? && !status.reblog?' do
+    context 'for a local original status' do
       let(:local)  { true }
       let(:reblog) { false }
 
-      context 'tags.empty?' do
-        let(:tags) { [] }
+      context 'when does not contain any disallowed hashtags' do
+        let(:disallowed_tags) { [] }
 
-        it 'not calls errors.add' do
+        it 'does not add errors' do
           expect(errors).not_to have_received(:add).with(:text, any_args)
         end
       end
 
-      context '!tags.empty?' do
-        let(:tags) { %w(a b c) }
+      context 'when contains disallowed hashtags' do
+        let(:disallowed_tags) { %w(a b c) }
 
-        it 'calls errors.add' do
+        it 'adds an error' do
           expect(errors).to have_received(:add)
-            .with(:text, I18n.t('statuses.disallowed_hashtags', tags: tags.join(', '), count: tags.size))
+            .with(:text, I18n.t('statuses.disallowed_hashtags', tags: disallowed_tags.join(', '), count: disallowed_tags.size))
         end
       end
     end

@@ -46,6 +46,17 @@ it:
         extra: Se questo cambiamento non è stato chiesto da te, ignora questa email. La tua password non verrà cambiata finché non accedi tramite il link qui sopra e ne crei una nuova.
         subject: 'Mastodon: Istruzioni per il reset della password'
         title: Ripristino password
+      two_factor_disabled:
+        explanation: L'autenticazione a due fattori per il tuo account è stata disattivata. Il login è ora possibile utilizzando solo l'indirizzo e-mail e la password.
+        subject: 'Mastodon: Autenticazione a due fattori disattivata'
+        title: 2FA disabilitata
+      two_factor_enabled:
+        explanation: L'autenticazione a due fattori è stata attivata per il tuo account. Un token generato dall'app TOTP collegata sarà richiesto per il login.
+        subject: 'Mastodon: Autenticazione a due fattori attivata'
+        title: 2FA abilitata
+      two_factor_recovery_codes_changed:
+        subject: 'Mastodon: codici di recupero a due fattori ri-generati'
+        title: Codici di recupero 2FA modificati
       unlock_instructions:
         subject: 'Mastodon: Istruzioni di sblocco'
     omniauth_callbacks:

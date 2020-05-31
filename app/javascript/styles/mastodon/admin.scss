@@ -5,21 +5,66 @@ $content-width: 840px;
 .admin-wrapper {
   display: flex;
   justify-content: center;
-  height: 100%;
+  width: 100%;
+  min-height: 100vh;
 
   .sidebar-wrapper {
-    flex: 1 1 $sidebar-width;
-    height: 100%;
-    background: $ui-base-color;
-    display: flex;
-    justify-content: flex-end;
+    min-height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    flex: 1 1 auto;
+
+    &__inner {
+      display: flex;
+      justify-content: flex-end;
+      background: $ui-base-color;
+      height: 100%;
+    }
   }
 
   .sidebar {
     width: $sidebar-width;
-    height: 100%;
     padding: 0;
-    overflow-y: auto;
+    pointer-events: auto;
+
+    &__toggle {
+      display: none;
+      background: lighten($ui-base-color, 8%);
+      height: 48px;
+
+      &__logo {
+        flex: 1 1 auto;
+
+        a {
+          display: inline-block;
+          padding: 15px;
+        }
+
+        svg {
+          fill: $primary-text-color;
+          height: 20px;
+          position: relative;
+          bottom: -2px;
+        }
+      }
+
+      &__icon {
+        display: block;
+        color: $darker-text-color;
+        text-decoration: none;
+        flex: 0 0 auto;
+        font-size: 20px;
+        padding: 15px;
+      }
+
+      a {
+        &:hover,
+        &:focus,
+        &:active {
+          background: lighten($ui-base-color, 12%);
+        }
+      }
+    }
 
     .logo {
       display: block;
@@ -52,6 +97,9 @@ $content-width: 840px;
         transition: all 200ms linear;
         transition-property: color, background-color;
         border-radius: 4px 0 0 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         i.fa {
           margin-right: 5px;
@@ -99,12 +147,30 @@ $content-width: 840px;
   }
 
   .content-wrapper {
-    flex: 2 1 $content-width;
-    overflow: auto;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: $content-width;
+    flex: 1 1 auto;
+  }
+
+  @media screen and (max-width: $content-width + $sidebar-width) {
+    .sidebar-wrapper--empty {
+      display: none;
+    }
+
+    .sidebar-wrapper {
+      width: $sidebar-width;
+      flex: 0 0 auto;
+    }
+  }
+
+  @media screen and (max-width: $no-columns-breakpoint) {
+    .sidebar-wrapper {
+      width: 100%;
+    }
   }
 
   .content {
-    max-width: $content-width;
     padding: 20px 15px;
     padding-top: 60px;
     padding-left: 25px;
@@ -123,6 +189,12 @@ $content-width: 840px;
       padding-bottom: 40px;
       border-bottom: 1px solid lighten($ui-base-color, 8%);
       margin-bottom: 40px;
+
+      @media screen and (max-width: $no-columns-breakpoint) {
+        border-bottom: 0;
+        padding-bottom: 0;
+        font-weight: 700;
+      }
     }
 
     h3 {
@@ -147,7 +219,7 @@ $content-width: 840px;
       font-size: 16px;
       color: $secondary-text-color;
       line-height: 28px;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     .fields-group h6 {
@@ -176,7 +248,7 @@ $content-width: 840px;
 
     & > p {
       font-size: 14px;
-      line-height: 18px;
+      line-height: 21px;
       color: $secondary-text-color;
       margin-bottom: 20px;
 
@@ -204,48 +276,85 @@ $content-width: 840px;
         border: 0;
       }
     }
-
-    .muted-hint {
-      color: $darker-text-color;
-
-      a {
-        color: $highlight-text-color;
-      }
-    }
-
-    .positive-hint {
-      color: $valid-value-color;
-      font-weight: 500;
-    }
-
-    .negative-hint {
-      color: $error-value-color;
-      font-weight: 500;
-    }
-
-    .neutral-hint {
-      color: $dark-text-color;
-      font-weight: 500;
-    }
   }
 
   @media screen and (max-width: $no-columns-breakpoint) {
     display: block;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
 
-    .sidebar-wrapper,
-    .content-wrapper {
-      flex: 0 0 auto;
-      height: auto;
-      overflow: initial;
+    .sidebar-wrapper {
+      min-height: 0;
     }
 
     .sidebar {
       width: 100%;
       padding: 0;
       height: auto;
+
+      &__toggle {
+        display: flex;
+      }
+
+      & > ul {
+        display: none;
+      }
+
+      ul a,
+      ul ul a {
+        border-radius: 0;
+        border-bottom: 1px solid lighten($ui-base-color, 4%);
+        transition: none;
+
+        &:hover {
+          transition: none;
+        }
+      }
+
+      ul ul {
+        border-radius: 0;
+      }
+
+      ul .simple-navigation-active-leaf a {
+        border-bottom-color: $ui-highlight-color;
+      }
     }
+  }
+}
+
+hr.spacer {
+  width: 100%;
+  border: 0;
+  margin: 20px 0;
+  height: 1px;
+}
+
+body,
+.admin-wrapper .content {
+  .muted-hint {
+    color: $darker-text-color;
+
+    a {
+      color: $highlight-text-color;
+    }
+  }
+
+  .positive-hint {
+    color: $valid-value-color;
+    font-weight: 500;
+  }
+
+  .negative-hint {
+    color: $error-value-color;
+    font-weight: 500;
+  }
+
+  .neutral-hint {
+    color: $dark-text-color;
+    font-weight: 500;
+  }
+
+  .warning-hint {
+    color: $gold-star;
+    font-weight: 500;
   }
 }
 
@@ -255,10 +364,10 @@ $content-width: 840px;
 
   .filter-subset {
     flex: 0 0 auto;
-    margin: 0 40px 10px 0;
+    margin: 0 40px 20px 0;
 
     &:last-child {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     ul {
@@ -703,4 +812,48 @@ a.name-tag,
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: middle;
+}
+
+.admin-account-bio {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+  margin-top: 20px;
+
+  > div {
+    box-sizing: border-box;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    flex: 1 0 50%;
+  }
+
+  .account__header__fields,
+  .account__header__content {
+    background: lighten($ui-base-color, 8%);
+    border-radius: 4px;
+    height: 100%;
+  }
+
+  .account__header__fields {
+    margin: 0;
+    border: 0;
+
+    a {
+      color: lighten($ui-highlight-color, 8%);
+    }
+
+    dl:first-child .verified {
+      border-radius: 0 4px 0 0;
+    }
+
+    .verified a {
+      color: $valid-value-color;
+    }
+  }
+
+  .account__header__content {
+    box-sizing: border-box;
+    padding: 20px;
+    color: $primary-text-color;
+  }
 }

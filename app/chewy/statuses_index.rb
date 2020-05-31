@@ -31,19 +31,19 @@ class StatusesIndex < Chewy::Index
     },
   }
 
-  define_type ::Status.unscoped.without_reblogs.includes(:media_attachments) do
+  define_type ::Status.unscoped.kept.without_reblogs.includes(:media_attachments), delete_if: ->(status) { status.searchable_by.empty? } do
     crutch :mentions do |collection|
-      data = ::Mention.where(status_id: collection.map(&:id)).pluck(:status_id, :account_id)
+      data = ::Mention.where(status_id: collection.map(&:id)).where(account: Account.local).pluck(:status_id, :account_id)
       data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
     end
 
     crutch :favourites do |collection|
-      data = ::Favourite.where(status_id: collection.map(&:id)).pluck(:status_id, :account_id)
+      data = ::Favourite.where(status_id: collection.map(&:id)).where(account: Account.local).pluck(:status_id, :account_id)
       data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
     end
 
     crutch :reblogs do |collection|
-      data = ::Status.where(reblog_of_id: collection.map(&:id)).pluck(:reblog_of_id, :account_id)
+      data = ::Status.where(reblog_of_id: collection.map(&:id)).where(account: Account.local).pluck(:reblog_of_id, :account_id)
       data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
     end
 
@@ -51,7 +51,7 @@ class StatusesIndex < Chewy::Index
       field :id, type: 'long'
       field :account_id, type: 'long'
 
-      field :text, type: 'text', value: ->(status) { [status.spoiler_text, Formatter.instance.plaintext(status)].concat(status.media_attachments.map(&:description)).concat(status.preloadable_poll ? status_preloadable_poll.options : []).join("\n\n") } do
+      field :text, type: 'text', value: ->(status) { [status.spoiler_text, Formatter.instance.plaintext(status)].concat(status.media_attachments.map(&:description)).concat(status.preloadable_poll ? status.preloadable_poll.options : []).join("\n\n") } do
         field :stemmed, type: 'text', analyzer: 'content'
       end
 

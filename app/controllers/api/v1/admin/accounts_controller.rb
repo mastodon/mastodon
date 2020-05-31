@@ -58,7 +58,7 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   def reject
     authorize @account.user, :reject?
-    SuspendAccountService.new.call(@account, including_user: true, destroy: true, skip_distribution: true)
+    SuspendAccountService.new.call(@account, reserve_email: false, reserve_username: false)
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 

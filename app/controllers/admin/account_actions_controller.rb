@@ -5,7 +5,7 @@ module Admin
     before_action :set_account
 
     def new
-      @account_action  = Admin::AccountAction.new(type: params[:type], report_id: params[:report_id], send_email_notification: true)
+      @account_action  = Admin::AccountAction.new(type: params[:type], report_id: params[:report_id], send_email_notification: true, include_statuses: true)
       @warning_presets = AccountWarningPreset.all
     end
 
@@ -30,7 +30,7 @@ module Admin
     end
 
     def resource_params
-      params.require(:admin_account_action).permit(:type, :report_id, :warning_preset_id, :text, :send_email_notification)
+      params.require(:admin_account_action).permit(:type, :report_id, :warning_preset_id, :text, :send_email_notification, :include_statuses)
     end
   end
 end
