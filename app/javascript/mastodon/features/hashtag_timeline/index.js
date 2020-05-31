@@ -104,7 +104,7 @@ class HashtagTimeline extends React.PureComponent {
     const { dispatch, isLocal } = this.props;
     const { id, tags } = this.props.params;
 
-    this._subscribe(dispatch, id, tags);
+    this._subscribe(dispatch, id, isLocal, tags);
     dispatch(expandHashtagTimeline(id, { isLocal, tags }));
   }
 
