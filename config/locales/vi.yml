@@ -428,10 +428,10 @@ vi:
       title: "Những mối liên hệ của %{acct}"
     relays:
       add_new: Thêm liên hợp mới
-      delete: Xóa bỏ
+      delete: Loại bỏ
       description_html: <strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người dùng ở máy chủ này vẫn có thể mến mộ người dùng khác trên các máy chủ khác.
-      disable: Vô hiệu hóa
-      disabled: Đã vô hiệu hóa
+      disable: Tắt
+      disabled: Đã tắt
       enable: Kích hoạt
       enable_hint: Sau khi kích hoạt, máy chủ của bạn sẽ nhận tất cả các tút công khai từ mạng liên hợp này và gửi các tút công khai của bạn tới nó.
       enabled: Đã kích hoạt
@@ -439,9 +439,9 @@ vi:
       pending: Chờ phê duyệt liên hợp
       save_and_enable: Lưu và kích hoạt
       setup: Kết nối mạng liên hợp
-      signatures_not_enabled: Relay sẽ không hoạt động chính xác nếu chế độ bảo mật hoặc chế độ danh sách trắng được bật
-      status: Trạng thái
-      title: Relay
+      signatures_not_enabled: Mạng liên hợp sẽ không hoạt động nếu chế độ an ninh hoặc chế độ danh sách trắng được bật trước đó
+      status: Trạng thái hiện tại
+      title: Mạng liên hợp
     report_notes:
       created_msg: Báo cáo ghi chú được tạo thành công!
       destroyed_msg: Báo cáo đã xóa thành công!
@@ -544,7 +544,7 @@ vi:
         desc_html: Đoạn giới thiệu về API. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể sử dụng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code> .
         title: Mô tả máy chủ
       site_description_extended:
-        desc_html: Một nơi tốt cho quy tắc ứng xử, quy tắc, hướng dẫn và những thứ khác khiến máy chủ của bạn khác biệt. Bạn có thể sử dụng thẻ HTML
+        desc_html: Bạn có thể tạo thêm các mục như quy định chung, hướng dẫn và những thứ khác liên quan tới máy chủ của bạn. Sử dụng thẻ HTML
         title: Thông tin mở rộng tùy chỉnh
       site_short_description:
         desc_html: Hiển thị trong thanh bên và thẻ meta. Mô tả Mastodon là gì và điều gì làm cho máy chủ này trở nên đặc biệt trong một đoạn văn duy nhất.
@@ -754,9 +754,9 @@ vi:
   errors:
     '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
     '403': Bạn không có quyền xem trang này.
-    '404': Trang này đã bị xóa trước đó.
+    '404': Trang này chưa được tạo.
     '406': Trang này không thể hiển thị do lỗi định dạng.
-    '410': Trang này không còn tồn tại nữa.
+    '410': Trang này đã bị xóa trước đó.
     '422':
       content: Xác minh bảo mật thất bại. Bạn đang chặn cookie?
       title: Xác minh bảo mật thất bại
@@ -798,7 +798,7 @@ vi:
     edit:
       title: Chỉnh sửa bộ lọc
     errors:
-      invalid_context: Không có hoặc bối cảnh không hợp lệ
+      invalid_context: Bối cảnh không hợp lệ hoặc không có
       invalid_irreversible: Bộ lọc chỉ hoạt động với bảng tin hoặc nội dung thông báo
     index:
       delete: Xóa bỏ
@@ -893,7 +893,7 @@ vi:
     cancel_explanation: Hủy chuyển hướng sẽ kích hoạt lại tài khoản hiện tại của bạn, nhưng sẽ không chuyển được những người mến mộ ở tài khoản mới.
     cancelled_msg: Đã hủy chuyển hướng xong.
     errors:
-      already_moved: là cùng một tài khoản bạn đã dời sang
+      already_moved: là tài khoản bạn đã dời sang rồi
       missing_also_known_as: không phải tham chiếu của tài khoản này
       move_to_self: không thể là tài khoản hiện tại
       not_found: không thể tìm thấy
@@ -974,21 +974,21 @@ vi:
   polls:
     errors:
       already_voted: Bạn đã bình chọn trong cuộc thăm dò này
-      duplicate_options: chứa các mục trùng lặp
-      duration_too_long: khoảng cách thời gian quá xa
+      duplicate_options: chứa các lựa chọn trùng lặp
+      duration_too_long: quá xa so với thời điểm hiện tại
       duration_too_short: quá sớm
       expired: Cuộc thăm dò đã kết thúc
       invalid_choice: Lựa chọn không tồn tại
       over_character_limit: độ dài tối đa %{max} ký tự
       too_few_options: phải có nhiều hơn một mục
-      too_many_options: tối đa %{max} mục
+      too_many_options: tối đa %{max} lựa chọn
   preferences:
     other: Khác
     posting_defaults: Trạng thái tút mặc định
     public_timelines: Bảng tin công khai
   reactions:
     errors:
-      limit_reached: Đã đạt giới hạn khác
+      limit_reached: Bạn không nên thao tác liên tục
       unrecognized_emoji: không phải là emoji
   relationships:
     activity: Hoạt động tài khoản
@@ -1108,7 +1108,7 @@ vi:
     open_in_web: Mở trên web
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
-      limit: Bạn đã ghim hết số lượng tút cho phép
+      limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       private: Tút riêng tư nên không thể ghim
       reblog: Không thể ghim chia sẻ
@@ -1119,7 +1119,7 @@ vi:
         other: "%{count} bình chọn"
       vote: Cuộc thăm dò
     show_more: Xem thêm
-    show_thread: Xem chi tiết
+    show_thread: Nguyên văn
     sign_in_to_participate: Đăng nhập để tham gia vào cuộc trò chuyện
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1132,7 +1132,7 @@ vi:
   stream_entries:
     pinned: Tút ghim
     reblogged: chia sẻ
-    sensitive_content: Nội dung nhạy cảm
+    sensitive_content: NSFW
   tags:
     does_not_match_previous_name: không khớp với tên trước
   terms:
