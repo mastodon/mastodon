@@ -4,6 +4,8 @@ services:
   db:
     restart: always
     image: postgres:9.6-alpine
+    environment:
+      POSTGRES_PASSWORD: "set the database password here"
     shm_size: 256mb
     networks:
       - internal_network
