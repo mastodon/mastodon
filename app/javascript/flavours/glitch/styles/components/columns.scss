@@ -363,12 +363,29 @@
     @extend .column-header__button;
     background: transparent;
     text-align: center;
-    padding: 10px 0;
-    white-space: pre-wrap;
+    padding: 10px 5px;
+    font-size: 14px;
   }
 
   b {
     font-weight: bold;
+  }
+}
+
+
+.layout-single-column .column-header__notif-cleaning-buttons {
+  @media screen and (min-width: $no-gap-breakpoint) {
+    b, i {
+      margin-right: 5px;
+    }
+
+    br {
+      display: none;
+    }
+
+    button {
+      padding: 15px 5px;
+    }
   }
 }
 
