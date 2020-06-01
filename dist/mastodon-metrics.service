@@ -1,0 +1,16 @@
+[Unit]
+Description=mastodon-metrics
+After=network.target
+
+[Service]
+Type=simple
+User=mastodon
+WorkingDirectory=/home/mastodon/live
+Environment="RAILS_ENV=production"
+ExecStart=/home/mastodon/.rbenv/shims/bundle exec prometheus_exporter -p 9394 -b 127.0.0.1
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
