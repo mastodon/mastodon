@@ -18,6 +18,11 @@ on_worker_boot do
   ActiveSupport.on_load(:active_record) do
     ActiveRecord::Base.establish_connection
   end
+  require 'prometheus_exporter/instrumentation'
+  PrometheusExporter::Instrumentation::Puma.start
+  PrometheusExporter::Instrumentation::ActiveRecord.start(
+      custom_labels: { type: "puma" }
+  )
 end
 
 plugin :tmp_restart

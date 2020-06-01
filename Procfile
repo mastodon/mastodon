@@ -1,5 +1,6 @@
 web: if [ "$RUN_STREAMING" != "true" ]; then BIND=0.0.0.0 bundle exec puma -C config/puma.rb; else BIND=0.0.0.0 node ./streaming; fi
 worker: bundle exec sidekiq
+metrics: bundle exec prometheus_exporter
 
 # For the streaming API, you need a separate app that shares Postgres and Redis:
 #
