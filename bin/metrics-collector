@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+APP_PATH = File.expand_path('../config/application', __dir__)
+
+require "bundler/setup"
+require 'sidekiq/api'
+require 'prometheus_exporter'
+require 'prometheus_exporter/client'
+require_relative '../config/boot'
+require_relative '../config/environment'
+
+scrape_interval = 2.seconds
+ActiveRecord::Base.logger = Logger.new('/dev/null')
+
+def collect_metric(gauge, value)
+  gauge.observe(value, instance: Rails.configuration.x.local_domain, version: Mastodon::Version)
+end
+
+begin
+  client = PrometheusExporter::Client.default
+  PrometheusExporter::Instrumentation::Process.start(client: client, type: "metrics-collector")
+  instance_presenter = InstancePresenter.new
+
+  logins_gauge = client.register(:gauge, "mastodon_logins_week", "Logins this week")
+  users_gauge = client.register(:gauge, "mastodon_users_total", "Total users")
+  active_users_gauge = client.register(:gauge, "mastodon_users_active_4w", "Active users in the last four weeks")
+  pending_gauge = client.register(:gauge, "mastodon_users_pending", "Pending users")
+  unresolved_gauge = client.register(:gauge, "mastodon_reports_unresolved", "Unresolved reports")
+  dbsize_gauge = client.register(:gauge, "mastodon_database_size_bytes", "Database size in bytes")
+  enqueued_gauge = client.register(:gauge, "sidekiq_jobs_enqueud", "Enquequed Sidekiq Jobs")
+  registrations_gauge = client.register(:gauge, "mastodon_registrations_1w", "Registrations this week")
+  relay_gauge = client.register(:gauge, "mastodon_relay_enabled", "Relay enabled")
+  registration_gauge = client.register(:gauge, "mastodon_registrations_enabled", "Registrations enabled")
+  fetch_duration_gauge = client.register(:gauge, "mastodon_metrics_collect_duration_millis", "Mastodon metric collection duration in milliseconds")
+  pending_tags_gauge = client.register(:gauge, "mastodon_pending_tags", "Pending Tags")
+  status_count_gauge = client.register(:gauge, "mastodon_status_count", "Number of statuses")
+  domain_count_gauge = client.register(:gauge, "mastodon_domain_count", "Number of known domains")
+
+  while true do
+    # This should come first!
+    start_time = DateTime.now.strftime("%Q").to_i
+
+    logins_value = Redis.current.pfcount("activity:logins:#{Time.now.utc.to_date.cweek}")
+    users_value = User.count
+    pending_value = User.pending.count
+    unresolved_value = Report.unresolved.count
+    dbsize_value = ActiveRecord::Base.connection.execute('SELECT pg_database_size(current_database())').first['pg_database_size']
+    enqueued_value = Sidekiq::Stats.new.enqueued
+    registrations_value = Redis.current.get("activity:accounts:local:#{Time.now.utc.to_date.cweek}") || 0
+    relay_value = Relay.enabled.exists? ? 1 : 0
+    registration_value = Setting.registrations_mode != 'none' ? 1 : 0
+    pending_tags_value = Tag.pending_review.count
+    status_count_value = instance_presenter.status_count
+    active_users_value = instance_presenter.active_user_count
+    domain_count_value = instance_presenter.domain_count
+
+    collect_metric(relay_gauge, relay_value)
+    collect_metric(users_gauge, users_value)
+    collect_metric(dbsize_gauge, dbsize_value)
+    collect_metric(logins_gauge, logins_value)
+    collect_metric(pending_gauge, pending_value)
+    collect_metric(enqueued_gauge, enqueued_value)
+    collect_metric(unresolved_gauge, unresolved_value)
+    collect_metric(registration_gauge, registration_value)
+    collect_metric(pending_tags_gauge, pending_tags_value)
+    collect_metric(status_count_gauge, status_count_value)
+    collect_metric(active_users_gauge, active_users_value)
+    collect_metric(domain_count_gauge, domain_count_value)
+    collect_metric(registrations_gauge, registrations_value)
+
+    # This should come last!
+    fetch_duration_gauge.observe(DateTime.now.strftime("%Q").to_i - start_time)
+    sleep(scrape_interval)
+  end
+rescue Interrupt
+  exit(130)
+end
