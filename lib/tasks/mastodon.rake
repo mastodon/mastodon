@@ -367,7 +367,7 @@ namespace :mastodon do
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
           prompt.say "\n\n"
 
-          if cmd.run!({ RAILS_ENV: 'production', SAFETY_ASSURED: 1 }, :rails, 'db:setup').failure?
+          if cmd.run!(env.merge({ RAILS_ENV: 'production', SAFETY_ASSURED: 1 }), :rails, 'db:setup').failure?
             prompt.error 'That failed! Perhaps your configuration is not right'
           else
             prompt.ok 'Done!'
@@ -382,7 +382,7 @@ namespace :mastodon do
           prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
           prompt.say "\n\n"
 
-          if cmd.run!({ RAILS_ENV: 'production' }, :rails, 'assets:precompile').failure?
+          if cmd.run!(env.merge({ RAILS_ENV: 'production' }), :rails, 'assets:precompile').failure?
             prompt.error 'That failed! Maybe you need swap space?'
           else
             prompt.say 'Done!'
