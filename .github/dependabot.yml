@@ -1,0 +1,18 @@
+version: 2
+updates:
+
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 99
+  allow:
+  - dependency-type: all
+  
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 99
+  allow:
+  - dependency-type: all
