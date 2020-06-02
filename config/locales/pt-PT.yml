@@ -720,6 +720,10 @@ pt-PT:
     hint_html: "<strong>Dica:</strong> Não vamos pedir novamente a sua senha durante a próxima hora."
     invalid_password: Senha inválida
     prompt: Confirme a sua senha para continuar
+  crypto:
+    errors:
+      invalid_key: não é uma chave Ed25519 ou Curve25519 válida
+      invalid_signature: não é uma assinatura Ed25519 válida
   date:
     formats:
       default: "%d %b %Y"
