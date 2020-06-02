@@ -720,6 +720,10 @@ fa:
     hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده رمزتان را از شما نخواهیم پرسید."
     invalid_password: رمز نامعتبر
     prompt: برای ادامه رمزتان را تأیید کنید
+  crypto:
+    errors:
+      invalid_key: کلید Ed25519 یا Curve25519 معتبر نیست
+      invalid_signature: امضای Ed25519 معتبر نیست
   date:
     formats:
       default: "%d %b %Y"
