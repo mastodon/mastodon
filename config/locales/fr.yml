@@ -720,6 +720,10 @@ fr:
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
     invalid_password: Mot de passe invalide
     prompt: Confirmez votre mot de passe pour continuer
+  crypto:
+    errors:
+      invalid_key: n’est pas une clé Ed25519 ou Curve25519 valide
+      invalid_signature: n’est pas une signature Ed25519 valide
   date:
     formats:
       default: "%d %b %Y"
