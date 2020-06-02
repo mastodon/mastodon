@@ -720,6 +720,10 @@ de:
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
     invalid_password: Ungültiges Passwort
     prompt: Gib dein Passwort ein um fortzufahren
+  crypto:
+    errors:
+      invalid_key: ist kein gültiger Ed25519- oder Curve25519-Schlüssel
+      invalid_signature: ist keine gültige Ed25519-Signatur
   date:
     formats:
       default: "%d. %b %Y"
