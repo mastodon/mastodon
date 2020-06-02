@@ -5,8 +5,6 @@ services:
     restart: always
     image: postgres:9.6-alpine
     shm_size: 256mb
-    networks:
-      - internal_network
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
     volumes:
@@ -15,8 +13,6 @@ services:
   redis:
     restart: always
     image: redis:6.0-alpine
-    networks:
-      - internal_network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
     volumes:
@@ -40,9 +36,6 @@ services:
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
-    networks:
-      - external_network
-      - internal_network
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:3000/health || exit 1"]
     ports:
@@ -60,9 +53,6 @@ services:
     restart: always
     env_file: .env.production
     command: node ./streaming
-    networks:
-      - external_network
-      - internal_network
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
     ports:
@@ -80,29 +70,16 @@ services:
     depends_on:
       - db
       - redis
-    networks:
-      - external_network
-      - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+
 ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
 #  tor:
 #    image: sirboops/tor
-#    networks:
-#      - external_network
-#      - internal_network
 #
 #  privoxy:
 #    image: sirboops/privoxy
 #    volumes:
 #      - ./priv-config:/opt/config
-#    networks:
-#      - external_network
-#      - internal_network
-
-networks:
-  external_network:
-  internal_network:
-    internal: true
