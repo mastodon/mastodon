@@ -720,6 +720,10 @@ ca:
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
     invalid_password: Contrasenya no vàlida
     prompt: Confirmi la contrasenya per a continuar
+  crypto:
+    errors:
+      invalid_key: no és una clau Ed25519 o Curve25519 vàlida
+      invalid_signature: no és una signatura Ed25519 vàlida
   date:
     formats:
       default: "%b %d, %Y"
