@@ -2,9 +2,16 @@
 
 class ActivityPub::CollectionSerializer < ActivityPub::Serializer
   def self.serializer_for(model, options)
-    return ActivityPub::NoteSerializer if model.class.name == 'Status'
-    return ActivityPub::CollectionSerializer if model.class.name == 'ActivityPub::CollectionPresenter'
-    super
+    case model.class.name
+    when 'Status'
+      ActivityPub::NoteSerializer
+    when 'Device'
+      ActivityPub::DeviceSerializer
+    when 'ActivityPub::CollectionPresenter'
+      ActivityPub::CollectionSerializer
+    else
+      super
+    end
   end
 
   attribute :id, if: -> { object.id.present? }
