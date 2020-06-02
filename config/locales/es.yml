@@ -720,6 +720,10 @@ es:
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña incorrecta
     prompt: Confirmar contraseña para seguir
+  crypto:
+    errors:
+      invalid_key: no es una clave Ed25519 o Curve25519 válida
+      invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
       default: "%b %d, %Y"
