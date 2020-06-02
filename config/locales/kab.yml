@@ -499,8 +499,12 @@ kab:
       body: "%{name} yeṭafaṛ-ik-id tura!"
       subject: "%{name} yeṭafaṛ-ik-id tura"
       title: Ameḍfaṛ amaynut
+    follow_request:
+      title: Asuter amaynut n teḍfeṛt
     mention:
       action: Err
+      body: 'Yuder-ik·ikem-id %{name} deg:'
+      subject: Yuder-ik·ikem-id %{name}
   notifications:
     other_settings: Iγewwaṛen nniḍen n tilγa
   pagination:
@@ -561,12 +565,14 @@ kab:
       windows_mobile: Windows Mobile
       windows_phone: Tiliγri Windows Phone
     revoke: Ḥwi
+    title: Tiɣimiyin
   settings:
     account: Amiḍan
     account_settings: Iγewwaṛen n umiḍan
     appearance: Udem
     authorized_apps: Isnasen yettussirgen
     back: Uγal γer Maṣṭudun
+    delete: Tukksa n umiḍan
     development: Taneflit
     edit_profile: Ẓreg amaγnu
     export: Taktert n yisefka
@@ -584,18 +590,21 @@ kab:
       video:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
+    language_detection: Asefru awurman n tutlayt
     open_in_web: Ldi deg Web
     poll:
       total_people:
         one: "%{count} n wemdan"
         other: "%{count} n yemdanen"
     show_more: Sken-d ugar
+    show_thread: Sken-d lxiḍ
     sign_in_to_participate: Qqen i waken ad tzeddiḍ deg udiwenni
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Imeḍfaṛen kan
       private_long: Sken i ymeḍfaṛen kan
       public_long: Yal yiwen·t yezmer at iwali
+      unlisted: War tabdert
   stream_entries:
     pinned: Tijewwiqt yettwasentḍen
     sensitive_content: Agbur amḥulfu
