@@ -520,6 +520,10 @@ sv:
     confirm: Fortsätt
     invalid_password: Ogiltigt lösenord
     prompt: Bekräfta lösenord för att fortsätta
+  crypto:
+    errors:
+      invalid_key: är inte en giltig Ed25519 eller Curve25519 nyckel
+      invalid_signature: är inte en giltig Ed25519 signatur
   datetime:
     distance_in_words:
       about_x_hours: "%{count}tim"
