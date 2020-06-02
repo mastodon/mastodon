@@ -53,6 +53,9 @@ oc:
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
       domain_allow:
         domain: Aqueste domeni poirà recuperar las donadas d’aqueste servidor estant e las donadas venent d’aqueste domeni seràn tractadas e gardadas
+      email_domain_block:
+        domain: Pòt èsser lo nom de domeni mostrat sus l’adreça electronica, l’enregistrament MX, o l’adreça IP ligada. Serà verificat pendent l’inscripcion de la persona puèi serà regetada.
+        with_dns_records: Un ensag de resolucion dels enregistraments DNS del domeni donat serà realizat e los resultats seràn tanben meses en lista negra
       featured_tag:
         name: 'Benlèu que volètz utilizar una d’aquestas causas :'
       form_challenge:
