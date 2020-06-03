@@ -711,6 +711,10 @@ ja:
     hint_html: "以後 1 時間はパスワードの再入力を求めません"
     invalid_password: パスワードが間違っています
     prompt: 続行するにはパスワードを入力してください
+  crypto:
+    errors:
+      invalid_key: 有効な Ed25519 または Curve25519 キーではありません
+      invalid_signature: 有効な Ed25519 署名ではありません
   date:
     formats:
       default: "%Y年%m月%d日"
