@@ -720,6 +720,10 @@ et:
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi Teilt uuesti salasõna järgmise tunni jooksul."
     invalid_password: Vigane salasõna
     prompt: Jätkamiseks kinnitage salasõna
+  crypto:
+    errors:
+      invalid_key: ei ole õige Ed25519 ega Curve25519 võti
+      invalid_signature: ei ole õige Ed25519 allkiri
   date:
     formats:
       default: "%d. %b %Y"
@@ -849,6 +853,8 @@ et:
     inactive: Passiivne
     publicize_checkbox: 'Ja tuututa seda:'
     publicize_toot: 'See on tõestatud! Ma olen %{username} teenusel %{service}: %{url}'
+    remove: Eemalda isikutõend kontolt
+    removed: Isikutõendi eemaldamine oli edukas
     status: Kinnituse staatus
     view_proof: Vaata tõendit
   imports:
@@ -894,6 +900,7 @@ et:
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video staatusele, millel on juba pildid
+      not_ready: Ei saa lisada faile, mida hetkel töödeldakse. Proovige uuesti mõne hetke pärast!
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
     acct: uue konto kasutajanimi@domeen
@@ -1115,6 +1122,8 @@ et:
     disallowed_hashtags:
       one: 'sisaldab ebasobivat silti: %{tags}'
       other: 'sisaldab ebasobivaid silte: %{tags}'
+    errors:
+      in_reply_not_found: Staatus, millele üritate vastata, ei näi enam eksisteerivat.
     language_detection: Automaatselt tuvasta keel
     open_in_web: Ava veebis
     over_character_limit: tähtmärkide limiit %{max} ületatud
