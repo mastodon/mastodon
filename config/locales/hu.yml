@@ -721,7 +721,8 @@ hu:
     prompt: Add meg a jelszót a folytatáshoz
   crypto:
     errors:
-      invalid_key: nem érvényes Ed25519 vagy Curve25519 kulcs
+      invalid_key: érvénytelen Ed25519 vagy Curve25519 kulcs
+      invalid_signature: érvénytelen Ed25519 aláírás
   date:
     formats:
       default: "%Y.%b.%d."
