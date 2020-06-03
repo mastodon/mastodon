@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'tty-command'
 require 'tty-prompt'
 
 namespace :mastodon do
@@ -334,8 +333,6 @@ namespace :mastodon do
       prompt.say 'This configuration will be written to .env.production'
 
       if prompt.yes?('Save configuration?')
-        cmd = TTY::Command.new(printer: :quiet)
-
         env_contents = env.each_pair.map do |key, value|
           if value.is_a?(String) && value =~ /[\s\#\\"]/
             if value =~ /[']/
@@ -367,7 +364,7 @@ namespace :mastodon do
           prompt.say 'Running `RAILS_ENV=production rails db:setup` ...'
           prompt.say "\n\n"
 
-          if cmd.run!(env.merge({ RAILS_ENV: 'production', SAFETY_ASSURED: 1 }), :rails, 'db:setup').failure?
+          if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production', 'SAFETY_ASSURED' => '1' }), 'rails db:setup')
             prompt.error 'That failed! Perhaps your configuration is not right'
           else
             prompt.ok 'Done!'
@@ -382,7 +379,7 @@ namespace :mastodon do
           prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
           prompt.say "\n\n"
 
-          if cmd.run!(env.merge({ RAILS_ENV: 'production' }), :rails, 'assets:precompile').failure?
+          if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
             prompt.error 'That failed! Maybe you need swap space?'
           else
             prompt.say 'Done!'
