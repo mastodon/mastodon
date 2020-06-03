@@ -2,7 +2,8 @@
 
 class REST::EncryptedMessageSerializer < ActiveModel::Serializer
   attributes :id, :account_id, :device_id,
-             :type, :body, :digest, :message_franking
+             :type, :body, :digest, :message_franking,
+             :created_at
 
   def id
     object.id.to_s
