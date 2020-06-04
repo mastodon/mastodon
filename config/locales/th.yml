@@ -616,6 +616,10 @@ th:
     confirm: ดำเนินการต่อ
     invalid_password: รหัสผ่านไม่ถูกต้อง
     prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
+  crypto:
+    errors:
+      invalid_key: ไม่ใช่กุญแจ Ed25519 หรือ Curve25519 ที่ถูกต้อง
+      invalid_signature: ไม่ใช่ลายเซ็น Ed25519 ที่ถูกต้อง
   date:
     formats:
       default: "%d %b %Y"
@@ -767,6 +771,7 @@ th:
     followers_count: ผู้ติดตาม ณ เวลาที่ย้าย
     incoming_migrations: การย้ายจากบัญชีอื่น
     proceed_with_move: ย้ายผู้ติดตาม
+    redirected_msg: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     redirecting_to: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     set_redirect: ตั้งการเปลี่ยนเส้นทาง
   moderation:
