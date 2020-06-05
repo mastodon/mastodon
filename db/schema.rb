@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_222558) do
-
+ActiveRecord::Schema.define(version: 2020_06_05_155027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -648,6 +647,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_222558) do
     t.datetime "updated_at", null: false
     t.string "embed_url", default: "", null: false
     t.integer "image_storage_schema_version"
+    t.string "blurhash"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
