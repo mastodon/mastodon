@@ -5,6 +5,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import punycode from 'punycode';
 import classnames from 'classnames';
 import Icon from 'mastodon/components/icon';
+import classNames from 'classnames';
+import { useBlurhash } from 'mastodon/initial_state';
+import { decode } from 'blurhash';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -72,12 +75,40 @@ export default class Card extends React.PureComponent {
 
   state = {
     width: this.props.defaultWidth || 280,
+    previewLoaded: false,
     embedded: false,
   };
 
   componentWillReceiveProps (nextProps) {
     if (!Immutable.is(this.props.card, nextProps.card)) {
-      this.setState({ embedded: false });
+      this.setState({ embedded: false, previewLoaded: false });
+    }
+  }
+
+  componentDidMount () {
+    if (this.props.card && this.props.card.get('blurhash')) {
+      this._decode();
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    const { card } = this.props;
+    if (card.get('blurhash') && (!prevProps.card || prevProps.card.get('blurhash') !== card.get('blurhash'))) {
+      this._decode();
+    }
+  }
+
+  _decode () {
+    if (!useBlurhash) return;
+
+    const hash   = this.props.card.get('blurhash');
+    const pixels = decode(hash, 32, 32);
+
+    if (pixels) {
+      const ctx       = this.canvas.getContext('2d');
+      const imageData = new ImageData(pixels, 32, 32);
+
+      ctx.putImageData(imageData, 0, 0);
     }
   }
 
@@ -117,6 +148,14 @@ export default class Card extends React.PureComponent {
       if (this.props.cacheWidth) this.props.cacheWidth(c.offsetWidth);
       this.setState({ width: c.offsetWidth });
     }
+  }
+
+  setCanvasRef = c => {
+    this.canvas = c;
+  }
+
+  handleImageLoad = () => {
+    this.setState({ previewLoaded: true });
   }
 
   renderVideo () {
@@ -161,7 +200,8 @@ export default class Card extends React.PureComponent {
     );
 
     let embed     = '';
-    let thumbnail = <div style={{ backgroundImage: `url(${card.get('image')})`, width: horizontal ? width : null, height: horizontal ? height : null }} className='status-card__image-image' />;
+    let canvas = <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('status-card__image-preview', {'status-card__image-preview--hidden' : this.state.previewLoaded })} />;
+    let thumbnail = <img src={card.get('image')} style={{ width: horizontal ? width : null, height: horizontal ? height : null }} onLoad={this.handleImageLoad} className='status-card__image-image' />;
 
     if (interactive) {
       if (embedded) {
@@ -175,6 +215,7 @@ export default class Card extends React.PureComponent {
 
         embed = (
           <div className='status-card__image'>
+            {canvas}
             {thumbnail}
 
             <div className='status-card__actions'>
@@ -196,6 +237,7 @@ export default class Card extends React.PureComponent {
     } else if (card.get('image')) {
       embed = (
         <div className='status-card__image'>
+          {canvas}
           {thumbnail}
         </div>
       );
