@@ -313,6 +313,7 @@ ar:
       listed: مُدرَج
       new:
         title: إضافة إيموجي خاص جديد
+      not_permitted: غير مسموح لك بتنفيذ هذا الإجراء
       overwrite: إعادة الكتابة
       shortcode: الترميز المُصَغّر
       shortcode_hint: على الأقل حرفين، و فقط رموز أبجدية عددية و أسطر سفلية
@@ -725,6 +726,10 @@ ar:
     hint_html: "<strong>توصية:</strong> لن نطلب منك ثانية كلمتك السرية في غضون الساعة اللاحقة."
     invalid_password: الكلمة السرية خاطئة
     prompt: أكِّد الكلمة السرية للمواصلة
+  crypto:
+    errors:
+      invalid_key: ليس بمفتاح Ed25519 أو Curve25519 صالح
+      invalid_signature: ليس بتوقيع Ed25519 صالح
   date:
     formats:
       default: "%d %b %Y"
