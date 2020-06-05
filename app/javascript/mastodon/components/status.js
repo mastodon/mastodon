@@ -401,6 +401,7 @@ class Status extends ImmutablePureComponent {
           compact
           cacheWidth={this.props.cacheMediaWidth}
           defaultWidth={this.props.cachedMediaWidth}
+          sensitive={status.get('sensitive')}
         />
       );
     }

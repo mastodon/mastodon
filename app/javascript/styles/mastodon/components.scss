@@ -3097,6 +3097,11 @@ a.status-card {
   flex: 1 1 auto;
   overflow: hidden;
   padding: 14px 14px 14px 8px;
+
+  &--blurred {
+    filter: blur(2px);
+    pointer-events: none;
+  }
 }
 
 .status-card__description {
