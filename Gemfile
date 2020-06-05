@@ -79,7 +79,7 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.3'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
-gem 'rails-settings-cached', '~> 0.6'
+gem 'rails-settings-cached', '~> 2.1'
 gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.1'
