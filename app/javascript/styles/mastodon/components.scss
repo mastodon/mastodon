@@ -1036,6 +1036,12 @@
     }
   }
 
+  & > .muted-quote {
+    color: $dark-text-color;
+    font-weight: 500;
+    font-size: 100%;
+  }
+
   .status__avatar,
   .detailed-status__display-avatar {
     height: 18px;
@@ -1531,77 +1537,6 @@ a .account__avatar {
   }
 }
 
-.account__action-bar {
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  line-height: 36px;
-  overflow: hidden;
-  flex: 0 0 auto;
-  display: flex;
-}
-
-.account__action-bar-dropdown {
-  padding: 10px;
-
-  .icon-button {
-    vertical-align: middle;
-  }
-
-  .dropdown--active {
-    .dropdown__content.dropdown__right {
-      left: 6px;
-      right: initial;
-    }
-
-    &::after {
-      bottom: initial;
-      margin-left: 11px;
-      margin-top: -7px;
-      right: initial;
-    }
-  }
-}
-
-.account__action-bar-links {
-  display: flex;
-  flex: 1 1 auto;
-  line-height: 18px;
-  text-align: center;
-}
-
-.account__action-bar__tab {
-  text-decoration: none;
-  overflow: hidden;
-  flex: 0 1 100%;
-  border-right: 1px solid lighten($ui-base-color, 8%);
-  padding: 10px 0;
-  border-bottom: 4px solid transparent;
-
-  &.active {
-    border-bottom: 4px solid $ui-highlight-color;
-  }
-
-  & > span {
-    display: block;
-    text-transform: uppercase;
-    font-size: 11px;
-    color: $darker-text-color;
-  }
-
-  strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 500;
-    color: $primary-text-color;
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
-}
-
 .account-authorize {
   padding: 14px 10px;
 
@@ -1686,6 +1621,15 @@ a.account__display-name {
 .detailed-status__display-avatar {
   float: left;
   margin-right: 10px;
+}
+
+.account__action-bar {
+  position: absolute;
+  height: 24px;
+  width: 48px;
+  top: 60px;
+  left: 10px;
+  z-index: 1;
 }
 
 .status__avatar {
@@ -2455,6 +2399,11 @@ a.account__display-name {
         margin-left: 17px;
         margin-right: 15px;
       }
+    }
+
+    .account__action-bar {
+      top: 67px;
+      left: 15px;
     }
   }
 }

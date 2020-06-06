@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
@@ -22,6 +23,29 @@ import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
+
+const mapStateToProps = (state, props) => {
+  let status = props.status;
+
+  if (status === null) {
+    return null;
+  }
+
+  if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    status = status.get('reblog');
+  }
+
+  if (status.get('quote', null) === null) {
+    return {
+      quote_muted: status.get('quote_id', null) ? true : false,
+    };
+  }
+  const id = status.getIn(['quote', 'account', 'id'], null);
+
+  return {
+    quote_muted: id !== null && (state.getIn(['relationships', id, 'muting']) || state.getIn(['relationships', id, 'blocking']) || state.getIn(['relationships', id, 'blocked_by']) || state.getIn(['relationships', id, 'domain_blocking'])) || status.getIn(['quote', 'quote_muted']),
+  };
+};
 
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   const displayName = status.getIn(['account', 'display_name']);
@@ -59,7 +83,8 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
-export default @injectIntl
+export default @connect(mapStateToProps)
+@injectIntl
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -70,6 +95,7 @@ class Status extends ImmutablePureComponent {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
     otherAccounts: ImmutablePropTypes.list,
+    quote_muted: PropTypes.bool,
     onClick: PropTypes.func,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
@@ -114,6 +140,7 @@ class Status extends ImmutablePureComponent {
     'hidden',
     'unread',
     'pictureInPicture',
+    'quote_muted',
   ];
 
   state = {
@@ -308,9 +335,9 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let media = null;
-    let statusAvatar, prepend, rebloggedByText, unlistedQuoteText;
+    let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, pictureInPicture, contextType } = this.props;
+    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, pictureInPicture, contextType, quote_muted } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -569,12 +596,21 @@ class Status extends ImmutablePureComponent {
         }
       }
 
-      if (quote_status.get('visibility') === 'unlisted' && contextType !== 'home') {
-        unlistedQuoteText = intl.formatMessage({ id: 'status.unlisted_quote', defaultMessage: 'Unlisted quote' });
+      if (quote_muted) {
+        quote = (
+          <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
+            <div className={classNames('status__content muted-quote', { 'status__content--with-action': this.context.router })}>
+              <FormattedMessage id='status.muted_quote' defaultMessage='Muted quote' />
+            </div>
+          </div>
+        );
+      } else if (quote_status.get('visibility') === 'unlisted' && contextType !== 'home') {
         quote = (
           <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
             <div className={classNames('status__content unlisted-quote', { 'status__content--with-action': this.context.router })}>
-              <button onClick={this.handleQuoteClick}>{unlistedQuoteText}</button>
+              <button onClick={this.handleQuoteClick}>
+                <FormattedMessage id='status.unlisted_quote' defaultMessage='Unlisted quote' />
+              </button>
             </div>
           </div>
         );
@@ -592,6 +628,14 @@ class Status extends ImmutablePureComponent {
           </div>
         );
       }
+    } else if (quote_muted) {
+      quote = (
+        <div className={classNames('quote-status', { muted: this.props.muted })}>
+          <div className={classNames('status__content muted-quote', { 'status__content--with-action': this.context.router })}>
+            <FormattedMessage id='status.muted_quote' defaultMessage='Muted quote' />
+          </div>
+        </div>
+      );
     }
 
     return (

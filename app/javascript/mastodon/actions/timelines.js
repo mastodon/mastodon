@@ -1,9 +1,11 @@
+import { fetchRelationships } from './accounts';
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
 import api, { getLinks } from 'mastodon/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'mastodon/compare_id';
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
+import { uniq } from '../utils/uniq';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
@@ -39,6 +41,7 @@ export function updateTimeline(timeline, status, accept) {
     }
 
     dispatch(importFetchedStatus(status));
+    dispatch(fetchRelationships([status.reblog ? status.reblog.account.id : status.account.id, status.quote ? status.quote.account.id : null].filter(function(e){return e})));
 
     dispatch({
       type: TIMELINE_UPDATE,
@@ -111,6 +114,7 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
+      dispatch(fetchRelationships(uniq(response.data.map(item => item.reblog ? item.reblog.account.id : item.account.id).concat(response.data.map(item => item.quote ? item.quote.account.id : null)).filter(function(e){return e}))));
       dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
 
       if (timelineId === 'home') {

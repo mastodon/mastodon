@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
@@ -6,7 +7,7 @@ import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
-import { injectIntl, defineMessages, FormattedDate } from 'react-intl';
+import { injectIntl, defineMessages, FormattedDate, FormattedMessage } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
@@ -24,7 +25,31 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
-export default  @injectIntl
+const mapStateToProps = (state, props) => {
+  let status = props.status;
+
+  if (status === null) {
+    return null;
+  }
+
+  if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+    status = status.get('reblog');
+  }
+
+  if (status.get('quote', null) === null) {
+    return {
+      quote_muted: status.get('quote_id', null) ? true : false,
+    };
+  }
+  const id = status.getIn(['quote', 'account', 'id'], null);
+
+  return {
+    quote_muted: id !== null && (state.getIn(['relationships', id, 'muting']) || state.getIn(['relationships', id, 'blocking']) || state.getIn(['relationships', id, 'blocked_by']) || state.getIn(['relationships', id, 'domain_blocking'])) || status.getIn(['quote', 'quote_muted']),
+  };
+};
+
+export default @connect(mapStateToProps)
+@injectIntl
 class DetailedStatus extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -33,6 +58,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map,
+    quote_muted: PropTypes.bool,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func.isRequired,
@@ -120,6 +146,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
+    const quote_muted = this.props.quote_muted
     const outerStyle = { boxSizing: 'border-box' };
     const { intl, compact, pictureInPicture } = this.props;
 
@@ -194,15 +221,33 @@ class DetailedStatus extends ImmutablePureComponent {
         }
       }
 
-      quote = (
-        <div className='quote-status'>
-          <a href={quote_status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
-            <div className='detailed-status__display-avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
-            <DisplayName account={quote_status.get('account')} localDomain={this.props.domain} />
-          </a>
+      if (quote_muted) {
+        quote = (
+          <div className='quote-status'>
+            <div className='status__content muted-quote'>
+              <FormattedMessage id='status.muted_quote' defaultMessage='Muted quote' />
+            </div>
+          </div>
+        );
+      } else {
+        quote = (
+          <div className='quote-status'>
+            <a href={quote_status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+              <div className='detailed-status__display-avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
+              <DisplayName account={quote_status.get('account')} localDomain={this.props.domain} />
+            </a>
 
-          <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} quote />
-          {quote_media}
+            <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} quote />
+            {quote_media}
+          </div>
+        );
+      }
+    } else if (quote_muted) {
+      quote = (
+        <div className={classNames('quote-status', { muted: this.props.muted })}>
+          <div className={classNames('status__content muted-quote', { 'status__content--with-action': this.context.router })}>
+            <FormattedMessage id='status.muted_quote' defaultMessage='Muted quote' />
+          </div>
         </div>
       );
     }

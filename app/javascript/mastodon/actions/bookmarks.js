@@ -1,5 +1,7 @@
+import { fetchRelationships } from './accounts';
 import api, { getLinks } from '../api';
 import { importFetchedStatuses } from './importer';
+import { uniq } from '../utils/uniq';
 
 export const BOOKMARKED_STATUSES_FETCH_REQUEST = 'BOOKMARKED_STATUSES_FETCH_REQUEST';
 export const BOOKMARKED_STATUSES_FETCH_SUCCESS = 'BOOKMARKED_STATUSES_FETCH_SUCCESS';
@@ -20,6 +22,7 @@ export function fetchBookmarkedStatuses() {
     api(getState).get('/api/v1/bookmarks').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
+      dispatch(fetchRelationships(uniq(response.data.map(item => item.reblog ? item.reblog.account.id : item.account.id))));
       dispatch(fetchBookmarkedStatusesSuccess(response.data, next ? next.uri : null));
     }).catch(error => {
       dispatch(fetchBookmarkedStatusesFail(error));
@@ -61,6 +64,7 @@ export function expandBookmarkedStatuses() {
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
+      dispatch(fetchRelationships(uniq(response.data.map(item => item.reblog ? item.reblog.account.id : item.account.id))));
       dispatch(expandBookmarkedStatusesSuccess(response.data, next ? next.uri : null));
     }).catch(error => {
       dispatch(expandBookmarkedStatusesFail(error));
