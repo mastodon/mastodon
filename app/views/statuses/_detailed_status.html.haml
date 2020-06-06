@@ -39,7 +39,7 @@
       = react_component :media_gallery, height: 380, sensitive: status.sensitive?, standalone: true, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
   - elsif status.preview_card
-    = react_component :card, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
+    = react_component :card, sensitive: status.sensitive?, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
 
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
