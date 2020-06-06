@@ -713,6 +713,10 @@ ko:
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
     invalid_password: 잘못된 암호
     prompt: 계속하려면 암호 확인
+  crypto:
+    errors:
+      invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키
+      invalid_signature: 유효하지 않은 Ed25519 서명
   date:
     formats:
       default: "%Y-%b-%d"
