@@ -9,9 +9,9 @@ module Friends
       DEFAULT_TAGS = [
         "デレラジ",
         "デレパ",
-        "imas_MOR",
+        "imas_mor",
         "millionradio",
-        "SideM",
+        "sidem",
       ].freeze
 
       def add_default_favourite_tag
@@ -19,7 +19,6 @@ module Friends
           self.favourite_tags.create!(visibility: 'unlisted', tag: Tag.find_or_create_by!(name: tag_name), order: (DEFAULT_TAGS.length - i))
         end
       end
-
     end
   end
 end
