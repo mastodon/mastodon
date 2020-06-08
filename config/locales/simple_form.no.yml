@@ -7,6 +7,7 @@
         acct: Spesifiser brukernavn@domene til brukeren du vil flytte til
       account_warning_preset:
         text: Du kan bruke tut syntaks, f.eks. URLer, emneknagger og nevnelser
+        title: Valgfritt. Ikke synlig for mottaker
       admin_account_action:
         include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
         send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
@@ -52,6 +53,9 @@
         whole_word: Når søkeordet eller setningen bare er alfanumerisk, aktiveres det bare hvis det samsvarer med hele ordet
       domain_allow:
         domain: Dette domenet vil være i stand til å hente data fra denne serveren og dets innkommende data vil bli prosessert og lagret
+      email_domain_block:
+        domain: Det kan være domenenavnet som vises i e-postadressen, MX-posten, som domenet bestemmer til, eller IP-en til serveren som MX-posten løser etter. De vil bli sjekket ved brukerregistrering og registrering vil bli avvist.
+        with_dns_records: Et forsøk på å løse det gitte domenets DNS-poster vil bli gjort, og resultatene vil også bli svartelistet
       featured_tag:
         name: 'Du vil kanskje ønske å bruke en av disse:'
       form_challenge:
