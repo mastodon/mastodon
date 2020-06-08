@@ -100,6 +100,7 @@ uk:
       delete: Видалити
       destroyed_msg: Нотатку модератора успішно видалено!
     accounts:
+      add_email_domain_block: Додати поштовий домен до чорного списку
       approve: Схвалити
       approve_all: Схвалити всіх
       are_you_sure: Ви впевнені?
@@ -180,11 +181,12 @@ uk:
         staff: Персонал
         user: Користувач
       search: Пошук
+      search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
       shared_inbox_url: URL спільного вхідного кошика
       show:
-        created_reports: Скарги, створені цим аккаунтом
-        targeted_reports: Скарги щодо цього аккаунту
+        created_reports: Скарги, створені цим акаунтом
+        targeted_reports: Скарги щодо цього акаунту
       silence: Глушення
       silenced: Заглушені
       statuses: Статуси
@@ -201,6 +203,38 @@ uk:
       web: Веб
       whitelisted: У білому списку
     action_logs:
+      action_types:
+        change_email_user: Змінити електронну пошту для користувача
+        confirm_user: Підтвердити користувача
+        create_account_warning: Створити попередження
+        create_announcement: Створити оголошення
+        create_custom_emoji: Створити користувацьке емодзі
+        create_domain_allow: Створити дозвіл на домен
+        create_domain_block: Створити блокування домену
+        create_email_domain_block: Створити блокування поштового домену
+        demote_user: Понизити користувача
+        destroy_announcement: Видалити оголошення
+        destroy_custom_emoji: Видалити користувацьке емодзі
+        destroy_domain_allow: Видалити дозвіл на домен
+        destroy_domain_block: Видалити блокування домену
+        destroy_email_domain_block: Видалити блокування поштового домену
+        destroy_status: Видалити пост
+        disable_custom_emoji: Вимкнути користувацькі емодзі
+        disable_user: Відключити користувача
+        enable_custom_emoji: Увімкнути користувацькі емодзі
+        enable_user: Активувати користувача
+        promote_user: Підвищити користувача
+        remove_avatar_user: Видалити аватар
+        reopen_report: Перевідкрити скаргу
+        reset_password_user: Скинути пароль
+        resolve_report: Розв'язати скаргу
+        silence_account: Заглушити обліковий запис
+        suspend_account: Призупинити обліковий запис
+        unsilence_account: Розглушити обліковий запис
+        unsuspend_account: Розморозити обліковий запис
+        update_announcement: Оновити оголошення
+        update_custom_emoji: Оновити користувацькі емодзі
+        update_status: Оновити статус
       actions:
         assigned_to_self_report: "%{name} призначив(-ла) скаргу %{target} на себе"
         change_email_user: "%{name} змінив(-ла) поштову адресу користувача %{target}"
@@ -230,14 +264,17 @@ uk:
         reset_password_user: "%{name} скинув(-ла) пароль користувача %{target}"
         resolve_report: "%{name} розв'язав(-ла) скаргу %{target}"
         silence_account: "%{name} заглушив(-ла) обліковий запис %{target}"
-        suspend_account: "%{name} заморозив обліковий запис користувача %{target}"
+        suspend_account: "%{name} заморозив(-ла) обліковий запис %{target}"
         unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
         unsilence_account: "%{name} розглушив(-ла) обліковий запис %{target}"
-        unsuspend_account: "%{name} розморозив обліковий запис користувача %{target}"
+        unsuspend_account: "%{name} розморозив(-ла) обліковий запис %{target}"
         update_announcement: "%{name} оновив оголошення %{target}"
         update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
         update_status: "%{name} змінив(-ла) статус користуача %{target}"
       deleted_status: "(видалений статус)"
+      empty: Не знайдено жодного журналу.
+      filter_by_action: Фільтрувати за дією
+      filter_by_user: Фільтрувати за користувачем
       title: Журнал подій
     announcements:
       destroyed_msg: Оголошення успішно видалено!
@@ -368,6 +405,7 @@ uk:
       destroyed_msg: Успішно видалено поштовий домен з чорного списку
       domain: Домен
       empty: Ніякі e-mail домени не блокуються.
+      from_html: з %{domain}
       new:
         create: Додати домен
         title: Нове блокування поштового домену
@@ -555,6 +593,8 @@ uk:
       trends:
         desc_html: Відображати розглянуті хештеґи, які популярні зараз
         title: Популярні хештеги
+    site_uploads:
+      delete: Видалити завантажений файл
     statuses:
       back_to_account: Назад до сторінки облікового запису
       batch:
@@ -608,6 +648,7 @@ uk:
     add_new: Створити псевдонім
     created_msg: Новий псевдонім успішно створено. Тепер ви можете починати переміщення зі старого облікового запису.
     deleted_msg: Псевдонім успішно видалено. Переміщення з того облікового запису до цього більше не можливе.
+    empty: У вас немає псевдонімів.
     hint_html: Якщо ви збираєтеся мігрувати з іншого облікового запису на цей, ви можете налаштувати псевдонім, що потрібно для перенесення передплатників зі старою облікового запису. Ця дія саме по собі <strong>нешкідливо і оборотно</strong>. <strong>Міграція облікового запису починається з старого облікового запису</strong>.
     remove: Від'єднати псевдонім
   appearance:
@@ -620,7 +661,7 @@ uk:
       body: Mastodon перекладено волонтерами.
       guide_link: https://uk.crowdin.com/project/mastodon
       guide_link_text: Кожен може взяти участь.
-    sensitive_content: Дражливий вміст
+    sensitive_content: Дражливий зміст
     toot_layout: Зовнішній вигляд дмухів
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
@@ -678,6 +719,7 @@ uk:
     trouble_logging_in: Проблема під час входу?
   authorize_follow:
     already_following: Ви вже слідкуєте за цим обліковим записом
+    already_requested: Ви вже надіслали запит на підписку до цього облікового запису
     error: На жаль, під час пошуку віддаленого облікового запису сталася помилка
     follow: Підписатися
     follow_request: 'Вам надіслали запит на підписку:'
@@ -823,6 +865,8 @@ uk:
     inactive: Неактивний
     publicize_checkbox: 'Та дмухнути це:'
     publicize_toot: 'Це доведено! Я таки %{username} з %{service}: %{url}'
+    remove: Видалення підтвердження з облікового запису
+    removed: Підтвердження видалено з облікового запису
     status: Стан перевірки
     view_proof: Переглянути доказ
   imports:
@@ -870,6 +914,7 @@ uk:
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до статусу з зображеннями
+      not_ready: Не можна прикріпити файли, оброблення яких ще не закінчилося. Спробуйте ще раз через хвилину!
       too_many: Не можна додати більше 4 файлів
   migrations:
     acct: username@domain нового облікового запису
@@ -1101,6 +1146,8 @@ uk:
       many: 'заборонених хештеґів: %{tags}'
       one: 'заборонений хештеґ: %{tags}'
       other: 'заборонених хештеґів: %{tags}'
+    errors:
+      in_reply_not_found: Статуса, на який ви намагаєтеся відповісти, не існує.
     language_detection: Автоматично визначати мову
     open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів (%{max})
@@ -1121,7 +1168,7 @@ uk:
         one: "%{count} голос"
         other: "%{count} голоси"
       vote: Проголосувати
-    show_more: Детальніше
+    show_more: Розгорнути
     show_thread: Відкрити обговорення
     sign_in_to_participate: Увійдіть, щоб брати участь у бесіді
     title: '%{name}: "%{quote}"'
@@ -1135,7 +1182,7 @@ uk:
   stream_entries:
     pinned: Закріплений пост
     reblogged: передмухнув(-ла)
-    sensitive_content: Дражливий контент
+    sensitive_content: Дражливий зміст
   tags:
     does_not_match_previous_name: не збігається з попереднім ім'ям
   terms:

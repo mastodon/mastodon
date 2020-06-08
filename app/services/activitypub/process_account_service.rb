@@ -76,6 +76,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.shared_inbox_url        = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
     @account.followers_url           = @json['followers'] || ''
     @account.featured_collection_url = @json['featured'] || ''
+    @account.devices_url             = @json['devices'] || ''
     @account.url                     = url || @uri
     @account.uri                     = @uri
     @account.display_name            = @json['name'] || ''

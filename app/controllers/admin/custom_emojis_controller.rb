@@ -33,6 +33,8 @@ module Admin
       @form.save
     rescue ActionController::ParameterMissing
       flash[:alert] = I18n.t('admin.accounts.no_account_selected')
+    rescue Mastodon::NotPermittedError
+      flash[:alert] = I18n.t('admin.custom_emojis.not_permitted')
     ensure
       redirect_to admin_custom_emojis_path(filter_params)
     end

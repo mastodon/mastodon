@@ -7,13 +7,13 @@ gl:
       account_migration:
         acct: Indica o usuaria@servidor da conta a cal queres migrar
       account_warning_preset:
-        text: Pódeslle dar formato ao toot, como URLs, etiquetas e mencións
+        text: Pódeslle dar formato ao toot, como URLs, cancelos e mencións
         title: Optativo. Non visible para a correspondente
       admin_account_action:
         include_statuses: A usuaria verá que toots causaron a acción da moderación ou aviso
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
-        text_html: Optativo. Pode utilizar formato no toot. Pode <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
-        type_html: Escolla que facer con <strong>%{acct}</strong>
+        text_html: Optativo. Podes utilizar formato no toot. Podes <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
+        type_html: Escolle que facer con <strong>%{acct}</strong>
         warning_preset_id: Optativo. Poderás engadir texto personalizado ao final do preestablecido
       announcement:
         all_day: Cando se marca, só serán amosadas as datas do intre de tempo
@@ -28,29 +28,29 @@ gl:
         context: Un ou varios contextos onde se debería aplicar o filtro
         current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
         current_username: Para confirmar, introduce o nome de usuaria da conta actual
-        digest: Enviar só tras un longo período de inactividade e só se recibeu algunha mensaxe directa na súa ausencia
-        discoverable: O directorio de perfil é outro xeito para que a túa conta alcance unha maior audiencia
+        digest: Enviar só tras un longo período de inactividade e só se recibiches algunha mensaxe directa na tua ausencia
+        discoverable: O directorio de perfil é outro xeito de que a túa conta alcance unha maior audiencia
         email: Ímosche enviar un correo de confirmación
-        fields: Pode ter ate 4 elementos no seu perfil mostrados como unha táboa
+        fields: Podes ter ate 4 elementos no teu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         inbox_url: Copiar o URL desde a páxina de inicio do repetidor que queres utilizar
-        irreversible: Os toots filtrados desaparecerán de xeito irreversible, incluso si despois se elimina o filtro
+        irreversible: Os toots filtrados desaparecerán de xeito irreversible, incluso se despois se elimina o filtro
         locale: O idioma da interface de usuaria, correos e notificacións
         locked: Require que ti aceptes as seguidoras de xeito manual
-        password: Utilice 8 caracteres ao menos
+        password: Utiliza 8 caracteres ao menos
         phrase: Concordará independentemente das maiúsculas ou avisos de contido no toot
-        scopes: A que APIs terá acceso a aplicación. Se selecciona un ámbito de alto nivel, non precisa seleccionar elementos individuais.
+        scopes: A que APIs terá acceso a aplicación. Se escolles un ámbito de alto nivel, non precisas seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de toots que foron promocionados recentemente (só afecta a promocións recén recibidas)
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
-        setting_hide_network: Non se mostrará no seu perfil quen a segue e quen a está a seguir
-        setting_noindex: Afecta ao seu perfil público e páxinas de estado
-        setting_show_application: A aplicación que está a utilizar para enviar toots mostrarase na vista detallada do toot
+        setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
+        setting_noindex: Afecta ao teu perfil público e páxinas de estado
+        setting_show_application: A aplicación que estás a utilizar para enviar toots mostrarase na vista detallada do toot
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esborranchando todos os detalles
         setting_use_pending_items: Ocultar as actualizacións da liña temporal tras un click no lugar de desprazar automáticamente os comentarios
-        username: O seu nome de usuaria será único en %{domain}
+        username: O teu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
       domain_allow:
         domain: Este dominio estará en disposición de obter datos desde este servidor e datos de entrada a el poderán ser procesados e gardados
@@ -58,17 +58,17 @@ gl:
         domain: Esto pode ser o nome de dominio que aparece no enderezo do correo, o rexistro MX que resolve o dominio, ou o IP do servidor que resolve o rexistro MX. Estos confrontaranse contra o rexistro da usuaria e o rexistro será rexeitado.
         with_dns_records: Vaise facer un intento de resolver os rexistros DNS propocionados e os resultados tamén irán a lista negra
       featured_tag:
-        name: 'Podería utilizar algunha de estas:'
+        name: 'Poderías usar algunha destas:'
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
       invite_request:
-        text: Esto axudaranos a revisar a súa aplicación
+        text: Esto axudaranos a revisar a tua aplicación
       sessions:
-        otp: 'Introduza o código de dobre-factor creado pola aplicación do seu móbil ou utilice un dos seus códigos de recuperación:'
+        otp: 'Introduce o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
       tag:
-        name: Só pode cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
+        name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
     labels:
@@ -79,17 +79,17 @@ gl:
       account_alias:
         acct: Xestiona a conta antiga
       account_migration:
-        acct: Xestiona a nova conta
+        acct: Usuaria na nova conta
       account_warning_preset:
         text: Texto preestablecido
         title: Título
       admin_account_action:
-        include_statuses: Incluír toots reportados no correo
+        include_statuses: Incluír toots denunciados no correo
         send_email_notification: Notificar a usuaria por correo-e
-        text: Aviso persoalizado
+        text: Aviso personalizado
         type: Acción
         types:
-          disable: Desactivar
+          disable: Desactivar conexión
           none: Non facer nada
           silence: Acalar
           suspend: Suspender e eliminar irreversiblemente datos da conta
@@ -101,7 +101,7 @@ gl:
         starts_at: Comezo do acontecemento
         text: Anuncio
       defaults:
-        autofollow: Convide a seguir a súa conta
+        autofollow: Convida a seguir a tua conta
         avatar: Avatar
         bot: Esta conta é de un bot
         chosen_languages: Filtrar idiomas
@@ -112,8 +112,8 @@ gl:
         data: Datos
         discoverable: Incluír esta conta no directorio
         display_name: Nome mostrado
-        email: enderezo correo electrónico
-        expires_in: Caducidade despois de
+        email: Enderezo de email
+        expires_in: Caduca tras
         fields: Metadatos do perfil
         header: Cabeceira
         inbox_url: URL da caixa de entrada do repetidor
@@ -123,7 +123,7 @@ gl:
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
         note: Acerca de ti
-        otp_attempt: Código de Dobre-Factor
+        otp_attempt: Código do Segundo Factor
         password: Contrasinal
         phrase: Palabra chave ou frase
         setting_advanced_layout: Activar interface web avanzada
@@ -132,10 +132,10 @@ gl:
         setting_boost_modal: Pedir confirmación antes de promocionar
         setting_crop_images: Recortar imaxes a 16x9 en toots non despregados
         setting_default_language: Idioma de publicación
-        setting_default_privacy: Intimidade da publicación
+        setting_default_privacy: Privacidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha mensaxe
-        setting_display_media: Mostrar medios
+        setting_display_media: Mostrar multimedia
         setting_display_media_default: Por omisión
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
@@ -158,30 +158,30 @@ gl:
       email_domain_block:
         with_dns_records: Incluír rexistros MX e IPs do dominio
       featured_tag:
-        name: Etiqueta
+        name: Cancelo
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
-        must_be_following: Bloquea as notificacións de persoas que non segue
-        must_be_following_dm: Bloquea as mensaxes directas de persoas que non segue
+        must_be_following: Bloquea as notificacións de persoas que non segues
+        must_be_following_dm: Bloquea as mensaxes directas de persoas que non segues
       invite:
         comment: Comentar
       invite_request:
         text: Por que queres unirte?
       notification_emails:
         digest: Enviar correos con resumos
-        favourite: Enviar un correo cando alguén marca como favorita unha das súas publicacións
-        follow: Enviar un correo cando alguén a segue
-        follow_request: Enviar un correo cando alguén solicita seguila
-        mention: Enviar un correo cando alguén a menciona
-        pending_account: Enviar correo-e cando unha nova conta precisa revisión
-        reblog: Enviar un correo cando alguén promociona a súa mensaxe
-        report: Enviar un correo cando se envíe un novo informe
-        trending_tag: Enviar correo cando unha etiqueta non revisada é tendencia
+        favourite: Enviar un correo cando alguén marca como favorita unha das tuas publicacións
+        follow: Enviar un correo cando alguén te segue
+        follow_request: Enviar un correo cando alguén solicita seguirte
+        mention: Enviar un correo cando alguén te menciona
+        pending_account: Enviar un correo cando unha nova conta precisa revisión
+        reblog: Enviar un correo cando alguén promociona a tua mensaxe
+        report: Enviar un correo cando se envíe unha denuncia
+        trending_tag: Un cancelo ser revisar está sendo tendencia
       tag:
-        listable: Permitir a esta etiqueta aparecer no directorio de perfil
-        name: Etiqueta
-        trendable: Permitir a esta etiqueta aparecer baixo Tendencias
-        usable: Permitir que os toots utilicen esta etiqueta
+        listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
+        name: Cancelo
+        trendable: Permitir que este cancelo apareza en tendencias
+        usable: Permitir que os toots utilicen este cancelo
     'no': Non
     recommended: Recomendado
     required:

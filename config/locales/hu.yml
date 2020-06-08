@@ -111,7 +111,7 @@ hu:
       deleted: Törölve
       demote: Lefokozás
       disable: Kikapcsolás
-      disable_two_factor_authentication: Kétlépcsős azonosítás kikapcsolása
+      disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Kikapcsolva
       display_name: Megjelenített név
       domain: Domain
@@ -123,7 +123,7 @@ hu:
       followers: Követő
       follows: Követett
       header: Fejléc
-      inbox_url: Beérkezett üzenetek URL
+      inbox_url: Beérkezett üzenetek URL-je
       invited_by: Meghívta
       ip: IP
       joined: Csatlakozott
@@ -635,7 +635,8 @@ hu:
     add_new: Alias készítése
     created_msg: Elkészült az új aliasod. Most már elkezdheted a költöztetést a régi fiókból.
     deleted_msg: Sikeresen eltávolítottad az aliast. A fiókról erre a fiókra való áttérés már nem lehetséges.
-    hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítését a régi fiókból indul el. </strong>
+    empty: Nincsenek aliasaid.
+    hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítése a régi fiókból indul el. </strong>
     remove: Alias szétkapcsolása
   appearance:
     advanced_web_interface: Haladó webes felület
@@ -849,6 +850,8 @@ hu:
     inactive: Inaktív
     publicize_checkbox: 'És ezt tülköld ki:'
     publicize_toot: 'Tanúsítva! %{username} vagyok %{service}: %{url} szerveren'
+    remove: Tanúsítás eltávolítása a fiókról
+    removed: Leszedtük a tanúsítást a fiókról
     status: Ellenőrzés állapota
     view_proof: Tanúsítás megtekintése
   imports:
@@ -1240,7 +1243,7 @@ hu:
     mastodon-light: Mastodon (Világos)
   time:
     formats:
-      default: "%Y %b %d, %H:%M"
+      default: "%Y. %b %d., %H:%M"
       month: "%Y %b"
   two_factor_authentication:
     code_hint: Megerősítéshez írd be az alkalmazás által generált kódot

@@ -4,7 +4,7 @@ module DomainNormalizable
   extend ActiveSupport::Concern
 
   included do
-    before_save :normalize_domain
+    before_validation :normalize_domain
   end
 
   private
