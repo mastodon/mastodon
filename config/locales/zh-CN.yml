@@ -303,6 +303,7 @@ zh-CN:
       listed: 已显示
       new:
         title: 添加新的自定义表情
+      not_permitted: 您没有权限进行此操作
       overwrite: 覆盖
       shortcode: 短代码
       shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
@@ -711,6 +712,10 @@ zh-CN:
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求您输入密码。"
     invalid_password: 无效密码
     prompt: 确认密码以继续
+  crypto:
+    errors:
+      invalid_key: 不是有效的 Ed25519 或者 Curve25519 密钥
+      invalid_signature: 不是有效的 Ed25519 签名
   date:
     formats:
       default: "%Y年%m月%d日"
@@ -906,6 +911,7 @@ zh-CN:
     on_cooldown: 您最近已经迁移过您的帐号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
+    redirected_msg: 您的账号现在会跳转至 %{acct}
     redirecting_to: 您的帐户被跳转到了 %{acct}。
     set_redirect: 设置跳转
     warning:
