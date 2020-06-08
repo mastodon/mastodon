@@ -215,7 +215,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
       context 'using a valid OTP' do
         before do
-          post :create, params: { user: { otp_attempt: user.current_otp } }, session: { otp_user_id: user.id }
+          post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id }
         end
 
         it 'redirects to home' do
@@ -230,7 +230,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
       context 'when the server has an decryption error' do
         before do
           allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
-          post :create, params: { user: { otp_attempt: user.current_otp } }, session: { otp_user_id: user.id }
+          post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id }
         end
 
         it 'shows a login error' do
@@ -244,7 +244,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
       context 'using a valid recovery code' do
         before do
-          post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { otp_user_id: user.id }
+          post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id }
         end
 
         it 'redirects to home' do
@@ -258,11 +258,69 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
       context 'using an invalid OTP' do
         before do
-          post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { otp_user_id: user.id }
+          post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
         end
 
         it 'shows a login error' do
           expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
+        end
+
+        it "doesn't log the user in" do
+          expect(controller.current_user).to be_nil
+        end
+      end
+    end
+
+    context 'when 2FA is disabled and IP is unfamiliar' do
+      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 3.weeks.ago, current_sign_in_ip: '0.0.0.0') }
+
+      before do
+        request.remote_ip  = '10.10.10.10'
+        request.user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0'
+
+        allow(UserMailer).to receive(:sign_in_token).and_return(double('email', deliver_later!: nil))
+      end
+
+      context 'using email and password' do
+        before do
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'renders sign in token authentication page' do
+          expect(controller).to render_template("sign_in_token")
+        end
+
+        it 'generates sign in token' do
+          expect(user.reload.sign_in_token).to_not be_nil
+        end
+
+        it 'sends sign in token e-mail' do
+          expect(UserMailer).to have_received(:sign_in_token)
+        end
+      end
+
+      context 'using a valid sign in token' do
+        before do
+          user.generate_sign_in_token && user.save
+          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id }
+        end
+
+        it 'redirects to home' do
+          expect(response).to redirect_to(root_path)
+        end
+
+        it 'logs the user in' do
+          expect(controller.current_user).to eq user
+        end
+      end
+
+      context 'using an invalid sign in token' do
+        before do
+          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
+        end
+
+        it 'shows a login error' do
+          expect(flash[:alert]).to match I18n.t('users.invalid_sign_in_token')
         end
 
         it "doesn't log the user in" do
