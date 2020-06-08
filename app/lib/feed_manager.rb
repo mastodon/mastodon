@@ -247,11 +247,11 @@ class FeedManager
     status         = status.reblog if status.reblog?
 
     combined_text = [
-        Formatter.instance.plaintext(status),
-        status.spoiler_text,
-        status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
-        status.media_attachments.map(&:description).join("\n\n")
-    ].filter.join("\n\n")
+      Formatter.instance.plaintext(status),
+      status.spoiler_text,
+      status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
+      status.media_attachments.map(&:description).join("\n\n"),
+    ].compact.join("\n\n")
 
     !combined_regex.match(combined_text).nil?
   end
