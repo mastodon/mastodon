@@ -11,7 +11,7 @@ const darkEmoji = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸
 const lightEmoji = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️';
 
 const emojiFilename = (filename, match) => {
-  const borderedEmoji = document.body.classList.contains('skin-mastodon-light') ? lightEmoji : darkEmoji;
+  const borderedEmoji = (document.body && document.body.classList.contains('skin-mastodon-light')) ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(match) ? (filename + '_border') : filename;
 };
 
