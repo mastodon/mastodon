@@ -37,8 +37,11 @@ ja:
       domain: サーバー
       reason: 制限理由
       rejecting_media: 'これらのサーバーからのメディアファイルは処理されず、保存や変換もされません。サムネイルも表示されません。表示するにはクリックしてそのサーバーに直接アクセスする必要があります:'
+      rejecting_media_title: フィルタされたメディア
       silenced: 'これらのサーバーからの投稿は公開タイムラインと会話から隠されます。また該当するユーザーからの通知は相手をフォローしている場合を除き表示されません:'
+      silenced_title: サイレンス済みのサーバー
       suspended: 'これらのサーバーからのデータは処理されず、保存や変換もされません。該当するユーザーとの交流もできません:'
+      suspended_title: サスペンド済みのサーバー
     unavailable_content_html: 通常 Mastodon では連合先のどんなサーバーのユーザーとでもやりとりできます。ただし次のサーバーには例外が設定されています。
     user_count_after:
       other: 人
@@ -1253,6 +1256,12 @@ ja:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
+    sign_in_token:
+      details: 'ログイン検出の詳細は以下のとおりです:'
+      explanation: '認識できないIPアドレスから、あなたのアカウントへのログインを検出しました。あなたがログインしようとしている場合は、ログインページに以下のセキュリティコードを入力してください:'
+      further_actions: 'あなたではない場合、パスワードを変更し、あなたのアカウントについて二段階認証を有効にしてください。こちらからそれを行うことができます:'
+      subject: ログイン試行を確認してください
+      title: ログインを検出しました
     warning:
       explanation:
         disable: アカウントが凍結されている間、データはそのまま残りますが、凍結が解除されるまでは何の操作もできません。
@@ -1290,6 +1299,7 @@ ja:
       title: ようこそ、%{name}！
   users:
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
+    generic_access_help_html: アクセスできませんか？ %{email} に問い合わせることができます。
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
     invalid_sign_in_token: 無効なセキュリティコードです
