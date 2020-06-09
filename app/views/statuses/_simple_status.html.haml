@@ -43,7 +43,7 @@
       = react_component :media_gallery, height: 343, sensitive: status.sensitive?, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
   - elsif status.preview_card
-    = react_component :card, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
+    = react_component :card, sensitive: status.sensitive?, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
 
   - if !status.in_reply_to_id.nil? && status.in_reply_to_account_id == status.account.id
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__content__read-more-button', target: stream_link_target, rel: 'noopener noreferrer' do

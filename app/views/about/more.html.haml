@@ -55,12 +55,15 @@
             %p= t('about.unavailable_content_html')
 
             - if (blocks = @blocks.select(&:reject_media?)) && !blocks.empty?
+              %h3= t('about.unavailable_content_description.rejecting_media_title')
               %p= t('about.unavailable_content_description.rejecting_media')
               = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
             - if (blocks = @blocks.select(&:silence?)) && !blocks.empty?
+              %h3= t('about.unavailable_content_description.silenced_title')
               %p= t('about.unavailable_content_description.silenced')
               = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
             - if (blocks = @blocks.select(&:suspend?)) && !blocks.empty?
+              %h3= t('about.unavailable_content_description.suspended_title')
               %p= t('about.unavailable_content_description.suspended')
               = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
 

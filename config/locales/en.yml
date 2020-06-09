@@ -35,13 +35,16 @@ en:
     status_count_before: Who authored
     tagline: Follow friends and discover new ones
     terms: Terms of service
-    unavailable_content: Unavailable content
+    unavailable_content: Moderated servers
     unavailable_content_description:
       domain: Server
       reason: Reason
       rejecting_media: 'Media files from these servers will not be processed or stored, and no thumbnails will be displayed, requiring manual click-through to the original file:'
-      silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users'' interactions, unless you are following them:'
+      rejecting_media_title: Filtered media
+      silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users interactions, unless you are following them:'
+      silenced_title: Silenced servers
       suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
+      suspended_title: Suspended servers
     unavailable_content_html: Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
     user_count_after:
       one: user
@@ -309,6 +312,7 @@ en:
       listed: Listed
       new:
         title: Add new custom emoji
+      not_permitted: You are not permitted to perform this action
       overwrite: Overwrite
       shortcode: Shortcode
       shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
@@ -721,6 +725,10 @@ en:
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
     invalid_password: Invalid password
     prompt: Confirm password to continue
+  crypto:
+    errors:
+      invalid_key: is not a valid Ed25519 or Curve25519 key
+      invalid_signature: is not a valid Ed25519 signature
   date:
     formats:
       default: "%b %d, %Y"
@@ -918,6 +926,7 @@ en:
     on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Past migrations
     proceed_with_move: Move followers
+    redirected_msg: Your account is now redirecting to %{acct}.
     redirecting_to: Your account is redirecting to %{acct}.
     set_redirect: Set redirect
     warning:
@@ -1267,6 +1276,12 @@ en:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
+    sign_in_token:
+      details: 'Here are details of the attempt:'
+      explanation: 'We detected an attempt to sign in to your account from an unrecognized IP address. If this is you, please enter the security code below on the sign in challenge page:'
+      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
+      subject: Please confirm attempted sign in
+      title: Sign in attempt
     warning:
       explanation:
         disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
@@ -1304,11 +1319,14 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
+    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, and you haven't logged in for a while, so we're sending a security code to your e-mail address to confirm that it's you.
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification

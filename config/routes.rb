@@ -79,6 +79,7 @@ Rails.application.routes.draw do
 
     resource :outbox, only: [:show], module: :activitypub
     resource :inbox, only: [:create], module: :activitypub
+    resource :claim, only: [:create], module: :activitypub
     resources :collections, only: [:show], module: :activitypub
   end
 
@@ -341,6 +342,23 @@ Rails.application.routes.draw do
           post :dismiss
         end
       end
+
+#      namespace :crypto do
+#        resources :deliveries, only: :create
+#
+#        namespace :keys do
+#          resource :upload, only: [:create]
+#          resource :query,  only: [:create]
+#          resource :claim,  only: [:create]
+#          resource :count,  only: [:show]
+#        end
+#
+#        resources :encrypted_messages, only: [:index] do
+#          collection do
+#            post :clear
+#          end
+#        end
+#      end
 
       resources :conversations, only: [:index, :destroy] do
         member do

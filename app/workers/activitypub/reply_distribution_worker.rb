@@ -29,6 +29,6 @@ class ActivityPub::ReplyDistributionWorker
   end
 
   def payload
-    @payload ||= Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @status.account))
+    @payload ||= Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @status.account))
   end
 end

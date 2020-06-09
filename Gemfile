@@ -20,7 +20,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.5'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.66', require: false
+gem 'aws-sdk-s3', '~> 1.67', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -50,6 +50,7 @@ gem 'omniauth', '~> 1.9'
 
 gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.4'
+gem 'ed25519', '~> 1.2'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
@@ -83,7 +84,7 @@ gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
-gem 'sanitize', '~> 5.1'
+gem 'sanitize', '~> 5.2'
 gem 'sidekiq', '~> 6.0'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
@@ -93,7 +94,6 @@ gem 'simple_form', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.0'
 gem 'strong_migrations', '~> 0.6'
-gem 'tty-command', '~> 0.9', require: false
 gem 'tty-prompt', '~> 0.21', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2020'
@@ -122,7 +122,7 @@ end
 group :test do
   gem 'capybara', '~> 3.32'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.11'
+  gem 'faker', '~> 2.12'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
@@ -141,7 +141,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.84', require: false
+  gem 'rubocop', '~> 0.85', require: false
   gem 'rubocop-rails', '~> 2.5', require: false
   gem 'brakeman', '~> 4.8', require: false
   gem 'bundler-audit', '~> 0.6', require: false

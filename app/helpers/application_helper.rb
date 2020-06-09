@@ -137,6 +137,11 @@ module ApplicationHelper
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
 
+    permit_visibilities = %w(public unlisted private direct)
+    default_privacy     = current_account&.user&.setting_default_privacy
+    permit_visibilities.shift(permit_visibilities.index(default_privacy) + 1) if default_privacy.present?
+    state_params[:visibility] = params[:visibility] if permit_visibilities.include? params[:visibility]
+
     if user_signed_in?
       state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
       state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
