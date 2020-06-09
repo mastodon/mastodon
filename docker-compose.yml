@@ -38,7 +38,7 @@ services:
 #     healthcheck:
 #       test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
 #     volumes:
-#       - ./elasticsearch:/usr/share/elasticsearch/data
+#       - ./elasticsearch7:/usr/share/elasticsearch/data
 #     ulimits:
 #       memlock:
 #         soft: -1
