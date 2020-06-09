@@ -39,8 +39,11 @@ pt-BR:
       domain: Instância
       reason: 'Motivo:'
       rejecting_media: 'Arquivos de mídia destas instâncias não serão processados ou armazenados e nenhuma miniatura será exibida, exigindo que o usuário abra o arquivo original manualmente:'
+      rejecting_media_title: Mídia filtrada
       silenced: 'Toots destas instâncias serão ocultos em linhas e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus usuários, a menos que esteja sendo seguido:'
+      silenced_title: Servidores silenciados
       suspended: 'Você não será capaz de seguir ninguém destas instâncias, e nenhum dado delas será processado, armazenado ou trocado:'
+      suspended_title: Servidores banidos
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
     user_count_after:
       one: usuário
@@ -308,7 +311,7 @@ pt-BR:
       listed: Listado
       new:
         title: Adicionar novo emoji personalizado
-      not_permitted: Não está autorizado a executar esta ação
+      not_permitted: Você não tem permissão para executar esta ação
       overwrite: Sobrescrever
       shortcode: Atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underlines ("_")
@@ -922,7 +925,7 @@ pt-BR:
     on_cooldown: Você migrou recentemente sua conta. Esta função ficará disponível novamente em %{count} dias.
     past_migrations: Migrações passadas
     proceed_with_move: Migrar seguidores
-    redirected_msg: A sua conta está agora a ser redireccionada para %{acct}.
+    redirected_msg: Agora sua conta está redirecionando para %{acct}.
     redirecting_to: Sua conta está redirecionando para %{acct}.
     set_redirect: Definir redirecionamento
     warning:
@@ -1271,6 +1274,12 @@ pt-BR:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    sign_in_token:
+      details: 'Aqui estão os detalhes da tentativa:'
+      explanation: 'Detectamos uma tentativa de acessar sua conta a partir de um endereço IP não reconhecido. Se for você, insira o código de segurança abaixo na página de desafio:'
+      further_actions: 'Se não foi você, por favor mude sua senha e ative a autenticação de dois fatores em sua conta. Você pode fazê-lo aqui:'
+      subject: Por favor, confirme a tentativa de acesso
+      title: Tentativa de acesso
     warning:
       explanation:
         disable: Enquanto sua conta está congelada, seus dados de conta permanecem intactos, mas você não pode realizar nenhuma ação até que esteja destrancada.
@@ -1308,11 +1317,14 @@ pt-BR:
       title: Boas vindas, %{name}!
   users:
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas
+    generic_access_help_html: Problemas para acessar sua conta? Você pode entrar em contato com %{email} para obter ajuda
     invalid_email: Endereço de e-mail inválido
     invalid_otp_token: Código de dois fatores inválido
+    invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
+    suspicious_sign_in_confirmation: Parece que você não fez login deste dispositivo antes, e você não fez login por um tempo. Portanto, estamos enviando um código de segurança para o seu endereço de e-mail para confirmar que é você.
   verification:
     explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
     verification: Verificação
