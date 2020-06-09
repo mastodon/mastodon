@@ -1292,9 +1292,11 @@ ja:
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
+    invalid_sign_in_token: 無効なセキュリティコードです
     otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
+    suspicious_sign_in_confirmation: このデバイスからログインしたことが無いか、最後のログインから時間が経っています。あなたのメールアドレスに送信されたセキュリティーコードを確認して下さい。
   verification:
     explanation_html: '<strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：'
     verification: 認証
