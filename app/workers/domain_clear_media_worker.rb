@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-class DomainBlockWorker
+class DomainClearMediaWorker
   include Sidekiq::Worker
 
-  def perform(domain_block_id, update = false)
+  sidekiq_options queue: 'pull'
+
+  def perform(domain_block_id)
     domain_block = DomainBlock.find_by(id: domain_block_id)
     return true if domain_block.nil?
 
-    BlockDomainService.new.call(domain_block, update)
+    ClearDomainMediaService.new.call(domain_block)
   end
 end
