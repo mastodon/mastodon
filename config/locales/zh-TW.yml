@@ -133,6 +133,7 @@ zh-TW:
       moderation_notes: 管理備忘
       most_recent_activity: 最近活動
       most_recent_ip: 最近 IP 位址
+      no_account_selected: 未選取任何帳號，因此未變更
       no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
       pending: 等待審核中
@@ -182,6 +183,15 @@ zh-TW:
       web: 頁面
       whitelisted: 已加入白名單
     action_logs:
+      action_types:
+        assigned_to_self_report: 指派回報
+        change_email_user: 變更使用者的電子信箱位址
+        confirm_user: 確認使用者
+        create_account_warning: 建立警告
+        create_announcement: 建立公告
+        create_custom_emoji: 建立自訂顏文字
+        create_domain_allow: 建立允許網域
+        create_domain_block: 建立阻擋網域
       actions:
         assigned_to_self_report: "%{name} 接受了檢舉 %{target}"
         change_email_user: "%{name} 變更了使用者 %{target} 的電子信箱位址"
