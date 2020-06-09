@@ -22,7 +22,7 @@ vi:
         explanation: Bạn đã tạo một tài khoản trên %{host} với địa chỉ email này. Chỉ cần một cú nhấp chuột nữa để kích hoạt nó. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
         explanation_when_pending: Bạn đã đăng ký %{host} với địa chỉ email này. Chúng tôi chỉ xem xét đơn đăng ký sau khi bạn xác thực địa chỉ email. Bạn có thể đăng nhập để thay đổi chi tiết hoặc xóa tài khoản của mình, nhưng bạn không thể truy cập hầu hết các chức năng cho đến khi tài khoản của bạn được chấp thuận. Nếu bạn bị từ chối, dữ liệu của bạn sẽ bị xóa, do đó bạn sẽ không cần phải thực hiện thêm hành động nào nữa. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
         extra_html: Xin đọc kỹ <a href="%{terms_path}">nội quy máy chủ</a> và <a href="%{policy_path}">điều khoản dịch vụ</a> của chúng tôi.
-        subject: 'Mastodon: Hướng dẫn xác nhận cho %{instance}'
+        subject: 'Mastodon: Xác thực email cho %{instance}'
         title: Xác thực địa chỉ email
       email_changed:
         explanation: 'Địa chỉ email cho tài khoản của bạn đang được thay đổi thành:'
@@ -38,7 +38,7 @@ vi:
         explanation: Xác nhận địa chỉ email mới của bạn.
         extra: Nếu thay đổi này không phải do bạn thực hiện, vui lòng bỏ qua email này. Địa chỉ email cho tài khoản Mastodon sẽ giữ nguyên cho đến khi bạn truy cập vào liên kết ở trên.
         subject: 'Mastodon: Xác thực email cho %{instance}'
-        title: Xác nhận địa chỉ email
+        title: Xác thực địa chỉ email
       reset_password_instructions:
         action: Đổi mật khẩu
         explanation: Bạn đã yêu cầu mật khẩu mới cho tài khoản của bạn.
