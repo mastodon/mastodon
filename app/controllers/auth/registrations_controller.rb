@@ -11,7 +11,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
   before_action :set_cache_headers, only: [:edit, :update]
-  prepend_before_action :check_recaptcha, only: [:create]
 
   skip_before_action :require_functional!, only: [:edit, :update]
 
@@ -120,35 +119,5 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_cache_headers
     response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
-  end
-
-  def check_recaptcha
-    unless is_human?
-      self.resource = resource_class.new sign_up_params
-      set_instance_presenter
-      resource.validate
-      respond_with_navigational(resource) { render :new }
-    end
-  end
-
-  concerning :RecaptchaFeature do
-    if ENV['RECAPTCHA_ENABLED'] == 'true'
-      def is_human?
-        g_recaptcha_response = params["g-recaptcha-response"]
-        return false unless g_recaptcha_response.present?
-        verify_by_recaptcha g_recaptcha_response
-      end
-      def verify_by_recaptcha(g_recaptcha_response)
-        conn = Faraday.new(url: 'https://www.google.com')
-        res = conn.post '/recaptcha/api/siteverify', {
-            secret: ENV['RECAPTCHA_SECRET_KEY'],
-            response: g_recaptcha_response
-        }
-        j = JSON.parse(res.body)
-        j['success'] && j['score'] > 0.5
-      end
-    else
-      def is_human?; true end
-    end
   end
 end
