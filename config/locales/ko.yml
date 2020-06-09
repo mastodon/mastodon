@@ -1254,6 +1254,8 @@ ko:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
+    sign_in_token:
+      title: 로그인 시도
     warning:
       explanation:
         disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
@@ -1291,11 +1293,14 @@ ko:
       title: 환영합니다 %{name} 님!
   users:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
+    generic_access_help_html: 계정 로그인에 문제가 있나요? %{email} 로 도움을 요청할 수 있습니다
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
+    invalid_sign_in_token: 잘못된 보안 코드
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
+    suspicious_sign_in_confirmation: 이 기기에서 로그인 한 적이 없거나, 로그인 한 지 오래된 것으로보입니다. 본인임을 확인하기 위해 이메일 주소로 보안 코드를 보냈습니다.
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증
