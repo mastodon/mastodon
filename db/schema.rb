@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_110808) do
+ActiveRecord::Schema.define(version: 2020_06_08_113046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.boolean "hide_collections"
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
+    t.string "devices_url"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -317,6 +318,19 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 
+  create_table "devices", force: :cascade do |t|
+    t.bigint "access_token_id"
+    t.bigint "account_id"
+    t.string "device_id", default: "", null: false
+    t.string "name", default: "", null: false
+    t.text "fingerprint_key", default: "", null: false
+    t.text "identity_key", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["access_token_id"], name: "index_devices_on_access_token_id"
+    t.index ["account_id"], name: "index_devices_on_account_id"
+  end
+
   create_table "domain_allows", force: :cascade do |t|
     t.string "domain", default: "", null: false
     t.datetime "created_at", null: false
@@ -342,6 +356,20 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "encrypted_messages", id: :bigint, default: -> { "timestamp_id('encrypted_messages'::text)" }, force: :cascade do |t|
+    t.bigint "device_id"
+    t.bigint "from_account_id"
+    t.string "from_device_id", default: "", null: false
+    t.integer "type", default: 0, null: false
+    t.text "body", default: "", null: false
+    t.text "digest", default: "", null: false
+    t.text "message_franking", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_encrypted_messages_on_device_id"
+    t.index ["from_account_id"], name: "index_encrypted_messages_on_from_account_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -552,6 +580,17 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "one_time_keys", force: :cascade do |t|
+    t.bigint "device_id"
+    t.string "key_id", default: "", null: false
+    t.text "key", default: "", null: false
+    t.text "signature", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_one_time_keys_on_device_id"
+    t.index ["key_id"], name: "index_one_time_keys_on_key_id"
+  end
+
   create_table "pghero_space_stats", force: :cascade do |t|
     t.text "database"
     t.text "schema"
@@ -610,6 +649,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.datetime "updated_at", null: false
     t.string "embed_url", default: "", null: false
     t.integer "image_storage_schema_version"
+    t.string "blurhash"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
@@ -752,6 +792,12 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
+  create_table "system_keys", force: :cascade do |t|
+    t.binary "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
@@ -827,6 +873,8 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.string "chosen_languages", array: true
     t.bigint "created_by_application_id"
     t.boolean "approved", default: true, null: false
+    t.string "sign_in_token"
+    t.datetime "sign_in_token_sent_at"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"
@@ -886,7 +934,11 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
+  add_foreign_key "devices", "accounts", on_delete: :cascade
+  add_foreign_key "devices", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
+  add_foreign_key "encrypted_messages", "accounts", column: "from_account_id", on_delete: :cascade
+  add_foreign_key "encrypted_messages", "devices", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade
@@ -917,6 +969,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", name: "fk_f5fc4c1ee3", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", name: "fk_e84df68546", on_delete: :cascade
   add_foreign_key "oauth_applications", "users", column: "owner_id", name: "fk_b0988c7c0a", on_delete: :cascade
+  add_foreign_key "one_time_keys", "devices", on_delete: :cascade
   add_foreign_key "poll_votes", "accounts", on_delete: :cascade
   add_foreign_key "poll_votes", "polls", on_delete: :cascade
   add_foreign_key "polls", "accounts", on_delete: :cascade
