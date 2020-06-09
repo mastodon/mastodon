@@ -1,23 +1,10 @@
-$emojis-requiring-outlines: '8ball' 'ant' 'black_circle' 'black_heart' 'black_large_square' 'black_medium_small_square' 'black_medium_square' 'black_nib' 'black_small_square' 'bomb' 'bowling' 'camera' 'camera_with_flash' 'clubs' 'dark_sunglasses' 'eight_pointed_black_star' 'electric_plug' 'female-guard' 'film_projector' 'fried_egg' 'gorilla' 'guardsman' 'hocho' 'hole' 'joystick' 'kaaba' 'lower_left_ballpoint_pen' 'lower_left_fountain_pen' 'male-guard' 'microphone' 'mortar_board' 'movie_camera' 'musical_score' 'spades' 'tophat' 'turkey' 'vhs' 'video_camera' 'video_game' 'water_buffalo' 'waving_black_flag' !default;
-
 $emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange' 'end' 'heavy_check_mark' 'heavy_division_sign' 'heavy_dollar_sign' 'heavy_minus_sign' 'heavy_multiplication_x' 'heavy_plus_sign' 'on' 'registered' 'soon' 'spider' 'telephone_receiver' 'tm' 'top' 'wavy_dash' !default;
-
-%emoji-outline {
-  filter: drop-shadow(1px 1px 0 $white) drop-shadow(-1px 1px 0 $white) drop-shadow(1px -1px 0 $white) drop-shadow(-1px -1px 0 $white);
-  transform: scale(.71);
-}
 
 %emoji-color-inversion {
   filter: invert(1);
 }
 
 .emojione {
-  @each $emoji in $emojis-requiring-outlines {
-    &[title=':#{$emoji}:'] {
-      @extend %emoji-outline;
-    }
-  }
-
   @each $emoji in $emojis-requiring-inversion {
     &[title=':#{$emoji}:'] {
       @extend %emoji-color-inversion;

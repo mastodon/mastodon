@@ -6,6 +6,15 @@ const trie = new Trie(Object.keys(unicodeMapping));
 
 const assetHost = process.env.CDN_HOST || '';
 
+// Emoji requiring extra borders depending on theme
+const darkEmoji = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴';
+const lightEmoji = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️';
+
+const emojiFilename = (filename, match) => {
+  const borderedEmoji = document.body.classList.contains('theme-mastodon-light') ? lightEmoji : darkEmoji;
+  return borderedEmoji.includes(match) ? (filename + '_border') : filename;
+};
+
 const emojify = (str, customEmojis = {}) => {
   const tagCharsWithoutEmojis = '<&';
   const tagCharsWithEmojis = Object.keys(customEmojis).length ? '<&:' : '<&';
@@ -60,7 +69,7 @@ const emojify = (str, customEmojis = {}) => {
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
-      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${filename}.svg" />`;
+      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${emojiFilename(filename, match)}.svg" />`;
       rend = i + match.length;
       // If the matched character was followed by VS15 (for selecting text presentation), skip it.
       if (str.codePointAt(rend) === 65038) {
