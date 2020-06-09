@@ -39,8 +39,11 @@ sq:
       domain: Shërbyes
       reason: Arsye
       rejecting_media: 'Kartelat media prej këtyre shërbyesve s’do të përpunohen apo depozitohen, dhe s’do të shfaqet ndonjë miniaturë, duke kërkuar kështu doemos klikim dorazi te kartela origjinale:'
+      rejecting_media_title: Media e filtruar
       silenced: 'Postimet prej këtyre shërbyesve do të fshihen në rrjedha kohore dhe biseda publike, dhe prej ndërveprimeve të përdoruesve të tyre s’do të prodhohen njoftime, veç në i ndjekshi:'
+      silenced_title: Shërbyes të heshtuar
       suspended: 'S’do të përpunohen, depozitohen apo shkëmbehen të dhëna prej këtyre shërbyesve, duke e bërë të pamundur çfarëdo ndërveprimi apo komunikimi me përdorues prej këtyre shërbyesve:'
+      suspended_title: Shërbyes të pezulluar
     unavailable_content_html: Mastodon-i përgjithësisht ju lejon të shihni lëndë nga përdorues dhe të ndërveproni me të tillë prej cilitdo shërbyes në fedivers. Këto janë përjashtimet që janë bërë në këtë shërbyes.
     user_count_after:
       one: përdorues
@@ -1271,6 +1274,12 @@ sq:
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
       title: Marrje arkivi me vete
+    sign_in_token:
+      details: 'Ja hollësitë e përpjekjes:'
+      explanation: 'Pikasëm një përpjekje për të bërë hyrje në llogarinë tuaj nga një adresë IP jo e pranuar. Nëse ky jeni ju, ju lutemi jepni kodin e sigurisë më poshtë te faqja e pyetjes për hyrje:'
+      further_actions: 'Nëse ky s’qetë ju, ju lutemi, ndryshoni fjalëkalimin tuaj dhe aktivizoni në llogarinë tuaj mirëfilltësim dyfaktorësh. Këtë mund ta bëni këtu:'
+      subject: Ju lutemi, ripohoni përpjekje hyrjeje
+      title: Përpjekje hyrjeje
     warning:
       explanation:
         disable: Kur llogaria juaj është e ngrirë, të dhënat në llogarinë tuaj mbeten të paprekura, por s’mund të kryeni ndonjë veprim, para se të shkyçet.
@@ -1308,11 +1317,14 @@ sq:
       title: Mirë se vini, %{name}!
   users:
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
+    generic_access_help_html: Problem me hyrjen në llogarinë tuaj? Për asistencë mund të lidheni me %{email}
     invalid_email: Adresa email është e pavlefshme
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
+    invalid_sign_in_token: Kod sigurie i pavlefshëm
     otp_lost_help_html: Nëse humbi hyrjen te të dy, mund të lidheni me %{email}
     seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
     signed_in_as: 'I futur si:'
+    suspicious_sign_in_confirmation: Duket se s’keni hyrë më parë nga kjo pajisje, dhe se keni kohë pa bërë hyrje, ndaj po ju dërgojmë një kod sigurie te adresa juaj email, që të ripohoni se jeni ju.
   verification:
     explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong> të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë. Ja një shembull:'
     verification: Verifikim
