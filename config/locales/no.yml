@@ -92,6 +92,7 @@
       delete: Slett
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
+      add_email_domain_block: Svartelist E-postdomenet
       approve: Godkjenn
       approve_all: Godkjenn alle
       are_you_sure: Er du sikker?
@@ -172,6 +173,7 @@
         staff: Personale
         user: Bruker
       search: Søk
+      search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukere med den samme IP-en
       shared_inbox_url: Delt Innboks URL
       show:
@@ -193,6 +195,24 @@
       web: Nett
       whitelisted: Hvitelistet
     action_logs:
+      action_types:
+        change_email_user: Endre brukerens E-postadresse
+        confirm_user: Bekreft brukeren
+        create_account_warning: Opprett en advarsel
+        create_announcement: Opprett en kunngjøring
+        create_custom_emoji: Opprett en tilpasset emoji
+        destroy_announcement: Slett kunngjøringen
+        destroy_custom_emoji: Slett den tilpassede emojien
+        destroy_status: Slett statusen
+        disable_2fa_user: Skru av 2-trinnsinnlogging
+        disable_user: Deaktiver bruker
+        enable_user: Aktiver bruker
+        reopen_report: Gjenåpne rapporten
+        reset_password_user: Tilbakestill passord
+        suspend_account: Suspender kontoen
+        unsuspend_account: Opphev suspensjonen av kontoen
+        update_announcement: Oppdater kunngjøringen
+        update_status: Oppdater statusen
       actions:
         assigned_to_self_report: "%{name} tilegnet rapport %{target} til seg selv"
         change_email_user: "%{name} forandret e-postadressen for bruker %{target}"
@@ -230,6 +250,9 @@
         update_custom_emoji: "%{name} oppdaterte emoji %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(statusen er slettet)"
+      empty: Ingen loggføringer ble funnet.
+      filter_by_action: Sorter etter handling
+      filter_by_user: Sorter etter bruker
       title: Revisionslogg
     announcements:
       destroyed_msg: Kunngjøringen er slettet!
@@ -358,6 +381,7 @@
       destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
       empty: Ingen e-mail-domener er sortelistet på dette tidspunkt.
+      from_html: fra %{domain}
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
@@ -527,6 +551,8 @@
       title: Nettstedsinnstillinger
       trends:
         title: Trendende emneknagger
+    site_uploads:
+      delete: Slett den opplastede filen
     statuses:
       back_to_account: Tilbake til kontosiden
       batch:
@@ -573,6 +599,7 @@
       body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
   aliases:
     add_new: Lag et alias
+    empty: Du har ingen aliaser.
     hint_html: Dersom du vil flytte fra en annen konto til den, kan du lage et alias her, som er påkrevd før du kan gå videre med å flytte følgere fra den gamle kontoen til den nye. Handlingen i seg selv er <strong>harmløs og reversibel</strong>. <strong>Kontoflyttingen har blitt satt i gang fra den gamle kontoen</strong>.
     remove: Fjern aliaslenking
   appearance:
@@ -828,6 +855,8 @@
       already_moved: er den samme kontoen du allerede har flyttet til
       move_to_self: kan ikke være den nåværende kontoen
       not_found: ble ikke funnet
+      on_cooldown: Du er i en nedkjølingsperiode
+    followers_count: Følgere på flyttetidspunktet
     incoming_migrations: Flytte fra en annen konto
     incoming_migrations_html: For å flytte fra en annen konto til denne, må du først <a href="%{path}">sette opp et kontoalias</a>.
     past_migrations: Tidligere migreringer
@@ -895,6 +924,7 @@
   polls:
     errors:
       already_voted: Du har allerede stemt i denne avstemningen
+      duplicate_options: inneholder duplikatgjenstander
       duration_too_long: er for langt frem i tid
       duration_too_short: er for snart
       expired: Denne avstemningen er allerede ferdig
@@ -909,6 +939,7 @@
   reactions:
     errors:
       limit_reached: Grensen for forskjellige reaksjoner nådd
+      unrecognized_emoji: er ikke en gjenkjent emoji
   relationships:
     activity: Kontoaktivitet
     dormant: Dormende
@@ -1004,6 +1035,8 @@
     profile: Profil
     relationships: Følginger og følgere
     two_factor_authentication: Tofaktorautentisering
+  spam_check:
+    spam_detected: Dette er en automatisert rapport. Spam har blitt oppdaget.
   statuses:
     attached:
       description: 'Vedlagt: %{attached}'
@@ -1031,6 +1064,7 @@
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mer
+    show_thread: Vis tråden
     sign_in_to_participate: Logg på for å delta i samtalen
     title: "%{name}: «%{quote}»"
     visibilities:

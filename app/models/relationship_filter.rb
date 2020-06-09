@@ -23,7 +23,7 @@ class RelationshipFilter
     scope = scope_for('relationship', params['relationship'].to_s.strip)
 
     params.each do |key, value|
-      next if key.to_s == 'page'
+      next if %w(relationship page).include?(key)
 
       scope.merge!(scope_for(key.to_s, value.to_s.strip)) if value.present?
     end

@@ -246,9 +246,14 @@ class FeedManager
     combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
     status         = status.reblog if status.reblog?
 
-    !combined_regex.match(Formatter.instance.plaintext(status)).nil? ||
-      (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?) ||
-      (status.preloadable_poll && !combined_regex.match(status.preloadable_poll.options.join("\n\n")).nil?)
+    combined_text = [
+      Formatter.instance.plaintext(status),
+      status.spoiler_text,
+      status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
+      status.media_attachments.map(&:description).join("\n\n"),
+    ].compact.join("\n\n")
+
+    !combined_regex.match(combined_text).nil?
   end
 
   # Adds a status to an account's feed, returning true if a status was

@@ -3,6 +3,7 @@
 class ResolveAccountService < BaseService
   include JsonLdHelper
   include DomainControlHelper
+  include WebfingerHelper
 
   class WebfingerRedirectError < StandardError; end
 
@@ -76,7 +77,7 @@ class ResolveAccountService < BaseService
   end
 
   def process_webfinger!(uri, redirected = false)
-    @webfinger                           = Goldfinger.finger("acct:#{uri}")
+    @webfinger                           = webfinger!("acct:#{uri}")
     confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
@@ -111,6 +112,8 @@ class ResolveAccountService < BaseService
   end
 
   def webfinger_update_due?
+    return false if @options[:check_delivery_availability] && !DeliveryFailureTracker.available?(@domain)
+
     @account.nil? || ((!@options[:skip_webfinger] || @account.ostatus?) && @account.possibly_stale?)
   end
 

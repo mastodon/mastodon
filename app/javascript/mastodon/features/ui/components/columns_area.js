@@ -37,6 +37,7 @@ const componentMap = {
   'HOME': HomeTimeline,
   'NOTIFICATIONS': Notifications,
   'PUBLIC': PublicTimeline,
+  'REMOTE': PublicTimeline,
   'COMMUNITY': CommunityTimeline,
   'HASHTAG': HashtagTimeline,
   'DIRECT': DirectTimeline,
