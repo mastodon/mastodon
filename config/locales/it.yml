@@ -39,8 +39,11 @@ it:
       domain: Server
       reason: 'Motivo:'
       rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
+      rejecting_media_title: Media filtrati
       silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
+      silenced_title: Server silenziati
       suspended: 'Nessun dato da questi server sarà elaborato, memorizzato o scambiato, rendendo impossibile qualsiasi interazione o comunicazione con gli utenti di questi server:'
+      suspended_title: Server sospesi
     unavailable_content_html: Mastodon generalmente permette di visualizzare i contenuti e interagire con gli utenti di qualsiasi altro server nel fediverse. Queste sono le eccezioni che sono state create su questo specifico server.
     user_count_after:
       one: utente
@@ -1190,6 +1193,12 @@ it:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
+    sign_in_token:
+      details: 'Questi sono i dettagli del tentativo:'
+      explanation: 'Abbiamo rilevato un tentativo di accedere al tuo account da un indirizzo IP non riconosciuto. Se sei tu, inserisci il codice di sicurezza qui sotto nella pagina di controllo dell''accesso:'
+      further_actions: 'Se non sei stato tu, cambia la password e abilita l''autenticazione a due fattori sul tuo account. Puoi farlo qui:'
+      subject: Conferma il tentativo di accesso
+      title: Tentativo di accesso
     warning:
       explanation:
         disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
@@ -1227,8 +1236,10 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    generic_access_help_html: Problemi nell'accesso al tuo account? Puoi contattare %{email} per assistenza
     invalid_email: L'indirizzo email inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
+    invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi le impostazioni di email e password non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
