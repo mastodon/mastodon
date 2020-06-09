@@ -81,7 +81,9 @@ class ImportService < BaseService
       end
     end
 
-    Import::RelationshipWorker.push_bulk(items) do |acct, extra|
+    head_items = items.uniq { |acct, _| acct.split('@')[1] }
+    tail_items = items - head_items
+    Import::RelationshipWorker.push_bulk(head_items + tail_items) do |acct, extra|
       [@account.id, acct, action, extra]
     end
   end
