@@ -1271,6 +1271,12 @@ pt-PT:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
       subject: O teu arquivo está pronto para descarregar
       title: Arquivo de ficheiros
+    sign_in_token:
+      details: 'Aqui estão os detalhes da tentativa:'
+      explanation: 'Detectamos uma tentativa de entrar na sua conta a partir de um endereço IP não reconhecido. Se é você, por favor, insira o código de segurança abaixo na página de acesso:'
+      further_actions: 'Se não foi você, por favor altere sua senha e ative a autenticação de dois fatores na sua conta. Pode fazê-lo aqui:'
+      subject: Por favor, confirme a tentativa de acesso
+      title: Tentativa de acesso
     warning:
       explanation:
         disable: Enquanto a tua conta está congelada, os seus dados permanecem intactos, mas tu não podes executar quaisquer acções até que ela seja desbloqueada.
@@ -1308,8 +1314,10 @@ pt-PT:
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não podes seguir mais do que %{limit} pessoas
+    generic_access_help_html: Problemas para aceder à sua conta? Pode entrar em contacto com %{email} para obter ajuda
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
+    invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se tu perdeste acesso a ambos, tu podes entrar em contacto com %{email}
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
