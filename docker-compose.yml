@@ -30,9 +30,6 @@ services:
 #      - "cluster.name=es-mastodon"
 #      - "discovery.type=single-node"
 #      - "bootstrap.memory_lock=true"
-#    ports:
-#      - "127.0.0.1:9300:9300"
-#      - "127.0.0.1:9200:9200"
 #    networks:
 #      - internal_network
 #    healthcheck:
