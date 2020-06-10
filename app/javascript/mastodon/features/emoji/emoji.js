@@ -1,22 +1,19 @@
 import { autoPlayGif } from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import Trie from 'substring-trie';
-import GraphemeSplitter from 'grapheme-splitter';
 
 const trie = new Trie(Object.keys(unicodeMapping));
-const splitter = new GraphemeSplitter();
 
 const assetHost = process.env.CDN_HOST || '';
 
 // Convert to file names from emojis.
-const emojiFilenames = (emojis) => {
-  const graphemes = splitter.splitGraphemes(emojis);
-  return graphemes.map(v => unicodeMapping[v].filename);
+const emojiFilenames = (emojis) => {  
+  return emojis.map(v => unicodeMapping[v].filename);
 };
 
 // Emoji requiring extra borders depending on theme
-const darkEmoji = emojiFilenames('🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴');
-const lightEmoji = emojiFilenames('👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️');
+const darkEmoji = emojiFilenames(['🎱', '🐜', '⚫', '🖤', '⬛', '◼️', '◾', '◼️', '✒️', '▪️', '💣', '🎳', '📷', '📸', '♣️', '🕶️', '✴️', '🔌', '💂‍♀️', '📽️', '🍳', '🦍', '💂', '🔪', '🕳️', '🕹️', '🕋', '🖊️', '🖋️', '💂‍♂️', '🎤', '🎓', '🎥', '🎼', '♠️', '🎩', '🦃', '📼', '📹', '🎮', '🐃', '🏴']);
+const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '🕊️', '👀', '🍥', '👻', '🐐', '❕', '❔', '⛸️', '🌩️', '🔊', '🔇', '📃', '🌧️', '🐏', '🍚', '🍙', '🐓', '🐑', '💀', '☠️', '🌨️', '🔉', '🔈', '💬', '💭', '🏐', '🏳️', '⚪', '⬜', '◽', '◻️', '▫️']);
 
 const emojiFilename = (filename) => {
   const borderedEmoji = document.body.classList.contains('theme-mastodon-light') ? lightEmoji : darkEmoji;
