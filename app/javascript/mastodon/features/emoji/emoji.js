@@ -8,13 +8,19 @@ const splitter = new GraphemeSplitter();
 
 const assetHost = process.env.CDN_HOST || '';
 
-// Emoji requiring extra borders depending on theme
-const darkEmoji = splitter.splitGraphemes('🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴');
-const lightEmoji = splitter.splitGraphemes('👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️');
+// Convert to file names from emojis.
+const emojiFilenames = (emojis) => {
+  const graphemes = splitter.splitGraphemes(emojis);
+  return graphemes.map(v => unicodeMapping[v].filename);
+}
 
-const emojiFilename = (filename, match) => {
+// Emoji requiring extra borders depending on theme
+const darkEmoji = emojiFilenames('🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴');
+const lightEmoji = emojiFilenames('👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️');
+
+const emojiFilename = (filename) => {
   const borderedEmoji = document.body.classList.contains('theme-mastodon-light') ? lightEmoji : darkEmoji;
-  return borderedEmoji.includes(match) ? (filename + '_border') : filename;
+  return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
 const emojify = (str, customEmojis = {}) => {
@@ -71,7 +77,7 @@ const emojify = (str, customEmojis = {}) => {
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
-      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${emojiFilename(filename, match)}.svg" />`;
+      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${emojiFilename(filename)}.svg" />`;
       rend = i + match.length;
       // If the matched character was followed by VS15 (for selecting text presentation), skip it.
       if (str.codePointAt(rend) === 65038) {
