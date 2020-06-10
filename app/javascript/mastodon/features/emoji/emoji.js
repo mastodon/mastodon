@@ -1,7 +1,7 @@
 import { autoPlayGif } from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import Trie from 'substring-trie';
-import GraphemeSplitter from 'grapheme-splitter'
+import GraphemeSplitter from 'grapheme-splitter';
 
 const trie = new Trie(Object.keys(unicodeMapping));
 const splitter = new GraphemeSplitter();
