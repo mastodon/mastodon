@@ -16,7 +16,7 @@ const darkEmoji = emojiFilenames(['🎱', '🐜', '⚫', '🖤', '⬛', '◼️'
 const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '🕊️', '👀', '🍥', '👻', '🐐', '❕', '❔', '⛸️', '🌩️', '🔊', '🔇', '📃', '🌧️', '🐏', '🍚', '🍙', '🐓', '🐑', '💀', '☠️', '🌨️', '🔉', '🔈', '💬', '💭', '🏐', '🏳️', '⚪', '⬜', '◽', '◻️', '▫️']);
 
 const emojiFilename = (filename) => {
-  const borderedEmoji = document.body.classList.contains('theme-mastodon-light') ? lightEmoji : darkEmoji;
+  const borderedEmoji = (document.body && document.body.classList.contains('theme-mastodon-light')) ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
