@@ -1,14 +1,16 @@
 import { autoPlayGif } from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import Trie from 'substring-trie';
+import GraphemeSplitter from 'grapheme-splitter'
 
 const trie = new Trie(Object.keys(unicodeMapping));
+const splitter = new GraphemeSplitter();
 
 const assetHost = process.env.CDN_HOST || '';
 
 // Emoji requiring extra borders depending on theme
-const darkEmoji = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴';
-const lightEmoji = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️';
+const darkEmoji = splitter.splitGraphemes('🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴');
+const lightEmoji = splitter.splitGraphemes('👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️');
 
 const emojiFilename = (filename, match) => {
   const borderedEmoji = document.body.classList.contains('theme-mastodon-light') ? lightEmoji : darkEmoji;
