@@ -6,7 +6,7 @@ const trie = new Trie(Object.keys(unicodeMapping));
 
 const assetHost = process.env.CDN_HOST || '';
 
-// Convert to file names from emojis.
+// Convert to file names from emojis. (For different variation selector emojis)
 const emojiFilenames = (emojis) => {  
   return emojis.map(v => unicodeMapping[v].filename);
 };
