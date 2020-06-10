@@ -12,7 +12,7 @@ const assetHost = process.env.CDN_HOST || '';
 const emojiFilenames = (emojis) => {
   const graphemes = splitter.splitGraphemes(emojis);
   return graphemes.map(v => unicodeMapping[v].filename);
-}
+};
 
 // Emoji requiring extra borders depending on theme
 const darkEmoji = emojiFilenames('🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴');
