@@ -78,5 +78,15 @@ describe('emoji', () => {
       expect(emojify('✴︎')) // This is U+2734 EIGHT POINTED BLACK STAR then U+FE0E VARIATION SELECTOR-15
         .toEqual('<img draggable="false" class="emojione" alt="✴" title=":eight_pointed_black_star:" src="/emoji/2734_border.svg" />');
     });
+
+    it('does an simple emoji properly', () => {
+      expect(emojify('♀♂'))
+        .toEqual('<img draggable="false" class="emojione" alt="♀" title=":female_sign:" src="/emoji/2640.svg" /><img draggable="false" class="emojione" alt="♂" title=":male_sign:" src="/emoji/2642.svg" />');
+    });
+
+    it('does an emoji containing ZWJ properly', () => {
+      expect(emojify('💂‍♀️💂‍♂️'))
+        .toEqual('<img draggable="false" class="emojione" alt="💂\u200D♀️" title=":female-guard:" src="/emoji/1f482-200d-2640-fe0f_border.svg" /><img draggable="false" class="emojione" alt="💂\u200D♂️" title=":male-guard:" src="/emoji/1f482-200d-2642-fe0f_border.svg" />');
+    });
   });
 });
