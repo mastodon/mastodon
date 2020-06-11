@@ -1276,6 +1276,10 @@ ca:
       title: Recollida del arxiu
     sign_in_token:
       details: 'Aquí es mostren els detalls del intent:'
+      explanation: 'Hem detectat un intent d’inici de sessió al teu compte des d’una IP desconeguda. Si ets tu, si us plau introdueix el codi de seguretat a sota, en la pàgina de desafiament d’inici de sessió:'
+      further_actions: 'Si no has estat tu, si us plau canvia la contrasenya i activa l’autentificació de dos factors del teu compte. Pots fer-ho aquí:'
+      subject: Si us plau confirma l’intent d’inici de sessió
+      title: Intent d’inici de sessió
     warning:
       explanation:
         disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
@@ -1313,8 +1317,10 @@ ca:
       title: Benvingut a bord, %{name}!
   users:
     follow_limit_reached: No pots seguir més de %{limit} persones
+    generic_access_help_html: Problemes accedint al teu compte? Pots contactar amb %{email} per a demanar assistència
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
+    invalid_sign_in_token: Codi de seguretat invàlid
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
