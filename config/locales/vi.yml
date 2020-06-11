@@ -1175,6 +1175,12 @@ vi:
       explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
       title: Nhận dữ liệu cá nhân
+    sign_in_token:
+      details: 'Chi tiết cụ thể:'
+      explanation: 'Tài khoản của bạn vừa đăng nhập từ một địa chỉ IP lạ. Nếu thật là bạn, hãy nhập mã an toàn bên dưới vào trang đăng nhập:'
+      further_actions: 'Nếu không phải là bạn, hãy lập tức thay đổi mật khẩu và kích hoạt xác thực hai bước ở đây:'
+      subject: Xác nhận đăng nhập
+      title: Đăng nhập
     warning:
       explanation:
         disable: Nếu tài khoản của bạn bị đình chỉ, dữ liệu tài khoản của bạn vẫn còn nguyên, nhưng bạn không thể thực hiện bất kỳ hành động nào cho đến khi được mở khóa.
@@ -1212,8 +1218,10 @@ vi:
       title: Chào mừng bạn, %{name}!
   users:
     follow_limit_reached: Bạn chỉ có thể mến mộ tối đa %{limit} người
+    generic_access_help_html: Gặp trục trặc với tài khoản? Liên hệ %{email} để được trợ giúp
     invalid_email: Địa chỉ email không hợp lệ
     invalid_otp_token: Mã xác thực hai bước không hợp lệ
+    invalid_sign_in_token: Mã an toàn không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập với tư cách là:'
