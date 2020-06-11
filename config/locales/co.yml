@@ -39,8 +39,11 @@ co:
       domain: Servore
       reason: 'Ragione:'
       rejecting_media: 'I fugliali media da stu servore ùn saranu micca arregistrati è e vignette ùn saranu micca affissate, duverete cliccà manualmente per accede à l''altru servore è vedeli.'
+      rejecting_media_title: Media filtrati
       silenced: 'I statuti da stu servore ùn saranu mai visti tranne nant''a vostra pagina d''accolta s''e voi siguitate l''autore.'
+      silenced_title: Servori silenzati
       suspended: 'Ùn puderete micca siguità qualsiasi nant''à stu servore, i dati versu o da quallà ùn saranu mai accessi, scambiati o arregistrati.'
+      suspended_title: Servori suspesi
     unavailable_content_html: Mastodon vi parmette in generale di vede u cuntinutu è interagisce cù l'utilizatori di tutti l'altri servori di u fediversu. Quessi sò l'eccezzione fatte nant'à stu servore in particulare.
     user_count_after:
       one: utilizatore
@@ -1265,12 +1268,17 @@ co:
     recovery_codes_regenerated: Codici di ricuperazione ricreati
     recovery_instructions_html: Pudete fà usu di i codici quì sottu per sempre avè accessu à u vostru contu s’ellu hè statu persu u vostru telefuninu. <strong>Guardateli in una piazza sicura</strong>. Per esempiu, stampati è cunservati cù altri ducumenti impurtanti.
     setup: Attivà
-    wrong_code: U codice ùn hè micca currettu! Site sicuru che l’ora di u telefuninu è di u servore sò esatte?
+    wrong_code: U codice ùn hè micca currettu! Site sicuru·a chì l’ora di l'apparechju è di u servore sò esatte?
   user_mailer:
     backup_ready:
       explanation: Avete dumandatu un’archiviu cumpletu di u vostru contu Mastodon. Avà hè prontu per scaricà!
       subject: U vostru archiviu hè prontu à scaricà
       title: Archiviu prontu
+    sign_in_token:
+      details: 'Ditagli di u tentativu quì sottu:'
+      further_actions: 'S''ellu ùn era micca voi, duvete cambià a vostra chjave d''accessu è attivà l''identificazione à dui fattori nant''à u vostru contu. Pudete fà quessi quì:'
+      subject: Cunfirmate u tentativu di cunnessione
+      title: Tentativu di cunnessione
     warning:
       explanation:
         disable: Quandu u vostru contu hè ghjacciatu, i vostri dati stannu intatti, mà ùn pudete fà nunda fin'à ch'ellu sia sbluccatu.
@@ -1308,8 +1316,10 @@ co:
       title: Benvenutu·a, %{name}!
   users:
     follow_limit_reached: Ùn pidete seguità più di %{limit} conti
+    generic_access_help_html: Prublemi d'accessu à u vostru contu? Pudete cuntattà %{email} per ottene aiutu
     invalid_email: L’indirizzu e-mail ùn hè currettu
     invalid_otp_token: U codice d’identificazione ùn hè currettu
+    invalid_sign_in_token: Codice di sicurità micca validu
     otp_lost_help_html: S’è voi avete persu i dui, pudete cuntattà %{email}
     seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'
