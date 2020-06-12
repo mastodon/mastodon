@@ -1,0 +1,69 @@
+{{- if .Values.elasticsearch.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "mastodon.fullname" . }}-chewy-upgrade
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    "helm.sh/hook-weight": "-1"
+spec:
+  template:
+    metadata:
+      name: {{ include "mastodon.fullname" . }}-chewy-upgrade
+    spec:
+      restartPolicy: Never
+      # ensure we run on the same node as the other rails components; only
+      # required when using PVCs that are ReadWriteOnce
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: component
+                  operator: In
+                  values:
+                    - rails
+            topologyKey: kubernetes.io/hostname
+      volumes:
+        - name: assets
+          persistentVolumeClaim:
+            claimName: {{ template "mastodon.fullname" . }}-assets
+        - name: system
+          persistentVolumeClaim:
+            claimName: {{ template "mastodon.fullname" . }}-system
+      containers:
+        - name: {{ include "mastodon.fullname" . }}-chewy-setup
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - bundle
+            - exec
+            - rake
+            - chewy:upgrade
+          envFrom:
+            - configMapRef:
+                name: {{ include "mastodon.fullname" . }}-env
+            - secretRef:
+                name: {{ template "mastodon.fullname" . }}
+          env:
+            - name: "DB_PASS"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-postgresql
+                  key: postgresql-password
+            - name: "REDIS_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-redis
+                  key: redis-password
+            - name: "PORT"
+              value: {{ .Values.application.port | quote }}
+          volumeMounts:
+            - name: assets
+              mountPath: /opt/mastodon/public/assets
+            - name: system
+              mountPath: /opt/mastodon/public/system
+{{- end }}
