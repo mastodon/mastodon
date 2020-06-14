@@ -34,6 +34,10 @@ zh-HK:
     unavailable_content_description:
       domain: 伺服器
       reason: 原因
+      rejecting_media: '不會處理或儲存這些伺服器的媒體檔案，也不會顯示縮圖，需要手動點選原始檔：'
+      rejecting_media_title: 過濾的媒體
+      silenced_title: 靜音的伺服器
+      suspended_title: 暫停的伺服器
     user_count_after:
       other: 位使用者
     user_count_before: 這裏共註冊有
@@ -129,6 +133,7 @@ zh-HK:
       moderation_notes: 管理記錄
       most_recent_activity: 最新活動
       most_recent_ip: 最新 IP 位域
+      no_account_selected: 未選取任何帳號，因此未變更
       no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
       pending: 等待審核中
@@ -178,6 +183,15 @@ zh-HK:
       web: 用戶頁面
       whitelisted: 已加入白名單
     action_logs:
+      action_types:
+        assigned_to_self_report: 指派回報
+        change_email_user: 變更使用者的電子信箱位址
+        confirm_user: 確認使用者
+        create_account_warning: 建立警告
+        create_announcement: 建立公告
+        create_custom_emoji: 建立自訂顏文字
+        create_domain_allow: 建立允許網域
+        create_domain_block: 建立阻擋網域
       actions:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
         change_email_user: "%{name} 改變了用戶 %{target} 的電郵地址"
