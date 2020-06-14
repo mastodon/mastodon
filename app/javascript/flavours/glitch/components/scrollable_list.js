@@ -32,6 +32,7 @@ export default class ScrollableList extends PureComponent {
     hasMore: PropTypes.bool,
     numPending: PropTypes.number,
     prepend: PropTypes.node,
+    append: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
@@ -272,7 +273,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
@@ -319,6 +320,8 @@ export default class ScrollableList extends PureComponent {
             ))}
 
             {loadMore}
+
+            {!hasMore && append}
           </div>
         </div>
       );

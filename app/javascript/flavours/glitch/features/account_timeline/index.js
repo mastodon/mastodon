@@ -15,17 +15,28 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
+import TimelineHint from 'flavours/glitch/components/timeline_hint';
 
 const mapStateToProps = (state, { params: { accountId }, withReplies = false }) => {
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
   return {
+    remote: !!state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username']),
+    remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], ImmutableList()),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore:   state.getIn(['timelines', `account:${path}`, 'hasMore']),
   };
+};
+
+const RemoteHint = ({ url }) => (
+  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.statuses' defaultMessage='Older toots' />} />
+);
+
+RemoteHint.propTypes = {
+  url: PropTypes.string.isRequired,
 };
 
 export default @connect(mapStateToProps)
@@ -40,6 +51,8 @@ class AccountTimeline extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
     isAccount: PropTypes.bool,
+    remote: PropTypes.bool,
+    remoteUrl: PropTypes.string,
     multiColumn: PropTypes.bool,
   };
 
@@ -78,7 +91,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, featuredStatusIds, isLoading, hasMore, isAccount, multiColumn } = this.props;
+    const { statusIds, featuredStatusIds, isLoading, hasMore, isAccount, multiColumn, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -97,6 +110,16 @@ class AccountTimeline extends ImmutablePureComponent {
       );
     }
 
+    let emptyMessage;
+
+    if (remote && statusIds.isEmpty()) {
+      emptyMessage = <RemoteHint url={remoteUrl} />;
+    } else {
+      emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />;
+    }
+
+    const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
+
     return (
       <Column ref={this.setRef} name='account'>
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
@@ -104,13 +127,14 @@ class AccountTimeline extends ImmutablePureComponent {
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
           alwaysPrepend
+          append={remoteMessage}
           scrollKey='account_timeline'
           statusIds={statusIds}
           featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />}
+          emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           timelineId='account'
         />

@@ -1093,6 +1093,31 @@
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 }
 
+.timeline-hint {
+  text-align: center;
+  color: $darker-text-color;
+  padding: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: default;
+
+  strong {
+    font-weight: 500;
+  }
+
+  a {
+    color: lighten($ui-highlight-color, 8%);
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+      color: lighten($ui-highlight-color, 12%);
+    }
+  }
+}
+
 .missing-indicator {
   padding-top: 20px + 48px;
 
