@@ -111,7 +111,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         created_at: @object['published'],
         override_timestamps: @options[:override_timestamps],
         reply: @object['inReplyTo'].present?,
-        sensitive: @object['sensitive'] || false,
+        sensitive: @account.sensitized? || @object['sensitive'] || false,
         visibility: visibility_from_audience,
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),

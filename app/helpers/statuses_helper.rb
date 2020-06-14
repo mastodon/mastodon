@@ -117,6 +117,14 @@ module StatusesHelper
     end
   end
 
+  def sensitized?(status, account)
+    if !account.nil? && account.id == status.account_id
+      status.sensitive
+    else
+      status.account.sensitized? || status.sensitive
+    end
+  end
+
   private
 
   def simplified_text(text)
