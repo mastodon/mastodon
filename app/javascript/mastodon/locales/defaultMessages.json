@@ -510,6 +510,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{resource} from other servers are not displayed.",
+        "id": "timeline_hint.remote_resource_not_displayed"
+      },
+      {
+        "defaultMessage": "Browse more on the original profile",
+        "id": "account.browse_more_on_origin_server"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/timeline_hint.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "confirmations.unfollow.confirm"
       },
@@ -619,6 +632,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Older toots",
+        "id": "timeline_hint.resources.statuses"
+      },
       {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
@@ -1543,6 +1560,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Followers",
+        "id": "timeline_hint.resources.followers"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       },
@@ -1555,6 +1576,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Follows",
+        "id": "timeline_hint.resources.follows"
+      },
       {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
@@ -1919,6 +1944,10 @@
       {
         "defaultMessage": "to start a brand new toot",
         "id": "keyboard_shortcuts.toot"
+      },
+      {
+        "defaultMessage": "to show/hide CW field",
+        "id": "keyboard_shortcuts.spoilers"
       },
       {
         "defaultMessage": "to navigate back",
@@ -2426,6 +2455,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Sensitive content",
+        "id": "status.sensitive_warning"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/components/card.json"
   },
   {
     "descriptors": [
