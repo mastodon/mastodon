@@ -1163,6 +1163,90 @@ it:
   tags:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms:
+    body_html: |
+      <h2>Politica della Privacy</h2>
+      <h3 id="collect">Che informazioni raccogliamo?</h3>
+
+      <ul>
+      <li><em>Informazioni di base del profilo</em>: Se ti registri su questo server, ti potrebbe venir chiesto di inserire un nome utente, un indirizzo e-mail ed una password. Potresti anche inserire informazioni aggiuntive del profilo come un nome a schermo ed una biografia e caricare una foto profilo ed un'immagine di intestazione. Il nome utente, il nome a schermo, la biografia, la foto profilo e l'immagine di intestazione, sono sempre elencati pubblicamente.</li>
+      <li><em>I post, i seguiti ed altre informazioni pubbliche</em>: L'elenco di persone che segui viene elencata pubblicamente, la stessa cosa è vera per i tuoi seguaci. Quando invii un messaggio, la data e l'orario sono memorizzati così come l'applicazione da cui hai inviato il messaggio.
+      I messaggi potrebbero contenere allegati media, come immagini e video. I post pubblici e non elencati sono disponibili pubblicamente. Quando mostri un post sul tuo profilo, anche questo diventa disponibile pubblicamente. I tuoi post sono consegnati ai tuoi seguaci, in alcuni casi significa che sono consegnati a server differenti e che lì sono memorizzate delle copie. Quando elimini i post, anche questo viene notificato ai tuoi seguaci. L'azione di ripubblicare o preferire un altro post è sempre pubblica.</li>
+      <li><em>Post diretti e solo per i seguaci</em>: Tutti i post sono archiviati ed elaborati sul server. I post solo per seguaci sono consegnati ai tuoi seguaci ed agli utenti che vi hai menzionato, ed i post diretti sono consegnati solo agli utenti in essi menzionati. In alcuni casi significa che sono consegnati a server differenti e che lì sono memorizzate delle copie. Compiamo uno sforzo in buona fede per limitare l'accesso a questi post solo a persone autorizzate, ma gli altri server potrebbero non riuscire a fare ciò. Dunque, è importante rivedere i server a cui appartengono i tuoi seguaci. Potresti attivare/disattivare un'opzione per approvare e rifiutare i nuovi seguaci manualmente nelle impostazioni.
+      <em>Sei pregato di tenere a mente che gli operatori del server e di ogni server ricevente potrebbero visualizzare tali messaggi</em> e che i riceventi potrebbero fotografarli, copiarlo o altrimenti ricondividerli. <em>Non condividere alcuna informazione pericolosa su Mastodon.</em></li>
+      <li><em>IP ed altri metadati</em>: Quando accedi, registriamo l'indirizzo IP da cui accedi, così come il nome della tua applicazione browser. Tutte le sessioni accedute sono disponibili per la tua revisione e revoca nelle impostazioni. L'ultimo indirizzo IP usato è memorizzato anche fino a 12 mesi. Potremmo anche trattenere i registri del server che includono l'indirizzo IP di ogni richiesta al nostro server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Per cosa usiamo le tue informazioni</h3>
+
+      <p>Ogni informazioni che raccogliamo da te potrebbe essere usata nei modi seguenti:</p>
+
+      <ul>
+      <li>Per fornire la funzionalità principale di Mastodon. Puoi interagire solo con il contenuto di altre persone ed postare i tuoi contenuti quando sei acceduto. Per esempio, potresti seguire altre persone per vedere i loro post combinati nella timeline principale personalizzata e tua.</li>
+      <li>Per aiutare a moderare la comunità, per esempio comparando il tuo indirizzo IP con altri noti per determinare evasioni dei ban o altre violazioni.</li>
+      <li>L'indirizzo email che fornisci potrebbe essere usato per inviarti informazioni, notifiche sull'interazione di altre persone con i tuoi contenuti o inviarti messaggi e per rispondere a interrogativi e/o altre richieste o domande.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Come proteggiamo le tue informazioni</h3>
+
+      <p>Implementiamo una varietà di misure di sicurezza per mantenere la sicurezza delle tue informazioni personali quando inserisci, invii o accedi alle tue informazioni personali. Tra le altre cose, la tua sessione del browser, così come il tuo traffico tra le tue applicazioni e le API, sono assicurate con SSL e la tua password è in hash usando un forte algoritmo a singolo metodo. Puoi abilitare l'autenticazione a due fattori per assicurare ulteriormente il tuo profilo.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Qual è la nostra politica di ritenzione dei dati?</h3>
+
+      <p>Faremo un grande sforzo in buona fede per:</p>
+
+      <ul>
+      <li>Tratteniamo i registri del server contenenti l'indirizzo IP di tutte le richieste in questo server, in cui i registri sono mantenuti, per non più di 90 giorni.</li>
+      <li>Tratteniamo gli indirizzi IP associati con utenti registrati da non oltre 12 mesi.</li>
+      </ul>
+
+      <p>Puoi richiedere e scaricare un archivio del tuo contenuto, inclusi i tuoi post, allegati media, foto profilo ed immagine di intestazione.</p>
+
+      <p>Puoi eliminare irreversibilmente il tuo profilo in ogni momento.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Usiamo i cookie</h3>
+
+      <p>Sì. I cookie sono piccoli file che un sito o il suo fornitore dei servizi trasferisce all'hard drive del tuo computer tramite il tuo browser web (se acconsenti). Questi cookie abilitano il sito a riconoscere il tuo browser e, se hai un profilo registrato, lo associano con il tuo profilo registrato.</p>
+
+      <p>Usiamo i cookie per comprendere e salvare le vostre preferenze per visite future.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Diffondiamo alcuna informazione a terze parti?</h3>
+
+      <p>Non vendiamo, non scambiamo o trasferiamo altrimenti a terze parti le tue informazioni personalmente identificabili. Questo non include terze parti fidate che ci assistono nell'operare il nostro sito, nel condurre il nostro business o nel servirti, finché queste parti acconsentono a mantenere queste informazioni confidenziali. potremmo anche rilasciare le tue informazioni quando crediamo che il rilascio sia appropriato e soddisfi la legge, si applichi alle nostre politiche del sito o protegga noi o i diritti, la proprietà o la sicurezza di altri.</p>
+
+      <p>Il tuo contenuto pubblico potrebbe essere scaricato da altri server nella rete. I tuoi post pubblici e per soli seguaci sono consegnati ai server dove risiedono i seguaci ed i messaggi diretti sono consegnati ai server dei destinatari, finché questi seguaci o destinatari risiedono su un server differente da questo.</p>
+
+      <p>Quando autorizzi un'applicazione ad usare il tuo profilo, in base allo scopo dei permessi che approvi, potrebbe accedere alle tue informazioni del profilo pubbliche, l'elenco di chi segui, i tuoi seguaci, i tuoi elenchi, tutti i tuoi post ed i tuoi preferiti. Le applicazioni non possono mai accedere al tuo indirizzo e-mail o alla tua password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Uso del sito da bambini</h3>
+
+      <p>Se questo server è in UE o nell'EEA: Il nostro sito, i prodotti ed i servizi sono tutti diretti a persone che abbiano almeno 16 anni. Se hai meno di 16 anni, per i requisiti del GDPR
+      (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) non usare questo sito.</p>
+
+      <p>Se questo server è negli USA: Il nostro sito, i prodotti ed i servizi sono tutti diretti a persone che abbiano almeno 13 anni. Se hai meno di 13 anni, per i requisiti del COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) non usare questo sito.</p>
+
+      <p>I requisiti di legge possono essere diversi se questo server è in un'altra giurisdizione.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Modifiche alla nostra Politica della Privacy</h3>
+
+      <p>Se decidiamo di modificare la nostra politica della privacy, posteremo queste modifiche su questa pagina.</p>
+
+      <p>Questo documento è CC-BY-SA. L'ultimo aggiornamento è del 7 Marzo, 2018.</p>
+
+      <p>Adattato originalmente dal <a href="https://github.com/discourse/discourse">Discorso Politica della Privacy</a>.</p>
     title: "%{instance} Termini di servizio e politica della privacy"
   themes:
     contrast: Mastodon (contrasto elevato)
