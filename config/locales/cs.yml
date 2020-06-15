@@ -41,8 +41,11 @@ cs:
       domain: Server
       reason: Důvod
       rejecting_media: 'Mediální soubory z tohoto serveru nebudou zpracovány a nebudou zobrazeny žádné náhledy. Pro prohlédnutí médií bude třeba manuálně přejít na druhý server:'
+      rejecting_media_title: Filtrovaná média
       silenced: 'Příspěvky z těchto serverů nebudou zobrazeny ve veřejných časových osách a konverzacích a nebudou generována oznámení o interakcích uživatelů z toho serveru, pokud je nesledujete:'
+      silenced_title: Ztišené servery
       suspended: 'Žádná data z těchto serverů nebudou zpracována, ukládána ani vyměňována, čímž bude znemožněna jakákoliv interakce či komunikace s uživateli z těchto serverů:'
+      suspended_title: Pozastavené servery
     unavailable_content_html: Mastodon vám obvykle dovoluje prohlížet si obsah a komunikovat s uživateli z jakéhokoliv dalšího serveru ve fedivesmíru. Tohle jsou výjimky, které byly zavedeny na tomto konkrétním serveru.
     user_count_after:
       one: uživatel
@@ -225,10 +228,15 @@ cs:
         enable_custom_emoji: Povolit vlastní emoji
         enable_user: Povolit uživatele
         promote_user: Povýšit uživatele
+        remove_avatar_user: Odstranit avatar
         reopen_report: Znovu otevřít hlášení
         reset_password_user: Obnovit heslo
         resolve_report: Označit hlášení jako vyřešené
+        silence_account: Ztišit účet
+        suspend_account: Pozastavit účet
         unassigned_report: Zrušit přiřazení hlášení
+        unsilence_account: Zrušit ztišení účtu
+        unsuspend_account: Zrušit pozastavení účtu
         update_announcement: Aktualizovat oznámení
         update_custom_emoji: Aktualizovat vlastní emoji
         update_status: Aktualizovat stav
@@ -269,6 +277,7 @@ cs:
         update_custom_emoji: "Uživatel %{name} aktualizoval emoji %{target}"
         update_status: "Uživatel %{name} aktualizoval toot uživatele %{target}"
       deleted_status: "(smazaný toot)"
+      empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
       title: Auditovací protokol
@@ -309,6 +318,7 @@ cs:
       listed: Uvedeno
       new:
         title: Přidat nové vlastní emoji
+      not_permitted: K provedené této akce nemáte dostatečná oprávnění
       overwrite: Přepsat
       shortcode: Zkratka
       shortcode_hint: Alespoň 2 znaky, pouze alfanumerické znaky a podtržítka
@@ -642,6 +652,7 @@ cs:
     add_new: Vytvořit alias
     created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
     deleted_msg: Alias byl úspěšně odstraněn. Přesun z jiného účtu na tento již nebude možný.
+    empty: Nemáte žádné aliasy.
     hint_html: Chcete-li se přesunout z jiného účtu na tento, můžete si zde vytvořit alias, který je vyžadován předtím, než můžete pokračovat přesunem sledujících ze starého účtu na tento. Tato akce sama o sobě je <strong>neškodná a vratná</strong>. <strong>Přesun účtu se zahajuje ze starého účtu</strong>.
     remove: Odpojit alias
   appearance:
@@ -727,6 +738,10 @@ cs:
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
     invalid_password: Neplatné heslo
     prompt: Pokračujte potvrzením hesla
+  crypto:
+    errors:
+      invalid_key: není platný klíč Ed25519 nebo Curve25519
+      invalid_signature: není platný podpis typu Ed25519
   date:
     formats:
       default: "%-d. %b %Y"
