@@ -61,7 +61,7 @@ gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 4.4'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
-gem 'httplog', '~> 1.4.2'
+gem 'httplog', '~> 1.4.3'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
