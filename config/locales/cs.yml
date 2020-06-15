@@ -920,6 +920,7 @@ cs:
   media_attachments:
     validations:
       images_and_video: K tootu, který již obsahuje obrázky, nelze připojit video
+      not_ready: Nelze připojit soubory před jejich zpracováním. Zkuste to znovu za chvíli.
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: Přesunuto na
@@ -940,6 +941,7 @@ cs:
     on_cooldown: Nedávno jste svůj účet přesunuli. Tato funkce bude opět dostupná za %{count} dní.
     past_migrations: Předchozí přesuny
     proceed_with_move: Přesunout sledující
+    redirected_msg: Váš účet nyní přesměruje na %{acct}.
     redirecting_to: Váš účet se přesměrovává na účet %{acct}.
     set_redirect: Nastavit přesměrování
     warning:
@@ -1035,6 +1037,7 @@ cs:
     dormant: Nečinné
     followers: Sledující
     following: Sledovaní
+    invited: Pozvánka odeslána
     last_active: Naposledy aktivní
     most_recent: Nejnovější
     moved: Přesunuté
@@ -1301,6 +1304,12 @@ cs:
       explanation: Vyžádali jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
       subject: Váš archiv je připraven ke stažení
       title: Stažení archivu
+    sign_in_token:
+      details: 'Zde jsou podrobnosti pokusu:'
+      explanation: 'Zjistili jsme, že se někdo pokusil k vašemu přihlásit z neznámé IP adresy. Pokud jste to vy, zadejte níže uvedený kód na přihlašovací stránce s výzvou:'
+      further_actions: 'Pokud jste to nebyli vy, změňte prosím své heslo a zapněte si dvoufázově ověřování svého účtu. Můžete tak učinit hned tady:'
+      subject: Potvrďte prosím pokus o přihlášení
+      title: Pokus o přihlášení
     warning:
       explanation:
         disable: Zatímco je váš účet zmrazen, zůstávají data vašeho účtu nedotčena. Dokud ale nebude odemčen, nemůžete vykonávat žádné akce.
@@ -1338,11 +1347,14 @@ cs:
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
+    generic_access_help_html: Máte potíže s přístupem ke svému účtu? Napište nám o pomoc na %{email}.
     invalid_email: E-mailová adresa je neplatná
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
+    invalid_sign_in_token: Neplatný bezpečnostní kód
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
+    suspicious_sign_in_confirmation: Zdá se, že se z tohoto zařízení přihlašujete poprvé a po dlouhé době. Pro ověření tohoto přihlášení jsme vám e-mailem zaslali bezpečnostní kód.
   verification:
     explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
