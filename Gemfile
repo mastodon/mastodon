@@ -9,7 +9,7 @@ gem 'puma', '~> 4.3'
 gem 'rails', '~> 5.2.4.3'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
-gem 'rack', '~> 2.2.2'
+gem 'rack', '~> 2.2.3'
 
 gem 'thwait', '~> 0.1.0'
 gem 'e2mmap', '~> 0.1.0'
@@ -20,7 +20,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.5'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.67', require: false
+gem 'aws-sdk-s3', '~> 1.68', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -61,7 +61,7 @@ gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 4.4'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
-gem 'httplog', '~> 1.4.2'
+gem 'httplog', '~> 1.4.3'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
@@ -80,7 +80,7 @@ gem 'rack-attack', '~> 6.3'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
@@ -128,7 +128,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.18', require: false
   gem 'webmock', '~> 3.8'
-  gem 'parallel_tests', '~> 2.32'
+  gem 'parallel_tests', '~> 3.0'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -142,9 +142,9 @@ group :development do
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
   gem 'rubocop', '~> 0.85', require: false
-  gem 'rubocop-rails', '~> 2.5', require: false
+  gem 'rubocop-rails', '~> 2.6', require: false
   gem 'brakeman', '~> 4.8', require: false
-  gem 'bundler-audit', '~> 0.6', require: false
+  gem 'bundler-audit', '~> 0.7', require: false
 
   gem 'capistrano', '~> 3.14'
   gem 'capistrano-rails', '~> 1.5'
