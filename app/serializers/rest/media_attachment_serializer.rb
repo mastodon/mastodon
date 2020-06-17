@@ -5,7 +5,10 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
 
   attributes :id, :type, :url, :preview_url,
              :remote_url, :text_url, :meta,
-             :description, :blurhash
+             :description
+
+  attribute :blurhash, if: -> { !object.audio? }
+  attribute :waveform, if: -> { object.audio? }
 
   def id
     object.id.to_s
@@ -39,5 +42,9 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
 
   def meta
     object.file.meta
+  end
+
+  def waveform
+    Oj.load(object.waveform)
   end
 end

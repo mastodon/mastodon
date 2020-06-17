@@ -21,6 +21,7 @@
 #  blurhash                    :string
 #  processing                  :integer
 #  file_storage_schema_version :integer
+#  waveform                    :text
 #
 
 class MediaAttachment < ApplicationRecord
@@ -254,7 +255,7 @@ class MediaAttachment < ApplicationRecord
       elsif VIDEO_MIME_TYPES.include?(f.file_content_type)
         [:video_transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(f.file_content_type)
-        [:transcoder, :type_corrector]
+        [:transcoder, :waveform_transcoder, :type_corrector]
       else
         [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       end

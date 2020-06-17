@@ -22,7 +22,10 @@ class Audio extends React.PureComponent {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
     duration: PropTypes.number,
-    peaks: PropTypes.arrayOf(PropTypes.number),
+    data: PropTypes.shape({
+      bits: PropTypes.number,
+      data: PropTypes.arrayOf(PropTypes.number),
+    }),
     height: PropTypes.number,
     preload: PropTypes.bool,
     editable: PropTypes.bool,
@@ -80,14 +83,13 @@ class Audio extends React.PureComponent {
   }
 
   _updateWaveform () {
-    const { src, height, duration, peaks, preload } = this.props;
+    const { src, height, duration, data, preload } = this.props;
 
     const progressColor = window.getComputedStyle(document.querySelector('.audio-player__progress-placeholder')).getPropertyValue('background-color');
     const waveColor     = window.getComputedStyle(document.querySelector('.audio-player__wave-placeholder')).getPropertyValue('background-color');
 
     if (this.wavesurfer) {
       this.wavesurfer.destroy();
-      this.loaded = false;
     }
 
     const wavesurfer = WaveSurfer.create({
@@ -102,14 +104,9 @@ class Audio extends React.PureComponent {
     });
 
     wavesurfer.setVolume(this.state.volume);
+    wavesurfer.load(src, data.get('data').toArray(), 'none', duration);
 
-    if (preload) {
-      wavesurfer.load(src);
-      this.loaded = true;
-    } else {
-      wavesurfer.load(src, peaks, 'none', duration);
-      this.loaded = false;
-    }
+    this.loaded = preload;
 
     wavesurfer.on('ready', () => this.setState({ duration: Math.floor(wavesurfer.getDuration()) }));
     wavesurfer.on('audioprocess', () => this.setState({ currentTime: Math.floor(wavesurfer.getCurrentTime()) }));
@@ -124,9 +121,6 @@ class Audio extends React.PureComponent {
   togglePlay = () => {
     if (this.state.paused) {
       if (!this.props.preload && !this.loaded) {
-        this.wavesurfer.createBackend();
-        this.wavesurfer.createPeakCache();
-        this.wavesurfer.load(this.props.src);
         this.wavesurfer.toggleInteraction();
         this.wavesurfer.setVolume(this.state.volume);
         this.loaded = true;

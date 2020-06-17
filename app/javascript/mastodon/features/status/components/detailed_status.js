@@ -118,7 +118,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             alt={attachment.get('description')}
             duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
             height={110}
-            preload
+            data={attachment.get('waveform')}
           />
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {

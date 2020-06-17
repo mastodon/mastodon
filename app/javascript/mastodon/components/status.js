@@ -346,7 +346,7 @@ class Status extends ImmutablePureComponent {
                 src={attachment.get('url')}
                 alt={attachment.get('description')}
                 duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
-                peaks={[0]}
+                data={attachment.get('waveform')}
                 height={70}
               />
             )}
