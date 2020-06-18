@@ -128,6 +128,7 @@ class Audio extends React.PureComponent {
         this.wavesurfer.createPeakCache();
         this.wavesurfer.load(this.props.src);
         this.wavesurfer.toggleInteraction();
+        this.wavesurfer.setVolume(this.state.volume);
         this.loaded = true;
       }
 
