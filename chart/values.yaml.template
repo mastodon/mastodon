@@ -16,6 +16,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
     # cert-manager.io/cluster-issuer: "letsencrypt"
+  # this value is used for LOCAL_DOMAIN
   hostname: mastodon.local
   tls:
     - secretName: mastodon-tls
