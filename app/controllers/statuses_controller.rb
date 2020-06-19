@@ -19,7 +19,7 @@ class StatusesController < ApplicationController
   before_action :set_autoplay, only: :embed
 
   skip_around_action :set_locale, if: -> { request.format == :json }
-  skip_before_action :require_functional!, only: [:show, :embed]
+  skip_before_action :require_functional!, only: [:show, :embed], unless: :whitelist_mode?
 
   content_security_policy only: :embed do |p|
     p.frame_ancestors(false)

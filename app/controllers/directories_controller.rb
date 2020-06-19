@@ -9,7 +9,7 @@ class DirectoriesController < ApplicationController
   before_action :set_tag, only: :show
   before_action :set_accounts
 
-  skip_before_action :require_functional!
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def index
     render :index
