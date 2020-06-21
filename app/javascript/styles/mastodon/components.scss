@@ -5296,6 +5296,7 @@ a.status-card.compact:hover {
 }
 
 .audio-player {
+  overflow: hidden;
   box-sizing: border-box;
   position: relative;
   background: darken($ui-base-color, 8%);
@@ -5308,37 +5309,50 @@ a.status-card.compact:hover {
     height: 100%;
   }
 
-  &__waveform {
-    padding: 15px 0;
-    position: relative;
-    overflow: hidden;
+  &.with-light-background {
+    .video-player__seek::before {
+      color: rgba($black, 0.35);
+    }
 
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      border-top: 1px solid lighten($ui-base-color, 4%);
-      width: 100%;
-      height: 0;
-      left: 0;
-      top: calc(50% + 1px);
+    .video-player__seek__seek {
+      color: rgba($black, 0.2);
+    }
+
+    .video-player__buttons button {
+      color: rgba($black, 0.75);
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $black;
+      }
+    }
+
+    .video-player__time-sep,
+    .video-player__time-total,
+    .video-player__time-current {
+      color: $black;
+    }
+
+    .video-player__volume::before {
+      background: rgba($black, 0.35);
     }
   }
 
-  &__progress-placeholder {
-    background-color: rgba(lighten($ui-highlight-color, 8%), 0.5);
+  .video-player__seek::before,
+  .video-player__seek__buffer,
+  .video-player__seek__progress {
+    top: 0;
   }
 
-  &__wave-placeholder {
-    background-color: lighten($ui-base-color, 16%);
+  .video-player__seek__handle {
+    top: -4px;
   }
 
   .video-player__controls {
     padding: 0 15px;
     padding-top: 10px;
-    background: darken($ui-base-color, 8%);
-    border-top: 1px solid lighten($ui-base-color, 4%);
-    border-radius: 0 0 4px 4px;
+    background: transparent;
   }
 }
 
