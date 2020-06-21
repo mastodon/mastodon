@@ -16,6 +16,7 @@ spec:
       restartPolicy: Never
       # ensure we run on the same node as the other rails components; only
       # required when using PVCs that are ReadWriteOnce
+      {{- if or (eq "ReadWriteOnce" .Values.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.persistence.system.accessMode) }}
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -26,6 +27,7 @@ spec:
                   values:
                     - rails
             topologyKey: kubernetes.io/hostname
+      {{- end }}
       volumes:
         - name: assets
           persistentVolumeClaim:

@@ -92,14 +92,15 @@ redis:
 
 persistence:
   assets:
-    accessModes:
-      - ReadWriteOnce
+    # ReadWriteOnce is more widely supported than ReadWriteMany, but limits
+    # scalability, since it requires the Rails and Sidekiq pods to run on the
+    # same node.
+    accessMode: ReadWriteOnce
     resources:
       requests:
         storage: 100Gi
   system:
-    accessModes:
-      - ReadWriteOnce
+    accessMode: ReadWriteOnce
     resources:
       requests:
         storage: 10Gi
