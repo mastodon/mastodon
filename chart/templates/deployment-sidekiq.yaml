@@ -61,7 +61,7 @@ spec:
             - exec
             - sidekiq
             - -c
-            - "25"
+            - {{ .Values.sidekiq.concurrency | quote }}
           envFrom:
             - configMapRef:
                 name: {{ include "mastodon.fullname" . }}-env

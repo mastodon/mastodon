@@ -7,8 +7,7 @@ metadata:
 data:
   DB_HOST: {{ template "mastodon.postgresql.fullname" . }}
   DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
-  # https://github.com/tootsuite/mastodon/blob/master/dist/mastodon-sidekiq.service
-  DB_POOL: "25"
+  DB_POOL: {{ .Values.sidekiq.concurrency | quote }}
   DB_PORT: "5432"
   DB_USER: {{ .Values.postgresql.postgresqlUsername }}
   DEFAULT_LOCALE: {{ .Values.locale }}
