@@ -228,6 +228,7 @@ class Audio extends React.PureComponent {
  
   componentDidMount () {
     const img = new Image();
+    img.crossOrigin = 'anonymous';
     img.onload = () => this.handlePosterLoad(img);
     img.src = this.props.poster;
   }
@@ -235,6 +236,7 @@ class Audio extends React.PureComponent {
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.poster !== this.props.poster) {
       const img = new Image();
+      img.crossOrigin = 'anonymous';
       img.onload = () => this.handlePosterLoad(img);
       img.src = this.props.poster;
     }
@@ -588,6 +590,7 @@ class Audio extends React.PureComponent {
           onPause={this.handlePause}
           onProgress={this.handleProgress}
           onTimeUpdate={this.handleTimeUpdate}
+          crossOrigin='anonymous'
         />
 
         <canvas
