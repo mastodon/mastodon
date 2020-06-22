@@ -11,6 +11,7 @@ de:
     apps: Mobile Apps
     apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
     browse_directory: Durchsuche das Profilverzeichnis und filtere nach Interessen
+    browse_local_posts: Durchsuche einen Live-Stream von öffentlichen Beiträgen von diesem Server
     browse_public_posts: Stöbere durch öffentliche Beiträge auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
@@ -77,6 +78,7 @@ de:
     roles:
       admin: Administrator
       bot: Bot
+      group: Gruppe
       moderator: Moderator
     unavailable: Profil nicht verfügbar
     unfollow: Entfolgen
@@ -90,6 +92,7 @@ de:
       delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
+      add_email_domain_block: E-Mail-Domain blacklisten
       approve: Akzeptieren
       approve_all: Alle akzeptieren
       are_you_sure: Bist du sicher?
@@ -117,9 +120,7 @@ de:
       email_status: E-Mail-Status
       enable: Freischalten
       enabled: Freigegeben
-      feed_url: Feed-URL
       followers: Folgende
-      followers_url: URL des Folgenden
       follows: Folgt
       header: Titelbild
       inbox_url: Posteingangs-URL
@@ -147,10 +148,8 @@ de:
       no_account_selected: Keine Konten wurden geändert, da keine ausgewählt wurden
       no_limits_imposed: Keine Beschränkungen
       not_subscribed: Nicht abonniert
-      outbox_url: Postausgangs-URL
       pending: In Warteschlange
       perform_full_suspension: Verbannen
-      profile_url: Profil-URL
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -173,8 +172,9 @@ de:
         moderator: Moderator_in
         staff: Mitarbeiter
         user: Nutzer
-      salmon_url: Salmon-URL
       search: Suche
+      search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
+      search_same_ip: Andere Benutzer mit derselben IP
       shared_inbox_url: Geteilte Posteingang-URL
       show:
         created_reports: Erstellte Meldungen
@@ -195,16 +195,56 @@ de:
       web: Web
       whitelisted: Auf der Whitelist
     action_logs:
+      action_types:
+        assigned_to_self_report: Bericht zuweisen
+        change_email_user: E-Mail des Benutzers ändern
+        confirm_user: Benutzer bestätigen
+        create_account_warning: Warnung erstellen
+        create_announcement: Ankündigung erstellen
+        create_custom_emoji: Eigene Emoji erstellen
+        create_domain_allow: Domain erlauben
+        create_domain_block: Domain blockieren
+        create_email_domain_block: E-Mail-Domain-Block erstellen
+        demote_user: Benutzer degradieren
+        destroy_announcement: Ankündigung löschen
+        destroy_custom_emoji: Eigene Emoji löschen
+        destroy_domain_allow: Erlaube das Löschen von Domains
+        destroy_domain_block: Domain-Blockade löschen
+        destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_status: Beitrag löschen
+        disable_2fa_user: 2FA deaktivieren
+        disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
+        disable_user: Benutzer deaktivieren
+        enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
+        enable_user: Benutzer aktivieren
+        memorialize_account: Konto in ein Konto von einer verstorbenen Person umwandeln
+        promote_user: Benutzer befördern
+        remove_avatar_user: Profilbild entfernen
+        reopen_report: Meldung wieder eröffnen
+        reset_password_user: Passwort zurücksetzen
+        resolve_report: Bericht lösen
+        silence_account: Konto stummschalten
+        suspend_account: Konto sperren
+        unassigned_report: Berichtszuweisung entfernen
+        unsilence_account: Konto nicht mehr stummschalten
+        unsuspend_account: Konto nicht mehr sperren
+        update_announcement: Ankündigung aktualisieren
+        update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
+        update_status: Beitrag aktualisieren
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_account_warning: "%{name} hat eine Warnung an %{target} gesendet"
+        create_announcement: "%{name} hat die neue Ankündigung %{target} erstellt"
         create_custom_emoji: "%{name} hat neues Emoji %{target} hochgeladen"
+        create_domain_allow: "%{name} hat die Domain %{target} gewhitelistet"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
         demote_user: "%{name} stufte Benutzer_in %{target} herunter"
+        destroy_announcement: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
+        destroy_domain_allow: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
         destroy_status: "%{name} hat einen Beitrag von %{target} entfernt"
@@ -224,10 +264,29 @@ de:
         unassigned_report: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unsilence_account: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
+        update_announcement: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
         update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
+      empty: Keine Protokolle gefunden.
+      filter_by_action: Nach Aktion filtern
+      filter_by_user: Nach Benutzer filtern
       title: Überprüfungsprotokoll
+    announcements:
+      destroyed_msg: Ankündigung erfolgreich gelöscht!
+      edit:
+        title: Ankündigung bearbeiten
+      empty: Keine Ankündigungen gefunden.
+      live: Live
+      new:
+        create: Ankündigung erstellen
+        title: Neue Ankündigung
+      published_msg: Ankündigung erfolgreich erstellt!
+      scheduled_for: Geplant für %{time}
+      scheduled_msg: Ankündigung ist zur Veröffentlichung vorgemerkt!
+      title: Ankündigungen
+      unpublished_msg: Ankündigung ist jetzt nicht mehr sichtbar!
+      updated_msg: Ankündigung erfolgreich geändert!
     custom_emojis:
       assign_category: Kategorie zuweisen
       by_domain: Domain
@@ -339,13 +398,12 @@ de:
       delete: Löschen
       destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
       domain: Domain
+      empty: Keine E-Mail-Domains sind momentan auf der Blacklist.
+      from_html: von %{domain}
       new:
         create: Blockade erstellen
         title: Neue E-Mail-Domain-Blockade
       title: E-Mail-Domain-Blockade
-    followers:
-      back_to_account: Zurück zum Konto
-      title: "%{acct}'s Follower"
     instances:
       by_domain: Domain
       delivery_available: Zustellung funktioniert
@@ -374,6 +432,8 @@ de:
       title: Einladungen
     pending_accounts:
       title: Ausstehende Konten (%{count})
+    relationships:
+      title: Beziehungen von %{acct}
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -395,12 +455,17 @@ de:
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
     reports:
       account:
-        note: Notiz
-        report: Meldung
+        notes:
+          one: "%{count} Notiz"
+          other: "%{count} Notizen"
+        reports:
+          one: "%{count} Bericht"
+          other: "%{count} Berichte"
       action_taken_by: Maßnahme ergriffen durch
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesener Moderator
+      by_target_domain: Domain des gemeldeten Kontos
       comment:
         none: Kein
       created_at: Gemeldet
@@ -446,6 +511,8 @@ de:
         users: Für angemeldete lokale Benutzer
       domain_blocks_rationale:
         title: Rationale anzeigen
+      enable_bootstrap_timeline_accounts:
+        title: Aktiviere die Option "Konten, denen Neu-Angemeldete automatisch folgen"
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
         title: Bild für Einstiegsseite
@@ -512,6 +579,9 @@ de:
       trends:
         desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
         title: Trendende Hashtags
+    site_uploads:
+      delete: Hochgeladene Datei löschen
+      destroyed_msg: Upload erfolgreich gelöscht!
     statuses:
       back_to_account: Zurück zum Konto
       batch:
@@ -548,7 +618,6 @@ de:
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
-      edit: Bearbeiten
       edit_preset: Warnungsvorlage bearbeiten
       title: Warnungsvorlagen verwalten
   admin_mailer:
@@ -574,7 +643,12 @@ de:
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
+    localization:
+      body: Mastodon wurde von Freiwilligen übersetzt.
+      guide_link: https://de.crowdin.com/project/mastodon
+      guide_link_text: Jeder kann etwas dazu beitragen.
     sensitive_content: Heikle Inhalte
+    toot_layout: Beitragslayout
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
     salutation: "%{name},"
@@ -631,6 +705,7 @@ de:
     trouble_logging_in: Schwierigkeiten beim Anmelden?
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
+    already_requested: Du hast bereits eine Anfrage zum Folgen diesen Accounts versendet
     error: Das Remote-Konto konnte nicht geladen werden
     follow: Folgen
     follow_request: 'Du hast eine Folgeanfrage gesendet an:'
@@ -645,6 +720,9 @@ de:
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
     invalid_password: Ungültiges Passwort
     prompt: Gib dein Passwort ein um fortzufahren
+  date:
+    formats:
+      default: "%d. %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -711,7 +789,6 @@ de:
     blocks: Du hast blockiert
     csv: CSV
     domain_blocks: Domainblockaden
-    follows: Du folgst
     lists: Listen
     mutes: Du hast stummgeschaltet
     storage: Medienspeicher
@@ -722,6 +799,7 @@ de:
     hint_html: "<strong>Was sind empfohlene Hashtags?</strong> Sie werden in deinem öffentlichen Profil deutlich angezeigt und ermöglichen es den Menschen, deine öffentlichen Beiträge speziell unter diesen Hashtags zu durchsuchen. Sie sind ein großartiges Werkzeug, um kreative Werke oder langfristige Projekte zu verfolgen."
   filters:
     contexts:
+      account: Profile
       home: Startseite
       notifications: Benachrichtigungen
       public: Öffentliche Zeitleisten
@@ -733,6 +811,7 @@ de:
       invalid_irreversible: Unwiderrufliche Filterung funktioniert nur mit Heim- oder Benachrichtigungskontext
     index:
       delete: Löschen
+      empty: Du hast keine Filter.
       title: Filter
     new:
       title: Neuen Filter hinzufügen
@@ -745,6 +824,7 @@ de:
     all: Alle
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
+    delete: Löschen
     no_batch_actions_available: Keine Massenaktionen auf dieser Seite verfügbar
     order_by: Sortieren nach
     save_changes: Änderungen speichern
@@ -814,6 +894,7 @@ de:
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
+      not_ready: Dateien die noch nicht bearbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
       too_many: Es können nicht mehr als 4 Dateien angehängt werden
   migrations:
     acct: benutzername@domain des neuen Kontos
@@ -881,6 +962,10 @@ de:
       body: "%{name} hat deinen Beitrag geteilt:"
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
+  notifications:
+    email_events: Ereignisse für E-Mail-Benachrichtigungen
+    email_events_hint: 'Wähle Ereignisse, für die du Benachrichtigungen erhalten möchtest:'
+    other_settings: Weitere Benachrichtigungseinstellungen
   number:
     human:
       decimal_units:
@@ -904,6 +989,7 @@ de:
       duration_too_long: ist zu weit in der Zukunft
       duration_too_short: ist zu früh
       expired: Die Umfrage ist bereits vorbei
+      invalid_choice: Die gewählte Stimmenoption existiert nicht
       over_character_limit: kann nicht länger als jeweils %{max} Zeichen sein
       too_few_options: muss mindestens einen Eintrag haben
       too_many_options: kann nicht mehr als %{max} Einträge beinhalten
@@ -911,9 +997,16 @@ de:
     other: Weiteres
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Zeitleisten
+  reactions:
+    errors:
+      limit_reached: Limit für verschiedene Reaktionen erreicht
+      unrecognized_emoji: ist kein anerkanntes Emoji
   relationships:
     activity: Kontoaktivität
     dormant: Inaktiv
+    followers: Folgende
+    following: Folgt
+    invited: Eingeladen
     last_active: Zuletzt aktiv
     most_recent: Neuste
     moved: Umgezogen
@@ -1023,6 +1116,8 @@ de:
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
+    errors:
+      in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
     language_detection: Sprache automatisch erkennen
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
@@ -1040,6 +1135,7 @@ de:
         other: "%{count} Stimmen"
       vote: Abstimmen
     show_more: Mehr anzeigen
+    show_thread: Zeige Konversation
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:

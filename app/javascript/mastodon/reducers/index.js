@@ -34,8 +34,11 @@ import polls from './polls';
 import identity_proofs from './identity_proofs';
 import trends from './trends';
 import missed_updates from './missed_updates';
+import announcements from './announcements';
+import markers from './markers';
 
 const reducers = {
+  announcements,
   dropdown_menu,
   timelines,
   meta,
@@ -71,6 +74,7 @@ const reducers = {
   polls,
   trends,
   missed_updates,
+  markers,
 };
 
 export default combineReducers(reducers);

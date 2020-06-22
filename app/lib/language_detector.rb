@@ -44,7 +44,7 @@ class LanguageDetector
     words = text.scan(RELIABLE_CHARACTERS_RE)
 
     if words.present?
-      words.reduce(0) { |acc, elem| acc + elem.size }.to_f / text.size.to_f > 0.3
+      words.reduce(0) { |acc, elem| acc + elem.size }.to_f / text.size > 0.3
     else
       false
     end
@@ -52,8 +52,10 @@ class LanguageDetector
 
   def detect_language_code(text)
     return if unreliable_input?(text)
+
     result = @identifier.find_language(text)
-    iso6391(result.language.to_s).to_sym if result.reliable?
+
+    iso6391(result.language.to_s).to_sym if result&.reliable?
   end
 
   def iso6391(bcp47)

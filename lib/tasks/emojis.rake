@@ -1,5 +1,35 @@
 # frozen_string_literal: true
 
+def gen_border(codepoint)
+  input = Rails.root.join('public', 'emoji', "#{codepoint}.svg")
+  dest = Rails.root.join('public', 'emoji', "#{codepoint}_border.svg")
+  doc = File.open(input) { |f| Nokogiri::XML(f) }
+  svg = doc.at_css('svg')
+  if svg.key?('viewBox')
+    view_box = svg['viewBox'].split(' ').map(&:to_i)
+    view_box[0] -= 2
+    view_box[1] -= 2
+    view_box[2] += 4
+    view_box[3] += 4
+    svg['viewBox'] = view_box.join(' ')
+  end
+  g = Nokogiri::XML::Node.new 'g', doc
+  doc.css('svg > *').each do |elem|
+    border_elem = elem.dup
+
+    border_elem.delete('fill')
+
+    border_elem['stroke'] = 'white'
+    border_elem['stroke-linejoin'] = 'round'
+    border_elem['stroke-width'] = '4px'
+
+    g.add_child(border_elem)
+  end
+  svg.prepend_child(g)
+  File.write(dest, doc.to_xml)
+  puts "Wrote bordered #{codepoint}.svg to #{dest}!"
+end
+
 def codepoints_to_filename(codepoints)
   codepoints.downcase.gsub(/\A[0]+/, '').tr(' ', '-')
 end
@@ -15,7 +45,7 @@ end
 namespace :emojis do
   desc 'Generate a unicode to filename mapping'
   task :generate do
-    source = 'http://www.unicode.org/Public/emoji/11.0/emoji-test.txt'
+    source = 'http://www.unicode.org/Public/emoji/12.0/emoji-test.txt'
     codes  = []
     dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
 
@@ -23,8 +53,10 @@ namespace :emojis do
 
     HTTP.get(source).to_s.split("\n").each do |line|
       next if line.start_with? '#'
+
       parts = line.split(';').map(&:strip)
       next if parts.size < 2
+
       codes << [parts[0], parts[1].start_with?('fully-qualified')]
     end
 
@@ -54,5 +86,17 @@ namespace :emojis do
 
     File.write(dest, Oj.dump(map))
     puts "Wrote emojo to destination! (#{dest})"
+  end
+
+  desc 'Generate emoji variants with white borders'
+  task :generate_borders do
+    src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
+    emojis = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️'
+
+    map = Oj.load(File.read(src))
+
+    emojis.each_grapheme_cluster do |emoji|
+      gen_border map[emoji]
+    end
   end
 end

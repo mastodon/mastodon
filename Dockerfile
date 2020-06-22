@@ -3,16 +3,27 @@ FROM ubuntu:18.04 as build-dep
 # Use bash for the shell
 SHELL ["bash", "-c"]
 
-# Install Node
-ENV NODE_VER="12.11.1"
-RUN	echo "Etc/UTC" > /etc/localtime && \
+# Install Node v12 (LTS)
+ENV NODE_VER="12.16.1"
+RUN	ARCH= && \
+    dpkgArch="$(dpkg --print-architecture)" && \
+  case "${dpkgArch##*-}" in \
+    amd64) ARCH='x64';; \
+    ppc64el) ARCH='ppc64le';; \
+    s390x) ARCH='s390x';; \
+    arm64) ARCH='arm64';; \
+    armhf) ARCH='armv7l';; \
+    i386) ARCH='x86';; \
+    *) echo "unsupported architecture"; exit 1 ;; \
+  esac && \
+    echo "Etc/UTC" > /etc/localtime && \
 	apt update && \
 	apt -y install wget python && \
 	cd ~ && \
-	wget https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-x64.tar.gz && \
-	tar xf node-v$NODE_VER-linux-x64.tar.gz && \
-	rm node-v$NODE_VER-linux-x64.tar.gz && \
-	mv node-v$NODE_VER-linux-x64 /opt/node
+	wget https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
+	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
+	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
+	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
 # Install jemalloc
 ENV JE_VER="5.2.1"
@@ -27,8 +38,8 @@ RUN apt update && \
 	make -j$(nproc) > /dev/null && \
 	make install_bin install_include install_lib
 
-# Install ruby
-ENV RUBY_VER="2.6.5"
+# Install Ruby
+ENV RUBY_VER="2.6.6"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
 RUN apt update && \
@@ -58,7 +69,9 @@ RUN npm install -g yarn && \
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 RUN cd /opt/mastodon && \
-	bundle install -j$(nproc) --deployment --without development test && \
+  bundle config set deployment 'true' && \
+  bundle config set without 'development test' && \
+	bundle install -j$(nproc) && \
 	yarn install --pure-lockfile
 
 FROM ubuntu:18.04
@@ -123,3 +136,4 @@ RUN cd ~ && \
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
 ENTRYPOINT ["/tini", "--"]
+EXPOSE 3000 4000

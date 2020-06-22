@@ -3,7 +3,9 @@
 class FetchResourceService < BaseService
   include JsonLdHelper
 
-  ACCEPT_HEADER = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", text/html'
+  ACCEPT_HEADER = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", text/html;q=0.1'
+
+  attr_reader :response_code
 
   def call(url)
     return if url.blank?
@@ -23,17 +25,29 @@ class FetchResourceService < BaseService
   end
 
   def perform_request(&block)
-    Request.new(:get, @url).add_headers('Accept' => ACCEPT_HEADER).on_behalf_of(Account.representative).perform(&block)
+    Request.new(:get, @url).tap do |request|
+      request.add_headers('Accept' => ACCEPT_HEADER)
+
+      # In a real setting we want to sign all outgoing requests,
+      # in case the remote server has secure mode enabled and requires
+      # authentication on all resources. However, during development,
+      # sending request signatures with an inaccessible host is useless
+      # and prevents even public resources from being fetched, so
+      # don't do it
+
+      request.on_behalf_of(Account.representative) unless Rails.env.development?
+    end.perform(&block)
   end
 
   def process_response(response, terminal = false)
+    @response_code = response.code
     return nil if response.code != 200
 
     if ['application/activity+json', 'application/ld+json'].include?(response.mime_type)
       body = response.body_with_limit
       json = body_to_json(body)
 
-      [json['id'], { prefetched_body: body, id: true }, :activitypub] if supported_context?(json) && (equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) || expected_type?(json))
+      [json['id'], { prefetched_body: body, id: true }] if supported_context?(json) && (equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) || expected_type?(json))
     elsif !terminal
       link_header = response['Link'] && parse_link_header(response)
 

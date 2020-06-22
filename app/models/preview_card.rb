@@ -3,30 +3,37 @@
 #
 # Table name: preview_cards
 #
-#  id                 :bigint(8)        not null, primary key
-#  url                :string           default(""), not null
-#  title              :string           default(""), not null
-#  description        :string           default(""), not null
-#  image_file_name    :string
-#  image_content_type :string
-#  image_file_size    :integer
-#  image_updated_at   :datetime
-#  type               :integer          default("link"), not null
-#  html               :text             default(""), not null
-#  author_name        :string           default(""), not null
-#  author_url         :string           default(""), not null
-#  provider_name      :string           default(""), not null
-#  provider_url       :string           default(""), not null
-#  width              :integer          default(0), not null
-#  height             :integer          default(0), not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  embed_url          :string           default(""), not null
+#  id                           :bigint(8)        not null, primary key
+#  url                          :string           default(""), not null
+#  title                        :string           default(""), not null
+#  description                  :string           default(""), not null
+#  image_file_name              :string
+#  image_content_type           :string
+#  image_file_size              :integer
+#  image_updated_at             :datetime
+#  type                         :integer          default("link"), not null
+#  html                         :text             default(""), not null
+#  author_name                  :string           default(""), not null
+#  author_url                   :string           default(""), not null
+#  provider_name                :string           default(""), not null
+#  provider_url                 :string           default(""), not null
+#  width                        :integer          default(0), not null
+#  height                       :integer          default(0), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  embed_url                    :string           default(""), not null
+#  image_storage_schema_version :integer
+#  blurhash                     :string
 #
 
 class PreviewCard < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   LIMIT = 1.megabytes
+
+  BLURHASH_OPTIONS = {
+    x_comp: 4,
+    y_comp: 4,
+  }.freeze
 
   self.inheritance_column = false
 
@@ -34,7 +41,7 @@ class PreviewCard < ApplicationRecord
 
   has_and_belongs_to_many :statuses
 
-  has_attached_file :image, styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
 
@@ -46,6 +53,10 @@ class PreviewCard < ApplicationRecord
   scope :cached, -> { where.not(image_file_name: [nil, '']) }
 
   before_save :extract_dimensions, if: :link?
+
+  def local?
+    false
+  end
 
   def missing_image?
     width.present? && height.present? && image_file_name.blank?
@@ -67,6 +78,7 @@ class PreviewCard < ApplicationRecord
           geometry: '400x400>',
           file_geometry_parser: FastGeometryParser,
           convert_options: '-coalesce -strip',
+          blurhash: BLURHASH_OPTIONS,
         },
       }
 

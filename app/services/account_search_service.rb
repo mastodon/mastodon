@@ -4,8 +4,8 @@ class AccountSearchService < BaseService
   attr_reader :query, :limit, :offset, :options, :account
 
   def call(query, account = nil, options = {})
-    @acct_hint = query.start_with?('@')
-    @query     = query.strip.gsub(/\A@/, '')
+    @acct_hint = query&.start_with?('@')
+    @query     = query&.strip&.gsub(/\A@/, '')
     @limit     = options[:limit].to_i
     @offset    = options[:offset].to_i
     @options   = options
@@ -127,7 +127,7 @@ class AccountSearchService < BaseService
   end
 
   def following_ids
-    @following_ids ||= account.active_relationships.pluck(:target_account_id)
+    @following_ids ||= account.active_relationships.pluck(:target_account_id) + [account.id]
   end
 
   def limit_for_non_exact_results
@@ -171,7 +171,7 @@ class AccountSearchService < BaseService
   end
 
   def username_complete?
-    query.include?('@') && "@#{query}" =~ Account::MENTION_RE
+    query.include?('@') && "@#{query}" =~ /\A#{Account::MENTION_RE}\Z/
   end
 
   def likely_acct?

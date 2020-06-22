@@ -11,6 +11,10 @@ class FeedManager
   # Must be <= MAX_ITEMS or the tracking sets will grow forever
   REBLOG_FALLOFF = 40
 
+  def with_active_accounts(&block)
+    Account.joins(:user).where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago).find_each(&block)
+  end
+
   def key(type, id, subtype = nil)
     return "feed:#{type}:#{id}" unless subtype
 
@@ -153,7 +157,7 @@ class FeedManager
       crutches = build_crutches(account.id, statuses)
 
       statuses.each do |status|
-        next if filter_from_home?(status, account, crutches)
+        next if filter_from_home?(status, account.id, crutches)
 
         add_to_feed(:home, account.id, status, aggregate)
       end
@@ -242,9 +246,14 @@ class FeedManager
     combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
     status         = status.reblog if status.reblog?
 
-    !combined_regex.match(Formatter.instance.plaintext(status)).nil? ||
-      (status.spoiler_text.present? && !combined_regex.match(status.spoiler_text).nil?) ||
-      (status.preloadable_poll && !combined_regex.match(status.preloadable_poll.options.join("\n\n")).nil?)
+    combined_text = [
+      Formatter.instance.plaintext(status),
+      status.spoiler_text,
+      status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
+      status.media_attachments.map(&:description).join("\n\n"),
+    ].compact.join("\n\n")
+
+    !combined_regex.match(combined_text).nil?
   end
 
   # Adds a status to an account's feed, returning true if a status was

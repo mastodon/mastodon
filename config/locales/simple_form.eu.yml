@@ -4,13 +4,23 @@ eu:
     hints:
       account_alias:
         acct: Zehaztu migrazioaren jatorri den kontuaren erabiltzailea@domeinua
+      account_migration:
+        acct: Zehaztu migrazioaren xede den kontuaren erabiltzaile@domeinua
       account_warning_preset:
         text: Toot sintaxia erabili dezakezu, URLak, traolak eta aipamenak
+        title: Aukerakoa. Hartzaileak ez du ikusiko
       admin_account_action:
+        include_statuses: Erabiltzaileak moderazio ekintza edo abisu bat eragin duten tootak ikusi ahal izango ditu
         send_email_notification: Erabiltzaileak bere kontuarekin gertatutakoaren azalpen bat jasoko du
         text_html: Aukerakoa. Toot sintaxia erabili dezakezu. <a href="%{path}">Abisu aurre-ezarpenak</a> gehitu ditzakezu denbora aurrezteko
         type_html: Erabaki zer egin <strong>%{acct}</strong> kontuarekin
         warning_preset_id: Aukerakoa. Zure testua gehitu dezakezu aurre-ezarpenaren ostean
+      announcement:
+        all_day: Markatutakoan soilik denbora barrutiko datak erakutsiko dira
+        ends_at: Aukerakoa. Iragapena une honetan automatikoki desargitaratuko da
+        scheduled_at: Laga hutsik iragarpena berehala argitaratzeko
+        starts_at: Aukerakoa. Zure iragarpena denbora-tarte batera lotuta dagoenerako
+        text: Tootetako sintaxia erabili dezakezu. Kontuan izan iragarpenak erabiltzailearen pantailan hartuko duen neurria
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko dizute
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
@@ -19,27 +29,34 @@ eu:
         current_password: Segurtasunagatik sartu uneko kontuaren pasahitza
         current_username: Berresteko sartu uneko kontuaren erabiltzaile-izena
         digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu, besterik ez
+        discoverable: Profilen direktorioa zure kontua jende gehiagok irakurtzeko modu bat da
         email: Baieztapen e-mail bat bidaliko zaizu
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
         header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
         inbox_url: Kopiatu erabili nahi duzun errelearen hasiera orriaren URLa
-        irreversible: Iragazitako Toot-ak betirako galduko dira, geroago iragazkia kentzen baduzu ere
+        irreversible: Iragazitako tootak betirako galduko dira, geroago iragazkia kentzen baduzu ere
         locale: Erabiltzaile-interfazea, e-mail mezuen eta jakinarazpenen hizkuntza
         locked: Jarraitzaileak eskuz onartu behar dituzu
         password: Erabili 8 karaktere gutxienez
         phrase: Bat egingo du Maiuskula/minuskula kontuan hartu gabe eta edukiaren abisua kontuan hartu gabe
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
-        setting_aggregate_reblogs: Ez erakutsi bultzada berriak berriki bultzada jaso duten toot-entzat (berriki jasotako bultzadei eragiten die bakarrik)
+        setting_aggregate_reblogs: Ez erakutsi bultzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die bakarrik)
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
         setting_display_media_show_all: Erakutsi beti hunkigarri gisa markatutako multimedia
         setting_hide_network: Nor jarraitzen duzun eta nork jarraitzen zaituen ez da bistaratuko zure profilean
-        setting_noindex: Zure profil publiko eta Toot-en orrietan eragina du
+        setting_noindex: Zure profil publiko eta tooten orrietan eragina du
         setting_show_application: Tootak bidaltzeko erabiltzen duzun aplikazioa zure tooten ikuspegi xehetsuan bistaratuko da
         setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
+        setting_use_pending_items: Ezkutatu denbora-lerroko eguneraketak klik baten atzean jarioa automatikoki korritu ordez
         username: Zure erabiltzaile-izena bakana izango da %{domain} domeinuan
         whole_word: Hitz eta esaldi gakoa alfanumerikoa denean, hitz osoarekin bat datorrenean besterik ez da aplikatuko
+      domain_allow:
+        domain: Domeinu honek zerbitzari honetatik datuak hartu ahal izango ditu eta bertatik jasotako informazioa prozesatu eta gordeko da
+      email_domain_block:
+        domain: Hau e-mail helbidean agertzen den domeinua izan daiteke, honen MX erregistroa, edo MX erregistroaren IP helbidea. Hauek erabiltzaileak izena ematean egiaztatuko dira eta atzera botako da.
+        with_dns_records: Emandako domeinuaren DNS erregistroak ebazteko saiakera bat egingo da eta emaitzak ere zerrenda beltzean sartuko dira
       featured_tag:
         name: 'Hauetakoren bat erabili zenezake:'
       form_challenge:
@@ -50,8 +67,10 @@ eu:
         text: Honek zure eskaera berrikustean lagunduko digu
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
+      tag:
+        name: Letrak maiuskula/minuskulara aldatu ditzakezu besterik ez, adibidez irakurterrazago egiteko
       user:
-        chosen_languages: Ezer markatzekotan, hautatutako hizkuntzetan dauden toot-ak besterik ez dira erakutsiko
+        chosen_languages: Ezer markatzekotan, hautatutako hizkuntzetan dauden tootak besterik ez dira erakutsiko
     labels:
       account:
         fields:
@@ -63,8 +82,9 @@ eu:
         acct: Kontu berriaren helbidea
       account_warning_preset:
         text: Aurrez ezarritako testua
+        title: Izenburua
       admin_account_action:
-        include_statuses: Txertatu salatutako toot-ak e-mailean
+        include_statuses: Txertatu salatutako tootak e-mailean
         send_email_notification: Jakinarazi erabiltzaileari e-mail bidez
         text: Abisu pertsonalizatua
         type: Ekintza
@@ -74,6 +94,12 @@ eu:
           silence: Isiltarazi
           suspend: Kanporatu eta behin betiko ezabatu kontuko datuak
         warning_preset_id: Erabili aurre-ezarritako abisu bat
+      announcement:
+        all_day: Egun osoko ekitaldia
+        ends_at: Ekitaldiaren amaiera
+        scheduled_at: Programatu argitaratzea
+        starts_at: Ekitaldiaren hasiera
+        text: Iragarpena
       defaults:
         autofollow: Gonbidatu zure kontua jarraitzera
         avatar: Abatarra
@@ -104,6 +130,7 @@ eu:
         setting_aggregate_reblogs: Taldekatu bultzadak denbora-lerroetan
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
+        setting_crop_images: Moztu irudiak hedatu gabeko tootetan 16x9 proportzioan
         setting_default_language: Argitalpenen hizkuntza
         setting_default_privacy: Mezuen pribatutasuna
         setting_default_sensitive: Beti markatu edukiak hunkigarri gisa
@@ -118,7 +145,7 @@ eu:
         setting_reduce_motion: Murriztu animazioen mugimenduak
         setting_show_application: Utzi agerian tootak bidaltzeko erabilitako aplikazioa
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
-        setting_theme: Gunearen gaia
+        setting_theme: Gunearen azala
         setting_trends: Erakutsi gaurko joerak
         setting_unfollow_modal: Erakutsi baieztapen elkarrizketa-koadroa inor jarraitzeari utzi aurretik
         setting_use_blurhash: Erakutsi gradiente koloretsuak ezkutatutako multimediaren ordez
@@ -128,6 +155,8 @@ eu:
         username: Erabiltzaile-izena
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
         whole_word: Hitz osoa
+      email_domain_block:
+        with_dns_records: Sartu ere domeinuaren MX erregistroak eta IPak
       featured_tag:
         name: Traola
       interactions:
@@ -152,7 +181,7 @@ eu:
         listable: Baimendu traola hau bilaketetan agertzea eta profilen direktorioan
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
-        usable: Baimendu toot-ek traola hau erabiltzea
+        usable: Baimendu tootek traola hau erabiltzea
     'no': Ez
     recommended: Aholkatua
     required:

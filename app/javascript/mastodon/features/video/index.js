@@ -109,6 +109,8 @@ class Video extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     blurhash: PropTypes.string,
     link: PropTypes.node,
+    autoPlay: PropTypes.bool,
+    defaultVolume: PropTypes.number,
   };
 
   state = {
@@ -124,12 +126,14 @@ class Video extends React.PureComponent {
     revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
   };
 
-  // hard coded in components.scss
-  // any way to get ::before values programatically?
-  volWidth = 50;
+  // Hard-coded in components.scss
+  // Any way to get ::before values programatically?
+  volWidth  = 50;
   volOffset = 70;
+
   volHandleOffset = v => {
     const offset = v * this.volWidth + this.volOffset;
+
     return (offset > 110) ? 110 : offset;
   }
 
@@ -138,6 +142,7 @@ class Video extends React.PureComponent {
 
     if (c) {
       if (this.props.cacheWidth) this.props.cacheWidth(this.player.offsetWidth);
+
       this.setState({
         containerWidth: c.offsetWidth,
       });
@@ -205,12 +210,14 @@ class Video extends React.PureComponent {
     const x = (e.clientX - rect.left) / this.volWidth; //x position within the element.
 
     if(!isNaN(x)) {
-      var slideamt = x;
+      let slideamt = x;
+
       if(x > 1) {
         slideamt = 1;
       } else if(x < 0) {
         slideamt = 0;
       }
+
       this.video.volume = slideamt;
       this.setState({ volume: slideamt });
     }
@@ -252,9 +259,9 @@ class Video extends React.PureComponent {
 
   togglePlay = () => {
     if (this.state.paused) {
-      this.video.play();
+      this.setState({ paused: false }, () => this.video.play());
     } else {
-      this.video.pause();
+      this.setState({ paused: true }, () => this.video.pause());
     }
   }
 
@@ -272,12 +279,16 @@ class Video extends React.PureComponent {
     document.addEventListener('mozfullscreenchange', this.handleFullscreenChange, true);
     document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
 
+    window.addEventListener('scroll', this.handleScroll);
+
     if (this.props.blurhash) {
       this._decode();
     }
   }
 
   componentWillUnmount () {
+    window.removeEventListener('scroll', this.handleScroll);
+
     document.removeEventListener('fullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('webkitfullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('mozfullscreenchange', this.handleFullscreenChange, true);
@@ -294,6 +305,7 @@ class Video extends React.PureComponent {
     if (prevState.revealed && !this.state.revealed && this.video) {
       this.video.pause();
     }
+
     if (prevProps.blurhash !== this.props.blurhash && this.props.blurhash) {
       this._decode();
     }
@@ -313,6 +325,19 @@ class Video extends React.PureComponent {
     }
   }
 
+  handleScroll = throttle(() => {
+    if (!this.video) {
+      return;
+    }
+
+    const { top, height } = this.video.getBoundingClientRect();
+    const inView = (top <= (window.innerHeight || document.documentElement.clientHeight)) && (top + height >= 0);
+
+    if (!this.state.paused && !inView) {
+      this.setState({ paused: true }, () => this.video.pause());
+    }
+  }, 150, { trailing: true })
+
   handleFullscreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
   }
@@ -326,8 +351,11 @@ class Video extends React.PureComponent {
   }
 
   toggleMute = () => {
-    this.video.muted = !this.video.muted;
-    this.setState({ muted: this.video.muted });
+    const muted = !this.video.muted;
+
+    this.setState({ muted }, () => {
+      this.video.muted = muted;
+    });
   }
 
   toggleReveal = () => {
@@ -341,6 +369,13 @@ class Video extends React.PureComponent {
   handleLoadedData = () => {
     if (this.props.startTime) {
       this.video.currentTime = this.props.startTime;
+    }
+
+    if (this.props.defaultVolume !== undefined) {
+      this.video.volume = this.props.defaultVolume;
+    }
+
+    if (this.props.autoPlay) {
       this.video.play();
     }
   }
@@ -367,8 +402,14 @@ class Video extends React.PureComponent {
       height,
     });
 
+    const options = {
+      startTime: this.video.currentTime,
+      autoPlay: !this.state.paused,
+      defaultVolume: this.state.volume,
+    };
+
     this.video.pause();
-    this.props.onOpenVideo(media, this.video.currentTime);
+    this.props.onOpenVideo(media, options);
   }
 
   handleCloseVideo = () => {
@@ -430,7 +471,6 @@ class Video extends React.PureComponent {
           src={src}
           poster={preview}
           preload={preload}
-          loop
           role='button'
           tabIndex='0'
           aria-label={alt}
@@ -467,8 +507,8 @@ class Video extends React.PureComponent {
 
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
-              <button type='button' aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay} autoFocus={detailed}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
               <div className='video-player__volume' onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
                 &nbsp;
@@ -492,16 +532,11 @@ class Video extends React.PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              {(!onCloseVideo && !editable) && <button type='button' aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
-              {(!fullscreen && onOpenVideo) && <button type='button' aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
-              {onCloseVideo && <button type='button' aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
-              <button type='button' aria-label={intl.formatMessage(messages.download)}>
-                <a className='video-player__download__icon' href={this.props.src} download>
-                  <Icon id={'download'} fixedWidth />
-                </a>
-              </button>
-              <button type='button' aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
-
+              {(!onCloseVideo && !editable && !fullscreen) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
+              {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
+              {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
+              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)}><a className='video-player__download__icon' href={this.props.src} download><Icon id={'download'} fixedWidth /></a></button>
+              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
             </div>
           </div>
         </div>

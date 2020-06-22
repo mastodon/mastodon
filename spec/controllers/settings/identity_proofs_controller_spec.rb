@@ -151,7 +151,7 @@ describe Settings::IdentityProofsController do
         @proof1 = Fabricate(:account_identity_proof, account: user.account)
         @proof2 = Fabricate(:account_identity_proof, account: user.account)
         allow_any_instance_of(AccountIdentityProof).to receive(:badge) { double(avatar_url: '', profile_url: '', proof_url: '') }
-        allow_any_instance_of(AccountIdentityProof).to receive(:refresh!) { }
+        allow_any_instance_of(AccountIdentityProof).to receive(:refresh!) {}
       end
 
       it 'has the first proof username on the page' do
@@ -163,6 +163,24 @@ describe Settings::IdentityProofsController do
         get :index
         expect(response.body).to match /#{Regexp.quote(@proof2.provider_username)}/
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before do
+      allow_any_instance_of(ProofProvider::Keybase::Verifier).to receive(:valid?) { true }
+      @proof1 = Fabricate(:account_identity_proof, account: user.account)
+      allow_any_instance_of(AccountIdentityProof).to receive(:badge) { double(avatar_url: '', profile_url: '', proof_url: '') }
+      allow_any_instance_of(AccountIdentityProof).to receive(:refresh!) {}
+      delete :destroy, params: { id: @proof1.id }
+    end
+
+    it 'redirects to :index' do
+      expect(response).to redirect_to settings_identity_proofs_path
+    end
+
+    it 'removes the proof' do
+      expect(AccountIdentityProof.where(id: @proof1.id).count).to eq 0
     end
   end
 end

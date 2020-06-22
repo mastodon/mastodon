@@ -4,8 +4,6 @@ class Api::V1::Timelines::TagController < Api::BaseController
   before_action :load_tag
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
-  respond_to :json
-
   def show
     @statuses = load_statuses
     render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)

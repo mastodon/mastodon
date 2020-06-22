@@ -8,12 +8,19 @@ id:
         acct: Tentukan namapengguna@domain akun yang ingin Anda pindah
       account_warning_preset:
         text: Anda dapat memakai sintaks toot, seperti URL, tagar, dan sebutan
+        title: Opsional. Tidak terlihat penerima
       admin_account_action:
         include_statuses: Pengguna dapat melihat toot mana yang menyebabkan aksi atau peringatan moderasi
         send_email_notification: Pengguna akan menerima penjelasan tentang apa yang terjadi pada akun mereka
         text_html: Opsional. Anda dapat memakai sintaks toot. Anda dapat <a href="%{path}">menambahkan preset peringatan</a> untuk hemat waktu
         type_html: Pilih apa yang perlu dilakukan dengan <strong>%{acct}</strong>
         warning_preset_id: Opsional. Anda tetap dapat menambahkan teks kustom pada akhir preset
+      announcement:
+        all_day: Saat dicentang, hanya tanggal dalam rentang waktu tertentu yang akan ditampilkan
+        ends_at: Opsional. Pengumuman akan diterbitkan secara otomatis saat ini
+        scheduled_at: Biarkan kosong jika ingin menerbitkan pengumuman secara langsung
+        starts_at: Opsional. Persiapan jika pengumuman Anda terikat pada rentang waktu tertentu
+        text: Anda dapat menggunakan sintaks toot. Mohon perhatikan ruang pengumuman yang mungkin akan memenuhi layar pengguna
       defaults:
         autofollow: Orang yang ingin mendaftar lewat undangan, otomatis mengikuti Anda
         avatar: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
@@ -47,6 +54,9 @@ id:
         whole_word: Ketika kata kunci/frasa hanya alfanumerik, maka itu hanya akan diterapkan jika cocok dengan semua kata
       domain_allow:
         domain: Domain ini dapat mengambil data dari server ini dan data yang diterima akan diproses dan disimpan
+      email_domain_block:
+        domain: Ini bisa nama domain yang muncul di alamat surel, data MX yang sedang diselesaikan oleh domain, atau IP server yang dipecahkan oleh data MX. Mereka akan dicek saat pendaftaran pengguna dan pendaftaran akan ditolak.
+        with_dns_records: Usaha untuk menyelesaikan data DNS domain yang diberikan akan dilakukan dan hasilnya akan masuk daftar hitam
       featured_tag:
         name: 'Anda mungkin ingin pakai salah satu dari ini:'
       form_challenge:
@@ -57,6 +67,8 @@ id:
         text: Ini akan membantu kami meninjau aplikasi Anda
       sessions:
         otp: Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.
+      tag:
+        name: Anda hanya dapat mengubahnya ke huruf kecil/besar, misalnya, agar lebih mudah dibaca
       user:
         chosen_languages: Ketika dicentang, hanya toot dalam bahasa yang dipilih yang akan ditampilkan di linimasa publik
     labels:
@@ -70,6 +82,7 @@ id:
         acct: Menangani akun baru
       account_warning_preset:
         text: Teks preset
+        title: Judul
       admin_account_action:
         include_statuses: Sertakan toot terlapor pada surel
         send_email_notification: Beritahu pengguna per surel
@@ -81,6 +94,12 @@ id:
           silence: Diamkan
           suspend: Tangguhkan dan hapus data akun scr permanen
         warning_preset_id: Gunakan preset peringatan
+      announcement:
+        all_day: Event sepanjang hari
+        ends_at: Akhir event
+        scheduled_at: Jadwal publikasi
+        starts_at: Awal mulai event
+        text: Pengumuman
       defaults:
         autofollow: Undang untuk mengikuti Anda
         avatar: Avatar
@@ -111,6 +130,7 @@ id:
         setting_aggregate_reblogs: Boost grup di linimasa
         setting_auto_play_gif: Mainkan otomatis animasi GIF
         setting_boost_modal: Tampilkan dialog konfirmasi dialog sebelum boost
+        setting_crop_images: Potong gambar ke 16x9 pada toot yang tidak dibentangkan
         setting_default_language: Bahasa posting
         setting_default_privacy: Privasi postingan
         setting_default_sensitive: Selalu tandai media sebagai sensitif
@@ -135,6 +155,8 @@ id:
         username: Nama pengguna
         username_or_email: Nama pengguna atau Surel
         whole_word: Seluruh kata
+      email_domain_block:
+        with_dns_records: Termasuk data MX dan IP domain
       featured_tag:
         name: Tagar
       interactions:

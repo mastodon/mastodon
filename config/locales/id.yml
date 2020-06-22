@@ -11,6 +11,7 @@ id:
     apps: Aplikasi hp
     apps_platforms: Gunakan Mastodon dari iOS, Android, dan platform lain
     browse_directory: Jelajahi direktori profil dan saring sesuai minat
+    browse_local_posts: Jelajahi siaran langsung dari pos publik server ini
     browse_public_posts: Jelajahi siaran langsung pos publik di Mastodon
     contact: Kontak
     contact_missing: Belum diset
@@ -73,6 +74,7 @@ id:
     roles:
       admin: Admin
       bot: Bot
+      group: Grup
       moderator: Moderator
     unavailable: Profil tidak tersedia
     unfollow: Berhenti mengikuti
@@ -86,6 +88,7 @@ id:
       delete: Hapus
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
+      add_email_domain_block: Masukkan domain surel ke daftar hitam
       approve: Terima
       approve_all: Terima semua
       are_you_sure: Anda yakin?
@@ -113,9 +116,7 @@ id:
       email_status: Status Email
       enable: Aktifkan
       enabled: Diaktifkan
-      feed_url: URL Feed
       followers: Pengikut
-      followers_url: URL pengikut
       follows: Mengikut
       header: Tajuk
       inbox_url: URL Kotak masuk
@@ -143,10 +144,8 @@ id:
       no_account_selected: Tak ada akun yang diubah sebab tak ada yang dipilih
       no_limits_imposed: Tidak ada batasan
       not_subscribed: Tidak berlangganan
-      outbox_url: URL Kotak keluar
       pending: Tinjauan tertunda
       perform_full_suspension: Lakukan suspen penuh
-      profile_url: URL profil
       promote: Promosikan
       protocol: Protokol
       public: Publik
@@ -169,8 +168,9 @@ id:
         moderator: Moderator
         staff: Staf
         user: Pengguna
-      salmon_url: URL Salmon
       search: Cari
+      search_same_email_domain: Pengguna lain dengan domain surel yang sama
+      search_same_ip: Pengguna lain dengan IP yang sama
       shared_inbox_url: URL kotak masuk bersama
       show:
         created_reports: Laporan yang dibuat oleh akun ini
@@ -191,18 +191,44 @@ id:
       web: Web
       whitelisted: Masuk daftar putih
     action_logs:
+      action_types:
+        change_email_user: Ubah Surel untuk Pengguna
+        confirm_user: Konfirmasi Pengguna
+        create_account_warning: Buat Peringatan
+        create_announcement: Buat Pengumuman
+        create_custom_emoji: Buat Emoji Khusus
+        create_domain_allow: Buat Izin Domain
+        create_domain_block: Buat Blokir Domain
+        create_email_domain_block: Buat Surel Blokir Domain
+        demote_user: Turunkan Pengguna
+        destroy_announcement: Hapus Pengumuman
+        destroy_custom_emoji: Hapus Emoji Khusus
+        destroy_domain_allow: Hapus Izin Domain
+        destroy_domain_block: Hapus Blokir Domain
+        destroy_email_domain_block: Hapus surel blokir domain
+        destroy_status: Hapus Status
+        disable_2fa_user: Nonaktifkan 2FA
+        disable_custom_emoji: Nonaktifkan Emoji Khusus
+        disable_user: Nonaktifkan Pengguna
+        enable_custom_emoji: Aktifkan Emoji Khusus
+        enable_user: Aktifkan Pengguna
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
         change_email_user: "%{name} mengubah alamat surel pengguna %{target}"
         confirm_user: "%{name} mengonfirmasi alamat surel pengguna %{target}"
         create_account_warning: "%{name} mengirim peringatan untuk %{target}"
+        create_announcement: "%{name} membuat pengumuman baru %{target}"
         create_custom_emoji: "%{name} mengunggah emoji baru %{target}"
+        create_domain_allow: "%{name} memasukkan ke daftar putih domain %{target}"
         create_domain_block: "%{name} memblokir domain %{target}"
         create_email_domain_block: "%{name} memasukkan ke daftar hitam domain surel %{target}"
         demote_user: "%{name} menurunkan pengguna %{target}"
+        destroy_announcement: "%{name} menghapus pengumuman %{target}"
         destroy_custom_emoji: "%{name} menghapus emoji %{target}"
+        destroy_domain_allow: "%{name} menghapus domain %{target} dari daftar putih"
         destroy_domain_block: "%{name} membuka blokir domain %{target}"
         destroy_email_domain_block: "%{name} memasukkan ke daftar putih surel domain %{target}"
+        destroy_status: "%{name} menghapus status %{target}"
         disable_2fa_user: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
         disable_custom_emoji: "%{name} mematikan emoji %{target}"
         disable_user: "%{name} mematikan login untuk pengguna %{target}"
@@ -219,9 +245,26 @@ id:
         unassigned_report: "%{name} tidak menugaskan laporan %{target}"
         unsilence_account: "%{name} menghapus bungkaman akun %{target}"
         unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
+        update_announcement: "%{name} memperbarui pengumuman %{target}"
         update_custom_emoji: "%{name} memperbarui emoji %{target}"
+        update_status: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       title: Log audit
+    announcements:
+      destroyed_msg: Pengumuman berhasil dihapus!
+      edit:
+        title: Edit pengumuman
+      empty: Pengumuman tidak ditemukan.
+      live: Siaran langsung
+      new:
+        create: Buat pengumuman
+        title: Pengumuman baru
+      published_msg: Pengumuman berhasil diterbitkan!
+      scheduled_for: Dijadwalkan untuk %{time}
+      scheduled_msg: Pengumuman dijadwalkan untuk publikasi!
+      title: Pengumuman
+      unpublished_msg: Pengumuman berhasil ditarik!
+      updated_msg: Pengumuman berhasil diperbarui!
     custom_emojis:
       assign_category: Beri kategori
       by_domain: Domain
@@ -304,12 +347,15 @@ id:
           suspend: Suspen
         title: Pemblokiran domain baru
       private_comment: Komentar pribadi
+      private_comment_hint: Komentar tentang pembatasan domain ini untuk penggunaan internal oleh moderator.
       public_comment: Komentar publik
+      public_comment_hint: Komentar tentang pembatasan domain ini untuk publik umum, jika mengiklankan daftar pembatasan domain diaktifkan.
       reject_media: Tolak berkas media
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       reject_reports: Tolak laporan
       reject_reports_hint: Abaikan semua laporan dari domain ini. Tidak relevan untuk penangguhan
       rejecting_media: tolak berkas media
+      rejecting_reports: laporan ditolak
       severity:
         silence: dibungkam
         suspend: ditangguhkan
@@ -329,16 +375,17 @@ id:
       delete: Hapus
       destroyed_msg: Berhasil menghapus domain surel dari daftar hitam
       domain: Domain
+      empty: Tidak ada domain surel yang masuk daftar hitam.
+      from_html: dari %{domain}
       new:
         create: Tambah domain
         title: Entri daftar hitam surel baru
       title: Daftar hitam surel
-    followers:
-      back_to_account: Kembali Ke Akun
-      title: Pengikut %{acct}
     instances:
       by_domain: Domain
       delivery_available: Pengiriman tersedia
+      known_accounts:
+        other: "%{count} akun yang dikenal"
       moderation:
         all: Semua
         limited: Terbatas
@@ -349,6 +396,7 @@ id:
       total_blocked_by_us: Yang kita blokir
       total_followed_by_them: Diikuti mereka
       total_followed_by_us: Diikuti kita
+      total_reported: Laporan tentang mereka
       total_storage: Lampiran media
     invites:
       deactivate_all: Nonaktifkan semua
@@ -360,9 +408,12 @@ id:
       title: Undang
     pending_accounts:
       title: Akun tertunda (%{count})
+    relationships:
+      title: Hubungan %{acct}
     relays:
       add_new: Tambah relai baru
       delete: Hapus
+      description_html: "<strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot."
       disable: Matikan
       disabled: Dimatikan
       enable: Aktifkan
@@ -380,12 +431,15 @@ id:
       destroyed_msg: Catatan laporan berhasil dihapus!
     reports:
       account:
-        note: catatan
-        report: lapor
+        notes:
+          other: "%{count} catatan"
+        reports:
+          other: "%{count} laporan"
       action_taken_by: Aksi dilakukan oleh
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
       assigned: Moderator tertugas
+      by_target_domain: Domain akun yang dilaporkan
       comment:
         none: Tidak ada
       created_at: Dilaporkan
@@ -405,6 +459,7 @@ id:
       resolved_msg: Laporan berhasil diselesaikan!
       status: Status
       title: Laporan
+      unassign: Bebas Tugas
       unresolved: Belum Terseleseikan
       updated_at: Diperbarui
     settings:
@@ -421,24 +476,90 @@ id:
         desc_html: Ubah tampilan dengan CSS yang dimuat di setiap halaman
         title: CSS Kustom
       default_noindex:
+        desc_html: Memengaruhi semua pengguna yang tidak mengubah setelan ini sendiri
         title: Singkirkan pengguna dari pengindeksan mesin pencari scr bawaan
       domain_blocks:
         all: Kepada semua orang
+        disabled: Tidak kepada siapa pun
         title: Lihat blokir domain
+        users: Ke pengguna lokal yang sudah login
+      domain_blocks_rationale:
+        title: Tampilkan alasan
+      enable_bootstrap_timeline_accounts:
+        title: Aktifkan opsi ikuti otomatis untuk pengguna baru
+      hero:
+        desc_html: Ditampilkan di halaman depan. Direkomendasikan minimal 600x100px. Jika tidak diatur, kembali ke server gambar kecil
+        title: Gambar pertama
+      mascot:
+        desc_html: Ditampilkan di banyak halaman. Direkomendasikan minimal 293x205px. Jika tidak diatur, kembali ke maskot bawaan
+        title: Gambar maskot
+      peers_api_enabled:
+        desc_html: Nama domain server ini dijumpai di fediverse
+        title: Terbitkan daftar server yang ditemukan
+      preview_sensitive_media:
+        desc_html: Pratinjau tautan pada situsweb lain akan menampilkan gambar kecil meski media ditandai sebagai sensitif
+        title: Tampilkan media sensitif di pratinjau OpenGraph
+      profile_directory:
+        desc_html: Izinkan pengguna untuk ditemukan
+        title: Aktifkan direktori profil
       registrations:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
+        deletion:
+          desc_html: Izinkan siapapun untuk menghapus akun miliknya
+          title: Buka penghapusan akun
+        min_invite_role:
+          disabled: Tidak ada satu pun
+          title: Izinkan undangan oleh
+      registrations_mode:
+        modes:
+          approved: Persetujuan diperlukan untuk mendaftar
+          none: Tidak ada yang dapat mendaftar
+          open: Siapa pun dapat mendaftar
+        title: Mode registrasi
+      show_known_fediverse_at_about_page:
+        desc_html: Ketika dimatikan, batasi linimasa publik yang ditautkan dari halaman landas untuk menampilkan konten lokal saja
+        title: Masukkan konten gabungan di halaman linimasa publik tanpa autentifikasi
+      show_staff_badge:
+        desc_html: Tampilkan lencana staf pada halaman pengguna
+        title: Tampilkan lencana staf
       site_description:
         desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs
       site_description_extended:
         desc_html: Ditampilkan pada halaman informasi tambahan<br>Anda bisa menggunakan tag HTML
         title: Deskripsi situs tambahan
+      site_short_description:
+        desc_html: Ditampilkan pada bilah samping dan tag meta. Jelaskan apa itu Mastodon dan yang membuat server ini spesial dalam satu paragraf.
+        title: Deskripsi server pendek
+      site_terms:
+        desc_html: Anda dapat menulis kebijakan privasi, ketentuan layanan, atau hal legal lainnya sendiri. Anda dapat menggunakan tag HTML
+        title: Ketentuan layanan kustom
       site_title: Judul Situs
+      spam_check_enabled:
+        desc_html: Mastodon dapat melaporkan secara otomatis akun yang mengirimkan pesan berulang tanpa diminta. Ini mungkin ada kesalahan.
+        title: Automasi anti-spam
+      thumbnail:
+        desc_html: Dipakai sebagai pratinjau via OpenGraph dan API. Direkomendasikan 1200x630px
+        title: Server gambar kecil
+      timeline_preview:
+        desc_html: Tampilkan tautan ke linimasa publik pada halaman landas dan izinkan API mengakses linimasa publik tanpa autentifikasi
+        title: Izinkan akses linimasa publik tanpa autentifikasi
       title: Pengaturan situs
+      trendable_by_default:
+        desc_html: Memengaruhi tagar yang belum pernah diizinkan
+        title: Izinkan tagar masuk tren tanpa peninjauan
+      trends:
+        desc_html: Tampilkan secara publik tagar tertinjau yang kini sedang tren
+        title: Tagar sedang tren
+    site_uploads:
+      delete: Hapus berkas yang diunggah
+      destroyed_msg: Situs yang diunggah berhasil dihapus!
     statuses:
+      back_to_account: Kembali ke halaman akun
       batch:
+        delete: Hapus
         nsfw_off: Tandai sebagai tak sensitif
         nsfw_on: Tandai sebagai sensitif
       deleted: Dihapus
@@ -471,7 +592,6 @@ id:
     warning_presets:
       add_new: Tambah baru
       delete: Hapus
-      edit: Sunting
       edit_preset: Sunting preset peringatan
       title: Kelola preset peringatan
   admin_mailer:
@@ -482,25 +602,101 @@ id:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
       subject: Laporan baru untuk %{instance} (#%{id})
+    new_trending_tag:
+      body: 'Tagar #%{name} sedang tren hari ini, tetapi belum ditinjau. Itu tidak akan ditampilkan secara publik kecuali Anda mengizinkannya, atau simpan saja borang sebagaimana mestinya untuk tidak mendengarnya lagi.'
+      subject: Tagar baru muncul untuk ditinjau di %{instance} (#%{name})
+  aliases:
+    add_new: Buat alias
+    created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
+    deleted_msg: Berhasil menghapus alias. Pindah dari akun tersebut ke sini tidak akan lagi bisa dilakukan.
+    hint_html: Jika Anda ingin pindah dari akun lain ke sini, Anda dapat membuat alias, yang dilakukan sebelum Anda setuju dengan memindah pengikut dari akun lama ke akun sini. Aksi ini <strong>tidak berbahaya dan tidak bisa dikembalikan</strong>. <strong>Pemindahan akun dimulai dari akun lama</strong>.
+    remove: Hapus tautan alias
+  appearance:
+    advanced_web_interface: Antar muka web tingkat lanjut
+    advanced_web_interface_hint: 'Jika Anda ingin memanfaatkan seluruh lebar layar Anda, antar muka web tingkat lanjut mengizinkan Anda mengonfigurasi beragam kolom untuk menampilkan informasi sebanyak yang Anda mau: Beranda, notifikasi, linimasa gabungan, daftar, dan tagar.'
+    animations_and_accessibility: Animasi dan aksesibilitas
+    confirmation_dialogs: Dialog konfirmasi
+    discovery: Jelajah
+    localization:
+      body: Mastodon diterjemahkan oleh sukarelawan.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Siapa saja bisa berkontribusi.
+    sensitive_content: Konten sensitif
+    toot_layout: Tata letak toot
   application_mailer:
+    notification_preferences: Ubah pilihan email
+    salutation: "%{name},"
     settings: 'Ubah pilihan email: %{link}'
     view: 'Tampilan:'
+    view_profile: Lihat profil
+    view_status: Lihat status
   applications:
+    created: Aplikasi berhasil dibuat
+    destroyed: Aplikasi berhasil dihapus
     invalid_url: URL tidak sesuai
+    regenerate_token: Buat ulang token akses
+    token_regenerated: Token akses berhasil dibuat ulang
+    warning: Hati-hati dengan data ini. Jangan bagikan kepada siapapun!
+    your_token: Token akses Anda
   auth:
+    apply_for_account: Meminta undangan
+    change_password: Kata sandi
+    checkbox_agreement_html: Saya setuju dengan <a href="%{rules_path}" target="_blank">peraturan server</a> dan <a href="%{terms_path}" target="_blank">ketentuan layanan</a>
+    checkbox_agreement_without_rules_html: Saya setuju dengan <a href="%{terms_path}" target="_blank">ketentuan layanan</a>
+    delete_account: Hapus akun
+    delete_account_html: Jika Anda ingin menghapus akun Anda, Anda dapat <a href="%{path}">memproses ini</a>. Anda akan dikonfirmasi.
+    description:
+      prefix_invited_by_user: "@%{name} mengundang Anda untuk bergabung di server Mastodon ini!"
+      prefix_sign_up: Daftar ke Mastodon hari ini!
+      suffix: Dengan sebuah akun, Anda dapat mengikuti orang, mengirim pembaruan, dan bertukar pesan dengan pengguna dari server Mastodon mana pun dan lainnya!
     didnt_get_confirmation: Tidak menerima petunjuk konfirmasi?
     forgot_password: Lupa kata sandi?
+    invalid_reset_password_token: Token reset kata sandi tidak valid atau kedaluwarsa. Silakan minta yang baru.
     login: Masuk
     logout: Keluar
+    migrate_account: Pindah ke akun berbeda
+    migrate_account_html: Jika Anda ingin mengalihkan akun ini ke akun lain, Anda dapat <a href="%{path}">mengaturnya di sini</a>.
+    or_log_in_with: Atau masuk dengan
+    providers:
+      cas: CAS
+      saml: SAML
     register: Daftar
+    registration_closed: "%{instance} tidak menerima anggota baru"
     resend_confirmation: Kirim ulang email konfirmasi
     reset_password: Reset kata sandi
     security: Identitas
     set_new_password: Tentukan kata sandi baru
+    setup:
+      email_below_hint_html: Jika alamat surel di bawah tidak benar, Anda dapat menggantinya di sini dan menerima konfirmasi surel baru.
+      email_settings_hint_html: Konfirmasi surel telah dikirim ke %{email}. Jika alamat surel tidak benar, Anda dapat mengubahnya di setelan akun.
+      title: Atur
+    status:
+      account_status: Status akun
+      confirming: Menunggu konfirmasi surel diselesaikan.
+      functional: Akun Anda kini beroperasi penuh.
+      pending: Lamaran Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima sebuah surel jika lamaran Anda diterima.
+      redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
+    trouble_logging_in: Kesulitan masuk?
   authorize_follow:
+    already_following: Anda sudah mengikuti akun ini
+    already_requested: Anda sudah mengirimkan permintaan untuk mengikuti akun tersebut
     error: Sayangnya, ada error saat melihat akun remote
     follow: Ikuti
+    follow_request: 'Anda telah mengirim permintaan untuk mengikuti ke:'
+    following: 'Berhasil! Anda sekarang mengikuti:'
+    post_follow:
+      close: Atau Anda dapat menutup jendela ini.
+      return: Tampilkan profil pengguna
+      web: Ke web
     title: Mengikuti %{acct}
+  challenge:
+    confirm: Lanjut
+    hint_html: "<strong>Tip:</strong> Kami tidak akan meminta kata sandi Anda lagi untuk beberapa jam ke depan."
+    invalid_password: Kata sandi tidak valid
+    prompt: Konfirmasi kata sandi untuk melanjutkan
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}j"
@@ -515,115 +711,484 @@ id:
       x_minutes: "%{count}mnt"
       x_months: "%{count}bln"
       x_seconds: "%{count}dtk"
+  deletes:
+    challenge_not_passed: Informasi yang Anda masukkan salah
+    confirm_password: Masukkan kata sandi sekarang untuk memverifikasi identitas Anda
+    confirm_username: Masukkan nama pengguna untuk mengonfirmasi prosedur
+    proceed: Hapus akun
+    success_msg: Akun Anda berhasil dihapus
+    warning:
+      before: 'Sebelum melanjutkan, silakan baca catatan ini dengan hati-hati:'
+      caches: Konten yang telah tersimpan di server lain mungkin akan tetap di sana
+      data_removal: Kiriman Anda dan data lainnya akan dihapus secara permanen
+      email_change_html: Anda dapat <a href="%{path}">mengubah alamat surel Anda</a> tanpa perlu menghapus akun
+      email_contact_html: Jika pesan belum diterima, Anda dapat mengirim surel <a href="mailto:%{email}">%{email}</a> sebagai bantuan
+      email_reconfirmation_html: Jika Anda tidak menerima konfirmasi surel, <a href="%{path}">Anda dapat memintanya lagi</a>
+      irreversible: Anda tidak akan bisa lagi mengembalikan atau mengaktifkan kembali akun Anda
+      more_details_html: Lebih detailnya, lihat <a href="%{terms_path}">kebijakan privasi</a>.
+      username_available: Nama pengguna Anda akan tersedia lagi
+      username_unavailable: Nama pengguna Anda tetap tidak akan tersedia
+  directories:
+    directory: Direktori profil
+    explanation: Temukan pengguna berdasarkan minatnya
+    explore_mastodon: Jelajahi %{title}
+  domain_validator:
+    invalid_domain: bukan nama domain yang valid
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Permintaan yang dikirim tidak valid atau cacat.
     '403': Anda tidak mempunyai izin untuk melihat halaman ini.
     '404': Halaman yang anda cari tidak ditemukan
-    '406': This page is not available in the requested format.
+    '406': Halaman ini tidak tersedia dalam format yang diminta.
     '410': Halaman yang anda cari sudah tidak dapat ditemukan lagi.
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal
-    '429': Throttled
-    '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '429': Lambat
+    '500':
+      content: Maaf, ada sesuatu yang salah pada sistem kami.
+      title: Halaman ini tidak benar
+    '503': Halaman ini tidak dapat ditampilkan karena kegagalan server sementara.
+    noscript_html: Untuk menggunakan aplikasi web Mastodon, tolong aktifkan JavaScript. Sebagai alternatif, cobalah <a href="%{apps_path}">aplikasi murni</a> Mastodon untuk platform Anda.
+  existing_username_validator:
+    not_found: tidak dapat menemukan pengguna lokal dengan nama pengguna tersebut
+    not_found_multiple: tidak dapat menemukan %{usernames}
   exports:
+    archive_takeout:
+      date: Tanggal
+      download: Unduh arsip Anda
+      hint_html: Anda dapat meminta arsip <strong>toot dan media yang Anda unggah</strong>. Data yang terekspor akan berformat ActivityPub, dapat dibaca dengan perangkat lunak yang mendukungnya. Anda dapat meminta arsip akun setiap 7 hari.
+      in_progress: Mengompilasi arsip Anda...
+      request: Meminta arsip Anda
+      size: Ukuran
     blocks: Anda blokir
-    follows: Anda ikuti
+    csv: CSV
+    domain_blocks: Blokir domain
+    lists: Daftar
     mutes: Anda bisukan
     storage: Penyimpanan media
+  featured_tags:
+    add_new: Tambah baru
+    errors:
+      limit: Anda sudah menampilkan tagar unggulan dengan jumlah maksimum
+    hint_html: "<strong>Apa itu tagar yang diunggulkan?</strong> Mereka ditampilkan secara mencolok di profil publik Anda dan mengizinkan orang-orang untuk menjelajahi kiriman publik khususnya yang ada di bawah tagar tersebut. Mereka adalah alat yang bagus untuk melacak pekerjaan kreatif atau proyek jangka panjang."
+  filters:
+    contexts:
+      account: Profil
+      home: Beranda
+      notifications: Notifikasi
+      public: Linimasa publik
+      thread: Percakapan
+    edit:
+      title: Ubah saringan
+    errors:
+      invalid_context: Konteks tidak ada atau invalid
+      invalid_irreversible: Penyaringan yang tidak dapat dipulihkan hanya bekerja di beranda atau konteks notifikasi
+    index:
+      delete: Hapus
+      empty: Anda tidak memiliki filter.
+      title: Saringan
+    new:
+      title: Tambah saringan baru
+  footer:
+    developers: Pengembang
+    more: Lainnya…
+    resources: Sumber daya
+    trending_now: Sedang tren
   generic:
+    all: Semua
     changes_saved_msg: Perubahan berhasil disimpan!
+    copy: Salin
+    delete: Hapus
+    no_batch_actions_available: Tindakan batch tidak tersedia di halaman ini
+    order_by: Urut berdasarkan
     save_changes: Simpan perubahan
+    validation_errors:
+      other: Ada yang belum benar! Silakan tinjau %{count} kesalahan di bawah ini
+  html_validator:
+    invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
+  identity_proofs:
+    active: Aktif
+    authorize: Ya, izinkan
+    authorize_connection_prompt: Izinkan koneksi kriptografi ini?
+    errors:
+      failed: Koneksi kriptografi gagal. Silakan coba lagi dari %{provider}.
+      keybase:
+        invalid_token: Token Keybase adalah sandi tanda tangan dan harus berupa 66 karakter hex
+        verification_failed: Keybase tidak mengenali token ini sebagai tanda tangan pengguna Keybase %{kb_username}. Silakan ulangi lagi dari Keybase.
+      wrong_user: Tidak dapat membuat bukti untuk %{proving} saat masuk sebagai %{current}. Masuk sebagai %{proving} dan coba lagi.
+    explanation_html: Anda dapat mengoneksikan identitas lain secara kriptografi, seperti profil Keybase. Ini mengizinkan orang lain untuk mengirim pesan terenkripsi kepada Anda dan mempercayai konten yang Anda kirim.
+    i_am_html: Saya adalah %{username} di %{service}.
+    identity: Identitas
+    inactive: Tidak aktif
+    publicize_checkbox: 'Dan toot ini:'
+    publicize_toot: 'Terbukti! Saya adalah %{username} di %{service}: %{url}'
+    status: Status verifikasi
+    view_proof: Lihat bukti
   imports:
+    modes:
+      merge: Gabung
+      merge_long: Pertahankan rekaman yang sudah ada dan buat baru
+      overwrite: Timpa
+      overwrite_long: Ganti rekaman sekarang dengan yang baru
     preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
     success: Data anda berhasil diupload dan akan diproses sesegera mungkin
     types:
       blocking: Daftar diblokir
+      domain_blocking: Daftar blokir domain
       following: Daftar diikuti
       muting: Daftar didiamkan
     upload: Unggah
+  in_memoriam_html: Dalam memori.
   invites:
+    delete: Nonaktifkan
+    expired: Kedaluwarsa
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '1800': 30 menit
+      '21600': 6 jam
+      '3600': 1 jam
+      '43200': 12 jam
+      '604800': 1 minggu
+      '86400': 1 hari
+    expires_in_prompt: Tak pernah
+    generate: Buat tautan undangan
+    invited_by: 'Anda diundang oleh:'
+    max_uses:
+      other: "%{count} penggunaan"
+    max_uses_prompt: Tanpa batas
+    prompt: Buat dan bagikan tautan dengan yang lain untuk mendapatkan akses ke server ini
+    table:
+      expires_at: Kedaluwarsa
+      uses: Penggunaan
+    title: Undang orang
+  lists:
+    errors:
+      limit: Daftar Anda telah mencapai jumlah maksimum
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
+      not_ready: Tidak dapat melampirkan berkas yang belum selesai diproses. Coba lagi nanti!
       too_many: Tidak dapat melampirkan lebih dari 4 file
+  migrations:
+    acct: Pindah ke
+    cancel: Batalkan peralihan
+    cancel_explanation: Membatalkan peralihan akan mengaktivasi ulang akun sekarang, tetapi tidak akan mengembalikan pengikut yang telah pindah ke akun baru.
+    cancelled_msg: Pembatalan peralihan berhasil.
+    errors:
+      already_moved: adalah akun yang sama yang sudah Anda pindahkan ke
+      missing_also_known_as: ini bukan back-reference akun ini
+      move_to_self: tidak boleh akun sekarang
+      not_found: tidak dapat ditemukan
+      on_cooldown: Anda berada di masa tenang
+    followers_count: Jumlah pengikut saat migrasi
+    incoming_migrations: Pindah dari akun berbeda
+    incoming_migrations_html: Untuk pindah dari akun lain ke sini, Anda harus <a href="%{path}">membuat alias akun</a> terlebih dahulu.
+    moved_msg: Akun Anda dialihkan ke %{acct} dan pengikut Anda akan ikut dipindahkan.
+    not_redirecting: Saat ini akun Anda tidak dialihkan ke akun lain.
+    on_cooldown: Anda baru saja memindahkan akun Anda. Fungsi ini akan tersedia kembali %{count} hari lagi.
+    past_migrations: Migrasi lampau
+    proceed_with_move: Pindahkan pengikut
+    redirecting_to: Akun Anda dialihkan ke %{acct}.
+    set_redirect: Atur peralihan
+    warning:
+      backreference_required: Akun baru harus dikonfigurasi terlebih dahulu agar merujuk ke akun ini
+      before: 'Sebelum lanjut, mohon perhatikan catatan ini:'
+      cooldown: Setelah pindah akun adalah masa tenang, masa Anda tidak dapat pindah akun lagi
+      disabled_account: Akun Anda tidak akan dapat dipakai secara penuh. Namun, Anda tetap akan memiliki akses ke ekspor data dan aktivasi ulang.
+      followers: Tindakan ini akan memindah semua pengikut Anda dari akun sekarang ke akun baru
+      only_redirect_html: Secara alternatif, Anda <a href="%{path}">hanya dapat menaruh tulisan mengarahkan ke profil Anda</a>.
+      other_data: Tidak akan ada data lagi yang dipindahkan secara otomatis
+      redirect: Pemberitahuan peralihan akan dimunculkan pada akun profil Anda dan akun akan dikecualikan dari pencarian
+  moderation:
+    title: Moderasi
   notification_mailer:
     digest:
+      action: Lihat semua notifikasi
       body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
       mention: "%{name} menyebut anda di:"
       new_followers_summary:
         other: Anda mendapatkan %{count} pengikut baru! Luar biasa!
       subject:
         other: "%{count} notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
+      title: Saat Anda tidak muncul...
     favourite:
       body: 'Status anda disukai oleh %{name}:'
       subject: "%{name} menyukai status anda"
+      title: Favorit baru
     follow:
       body: "%{name} mengikuti anda!"
       subject: "%{name} menjadi pengikut anda"
+      title: Pengikut baru
     follow_request:
+      action: Kelola permintaan mengikuti
       body: "%{name} meminta untuk mengikuti anda"
       subject: 'Pengikut menunggu: %{name}'
+      title: Permintaan mengikuti baru
     mention:
+      action: Balas
       body: 'Anda disebut oleh %{name} pada:'
       subject: Anda disebut oleh %{name}
+      title: Sebutan baru
     reblog:
       body: 'Status anda di-boost oleh %{name}:'
       subject: "%{name} mem-boost status anda"
+      title: Boost baru
+  notifications:
+    email_events: Event untuk notifikasi surel
+    email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
+    other_settings: Pengaturan notifikasi lain
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: M
+          million: Jt
+          quadrillion: Kdt
+          thousand: Rb
+          trillion: T
   pagination:
+    newer: Lebih baru
     next: Selanjutnya
+    older: Lebih lama
     prev: Sebelumnya
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Anda sudah mengikuti japat ini
+      duplicate_options: berisi item ganda
+      duration_too_long: terlalu jauh ke masa depan
+      duration_too_short: terlalu cepat
+      expired: Japat telah berakhir
+      invalid_choice: Opsi pilihan yang dipilih tidak ada
+      over_character_limit: tidak boleh lebih dari %{max} karakter
+      too_few_options: harus punya lebih dari satu item
+      too_many_options: tidak boleh berisi lebih dari %{max} item
+  preferences:
+    other: Lainnya
+    posting_defaults: Kiriman bawaan
+    public_timelines: Linimasa publik
+  reactions:
+    errors:
+      limit_reached: Batas reaksi yang berbeda terpenuhi
+      unrecognized_emoji: bukan emoji yang dikenal
+  relationships:
+    activity: Aktivitas akun
+    dormant: Terbengkalai
+    followers: Pengikut
+    following: Mengikuti
+    invited: Diundang
+    last_active: Terakhir aktif
+    most_recent: Terkini
+    moved: Dipindah
+    mutual: Mutual
+    primary: Utama
+    relationship: Hubungan
+    remove_selected_domains: Hapus semua pengikut dari domain yang dipilih
+    remove_selected_followers: Hampus pengikut yang dipilih
+    remove_selected_follows: Batal ikuti pengguna terpilih
+    status: Status akun
   remote_follow:
     acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
+    no_account_html: Tidak memiliki akun? Anda dapat <a href='%{sign_up_path}' target='_blank'>mendaftar di sini</a>
     proceed: Lanjutkan untuk mengikuti
     prompt: 'Anda akan mengikuti:'
+    reason_html: "<strong>Mengapa langkah ini penting?</strong> <code>%{instance}</code> mungkin saja bukan tempat Anda mendaftar, sehingga kami perlu mengalihkan Anda ke server beranda lebih dahulu."
+  remote_interaction:
+    favourite:
+      proceed: Lanjutkan ke favorit
+      prompt: 'Anda ingin memfavoritkan toot ini:'
+    reblog:
+      proceed: Lanjutkan ke boost
+      prompt: 'Anda ingin mem-boost toot ini:'
+    reply:
+      proceed: Lanjutkan ke balasan
+      prompt: 'Anda ingin membalas toot ini:'
+  scheduled_statuses:
+    over_daily_limit: Anda telah melampaui batas %{limit} toot terjadwal untuk sehari
+    over_total_limit: Anda telah melampaui batas %{limit} toot terjadwal
+    too_soon: Tanggal terjadwal haruslah pada hari yang akan datang
+  sessions:
+    activity: Aktivitas terakhir
+    browser: Peramban
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Peramban tidak dikenal
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Peramban Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Sesi sekarang
+    description: "%{browser} di %{platform}"
+    explanation: Ini peramban yang sedang dalam posisi masuk akun Mastodon Anda.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: platform yang tidak diketahui
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Cabut izin
+    revoke_success: Sesi berhasil dicabut
+    title: Sesi
   settings:
+    account: Akun
+    account_settings: Pengaturan akun
+    aliases: Alias akun
+    appearance: Tampilan
     authorized_apps: Apl yang diizinkan
     back: Kembali ke Mastodon
+    delete: Penghapusan akun
+    development: Pengembangan
     edit_profile: Ubah profil
     export: Expor data
+    featured_tags: Tagar unggulan
+    identity_proofs: Bukti identitas
     import: Impor
+    import_and_export: Impor dan ekspor
+    migrate: Pemindahan akun
+    notifications: Notifikasi
     preferences: Pilihan
+    profile: Profil
+    relationships: Ikuti dan pengikut
     two_factor_authentication: Autentikasi Two-factor
+  spam_check:
+    spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
   statuses:
+    attached:
+      description: 'Terlampir: %{attached}'
+      image:
+        other: "%{count} gambar"
+      video:
+        other: "%{count} video"
+    boosted_from_html: Boost dari %{acct_link}
+    content_warning: 'Peringatan konten: %{warning}'
+    disallowed_hashtags:
+      other: 'berisi tagar yang tidak diizinkan: %{tags}'
+    errors:
+      in_reply_not_found: Status yang ingin Anda balas sudah tidak ada.
+    language_detection: Deteksi bahasa secara otomatis
     open_in_web: Buka di web
     over_character_limit: melebihi %{max} karakter
+    pin_errors:
+      limit: Anda sudah mencapai jumlah maksimum toot yang dapat disematkan
+      ownership: Toot orang lain tidak bisa disematkan
+      private: Toot privat tidak bisa disematkan
+      reblog: Boost tidak bisa disematkan
+    poll:
+      total_people:
+        other: "%{count} orang"
+      total_votes:
+        other: "%{count} memilih"
+      vote: Memilih
     show_more: Tampilkan selengkapnya
+    show_thread: Tampilkan utas
+    sign_in_to_participate: Masuk untuk mengikuti percakapan
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Khusus pengikut
       private_long: Hanya tampilkan ke pengikut
       public: Publik
       public_long: Bisa dilihat semua orang
       unlisted: Bisa dilihat semua orang, tapi tidak ditampilkan di linimasa publik
+      unlisted_long: Tidak terdaftar di linimasa publik tetapi siapapun dapat melihat
   stream_entries:
+    pinned: Toot tersemat
     reblogged: di-boost-kan
     sensitive_content: Konten sensitif
+  tags:
+    does_not_match_previous_name: tidak cocok dengan nama sebelumnya
+  terms:
+    title: "%{instance} Ketentuan Layanan dan Kebijakan Privasi"
+  themes:
+    contrast: Mastodon (Kontras tinggi)
+    default: Mastodon (Gelap)
+    mastodon-light: Mastodon (Terang)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     code_hint: Masukkan kode yang dibuat oleh app autentikator sebagai konfirmasi
     description_html: Jika anda menaktifkan ototentikasi dua faktor, saat login anda harus menggunakan telepon anda  untuk membuat token supaya anda bisa masuk.
     disable: Matikan
     enable: Aktifkan
+    enabled: Otentifikasi dua faktor aktif
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
     instructions_html: "<strong>Pindai kode QR ini pada Otentikator Google anda atau aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk login."
     lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
     manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode yang harus dimasukkan:'
+    recovery_codes: Kode pemulihan cadangan
     recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     setup: Persiapan
     wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
+  user_mailer:
+    backup_ready:
+      explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
+      subject: Arsip Anda sudah siap diunduh
+      title: Ambil arsip
+    warning:
+      explanation:
+        disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
+        silence: Saat akun Anda dibatasi, hanya akun yang Anda ikuti yang dapat melihat toot Anda di server ini. Akun Anda mungkin akan dikecualikan dari daftar publik. Akun lain dapat mengikuti akun Anda secara manual.
+        suspend: Akun Anda telah ditangguhkan. Semua toot dan media yang Anda unggah dihapus secara permanen dari server ini, dan server tempat Anda memiliki pengikut.
+      get_in_touch: Anda dapat membalas surel ini untuk menghubungi pengurus %{instance}.
+      review_server_policies: Tinjau kebijakan server
+      statuses: 'Khususnya untuk:'
+      subject:
+        disable: Akun Anda %{acct} telah dibekukan
+        none: Peringatan untuk %{acct}
+        silence: Akun Anda %{acct} telah dibatasi
+        suspend: Akun Anda %{acct} telah ditangguhkan
+      title:
+        disable: Akun dibekukan
+        none: Peringatan
+        silence: Akun dibatasi
+        suspend: Akun ditangguhkan
+    welcome:
+      edit_profile_action: Siapkan profil
+      edit_profile_step: Anda dapat menyesuaikan profil Anda dengan mengunggah avatar, kepala, mengubah tampilan nama dan lainnya. Jika Anda ingin meninjau pengikut baru sebelum Anda terima sebagai pengikut, Anda dapat mengunci akun Anda.
+      explanation: Beberapa tips sebelum Anda memulai
+      final_action: Mulai mengirim
+      final_step: 'Mulai mengirim! Tanpa pengikut, pesan publik Anda akan tetap dapat dilihat oleh akun lain, contohnya di linimasa lokal atau di tagar. Anda mungkin ingin memperkenalkan diri dengan tagar #introductions.'
+      full_handle: Penanganan penuh Anda
+      full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
+      review_preferences_action: Ubah preferensi
+      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti surel untuk menerima pesan, atau tingkat privasi bawaan untuk kiriman Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
+      subject: Selamat datang di Mastodon
+      tip_federated_timeline: Linimasa gabungan adalah ruang yang menampilkan jaringan Mastodon. Tapi ini hanya berisi tetangga orang-orang yang Anda ikuti, jadi tidak sepenuhnya komplet.
+      tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
+      tip_local_timeline: Linimasa lokal adalah ruang yang menampilkan orang-orang di %{instance}. Mereka adalah tetangga dekat!
+      tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
+      tips: Tips
+      title: Selamat datang, %{name}!
   users:
+    follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
     invalid_email: Alamat email tidak cocok
     invalid_otp_token: Kode dua faktor tidak cocok
+    otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
+    seamless_external_login: Anda masuk via layanan eksternal, sehingga setelan kata sandi dan surel tidak tersedia.
+    signed_in_as: 'Masuk sebagai:'
+  verification:
+    explanation_html: 'Anda dapat <strong>memverifikasi diri Anda sebagai pemiliki tautan pada metadata profil</strong>. Situsweb yang ditautkan haruslah berisi tautan ke profil Mastodon Anda. Tautan tersebut <strong>harus</strong> memiliki atribut <code>rel="me"</code>. Isi teks tautan tidaklah penting. Ini contohnya:'
+    verification: Verifikasi

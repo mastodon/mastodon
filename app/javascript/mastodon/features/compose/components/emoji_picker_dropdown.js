@@ -199,12 +199,13 @@ class EmojiPickerMenu extends React.PureComponent {
     };
   }
 
-  handleClick = emoji => {
+  handleClick = (emoji, event) => {
     if (!emoji.native) {
       emoji.native = emoji.colons;
     }
-
-    this.props.onClose();
+    if (!(event.ctrlKey || event.metaKey)) {
+      this.props.onClose();
+    }
     this.props.onPick(emoji);
   }
 
@@ -290,6 +291,7 @@ class EmojiPickerDropdown extends React.PureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     skinTone: PropTypes.number.isRequired,
+    button: PropTypes.node,
   };
 
   state = {
@@ -350,18 +352,18 @@ class EmojiPickerDropdown extends React.PureComponent {
   }
 
   render () {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, button } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading, placement } = this.state;
 
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
         <div ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} role='button' onClick={this.onToggle} onKeyDown={this.onToggle} tabIndex={0}>
-          <img
+          {button || <img
             className={classNames('emojione', { 'pulse-loading': active && loading })}
             alt='🙂'
             src={`${assetHost}/emoji/1f602.svg`}
-          />
+          />}
         </div>
 
         <Overlay show={active} placement={placement} target={this.findTarget}>

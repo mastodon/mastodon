@@ -6,7 +6,7 @@ import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
-import { FormattedDate, FormattedNumber } from 'react-intl';
+import { FormattedDate } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
@@ -14,6 +14,7 @@ import Audio from '../../audio';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
+import AnimatedNumber from 'mastodon/components/animated_number';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -47,8 +48,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
-  handleOpenVideo = (media, startTime) => {
-    this.props.onOpenVideo(media, startTime);
+  handleOpenVideo = (media, options) => {
+    this.props.onOpenVideo(media, options);
   }
 
   handleExpandedToggle = () => {
@@ -116,6 +117,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             src={attachment.get('url')}
             alt={attachment.get('description')}
             duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
+            poster={status.getIn(['account', 'avatar_static'])}
             height={110}
             preload
           />
@@ -152,7 +154,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         );
       }
     } else if (status.get('spoiler_text').length === 0) {
-      media = <Card onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
+      media = <Card sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={status.get('card', null)} />;
     }
 
     if (status.get('application')) {
@@ -165,14 +167,14 @@ export default class DetailedStatus extends ImmutablePureComponent {
       reblogIcon = 'lock';
     }
 
-    if (status.get('visibility') === 'private') {
+    if (['private', 'direct'].includes(status.get('visibility'))) {
       reblogLink = <Icon id={reblogIcon} />;
     } else if (this.context.router) {
       reblogLink = (
         <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
           <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
-            <FormattedNumber value={status.get('reblogs_count')} />
+            <AnimatedNumber value={status.get('reblogs_count')} />
           </span>
         </Link>
       );
@@ -181,7 +183,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
           <Icon id={reblogIcon} />
           <span className='detailed-status__reblogs'>
-            <FormattedNumber value={status.get('reblogs_count')} />
+            <AnimatedNumber value={status.get('reblogs_count')} />
           </span>
         </a>
       );
@@ -192,7 +194,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
           <Icon id='star' />
           <span className='detailed-status__favorites'>
-            <FormattedNumber value={status.get('favourites_count')} />
+            <AnimatedNumber value={status.get('favourites_count')} />
           </span>
         </Link>
       );
@@ -201,7 +203,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
           <Icon id='star' />
           <span className='detailed-status__favorites'>
-            <FormattedNumber value={status.get('favourites_count')} />
+            <AnimatedNumber value={status.get('favourites_count')} />
           </span>
         </a>
       );

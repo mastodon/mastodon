@@ -38,6 +38,8 @@
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
 #  approved                  :boolean          default(TRUE), not null
+#  sign_in_token             :string
+#  sign_in_token_sent_at     :datetime
 #
 
 class User < ApplicationRecord
@@ -93,10 +95,12 @@ class User < ApplicationRecord
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
+  scope :matches_ip, ->(value) { left_joins(:session_activations).where('users.current_sign_in_ip <<= ?', value).or(left_joins(:session_activations).where('users.last_sign_in_ip <<= ?', value)).or(left_joins(:session_activations).where('session_activations.ip <<= ?', value)) }
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
   before_create :set_approved
+  after_commit :send_pending_devise_notifications
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -111,7 +115,7 @@ class User < ApplicationRecord
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
            to: :settings, prefix: :setting, allow_nil: false
 
-  attr_reader :invite_code
+  attr_reader :invite_code, :sign_in_token_attempt
   attr_writer :external
 
   def confirmed?
@@ -127,9 +131,7 @@ class User < ApplicationRecord
   end
 
   def disable!
-    update!(disabled: true,
-            last_sign_in_at: current_sign_in_at,
-            current_sign_in_at: nil)
+    update!(disabled: true)
   end
 
   def enable!
@@ -165,6 +167,10 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     true
+  end
+
+  def suspicious_sign_in?(ip)
+    !otp_required_for_login? && current_sign_in_at.present? && current_sign_in_at < 2.weeks.ago && !recent_ip?(ip)
   end
 
   def functional?
@@ -246,7 +252,7 @@ class User < ApplicationRecord
                                  ip: request.remote_ip).session_id
   end
 
-  def exclusive_session(id)
+  def clear_other_sessions(id)
     session_activations.exclusive(id)
   end
 
@@ -269,6 +275,13 @@ class User < ApplicationRecord
     super
   end
 
+  def external_or_valid_password?(compare_password)
+    # If encrypted_password is blank, we got the user from LDAP or PAM,
+    # so credentials are already valid
+
+    encrypted_password.blank? || valid_password?(compare_password)
+  end
+
   def send_reset_password_instructions
     return false if encrypted_password.blank?
 
@@ -289,13 +302,68 @@ class User < ApplicationRecord
     setting_display_media == 'hide_all'
   end
 
+  def recent_ips
+    @recent_ips ||= begin
+      arr = []
+
+      session_activations.each do |session_activation|
+        arr << [session_activation.updated_at, session_activation.ip]
+      end
+
+      arr << [current_sign_in_at, current_sign_in_ip] if current_sign_in_ip.present?
+      arr << [last_sign_in_at, last_sign_in_ip] if last_sign_in_ip.present?
+
+      arr.sort_by { |pair| pair.first || Time.now.utc }.uniq(&:last).reverse!
+    end
+  end
+
+  def sign_in_token_expired?
+    sign_in_token_sent_at.nil? || sign_in_token_sent_at < 5.minutes.ago
+  end
+
+  def generate_sign_in_token
+    self.sign_in_token         = Devise.friendly_token(6)
+    self.sign_in_token_sent_at = Time.now.utc
+  end
+
   protected
 
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    # This method can be called in `after_update` and `after_commit` hooks,
+    # but we must make sure the mailer is actually called *after* commit,
+    # otherwise it may work on stale data. To do this, figure out if we are
+    # within a transaction.
+    if ActiveRecord::Base.connection.current_transaction.try(:records)&.include?(self)
+      pending_devise_notifications << [notification, args]
+    else
+      render_and_send_devise_message(notification, *args)
+    end
   end
 
   private
+
+  def recent_ip?(ip)
+    recent_ips.any? { |(_, recent_ip)| recent_ip == ip }
+  end
+
+  def send_pending_devise_notifications
+    pending_devise_notifications.each do |notification, args|
+      render_and_send_devise_message(notification, *args)
+    end
+
+    # Empty the pending notifications array because the
+    # after_commit hook can be called multiple times which
+    # could cause multiple emails to be sent.
+    pending_devise_notifications.clear
+  end
+
+  def pending_devise_notifications
+    @pending_devise_notifications ||= []
+  end
+
+  def render_and_send_devise_message(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 
   def set_approved
     self.approved = open_registrations? || valid_invitation? || external?

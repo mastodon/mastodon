@@ -1,6 +1,12 @@
 - content_for :page_title do
   = t('admin.instances.title')
 
+- content_for :heading_actions do
+  - if whitelist_mode?
+    = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button'
+  - else
+    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
+
 .filters
   .filter-subset
     %strong= t('admin.instances.moderation.title')
@@ -10,18 +16,11 @@
       - unless whitelist_mode?
         %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
 
-  %div{ style: 'flex: 1 1 auto; text-align: right' }
-    - if whitelist_mode?
-      = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button'
-    - else
-      = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
-
 - unless whitelist_mode?
   = form_tag admin_instances_url, method: 'GET', class: 'simple_form' do
     .fields-group
-      - Admin::FilterHelper::INSTANCES_FILTERS.each do |key|
-        - if params[key].present?
-          = hidden_field_tag key, params[key]
+      - InstanceFilter::KEYS.each do |key|
+        = hidden_field_tag key, params[key] if params[key].present?
 
       - %i(by_domain).each do |key|
         .input.string.optional

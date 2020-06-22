@@ -29,13 +29,14 @@ th:
       edit:
         title: แก้ไขแอปพลิเคชัน
       help:
-        native_redirect_uri: ใช้ %{native_redirect_uri} สำหรับการทดสอบในเว็บ
+        native_redirect_uri: ใช้ %{native_redirect_uri} สำหรับการทดสอบในเซิร์ฟเวอร์
         redirect_uri: ใช้หนึ่งบรรทัดต่อ URI
-        scopes: แยกขอบเขตด้วยช่องว่าง เว้นว่างเพื่อใช้ขอบเขตเริ่มต้น
+        scopes: แยกขอบเขตด้วยช่องว่าง เว้นว่างไว้เพื่อใช้ขอบเขตเริ่มต้น
       index:
         application: แอปพลิเคชัน
         callback_url: URL เรียกกลับ
         delete: ลบ
+        empty: คุณไม่มีแอปพลิเคชัน
         name: ชื่อ
         new: แอปพลิเคชันใหม่
         scopes: ขอบเขต
@@ -70,11 +71,16 @@ th:
       index:
         application: แอปพลิเคชัน
         created_at: อนุญาตเมื่อ
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: ขอบเขต
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
+        invalid_token:
+          expired: โทเคนการเข้าถึงหมดอายุแล้ว
+          revoked: เพิกถอนโทเคนการเข้าถึงแล้ว
+          unknown: โทเคนการเข้าถึงไม่ถูกต้อง
     flash:
       applications:
         create:
@@ -94,11 +100,16 @@ th:
       application:
         title: ต้องมีการอนุญาต OAuth
     scopes:
+      admin:read: อ่านข้อมูลทั้งหมดในเซิร์ฟเวอร์
+      admin:read:accounts: อ่านข้อมูลที่ละเอียดอ่อนของบัญชีทั้งหมด
+      admin:read:reports: อ่านข้อมูลที่ละเอียดอ่อนของรายงานและบัญชีที่ได้รับการรายงานทั้งหมด
+      admin:write: ปรับเปลี่ยนข้อมูลทั้งหมดในเซิร์ฟเวอร์
       follow: ปรับเปลี่ยนความสัมพันธ์ของบัญชี
       push: รับการแจ้งเตือนแบบผลักของคุณ
       read: อ่านข้อมูลบัญชีทั้งหมดของคุณ
       read:accounts: ดูข้อมูลบัญชี
       read:blocks: ดูการปิดกั้นของคุณ
+      read:bookmarks: ดูที่คั่นหน้าของคุณ
       read:favourites: ดูรายการโปรดของคุณ
       read:filters: ดูตัวกรองของคุณ
       read:follows: ดูการติดตามของคุณ
@@ -111,6 +122,7 @@ th:
       write: ปรับเปลี่ยนข้อมูลบัญชีทั้งหมดของคุณ
       write:accounts: ปรับเปลี่ยนโปรไฟล์ของคุณ
       write:blocks: ปิดกั้นบัญชีและโดเมน
+      write:bookmarks: เพิ่มที่คั่นหน้าสถานะ
       write:favourites: ชื่นชอบสถานะ
       write:filters: สร้างตัวกรอง
       write:follows: ติดตามผู้คน

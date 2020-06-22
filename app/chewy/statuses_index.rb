@@ -33,7 +33,7 @@ class StatusesIndex < Chewy::Index
 
   define_type ::Status.unscoped.kept.without_reblogs.includes(:media_attachments), delete_if: ->(status) { status.searchable_by.empty? } do
     crutch :mentions do |collection|
-      data = ::Mention.where(status_id: collection.map(&:id)).where(account: Account.local).pluck(:status_id, :account_id)
+      data = ::Mention.where(status_id: collection.map(&:id)).where(account: Account.local, silent: false).pluck(:status_id, :account_id)
       data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
     end
 
@@ -44,6 +44,11 @@ class StatusesIndex < Chewy::Index
 
     crutch :reblogs do |collection|
       data = ::Status.where(reblog_of_id: collection.map(&:id)).where(account: Account.local).pluck(:reblog_of_id, :account_id)
+      data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
+    end
+
+    crutch :bookmarks do |collection|
+      data = ::Bookmark.where(status_id: collection.map(&:id)).where(account: Account.local).pluck(:status_id, :account_id)
       data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
     end
 

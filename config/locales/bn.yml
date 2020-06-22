@@ -11,6 +11,7 @@ bn:
     apps: মোবাইল অ্যাপ
     apps_platforms: মাস্টাডন আইওএস, এন্ড্রোইড বা অন্য মাধ্যমে ব্যবহার করুন
     browse_directory: একটি ব্যবহারকারীদের তালিকা দেখুন এবং পছন্দ অনুসারে খুজুন
+    browse_local_posts: এই সার্ভার থেকে সর্বজনীন পোস্টগুলির একটি লাইভ স্ট্রিম ব্রাউজ করুন
     browse_public_posts: মাস্টাডনে নতুন প্রকাশ্য লেখাগুলো সরাসরি দেখুন
     contact: যোগাযোগ
     contact_missing: নেই
@@ -20,6 +21,9 @@ bn:
     federation_hint_html: "%{instance}তে একটা নিবন্ধন থাকলে আপনি যেকোনো মাস্টাডন বা এধরণের অন্যান্য সার্ভারের মানুষের সাথে যুক্ত হতে পারবেন ।"
     get_apps: মোবাইল এপ্প একটা ব্যবহার করতে পারেন
     hosted_on: এই মাস্টাডনটি আছে %{domain} এ
+    instance_actor_flash: 'এই অ্যাকাউন্টটি ভার্চুয়াল এক্টর যা নিজে কোনও সার্ভারের প্রতিনিধিত্ব করতে ব্যবহৃত হয় এবং কোনও পৃথক ব্যবহারকারী নয়। এটি ফেডারেশনের উদ্দেশ্যে ব্যবহৃত হয় এবং আপনি যদি পুরো ইনস্ট্যান্স ব্লক করতে না চান তবে অবরুদ্ধ করা উচিত নয়, সেক্ষেত্রে আপনার ডোমেন ব্লক ব্যবহার করা উচিত।
+
+'
     learn_more: বিস্তারিত জানুন
     privacy_policy: গোপনীয়তা নীতি
     see_whats_happening: কী কী হচ্ছে দেখুন
@@ -31,6 +35,14 @@ bn:
     status_count_before: কে লিখেছে
     tagline: পরিচিতজনদের সাথে যুক্ত হন এবং নতুনদের সাথে পরিচিত হন
     terms: ব্যবহারের শর্তাবলী
+    unavailable_content: অনুপলব্ধ সামগ্রী
+    unavailable_content_description:
+      domain: সার্ভার
+      reason: কারণ
+      rejecting_media: 'এই সার্ভারগুলি থেকে মিডিয়া ফাইলগুলি প্রক্রিয়া করা বা সংরক্ষণ করা হবে না এবং কোনও থাম্বনেইল প্রদর্শিত হবে না, মূল ফাইলটিতে ম্যানুয়াল ক্লিক-মাধ্যমে প্রয়োজন:'
+      silenced: 'এই সার্ভারগুলির পোস্টগুলি জনসাধারণের টাইমলাইন এবং কথোপকথনে লুকানো থাকবে এবং আপনি যদি তাদের অনুসরণ না করেন তবে তাদের ব্যবহারকারীর ইন্টারঅ্যাকশন থেকে কোনও বিজ্ঞপ্তি উত্পন্ন হবে না:'
+      suspended: 'এই সার্ভারগুলি থেকে কোনও ডেটা প্রক্রিয়াজাতকরণ, সংরক্ষণ বা আদান-প্রদান করা হবে না, এই সার্ভারগুলির ব্যবহারকারীদের সাথে কোনও মিথস্ক্রিয়া বা যোগাযোগকে অসম্ভব করে তুলেছে:'
+    unavailable_content_html: ম্যাস্টোডন সাধারণত আপনাকে ফেদিভার্স এ অন্য কোনও সার্ভারের ব্যবহারকারীদের থেকে সামগ্রী দেখতে এবং তাদের সাথে আলাপচারিতা করার অনুমতি দেয়। এই ব্যতিক্রম যে এই বিশেষ সার্ভারে তৈরি করা হয়েছে।
     user_count_after:
       one: ব্যবহারকারী
       other: জনের
@@ -38,6 +50,8 @@ bn:
     what_is_mastodon: মাস্টাডনটি কি ?
   accounts:
     choices_html: "%{name} বাছাই:"
+    endorsements_hint: আপনি ওয়েব ইন্টারফেস থেকে অনুসরণ করা লোকেদের প্রচার করতে পারেন এবং তারা এখানে প্রদর্শিত হবে।
+    featured_tags_hint: আপনি এখানে নির্দিষ্ট হ্যাশট্যাগগুলি বৈশিষ্ট্যযুক্ত করতে পারেন যেটা এখানে প্রদর্শিত হবে।
     follow: যুক্ত
     followers:
       one: যুক্ত আছে
@@ -49,6 +63,7 @@ bn:
     media: ছবি বা ভিডিও
     moved_html: "%{name} চলে গেছে %{new_profile_link} তে:"
     network_hidden: এই তথ্যটি নেই
+    never_active: কখনও না
     nothing_here: এখানে কিছুই নেই!
     people_followed_by: "%{name} যাদেরকে অনুসরণ করে"
     people_who_follow: যারা %{name} কে অনুসরণ করে
@@ -103,9 +118,7 @@ bn:
       email_status: ইমেইলের অবস্থা
       enable: চালু করুন
       enabled: চালু করুন
-      feed_url: সম্মিলিত(feed) লিংক
       followers: অনুসরকারীরা
-      followers_url: অনুসরণকারীদের লিংক
       follows: অনুসরণ করে
       header: শিরোলেখা
       inbox_url: চিঠি পাওয়ার বক্স লিংক
@@ -130,11 +143,57 @@ bn:
       moderation_notes: প্রশাসনের কিছু লেখা
       most_recent_activity: সর্বশেষ কার্যক্রম
       most_recent_ip: সর্বশেষ আইপি(IP)
+      no_account_selected: কোনও অ্যাকাউন্টই নির্বাচন করা হয়নি বলে কোনও অ্যাকাউন্ট পরিবর্তন করা হয়নি
       no_limits_imposed: কোন সীমা আরোপ করা নেই
       not_subscribed: সাবস্ক্রাইব নেই
-      outbox_url: চিঠি পাঠানোর বাক্স লিংক
       pending: পয্র্যবেক্ষণের অপেক্ষায় আছে
       perform_full_suspension: বাতিল করা
+      promote: প্রচার
+      protocol: প্রোটোকল
+      public: সর্বজনীন
+      push_subscription_expires: PuSH সাবস্ক্রিপশনের মেয়াদ শেষ হয়ে গেছে
+      redownload: প্রোফাইল সতেজ করুন
+      reject: প্রত্যাখ্যান করুন
+      reject_all: সব প্রত্যাখ্যান করুন
+      remove_avatar: অবতার অপসারণ করুন
+      remove_header: হেডার এর ছবি অপসারণ করুন
+      resend_confirmation:
+        already_confirmed: এই ব্যবহারকারী ইতিমধ্যে নিশ্চিত করা আছে
+        send: নিশ্চিতকরণ ইমেল পুনরায় পাঠান
+        success: নিশ্চিতকরণের ইমেল সফলভাবে পাঠানো হয়েছে!
+      reset: পুনরায় সেট করুন
+      reset_password: পাসওয়ার্ড পুনঃস্থাপন করুন
+      resubscribe: পুনরায় সদস্যতা নিন
+      role: অনুমতিসমূহ
+      roles:
+        admin: পরিচালক
+        moderator: নিয়ামক
+        staff: কর্মী
+        user: ব্যবহারকারী
+      search: অনুসন্ধান
+      search_same_ip: একই IP সহ অন্যান্য ব্যবহারকারীরা
+      shared_inbox_url: ভাগ করা ইনবক্স URL
+      show:
+        created_reports: তৈরি করা রিপোর্টগুলি
+        targeted_reports: অন্যদের দ্বারা প্রতিবেদনগুলি
+      silence: নীরব
+      silenced: নীরব করা হয়েছে
+      statuses: স্থিতিগুলি
+      subscribe: সদস্যতা
+      suspended: স্থগিত করা হয়েছে
+      time_in_queue: কাতারে অপেক্ষা করছে %{time}
+      title: একাউন্ট সমূহ
+      unconfirmed_email: অনিশ্চিত ইমেল
+      undo_silenced: নীরবতা পূর্বাবস্থা
+      undo_suspension: স্থগিতকরণ পূর্বাবস্থায় ফেরাও
+      unsubscribe: সদস্যতা ত্যাগ করুন
+      username: ব্যবহারকারীর নাম
+      warn: সতর্ক
+      web: ওয়েব
+      whitelisted: সাদাতালিকাযুক্ত
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} তাদের জন্য %{target} রিপোর্ট অর্পণ করেছিলেন"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -142,7 +201,7 @@ bn:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
-    '429': Throttled
+    '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
   invites:

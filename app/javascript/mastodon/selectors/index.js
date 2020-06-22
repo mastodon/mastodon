@@ -26,6 +26,7 @@ const toServerSideType = columnType => {
   case 'notifications':
   case 'public':
   case 'thread':
+  case 'account':
     return columnType;
   default:
     if (columnType.indexOf('list:') > -1) {
@@ -116,7 +117,7 @@ export const makeGetStatus = () => {
         map.set('account', accountBase);
         map.set('filtered', filtered);
       });
-    }
+    },
   );
 };
 

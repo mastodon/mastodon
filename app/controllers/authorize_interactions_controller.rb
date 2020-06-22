@@ -20,7 +20,7 @@ class AuthorizeInteractionsController < ApplicationController
   end
 
   def create
-    if @resource.is_a?(Account) && FollowService.new.call(current_account, @resource)
+    if @resource.is_a?(Account) && FollowService.new.call(current_account, @resource, with_rate_limit: true)
       render :success
     else
       render :error

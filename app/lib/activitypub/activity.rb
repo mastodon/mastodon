@@ -5,7 +5,7 @@ class ActivityPub::Activity
   include Redisable
 
   SUPPORTED_TYPES = %w(Note Question).freeze
-  CONVERTED_TYPES = %w(Image Audio Video Article Page).freeze
+  CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
 
   def initialize(json, account, **options)
     @json    = json
@@ -21,7 +21,7 @@ class ActivityPub::Activity
   class << self
     def factory(json, account, **options)
       @json = json
-      klass&.new(json, account, options)
+      klass&.new(json, account, **options)
     end
 
     private
@@ -89,7 +89,7 @@ class ActivityPub::Activity
   def distribute(status)
     crawl_links(status)
 
-    notify_about_reblog(status) if reblog_of_local_account?(status)
+    notify_about_reblog(status) if reblog_of_local_account?(status) && !reblog_by_following_group_account?(status)
     notify_about_mentions(status)
 
     # Only continue if the status is supposed to have arrived in real-time.
@@ -103,6 +103,10 @@ class ActivityPub::Activity
 
   def reblog_of_local_account?(status)
     status.reblog? && status.reblog.account.local?
+  end
+
+  def reblog_by_following_group_account?(status)
+    status.reblog? && status.account.group? && status.reblog.account.following?(status.account)
   end
 
   def notify_about_reblog(status)
@@ -158,7 +162,7 @@ class ActivityPub::Activity
   end
 
   def follow_from_object
-    @follow ||= Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+    @follow ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
 
   def fetch_remote_original_status

@@ -3,7 +3,7 @@
 module AccountsHelper
   def display_name(account, **options)
     if options[:custom_emojify]
-      Formatter.instance.format_display_name(account, options)
+      Formatter.instance.format_display_name(account, **options)
     else
       account.display_name.presence || account.username
     end
@@ -11,9 +11,9 @@ module AccountsHelper
 
   def acct(account)
     if account.local?
-      "@#{account.acct}@#{Rails.configuration.x.local_domain}"
+      "@#{account.acct}@#{site_hostname}"
     else
-      "@#{account.acct}"
+      "@#{account.pretty_acct}"
     end
   end
 
@@ -62,6 +62,8 @@ module AccountsHelper
   def account_badge(account, all: false)
     if account.bot?
       content_tag(:div, content_tag(:div, t('accounts.roles.bot'), class: 'account-role bot'), class: 'roles')
+    elsif account.group?
+      content_tag(:div, content_tag(:div, t('accounts.roles.group'), class: 'account-role group'), class: 'roles')
     elsif (Setting.show_staff_badge && account.user_staff?) || all
       content_tag(:div, class: 'roles') do
         if all && !account.user_staff?

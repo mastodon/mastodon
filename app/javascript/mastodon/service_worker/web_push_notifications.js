@@ -117,7 +117,7 @@ const handlePush = (event) => {
         badge: '/badge.png',
         data: { access_token, preferred_locale, url: '/web/notifications' },
       });
-    })
+    }),
   );
 };
 

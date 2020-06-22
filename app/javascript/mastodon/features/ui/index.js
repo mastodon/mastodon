@@ -10,13 +10,13 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
-import { uploadCompose, resetCompose } from '../../actions/compose';
+import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
 import { fetchFilters } from '../../actions/filters';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp } from 'mastodon/actions/app';
-import { submitMarkers } from 'mastodon/actions/markers';
+import { synchronouslySubmitMarkers } from 'mastodon/actions/markers';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -41,6 +41,7 @@ import {
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
+  BookmarkedStatuses,
   ListTimeline,
   Blocks,
   DomainBlocks,
@@ -75,6 +76,7 @@ const keyMap = {
   new: 'n',
   search: 's',
   forceNew: 'option+n',
+  toggleComposeSpoilers: 'option+x',
   focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
   reply: 'r',
   favourite: 'f',
@@ -99,6 +101,7 @@ const keyMap = {
   goToRequests: 'g r',
   toggleHidden: 'x',
   toggleSensitive: 'h',
+  openMedia: 'e',
 };
 
 class SwitchingColumnsArea extends React.PureComponent {
@@ -164,7 +167,9 @@ class SwitchingColumnsArea extends React.PureComponent {
   }
 
   setRef = c => {
-    this.node = c.getWrappedInstance();
+    if (c) {
+      this.node = c.getWrappedInstance();
+    }
   }
 
   render () {
@@ -188,6 +193,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/notifications' component={Notifications} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute path='/search' component={Search} content={children} />
@@ -246,9 +252,10 @@ class UI extends React.PureComponent {
   handleBeforeUnload = e => {
     const { intl, dispatch, isComposing, hasComposingText, hasMediaAttachments } = this.props;
 
-    dispatch(submitMarkers());
+    dispatch(synchronouslySubmitMarkers());
 
     if (isComposing && (hasComposingText || hasMediaAttachments)) {
+      e.preventDefault();
       // Setting returnValue to any string causes confirmation dialog.
       // Many browsers no longer display this text to users,
       // but we set user-friendly message for other browsers, e.g. Edge.
@@ -369,7 +376,7 @@ class UI extends React.PureComponent {
 
   componentDidMount () {
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
+      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName) && !e.altKey;
     };
   }
 
@@ -412,6 +419,11 @@ class UI extends React.PureComponent {
   handleHotkeyForceNew = e => {
     this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
+  }
+
+  handleHotkeyToggleComposeSpoilers = e => {
+    e.preventDefault();
+    this.props.dispatch(changeComposeSpoilerness());
   }
 
   handleHotkeyFocusColumn = e => {
@@ -509,6 +521,7 @@ class UI extends React.PureComponent {
       new: this.handleHotkeyNew,
       search: this.handleHotkeySearch,
       forceNew: this.handleHotkeyForceNew,
+      toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
       back: this.handleHotkeyBack,
       goToHome: this.handleHotkeyGoToHome,

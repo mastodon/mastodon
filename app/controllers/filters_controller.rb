@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class FiltersController < ApplicationController
-  include Authorization
-
   layout 'admin'
 
+  before_action :authenticate_user!
   before_action :set_filters, only: :index
   before_action :set_filter, only: [:edit, :update, :destroy]
   before_action :set_body_classes

@@ -1,0 +1,10 @@
+.announcements-list__item
+  = link_to edit_admin_warning_preset_path(warning_preset), class: 'announcements-list__item__title' do
+    = warning_preset.title.presence || truncate(warning_preset.text)
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = truncate(warning_preset.text)
+
+    %div
+      = table_link_to 'trash', t('admin.warning_presets.delete'), admin_warning_preset_path(warning_preset), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, warning_preset)

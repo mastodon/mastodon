@@ -14,6 +14,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 import MissingIndicator from 'mastodon/components/missing_indicator';
+import TimelineHint from 'mastodon/components/timeline_hint';
 
 const emptyList = ImmutableList();
 
@@ -21,6 +22,8 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
   return {
+    remote: !!state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username']),
+    remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
@@ -28,6 +31,14 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
     hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
   };
+};
+
+const RemoteHint = ({ url }) => (
+  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.statuses' defaultMessage='Older toots' />} />
+);
+
+RemoteHint.propTypes = {
+  url: PropTypes.string.isRequired,
 };
 
 export default @connect(mapStateToProps)
@@ -44,6 +55,8 @@ class AccountTimeline extends ImmutablePureComponent {
     withReplies: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
+    remote: PropTypes.bool,
+    remoteUrl: PropTypes.string,
     multiColumn: PropTypes.bool,
   };
 
@@ -78,7 +91,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, isAccount, multiColumn } = this.props;
+    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, isAccount, multiColumn, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -97,7 +110,17 @@ class AccountTimeline extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = blockedBy ? <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' /> : <FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />;
+    let emptyMessage;
+
+    if (blockedBy) {
+      emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+    } else if (remote && statusIds.isEmpty()) {
+      emptyMessage = <RemoteHint url={remoteUrl} />;
+    } else {
+      emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />;
+    }
+
+    const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
 
     return (
       <Column>
@@ -106,6 +129,7 @@ class AccountTimeline extends ImmutablePureComponent {
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
           alwaysPrepend
+          append={remoteMessage}
           scrollKey='account_timeline'
           statusIds={blockedBy ? emptyList : statusIds}
           featuredStatusIds={featuredStatusIds}
@@ -115,6 +139,7 @@ class AccountTimeline extends ImmutablePureComponent {
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
+          timelineId='account'
         />
       </Column>
     );

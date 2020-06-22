@@ -22,7 +22,7 @@ Rails.application.config.content_security_policy do |p|
   p.frame_ancestors :none
   p.font_src        :self, assets_host
   p.img_src         :self, :https, :data, :blob, assets_host
-  p.style_src       :self, :unsafe_inline, assets_host
+  p.style_src       :self, assets_host
   p.media_src       :self, :https, :data, assets_host
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
@@ -32,10 +32,12 @@ Rails.application.config.content_security_policy do |p|
 
     p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
+    p.child_src   :self, :blob, assets_host
     p.worker_src  :self, :blob, assets_host
   else
     p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url
     p.script_src  :self, assets_host
+    p.child_src   :self, :blob, assets_host
     p.worker_src  :self, :blob, assets_host
   end
 end
@@ -44,3 +46,8 @@ end
 # For further information see the following documentation:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
 # Rails.application.config.content_security_policy_report_only = true
+
+PgHero::HomeController.content_security_policy do |p|
+  p.script_src :self, :unsafe_inline, assets_host
+  p.style_src  :self, :unsafe_inline, assets_host
+end

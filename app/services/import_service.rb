@@ -64,7 +64,8 @@ class ImportService < BaseService
   end
 
   def import_relationships!(action, undo_action, overwrite_scope, limit, extra_fields = {})
-    items = @data.take(limit).map { |row| [row['Account address']&.strip, Hash[extra_fields.map { |key, header| [key, row[header]&.strip] }]] }.reject { |(id, _)| id.blank? }
+    local_domain_suffix = "@#{Rails.configuration.x.local_domain}"
+    items = @data.take(limit).map { |row| [row['Account address']&.strip&.delete_suffix(local_domain_suffix), Hash[extra_fields.map { |key, header| [key, row[header]&.strip] }]] }.reject { |(id, _)| id.blank? }
 
     if @import.overwrite?
       presence_hash = items.each_with_object({}) { |(id, extra), mapping| mapping[id] = [true, extra] }
@@ -80,7 +81,9 @@ class ImportService < BaseService
       end
     end
 
-    Import::RelationshipWorker.push_bulk(items) do |acct, extra|
+    head_items = items.uniq { |acct, _| acct.split('@')[1] }
+    tail_items = items - head_items
+    Import::RelationshipWorker.push_bulk(head_items + tail_items) do |acct, extra|
       [@account.id, acct, action, extra]
     end
   end

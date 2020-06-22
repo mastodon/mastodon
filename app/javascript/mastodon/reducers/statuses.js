@@ -4,12 +4,15 @@ import {
   FAVOURITE_REQUEST,
   FAVOURITE_FAIL,
   UNFAVOURITE_SUCCESS,
+  BOOKMARK_REQUEST,
+  BOOKMARK_FAIL,
 } from '../actions/interactions';
 import {
   STATUS_MUTE_SUCCESS,
   STATUS_UNMUTE_SUCCESS,
   STATUS_REVEAL,
   STATUS_HIDE,
+  STATUS_COLLAPSE,
 } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
@@ -22,7 +25,7 @@ const importStatuses = (state, statuses) =>
 
 const deleteStatus = (state, id, references) => {
   references.forEach(ref => {
-    state = deleteStatus(state, ref[0], []);
+    state = deleteStatus(state, ref, []);
   });
 
   return state.delete(id);
@@ -39,10 +42,13 @@ export default function statuses(state = initialState, action) {
   case FAVOURITE_REQUEST:
     return state.setIn([action.status.get('id'), 'favourited'], true);
   case UNFAVOURITE_SUCCESS:
-    const favouritesCount = action.status.get('favourites_count');
-    return state.setIn([action.status.get('id'), 'favourites_count'], favouritesCount - 1);
+    return state.updateIn([action.status.get('id'), 'favourites_count'], x => Math.max(0, x - 1));
   case FAVOURITE_FAIL:
     return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'favourited'], false);
+  case BOOKMARK_REQUEST:
+    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], true);
+  case BOOKMARK_FAIL:
+    return state.get(action.status.get('id')) === undefined ? state : state.setIn([action.status.get('id'), 'bookmarked'], false);
   case REBLOG_REQUEST:
     return state.setIn([action.status.get('id'), 'reblogged'], true);
   case REBLOG_FAIL:
@@ -67,6 +73,8 @@ export default function statuses(state = initialState, action) {
         }
       });
     });
+  case STATUS_COLLAPSE:
+    return state.setIn([action.id, 'collapsed'], action.isCollapsed);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   default:
