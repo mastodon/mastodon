@@ -131,6 +131,14 @@ const adjustColor = ({ r, g, b }, lumaThreshold = 100) => {
   };
 };
 
+const fileNameFromURL = str => {
+  const url      = new URL(str);
+  const pathname = url.pathname;
+  const index    = pathname.lastIndexOf('/');
+
+  return pathname.substring(index + 1);
+};
+
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
   pause: { id: 'video.pause', defaultMessage: 'Pause' },
@@ -150,10 +158,8 @@ class Audio extends React.PureComponent {
     alt: PropTypes.string,
     poster: PropTypes.string,
     duration: PropTypes.number,
-    peaks: PropTypes.arrayOf(PropTypes.number),
     width: PropTypes.number,
     height: PropTypes.number,
-    preload: PropTypes.bool,
     editable: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     cacheWidth: PropTypes.func,
@@ -430,6 +436,22 @@ class Audio extends React.PureComponent {
     });
   }
 
+  handleDownload = () => {
+    fetch(this.props.src).then(res => res.blob()).then(blob => {
+      const element   = document.createElement('a');
+      const objectURL = URL.createObjectURL(blob);
+
+      element.setAttribute('href', objectURL);
+      element.setAttribute('download', fileNameFromURL(this.props.src));
+
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+
+      URL.revokeObjectURL(objectURL);
+    });
+  }
+
   _renderCanvas () {
     requestAnimationFrame(() => {
       this._clear();
@@ -676,11 +698,7 @@ class Audio extends React.PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)}>
-                <a className='video-player__download__icon' href={this.props.src} download>
-                  <Icon id='download' fixedWidth />
-                </a>
-              </button>
+              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)} onClick={this.handleDownload}><Icon id='download' fixedWidth /></button>
             </div>
           </div>
         </div>
