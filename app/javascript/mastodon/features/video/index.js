@@ -19,7 +19,6 @@ const messages = defineMessages({
   close: { id: 'video.close', defaultMessage: 'Close video' },
   fullscreen: { id: 'video.fullscreen', defaultMessage: 'Full screen' },
   exit_fullscreen: { id: 'video.exit_fullscreen', defaultMessage: 'Exit full screen' },
-  download: { id: 'video.download', defaultMessage: 'Download file' },
 });
 
 export const formatTime = secondsNum => {
@@ -406,24 +405,6 @@ class Video extends React.PureComponent {
     this.props.onCloseVideo();
   }
 
-  handleDownload = () => {
-    fetch(this.props.src).then(res => res.blob()).then(blob => {
-      const element   = document.createElement('a');
-      const objectURL = URL.createObjectURL(blob);
-
-      element.setAttribute('href', objectURL);
-      element.setAttribute('download', fileNameFromURL(this.props.src));
-
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-
-      URL.revokeObjectURL(objectURL);
-    }).catch(err => {
-      console.error(err);
-    });
-  }
-
   render () {
     const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link, editable } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
@@ -539,7 +520,6 @@ class Video extends React.PureComponent {
               {(!onCloseVideo && !editable && !fullscreen) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
               {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
               {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
-              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)} onClick={this.handleDownload}><Icon id={'download'} fixedWidth /></button>
               <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
             </div>
           </div>
