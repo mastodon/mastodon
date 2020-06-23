@@ -248,15 +248,15 @@ export default class Card extends React.PureComponent {
                 </div>
               </div>
             )}
+            {!revealed && spoilerButton}
           </div>
         );
       }
 
       return (
-        <div className={className} ref={this.setRef}>
+        <div className={className} ref={this.setRef} onClick={this.handleReveal}>
           {embed}
           {!compact && description}
-          {!revealed && spoilerButton}
         </div>
       );
     } else if (card.get('image')) {
