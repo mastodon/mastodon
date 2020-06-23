@@ -10,7 +10,7 @@ helm dep update
 helm upgrade --install my-mastodon ./
 ```
 
-This chart has been tested on Helm 3.
+This chart has been tested on Helm 3.0.1 and above.
 
 # Configuration
 
