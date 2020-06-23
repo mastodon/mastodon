@@ -345,13 +345,21 @@
     height: 100%;
   }
 
+  .video-player__volume::before,
+  .video-player__seek::before {
+    background: rgba($white, 0.15);
+  }
+
   &.with-light-background {
+    color: $black;
+
+    .video-player__volume::before,
     .video-player__seek::before {
-      color: rgba($black, 0.35);
+      background: rgba($black, 0.15);
     }
 
-    .video-player__seek__seek {
-      color: rgba($black, 0.2);
+    .video-player__seek__buffer {
+      background: rgba($black, 0.2);
     }
 
     .video-player__buttons button {
@@ -368,10 +376,6 @@
     .video-player__time-total,
     .video-player__time-current {
       color: $black;
-    }
-
-    .video-player__volume::before {
-      background: rgba($black, 0.35);
     }
   }
 
@@ -400,6 +404,7 @@
   border-radius: 4px;
   box-sizing: border-box;
   direction: ltr;
+  color: $white;
 
   &.editable {
     border-radius: 0;
@@ -527,6 +532,10 @@
   }
 
   &__buttons {
+    display: flex;
+    flex: 0 1 auto;
+    min-width: 30px;
+    align-items: center;
     font-size: 16px;
     white-space: nowrap;
     overflow: hidden;
@@ -545,6 +554,7 @@
     }
 
     button {
+      flex: 0 0 auto;
       background: transparent;
       padding: 2px 10px;
       font-size: 16px;
@@ -559,6 +569,13 @@
     }
   }
 
+  &__time {
+    display: inline;
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &__time-sep,
   &__time-total,
   &__time-current {
@@ -568,7 +585,6 @@
 
   &__time-current {
     color: $white;
-    margin-left: 60px;
   }
 
   &__time-sep {
@@ -582,9 +598,22 @@
   }
 
   &__volume {
+    flex: 0 0 auto;
+    display: inline-flex;
     cursor: pointer;
     height: 24px;
-    display: inline;
+    position: relative;
+    overflow: hidden;
+
+    .no-reduce-motion & {
+      transition: all 100ms linear;
+    }
+
+    &.active {
+      overflow: visible;
+      width: 50px;
+      margin-right: 10px;
+    }
 
     &::before {
       content: "";
@@ -594,8 +623,9 @@
       display: block;
       position: absolute;
       height: 4px;
-      left: 70px;
-      bottom: 20px;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
     }
 
     &__current {
@@ -603,8 +633,9 @@
       position: absolute;
       height: 4px;
       border-radius: 4px;
-      left: 70px;
-      bottom: 20px;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
       background: lighten($ui-highlight-color, 8%);
     }
 
@@ -614,8 +645,10 @@
       border-radius: 50%;
       width: 12px;
       height: 12px;
-      bottom: 16px;
-      left: 70px;
+      top: 50%;
+      left: 0;
+      margin-left: -6px;
+      transform: translate(0, -50%);
       transition: opacity .1s ease;
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);

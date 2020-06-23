@@ -6,7 +6,7 @@ import Icon from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
 import { encode, decode } from 'blurhash';
-import { getPointerPosition } from 'mastodon/features/video';
+import { getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
 
 const digitCharacters = [
   '0',
@@ -140,7 +140,7 @@ const messages = defineMessages({
 });
 
 const TICK_SIZE = 10;
-const PADDING = 180;
+const PADDING   = 180;
 
 export default @injectIntl
 class Audio extends React.PureComponent {
@@ -150,10 +150,8 @@ class Audio extends React.PureComponent {
     alt: PropTypes.string,
     poster: PropTypes.string,
     duration: PropTypes.number,
-    peaks: PropTypes.arrayOf(PropTypes.number),
     width: PropTypes.number,
     height: PropTypes.number,
-    preload: PropTypes.bool,
     editable: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     cacheWidth: PropTypes.func,
@@ -170,18 +168,6 @@ class Audio extends React.PureComponent {
     dragging: false,
     color: { r: 255, g: 255, b: 255 },
   };
-
-  // hard coded in components.scss
-  // any way to get ::before values programatically?
-
-  volWidth = 50;
-
-  volOffset = 70;
-
-  volHandleOffset = v => {
-    const offset = v * this.volWidth + this.volOffset;
-    return (offset > 110) ? 110 : offset;
-  }
 
   setPlayerRef = c => {
     this.player = c;
@@ -359,23 +345,22 @@ class Audio extends React.PureComponent {
   }
 
   handleMouseVolSlide = throttle(e => {
-    const rect = this.volume.getBoundingClientRect();
-    const x    = (e.clientX - rect.left) / this.volWidth; // x position within the element.
+    const { x } = getPointerPosition(this.volume, e);
 
     if(!isNaN(x)) {
-      let slideamt = x;
-
-      if (x > 1) {
-        slideamt = 1;
-      } else if(x < 0) {
-        slideamt = 0;
-      }
-
-      this.setState({ volume: slideamt }, () => {
-        this.audio.volume = slideamt;
+      this.setState({ volume: x }, () => {
+        this.audio.volume = x;
       });
     }
   }, 60);
+
+  handleMouseEnter = () => {
+    this.setState({ hovered: true });
+  }
+
+  handleMouseLeave = () => {
+    this.setState({ hovered: false });
+  }
 
   _initAudioContext () {
     const context  = new AudioContext();
@@ -409,6 +394,24 @@ class Audio extends React.PureComponent {
       blurhash,
       color: adjustColor(averageColor),
       darkText: luma(averageColor) >= 165,
+    });
+  }
+
+  handleDownload = () => {
+    fetch(this.props.src).then(res => res.blob()).then(blob => {
+      const element   = document.createElement('a');
+      const objectURL = URL.createObjectURL(blob);
+
+      element.setAttribute('href', objectURL);
+      element.setAttribute('download', fileNameFromURL(this.props.src));
+
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+
+      URL.revokeObjectURL(objectURL);
+    }).catch(err => {
+      console.error(err);
     });
   }
 
@@ -575,13 +578,10 @@ class Audio extends React.PureComponent {
   render () {
     const { src, intl, alt, editable } = this.props;
     const { paused, muted, volume, currentTime, duration, buffer, darkText, dragging } = this.state;
-
-    const volumeWidth     = muted ? 0 : volume * this.volWidth;
-    const volumeHandleLoc = muted ? this.volHandleOffset(0) : this.volHandleOffset(volume);
-    const progress        = (currentTime / duration) * 100;
+    const progress = (currentTime / duration) * 100;
 
     return (
-      <div className={classNames('audio-player', { editable, 'with-light-background': darkText })} ref={this.setPlayerRef} style={{ width: '100%', height: this.state.height || this.props.height }}>
+      <div className={classNames('audio-player', { editable, 'with-light-background': darkText })} ref={this.setPlayerRef} style={{ width: '100%', height: this.state.height || this.props.height }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <audio
           src={src}
           ref={this.setAudioRef}
@@ -639,18 +639,17 @@ class Audio extends React.PureComponent {
               <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
               <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
-              <div className='video-player__volume' onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
-                &nbsp;
-                <div className='video-player__volume__current' style={{ width: `${volumeWidth}px`, backgroundColor: this._getColor() }} />
+              <div className={classNames('video-player__volume', { active: this.state.hovered })} ref={this.setVolumeRef} onMouseDown={this.handleVolumeMouseDown}>
+                <div className='video-player__volume__current' style={{ width: `${volume * 100}%`, backgroundColor: this._getColor() }} />
 
                 <span
                   className={classNames('video-player__volume__handle')}
                   tabIndex='0'
-                  style={{ left: `${volumeHandleLoc}px`, backgroundColor: this._getColor() }}
+                  style={{ left: `${volume * 100}%`, backgroundColor: this._getColor() }}
                 />
               </div>
 
-              <span>
+              <span className='video-player__time'>
                 <span className='video-player__time-current'>{formatTime(currentTime)}</span>
                 <span className='video-player__time-sep'>/</span>
                 <span className='video-player__time-total'>{formatTime(this.state.duration || Math.floor(this.props.duration))}</span>
@@ -658,11 +657,7 @@ class Audio extends React.PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)}>
-                <a className='video-player__download__icon' href={this.props.src} download>
-                  <Icon id='download' fixedWidth />
-                </a>
-              </button>
+              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)} onClick={this.handleDownload}><Icon id='download' fixedWidth /></button>
             </div>
           </div>
         </div>

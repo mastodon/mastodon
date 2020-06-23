@@ -593,9 +593,8 @@ class Status extends ImmutablePureComponent {
                 alt={attachment.get('description')}
                 poster={status.getIn(['account', 'avatar_static'])}
                 duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
-                peaks={[0]}
                 width={this.props.cachedMediaWidth}
-                height={70}
+                height={110}
                 cacheWidth={this.props.cacheMediaWidth}
               />
             )}
