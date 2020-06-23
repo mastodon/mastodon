@@ -579,7 +579,6 @@ class Audio extends React.PureComponent {
   }
 
   _drawTick (x1, y1, x2, y2) {
-    const radius = this._getRadius();
     const cx = this._getCX();
     const cy = this._getCY();
 
