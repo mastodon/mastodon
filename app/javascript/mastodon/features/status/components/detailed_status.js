@@ -17,6 +17,7 @@ import Icon from 'mastodon/components/icon';
 import AnimatedNumber from 'mastodon/components/animated_number';
 
 const messages = defineMessages({
+  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
@@ -107,7 +108,6 @@ class DetailedStatus extends ImmutablePureComponent {
 
     let media           = '';
     let applicationLink = '';
-    let visibilityLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
     let favouriteLink = '';
@@ -170,17 +170,14 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     const visibilityIconInfo = {
-      'public': null,
+      'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
       'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
       'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
       'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_short) },
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
-
-    if (visibilityIcon !== null) {
-      visibilityLink = <React.Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></React.Fragment>;
-    }
+    const visibilityLink = <React.Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></React.Fragment>;
 
     if (['private', 'direct'].includes(status.get('visibility'))) {
       reblogLink = '';

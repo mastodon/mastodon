@@ -52,6 +52,7 @@ export const defaultMediaVisibility = (status) => {
 };
 
 const messages = defineMessages({
+  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
@@ -424,7 +425,7 @@ class Status extends ImmutablePureComponent {
     }
 
     const visibilityIconInfo = {
-      'public': null,
+      'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
       'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
       'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
       'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_short) },
@@ -441,7 +442,7 @@ class Status extends ImmutablePureComponent {
             <div className='status__expand' onClick={this.handleExpandClick} role='presentation' />
             <div className='status__info'>
               <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
-              {visibilityIcon && <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>}
+              <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
 
               <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
                 <div className='status__avatar'>

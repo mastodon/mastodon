@@ -47,10 +47,9 @@
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
-    - unless status.public_visibility?
-      %span.detailed-status__visibility-icon
-        = visibility_icon status
-      ·
+    %span.detailed-status__visibility-icon
+      = visibility_icon status
+    ·
     - if status.application && @account.user&.setting_show_application
       - if status.application.website.blank?
         %strong.detailed-status__application= status.application.name
