@@ -47,7 +47,7 @@ const makeGetStatusIds = (pending = false) => createSelector([
       showStatus = showStatus && statusForId.get('visibility') !== 'direct';
     }
 
-    if (showStatus && regex && statusForId.get('account') !== me) {
+    if (showStatus && regex) {
       const searchIndex = statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'search_index']) : statusForId.get('search_index');
       showStatus = !regex.test(searchIndex);
     }
