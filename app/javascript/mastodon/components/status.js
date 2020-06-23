@@ -10,7 +10,7 @@ import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import AttachmentList from './attachment_list';
 import Card from '../features/status/components/card';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
@@ -50,6 +50,12 @@ export const defaultMediaVisibility = (status) => {
 
   return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
 };
+
+const messages = defineMessages({
+  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+});
 
 export default @injectIntl
 class Status extends ImmutablePureComponent {
@@ -417,6 +423,15 @@ class Status extends ImmutablePureComponent {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
 
+    const visibilityIconInfo = {
+      'public': null,
+      'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
+      'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
+      'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_short) },
+    };
+
+    const visibilityIcon = visibilityIconInfo[status.get('visibility')];
+
     return (
       <HotKeys handlers={handlers}>
         <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef}>
@@ -426,6 +441,7 @@ class Status extends ImmutablePureComponent {
             <div className='status__expand' onClick={this.handleExpandClick} role='presentation' />
             <div className='status__info'>
               <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+              {visibilityIcon && <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>}
 
               <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
                 <div className='status__avatar'>

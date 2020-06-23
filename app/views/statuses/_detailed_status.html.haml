@@ -47,6 +47,10 @@
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
+    - unless status.public_visibility?
+      %span.detailed-status__visibility-icon
+        = visibility_icon status
+      ·
     - if status.application && @account.user&.setting_show_application
       - if status.application.website.blank?
         %strong.detailed-status__application= status.application.name
@@ -61,18 +65,12 @@
       %span.detailed-status__reblogs>= number_to_human status.replies_count, strip_insignificant_zeros: true
       = " "
     ·
-    - if status.direct_visibility?
-      %span.detailed-status__link<
-        = fa_icon('envelope')
-    - elsif status.private_visibility? || status.limited_visibility?
-      %span.detailed-status__link<
-        = fa_icon('lock')
-    - else
+    - if status.public_visibility? || status.unlisted_visibility?
       = link_to remote_interaction_path(status, type: :reblog), class: 'modal-button detailed-status__link' do
         = fa_icon('retweet')
         %span.detailed-status__reblogs>= number_to_human status.reblogs_count, strip_insignificant_zeros: true
         = " "
-    ·
+      ·
     = link_to remote_interaction_path(status, type: :favourite), class: 'modal-button detailed-status__link' do
       = fa_icon('star')
       %span.detailed-status__favorites>= number_to_human status.favourites_count, strip_insignificant_zeros: true

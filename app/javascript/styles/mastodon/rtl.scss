@@ -157,15 +157,6 @@ body.rtl {
     left: 0;
   }
 
-  .status {
-    &-unlisted .status__relative-time::before,
-    &-private .status__relative-time::before,
-    &-direct .status__relative-time::before {
-        margin-right: 0;
-        margin-left: 4px;
-    }
-  }
-
   .status__relative-time,
   .activity-stream .status.light .status__header .status__meta {
     float: left;
@@ -201,27 +192,6 @@ body.rtl {
   .privacy-dropdown__option__icon {
     margin-left: 10px;
     margin-right: 0;
-  }
-
-  .detailed-status {
-    &-unlisted::before,
-    &-private::before,
-    &-direct::before {
-      right: auto;
-      left: 10px;
-    }
-
-    &-unlisted .display-name,
-    &-private .display-name,
-    &-direct .display-name {
-      padding-right: 0;
-      padding-left: 18px;
-    }
-  }
-
-  .detailed-status .button.logo-button {
-    margin-right: 0;
-    margin-left: 18px;
   }
 
   .detailed-status__display-name .display-name {
