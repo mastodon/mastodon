@@ -8,6 +8,7 @@ import { isIOS } from 'flavours/glitch/util/is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/util/initial_state';
 import { decode } from 'blurhash';
+import { debounce } from 'lodash';
 
 const messages = defineMessages({
   hidden: {
@@ -289,6 +290,14 @@ class MediaGallery extends React.PureComponent {
     width: this.props.defaultWidth,
   };
 
+  componentDidMount () {
+    window.addEventListener('resize', this.handleResize, { passive: true });
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   componentWillReceiveProps (nextProps) {
     if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
       this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
@@ -305,6 +314,14 @@ class MediaGallery extends React.PureComponent {
     }
   }
 
+  handleResize = debounce(() => {
+    if (this.node) {
+      this._setDimensions();
+    }
+  }, 250, {
+    trailing: true,
+  });
+
   handleOpen = () => {
     if (this.props.onToggleVisibility) {
       this.props.onToggleVisibility();
@@ -319,11 +336,23 @@ class MediaGallery extends React.PureComponent {
 
   handleRef = (node) => {
     this.node = node;
-    if (node && node.offsetWidth && node.offsetWidth != this.state.width) {
-      if (this.props.cacheWidth) this.props.cacheWidth(node.offsetWidth);
+
+    if (this.node) {
+      this._setDimensions();
+    }
+  }
+
+  _setDimensions () {
+    const width = this.node.offsetWidth;
+ 
+    if (width && width != this.state.width) {
+      // offsetWidth triggers a layout, so only calculate when we need to
+      if (this.props.cacheWidth) {
+        this.props.cacheWidth(width);
+      }
 
       this.setState({
-        width: node.offsetWidth,
+        width: width,
       });
     }
   }

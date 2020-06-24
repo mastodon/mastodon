@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { fromJS, is } from 'immutable';
-import { throttle } from 'lodash';
+import { throttle, debounce } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from 'flavours/glitch/util/fullscreen';
 import { displayMedia, useBlurhash } from 'flavours/glitch/util/initial_state';
@@ -144,10 +144,21 @@ class Video extends React.PureComponent {
   setPlayerRef = c => {
     this.player = c;
 
-    if (c && c.offsetWidth && c.offsetWidth != this.state.containerWidth) {
-      if (this.props.cacheWidth) this.props.cacheWidth(this.player.offsetWidth);
+    if (this.player) {
+      this._setDimensions();
+    }
+  }
+
+  _setDimensions () {
+    const width = this.player.offsetWidth;
+
+    if (width && width != this.state.containerWidth) {
+      if (this.props.cacheWidth) {
+        this.props.cacheWidth(width);
+      }
+
       this.setState({
-        containerWidth: c.offsetWidth,
+        containerWidth: width,
       });
     }
   }
@@ -293,12 +304,16 @@ class Video extends React.PureComponent {
     document.addEventListener('mozfullscreenchange', this.handleFullscreenChange, true);
     document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
 
+    window.addEventListener('resize', this.handleResize, { passive: true });
+
     if (this.props.blurhash) {
       this._decode();
     }
   }
 
   componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+
     document.removeEventListener('fullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('webkitfullscreenchange', this.handleFullscreenChange, true);
     document.removeEventListener('mozfullscreenchange', this.handleFullscreenChange, true);
@@ -333,6 +348,14 @@ class Video extends React.PureComponent {
       ctx.putImageData(imageData, 0, 0);
     }
   }
+
+  handleResize = debounce(() => {
+    if (this.player) {
+      this._setDimensions();
+    }
+  }, 250, {
+    trailing: true,
+  });
 
   handleFullscreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });

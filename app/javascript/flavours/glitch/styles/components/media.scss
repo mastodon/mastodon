@@ -612,7 +612,7 @@
     &.active {
       overflow: visible;
       width: 50px;
-      margin-right: 10px;
+      margin-right: 16px;
     }
 
     &::before {
@@ -649,10 +649,17 @@
       left: 0;
       margin-left: -6px;
       transform: translate(0, -50%);
-      transition: opacity .1s ease;
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
-      pointer-events: none;
+      opacity: 0;
+
+      .no-reduce-motion & {
+        transition: opacity 100ms linear;
+      }
+    }
+
+    &.active &__handle {
+      opacity: 1;
     }
   }
 
@@ -712,10 +719,12 @@
       height: 12px;
       top: 6px;
       margin-left: -6px;
-      transition: opacity .1s ease;
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
-      pointer-events: none;
+
+      .no-reduce-motion & {
+        transition: opacity .1s ease;
+      }
 
       &.active {
         opacity: 1;
