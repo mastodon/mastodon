@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { throttle } from 'lodash';
 import { encode, decode } from 'blurhash';
 import { getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
+import { debounce } from 'lodash';
 
 const digitCharacters = [
   '0',
@@ -172,16 +173,20 @@ class Audio extends React.PureComponent {
   setPlayerRef = c => {
     this.player = c;
 
-    if (c) {
-      const width  = c.offsetWidth;
-      const height = width / (16/9);
-
-      if (this.props.cacheWidth) {
-        this.props.cacheWidth(width);
-      }
-
-      this.setState({ width, height });
+    if (this.player) {
+      this._setDimensions();
     }
+  }
+
+  _setDimensions () {
+    const width  = this.player.offsetWidth;
+    const height = width / (16/9);
+
+    if (this.props.cacheWidth) {
+      this.props.cacheWidth(width);
+    }
+
+    this.setState({ width, height });
   }
 
   setSeekRef = c => {
@@ -214,6 +219,7 @@ class Audio extends React.PureComponent {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('resize', this.handleResize, { passive: true });
 
     const img = new Image();
     img.crossOrigin = 'anonymous';
@@ -243,6 +249,7 @@ class Audio extends React.PureComponent {
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('resize', this.handleResize);
   }
 
   togglePlay = () => {
@@ -252,6 +259,14 @@ class Audio extends React.PureComponent {
       this.setState({ paused: true }, () => this.audio.pause());
     }
   }
+
+  handleResize = debounce(() => {
+    if (this.player) {
+      this._setDimensions();
+    }
+  }, 250, {
+    trailing: true,
+  });
 
   handlePlay = () => {
     this.setState({ paused: false });
@@ -564,14 +579,13 @@ class Audio extends React.PureComponent {
   }
 
   _drawTick (x1, y1, x2, y2) {
-    const radius = this._getRadius();
-    const cx = parseInt(this.state.width / 2);
-    const cy = parseInt(radius + (PADDING * this._getScaleCoefficient()));
+    const cx = this._getCX();
+    const cy = this._getCY();
 
-    const dx1 = parseInt(cx + x1);
-    const dy1 = parseInt(cy + y1);
-    const dx2 = parseInt(cx + x2);
-    const dy2 = parseInt(cy + y2);
+    const dx1 = Math.ceil(cx + x1);
+    const dy1 = Math.ceil(cy + y1);
+    const dx2 = Math.ceil(cx + x2);
+    const dy2 = Math.ceil(cy + y2);
 
     const gradient = this.canvasContext.createLinearGradient(dx1, dy1, dx2, dy2);
 
@@ -588,6 +602,14 @@ class Audio extends React.PureComponent {
     this.canvasContext.moveTo(dx1, dy1);
     this.canvasContext.lineTo(dx2, dy2);
     this.canvasContext.stroke();
+  }
+
+  _getCX() {
+    return Math.floor(this.state.width / 2);
+  }
+
+  _getCY() {
+    return Math.floor(this._getRadius() + (PADDING * this._getScaleCoefficient()));
   }
 
   _getColor () {
@@ -638,7 +660,7 @@ class Audio extends React.PureComponent {
           alt=''
           width={(this._getRadius() - TICK_SIZE) * 2}
           height={(this._getRadius() - TICK_SIZE) * 2}
-          style={{ position: 'absolute', left: parseInt(this.state.width / 2), top: parseInt(this._getRadius() + (PADDING * this._getScaleCoefficient())), transform: 'translate(-50%, -50%)', borderRadius: '50%', pointerEvents: 'none' }}
+          style={{ position: 'absolute', left: this._getCX(), top: this._getCY(), transform: 'translate(-50%, -50%)', borderRadius: '50%', pointerEvents: 'none' }}
         />
 
         <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
