@@ -37,5 +37,5 @@ spec:
           - path: '/api/v1/streaming'
             backend:
               serviceName: {{ $fullName }}-streaming
-              servicePort: {{ .Values.streaming.port }}
+              servicePort: {{ .Values.application.streaming.port }}
 {{- end }}

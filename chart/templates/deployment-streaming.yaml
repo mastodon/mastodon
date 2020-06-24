@@ -51,10 +51,10 @@ spec:
                   name: {{ .Release.Name }}-redis
                   key: redis-password
             - name: "PORT"
-              value: {{ .Values.streaming.port | quote }}
+              value: {{ .Values.application.streaming.port | quote }}
           ports:
             - name: streaming
-              containerPort: {{ .Values.streaming.port }}
+              containerPort: {{ .Values.application.streaming.port }}
               protocol: TCP
           livenessProbe:
             httpGet:

@@ -7,7 +7,7 @@ metadata:
 data:
   DB_HOST: {{ template "mastodon.postgresql.fullname" . }}
   DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
-  DB_POOL: {{ .Values.sidekiq.concurrency | quote }}
+  DB_POOL: {{ .Values.application.sidekiq.concurrency | quote }}
   DB_PORT: "5432"
   DB_USER: {{ .Values.postgresql.postgresqlUsername }}
   DEFAULT_LOCALE: {{ .Values.locale }}
@@ -62,4 +62,4 @@ data:
   {{- if .Values.smtp.tls }}
   SMTP_TLS: {{ .Values.smtp.tls | quote }}
   {{- end }}
-  STREAMING_CLUSTER_NUM: {{ .Values.streaming.workers | quote }}
+  STREAMING_CLUSTER_NUM: {{ .Values.application.streaming.workers | quote }}
