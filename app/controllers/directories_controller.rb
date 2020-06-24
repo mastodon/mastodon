@@ -10,7 +10,7 @@ class DirectoriesController < ApplicationController
   before_action :set_accounts
   before_action :set_pack
 
-  skip_before_action :require_functional!
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def index
     render :index

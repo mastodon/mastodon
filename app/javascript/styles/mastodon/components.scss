@@ -5203,6 +5203,7 @@ a.status-card.compact:hover {
   border-radius: 4px;
   position: relative;
   width: 100%;
+  min-height: 64px;
 }
 
 .media-gallery__item {
@@ -5296,6 +5297,7 @@ a.status-card.compact:hover {
 }
 
 .audio-player {
+  overflow: hidden;
   box-sizing: border-box;
   position: relative;
   background: darken($ui-base-color, 8%);
@@ -5308,37 +5310,54 @@ a.status-card.compact:hover {
     height: 100%;
   }
 
-  &__waveform {
-    padding: 15px 0;
-    position: relative;
-    overflow: hidden;
+  .video-player__volume::before,
+  .video-player__seek::before {
+    background: rgba($white, 0.15);
+  }
 
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      border-top: 1px solid lighten($ui-base-color, 4%);
-      width: 100%;
-      height: 0;
-      left: 0;
-      top: calc(50% + 1px);
+  &.with-light-background {
+    color: $black;
+
+    .video-player__volume::before,
+    .video-player__seek::before {
+      background: rgba($black, 0.15);
+    }
+
+    .video-player__seek__buffer {
+      background: rgba($black, 0.2);
+    }
+
+    .video-player__buttons button {
+      color: rgba($black, 0.75);
+
+      &:active,
+      &:hover,
+      &:focus {
+        color: $black;
+      }
+    }
+
+    .video-player__time-sep,
+    .video-player__time-total,
+    .video-player__time-current {
+      color: $black;
     }
   }
 
-  &__progress-placeholder {
-    background-color: rgba(lighten($ui-highlight-color, 8%), 0.5);
+  .video-player__seek::before,
+  .video-player__seek__buffer,
+  .video-player__seek__progress {
+    top: 0;
   }
 
-  &__wave-placeholder {
-    background-color: lighten($ui-base-color, 16%);
+  .video-player__seek__handle {
+    top: -4px;
   }
 
   .video-player__controls {
     padding: 0 15px;
     padding-top: 10px;
-    background: darken($ui-base-color, 8%);
-    border-top: 1px solid lighten($ui-base-color, 4%);
-    border-radius: 0 0 4px 4px;
+    background: transparent;
   }
 }
 
@@ -5350,6 +5369,7 @@ a.status-card.compact:hover {
   border-radius: 4px;
   box-sizing: border-box;
   direction: ltr;
+  color: $white;
 
   &.editable {
     border-radius: 0;
@@ -5361,6 +5381,7 @@ a.status-card.compact:hover {
   }
 
   video {
+    display: block;
     max-width: 100vw;
     max-height: 80vh;
     z-index: 1;
@@ -5461,6 +5482,10 @@ a.status-card.compact:hover {
   }
 
   &__buttons {
+    display: flex;
+    flex: 0 1 auto;
+    min-width: 30px;
+    align-items: center;
     font-size: 16px;
     white-space: nowrap;
     overflow: hidden;
@@ -5479,6 +5504,7 @@ a.status-card.compact:hover {
     }
 
     button {
+      flex: 0 0 auto;
       background: transparent;
       padding: 2px 10px;
       font-size: 16px;
@@ -5493,6 +5519,13 @@ a.status-card.compact:hover {
     }
   }
 
+  &__time {
+    display: inline;
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &__time-sep,
   &__time-total,
   &__time-current {
@@ -5502,7 +5535,6 @@ a.status-card.compact:hover {
 
   &__time-current {
     color: $white;
-    margin-left: 60px;
   }
 
   &__time-sep {
@@ -5516,9 +5548,22 @@ a.status-card.compact:hover {
   }
 
   &__volume {
+    flex: 0 0 auto;
+    display: inline-flex;
     cursor: pointer;
     height: 24px;
-    display: inline;
+    position: relative;
+    overflow: hidden;
+
+    .no-reduce-motion & {
+      transition: all 100ms linear;
+    }
+
+    &.active {
+      overflow: visible;
+      width: 50px;
+      margin-right: 16px;
+    }
 
     &::before {
       content: "";
@@ -5528,8 +5573,9 @@ a.status-card.compact:hover {
       display: block;
       position: absolute;
       height: 4px;
-      left: 70px;
-      bottom: 20px;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
     }
 
     &__current {
@@ -5537,8 +5583,9 @@ a.status-card.compact:hover {
       position: absolute;
       height: 4px;
       border-radius: 4px;
-      left: 70px;
-      bottom: 20px;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
       background: lighten($ui-highlight-color, 8%);
     }
 
@@ -5548,12 +5595,21 @@ a.status-card.compact:hover {
       border-radius: 50%;
       width: 12px;
       height: 12px;
-      bottom: 16px;
-      left: 70px;
-      transition: opacity .1s ease;
+      top: 50%;
+      left: 0;
+      margin-left: -6px;
+      transform: translate(0, -50%);
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
-      pointer-events: none;
+      opacity: 0;
+
+      .no-reduce-motion & {
+        transition: opacity 100ms linear;
+      }
+    }
+
+    &.active &__handle {
+      opacity: 1;
     }
   }
 
@@ -5613,10 +5669,12 @@ a.status-card.compact:hover {
       height: 12px;
       top: 6px;
       margin-left: -6px;
-      transition: opacity .1s ease;
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
-      pointer-events: none;
+
+      .no-reduce-motion & {
+        transition: opacity .1s ease;
+      }
 
       &.active {
         opacity: 1;

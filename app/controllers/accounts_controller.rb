@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
   before_action :set_body_classes
 
   skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
-  skip_before_action :require_functional!
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def show
     respond_to do |format|
