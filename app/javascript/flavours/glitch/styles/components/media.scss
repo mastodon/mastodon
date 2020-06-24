@@ -76,7 +76,7 @@
   border-radius: 4px;
   position: relative;
   width: 100%;
-  height: 110px;
+  min-height: 64px;
 
   @include fullwidth-gallery;
 }
@@ -404,6 +404,7 @@
   @include fullwidth-gallery;
 
   video {
+    display: block;
     max-width: 100vw;
     max-height: 80vh;
     z-index: 1;

@@ -9,6 +9,7 @@ import Icon from 'mastodon/components/icon';
 import classNames from 'classnames';
 import { useBlurhash } from 'mastodon/initial_state';
 import { decode } from 'blurhash';
+import { debounce } from 'lodash';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -92,13 +93,20 @@ export default class Card extends React.PureComponent {
   }
 
   componentDidMount () {
+    window.addEventListener('resize', this.handleResize, { passive: true });
+
     if (this.props.card && this.props.card.get('blurhash')) {
       this._decode();
     }
   }
 
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   componentDidUpdate (prevProps) {
     const { card } = this.props;
+
     if (card.get('blurhash') && (!prevProps.card || prevProps.card.get('blurhash') !== card.get('blurhash'))) {
       this._decode();
     }
@@ -117,6 +125,24 @@ export default class Card extends React.PureComponent {
       ctx.putImageData(imageData, 0, 0);
     }
   }
+
+  _setDimensions () {
+    const width = this.node.offsetWidth;
+
+    if (this.props.cacheWidth) {
+      this.props.cacheWidth(width);
+    }
+
+    this.setState({ width });
+  }
+
+  handleResize = debounce(() => {
+    if (this.node) {
+      this._setDimensions();
+    }
+  }, 250, {
+    trailing: true,
+  });
 
   handlePhotoClick = () => {
     const { card, onOpenMedia } = this.props;
@@ -150,9 +176,10 @@ export default class Card extends React.PureComponent {
   }
 
   setRef = c => {
-    if (c) {
-      if (this.props.cacheWidth) this.props.cacheWidth(c.offsetWidth);
-      this.setState({ width: c.offsetWidth });
+    this.node = c;
+
+    if (this.node) {
+      this._setDimensions();
     }
   }
 

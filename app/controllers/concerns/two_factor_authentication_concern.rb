@@ -40,9 +40,11 @@ module TwoFactorAuthenticationConcern
   end
 
   def prompt_for_two_factor(user)
-    session[:attempt_user_id] = user.id
-    use_pack 'auth'
-    @body_classes = 'lighter'
-    render :two_factor
+    set_locale do
+      session[:attempt_user_id] = user.id
+      use_pack 'auth'
+      @body_classes = 'lighter'
+      render :two_factor
+    end
   end
 end

@@ -7,8 +7,6 @@ module Localized
     around_action :set_locale
   end
 
-  private
-
   def set_locale
     locale   = current_user.locale if respond_to?(:user_signed_in?) && user_signed_in?
     locale ||= session[:locale] ||= default_locale
@@ -18,6 +16,8 @@ module Localized
       yield
     end
   end
+
+  private
 
   def default_locale
     if ENV['DEFAULT_LOCALE'].present?

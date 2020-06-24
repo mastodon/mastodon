@@ -117,8 +117,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
             src={attachment.get('url')}
             alt={attachment.get('description')}
             duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
-            height={110}
-            preload
+            poster={status.getIn(['account', 'avatar_static'])}
+            height={150}
           />
         );
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
