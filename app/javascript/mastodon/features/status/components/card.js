@@ -165,9 +165,9 @@ export default class Card extends React.PureComponent {
   }
 
   handleReveal = e => {
-    this.setState({ revealed: true });
     e.preventDefault();
     e.stopPropagation();
+    this.setState({ revealed: true });
   }
 
   renderVideo () {
@@ -254,7 +254,7 @@ export default class Card extends React.PureComponent {
       }
 
       return (
-        <div className={className} ref={this.setRef} onClick={this.handleReveal}>
+        <div className={className} ref={this.setRef} onClick={revealed ? null : this.handleReveal} role={revealed ? 'button' : null}>
           {embed}
           {!compact && description}
         </div>
