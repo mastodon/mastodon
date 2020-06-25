@@ -6,7 +6,7 @@ import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
-import { FormattedDate } from 'react-intl';
+import { injectIntl, defineMessages, FormattedDate } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
@@ -16,7 +16,15 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import AnimatedNumber from 'mastodon/components/animated_number';
 
-export default class DetailedStatus extends ImmutablePureComponent {
+const messages = defineMessages({
+  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+});
+
+export default  @injectIntl
+class DetailedStatus extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -92,7 +100,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
     const outerStyle = { boxSizing: 'border-box' };
-    const { compact } = this.props;
+    const { intl, compact } = this.props;
 
     if (!status) {
       return null;
@@ -157,34 +165,44 @@ export default class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></span>;
+      applicationLink = <React.Fragment> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></React.Fragment>;
     }
 
-    if (status.get('visibility') === 'direct') {
-      reblogIcon = 'envelope';
-    } else if (status.get('visibility') === 'private') {
-      reblogIcon = 'lock';
-    }
+    const visibilityIconInfo = {
+      'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
+      'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
+      'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
+      'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_short) },
+    };
+
+    const visibilityIcon = visibilityIconInfo[status.get('visibility')];
+    const visibilityLink = <React.Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></React.Fragment>;
 
     if (['private', 'direct'].includes(status.get('visibility'))) {
-      reblogLink = <Icon id={reblogIcon} />;
+      reblogLink = '';
     } else if (this.context.router) {
       reblogLink = (
-        <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
-          <Icon id={reblogIcon} />
-          <span className='detailed-status__reblogs'>
-            <AnimatedNumber value={status.get('reblogs_count')} />
-          </span>
-        </Link>
+        <React.Fragment>
+          <React.Fragment> · </React.Fragment>
+          <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
+            <Icon id={reblogIcon} />
+            <span className='detailed-status__reblogs'>
+              <AnimatedNumber value={status.get('reblogs_count')} />
+            </span>
+          </Link>
+        </React.Fragment>
       );
     } else {
       reblogLink = (
-        <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
-          <Icon id={reblogIcon} />
-          <span className='detailed-status__reblogs'>
-            <AnimatedNumber value={status.get('reblogs_count')} />
-          </span>
-        </a>
+        <React.Fragment>
+          <React.Fragment> · </React.Fragment>
+          <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
+            <Icon id={reblogIcon} />
+            <span className='detailed-status__reblogs'>
+              <AnimatedNumber value={status.get('reblogs_count')} />
+            </span>
+          </a>
+        </React.Fragment>
       );
     }
 
@@ -210,7 +228,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
     return (
       <div style={outerStyle}>
-        <div ref={this.setRef} className={classNames('detailed-status', { compact })}>
+        <div ref={this.setRef} className={classNames('detailed-status', `detailed-status-${status.get('visibility')}`, { compact })}>
           <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><Avatar account={status.get('account')} size={48} /></div>
             <DisplayName account={status.get('account')} localDomain={this.props.domain} />
@@ -223,7 +241,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
               <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
-            </a>{applicationLink} · {reblogLink} · {favouriteLink}
+            </a>{visibilityLink}{applicationLink}{reblogLink} · {favouriteLink}
           </div>
         </div>
       </div>
