@@ -123,7 +123,7 @@ group :test do
   gem 'faker', '~> 2.12'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
-  gem 'rspec-sidekiq', '~> 3.0'
+  gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.18', require: false
   gem 'webmock', '~> 3.8'
   gem 'parallel_tests', '~> 3.0'
