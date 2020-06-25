@@ -171,9 +171,7 @@ $content-width: 840px;
   }
 
   .content {
-    padding: 20px 15px;
-    padding-top: 60px;
-    padding-left: 25px;
+    padding: 55px 15px 20px 25px;
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;
@@ -184,7 +182,7 @@ $content-width: 840px;
     &-heading {
       display: flex;
 
-      padding-bottom: 40px;
+      padding-bottom: 36px;
       border-bottom: 1px solid lighten($ui-base-color, 8%);
 
       margin: -15px -15px 40px 0;
@@ -215,7 +213,7 @@ $content-width: 840px;
     h2 {
       color: $secondary-text-color;
       font-size: 24px;
-      line-height: 28px;
+      line-height: 36px;
       font-weight: 400;
 
       @media screen and (max-width: $no-columns-breakpoint) {
@@ -526,6 +524,16 @@ body,
 .simple_form.new_report_note,
 .simple_form.new_account_moderation_note {
   max-width: 100%;
+}
+
+.simple_form {
+  .actions {
+    margin-top: 15px;
+  }
+
+  .button {
+    font-size: 15px;
+  }
 }
 
 .batch-form-box {
