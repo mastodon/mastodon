@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import punycode from 'punycode';
 import classnames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import classNames from 'classnames';
 import { useBlurhash } from 'mastodon/initial_state';
 import { decode } from 'blurhash';
 import { debounce } from 'lodash';
@@ -231,7 +230,7 @@ export default class Card extends React.PureComponent {
     const height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);
 
     const description = (
-      <div className={classNames('status-card__content', { 'status-card__content--blurred': !revealed })}>
+      <div className='status-card__content'>
         {title}
         {!(horizontal || compact) && <p className='status-card__description'>{trim(card.get('description') || '', maxDescription)}</p>}
         <span className='status-card__host'>{provider}</span>
@@ -239,7 +238,7 @@ export default class Card extends React.PureComponent {
     );
 
     let embed     = '';
-    let canvas = <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('status-card__image-preview', { 'status-card__image-preview--hidden' : revealed && this.state.previewLoaded })} />;
+    let canvas = <canvas width={32} height={32} ref={this.setCanvasRef} className={classnames('status-card__image-preview', { 'status-card__image-preview--hidden' : revealed && this.state.previewLoaded })} />;
     let thumbnail = <img src={card.get('image')} alt='' style={{ width: horizontal ? width : null, height: horizontal ? height : null, visibility: revealed ? null : 'hidden' }} onLoad={this.handleImageLoad} className='status-card__image-image' />;
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
@@ -247,7 +246,7 @@ export default class Card extends React.PureComponent {
       </button>
     );
     spoilerButton = (
-      <div className={classNames('spoiler-button', { 'spoiler-button--minified': revealed })}>
+      <div className={classnames('spoiler-button', { 'spoiler-button--minified': revealed })}>
         {spoilerButton}
       </div>
     );
@@ -305,7 +304,6 @@ export default class Card extends React.PureComponent {
       <a href={card.get('url')} className={className} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
         {embed}
         {description}
-        {!revealed && spoilerButton}
       </a>
     );
   }
