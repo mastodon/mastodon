@@ -3841,7 +3841,6 @@ a.status-card.compact:hover {
   color: $primary-text-color;
   margin-bottom: 4px;
   display: block;
-  vertical-align: top;
   background-color: $base-overlay-background;
   text-transform: uppercase;
   font-size: 11px;
@@ -4723,6 +4722,7 @@ a.status-card.compact:hover {
 .report-modal,
 .actions-modal,
 .mute-modal,
+.user-note-modal,
 .block-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $inverted-text-color;
@@ -4816,7 +4816,8 @@ a.status-card.compact:hover {
   vertical-align: middle;
 }
 
-.report-modal {
+.report-modal,
+.user-note-modal {
   width: 90vw;
   max-width: 700px;
 }
@@ -4829,6 +4830,10 @@ a.status-card.compact:hover {
     flex-wrap: wrap;
     overflow-y: auto;
   }
+}
+
+.user-note-modal__container {
+  border-top: 1px solid $ui-secondary-color;
 }
 
 .report-modal__statuses,
@@ -4870,9 +4875,13 @@ a.status-card.compact:hover {
 }
 
 .report-modal__comment {
-  padding: 20px;
   border-right: 1px solid $ui-secondary-color;
   max-width: 320px;
+}
+
+.report-modal__comment,
+.user-note-modal__container {
+  padding: 20px;
 
   p {
     font-size: 14px;
@@ -5050,7 +5059,8 @@ a.status-card.compact:hover {
 .confirmation-modal__container,
 .mute-modal__container,
 .block-modal__container,
-.report-modal__target {
+.report-modal__target,
+.user-note-modal__target {
   padding: 30px;
   font-size: 16px;
 
@@ -5066,7 +5076,8 @@ a.status-card.compact:hover {
 }
 
 .confirmation-modal__container,
-.report-modal__target {
+.report-modal__target,
+.user-note-modal__target {
   text-align: center;
 }
 
@@ -5090,7 +5101,8 @@ a.status-card.compact:hover {
   }
 }
 
-.report-modal__target {
+.report-modal__target,
+.user-note-modal__target {
   padding: 15px;
 
   .media-modal__close {
@@ -6603,6 +6615,33 @@ noscript {
           color: $primary-text-color;
         }
       }
+    }
+  }
+
+  &__user-note {
+    margin: 5px;
+    padding: 10px;
+    background: $ui-highlight-color;
+    color: $primary-text-color;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    strong {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .icon-button {
+      color: $primary-text-color;
     }
   }
 }

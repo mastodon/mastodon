@@ -11,6 +11,7 @@ import Avatar from 'mastodon/components/avatar';
 import { shortNumberFormat } from 'mastodon/utils/numbers';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import IconButton from 'mastodon/components/icon_button';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -45,6 +46,8 @@ const messages = defineMessages({
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
+  add_user_note: { id: 'account.add_user_note', defaultMessage: 'Add note for @{name}' },
+  edit_user_note: { id: 'account.edit_user_note', defaultMessage: 'Edit note for @{name}' },
 });
 
 const dateFormatOptions = {
@@ -64,6 +67,7 @@ class Header extends ImmutablePureComponent {
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
+    onEditUserNote: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
   };
@@ -127,6 +131,8 @@ class Header extends ImmutablePureComponent {
     if (!account) {
       return null;
     }
+
+    const userNote = account.getIn(['relationship', 'comment']);
 
     let info        = [];
     let actionBtn   = '';
@@ -217,6 +223,10 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock });
       }
 
+      if (userNote === null) {
+        menu.push({ text: intl.formatMessage(messages.add_user_note, { name: account.get('username') }), action: this.props.onEditUserNote });
+      }
+
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
     }
 
@@ -283,6 +293,16 @@ class Header extends ImmutablePureComponent {
               <small>@{acct} {lockedIcon}</small>
             </h1>
           </div>
+
+          {!!userNote && (
+            <div className='account__header__user-note'>
+              <div className='account__header__user-note__header'>
+                <strong><FormattedMessage id='account.user_note_header' defaultMessage='Your note for @{name}' values={{ name: account.get('username') }} /></strong>
+                <IconButton icon='pencil' title={intl.formatMessage(messages.edit_user_note, { name: account.get('username') })} onClick={this.props.onEditUserNote} size={15} />
+              </div>
+              <span>{userNote}</span>
+            </div>
+          )}
 
           <div className='account__header__extra'>
             <div className='account__header__bio'>
