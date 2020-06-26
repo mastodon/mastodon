@@ -13,13 +13,11 @@ module Mastodon
       true
     end
 
-    desc 'list', 'list E-mail domain blocks'
-    long_desc <<-LONG_DESC
-      list up all E-mail domain blocks.
-    LONG_DESC
+    desc 'list', 'List blocked e-mail domains'
     def list
       EmailDomainBlock.where(parent_id: nil).order(id: 'DESC').find_each do |entry|
         say(entry.domain.to_s, :white)
+
         EmailDomainBlock.where(parent_id: entry.id).order(id: 'DESC').find_each do |child|
           say("  #{child.domain}", :cyan)
         end
@@ -27,13 +25,17 @@ module Mastodon
     end
 
     option :with_dns_records, type: :boolean
-    desc 'add [DOMAIN...]', 'add E-mail domain blocks'
+    desc 'add DOMAIN...', 'Block e-mail domain(s)'
     long_desc <<-LONG_DESC
-      add E-mail domain blocks from a given DOMAIN.
+      Blocking an e-mail domain prevents users from signing up
+      with e-mail addresses from that domain. You can provide one or
+      multiple domains to the command.
 
-      When the --with-dns-records option is given, An attempt to resolve the
-      given domain's DNS records will be made and the results will also be
-      blacklisted.
+      When the --with-dns-records option is given, an attempt to resolve the
+      given domains' DNS records will be made and the results (A, AAAA and MX) will
+      also be blocked. This can be helpful if you are blocking an e-mail server that
+      has many different domains pointing to it as it allows you to essentially block
+      it at the root.
     LONG_DESC
     def add(*domains)
       if domains.empty?
@@ -72,11 +74,13 @@ module Mastodon
 
         (hostnames + ips).uniq.each do |hostname|
           another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block)
+
           if EmailDomainBlock.where(domain: hostname).exists?
             say("#{hostname} is already blocked.", :yellow)
             skipped += 1
             next
           end
+
           another_email_domain_block.save!
           processed += 1
         end
@@ -85,7 +89,7 @@ module Mastodon
       say("Added #{processed}, skipped #{skipped}", color(processed, 0))
     end
 
-    desc 'remove [DOMAIN...]', 'remove E-mail domain blocks'
+    desc 'remove DOMAIN...', 'Remove e-mail domain blocks'
     def remove(*domains)
       if domains.empty?
         say('No domain(s) given', :red)
@@ -98,6 +102,7 @@ module Mastodon
 
       domains.each do |domain|
         entry = EmailDomainBlock.find_by(domain: domain)
+
         if entry.nil?
           say("#{domain} is not yet blocked.", :yellow)
           skipped += 1
@@ -105,12 +110,12 @@ module Mastodon
         end
 
         children_count = EmailDomainBlock.where(parent_id: entry.id).count
-
         result = entry.destroy
+
         if result
           processed += 1 + children_count
         else
-          say("#{domain} was not unblocked. 'destroy' returns false.", :red)
+          say("#{domain} could not be unblocked.", :red)
           failed += 1
         end
       end
