@@ -27,12 +27,25 @@
         = opengraph 'og:video:height', media.file.meta.dig('original', 'height')
         = opengraph 'twitter:player:width', media.file.meta.dig('original', 'width')
         = opengraph 'twitter:player:height', media.file.meta.dig('original', 'height')
+    - elsif media.audio?
+      - player_card = true
+      = opengraph 'og:image', full_asset_url(account.avatar.url(:original))
+      = opengraph 'og:image:width', '400'
+      = opengraph 'og:image:height','400'
+      = opengraph 'og:audio', full_asset_url(media.file.url(:original))
+      = opengraph 'og:audio:secure_url', full_asset_url(media.file.url(:original))
+      = opengraph 'og:audio:type', media.file_content_type
+      = opengraph 'twitter:player', medium_player_url(media)
+      = opengraph 'twitter:player:stream', full_asset_url(media.file.url(:original))
+      = opengraph 'twitter:player:stream:content_type', media.file_content_type
+      = opengraph 'twitter:player:width', '670'
+      = opengraph 'twitter:player:height', '380'
   - if player_card
     = opengraph 'twitter:card', 'player'
   - else
     = opengraph 'twitter:card', 'summary_large_image'
 - else
   = opengraph 'og:image', full_asset_url(account.avatar.url(:original))
-  = opengraph 'og:image:width', '120'
-  = opengraph 'og:image:height','120'
+  = opengraph 'og:image:width', '400'
+  = opengraph 'og:image:height','400'
   = opengraph 'twitter:card', 'summary'

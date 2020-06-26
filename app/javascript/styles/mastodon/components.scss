@@ -1019,7 +1019,8 @@
   }
 
   &.light {
-    .status__relative-time {
+    .status__relative-time,
+    .status__visibility-icon {
       color: $light-text-color;
     }
 
@@ -1065,10 +1066,16 @@
 }
 
 .status__relative-time,
+.status__visibility-icon,
 .notification__relative_time {
   color: $dark-text-color;
   float: right;
   font-size: 14px;
+}
+
+.status__visibility-icon {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .status__display-name {
@@ -3003,6 +3010,7 @@ a.account__display-name {
 }
 
 .status-card {
+  position: relative;
   display: flex;
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);

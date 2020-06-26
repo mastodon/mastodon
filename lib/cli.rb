@@ -12,6 +12,7 @@ require_relative 'mastodon/domains_cli'
 require_relative 'mastodon/preview_cards_cli'
 require_relative 'mastodon/cache_cli'
 require_relative 'mastodon/upgrade_cli'
+require_relative 'mastodon/email_domain_blocks_cli'
 require_relative 'mastodon/version'
 
 module Mastodon
@@ -52,6 +53,9 @@ module Mastodon
 
     desc 'upgrade SUBCOMMAND ...ARGS', 'Various version upgrade utilities'
     subcommand 'upgrade', Mastodon::UpgradeCLI
+
+    desc 'email-domain-blocks SUBCOMMAND ...ARGS', 'Manage E-mail domain blocks'
+    subcommand 'email_domain_blocks', Mastodon::EmailDomainBlocksCLI
 
     option :dry_run, type: :boolean
     desc 'self-destruct', 'Erase the server from the federation'

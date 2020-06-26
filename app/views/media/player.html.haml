@@ -1,2 +1,16 @@
-%video{ poster: @media_attachment.file.url(:small), preload: 'auto', autoplay: 'autoplay', muted: 'muted', loop: 'loop', controls: 'controls', style: "width: #{@media_attachment.file.meta.dig('original', 'width')}px; height: #{@media_attachment.file.meta.dig('original', 'height')}px" }
-  %source{ src: @media_attachment.file.url(:original), type: @media_attachment.file_content_type }
+- content_for :header_tags do
+  = render_initial_state
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+
+- if @media_attachment.video?
+  = react_component :video, src: @media_attachment.file.url(:original), preview: @media_attachment.file.url(:small), blurhash: @media_attachment.blurhash, width: 670, height: 380, editable: true, detailed: true, inline: true, alt: @media_attachment.description do
+    %video{ controls: 'controls' }
+      %source{ src: @media_attachment.file.url(:original) }
+- elsif @media_attachment.gifv?
+  = react_component :media_gallery, height: 380, standalone: true, autoplay: true, media: [ActiveModelSerializers::SerializableResource.new(@media_attachment, serializer: REST::MediaAttachmentSerializer).as_json] do
+    %video{ autoplay: 'autoplay', muted: 'muted', loop: 'loop' }
+      %source{ src: @media_attachment.file.url(:original) }
+- elsif @media_attachment.audio?
+  = react_component :audio, src: @media_attachment.file.url(:original), poster: full_asset_url(@media_attachment.account.avatar_static_url), width: 670, height: 380, fullscreen: true, alt: @media_attachment.description, duration: @media_attachment.file.meta.dig(:original, :duration) do
+    %audio{ controls: 'controls' }
+      %source{ src: @media_attachment.file.url(:original) }
