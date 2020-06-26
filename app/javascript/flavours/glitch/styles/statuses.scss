@@ -201,13 +201,19 @@
       display: initial;
     }
 
-    .status__relative-time {
+    .status__relative-time,
+    .status__visibility-icon {
       color: $dark-text-color;
       float: right;
       font-size: 14px;
       width: auto;
       margin: initial;
       padding: initial;
+    }
+
+    .status__visibility-icon {
+      margin-left: 4px;
+      margin-right: 4px;
     }
 
     .status__info .status__display-name {
@@ -243,7 +249,8 @@
         padding-right: 0;
       }
 
-      .status__relative-time {
+      .status__relative-time,
+      .status__visibility-icon {
         float: left;
       }
     }
