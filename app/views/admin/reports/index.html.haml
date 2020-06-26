@@ -18,7 +18,7 @@
         = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.reports.#{key}")
 
     .actions
-      %button= t('admin.accounts.search')
+      %button.button= t('admin.accounts.search')
       = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button negative'
 
 - @reports.group_by(&:target_account_id).each do |target_account_id, reports|

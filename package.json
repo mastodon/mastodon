@@ -2,7 +2,7 @@
   "name": "@tootsuite/mastodon",
   "license": "AGPL-3.0-or-later",
   "engines": {
-    "node": ">=10.13 <13"
+    "node": ">=10.13"
   },
   "scripts": {
     "postversion": "git push --tags",
@@ -60,9 +60,9 @@
   },
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.10.2",
+    "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.10.3",
     "@babel/plugin-transform-react-inline-elements": "^7.10.1",
     "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
@@ -179,7 +179,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "~2.21.2",
-    "eslint-plugin-jsx-a11y": "~6.2.3",
+    "eslint-plugin-jsx-a11y": "~6.3.1",
     "eslint-plugin-promise": "~4.2.1",
     "eslint-plugin-react": "~7.20.0",
     "jest": "^26.0.1",

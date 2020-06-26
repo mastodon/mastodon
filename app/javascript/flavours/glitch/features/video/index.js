@@ -185,15 +185,26 @@ class Video extends React.PureComponent {
 
   handlePlay = () => {
     this.setState({ paused: false });
+    this._updateTime();
   }
 
   handlePause = () => {
     this.setState({ paused: true });
   }
 
+  _updateTime () {
+    requestAnimationFrame(() => {
+      this.handleTimeUpdate();
+
+      if (!this.state.paused) {
+        this._updateTime();
+      }
+    });
+  }
+
   handleTimeUpdate = () => {
     this.setState({
-      currentTime: Math.floor(this.video.currentTime),
+      currentTime: this.video.currentTime,
       duration: Math.floor(this.video.duration),
     });
   }
@@ -231,7 +242,7 @@ class Video extends React.PureComponent {
       this.video.volume = slideamt;
       this.setState({ volume: slideamt });
     }
-  }, 60);
+  }, 15);
 
   handleMouseDown = e => {
     document.addEventListener('mousemove', this.handleMouseMove, true);
@@ -259,13 +270,14 @@ class Video extends React.PureComponent {
 
   handleMouseMove = throttle(e => {
     const { x } = getPointerPosition(this.seek, e);
-    const currentTime = Math.floor(this.video.duration * x);
+    const currentTime = this.video.duration * x;
 
     if (!isNaN(currentTime)) {
-      this.video.currentTime = currentTime;
-      this.setState({ currentTime });
+      this.setState({ currentTime }, () => {
+        this.video.currentTime = currentTime;
+      });
     }
-  }, 60);
+  }, 15);
 
   togglePlay = () => {
     if (this.state.paused) {
@@ -374,8 +386,10 @@ class Video extends React.PureComponent {
   }
 
   handleProgress = () => {
-    if (this.video.buffered.length > 0) {
-      this.setState({ buffer: this.video.buffered.end(0) / this.video.duration * 100 });
+    const lastTimeRange = this.video.buffered.length - 1;
+
+    if (lastTimeRange > -1) {
+      this.setState({ buffer: Math.ceil(this.video.buffered.end(lastTimeRange) / this.video.duration * 100) });
     }
   }
 
@@ -477,7 +491,6 @@ class Video extends React.PureComponent {
           onClick={this.togglePlay}
           onPlay={this.handlePlay}
           onPause={this.handlePause}
-          onTimeUpdate={this.handleTimeUpdate}
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
           onVolumeChange={this.handleVolumeChange}
@@ -518,7 +531,7 @@ class Video extends React.PureComponent {
 
               {(detailed || fullscreen) && (
                 <span>
-                  <span className='video-player__time-current'>{formatTime(currentTime)}</span>
+                  <span className='video-player__time-current'>{formatTime(Math.floor(currentTime))}</span>
                   <span className='video-player__time-sep'>/</span>
                   <span className='video-player__time-total'>{formatTime(duration)}</span>
                 </span>

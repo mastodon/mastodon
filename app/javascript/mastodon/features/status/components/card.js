@@ -191,7 +191,9 @@ export default class Card extends React.PureComponent {
     this.setState({ previewLoaded: true });
   }
 
-  handleReveal = () => {
+  handleReveal = e => {
+    e.preventDefault();
+    e.stopPropagation();
     this.setState({ revealed: true });
   }
 
@@ -279,7 +281,7 @@ export default class Card extends React.PureComponent {
       }
 
       return (
-        <div className={className} ref={this.setRef}>
+        <div className={className} ref={this.setRef} onClick={revealed ? null : this.handleReveal} role={revealed ? 'button' : null}>
           {embed}
           {!compact && description}
         </div>
@@ -289,14 +291,12 @@ export default class Card extends React.PureComponent {
         <div className='status-card__image'>
           {canvas}
           {thumbnail}
-          {!revealed && spoilerButton}
         </div>
       );
     } else {
       embed = (
         <div className='status-card__image'>
           <Icon id='file-text' />
-          {!revealed && spoilerButton}
         </div>
       );
     }
@@ -305,6 +305,7 @@ export default class Card extends React.PureComponent {
       <a href={card.get('url')} className={className} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
         {embed}
         {description}
+        {!revealed && spoilerButton}
       </a>
     );
   }
