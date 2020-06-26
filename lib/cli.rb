@@ -54,7 +54,7 @@ module Mastodon
     desc 'upgrade SUBCOMMAND ...ARGS', 'Various version upgrade utilities'
     subcommand 'upgrade', Mastodon::UpgradeCLI
 
-    desc 'email-domain-blocks SUBCOMMAND ...ARGS', 'Manage E-mail domain blocks'
+    desc 'email_domain_blocks SUBCOMMAND ...ARGS', 'Manage e-mail domain blocks'
     subcommand 'email_domain_blocks', Mastodon::EmailDomainBlocksCLI
 
     option :dry_run, type: :boolean
