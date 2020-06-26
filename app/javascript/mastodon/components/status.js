@@ -352,7 +352,8 @@ class Status extends ImmutablePureComponent {
               <Component
                 src={attachment.get('url')}
                 alt={attachment.get('description')}
-                poster={status.getIn(['account', 'avatar_static'])}
+                poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
+                blurhash={attachment.get('blurhash')}
                 duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
                 width={this.props.cachedMediaWidth}
                 height={110}

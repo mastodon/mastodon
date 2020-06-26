@@ -238,12 +238,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
       begin
         href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-        media_attachment = MediaAttachment.create(account: @account, remote_url: href, description: attachment['summary'].presence || attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
+        media_attachment = MediaAttachment.create(account: @account, remote_url: href, thumbnail_remote_url: icon_url_from_attachment(attachment), description: attachment['summary'].presence || attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
         media_attachments << media_attachment
 
         next if unsupported_media_type?(attachment['mediaType']) || skip_download?
 
-        media_attachment.file_remote_url = href
+        media_attachment.download_file!
+        media_attachment.download_thumbnail!
         media_attachment.save
       rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
         RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
@@ -254,6 +255,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   rescue Addressable::URI::InvalidURIError => e
     Rails.logger.debug "Invalid URL in attachment: #{e}"
     media_attachments
+  end
+
+  def icon_url_from_attachment(attachment)
+    url = attachment['icon'].is_a?(Hash) ? attachment['icon']['url'] : attachment['icon']
+    Addressable::URI.parse(url).normalize.to_s if url.present?
+  rescue Addressable::URI::InvalidURIError
+    nil
   end
 
   def process_poll
