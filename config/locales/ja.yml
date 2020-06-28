@@ -348,7 +348,7 @@ ja:
     domain_allows:
       add_new: ホワイトリストに追加
       created_msg: ドメインのホワイトリストへの登録が完了しました
-      destroyed_msg: ドメインをホワイトリストから削除しました
+      destroyed_msg: 連合許可を外しました
       undo: ホワイトリストから削除
     domain_blocks:
       add_new: ドメインブロックを追加
@@ -391,16 +391,16 @@ ja:
       view: ドメインブロックを表示
     email_domain_blocks:
       add_new: 新規追加
-      created_msg: ブラックリストに追加しました
+      created_msg: メールドメインブロックに追加しました
       delete: 消去
-      destroyed_msg: ブラックリストから外しました
+      destroyed_msg: メールドメインブロックから外しました
       domain: ドメイン
       empty: メールブラックリストに登録されたドメインはありません
       from_html: '%{domain} から'
       new:
         create: ドメインを追加
-        title: メールアドレス用ブラックリスト新規追加
-      title: メールブラックリスト
+        title: 新規メールドメインブロック
+      title: メールドメインブロック
     instances:
       by_domain: ドメイン
       delivery_available: 配送可能
