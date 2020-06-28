@@ -362,11 +362,8 @@ html {
 .embed-modal,
 .error-modal,
 .onboarding-modal,
-.user-note-modal,
 .report-modal__comment .setting-text__wrapper,
-.report-modal__comment .setting-text,
-.user-note-modal .setting-text__wrapper,
-.user-note-modal .setting-text {
+.report-modal__comment .setting-text {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
 }
@@ -375,8 +372,7 @@ html {
   border-right-color: lighten($ui-base-color, 8%);
 }
 
-.report-modal__container,
-.user-note-modal__container {
+.report-modal__container {
   border-top-color: lighten($ui-base-color, 8%);
 }
 

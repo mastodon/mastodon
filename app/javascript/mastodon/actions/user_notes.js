@@ -1,11 +1,11 @@
 import api from '../api';
-import { openModal, closeModal } from './modal';
 
 export const USER_NOTE_SUBMIT_REQUEST = 'USER_NOTE_SUBMIT_REQUEST';
 export const USER_NOTE_SUBMIT_SUCCESS = 'USER_NOTE_SUBMIT_SUCCESS';
 export const USER_NOTE_SUBMIT_FAIL    = 'USER_NOTE_SUBMIT_FAIL';
 
-export const USER_NOTE_INIT_MODAL = 'USER_NOTE_INIT_MODAL';
+export const USER_NOTE_INIT_EDIT = 'USER_NOTE_INIT_EDIT';
+export const USER_NOTE_CANCEL    = 'USER_NOTE_CANCEL';
 
 export const USER_NOTE_CHANGE_COMMENT = 'USER_NOTE_CHANGE_COMMENT';
 
@@ -18,7 +18,6 @@ export function submitUserNote() {
     api(getState).post(`/api/v1/accounts/${id}/user_note`, {
       comment: getState().getIn(['user_notes', 'edit', 'comment']),
     }).then(response => {
-      dispatch(closeModal());
       dispatch(submitUserNoteSuccess(response.data));
     }).catch(error => dispatch(submitUserNoteFail(error)));
   };
@@ -44,17 +43,21 @@ export function submitUserNoteFail(error) {
   };
 };
 
-export function initUserNoteModal(account) {
+export function initEditUserNote(account) {
   return (dispatch, getState) => {
     const comment = getState().getIn(['relationships', account.get('id'), 'comment']);
 
     dispatch({
-      type: USER_NOTE_INIT_MODAL,
+      type: USER_NOTE_INIT_EDIT,
       account,
       comment,
     });
+  };
+};
 
-    dispatch(openModal('USER_NOTE'));
+export function cancelUserNote() {
+  return {
+    type: USER_NOTE_CANCEL,
   };
 };
 

@@ -11,7 +11,7 @@ import Avatar from 'mastodon/components/avatar';
 import { shortNumberFormat } from 'mastodon/utils/numbers';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
-import IconButton from 'mastodon/components/icon_button';
+import UserNoteContainer from '../containers/user_note_container';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -47,7 +47,6 @@ const messages = defineMessages({
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   add_user_note: { id: 'account.add_user_note', defaultMessage: 'Add note for @{name}' },
-  edit_user_note: { id: 'account.edit_user_note', defaultMessage: 'Edit note for @{name}' },
 });
 
 const dateFormatOptions = {
@@ -294,15 +293,7 @@ class Header extends ImmutablePureComponent {
             </h1>
           </div>
 
-          {!!userNote && (
-            <div className='account__header__user-note'>
-              <div className='account__header__user-note__header'>
-                <strong><FormattedMessage id='account.user_note_header' defaultMessage='Your note for @{name}' values={{ name: account.get('username') }} /></strong>
-                <IconButton icon='pencil' title={intl.formatMessage(messages.edit_user_note, { name: account.get('username') })} onClick={this.props.onEditUserNote} size={15} />
-              </div>
-              <span>{userNote}</span>
-            </div>
-          )}
+          <UserNoteContainer account={account} />
 
           <div className='account__header__extra'>
             <div className='account__header__bio'>

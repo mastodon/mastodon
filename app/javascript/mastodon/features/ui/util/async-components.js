@@ -114,10 +114,6 @@ export function BlockModal () {
   return import(/* webpackChunkName: "modals/block_modal" */'../components/block_modal');
 }
 
-export function UserNoteModal () {
-  return import(/* webpackChunkName: "modals/user_note_modal" */'../components/user_note_modal');
-}
-
 export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }
