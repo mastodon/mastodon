@@ -11,6 +11,8 @@
 #  updated_at        :datetime         not null
 #
 class UserNote < ApplicationRecord
+  include RelationshipCacheable
+
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 

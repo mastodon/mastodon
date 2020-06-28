@@ -3,7 +3,7 @@
 class AccountRelationshipsPresenter
   attr_reader :following, :followed_by, :blocking, :blocked_by,
               :muting, :requested, :domain_blocking,
-              :endorsed
+              :endorsed, :user_note
 
   def initialize(account_ids, current_account_id, **options)
     @account_ids        = account_ids.map { |a| a.is_a?(Account) ? a.id : a.to_i }
@@ -17,6 +17,7 @@ class AccountRelationshipsPresenter
     @requested       = cached[:requested].merge(Account.requested_map(@uncached_account_ids, @current_account_id))
     @domain_blocking = cached[:domain_blocking].merge(Account.domain_blocking_map(@uncached_account_ids, @current_account_id))
     @endorsed        = cached[:endorsed].merge(Account.endorsed_map(@uncached_account_ids, @current_account_id))
+    @user_note       = cached[:user_note].merge(Account.user_note_map(@uncached_account_ids, @current_account_id))
 
     cache_uncached!
 
@@ -28,6 +29,7 @@ class AccountRelationshipsPresenter
     @requested.merge!(options[:requested_map] || {})
     @domain_blocking.merge!(options[:domain_blocking_map] || {})
     @endorsed.merge!(options[:endorsed_map] || {})
+    @user_note.merge!(options[:user_note_map] || {})
   end
 
   private
@@ -44,6 +46,7 @@ class AccountRelationshipsPresenter
       requested: {},
       domain_blocking: {},
       endorsed: {},
+      user_note: {},
     }
 
     @uncached_account_ids = []
@@ -72,6 +75,7 @@ class AccountRelationshipsPresenter
         requested:       { account_id => requested[account_id] },
         domain_blocking: { account_id => domain_blocking[account_id] },
         endorsed:        { account_id => endorsed[account_id] },
+        user_note:       { account_id => user_note[account_id] },
       }
 
       Rails.cache.write("relationship:#{@current_account_id}:#{account_id}", maps_for_account, expires_in: 1.day)

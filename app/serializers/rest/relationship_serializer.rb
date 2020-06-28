@@ -3,7 +3,7 @@
 class REST::RelationshipSerializer < ActiveModel::Serializer
   attributes :id, :following, :showing_reblogs, :followed_by, :blocking, :blocked_by,
              :muting, :muting_notifications, :requested, :domain_blocking,
-             :endorsed
+             :endorsed, :comment
 
   def id
     object.id.to_s
@@ -49,5 +49,9 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
 
   def endorsed
     instance_options[:relationships].endorsed[object.id] || false
+  end
+
+  def comment
+    (instance_options[:relationships].user_note[object.id] || {})[:comment]
   end
 end
