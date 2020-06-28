@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_125810) do
+ActiveRecord::Schema.define(version: 2020_06_28_133322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -833,6 +833,16 @@ ActiveRecord::Schema.define(version: 2020_06_27_125810) do
     t.index ["user_id"], name: "index_user_invite_requests_on_user_id"
   end
 
+  create_table "user_notes", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "target_account_id"
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "target_account_id"], name: "index_user_notes_on_account_id_and_target_account_id", unique: true
+    t.index ["target_account_id"], name: "index_user_notes_on_target_account_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.datetime "created_at", null: false
@@ -989,6 +999,8 @@ ActiveRecord::Schema.define(version: 2020_06_27_125810) do
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
   add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "user_invite_requests", "users", on_delete: :cascade
+  add_foreign_key "user_notes", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "user_notes", "accounts", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
   add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify
