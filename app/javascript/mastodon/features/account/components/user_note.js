@@ -1,9 +1,7 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import classNames from 'classnames';
 import IconButton from 'mastodon/components/icon_button';
 import Textarea from 'react-textarea-autosize';
 
@@ -92,10 +90,10 @@ class Header extends ImmutablePureComponent {
         <Textarea
           disabled={isSubmitting}
           placeholder={intl.formatMessage(messages.placeholder)}
-          autoFocus={true}
           value={userNote}
           onChange={this.handleChangeUserNote}
           onKeyDown={this.handleKeyDown}
+          autoFocus
         />
       );
     } else {
