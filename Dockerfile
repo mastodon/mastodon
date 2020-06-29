@@ -25,27 +25,11 @@ RUN ARCH= && \
 	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
-# Install jemalloc
-ENV JE_VER="5.2.1"
-RUN apt update && \
-	apt -y install make autoconf gcc g++ && \
-	cd ~ && \
-	wget https://github.com/jemalloc/jemalloc/archive/$JE_VER.tar.gz && \
-	tar xf $JE_VER.tar.gz && \
-	cd jemalloc-$JE_VER && \
-	./autogen.sh && \
-	./configure --prefix=/opt/jemalloc && \
-	make -j$(nproc) > /dev/null && \
-	make install_bin install_include install_lib && \
-	cd .. && rm -rf jemalloc-$JE_VER $JE_VER.tar.gz
-
 # Install Ruby
 ENV RUBY_VER="2.7.2"
-ENV CPPFLAGS="-I/opt/jemalloc/include"
-ENV LDFLAGS="-L/opt/jemalloc/lib/"
-RUN apt update && \
-	apt -y install build-essential \
-		bison libyaml-dev libgdbm-dev libreadline-dev \
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends build-essential \
+    bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
 		libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
 	cd ~ && \
 	wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-$RUBY_VER.tar.gz && \
@@ -80,7 +64,6 @@ FROM ubuntu:20.04
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
 COPY --from=build-dep /opt/ruby /opt/ruby
-COPY --from=build-dep /opt/jemalloc /opt/jemalloc
 
 # Add more PATHs to the PATH
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"
@@ -91,16 +74,16 @@ ARG GID=991
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
 	echo "Etc/UTC" > /etc/localtime && \
-	ln -s /opt/jemalloc/lib/* /usr/lib/ && \
-	apt install -y whois wget && \
+	apt-get install -y --no-install-recommends whois wget && \
 	addgroup --gid $GID mastodon && \
 	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
 	echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd && \
 	rm -rf /var/lib/apt/lists/*
 
 # Install mastodon runtime deps
-RUN apt -y --no-install-recommends install \
-	  libssl1.1 libpq5 imagemagick ffmpeg \
+RUN apt-get update && \
+  apt-get -y --no-install-recommends install \
+	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
 	  libicu66 libprotobuf17 libidn11 libyaml-0-2 \
 	  file ca-certificates tzdata libreadline8 && \
 	apt -y install gcc && \
