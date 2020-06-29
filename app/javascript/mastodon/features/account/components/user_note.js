@@ -2,14 +2,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import IconButton from 'mastodon/components/icon_button';
+import Icon from 'mastodon/components/icon';
 import Textarea from 'react-textarea-autosize';
 
 const messages = defineMessages({
-  edit_user_note: { id: 'account.edit_user_note', defaultMessage: 'Edit note for @{name}' },
   placeholder: { id: 'user_note.placeholder', defaultMessage: 'No comment provided' },
-  save: { id: 'user_note.save', defaultMessage: 'Save' },
-  cancel: { id: 'user_note.cancel', defaultMessage: 'Cancel' },
 });
 
 export default @injectIntl
@@ -53,33 +50,22 @@ class Header extends ImmutablePureComponent {
     let action_buttons = null;
     if (isEditing) {
       action_buttons = (
-        <div>
-          <IconButton
-            icon='check'
-            title={intl.formatMessage(messages.save)}
-            onClick={this.props.onSaveUserNote}
-            disabled={isSubmitting}
-            size={15}
-          />
-          <IconButton
-            icon='times'
-            title={intl.formatMessage(messages.cancel)}
-            onClick={this.props.onCancelUserNote}
-            disabled={isSubmitting}
-            size={15}
-          />
+        <div className='account__header__user-note__buttons'>
+          <button className='text-btn' tabIndex='0' onClick={this.props.onCancelUserNote} disabled={isSubmitting}>
+            <Icon id='times' size={15} /> <FormattedMessage id='user_note.cancel' defaultMessage='Cancel' />
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <button className='text-btn' tabIndex='0' onClick={this.props.onSaveUserNote} disabled={isSubmitting}>
+            <Icon id='check' size={15} /> <FormattedMessage id='user_note.save' defaultMessage='Save' />
+          </button>
         </div>
       );
     } else {
       action_buttons = (
-        <div>
-          <IconButton
-            icon='pencil'
-            title={intl.formatMessage(messages.edit_user_note, { name: account.get('username') })}
-            onClick={this.props.onEditUserNote}
-            disabled={isSubmitting}
-            size={15}
-          />
+        <div className='account__header__user-note__buttons'>
+          <button className='text-btn' tabIndex='0' onClick={this.props.onEditUserNote} disabled={isSubmitting}>
+            <Icon id='pencil' size={15} /> <FormattedMessage id='user_note.edit' defaultMessage='Edit' />
+          </button>
         </div>
       );
     }
@@ -88,6 +74,7 @@ class Header extends ImmutablePureComponent {
     if (isEditing) {
       note_container = (
         <Textarea
+          className='account__header__user-note__content'
           disabled={isSubmitting}
           placeholder={intl.formatMessage(messages.placeholder)}
           value={userNote}

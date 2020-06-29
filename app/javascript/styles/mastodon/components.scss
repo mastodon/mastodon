@@ -6624,6 +6624,7 @@ noscript {
 
     &__content {
       white-space: pre-wrap;
+      margin-top: 5px;
     }
 
     strong {
@@ -6631,8 +6632,10 @@ noscript {
       font-weight: 500;
     }
 
-    .icon-button {
-      color: $primary-text-color;
+    &__buttons {
+      button:hover {
+        text-decoration: underline;
+      }
     }
 
     textarea {
@@ -6640,6 +6643,7 @@ noscript {
       box-sizing: border-box;
       width: 100%;
       margin: 0;
+      margin-top: 5px;
       color: $inverted-text-color;
       background: $simple-background-color;
       padding: 10px;
