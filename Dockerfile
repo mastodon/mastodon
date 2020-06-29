@@ -1,7 +1,7 @@
 FROM ubuntu:20.04 as build-dep
 
 # Use bash for the shell
-SHELL ["/usr/bin/bash", "-c"]
+SHELL ["/bin/bash", "-c"]
 
 # Install Node v12 (LTS)
 ENV NODE_VER="12.21.0"
@@ -17,10 +17,10 @@ RUN ARCH= && \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac && \
     echo "Etc/UTC" > /etc/localtime && \
-	apt update && \
-	apt -y install wget python && \
+	apt-get update && \
+	apt-get install -y --no-install-recommends ca-certificates wget python && \
 	cd ~ && \
-	wget https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
+	wget -q https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	mv node-v$NODE_VER-linux-$ARCH /opt/node
@@ -55,17 +55,16 @@ RUN apt update && \
 	  --with-jemalloc \
 	  --with-shared \
 	  --disable-install-doc && \
-	ln -s /opt/jemalloc/lib/* /usr/lib/ && \
-	make -j$(nproc) > /dev/null && \
+	make -j"$(nproc)" > /dev/null && \
 	make install && \
-	cd .. && rm -rf ruby-$RUBY_VER.tar.gz ruby-$RUBY_VER
+	rm -rf ../ruby-$RUBY_VER.tar.gz ../ruby-$RUBY_VER
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
 RUN npm install -g yarn && \
 	gem install bundler && \
-	apt update && \
-	apt -y install git libicu-dev libidn11-dev \
+	apt-get update && \
+	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
 	libpq-dev libprotobuf-dev protobuf-compiler
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
@@ -73,7 +72,7 @@ COPY Gemfile* package.json yarn.lock /opt/mastodon/
 RUN cd /opt/mastodon && \
   bundle config set deployment 'true' && \
   bundle config set without 'development test' && \
-	bundle install -j$(nproc) && \
+	bundle install -j"$(nproc)" && \
 	yarn install --pure-lockfile
 
 FROM ubuntu:20.04
@@ -89,13 +88,15 @@ ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"
 # Create the mastodon user
 ARG UID=991
 ARG GID=991
-RUN apt update && \
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN apt-get update && \
 	echo "Etc/UTC" > /etc/localtime && \
 	ln -s /opt/jemalloc/lib/* /usr/lib/ && \
 	apt install -y whois wget && \
 	addgroup --gid $GID mastodon && \
 	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
-	echo "mastodon:`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256`" | chpasswd
+	echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd && \
+	rm -rf /var/lib/apt/lists/*
 
 # Install mastodon runtime deps
 RUN apt -y --no-install-recommends install \
