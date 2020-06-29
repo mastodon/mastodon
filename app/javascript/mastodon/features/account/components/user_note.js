@@ -54,17 +54,8 @@ class Header extends ImmutablePureComponent {
           <button className='text-btn' tabIndex='0' onClick={this.props.onCancelUserNote} disabled={isSubmitting}>
             <Icon id='times' size={15} /> <FormattedMessage id='user_note.cancel' defaultMessage='Cancel' />
           </button>
-          &nbsp;&nbsp;&nbsp;
           <button className='text-btn' tabIndex='0' onClick={this.props.onSaveUserNote} disabled={isSubmitting}>
             <Icon id='check' size={15} /> <FormattedMessage id='user_note.save' defaultMessage='Save' />
-          </button>
-        </div>
-      );
-    } else {
-      action_buttons = (
-        <div className='account__header__user-note__buttons'>
-          <button className='text-btn' tabIndex='0' onClick={this.props.onEditUserNote} disabled={isSubmitting}>
-            <Icon id='pencil' size={15} /> <FormattedMessage id='user_note.edit' defaultMessage='Edit' />
           </button>
         </div>
       );
@@ -91,9 +82,16 @@ class Header extends ImmutablePureComponent {
       <div className='account__header__user-note'>
         <div className='account__header__user-note__header'>
           <strong><FormattedMessage id='account.user_note_header' defaultMessage='Your note for @{name}' values={{ name: account.get('username') }} /></strong>
-          {action_buttons}
+          {!isEditing && (
+            <div>
+              <button className='text-btn' tabIndex='0' onClick={this.props.onEditUserNote} disabled={isSubmitting}>
+                <Icon id='pencil' size={15} /> <FormattedMessage id='user_note.edit' defaultMessage='Edit' />
+              </button>
+            </div>
+          )}
         </div>
         {note_container}
+        {action_buttons}
       </div>
     );
   }

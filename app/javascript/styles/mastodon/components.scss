@@ -6627,15 +6627,20 @@ noscript {
       margin-top: 5px;
     }
 
+    &__buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+
     strong {
       font-size: 15px;
       font-weight: 500;
     }
 
-    &__buttons {
-      button:hover {
-        text-decoration: underline;
-      }
+    button:hover span {
+      text-decoration: underline;
     }
 
     textarea {
