@@ -183,6 +183,10 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
     }
 
+    if (userNote === null) {
+      menu.push({ text: intl.formatMessage(messages.add_user_note, { name: account.get('username') }), action: this.props.onEditUserNote });
+    }
+
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
       menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
@@ -220,10 +224,6 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.props.onBlock });
       } else {
         menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock });
-      }
-
-      if (userNote === null) {
-        menu.push({ text: intl.formatMessage(messages.add_user_note, { name: account.get('username') }), action: this.props.onEditUserNote });
       }
 
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
