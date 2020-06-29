@@ -37,6 +37,8 @@ class Header extends ImmutablePureComponent {
   handleKeyDown = e => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.props.onSaveUserNote();
+    } else if (e.keyCode === 27) {
+      this.props.onCancelUserNote();
     }
   }
 
