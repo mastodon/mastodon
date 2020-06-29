@@ -39,7 +39,7 @@ class Api::V1::MediaController < Api::BaseController
   end
 
   def media_attachment_params
-    params.permit(:file, :description, :focus)
+    params.permit(:file, :thumbnail, :description, :focus)
   end
 
   def file_type_error

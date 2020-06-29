@@ -32,7 +32,7 @@ class PostProcessMediaWorker
 
     media_attachment.file.reprocess!(:original)
     media_attachment.processing = :complete
-    media_attachment.file_meta = previous_meta
+    media_attachment.file_meta = previous_meta.merge(media_attachment.file_meta).with_indifferent_access.slice(:focus, :original, :small)
     media_attachment.save
   rescue ActiveRecord::RecordNotFound
     true

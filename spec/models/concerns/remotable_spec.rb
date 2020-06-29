@@ -58,7 +58,11 @@ RSpec.describe Remotable do
       expect(foo).to respond_to(:reset_hoge!)
     end
 
-    describe '#hoge_remote_url' do
+    it 'defines a method #download_hoge!' do
+      expect(foo).to respond_to(:download_hoge!)
+    end
+
+    describe '#hoge_remote_url=' do
       before do
         request
       end
@@ -138,8 +142,8 @@ RSpec.describe Remotable do
           let(:code) { 500 }
 
           it 'calls not send' do
-            expect(foo).not_to receive(:send).with("#{hoge}=", any_args)
-            expect(foo).not_to receive(:send).with("#{hoge}_file_name=", any_args)
+            expect(foo).not_to receive(:public_send).with("#{hoge}=", any_args)
+            expect(foo).not_to receive(:public_send).with("#{hoge}_file_name=", any_args)
             foo.hoge_remote_url = url
           end
         end
@@ -159,26 +163,14 @@ RSpec.describe Remotable do
               allow(SecureRandom).to receive(:hex).and_return(basename)
               allow(StringIO).to receive(:new).with(anything).and_return(string_io)
 
-              expect(foo).to receive(:send).with("#{hoge}=", string_io)
-              expect(foo).to receive(:send).with("#{hoge}_file_name=", basename + extname)
-              foo.hoge_remote_url = url
-            end
-          end
+              expect(foo).to receive(:public_send).with("download_#{hoge}!")
 
-          context 'if has_attribute?' do
-            it 'calls foo[attribute_name] = url' do
-              allow(foo).to receive(:has_attribute?).with(attribute_name).and_return(true)
-              expect(foo).to receive('[]=').with(attribute_name, url)
               foo.hoge_remote_url = url
-            end
-          end
 
-          context 'unless has_attribute?' do
-            it 'calls not foo[attribute_name] = url' do
-              allow(foo).to receive(:has_attribute?)
-                .with(attribute_name).and_return(false)
-              expect(foo).not_to receive('[]=').with(attribute_name, url)
-              foo.hoge_remote_url = url
+              expect(foo).to receive(:public_send).with("#{hoge}=", string_io)
+              expect(foo).to receive(:public_send).with("#{hoge}_file_name=", basename + extname)
+
+              foo.download_hoge!
             end
           end
         end
@@ -202,27 +194,6 @@ RSpec.describe Remotable do
               foo.hoge_remote_url = url
             end
           end
-        end
-      end
-    end
-
-    describe '#reset_hoge!' do
-      context 'if url.blank?' do
-        it 'returns nil, without clearing foo[attribute_name] and calling #hoge_remote_url=' do
-          url = nil
-          expect(foo).not_to receive(:send).with(:hoge_remote_url=, url)
-          foo[attribute_name] = url
-          expect(foo.reset_hoge!).to be_nil
-          expect(foo[attribute_name]).to be_nil
-        end
-      end
-
-      context 'unless url.blank?' do
-        it 'clears foo[attribute_name] and calls #hoge_remote_url=' do
-          foo[attribute_name] = url
-          expect(foo).to receive(:send).with(:hoge_remote_url=, url)
-          foo.reset_hoge!
-          expect(foo[attribute_name]).to be ''
         end
       end
     end
