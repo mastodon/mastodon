@@ -85,22 +85,11 @@ RUN apt-get update && \
   apt-get -y --no-install-recommends install \
 	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
 	  libicu66 libprotobuf17 libidn11 libyaml-0-2 \
-	  file ca-certificates tzdata libreadline8 && \
-	apt -y install gcc && \
+	  file ca-certificates tzdata libreadline8 gcc tini && \
 	ln -s /opt/mastodon /mastodon && \
 	gem install bundler && \
 	rm -rf /var/cache && \
 	rm -rf /var/lib/apt/lists/*
-
-# Add tini
-ENV TINI_VERSION="0.19.0"
-RUN dpkgArch="$(dpkg --print-architecture)" && \
-	ARCH=$dpkgArch && \
-	wget https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-$ARCH \
-	https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-$ARCH.sha256sum && \
-	cat tini-$ARCH.sha256sum | sha256sum -c - && \
-	mv tini-$ARCH /tini && rm tini-$ARCH.sha256sum && \
-	chmod +x /tini
 
 # Copy over mastodon source, and dependencies from building, and set permissions
 COPY --chown=mastodon:mastodon . /opt/mastodon
@@ -124,5 +113,5 @@ RUN cd ~ && \
 
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
-ENTRYPOINT ["/tini", "--"]
+ENTRYPOINT ["/usr/bin/tini", "--"]
 EXPOSE 3000 4000
