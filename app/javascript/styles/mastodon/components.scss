@@ -6630,8 +6630,13 @@ noscript {
     &__buttons {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin-top: 5px;
+
+      .flex-spacer {
+        flex: 0 0 20px;
+        background: transparent;
+      }
     }
 
     strong {

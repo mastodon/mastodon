@@ -57,6 +57,7 @@ class Header extends ImmutablePureComponent {
           <button className='text-btn' tabIndex='0' onClick={this.props.onCancelUserNote} disabled={isSubmitting}>
             <Icon id='times' size={15} /> <FormattedMessage id='user_note.cancel' defaultMessage='Cancel' />
           </button>
+          <div className='flex-spacer' />
           <button className='text-btn' tabIndex='0' onClick={this.props.onSaveUserNote} disabled={isSubmitting}>
             <Icon id='check' size={15} /> <FormattedMessage id='user_note.save' defaultMessage='Save' />
           </button>
