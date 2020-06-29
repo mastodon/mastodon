@@ -7,8 +7,8 @@ module Remotable
     def remotable_attachment(attachment_name, limit, suppress_errors: true, download_on_assign: true, attribute_name: nil)
       attribute_name ||= "#{attachment_name}_remote_url".to_sym
 
-      define_method("download_#{attachment_name}!") do
-        url = self[attribute_name]
+      define_method("download_#{attachment_name}!") do |url = nil|
+        url ||= self[attribute_name]
 
         return if url.blank?
 
@@ -51,9 +51,9 @@ module Remotable
       define_method("#{attribute_name}=") do |url|
         return if self[attribute_name] == url && public_send("#{attachment_name}_file_name").present?
 
-        self[attribute_name] = url
+        self[attribute_name] = url if has_attribute?(attribute_name)
 
-        public_send("download_#{attachment_name}!") if download_on_assign
+        public_send("download_#{attachment_name}!", url) if download_on_assign
       end
 
       alias_method("reset_#{attachment_name}!", "download_#{attachment_name}!")
