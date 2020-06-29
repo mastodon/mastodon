@@ -1,3 +1,4 @@
+import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -77,7 +78,7 @@ class Header extends ImmutablePureComponent {
         />
       );
     } else {
-      note_container = (<div class='account__header__user-note__content'>{userNote}</div>);
+      note_container = (<div className='account__header__user-note__content'>{userNote}</div>);
     }
 
     return (
