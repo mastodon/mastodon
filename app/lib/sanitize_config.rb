@@ -90,6 +90,7 @@ class Sanitize
         'span'       => %w(class),
         'abbr'       => %w(title),
         'blockquote' => %w(cite),
+        'ol'         => %w(start reversed),
       },
 
       add_attributes: {
