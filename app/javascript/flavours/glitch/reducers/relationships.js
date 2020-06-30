@@ -13,6 +13,9 @@ import {
   DOMAIN_BLOCK_SUCCESS,
   DOMAIN_UNBLOCK_SUCCESS,
 } from 'flavours/glitch/actions/domain_blocks';
+import {
+  ACCOUNT_NOTE_SUBMIT_SUCCESS,
+} from 'flavours/glitch/actions/account_notes';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const normalizeRelationship = (state, relationship) => state.set(relationship.id, fromJS(relationship));
@@ -45,6 +48,7 @@ export default function relationships(state = initialState, action) {
   case ACCOUNT_UNMUTE_SUCCESS:
   case ACCOUNT_PIN_SUCCESS:
   case ACCOUNT_UNPIN_SUCCESS:
+  case ACCOUNT_NOTE_SUBMIT_SUCCESS:
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);
