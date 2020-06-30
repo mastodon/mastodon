@@ -24,7 +24,7 @@ sq:
         edit: Përpunoni
         submit: Parashtroje
       confirmations:
-        destroy: A jeni i sigurt?
+        destroy: Jeni i sigurt?
       edit:
         title: Përpunoni aplikacion
       form:
@@ -48,7 +48,7 @@ sq:
       show:
         actions: Veprime
         application_id: Kyç klienti
-        callback_urls: URL-ra Callback
+        callback_urls: URL-ra Callback-u
         scopes: Fushëveprime
         secret: E fshehtë klienti
         title: 'Aplikacion: %{name}'
@@ -74,11 +74,11 @@ sq:
         created_at: I autorizuar
         date_format: "%d.%m.%Y, %H:%M:%S"
         scopes: Fushëveprime
-        title: Aplikacionet tuaja të autorizuara
+        title: Aplikacionet tuaja të autorizuar
     errors:
       messages:
         access_denied: I zoti i burimit ose shërbyesi i autorizimit e hodhi poshtë kërkesën.
-        credential_flow_not_configured: Rrjedha e Kredencialeve të Fjalëkalimit të të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials është i paformësuar.
+        credential_flow_not_configured: Rrjedha për Kredenciale Fjalëkalimi të të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials është i paformësuar.
         invalid_client: Mirëfilltësimi i klientit dështoi për shkak klienti të panjohur, mospërfshirjeje mirëfilltësimi klienti, ose metode të pambuluar mirëfilltësimi.
         invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, nuk përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
         invalid_redirect_uri: URI e ridrejtimit s’është e vlefshme.
