@@ -12,6 +12,8 @@ class MoveWorker
     else
       queue_follow_unfollows!
     end
+
+    copy_account_notes!
   rescue ActiveRecord::RecordNotFound
     true
   end
@@ -32,6 +34,21 @@ class MoveWorker
 
     @source_account.followers.local.select(:id).find_in_batches do |accounts|
       UnfollowFollowWorker.push_bulk(accounts.map(&:id)) { |follower_id| [follower_id, @source_account.id, @target_account.id, bypass_locked] }
+    end
+  end
+
+  def copy_account_notes!
+    AccountNote.where(target_account: @source_account).find_each do |note|
+      text = I18n.with_locale(note.account.user.locale || I18n.default_locale) do
+        I18n.t('move_handler.copy_account_note_text', acct: @source_account.acct)
+      end
+
+      new_note = AccountNote.find_by(account: note.account, target_account: @target_account)
+      if new_note.nil?
+        AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join('\n'))
+      else
+        new_note.update!(comment: [text, note.comment, '\n', new_note.comment].join('\n'))
+      end
     end
   end
 end

@@ -19,6 +19,7 @@ import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { blockDomain, unblockDomain } from 'flavours/glitch/actions/domain_blocks';
+import { initEditAccountNote } from 'flavours/glitch/actions/account_notes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { unfollowModal } from 'flavours/glitch/util/initial_state';
 import { List as ImmutableList } from 'immutable';
@@ -104,6 +105,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(initMuteModal(account));
     }
+  },
+
+  onEditAccountNote (account) {
+    dispatch(initEditAccountNote(account));
   },
 
   onBlockDomain (domain) {

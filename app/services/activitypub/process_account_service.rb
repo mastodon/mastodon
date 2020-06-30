@@ -89,8 +89,8 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_fetchable_attributes!
-    @account.avatar_remote_url = image_url('icon')  unless skip_download?
-    @account.header_remote_url = image_url('image') unless skip_download?
+    @account.avatar_remote_url = image_url('icon')  || '' unless skip_download?
+    @account.header_remote_url = image_url('image') || '' unless skip_download?
     @account.public_key        = public_key || ''
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
