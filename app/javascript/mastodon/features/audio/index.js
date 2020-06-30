@@ -157,6 +157,7 @@ class Audio extends React.PureComponent {
     fullscreen: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     cacheWidth: PropTypes.func,
+    blurhash: PropTypes.string,
   };
 
   state = {
@@ -222,30 +223,40 @@ class Audio extends React.PureComponent {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize, { passive: true });
 
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => this.handlePosterLoad(img);
-    img.src = this.props.poster;
+    if (!this.props.blurhash) {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => this.handlePosterLoad(img);
+      img.src = this.props.poster;
+    } else {
+      this._setColorScheme();
+      this._decodeBlurhash();
+    }
   }
 
   componentDidUpdate (prevProps, prevState) {
-    if (prevProps.poster !== this.props.poster) {
+    if (prevProps.poster !== this.props.poster && !this.props.blurhash) {
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => this.handlePosterLoad(img);
       img.src = this.props.poster;
     }
 
-    if (prevState.blurhash !== this.state.blurhash) {
-      const context = this.blurhashCanvas.getContext('2d');
-      const pixels = decode(this.state.blurhash, 32, 32);
-      const outputImageData = new ImageData(pixels, 32, 32);
-
-      context.putImageData(outputImageData, 0, 0);
+    if (prevState.blurhash !== this.state.blurhash || prevProps.blurhash !== this.props.blurhash) {
+      this._setColorScheme();
+      this._decodeBlurhash();
     }
 
     this._clear();
     this._draw();
+  }
+
+  _decodeBlurhash () {
+    const context = this.blurhashCanvas.getContext('2d');
+    const pixels = decode(this.props.blurhash || this.state.blurhash, 32, 32);
+    const outputImageData = new ImageData(pixels, 32, 32);
+
+    context.putImageData(outputImageData, 0, 0);
   }
 
   componentWillUnmount () {
@@ -415,7 +426,7 @@ class Audio extends React.PureComponent {
   }
 
   handlePosterLoad = image => {
-    const canvas = document.createElement('canvas');
+    const canvas  = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
     canvas.width  = image.width;
@@ -425,10 +436,15 @@ class Audio extends React.PureComponent {
 
     const inputImageData = context.getImageData(0, 0, image.width, image.height);
     const blurhash = encode(inputImageData.data, image.width, image.height, 4, 4);
+
+    this.setState({ blurhash });
+  }
+
+  _setColorScheme () {
+    const blurhash     = this.props.blurhash || this.state.blurhash;
     const averageColor = decodeRGB(decode83(blurhash.slice(2, 6)));
 
     this.setState({
-      blurhash,
       color: adjustColor(averageColor),
       darkText: luma(averageColor) >= 165,
     });

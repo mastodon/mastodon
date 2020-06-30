@@ -4,12 +4,12 @@ module Remotable
   extend ActiveSupport::Concern
 
   class_methods do
-    def remotable_attachment(attachment_name, limit, suppress_errors: true)
-      attribute_name  = "#{attachment_name}_remote_url".to_sym
-      method_name     = "#{attribute_name}=".to_sym
-      alt_method_name = "reset_#{attachment_name}!".to_sym
+    def remotable_attachment(attachment_name, limit, suppress_errors: true, download_on_assign: true, attribute_name: nil)
+      attribute_name ||= "#{attachment_name}_remote_url".to_sym
 
-      define_method method_name do |url|
+      define_method("download_#{attachment_name}!") do |url = nil|
+        url ||= self[attribute_name]
+
         return if url.blank?
 
         begin
@@ -18,7 +18,7 @@ module Remotable
           return
         end
 
-        return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.blank? || (self[attribute_name] == url && send("#{attachment_name}_file_name").present?)
+        return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.blank?
 
         begin
           Request.new(:get, url).perform do |response|
@@ -36,10 +36,8 @@ module Remotable
 
             basename = SecureRandom.hex(8)
 
-            send("#{attachment_name}_file_name=", basename + extname)
-            send("#{attachment_name}=", StringIO.new(response.body_with_limit(limit)))
-
-            self[attribute_name] = url if has_attribute?(attribute_name)
+            public_send("#{attachment_name}_file_name=", basename + extname)
+            public_send("#{attachment_name}=", StringIO.new(response.body_with_limit(limit)))
           end
         rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
@@ -50,14 +48,15 @@ module Remotable
         end
       end
 
-      define_method alt_method_name do
-        url = self[attribute_name]
+      define_method("#{attribute_name}=") do |url|
+        return if self[attribute_name] == url && public_send("#{attachment_name}_file_name").present?
 
-        return if url.blank?
+        self[attribute_name] = url if has_attribute?(attribute_name)
 
-        self[attribute_name] = ''
-        send(method_name, url)
+        public_send("download_#{attachment_name}!", url) if download_on_assign
       end
+
+      alias_method("reset_#{attachment_name}!", "download_#{attachment_name}!")
     end
   end
 

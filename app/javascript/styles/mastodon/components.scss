@@ -3105,11 +3105,6 @@ a.status-card {
   flex: 1 1 auto;
   overflow: hidden;
   padding: 14px 14px 14px 8px;
-
-  &--blurred {
-    filter: blur(2px);
-    pointer-events: none;
-  }
 }
 
 .status-card__description {
@@ -3846,7 +3841,6 @@ a.status-card.compact:hover {
   color: $primary-text-color;
   margin-bottom: 4px;
   display: block;
-  vertical-align: top;
   background-color: $base-overlay-background;
   text-transform: uppercase;
   font-size: 11px;
@@ -6502,7 +6496,7 @@ noscript {
   &__tabs {
     display: flex;
     align-items: flex-start;
-    padding: 7px 5px;
+    padding: 7px 10px;
     margin-top: -55px;
 
     &__buttons {
@@ -6524,7 +6518,7 @@ noscript {
     }
 
     &__name {
-      padding: 5px;
+      padding: 5px 10px;
 
       .account-role {
         vertical-align: top;
@@ -6608,6 +6602,67 @@ noscript {
           color: $primary-text-color;
         }
       }
+    }
+  }
+
+  &__account-note {
+    margin: 5px;
+    padding: 10px;
+    background: $ui-highlight-color;
+    color: $primary-text-color;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__content {
+      white-space: pre-wrap;
+      margin-top: 5px;
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-top: 5px;
+
+      .flex-spacer {
+        flex: 0 0 20px;
+        background: transparent;
+      }
+    }
+
+    strong {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    button:hover span {
+      text-decoration: underline;
+    }
+
+    textarea {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0;
+      margin-top: 5px;
+      color: $inverted-text-color;
+      background: $simple-background-color;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      border-radius: 4px;
     }
   }
 }

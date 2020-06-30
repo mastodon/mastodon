@@ -31,10 +31,11 @@ module Mastodon
       processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where('created_at < ?', time_ago)) do |media_attachment|
         next if media_attachment.file.blank?
 
-        size = media_attachment.file_file_size
+        size = media_attachment.file_file_size + (media_attachment.thumbnail_file_size || 0)
 
         unless options[:dry_run]
           media_attachment.file.destroy
+          media_attachment.thumbnail.destroy
           media_attachment.save
         end
 
@@ -227,11 +228,12 @@ module Mastodon
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
 
         unless options[:dry_run]
-          media_attachment.file_remote_url = media_attachment.remote_url
+          media_attachment.reset_file!
+          media_attachment.reset_thumbnail!
           media_attachment.save
         end
 
-        media_attachment.file_file_size
+        media_attachment.file_file_size + (media_attachment.thumbnail_file_size || 0)
       end
 
       say("Downloaded #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
@@ -239,7 +241,7 @@ module Mastodon
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
-      say("Attachments:\t#{number_to_human_size(MediaAttachment.sum(:file_file_size))} (#{number_to_human_size(MediaAttachment.where(account: Account.local).sum(:file_file_size))} local)")
+      say("Attachments:\t#{number_to_human_size(MediaAttachment.sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} (#{number_to_human_size(MediaAttachment.where(account: Account.local).sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} local)")
       say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
       say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
       say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
