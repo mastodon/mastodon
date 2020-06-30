@@ -7,7 +7,7 @@ describe MoveWorker do
   let(:source_account)   { Fabricate(:account, protocol: :activitypub, domain: 'example.com') }
   let(:target_account)   { Fabricate(:account, protocol: :activitypub, domain: 'example.com') }
   let(:local_user)       { Fabricate(:user) }
-  let!(:user_note)       { Fabricate(:user_note, account: local_user.account, target_account: source_account) }
+  let!(:account_note)    { Fabricate(:account_note, account: local_user.account, target_account: source_account) }
 
   subject { described_class.new }
 
@@ -19,18 +19,18 @@ describe MoveWorker do
     it 'copies user note' do
       allow(UnfollowFollowWorker).to receive(:push_bulk)
       subject.perform(source_account.id, target_account.id)
-      expect(UserNote.find_by(account: user_note.account, target_account: target_account).comment).to include(source_account.acct)
-      expect(UserNote.find_by(account: user_note.account, target_account: target_account).comment).to include(user_note.comment)
+      expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(source_account.acct)
+      expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
     end
 
     it 'merges user notes when needed' do
-      new_user_note = UserNote.create!(account: user_note.account, target_account: target_account, comment: 'new note prior to move')
+      new_account_note = AccountNote.create!(account: account_note.account, target_account: target_account, comment: 'new note prior to move')
 
       allow(UnfollowFollowWorker).to receive(:push_bulk)
       subject.perform(source_account.id, target_account.id)
-      expect(UserNote.find_by(account: user_note.account, target_account: target_account).comment).to include(source_account.acct)
-      expect(UserNote.find_by(account: user_note.account, target_account: target_account).comment).to include(user_note.comment)
-      expect(UserNote.find_by(account: user_note.account, target_account: target_account).comment).to include(new_user_note.comment)
+      expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(source_account.acct)
+      expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(account_note.comment)
+      expect(AccountNote.find_by(account: account_note.account, target_account: target_account).comment).to include(new_account_note.comment)
     end
   end
 

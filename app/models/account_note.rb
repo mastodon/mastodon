@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # == Schema Information
 #
-# Table name: user_notes
+# Table name: account_notes
 #
 #  id                :bigint(8)        not null, primary key
 #  account_id        :bigint(8)
@@ -10,7 +10,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
-class UserNote < ApplicationRecord
+class AccountNote < ApplicationRecord
   include RelationshipCacheable
 
   belongs_to :account

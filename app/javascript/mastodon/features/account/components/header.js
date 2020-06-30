@@ -11,7 +11,7 @@ import Avatar from 'mastodon/components/avatar';
 import { shortNumberFormat } from 'mastodon/utils/numbers';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
-import UserNoteContainer from '../containers/user_note_container';
+import AccountNoteContainer from '../containers/account_note_container';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -46,7 +46,7 @@ const messages = defineMessages({
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
-  add_user_note: { id: 'account.add_user_note', defaultMessage: 'Add note for @{name}' },
+  add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
 });
 
 const dateFormatOptions = {
@@ -66,7 +66,7 @@ class Header extends ImmutablePureComponent {
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
-    onEditUserNote: PropTypes.func.isRequired,
+    onEditAccountNote: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
   };
@@ -131,7 +131,7 @@ class Header extends ImmutablePureComponent {
       return null;
     }
 
-    const userNote = account.getIn(['relationship', 'comment']);
+    const accountNote = account.getIn(['relationship', 'note']);
 
     let info        = [];
     let actionBtn   = '';
@@ -183,8 +183,8 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
     }
 
-    if (userNote === null) {
-      menu.push({ text: intl.formatMessage(messages.add_user_note, { name: account.get('username') }), action: this.props.onEditUserNote });
+    if (accountNote === null) {
+      menu.push({ text: intl.formatMessage(messages.add_account_note, { name: account.get('username') }), action: this.props.onEditAccountNote });
     }
 
     if (account.get('id') === me) {
@@ -293,7 +293,7 @@ class Header extends ImmutablePureComponent {
             </h1>
           </div>
 
-          <UserNoteContainer account={account} />
+          <AccountNoteContainer account={account} />
 
           <div className='account__header__extra'>
             <div className='account__header__bio'>

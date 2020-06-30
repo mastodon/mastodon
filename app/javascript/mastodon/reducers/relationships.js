@@ -18,8 +18,8 @@ import {
   DOMAIN_UNBLOCK_SUCCESS,
 } from '../actions/domain_blocks';
 import {
-  USER_NOTE_SUBMIT_SUCCESS,
-} from '../actions/user_notes';
+  ACCOUNT_NOTE_SUBMIT_SUCCESS,
+} from '../actions/account_notes';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const normalizeRelationship = (state, relationship) => state.set(relationship.id, fromJS(relationship));
@@ -60,7 +60,7 @@ export default function relationships(state = initialState, action) {
   case ACCOUNT_UNMUTE_SUCCESS:
   case ACCOUNT_PIN_SUCCESS:
   case ACCOUNT_UNPIN_SUCCESS:
-  case USER_NOTE_SUBMIT_SUCCESS:
+  case ACCOUNT_NOTE_SUBMIT_SUCCESS:
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);

@@ -44,10 +44,10 @@ module AccountInteractions
       follow_mapping(AccountPin.where(account_id: account_id, target_account_id: target_account_ids), :target_account_id)
     end
 
-    def user_note_map(target_account_ids, account_id)
-      UserNote.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |user_note, mapping|
-        mapping[user_note.target_account_id] = {
-          comment: user_note.comment,
+    def account_note_map(target_account_ids, account_id)
+      AccountNote.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |note, mapping|
+        mapping[note.target_account_id] = {
+          comment: note.comment,
         }
       end
     end

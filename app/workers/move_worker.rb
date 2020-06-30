@@ -13,7 +13,7 @@ class MoveWorker
       queue_follow_unfollows!
     end
 
-    copy_user_notes!
+    copy_account_notes!
   rescue ActiveRecord::RecordNotFound
     true
   end
@@ -37,15 +37,15 @@ class MoveWorker
     end
   end
 
-  def copy_user_notes!
-    UserNote.where(target_account: @source_account).find_each do |note|
+  def copy_account_notes!
+    AccountNote.where(target_account: @source_account).find_each do |note|
       text = I18n.with_locale(note.account.user.locale || I18n.default_locale) do
-        I18n.t('move_handler.copy_user_note_text', acct: @source_account.acct)
+        I18n.t('move_handler.copy_account_note_text', acct: @source_account.acct)
       end
 
-      new_note = UserNote.find_by(account: note.account, target_account: @target_account)
+      new_note = AccountNote.find_by(account: note.account, target_account: @target_account)
       if new_note.nil?
-        UserNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join('\n'))
+        AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join('\n'))
       else
         new_note.update!(comment: [text, note.comment, '\n', new_note.comment].join('\n'))
       end
