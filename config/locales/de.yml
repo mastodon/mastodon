@@ -939,6 +939,10 @@ de:
       redirect: Das Profil deines aktuellen Kontos wird mit einer Weiterleitungsnachricht versehen und von Suchanfragen ausgeschlossen
   moderation:
     title: Moderation
+  move_handler:
+    carry_blocks_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du blockiert hast.
+    carry_mutes_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du stummgeschaltet hast.
+    copy_account_note_text: 'Dieser Benutzer ist von %{acct} umgezogen, hier waren deine letzten Notizen zu diesem Benutzer:'
   notification_mailer:
     digest:
       action: Zeige alle Benachrichtigungen
@@ -1115,6 +1119,9 @@ de:
     spam_detected: Dies ist ein automatisierter Bericht. Es wurde Spam erkannt.
   statuses:
     attached:
+      audio:
+        one: "%{count} Audiodatei"
+        other: "%{count} Audiodateien"
       description: 'Angehängt: %{attached}'
       image:
         one: "%{count} Bild"
