@@ -10,6 +10,8 @@ __Hometown__ is a light weight fork of Mastodon. This fork is based on the princ
 
 Please [check out our wiki](https://github.com/hometown-fork/hometown/wiki) for a list of Hometown-exclusive features. Some but not all of these are covered in this document.
 
+You can also find [a list of running Hometown instances](https://github.com/hometown-fork/hometown/wiki/Hometown-servers), don't hesitate to open an issue to add yours!
+
 ## Support this project
 
 Please consider [supporting Hometown by pledging to my Patreon](https://www.patreon.com/tinysubversions), which supports all my open source projects including this one!
