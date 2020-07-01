@@ -162,19 +162,15 @@ RSpec.describe Remotable do
           let(:headers)   { { 'content-disposition' => file } }
 
           it 'assigns file' do
-            string_io = StringIO.new('')
-            extname   = '.txt'
-            basename  = '0123456789abcdef'
+            response_with_limit = ResponseWithLimit.new(nil, 0)
 
-            allow(SecureRandom).to receive(:hex).and_return(basename)
-            allow(StringIO).to receive(:new).with(anything).and_return(string_io)
+            allow(ResponseWithLimit).to receive(:new).with(anything, anything).and_return(response_with_limit)
 
             expect(foo).to receive(:public_send).with("download_#{hoge}!", url)
 
             foo.hoge_remote_url = url
 
-            expect(foo).to receive(:public_send).with("#{hoge}=", string_io)
-            expect(foo).to receive(:public_send).with("#{hoge}_file_name=", basename + extname)
+            expect(foo).to receive(:public_send).with("#{hoge}=", response_with_limit)
 
             foo.download_hoge!(url)
           end
