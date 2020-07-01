@@ -17,36 +17,36 @@
 /log/*
 !/log/.keep
 /tmp
-coverage
-public/system
-public/assets
-public/packs
-public/packs-test
+/coverage
+/public/system
+/public/assets
+/public/packs
+/public/packs-test
 .env
 .env.production
 .env.development
-node_modules/
-build/
+/node_modules/
+/build/
 
 # Ignore Vagrant files
 .vagrant/
 
 # Ignore Capistrano customizations
-config/deploy/*
+/config/deploy/*
 
 # Ignore IDE files
 .vscode/
 .idea/
 
 # Ignore postgres + redis + elasticsearch volume optionally created by docker-compose
-postgres
-redis
-elasticsearch
+/postgres
+/redis
+/elasticsearch
 
 # ignore Helm lockfile, dependency charts, and local values file
-chart/Chart.lock
-chart/charts/*.tgz
-chart/values.yaml
+/chart/Chart.lock
+/chart/charts/*.tgz
+/chart/values.yaml
 
 # Ignore Apple files
 .DS_Store

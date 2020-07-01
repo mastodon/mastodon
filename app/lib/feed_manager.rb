@@ -205,7 +205,7 @@ class FeedManager
   private
 
   def push_update_required?(timeline_id)
-    redis.exists("subscribed:#{timeline_id}")
+    redis.exists?("subscribed:#{timeline_id}")
   end
 
   def blocks_or_mutes?(receiver_id, account_ids, context)

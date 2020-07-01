@@ -295,7 +295,7 @@
   position: relative;
   height: auto;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  cursor: default;
+  cursor: auto;
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.

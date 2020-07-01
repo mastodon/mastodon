@@ -34,10 +34,12 @@ delegate(document, '#account_header', 'change', ({ target }) => {
 delegate(document, '#account_locked', 'change', ({ target }) => {
   const lock = document.querySelector('.card .display-name i');
 
-  if (target.checked) {
-    lock.style.display = 'inline';
-  } else {
-    lock.style.display = 'none';
+  if (lock) {
+    if (target.checked) {
+      delete lock.dataset.hidden;
+    } else {
+      lock.dataset.hidden = 'true';
+    }
   }
 });
 

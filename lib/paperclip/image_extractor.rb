@@ -4,28 +4,10 @@ require 'mime/types/columnar'
 
 module Paperclip
   class ImageExtractor < Paperclip::Processor
-    IMAGE_EXTRACTION_OPTIONS = {
-      convert_options: {
-        output: {
-          'loglevel' => 'fatal',
-          vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
-        }.freeze,
-      }.freeze,
-      format: 'png',
-      time: -1,
-      file_geometry_parser: FastGeometryParser,
-    }.freeze
-
     def make
       return @file unless options[:style] == :original
 
-      image = begin
-        begin
-          Paperclip::Transcoder.make(file, IMAGE_EXTRACTION_OPTIONS.dup, attachment)
-        rescue Paperclip::Error, ::Av::CommandError
-          nil
-        end
-      end
+      image = extract_image_from_file!
 
       unless image.nil?
         begin
@@ -36,7 +18,7 @@ module Paperclip
           # to make sure it's cleaned up
 
           begin
-            FileUtils.rm(image)
+            image.close(true)
           rescue Errno::ENOENT
             nil
           end
@@ -44,6 +26,29 @@ module Paperclip
       end
 
       @file
+    end
+
+    private
+
+    def extract_image_from_file!
+      ::Av.logger = Paperclip.logger
+
+      cli = ::Av.cli
+      dst = Tempfile.new([File.basename(@file.path, '.*'), '.png'])
+      dst.binmode
+
+      cli.add_source(@file.path)
+      cli.add_destination(dst.path)
+      cli.add_output_param loglevel: 'fatal'
+
+      begin
+        cli.run
+      rescue Cocaine::ExitStatusError
+        dst.close(true)
+        return nil
+      end
+
+      dst
     end
   end
 end
