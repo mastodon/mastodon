@@ -20,6 +20,7 @@ class CustomFilter < ApplicationRecord
     notifications
     public
     thread
+    account
   ).freeze
 
   include Expireable

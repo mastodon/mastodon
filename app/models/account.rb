@@ -3,54 +3,57 @@
 #
 # Table name: accounts
 #
-#  id                      :bigint(8)        not null, primary key
-#  username                :string           default(""), not null
-#  domain                  :string
-#  secret                  :string           default(""), not null
-#  private_key             :text
-#  public_key              :text             default(""), not null
-#  remote_url              :string           default(""), not null
-#  salmon_url              :string           default(""), not null
-#  hub_url                 :string           default(""), not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  note                    :text             default(""), not null
-#  display_name            :string           default(""), not null
-#  uri                     :string           default(""), not null
-#  url                     :string
-#  avatar_file_name        :string
-#  avatar_content_type     :string
-#  avatar_file_size        :integer
-#  avatar_updated_at       :datetime
-#  header_file_name        :string
-#  header_content_type     :string
-#  header_file_size        :integer
-#  header_updated_at       :datetime
-#  avatar_remote_url       :string
-#  subscription_expires_at :datetime
-#  locked                  :boolean          default(FALSE), not null
-#  header_remote_url       :string           default(""), not null
-#  last_webfingered_at     :datetime
-#  inbox_url               :string           default(""), not null
-#  outbox_url              :string           default(""), not null
-#  shared_inbox_url        :string           default(""), not null
-#  followers_url           :string           default(""), not null
-#  protocol                :integer          default("ostatus"), not null
-#  memorial                :boolean          default(FALSE), not null
-#  moved_to_account_id     :bigint(8)
-#  featured_collection_url :string
-#  fields                  :jsonb
-#  actor_type              :string
-#  discoverable            :boolean
-#  also_known_as           :string           is an Array
-#  silenced_at             :datetime
-#  suspended_at            :datetime
-#  trust_level             :integer
+#  id                            :bigint(8)        not null, primary key
+#  username                      :string           default(""), not null
+#  domain                        :string
+#  secret                        :string           default(""), not null
+#  private_key                   :text
+#  public_key                    :text             default(""), not null
+#  remote_url                    :string           default(""), not null
+#  salmon_url                    :string           default(""), not null
+#  hub_url                       :string           default(""), not null
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  note                          :text             default(""), not null
+#  display_name                  :string           default(""), not null
+#  uri                           :string           default(""), not null
+#  url                           :string
+#  avatar_file_name              :string
+#  avatar_content_type           :string
+#  avatar_file_size              :integer
+#  avatar_updated_at             :datetime
+#  header_file_name              :string
+#  header_content_type           :string
+#  header_file_size              :integer
+#  header_updated_at             :datetime
+#  avatar_remote_url             :string
+#  subscription_expires_at       :datetime
+#  locked                        :boolean          default(FALSE), not null
+#  header_remote_url             :string           default(""), not null
+#  last_webfingered_at           :datetime
+#  inbox_url                     :string           default(""), not null
+#  outbox_url                    :string           default(""), not null
+#  shared_inbox_url              :string           default(""), not null
+#  followers_url                 :string           default(""), not null
+#  protocol                      :integer          default("ostatus"), not null
+#  memorial                      :boolean          default(FALSE), not null
+#  moved_to_account_id           :bigint(8)
+#  featured_collection_url       :string
+#  fields                        :jsonb
+#  actor_type                    :string
+#  discoverable                  :boolean
+#  also_known_as                 :string           is an Array
+#  silenced_at                   :datetime
+#  suspended_at                  :datetime
+#  trust_level                   :integer
+#  hide_collections              :boolean
+#  avatar_storage_schema_version :integer
+#  header_storage_schema_version :integer
 #
 
 class Account < ApplicationRecord
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[a-z0-9]+)?)/i
 
   include AccountAssociations
   include AccountAvatar
@@ -70,14 +73,13 @@ class Account < ApplicationRecord
   enum protocol: [:ostatus, :activitypub]
 
   validates :username, presence: true
+  validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations
-  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && will_save_change_to_username? }
   validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
@@ -93,6 +95,7 @@ class Account < ApplicationRecord
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
+  scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
@@ -102,6 +105,7 @@ class Account < ApplicationRecord
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
+  scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
@@ -153,8 +157,18 @@ class Account < ApplicationRecord
     self.actor_type = ActiveModel::Type::Boolean.new.cast(val) ? 'Service' : 'Person'
   end
 
+  def group?
+    actor_type == 'Group'
+  end
+
+  alias group group?
+
   def acct
     local? ? username : "#{username}@#{domain}"
+  end
+
+  def pretty_acct
+    local? ? username : "#{username}@#{Addressable::IDNA.to_unicode(domain)}"
   end
 
   def local_username_and_domain
@@ -303,10 +317,6 @@ class Account < ApplicationRecord
     self.fields = tmp
   end
 
-  def subscription(webhook_url)
-    @subscription ||= OStatus2::Subscription.new(remote_url, secret: secret, webhook: webhook_url, hub: hub_url)
-  end
-
   def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
@@ -314,6 +324,14 @@ class Account < ApplicationRecord
     self.header = nil
 
     save!
+  end
+
+  def hides_followers?
+    hide_collections? || user_hides_network?
+  end
+
+  def hides_following?
+    hide_collections? || user_hides_network?
   end
 
   def object_type
@@ -397,7 +415,7 @@ class Account < ApplicationRecord
 
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
-      DeliveryFailureTracker.filter(urls)
+      DeliveryFailureTracker.without_unavailable(urls)
     end
 
     def search_for(terms, limit = 10, offset = 0)
@@ -429,12 +447,14 @@ class Account < ApplicationRecord
             SELECT target_account_id
             FROM follows
             WHERE account_id = ?
+            UNION ALL
+            SELECT ?
           )
           SELECT
             accounts.*,
             (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
           FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?)
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND #{query} @@ #{textsearch}
             AND accounts.suspended_at IS NULL
@@ -465,6 +485,21 @@ class Account < ApplicationRecord
 
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
       records
+    end
+
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.map do |(username, domain)|
+        domain = begin
+          if TagManager.instance.local_domain?(domain)
+            nil
+          else
+            TagManager.instance.normalize_domain(domain)
+          end
+        end
+        EntityCache.instance.mention(username, domain)
+      end.compact
     end
 
     private

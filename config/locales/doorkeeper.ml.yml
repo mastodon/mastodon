@@ -1,0 +1,29 @@
+---
+ml:
+  activerecord:
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              invalid_uri: URI സാധുവായിരിക്കണം.
+              relative_uri: URI വിപുലീകരിച്ചതായിരിക്കണം.
+              secured_uri: URI HTTPS/SSL ആയിരിക്കണം.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: ചുമതലപ്പെടുത്തുക
+        cancel: റദ്ദാക്കുക
+        destroy: നശിപ്പിക്കുക
+        edit: തിരുത്തുക
+        submit: സമർപ്പിക്കുക
+      confirmations:
+        destroy: നിങ്ങൾക്ക് ഉറപ്പാണോ?
+      index:
+        delete: മായ്ക്കുക
+        name: പേര്
+    authorized_applications:
+      buttons:
+        revoke: പിൻവലിക്കുക
+      confirmations:
+        revoke: നിങ്ങൾക്ക് ഉറപ്പാണോ?

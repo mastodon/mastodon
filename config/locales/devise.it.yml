@@ -8,10 +8,10 @@ it:
     failure:
       already_authenticated: Hai già effettuato l'accesso.
       inactive: Non hai ancora attivato il tuo account.
-      invalid: "%{authentication_keys} o password invalida."
+      invalid: "%{authentication_keys} o password non valida."
       last_attempt: Hai un altro tentativo prima che il tuo account venga bloccato.
       locked: Il tuo account è stato bloccato.
-      not_found_in_database: "%{authentication_keys} o password invalida."
+      not_found_in_database: "%{authentication_keys} o password non valida."
       pending: Il tuo account è ancora in fase di approvazione.
       timeout: La tua sessione è terminata. Per favore, effettua l'accesso o registrati per continuare.
       unauthenticated: Devi effettuare l'accesso o registrarti per continuare.
@@ -55,6 +55,7 @@ it:
         subject: 'Mastodon: Autenticazione a due fattori attivata'
         title: 2FA abilitata
       two_factor_recovery_codes_changed:
+        explanation: I precedenti codici di recupero sono stati annullati e ne sono stati generati di nuovi.
         subject: 'Mastodon: codici di recupero a due fattori ri-generati'
         title: Codici di recupero 2FA modificati
       unlock_instructions:

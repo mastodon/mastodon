@@ -11,6 +11,12 @@
         = t('authorize_follow.already_following')
 
     = render 'post_follow_actions'
+  - elsif current_account.requested?(@resource)
+    .flash-message
+      %strong
+        = t('authorize_follow.already_requested')
+
+    = render 'post_follow_actions'
   - else
     = form_tag authorize_interaction_path, method: :post, class: 'simple_form' do
       = hidden_field_tag :action, :follow

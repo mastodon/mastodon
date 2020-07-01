@@ -7,55 +7,68 @@ class FollowService < BaseService
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
   # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
-  # @param [true, false, nil] reblogs Whether or not to show reblogs, defaults to true
-  def call(source_account, target_account, reblogs: nil)
-    reblogs = true if reblogs.nil?
-    target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
+  # @param [Hash] options
+  # @option [Boolean] :reblogs Whether or not to show reblogs, defaults to true
+  # @option [Boolean] :bypass_locked
+  # @option [Boolean] :with_rate_limit
+  def call(source_account, target_account, options = {})
+    @source_account = source_account
+    @target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
+    @options        = { reblogs: true, bypass_locked: false, with_rate_limit: false }.merge(options)
 
-    raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
-    raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account) || target_account.moved? || (!target_account.local? && target_account.ostatus?) || source_account.domain_blocking?(target_account.domain)
+    raise ActiveRecord::RecordNotFound if following_not_possible?
+    raise Mastodon::NotPermittedError  if following_not_allowed?
 
-    if source_account.following?(target_account)
-      # We're already following this account, but we'll call follow! again to
-      # make sure the reblogs status is set correctly.
-      source_account.follow!(target_account, reblogs: reblogs)
-      return
-    elsif source_account.requested?(target_account)
-      # This isn't managed by a method in AccountInteractions, so we modify it
-      # ourselves if necessary.
-      req = source_account.follow_requests.find_by(target_account: target_account)
-      req.update!(show_reblogs: reblogs)
-      return
+    if @source_account.following?(@target_account)
+      return change_follow_options!
+    elsif @source_account.requested?(@target_account)
+      return change_follow_request_options!
     end
 
     ActivityTracker.increment('activity:interactions')
 
-    if target_account.locked? || source_account.silenced? || target_account.activitypub?
-      request_follow(source_account, target_account, reblogs: reblogs)
-    elsif target_account.local?
-      direct_follow(source_account, target_account, reblogs: reblogs)
+    if (@target_account.locked? && !@options[:bypass_locked]) || @source_account.silenced? || @target_account.activitypub?
+      request_follow!
+    elsif @target_account.local?
+      direct_follow!
     end
   end
 
   private
 
-  def request_follow(source_account, target_account, reblogs: true)
-    follow_request = FollowRequest.create!(account: source_account, target_account: target_account, show_reblogs: reblogs)
+  def following_not_possible?
+    @target_account.nil? || @target_account.id == @source_account.id || @target_account.suspended?
+  end
 
-    if target_account.local?
-      LocalNotificationWorker.perform_async(target_account.id, follow_request.id, follow_request.class.name)
-    elsif target_account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), source_account.id, target_account.inbox_url)
+  def following_not_allowed?
+    @target_account.blocking?(@source_account) || @source_account.blocking?(@target_account) || @target_account.moved? || (!@target_account.local? && @target_account.ostatus?) || @source_account.domain_blocking?(@target_account.domain)
+  end
+
+  def change_follow_options!
+    @source_account.follow!(@target_account, reblogs: @options[:reblogs])
+  end
+
+  def change_follow_request_options!
+    @source_account.request_follow!(@target_account, reblogs: @options[:reblogs])
+  end
+
+  def request_follow!
+    follow_request = @source_account.request_follow!(@target_account, reblogs: @options[:reblogs], rate_limit: @options[:with_rate_limit])
+
+    if @target_account.local?
+      LocalNotificationWorker.perform_async(@target_account.id, follow_request.id, follow_request.class.name)
+    elsif @target_account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), @source_account.id, @target_account.inbox_url)
     end
 
     follow_request
   end
 
-  def direct_follow(source_account, target_account, reblogs: true)
-    follow = source_account.follow!(target_account, reblogs: reblogs)
+  def direct_follow!
+    follow = @source_account.follow!(@target_account, reblogs: @options[:reblogs], rate_limit: @options[:with_rate_limit])
 
-    LocalNotificationWorker.perform_async(target_account.id, follow.id, follow.class.name)
-    MergeWorker.perform_async(target_account.id, source_account.id)
+    LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name)
+    MergeWorker.perform_async(@target_account.id, @source_account.id)
 
     follow
   end

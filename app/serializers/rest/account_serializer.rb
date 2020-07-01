@@ -3,7 +3,7 @@
 class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :id, :username, :acct, :display_name, :locked, :bot, :created_at,
+  attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
              :followers_count, :following_count, :statuses_count, :last_status_at
 
@@ -22,6 +22,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def id
     object.id.to_s
+  end
+
+  def acct
+    object.pretty_acct
   end
 
   def note
@@ -50,5 +54,9 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def moved_and_not_nested?
     object.moved? && object.moved_to_account.moved_to_account_id.nil?
+  end
+
+  def last_status_at
+    object.last_status_at&.to_date&.iso8601
   end
 end

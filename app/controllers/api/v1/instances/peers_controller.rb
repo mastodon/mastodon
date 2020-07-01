@@ -6,8 +6,6 @@ class Api::V1::Instances::PeersController < Api::BaseController
   skip_before_action :set_cache_headers
   skip_before_action :require_authenticated_user!, unless: :whitelist_mode?
 
-  respond_to :json
-
   def index
     expires_in 1.day, public: true
     render_with_cache(expires_in: 1.day) { Account.remote.domains }

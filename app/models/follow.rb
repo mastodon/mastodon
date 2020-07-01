@@ -15,6 +15,9 @@
 class Follow < ApplicationRecord
   include Paginable
   include RelationshipCacheable
+  include RateLimitable
+
+  rate_limit by: :account, family: :follows
 
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'

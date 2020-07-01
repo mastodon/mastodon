@@ -4,20 +4,11 @@
 - content_for :page_title do
   = t('admin.reports.report', id: @report.id)
 
-%div{ style: 'overflow: hidden; margin-bottom: 20px' }
+- content_for :heading_actions do
   - if @report.unresolved?
-    %div{ style: 'float: right' }
-      - if @report.target_account.local?
-        = link_to t('admin.accounts.warn'), new_admin_account_action_path(@report.target_account_id, type: 'none', report_id: @report.id), class: 'button'
-        = link_to t('admin.accounts.disable'), new_admin_account_action_path(@report.target_account_id, type: 'disable', report_id: @report.id), class: 'button button--destructive'
-      = link_to t('admin.accounts.silence'), new_admin_account_action_path(@report.target_account_id, type: 'silence', report_id: @report.id), class: 'button button--destructive'
-      = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@report.target_account_id, type: 'suspend', report_id: @report.id), class: 'button button--destructive'
-    %div{ style: 'float: left' }
-      = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
+    = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
   - else
     = link_to t('admin.reports.mark_as_unresolved'), reopen_admin_report_path(@report), method: :post, class: 'button'
-
-%hr.spacer
 
 .table-wrapper
   %table.table.inline-table
@@ -25,16 +16,16 @@
       %tr
         %th= t('admin.reports.reported_account')
         %td= admin_account_link_to @report.target_account
-        %td= table_link_to 'flag', pluralize(@report.target_account.targeted_reports.count, t('admin.reports.account.report')), admin_reports_path(target_account_id: @report.target_account.id)
-        %td= table_link_to 'file', pluralize(@report.target_account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.target_account.id)
+        %td= table_link_to 'flag', t('admin.reports.account.reports', count: @report.target_account.targeted_reports.count), admin_reports_path(target_account_id: @report.target_account.id)
+        %td= table_link_to 'file', t('admin.reports.account.notes', count: @report.target_account.targeted_moderation_notes.count), admin_reports_path(target_account_id: @report.target_account.id)
       %tr
         %th= t('admin.reports.reported_by')
         - if @report.account.instance_actor?
           %td{ colspan: 3 }= site_hostname
         - elsif @report.account.local?
           %td= admin_account_link_to @report.account
-          %td= table_link_to 'flag', pluralize(@report.account.targeted_reports.count, t('admin.reports.account.report')), admin_reports_path(target_account_id: @report.account.id)
-          %td= table_link_to 'file', pluralize(@report.account.targeted_moderation_notes.count, t('admin.reports.account.note')), admin_reports_path(target_account_id: @report.account.id)
+          %td= table_link_to 'flag', t('admin.reports.account.reports', count: @report.account.targeted_reports.count), admin_reports_path(target_account_id: @report.account.id)
+          %td= table_link_to 'file', t('admin.reports.account.notes', count: @report.account.targeted_moderation_notes.count), admin_reports_path(target_account_id: @report.account.id)
         - else
           %td{ colspan: 3 }= @report.account.domain
       %tr
@@ -74,6 +65,19 @@
           %td
             - if !@report.assigned_account.nil?
               = table_link_to 'trash', t('admin.reports.unassign'), unassign_admin_report_path(@report), method: :post
+
+%hr.spacer
+
+%div.action-buttons
+  %div
+
+  - if @report.unresolved?
+    %div
+      - if @report.target_account.local?
+        = link_to t('admin.accounts.warn'), new_admin_account_action_path(@report.target_account_id, type: 'none', report_id: @report.id), class: 'button'
+        = link_to t('admin.accounts.disable'), new_admin_account_action_path(@report.target_account_id, type: 'disable', report_id: @report.id), class: 'button button--destructive'
+      = link_to t('admin.accounts.silence'), new_admin_account_action_path(@report.target_account_id, type: 'silence', report_id: @report.id), class: 'button button--destructive'
+      = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@report.target_account_id, type: 'suspend', report_id: @report.id), class: 'button button--destructive'
 
 %hr.spacer
 

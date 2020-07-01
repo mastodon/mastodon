@@ -11,6 +11,7 @@ ja:
     apps: アプリ
     apps_platforms: iOSやAndroidなど、各種環境から利用できます
     browse_directory: ディレクトリから気になる人を探しましょう
+    browse_local_posts: このサーバーの公開タイムラインをご覧ください
     browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
@@ -73,6 +74,7 @@ ja:
     roles:
       admin: Admin
       bot: Bot
+      group: Group
       moderator: Mod
     unavailable: プロフィールは利用できません
     unfollow: フォロー解除
@@ -86,6 +88,7 @@ ja:
       delete: 削除
       destroyed_msg: モデレーションメモを削除しました！
     accounts:
+      add_email_domain_block: ドメインをブラックリストに追加
       approve: 承認
       approve_all: すべて承認
       are_you_sure: 本当に実行しますか？
@@ -113,9 +116,7 @@ ja:
       email_status: メールアドレスの状態
       enable: 有効化
       enabled: 有効
-      feed_url: フィードURL
       followers: フォロワー数
-      followers_url: Followers URL
       follows: フォロー数
       header: ヘッダー
       inbox_url: Inbox URL
@@ -143,10 +144,8 @@ ja:
       no_account_selected: 何も選択されていないため、変更されていません
       no_limits_imposed: 制限なし
       not_subscribed: 購読していない
-      outbox_url: Outbox URL
       pending: 承認待ち
       perform_full_suspension: 活動を完全に停止させる
-      profile_url: プロフィールURL
       promote: 昇格
       protocol: プロトコル
       public: パブリック
@@ -169,8 +168,9 @@ ja:
         moderator: モデレーター
         staff: スタッフ
         user: ユーザー
-      salmon_url: Salmon URL
       search: 検索
+      search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
+      search_same_ip: 同じ IP のユーザーを検索
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
@@ -191,16 +191,56 @@ ja:
       web: Web
       whitelisted: ホワイトリストに登録済み
     action_logs:
+      action_types:
+        assigned_to_self_report: 通報の担当者に設定
+        change_email_user: ユーザーのメールアドレスを変更
+        confirm_user: ユーザーの確認
+        create_account_warning: 警告を作成
+        create_announcement: お知らせを作成
+        create_custom_emoji: カスタム絵文字を作成
+        create_domain_allow: ドメインホワイトリストに追加
+        create_domain_block: ドメインブロックを作成
+        create_email_domain_block: メールドメインブロックを作成
+        demote_user: ユーザーを降格
+        destroy_announcement: お知らせを削除
+        destroy_custom_emoji: カスタム絵文字を削除
+        destroy_domain_allow: ドメインホワイトリストから削除
+        destroy_domain_block: ドメインブロックを削除
+        destroy_email_domain_block: メールドメインブロックを削除
+        destroy_status: トゥートを削除
+        disable_2fa_user: 二段階認証を無効にする
+        disable_custom_emoji: カスタム絵文字を無効化
+        disable_user: ユーザーを無効化
+        enable_custom_emoji: カスタム絵文字を有効化
+        enable_user: ユーザーを有効化
+        memorialize_account: 追悼アカウント
+        promote_user: ユーザーを昇格
+        remove_avatar_user: アイコンを削除
+        reopen_report: 通報を再度開く
+        reset_password_user: パスワードをリセット
+        resolve_report: 通報を解決済みにする
+        silence_account: アカウントをサイレンス
+        suspend_account: アカウントをサスペンド
+        unassigned_report: 通報の担当を解除
+        unsilence_account: アカウントのサイレンスを解除
+        unsuspend_account: アカウントのサスペンドを解除
+        update_announcement: お知らせを更新
+        update_custom_emoji: カスタム絵文字を更新
+        update_status: ステータスを更新
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
+        create_announcement: "%{name} さんが新しいお知らせ %{target} を作成しました"
         create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_allow: "%{name} さんがドメイン %{target} をドメイン用ホワイトリストに追加しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
         demote_user: "%{name} さんが %{target} さんを降格しました"
+        destroy_announcement: "%{name} さんがお知らせ %{target} を削除しました"
         destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
+        destroy_domain_allow: "%{name} さんがドメイン %{target} をドメイン用ホワイトリストから外しました"
         destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
         destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
         destroy_status: "%{name} さんが %{target} さんの投稿を削除しました"
@@ -220,10 +260,29 @@ ja:
         unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
+        update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんの投稿を更新しました"
       deleted_status: "(削除済)"
+      empty: ログが見つかりませんでした
+      filter_by_action: アクションでフィルター
+      filter_by_user: ユーザーでフィルター
       title: 操作履歴
+    announcements:
+      destroyed_msg: お知らせが削除されました
+      edit:
+        title: お知らせを編集
+      empty: お知らせはありません
+      live: 公開中
+      new:
+        create: お知らせを作成
+        title: お知らせを追加
+      published_msg: お知らせを掲載しました
+      scheduled_for: "%{time} に予約"
+      scheduled_msg: お知らせの掲載を予約しました
+      title: お知らせ
+      unpublished_msg: お知らせを非掲載にしました
+      updated_msg: お知らせを更新しました
     custom_emojis:
       assign_category: カテゴリーを割り当て
       by_domain: ドメイン
@@ -334,13 +393,12 @@ ja:
       delete: 消去
       destroyed_msg: ブラックリストから外しました
       domain: ドメイン
+      empty: メールブラックリストに登録されたドメインはありません
+      from_html: "%{domain} から"
       new:
         create: ドメインを追加
         title: メールアドレス用ブラックリスト新規追加
       title: メールブラックリスト
-    followers:
-      back_to_account: 戻る
-      title: "%{acct}さんのフォロワー"
     instances:
       by_domain: ドメイン
       delivery_available: 配送可能
@@ -368,6 +426,8 @@ ja:
       title: 招待
     pending_accounts:
       title: 承認待ちアカウント (%{count})
+    relationships:
+      title: "%{acct} さんのフォロー・フォロワー"
     relays:
       add_new: リレーを追加
       delete: 削除
@@ -389,12 +449,15 @@ ja:
       destroyed_msg: 通報メモを削除しました！
     reports:
       account:
-        note: メモ
-        report: 通報
+        notes:
+          other: "%{count} 件のメモ"
+        reports:
+          other: "%{count} 件の通報"
       action_taken_by: 通報処理者
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
       assigned: 担当者
+      by_target_domain: ドメイン
       comment:
         none: なし
       created_at: 通報日時
@@ -440,6 +503,8 @@ ja:
         users: ログイン済みローカルユーザーのみ許可
       domain_blocks_rationale:
         title: コメントを表示
+      enable_bootstrap_timeline_accounts:
+        title: 新規ユーザーの自動フォローを有効にする
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
         title: ヒーローイメージ
@@ -506,6 +571,9 @@ ja:
       trends:
         desc_html: 現在トレンドになっている承認済みのハッシュタグを公開します
         title: トレンドタグを有効にする
+    site_uploads:
+      delete: ファイルを削除
+      destroyed_msg: ファイルを削除しました！
     statuses:
       back_to_account: アカウントページに戻る
       batch:
@@ -542,7 +610,6 @@ ja:
     warning_presets:
       add_new: 追加
       delete: 削除
-      edit: 編集
       edit_preset: プリセット警告文を編集
       title: プリセット警告文を管理
   admin_mailer:
@@ -560,6 +627,7 @@ ja:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
     deleted_msg: エイリアスを削除しました。指定されていたアカウントからは引っ越しできなくなります。
+    empty: エイリアスがありません。
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
@@ -568,7 +636,12 @@ ja:
     animations_and_accessibility: アニメーションとアクセシビリティー
     confirmation_dialogs: 確認ダイアログ
     discovery: 見つける
+    localization:
+      body: Mastodonは有志によって翻訳されています。
+      guide_link: https://ja.crowdin.com/project/mastodon
+      guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
+    toot_layout: トゥートレイアウト
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name} さん"
@@ -625,6 +698,7 @@ ja:
     trouble_logging_in: ログインできませんか？
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
+    already_requested: 既にこのアカウントへフォローリクエストを送信しています
     error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
@@ -639,6 +713,9 @@ ja:
     hint_html: 以後 1 時間はパスワードの再入力を求めません
     invalid_password: パスワードが間違っています
     prompt: 続行するにはパスワードを入力してください
+  date:
+    formats:
+      default: "%Y年%m月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -705,7 +782,6 @@ ja:
     blocks: ブロック
     csv: CSV
     domain_blocks: 非表示にしたドメイン
-    follows: フォロー
     lists: リスト
     mutes: ミュート
     storage: メディア
@@ -716,6 +792,7 @@ ja:
     hint_html: "<strong>注目のハッシュタグとは？</strong>プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
+      account: プロフィール
       home: ホームタイムライン
       notifications: 通知
       public: 公開タイムライン
@@ -727,6 +804,7 @@ ja:
       invalid_irreversible: この機能はホームタイムラインまたは通知と一緒に指定する場合のみ機能します
     index:
       delete: 削除
+      empty: フィルターはありません。
       title: フィルター
     new:
       title: 新規フィルターを追加
@@ -739,6 +817,7 @@ ja:
     all: すべて
     changes_saved_msg: 正常に変更されました！
     copy: コピー
+    delete: 削除
     no_batch_actions_available: このページに一括操作はありません
     order_by: 並び順
     save_changes: 変更を保存
@@ -762,6 +841,8 @@ ja:
     inactive: 非アクティブ
     publicize_checkbox: 'そしてこれをトゥートします:'
     publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    remove: アカウントから証明書を削除
+    removed: アカウントから証明書を削除することに成功しました
     status: 認証状態
     view_proof: 証明を表示
   imports:
@@ -806,6 +887,7 @@ ja:
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
+      not_ready: ファイルのアップロードに失敗しました。しばらくしてからもう一度お試しください！
       too_many: 追加できるファイルは4つまでです
   migrations:
     acct: 引っ越し先の ユーザー名@ドメイン
@@ -871,6 +953,10 @@ ja:
       body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
+  notifications:
+    email_events: メールによる通知
+    email_events_hint: '受信する通知を選択:'
+    other_settings: その他の通知設定
   number:
     human:
       decimal_units:
@@ -894,6 +980,7 @@ ja:
       duration_too_long: が長過ぎます
       duration_too_short: が短過ぎます
       expired: アンケートは既に終了しました
+      invalid_choice: 選択された項目は存在しません
       over_character_limit: は%{max}文字より長くすることはできません
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
@@ -901,9 +988,16 @@ ja:
     other: その他
     posting_defaults: デフォルトの投稿設定
     public_timelines: 公開タイムライン
+  reactions:
+    errors:
+      limit_reached: リアクションの種類が上限に達しました
+      unrecognized_emoji: は絵文字として認識されていません
   relationships:
     activity: 活動
     dormant: 非アクティブ
+    followers: フォロワー
+    following: フォロー中
+    invited: 招待済み
     last_active: 最後の活動
     most_recent: 新着
     moved: 引っ越し済み
@@ -968,7 +1062,7 @@ ja:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: 不明なプラットフォーム
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1010,6 +1104,8 @@ ja:
     content_warning: '閲覧注意: %{warning}'
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
+    errors:
+      in_reply_not_found: あなたが返信しようとしているトゥートは存在しないようです。
     language_detection: 自動検出
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
@@ -1025,6 +1121,7 @@ ja:
         other: "%{count}票"
       vote: 投票
     show_more: もっと見る
+    show_thread: スレッドを表示
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1134,7 +1231,7 @@ ja:
   two_factor_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
-    disable: 無効
+    disable: 無効化
     enable: 有効
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
@@ -1161,10 +1258,10 @@ ja:
       review_server_policies: サーバーのポリシーを確認
       statuses: '特に次のトゥート:'
       subject:
-        disable: あなたのアカウント %{acct} は凍結されています
+        disable: あなたのアカウント %{acct} は凍結されました
         none: "%{acct} に対する警告"
-        silence: あなたのアカウント %{acct} はサイレンスにされています
-        suspend: あなたのアカウント %{acct} は停止されています
+        silence: あなたのアカウント %{acct} はサイレンスにされました
+        suspend: あなたのアカウント %{acct} は停止されました
       title:
         disable: アカウントが凍結されました
         none: 警告

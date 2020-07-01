@@ -18,7 +18,8 @@ function loadPolyfills() {
     Number.isNaN &&
     Object.assign &&
     Object.values &&
-    window.Symbol
+    window.Symbol &&
+    Promise.prototype.finally
   );
 
   // Latest version of Firefox and Safari do not have IntersectionObserver.

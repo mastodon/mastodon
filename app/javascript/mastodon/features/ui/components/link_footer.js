@@ -62,11 +62,11 @@ class LinkFooter extends React.PureComponent {
           <FormattedMessage
             id='getting_started.open_source_notice'
             defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-            values={{ github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
+            values={{ github: <span><a href={source_url} rel='noopener noreferrer' target='_blank'>{repository}</a> (v{version})</span> }}
           />
           <FormattedMessage
             id='getting_started.hometown_open_source_notice'
-            defaultMessage='Hometown is also open source, at {hometown} (v1.0.3).'
+            defaultMessage='Hometown is also open source, at {hometown} (v1.0.4).'
             values={{ hometown: <span><a href='https://github.com/hometown-fork/hometown' rel='noopener' target='_blank'>hometown-fork/hometown</a></span> }}
           />
         </p>

@@ -4,42 +4,82 @@ zh-HK:
     about_hashtag_html: 這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你有任何 Mastodon 服務站、或者聯盟網站的用戶，便可以與他們互動。
     about_mastodon_html: Mastodon（萬象）是<em>自由、開源</em>的社交網絡。服務站<em>各自獨立而互連</em>，避免單一商業機構壟斷。找你所信任的服務站，建立帳號，你即可與任何服務站上的用戶溝通，享受無縫的<em>網絡交流</em>。
     about_this: 關於本服務站
+    active_count_after: 活躍
+    active_footnote: 每月活躍使用者 (MAU)
     administered_by: 管理者：
+    api: API
+    apps: 行動應用程式
+    apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
+    browse_directory: 依興趣瀏覽個人資料目錄和過濾器
+    browse_local_posts: 瀏覽這台伺服器中公開嘟文的直播串流
+    browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 未公開
+    discover_users: 探索使用者
+    documentation: 文件
+    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤隨便一台 Mastodon 伺服器上的人等等。
+    get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 服務站
     learn_more: 了解更多
+    privacy_policy: 隱私權政策
+    see_whats_happening: 看看發生什麼事
+    server_stats: 伺服器統計：
     source_code: 源代碼
+    status_count_after:
+      other: 條嘟文
     status_count_before: 他們共發佈了
     tagline: 關注朋友並探索新朋友
+    terms: 使用條款
+    unavailable_content: 無法取得的內容
+    unavailable_content_description:
+      domain: 伺服器
+      reason: 原因
+    user_count_after:
+      other: 位使用者
     user_count_before: 這裏共註冊有
     what_is_mastodon: Mastodon 是甚麼？
   accounts:
+    choices_html: "%{name} 的選擇："
     follow: 關注
     followers:
       other: 關注者
     following: 正在關注
+    joined: 加入於 %{date}
+    last_active: 上次活躍時間
+    link_verified_on: 此連結的所有權已在 %{date} 檢查過
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
     network_hidden: 此信息不可用
+    never_active: 永不
     nothing_here: 暫時未有內容可以顯示。
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
+    posts:
+      other: 嘟文
+    posts_tab_heading: 嘟文
     posts_with_replies: 文章和回覆
     reserved_username: 此用戶名已被保留
     roles:
       admin: 管理員
       bot: 機械人
+      group: 群組
       moderator: 監察員
+    unavailable: 無法取得個人檔案
     unfollow: 取消關注
   admin:
+    account_actions:
+      action: 執行動作
+      title: 在 %{acct} 執行管理員動作
     account_moderation_notes:
       create: 記錄
       created_msg: 管理記錄已新增
       delete: 刪除
       destroyed_msg: 管理記錄已被刪除
     accounts:
+      add_email_domain_block: 將電子郵件網域加入黑名單
+      approve: 核准
+      approve_all: 全部批准
       are_you_sure: 你確定嗎？
       avatar: 頭像
       by_domain: 域名
@@ -53,6 +93,7 @@ zh-HK:
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
+      deleted: 已刪除
       demote: 降任
       disable: 停用
       disable_two_factor_authentication: 停用雙重認證
@@ -64,12 +105,13 @@ zh-HK:
       email_status: 电子邮件状态
       enable: 啟用
       enabled: 已啟用
-      feed_url: 訂閱 URL
       followers: 關注者
-      followers_url: 關注者（Followers）URL
       follows: 正在關注
+      header: 開頭
       inbox_url: 收件箱（Inbox）URL
+      invited_by: 邀請者
       ip: IP 位域
+      joined: 已加入
       location:
         all: 全部
         local: 本地
@@ -79,23 +121,28 @@ zh-HK:
       media_attachments: 媒體檔案
       memorialize: 設定為追悼帳戶
       moderation:
+        active: 活躍
         all: 全部
+        pending: 等待中
         silenced: 被靜音的
         suspended: 被停權的
         title: 管理操作
       moderation_notes: 管理記錄
       most_recent_activity: 最新活動
       most_recent_ip: 最新 IP 位域
+      no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
-      outbox_url: 寄件箱（Outbox）URL
+      pending: 等待審核中
       perform_full_suspension: 完全停權
-      profile_url: 個人檔案 URL
       promote: 升任
       protocol: 協議
       public: 公共
       push_subscription_expires: PuSH 訂閱過期
       redownload: 更新頭像
+      reject: 拒絕
+      reject_all: 全部拒絕
       remove_avatar: 取消頭像
+      remove_header: 移除開頭
       resend_confirmation:
         already_confirmed: 该用户已被确认
         send: 重发确认邮件
@@ -109,31 +156,43 @@ zh-HK:
         moderator: 監察員
         staff: 管理人員
         user: 普通用戶
-      salmon_url: Salmon 反饋 URL
       search: 搜索
+      search_same_email_domain: 其他有同個電子郵件網域的使用者
+      search_same_ip: 其他有同個 IP 的使用者
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
       show:
         created_reports: 此用戶所提舉報的紀錄
         targeted_reports: 此用戶被舉報的紀錄
       silence: 靜音
+      silenced: 已靜音
       statuses: 文章
       subscribe: 訂閱
+      suspended: 已停權
+      time_in_queue: 正在佇列等待 %{time}
       title: 用戶
       unconfirmed_email: 未確認的電郵
       undo_silenced: 解除靜音
       undo_suspension: 解除停權
       unsubscribe: 取消訂閱
       username: 用戶名稱
+      warn: 警告
       web: 用戶頁面
+      whitelisted: 已加入白名單
     action_logs:
       actions:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
         change_email_user: "%{name} 改變了用戶 %{target} 的電郵地址"
         confirm_user: "%{name} 確認了用戶 %{target} 的電郵地址"
+        create_account_warning: "%{name} 已對 %{target} 送出警告"
+        create_announcement: "%{name} 建立了新公告 %{target}"
         create_custom_emoji: "%{name} 加入自訂表情符號 %{target}"
+        create_domain_allow: "%{name} 將 %{target} 網域加入黑名單了"
         create_domain_block: "%{name} 阻隔了網域 %{target}"
         create_email_domain_block: "%{name} 阻隔了電郵網域 %{target}"
         demote_user: "%{name} 把用戶 %{target} 降任"
+        destroy_announcement: "%{name} 刪除了公告 %{target}"
+        destroy_custom_emoji: "%{name} 破壞了 %{target} 表情符號"
+        destroy_domain_allow: "%{name} 從白名單中移除了 %{target} 網域"
         destroy_domain_block: "%{name} 取消了對網域 %{target} 的阻隔"
         destroy_email_domain_block: "%{name} 取消了對電郵網域 %{target} 的阻隔"
         destroy_status: "%{name} 刪除了 %{target} 的文章"
@@ -153,23 +212,45 @@ zh-HK:
         unassigned_report: "%{name} 取消指派 %{target} 的舉報"
         unsilence_account: "%{name} 取消了用戶 %{target} 的靜音狀態"
         unsuspend_account: "%{name} 取消了用戶 %{target} 的停權狀態"
+        update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自訂表情符號 %{target}"
         update_status: "%{name} 刷新了 %{target} 的文章"
+      deleted_status: "（已刪除嘟文）"
       title: 營運日誌
+    announcements:
+      destroyed_msg: 成功刪除公告！
+      edit:
+        title: 編輯公告
+      empty: 找不到公告。
+      live: 直播
+      new:
+        create: 建立公告
+        title: 新增公告
+      published_msg: 成功發布公告！
+      scheduled_for: 排定 %{time}
+      scheduled_msg: 公告已排定公開！
+      title: 公告
+      unpublished_msg: 成功取消發布公告！
+      updated_msg: 成功更新公告！
     custom_emojis:
+      assign_category: 指定分類
       by_domain: 網域
       copied_msg: 成功將表情複製到本地
       copy: 複製
       copy_failed_msg: 無法將表情複製到本地
+      create_new_category: 建立新分類
       created_msg: 已新增表情符號
       delete: 刪除
       destroyed_msg: 已刪除表情符號
       disable: 停用
+      disabled: 已停用
       disabled_msg: 已停用表情符號
       emoji: emoji
       enable: 啟用
+      enabled: 已啟用
       enabled_msg: 已啟用表情符號
       image_hint: PNG 格式，最大 50KB
+      list: 列表
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
@@ -177,10 +258,44 @@ zh-HK:
       shortcode: 短代碼
       shortcode_hint: 至少 2 個字元，只能使用字母、數字和下劃線
       title: 自訂 emoji
+      uncategorized: 未分類
       unlisted: 已隱藏
       update_failed_msg: 無法更新表情符號
       updated_msg: 已更新表情符號
       upload: 上傳新的表情符號
+    dashboard:
+      authorized_fetch_mode: 安全模式
+      backlog: 未處理工作數
+      config: 設定
+      feature_deletions: 帳戶刪除
+      feature_invites: 邀請連結
+      feature_profile_directory: 個人資料目錄
+      feature_registrations: 註冊
+      feature_relay: 聯邦中繼站
+      feature_spam_check: 防垃圾訊息
+      feature_timeline_preview: 時間軸預覽
+      features: 功能
+      hidden_service: 與隱密服務互連
+      open_reports: 待處理檢舉數
+      pending_tags: 等待審核的主題標籤
+      pending_users: 等待審核的使用者
+      recent_users: 最近加入的使用者
+      search: 全文搜尋
+      single_user_mode: 單一使用者模式
+      software: 軟體
+      space: 儲存空間用量
+      title: 儀表板
+      total_users: 總使用者數
+      trends: 趨勢
+      week_interactions: 本週互動次數
+      week_users_active: 本週活躍使用者數
+      week_users_new: 本週新使用者數
+      whitelist_mode: 白名單模式
+    domain_allows:
+      add_new: 將網域加入白名單
+      created_msg: 網域已成功加入白名單
+      destroyed_msg: 網域已成功從白名單移除
+      undo: 從白名單移除
     domain_blocks:
       add_new: 新增
       created_msg: 正處理域名阻隔
@@ -197,7 +312,16 @@ zh-HK:
         title: 新增域名阻隔
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
+      reject_reports: 拒絕檢舉
+      reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
+      rejecting_media: 拒絕媒體檔案
+      rejecting_reports: 拒絕檢舉中
+      severity:
+        silence: 已靜音
+        suspend: 已停權
       show:
+        affected_accounts:
+          other: 將影響到資料庫中的 %{count} 個帳戶
         retroactive:
           silence: 對此域名的所有用戶取消靜音
           suspend: 對此域名的所有用戶取消除名
@@ -214,10 +338,11 @@ zh-HK:
         create: 新增網域
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
-    followers:
-      back_to_account: 返回帳戶
-      title: "%{acct} 的關注者"
     instances:
+      moderation:
+        all: 全部
+        limited: 限制
+        title: 版主
       title: 已知服務站
       total_followed_by_us: 開始關注你
     invites:
@@ -229,13 +354,12 @@ zh-HK:
       title: 邀請用戶
     relays:
       description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。"
+      disabled: 停用
+      enable: 啟用
     report_notes:
       created_msg: 舉報筆記已建立。
       destroyed_msg: 舉報筆記已刪除。
     reports:
-      account:
-        note: 筆記
-        report: 舉報
       action_taken_by: 操作執行者
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
@@ -272,12 +396,23 @@ zh-HK:
       contact_information:
         email: 輸入一個公開的電郵地址
         username: 輸入用戶名稱
+      domain_blocks:
+        all: 給任何人
+        disabled: 給沒有人
+        title: 顯示封鎖的網域
+      enable_bootstrap_timeline_accounts:
+        title: 啟用新使用者的預設追蹤
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
         title: 主題圖片
       peers_api_enabled:
         desc_html: 現時本服務站在網絡中已發現的域名
         title: 公開已知服務站的列表
+      preview_sensitive_media:
+        title: 在 OpenGraph 預覽中顯示敏感媒體
+      profile_directory:
+        desc_html: 允許能探索使用者
+        title: 啟用個人資料目錄
       registrations:
         closed_message:
           desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
@@ -288,6 +423,12 @@ zh-HK:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
+      registrations_mode:
+        modes:
+          approved: 註冊需要核准
+          none: 沒有人可註冊
+          open: 任何人皆能註冊
+        title: 註冊模式
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示跨站文章，否則就只會顯示本站文章。
         title: 在時間軸預覽顯示跨站文章
@@ -300,10 +441,14 @@ zh-HK:
       site_description_extended:
         desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
         title: 本站詳細資訊
+      site_short_description:
+        title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
         title: 自訂使用條款
       site_title: 本站名稱
+      spam_check_enabled:
+        title: 自動防廣告訊息
       thumbnail:
         desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
         title: 本站縮圖
@@ -311,24 +456,54 @@ zh-HK:
         desc_html: 在主頁顯示本站時間軸
         title: 時間軸預覽
       title: 網站設定
+      trends:
+        title: 趨勢主題標籤
+    site_uploads:
+      delete: 刪除上傳的檔案
+      destroyed_msg: 成功刪除站台的上傳項目！
     statuses:
       back_to_account: 返回帳戶信息頁
       batch:
         delete: 刪除
         nsfw_off: 取消 NSFW 標記
         nsfw_on: 添加 NSFW 標記
+      deleted: 已刪除
       failed_to_execute: 執行失敗
       media:
         title: 媒體檔案
       no_media: 不含媒體檔案
+      no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶文章
       with_media: 含有媒體檔案
+    tags:
+      context: 上下文
+      directory: 在目錄中
+      in_directory: 目錄中有 %{count} 個
+      last_active: 上次活躍
+      most_popular: 最熱門
+      most_recent: 最近
+      name: Hashtag
+      review: 審核嘟文
+      reviewed: 已審核
+      title: 主題標籤
+      trending_right_now: 最新趨勢
+      unique_uses_today: 今天嘟了 %{count} 則
+      unreviewed: 未審核
+      updated_msg: 成功更新主題標籤設定
     title: 管理
+    warning_presets:
+      add_new: 新增
+      delete: 刪除
   admin_mailer:
     new_report:
       body: "%{reporter} 舉報了用戶 %{target}"
       body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
       subject: 來自 %{instance} 的用戶舉報（#%{id}）
+  appearance:
+    localization:
+      body: Mastodon 是由志願者翻譯的。
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: 每個人都能貢獻。
   application_mailer:
     notification_preferences: 更改電郵首選項
     salutation: "%{name}："
@@ -356,6 +531,8 @@ zh-HK:
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
+    providers:
+      saml: SAML
     register: 登記
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
@@ -363,6 +540,7 @@ zh-HK:
     set_new_password: 設定新密碼
   authorize_follow:
     already_following: 你已經關注了這個帳號
+    already_requested: 您早已向該帳戶寄送追蹤請求
     error: 對不起，尋找這個跨站用戶的過程發生錯誤
     follow: 關注
     follow_request: 關注請求已發送给：
@@ -414,11 +592,19 @@ zh-HK:
       request: 下載檔案
       size: 檔案大小
     blocks: 被你封鎖的用戶
-    follows: 你所關注的用戶
+    csv: CSV
+    lists: 列表
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
+  filters:
+    index:
+      empty: 您沒有過濾器。
+  footer:
+    more: 更多......
   generic:
+    all: 全部
     changes_saved_msg: 已成功儲存修改。
+    copy: 複製
     save_changes: 儲存修改
     validation_errors:
       other: 提交的資料有 %{count} 項問題
@@ -495,6 +681,16 @@ zh-HK:
       body: 您的文章被 %{name} 轉推：
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   pagination:
     newer: 較新
     next: 下一頁
@@ -513,6 +709,7 @@ zh-HK:
     browser: 瀏覽器
     browsers:
       alipay: 支付寶
+      blackberry: 黑莓機
       chrome: Chrome 瀏覽器
       edge: Microsoft Edge 瀏覽器
       electron: Electron 瀏覽器
@@ -521,14 +718,20 @@ zh-HK:
       ie: Internet Explorer 瀏覽器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 瀏覽器
+      opera: Opera 瀏覽器
       otter: Otter 瀏覽器
+      phantom_js: PhantomJS 瀏覽器
       qq: QQ瀏覽器
+      safari: Safari 瀏覽器
       uc_browser: UC瀏覽器
       weibo: 新浪微博
     current_session: 目前的作業階段
     description: "%{platform} 上的 %{browser}"
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
+    platforms:
+      ios: iOS
+      mac: Mac
     revoke: 取消
     revoke_success: 作業階段成功取消
     title: 作業階段
@@ -555,6 +758,8 @@ zh-HK:
     content_warning: 內容警告： %{warning}
     disallowed_hashtags:
       other: 包含不允許的標籤： %{tags}
+    errors:
+      in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
     language_detection: 自動偵測語言
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
@@ -563,6 +768,8 @@ zh-HK:
       ownership: 不能置頂他人的文章
       private: 不能置頂非公開的文章
       reblog: 不能置頂轉推
+    poll:
+      vote: 投票
     show_more: 顯示更多
     title: "%{name}：「%{quote}」"
     visibilities:

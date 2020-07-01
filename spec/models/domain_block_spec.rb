@@ -52,6 +52,16 @@ RSpec.describe DomainBlock, type: :model do
       block = Fabricate(:domain_block, domain: 'sub.example.com')
       expect(DomainBlock.rule_for('sub.example.com')).to eq block
     end
+
+    it 'returns a rule matching a blocked TLD' do
+      block = Fabricate(:domain_block, domain: 'google')
+      expect(DomainBlock.rule_for('google')).to eq block
+    end
+
+    it 'returns a rule matching a subdomain of a blocked TLD' do
+      block = Fabricate(:domain_block, domain: 'google')
+      expect(DomainBlock.rule_for('maps.google')).to eq block
+    end
   end
 
   describe '#stricter_than?' do

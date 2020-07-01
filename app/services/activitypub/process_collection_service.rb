@@ -37,7 +37,7 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def process_item(item)
-    activity = ActivityPub::Activity.factory(item, @account, @options)
+    activity = ActivityPub::Activity.factory(item, @account, **@options)
     activity&.perform
   end
 

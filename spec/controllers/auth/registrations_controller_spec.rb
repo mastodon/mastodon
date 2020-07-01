@@ -100,7 +100,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       subject do
         Setting.registrations_mode = 'open'
         request.headers["Accept-Language"] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
       end
 
       it 'redirects to setup' do
@@ -116,6 +116,26 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
     end
 
+    context 'when user has not agreed to terms of service' do
+      around do |example|
+        registrations_mode = Setting.registrations_mode
+        example.run
+        Setting.registrations_mode = registrations_mode
+      end
+
+      subject do
+        Setting.registrations_mode = 'open'
+        request.headers["Accept-Language"] = accept_language
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'false' } }
+      end
+
+      it 'does not create user' do
+        subject
+        user = User.find_by(email: 'test@example.com')
+        expect(user).to be_nil
+      end
+    end
+
     context 'approval-based registrations without invite' do
       around do |example|
         registrations_mode = Setting.registrations_mode
@@ -126,7 +146,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       subject do
         Setting.registrations_mode = 'approved'
         request.headers["Accept-Language"] = accept_language
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
       end
 
       it 'redirects to setup' do
@@ -154,7 +174,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         Setting.registrations_mode = 'approved'
         request.headers["Accept-Language"] = accept_language
         invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.ago)
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code, agreement: 'true' } }
       end
 
       it 'redirects to setup' do
@@ -182,7 +202,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
         Setting.registrations_mode = 'approved'
         request.headers["Accept-Language"] = accept_language
         invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.from_now)
-        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code } }
+        post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code, agreement: 'true' } }
       end
 
       it 'redirects to setup' do

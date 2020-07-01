@@ -7,7 +7,10 @@
 
 .page-header
   %h1= t('about.see_whats_happening')
-  %p= t('about.browse_public_posts', title: site_title)
+  - if Setting.show_known_fediverse_at_about_page
+    %p= t('about.browse_public_posts', title: site_title)
+  - else
+    %p= t('about.browse_local_posts', title: site_title)
 
-#mastodon-timeline{ data: { props: Oj.dump(default_props) }}
+#mastodon-timeline{ data: { props: Oj.dump(default_props.merge(local: !Setting.show_known_fediverse_at_about_page)) }}
 #modal-container

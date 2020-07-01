@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::AccountModerationNotesHelper, type: :helper do
-  include StatusesHelper
+  include AccountsHelper
 
   describe '#admin_account_link_to' do
     context 'account is nil' do

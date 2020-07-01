@@ -8,12 +8,19 @@ es:
         acct: Especifique el nombre de usuario@dominio de la cuenta a la cual se desea migrar
       account_warning_preset:
         text: Puede usar sintaxis de toots, como URLs, hashtags y menciones
+        title: Opcional. No visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué toots han causado la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con respecto a su cuenta
         text_html: Opcional. Puede usar sintaxis de toots. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
         type_html: Elige qué hacer con <strong>%{acct}</strong>
         warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
+      announcement:
+        all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
+        ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
+        scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
+        starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
+        text: Puedes usar la sintaxis toot. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -47,6 +54,9 @@ es:
         whole_word: Cuando la palabra clave o frase es solo alfanumérica, solo será aplicado si concuerda con toda la palabra
       domain_allow:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
+      email_domain_block:
+        domain: Puede ser el nombre de dominio que aparece en la dirección de correo, el registro MX hacia el cual resuelve el dominio, o la IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del alta del usuario y el alta se rechazará.
+        with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
         name: 'Puede que quieras usar uno de estos:'
       form_challenge:
@@ -56,7 +66,7 @@ es:
       invite_request:
         text: Esto nos ayudará a revisar su aplicación
       sessions:
-        otp: 'Introduce el código de autenticación de dos factores geberado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
+        otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
       tag:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
@@ -72,6 +82,7 @@ es:
         acct: Maneja la cuenta nueva
       account_warning_preset:
         text: Texto predefinido
+        title: Título
       admin_account_action:
         include_statuses: Incluir en el correo electrónico a los toots denunciados
         send_email_notification: Notificar al usuario por correo electrónico
@@ -83,6 +94,12 @@ es:
           silence: Silenciar
           suspend: Suspender y eliminar de forma irreversible la información de la cuenta
         warning_preset_id: Usar un aviso predeterminado
+      announcement:
+        all_day: Evento de todo el día
+        ends_at: Fin del evento
+        scheduled_at: Programar publicación
+        starts_at: Comienzo del evento
+        text: Anuncio
       defaults:
         autofollow: Invitar a seguir tu cuenta
         avatar: Avatar
@@ -113,6 +130,7 @@ es:
         setting_aggregate_reblogs: Agrupar retoots en las líneas de tiempo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
+        setting_crop_images: Recortar a 16x9 las imágenes de los toots no expandidos
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
@@ -137,6 +155,8 @@ es:
         username: Nombre de usuario
         username_or_email: Usuario o Email
         whole_word: Toda la palabra
+      email_domain_block:
+        with_dns_records: Incluye los registros MX y las IP del dominio
       featured_tag:
         name: Etiqueta
       interactions:

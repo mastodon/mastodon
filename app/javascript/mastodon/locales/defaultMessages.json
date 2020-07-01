@@ -142,7 +142,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Unhide {domain}",
+        "defaultMessage": "Unblock domain {domain}",
         "id": "account.unblock_domain"
       }
     ],
@@ -217,7 +217,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Toggle visibility",
+        "defaultMessage": "Hide media",
         "id": "media_gallery.toggle_visible"
       },
       {
@@ -293,6 +293,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "today",
+        "id": "relative_time.today"
+      },
       {
         "defaultMessage": "now",
         "id": "relative_time.just_now"
@@ -403,6 +407,14 @@
         "id": "status.favourite"
       },
       {
+        "defaultMessage": "Bookmark",
+        "id": "status.bookmark"
+      },
+      {
+        "defaultMessage": "Remove bookmark",
+        "id": "status.remove_bookmark"
+      },
+      {
         "defaultMessage": "Expand this status",
         "id": "status.open"
       },
@@ -441,12 +453,32 @@
       {
         "defaultMessage": "Copy link to status",
         "id": "status.copy"
+      },
+      {
+        "defaultMessage": "Block domain {domain}",
+        "id": "account.block_domain"
+      },
+      {
+        "defaultMessage": "Unblock domain {domain}",
+        "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Show thread",
+        "id": "status.show_thread"
+      },
       {
         "defaultMessage": "Read more",
         "id": "status.read_more"
@@ -475,10 +507,6 @@
       {
         "defaultMessage": "{name} boosted",
         "id": "status.reblogged_by"
-      },
-      {
-        "defaultMessage": "Show thread",
-        "id": "status.show_thread"
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
@@ -499,7 +527,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Hide entire domain",
+        "defaultMessage": "Block entire domain",
         "id": "confirmations.domain_block.confirm"
       },
       {
@@ -534,6 +562,14 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.",
+        "id": "confirmations.domain_block.message"
       }
     ],
     "path": "app/javascript/mastodon/containers/status_container.json"
@@ -665,11 +701,11 @@
         "id": "account.media"
       },
       {
-        "defaultMessage": "Hide everything from {domain}",
+        "defaultMessage": "Block domain {domain}",
         "id": "account.block_domain"
       },
       {
-        "defaultMessage": "Unhide {domain}",
+        "defaultMessage": "Unblock domain {domain}",
         "id": "account.unblock_domain"
       },
       {
@@ -705,7 +741,7 @@
         "id": "navigation_bar.blocks"
       },
       {
-        "defaultMessage": "Hidden domains",
+        "defaultMessage": "Blocked domains",
         "id": "navigation_bar.domain_blocks"
       },
       {
@@ -741,12 +777,16 @@
         "id": "account.muted"
       },
       {
-        "defaultMessage": "Domain hidden",
+        "defaultMessage": "Domain blocked",
         "id": "account.domain_blocked"
       },
       {
         "defaultMessage": "Bot",
         "id": "account.badges.bot"
+      },
+      {
+        "defaultMessage": "Group",
+        "id": "account.badges.group"
       },
       {
         "defaultMessage": "Posts",
@@ -780,6 +820,10 @@
       {
         "defaultMessage": "Unmute sound",
         "id": "video.unmute"
+      },
+      {
+        "defaultMessage": "Download file",
+        "id": "video.download"
       }
     ],
     "path": "app/javascript/mastodon/features/audio/index.json"
@@ -796,6 +840,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/blocks/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Bookmarks",
+        "id": "column.bookmarks"
+      },
+      {
+        "defaultMessage": "You don't have any bookmarked toots yet. When you bookmark one, it will show up here.",
+        "id": "empty_column.bookmarked_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/bookmarked_statuses/index.json"
   },
   {
     "descriptors": [
@@ -864,6 +921,10 @@
       {
         "defaultMessage": "Logout",
         "id": "navigation_bar.logout"
+      },
+      {
+        "defaultMessage": "Bookmarks",
+        "id": "navigation_bar.bookmarks"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/action_bar.json"
@@ -1016,6 +1077,14 @@
         "id": "compose_form.poll.duration"
       },
       {
+        "defaultMessage": "Change poll to allow multiple choices",
+        "id": "compose_form.poll.switch_to_multiple"
+      },
+      {
+        "defaultMessage": "Change poll to allow for a single choice",
+        "id": "compose_form.poll.switch_to_single"
+      },
+      {
         "defaultMessage": "{number, plural, one {# minute} other {# minutes}}",
         "id": "intervals.full.minutes"
       },
@@ -1037,7 +1106,7 @@
         "id": "privacy.public.short"
       },
       {
-        "defaultMessage": "Post to public timelines",
+        "defaultMessage": "Visible for all, shown in public timelines",
         "id": "privacy.public.long"
       },
       {
@@ -1045,7 +1114,7 @@
         "id": "privacy.unlisted.short"
       },
       {
-        "defaultMessage": "Do not show in public timelines",
+        "defaultMessage": "Visible for all, but not in public timelines",
         "id": "privacy.unlisted.long"
       },
       {
@@ -1053,7 +1122,7 @@
         "id": "privacy.private.short"
       },
       {
-        "defaultMessage": "Post to followers only",
+        "defaultMessage": "Visible for followers only",
         "id": "privacy.private.long"
       },
       {
@@ -1061,7 +1130,7 @@
         "id": "privacy.direct.short"
       },
       {
-        "defaultMessage": "Post to mentioned users only",
+        "defaultMessage": "Visible for mentioned users only",
         "id": "privacy.direct.long"
       },
       {
@@ -1376,6 +1445,10 @@
         "id": "account.unmute"
       },
       {
+        "defaultMessage": "Unfollow",
+        "id": "confirmations.unfollow.confirm"
+      },
+      {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
       },
@@ -1426,15 +1499,15 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Hidden domains",
+        "defaultMessage": "Blocked domains",
         "id": "column.domain_blocks"
       },
       {
-        "defaultMessage": "Unhide {domain}",
+        "defaultMessage": "Unblock domain {domain}",
         "id": "account.unblock_domain"
       },
       {
-        "defaultMessage": "There are no hidden domains yet.",
+        "defaultMessage": "There are no blocked domains yet.",
         "id": "empty_column.domain_blocks"
       }
     ],
@@ -1488,6 +1561,10 @@
       {
         "defaultMessage": "You don't have any follow requests yet. When you receive one, it will show up here.",
         "id": "empty_column.follow_requests"
+      },
+      {
+        "defaultMessage": "Even though your account is not locked, the {domain} staff thought you might want to review follow requests from these accounts manually.",
+        "id": "follow_requests.unlocked_explanation"
       }
     ],
     "path": "app/javascript/mastodon/features/follow_requests/index.json"
@@ -1517,6 +1594,27 @@
       }
     ],
     "path": "app/javascript/mastodon/features/following/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Previous",
+        "id": "lightbox.previous"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "lightbox.next"
+      },
+      {
+        "defaultMessage": "Announcement",
+        "id": "announcement.announcement"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/getting_started/components/announcements.json"
   },
   {
     "descriptors": [
@@ -1552,6 +1650,10 @@
       {
         "defaultMessage": "Direct messages",
         "id": "navigation_bar.direct"
+      },
+      {
+        "defaultMessage": "Bookmarks",
+        "id": "navigation_bar.bookmarks"
       },
       {
         "defaultMessage": "Preferences",
@@ -1633,6 +1735,10 @@
       {
         "defaultMessage": "Include additional tags in this column",
         "id": "hashtag.column_settings.tag_toggle"
+      },
+      {
+        "defaultMessage": "Local only",
+        "id": "community.column_settings.local_only"
       }
     ],
     "path": "app/javascript/mastodon/features/hashtag_timeline/components/column_settings.json"
@@ -1680,6 +1786,14 @@
       {
         "defaultMessage": "Home",
         "id": "column.home"
+      },
+      {
+        "defaultMessage": "Show announcements",
+        "id": "home.show_announcements"
+      },
+      {
+        "defaultMessage": "Hide announcements",
+        "id": "home.hide_announcements"
       },
       {
         "defaultMessage": "Your home timeline is empty! Visit {public} or use search to get started and meet other users.",
@@ -1802,6 +1916,10 @@
       {
         "defaultMessage": "to open status",
         "id": "keyboard_shortcuts.enter"
+      },
+      {
+        "defaultMessage": "to open media",
+        "id": "keyboard_shortcuts.open_media"
       },
       {
         "defaultMessage": "to show/hide text behind CW",
@@ -2054,6 +2172,10 @@
         "id": "notifications.column_settings.follow"
       },
       {
+        "defaultMessage": "New follow requests:",
+        "id": "notifications.column_settings.follow_request"
+      },
+      {
         "defaultMessage": "Favourites:",
         "id": "notifications.column_settings.favourite"
       },
@@ -2104,20 +2226,41 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Authorize",
+        "id": "follow_request.authorize"
+      },
+      {
+        "defaultMessage": "Reject",
+        "id": "follow_request.reject"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/follow_request.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{name} favourited your status",
+        "id": "notification.favourite"
+      },
+      {
         "defaultMessage": "{name} followed you",
         "id": "notification.follow"
       },
       {
-        "defaultMessage": "{name} favourited your status",
-        "id": "notification.favourite"
+        "defaultMessage": "Your poll has ended",
+        "id": "notification.own_poll"
+      },
+      {
+        "defaultMessage": "A poll you have voted in has ended",
+        "id": "notification.poll"
       },
       {
         "defaultMessage": "{name} boosted your status",
         "id": "notification.reblog"
       },
       {
-        "defaultMessage": "A poll you have voted in has ended",
-        "id": "notification.poll"
+        "defaultMessage": "{name} has requested to follow you",
+        "id": "notification.follow_request"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
@@ -2156,6 +2299,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/pinned_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Media only",
+        "id": "community.column_settings.media_only"
+      },
+      {
+        "defaultMessage": "Remote only",
+        "id": "community.column_settings.remote_only"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/public_timeline/components/column_settings.json"
   },
   {
     "descriptors": [
@@ -2226,6 +2382,14 @@
         "id": "status.favourite"
       },
       {
+        "defaultMessage": "Bookmark",
+        "id": "status.bookmark"
+      },
+      {
+        "defaultMessage": "More",
+        "id": "status.more"
+      },
+      {
         "defaultMessage": "Mute @{name}",
         "id": "status.mute"
       },
@@ -2272,6 +2436,22 @@
       {
         "defaultMessage": "Copy link to status",
         "id": "status.copy"
+      },
+      {
+        "defaultMessage": "Block domain {domain}",
+        "id": "account.block_domain"
+      },
+      {
+        "defaultMessage": "Unblock domain {domain}",
+        "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -2351,6 +2531,14 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.",
+        "id": "confirmations.domain_block.message"
       }
     ],
     "path": "app/javascript/mastodon/features/status/index.json"
@@ -2490,16 +2678,24 @@
         "id": "upload_modal.description_placeholder"
       },
       {
+        "defaultMessage": "Describe for people with hearing loss",
+        "id": "upload_form.audio_description"
+      },
+      {
+        "defaultMessage": "Describe for people with hearing loss or visual impairment",
+        "id": "upload_form.video_description"
+      },
+      {
+        "defaultMessage": "Describe for the visually impaired",
+        "id": "upload_form.description"
+      },
+      {
         "defaultMessage": "Edit media",
         "id": "upload_modal.edit_media"
       },
       {
         "defaultMessage": "Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.",
         "id": "upload_modal.hint"
-      },
-      {
-        "defaultMessage": "Describe for the visually impaired",
-        "id": "upload_form.description"
       },
       {
         "defaultMessage": "Analyzing picture…",
@@ -2651,6 +2847,10 @@
         "id": "navigation_bar.favourites"
       },
       {
+        "defaultMessage": "Bookmarks",
+        "id": "navigation_bar.bookmarks"
+      },
+      {
         "defaultMessage": "Lists",
         "id": "navigation_bar.lists"
       },
@@ -2791,6 +2991,10 @@
       {
         "defaultMessage": "Exit full screen",
         "id": "video.exit_fullscreen"
+      },
+      {
+        "defaultMessage": "Download file",
+        "id": "video.download"
       },
       {
         "defaultMessage": "Sensitive content",

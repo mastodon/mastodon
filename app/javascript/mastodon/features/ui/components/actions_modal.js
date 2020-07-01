@@ -26,7 +26,7 @@ export default class ActionsModal extends ImmutablePureComponent {
 
     return (
       <li key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' onClick={this.props.onClick} data-index={i} className={classNames({ active })}>
+        <a href={href} target='_blank' rel='noopener noreferrer' onClick={this.props.onClick} data-index={i} className={classNames({ active })}>
           {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex='-1' inverted />}
           <div>
             <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
@@ -42,7 +42,7 @@ export default class ActionsModal extends ImmutablePureComponent {
       <div className='status light'>
         <div className='boost-modal__status-header'>
           <div className='boost-modal__status-time'>
-            <a href={this.props.status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
+            <a href={this.props.status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
               <RelativeTimestamp timestamp={this.props.status.get('created_at')} />
             </a>
           </div>

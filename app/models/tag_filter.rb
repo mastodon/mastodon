@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class TagFilter
+  KEYS = %i(
+    directory
+    reviewed
+    unreviewed
+    pending_review
+    popular
+    active
+    name
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)

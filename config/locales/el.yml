@@ -2,7 +2,7 @@
 el:
   about:
     about_hashtag_html: Αυτά είναι κάποια από τα δημόσια τουτ σημειωμένα με <strong>#%{hashtag}</strong>. Μπορείς να αλληλεπιδράσεις με αυτά αν έχεις λογαριασμό οπουδήποτε στο fediverse.
-    about_mastodon_html: Το Mastodon είναι ένα κοινωνικό δίκτυο που βασίζεται σε ανοιχτά δικτυακά πρωτόκολλα και ελεύθερο λογισμικό ανοιχτού κώδικα. Είναι αποκεντρωμένο όπως το e-mail.
+    about_mastodon_html: 'Το κοινωνικό δίκτυο του μέλλοντος: Χωρίς διαφημίσεις, χωρίς εταιρίες να σε κατασκοπεύουν, ηθικά σχεδιασμένο και αποκεντρωμένο! Με το Mastodon τα δεδομένα σου είναι πραγματικά δικά σου!'
     about_this: Σχετικά
     active_count_after: ενεργοί
     active_footnote: Μηνιαίοι Ενεργοί Χρήστες (ΜΕΧ)
@@ -11,17 +11,18 @@ el:
     apps: Εφαρμογές κινητών
     apps_platforms: Χρησιμοποίησε το Mastodon από το iOS, το Android και αλλού
     browse_directory: Ξεφύλλισε τον κατάλογο χρηστών και ψάξε ανά ενδιαφέροντα
+    browse_local_posts: Ξεφύλλισε τη ζωντανή ροή αυτού του διακομιστή
     browse_public_posts: Ξεφύλλισε τη ζωντανή ροή του Mastodon
     contact: Επικοινωνία
     contact_missing: Δεν έχει οριστεί
-    contact_unavailable: Μ/Δ
+    contact_unavailable: Μη διαθέσιμο
     discover_users: Ανακάλυψε χρήστες
     documentation: Τεκμηρίωση
-    federation_hint_html: Με ένα λογαριασμό στο %{instance} θα μπορείς να ακολουθείς ανθρώπους σε οποιοδήποτε κόμβο στο Mastodon αλλά και αλλού.
+    federation_hint_html: Με ένα λογαριασμό στο %{instance} θα μπορείς να ακολουθείς ανθρώπους σε οποιοδήποτε κόμβο Mastodon αλλά και παραπέρα.
     get_apps: Δοκίμασε μια εφαρμογή κινητού
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
     instance_actor_flash: |
-      Αυτός ο λογαριασμός είναι εικονικός και απεικονίζει τον κόμβο, όχι κάποιο συγκεκριμένο χρήστη.
+      Αυτός ο λογαριασμός είναι εικονικός και απεικονίζει ολόκληρο τον κόμβο, όχι κάποιο συγκεκριμένο χρήστη.
       Χρησιμεύει στη λειτουργία της ομοσπονδίας και δε θα πρέπει να αποκλειστεί, εκτός κι αν είναι επιθυμητός ο αποκλεισμός ολόκληρου του κόμβου. Σε αυτή την περίπτωση θα πρέπει να χρησιμοποιηθεί η λειτουργία αποκλεισμού τομέα.
     learn_more: Μάθε περισσότερα
     privacy_policy: Πολιτική απορρήτου
@@ -50,7 +51,7 @@ el:
   accounts:
     choices_html: 'Επιλογές από %{name}:'
     endorsements_hint: Μπορεις να εγκρίνεις ανθρώπους που ακολουθείς μέσω της δικτυακής εφαρμογής και αυτοί θα εμφανίζονται εδώ.
-    featured_tags_hint: Μπορείς να επιλέξεις συγκεκριμένες ταμπέλες που θα εμφανίζονται εδώ.
+    featured_tags_hint: Μπορείς να επιλέξεις συγκεκριμένες ετικέτες που θα εμφανίζονται εδώ.
     follow: Ακολούθησε
     followers:
       one: Ακόλουθος
@@ -77,6 +78,7 @@ el:
     roles:
       admin: Διαχειριστής
       bot: Μποτ (αυτόματος λογαριασμός)
+      group: Ομάδα
       moderator: Μεσολαβητής
     unavailable: Το προφίλ δεν είναι διαθέσιμο
     unfollow: Διακοπή παρακολούθησης
@@ -90,6 +92,7 @@ el:
       delete: Διαγραφή
       destroyed_msg: Επιτυχής καταστροφή σημειώματος μεσολάβησης!
     accounts:
+      add_email_domain_block: Εγγραφή τομέα email σε μαύρη λίστα
       approve: Έγκριση
       approve_all: Έγκριση όλων
       are_you_sure: Σίγουρα;
@@ -117,9 +120,7 @@ el:
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
       enabled: Ενεργοποιημένο
-      feed_url: URL ροής
       followers: Ακόλουθοι
-      followers_url: URL ακολούθων
       follows: Ακολουθεί
       header: Επικεφαλίδα
       inbox_url: URL εισερχομένων
@@ -147,10 +148,8 @@ el:
       no_account_selected: Κανείς λογαριασμός δεν ενημερώθηκε αφού κανείς δεν ήταν επιλεγμένος
       no_limits_imposed: Χωρίς όρια
       not_subscribed: Άνευ συνδρομής
-      outbox_url: URL εξερχομένων
       pending: Εκκρεμεί έγκριση
       perform_full_suspension: Αναστολή
-      profile_url: URL προφίλ
       promote: Προβίβασε
       protocol: Πρωτόκολλο
       public: Δημόσιο
@@ -173,8 +172,9 @@ el:
         moderator: Συντονιστής
         staff: Προσωπικό
         user: Χρήστης
-      salmon_url: URL Salmon
       search: Αναζήτηση
+      search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
+      search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
       shared_inbox_url: URL κοινόχρηστων εισερχομένων
       show:
         created_reports: Αναφορές από αυτόν το λογαριασμό
@@ -195,16 +195,56 @@ el:
       web: Διαδίκτυο
       whitelisted: Εγκεκριμένοι
     action_logs:
+      action_types:
+        assigned_to_self_report: Ανάθεση Αναφοράς
+        change_email_user: Αλλαγή email για χρήστη
+        confirm_user: Επιβεβαίωση Χρήστη
+        create_account_warning: Δημιουργία Προειδοποίησης
+        create_announcement: Δημιουργία Ανακοίνωσης
+        create_custom_emoji: Δημιουργία Προσαρμοσμένου Emoji
+        create_domain_allow: Δημιουργία Επιτρεπτού Τομέα
+        create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
+        create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
+        demote_user: Υποβιβασμός Χρήστη
+        destroy_announcement: Διαγραφή Ανακοίνωσης
+        destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
+        destroy_domain_allow: Διαγραφή Επιτρεπτού Τομέα
+        destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
+        destroy_email_domain_block: Διαγραφή Αποκλεισμένου Τομέα email
+        destroy_status: Διαγραφή Κατάστασης
+        disable_2fa_user: Απενεργοποίηση 2FA
+        disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
+        disable_user: Απενεργοποίηση Χρήστη
+        enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
+        enable_user: Ενεργοποίηση Χρήστη
+        memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
+        promote_user: Προαγωγή Χρήστη
+        remove_avatar_user: Αφαίρεση Avatar
+        reopen_report: Ξανάνοιγμα Καταγγελίας
+        reset_password_user: Επαναφορά Συνθηματικού
+        resolve_report: Επίλυση Καταγγελίας
+        silence_account: Σίγαση Λογαριασμού
+        suspend_account: Αναστολή Λογαριασμού
+        unassigned_report: Αποδέσμευση Καταγγελίας
+        unsilence_account: Άρση Σίγασης Λογαριασμού
+        unsuspend_account: Άρση Αναστολής Λογαριασμού
+        update_announcement: Ενημέρωση Ανακοίνωσης
+        update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
+        update_status: Ενημέρωση Κατάστασης
       actions:
         assigned_to_self_report: Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της
         change_email_user: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
         confirm_user: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
         create_account_warning: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
+        create_announcement: Νέα ανακοίνωση %{target} από %{name}
         create_custom_emoji: Ο/Η %{name} ανέβασε νέο emoji %{target}
+        create_domain_allow: Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα
         create_domain_block: Ο/Η %{name} μπλόκαρε τον τομέα %{target}
         create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα
         demote_user: Ο/Η %{name} υποβίβασε το χρήστη %{target}
+        destroy_announcement: Διαγραφή ανακοίνωσης %{target} από %{name}
         destroy_custom_emoji: Ο/Η %{name} κατέστρεψε το emoji %{target}
+        destroy_domain_allow: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από λίστα εγκρίσεων
         destroy_domain_block: Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}
         destroy_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα
         destroy_status: Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}
@@ -224,10 +264,29 @@ el:
         unassigned_report: Ο/Η %{name} αποδέσμευσε την καταγγελία %{target}
         unsilence_account: Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της %{target}
         unsuspend_account: Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}
+        update_announcement: Ενημέρωση ανακοίνωσης %{target} από %{name}
         update_custom_emoji: Ο/Η %{name} ενημέρωσε το emoji %{target}
         update_status: Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}
       deleted_status: "(διαγραμμένη δημοσίευση)"
+      empty: Δεν βρέθηκαν αρχεία καταγραφής.
+      filter_by_action: Φιλτράρισμα ανά ενέργεια
+      filter_by_user: Φιλτράρισμα ανά χρήστη
       title: Αρχείο ελέγχου
+    announcements:
+      destroyed_msg: Επιτυχής διαγραφή ανακοίνωσης!
+      edit:
+        title: Ενημέρωση ανακοίνωσης
+      empty: Δεν βρέθηκε ανακοίνωση.
+      live: Ενεργές
+      new:
+        create: Δημιουργία ανακοίνωσης
+        title: Νέα ανακοίνωση
+      published_msg: Επιτυχής δημοσίευση ανακοίνωσης!
+      scheduled_for: Προγραμματισμένη για %{time}
+      scheduled_msg: Η ανακοίνωση προγραμματίστηκε για δημοσίευση!
+      title: Ανακοινώσεις
+      unpublished_msg: Επιτυχής ακύρωση δημοσίευσης ανακοίνωσης!
+      updated_msg: Επιτυχής ενημέρωση ανακοίνωσης!
     custom_emojis:
       assign_category: Κατηγορία
       by_domain: Τομέας
@@ -274,7 +333,7 @@ el:
       features: Λειτουργίες
       hidden_service: Ομοσπονδία με κρυμμένες υπηρεσίες
       open_reports: ανοιχτές καταγγελίες
-      pending_tags: ταμπέλες προς έγκριση
+      pending_tags: ετικέτες προς έγκριση
       pending_users: χρήστες προς έγκριση
       recent_users: Πρόσφατοι χρήστες
       search: Αναζήτηση πλήρους κειμένου
@@ -339,13 +398,12 @@ el:
       delete: Διαγραφή
       destroyed_msg: Επιτυχής διαγραφή email τομέα από τη μαύρη λίστα
       domain: Τομέας
+      empty: Δεν έχουν οριστεί αποκλεισμένοι τομείς email.
+      from_html: από %{domain}
       new:
         create: Πρόσθεση τομέα
         title: Νέα εγγραφή email στη μαύρη λίστα
       title: Μαύρη λίστα email
-    followers:
-      back_to_account: Επιστροφή στον λογαριασμό
-      title: Ακόλουθοι του/της %{acct}
     instances:
       by_domain: Τομέας
       delivery_available: Διαθέσιμη παράδοση
@@ -374,6 +432,8 @@ el:
       title: Προσκλήσεις
     pending_accounts:
       title: Λογαριασμοί σε αναμονή (%{count})
+    relationships:
+      title: Σχέσεις %{acct}
     relays:
       add_new: Πρόσθεσε νέο ανταποκριτή (relay)
       delete: Διαγραφή
@@ -395,12 +455,17 @@ el:
       destroyed_msg: Επιτυχής διαγραφή σημείωσης καταγγελίας!
     reports:
       account:
-        note: σημείωση
-        report: καταγγελία
+        notes:
+          one: "%{count} σημείωση"
+          other: "%{count} σημειώσεις"
+        reports:
+          one: "%{count} αναφορά"
+          other: "%{count} αναφορές"
       action_taken_by: Ενέργεια από τον/την
       are_you_sure: Σίγουρα;
       assign_to_self: Ανάθεση σε μένα
       assigned: Αρμόδιος συντονιστής
+      by_target_domain: Κόμβος του λογαριασμού υπό καταγγελία
       comment:
         none: Κανένα
       created_at: Καταγγέλθηκε
@@ -446,6 +511,8 @@ el:
         users: Προς συνδεδεμένους τοπικούς χρήστες
       domain_blocks_rationale:
         title: Εμφάνιση σκεπτικού
+      enable_bootstrap_timeline_accounts:
+        title: Προεπιλογή παρακολούθησης για τους νέους χρήστες
       hero:
         desc_html: Εμφανίζεται στην μπροστινή σελίδα. Συνίσταται τουλάχιστον 600x100px. Όταν λείπει, χρησιμοποιείται η μικρογραφία του κόμβου
         title: Εικόνα ήρωα
@@ -507,11 +574,14 @@ el:
         title: Προεπισκόπιση ροής
       title: Ρυθμίσεις ιστότοπου
       trendable_by_default:
-        desc_html: Επηρεάζει τις ταμπέλες που δεν είχαν απαγορευτεί νωρίτερα
-        title: Επέτρεψε στις ταμπέλες να εμφανιστούν στις τάσεις χωρίς προηγούμενη έγκριση
+        desc_html: Επηρεάζει όσες ετικέτες δεν είχαν απαγορευτεί νωρίτερα
+        title: Επέτρεψε στις ετικέτες να εμφανίζονται στις τάσεις χωρίς να χρειάζεται πρώτα έγκριση
       trends:
-        desc_html: Δημόσια εμφάνιση ταμπελών που έχουν ήδη εγκριθεί και είναι δημοφιλείς
-        title: Δημοφιλείς ταμπέλες
+        desc_html: Δημόσια εμφάνιση ετικετών που έχουν ήδη εγκριθεί και είναι δημοφιλείς
+        title: Δημοφιλείς ετικέτες
+    site_uploads:
+      delete: Διαγραφή μεταφορτωμένου αρχείου
+      destroyed_msg: Η μεταφόρτωση ιστότοπου διαγράφηκε επιτυχώς!
     statuses:
       back_to_account: Επιστροφή στη σελίδα λογαριασμού
       batch:
@@ -536,19 +606,18 @@ el:
       last_active: Τελευταία δραστηριότητα
       most_popular: Δημοφιλέστερες
       most_recent: Πιο πρόσφατες
-      name: Ταμπέλα
+      name: Ετικέτα
       review: Κατάσταση έγκρισης
       reviewed: Εγκεκριμένες
-      title: Ταμπέλες
+      title: Ετικέτες
       trending_right_now: Δημοφιλείς αυτή τη στιγμή
       unique_uses_today: "%{count} σημερινές δημοσιεύσεις"
       unreviewed: Εκκρεμεί έγκριση
-      updated_msg: Οι ρυθμίσεις των ταμπελών ενημερώθηκαν επιτυχώς
+      updated_msg: Οι ρυθμίσεις των ετικετών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     warning_presets:
       add_new: Πρόσθεση νέου
       delete: Διαγραφή
-      edit: Ενημέρωση
       edit_preset: Ενημέρωση προκαθορισμένης προειδοποίησης
       title: Διαχείριση προκαθορισμένων προειδοποιήσεων
   admin_mailer:
@@ -560,20 +629,27 @@ el:
       body_remote: Κάποιος/α από τον τομέα %{domain} κατήγγειλε τον/την %{target}
       subject: Νέα καταγγελία για %{instance} (#%{id})
     new_trending_tag:
-      body: 'Η ταμπέλα #%{name} είναι δημοφιλής σήμερα, αλλά δεν έχει εγκριθεί μέχρι τώρα. Δεν θα εμφανίζεται δημοσίως μέχρι να δοθεί έγκρισή, αλλιώς αποθηκεύστε τη φόρμα ως έχει για να μην την δείτε ξανά.'
-      subject: Νέα ταμπέλα προς έγκριση στο %{instance} (#%{name})
+      body: 'Η ετικέτα #%{name} είναι δημοφιλής σήμερα, αλλά δεν έχει εγκριθεί μέχρι τώρα. Δεν θα εμφανίζεται δημοσίως μέχρι να δοθεί έγκριση, αλλιώς αποθήκευση τη φόρμα ως έχει για να μην την δεις ξανά.'
+      subject: Νέα ετικέτα προς έγκριση στο %{instance} (#%{name})
   aliases:
     add_new: Δημιουργία ψευδώνυμου
     created_msg: Δημιουργήθηκε νέο ψευδώνυμο. Τώρα μπορείς να ξεκινήσεις τη μεταφορά από τον παλιό λογαριασμό.
     deleted_msg: Αφαιρέθηκε το ψευδώνυμο. Η μεταφορά από εκείνον τον λογαριασμό σε αυτόν εδώ δε θα είναι πλέον δυνατή.
+    empty: Δεν έχεις ψευδώνυμα.
+    hint_html: Αν θέλεις να μετακομίσεις από έναν άλλο λογαριασμό σε αυτόν εδώ, μπορείς εδώ να δημιουργήσεις ένα ψευδώνυμο, πράγμα που απαιτείται πριν προχωρήσεις για να μεταφέρεις τους ακολούθους σου από τον παλιό λογαριασμό σε αυτόν εδώ. Η ενέργεια αυτή είναι <strong>ακίνδυνη και αναστρέψιμη</strong>.<strong>Η μετακόμιση του λογαριασμού ξεκινάει από τον παλιό λογαριασμό</strong>.
     remove: Αφαίρεση ψευδώνυμου
   appearance:
     advanced_web_interface: Προηγμένη λειτουργία χρήσης
-    advanced_web_interface_hint: 'Αν θέλεις να χρησιμοποιήσεις ολόκληρο το πλάτος της οθόνης σου, η προηγμένη λειτουργία χρήσης σου επιτρέπει να ορίσεις πολλαπλές κολώνες ώστε να βλέπεις ταυτόχρονα όση πληροφορία θέλεις: Την αρχική ροή, τις ειδοποιήσεις, την ομοσπονδιακή ροή και όσες λίστες και ταμπέλες θέλεις.'
+    advanced_web_interface_hint: 'Αν θέλεις να χρησιμοποιήσεις ολόκληρο το πλάτος της οθόνης σου, η προηγμένη λειτουργία χρήσης σου επιτρέπει να ορίσεις πολλαπλές κολώνες ώστε να βλέπεις ταυτόχρονα όση πληροφορία θέλεις: Την αρχική ροή, τις ειδοποιήσεις, την ομοσπονδιακή ροή και όσες λίστες και ετικέτες θέλεις.'
     animations_and_accessibility: Κίνηση και προσβασιμότητα
     confirmation_dialogs: Ερωτήσεις επιβεβαίωσης
     discovery: Εξερεύνηση
+    localization:
+      body: Το Mastodon μεταφράζεται από εθελοντές.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Μπορεί να συνεισφέρει ο οποιοσδήποτε.
     sensitive_content: Ευαίσθητο περιεχόμενο
+    toot_layout: Διαρρύθμιση τουτ
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
     salutation: "%{name},"
@@ -594,7 +670,7 @@ el:
     change_password: Συνθηματικό
     checkbox_agreement_html: Συμφωνώ με τους <a href="%{rules_path}" target="_blank">κανονισμούς του κόμβου</a> και <a href="%{terms_path}" target="_blank">τους όρους χρήσης</a>
     checkbox_agreement_without_rules_html: Συμφωνώ με τους <a href="%{terms_path}" target="_blank">όρους χρήσης</a>
-    delete_account: Διαγραφή email
+    delete_account: Διαγραφή λογαριασμού
     delete_account_html: Αν θέλεις να διαγράψεις το λογαριασμό σου, μπορείς <a href="%{path}">να συνεχίσεις εδώ</a>. Θα σου ζητηθεί επιβεβαίωση.
     description:
       prefix_invited_by_user: Ο/Η @%{name} σε προσκαλεί να συνδεθείς με αυτό τον διακομιστή του Mastodon!
@@ -605,7 +681,7 @@ el:
     invalid_reset_password_token: Το διακριτικό επαναφοράς συνθηματικού είναι άκυρο ή ληγμένο. Παρακαλώ αιτήσου νέο.
     login: Σύνδεση
     logout: Αποσύνδεση
-    migrate_account: Μετακόμισε σε διαφορετικό λογαριασμό
+    migrate_account: Μετακόμιση σε διαφορετικό λογαριασμό
     migrate_account_html: Αν θέλεις να ανακατευθύνεις αυτό τον λογαριασμό σε έναν διαφορετικό, μπορείς να το <a href="%{path}">διαμορφώσεις εδώ</a>.
     or_log_in_with: Ή συνδέσου με
     providers:
@@ -626,9 +702,11 @@ el:
       confirming: Αναμονή για ολοκλήρωση επιβεβαίωσης του email.
       functional: Ο λογαριασμός σου είναι πανέτοιμος.
       pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
+      redirecting_to: Ο λογαριασμός σου είναι ανενεργός γιατί επί του παρόντος ανακατευθύνει στον %{acct}.
     trouble_logging_in: Πρόβλημα σύνδεσης;
   authorize_follow:
     already_following: Ήδη ακολουθείς αυτό το λογαριασμό
+    already_requested: Έχετε ήδη στείλει ένα αίτημα ακολούθησης σε αυτόν τον λογαριασμό
     error: Δυστυχώς παρουσιάστηκε ένα σφάλμα κατά την αναζήτηση του απομακρυσμένου λογαριασμού
     follow: Ακολούθησε
     follow_request: 'Έστειλες αίτημα παρακολούθησης προς:'
@@ -640,8 +718,12 @@ el:
     title: Ακολούθησε %{acct}
   challenge:
     confirm: Συνέχεια
+    hint_html: "<strong>Συμβουλή:</strong> Δεν θα σου ζητήσουμε τον κωδικό ασφαλείας σου ξανά για την επόμενη ώρα."
     invalid_password: Μη έγκυρο συνθηματικό
     prompt: Επιβεβαίωση συνθηματικού για συνέχεια
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ω"
@@ -701,24 +783,24 @@ el:
     archive_takeout:
       date: Ημερομηνία
       download: Κατέβασε το αρχείο σου
-      hint_html: Μπορείς να αιτηθείς ένα αρχείο των <strong>τουτ και των ανεβασμένων πολυμέσων</strong> σου. Τα δεδομένα θα είναι σε μορφή ActivityPub, προσιτά από οποιοδήποτε συμβατό πρόγραμμα. Μπορείς να αιτηθείς αρχείο κάθε 7 μέρες.
+      hint_html: Μπορείς να αιτηθείς ένα αρχείο των <strong>τουτ και των ανεβασμένων πολυμέσων</strong> σου. Τα δεδομένα θα είναι σε μορφή ActivityPub, προσπελάσιμα από οποιοδήποτε συμβατό πρόγραμμα. Μπορείς να αιτηθείς αρχείο κάθε 7 μέρες.
       in_progress: Συγκεντρώνουμε το αρχείο σου...
       request: Αιτήσου το αρχείο σου
       size: Μέγεθος
     blocks: Μπλοκάρεις
     csv: CSV
     domain_blocks: Μπλοκαρίσματα κόμβων
-    follows: Ακολουθείς
     lists: Λίστες
     mutes: Αποσιωπήσεις
     storage: Αποθήκευση πολυμέσων
   featured_tags:
     add_new: Προσθήκη νέας
     errors:
-      limit: Έχεις ήδη προσθέσει το μέγιστο αριθμό ταμπελών
-    hint_html: "<strong>Τι είναι οι προβεβλημένες ταμπέλες;</strong> Προβάλλονται στο δημόσιο προφίλ σου επιτρέποντας σε όποιον το βλέπει να χαζέψει τις δημοσιεύσεις που τις χρησιμοποιούν. Είναι ωραίος τρόπος να παρακολουθείς κάποια δημιουργία ή ένα μακροπρόθεσμο έργο."
+      limit: Έχεις ήδη προσθέσει το μέγιστο αριθμό ετικετών
+    hint_html: "<strong>Τι είναι οι προβεβλημένες ετικέτες;</strong> Προβάλλονται στο δημόσιο προφίλ σου επιτρέποντας σε όποιον το βλέπει να χαζέψει τις δημοσιεύσεις που τις χρησιμοποιούν. Είναι ένας ωραίος τρόπος να παρακολουθείς την πορεία μιας δημιουργία ή ενός μακροπρόθεσμου έργου."
   filters:
     contexts:
+      account: Προφίλ
       home: Αρχική ροή
       notifications: Ειδοποιήσεις
       public: Δημόσιες ροές
@@ -730,6 +812,7 @@ el:
       invalid_irreversible: Τα μη αντιστρέψιμα φίλτρα δουλεύουν μόνο στα πλαίσια της αρχικής ροής και των ειδοποιήσεων
     index:
       delete: Διαγραφή
+      empty: Δεν έχεις φίλτρα.
       title: Φίλτρα
     new:
       title: Πρόσθεσε νέο φίλτρο
@@ -742,6 +825,7 @@ el:
     all: Όλα
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
     copy: Αντιγραφή
+    delete: Διαγραφή
     no_batch_actions_available: Δεν υπάρχουν ομαδικές ενέργειες σε αυτή τη σελίδα
     order_by: Ταξινόμηση κατά
     save_changes: Αποθήκευση αλλαγών
@@ -766,6 +850,8 @@ el:
     inactive: Ανενεργή
     publicize_checkbox: 'Και κάνε τουτ αυτό:'
     publicize_toot: 'Αποδείχτηκε! Λέγομαι %{username} στο %{service}: %{url}'
+    remove: Αφαίρεση απόδειξης από τον λογαριασμό
+    removed: Επιτυχής αφαίρεση απόδειξης από τον λογαριασμό
     status: Κατάσταση επαλήθευσης
     view_proof: Εμφάνιση απόδειξης
   imports:
@@ -811,16 +897,25 @@ el:
   media_attachments:
     validations:
       images_and_video: Δεν γίνεται να προσθέσεις βίντεο σε ενημέρωση που ήδη περιέχει εικόνες
+      not_ready: Δεν μπορούν να επισυναφθούν αρχεία για τα οποία δεν έχει τελειώσει η επεξεργασία. Προσπαθήστε ξανά σε λίγο!
       too_many: Δεν γίνεται να προσθέσεις περισσότερα από 4 αρχεία
   migrations:
     acct: ΌνομαΧρήστη@Τομέας του νέου λογαριασμού
     cancel: Ακύρωση ανακατεύθυνσης
+    cancel_explanation: Ακυρώνοντας την ανακατεύθυνση θα ενεργοποιήσει ξανά τον τρέχοντα λογαριασμό σου, αλλά δεν θα φέρει πίσω τους ακόλουθους που έχουν μεταφερθεί σε εκείνον το λογαριασμό.
+    cancelled_msg: Η ανακατεύθυνση ακυρώθηκε επιτυχώς.
     errors:
+      already_moved: είναι ο ίδιος λογαριασμός στον οποίο έχεις ήδη μεταφερθεί
+      missing_also_known_as: δεν αναφέρει αυτόν τον λογαριασμό
       move_to_self: δεν επιτρέπεται να είναι ο τρέχων λογαριασμός
       not_found: δεν βρέθηκε
       on_cooldown: Είσαι σε περίοδο προσαρμογής
     followers_count: Ακόλουθοι τη στιγμή της μεταφοράς
     incoming_migrations: Μεταφορά από διαφορετικό λογαριασμό
+    incoming_migrations_html: Για να μετακομίσεις από έναν άλλο λογαριασμό σε αυτόν εδώ, πρώτα πρέπει να <a href="%{path}">δημιουργήσεις ένα ψευδώνυμο λογαριασμού</a>.
+    moved_msg: Ο λογαριασμός σου πλέον ανακατευθύνει στον %{acct} και οι ακόλουθοί σου μεταφέρονται εκεί.
+    not_redirecting: Ο λογαριασμός σου δεν ανακατευθύνει σε κανέναν άλλο προς το παρόν.
+    on_cooldown: Έχεις μετακομίσει το λογαριασμό σου πρόσφατα. Η δυνατότητα αυτή θα γίνει πάλι διαθέσιμη σε %{count} μέρες.
     past_migrations: Προηγούμενες μετακινήσεις
     proceed_with_move: Μετακίνηση ακολούθων
     redirecting_to: Ο λογαριασμός σου ανακατευθύνει στο %{acct}.
@@ -870,6 +965,10 @@ el:
       body: 'Η κατάστασή σου προωθήθηκε από τον/την %{name}:'
       subject: Ο/Η %{name} προώθησε την κατάστασή σου
       title: Νέα προώθηση
+  notifications:
+    email_events: Συμβάντα για ειδοποιήσεις μέσω email
+    email_events_hint: 'Επέλεξε συμβάντα για τα οποία θέλεις να λαμβάνεις ειδοποιήσεις μέσω email:'
+    other_settings: Άλλες ρυθμίσεις ειδοποιήσεων
   number:
     human:
       decimal_units:
@@ -893,6 +992,7 @@ el:
       duration_too_long: είναι πολύ μακριά στο μέλλον
       duration_too_short: είναι πολύ σύντομα
       expired: Η ψηφοφορία έχει ήδη λήξει
+      invalid_choice: Αυτή η επιλογή ψήφου δεν υπάρχει
       over_character_limit: δε μπορεί να υπερβαίνει τους %{max} χαρακτήρες έκαστη
       too_few_options: πρέπει να έχει περισσότερες από μια επιλογές
       too_many_options: δεν μπορεί να έχει περισσότερες από %{max} επιλογές
@@ -900,13 +1000,20 @@ el:
     other: Άλλες
     posting_defaults: Προεπιλογές δημοσίευσης
     public_timelines: Δημόσιες ροές
+  reactions:
+    errors:
+      limit_reached: Το όριο διαφορετικών αντιδράσεων ξεπεράστηκε
+      unrecognized_emoji: δεν αναγνωρίζεται ως emoji
   relationships:
     activity: Δραστηριότητα λογαριασμού
-    dormant: Αδρανής
+    dormant: Αδρανείς
+    followers: Σε ακολουθούν
+    following: Ακολουθείς
+    invited: Προσκεκλημένοι
     last_active: Τελευταία δραστηριότητα
     most_recent: Πιο πρόσφατα
     moved: Μετακόμισε
-    mutual: Αμοιβαίος
+    mutual: Αμοιβαίοι
     primary: Βασικός
     relationship: Σχέση
     remove_selected_domains: Αφαίρεση ακόλουθων που βρίσκονται στους επιλεγμένους κόμβους
@@ -986,7 +1093,7 @@ el:
     development: Ανάπτυξη
     edit_profile: Επεξεργασία προφίλ
     export: Εξαγωγή δεδομένων
-    featured_tags: Χαρακτηριστικές ταμπέλες
+    featured_tags: Χαρακτηριστικές ετικέτες
     identity_proofs: Αποδείξεις ταυτοτήτων
     import: Εισαγωγή
     import_and_export: Εισαγωγή & Εξαγωγή
@@ -994,8 +1101,10 @@ el:
     notifications: Ειδοποιήσεις
     preferences: Προτιμήσεις
     profile: Προφίλ
-    relationships: Ακολουθεί και ακολουθείται
+    relationships: Ακολουθείς και σε ακολουθούν
     two_factor_authentication: Πιστοποίηση 2 παραγόντων (2FA)
+  spam_check:
+    spam_detected: Αυτή είναι μια αυτόματη αναφορά. Εντοπίστηκε ανεπιθύμητο υλικό (spam).
   statuses:
     attached:
       description: 'Συνημμένα: %{attached}'
@@ -1008,14 +1117,16 @@ el:
     boosted_from_html: Προωθήθηκε από %{acct_link}
     content_warning: 'Προειδοποίηση περιεχομένου: %{warning}'
     disallowed_hashtags:
-      one: 'περιέχει μη επιτρεπτή ταμπέλα: %{tags}'
-      other: 'περιέχει μη επιτρεπτές ταμπέλες: %{tags}'
+      one: 'περιέχει μη επιτρεπτή ετικέτα: %{tags}'
+      other: περιέχει μη επιτρεπτές ετικέτες %{tags}
+    errors:
+      in_reply_not_found: Η κατάσταση στην οποία προσπαθείτε να απαντήσετε δεν υπάρχει.
     language_detection: Αυτόματη αναγνώριση γλώσσας
     open_in_web: Δες στο διαδίκτυο
     over_character_limit: υπέρβαση μέγιστου ορίου %{max} χαρακτήρων
     pin_errors:
       limit: Έχεις ήδη καρφιτσώσει το μέγιστο αριθμό επιτρεπτών τουτ
-      ownership: Δεν μπορείς να καρφιτσώσεις μη δικό σου τουτ
+      ownership: Δεν μπορείς να καρφιτσώσεις τουτ κάποιου άλλου
       private: Τα μη δημόσια τουτ δεν καρφιτσώνονται
       reblog: Οι προωθήσεις δεν καρφιτσώνονται
     poll:
@@ -1027,7 +1138,8 @@ el:
         other: "%{count} ψήφοι"
       vote: Ψήφισε
     show_more: Δείξε περισσότερα
-    sign_in_to_participate: Εγγράφου για να συμμετάσχεις στη συζήτηση
+    show_thread: Εμφάνιση νήματος
+    sign_in_to_participate: Συνδέσου για να συμμετάσχεις στη συζήτηση
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Μόνο ακόλουθοι
@@ -1151,7 +1263,7 @@ el:
     wrong_code: Ο κωδικός που έβαλες ήταν άκυρος! Τα ρολόγια στον διακομιστή και τη συσκευή είναι σωστά;
   user_mailer:
     backup_ready:
-      explanation: Ζήτησες ένα εφεδρικό αντίγραφο του λογαριασμού σου στο Mastodon. Είναι έτοιμο για κατέβασμα!
+      explanation: Είχες ζητήσει εφεδρικό αντίγραφο του λογαριασμού σου στο Mastodon. Είναι έτοιμο για κατέβασμα!
       subject: Το εφεδρικό αντίγραφό σου είναι έτοιμο για κατέβασμα
       title: Λήψη εφεδρικού αρχείου
     warning:
@@ -1171,7 +1283,7 @@ el:
         disable: Παγωμένος λογαριασμός
         none: Προειδοποίηση
         silence: Περιορισμένος λογαριασμός
-        suspend: Ανασταλμένος λογαριασμός
+        suspend: Λογαριασμός σε αναστολή
     welcome:
       edit_profile_action: Στήσιμο προφίλ
       edit_profile_step: Μπορείς να προσαρμόσεις το προφίλ σου ανεβάζοντας μια εικόνα εμφάνισης & επικεφαλίδας, αλλάζοντας το εμφανιζόμενο όνομά σου και άλλα. Αν θες να ελέγχεις τους νέου σου ακόλουθους πριν αυτοί σε ακολουθήσουν, μπορείς να κλειδώσεις το λογαριασμό σου.

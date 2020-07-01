@@ -8,12 +8,19 @@ oc:
         acct: Donatz l’utilizaire@domeni del compte ont volètz anar
       account_warning_preset:
         text: Podètz utilizar la sintaxi dels tuts, coma las URL, las etiquetas e las mencions
+        title: Opcional. Pas visible pel destinari
       admin_account_action:
         include_statuses: L’utilizaire veiràs quals tuts a provocat l’accion de moderacion o avertiment
         send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
         text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
         type_html: Causir de qué far amb <strong>%{acct}</strong>
         warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
+      announcement:
+        all_day: Se son marcadas, solament las datas de l’interval de temps seràn mostrada
+        ends_at: Opcional. L’anóncia serà automaticament tirada a aqueste moment
+        scheduled_at: Daissar void per publicar l’anóncia immediatament
+        starts_at: Opcional. Se per cas vòstra anóncia es ligada a un interval de temps especific
+        text: Podètz utilizar la sintaxi dels tuts. Gardatz al cap qu’aquesta anóncia ocuparà la fenèstra de l’utilizaire
       defaults:
         autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
@@ -72,6 +79,7 @@ oc:
         acct: Identificant del nòu compte
       account_warning_preset:
         text: Tèxt predefinit
+        title: Títol
       admin_account_action:
         include_statuses: Inclure los tuts senhalats dins lo corrièl
         send_email_notification: Avisar l’utilizaire per corrièl
@@ -83,6 +91,12 @@ oc:
           silence: Metre en silence
           suspend: Suspendre e escafar per de bon las donadas del compte
         warning_preset_id: Utilizar un avertiment predefinit
+      announcement:
+        all_day: Eveniment tota la jornada
+        ends_at: Fin de l’eveniment
+        scheduled_at: Publicacions programadas
+        starts_at: Debuta de l’eveniment
+        text: Anóncia
       defaults:
         autofollow: Convidar a sègre vòstre compte
         avatar: Avatar
@@ -113,6 +127,7 @@ oc:
         setting_aggregate_reblogs: Agropar los partatges dins lo flux d’actualitat
         setting_auto_play_gif: Lectura automatica dels GIFS animats
         setting_boost_modal: Mostrar una fenèstra de confirmacion abans de partejar un estatut
+        setting_crop_images: Retalhar los imatges dins los tuts pas desplegats a 16x9
         setting_default_language: Lenga de publicacion
         setting_default_privacy: Confidencialitat dels tuts
         setting_default_sensitive: Totjorn marcar los mèdias coma sensibles
@@ -137,6 +152,8 @@ oc:
         username: Nom d’utilizaire
         username_or_email: Nom d’utilizaire o corrièl
         whole_word: Mot complèt
+      email_domain_block:
+        with_dns_records: Inclure los enregistraments MX e las IP del domeni
       featured_tag:
         name: Etiqueta
       interactions:

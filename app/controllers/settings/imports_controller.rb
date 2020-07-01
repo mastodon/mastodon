@@ -29,6 +29,6 @@ class Settings::ImportsController < Settings::BaseController
   end
 
   def import_params
-    params.require(:import).permit(:data, :type)
+    params.require(:import).permit(:data, :type, :mode)
   end
 end

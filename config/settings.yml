@@ -37,6 +37,7 @@ defaults: &defaults
   use_pending_items: false
   trends: true
   trendable_by_default: false
+  crop_images: true
   notification_emails:
     follow: false
     reblog: false
@@ -61,6 +62,7 @@ defaults: &defaults
     - mod
     - moderator
   disallowed_hashtags: # space separated string or list of hashtags without the hash
+  enable_bootstrap_timeline_accounts: true
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
   peers_api_enabled: true

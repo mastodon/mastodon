@@ -1,5 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import IconButton from './icon_button';
 import DropdownMenuContainer from '../containers/dropdown_menu_container';
@@ -24,6 +25,8 @@ const messages = defineMessages({
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   local_only: { id: 'status.local_only', defaultMessage: 'This post is only visible by other users of your instance' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
+  bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
+  removeBookmark: { id: 'status.remove_bookmark', defaultMessage: 'Remove bookmark' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
@@ -34,6 +37,10 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
+  blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
+  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
+  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
 });
 
 const obfuscatedCount = count => {
@@ -46,7 +53,12 @@ const obfuscatedCount = count => {
   }
 };
 
-export default @injectIntl
+const mapStateToProps = (state, { status }) => ({
+  relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
+});
+
+export default @connect(mapStateToProps)
+@injectIntl
 class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -55,6 +67,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
+    relationship: ImmutablePropTypes.map,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
@@ -62,11 +75,16 @@ class StatusActionBar extends ImmutablePureComponent {
     onDirect: PropTypes.func,
     onMention: PropTypes.func,
     onMute: PropTypes.func,
+    onUnmute: PropTypes.func,
     onBlock: PropTypes.func,
+    onUnblock: PropTypes.func,
+    onBlockDomain: PropTypes.func,
+    onUnblockDomain: PropTypes.func,
     onReport: PropTypes.func,
     onEmbed: PropTypes.func,
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
+    onBookmark: PropTypes.func,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -75,6 +93,7 @@ class StatusActionBar extends ImmutablePureComponent {
   // evaluate to false. See react-immutable-pure-component for usage.
   updateOnProps = [
     'status',
+    'relationship',
     'withDismiss',
   ]
 
@@ -115,6 +134,10 @@ class StatusActionBar extends ImmutablePureComponent {
     window.open(`/interact/${this.props.status.get('id')}?type=${type}`, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
   }
 
+  handleBookmarkClick = () => {
+    this.props.onBookmark(this.props.status);
+  }
+
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history);
   }
@@ -136,11 +159,39 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   handleMuteClick = () => {
-    this.props.onMute(this.props.status.get('account'));
+    const { status, relationship, onMute, onUnmute } = this.props;
+    const account = status.get('account');
+
+    if (relationship && relationship.get('muting')) {
+      onUnmute(account);
+    } else {
+      onMute(account);
+    }
   }
 
   handleBlockClick = () => {
-    this.props.onBlock(this.props.status);
+    const { status, relationship, onBlock, onUnblock } = this.props;
+    const account = status.get('account');
+
+    if (relationship && relationship.get('blocking')) {
+      onUnblock(account);
+    } else {
+      onBlock(status);
+    }
+  }
+
+  handleBlockDomain = () => {
+    const { status, onBlockDomain } = this.props;
+    const account = status.get('account');
+
+    onBlockDomain(account.get('acct').split('@')[1]);
+  }
+
+  handleUnblockDomain = () => {
+    const { status, onUnblockDomain } = this.props;
+    const account = status.get('account');
+
+    onUnblockDomain(account.get('acct').split('@')[1]);
   }
 
   handleOpen = () => {
@@ -179,11 +230,12 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, intl, withDismiss } = this.props;
+    const { status, relationship, intl, withDismiss } = this.props;
 
     const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
+    const account            = status.get('account');
     const federated          = !status.get('local_only');
 
     let menu = [];
@@ -198,6 +250,7 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
+    menu.push({ text: intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark), action: this.handleBookmarkClick });
     menu.push(null);
 
     if (status.getIn(['account', 'id']) === me || withDismiss) {
@@ -217,16 +270,39 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
     } else {
-      menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
-      menu.push({ text: intl.formatMessage(messages.direct, { name: status.getIn(['account', 'username']) }), action: this.handleDirectClick });
+      menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
+      menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
       menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
-      menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
-      menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
+
+      if (relationship && relationship.get('muting')) {
+        menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.handleMuteClick });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.handleMuteClick });
+      }
+
+      if (relationship && relationship.get('blocking')) {
+        menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.handleBlockClick });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.handleBlockClick });
+      }
+
+      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.handleReport });
+
+      if (account.get('acct') !== account.get('username')) {
+        const domain = account.get('acct').split('@')[1];
+
+        menu.push(null);
+
+        if (relationship && relationship.get('domain_blocking')) {
+          menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.handleUnblockDomain });
+        } else {
+          menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.handleBlockDomain });
+        }
+      }
 
       if (isStaff) {
         menu.push(null);
-        menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
+        menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
         menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses/${status.get('id')}` });
       }
     }
@@ -245,7 +321,7 @@ class StatusActionBar extends ImmutablePureComponent {
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
-    const shareButton = ('share' in navigator) && status.get('visibility') === 'public' && federated && (
+    const shareButton = ('share' in navigator) && publicStatus && federated && (
       <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
     );
 
@@ -255,6 +331,7 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className='status__action-bar-button' disabled={!publicStatus} active={status.get('reblogged')} pressed={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
         {shareButton}
+        <IconButton className='status__action-bar-button bookmark-icon' disabled={anonymousAccess} active={status.get('bookmarked')} pressed={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenuContainer disabled={anonymousAccess} status={status} items={menu} icon='ellipsis-h' size={18} direction='right' title={intl.formatMessage(messages.more)} />

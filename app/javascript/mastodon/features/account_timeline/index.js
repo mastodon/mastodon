@@ -115,6 +115,7 @@ class AccountTimeline extends ImmutablePureComponent {
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
+          timelineId='account'
         />
       </Column>
     );

@@ -8,10 +8,10 @@ da:
     failure:
       already_authenticated: Du er allerede logget ind.
       inactive: Din konto er endnu ikke aktiveret.
-      invalid: Ugyldig %{authentication_keys} eller ugyldigt kodeord.
-      last_attempt: Du har et forsøg tilbage før din konto låses.
+      invalid: Ugyldig %{authentication_keys} eller adgangskode.
+      last_attempt: Du har ét forsøg mere, før din konto bliver låst.
       locked: Din konto er låst.
-      not_found_in_database: Ugyldig %{authentication_keys} eller ugyldigt kodeord.
+      not_found_in_database: Ugyldig %{authentication_keys} eller adgangskode.
       pending: Din konto er stadig under bedømmelse.
       timeout: Din session er udløbet. Log venligst ind igen for at fortsætte.
       unauthenticated: Du er nødt til at logge ind eller oprette dig for at fortsætte.
@@ -46,6 +46,18 @@ da:
         extra: Hvis du ikke har anmodet om dette, ignorer denne email. Din adgangskode vil ikke blive ændret før du har fulgt linket foroven og oprettet en ny.
         subject: 'Mastodon: Instrukser for nulstilling af adgangskode'
         title: Kodeordet er blevet nulstillet
+      two_factor_disabled:
+        explanation: To-trins godkendelse for din konto er blevet deaktiveret. Det nu kun muligt at logge ind med email og kodeord.
+        subject: 'Mastodon: To-trins godkendelse er deaktiveret'
+        title: 2FA deaktiveret
+      two_factor_enabled:
+        explanation: To-trins godkendelse er blevet aktiveret for din konto. En token fra den parrede TOTP app vil være påkrævet for at logge ind.
+        subject: 'Mastodon: To-trins godkendelse er nu aktiveret'
+        title: 2FA aktiveret
+      two_factor_recovery_codes_changed:
+        explanation: De tidligere gendannelseskoder er ugyldige og nye genereret.
+        subject: 'Mastodan: To-trins gendannelseskoder er fornyet'
+        title: 2FA gendannelseskoder er ændret
       unlock_instructions:
         subject: 'Mastodon: Instruktioner for oplåsning'
     omniauth_callbacks:
