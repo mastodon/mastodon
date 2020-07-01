@@ -35,6 +35,8 @@ import identity_proofs from './identity_proofs';
 import trends from './trends';
 import missed_updates from './missed_updates';
 import announcements from './announcements';
+import markers from './markers';
+import account_notes from './account_notes';
 
 const reducers = {
   announcements,
@@ -73,6 +75,8 @@ const reducers = {
   polls,
   trends,
   missed_updates,
+  markers,
+  account_notes,
 };
 
 export default combineReducers(reducers);

@@ -8,9 +8,10 @@ import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
 import { decode } from 'blurhash';
+import { debounce } from 'lodash';
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Hide media' },
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Hide {number, plural, one {image} other {images}}' },
 });
 
 class Item extends React.PureComponent {
@@ -266,6 +267,14 @@ class MediaGallery extends React.PureComponent {
     width: this.props.defaultWidth,
   };
 
+  componentDidMount () {
+    window.addEventListener('resize', this.handleResize, { passive: true });
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   componentWillReceiveProps (nextProps) {
     if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
       this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
@@ -273,6 +282,14 @@ class MediaGallery extends React.PureComponent {
       this.setState({ visible: nextProps.visible });
     }
   }
+
+  handleResize = debounce(() => {
+    if (this.node) {
+      this._setDimensions();
+    }
+  }, 250, {
+    trailing: true,
+  });
 
   handleOpen = () => {
     if (this.props.onToggleVisibility) {
@@ -286,15 +303,25 @@ class MediaGallery extends React.PureComponent {
     this.props.onOpenMedia(this.props.media, index);
   }
 
-  handleRef = (node) => {
-    if (node) {
-      // offsetWidth triggers a layout, so only calculate when we need to
-      if (this.props.cacheWidth) this.props.cacheWidth(node.offsetWidth);
+  handleRef = c => {
+    this.node = c;
 
-      this.setState({
-        width: node.offsetWidth,
-      });
+    if (this.node) {
+      this._setDimensions();
     }
+  }
+
+  _setDimensions () {
+    const width = this.node.offsetWidth;
+
+    // offsetWidth triggers a layout, so only calculate when we need to
+    if (this.props.cacheWidth) {
+      this.props.cacheWidth(width);
+    }
+
+    this.setState({
+      width: width,
+    });
   }
 
   isFullSizeEligible() {
@@ -338,7 +365,7 @@ class MediaGallery extends React.PureComponent {
         </button>
       );
     } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='eye-slash' overlay onClick={this.handleOpen} />;
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' overlay onClick={this.handleOpen} />;
     } else {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>

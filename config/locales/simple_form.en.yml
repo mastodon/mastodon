@@ -56,7 +56,7 @@ en:
         domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
       email_domain_block:
         domain: This can be the domain name that shows up in the e-mail address, the MX record that domain resolves to, or IP of the server that MX record resolves to. Those will be checked upon user sign-up and the sign-up will be rejected.
-        with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blacklisted
+        with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
       featured_tag:
         name: 'You might want to use one of these:'
       form_challenge:
@@ -151,6 +151,7 @@ en:
         setting_use_blurhash: Show colorful gradients for hidden media
         setting_use_pending_items: Slow mode
         severity: Severity
+        sign_in_token_attempt: Security code
         type: Import type
         username: Username
         username_or_email: Username or Email

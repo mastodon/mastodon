@@ -33,7 +33,7 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
   end
 
   def processed?
-    redis.exists("move_in_progress:#{@account.id}")
+    redis.exists?("move_in_progress:#{@account.id}")
   end
 
   def mark_as_processing!

@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "mastodon.fullname" . }}-assets
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.system.accessMode }}
+  resources:
+    {{- toYaml .Values.persistence.assets.resources | nindent 4}}
+  storageClassName: {{ .Values.persistence.assets.storageClassName }}

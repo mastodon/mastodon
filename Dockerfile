@@ -1,11 +1,11 @@
-FROM ubuntu:18.04 as build-dep
+FROM ubuntu:20.04 as build-dep
 
 # Use bash for the shell
 SHELL ["bash", "-c"]
 
 # Install Node v12 (LTS)
-ENV NODE_VER="12.16.1"
-RUN	ARCH= && \
+ENV NODE_VER="12.16.3"
+RUN ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
     amd64) ARCH='x64';; \
@@ -74,7 +74,7 @@ RUN cd /opt/mastodon && \
 	bundle install -j$(nproc) && \
 	yarn install --pure-lockfile
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
@@ -98,8 +98,8 @@ RUN apt update && \
 # Install mastodon runtime deps
 RUN apt -y --no-install-recommends install \
 	  libssl1.1 libpq5 imagemagick ffmpeg \
-	  libicu60 libprotobuf10 libidn11 libyaml-0-2 \
-	  file ca-certificates tzdata libreadline7 && \
+	  libicu66 libprotobuf17 libidn11 libyaml-0-2 \
+	  file ca-certificates tzdata libreadline8 && \
 	apt -y install gcc && \
 	ln -s /opt/mastodon /mastodon && \
 	gem install bundler && \

@@ -1,8 +1,10 @@
-.status
+.status{ class: "status-#{status.visibility}" }
   .status__info
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
+    %span.status__visibility-icon
+      = visibility_icon status
 
     .p-author.h-card
       = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name u-url', target: stream_link_target, rel: 'noopener noreferrer' do
@@ -37,13 +39,13 @@
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first
-      = react_component :audio, src: audio.file.url(:original), height: 110, alt: audio.description, duration: audio.file.meta.dig(:original, :duration) do
+      = react_component :audio, src: audio.file.url(:original), poster: audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url, blurhash: audio.blurhash, width: 610, height: 343, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - else
       = react_component :media_gallery, height: 343, sensitive: status.sensitive?, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
   - elsif status.preview_card
-    = react_component :card, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
+    = react_component :card, sensitive: status.sensitive?, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
 
   - if !status.in_reply_to_id.nil? && status.in_reply_to_account_id == status.account.id
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__content__read-more-button', target: stream_link_target, rel: 'noopener noreferrer' do

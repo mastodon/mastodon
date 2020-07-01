@@ -3,7 +3,8 @@
 class TagsController < ApplicationController
   include SignatureVerification
 
-  PAGE_SIZE = 20
+  PAGE_SIZE     = 20
+  PAGE_SIZE_MAX = 200
 
   layout 'public'
 
@@ -14,7 +15,7 @@ class TagsController < ApplicationController
   before_action :set_body_classes
   before_action :set_instance_presenter
 
-  skip_before_action :require_functional!
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def show
     respond_to do |format|
@@ -25,6 +26,7 @@ class TagsController < ApplicationController
       format.rss do
         expires_in 0, public: true
 
+        limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
         @statuses = HashtagQueryService.new.call(@tag, filter_params, nil, @local).limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
 

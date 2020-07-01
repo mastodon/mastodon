@@ -77,6 +77,18 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
+  def visibility_icon(status)
+    if status.public_visibility?
+      fa_icon('globe', title: I18n.t('statuses.visibilities.public'))
+    elsif status.unlisted_visibility?
+      fa_icon('unlock', title: I18n.t('statuses.visibilities.unlisted'))
+    elsif status.private_visibility? || status.limited_visibility?
+      fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
+    elsif status.direct_visibility?
+      fa_icon('envelope', title: I18n.t('statuses.visibilities.direct'))
+    end
+  end
+
   def custom_emoji_tag(custom_emoji, animate = true)
     if animate
       image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
@@ -135,6 +147,11 @@ module ApplicationHelper
 
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
+
+    permit_visibilities = %w(public unlisted private direct)
+    default_privacy     = current_account&.user&.setting_default_privacy
+    permit_visibilities.shift(permit_visibilities.index(default_privacy) + 1) if default_privacy.present?
+    state_params[:visibility] = params[:visibility] if permit_visibilities.include? params[:visibility]
 
     if user_signed_in?
       state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
