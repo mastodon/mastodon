@@ -1,7 +1,8 @@
+---
 ja:
   about:
-    about_hashtag_html: 'ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。'
-    about_mastodon_html: 'Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。'
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
+    about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     active_count_after: 人アクティブ
     active_footnote: 月間アクティブユーザー数 (MAU)
@@ -17,11 +18,12 @@ ja:
     contact_unavailable: N/A
     discover_users: ユーザーを見つける
     documentation: ドキュメント
-    federation_hint_html: '%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。'
+    federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
-    instance_actor_flash: |
-      このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。
+    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。
+
+      '
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     see_whats_happening: やりとりを見てみる
@@ -55,7 +57,7 @@ ja:
     followers:
       other: フォロワー
     following: フォロー中
-    joined: '%{date} に登録'
+    joined: "%{date} に登録"
     last_active: 最後の活動
     link_verified_on: このリンクの所有権は %{date} に確認されました
     media: メディア
@@ -63,8 +65,8 @@ ja:
     network_hidden: この情報は利用できません
     never_active: 活動なし
     nothing_here: 何もありません！
-    people_followed_by: '%{name} さんがフォロー中のアカウント'
-    people_who_follow: '%{name} さんをフォロー中のアカウント'
+    people_followed_by: "%{name} さんがフォロー中のアカウント"
+    people_who_follow: "%{name} さんをフォロー中のアカウント"
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
@@ -82,7 +84,7 @@ ja:
   admin:
     account_actions:
       action: アクションを実行
-      title: '%{acct}さんに対してアクションを実行'
+      title: "%{acct}さんに対してアクションを実行"
     account_moderation_notes:
       create: 書き込む
       created_msg: モデレーションメモを書き込みました！
@@ -101,7 +103,7 @@ ja:
         label: メールアドレスを変更
         new_email: 新しいメールアドレス
         submit: メールアドレスの変更
-        title: '%{username} さんのメールアドレスを変更'
+        title: "%{username} さんのメールアドレスを変更"
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
@@ -181,7 +183,7 @@ ja:
       statuses: トゥート数
       subscribe: 購読する
       suspended: 停止済み
-      time_in_queue: '%{time} 待ち'
+      time_in_queue: "%{time} 待ち"
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
       undo_silenced: サイレンスから戻す
@@ -279,7 +281,7 @@ ja:
         create: お知らせを作成
         title: お知らせを追加
       published_msg: お知らせを掲載しました
-      scheduled_for: '%{time} に予約'
+      scheduled_for: "%{time} に予約"
       scheduled_msg: お知らせの掲載を予約しました
       title: お知らせ
       unpublished_msg: お知らせを非掲載にしました
@@ -381,11 +383,11 @@ ja:
         suspend: 停止中
       show:
         affected_accounts:
-          other: "データベース中の%{count}個のアカウントに影響します"
+          other: データベース中の%{count}個のアカウントに影響します
         retroactive:
           silence: このドメインの既存の影響するアカウントのサイレンスを戻す
           suspend: このドメインの既存の影響するアカウントの停止を戻す
-        title: '%{domain}のドメインブロックを戻す'
+        title: "%{domain}のドメインブロックを戻す"
         undo: 元に戻す
       undo: ドメインブロックを戻す
       view: ドメインブロックを表示
@@ -396,7 +398,7 @@ ja:
       destroyed_msg: メールドメインブロックから外しました
       domain: ドメイン
       empty: メールドメインブロックには現在何も登録されていません。
-      from_html: '%{domain} から'
+      from_html: "%{domain} から"
       new:
         create: ドメインを追加
         title: 新規メールドメインブロック
@@ -405,7 +407,7 @@ ja:
       by_domain: ドメイン
       delivery_available: 配送可能
       known_accounts:
-        other: "既知のアカウント数 %{count}"
+        other: 既知のアカウント数 %{count}
       moderation:
         all: すべて
         limited: 制限あり
@@ -433,7 +435,7 @@ ja:
     relays:
       add_new: リレーを追加
       delete: 削除
-      description_html: <strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。
+      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
       disable: 無効化
       disabled: 無効
       enable: 有効化
@@ -472,7 +474,7 @@ ja:
         delete: 削除
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
       reopen: 再び開く
-      report: '通報#%{id}'
+      report: 通報#%{id}
       reported_account: 報告対象アカウント
       reported_by: 報告者
       resolved: 解決済み
@@ -605,7 +607,7 @@ ja:
       reviewed: 審査済み
       title: ハッシュタグ
       trending_right_now: 現在のトレンド
-      unique_uses_today: "本日 %{count} 人がトゥートに使用"
+      unique_uses_today: 本日 %{count} 人がトゥートに使用
       unreviewed: 未審査
       updated_msg: ハッシュタグ設定が更新されました
     title: 管理
@@ -617,14 +619,14 @@ ja:
   admin_mailer:
     new_pending_account:
       body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
-      subject: '%{instance} で新しいアカウント (%{username}) が承認待ちです'
+      subject: "%{instance} で新しいアカウント (%{username}) が承認待ちです"
     new_report:
       body: "%{reporter} が %{target} を通報しました"
-      body_remote: '%{domain} の誰かが %{target} を通報しました'
-      subject: '%{instance} の新しい通報 (#%{id})'
+      body_remote: "%{domain} の誰かが %{target} を通報しました"
+      subject: "%{instance} の新しい通報 (#%{id})"
     new_trending_tag:
       body: 'ハッシュタグ #%{name} が本日のトレンドになっていますが、審査がまだ行われていないためトレンドタグには表示されていません。一度許可すれば次回からこの操作は不要です。'
-      subject: '%{instance} で新しいハッシュタグ (#%{name}) が審査待ちです'
+      subject: "%{instance} で新しいハッシュタグ (#%{name}) が審査待ちです"
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -634,7 +636,7 @@ ja:
     remove: エイリアスを削除
   appearance:
     advanced_web_interface: 上級者向け UI
-    advanced_web_interface_hint: 'ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。'
+    advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
     animations_and_accessibility: アニメーションとアクセシビリティー
     confirmation_dialogs: 確認ダイアログ
     discovery: 見つける
@@ -709,10 +711,10 @@ ja:
       close: またはこのウィンドウを閉じます。
       return: ユーザーのプロフィールを見る
       web: Web を開く
-    title: '%{acct} をフォロー'
+    title: "%{acct} をフォロー"
   challenge:
     confirm: 続ける
-    hint_html: "以後 1 時間はパスワードの再入力を求めません"
+    hint_html: 以後 1 時間はパスワードの再入力を求めません
     invalid_password: パスワードが間違っています
     prompt: 続行するにはパスワードを入力してください
   crypto:
@@ -756,7 +758,7 @@ ja:
   directories:
     directory: ディレクトリ
     explanation: 関心を軸にユーザーを発見しよう
-    explore_mastodon: '%{title}を探索'
+    explore_mastodon: "%{title}を探索"
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -776,12 +778,12 @@ ja:
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
   existing_username_validator:
     not_found: そのようなユーザー名はローカルに見つかりませんでした
-    not_found_multiple: '%{usernames} は見つかりませんでした'
+    not_found_multiple: "%{usernames} は見つかりませんでした"
   exports:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: <strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。
+      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
@@ -840,7 +842,7 @@ ja:
       keybase:
         invalid_token: Keybaseトークンは16進数で66文字のハッシュである必要があります
         verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
-      wrong_user: '%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。'
+      wrong_user: "%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。"
     explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これによりそれらのサービス上で他の人が暗号化されたメッセージを送信したり、あなたの送信した内容があなたからのものであると信用できるようになります。
     i_am_html: I am %{username} on %{service}.
     identity: Identity
@@ -929,7 +931,7 @@ ja:
   moderation:
     title: モデレーション
   move_handler:
-    copy_account_note_text: 'このユーザーは %{acct} から引っ越しました。これは以前のメモです。'
+    copy_account_note_text: このユーザーは %{acct} から引っ越しました。これは以前のメモです。
   notification_mailer:
     digest:
       action: 全ての通知を表示
@@ -941,7 +943,7 @@ ja:
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
-      body: '%{name} さんにお気に入り登録された、あなたのトゥートがあります:'
+      body: "%{name} さんにお気に入り登録された、あなたのトゥートがあります:"
       subject: "%{name} さんにお気に入りに登録されました"
       title: 新たなお気に入り登録
     follow:
@@ -951,15 +953,15 @@ ja:
     follow_request:
       action: フォローリクエストの管理
       body: "%{name} さんがあなたにフォローをリクエストしました"
-      subject: '%{name} さんからのフォローリクエスト'
+      subject: "%{name} さんからのフォローリクエスト"
       title: 新たなフォローリクエスト
     mention:
       action: 返信
-      body: '%{name} さんから返信がありました:'
-      subject: '%{name} さんに返信されました'
+      body: "%{name} さんから返信がありました:"
+      subject: "%{name} さんに返信されました"
       title: 新たな返信
     reblog:
-      body: '%{name} さんにブーストされた、あなたのトゥートがあります:'
+      body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
   notifications:
@@ -1111,7 +1113,7 @@ ja:
         other: "%{count} 枚の画像"
       video:
         other: "%{count} 本の動画"
-    boosted_from_html: '%{acct_link} からブースト'
+    boosted_from_html: "%{acct_link} からブースト"
     content_warning: '閲覧注意: %{warning}'
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
@@ -1241,7 +1243,7 @@ ja:
       month: "%Y年 %b"
   two_factor_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
-    description_html: <strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。
+    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
     disable: 無効化
     enable: 有効
     enabled: 二段階認証は有効になっています
@@ -1276,7 +1278,7 @@ ja:
       statuses: '特に次のトゥート:'
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
-        none: '%{acct} に対する警告'
+        none: "%{acct} に対する警告"
         silence: あなたのアカウント %{acct} はサイレンスにされました
         suspend: あなたのアカウント %{acct} は停止されました
       title:
@@ -1312,5 +1314,5 @@ ja:
     signed_in_as: '下記でログイン中:'
     suspicious_sign_in_confirmation: おかえりなさい。このデバイスからのアクセスは初めてなので、セキュリティ確保のためにメールでセキュリティーコードを送信しました。
   verification:
-    explanation_html: '<strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：'
+    explanation_html: <strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
     verification: 認証
