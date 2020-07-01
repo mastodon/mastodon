@@ -401,7 +401,7 @@ pt-BR:
       delete: Excluir
       destroyed_msg: Domínio de e-mail excluído da lista negra com sucesso
       domain: Domínio
-      empty: Nenhum domínio de e-mail atualmente na lista negra.
+      empty: Nenhum domínio de e-mail atualmente bloqueado.
       from_html: de %{domain}
       new:
         create: Adicionar domínio
@@ -939,6 +939,10 @@ pt-BR:
       redirect: O perfil atual da sua conta será atualizado com um aviso de redirecionamento e também será excluído das pesquisas
   moderation:
     title: Moderação
+  move_handler:
+    carry_blocks_over_text: Este usuário mudou de %{acct}, que você havia bloqueado.
+    carry_mutes_over_text: Este usuário mudou de %{acct}, que você havia silenciado.
+    copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
   notification_mailer:
     digest:
       action: Ver todas as notificações
@@ -1115,6 +1119,9 @@ pt-BR:
     spam_detected: Esta é uma denúncia automática. Spam foi detectado.
   statuses:
     attached:
+      audio:
+        one: "%{count} áudio"
+        other: "%{count} áudios"
       description: 'Anexado: %{attached}'
       image:
         one: "%{count} imagem"
