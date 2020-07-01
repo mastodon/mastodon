@@ -2,77 +2,115 @@
 sq:
   simple_form:
     hints:
+      account_alias:
+        acct: Specifikoni emrinepërdoruesit@përkatësi të llogarisë prej nga doni të lëvizet
+      account_migration:
+        acct: Specifikoni emrinepërdoruesit@përkatësi të llogarisë ku doni të lëvizet
       account_warning_preset:
-        text: Mund të përdorni sintaksë mesazhesh, të tillë si URL, hashtagë dhe përmendje
+        text: Mund të përdorni elementë sintakse mesazhesh, bie fjala, URL, hashtagë dhe përmendje
+        title: Opsionale. Jo i dukshëm për marrësin
       admin_account_action:
+        include_statuses: Përdoruesi do të shohë cilët mesazhe kanë shkaktuar veprimin e moderimit ose sinjalizimin
         send_email_notification: Përdoruesi do të marrë një shpjegim mbi çfarë ndodhi me llogarinë e tij
         text_html: Opsionale. Mund të përdorni sintaksë mesazhesh. Për të kursyer kohë, mund të <a href="%{path}">shtoni paracaktime sinjalizimesh</a>
         type_html: Zgjidhni ç’të bëhet me <strong>%{acct}</strong>
         warning_preset_id: Opsionale. Mundeni sërish të shtoni tekst vetjak në fund të paracaktimit
+      announcement:
+        all_day: Nëse i vihet shenjë, do të shfaqen vetëm datat e intervalit kohor
+        ends_at: Opsionale. Lajmërimi do të hiqet nga botimi në këtë kohë
+        scheduled_at: Lëreni të zbrazët që lajmërimi të botohet menjëherë
+        starts_at: Opsionale. Në rast se lajmërimi juaj është i lidhur me një interval kohor të caktuar
+        text: Mund të përdorni sintaksë mesazhesh. Ju lutemi, mos harroni që hapësira e lajmërimit do të hajë vend në ekranin e përdoruesit
       defaults:
         autofollow: Personat që regjistrohen përmes ftesës do t’ju ndjekin vetvetiu
         avatar: PNG, GIF ose JPG. Maksimumi %{size}. Do të zvogëlohen në %{dimensions}px
         bot: Kjo llogari kryesisht bën veprime të automatizuara dhe mund të mos mbikëqyret dot
         context: Një ose disa kontekste kur duhet të zbatohet filtri
+        current_password: Për qëllime sigurie, ju lutemi, jepni fjalëkalimin e llogarisë së tanishme
+        current_username: Që ta ripohoni, ju lutemi, jepni emrin e përdoruesit të llogarisë së tanishme
         digest: I dërguar vetëm pas një periudhe të gjatë pasiviteti dhe vetëm nëse keni marrë ndonjë mesazh personal gjatë mungesës suaj
+        discoverable: Drejtoria e profileve është një rrugë tjetër përmes së cilës llogaria juaj mund të mbërrijë te një publik më i gjerë
         email: Do t’ju dërgohet një email ripohimi
         fields: Te profili juaj mund të keni deri në 4 objekte të shfaqur si tabelë
         header: PNG, GIF ose JPG. E shumta %{size}. Do të ripërmasohet në %{dimensions}px
         inbox_url: Kopjoni URL-në prej faqes ballore të relesë që doni të përdorni
-        irreversible: Mesazhet e filtruar do të zhduket në mënyrë të pakthyeshme, edhe nëse filtri hiqet më vonë
+        irreversible: Mesazhet e filtruar do të zhduken në mënyrë të pakthyeshme, edhe nëse filtri hiqet më vonë
         locale: Gjuha e ndërfaqes së përdoruesit, email-eve dhe njoftimeve <em>push</em>
         locked: Lyp që ju të miratoni dorazi ndjekësit
         password: Përdorni të paktën 8 shenja
         phrase: Do të kërkohet përputhje pavarësish se teksti ose sinjalizimi mbi lëndën e një mesazhi është shkruar me të mëdha apo me të vogla
         scopes: Cilat API do të lejohet të përdorë aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
+        setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
         setting_display_media_default: Fshih media me shenjën rezervat
-        setting_display_media_hide_all: Fshih përherë krejt mediat
-        setting_display_media_show_all: Mediat me shenjën rezervat shfaqi përherë
+        setting_display_media_hide_all: Fshih përherë mediat
+        setting_display_media_show_all: Mediat shfaqi përherë
         setting_hide_network: Cilët ndiqni dhe cilët ju ndjekin nuk do të shfaqen në profilin tuaj
         setting_noindex: Prek faqet e profilit tuaj publik dhe gjendjeve
         setting_show_application: Aplikacioni që përdorni për mesazhe do të shfaqet te pamja e hollësishme për mesazhet tuaj
+        setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por fshehin çfarëdo hollësie
+        setting_use_pending_items: Fshihi përditësimet e rrjedhës kohore pas një klikimi, në vend të rrëshqitjes automatike nëpër prurje
         username: Emri juaj i përdoruesit do të jetë unik në %{domain}
         whole_word: Kur fjalëkyçi ose fraza është vetëm numerike, do të aplikohet vetëm nëse përputhet me krejt fjalën
+      domain_allow:
+        domain: Kjo përkatësi do të jetë në gjendje të sjellë të dhëna prej këtij shërbyesi dhe të dhënat ardhëse prej tij do të përpunohen dhe depozitohen
+      email_domain_block:
+        domain: Ky mund të jetë emri i përkatësisë që shfaqet te adresa email, zëri MX që i takon asaj përkatësie, ose IP-ja e shërbyesit te i cili shpie ai zë MX. Këto do të kontrollohen gjatë regjistrimit të përdoruesit dhe regjistrimi do të hidhet poshtë.
+        with_dns_records: Do të bëhet një përpjekje për ftillimin e zërave DNS të përkatësisë së dhënë dhe do të futen në listë bllokimesh edhe përfundimet
       featured_tag:
         name: 'Mund të doni të përdorni një nga këto:'
+      form_challenge:
+        current_password: Po hyni në një zonë të sigurt
       imports:
         data: Kartelë CSV të eksportuar nga një tjetër shërbyes Mastodon
+      invite_request:
+        text: Kjo do të na ndihmojë të shqyrtojmë aplikimin tuaj
       sessions:
-        otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimive:'
+        otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimeve:'
+      tag:
+        name: Mund të ndryshoni shkronjat vetëm nga të mëdha në të vogla ose anasjelltas, për shembull, për t’i bërë më të lexueshme
       user:
-        chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjjuhët e përzgjedhura
+        chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
     labels:
       account:
         fields:
           name: Etiketë
           value: Lëndë
+      account_alias:
+        acct: Trajtim i llogarisë së vjetër
+      account_migration:
+        acct: Trajtim i llogarisë së re
       account_warning_preset:
         text: Tekst i paracaktuar
+        title: Titull
       admin_account_action:
+        include_statuses: Përfshi te email-i mesazhet e raportuar
         send_email_notification: Njoftoje përdoruesin me email
         text: Sinjalizim vetjak
         type: Veprim
         types:
-          disable: Çaktivizoje
+          disable: Çaktivizo hyrjen
           none: Mos bëj gjë
           silence: Heshtje
           suspend: Pezulloje dhe fshi në mënyrë të pakthyeshme të dhënat e llogarisë
         warning_preset_id: Përdor një sinjalizim të paracaktuar
       announcement:
-        starts_at: Fillimi i ngjarjes
+        all_day: Akt gjatë gjithë ditës
+        ends_at: Përfundim i aktit
+        scheduled_at: Planifikoji botimin
+        starts_at: Fillim i aktit
         text: Lajmërim
       defaults:
         autofollow: Ftesë për ndjekje të llogarisë tuaj
-        avatar: Foto profili
+        avatar: Avatar
         bot: Kjo është një llogari robot
-        chosen_languages: Filtro gjuhë
+        chosen_languages: Filtroni gjuhë
         confirm_new_password: Ripohoni fjalëkalimin e ri
         confirm_password: Ripohoni fjalëkalimin
         context: Filtroni kontekste
         current_password: Fjalëkalimi i tanishëm
         data: Të dhëna
-        discoverable: Shfaqe këtë llogari te lista
+        discoverable: Shfaqe këtë llogari te drejtoria
         display_name: Emër në ekran
         email: Adresë email
         expires_in: Skadon pas
@@ -88,12 +126,13 @@ sq:
         otp_attempt: Kod mirëfilltësimi dyfaktorësh
         password: Fjalëkalim
         phrase: Fjalëkyç ose frazë
-        setting_advanced_layout: Aktivizo ueb interface të avancuar
+        setting_advanced_layout: Aktivizo ndërfaqe web të thelluar
         setting_aggregate_reblogs: Grupoji përforcimet në rrjedha kohore
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
+        setting_crop_images: Në mesazhe jo të zgjerueshëm, qethi figurat në 16x9
         setting_default_language: Gjuhë postimi
-        setting_default_privacy: Privatësi postim
+        setting_default_privacy: Privatësi postimi
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
         setting_delete_modal: Shfaq dialog ripohimi përpara fshirjes së një mesazhi
         setting_display_media: Shfaqje mediash
@@ -107,35 +146,45 @@ sq:
         setting_show_application: Tregoje aplikacionin e përdorur për të dërguar mesazhe
         setting_system_font_ui: Përdor shkronja parazgjedhje të sistemit
         setting_theme: Temë sajti
-        setting_trends: Shfaq trendet e sodit
+        setting_trends: Shfaq prirjet sot
         setting_unfollow_modal: Shfaq dialog ripohimi përpara heqjes së ndjekjes për dikë
-        setting_use_blurhash: Shfaq ngjyra me pjerrësi për media të fshehura
-        setting_use_pending_items: Gjendje e ngadalshme
+        setting_use_blurhash: Shfaq gradientë ngjyrash për media të fshehura
+        setting_use_pending_items: Mënyra ngadalë
         severity: Rreptësi
+        sign_in_token_attempt: Kod sigurie
         type: Lloj importimi
         username: Emër përdoruesi
         username_or_email: Emër përdoruesi ose Email
         whole_word: Krejt fjalën
+      email_domain_block:
+        with_dns_records: Përfshi zëra MX dhe IP-ra të përkatësisë
       featured_tag:
         name: Hashtag
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që nuk i ndiqni
-        must_be_following_dm: Blloko mesazhe të drejtpërdrejt nga persona që nuk i ndiqni
+        must_be_following_dm: Blloko mesazhe të drejtpërdrejtë nga persona që nuk i ndiqni
       invite:
-        comment: Komento
+        comment: Komentoni
+      invite_request:
+        text: Pse doni të bëheni pjesë?
       notification_emails:
         digest: Dërgo email-e përmbledhës
-        favourite: Të dërgohet email kur dikush parapëlqen gjendjen tuaj
-        follow: Të dërgohet email kur dikush fillon t’ju ndjekë
-        follow_request: Të dërgohet email kur dikush kërkon t’ju ndjekë
-        mention: Të dërgohet email kur dikush ju përmend
-        reblog: Dërgo email kur dikush përforcon gjendjen time
-        report: Dërgo email kur parashtrohet një raportim i ri
+        favourite: Dikush parapëlqeu gjendjen tuaj
+        follow: Dikush filloi t’ju ndjekë
+        follow_request: Dikush kërkoi t’ju ndjekë
+        mention: Dikush ju përmendi
+        pending_account: Llogaria e re lyp shqyrtim
+        reblog: Dikush përforcoi gjendjen tuaj
+        report: Parashtrohet raportim i ri
+        trending_tag: Një hashtag i pashqyrtuar zë e bëhet popullor
       tag:
+        listable: Lejoje këtë hashtag të shfaqet në kërkime dhe në drejtori profilesh
         name: Hashtag
+        trendable: Lejoje këtë hashtag të shfaqet në prirje
+        usable: Lejoji mesazhet të përdorin këtë hashtag
     'no': Jo
-    recommended: Rekomanduar
+    recommended: E rekomanduar
     required:
       mark: "*"
       text: e domosdoshme
