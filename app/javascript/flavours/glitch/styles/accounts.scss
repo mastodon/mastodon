@@ -78,6 +78,10 @@
       margin-left: 15px;
       text-align: left;
 
+      i[data-hidden] {
+        display: none;
+      }
+
       strong {
         font-size: 15px;
         color: $primary-text-color;
