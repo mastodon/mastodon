@@ -14,6 +14,8 @@ class MoveWorker
     end
 
     copy_account_notes!
+    carry_blocks_over!
+    carry_mutes_over!
   rescue ActiveRecord::RecordNotFound
     true
   end
@@ -49,6 +51,31 @@ class MoveWorker
       else
         new_note.update!(comment: [text, note.comment, '\n', new_note.comment].join('\n'))
       end
+    end
+  end
+
+  def carry_blocks_over!
+    @source_account.blocked_by_relationships.where(account: Account.local).find_each do |block|
+      unless block.account.blocking?(@target_account) || block.account.following?(@target_account)
+        BlockService.new.call(block.account, @target_account)
+        add_account_note_if_needed!(block.account, 'move_handler.carry_blocks_over_text')
+      end
+    end
+  end
+
+  def carry_mutes_over!
+    @source_account.muted_by_relationships.where(account: Account.local).find_each do |mute|
+      MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications) unless mute.account.muting?(@target_account) || mute.account.following?(@target_account)
+      add_account_note_if_needed!(mute.account, 'move_handler.carry_mutes_over_text')
+    end
+  end
+
+  def add_account_note_if_needed!(account, id)
+    unless AccountNote.where(account: account, target_account: @target_account).exists?
+      text = I18n.with_locale(account.user.locale || I18n.default_locale) do
+        I18n.t(id, acct: @source_account.acct)
+      end
+      AccountNote.create!(account: account, target_account: @target_account, comment: text)
     end
   end
 end
