@@ -20,7 +20,7 @@ import MissingIndicator from 'mastodon/components/missing_indicator';
 import TimelineHint from 'mastodon/components/timeline_hint';
 
 const mapStateToProps = (state, props) => ({
-  remote: !!state.getIn(['accounts', props.params.accountId, 'acct']) !== state.getIn(['accounts', props.params.accountId, 'username']),
+  remote: !!(state.getIn(['accounts', props.params.accountId, 'acct']) !== state.getIn(['accounts', props.params.accountId, 'username'])),
   remoteUrl: state.getIn(['accounts', props.params.accountId, 'url']),
   isAccount: !!state.getIn(['accounts', props.params.accountId]),
   accountIds: state.getIn(['user_lists', 'following', props.params.accountId, 'items']),
