@@ -1,8 +1,7 @@
----
 eu:
   about:
-    about_hashtag_html: Hauek  <strong>#%{hashtag}</strong> traola duten toot publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.
-    about_mastodon_html: Mastodon web protokolo ireki eta libreak darabiltzan gizarte sare bat da. E-mail sarea bezala deszentralizatua da.
+    about_hashtag_html: 'Hauek  <strong>#%{hashtag}</strong> traola duten toot publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.'
+    about_mastodon_html: 'Mastodon web protokolo ireki eta libreak darabiltzan gizarte sare bat da. E-mail sarea bezala deszentralizatua da.'
     about_this: Honi buruz
     active_count_after: aktibo
     active_footnote: Hilabeteko erabiltzaile aktiboak (HEA)
@@ -18,12 +17,11 @@ eu:
     contact_unavailable: E/E
     discover_users: Aurkitu erabiltzaileak
     documentation: Dokumentazioa
-    federation_hint_html: "%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere."
+    federation_hint_html: '%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere.'
     get_apps: Probatu mugikorrerako aplikazio bat
     hosted_on: Mastodon %{domain} domeinuan ostatatua
-    instance_actor_flash: 'Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke.
-
-      '
+    instance_actor_flash: |
+      Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke.
     learn_more: Ikasi gehiago
     privacy_policy: Pribatutasun politika
     see_whats_happening: Ikusi zer gertatzen ari den
@@ -57,7 +55,7 @@ eu:
       one: Jarraitzaile
       other: jarraitzaile
     following: Jarraitzen
-    joined: "%{date}(e)an elkartua"
+    joined: '%{date}(e)an elkartua'
     last_active: azkenekoz aktiboa
     link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
     media: Multimedia
@@ -65,8 +63,8 @@ eu:
     network_hidden: Informazio hau ez dago eskuragarri
     never_active: Inoiz ez
     nothing_here: Ez dago ezer hemen!
-    people_followed_by: "%{name}(e)k jarraitzen dituenak"
-    people_who_follow: "%{name} jarraitzen dutenak"
+    people_followed_by: '%{name}(e)k jarraitzen dituenak'
+    people_who_follow: '%{name} jarraitzen dutenak'
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
     posts:
@@ -268,7 +266,7 @@ eu:
         create: Sortu iragarpena
         title: Iragarpen berria
       published_msg: Iragarpena ongi argitaratu da!
-      scheduled_for: "%{time}-rako programatuta"
+      scheduled_for: '%{time}-rako programatuta'
       scheduled_msg: Iragarpena argitaratzeko programatuta!
       title: Iragarpenak
       unpublished_msg: Iragarpena ongi desargitaratu da!
@@ -370,7 +368,7 @@ eu:
       show:
         affected_accounts:
           one: Datu-baseko kontu bati eragiten dio
-          other: Datu-baseko %{count} kontuei eragiten die
+          other: "Datu-baseko %{count} kontuei eragiten die"
         retroactive:
           silence: Kendu isilarazteko agindua domeinu honetako kontu guztiei
           suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
@@ -385,7 +383,7 @@ eu:
       destroyed_msg: Ongi ezabatu da e-mail domeinua zerrenda beltzetik
       domain: Domeinua
       empty: Ez dago e-mail domeinurik zerrenda beltzean.
-      from_html: "%{domain} domeinutik"
+      from_html: '%{domain} domeinutik'
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
@@ -394,7 +392,7 @@ eu:
       by_domain: Domeinua
       delivery_available: Bidalketa eskuragarri dago
       known_accounts:
-        one: Kontu ezagun %{count}
+        one: "Kontu ezagun %{count}"
         other: "%{count} kontu ezagun"
       moderation:
         all: Denak
@@ -423,7 +421,7 @@ eu:
     relays:
       add_new: Gehitu hari errelea
       delete: Ezabatu
-      description_html: "<strong>Federazio errele</strong> bat zerbitzari tartekari bat da, bertara harpidetutako eta bertan argitaratzen duten zerbitzarien artean toot publiko kopuru handiak banatzen ditu. <strong>Zerbitzari txiki eta ertainei Fedibertsoko edukia aurkitzen laguntzen die</strong>, bestela erabiltzaile lokalek eskuz jarraitu beharko lituzkete urruneko zerbitzarietako erabiltzaileak."
+      description_html: <strong>Federazio errele</strong> bat zerbitzari tartekari bat da, bertara harpidetutako eta bertan argitaratzen duten zerbitzarien artean toot publiko kopuru handiak banatzen ditu. <strong>Zerbitzari txiki eta ertainei Fedibertsoko edukia aurkitzen laguntzen die</strong>, bestela erabiltzaile lokalek eskuz jarraitu beharko lituzkete urruneko zerbitzarietako erabiltzaileak.
       disable: Desgaitu
       disabled: Desgaituta
       enable: Gaitu
@@ -442,10 +440,10 @@ eu:
     reports:
       account:
         notes:
-          one: Ohar %{count}
+          one: "Ohar %{count}"
           other: "%{count} ohar"
         reports:
-          one: Txosten %{count}
+          one: "Txosten %{count}"
           other: "%{count} txosten"
       action_taken_by: Neurrien hartzailea
       are_you_sure: Ziur zaude?
@@ -612,11 +610,11 @@ eu:
       subject: Kontu berria berrikusteko %{instance} instantzian (%{username})
     new_report:
       body: "%{reporter}(e)k %{target} salatu du"
-      body_remote: "%{domain} domeinuko norbaitek %{target} salatu du"
-      subject: Salaketa berria %{instance} instantzian (#%{id})
+      body_remote: '%{domain} domeinuko norbaitek %{target} salatu du'
+      subject: 'Salaketa berria %{instance} instantzian (#%{id})'
     new_trending_tag:
-      body: "#%{name} traola joeran dago gaur, baina ez da oraindik errebisatu. Ez da publikoki agertuko baimentzen ez baduzu, edo gorde inprimakia dagoen moduan eta ez duzu berriro honi buruz entzungo."
-      subject: Traola berria errebisatzeko %{instance} instantzian (#%{name})
+      body: '#%{name} traola joeran dago gaur, baina ez da oraindik errebisatu. Ez da publikoki agertuko baimentzen ez baduzu, edo gorde inprimakia dagoen moduan eta ez duzu berriro honi buruz entzungo.'
+      subject: 'Traola berria errebisatzeko %{instance} instantzian (#%{name})'
   aliases:
     add_new: Sortu ezizena
     created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.
@@ -831,7 +829,7 @@ eu:
         verification_failed: Keybase-k ez du token hau Keybase-ko %{kb_username} erabiltzailearen sinaduratzat onartzen. Saiatu berriro Keybase-tik.
       wrong_user: Ezin izan da %{proving} erabiltzailearentzat froga sortu %{current} gisa saioa hasita. Hasi saioa %{proving} erabilita eta saiatu berriro.
     explanation_html: Hemen modu zifratuan konektatu ditzakezu zure beste identitateak, esaterako Keybase profila. Honek beste jendeak zuri zifratutako mezuak bidaltzea ahalbidetzen du, eta zuk beraiei bidalitako edukia fidagarritzat jotzea.
-    i_am_html: "%{username} erabiltzailea naiz %{service} zerbitzuan."
+    i_am_html: '%{username} erabiltzailea naiz %{service} zerbitzuan.'
     identity: Identitatea
     inactive: Ez aktiboa
     publicize_checkbox: 'Eta bidali toot hau:'
@@ -930,7 +928,7 @@ eu:
         other: "%{count} jakinarazpen berri azken bisitatik \U0001F418"
       title: Kanpoan zeundela...
     favourite:
-      body: "%{name}(e)k zure mezua gogoko du:"
+      body: '%{name}(e)k zure mezua gogoko du:'
       subject: "%{name}(e)k zure mezua gogoko du"
       title: Gogoko berria
     follow:
@@ -944,11 +942,11 @@ eu:
       title: Jarraitzeko eskaera berria
     mention:
       action: Erantzun
-      body: "%{name}(e)k aipatu zaitu:"
-      subject: "%{name}(e)k aipatu zaitu"
+      body: '%{name}(e)k aipatu zaitu:'
+      subject: '%{name}(e)k aipatu zaitu'
       title: Aipamen berria
     reblog:
-      body: "%{name}(e)k bultzada eman dio zure mezuari:"
+      body: '%{name}(e)k bultzada eman dio zure mezuari:'
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
   notifications:
@@ -1095,12 +1093,12 @@ eu:
     attached:
       description: 'Erantsita: %{attached}'
       image:
-        one: irudi %{count}
+        one: "irudi %{count}"
         other: "%{count} irudi"
       video:
-        one: bideo %{count}
+        one: "bideo %{count}"
         other: "%{count} bideo"
-    boosted_from_html: "%{acct_link}(e)tik bultzatua"
+    boosted_from_html: '%{acct_link}(e)tik bultzatua'
     content_warning: 'Edukiaren abisua: %{warning}'
     disallowed_hashtags:
       one: 'debekatutako traola bat zuen: %{tags}'
@@ -1109,7 +1107,7 @@ eu:
       in_reply_not_found: Erantzuten saiatu zaren mezua antza ez da existitzen.
     language_detection: Antzeman hizkuntza automatikoki
     open_in_web: Ireki web-ean
-    over_character_limit: "%{max}eko karaktere muga gaindituta"
+    over_character_limit: '%{max}eko karaktere muga gaindituta'
     pin_errors:
       limit: Gehienez finkatu daitekeen toot kopurua finkatu duzu jada
       ownership: Ezin duzu beste norbaiten toot bat finkatu
@@ -1117,10 +1115,10 @@ eu:
       reblog: Bultzada bat ezin da finkatu
     poll:
       total_people:
-        one: pertsona %{count}
+        one: "pertsona %{count}"
         other: "%{count} pertsona"
       total_votes:
-        one: Boto %{count}
+        one: "Boto %{count}"
         other: "%{count} boto"
       vote: Bozkatu
     show_more: Erakutsi gehiago
@@ -1136,7 +1134,7 @@ eu:
       unlisted_long: Edonork ikusi dezake, baina ez da denbora-lerro publikoetan agertzen
   stream_entries:
     pinned: Finkatutako toota
-    reblogged: "(r)en bultzada"
+    reblogged: (r)en bultzada
     sensitive_content: 'Kontuz: Eduki hunkigarria'
   tags:
     does_not_match_previous_name: ez dator aurreko izenarekin bat
@@ -1233,7 +1231,7 @@ eu:
       month: "%Y(e)ko %b"
   two_factor_authentication:
     code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
-    description_html: "<strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako."
+    description_html: <strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako.
     disable: Desgaitu
     enable: Gaitu
     enabled: Bi faktoreetako autentifikazioa gaituta dago
@@ -1257,12 +1255,12 @@ eu:
         disable: Zure kontua izoztuta dagoen bitartean, zure kontua bere horretan dirau, baina ezin duzu ekintzarik burutu desblokeatzen den arte.
         silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure tootak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
         suspend: Zure kontua kanporatua izan da, zure toot guztiak eta multimedia fitxategiak behin betiko ezabatu dira zerbitzari honetatik, eta zure jarraitzaileen zerbitzarietatik.
-      get_in_touch: "%{instance} instantziako jendearekin harremanetan jartzeko e-mail honi erantzun ahal diozu."
+      get_in_touch: '%{instance} instantziako jendearekin harremanetan jartzeko e-mail honi erantzun ahal diozu.'
       review_server_policies: Berrikusi zerbitzariko politikak
       statuses: 'Zehazki, honentzat:'
       subject:
         disable: Zure  %{acct} kontua izoztu da
-        none: "%{acct} konturako abisua"
+        none: '%{acct} konturako abisua'
         silence: Zure  %{acct} kontua murriztu da
         suspend: Zure %{acct} kontua kanporatua izan da
       title:
