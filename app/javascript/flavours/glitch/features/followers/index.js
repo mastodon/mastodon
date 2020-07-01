@@ -20,7 +20,7 @@ import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import TimelineHint from 'flavours/glitch/components/timeline_hint';
 
 const mapStateToProps = (state, props) => ({
-  remote: !!state.getIn(['accounts', props.params.accountId, 'acct']) !== state.getIn(['accounts', props.params.accountId, 'username']),
+  remote: !!(state.getIn(['accounts', props.params.accountId, 'acct']) !== state.getIn(['accounts', props.params.accountId, 'username'])),
   remoteUrl: state.getIn(['accounts', props.params.accountId, 'url']),
   isAccount: !!state.getIn(['accounts', props.params.accountId]),
   accountIds: state.getIn(['user_lists', 'followers', props.params.accountId, 'items']),

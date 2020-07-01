@@ -21,7 +21,7 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
   return {
-    remote: !!state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username']),
+    remote: !!(state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username'])),
     remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
