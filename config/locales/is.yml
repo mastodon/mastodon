@@ -939,6 +939,10 @@ is:
       redirect: Notandasnið aðgangsins verður uppfært með athugasemd um endurbeininguna og verður undanþegið frá leitum
   moderation:
     title: Umsjón
+  move_handler:
+    carry_blocks_over_text: Þessi notandi fluttist frá %{acct}, sem þú hafðir útilokað.
+    carry_mutes_over_text: Þessi notandi fluttist frá %{acct}, sem þú hafðir þaggað niður í.
+    copy_account_note_text: 'Þessi notandi fluttist frá %{acct}, hér eru fyrri minnispunktar þínir um hann:'
   notification_mailer:
     digest:
       action: Skoða allar tilkynningar
@@ -1115,6 +1119,9 @@ is:
     spam_detected: Þetta er sjálfvirk kæra. Ruslpóstur hefur fundist.
   statuses:
     attached:
+      audio:
+        one: "%{count} hljóðskrá"
+        other: "%{count} hljóðskrár"
       description: 'Viðhengt: %{attached}'
       image:
         one: "%{count} mynd"
