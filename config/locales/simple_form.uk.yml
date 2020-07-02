@@ -53,6 +53,8 @@ uk:
         whole_word: Якщо пошукове слово або фраза містить тільки літери та цифри, воно має співпадати цілком
       domain_allow:
         domain: Цей домен зможе отримувати дані з цього серверу. Вхідні дані будуть оброблені та збережені
+      email_domain_block:
+        with_dns_records: Спроба визначення DNS-записів заданого домену буде здійснена, а результати також будуть занесені до чорного списку
       featured_tag:
         name: 'Можливо, ви захочете використовувати один з цих:'
       form_challenge:
@@ -147,10 +149,13 @@ uk:
         setting_use_blurhash: Відображати барвисті градієнти замість прихованих медіа
         setting_use_pending_items: Повільний режим
         severity: Серйозність
+        sign_in_token_attempt: Код безпеки
         type: Тип імпорту
         username: Ім'я користувача
         username_or_email: Ім'я користувача або електронна пошта
         whole_word: Ціле слово
+      email_domain_block:
+        with_dns_records: Включити MX записи та IP-адреси домену
       featured_tag:
         name: Хештеґ
       interactions:
