@@ -52,7 +52,7 @@ zh-CN:
         callback_urls: 回调 URL
         scopes: 权限范围
         secret: 应用密钥
-        title: 应用：%{name}
+        title: 应用名称：%{name}
     authorizations:
       buttons:
         authorize: 同意授权
@@ -61,7 +61,7 @@ zh-CN:
         title: 发生错误
       new:
         able_to: 此应用将能够
-        prompt: 授权 %{client_name} 使用你的帐户？
+        prompt: 授权 %{client_name} 访问你的帐户？
         title: 需要授权
       show:
         title: 接下来请复制此处的授权代码并粘贴到应用中。
@@ -73,7 +73,7 @@ zh-CN:
       index:
         application: 应用
         created_at: 授权时间
-        date_format: "%H:%M:%S"
+        date_format: "%Y年%m月%d日 %H时%M分%S秒"
         scopes: 权限范围
         title: 已授权的应用列表
     errors:

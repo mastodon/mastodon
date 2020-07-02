@@ -15,11 +15,11 @@ vi:
               fragment_present: không thể chứa một mảnh.
               invalid_uri: phải là một URI hợp lệ.
               relative_uri: phải là một URI tuyệt đối.
-              secured_uri: phải là URI HTTPS / SSL.
+              secured_uri: phải sử dụng giao thức HTTPS / SSL.
   doorkeeper:
     applications:
       buttons:
-        authorize: Ủy quyền
+        authorize: Cho phép
         cancel: Hủy bỏ
         destroy: Xoá bỏ
         edit: Sửa
@@ -29,15 +29,16 @@ vi:
       edit:
         title: Chỉnh sửa ứng dụng
       form:
-        error: Rất tiếc! Hãy kiểm tra thông tin của bạn vì có thể nó có lỗi
+        error: Rất tiếc! Hãy kiểm tra thông tin của bạn bởi vì nó có lỗi
       help:
-        native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm thử ở máy nội bộ
+        native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm tra nội bộ
         redirect_uri: Sử dụng một dòng trên mỗi URI
         scopes: Phạm vi riêng biệt với không gian. Để trống để sử dụng phạm vi mặc định.
       index:
         application: Ứng dụng
-        callback_url: gọi lại URL
+        callback_url: Gọi lại URL
         delete: Xóa bỏ
+        empty: Bạn không có ứng dụng nào.
         name: Tên
         new: Ứng dụng mới
         scopes: Phạm vi
@@ -47,23 +48,23 @@ vi:
         title: Ứng dụng mới
       show:
         actions: Hành động
-        application_id: Khóa khách
-        callback_urls: URL gọi lại
+        application_id: Mã Client
+        callback_urls: Gọi lại URLs
         scopes: Phạm vi
-        secret: Bí mật khách hàng
+        secret: Bí ẩn của Client
         title: 'Ứng dụng: %{name}'
     authorizations:
       buttons:
-        authorize: Ủy quyền
+        authorize: Cho phép
         deny: Từ chối
       error:
-        title: một lỗi đã xảy ra
+        title: Một lỗi đã xảy ra
       new:
         able_to: Nó sẽ có thể
         prompt: Ứng dụng %{client_name} yêu cầu quyền truy cập vào tài khoản của bạn
-        title: Cần được ủy quyền
+        title: Cần được cho phép
       show:
-        title: Sao chép mã ủy quyền này và dán nó vào ứng dụng.
+        title: Sao chép mã này và dán nó vào ứng dụng.
     authorized_applications:
       buttons:
         revoke: Thu hồi
@@ -71,16 +72,16 @@ vi:
         revoke: Bạn có chắc không?
       index:
         application: Ứng dụng
-        created_at: Được ủy quyền
+        created_at: Đã cho phép
         date_format: "% Y-% m-%d% H:% M:% S"
         scopes: Phạm vi
-        title: Các ứng dụng đã được cấp phép
+        title: Các ứng dụng mà bạn cho phép
     errors:
       messages:
-        access_denied: Chủ sở hữu tài nguyên hoặc máy chủ ủy quyền từ chối yêu cầu.
+        access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
-        invalid_client: Xác thực ứng dụng khách không thành công do máy khách không xác định, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
-        invalid_grant: Cấp quyền được cung cấp không hợp lệ, hết hạn, bị thu hồi, không khớp với URI chuyển hướng được sử dụng trong yêu cầu ủy quyền hoặc được cấp cho một khách hàng khác.
+        invalid_client: Xác thực ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
+        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị thu hồi hoặc không khớp với tài khoản đã cung cấp.
         invalid_redirect_uri: Uri chuyển hướng bao gồm không hợp lệ.
         invalid_request: Yêu cầu thiếu tham số bắt buộc, bao gồm giá trị tham số không được hỗ trợ hoặc không đúng định dạng.
         invalid_resource_owner: Thông tin xác thực chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
@@ -90,11 +91,11 @@ vi:
           revoked: Mã thông báo truy cập đã bị thu hồi
           unknown: Mã thông báo truy cập không hợp lệ
         resource_owner_authenticator_not_configured: Chủ sở hữu tài nguyên tìm thấy thất bại do Doorkeeper.configure.resource_owner_authenticator không được định cấu hình.
-        server_error: Máy chủ ủy quyền đã gặp phải một điều kiện không mong muốn khiến nó không thể thực hiện yêu cầu.
-        temporarily_unavailable: Máy chủ ủy quyền hiện không thể xử lý yêu cầu do quá tải tạm thời hoặc bảo trì máy chủ.
+        server_error: Có một điều kiện không thể chấp nhận khiến máy chủ không thực hiện yêu cầu.
+        temporarily_unavailable: Máy chủ này hiện không thể xử lý yêu cầu do đang quá tải hoặc bảo trì.
         unauthorized_client: Khách hàng không được phép thực hiện yêu cầu này bằng phương pháp này.
-        unsupported_grant_type: Loại cấp quyền không được hỗ trợ bởi máy chủ ủy quyền.
-        unsupported_response_type: Máy chủ ủy quyền không hỗ trợ loại phản hồi này.
+        unsupported_grant_type: Máy chủ này không cho phép ứng dụng có quyền truy cập.
+        unsupported_response_type: Máy chủ không hỗ trợ kiểu giao thức truyền thông này.
     flash:
       applications:
         create:
@@ -112,7 +113,7 @@ vi:
           applications: Các ứng dụng
           oauth2_provider: Nhà cung cấp OAuth2
       application:
-        title: Yêu cầu ủy quyền OAuth
+        title: Đăng nhập bằng OAuth
     scopes:
       admin:read: đọc tất cả dữ liệu trên máy chủ
       admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản

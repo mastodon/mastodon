@@ -1,281 +1,343 @@
 ---
 vi:
   about:
-    about_hashtag_html: Đây là các tút công khai được gắn thẻ <strong># %{hashtag}</strong> . Bạn có thể tương tác với họ nếu bạn có tài khoản ở bất cứ đâu trong fediverse.
-    about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không giám sát doanh nghiệp, thiết kế đạo đức và phân cấp! Sở hữu dữ liệu của bạn với Mastodon!'
-    about_this: Trong khoảng
-    active_count_after: Hoạt động
-    active_footnote: Người dùng hoạt động hàng tháng (MAU)
-    administered_by: 'Điều hành bởi:'
+    about_hashtag_html: Đây là các tút công khai được gắn thẻ <strong>#%{hashtag}</strong>. Chỉ cần bạn có tài khoản ở bất cứ đâu trong mạng liên kết là bạn có thể tương tác với chúng.
+    about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không theo dõi người dùng và phi tập quyền! Làm chủ quyền riêng tư của bạn với Mastodon!'
+    about_this: Giới thiệu
+    active_count_after: hoạt động
+    active_footnote: Người dùng hoạt động hàng tháng
+    administered_by: 'Quản trị viên:'
     api: API
-    apps: Ứng dụng di động
-    apps_platforms: Sử dụng Mastodon từ iOS, Android và các nền tảng khác
-    browse_directory: Duyệt một thư mục hồ sơ và lọc theo sở thích
-    browse_local_posts: Duyệt một luồng trực tiếp các bài đăng công khai trên trang
-    browse_public_posts: Duyệt một luồng trực tiếp các bài đăng công khai trên Mastodon
-    contact: Tiếp xúc
-    contact_missing: Không được thiết lập
-    contact_unavailable: Không có
+    apps: App điện thoại
+    apps_platforms: Sử dụng Mastodon trên iOS, Android và các nền tảng khác
+    browse_directory: Duyệt danh sách thành viên để tìm bạn bè
+    browse_local_posts: Xem thử những tút công khai gần đây
+    browse_public_posts: Xem thử những tút công khai trên mạng Mastodon
+    contact: 'Liên lạc:'
+    contact_missing: Chưa thiết lập
+    contact_unavailable: N/A
     discover_users: Khám phá người dùng
     documentation: Tài liệu
-    federation_hint_html: Với tài khoản trên %{instance}, bạn sẽ có thể theo dõi mọi người trên bất kỳ máy chủ Mastodon nào và hơn thế nữa.
+    federation_hint_html: Với tài khoản trên %{instance}, bạn sẽ có thể giao tiếp với mọi người trên bất kỳ máy chủ Mastodon nào và hơn thế nữa.
     get_apps: Dùng thử ứng dụng di động
-    hosted_on: " %{domain} được vận hành trên Mastodon"
-    instance_actor_flash: "Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ phiên bản, trong trường hợp đó bạn nên sử dụng một khối miền. \n"
+    hosted_on: "%{domain} vận hành nhờ Mastodon"
+    instance_actor_flash: 'Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
+
+      '
     learn_more: Tìm hiểu thêm
     privacy_policy: Chính sách bảo mật
     see_whats_happening: Xem những gì đang xảy ra
-    server_stats: 'Số liệu thống kê máy chủ:'
+    server_stats: 'Thống kê máy chủ:'
     source_code: Mã nguồn
     status_count_after:
-      other: trạng thái
-    status_count_before: Ai là tác giả
-    tagline: Theo dõi bạn bè và khám phá những cái mới
+      other: tút
+    status_count_before: Nơi lưu giữ
+    tagline: Mạng xã hội liên hợp lớn nhất thế giới
     terms: Điều khoản dịch vụ
-    unavailable_content: Nội dung không khả dụng
+    unavailable_content: Máy chủ bị giới hạn
     unavailable_content_description:
-      domain: Người phục vụ
+      domain: Máy chủ
       reason: Lý do
-      rejecting_media: 'Các tệp phương tiện từ các máy chủ này sẽ không được xử lý hoặc lưu trữ và không có hình thu nhỏ nào được hiển thị, yêu cầu nhấp thủ công vào tệp gốc:'
-      silenced: 'Các bài đăng từ các máy chủ này sẽ bị ẩn trong các dòng thời gian và cuộc trò chuyện công khai và không có thông báo nào được tạo từ các tương tác của người dùng của họ, trừ khi bạn đang theo dõi họ:'
-      suspended: 'Không có dữ liệu từ các máy chủ này sẽ được xử lý, lưu trữ hoặc trao đổi, khiến cho bất kỳ tương tác hoặc giao tiếp với người dùng từ các máy chủ này đều không thể:'
-    unavailable_content_html: Mastodon thường cho phép bạn xem nội dung từ và tương tác với người dùng từ bất kỳ máy chủ nào khác trong fediverse. Đây là những ngoại lệ đã được thực hiện trên máy chủ cụ thể này.
+      rejecting_media: 'Ảnh và video từ những máy chủ sau sẽ không được xử lý, lưu trữ và hiển thị hình thu nhỏ, bắt buộc nhấp thủ công vào tệp gốc để xem:'
+      silenced: 'Tút từ những máy chủ sau sẽ bị ẩn trên bảng tin, trong tin nhắn và không có thông báo nào được tạo từ các tương tác của người dùng của họ, trừ khi bạn có mến mộ người dùng của họ:'
+      suspended: 'Những máy chủ sau sẽ không được xử lý, lưu trữ hoặc trao đổi nội dung. Mọi tương tác hoặc giao tiếp với người dùng từ các máy chủ này cũng bị cấm:'
+    unavailable_content_html: Mastodon cho phép bạn xem nội dung và tương tác với người dùng từ bất kỳ máy chủ nào khác trong mạng liên kết. Còn máy chủ này có những ngoại lệ riêng.
     user_count_after:
       other: người dùng
-    user_count_before: Nhà
+    user_count_before: Nhà của
     what_is_mastodon: Mastodon là gì?
   accounts:
-    choices_html: 'lựa chọn của %{name}:'
-    endorsements_hint: Bạn có thể xác nhận những người bạn theo dõi từ giao diện web và họ sẽ hiển thị ở đây.
-    featured_tags_hint: Bạn có thể làm nổi bật các hashtag cụ thể sẽ được hiển thị ở đây.
-    follow: Theo
+    choices_html: 'Những người %{name} đang mến mộ:'
+    endorsements_hint: Bạn có thể vinh danh những người bạn mến mộ và họ sẽ hiển thị ở giao diện web.
+    featured_tags_hint: Bạn có thể cho biết những hashtag thường dùng ở đây.
+    follow: Mến mộ
     followers:
-      other: Người theo dõi
-    following: Tiếp theo
+      other: Người mến mộ
+    following: Đang mến mộ
     joined: Đã tham gia %{date}
-    last_active: hoạt động cuối cùng
-    link_verified_on: Quyền sở hữu của liên kết này đã được kiểm tra trên %{date}
-    media: Phương tiện truyền thông
-    moved_html: "%{name} đã chuyển sang %{new_profile_link}:"
-    network_hidden: Thông tin này không có sẵn
-    never_active: Không bao giờ
-    nothing_here: Không có cái gì ở đây cả!
-    people_followed_by: Những người mà %{name} theo dõi
-    people_who_follow: Những người theo dõi %{name}
+    last_active: hoạt động gần đây
+    link_verified_on: Liên kết này đã được xác thực quyền sở hữu vào %{date}
+    media: Ảnh & video
+    moved_html: "%{name} đã dời sang %{new_profile_link}:"
+    network_hidden: Thông tin này không còn tồn tại
+    never_active: Chưa có
+    nothing_here: Chưa đăng tút nào cả!
+    people_followed_by: Những người mà %{name} mến mộ
+    people_who_follow: Những người mến mộ %{name}
     pin_errors:
-      following: Bạn phải theo dõi người bạn muốn chứng thực
+      following: Để vinh danh người nào đó, bạn cần mến mộ họ trước
     posts:
       other: Tút
     posts_tab_heading: Tút
-    posts_with_replies: Tút và trả lời
-    reserved_username: Tên người dùng được bảo lưu
+    posts_with_replies: Phản hồi
+    reserved_username: Tên người dùng đã có rồi
     roles:
-      admin: quản trị viên
+      admin: Quản trị viên
       bot: Người máy
       group: Nhóm
-      moderator: Phép chia lấy phần dư
-    unavailable: Hồ sơ không có sẵn
-    unfollow: Hủy theo dõi
+      moderator: Kiểm duyệt viên
+    unavailable: Tài khoản không còn nữa
+    unfollow: Bỏ mến mộ
   admin:
     account_actions:
-      action: Diễn
-      title: Thực hiện hành động kiểm duyệt trên %{acct}
+      action: Thực hiện các hành động
+      title: Thực hiện kiểm duyệt với %{acct}
     account_moderation_notes:
-      create: Để lại ghi chú
-      created_msg: Lưu ý kiểm duyệt được tạo thành công!
+      create: Để lại lời nhắn
+      created_msg: Để lại lời nhắn kiểm duyệt thành công!
       delete: Xóa bỏ
-      destroyed_msg: Lưu ý kiểm duyệt thành công!
+      destroyed_msg: Đã ghi chú kiểm duyệt xong!
     accounts:
+      add_email_domain_block: Thêm máy chủ vào danh sách chặn
       approve: Phê duyệt
       approve_all: Phê duyệt tất cả
       are_you_sure: Bạn có chắc không?
-      avatar: hình đại diện
-      by_domain: Miền
+      avatar: Ảnh đại diện
+      by_domain: Máy chủ
       change_email:
         changed_msg: Email tài khoản đã thay đổi thành công!
         current_email: Email hiện tại
-        label: Thay đổi e-mail
+        label: Thay đổi email
         new_email: Email mới
-        submit: Thay đổi e-mail
+        submit: Thay đổi email
         title: Thay đổi email cho %{username}
       confirm: Xác nhận
-      confirmed: Đã xác nhận
-      confirming: Khẳng định
+      confirmed: Đã xác thực
+      confirming: Chờ xác nhận
       deleted: Đã xóa
-      demote: Hạ cấp
+      demote: Gỡ bỏ chức vụ
       disable: Vô hiệu hóa
-      disable_two_factor_authentication: Vô hiệu hóa 2FA
-      disabled: Tàn tật
+      disable_two_factor_authentication: Vô hiệu hóa xác thực hai bước
+      disabled: Đã vô hiệu hóa
       display_name: Tên hiển thị
-      domain: Miền
-      edit: Biên tập
-      email: E-mail
+      domain: Máy chủ
+      edit: Chỉnh sửa
+      email: Email
       email_status: Trạng thái email
-      enable: Kích hoạt
-      enabled: Đã bật
-      followers: Người theo dõi
-      follows: Theo sau
-      header: Tiêu đề
+      enable: Phê duyệt
+      enabled: Đã duyệt
+      followers: Người mến mộ
+      follows: Đang mến mộ
+      header: Ảnh bìa
       inbox_url: URL hộp thư đến
       invited_by: Được mời bởi
       ip: IP
       joined: Đã tham gia
       location:
         all: Tất cả
-        local: Địa phương
-        remote: Xa
+        local: Máy chủ của bạn
+        remote: Từ máy chủ khác
         title: Vị trí
       login_status: Trạng thái đăng nhập
-      media_attachments: Tệp đính kèm phương tiện
-      memorialize: Biến thành bản ghi nhớ
+      media_attachments: Tệp đính kèm
+      memorialize: Chuyển sang tài khoản tưởng niệm
       moderation:
         active: Hoạt động
         all: Tất cả
         pending: Đang chờ xử lý
-        silenced: Im lặng
-        suspended: Đình chỉ
-        title: Điều độ
-      moderation_notes: Ghi chú kiểm duyệt
+        silenced: Tạm ẩn
+        suspended: Vô hiệu hóa
+        title: Kiểm duyệt
+      moderation_notes: Nhật ký kiểm duyệt
       most_recent_activity: Hoạt động gần đây nhất
       most_recent_ip: IP gần đây nhất
-      no_account_selected: Không có tài khoản nào được thay đổi vì không có tài khoản nào được chọn
-      no_limits_imposed: Không giới hạn áp đặt
+      no_account_selected: Không có tài khoản nào thay đổi vì không có tài khoản nào được chọn
+      no_limits_imposed: Không áp đặt giới hạn
       not_subscribed: Chưa đăng ký
       pending: Đang chờ xem xét
-      perform_full_suspension: Đình chỉ
-      promote: Khuyến khích
+      perform_full_suspension: Vô hiệu hóa
+      promote: Chỉ định chức vụ
       protocol: Giao thức
-      public: Công cộng
+      public: Công khai
       push_subscription_expires: Đăng ký PuSH hết hạn
-      redownload: Làm mới hồ sơ
+      redownload: Làm mới trang cá nhân
       reject: Từ chối
       reject_all: Từ chối tất cả
-      remove_avatar: Xóa hình đại diện
-      remove_header: Xóa tiêu đề
+      remove_avatar: Xóa ảnh đại diện
+      remove_header: Xóa ảnh bìa
       resend_confirmation:
-        already_confirmed: Người dùng này đã được xác nhận
+        already_confirmed: Người dùng này đã được xác thực
         send: Gửi lại email xác nhận
-        success: Email xác nhận đã được gửi thành công!
-      reset: Cài lại
+        success: Email xác nhận đã gửi thành công!
+      reset: Đặt lại
       reset_password: Đặt lại mật khẩu
       resubscribe: Đăng ký lại
-      role: Quyền
+      role: Chức vụ
       roles:
-        admin: Người quản lý
-        moderator: Người điều hành
-        staff: Nhân viên
+        admin: Quản trị viên
+        moderator: Kiểm duyệt viên
+        staff: Đội ngũ quản lý
         user: Người dùng
       search: Tìm kiếm
-      search_same_ip: Thành viên khác cùng IP
-      shared_inbox_url: URL hộp thư đến được chia sẻ
+      search_same_email_domain: Tìm người dùng có cùng địa chỉ email
+      search_same_ip: Tìm người dùng có cùng IP
+      shared_inbox_url: Chia sẻ URL hộp thư đến
       show:
-        created_reports: Làm báo cáo
+        created_reports: Xuất báo cáo
         targeted_reports: Báo cáo bởi người khác
-      silence: khoảng lặng
-      silenced: Im lặng
-      statuses: Trạng thái
+      silence: Tạm ẩn
+      silenced: Tạm ẩn
+      statuses: Tút
       subscribe: Đăng ký
-      suspended: Đình chỉ
-      time_in_queue: Chờ đợi trong hàng đợi %{time}
+      suspended: Đã vô hiệu hóa
+      time_in_queue: Đang chờ cách đây %{time}
       title: Tài khoản
-      unconfirmed_email: Email chưa được xác nhận
-      undo_silenced: Hoàn tác im lặng
-      undo_suspension: Hoàn tác hệ thống treo
+      unconfirmed_email: Email chưa được xác thực
+      undo_silenced: Bỏ tạm ẩn
+      undo_suspension: Ngừng vô hiệu hóa
       unsubscribe: Hủy đăng ký
-      username: tên tài khoản
-      warn: Cảnh báo
+      username: Tên tài khoản
+      warn: Cảnh cáo
       web: Web
       whitelisted: Danh sách trắng
     action_logs:
+      action_types:
+        assigned_to_self_report: Báo cáo từ đội ngũ
+        change_email_user: Đổi email cho người dùng
+        confirm_user: Xác nhận người dùng
+        create_account_warning: Tạo cảnh cáo
+        create_announcement: Tạo thông báo
+        create_custom_emoji: Tạo Emoji mới
+        create_domain_allow: Tạo danh sách máy chủ cho phép
+        create_domain_block: Tạo danh sách máy chủ chặn
+        create_email_domain_block: Tạo danh sách địa chỉ email chặn
+        demote_user: Gỡ bỏ chức vụ
+        destroy_announcement: Gỡ thông báo
+        destroy_custom_emoji: Gỡ Emoji
+        destroy_domain_allow: Gỡ máy chủ cho phép
+        destroy_domain_block: Gỡ máy chủ chặn
+        destroy_email_domain_block: Gỡ email đã chặn
+        destroy_status: Xóa tút
+        disable_2fa_user: Vô hiệu hóa xác thực hai bước
+        disable_custom_emoji: Vô hiệu hóa Emoji
+        disable_user: Vô hiệu hóa người dùng
+        enable_custom_emoji: Bật Emoji
+        enable_user: Mở lại người dùng
+        memorialize_account: Tài khoản tưởng niệm
+        promote_user: Chỉ định chức vụ
+        remove_avatar_user: Gỡ bỏ ảnh đại diện
+        reopen_report: Mở lại báo cáo
+        reset_password_user: Đặt lại mật khẩu
+        resolve_report: Xem xét lại báo cáo
+        silence_account: Tài khoản tạm ẩn
+        suspend_account: Tài khoản bị vô hiệu hóa
+        unassigned_report: Báo cáo chưa xem
+        unsilence_account: Tài khoản bỏ tạm ẩn
+        unsuspend_account: Tài khoản đã ngừng vô hiệu hóa
+        update_announcement: Cập nhật thông báo
+        update_custom_emoji: Cập nhật Emoji mới
+        update_status: Cập nhật trạng thái máy chủ
       actions:
-        assigned_to_self_report: "%{name} được chỉ định báo cáo %{target} cho chính họ"
-        change_email_user: "%{name} đã thay đổi địa chỉ email của người dùng %{target}"
+        assigned_to_self_report: "%{name} đã xuất báo cáo %{target} cho chính họ"
+        change_email_user: "%{name} đã thay đổi địa chỉ email cho %{target}"
         confirm_user: "%{name} xác nhận địa chỉ email của người dùng %{target}"
-        create_account_warning: "%{name} đã gửi cảnh báo tới %{target}"
+        create_account_warning: "%{name} đã gửi cảnh cáo %{target}"
+        create_announcement: "%{name} tạo thông báo tới %{target}"
         create_custom_emoji: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
-        create_domain_allow: "%{name} tên miền trong danh sách trắng %{target}"
-        create_domain_block: "%{name} tên miền bị chặn %{target}"
-        create_email_domain_block: "%{name} tên miền e-mail trong danh sách đen %{target}"
-        demote_user: "%{name} hạ cấp người dùng %{target}"
+        create_domain_allow: "%{name} đưa máy chủ %{target} vào danh sách trắng"
+        create_domain_block: "%{name} chặn máy chủ %{target}"
+        create_email_domain_block: "%{name} đưa email %{target} vào danh sách đen"
+        demote_user: "%{name} đã gỡ bỏ chức vụ %{target}"
+        destroy_announcement: "%{name} gỡ thông báo tới %{target}"
         destroy_custom_emoji: "%{name} biểu tượng cảm xúc bị phá hủy %{target}"
         destroy_domain_allow: "%{name} đã xóa tên miền %{target} khỏi danh sách trắng"
-        destroy_domain_block: "%{name} tên miền không bị chặn %{target}"
-        destroy_email_domain_block: "%{name} tên miền e-mail được liệt kê trắng %{target}"
-        destroy_status: "%{name} đã xóa trạng thái bởi %{target}"
-        disable_2fa_user: "%{name} đã vô hiệu hóa yêu cầu hai yếu tố cho người dùng %{target}"
-        disable_custom_emoji: "%{name} biểu tượng cảm xúc bị vô hiệu hóa %{target}"
-        disable_user: "%{name} đăng nhập bị vô hiệu hóa cho người dùng %{target}"
-        enable_custom_emoji: "%{name} kích hoạt biểu tượng cảm xúc %{target}"
+        destroy_domain_block: "%{name} bỏ chặn máy chủ %{target}"
+        destroy_email_domain_block: "%{name} cho email %{target} vào danh sách trắng"
+        destroy_status: "%{name} đã gỡ bỏ tút của %{target}"
+        disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
+        disable_custom_emoji: "%{name} đã gỡ bỏ Emoji %{target}"
+        disable_user: "%{name} vô hiệu hóa đăng nhập của người dùng %{target}"
+        enable_custom_emoji: "%{name} kích hoạt Emoji %{target}"
         enable_user: "%{name} kích hoạt đăng nhập cho người dùng %{target}"
-        memorialize_account: "%{name} đã biến tài khoản của %{target} thành một trang ghi nhớ"
-        promote_user: "%{name} người dùng được quảng cáo %{target}"
-        remove_avatar_user: "%{name} đã xóa hình đại diện của %{target}"
+        memorialize_account: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
+        promote_user: "%{name} đã chỉ định chức vụ cho %{target}"
+        remove_avatar_user: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report: "%{name} mở lại báo cáo %{target}"
         reset_password_user: "%{name} đặt lại mật khẩu của người dùng %{target}"
         resolve_report: "%{name} đã giải quyết báo cáo %{target}"
-        silence_account: "%{name} im lặng tài khoản của %{target}"
-        suspend_account: "%{name} bị treo tài khoản của %{target}"
+        silence_account: "%{name} đã tạm ẩn %{target}"
+        suspend_account: "%{name} đã vô hiệu hóa %{target}"
         unassigned_report: "%{name} báo cáo chưa được chỉ định %{target}"
-        unsilence_account: "%{name} chưa được phân loại tài khoản của %{target}"
-        unsuspend_account: "%{name} không có tài khoản %{target} của tài khoản"
+        unsilence_account: "%{name} đã bỏ tạm ẩn %{target}"
+        unsuspend_account: "%{name} đã ngừng vô hiệu hóa %{target}"
+        update_announcement: "%{name} cập nhật thông báo cho %{target}"
         update_custom_emoji: "%{name} đã cập nhật biểu tượng cảm xúc %{target}"
-        update_status: "%{name} trạng thái được cập nhật bởi %{target}"
-      deleted_status: "(trạng thái đã xóa)"
-      title: Sổ ghi chép đánh giá
+        update_status: "%{name} cập nhật tút của %{target}"
+      deleted_status: "(tút đã xóa)"
+      empty: Không tìm thấy bản ghi.
+      filter_by_action: Lọc theo hành động
+      filter_by_user: Lọc theo người dùng
+      title: Nhật ký đánh giá
+    announcements:
+      destroyed_msg: Xóa thông báo thành công!
+      edit:
+        title: Sửa thông báo
+      empty: Không tìm thấy thông báo.
+      live: Trực tiếp
+      new:
+        create: Tạo thông báo
+        title: Thông báo mới
+      published_msg: Truyền đi thông báo thành công!
+      scheduled_for: Đã lên lịch %{time}
+      scheduled_msg: Thông báo đã lên lịch!
+      title: Thông báo
+      unpublished_msg: Gỡ bỏ thông báo thành xong!
+      updated_msg: Cập nhật thông báo thành công!
     custom_emojis:
       assign_category: Chỉ định danh mục
-      by_domain: Miền
-      copied_msg: Tạo thành công bản sao biểu tượng cảm xúc cục bộ
+      by_domain: Máy chủ
+      copied_msg: Tạo thành công Emoji
       copy: Sao chép
       copy_failed_msg: Không thể tạo một bản sao cục bộ của biểu tượng cảm xúc đó
       create_new_category: Tạo danh mục mới
-      created_msg: Biểu tượng cảm xúc được tạo thành công!
+      created_msg: Emoji được tạo thành công!
       delete: Xóa bỏ
-      destroyed_msg: Emojo phá hủy thành công!
+      destroyed_msg: Đã gỡ Emoji thành công!
       disable: Vô hiệu hóa
-      disabled: Tàn tật
-      disabled_msg: Vô hiệu hóa thành công biểu tượng cảm xúc đó
-      emoji: Biểu tượng cảm xúc
+      disabled: Đã vô hiệu hóa
+      disabled_msg: Vô hiệu hóa thành công Emoji này
+      emoji: Emoji
       enable: Kích hoạt
-      enabled: Đã bật
-      enabled_msg: Kích hoạt thành công biểu tượng cảm xúc đó
-      image_hint: PNG lên tới 50KB
+      enabled: Đã kích hoạt
+      enabled_msg: Kích hoạt thành công Emoji này
+      image_hint: PNG tối đa 50KB
       list: Danh sách
       listed: Liệt kê
       new:
-        title: Thêm biểu tượng cảm xúc tùy chỉnh mới
+        title: Thêm Emoji mới
+      not_permitted: Bạn không có quyền thực hiện việc này
       overwrite: Ghi đè
-      shortcode: Mã ngắn
+      shortcode: Viết tắt
       shortcode_hint: Ít nhất 2 ký tự, chỉ các ký tự chữ và số và dấu gạch dưới
-      title: Biểu tượng cảm xúc tùy chỉnh
+      title: Tùy chỉnh Emoji
       uncategorized: Chưa phân loại
       unlist: Bỏ danh sách
       unlisted: Chưa niêm yết
-      update_failed_msg: Không thể cập nhật biểu tượng cảm xúc đó
-      updated_msg: Biểu tượng cảm xúc được cập nhật thành công!
+      update_failed_msg: Không thể cập nhật Emoji này
+      updated_msg: Cập nhật thành công Emoji!
       upload: Tải lên
     dashboard:
       authorized_fetch_mode: Chế độ bảo mật
       backlog: công việc tồn đọng
-      config: Cấu hình
+      config: Thiết lập
       feature_deletions: Xóa tài khoản
-      feature_invites: Mời liên kết
-      feature_profile_directory: Thư mục hồ sơ
+      feature_invites: Những lời mời
+      feature_profile_directory: Danh sách thành viên
       feature_registrations: Đăng ký
-      feature_relay: Liên đoàn tiếp sức
+      feature_relay: Mạng liên hợp
       feature_spam_check: Chống thư rác
-      feature_timeline_preview: Xem trước dòng thời gian
-      features: Đặc trưng
-      hidden_service: Liên kết với các dịch vụ ẩn
+      feature_timeline_preview: Xem trước bảng tin
+      features: Tính năng
+      hidden_service: Mạng liên kết với các dịch vụ ẩn
       open_reports: mở báo cáo
       pending_tags: hashtag đang chờ xem xét
       pending_users: người dùng đang chờ xem xét
       recent_users: Người dùng gần đây
       search: Tìm kiếm toàn văn
-      single_user_mode: Chế độ người dùng đơn
+      single_user_mode: Chế độ người dùng bình thường
       software: Phần mềm
-      space: Sử dụng không gian
-      title: bảng điều khiển
+      space: Dung lượng lưu trữ
+      title: Bảng cá nhân
       total_users: tổng số người dùng
       trends: Xu hướng
       week_interactions: tương tác trong tuần này
@@ -283,76 +345,78 @@ vi:
       week_users_new: người dùng trong tuần này
       whitelist_mode: Chế độ danh sách trắng
     domain_allows:
-      add_new: Tên miền trắng
-      created_msg: Tên miền đã được đưa vào danh sách trắng thành công
-      destroyed_msg: Tên miền đã bị xóa khỏi danh sách trắng
+      add_new: Máy chủ thuộc danh sách trắng
+      created_msg: Máy chủ đã được đưa vào danh sách trắng thành công
+      destroyed_msg: Máy chủ đã bị xóa khỏi danh sách trắng
       undo: Xóa khỏi danh sách trắng
     domain_blocks:
-      add_new: Thêm khối miền mới
-      created_msg: Khối tên miền hiện đang được xử lý
-      destroyed_msg: Khối tên miền đã được hoàn tác
-      domain: Miền
-      edit: Chỉnh sửa khối miền
-      existing_domain_block_html: Bạn đã áp đặt các giới hạn chặt chẽ hơn trên %{name}, trước tiên bạn cần <a href="%{unblock_url}">bỏ chặn nó</a> .
+      add_new: Chặn máy chủ mới
+      created_msg: Đang xử lý chặn máy chủ
+      destroyed_msg: Đã thôi chặn máy chủ
+      domain: Máy chủ
+      edit: Chỉnh sửa máy chủ bị chặn
+      existing_domain_block_html: Bạn đã áp đặt các giới hạn chặt chẽ hơn cho %{name}, trước tiên bạn cần <a href="%{unblock_url}">bỏ chặn nó</a>.
       new:
-        create: Tạo khối
-        hint: Khối miền sẽ không ngăn việc tạo các mục nhập tài khoản trong cơ sở dữ liệu, nhưng sẽ hồi tố và tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
+        create: Tạo chặn
+        hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Im lặng</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Đình chỉ</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu hồ sơ của tài khoản. Sử dụng <strong>Không</strong> nếu bạn chỉ muốn từ chối các tập tin phương tiện truyền thông."
-          noop: không ai
-          silence: khoảng lặng
-          suspend: Đình chỉ
-        title: Khối miền mới
+          desc_html: "<strong>Tạm ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không mến mộ họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Cấm upload</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          noop: Không hoạt động
+          silence: Tạm ẩn
+          suspend: Vô hiệu hóa
+        title: Máy chủ bị chặn mới
       private_comment: Bình luận riêng
-      private_comment_hint: Nhận xét về giới hạn miền này để sử dụng nội bộ của người điều hành.
-      public_comment: Nhận xét công khai
+      private_comment_hint: Cho biết vì sao chặn máy chủ này để tiện kiểm duyệt viên tham khảo.
+      public_comment: Bình luận công khai
       public_comment_hint: Nhận xét về giới hạn tên miền này cho công chúng, nếu quảng cáo danh sách các giới hạn tên miền được bật.
-      reject_media: Từ chối các tập tin phương tiện truyền thông
-      reject_media_hint: Xóa các tệp phương tiện được lưu trữ cục bộ và từ chối tải xuống bất kỳ trong tương lai. Không liên quan cho đình chỉ
+      reject_media: Không cho phép ảnh và video
+      reject_media_hint: Xóa ảnh và video đang được lưu trữ và không cho phép tải xuống trong tương lai. Không liên quan tới việc vô hiệu hóa
       reject_reports: Từ chối báo cáo
-      reject_reports_hint: Bỏ qua tất cả các báo cáo đến từ tên miền này. Không liên quan cho đình chỉ
+      reject_reports_hint: Bỏ qua tất cả các báo cáo từ máy chủ này. Không liên quan việc vô hiệu hóa
       rejecting_media: từ chối các tập tin phương tiện truyền thông
       rejecting_reports: từ chối báo cáo
       severity:
-        silence: im lặng
-        suspend: bị đình chỉ
+        silence: đã tạm ẩn
+        suspend: bị vô hiệu hóa
       show:
         affected_accounts:
           other: "%{count} tài khoản trong cơ sở dữ liệu bị ảnh hưởng"
         retroactive:
-          silence: Tài khoản bị ảnh hưởng hiện có từ miền này
-          suspend: Hủy bỏ các tài khoản bị ảnh hưởng hiện có từ miền này
-        title: Hoàn tác khối miền cho %{domain}
+          silence: Những tài khoản tạm ẩn ở máy chủ này
+          suspend: Ngưng vô hiệu hóa các tài khoản ở máy chủ này
+        title: Hủy chặn máy chủ %{domain}
         undo: Hủy bỏ
-      undo: Hoàn tác khối tên miền
-      view: Xem khối tên miền
+      undo: Hủy chặn máy chủ
+      view: Xem máy chủ chặn
     email_domain_blocks:
       add_new: Thêm mới
-      created_msg: Đã thêm thành công tên miền e-mail vào danh sách đen
+      created_msg: Đã thêm thành công e-mail vào danh sách đen
       delete: Xóa bỏ
-      destroyed_msg: Đã xóa thành công tên miền e-mail khỏi danh sách đen
-      domain: Miền
+      destroyed_msg: Đã xóa thành công e-mail khỏi danh sách đen
+      domain: Máy chủ
+      empty: Chưa có máy chủ nào trong danh sách đen.
+      from_html: từ %{domain}
       new:
-        create: Thêm tên miền
-        title: Mục nhập danh sách đen e-mail mới
-      title: Danh sách đen e-mail
+        create: Thêm máy chủ
+        title: Mục mới trong danh sách đen email
+      title: Danh sách đen email
     instances:
-      by_domain: Miền
-      delivery_available: Giao hàng tận nơi
+      by_domain: Máy chủ
+      delivery_available: Cho phép liên kết
       known_accounts:
-        other: "%{count} tài khoản đã biết"
+        other: "%{count} tài khoản đã xác thực"
       moderation:
         all: Tất cả
         limited: Hạn chế
-        title: Điều độ
+        title: Kiểm duyệt
       private_comment: Bình luận riêng
-      public_comment: Nhận xét công khai
-      title: Liên đoàn
-      total_blocked_by_us: Bị chặn bởi chúng tôi
-      total_followed_by_them: Theo sau họ
-      total_followed_by_us: Theo dõi chúng tôi
-      total_reported: Báo cáo về họ
-      total_storage: Tệp đính kèm phương tiện
+      public_comment: Bình luận công khai
+      title: Mạng liên kết
+      total_blocked_by_us: Bị chặn bởi chúng ta
+      total_followed_by_them: Được họ mến mộ
+      total_followed_by_us: Được chúng ta mến mộ
+      total_reported: Báo cáo tổng hợp
+      total_storage: Ảnh và video
     invites:
       deactivate_all: Vô hiệu hóa tất cả
       filter:
@@ -360,35 +424,43 @@ vi:
         available: Có sẵn
         expired: Đã hết hạn
         title: Bộ lọc
-      title: Mời
+      title: Lời mời
     pending_accounts:
       title: Tài khoản đang chờ xử lý (%{count})
+    relationships:
+      title: Những mối liên hệ của %{acct}
     relays:
-      add_new: Thêm rơle mới
-      delete: Xóa bỏ
-      description_html: "<strong>Rơle liên kết</strong> là một máy chủ trung gian trao đổi khối lượng lớn các tút công khai giữa các máy chủ đăng ký và xuất bản lên nó. <strong>Nó có thể giúp các máy chủ vừa và nhỏ khám phá nội dung từ fediverse</strong> , nếu không sẽ yêu cầu người dùng cục bộ theo dõi thủ công người khác trên các máy chủ từ xa."
-      disable: Vô hiệu hóa
-      disabled: Tàn tật
+      add_new: Thêm liên hợp mới
+      delete: Loại bỏ
+      description_html: "<strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người dùng ở máy chủ này vẫn có thể mến mộ người dùng khác trên các máy chủ khác."
+      disable: Tắt
+      disabled: Đã tắt
       enable: Kích hoạt
-      enable_hint: Sau khi được bật, máy chủ của bạn sẽ đăng ký tất cả các tút công khai từ rơle này và sẽ bắt đầu gửi các tút công khai của máy chủ này tới nó.
-      enabled: Đã bật
-      inbox_url: Chuyển tiếp URL
-      pending: Chờ phê duyệt của rơle
+      enable_hint: Sau khi kích hoạt, máy chủ của bạn sẽ nhận tất cả các tút công khai từ mạng liên hợp này và gửi các tút công khai của bạn tới nó.
+      enabled: Đã kích hoạt
+      inbox_url: URL liên hợp
+      pending: Chờ phê duyệt liên hợp
       save_and_enable: Lưu và kích hoạt
-      setup: Thiết lập kết nối chuyển tiếp
-      signatures_not_enabled: Rơle sẽ không hoạt động chính xác trong khi chế độ bảo mật hoặc chế độ danh sách trắng được bật
-      status: Trạng thái
-      title: Rơle
+      setup: Kết nối mạng liên hợp
+      signatures_not_enabled: Mạng liên hợp sẽ không hoạt động nếu chế độ an ninh hoặc chế độ danh sách trắng được bật trước đó
+      status: Trạng thái hiện tại
+      title: Mạng liên hợp
     report_notes:
       created_msg: Báo cáo ghi chú được tạo thành công!
       destroyed_msg: Báo cáo đã xóa thành công!
     reports:
+      account:
+        notes:
+          other: "%{count} ghi chú"
+        reports:
+          other: "%{count} báo cáo"
       action_taken_by: Hành động được thực hiện bởi
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người điều hành được phân công
+      by_target_domain: Máy chủ của tài khoản bị báo xấu
       comment:
-        none: không ai
+        none: Không ai
       created_at: Báo cáo
       mark_as_resolved: Đánh dấu là đã giải quyết
       mark_as_unresolved: Đánh dấu là chưa giải quyết
@@ -397,34 +469,34 @@ vi:
         create_and_resolve: Giải quyết với ghi chú
         create_and_unresolve: Mở lại với ghi chú
         delete: Xóa bỏ
-        placeholder: Mô tả những hành động đã được thực hiện, hoặc bất kỳ cập nhật liên quan khác ...
+        placeholder: Mô tả những hành động đã được thực hiện, hoặc bất kỳ cập nhật liên quan khác...
       reopen: Mở lại báo cáo
-      report: 'Báo cáo # %{id}'
-      reported_account: Tài khoản báo cáo
-      reported_by: Báo cáo bởi
+      report: 'Báo cáo #%{id}'
+      reported_account: Tài khoản bị báo xấu
+      reported_by: Báo xấu bởi
       resolved: Đã giải quyết
-      resolved_msg: Báo cáo giải quyết thành công!
+      resolved_msg: Giải quyết báo xấu thành công!
       status: Trạng thái
-      title: Báo cáo
+      title: Báo xấu
       unassign: Bỏ qua
       unresolved: Chưa giải quyết
       updated_at: Đã cập nhật
     settings:
       activity_api_enabled:
         desc_html: Số lượng trạng thái được đăng tại địa phương, người dùng hoạt động và đăng ký mới trong nhóm hàng tuần
-        title: Xuất bản số liệu thống kê tổng hợp về hoạt động của người dùng
+        title: Công khai số liệu thống kê về hoạt động người dùng
       bootstrap_timeline_accounts:
-        desc_html: Phân tách nhiều tên người dùng bằng dấu phẩy. Chỉ các tài khoản địa phương và mở khóa sẽ hoạt động. Mặc định khi trống là tất cả quản trị viên địa phương.
-        title: Theo mặc định cho người dùng mới
+        desc_html: Tách tên người dùng bằng dấu phẩy. Chỉ có hiệu lực với các tài khoản công khai thuộc máy chủ. Mặc định khi trống là tất cả quản trị viên.
+        title: Gợi ý mến mộ cho người dùng mới
       contact_information:
-        email: Email kinh doanh
-        username: Liên hệ tên người dùng
+        email: Email liên hệ
+        username: Tên tài khoản liên hệ
       custom_css:
-        desc_html: Sửa đổi giao diện với CSS được tải trên mỗi trang
-        title: CSS tùy chỉnh
+        desc_html: Sửa đổi giao diện với CSS trên mỗi trang
+        title: Tùy chỉnh CSS
       default_noindex:
         desc_html: Ảnh hưởng đến tất cả người dùng không tự thay đổi cài đặt này
-        title: Chọn người dùng không tham gia lập chỉ mục công cụ tìm kiếm theo mặc định
+        title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
@@ -432,25 +504,27 @@ vi:
         users: Để đăng nhập người dùng cục bộ
       domain_blocks_rationale:
         title: Hiển thị lý do
+      enable_bootstrap_timeline_accounts:
+        title: Gợi ý mến mộ cho người dùng mới
       hero:
-        desc_html: Hiển thị trên frontpage. Khuyến nghị ít nhất 600x100px. Khi không được đặt, quay lại hình thu nhỏ của máy chủ
-        title: Hình ảnh anh hùng
+        desc_html: Hiển thị trên trang chủ. Kích cỡ tối thiểu 600x100px. Khi không được đặt, sử dụng hình thu nhỏ của máy chủ
+        title: Hình ảnh giới thiệu
       mascot:
-        desc_html: Hiển thị trên nhiều trang. Khuyến nghị ít nhất 293 × 205px. Khi không được đặt, rơi trở lại linh vật mặc định
-        title: Hình ảnh linh vật
+        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 × 205px. Khi không được đặt, sử dụng linh vật mặc định Mastodon
+        title: Logo máy chủ
       peers_api_enabled:
-        desc_html: Tên miền mà máy chủ này đã gặp phải trong fediverse
-        title: Xuất bản danh sách các máy chủ được phát hiện
+        desc_html: Tên miền mà máy chủ này đã kết giao trong mạng liên kết
+        title: Danh sách công khai các máy chủ được phát hiện
       preview_sensitive_media:
         desc_html: Liên kết xem trước trên các trang web khác sẽ hiển thị hình thu nhỏ ngay cả khi phương tiện được đánh dấu là nhạy cảm
         title: Hiển thị phương tiện nhạy cảm trong bản xem trước OpenGraph
       profile_directory:
-        desc_html: Cho phép người dùng có thể khám phá
-        title: Cho phép thư mục hồ sơ
+        desc_html: Cho phép tìm kiếm người dùng
+        title: Cho phép hiện danh sách thành viên
       registrations:
         closed_message:
-          desc_html: Hiển thị trên frontpage khi đăng ký được đóng lại. Bạn có thể sử dụng thẻ HTML
-          title: Tin nhắn đăng ký đã đóng
+          desc_html: Hiển thị trên trang chủ khi đăng ký được đóng lại. Bạn có thể sử dụng thẻ HTML
+          title: Thông điệp báo máy chủ đã ngừng đăng ký
         deletion:
           desc_html: Cho phép mọi người xóa tài khoản của họ
           title: Xóa tài khoản
@@ -464,8 +538,8 @@ vi:
           open: Bất cứ ai cũng có thể đăng ký
         title: Chế độ đăng ký
       show_known_fediverse_at_about_page:
-        desc_html: Khi bị tắt, hãy giới hạn dòng thời gian công khai được liên kết từ trang đích để chỉ hiển thị nội dung cùng miền
-        title: Bao gồm nội dung được liên kết trên trang dòng thời gian công cộng không được xác thực
+        desc_html: Nếu tắt, bảng tin sẽ chỉ hiển thị nội dung do người dùng của máy chủ này tạo ra
+        title: Bao gồm nội dung từ mạng liên kết trên bảng tin không được xác thực
       show_staff_badge:
         desc_html: Hiển thị huy hiệu nhân viên trên trang người dùng
         title: Hiển thị huy hiệu nhân viên
@@ -473,7 +547,7 @@ vi:
         desc_html: Đoạn giới thiệu về API. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể sử dụng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code> .
         title: Mô tả máy chủ
       site_description_extended:
-        desc_html: Một nơi tốt cho quy tắc ứng xử, quy tắc, hướng dẫn và những thứ khác khiến máy chủ của bạn khác biệt. Bạn có thể sử dụng thẻ HTML
+        desc_html: Bạn có thể tạo thêm các mục như quy định chung, hướng dẫn và những thứ khác liên quan tới máy chủ của bạn. Sử dụng thẻ HTML
         title: Thông tin mở rộng tùy chỉnh
       site_short_description:
         desc_html: Hiển thị trong thanh bên và thẻ meta. Mô tả Mastodon là gì và điều gì làm cho máy chủ này trở nên đặc biệt trong một đoạn văn duy nhất.
@@ -491,42 +565,45 @@ vi:
       timeline_preview:
         desc_html: Hiển thị liên kết đến dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần xác thực
         title: Cho phép truy cập không xác thực vào dòng thời gian công cộng
-      title: Cài đặt Trang web
+      title: Cài đặt trang web
       trendable_by_default:
         desc_html: Ảnh hưởng đến các hashtag chưa được cho phép trước đây
         title: Cho phép hashtags theo xu hướng mà không cần xem xét trước
       trends:
         desc_html: Hiển thị công khai các hashtag được xem xét trước đây hiện đang là xu hướng
         title: Xu hướng hashtags
+    site_uploads:
+      delete: Xóa tập tin đã tải lên
+      destroyed_msg: Đã xóa tập tin tải lên thành công!
     statuses:
       back_to_account: Quay lại trang tài khoản
       batch:
         delete: Xóa bỏ
-        nsfw_off: Đánh dấu là không nhạy cảm
+        nsfw_off: Đánh dấu là bình thường
         nsfw_on: Đánh dấu là nhạy cảm
       deleted: Đã xóa
       failed_to_execute: Không thể thực thi
       media:
-        title: Phương tiện truyền thông
-      no_media: Không có phương tiện truyền thông
-      no_status_selected: Không có trạng thái nào được thay đổi vì không có trạng thái nào được chọn
+        title: Ảnh & video
+      no_media: Không có ảnh hoặc video
+      no_status_selected: Không có tút nào thay đổi vì không có tút nào được chọn
       title: Trạng thái tài khoản
-      with_media: Với phương tiện truyền thông
+      with_media: Với ảnh hoặc video
     tags:
-      accounts_today: Sử dụng độc đáo ngày nay
-      accounts_week: Sử dụng độc đáo trong tuần này
-      breakdown: Phân tích sử dụng ngày nay theo nguồn
+      accounts_today: Sử dụng hôm nay
+      accounts_week: Sử dụng trong tuần này
+      breakdown: Phân tích dung lượng sử dụng hôm nay
       context: Bối cảnh
-      directory: Trong thư mục
-      in_directory: "%{count} trong thư mục"
-      last_active: Hoạt động lần cuối
+      directory: Trong phân loại
+      in_directory: "%{count} trong phân loại"
+      last_active: Sử dụng gần đây
       most_popular: Phổ biến nhất
-      most_recent: Gần đây nhất
-      name: Dấu thăng
-      review: Xem lại tình trạng
-      reviewed: Đã đánh giá
-      title: Hashtags
-      trending_right_now: Xu hướng ngay bây giờ
+      most_recent: Vừa mới sử dụng
+      name: Hashtag
+      review: Phê duyệt
+      reviewed: Đã phê duyệt
+      title: Hashtag
+      trending_right_now: Xu hướng
       unique_uses_today: "%{count} đăng ngày hôm nay"
       unreviewed: Chưa được xem xét
       updated_msg: Cài đặt hashtag được cập nhật thành công
@@ -534,8 +611,8 @@ vi:
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
-      edit_preset: Chỉnh sửa cảnh báo đặt trước
-      title: Quản lý cài đặt trước cảnh báo
+      edit_preset: Chỉnh sửa cảnh báo cài sẵn
+      title: Quản lý cảnh báo cài sẵn
   admin_mailer:
     new_pending_account:
       body: Các chi tiết của tài khoản mới dưới đây. Bạn có thể phê duyệt hoặc từ chối ứng dụng này.
@@ -545,243 +622,261 @@ vi:
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: Báo cáo mới cho %{instance} (# %{id})
     new_trending_tag:
-      body: 'Hashtag # %{name} đang là xu hướng ngày nay, nhưng chưa được xem xét trước đây. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép hoặc chỉ lưu biểu mẫu vì nó sẽ không bao giờ nghe về nó nữa.'
+      body: 'Hashtag # %{name} đang là xu hướng nhưng chưa được kiểm duyệt. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép. Bỏ qua nếu bạn không bao giờ muốn thấy nó xuất hiện.'
       subject: Hashtag mới được xem xét trên %{instance} (# %{name})
   aliases:
-    add_new: Tạo bí danh
-    created_msg: Tạo thành công một bí danh mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
-    deleted_msg: Xóa thành công bí danh. Chuyển từ tài khoản này sang tài khoản này sẽ không còn có thể.
-    hint_html: Nếu bạn muốn chuyển từ tài khoản khác sang tài khoản này, tại đây bạn có thể tạo bí danh, điều này là bắt buộc trước khi bạn có thể tiến hành chuyển người theo dõi từ tài khoản cũ sang tài khoản này. Hành động này của chính nó là <strong>vô hại và có thể đảo ngược</strong> . <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong> .
+    add_new: Tạo tên hiển thị
+    created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
+    deleted_msg: Xóa thành công tên hiển thị. Chuyển từ tài khoản này sang tài khoản này sẽ không còn có thể.
+    empty: Bạn không tên hiển thị nào.
+    hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, tại đây bạn có thể tạo bí danh, điều này là bắt buộc trước khi bạn có thể tiến hành chuyển người theo dõi từ tài khoản cũ sang tài khoản này. Hành động này của chính nó là <strong>vô hại và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Giao diện web nâng cao
     advanced_web_interface_hint: 'Nếu bạn muốn sử dụng toàn bộ chiều rộng màn hình của mình, giao diện web nâng cao cho phép bạn định cấu hình nhiều cột khác nhau để xem nhiều thông tin cùng lúc như bạn muốn: Trang chủ, thông báo, dòng thời gian được liên kết, bất kỳ số lượng danh sách và hashtag nào.'
-    animations_and_accessibility: Ảnh động và khả năng tiếp cận
+    animations_and_accessibility: Nâng cao
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
+    localization:
+      body: Mastodon được dịch bởi Hồ Nhất Duy.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Tuy nhiên, bạn cũng vẫn có thể đóng góp.
     sensitive_content: Nội dung nhạy cảm
     toot_layout: Bố cục Tút
   application_mailer:
     notification_preferences: Thay đổi tùy chọn email
     salutation: "%{name},"
     settings: 'Thay đổi tùy chọn email: %{link}'
-    view: 'Lượt xem:'
-    view_profile: Xem lí lịch
-    view_status: Trạng thái xem
+    view: 'Xem:'
+    view_profile: Xem trang cá nhân
+    view_status: Xem tút
   applications:
-    created: Ứng dụng được tạo thành công
-    destroyed: Ứng dụng đã xóa thành công
-    invalid_url: URL được cung cấp không hợp lệ
-    regenerate_token: Tạo lại mã thông báo truy cập
-    token_regenerated: Mã thông báo truy cập được tạo lại thành công
+    created: Đơn đăng ký được tạo thành công
+    destroyed: Đã xóa đơn đăng ký
+    invalid_url: Cung cấp URL không hợp lệ
+    regenerate_token: Tạo lại mã truy cập
+    token_regenerated: Mã truy cập được tạo lại thành công
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
-    your_token: Mã thông báo truy cập của bạn
+    your_token: Mã truy cập của bạn
   auth:
-    apply_for_account: Yêu cầu một lời mời
+    apply_for_account: Đăng ký
     change_password: Mật khẩu
-    checkbox_agreement_html: Tôi đồng ý với các <a href="%{rules_path}" target="_blank">quy tắc</a> và <a href="%{terms_path}" target="_blank">điều khoản dịch vụ của</a> <a href="%{rules_path}" target="_blank">máy chủ</a>
-    checkbox_agreement_without_rules_html: Tôi đồng ý với các <a href="%{terms_path}" target="_blank">điều khoản dịch vụ</a>
+    checkbox_agreement_html: Tôi đồng ý với các <a href="%{rules_path}" target="_blank">quy tắc</a> và <a href="%{terms_path}" target="_blank">điều khoản dịch vụ</a>.
+    checkbox_agreement_without_rules_html: Tôi đồng ý với <a href="%{terms_path}" target="_blank">điều khoản dịch vụ</a>
     delete_account: Xóa tài khoản
-    delete_account_html: Nếu bạn muốn xóa tài khoản của mình, bạn có thể <a href="%{path}">tiến hành tại đây</a> . Bạn sẽ được yêu cầu xác nhận.
+    delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
     description:
-      prefix_invited_by_user: "@ %{name} mời bạn tham gia máy chủ này của Mastodon!"
-      prefix_sign_up: Đăng ký trên Mastodon ngay hôm nay!
-      suffix: Với một tài khoản, bạn sẽ có thể theo dõi mọi người, đăng cập nhật và trao đổi tin nhắn với người dùng từ bất kỳ máy chủ Mastodon nào và hơn thế nữa!
-    didnt_get_confirmation: Không nhận được hướng dẫn xác nhận?
-    forgot_password: Quên mật khẩu?
-    invalid_reset_password_token: Mã thông báo đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
+      prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
+      prefix_sign_up: Tham gia Mastodon ngay hôm nay!
+      suffix: Với tài khoản, bạn sẽ có thể mến mộ mọi người, đăng tút và nhắn tin với người dùng từ bất kỳ máy chủ Mastodon khác!
+    didnt_get_confirmation: Gửi lại email xác thực?
+    forgot_password: Quên mật khẩu
+    invalid_reset_password_token: Mã đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
     login: Đăng nhập
     logout: Đăng xuất
-    migrate_account: Chuyển đến một tài khoản khác
-    migrate_account_html: Nếu bạn muốn chuyển hướng tài khoản này sang một tài khoản khác, bạn có thể <a href="%{path}">định cấu hình nó ở đây</a> .
+    migrate_account: Sử dụng một tài khoản khác
+    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để sử dụng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập nó ở đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
     providers:
       cas: CAS
       saml: SAML
     register: Đăng ký
-    registration_closed: "%{instance} không chấp nhận thành viên mới"
-    resend_confirmation: Gửi lại hướng dẫn xác nhận
+    registration_closed: "%{instance} tạm ngưng đăng ký mới"
+    resend_confirmation: Gửi lại email xác thực
     reset_password: Đặt lại mật khẩu
-    security: Bảo vệ
+    security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
       email_below_hint_html: Nếu địa chỉ email dưới đây không chính xác, bạn có thể thay đổi địa chỉ tại đây và nhận email xác nhận mới.
-      email_settings_hint_html: Email xác nhận đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
+      email_settings_hint_html: Email xác thực đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
       title: Thiết lập
     status:
-      account_status: Tình trạng tài khoản
-      confirming: Chờ xác nhận e-mail được hoàn thành.
-      functional: Tài khoản của bạn đã hoạt động đầy đủ.
-      pending: Ứng dụng của bạn đang chờ xem xét bởi nhân viên của chúng tôi. Điều này có thể mất một thời gian. Bạn sẽ nhận được e-mail nếu đơn đăng ký của bạn được chấp thuận.
+      account_status: Trạng thái tài khoản
+      confirming: Đang chờ xác thực email.
+      functional: Tài khoản của bạn đã xác thực và có thể sử dụng.
+      pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
     trouble_logging_in: Gặp sự cố khi đăng nhập?
   authorize_follow:
-    already_following: Bạn đã theo dõi tài khoản này
-    error: Thật không may, đã xảy ra lỗi khi tra cứu tài khoản từ xa
-    follow: Theo
-    follow_request: 'Bạn đã gửi yêu cầu theo dõi tới:'
-    following: 'Sự thành công! Bạn đang theo dõi:'
+    already_following: Bạn đã mến mộ người dùng này
+    already_requested: Bạn vừa gửi một yêu cầu mến mộ tới người dùng này
+    error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
+    follow: Mến mộ
+    follow_request: Bạn đã gửi yêu cầu mến mộ tới
+    following: Chúc mừng! Bạn đã trở thành người mến mộ của
     post_follow:
-      close: Hoặc, bạn chỉ có thể đóng cửa sổ này.
-      return: Hiển thị hồ sơ của người dùng
+      close: Bạn có muốn đóng cửa sổ này?
+      return: Hiện trên trang cá nhân
       web: Truy cập web
-    title: Thực hiện theo %{acct}
+    title: Mến mộ %{acct}
   challenge:
     confirm: Tiếp tục
-    hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn trong giờ tiếp theo."
+    hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
     invalid_password: Mật khẩu không hợp lệ
     prompt: Xác nhận mật khẩu để tiếp tục
+  crypto:
+    errors:
+      invalid_key: không phải là mã khóa Ed25519 hoặc Curve25519 đúng
+      invalid_signature: không phải là chữ ký số Ed25519 đúng
+  date:
+    formats:
+      default: "%d.%m.%Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}g"
+      about_x_hours: "%{count}h"
       about_x_months: "%{count}th"
-      about_x_years: "%{count}n"
-      almost_x_years: "%{count}n"
-      half_a_minute: Vừa nãy
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Vừa xong
       less_than_x_minutes: "%{count}p"
-      less_than_x_seconds: Vừa nãy
-      over_x_years: "%{count}n"
-      x_days: "%{count}n"
+      less_than_x_seconds: Vừa xong
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
       x_minutes: "%{count}p"
       x_months: "%{count}th"
-      x_seconds: "%{count}g"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
     confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh danh tính của bạn
-    confirm_username: Nhập tên người dùng của bạn để xác nhận thủ tục
+    confirm_username: Nhập tên người dùng của bạn để hoàn tất thủ tục
     proceed: Xóa tài khoản
     success_msg: Tài khoản của bạn đã được xóa thành công
     warning:
-      before: 'Trước khi tiếp tục, xin vui lòng đọc các ghi chú cẩn thận:'
+      before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
       caches: Nội dung đã được lưu trữ bởi các máy chủ khác có thể tồn tại
       data_removal: Bài viết của bạn và dữ liệu khác sẽ bị xóa vĩnh viễn
-      email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần xóa tài khoản của bạn
-      email_contact_html: Nếu nó vẫn không đến, bạn có thể gửi e-mail <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
-      email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, bạn có thể <a href="%{path}">yêu cầu lại</a>
+      email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần phải xóa tài khoản
+      email_contact_html: Nếu vẫn không nhận được, bạn có thể liên hệ <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
+      email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, hãy thử <a href="%{path}">yêu cầu lại</a>
       irreversible: Bạn sẽ không thể khôi phục hoặc kích hoạt lại tài khoản của mình
-      more_details_html: Để biết thêm chi tiết, xem <a href="%{terms_path}">chính sách bảo mật</a> .
-      username_available: Tên người dùng của bạn sẽ có sẵn một lần nữa
-      username_unavailable: Tên người dùng của bạn sẽ không có sẵn
+      more_details_html: Để biết thêm chi tiết, xem <a href="%{terms_path}">chính sách bảo mật</a>.
+      username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
+      username_unavailable: Tên người dùng của bạn sẽ không thể đăng ký mới
   directories:
-    directory: Thư mục hồ sơ
+    directory: Danh sách thành viên
     explanation: Khám phá người dùng dựa trên sở thích của họ
     explore_mastodon: Khám phá %{title}
   domain_validator:
     invalid_domain: không phải là một tên miền hợp lệ
   errors:
-    '400': Yêu cầu bạn gửi không hợp lệ hoặc không đúng.
+    '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
     '403': Bạn không có quyền xem trang này.
-    '404': Trang bạn đang tìm kiếm không có ở đây.
-    '406': Trang này không có sẵn ở định dạng được yêu cầu.
-    '410': Trang bạn đang tìm kiếm không còn tồn tại ở đây nữa.
+    '404': Trang này chưa được tạo.
+    '406': Trang này không thể hiển thị do lỗi định dạng.
+    '410': Trang này đã bị xóa trước đó.
     '422':
       content: Xác minh bảo mật thất bại. Bạn đang chặn cookie?
-      title: Xác minh bảo mật không thành công
-    '429': Điều chỉnh
+      title: Xác minh bảo mật thất bại
+    '429': Quá nhiều yêu cầu cùng lúc
     '500':
       content: Chúng tôi xin lỗi, nhưng đã xảy ra sự cố.
-      title: Trang này không đúng
-    '503': Trang không thể được phục vụ do lỗi máy chủ tạm thời.
-    noscript_html: Để sử dụng ứng dụng web Mastodon, vui lòng bật JavaScript. Ngoài ra, hãy thử một trong những <a href="%{apps_path}">ứng dụng gốc</a> cho Mastodon cho nền tảng của bạn.
+      title: Múi giờ trên thiết bị không đúng
+    '503': Trang không thể hiển thị do lỗi máy chủ tạm thời.
+    noscript_html: Để sử dụng ứng dụng web Mastodon, vui lòng bật JavaScript. Ngoài ra, hãy thử một trong những <a href="%{apps_path}">ứng dụng gốc</a> của Mastodon cho hệ điều hành của bạn.
   existing_username_validator:
-    not_found: không thể tìm thấy người dùng cục bộ với tên người dùng đó
-    not_found_multiple: không thể tìm thấy %{usernames}
+    not_found: không có tên người dùng này trên máy chủ
+    not_found_multiple: không tìm thấy %{usernames}
   exports:
     archive_takeout:
       date: Ngày
-      download: Tải về kho lưu trữ của bạn
-      hint_html: Bạn có thể yêu cầu một kho lưu trữ các <strong>tút và phương tiện được tải lên</strong> . Dữ liệu đã xuất sẽ ở định dạng ActivityPub, có thể đọc được bởi bất kỳ phần mềm tuân thủ nào. Bạn có thể yêu cầu một kho lưu trữ cứ sau 7 ngày.
-      in_progress: Biên dịch kho lưu trữ của bạn ...
-      request: Yêu cầu kho lưu trữ của bạn
-      size: Kích thước
-    blocks: Bạn chặn
+      download: Tải về dữ liệu của bạn
+      hint_html: Bạn có thể tải về <strong>tút và ảnh và video</strong> mà bạn đã đăng lên. Dữ liệu xuất ra sẽ ở định dạng ActivityPub, đọc được bởi bất kỳ phần mềm tương thích nào. Chu kỳ lưu trữ dữ liệu mới là cách 7 ngày.
+      in_progress: Đang tổng hợp dữ liệu của bạn...
+      request: Tải về dữ liệu của bạn
+      size: Dung lượng
+    blocks: Người bạn chặn
     csv: CSV
-    domain_blocks: Khối miền
+    domain_blocks: Máy chủ bạn chặn
     lists: Danh sách
-    mutes: Bạn câm
-    storage: Phương tiện lưu trữ
+    mutes: Người bạn ẩn
+    storage: Tập tin
   featured_tags:
     add_new: Thêm mới
     errors:
-      limit: Bạn đã làm nổi bật số lượng hashtag tối đa
-    hint_html: "<strong>Hashtags đặc trưng là gì?</strong> Chúng được hiển thị nổi bật trên hồ sơ công khai của bạn và cho phép mọi người duyệt các bài đăng công khai của bạn cụ thể theo các hashtag đó. Chúng là một công cụ tuyệt vời để theo dõi các công trình sáng tạo hoặc các dự án dài hạn."
+      limit: Bạn đã đạt tới số lượng hashtag tối đa
+    hint_html: "<strong>Hashtags thường dùng là gì?</strong> Chúng được hiển thị nổi bật trên trang cá nhân của bạn và cho phép mọi người tìm kiếm các bài đăng công khai của bạn có chứa các hashtag đó. Chúng là một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo hoặc các dự án dài hạn."
   filters:
     contexts:
-      home: Dòng thời gian
+      account: Trang cá nhân
+      home: Bảng tin
       notifications: Thông báo
-      public: Mốc thời gian công cộng
+      public: Tin công khai
       thread: Cuộc trò chuyện
     edit:
       title: Chỉnh sửa bộ lọc
     errors:
-      invalid_context: Không có hoặc bối cảnh không hợp lệ được cung cấp
-      invalid_irreversible: Lọc không thể đảo ngược chỉ hoạt động với bối cảnh nhà hoặc thông báo
+      invalid_context: Bối cảnh không hợp lệ hoặc không có
+      invalid_irreversible: Bộ lọc chỉ hoạt động với bảng tin hoặc nội dung thông báo
     index:
       delete: Xóa bỏ
+      empty: Chưa có bộ lọc nào.
       title: Bộ lọc
     new:
       title: Thêm bộ lọc mới
   footer:
     developers: Nhà phát triển
-    more: Hơn…
-    resources: Tài nguyên
-    trending_now: Đang là xu hướng
+    more: Nhiều hơn
+    resources: Tham khảo
+    trending_now: Xu hướng
   generic:
     all: Tất cả
     changes_saved_msg: Thay đổi được lưu thành công!
     copy: Sao chép
-    no_batch_actions_available: Không có hành động hàng loạt có sẵn trên trang này
-    order_by: Đặt bởi
+    delete: Xóa
+    no_batch_actions_available: Không có sẵn hành động hàng loạt trên trang này
+    order_by: Sắp xếp
     save_changes: Lưu thay đổi
     validation_errors:
-      other: Một cái gì đó không hoàn toàn đúng! Vui lòng xem lại lỗi %{count} bên dưới
+      other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
   html_validator:
     invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   identity_proofs:
     active: Hoạt động
-    authorize: Vâng, ủy quyền
-    authorize_connection_prompt: Cho phép kết nối mật mã này?
+    authorize: OK, cho phép
+    authorize_connection_prompt: Cho phép kết nối mã hóa này?
     errors:
-      failed: Kết nối mật mã không thành công. Vui lòng thử lại từ %{provider}.
+      failed: Kết nối mã hóa không thành công. Vui lòng thử lại từ %{provider}.
       keybase:
-        invalid_token: Mã thông báo cơ sở chính là băm chữ ký và phải là 66 ký tự hex
-        verification_failed: Keybase không nhận ra mã thông báo này là chữ ký của người dùng Keybase %{kb_username}. Vui lòng thử lại từ Keybase.
+        invalid_token: Mã đăng nhập Keybase giống như chữ ký số và phải đảm bảo 66 ký tự hex
+        verification_failed: Keybase không nhận ra mã đăng nhập này là chữ ký của người dùng Keybase %{kb_username}. Vui lòng thử lại từ Keybase.
       wrong_user: Không thể tạo bằng chứng cho %{proving} trong khi đăng nhập là %{current}. Đăng nhập bằng %{proving} và thử lại.
     explanation_html: Tại đây, bạn có thể kết nối mật mã các danh tính khác của mình, chẳng hạn như hồ sơ Keybase. Điều này cho phép người khác gửi cho bạn tin nhắn được mã hóa và tin tưởng nội dung bạn gửi cho họ.
     i_am_html: Tôi là %{username} trên %{service}.
     identity: Danh tính
     inactive: Không hoạt động
     publicize_checkbox: 'Và tút này:'
-    publicize_toot: 'Nó đã được chứng minh! Tôi là %{username} trên %{service}: %{url}'
+    publicize_toot: 'Đã chứng minh! Tôi là %{username} trên %{service}: %{url}'
+    remove: Xóa bằng chứng của tài khoản
+    removed: Hoàn tất xóa bằng chứng của tài khoản
     status: Tình trạng xác minh
     view_proof: Xem bằng chứng
   imports:
     modes:
       merge: Hợp nhất
-      merge_long: Giữ hồ sơ hiện có và thêm những cái mới
+      merge_long: Giữ hồ sơ hiện có và thêm hồ sơ mới
       overwrite: Ghi đè
       overwrite_long: Thay thế các bản ghi hiện tại bằng những cái mới
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn như danh sách những người bạn đang theo dõi hoặc chặn.
-    success: Dữ liệu của bạn đã được tải lên thành công và bây giờ sẽ được xử lý trong thời gian tới hạn
+    success: Dữ liệu của bạn đã được tải lên thành công và hiện đang xử lý
     types:
       blocking: Danh sách chặn
-      domain_blocking: Danh sách chặn tên miền
-      following: Theo danh sach
-      muting: Danh sách tắt tiếng
+      domain_blocking: Danh sách máy chủ đã chặn
+      following: Danh sách người mến mộ
+      muting: Danh sách người dùng ẩn
     upload: Tải lên
-  in_memoriam_html: Trong bản ghi nhớ.
+  in_memoriam_html: Tưởng Niệm
   invites:
     delete: Vô hiệu hóa
-    expired: Đã hết hạn
+    expired: Hết hạn
     expires_in:
       '1800': 30 phút
-      '21600': 6 tiếng
+      '21600': 6 giờ
       '3600': 1 giờ
       '43200': 12 giờ
       '604800': 1 tuần
       '86400': 1 ngày
     expires_in_prompt: Không bao giờ
-    generate: Tạo liên kết mời
+    generate: Tạo lời mời
     invited_by: 'Bạn đã được mời bởi:'
     max_uses:
       other: "%{count} sử dụng"
@@ -789,83 +884,91 @@ vi:
     prompt: Tạo và chia sẻ liên kết với những người khác để cấp quyền truy cập vào máy chủ này
     table:
       expires_at: Hết hạn
-      uses: Công dụng
-    title: Mời mọi người
+      uses: Sử dụng
+    title: Mời bạn bè
   lists:
     errors:
       limit: Bạn đã đạt đến số lượng danh sách tối đa
   media_attachments:
     validations:
-      images_and_video: Không thể đính kèm video vào trạng thái đã chứa hình ảnh
+      images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh
+      not_ready: Tập tin này vẫn chưa xử lý xong. Hãy thử lại sau!
       too_many: Không thể đính kèm hơn 4 tệp
   migrations:
-    acct: Chuyển đến
+    acct: Dời sang
     cancel: Hủy chuyển hướng
-    cancel_explanation: Hủy chuyển hướng sẽ kích hoạt lại tài khoản hiện tại của bạn, nhưng sẽ không mang lại những người theo dõi đã được chuyển đến tài khoản đó.
-    cancelled_msg: Đã hủy thành công chuyển hướng.
+    cancel_explanation: Hủy chuyển hướng sẽ kích hoạt lại tài khoản hiện tại của bạn, nhưng sẽ không chuyển được những người mến mộ ở tài khoản mới.
+    cancelled_msg: Đã hủy chuyển hướng xong.
     errors:
-      already_moved: là cùng một tài khoản bạn đã chuyển đến
-      missing_also_known_as: không tham chiếu lại tài khoản này
+      already_moved: là tài khoản bạn đã dời sang rồi
+      missing_also_known_as: không phải tham chiếu của tài khoản này
       move_to_self: không thể là tài khoản hiện tại
-      not_found: không thể được tìm thấy
-      on_cooldown: Bạn đang trong thời gian hồi chiêu
-    followers_count: Người theo dõi tại thời điểm di chuyển
+      not_found: không thể tìm thấy
+      on_cooldown: Bạn đang trong thời gian chiêu hồi
+    followers_count: Số người mến mộ tại thời điểm dời sang
     incoming_migrations: Chuyển từ một tài khoản khác
-    incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">tạo bí danh tài khoản</a> .
-    moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người theo dõi của bạn đang được chuyển đi.
+    incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">tạo tham chiếu tài khoản</a>.
+    moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người mến mộ bạn cũng đang được chuyển đi.
     not_redirecting: Tài khoản của bạn hiện không chuyển hướng đến bất kỳ tài khoản nào khác.
     on_cooldown: Gần đây bạn đã di chuyển tài khoản của bạn. Chức năng này sẽ trở nên khả dụng một lần nữa sau %{count} ngày.
-    past_migrations: Di cư trong quá khứ
-    proceed_with_move: Di chuyển người theo dõi
+    past_migrations: Những lần dời nhà cũ
+    proceed_with_move: Chuyển người mến mộ
+    redirected_msg: Tài khoản của bạn đã chuyển hướng đến %{acct}.
     redirecting_to: Tài khoản của bạn đang chuyển hướng đến %{acct}.
-    set_redirect: Đặt chuyển hướng
+    set_redirect: Thiết lập chuyển hướng
     warning:
       backreference_required: Tài khoản mới trước tiên phải được cấu hình để tham chiếu lại tài khoản này
-      before: 'Trước khi tiếp tục, xin vui lòng đọc các ghi chú cẩn thận:'
-      cooldown: Sau khi di chuyển, có thời gian hồi chiêu, trong đó bạn sẽ không thể di chuyển nữa
+      before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
+      cooldown: Sau khi di chuyển, có thời gian chiêu hồi, trong đó bạn sẽ không thể di chuyển nữa
       disabled_account: Tài khoản hiện tại của bạn sẽ không thể sử dụng đầy đủ sau đó. Tuy nhiên, bạn sẽ có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
-      followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
-      only_redirect_html: Ngoài ra, bạn <a href="%{path}">chỉ</a> có thể <a href="%{path}">đưa ra một chuyển hướng trên hồ sơ của bạn</a> .
-      other_data: Không có dữ liệu khác sẽ được di chuyển tự động
-      redirect: Hồ sơ tài khoản hiện tại của bạn sẽ được cập nhật với thông báo chuyển hướng và bị loại khỏi các tìm kiếm
+      followers: Hành động này sẽ chuyển tất cả người mến mộ từ tài khoản hiện tại sang tài khoản mới
+      only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên trang cá nhân của bạn</a>.
+      other_data: Dữ liệu khác sẽ không được di chuyển tự động
+      redirect: Trang cá nhân hiện tại của bạn sẽ được cập nhật với thông báo chuyển hướng và bị loại khỏi các tìm kiếm
   moderation:
-    title: Điều độ
+    title: Kiểm duyệt
+  move_handler:
+    copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là ghi chú về họ trước đó:'
   notification_mailer:
     digest:
-      action: Xem tất cả các thông báo
-      body: Dưới đây là một bản tóm tắt ngắn gọn về các tin nhắn bạn đã bỏ lỡ kể từ lần truy cập trước vào %{since}
-      mention: "%{name} đã đề cập đến bạn trong:"
+      action: Xem toàn bộ thông báo
+      body: Dưới đây là những tin nhắn bạn đã bỏ lỡ kể từ lần truy cập trước vào %{since}
+      mention: "%{name} vừa nhắc đến bạn trong:"
       new_followers_summary:
-        other: Ngoài ra, bạn đã có được %{count} người theo dõi mới trong khi đi xa! Kinh ngạc!
+        other: Ngoài ra, bạn đã có %{count} người mến mộ mới trong khi đi chơi! Ngạc nhiên chưa!
       subject:
-        other: "%{count} thông báo mới kể từ lần truy cập trước của bạn"
-      title: Khi bạn vắng mặt ...
+        other: "%{count} thông báo mới kể từ lần truy cập trước \U0001F418"
+      title: Khi bạn offline...
     favourite:
-      body: 'Trạng thái của bạn đã được yêu thích bởi %{name}:'
-      subject: "%{name} yêu thích trạng thái của bạn"
-      title: Yêu thích mới
+      body: Tút của bạn vừa được %{name} tâm đắc
+      subject: "%{name} vừa tâm đắc tút của bạn"
+      title: Lượt tâm đắc mới
     follow:
-      body: "%{name} hiện đang theo dõi bạn!"
-      subject: "%{name} hiện đang theo dõi bạn"
-      title: Người theo dõi mới
+      body: Bạn vừa mới được %{name} mến mộ
+      subject: "%{name} vừa mới mến mộ bạn"
+      title: Người mến mộ mới
     follow_request:
-      action: Quản lý theo yêu cầu
-      body: "%{name} đã yêu cầu theo dõi bạn"
-      subject: 'Người theo dõi đang chờ xử lý: %{name}'
-      title: Yêu cầu theo dõi mới
+      action: Quản lý yêu cầu mến mộ
+      body: "%{name} vừa yêu cầu mến mộ bạn"
+      subject: 'Người mến mộ đang chờ đồng ý: %{name}'
+      title: Yêu cầu mến mộ mới
     mention:
-      action: Đáp lại
-      body: 'Bạn đã được đề cập bởi %{name} trong:'
-      subject: Bạn đã được đề cập bởi %{name}
-      title: Đề cập mới
+      action: Phản hồi
+      body: 'Bạn vừa được nhắc đến bởi %{name} trong:'
+      subject: Bạn vừa được nhắc đến bởi %{name}
+      title: Lượt nhắc mới
     reblog:
-      body: 'Trạng thái của bạn đã được loan tin bởi %{name}:'
-      subject: "%{name} đã loan tin trạng thái của bạn"
-      title: Tăng mới
+      body: Tút của bạn vừa được chia sẻ bởi %{name}
+      subject: "%{name} vừa chia sẻ tút của bạn"
+      title: Lượt chia sẻ mới
+  notifications:
+    email_events: Email
+    email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
+    other_settings: Cài đặt thông báo khác
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n%A"
         units:
           billion: B
           million: M
@@ -875,58 +978,65 @@ vi:
   pagination:
     newer: Mới hơn
     next: Kế tiếp
-    older: Lớn hơn
+    older: Cũ hơn
     prev: Trước đó
-    truncate: Giáo dục
+    truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Bạn đã bình chọn trong cuộc bình chọn này
-      duplicate_options: chứa các mục trùng lặp
-      duration_too_long: quá xa trong tương lai
+      already_voted: Bạn đã bình chọn trong cuộc thăm dò này
+      duplicate_options: chứa các lựa chọn trùng lặp
+      duration_too_long: quá xa so với thời điểm hiện tại
       duration_too_short: quá sớm
       expired: Cuộc thăm dò đã kết thúc
       invalid_choice: Lựa chọn không tồn tại
-      over_character_limit: không thể dài hơn %{max} ký tự mỗi ký tự
+      over_character_limit: độ dài tối đa %{max} ký tự
       too_few_options: phải có nhiều hơn một mục
-      too_many_options: không thể chứa nhiều hơn %{max}
+      too_many_options: tối đa %{max} lựa chọn
   preferences:
     other: Khác
-    posting_defaults: Đăng mặc định
-    public_timelines: Mốc thời gian công cộng
+    posting_defaults: Trạng thái tút mặc định
+    public_timelines: Bảng tin công khai
+  reactions:
+    errors:
+      limit_reached: Bạn không nên thao tác liên tục
+      unrecognized_emoji: không phải là emoji
   relationships:
     activity: Hoạt động tài khoản
-    dormant: Không hoạt động
+    dormant: Không có tương tác
+    followers: Người mến mộ bạn
+    following: Người bạn mến mộ
+    invited: Người bạn mời đăng ký
     last_active: Hoạt động lần cuối
     most_recent: Gần đây nhất
-    moved: Đã chuyển
-    mutual: Tương thân
+    moved: Dời sang
+    mutual: Bằng Hữu
     primary: Sơ cấp
     relationship: Mối quan hệ
-    remove_selected_domains: Xóa tất cả người theo dõi khỏi các miền đã chọn
-    remove_selected_followers: Xóa những người theo dõi đã chọn
-    remove_selected_follows: Hủy theo dõi người dùng đã chọn
+    remove_selected_domains: Xóa hết người mến mộ từ các máy chủ đã chọn
+    remove_selected_followers: Xóa những người mến mộ đã chọn
+    remove_selected_follows: Hủy mến mộ người dùng đã chọn
     status: Tình trạng tài khoản
   remote_follow:
-    acct: Nhập tên người dùng @ tên miền bạn muốn hành động từ
+    acct: Nhập tên người dùng@máy chủ bạn muốn tương tác
     missing_resource: Không thể tìm thấy URL chuyển hướng cần thiết cho tài khoản của bạn
-    no_account_html: Không có tài khoản? Bạn có thể <a href='%{sign_up_path}' target='_blank'>đăng ký tại đây</a>
+    no_account_html: Chưa có tài khoản? Bạn có thể <a href='%{sign_up_path}' target='_blank'>đăng ký tại đây</a>
     proceed: Tiến hành theo
-    prompt: 'Bạn sẽ làm theo:'
-    reason_html: "<strong>Tại sao bước này là cần thiết?</strong> <code>%{instance}</code> có thể không phải là máy chủ nơi bạn đã đăng ký, vì vậy chúng tôi cần chuyển hướng bạn đến máy chủ nhà của bạn trước."
+    prompt: 'Bạn sắp mến mộ:'
+    reason_html: "<strong>Tại sao bước này là cần thiết?</strong> <code>%{instance}</code> có thể không phải là máy chủ nơi bạn đã đăng ký, vì vậy chúng tôi cần chuyển hướng bạn đến máy chủ của bạn trước."
   remote_interaction:
     favourite:
-      proceed: Tiếp tục yêu thích
-      prompt: 'Bạn muốn yêu thích tút này:'
+      proceed: Tiếp tục tâm đắc
+      prompt: 'Bạn tâm đắc tút này:'
     reblog:
-      proceed: Tiến hành để loan tin
-      prompt: 'Bạn muốn loan tin hoạt động này:'
+      proceed: Tiếp tục chia sẻ
+      prompt: 'Bạn chia sẻ tút này:'
     reply:
-      proceed: Tiến hành trả lời
-      prompt: 'Bạn muốn trả lời tút này:'
+      proceed: Tiếp tục bình luận
+      prompt: 'Bạn bình luận tút này:'
   scheduled_statuses:
     over_daily_limit: Bạn đã vượt quá giới hạn của các tút được lên lịch %{limit} cho ngày hôm đó
-    over_total_limit: Bạn đã vượt quá giới hạn của các tút theo lịch trình %{limit}
-    too_soon: Ngày dự kiến phải trong tương lai
+    over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
+    too_soon: Ngày lên lịch phải trong tương lai
   sessions:
     activity: Hoạt động cuối
     browser: Trình duyệt
@@ -935,22 +1045,22 @@ vi:
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
-      electron: Điện tử
+      electron: Electron
       firefox: Firefox
-      generic: Trình duyệt không xác định
-      ie: trình duyệt web IE
+      generic: Trình duyệt khác
+      ie: Internet Explorer
       micro_messenger: MicroMes hành khách
       nokia: Trình duyệt Nokia S40 Ovi
       opera: Opera
-      otter: Rái cá
+      otter: Otter
       phantom_js: PhantomJS
-      qq: Trình duyệt QQ
-      safari: cuộc đi săn, cuộc hành trình
-      uc_browser: Trình duyệt UC
+      qq: QQ
+      safari: Safari
+      uc_browser: UC
       weibo: Weibo
     current_session: Phiên hiện tại
     description: "%{browser} trên %{platform}"
-    explanation: Đây là các trình duyệt web hiện đang đăng nhập vào tài khoản Mastodon của bạn.
+    explanation: Đây là các trình duyệt web sử dụng để đăng nhập vào tài khoản Mastodon của bạn.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -961,75 +1071,80 @@ vi:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: chưa rõ nền tảng
-      windows: các cửa sổ
-      windows_mobile: Windows di động
+      other: nền tảng khác
+      windows: Windows
+      windows_mobile: Windows Mobile
       windows_phone: Điện thoại Windows
     revoke: Thu hồi
-    revoke_success: Phiên thu hồi thành công
+    revoke_success: Thu hồi phiên thành công
     title: Phiên
   settings:
     account: Tài khoản
     account_settings: Cài đặt tài khoản
-    aliases: Bí danh tài khoản
-    appearance: Xuất hiện
-    authorized_apps: Ứng dụng được ủy quyền
+    aliases: Định danh tài khoản
+    appearance: Giao diện
+    authorized_apps: App đã sử dụng
     back: Quay lại Mastodon
     delete: Xóa tài khoản
     development: Phát triển
-    edit_profile: Chỉnh sửa hồ sơ
+    edit_profile: Chỉnh sửa trang cá nhân
     export: Xuất dữ liệu
-    featured_tags: Hashtags nổi bật
+    featured_tags: Hashtags thường dùng
     identity_proofs: Bằng chứng nhận dạng
-    import: Nhập khẩu
-    import_and_export: Nhập khẩu và xuất khẩu
-    migrate: Di chuyển tài khoản
+    import: Nhập dữ liệu
+    import_and_export: Nhập và xuất dữ liệu
+    migrate: Chuyển tài khoản sang máy chủ khác
     notifications: Thông báo
-    preferences: Sở thích
-    profile: Hồ sơ
-    relationships: Theo dõi và theo dõi
-    two_factor_authentication: Xác thực hai yếu tố
+    preferences: Chung
+    profile: Trang cá nhân
+    relationships: Mến mộ
+    two_factor_authentication: Xác thực hai bước
   spam_check:
-    spam_detected: Đây là một báo cáo tự động. Thư rác đã được phát hiện.
+    spam_detected: Đây là một báo cáo tự động. Đã phát hiện thư rác.
   statuses:
     attached:
-      description: 'Đã đính kèm: %{attached}'
+      audio:
+        other: "%{count} bài hát"
+      description: 'Đính kèm: %{attached}'
       image:
-        other: hình ảnh %{count}
+        other: "%{count} hình ảnh"
       video:
-        other: video %{count}
-    boosted_from_html: Được loan tin từ %{acct_link}
+        other: "%{count} video"
+    boosted_from_html: Đã chia sẻ từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
     disallowed_hashtags:
-      other: 'chứa các hashtag không được phép: %{tags}'
+      other: 'chứa các hashtag bị cấm: %{tags}'
+    errors:
+      in_reply_not_found: Bạn đang bình luận một tút không còn tồn tại.
     language_detection: Tự động phát hiện ngôn ngữ
     open_in_web: Mở trên web
-    over_character_limit: vượt quá giới hạn ký tự của %{max}
+    over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
-      limit: Bạn đã ghim số lượng tút tối đa
-      ownership: Tút của người khác không thể được ghim
-      private: tút không công khai không thể được ghim
-      reblog: Không thể được ghim Loan in
+      limit: Bạn đã ghim quá số lượng tút cho phép
+      ownership: Không thể ghim tút của người khác
+      private: Tút riêng tư nên không thể ghim
+      reblog: Không thể ghim chia sẻ
     poll:
       total_people:
         other: "%{count} người"
       total_votes:
-        other: "%{count} phiếu bầu"
-      vote: Bỏ phiếu
-    show_more: Cho xem nhiều hơn
+        other: "%{count} bình chọn"
+      vote: Cuộc thăm dò
+    show_more: Xem thêm
+    show_thread: Nguyên văn
     sign_in_to_participate: Đăng nhập để tham gia vào cuộc trò chuyện
-    title: "%{name}: &quot;%{quote}&quot;"
+    title: '%{name}: "%{quote}"'
     visibilities:
-      private: Chỉ theo dõi
-      private_long: Chỉ hiển thị cho người theo dõi
-      public: Công cộng
-      public_long: Mọi người có thể thấy
-      unlisted: Chưa niêm yết
-      unlisted_long: Mọi người đều có thể xem, nhưng không được liệt kê trên các mốc thời gian công khai
+      private: Đóng
+      private_long: Chỉ người đã mến mộ mới xem được tút
+      public: Công khai
+      public_long: Ai cũng có thể thấy
+      unlisted: Mở
+      unlisted_long: Ai cũng có thể xem nhưng không hiện trên bảng tin máy chủ
   stream_entries:
-    pinned: Tút đã ghim
-    reblogged: loan tin
-    sensitive_content: Nội dung nhạy cảm
+    pinned: Tút được ghim
+    reblogged: chia sẻ
+    sensitive_content: NSFW
   tags:
     does_not_match_previous_name: không khớp với tên trước
   terms:
@@ -1038,74 +1153,83 @@ vi:
   themes:
     contrast: Mastodon (Độ tương phản cao)
     default: Mastodon (Tối)
-    mastodon-light: Mastodon (Ánh sáng)
+    mastodon-light: Mastodon (Sáng)
   time:
     formats:
-      default: "% b %d,% Y,% H:% M"
-      month: "% b% Y"
+      default: "%b %d, %Y, %H:%M"
+      month: "%B %Y"
   two_factor_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
-    description_html: Nếu bạn kích hoạt <strong>xác thực hai yếu tố</strong> , đăng nhập sẽ yêu cầu bạn phải sở hữu điện thoại của mình, điều này sẽ tạo ra các mã thông báo để bạn nhập.
+    description_html: Nếu bạn kích hoạt <strong>xác thực hai bước</strong>, mã xác thực đăng nhập sẽ được tạo ra từ điện thoại của bạn.
     disable: Vô hiệu hóa
     enable: Kích hoạt
-    enabled: Xác thực hai yếu tố được kích hoạt
-    enabled_success: Xác thực hai yếu tố được kích hoạt thành công
+    enabled: Đã kích hoạt xác thực hai bước
+    enabled_success: Xác thực hai bước được kích hoạt thành công
     generate_recovery_codes: Tạo mã khôi phục
-    instructions_html: "<strong>Quét mã QR này vào Google Authenticator hoặc ứng dụng TOTP tương tự trên điện thoại của bạn</strong> . Từ giờ trở đi, ứng dụng đó sẽ tạo mã thông báo mà bạn sẽ phải nhập khi đăng nhập."
+    instructions_html: "<strong>Quét mã QR này vào Google Authenticator hoặc ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Từ giờ trở đi, ứng dụng đó sẽ tạo mã thông báo mà bạn sẽ phải nhập khi đăng nhập."
     lost_recovery_codes: Mã khôi phục cho phép bạn lấy lại quyền truy cập vào tài khoản của mình nếu bạn mất điện thoại. Nếu bạn bị mất mã khôi phục, bạn có thể tạo lại chúng ở đây. Mã khôi phục cũ của bạn sẽ bị vô hiệu.
-    manual_instructions: 'Nếu bạn không thể quét mã QR và cần nhập thủ công, đây là bí mật văn bản đơn giản:'
+    manual_instructions: 'Nếu bạn không thể quét mã QR và cần nhập thủ công, đây là mã bí mật:'
     recovery_codes: Mã phục hồi dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
-    recovery_instructions_html: Nếu bạn mất quyền truy cập vào điện thoại, bạn có thể sử dụng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong> . Ví dụ, bạn có thể in chúng và lưu trữ chúng với các tài liệu quan trọng khác.
+    recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy sử dụng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
     setup: Thiết lập
-    wrong_code: Mã đã nhập không hợp lệ! Thời gian máy chủ và thời gian thiết bị có đúng không?
+    wrong_code: Mã vừa nhập không hợp lệ! Thời gian máy chủ và thời gian thiết bị có đúng không?
   user_mailer:
     backup_ready:
-      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ đã sẵn sàng để tải về!
-      subject: Kho lưu trữ của bạn đã sẵn sàng để tải về
-      title: Lưu trữ mang đi
+      explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
+      subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
+      title: Nhận dữ liệu cá nhân
+    sign_in_token:
+      details: 'Chi tiết cụ thể:'
+      explanation: 'Tài khoản của bạn vừa đăng nhập từ một địa chỉ IP lạ. Nếu thật là bạn, hãy nhập mã an toàn bên dưới vào trang đăng nhập:'
+      further_actions: 'Nếu không phải là bạn, hãy lập tức thay đổi mật khẩu và kích hoạt xác thực hai bước ở đây:'
+      subject: Xác nhận đăng nhập
+      title: Đăng nhập
     warning:
       explanation:
-        disable: Trong khi tài khoản của bạn bị đóng băng, dữ liệu tài khoản của bạn vẫn còn nguyên, nhưng bạn không thể thực hiện bất kỳ hành động nào cho đến khi được mở khóa.
-        silence: Mặc dù tài khoản của bạn bị hạn chế, nhưng chỉ những người đã theo dõi bạn mới thấy tút của bạn trên máy chủ này và bạn có thể bị loại khỏi các danh sách công khai khác nhau. Tuy nhiên, những người khác vẫn có thể tự theo dõi bạn.
-        suspend: Tài khoản của bạn đã bị treo và tất cả các tút và tệp phương tiện đã tải lên của bạn đã bị xóa khỏi máy chủ này và các máy chủ nơi bạn có người theo dõi.
-      get_in_touch: Bạn có thể trả lời e-mail này để liên lạc với nhân viên của %{instance}.
+        disable: Nếu tài khoản của bạn bị đình chỉ, dữ liệu tài khoản của bạn vẫn còn nguyên, nhưng bạn không thể thực hiện bất kỳ hành động nào cho đến khi được mở khóa.
+        silence: Nếu tài khoản của bạn bị tạm ẩn, bạn có thể bị loại khỏi các bảng tin công khai, chỉ những người đã mến mộ bạn mới thấy tút của bạn. Tuy nhiên, những người khác vẫn có thể tiếp tục mến mộ bạn.
+        suspend: Tài khoản của bạn đã bị vô hiệu hóa. Tất cả tút và tập tin đã tải lên của bạn sẽ bị xóa khỏi máy chủ này lẫn các máy chủ nơi bạn có người mến mộ.
+      get_in_touch: Bạn có thể trả lời e-mail này để liên hệ với đội ngũ của %{instance}.
       review_server_policies: Xem lại chính sách máy chủ
       statuses: 'Cụ thể, cho:'
       subject:
-        disable: Tài khoản của bạn %{acct} đã bị đóng băng
+        disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         none: Cảnh báo cho %{acct}
-        silence: Tài khoản của bạn %{acct} đã bị giới hạn
-        suspend: Tài khoản của bạn %{acct} đã bị treo
+        silence: Tài khoản %{acct} của bạn đã bị tạm ẩn
+        suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
       title:
         disable: Tài khoản bị đóng băng
         none: Cảnh báo
-        silence: Tài khoản bị giới hạn
-        suspend: Toàn khoản bị đình chỉ
+        silence: Tài khoản bị tạm ẩn
+        suspend: Toài khoản bị vô hiệu hóa
     welcome:
-      edit_profile_action: Cài đặt hồ sơ
-      edit_profile_step: Bạn có thể tùy chỉnh hồ sơ của mình bằng cách tải lên hình đại diện, tiêu đề, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn xem lại những người theo dõi mới trước khi họ được phép theo dõi bạn, bạn có thể khóa tài khoản của mình.
-      explanation: Dưới đây là một số lời khuyên để giúp bạn bắt đầu
-      final_action: Bắt đầu đăng bài
-      final_step: 'Bắt đầu đăng bài! Ngay cả khi không có người theo dõi, tin nhắn công khai của bạn có thể bị người khác nhìn thấy, ví dụ như trên dòng thời gian cùng miền và trong hashtag. Bạn có thể muốn giới thiệu bản thân về hashtag #intributiontions.'
-      full_handle: Xử lý đầy đủ của bạn
-      full_handle_hint: Đây là những gì bạn sẽ nói với bạn bè của mình để họ có thể nhắn tin hoặc theo dõi bạn từ một máy chủ khác.
-      review_preferences_action: Thay đổi sở thích
-      review_preferences_step: Đảm bảo đặt tùy chọn của bạn, chẳng hạn như email nào bạn muốn nhận hoặc mức độ riêng tư mà bạn muốn bài đăng của mình được mặc định. Nếu bạn không bị say tàu xe, bạn có thể chọn bật tự động phát GIF.
+      edit_profile_action: Cài đặt trang cá nhân
+      edit_profile_step: Bạn có thể tùy chỉnh trang cá nhân của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người mến mộ mới phải được phê duyệt, hãy chuyển tài khoản sang trạng thái khóa.
+      explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
+      final_action: Viết tút mới
+      final_step: 'Viết tút mới! Ngay cả khi không có người mến mộ, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và trong hashtag. Hãy giới thiệu bản thân với hashtag #introduction.'
+      full_handle: Tên đầy đủ của bạn
+      full_handle_hint: Đây cũng là địa chỉ được dùng để tương tác với tất cả mọi người.
+      review_preferences_action: Tùy chỉnh giao diện
+      review_preferences_step: Tùy chỉnh mọi thứ! Chẳng hạn như chọn loại email nào bạn muốn nhận hoặc trạng thái tút mà bạn muốn sử dụng mặc định. Hãy tắt tự động phát GIF nếu bạn hay bị chóng mặt.
       subject: Chào mừng đến với Mastodon
-      tip_federated_timeline: Dòng thời gian được liên kết là một khung nhìn rực lửa của mạng Mastodon. Nhưng nó chỉ bao gồm những người mà hàng xóm của bạn đã đăng ký, vì vậy nó không hoàn thành.
-      tip_following: Bạn theo dõi (các) quản trị viên máy chủ của bạn theo mặc định. Để tìm những người thú vị hơn, hãy kiểm tra các mốc thời gian cùng miền và liên kết.
-      tip_local_timeline: Dòng thời gian cùng miền là chế độ xem lửa của mọi người trên %{instance}. Đây là những người hàng xóm trực tiếp của bạn!
-      tip_mobile_webapp: Nếu trình duyệt trên điện thoại di động của bạn cung cấp cho bạn thêm Mastodon vào màn hình chính, bạn có thể nhận được thông báo đẩy. Nó hoạt động như một ứng dụng bản địa theo nhiều cách!
-      tips: Lời khuyên
-      title: Chào mừng bạn, %{name}!
+      tip_federated_timeline: Mạng liên kết là một dạng "liên hợp quốc" của Mastodon. Hiểu một cách đơn giản, nó là những người bạn đã mến mộ từ các máy chủ khác.
+      tip_following: Theo mặc định, bạn sẽ mến mộ (các) quản trị viên máy chủ của bạn. Để tìm những người thú vị hơn, hãy xem qua bảng tin và mạng liên kết.
+      tip_local_timeline: Bảng tin là nơi hiện lên những tút công khai của thành viên %{instance}. Họ là những người hàng xóm trực tiếp của bạn!
+      tip_mobile_webapp: Nếu trình duyệt trên điện thoại di động của bạn thêm Mastodon vào màn hình chính, bạn có thể nhận được thông báo đẩy. Nó hoạt động gần giống như một app điện thoại!
+      tips: Mẹo
+      title: Xin chào %{name}!
   users:
-    follow_limit_reached: Bạn không thể theo dõi nhiều hơn %{limit} người
+    follow_limit_reached: Bạn chỉ có thể mến mộ tối đa %{limit} người
+    generic_access_help_html: Gặp trục trặc với tài khoản? Liên hệ %{email} để được trợ giúp
     invalid_email: Địa chỉ email không hợp lệ
-    invalid_otp_token: Mã hai yếu tố không hợp lệ
-    otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể liên lạc với %{email}
-    seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy cài đặt mật khẩu và e-mail không khả dụng.
-    signed_in_as: 'Đăng ký với tư cách là:'
+    invalid_otp_token: Mã xác thực hai bước không hợp lệ
+    invalid_sign_in_token: Mã an toàn không hợp lệ
+    otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
+    seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
+    signed_in_as: 'Đăng nhập với tư cách là:'
+    suspicious_sign_in_confirmation: Đây là lần đầu tiên bạn đăng nhập trên thiết bị này. Vì vậy, chúng tôi sẽ gửi một mã an toàn đến email của bạn để xác thực danh tính.
   verification:
-    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các liên kết trong siêu dữ liệu hồ sơ của bạn</strong> . Vì vậy, trang web được liên kết phải chứa một liên kết trở lại hồ sơ Mastodon của bạn. Liên kết trở lại <strong>phải</strong> có thuộc tính <code>rel=&quot;me&quot;</code> . Nội dung văn bản của liên kết không quan trọng. Đây là một ví dụ:'
-    verification: xác minh
+    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web ở đầu trang cá nhân của bạn</strong>. Để xác minh, trang web <strong>phải</strong> chèn mã <code>rel="me"</code>. Nội dung văn bản của liên kết không quan trọng. Đây là một ví dụ:'
+    verification: Xác minh
