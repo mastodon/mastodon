@@ -17,6 +17,7 @@ import CharacterCounter from 'mastodon/features/compose/components/character_cou
 import { length } from 'stringz';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import GIFV from 'mastodon/components/gifv';
+import { me } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -26,6 +27,7 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, { id }) => ({
   media: state.getIn(['compose', 'media_attachments']).find(item => item.get('id') === id),
+  account: state.getIn(['accounts', me]),
 });
 
 const mapDispatchToProps = (dispatch, { id }) => ({
@@ -78,6 +80,7 @@ class FocalPointModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map.isRequired,
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -233,7 +236,7 @@ class FocalPointModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { media, intl, onClose } = this.props;
+    const { media, intl, account, onClose } = this.props;
     const { x, y, dragging, description, dirty, detecting, progress } = this.state;
 
     const width  = media.getIn(['meta', 'original', 'width']) || null;
@@ -325,7 +328,8 @@ class FocalPointModal extends ImmutablePureComponent {
                 src={media.get('url')}
                 duration={media.getIn(['meta', 'original', 'duration'], 0)}
                 height={150}
-                preload
+                poster={media.get('preview_url') || account.get('avatar_static')}
+                blurhash={media.get('blurhash')}
                 editable
               />
             )}
