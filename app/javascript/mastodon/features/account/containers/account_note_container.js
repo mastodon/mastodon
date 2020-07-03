@@ -1,34 +1,17 @@
 import { connect } from 'react-redux';
-import { changeAccountNoteComment, submitAccountNote, initEditAccountNote, cancelAccountNote } from 'mastodon/actions/account_notes';
+import { submitAccountNote } from 'mastodon/actions/account_notes';
 import AccountNote from '../components/account_note';
 
-const mapStateToProps = (state, { account }) => {
-  const isEditing = state.getIn(['account_notes', 'edit', 'account_id']) === account.get('id');
-
-  return {
-    isSubmitting: state.getIn(['account_notes', 'edit', 'isSubmitting']),
-    accountNote: isEditing ? state.getIn(['account_notes', 'edit', 'comment']) : account.getIn(['relationship', 'note']),
-    isEditing,
-  };
-};
+const mapStateToProps = (state, { account }) => ({
+  value: account.getIn(['relationship', 'note']),
+});
 
 const mapDispatchToProps = (dispatch, { account }) => ({
 
-  onEditAccountNote() {
-    dispatch(initEditAccountNote(account));
+  onSave (value) {
+    dispatch(submitAccountNote(account.get('id'), value));
   },
 
-  onSaveAccountNote() {
-    dispatch(submitAccountNote());
-  },
-
-  onCancelAccountNote() {
-    dispatch(cancelAccountNote());
-  },
-
-  onChangeAccountNote(comment) {
-    dispatch(changeAccountNoteComment(comment));
-  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountNote);
