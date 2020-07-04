@@ -88,7 +88,7 @@ zh-CN:
       delete: 删除
       destroyed_msg: 管理备忘删除成功！
     accounts:
-      add_email_domain_block: 把电子邮箱域名加入黑名单
+      add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
       approve_all: 批准全部
       are_you_sure: 你确定吗？
@@ -189,7 +189,7 @@ zh-CN:
       username: 用户名
       warn: 警告
       web: 站内页面
-      whitelisted: 已加入白名单
+      whitelisted: 允许跨站
     action_logs:
       action_types:
         assigned_to_self_report: 指派举报
@@ -234,13 +234,13 @@ zh-CN:
         create_account_warning: "%{name} 向 %{target} 发送了警告"
         create_announcement: "%{name} 创建了新公告 %{target}"
         create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
-        create_domain_allow: "%{name} 添加了对域名 %{target} 的白名单。"
+        create_domain_allow: "%{name} 允许域名 %{target} 跨站交互"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
         demote_user: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement: "%{name} 删除了公告 %{target}"
         destroy_custom_emoji: "%{name} 销毁了自定义表情 %{target}"
-        destroy_domain_allow: "%{name} 从白名单中移除了域名 %{target}"
+        destroy_domain_allow: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
         destroy_status: "%{name} 删除了 %{target} 的嘟文"
@@ -343,11 +343,11 @@ zh-CN:
       week_interactions: 本周互动数
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
-      whitelist_mode: 白名单模式
+      whitelist_mode: 有限跨站模式
     domain_allows:
-      add_new: 白名单域名
-      created_msg: 域名已被列入白名单
-      destroyed_msg: 域名已从白名单中移除
+      add_new: 允许和域名跨站交互
+      created_msg: 域名已被允许跨站交互
+      destroyed_msg: 域名已被禁止跨站交互
       undo: 从白名单中移除
     domain_blocks:
       add_new: 添加新屏蔽域名
@@ -394,7 +394,7 @@ zh-CN:
       delete: 删除
       destroyed_msg: 电子邮件域名屏蔽删除成功
       domain: 域名
-      empty: 当前没有邮件域名黑名单。
+      empty: 当前没有邮件域名被封禁。
       from_html: 来自 %{domain}
       new:
         create: 添加域名
