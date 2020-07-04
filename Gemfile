@@ -48,6 +48,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
+gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.4'
 gem 'ed25519', '~> 1.2'
