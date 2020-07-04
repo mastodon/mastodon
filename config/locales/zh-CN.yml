@@ -189,7 +189,7 @@ zh-CN:
       username: 用户名
       warn: 警告
       web: 站内页面
-      whitelisted: 允许跨站
+      whitelisted: 允许跨站交互
     action_logs:
       action_types:
         assigned_to_self_report: 指派举报
@@ -234,7 +234,7 @@ zh-CN:
         create_account_warning: "%{name} 向 %{target} 发送了警告"
         create_announcement: "%{name} 创建了新公告 %{target}"
         create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
-        create_domain_allow: "%{name} 允许域名 %{target} 跨站交互"
+        create_domain_allow: "%{name} 允许了和域名 %{target} 的跨站交互"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
         demote_user: "%{name} 对用户 %{target} 进行了降任操作"
@@ -343,12 +343,12 @@ zh-CN:
       week_interactions: 本周互动数
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
-      whitelist_mode: 有限跨站模式
+      whitelist_mode: 限联模式
     domain_allows:
       add_new: 允许和域名跨站交互
       created_msg: 域名已被允许跨站交互
       destroyed_msg: 域名已被禁止跨站交互
-      undo: 从白名单中移除
+      undo: 不允许和该域名跨站交互
     domain_blocks:
       add_new: 添加新屏蔽域名
       created_msg: 正在进行域名屏蔽
@@ -442,7 +442,7 @@ zh-CN:
       pending: 等待中继站的确认
       save_and_enable: 保存并启用
       setup: 设置中继连接
-      signatures_not_enabled: 安全模式或白名单模式启用时，中继将不会正常工作
+      signatures_not_enabled: 安全模式或限联模式启用时，中继将不会正常工作
       status: 状态
       title: 中继站
     report_notes:
