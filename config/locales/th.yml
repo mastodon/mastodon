@@ -527,6 +527,7 @@ th:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
+      with_media: มีสื่อ
     tags:
       context: บริบท
       directory: ในไดเรกทอรี
@@ -780,6 +781,10 @@ th:
     set_redirect: ตั้งการเปลี่ยนเส้นทาง
   moderation:
     title: การควบคุม
+  move_handler:
+    carry_blocks_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ปิดกั้น
+    carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
+    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้าของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
