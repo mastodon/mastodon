@@ -329,7 +329,9 @@ class FocalPointModal extends ImmutablePureComponent {
                 duration={media.getIn(['meta', 'original', 'duration'], 0)}
                 height={150}
                 poster={media.get('preview_url') || account.get('avatar_static')}
-                blurhash={media.get('blurhash')}
+                backgroundColor={media.getIn(['meta', 'colors', 'background'])}
+                foregroundColor={media.getIn(['meta', 'colors', 'foreground'])}
+                accentColor={media.getIn(['meta', 'colors', 'accent'])}
                 editable
               />
             )}

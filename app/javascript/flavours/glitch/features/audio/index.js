@@ -5,131 +5,12 @@ import { formatTime } from 'flavours/glitch/features/video';
 import Icon from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
-import { encode, decode } from 'blurhash';
 import { getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
 import { debounce } from 'lodash';
 
-const digitCharacters = [
-  '0',
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-  '#',
-  '$',
-  '%',
-  '*',
-  '+',
-  ',',
-  '-',
-  '.',
-  ':',
-  ';',
-  '=',
-  '?',
-  '@',
-  '[',
-  ']',
-  '^',
-  '_',
-  '{',
-  '|',
-  '}',
-  '~',
-];
-
-const decode83 = (str) => {
-  let value = 0;
-  let c, digit;
-
-  for (let i = 0; i < str.length; i++) {
-    c = str[i];
-    digit = digitCharacters.indexOf(c);
-    value = value * 83 + digit;
-  }
-
-  return value;
-};
-
-const decodeRGB = int => ({
-  r: Math.max(0, (int >> 16)),
-  g: Math.max(0, (int >> 8) & 255),
-  b: Math.max(0, (int & 255)),
-});
-
-const luma = ({ r, g, b }) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
-
-const adjustColor = ({ r, g, b }, lumaThreshold = 100) => {
-  let delta;
-
-  if (luma({ r, g, b }) >= lumaThreshold) {
-    delta = -80;
-  } else {
-    delta = 80;
-  }
-
-  return {
-    r: r + delta,
-    g: g + delta,
-    b: b + delta,
-  };
+const hex2rgba = (hex, alpha = 1) => {
+  const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 const messages = defineMessages({
@@ -157,7 +38,9 @@ class Audio extends React.PureComponent {
     fullscreen: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     cacheWidth: PropTypes.func,
-    blurhash: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    foregroundColor: PropTypes.string,
+    accentColor: PropTypes.string,
   };
 
   state = {
@@ -169,7 +52,6 @@ class Audio extends React.PureComponent {
     muted: false,
     volume: 0.5,
     dragging: false,
-    color: { r: 255, g: 255, b: 255 },
   };
 
   setPlayerRef = c => {
@@ -207,10 +89,6 @@ class Audio extends React.PureComponent {
     }
   }
 
-  setBlurhashCanvasRef = c => {
-    this.blurhashCanvas = c;
-  }
-
   setCanvasRef = c => {
     this.canvas = c;
 
@@ -221,41 +99,13 @@ class Audio extends React.PureComponent {
  
   componentDidMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
-
-    if (!this.props.blurhash) {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => this.handlePosterLoad(img);
-      img.src = this.props.poster;
-    } else {
-      this._setColorScheme();
-      this._decodeBlurhash();
-    }
   }
 
   componentDidUpdate (prevProps, prevState) {
-    if (prevProps.poster !== this.props.poster && !this.props.blurhash) {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => this.handlePosterLoad(img);
-      img.src = this.props.poster;
+    if (prevProps.src !== this.props.src || this.state.width !== prevState.width || this.state.height !== prevState.height) {
+      this._clear();
+      this._draw();
     }
-
-    if (prevState.blurhash !== this.state.blurhash || prevProps.blurhash !== this.props.blurhash) {
-      this._setColorScheme();
-      this._decodeBlurhash();
-    }
-
-    this._clear();
-    this._draw();
-  }
-
-  _decodeBlurhash () {
-    const context = this.blurhashCanvas.getContext('2d');
-    const pixels = decode(this.props.blurhash || this.state.blurhash, 32, 32);
-    const outputImageData = new ImageData(pixels, 32, 32);
-
-    context.putImageData(outputImageData, 0, 0);
   }
 
   componentWillUnmount () {
@@ -408,31 +258,6 @@ class Audio extends React.PureComponent {
 
     this.audioContext = context;
     this.analyser = analyser;
-  }
-
-  handlePosterLoad = image => {
-    const canvas  = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-
-    canvas.width  = image.width;
-    canvas.height = image.height;
-
-    context.drawImage(image, 0, 0);
-
-    const inputImageData = context.getImageData(0, 0, image.width, image.height);
-    const blurhash = encode(inputImageData.data, image.width, image.height, 4, 4);
-
-    this.setState({ blurhash });
-  }
-
-  _setColorScheme () {
-    const blurhash     = this.props.blurhash || this.state.blurhash;
-    const averageColor = decodeRGB(decode83(blurhash.slice(2, 6)));
-
-    this.setState({
-      color: adjustColor(averageColor),
-      darkText: luma(averageColor) >= 165,
-    });
   }
 
   handleDownload = () => {
@@ -594,8 +419,8 @@ class Audio extends React.PureComponent {
 
     const gradient = this.canvasContext.createLinearGradient(dx1, dy1, dx2, dy2);
 
-    const mainColor = `rgb(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b})`;
-    const lastColor = `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b}, 0)`;
+    const mainColor = this._getAccentColor();
+    const lastColor = hex2rgba(mainColor, 0);
 
     gradient.addColorStop(0, mainColor);
     gradient.addColorStop(0.6, mainColor);
@@ -617,17 +442,25 @@ class Audio extends React.PureComponent {
     return Math.floor(this._getRadius() + (PADDING * this._getScaleCoefficient()));
   }
 
-  _getColor () {
-    return `rgb(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b})`;
+  _getAccentColor () {
+    return this.props.accentColor || '#ffffff';
+  }
+
+  _getBackgroundColor () {
+    return this.props.backgroundColor || '#000000';
+  }
+
+  _getForegroundColor () {
+    return this.props.foregroundColor || '#ffffff';
   }
 
   render () {
     const { src, intl, alt, editable } = this.props;
-    const { paused, muted, volume, currentTime, duration, buffer, darkText, dragging } = this.state;
+    const { paused, muted, volume, currentTime, duration, buffer, dragging } = this.state;
     const progress = (currentTime / duration) * 100;
 
     return (
-      <div className={classNames('audio-player', { editable, 'with-light-background': darkText })} ref={this.setPlayerRef} style={{ width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className={classNames('audio-player', { editable })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <audio
           src={src}
           ref={this.setAudioRef}
@@ -639,24 +472,15 @@ class Audio extends React.PureComponent {
         />
 
         <canvas
-          className='audio-player__background'
-          onClick={this.togglePlay}
-          width='32'
-          height='32'
-          style={{ width: this.state.width, height: this.state.height, position: 'absolute', top: 0, left: 0 }}
-          ref={this.setBlurhashCanvasRef}
-          aria-label={alt}
-          title={alt}
           role='button'
-          tabIndex='0'
-        />
-
-        <canvas
           className='audio-player__canvas'
           width={this.state.width}
           height={this.state.height}
-          style={{ width: '100%', position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
+          style={{ width: '100%', position: 'absolute', top: 0, left: 0 }}
           ref={this.setCanvasRef}
+          onClick={this.togglePlay}
+          title={alt}
+          aria-label={alt}
         />
 
         <img
@@ -669,12 +493,12 @@ class Audio extends React.PureComponent {
 
         <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
           <div className='video-player__seek__buffer' style={{ width: `${buffer}%` }} />
-          <div className='video-player__seek__progress' style={{ width: `${progress}%`, backgroundColor: this._getColor() }} />
+          <div className='video-player__seek__progress' style={{ width: `${progress}%`, backgroundColor: this._getAccentColor() }} />
 
           <span
             className={classNames('video-player__seek__handle', { active: dragging })}
             tabIndex='0'
-            style={{ left: `${progress}%`, backgroundColor: this._getColor() }}
+            style={{ left: `${progress}%`, backgroundColor: this._getAccentColor() }}
           />
         </div>
 
@@ -685,12 +509,12 @@ class Audio extends React.PureComponent {
               <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
               <div className={classNames('video-player__volume', { active: this.state.hovered })} ref={this.setVolumeRef} onMouseDown={this.handleVolumeMouseDown}>
-                <div className='video-player__volume__current' style={{ width: `${volume * 100}%`, backgroundColor: this._getColor() }} />
+                <div className='video-player__volume__current' style={{ width: `${volume * 100}%`, backgroundColor: this._getAccentColor() }} />
 
                 <span
                   className={classNames('video-player__volume__handle')}
                   tabIndex='0'
-                  style={{ left: `${volume * 100}%`, backgroundColor: this._getColor() }}
+                  style={{ left: `${volume * 100}%`, backgroundColor: this._getAccentColor() }}
                 />
               </div>
 
