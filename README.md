@@ -6,7 +6,7 @@ Photo by [Joana Mujollari](https://www.flickr.com/photos/141654969@N04/267773390
 
 Mastodon is a **free, open-source social network server** based on ActivityPub. This is *not* the official version of Mastodon; this is a separate version (i.e. a fork) maintained by [Darius Kazemi](https://friend.camp/@darius). For more information on Mastodon, you can see the [official website](https://joinmastodon.org) and the [upstream repo](https://github.com/tootsuite/mastodon).
 
-__Hometown__ is a light weight fork of Mastodon. This fork is based on the principle of: minimum code change for maximum user experience change.
+__Hometown__ is a light weight fork of Mastodon. This fork is based on the principle of: minimum code change for maximum user experience change. These changes aren't wanted by Eugene, Mastodon's owner, and can't be upstreamed, ence the fork.
 
 Please [check out our wiki](https://github.com/hometown-fork/hometown/wiki) for a list of Hometown-exclusive features. Some but not all of these are covered in this document.
 
