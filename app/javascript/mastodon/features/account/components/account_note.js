@@ -148,7 +148,7 @@ class AccountNote extends ImmutablePureComponent {
 
     return (
       <div className='account__header__account-note'>
-        <label for={`account-note-${account.get('id')}`}>
+        <label htmlFor={`account-note-${account.get('id')}`}>
           <FormattedMessage id='account.account_note_header' defaultMessage='Note' /> <InlineAlert show={saved} />
         </label>
 
