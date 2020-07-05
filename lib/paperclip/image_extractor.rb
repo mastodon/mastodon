@@ -43,7 +43,7 @@ module Paperclip
 
       begin
         cli.run
-      rescue Cocaine::ExitStatusError
+      rescue Cocaine::ExitStatusError, ::Av::CommandError
         dst.close(true)
         return nil
       end

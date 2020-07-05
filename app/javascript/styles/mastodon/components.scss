@@ -5314,36 +5314,31 @@ a.status-card.compact:hover {
 
   .video-player__volume::before,
   .video-player__seek::before {
-    background: rgba($white, 0.15);
+    background: currentColor;
+    opacity: 0.15;
   }
 
-  &.with-light-background {
-    color: $black;
+  .video-player__seek__buffer {
+    background: currentColor;
+    opacity: 0.2;
+  }
 
-    .video-player__volume::before,
-    .video-player__seek::before {
-      background: rgba($black, 0.15);
+  .video-player__buttons button {
+    color: currentColor;
+    opacity: 0.75;
+
+    &:active,
+    &:hover,
+    &:focus {
+      color: currentColor;
+      opacity: 1;
     }
+  }
 
-    .video-player__seek__buffer {
-      background: rgba($black, 0.2);
-    }
-
-    .video-player__buttons button {
-      color: rgba($black, 0.75);
-
-      &:active,
-      &:hover,
-      &:focus {
-        color: $black;
-      }
-    }
-
-    .video-player__time-sep,
-    .video-player__time-total,
-    .video-player__time-current {
-      color: $black;
-    }
+  .video-player__time-sep,
+  .video-player__time-total,
+  .video-player__time-current {
+    color: currentColor;
   }
 
   .video-player__seek::before,

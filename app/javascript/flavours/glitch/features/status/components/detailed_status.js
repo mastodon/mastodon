@@ -143,7 +143,9 @@ export default class DetailedStatus extends ImmutablePureComponent {
             alt={attachment.get('description')}
             duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
             poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
-            blurhash={attachment.get('blurhash')}
+            backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
+            foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
+            accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
             height={150}
           />
         );
