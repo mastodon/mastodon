@@ -59,8 +59,11 @@ export default class AudioModal extends ImmutablePureComponent {
             src={media.get('url')}
             alt={media.get('description')}
             duration={media.getIn(['meta', 'original', 'duration'], 0)}
-            height={135}
-            preload
+            height={150}
+            poster={media.get('preview_url') || status.getIn(['account', 'avatar_static'])}
+            backgroundColor={media.getIn(['meta', 'colors', 'background'])}
+            foregroundColor={media.getIn(['meta', 'colors', 'foreground'])}
+            accentColor={media.getIn(['meta', 'colors', 'accent'])}
           />
         </div>
 

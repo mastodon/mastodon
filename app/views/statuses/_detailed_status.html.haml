@@ -33,7 +33,7 @@
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first
-      = react_component :audio, src: audio.file.url(:original), poster: audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url, blurhash: audio.blurhash, width: 670, height: 380, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
+      = react_component :audio, src: audio.file.url(:original), poster: audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url, backgroundColor: audio.file.meta.dig('colors', 'background'), foregroundColor: audio.file.meta.dig('colors', 'foreground'), accentColor: audio.file.meta.dig('colors', 'accent'), width: 670, height: 380, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - else
       = react_component :media_gallery, height: 380, sensitive: status.sensitive?, standalone: true, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do

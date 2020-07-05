@@ -11,6 +11,6 @@
     %video{ autoplay: 'autoplay', muted: 'muted', loop: 'loop' }
       %source{ src: @media_attachment.file.url(:original) }
 - elsif @media_attachment.audio?
-  = react_component :audio, src: @media_attachment.file.url(:original), poster: full_asset_url(@media_attachment.account.avatar_static_url), width: 670, height: 380, fullscreen: true, alt: @media_attachment.description, duration: @media_attachment.file.meta.dig(:original, :duration) do
+  = react_component :audio, src: @media_attachment.file.url(:original), poster: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.account.avatar_static_url, backgroundColor: @media_attachment.file.meta.dig('colors', 'background'), foregroundColor: @media_attachment.file.meta.dig('colors', 'foreground'), accentColor: @media_attachment.file.meta.dig('colors', 'accent'), width: 670, height: 380, fullscreen: true, alt: @media_attachment.description, duration: @media_attachment.file.meta.dig(:original, :duration) do
     %audio{ controls: 'controls' }
       %source{ src: @media_attachment.file.url(:original) }
