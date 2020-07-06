@@ -1,0 +1,24 @@
+/* react-select uses emotion to dynamically create CSS rules from Javascript,
+however that can't work with strict Content-Security-Policy unless we use nonces
+on stylesheets and pass them to emotion, but Rails currently has poor support
+for that */
+
+.css-2b097c-container { position: relative; box-sizing: border-box; }
+.css-yk16xz-control { -moz-box-align: center; align-items: center; background-color: rgb(255, 255, 255); border-color: rgb(204, 204, 204); border-radius: 4px; border-style: solid; border-width: 1px; cursor: default; display: flex; flex-wrap: wrap; -moz-box-pack: justify; justify-content: space-between; min-height: 38px; outline: currentcolor none 0px !important; position: relative; transition: all 100ms ease 0s; box-sizing: border-box; }
+.css-yk16xz-control:hover { border-color: rgb(179, 179, 179); }
+.css-1hwfws3 { -moz-box-align: center; align-items: center; display: flex; flex: 1 1 0%; flex-wrap: wrap; padding: 2px 8px; position: relative; overflow: hidden; box-sizing: border-box; }
+.css-1wa3eu0-placeholder { color: rgb(128, 128, 128); margin-left: 2px; margin-right: 2px; position: absolute; top: 50%; transform: translateY(-50%); box-sizing: border-box; }
+.css-1g6gooi { margin: 2px; padding-bottom: 2px; padding-top: 2px; visibility: visible; color: rgb(51, 51, 51); box-sizing: border-box; }
+.css-1wy0on6 { -moz-box-align: center; align-items: center; align-self: stretch; display: flex; flex-shrink: 0; box-sizing: border-box; }
+.css-1okebmr-indicatorSeparator { align-self: stretch; background-color: rgb(204, 204, 204); margin-bottom: 8px; margin-top: 8px; width: 1px; box-sizing: border-box; }
+.css-tlfecz-indicatorContainer { color: rgb(204, 204, 204); display: flex; padding: 8px; transition: color 150ms ease 0s; box-sizing: border-box; }
+.css-tlfecz-indicatorContainer:hover { color: rgb(153, 153, 153); }
+.css-19bqh2r { display: inline-block; fill: currentcolor; line-height: 1; stroke: currentcolor; stroke-width: 0px; }
+.css-1laao21-a11yText { z-index: 9999; border: 0px none; clip: rect(1px, 1px, 1px, 1px); height: 1px; width: 1px; position: absolute; overflow: hidden; padding: 0px; white-space: nowrap; }
+.css-1pahdxg-control { -moz-box-align: center; align-items: center; background-color: rgb(255, 255, 255); border-color: rgb(38, 132, 255); border-radius: 4px; border-style: solid; border-width: 1px; box-shadow: rgb(38, 132, 255) 0px 0px 0px 1px; cursor: default; display: flex; flex-wrap: wrap; -moz-box-pack: justify; justify-content: space-between; min-height: 38px; outline: currentcolor none 0px !important; position: relative; transition: all 100ms ease 0s; box-sizing: border-box; }
+.css-1pahdxg-control:hover { border-color: rgb(38, 132, 255); }
+.css-1gtu0rj-indicatorContainer { color: rgb(102, 102, 102); display: flex; padding: 8px; transition: color 150ms ease 0s; box-sizing: border-box; }
+.css-1gtu0rj-indicatorContainer:hover { color: rgb(51, 51, 51); }
+.css-26l3qy-menu { top: 100%; background-color: rgb(255, 255, 255); border-radius: 4px; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px; margin-bottom: 8px; margin-top: 8px; position: absolute; width: 100%; z-index: 1; box-sizing: border-box; }
+.css-11unzgr { max-height: 300px; overflow-y: auto; padding-bottom: 4px; padding-top: 4px; position: relative; box-sizing: border-box; }
+.css-1gl4k7y { color: rgb(153, 153, 153); padding: 8px 12px; text-align: center; box-sizing: border-box; }

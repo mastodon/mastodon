@@ -27,6 +27,7 @@
     = csrf_meta_tags
 
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
+    = stylesheet_link_tag '/react-select.css', skip_pipeline: true, media: 'all'
 
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
