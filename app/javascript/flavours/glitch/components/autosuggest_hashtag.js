@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { shortNumberFormat } from 'flavours/glitch/util/numbers';
+import ShortNumber from 'flavours/glitch/components/short_number';
 import { FormattedMessage } from 'react-intl';
 
 export default class AutosuggestHashtag extends React.PureComponent {
@@ -13,14 +13,28 @@ export default class AutosuggestHashtag extends React.PureComponent {
     }).isRequired,
   };
 
-  render () {
+  render() {
     const { tag } = this.props;
-    const weeklyUses = tag.history && shortNumberFormat(tag.history.reduce((total, day) => total + (day.uses * 1), 0));
+    const weeklyUses = tag.history && (
+      <ShortNumber
+        value={tag.history.reduce((total, day) => total + day.uses * 1, 0)}
+      />
+    );
 
     return (
       <div className='autosuggest-hashtag'>
-        <div className='autosuggest-hashtag__name'>#<strong>{tag.name}</strong></div>
-        {tag.history !== undefined && <div className='autosuggest-hashtag__uses'><FormattedMessage id='autosuggest_hashtag.per_week' defaultMessage='{count} per week' values={{ count: weeklyUses }} /></div>}
+        <div className='autosuggest-hashtag__name'>
+          #<strong>{tag.name}</strong>
+        </div>
+        {tag.history !== undefined && (
+          <div className='autosuggest-hashtag__uses'>
+            <FormattedMessage
+              id='autosuggest_hashtag.per_week'
+              defaultMessage='{count} per week'
+              values={{ count: weeklyUses }}
+            />
+          </div>
+        )}
       </div>
     );
   }

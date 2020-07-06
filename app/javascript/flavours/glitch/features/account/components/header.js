@@ -9,7 +9,6 @@ import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import Avatar from 'flavours/glitch/components/avatar';
 import Button from 'flavours/glitch/components/button';
-import { shortNumberFormat } from 'flavours/glitch/util/numbers';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
