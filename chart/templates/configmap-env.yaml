@@ -5,7 +5,11 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 data:
+  {{- if .Values.postgresql.enabled }}
   DB_HOST: {{ template "mastodon.postgresql.fullname" . }}
+  {{- else }}
+  DB_HOST: {{ .Values.postgresql.postgresqlHostname }}
+  {{- end }}
   DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
   DB_POOL: {{ .Values.application.sidekiq.concurrency | quote }}
   DB_PORT: "5432"
