@@ -104,12 +104,12 @@ persistence:
     accessMode: ReadWriteOnce
     resources:
       requests:
-        storage: 100Gi
+        storage: 10Gi
   system:
     accessMode: ReadWriteOnce
     resources:
       requests:
-        storage: 10Gi
+        storage: 100Gi
 
 service:
   type: ClusterIP
