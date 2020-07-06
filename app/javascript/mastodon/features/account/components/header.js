@@ -67,7 +67,6 @@ class Header extends ImmutablePureComponent {
     identity_props: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
-    onEditAccountNote: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
   };
@@ -132,8 +131,6 @@ class Header extends ImmutablePureComponent {
       return null;
     }
 
-    const accountNote = account.getIn(['relationship', 'note']);
-
     let info        = [];
     let actionBtn   = '';
     let lockedIcon  = '';
@@ -182,10 +179,6 @@ class Header extends ImmutablePureComponent {
     if ('share' in navigator) {
       menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
       menu.push(null);
-    }
-
-    if (accountNote === null) {
-      menu.push({ text: intl.formatMessage(messages.add_account_note, { name: account.get('username') }), action: this.props.onEditAccountNote });
     }
 
     if (account.get('id') === me) {
@@ -294,8 +287,6 @@ class Header extends ImmutablePureComponent {
             </h1>
           </div>
 
-          <AccountNoteContainer account={account} />
-
           <div className='account__header__extra'>
             <div className='account__header__bio'>
               { (fields.size > 0 || identity_proofs.size > 0) && (
@@ -323,6 +314,8 @@ class Header extends ImmutablePureComponent {
                   ))}
                 </div>
               )}
+
+              {account.get('id') !== me && <AccountNoteContainer account={account} />}
 
               {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content' dangerouslySetInnerHTML={content} />}
             </div>
