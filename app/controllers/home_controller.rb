@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  before_action :redirect_unauthenticated_to_permalinks!
   before_action :authenticate_user!
 
   before_action :set_pack
@@ -12,7 +13,7 @@ class HomeController < ApplicationController
 
   private
 
-  def authenticate_user!
+  def redirect_unauthenticated_to_permalinks!
     return if user_signed_in?
 
     matches = request.path.match(/\A\/web\/(statuses|accounts)\/([\d]+)\z/)
@@ -37,6 +38,7 @@ class HomeController < ApplicationController
     end
 
     matches = request.path.match(%r{\A/web/timelines/tag/(?<tag>.+)\z})
+
     redirect_to(matches ? tag_path(CGI.unescape(matches[:tag])) : default_redirect_path)
   end
 
