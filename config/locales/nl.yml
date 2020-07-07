@@ -20,7 +20,7 @@ nl:
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
-    instance_actor_flash: Dit account is een virtuel actor die wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wil blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken.
+    instance_actor_flash: Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken.
     learn_more: Meer leren
     privacy_policy: Privacybeleid
     see_whats_happening: Kijk wat er aan de hand is
@@ -32,7 +32,7 @@ nl:
     status_count_before: Zij schreven
     tagline: Vrienden volgen en nieuwe ontdekken
     terms: Gebruiksvoorwaarden
-    unavailable_content: Niet beschikbare inhoud
+    unavailable_content: Gemodereerde servers
     unavailable_content_description:
       domain: Server
       reason: 'Reden:'
@@ -193,12 +193,26 @@ nl:
       username: Gebruikersnaam
       warn: Waarschuwen
       web: Webapp
-      whitelisted: Op de witte lijst
+      whitelisted: Goedgekeurd voor federatie
     action_logs:
       action_types:
         assigned_to_self_report: Rapportage toewijzen
         change_email_user: E-mailadres van gebruiker wijzigen
         confirm_user: Gebruiker bevestigen
+        create_account_warning: Waarschuwing aanmaken
+        create_announcement: Mededeling aanmaken
+        create_custom_emoji: Lokale emoji aanmaken
+        create_domain_allow: Domeingoedkeuring aanmaken
+        create_domain_block: Domeinblokkade aanmaken
+        create_email_domain_block: E-maildomeinblokkade aanmaken
+        demote_user: Gebruiker degraderen
+        destroy_announcement: Mededeling verwijderen
+        destroy_custom_emoji: Lokale emoji verwijderen
+        destroy_domain_allow: Domeingoedkeuring verwijderen
+        destroy_domain_block: Domeinblokkade verwijderen
+        destroy_email_domain_block: E-maildomeinblokkade verwijderen
+        destroy_status: Toot verwijderen
+        disable_2fa_user: Tweestapsverificatie uitschakelen
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
@@ -206,13 +220,13 @@ nl:
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
         create_announcement: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
         create_custom_emoji: "Nieuwe emoji %{target} is door %{name} geüpload"
-        create_domain_allow: "%{name} heeft het domein %{target} aan de witte lijst toegevoegd"
+        create_domain_allow: "%{name} heeft federatie met het domein %{target} goedgekeurd"
         create_domain_block: "Domein %{target} is door %{name} geblokkeerd"
-        create_email_domain_block: "E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst"
+        create_email_domain_block: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         demote_user: "Gebruiker %{target} is door %{name} gedegradeerd"
         destroy_announcement: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
-        destroy_domain_allow: "%{name} heeft het domein %{target} van de witte lijst verwijderd"
+        destroy_domain_allow: "%{name} heeft federatie met het domein %{target} afgekeurd"
         destroy_domain_block: "Domein %{target} is door %{name} gedeblokkeerd"
         destroy_email_domain_block: "E-maildomein %{target} is door %{name} op de witte lijst geplaatst"
         destroy_status: "Toot van %{target} is door %{name} verwijderd"
