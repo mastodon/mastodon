@@ -7,7 +7,7 @@ import Icon from 'flavours/glitch/components/icon';
 import Textarea from 'react-textarea-autosize';
 
 const messages = defineMessages({
-  placeholder: { id: 'account_note.placeholder', defaultMessage: 'No comment provided' },
+  placeholder: { id: 'account_note.glitch_placeholder', defaultMessage: 'No comment provided' },
 });
 
 export default @injectIntl
