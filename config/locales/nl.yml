@@ -228,7 +228,7 @@ nl:
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
         destroy_domain_allow: "%{name} heeft federatie met het domein %{target} afgekeurd"
         destroy_domain_block: "Domein %{target} is door %{name} gedeblokkeerd"
-        destroy_email_domain_block: "E-maildomein %{target} is door %{name} op de witte lijst geplaatst"
+        destroy_email_domain_block: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_status: "Toot van %{target} is door %{name} verwijderd"
         disable_2fa_user: "Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld"
         disable_custom_emoji: "Emoji %{target} is door %{name} uitgeschakeld"
@@ -325,12 +325,12 @@ nl:
       week_interactions: interacties deze week
       week_users_active: actieve gebruikers deze week
       week_users_new: nieuwe gebruikers deze week
-      whitelist_mode: Modus voor de witte lijst
+      whitelist_mode: Beperkte federatiemodus
     domain_allows:
-      add_new: Domein voor de witte lijst
-      created_msg: Het domein is succesvol aan de witte lijst toegevoegd
-      destroyed_msg: Het domein is van de witte lijst verwijderd
-      undo: Van de witte lijst verwijderen
+      add_new: Federatie met domein goedkeuren
+      created_msg: Federatie met domein is succesvol goedgekeurd
+      destroyed_msg: Federatie met domein is afgekeurd
+      undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -394,7 +394,7 @@ nl:
         title: Moderatie
       private_comment: Privé-opmerking
       public_comment: Openbare opmerking
-      title: Andere domeinen
+      title: Federatie
       total_blocked_by_us: Door ons geblokkeerd
       total_followed_by_them: Door hun gevolgd
       total_followed_by_us: Door ons gevolgd
