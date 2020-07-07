@@ -714,42 +714,44 @@
   }
 
   &__account-note {
-    margin: 5px;
-    padding: 10px;
-    background: $ui-highlight-color;
-    color: $primary-text-color;
+    margin: 0 -5px;
+    padding: 10px 15px;
     display: flex;
     flex-direction: column;
-    border-radius: 4px;
     font-size: 14px;
     font-weight: 400;
+    border-top: 1px solid lighten($ui-base-color, 12%);
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
 
     &__header {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      margin-bottom: 5px;
+      color: $darker-text-color;
     }
 
     &__content {
       white-space: pre-wrap;
-      margin-top: 5px;
+      padding: 10px 0;
     }
 
     &__buttons {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
-      margin-top: 5px;
+      flex: 1 0;
 
       .flex-spacer {
-        flex: 0 0 20px;
+        flex: 0 0 15px;
         background: transparent;
       }
     }
 
     strong {
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 500;
+      text-transform: uppercase;
     }
 
     button:hover span {
@@ -759,18 +761,24 @@
     textarea {
       display: block;
       box-sizing: border-box;
-      width: 100%;
+      width: calc(100% + 20px);
       margin: 0;
       margin-top: 5px;
-      color: $inverted-text-color;
-      background: $simple-background-color;
+      color: $secondary-text-color;
+      background: $ui-base-color;
       padding: 10px;
+      margin: 0 -10px;
       font-family: inherit;
       font-size: 14px;
       resize: none;
       border: 0;
       outline: 0;
       border-radius: 4px;
+
+      &::placeholder {
+        color: $dark-text-color;
+        opacity: 1;
+      }
     }
   }
 }

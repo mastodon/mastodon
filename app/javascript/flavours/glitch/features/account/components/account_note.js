@@ -63,6 +63,14 @@ class Header extends ImmutablePureComponent {
           </button>
         </div>
       );
+    } else {
+      action_buttons = (
+        <div className='account__header__account-note__buttons'>
+          <button className='text-btn' tabIndex='0' onClick={this.props.onEditAccountNote} disabled={isSubmitting}>
+            <Icon id='pencil' size={15} /> <FormattedMessage id='account_note.edit' defaultMessage='Edit' />
+          </button>
+        </div>
+      );
     }
 
     let note_container = null;
@@ -85,17 +93,10 @@ class Header extends ImmutablePureComponent {
     return (
       <div className='account__header__account-note'>
         <div className='account__header__account-note__header'>
-          <strong><FormattedMessage id='account.account_note_header' defaultMessage='Your note for @{name}' values={{ name: account.get('username') }} /></strong>
-          {!isEditing && (
-            <div>
-              <button className='text-btn' tabIndex='0' onClick={this.props.onEditAccountNote} disabled={isSubmitting}>
-                <Icon id='pencil' size={15} /> <FormattedMessage id='account_note.edit' defaultMessage='Edit' />
-              </button>
-            </div>
-          )}
+          <strong><FormattedMessage id='account.account_note_header' defaultMessage='Note' /></strong>
+          {action_buttons}
         </div>
         {note_container}
-        {action_buttons}
       </div>
     );
   }
