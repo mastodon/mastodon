@@ -181,11 +181,11 @@ en_GB:
         create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
-        create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
+        create_email_domain_block: "%{name} blocklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
-        destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
+        destroy_email_domain_block: "%{name} allowlisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
@@ -289,14 +289,14 @@ en_GB:
       undo: Undo domain block
     email_domain_blocks:
       add_new: Add new
-      created_msg: Successfully added e-mail domain to blacklist
+      created_msg: Successfully added e-mail domain to blocklist
       delete: Delete
-      destroyed_msg: Successfully deleted e-mail domain from blacklist
+      destroyed_msg: Successfully deleted e-mail domain from blocklist
       domain: Domain
       new:
         create: Add domain
-        title: New e-mail blacklist entry
-      title: E-mail blacklist
+        title: New e-mail blocklist entry
+      title: E-mail blocklist
     followers:
       back_to_account: Back To Account
       title: "%{acct}'s Followers"

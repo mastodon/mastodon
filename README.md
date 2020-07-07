@@ -6,9 +6,11 @@ Photo by [Joana Mujollari](https://www.flickr.com/photos/141654969@N04/267773390
 
 Mastodon is a **free, open-source social network server** based on ActivityPub. This is *not* the official version of Mastodon; this is a separate version (i.e. a fork) maintained by [Darius Kazemi](https://friend.camp/@darius). For more information on Mastodon, you can see the [official website](https://joinmastodon.org) and the [upstream repo](https://github.com/tootsuite/mastodon).
 
-__Hometown__ is a light weight fork of Mastodon. This fork is based on the principle of: minimum code change for maximum user experience change.
+__Hometown__ is a light weight fork of Mastodon. This fork is based on the principle of: minimum code change for maximum user experience change. These changes aren't wanted by Eugene, Mastodon's owner, and can't be upstreamed, ence the fork.
 
 Please [check out our wiki](https://github.com/hometown-fork/hometown/wiki) for a list of Hometown-exclusive features. Some but not all of these are covered in this document.
+
+You can also find [a list of running Hometown instances](https://github.com/hometown-fork/hometown/wiki/Hometown-servers), don't hesitate to open an issue to add yours!
 
 ## Support this project
 
@@ -64,13 +66,7 @@ What does this have to do with content types? Well, if we support an `Article` c
 
 If Hometown is going to be a universal reader, you're going to need better control over organizing your feeds than mainline Mastodon provides.
 
-### Exclusive lists
-
-My first plan is to introduce a new kind of _exclusive list_. Right now if you add an account to your "friends I like" list in Mastodon, posts from people on that list appear on that list. But they also appear on your home timeline, and maybe you don't want that! You'd rather treat your "friends I like" list as your "real" home timeline, and then check your home timeline when you're bored.
-
-Or another case: I might have all the blogs I read in one list, but I only check it on Saturdays when I have time to read things. In that case I don't want updates from those blogs clogging up my home timeline.
-
-> This is not yet implemented but will be available in the first release.
+I've introduced a new kind of [exclusive list](https://github.com/hometown-fork/hometown/wiki/Exclusive-lists). In vanilla Mastodon, if you add an account to your "friends I like" list, posts from people on that list appear on that list. But they also appear on your home timeline, and maybe you don't want that! You'd rather treat your "friends I like" list as your "real" home timeline, and then check your home timeline when you're bored. Check out [more details about exclusive lists on the wiki](https://github.com/hometown-fork/hometown/wiki/Exclusive-lists).
 
 ## Better accessibility defaults
 
