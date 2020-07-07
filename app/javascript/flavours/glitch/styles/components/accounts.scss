@@ -742,8 +742,31 @@
       justify-content: flex-end;
       flex: 1 0;
 
+      .icon-button {
+        font-size: 14px;
+        padding: 2px 6px;
+        color: $darker-text-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($darker-text-color, 7%);
+    background-color: rgba($darker-text-color, 0.15);
+  }
+
+  &:focus {
+    background-color: rgba($darker-text-color, 0.3);
+  }
+
+  &[disabled] {
+    color: darken($darker-text-color, 13%);
+    background-color: transparent;
+    cursor: default;
+  }
+      }
+
       .flex-spacer {
-        flex: 0 0 15px;
+        flex: 0 0 5px;
         background: transparent;
       }
     }
@@ -752,10 +775,6 @@
       font-size: 12px;
       font-weight: 500;
       text-transform: uppercase;
-    }
-
-    button:hover span {
-      text-decoration: underline;
     }
 
     textarea {
