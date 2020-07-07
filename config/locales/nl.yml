@@ -220,6 +220,17 @@ nl:
         memorialize_account: Account in gedenkpagina veranderen
         promote_user: Gebruiker promoveren
         remove_avatar_user: Avatar verwijderen
+        reopen_report: Rapportage heropenen
+        reset_password_user: Wachtwoord opnieuw instellen
+        resolve_report: Rapportage oplossen
+        silence_account: Account negeren
+        suspend_account: Account opschorten
+        unassigned_report: Rapportage niet langer toewijzen
+        unsilence_account: Account niet langer negeren
+        unsuspend_account: Account niet langer opschorten
+        update_announcement: Mededeling bijwerken
+        update_custom_emoji: Lokale emoji bijwerken
+        update_status: Toot bijwerken
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
@@ -257,6 +268,9 @@ nl:
         update_custom_emoji: "Emoji %{target} is door %{name} bijgewerkt"
         update_status: "De toots van %{target} zijn door %{name} bijgewerkt"
       deleted_status: "(verwijderde toot}"
+      empty: Geen logs gevonden.
+      filter_by_action: Op actie filteren
+      filter_by_user: Op gebruiker filteren
       title: Auditlog
     announcements:
       destroyed_msg: Verwijderen van mededeling geslaagd!
@@ -295,6 +309,7 @@ nl:
       listed: Weergegeven
       new:
         title: Lokale emoji toevoegen
+      not_permitted: Het hebt geen rechten om deze actie uit te voeren
       overwrite: Overschrijven
       shortcode: Verkorte code
       shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
@@ -385,6 +400,7 @@ nl:
       destroyed_msg: Deblokkeren e-maildomein geslaagd
       domain: Domein
       empty: Momenteel worden er geen e-maildomeinen geblokkeerd.
+      from_html: van %{domain}
       new:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
@@ -620,6 +636,7 @@ nl:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
     deleted_msg: De alias is succesvol verwijderd. Verhuizen vanaf dat account naar dit account is niet meer mogelijk.
+    empty: Je hebt geen aliassen.
     hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
