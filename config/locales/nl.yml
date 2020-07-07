@@ -938,8 +938,9 @@ nl:
   moderation:
     title: Moderatie
   move_handler:
-    carry_blocks_over_text: Deze gebruiker is verhuisd vanuit %{acct}, die je hebt geblokkeerd.
-    carry_mutes_over_text: Deze gebruiker is verhuisd van %{acct}, die je hebt genegeerd.
+    carry_blocks_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account geblokkeerd.
+    carry_mutes_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account genegeerd.
+    copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
   notification_mailer:
     digest:
       action: Alle meldingen bekijken
@@ -1116,6 +1117,9 @@ nl:
     spam_detected: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd.
   statuses:
     attached:
+      audio:
+        one: "%{count} geluidsbestand"
+        other: "%{count} geluidsbestanden"
       description: 'Bijlagen: %{attached}'
       image:
         one: "%{count} afbeelding"
@@ -1128,6 +1132,8 @@ nl:
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
+    errors:
+      in_reply_not_found: De toot waarop je probeert te reageren lijkt niet te bestaan.
     language_detection: Taal automatisch detecteren
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
@@ -1273,6 +1279,8 @@ nl:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
+    sign_in_token:
+      details: 'Hier zijn details van de poging:'
     warning:
       explanation:
         disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
