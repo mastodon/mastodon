@@ -855,6 +855,8 @@ nl:
     inactive: Inactief
     publicize_checkbox: 'En toot dit:'
     publicize_toot: 'Het is bewezen! Ik ben %{username} op %{service}: %{url}'
+    remove: Bewijs uit account verwijderen
+    removed: Bewijs is succesvol uit account verwijderd
     status: Verificatiestatus
     view_proof: Bekijk bewijs
   imports:
@@ -900,6 +902,7 @@ nl:
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een toot met afbeeldingen worden gekoppeld
+      not_ready: Kan geen bestanden toevoegen die nog niet zijn verwerkt. Probeer het later opnieuw!
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
     acct: Verhuisd naar
@@ -920,6 +923,7 @@ nl:
     on_cooldown: Je hebt recentelijk jouw account verhuisd. Deze mogelijkheid is weer beschikbaar over %{count} dagen.
     past_migrations: Vorige migraties
     proceed_with_move: Volgers verhuizen
+    redirected_msg: Jouw account wordt nu doorverwezen naar %{acct}.
     redirecting_to: Jouw account wordt nu naar %{acct} doorverwezen.
     set_redirect: Doorverwijzing instellen
     warning:
@@ -933,6 +937,9 @@ nl:
       redirect: Jouw huidige accountprofiel wordt bijgewerkt met een doorverwijzingsmelding en wordt uitgesloten van zoekresultaten
   moderation:
     title: Moderatie
+  move_handler:
+    carry_blocks_over_text: Deze gebruiker is verhuisd vanuit %{acct}, die je hebt geblokkeerd.
+    carry_mutes_over_text: Deze gebruiker is verhuisd van %{acct}, die je hebt genegeerd.
   notification_mailer:
     digest:
       action: Alle meldingen bekijken
