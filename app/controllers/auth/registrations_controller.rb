@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
+  include Devise::Controllers::Rememberable
+
   layout :determine_layout
 
   before_action :set_invite, only: [:new, :create]
@@ -24,7 +26,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def update
     super do |resource|
-      resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?
+      if resource.saved_change_to_encrypted_password?
+        resource.clear_other_sessions(current_session.session_id)
+        resource.forget_me!
+        remember_me(resource)
+      end
     end
   end
 

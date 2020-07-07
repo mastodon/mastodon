@@ -3,6 +3,13 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [v3.1.5] - 2020-07-07
+### Security
+
+- Fix media attachment enumeration ([ThibG](https://github.com/tootsuite/mastodon/pull/14254))
+- Change rate limits for various paths ([Gargron](https://github.com/tootsuite/mastodon/pull/14253))
+- Fix other sessions not being logged out on password change ([Gargron](https://github.com/tootsuite/mastodon/pull/14252))
+
 ## [v3.1.4] - 2020-05-14
 ### Added
 
