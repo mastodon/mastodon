@@ -722,6 +722,10 @@ nl:
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
     invalid_password: Ongeldig wachtwoord
     prompt: Bevestig wachtwoord om door te gaan
+  crypto:
+    errors:
+      invalid_key: is geen geldige Ed25519- of Curve25519-sleutel
+      invalid_signature: is geen geldige Ed25519-handtekening
   date:
     formats:
       default: "%d %b %Y"
