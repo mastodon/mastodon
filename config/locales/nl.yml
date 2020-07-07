@@ -213,6 +213,13 @@ nl:
         destroy_email_domain_block: E-maildomeinblokkade verwijderen
         destroy_status: Toot verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
+        disable_custom_emoji: Lokale emojij uitschakelen
+        disable_user: Gebruiker uitschakelen
+        enable_custom_emoji: Lokale emoji inschakelen
+        enable_user: Gebruiker inschakelen
+        memorialize_account: Account in gedenkpagina veranderen
+        promote_user: Gebruiker promoveren
+        remove_avatar_user: Avatar verwijderen
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
@@ -377,11 +384,11 @@ nl:
       delete: Verwijderen
       destroyed_msg: Deblokkeren e-maildomein geslaagd
       domain: Domein
-      empty: Momenteel staan er geen e-maildomeinen op de zwarte lijst.
+      empty: Momenteel worden er geen e-maildomeinen geblokkeerd.
       new:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
-      title: E-maildomeinen blokkeren
+      title: Geblokkeerde e-maildomeinen
     instances:
       by_domain: Domein
       delivery_available: Bezorging is mogelijk
@@ -425,7 +432,7 @@ nl:
       pending: Aan het wachten op toestemming van de relayserver
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
-      signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de witte lijstmodus is ingeschakeld
+      signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de beperkte federatiemodus is ingeschakeld
       status: Status
       title: Relayservers
     report_notes:
@@ -880,7 +887,7 @@ nl:
     cancelled_msg: De doorverwijzing is succesvol geannuleerd.
     errors:
       already_moved: is hetzelfde account waarnaar je al naar toe bent verhuisd
-      missing_also_known_as: verwijst niet terug naar dit account
+      missing_also_known_as: is geen alias van dit account
       move_to_self: kan niet het huidige account zijn
       not_found: kon niet worden gevonden
       on_cooldown: Jouw laatste migratie is nog te kort geleden
