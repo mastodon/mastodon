@@ -53,6 +53,9 @@ nl:
         whole_word: Wanneer het trefwoord of zinsdeel alfanumeriek is, wordt het alleen gefilterd wanneer het hele woord overeenkomt
       domain_allow:
         domain: Dit domein is in staat om gegevens van deze server op te halen, en binnenkomende gegevens worden verwerkt en opgeslagen
+      email_domain_block:
+        domain: Dit kan de domeinnaam zijn, onderdeel van het e-mailadres, het MX-record dat het desbetreffende domein afhandelt, of het IP-adres van de server dat het MX-record afhandelt. Deze worden gecontroleerd tijdens het registreren, waarna de registratie wordt afgewezen.
+        with_dns_records: Er wordt een poging gewaagd om de desbetreffende DNS-records op te zoeken, waarna de resultaten ook worden geblokkeerd
       featured_tag:
         name: 'Je wilt misschien een van deze gebruiken:'
       form_challenge:
@@ -78,6 +81,7 @@ nl:
         acct: Mastodonadres van het nieuwe account
       account_warning_preset:
         text: Tekst van voorinstelling
+        title: Titel
       admin_account_action:
         include_statuses: Gerapporteerde toots aan de e-mail toevoegen
         send_email_notification: Meld dit per e-mail aan de gebruiker
@@ -146,10 +150,13 @@ nl:
         setting_use_blurhash: Wazige kleurovergangen voor verborgen media tonen
         setting_use_pending_items: Langzame modus
         severity: Zwaarte
+        sign_in_token_attempt: Beveiligingscode
         type: Importtype
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
         whole_word: Heel woord
+      email_domain_block:
+        with_dns_records: MX-records en IP-adressen van het domein toevoegen
       featured_tag:
         name: Hashtag
       interactions:
