@@ -22,6 +22,7 @@ class ColumnSettings extends React.PureComponent {
         <div className='column-settings__row'>
           <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
           <SettingToggle settings={settings} settingPath={['other', 'onlyRemote']} onChange={onChange} label={<FormattedMessage id='community.column_settings.remote_only' defaultMessage='Remote only' />} />
+          {!settings.getIn(['other', 'onlyRemote']) && <SettingToggle settings={settings} settingPath={['other', 'allowLocalOnly']} onChange={onChange} label={<FormattedMessage id='community.column_settings.allow_local_only' defaultMessage='Show local-only toots' />} />}
         </div>
       </div>
     );

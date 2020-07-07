@@ -198,7 +198,9 @@ export function submitCompose(routerHistory) {
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
-        insertIfOnline('public');
+        if (!response.data.local_only) {
+          insertIfOnline('public');
+        }
       } else if (response.data.visibility === 'direct') {
         insertIfOnline('direct');
       }
