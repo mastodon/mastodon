@@ -11,6 +11,15 @@
   position: relative;
 }
 
+.inline-alert {
+  color: $valid-value-color;
+  font-weight: 400;
+
+  .no-reduce-motion & {
+    transition: opacity 200ms ease;
+  }
+}
+
 .link-button {
   display: block;
   font-size: 15px;
@@ -4868,6 +4877,15 @@ a.status-card.compact:hover {
   }
 }
 
+.setting-divider {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 29px;
+}
+
 .report-modal__comment {
   padding: 20px;
   border-right: 1px solid $ui-secondary-color;
@@ -6557,6 +6575,11 @@ noscript {
       padding: 20px 15px;
       padding-bottom: 5px;
       color: $primary-text-color;
+
+      .columns-area--mobile & {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
     }
 
     .account__header__fields {
@@ -6601,63 +6624,50 @@ noscript {
   }
 
   &__account-note {
-    margin: 5px;
-    padding: 10px;
-    background: $ui-highlight-color;
+    padding: 15px;
+    padding-bottom: 10px;
     color: $primary-text-color;
-    display: flex;
-    flex-direction: column;
-    border-radius: 4px;
     font-size: 14px;
     font-weight: 400;
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
 
-    &__header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    .columns-area--mobile & {
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
-    &__content {
-      white-space: pre-wrap;
-      margin-top: 5px;
-    }
-
-    &__buttons {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      margin-top: 5px;
-
-      .flex-spacer {
-        flex: 0 0 20px;
-        background: transparent;
-      }
-    }
-
-    strong {
-      font-size: 15px;
+    label {
+      display: block;
+      font-size: 12px;
       font-weight: 500;
-    }
-
-    button:hover span {
-      text-decoration: underline;
+      color: $darker-text-color;
+      text-transform: uppercase;
+      margin-bottom: 5px;
     }
 
     textarea {
       display: block;
       box-sizing: border-box;
-      width: 100%;
-      margin: 0;
-      margin-top: 5px;
-      color: $inverted-text-color;
-      background: $simple-background-color;
+      width: calc(100% + 20px);
+      color: $secondary-text-color;
+      background: transparent;
       padding: 10px;
+      margin: 0 -10px;
       font-family: inherit;
       font-size: 14px;
       resize: none;
       border: 0;
       outline: 0;
       border-radius: 4px;
+
+      &::placeholder {
+        color: $dark-text-color;
+        opacity: 1;
+      }
+
+      &:focus {
+        background: $ui-base-color;
+      }
     }
   }
 }

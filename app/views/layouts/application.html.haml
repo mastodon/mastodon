@@ -27,6 +27,7 @@
       - elsif @theme[:supported_locales].include? 'en'
         = javascript_pack_tag "locales/#{@theme[:flavour]}/en", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
+    %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
 

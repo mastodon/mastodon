@@ -15,6 +15,10 @@ import {
   COMPOSE_UPLOAD_FAIL,
   COMPOSE_UPLOAD_UNDO,
   COMPOSE_UPLOAD_PROGRESS,
+  THUMBNAIL_UPLOAD_REQUEST,
+  THUMBNAIL_UPLOAD_SUCCESS,
+  THUMBNAIL_UPLOAD_FAIL,
+  THUMBNAIL_UPLOAD_PROGRESS,
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
@@ -77,6 +81,8 @@ const initialState = ImmutableMap({
   is_uploading: false,
   is_changing_upload: false,
   progress: 0,
+  isUploadingThumbnail: false,
+  thumbnailProgress: 0,
   media_attachments: ImmutableList(),
   pending_media_attachments: 0,
   poll: null,
@@ -433,6 +439,22 @@ export default function compose(state = initialState, action) {
     return removeMedia(state, action.media_id);
   case COMPOSE_UPLOAD_PROGRESS:
     return state.set('progress', Math.round((action.loaded / action.total) * 100));
+  case THUMBNAIL_UPLOAD_REQUEST:
+    return state.set('isUploadingThumbnail', true);
+  case THUMBNAIL_UPLOAD_PROGRESS:
+    return state.set('thumbnailProgress', Math.round((action.loaded / action.total) * 100));
+  case THUMBNAIL_UPLOAD_FAIL:
+    return state.set('isUploadingThumbnail', false);
+  case THUMBNAIL_UPLOAD_SUCCESS:
+    return state
+      .set('isUploadingThumbnail', false)
+      .update('media_attachments', list => list.map(item => {
+        if (item.get('id') === action.media.id) {
+          return fromJS(action.media);
+        }
+
+        return item;
+      }));
   case COMPOSE_MENTION:
     return state.withMutations(map => {
       map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
