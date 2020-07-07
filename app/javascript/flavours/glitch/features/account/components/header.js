@@ -176,7 +176,7 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
     }
 
-    if (accountNote === null) {
+    if (accountNote === null || accountNote === '') {
       menu.push({ text: intl.formatMessage(messages.add_account_note, { name: account.get('username') }), action: this.props.onEditAccountNote });
     }
 
