@@ -138,7 +138,7 @@ class ScrollableList extends PureComponent {
   });
 
   handleMouseIdle = () => {
-    if (this.scrollToTopOnMouseIdle) {
+    if (this.scrollToTopOnMouseIdle && !this.props.preventScroll) {
       this.setScrollTop(0);
     }
 
