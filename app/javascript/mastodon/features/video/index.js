@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 import { displayMedia, useBlurhash } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
-import { decode } from 'blurhash';
+import Blurhash from 'mastodon/components/blurhash';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -169,10 +169,6 @@ class Video extends React.PureComponent {
     this.volume = c;
   }
 
-  setCanvasRef = c => {
-    this.canvas = c;
-  }
-
   handleClickRoot = e => e.stopPropagation();
 
   handlePlay = () => {
@@ -289,10 +285,6 @@ class Video extends React.PureComponent {
 
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize, { passive: true });
-
-    if (this.props.blurhash) {
-      this._decode();
-    }
   }
 
   componentWillUnmount () {
@@ -314,24 +306,6 @@ class Video extends React.PureComponent {
   componentDidUpdate (prevProps, prevState) {
     if (prevState.revealed && !this.state.revealed && this.video) {
       this.video.pause();
-    }
-
-    if (prevProps.blurhash !== this.props.blurhash && this.props.blurhash) {
-      this._decode();
-    }
-  }
-
-  _decode () {
-    if (!useBlurhash) return;
-
-    const hash   = this.props.blurhash;
-    const pixels = decode(hash, 32, 32);
-
-    if (pixels) {
-      const ctx       = this.canvas.getContext('2d');
-      const imageData = new ImageData(pixels, 32, 32);
-
-      ctx.putImageData(imageData, 0, 0);
     }
   }
 
@@ -438,7 +412,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link, editable } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link, editable, blurhash } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
     const playerStyle = {};
@@ -481,7 +455,13 @@ class Video extends React.PureComponent {
         onClick={this.handleClickRoot}
         tabIndex={0}
       >
-        <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': revealed })} />
+        <Blurhash
+          hash={blurhash}
+          className={classNames('media-gallery__preview', {
+            'media-gallery__preview--hidden': revealed,
+          })}
+          dummy={!useBlurhash}
+        />
 
         {(revealed || editable) && <video
           ref={this.setVideoRef}
