@@ -195,16 +195,23 @@ class AccountNote extends ImmutablePureComponent {
           ref={this.setTextareaRef}
           style={{ display: editable ? 'block' : 'none' }}
         />
-        <div
-          role='button'
-          tabIndex={0}
-          className='account__header__account-note__show'
-          onClick={this.setEditable}
-          dangerouslySetInnerHTML={{ __html: emojifiedValue }}
-          style={{ display: editable ? 'none' : 'block' }}
-        >
-          {value ? null : <span>{intl.formatMessage(messages.placeholder)}</span>}
-        </div>
+        {value ? 
+          <div
+            role='button'
+            tabIndex={0}
+            className='account__header__account-note__show'
+            onClick={this.setEditable}
+            dangerouslySetInnerHTML={{ __html: emojifiedValue }}
+            style={{ display: editable ? 'none' : 'block' }}
+          /> 
+          :
+          <div role='button'
+            tabIndex={0}
+            className='account__header__account-note__empty'
+            style={{ display: editable ? 'none' : 'block' }}
+            onClick={this.setEditable}>{intl.formatMessage(messages.placeholder)}
+          </div>
+        }
       </div>
     );
   }
