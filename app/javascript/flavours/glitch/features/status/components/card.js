@@ -86,7 +86,7 @@ export default class Card extends React.PureComponent {
   componentDidMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
 
-    if (this.props.card && this.props.card.get('blurhash')) {
+    if (this.props.card && this.props.card.get('blurhash') && this.canvas) {
       this._decode();
     }
   }
