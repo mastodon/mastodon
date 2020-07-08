@@ -173,9 +173,6 @@ class AccountNote extends ImmutablePureComponent {
     const { account, intl } = this.props;
     const { value, saved, editable } = this.state;
     let emojifiedValue = emojify(escapeTextContentForBrowser(value), []).replace(/\r?\n/g, '<br />');
-    if(!value) {
-      emojifiedValue = intl.formatMessage(messages.placeholder);
-    }
 
     if (!account) {
       return null;
@@ -205,7 +202,9 @@ class AccountNote extends ImmutablePureComponent {
           onClick={this.setEditable}
           dangerouslySetInnerHTML={{ __html: emojifiedValue }}
           style={{ display: editable ? 'none' : 'block' }}
-        />
+        >
+          {value ? null : <span>{intl.formatMessage(messages.placeholder)}</span>}
+        </div>
       </div>
     );
   }

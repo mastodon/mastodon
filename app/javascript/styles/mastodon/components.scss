@@ -6648,10 +6648,14 @@ noscript {
     div {
       font-size: 14px;
       font-weight: 500;
-      color: $darker-text-color;
       cursor: pointer;
       padding: 10px;
       margin: 0 -10px;
+
+      span {
+        color: $darker-text-color;
+      }
+      
     }
 
     textarea {
