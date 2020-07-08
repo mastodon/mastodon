@@ -5,6 +5,8 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Textarea from 'react-textarea-autosize';
 import { is } from 'immutable';
+import emojify from '../../../features/emoji/emoji';
+import escapeTextContentForBrowser from 'escape-html';
 
 const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
@@ -57,7 +59,14 @@ class AccountNote extends ImmutablePureComponent {
     value: null,
     saving: false,
     saved: false,
+    editable: false
   };
+
+  constructor (props) {
+    super(props);
+    this.setEditable = this.setEditable.bind(this);
+    this.unEditable = this.unEditable.bind(this);
+  }
 
   componentWillMount () {
     this._reset();
@@ -78,7 +87,7 @@ class AccountNote extends ImmutablePureComponent {
     if (this.props.value !== nextProps.value) {
       newState.value = nextProps.value;
     }
-
+    newState.editable = false;
     this.setState(newState);
   }
 
@@ -90,6 +99,25 @@ class AccountNote extends ImmutablePureComponent {
 
   setTextareaRef = c => {
     this.textarea = c;
+  }
+
+  setEditable () {
+    const sleep = (waitSeconds) => {
+      return new Promise(resolve => {
+          setTimeout(() => {
+        resolve()
+      }, waitSeconds)
+      })
+    }
+    let my = this;
+    sleep(50)
+      .then(() => {
+          my.setState({ editable: true });
+          my.textarea.focus();
+      })
+  }
+  unEditable () {
+    this.setState({ editable: false });
   }
 
   handleChange = e => {
@@ -120,6 +148,7 @@ class AccountNote extends ImmutablePureComponent {
     if (this._isDirty()) {
       this._save();
     }
+    this.unEditable();
   }
 
   _save (showMessage = true) {
@@ -140,7 +169,11 @@ class AccountNote extends ImmutablePureComponent {
 
   render () {
     const { account, intl } = this.props;
-    const { value, saved } = this.state;
+    const { value, saved, editable } = this.state;
+    let emojifiedValue = emojify(escapeTextContentForBrowser(value), []).replace(/\r?\n/g,'<br />');
+    if(!value) {
+      emojifiedValue = intl.formatMessage(messages.placeholder);
+    }
 
     if (!account) {
       return null;
@@ -151,18 +184,23 @@ class AccountNote extends ImmutablePureComponent {
         <label htmlFor={`account-note-${account.get('id')}`}>
           <FormattedMessage id='account.account_note_header' defaultMessage='Note' /> <InlineAlert show={saved} />
         </label>
-
         <Textarea
-          id={`account-note-${account.get('id')}`}
-          className='account__header__account-note__content'
-          disabled={this.props.value === null || value === null}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          value={value || ''}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          onBlur={this.handleBlur}
-          ref={this.setTextareaRef}
-        />
+           id={`account-note-${account.get('id')}`}
+           className='account__header__account-note__content'
+           disabled={this.props.value === null || value === null}
+           placeholder={intl.formatMessage(messages.placeholder)}
+           value={value || ''}
+           onChange={this.handleChange}
+           onKeyDown={this.handleKeyDown}
+           onBlur={this.handleBlur}
+           ref={this.setTextareaRef}
+           style={{ display: editable ? 'block' : 'none' }}
+         />
+         <div className='account__header__account-note__show' onClick={this.setEditable}
+          dangerouslySetInnerHTML={{ __html: emojifiedValue }}
+          style={{ display: editable ? 'none' : 'block' }}
+         >
+        </div> 
       </div>
     );
   }
