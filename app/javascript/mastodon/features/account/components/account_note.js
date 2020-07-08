@@ -106,7 +106,7 @@ class AccountNote extends ImmutablePureComponent {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve();
-      }, waitSeconds);
+        }, waitSeconds);
       });
     };
     let my = this;
@@ -115,7 +115,7 @@ class AccountNote extends ImmutablePureComponent {
         my.setState({ editable: true });
         my.textarea.focus();
       }).catch((error) => {
-        console.log(error)
+        my.setState({ editable: false });
       });
   }
   unEditable () {
@@ -172,7 +172,7 @@ class AccountNote extends ImmutablePureComponent {
   render () {
     const { account, intl } = this.props;
     const { value, saved, editable } = this.state;
-    let emojifiedValue = emojify(escapeTextContentForBrowser(value), []).replace(/\r?\n/g,'<br />');
+    let emojifiedValue = emojify(escapeTextContentForBrowser(value), []).replace(/\r?\n/g, '<br />');
     if(!value) {
       emojifiedValue = intl.formatMessage(messages.placeholder);
     }
@@ -199,11 +199,12 @@ class AccountNote extends ImmutablePureComponent {
           style={{ display: editable ? 'block' : 'none' }}
         />
         <div
+          role="button"
           className='account__header__account-note__show'
           onClick={this.setEditable}
           dangerouslySetInnerHTML={{ __html: emojifiedValue }}
           style={{ display: editable ? 'none' : 'block' }}
-        /> 
+        />
       </div>
     );
   }
