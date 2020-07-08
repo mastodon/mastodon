@@ -98,7 +98,7 @@ export default class Card extends React.PureComponent {
   componentDidUpdate (prevProps) {
     const { card } = this.props;
 
-    if (card.get('blurhash') && (!prevProps.card || prevProps.card.get('blurhash') !== card.get('blurhash'))) {
+    if (card.get('blurhash') && (!prevProps.card || prevProps.card.get('blurhash') !== card.get('blurhash')) && this.canvas) {
       this._decode();
     }
   }
