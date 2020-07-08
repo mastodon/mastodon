@@ -6645,21 +6645,17 @@ noscript {
       margin-bottom: 5px;
     }
 
-    &__show {
+    &__display {
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
       padding: 10px;
       margin: 0 -10px;
-    }
 
-    &__empty {
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      padding: 10px;
-      margin: 0 -10px;
-      color: $darker-text-color;
+      &-empty {
+        color: $darker-text-color;
+      }
+
     }
 
     textarea {

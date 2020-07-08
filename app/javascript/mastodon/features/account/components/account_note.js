@@ -62,12 +62,6 @@ class AccountNote extends ImmutablePureComponent {
     editable: false,
   };
 
-  constructor (props) {
-    super(props);
-    this.setEditable = this.setEditable.bind(this);
-    this.unEditable = this.unEditable.bind(this);
-  }
-
   componentWillMount () {
     this._reset();
   }
@@ -102,23 +96,9 @@ class AccountNote extends ImmutablePureComponent {
   }
 
   setEditable () {
-    const sleep = (waitSeconds) => {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve();
-        }, waitSeconds);
-      });
-    };
-    let my = this;
-    sleep(50)
-      .then(() => {
-        my.setState({ editable: true });
-        my.textarea.focus();
-      }).catch(() => {
-        my.setState({ editable: false });
-      });
+    this.setState({ editable: true });
   }
-  unEditable () {
+  setUnEditable () {
     this.setState({ editable: false });
   }
 
@@ -150,7 +130,7 @@ class AccountNote extends ImmutablePureComponent {
     if (this._isDirty()) {
       this._save();
     }
-    this.unEditable();
+    this.setUnEditable();
   }
 
   _save (showMessage = true) {
@@ -168,6 +148,7 @@ class AccountNote extends ImmutablePureComponent {
   _isDirty () {
     return !this.state.saving && this.props.value !== null && this.state.value !== null && this.state.value !== this.props.value;
   }
+  
 
   render () {
     const { account, intl } = this.props;
@@ -183,37 +164,32 @@ class AccountNote extends ImmutablePureComponent {
         <label htmlFor={`account-note-${account.get('id')}`}>
           <FormattedMessage id='account.account_note_header' defaultMessage='Note' /> <InlineAlert show={saved} />
         </label>
-        <Textarea
-          id={`account-note-${account.get('id')}`}
-          className='account__header__account-note__content'
-          disabled={this.props.value === null || value === null}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          value={value || ''}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          onBlur={this.handleBlur}
-          ref={this.setTextareaRef}
-          style={{ display: editable ? 'block' : 'none' }}
-        />
-        {value ?
-          <div
-            role='button'
-            tabIndex={0}
-            className='account__header__account-note__show'
-            onClick={this.setEditable}
-            dangerouslySetInnerHTML={{ __html: emojifiedValue }}
-            style={{ display: editable ? 'none' : 'block' }}
-          />
+        {
+          editable ?
+            <Textarea
+              id={`account-note-${account.get('id')}`}
+              className='account__header__account-note__content'
+              disabled={this.props.value === null || value === null}
+              placeholder={intl.formatMessage(messages.placeholder)}
+              value={value || ''}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              onBlur={this.handleBlur}
+              ref={this.setTextareaRef}
+              style={{ display: editable ? 'block' : 'none' }}
+              autoFocus={true}
+            />
           :
-          <div
-            role='button'
-            tabIndex={0}
-            className='account__header__account-note__empty'
-            style={{ display: editable ? 'none' : 'block' }}
-            onClick={this.setEditable}
-          >
-            {intl.formatMessage(messages.placeholder)}
-          </div>
+            <div
+              role='button'
+              tabIndex={0}
+              className={value ? 'account__header__account-note__display' : 'account__header__account-note__display-empty'}
+              onClick={() => this.setEditable()}
+              dangerouslySetInnerHTML={value ? { __html: emojifiedValue } : null}
+              style={{ display: editable ? 'none' : 'block' }}
+            >
+              {!value ? intl.formatMessage(messages.placeholder) : null}
+            </div>
         }
       </div>
     );
