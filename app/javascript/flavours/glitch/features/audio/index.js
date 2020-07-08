@@ -102,7 +102,7 @@ class Audio extends React.PureComponent {
   }
 
   componentDidUpdate (prevProps, prevState) {
-    if (prevProps.src !== this.props.src || this.state.width !== prevState.width || this.state.height !== prevState.height) {
+    if (prevProps.src !== this.props.src || this.state.width !== prevState.width || this.state.height !== prevState.height || prevProps.accentColor !== this.props.accentColor) {
       this._clear();
       this._draw();
     }
