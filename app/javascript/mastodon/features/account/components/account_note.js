@@ -114,7 +114,7 @@ class AccountNote extends ImmutablePureComponent {
       .then(() => {
         my.setState({ editable: true });
         my.textarea.focus();
-      }).catch((error) => {
+      }).catch(() => {
         my.setState({ editable: false });
       });
   }
@@ -199,7 +199,8 @@ class AccountNote extends ImmutablePureComponent {
           style={{ display: editable ? 'block' : 'none' }}
         />
         <div
-          role="button"
+          role='button'
+          tabIndex={0}
           className='account__header__account-note__show'
           onClick={this.setEditable}
           dangerouslySetInnerHTML={{ __html: emojifiedValue }}
