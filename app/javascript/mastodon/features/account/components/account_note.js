@@ -59,7 +59,7 @@ class AccountNote extends ImmutablePureComponent {
     value: null,
     saving: false,
     saved: false,
-    editable: false
+    editable: false,
   };
 
   constructor (props) {
@@ -104,17 +104,19 @@ class AccountNote extends ImmutablePureComponent {
   setEditable () {
     const sleep = (waitSeconds) => {
       return new Promise(resolve => {
-          setTimeout(() => {
-        resolve()
-      }, waitSeconds)
-      })
-    }
+        setTimeout(() => {
+          resolve();
+      }, waitSeconds);
+      });
+    };
     let my = this;
     sleep(50)
       .then(() => {
-          my.setState({ editable: true });
-          my.textarea.focus();
-      })
+        my.setState({ editable: true });
+        my.textarea.focus();
+      }).catch((error) => {
+        console.log(error)
+      });
   }
   unEditable () {
     this.setState({ editable: false });
@@ -185,22 +187,23 @@ class AccountNote extends ImmutablePureComponent {
           <FormattedMessage id='account.account_note_header' defaultMessage='Note' /> <InlineAlert show={saved} />
         </label>
         <Textarea
-           id={`account-note-${account.get('id')}`}
-           className='account__header__account-note__content'
-           disabled={this.props.value === null || value === null}
-           placeholder={intl.formatMessage(messages.placeholder)}
-           value={value || ''}
-           onChange={this.handleChange}
-           onKeyDown={this.handleKeyDown}
-           onBlur={this.handleBlur}
-           ref={this.setTextareaRef}
-           style={{ display: editable ? 'block' : 'none' }}
-         />
-         <div className='account__header__account-note__show' onClick={this.setEditable}
+          id={`account-note-${account.get('id')}`}
+          className='account__header__account-note__content'
+          disabled={this.props.value === null || value === null}
+          placeholder={intl.formatMessage(messages.placeholder)}
+          value={value || ''}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          onBlur={this.handleBlur}
+          ref={this.setTextareaRef}
+          style={{ display: editable ? 'block' : 'none' }}
+        />
+        <div
+          className='account__header__account-note__show'
+          onClick={this.setEditable}
           dangerouslySetInnerHTML={{ __html: emojifiedValue }}
           style={{ display: editable ? 'none' : 'block' }}
-         >
-        </div> 
+        /> 
       </div>
     );
   }
