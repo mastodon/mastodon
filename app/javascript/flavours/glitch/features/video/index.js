@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from 'flavours/glitch/util/fullscreen';
 import { displayMedia, useBlurhash } from 'flavours/glitch/util/initial_state';
 import Icon from 'flavours/glitch/components/icon';
-import { decode } from 'blurhash';
+import Blurhash from 'flavours/glitch/components/blurhash';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -179,14 +179,6 @@ class Video extends React.PureComponent {
     this.volume = c;
   }
 
-  setCanvasRef = c => {
-    this.canvas = c;
-
-    if (c && this.props.blurhash) {
-      this._decode();
-    }
-  }
-
   handleMouseDownRoot = e => {
     e.preventDefault();
     e.stopPropagation();
@@ -305,10 +297,6 @@ class Video extends React.PureComponent {
     document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
 
     window.addEventListener('resize', this.handleResize, { passive: true });
-
-    if (this.props.blurhash) {
-      this._decode();
-    }
   }
 
   componentWillUnmount () {
@@ -329,23 +317,6 @@ class Video extends React.PureComponent {
     }
     if (this.video && this.state.revealed && this.props.preventPlayback && !prevProps.preventPlayback) {
       this.video.pause();
-    }
-    if (prevProps.blurhash !== this.props.blurhash && this.props.blurhash) {
-      this._decode();
-    }
-  }
-
-  _decode () {
-    if (!this.canvas || !useBlurhash) return;
-
-    const hash   = this.props.blurhash;
-    const pixels = decode(hash, 32, 32);
-
-    if (pixels) {
-      const ctx       = this.canvas.getContext('2d');
-      const imageData = new ImageData(pixels, 32, 32);
-
-      ctx.putImageData(imageData, 0, 0);
     }
   }
 
@@ -440,7 +411,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, link, editable } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, link, editable, blurhash } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
     const playerStyle = {};
@@ -485,7 +456,13 @@ class Video extends React.PureComponent {
         onMouseDown={this.handleMouseDownRoot}
         tabIndex={0}
       >
-        <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': revealed })} />
+        <Blurhash
+          hash={blurhash}
+          className={classNames('media-gallery__preview', {
+            'media-gallery__preview--hidden': revealed,
+          })}
+          dummy={!useBlurhash}
+        />
 
         {(revealed || editable) && <video
           ref={this.setVideoRef}

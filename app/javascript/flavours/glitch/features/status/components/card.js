@@ -8,7 +8,7 @@ import classnames from 'classnames';
 import { decode as decodeIDNA } from 'flavours/glitch/util/idna';
 import Icon from 'flavours/glitch/components/icon';
 import { useBlurhash } from 'flavours/glitch/util/initial_state';
-import { decode } from 'blurhash';
+import Blurhash from 'flavours/glitch/components/blurhash';
 import { debounce } from 'lodash';
 
 const getHostname = url => {
@@ -85,36 +85,10 @@ export default class Card extends React.PureComponent {
 
   componentDidMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
-
-    if (this.props.card && this.props.card.get('blurhash') && this.canvas) {
-      this._decode();
-    }
   }
 
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
-  }
-
-  componentDidUpdate (prevProps) {
-    const { card } = this.props;
-
-    if (card.get('blurhash') && (!prevProps.card || prevProps.card.get('blurhash') !== card.get('blurhash')) && this.canvas) {
-      this._decode();
-    }
-  }
-
-  _decode () {
-    if (!useBlurhash) return;
-
-    const hash   = this.props.card.get('blurhash');
-    const pixels = decode(hash, 32, 32);
-
-    if (pixels) {
-      const ctx       = this.canvas.getContext('2d');
-      const imageData = new ImageData(pixels, 32, 32);
-
-      ctx.putImageData(imageData, 0, 0);
-    }
   }
 
   _setDimensions () {
@@ -174,10 +148,6 @@ export default class Card extends React.PureComponent {
     }
   }
 
-  setCanvasRef = c => {
-    this.canvas = c;
-  }
-
   handleImageLoad = () => {
     this.setState({ previewLoaded: true });
   }
@@ -230,7 +200,15 @@ export default class Card extends React.PureComponent {
     );
 
     let embed     = '';
-    let canvas = <canvas width={32} height={32} ref={this.setCanvasRef} className={classnames('status-card__image-preview', { 'status-card__image-preview--hidden' : revealed && this.state.previewLoaded })} />;
+    let canvas = (
+      <Blurhash
+        className={classnames('status-card__image-preview', {
+          'status-card__image-preview--hidden': revealed && this.state.previewLoaded,
+        })}
+        hash={card.get('blurhash')}
+        dummy={!useBlurhash}
+      />
+    );
     let thumbnail = <img src={card.get('image')} alt='' style={{ width: horizontal ? width : null, height: horizontal ? height : null, visibility: revealed ? null : 'hidden' }} onLoad={this.handleImageLoad} className='status-card__image-image' />;
     let spoilerButton = (
       <button type='button' onClick={this.handleReveal} className='spoiler-button__overlay'>
