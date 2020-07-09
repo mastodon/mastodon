@@ -7,8 +7,8 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
-import { decode } from 'blurhash';
 import { debounce } from 'lodash';
+import Blurhash from 'mastodon/components/blurhash';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Hide {number, plural, one {image} other {images}}' },
@@ -74,36 +74,6 @@ class Item extends React.PureComponent {
     e.stopPropagation();
   }
 
-  componentDidMount () {
-    if (this.props.attachment.get('blurhash')) {
-      this._decode();
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    if (prevProps.attachment.get('blurhash') !== this.props.attachment.get('blurhash') && this.props.attachment.get('blurhash')) {
-      this._decode();
-    }
-  }
-
-  _decode () {
-    if (!useBlurhash) return;
-
-    const hash   = this.props.attachment.get('blurhash');
-    const pixels = decode(hash, 32, 32);
-
-    if (pixels) {
-      const ctx       = this.canvas.getContext('2d');
-      const imageData = new ImageData(pixels, 32, 32);
-
-      ctx.putImageData(imageData, 0, 0);
-    }
-  }
-
-  setCanvasRef = c => {
-    this.canvas = c;
-  }
-
   handleImageLoad = () => {
     this.setState({ loaded: true });
   }
@@ -166,7 +136,11 @@ class Item extends React.PureComponent {
       return (
         <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
           <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={attachment.get('description')} target='_blank' rel='noopener noreferrer'>
-            <canvas width={32} height={32} ref={this.setCanvasRef} className='media-gallery__preview' />
+            <Blurhash
+              hash={attachment.get('blurhash')}
+              className='media-gallery__preview'
+              dummy={!useBlurhash}
+            />
           </a>
         </div>
       );
@@ -232,7 +206,13 @@ class Item extends React.PureComponent {
 
     return (
       <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
-        <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && this.state.loaded })} />
+        <Blurhash
+          hash={attachment.get('blurhash')}
+          dummy={!useBlurhash}
+          className={classNames('media-gallery__preview', {
+            'media-gallery__preview--hidden': visible && this.state.loaded,
+          })}
+        />
         {visible && thumbnail}
       </div>
     );
