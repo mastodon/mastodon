@@ -98,23 +98,13 @@ class AccountNote extends ImmutablePureComponent {
 
   setEditable = () => {
     const { value } = this.state;
-    const sleep = (waitSeconds) => {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve();
-        }, waitSeconds);
-      });
-    };
     let my = this;
-    sleep(50)
-      .then(() => {
-        my.setState({ editable: true });
-        my.textarea.focus();
-        const len = value.length;
-        my.textarea.setSelectionRange(len, len);
-      }).catch(() => {
-        my.setState({ editable: false });
-      });
+    setTimeout(() => {
+      my.setState({ editable: true });
+      my.textarea.focus();
+      const len = value.length;
+      my.textarea.setSelectionRange(len, len);
+    }, 50);
   }
 
   setUnEditable = () => {
@@ -174,7 +164,7 @@ class AccountNote extends ImmutablePureComponent {
     const classNames = classnames('account__header__account-note__display', {
       'empty': !value,
     });
-    let emojifiedValue = emojify(escapeTextContentForBrowser(value), []).replace(/\r?\n/g, '<br />');
+    let emojifiedValue = emojify(escapeTextContentForBrowser(value), []);
 
     if (!account) {
       return null;
