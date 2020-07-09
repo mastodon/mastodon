@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 /**
  * @typedef BlurhashPropsBase
- * @property {string} hash Hash to render
+ * @property {string?} hash Hash to render
  * @property {number} width
  * Width of the blurred region in pixels. Defaults to 32
  * @property {number} [height]
@@ -37,13 +37,17 @@ function Blurhash({
     const { current: canvas } = canvasRef;
     canvas.width = canvas.width; // resets canvas
 
-    if (dummy) return;
+    if (dummy || !hash) return;
 
-    const pixels = decode(hash, width, height);
-    const ctx = canvas.getContext('2d');
-    const imageData = new ImageData(pixels, width, height);
+    try {
+      const pixels = decode(hash, width, height);
+      const ctx = canvas.getContext('2d');
+      const imageData = new ImageData(pixels, width, height);
 
-    ctx.putImageData(imageData, 0, 0);
+      ctx.putImageData(imageData, 0, 0);
+    } catch (err) {
+      console.error('Blurhash decoding failure', { err, hash });
+    }
   }, [dummy, hash, width, height]);
 
   return (
