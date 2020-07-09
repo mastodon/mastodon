@@ -29,7 +29,7 @@ module Settings
 
           render 'settings/two_factor_authentication/recovery_codes/index'
         else
-          flash.now[:alert] = I18n.t('two_factor_authentication.wrong_code')
+          flash.now[:alert] = I18n.t('otp_authentication.wrong_code')
           prepare_two_factor_form
           render :new
         end
@@ -48,7 +48,7 @@ module Settings
       end
 
       def ensure_otp_secret
-        redirect_to settings_two_factor_authentication_path unless current_user.otp_secret
+        redirect_to settings_otp_authentication_path unless current_user.otp_secret
       end
     end
   end

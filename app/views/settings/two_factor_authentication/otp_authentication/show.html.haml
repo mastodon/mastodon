@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = t('settings.two_factor_authentication')
+
+- if current_user.otp_enabled?
+  = simple_form_for @confirmation, url: settings_otp_authentication_path, method: :delete do |f|
+    .fields-group
+      = f.input :otp_attempt, wrapper: :with_block_label, hint: t('otp_authentication.code_hint'), label: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }, required: true
+
+    .actions
+      = f.button :button, t('otp_authentication.disable'), type: :submit, class: 'negative'
+
+- else
+
+  .simple_form
+    %p.hint= t('otp_authentication.description_html')
+
+    %hr.spacer/
+
+    = link_to t('otp_authentication.setup'), settings_otp_authentication_path, data: { method: :post }, class: 'block-button'

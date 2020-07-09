@@ -58,6 +58,15 @@ en:
         explanation: The previous recovery codes have been invalidated and new ones generated.
         subject: 'Mastodon: Two-factor recovery codes re-generated'
         title: 2FA recovery codes changed
+      webauthn_enabled:
+        explanation: Security key authentication has been enabled for your account. Your security key can now be used for login.
+        subject: 'Mastodon: Security key authentication enabled'
+        title: Security keys enabled
+      webauthn_credential:
+        added:
+          explanation: The following security key has been added to your account
+          subject: 'Mastodon: New security key'
+          title: A new security key has been added
       unlock_instructions:
         subject: 'Mastodon: Unlock instructions'
     omniauth_callbacks:

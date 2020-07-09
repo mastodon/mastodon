@@ -592,6 +592,10 @@ code {
     color: $error-value-color;
   }
 
+  &.hidden {
+    display: none;
+  }
+
   a {
     display: inline-block;
     color: $darker-text-color;

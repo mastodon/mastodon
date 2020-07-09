@@ -38,7 +38,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
     it 'redirects if user do not have otp_secret' do
       sign_in user_without_otp_secret, scope: :user
       get :new, session: { challenge_passed_at: Time.now.utc }
-      expect(response).to redirect_to('/settings/two_factor_authentication')
+      expect(response).to redirect_to('/settings/otp_authentication')
     end
   end
 

@@ -124,7 +124,18 @@ Rails.application.routes.draw do
       resources :domain_blocks, only: :index, controller: :blocked_domains
     end
 
-    resource :two_factor_authentication, only: [:show, :create, :destroy]
+    resources :two_factor_authentication_methods, only: [:index]
+
+    resource :otp_authentication, only: [:show, :create, :destroy], controller: 'two_factor_authentication/otp_authentication'
+
+    resources :webauthn_credentials, only: [:index, :new, :create],
+              path: 'security_keys',
+              controller: 'two_factor_authentication/webauthn_credentials' do
+
+      collection do
+        get 'options'
+      end
+    end
 
     namespace :two_factor_authentication do
       resources :recovery_codes, only: [:create]

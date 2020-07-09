@@ -40,6 +40,7 @@
 #  approved                  :boolean          default(TRUE), not null
 #  sign_in_token             :string
 #  sign_in_token_sent_at     :datetime
+#  webauthn_id               :string
 #
 
 class User < ApplicationRecord
@@ -77,6 +78,7 @@ class User < ApplicationRecord
   has_many :backups, inverse_of: :user
   has_many :invites, inverse_of: :user
   has_many :markers, inverse_of: :user, dependent: :destroy
+  has_many :webauthn_credentials, dependent: :destroy
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? }
@@ -195,6 +197,18 @@ class User < ApplicationRecord
   def update_tracked_fields!(request)
     super
     prepare_returning_user!
+  end
+
+  def otp_enabled?
+    otp_required_for_login
+  end
+
+  def webauthn_enabled?
+    webauthn_credentials.any?
+  end
+
+  def two_factor_enabled?
+    otp_required_for_login? || webauthn_credentials.any?
   end
 
   def disable_two_factor!
