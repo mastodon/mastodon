@@ -7,6 +7,7 @@ import Textarea from 'react-textarea-autosize';
 import { is } from 'immutable';
 import emojify from '../../../features/emoji/emoji';
 import escapeTextContentForBrowser from 'escape-html';
+import classnames from 'classnames';
 
 const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
@@ -95,11 +96,28 @@ class AccountNote extends ImmutablePureComponent {
     this.textarea = c;
   }
 
-  setEditable () {
-    this.setState({ editable: true });
+  setEditable = () => {
+    const { value } = this.state;
+    const sleep = (waitSeconds) => {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve();
+        }, waitSeconds);
+      });
+    };
+    let my = this;
+    sleep(50)
+      .then(() => {
+        my.setState({ editable: true });
+        my.textarea.focus();
+        const len = value.length;
+        my.textarea.setSelectionRange(len, len);
+      }).catch(() => {
+        my.setState({ editable: false });
+      });
   }
 
-  setUnEditable () {
+  setUnEditable = () => {
     this.setState({ editable: false });
   }
 
@@ -180,14 +198,13 @@ class AccountNote extends ImmutablePureComponent {
               onBlur={this.handleBlur}
               ref={this.setTextareaRef}
               style={{ display: editable ? 'block' : 'none' }}
-              autoFocus
             />
-          :
+            :
             <div
               role='button'
               tabIndex={0}
               className={classNames}
-              onClick={this.setEditable.bind(this)}
+              onClick={this.setEditable}
               dangerouslySetInnerHTML={value ? { __html: emojifiedValue } : null}
               style={{ display: editable ? 'none' : 'block' }}
             >
