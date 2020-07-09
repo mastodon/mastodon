@@ -12,6 +12,12 @@ function getCSRFToken() {
   }
 }
 
+function hideFlashMessages() {
+  Array.from(document.getElementsByClassName("flash-message")).forEach(function(flashMessage) {
+    flashMessage.classList.add('hidden');
+  });
+}
+
 function callback(url, body) {
   axios.post(url, JSON.stringify(body), {
     headers: {
@@ -62,6 +68,43 @@ ready(() => {
             console.log(error);
           });
         });
+    });
+  }
+
+  const webAuthnCredentialAuthenticationForm = document.getElementById('webauthn-form');
+  if (webAuthnCredentialAuthenticationForm) {
+    webAuthnCredentialAuthenticationForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      axios.get('sessions/security_key_options')
+        .then((response) => {
+          const credentialOptions = response.data;
+
+          WebAuthnJSON.get({ "publicKey": credentialOptions }).then((credential) => {
+            var params = { "user": { "credential": credential } }
+            callback("sign_in", params);
+          }).catch((error) => {
+            const errorMessage = document.getElementById('security-key-error-message')
+            errorMessage.classList.remove('hidden');
+            console.log(error);
+          });
+        })
+    });
+
+    const otpAuthenticationForm = document.getElementById('otp-authentication-form');
+
+    const linkToOtp = document.getElementById('link-to-otp');
+    linkToOtp.addEventListener('click', (event) => {
+      webAuthnCredentialAuthenticationForm.classList.add('hidden');
+      otpAuthenticationForm.classList.remove('hidden');
+      hideFlashMessages();
+    });
+
+    const linkToWebAuthn = document.getElementById('link-to-webauthn');
+    linkToWebAuthn.addEventListener('click', (event) => {
+      otpAuthenticationForm.classList.add('hidden');
+      webAuthnCredentialAuthenticationForm.classList.remove('hidden');
+      hideFlashMessages();
     });
   }
 });
