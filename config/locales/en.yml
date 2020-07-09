@@ -1292,9 +1292,15 @@ en:
     wrong_code: The entered code was invalid! Are server time and device time correct?
   webauthn_credentials:
     add: Add new security key
+    delete: Delete
+    delete_confirmation: Are you sure you want to delete this security key?
     create:
       success: Your security key was successfully added.
       error: There was a problem adding your security key. Please try again.
+    destroy:
+      success: Your security key was successfully deleted.
+      error: There was a problem deleting you security key. Please try again.
+      webatuhn_required: You need to enable security keys before you can delete one
     description_html: If you enable <strong>security key authentication</strong>, logging in will require you to use one of your security keys.
     registered_on: Registered on %{date}
     invalid_credential: Invalid security key

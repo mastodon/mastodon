@@ -7,7 +7,7 @@ module Settings
 
       before_action :authenticate_user!
       before_action :require_otp_enabled
-      before_action :require_webauthn_enabled, only: :index
+      before_action :require_webauthn_enabled, only: [:index, :destroy]
 
       def new; end
 
@@ -60,6 +60,27 @@ module Settings
         end
 
         render json: { redirect_path: settings_two_factor_authentication_methods_path }, status: status
+      end
+
+      def destroy
+        credential = current_user.webauthn_credentials.find_by(id: params[:id])
+        if credential
+          credential.destroy
+          if credential.destroyed?
+            flash[:success] = I18n.t('webauthn_credentials.destroy.success')
+
+            if current_user.webauthn_credentials.empty?
+              UserMailer.webauthn_disabled(current_user).deliver_later!
+            else
+              UserMailer.webauthn_credential_deleted(current_user, credential).deliver_later!
+            end
+          else
+            flash[:error] = I18n.t('webauthn_credentials.destroy.error')
+          end
+        else
+          flash[:error] = I18n.t('webauthn_credentials.destroy.error')
+        end
+        redirect_to settings_two_factor_authentication_methods_path
       end
 
       private

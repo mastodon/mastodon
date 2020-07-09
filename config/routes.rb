@@ -129,7 +129,7 @@ Rails.application.routes.draw do
 
     resource :otp_authentication, only: [:show, :create, :destroy], controller: 'two_factor_authentication/otp_authentication'
 
-    resources :webauthn_credentials, only: [:index, :new, :create],
+    resources :webauthn_credentials, only: [:index, :new, :create, :destroy],
               path: 'security_keys',
               controller: 'two_factor_authentication/webauthn_credentials' do
 

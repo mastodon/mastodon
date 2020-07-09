@@ -308,4 +308,66 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    context 'when signed in' do
+      before do
+        sign_in user, scope: :user
+      end
+
+      context 'when user has otp enabled' do
+        before do
+          user.update(otp_required_for_login: true)
+        end
+
+        context 'when user has webauthn enabled' do
+          before do
+            user.update(webauthn_id: WebAuthn.generate_user_id)
+            add_webauthn_credential(user)
+          end
+
+          context 'when deletion succeeds' do
+            it 'redirects to 2FA methods list and shows flash success' do
+              delete :destroy, params: { id: user.webauthn_credentials.take.id }
+
+              expect(response).to redirect_to settings_two_factor_authentication_methods_path
+              expect(flash[:success]).to be_present
+            end
+
+            it 'deletes the credential' do
+              expect do
+                delete :destroy, params: { id: user.webauthn_credentials.take.id }
+              end.to change { user.webauthn_credentials.count }.by(-1)
+            end
+          end
+        end
+
+        context 'when user does not have webauthn enabled' do
+          it 'redirects to 2FA methods list and shows flash error' do
+            delete :destroy, params: { id: '1' }
+
+            expect(response).to redirect_to settings_two_factor_authentication_methods_path
+            expect(flash[:error]).to be_present
+          end
+        end
+      end
+
+      context 'when user does not have otp enabled' do
+        it 'requires otp enabled first' do
+          delete :destroy, params: { id: '1' }
+
+          expect(response).to redirect_to settings_two_factor_authentication_methods_path
+          expect(flash[:error]).to be_present
+        end
+      end
+    end
+
+    context 'when not signed in' do
+      it 'redirects to login' do
+        delete :destroy, params: { id: '1' }
+
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
 end
