@@ -154,12 +154,13 @@ export const makeGetNotification = () => {
 export const getAccountGallery = createSelector([
   (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], ImmutableList()),
   state       => state.get('statuses'),
-], (statusIds, statuses) => {
+  (state, id) => state.getIn(['accounts', id])
+], (statusIds, statuses, account) => {
   let medias = ImmutableList();
 
   statusIds.forEach(statusId => {
     const status = statuses.get(statusId);
-    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
+    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status).set('account', account)));
   });
 
   return medias;
