@@ -62,15 +62,15 @@ module AccountInteractions
       follow_mapping(AccountDomainBlock.where(account_id: account_id, domain: target_domains), :domain)
     end
 
-    def followers_for_local_distribution(accountIds)
-      Account.where(id: Follow.where(target_account_id: accountIds).select(:account_id).distinct)
+    def followers_for_local_distribution(account_ids)
+      Account.where(id: Follow.where(target_account_id: account_ids).select(:account_id).distinct)
              .local
              .joins(:user)
              .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
     end
 
-    def lists_for_local_distribution(accountIds)
-      List.where(id: ListAccount.where(account_id: accountIds).select(:list_id).distinct)
+    def lists_for_local_distribution(account_ids)
+      List.where(id: ListAccount.where(account_id: account_ids).select(:list_id).distinct)
           .joins(account: :user)
           .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
     end
