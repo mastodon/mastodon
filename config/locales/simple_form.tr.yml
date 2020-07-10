@@ -1,4 +1,3 @@
----
 tr:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ tr:
         include_statuses: Kullanıcı hangi tootların denetleme eylemi ya da uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
         text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
-        type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
+        type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
@@ -63,7 +62,7 @@ tr:
       invite_request:
         text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
       sessions:
-        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
@@ -180,9 +179,9 @@ tr:
         name: Hashtag
         trendable: Bu etiketin trendlerin altında görünmesine izin ver
         usable: Tootların bu etiketi kullanmasına izin ver
-    'no': Hayır
+    'no': 'Hayır'
     recommended: Önerilen
     required:
       mark: "*"
       text: gerekli
-    'yes': Evet
+    'yes': 'Evet'
