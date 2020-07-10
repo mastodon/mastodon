@@ -231,7 +231,7 @@ export default class StatusContent extends React.PureComponent {
 
     let element = e.target;
     while (element) {
-      if (['button', 'video', 'a', 'label', 'wave'].includes(element.localName)) {
+      if (['button', 'video', 'a', 'label', 'canvas'].includes(element.localName)) {
         return;
       }
       element = element.parentNode;
