@@ -9,6 +9,7 @@ module Admin
       @user.disable_two_factor!
       log_action :disable_2fa, @user
       UserMailer.two_factor_disabled(@user).deliver_later!
+      UserMailer.webauthn_disabled(@user).deliver_later!
       redirect_to admin_accounts_path
     end
 
