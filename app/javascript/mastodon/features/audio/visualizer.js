@@ -38,15 +38,11 @@ export default class Visualizer {
   }
 
   getTickPoints (count) {
-    const PI = 360;
     const coords = [];
-    const step = PI / count;
 
-    let rad;
-
-    for(let deg = 0; deg < PI; deg += step) {
-      rad = deg * Math.PI / (PI / 2);
-      coords.push({ x: Math.cos(rad), y: -Math.sin(rad), angle: deg });
+    for(let i = 0; i < count; i++) {
+      const rad = Math.PI * 2 * i / count;
+      coords.push({ x: Math.cos(rad), y: -Math.sin(rad) });
     }
 
     return coords;
@@ -74,31 +70,7 @@ export default class Visualizer {
     this.context.stroke();
   }
 
-  getSize (angle, l, r) {
-    const scaleCoefficient = this._component._getScaleCoefficient();
-    const maxTickSize = this.tickSize * 9 * scaleCoefficient;
-    const m = (r - l) / 2;
-    const x = (angle - l);
-
-    let h;
-
-    if (x === m) {
-      return maxTickSize;
-    }
-
-    const d = Math.abs(m - x);
-    const v = 40 * Math.sqrt(1 / d);
-
-    if (v > maxTickSize) {
-      h = maxTickSize;
-    } else {
-      h = Math.max(this.tickSize, v);
-    }
-
-    return h;
-  }
-
-  getTicks (count, size, radius, scaleCoefficient, animationParams = [0, 90]) {
+  getTicks (count, size, radius, scaleCoefficient) {
     const ticks = this.getTickPoints(count);
     const lesser = 200;
     const m = [];
@@ -119,13 +91,7 @@ export default class Visualizer {
         delta = 0;
       }
 
-      let k;
-
-      if (animationParams[0] <= tick.angle && tick.angle <= animationParams[1]) {
-        k = radius / (radius - this.getSize(tick.angle, animationParams[0], animationParams[1]) - delta);
-      } else {
-        k = radius / (radius - (size + delta));
-      }
+      const k = radius / (radius - (size + delta));
 
       const x1 = tick.x * (radius - size);
       const y1 = tick.y * (radius - size);
