@@ -74,6 +74,7 @@ class StatusActionBar extends ImmutablePureComponent {
     withDismiss: PropTypes.bool,
     showReplyCount: PropTypes.bool,
     directMessage: PropTypes.bool,
+    scrollKey: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
 
@@ -198,7 +199,7 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, intl, withDismiss, showReplyCount, directMessage } = this.props;
+    const { status, intl, withDismiss, showReplyCount, directMessage, scrollKey } = this.props;
 
     const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
@@ -300,7 +301,16 @@ class StatusActionBar extends ImmutablePureComponent {
           <IconButton key='bookmark-button' className='status__action-bar-button bookmark-icon' disabled={anonymousAccess} active={status.get('bookmarked')} pressed={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />,
           filterButton,
           <div key='dropdown-button' className='status__action-bar-dropdown'>
-            <DropdownMenuContainer disabled={anonymousAccess} status={status} items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel={intl.formatMessage(messages.more)} />
+            <DropdownMenuContainer
+              scrollKey={scrollKey}
+              disabled={anonymousAccess}
+              status={status}
+              items={menu}
+              icon='ellipsis-h'
+              size={18}
+              direction='right'
+              ariaLabel={intl.formatMessage(messages.more)}
+            />
           </div>,
         ]}
 

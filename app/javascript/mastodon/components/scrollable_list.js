@@ -10,10 +10,18 @@ import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import LoadingIndicator from './loading_indicator';
+import { connect } from 'react-redux';
 
 const MOUSE_IDLE_DELAY = 300;
 
-export default class ScrollableList extends PureComponent {
+const mapStateToProps = (state, { scrollKey }) => {
+  return {
+    preventScroll: scrollKey === state.getIn(['dropdown_menu', 'scroll_key']),
+  };
+};
+
+export default @connect(mapStateToProps)
+class ScrollableList extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -37,6 +45,7 @@ export default class ScrollableList extends PureComponent {
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
     bindToDocument: PropTypes.bool,
+    preventScroll: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -129,7 +138,7 @@ export default class ScrollableList extends PureComponent {
   });
 
   handleMouseIdle = () => {
-    if (this.scrollToTopOnMouseIdle) {
+    if (this.scrollToTopOnMouseIdle && !this.props.preventScroll) {
       this.setScrollTop(0);
     }
 
@@ -179,7 +188,7 @@ export default class ScrollableList extends PureComponent {
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
     const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
 
-    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
+    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently || this.props.preventScroll)) {
       return this.getScrollHeight() - this.getScrollTop();
     } else {
       return null;

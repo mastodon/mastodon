@@ -1,7 +1,7 @@
-import { decode } from 'blurhash';
+import Blurhash from 'mastodon/components/blurhash';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import { autoPlayGif, displayMedia } from 'mastodon/initial_state';
+import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
 import { isIOS } from 'mastodon/is_mobile';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -20,34 +20,6 @@ export default class MediaItem extends ImmutablePureComponent {
     visible: displayMedia !== 'hide_all' && !this.props.attachment.getIn(['status', 'sensitive']) || displayMedia === 'show_all',
     loaded: false,
   };
-
-  componentDidMount () {
-    if (this.props.attachment.get('blurhash')) {
-      this._decode();
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    if (prevProps.attachment.get('blurhash') !== this.props.attachment.get('blurhash') && this.props.attachment.get('blurhash')) {
-      this._decode();
-    }
-  }
-
-  _decode () {
-    const hash   = this.props.attachment.get('blurhash');
-    const pixels = decode(hash, 32, 32);
-
-    if (pixels) {
-      const ctx       = this.canvas.getContext('2d');
-      const imageData = new ImageData(pixels, 32, 32);
-
-      ctx.putImageData(imageData, 0, 0);
-    }
-  }
-
-  setCanvasRef = c => {
-    this.canvas = c;
-  }
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
@@ -152,7 +124,13 @@ export default class MediaItem extends ImmutablePureComponent {
     return (
       <div className='account-gallery__item' style={{ width, height }}>
         <a className='media-gallery__item-thumbnail' href={status.get('url')} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
-          <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })} />
+          <Blurhash
+            hash={attachment.get('blurhash')}
+            className={classNames('media-gallery__preview', {
+              'media-gallery__preview--hidden': visible && loaded,
+            })}
+            dummy={!useBlurhash}
+          />
           {visible && thumbnail}
           {!visible && icon}
         </a>

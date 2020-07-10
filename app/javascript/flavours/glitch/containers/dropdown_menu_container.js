@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
 });
 
-const mapDispatchToProps = (dispatch, { status, items }) => ({
+const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
   onOpen(id, onItemClick, dropdownPlacement, keyboard) {
     dispatch(isUserTouching() ? openModal('ACTIONS', {
       status,
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch, { status, items }) => ({
           onClick: item.action ? ((e) => { return onItemClick(i, e) }) : null,
         } : null
       ),
-    }) : openDropdownMenu(id, dropdownPlacement, keyboard));
+    }) : openDropdownMenu(id, dropdownPlacement, keyboard, scrollKey));
   },
   onClose(id) {
     dispatch(closeModal('ACTIONS'));

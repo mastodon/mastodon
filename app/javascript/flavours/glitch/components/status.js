@@ -96,6 +96,7 @@ class Status extends ImmutablePureComponent {
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
     onClick: PropTypes.func,
+    scrollKey: PropTypes.string,
   };
 
   state = {
