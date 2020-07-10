@@ -315,7 +315,7 @@ class Audio extends React.PureComponent {
   _draw () {
     this.canvasContext.save();
 
-    const ticks = this._getTicks(360 * this._getScaleCoefficient(), TICK_SIZE);
+    const ticks = this._getTicks(parseInt(360 * this._getScaleCoefficient()), TICK_SIZE);
 
     ticks.forEach(tick => {
       this._drawTick(tick.x1, tick.y1, tick.x2, tick.y2);
