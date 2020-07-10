@@ -7,11 +7,7 @@ import classNames from 'classnames';
 import { throttle } from 'lodash';
 import { getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
 import { debounce } from 'lodash';
-
-const hex2rgba = (hex, alpha = 1) => {
-  const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
+import Visualizer from './visualizer';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -54,6 +50,11 @@ class Audio extends React.PureComponent {
     dragging: false,
   };
 
+  constructor (props) {
+    super(props);
+    this.visualizer = new Visualizer(TICK_SIZE);
+  }
+
   setPlayerRef = c => {
     this.player = c;
 
@@ -92,9 +93,7 @@ class Audio extends React.PureComponent {
   setCanvasRef = c => {
     this.canvas = c;
 
-    if (c) {
-      this.canvasContext = c.getContext('2d');
-    }
+    this.visualizer.setCanvas(c);
   }
  
   componentDidMount () {
@@ -247,17 +246,12 @@ class Audio extends React.PureComponent {
 
   _initAudioContext () {
     const context  = new AudioContext();
-    const analyser = context.createAnalyser();
     const source   = context.createMediaElementSource(this.audio);
 
-    analyser.smoothingTimeConstant = 0.6;
-    analyser.fftSize = 2048;
-
-    source.connect(analyser);
+    this.visualizer.setAudioContext(context, source);
     source.connect(context.destination);
 
     this.audioContext = context;
-    this.analyser = analyser;
   }
 
   handleDownload = () => {
@@ -290,20 +284,12 @@ class Audio extends React.PureComponent {
     });
   }
 
-  _clear () {
-    this.canvasContext.clearRect(0, 0, this.state.width, this.state.height);
+  _clear() {
+    this.visualizer.clear(this.state.width, this.state.height);
   }
 
-  _draw () {
-    this.canvasContext.save();
-
-    const ticks = this._getTicks(360 * this._getScaleCoefficient(), TICK_SIZE);
-
-    ticks.forEach(tick => {
-      this._drawTick(tick.x1, tick.y1, tick.x2, tick.y2);
-    });
-
-    this.canvasContext.restore();
+  _draw() {
+    this.visualizer.draw(this._getCX(), this._getCY(), this._getAccentColor(), this._getRadius(), this._getScaleCoefficient());
   }
 
   _getRadius () {
@@ -312,126 +298,6 @@ class Audio extends React.PureComponent {
 
   _getScaleCoefficient () {
     return (this.state.height || this.props.height) / 982;
-  }
-
-  _getTicks (count, size, animationParams = [0, 90]) {
-    const radius = this._getRadius();
-    const ticks = this._getTickPoints(count);
-    const lesser = 200;
-    const m = [];
-    const bufferLength = this.analyser ? this.analyser.frequencyBinCount : 0;
-    const frequencyData = new Uint8Array(bufferLength);
-    const allScales = [];
-    const scaleCoefficient = this._getScaleCoefficient();
-
-    if (this.analyser) {
-      this.analyser.getByteFrequencyData(frequencyData);
-    }
-
-    ticks.forEach((tick, i) => {
-      const coef = 1 - i / (ticks.length * 2.5);
-
-      let delta = ((frequencyData[i] || 0) - lesser * coef) * scaleCoefficient;
-
-      if (delta < 0) {
-        delta = 0;
-      }
-
-      let k;
-
-      if (animationParams[0] <= tick.angle && tick.angle <= animationParams[1]) {
-        k = radius / (radius - this._getSize(tick.angle, animationParams[0], animationParams[1]) - delta);
-      } else {
-        k = radius / (radius - (size + delta));
-      }
-
-      const x1 = tick.x * (radius - size);
-      const y1 = tick.y * (radius - size);
-      const x2 = x1 * k;
-      const y2 = y1 * k;
-
-      m.push({ x1, y1, x2, y2 });
-
-      if (i < 20) {
-        let scale = delta / (200 * scaleCoefficient);
-        scale = scale < 1 ? 1 : scale;
-        allScales.push(scale);
-      }
-    });
-
-    const scale = allScales.reduce((pv, cv) => pv + cv, 0) / allScales.length;
-
-    return m.map(({ x1, y1, x2, y2 }) => ({
-      x1: x1,
-      y1: y1,
-      x2: x2 * scale,
-      y2: y2 * scale,
-    }));
-  }
-
-  _getSize (angle, l, r) {
-    const scaleCoefficient = this._getScaleCoefficient();
-    const maxTickSize = TICK_SIZE * 9 * scaleCoefficient;
-    const m = (r - l) / 2;
-    const x = (angle - l);
-
-    let h;
-
-    if (x === m) {
-      return maxTickSize;
-    }
-
-    const d = Math.abs(m - x);
-    const v = 40 * Math.sqrt(1 / d);
-
-    if (v > maxTickSize) {
-      h = maxTickSize;
-    } else {
-      h = Math.max(TICK_SIZE, v);
-    }
-
-    return h;
-  }
-
-  _getTickPoints (count) {
-    const PI = 360;
-    const coords = [];
-    const step = PI / count;
-
-    let rad;
-
-    for(let deg = 0; deg < PI; deg += step) {
-      rad = deg * Math.PI / (PI / 2);
-      coords.push({ x: Math.cos(rad), y: -Math.sin(rad), angle: deg });
-    }
-
-    return coords;
-  }
-
-  _drawTick (x1, y1, x2, y2) {
-    const cx = this._getCX();
-    const cy = this._getCY();
-
-    const dx1 = Math.ceil(cx + x1);
-    const dy1 = Math.ceil(cy + y1);
-    const dx2 = Math.ceil(cx + x2);
-    const dy2 = Math.ceil(cy + y2);
-
-    const gradient = this.canvasContext.createLinearGradient(dx1, dy1, dx2, dy2);
-
-    const mainColor = this._getAccentColor();
-    const lastColor = hex2rgba(mainColor, 0);
-
-    gradient.addColorStop(0, mainColor);
-    gradient.addColorStop(0.6, mainColor);
-    gradient.addColorStop(1, lastColor);
-
-    this.canvasContext.beginPath();
-    this.canvasContext.strokeStyle = gradient;
-    this.canvasContext.lineWidth = 2;
-    this.canvasContext.moveTo(dx1, dy1);
-    this.canvasContext.lineTo(dx2, dy2);
-    this.canvasContext.stroke();
   }
 
   _getCX() {
