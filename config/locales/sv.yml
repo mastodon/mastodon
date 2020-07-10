@@ -37,8 +37,11 @@ sv:
       domain: Server
       reason: Anledning
       rejecting_media: 'Mediafiler från dessa servers kommer inte hanteras eller lagras, och inga miniatyrer kammer att visas, utan manuell klickning erfordras på originalfilen:'
+      rejecting_media_title: Filtrerade media
       silenced: 'Poster från dessa servers kommer att döljas i publika tidslinjer och konversationer, och meddelanden kommer inte att genereras från deras användares handlingar, förutom om du följer dem:'
+      silenced_title: Ljuddämpade värddatorer
       suspended: 'Ingen data från dessa serverdatorer kommer bearbetas, lagras eller bytas ut vilket omöjliggör kommunikation med användare från dessa serverdatorer:'
+      suspended_title: Avstängda värddatorer
     unavailable_content_html: Mastodon låter dig se material från, och interagera med, andra användare i servernätverket. Det är undantag som gjorts på denna serverdator.
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
@@ -243,6 +246,7 @@ sv:
       listed: Noterade
       new:
         title: Lägg till ny egen emoji
+      not_permitted: Du har inte behörighet att utföra denna åtgärd
       overwrite: Skriva över
       shortcode: Kortkod
       shortcode_hint: Minst 2 tecken, endast alfanumeriska tecken och understreck
@@ -522,6 +526,10 @@ sv:
     confirm: Fortsätt
     invalid_password: Ogiltigt lösenord
     prompt: Bekräfta lösenord för att fortsätta
+  crypto:
+    errors:
+      invalid_key: är inte en giltig Ed25519 eller Curve25519 nyckel
+      invalid_signature: är inte en giltig Ed25519 signatur
   datetime:
     distance_in_words:
       about_x_hours: "%{count}tim"
@@ -634,6 +642,7 @@ sv:
   migrations:
     acct: användarnamn@domän av det nya kontot
     incoming_migrations: Flyttar från ett annat konto
+    redirected_msg: Ditt konto dirigeras om till %{acct}.
   moderation:
     title: Moderera
   notification_mailer:

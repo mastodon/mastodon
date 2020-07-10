@@ -3,34 +3,171 @@ hy:
   about:
     about_this: Մեր մասին
     active_count_after: ակտիվ
+    administered_by: Ադմինիստրատոր՝
     api: API
     apps: Բջջային հավելվածներ
+    contact: Կոնտակտ
+    contact_missing: Սահմանված չէ
     contact_unavailable: Ոչինչ չկա
+    discover_users: Գտնել օգտատերներ
+    documentation: Փաստաթղթեր
+    get_apps: Փորձեք բջջային հավելվածը
     learn_more: Իմանալ ավելին
     privacy_policy: Գաղտնիության քաղաքականություն
     see_whats_happening: Տես ինչ ա կատարվում
+    server_stats: Սերվերի վիճակը․
+    source_code: Ելատեքստ
     status_count_after:
       one: ստատուս
       other: ստատուս
+    unavailable_content_description:
+      domain: Սպասարկիչ
+    user_count_after:
+      one: օգտատեր
+      other: օգտատերեր
+    user_count_before: Այստեղ են
     what_is_mastodon: Ի՞նչ է Մաստոդոնը
   accounts:
     follow: Հետևել
     followers:
       one: Հետևորդ
       other: Հետևորդներ
+    following: Հետևում եք
+    joined: Միացել են %{date}
+    last_active: վերջին թութը
     media: Մեդիա
     never_active: Երբեք
+    posts:
+      one: Թութ
+      other: Թութերից
+    posts_tab_heading: Թթեր
+    posts_with_replies: Թթեր եւ պատասխաններ
     roles:
       admin: Ադմինիստրատոր
       bot: Բոտ
       group: Խումբ
       moderator: Մոդերատոր
+    unavailable: Պրոֆիլը հասանելի չի
     unfollow: Չհետևել
   admin:
     account_moderation_notes:
+      create: Թողնել նշում
+      delete: Ջնջել
+    accounts:
+      confirmed: Հաստատված է
+      confirming: Հաստատում
+      deleted: Ջնջված է
+      disable: Անջատել
+      disable_two_factor_authentication: Անջատել 2FA
+      disabled: Անջատված է
+      display_name: Ցուցադրվող անունը
+      domain: Դոմեն
+      edit: Խմբագրել
+      email: Էլ. փոստ
+      enable: Միացնել
+      enabled: Միացված է
+      followers: Հետևորդներ
+      follows: Հետևողներ
+      header: Վերնագիր
+      inbox_url: Մուտքային URL
+      ip: IP
+      joined: Միացած է
+      location:
+        all: Բոլորը
+        local: Տեղային
+        remote: Հեռակա
+        title: Տեղադրությունը
+      moderation:
+        active: Ակտիվ
+        all: Բոլորը
+        pending: Սպասում
+      public: Հրապարակային
+      username: Մուտքանուն
+      warn: Նախազգուշացում
+      web: Վեբ
+    action_logs:
+      action_types:
+        disable_2fa_user: Անջատել 2FA
+    announcements:
+      live: Ուղիղ
+    custom_emojis:
+      copy: Պատճենել
+      delete: Ջնջել
+      disable: Անջատել
+      list: Ցանկ
+      overwrite: Վերագրել
+      upload: Վերբեռնել
+    domain_blocks:
+      new:
+        severity:
+          noop: Ոչ մի
+          silence: Լուռ
+      show:
+        undo: Ետարկել
+    email_domain_blocks:
+      add_new: Ավելացնել նորը
+      delete: Ջնջել
+      domain: Դոմեն
+      new:
+        create: Ավելացնել դոմեն
+    instances:
+      by_domain: Դոմեն
+      moderation:
+        all: Բոլորը
+        limited: Սահամանփակ
+    relays:
+      disable: Անջատել
+      disabled: Անջատված է
+      enable: Միացնել
+      enabled: Միացված է
+      status: Կարգավիճակ
+    reports:
+      comment:
+        none: Ոչ մի
+      notes:
+        create: Ավելացնել նշում
+        delete: Ջնջել
+      status: Կարգավիճակ
+    settings:
+      registrations:
+        min_invite_role:
+          disabled: Ոչ ոք
+    statuses:
+      batch:
+        delete: Ջնջել
+      deleted: Ջնջված է
+    tags:
+      context: Համատեքստ
+    title: Ադմինիստարցիա
+    warning_presets:
+      add_new: Ավելացնել նորը
       delete: Ջնջել
   auth:
+    change_password: Գաղտնաբառ
+    checkbox_agreement_html: Ես համաձայն եմ <a href="%{rules_path}" target="_blank">սպասարկչի կայանքներին</a> և <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
+    checkbox_agreement_without_rules_html: Ես համաձայն եմ <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
+    delete_account: Ջնջել հաշիվը
     login: Մտնել
+    logout: Դուրս գալ
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Գրանցվել
+    security: Անվտանգություն
+    setup:
+      title: Կարգավորում
+  authorize_follow:
+    follow: Հետևել
+  datetime:
+    distance_in_words:
+      less_than_x_seconds: Հենց հիմա
+      over_x_years: "%{count}տ"
+      x_days: "%{count}օ"
+      x_minutes: "%{count}ր"
+      x_months: "%{count}ա"
+      x_seconds: "%{count}վրկ"
+  deletes:
+    proceed: Ջնջել հաշիվը
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -41,15 +178,120 @@ hy:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Ամսաթիվ
+      download: Ներբեռնեք Ձեր արխիվը
+      size: Չափը
+    csv: CSV
+    lists: Ցանկեր
+  filters:
+    index:
+      delete: Ջնջել
+      title: Ֆիլտրեր
+    new:
+      title: Ավելացնել ֆիլտր
+  footer:
+    developers: Մշակողներ
+    more: Ավելին…
+    resources: Ռեսուրսներ
+    trending_now: Այժմ արդիական
+  generic:
+    all: Բոլորը
+    copy: Պատճենել
+    delete: Ջնջել
+  identity_proofs:
+    active: Ակտիվ
+  imports:
+    modes:
+      overwrite: Վերագրել
+    upload: Վերբեռնել
   invites:
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
+      '1800': 30 րոպե
+      '21600': 6 ժամ
       '3600': 1 hour
       '43200': 12 hours
       '604800': 1 week
       '86400': 1 day
+  notification_mailer:
+    mention:
+      action: Պատասխանել
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: Մլր
+          million: Մլն
+          quadrillion: Քլր
+          thousand: Հազ
+          trillion: Տրլ
+  pagination:
+    newer: Ավելի նոր
+    next: Հաջորդ
+    older: Ավելի հին
+    prev: Նախորդ
+    truncate: "&hellip;"
+  preferences:
+    other: Այլ
   sessions:
+    browser: Դիտարկիչ
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Անհայտ դիտարկիչ
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Անդրոիդ
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
       linux: Լինուքս
+      mac: macOS
+      other: անհայտ հարթակ
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Չեղարկել
+  settings:
+    account: Հաշիվ
+    edit_profile: Խմբագրել պրոֆիլը
+    import: Ներմուծել
+    import_and_export: Ներմուծել և արտահանել
+  stream_entries:
+    sensitive_content: Կասկածելի բովանդակութիւն
+  themes:
+    default: Mastodon (Մուգ)
+    mastodon-light: Mastodon (Լուսավոր)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+  two_factor_authentication:
+    disable: Անջատել
+    enable: Միացնել
+    setup: Կարգավորել
+  user_mailer:
+    warning:
+      title:
+        none: Զգուշացում
+    welcome:
+      tips: Հուշումներ
+  verification:
+    verification: Ստուգում

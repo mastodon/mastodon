@@ -1,6 +1,6 @@
 import {
   MARKERS_SUBMIT_SUCCESS,
-} from '../actions/notifications';
+} from '../actions/markers';
 
 const initialState = ImmutableMap({
   home: '0',

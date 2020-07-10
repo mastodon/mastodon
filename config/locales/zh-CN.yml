@@ -34,13 +34,16 @@ zh-CN:
     status_count_before: 他们共嘟出了
     tagline: 关注并发现新朋友
     terms: 使用条款
-    unavailable_content: 不可用的内容
+    unavailable_content: 被限制的服务器
     unavailable_content_description:
       domain: 服务器
       reason: 原因
       rejecting_media: 来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。
+      rejecting_media_title: 被过滤的媒体文件
       silenced: 来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则他们的互动不会产生通知。
+      silenced_title: 已隐藏的服务器
       suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
+      suspended_title: 已封禁的服务器
     unavailable_content_html: 通常来说，在Mastodon上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是某些站点上不排除会有例外。
     user_count_after:
       other: 位用户
@@ -48,7 +51,7 @@ zh-CN:
     what_is_mastodon: Mastodon 是什么？
   accounts:
     choices_html: "%{name} 的推荐："
-    endorsements_hint: 您可以以在web界面上推荐你关注的人，他们会出现在这里。
+    endorsements_hint: 您可以在web界面上推荐你关注的人，他们会出现在这里。
     featured_tags_hint: 您可以精选一些话题标签展示在这里。
     follow: 关注
     followers:
@@ -125,7 +128,7 @@ zh-CN:
       joined: 加入于
       location:
         all: 全部
-        local: 本地
+        local: 本站
         remote: 远程
         title: 位置
       login_status: 登录状态
@@ -286,9 +289,9 @@ zh-CN:
     custom_emojis:
       assign_category: 指定分类
       by_domain: 域名
-      copied_msg: 成功将表情复制到本地
+      copied_msg: 已成功将表情复制到本站
       copy: 复制
-      copy_failed_msg: 无法将表情复制到本地
+      copy_failed_msg: 无法将表情复制到本站
       create_new_category: 新建分类
       created_msg: 表情添加成功！
       delete: 删除
@@ -305,6 +308,7 @@ zh-CN:
       listed: 已显示
       new:
         title: 添加新的自定义表情
+      not_permitted: 您没有权限进行此操作
       overwrite: 覆盖
       shortcode: 短代码
       shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
@@ -369,7 +373,7 @@ zh-CN:
       public_comment: 公开评论
       public_comment_hint: 给这一域名限制添加公开的评论，如果你推广你的域名限制列表的话，这些评论就会显示出来。
       reject_media: 拒绝接收媒体文件
-      reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
+      reject_media_hint: 删除本站已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
       reject_reports: 拒绝接收举报
       reject_reports_hint: 忽略来自此域名的所有举报。这和封禁无关。
       rejecting_media: 拒绝接收媒体文件
@@ -482,7 +486,7 @@ zh-CN:
       updated_at: 更新时间
     settings:
       activity_api_enabled:
-        desc_html: 本站用户发布的嘟文数，以及本站的活跃用户数和一周内新用户数
+        desc_html: 本站一周内的嘟文数、活跃用户数以及新用户数
         title: 公开用户活跃度的统计数据
       bootstrap_timeline_accounts:
         desc_html: 用半角逗号分隔多个用户名。只能添加来自本站且未开启保护的帐户。如果留空，则默认关注本站所有的管理员。
@@ -713,6 +717,10 @@ zh-CN:
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求您输入密码。"
     invalid_password: 无效密码
     prompt: 确认密码以继续
+  crypto:
+    errors:
+      invalid_key: 不是有效的 Ed25519 或者 Curve25519 密钥
+      invalid_signature: 不是有效的 Ed25519 签名
   date:
     formats:
       default: "%Y年%m月%d日"
@@ -835,7 +843,7 @@ zh-CN:
         invalid_token: Keybase 令牌是签名的哈希并且必须是 66 个十六进制字符
         verification_failed: Keybase 无法将此令牌识别为 Keybase 用户 %{kb_username} 的签名。请在 Keybase 再试一次。
       wrong_user: 无法以 %{current} 的身份创建 %{proving} 的证明。请以 %{proving} 的身份登录并再次尝试。
-    explanation_html: 在这里，你可以和你的其他身份建立密码学关联，例如 Keybase 个人资料。这可以让别人向你发送加密信息，并信任你发给他们的内容。
+    explanation_html: 在这里，你可以和你的其他身份建立密码学关联，例如 Keybase 个人资料。这样，别人就可以给你发送加密信息，也能够信任你发给他们的内容。
     i_am_html: 我是 %{service} 上的 %{username} 。
     identity: 身份
     inactive: 失效
@@ -908,6 +916,7 @@ zh-CN:
     on_cooldown: 您最近已经迁移过您的帐号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
+    redirected_msg: 您的账号现在会跳转至 %{acct}
     redirecting_to: 您的帐户被跳转到了 %{acct}。
     set_redirect: 设置跳转
     warning:
@@ -1249,6 +1258,12 @@ zh-CN:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
+    sign_in_token:
+      details: 该尝试详情如下：
+      explanation: 我们检查到有来自未经识别的 IP 地址的登录请求。如果这确实是你，请在登录确认页面输入下方的安全码：
+      further_actions: 如果这不是你，请更换你的密码并且在你的账号上开启双重认证。你可以在这里设置：
+      subject: 请确认登录请求：
+      title: 登录请求
     warning:
       explanation:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
@@ -1272,7 +1287,7 @@ zh-CN:
       edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。
       explanation: 下面是几个小贴士，希望它们能帮到你
       final_action: 开始嘟嘟
-      final_step: '开始嘟嘟吧！即便你现在没有关注者，其他人仍然能在本站时间轴或者话题标签等地方看到你的公开嘟文。试着用 #introductions 这个话题标签介绍一下自己吧。'
+      final_step: '开始嘟嘟吧！即便你现在没有关注者，其他人仍然能在本站时间轴或者话题标签等地方看到你的公开嘟文。试着用 #自我介绍 这个话题标签介绍一下自己吧。'
       full_handle: 你的完整用户地址
       full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一台服务器向你发送信息或者关注你。
       review_preferences_action: 更改首选项
@@ -1286,11 +1301,14 @@ zh-CN:
       title: "%{name}，欢迎你的加入！"
   users:
     follow_limit_reached: 您不能关注超过 %{limit} 个人
+    generic_access_help_html: 登录账号出现问题？你可以向 %{email} 寻求帮助
     invalid_email: 输入的电子邮件地址无效
     invalid_otp_token: 输入的双重认证代码无效
+    invalid_sign_in_token: 无效安全码
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: 当前登录的帐户：
+    suspicious_sign_in_confirmation: 你似乎没有在这台设备上登录过，并且你也有很久没有登录过了，所以我们给你的电子邮箱发了封邮件，想确认一下确实是你。
   verification:
     explanation_html: 您可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到您的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：
     verification: 验证

@@ -142,6 +142,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{count, plural, one {{counter} Toot} other {{counter} Toots}}",
+        "id": "account.statuses_counter"
+      },
+      {
+        "defaultMessage": "{count, plural, other {{counter} Following}}",
+        "id": "account.following_counter"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{counter} Follower} other {{counter} Followers}}",
+        "id": "account.followers_counter"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/common_counter.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unblock domain {domain}",
         "id": "account.unblock_domain"
       }
@@ -172,8 +189,8 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{count} {rawCount, plural, one {person} other {people}} talking",
-        "id": "trends.count_by_accounts"
+        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} talking",
+        "id": "trends.counter_by_accounts"
       }
     ],
     "path": "app/javascript/mastodon/components/hashtag.json"
@@ -343,6 +360,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{count}K",
+        "id": "units.short.thousand"
+      },
+      {
+        "defaultMessage": "{count}M",
+        "id": "units.short.million"
+      },
+      {
+        "defaultMessage": "{count}B",
+        "id": "units.short.billion"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/short_number.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "status.delete"
       },
@@ -492,6 +526,22 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Direct",
+        "id": "privacy.direct.short"
+      },
       {
         "defaultMessage": "Filtered",
         "id": "status.filtered"
@@ -650,6 +700,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Click to add a note",
+        "id": "account_note.placeholder"
+      },
+      {
+        "defaultMessage": "Saved",
+        "id": "generic.saved"
+      },
+      {
+        "defaultMessage": "Note",
+        "id": "account.account_note_header"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/account_note.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "account.unfollow"
       },
@@ -800,18 +867,6 @@
       {
         "defaultMessage": "Group",
         "id": "account.badges.group"
-      },
-      {
-        "defaultMessage": "Toots",
-        "id": "account.posts"
-      },
-      {
-        "defaultMessage": "Follows",
-        "id": "account.follows"
-      },
-      {
-        "defaultMessage": "Followers",
-        "id": "account.followers"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -1206,7 +1261,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Add media ({formats})",
+        "defaultMessage": "Add images, a video or an audio file",
         "id": "upload_button.label"
       }
     ],
@@ -2468,6 +2523,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Direct",
+        "id": "privacy.direct.short"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/components/detailed_status.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "confirmations.delete.confirm"
       },
@@ -2991,10 +3067,6 @@
       {
         "defaultMessage": "Exit full screen",
         "id": "video.exit_fullscreen"
-      },
-      {
-        "defaultMessage": "Download file",
-        "id": "video.download"
       },
       {
         "defaultMessage": "Sensitive content",

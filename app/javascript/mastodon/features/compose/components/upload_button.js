@@ -7,10 +7,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
-  upload: { id: 'upload_button.label', defaultMessage: 'Add media ({formats})' },
+  upload: { id: 'upload_button.label', defaultMessage: 'Add images, a video or an audio file' },
 });
-
-const SUPPORTED_FORMATS = 'JPEG, PNG, GIF, WebM, MP4, MOV, OGG, WAV, MP3, FLAC';
 
 const makeMapStateToProps = () => {
   const mapStateToProps = state => ({
@@ -62,11 +60,13 @@ class UploadButton extends ImmutablePureComponent {
       return null;
     }
 
+    const message = intl.formatMessage(messages.upload);
+
     return (
       <div className='compose-form__upload-button'>
-        <IconButton icon='paperclip' title={intl.formatMessage(messages.upload, { formats: SUPPORTED_FORMATS })} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
+        <IconButton icon='paperclip' title={message} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
         <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.upload, { formats: SUPPORTED_FORMATS })}</span>
+          <span style={{ display: 'none' }}>{message}</span>
           <input
             key={resetFileKey}
             ref={this.setRef}
