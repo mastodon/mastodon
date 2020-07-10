@@ -19,6 +19,9 @@ class AudioModal extends ImmutablePureComponent {
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     status: ImmutablePropTypes.map,
+    options: PropTypes.shape({
+      autoPlay: PropTypes.bool,
+    }),
     account: ImmutablePropTypes.map,
     onClose: PropTypes.func.isRequired,
   };
@@ -58,6 +61,7 @@ class AudioModal extends ImmutablePureComponent {
 
   render () {
     const { media, status, account } = this.props;
+    const options = this.props.options || {};
 
     return (
       <div className='modal-root__modal audio-modal'>
@@ -71,6 +75,7 @@ class AudioModal extends ImmutablePureComponent {
             backgroundColor={media.getIn(['meta', 'colors', 'background'])}
             foregroundColor={media.getIn(['meta', 'colors', 'foreground'])}
             accentColor={media.getIn(['meta', 'colors', 'accent'])}
+            autoPlay={options.autoPlay}
           />
         </div>
 
