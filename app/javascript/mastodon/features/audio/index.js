@@ -21,6 +21,9 @@ const messages = defineMessages({
   download: { id: 'video.download', defaultMessage: 'Download file' },
 });
 
+// Some parts of the canvas rendering code in this file have been adopted from
+// https://codepen.io/alexdevp/full/RNELPV by Alex Permyakov
+
 const TICK_SIZE = 10;
 const PADDING   = 180;
 
