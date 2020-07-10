@@ -37,6 +37,7 @@ class Audio extends React.PureComponent {
     backgroundColor: PropTypes.string,
     foregroundColor: PropTypes.string,
     accentColor: PropTypes.string,
+    autoPlay: PropTypes.bool,
   };
 
   state = {
@@ -244,6 +245,14 @@ class Audio extends React.PureComponent {
     this.setState({ hovered: false });
   }
 
+  handleLoadedData = () => {
+    const { autoPlay } = this.props;
+
+    if (autoPlay) {
+      this.audio.play();
+    }
+  }
+
   _initAudioContext () {
     const context  = new AudioContext();
     const source   = context.createMediaElementSource(this.audio);
@@ -321,7 +330,7 @@ class Audio extends React.PureComponent {
   }
 
   render () {
-    const { src, intl, alt, editable } = this.props;
+    const { src, intl, alt, editable, autoPlay } = this.props;
     const { paused, muted, volume, currentTime, duration, buffer, dragging } = this.state;
     const progress = (currentTime / duration) * 100;
 
@@ -330,10 +339,11 @@ class Audio extends React.PureComponent {
         <audio
           src={src}
           ref={this.setAudioRef}
-          preload='none'
+          preload={autoPlay ? 'auto' : 'none'}
           onPlay={this.handlePlay}
           onPause={this.handlePause}
           onProgress={this.handleProgress}
+          onLoadedData={this.handleLoadedData}
           crossOrigin='anonymous'
         />
 
