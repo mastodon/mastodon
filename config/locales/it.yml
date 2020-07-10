@@ -1,7 +1,6 @@
----
 it:
   about:
-    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
+    about_hashtag_html: 'Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.'
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
     active_count_after: attivo
@@ -21,7 +20,7 @@ it:
     federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
     get_apps: Prova un'app per smartphone
     hosted_on: Mastodon ospitato su %{domain}
-    instance_actor_flash: |-
+    instance_actor_flash: |
       Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
       È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     learn_more: Scopri altro
@@ -39,7 +38,7 @@ it:
     unavailable_content_description:
       domain: Server
       reason: 'Motivo:'
-      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
+      rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
       rejecting_media_title: Media filtrati
       silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
       silenced_title: Server silenziati
@@ -52,7 +51,7 @@ it:
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
-    choices_html: 'Suggerimenti da %{name}:'
+    choices_html: "Suggerimenti da %{name}:"
     endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
@@ -388,7 +387,7 @@ it:
       show:
         affected_accounts:
           one: Interessato un solo account nel database
-          other: Interessati %{count} account nel database
+          other: "Interessati %{count} account nel database"
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -437,7 +436,7 @@ it:
     pending_accounts:
       title: Account in attesa (%{count})
     relationships:
-      title: Relazioni di %{acct}
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -631,7 +630,7 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
@@ -644,9 +643,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
