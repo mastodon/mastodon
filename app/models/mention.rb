@@ -21,7 +21,6 @@ class Mention < ApplicationRecord
 
   scope :active, -> { where(silent: false) }
   scope :silent, -> { where(silent: true) }
-  scope :groups, -> { joins(:account).where(accounts: { actor_type: 'Group' }) }
 
   delegate(
     :username,
