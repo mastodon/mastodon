@@ -40,6 +40,13 @@ class MediaAttachment < ApplicationRecord
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
   AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp .wma).freeze
 
+  META_KEYS = %i(
+    focus
+    colors
+    original
+    small
+  ).freeze
+
   IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif).freeze
   VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
@@ -165,7 +172,7 @@ class MediaAttachment < ApplicationRecord
 
   has_attached_file :thumbnail,
                     styles: THUMBNAIL_STYLES,
-                    processors: [:lazy_thumbnail, :blurhash_transcoder],
+                    processors: [:lazy_thumbnail, :blurhash_transcoder, :color_extractor],
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
   validates_attachment_content_type :thumbnail, content_type: IMAGE_MIME_TYPES
@@ -216,7 +223,7 @@ class MediaAttachment < ApplicationRecord
 
     x, y = (point.is_a?(Enumerable) ? point : point.split(',')).map(&:to_f)
 
-    meta = (file.instance_read(:meta) || {}).with_indifferent_access.slice(:focus, :original, :small)
+    meta = (file.instance_read(:meta) || {}).with_indifferent_access.slice(*META_KEYS)
     meta['focus'] = { 'x' => x, 'y' => y }
 
     file.instance_write(:meta, meta)
@@ -338,7 +345,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def populate_meta
-    meta = (file.instance_read(:meta) || {}).with_indifferent_access.slice(:focus, :original, :small)
+    meta = (file.instance_read(:meta) || {}).with_indifferent_access.slice(*META_KEYS)
 
     file.queued_for_write.each do |style, file|
       meta[style] = style == :small || image? ? image_geometry(file) : video_metadata(file)

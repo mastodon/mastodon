@@ -94,6 +94,7 @@ class Status extends ImmutablePureComponent {
     updateScrollBottom: PropTypes.func,
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
+    scrollKey: PropTypes.string,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -264,7 +265,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread, showThread } = this.props;
+    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -353,7 +354,9 @@ class Status extends ImmutablePureComponent {
                 src={attachment.get('url')}
                 alt={attachment.get('description')}
                 poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
-                blurhash={attachment.get('blurhash')}
+                backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
+                foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
+                accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
                 duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
                 width={this.props.cachedMediaWidth}
                 height={110}
@@ -457,7 +460,7 @@ class Status extends ImmutablePureComponent {
 
             {media}
 
-            <StatusActionBar status={status} account={account} {...other} />
+            <StatusActionBar scrollKey={scrollKey} status={status} account={account} {...other} />
           </div>
         </div>
       </HotKeys>

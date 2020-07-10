@@ -85,6 +85,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
     withDismiss: PropTypes.bool,
+    scrollKey: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
 
@@ -229,7 +230,7 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, relationship, intl, withDismiss } = this.props;
+    const { status, relationship, intl, withDismiss, scrollKey } = this.props;
 
     const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
@@ -333,7 +334,16 @@ class StatusActionBar extends ImmutablePureComponent {
         {shareButton}
 
         <div className='status__action-bar-dropdown'>
-          <DropdownMenuContainer disabled={anonymousAccess} status={status} items={menu} icon='ellipsis-h' size={18} direction='right' title={intl.formatMessage(messages.more)} />
+          <DropdownMenuContainer
+            scrollKey={scrollKey}
+            disabled={anonymousAccess}
+            status={status}
+            items={menu}
+            icon='ellipsis-h'
+            size={18}
+            direction='right'
+            title={intl.formatMessage(messages.more)}
+          />
         </div>
       </div>
     );

@@ -52,6 +52,6 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
   end
 
   def note
-    (instance_options[:relationships].account_note[object.id] || {})[:comment]
+    (instance_options[:relationships].account_note[object.id] || {})[:comment] || ''
   end
 end
