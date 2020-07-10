@@ -1,7 +1,8 @@
+---
 sk:
   about:
-    about_hashtag_html: 'Toto sú verejné príspevky, otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš s nimi narábať.'
-    about_mastodon_html: 'Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.'
+    about_hashtag_html: Toto sú verejné príspevky, otagované pod <strong>#%{hashtag}</strong>. Ak máš účet hocikde v rámci fediversa, môžeš s nimi narábať.
+    about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     about_this: O tomto serveri
     active_count_after: aktívni
     active_footnote: Mesačne aktívnych užívateľov (MAU)
@@ -20,16 +21,18 @@ sk:
     federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj na iných serveroch.
     get_apps: Vyskúšaj aplikácie
     hosted_on: Mastodon hostovaný na %{domain}
-    instance_actor_flash: "Tento účet je virtuálnym aktérom, ktorý predstavuje samotný server a nie žiadného jedného užívateľa.\nJe využívaný pre potreby federovania a nemal by byť blokovaný, pokiaľ nechceš zablokovať celý server, čo ide lepšie dosiahnúť cez blokovanie domény."
+    instance_actor_flash: |-
+      Tento účet je virtuálnym aktérom, ktorý predstavuje samotný server a nie žiadného jedného užívateľa.
+      Je využívaný pre potreby federovania a nemal by byť blokovaný, pokiaľ nechceš zablokovať celý server, čo ide lepšie dosiahnúť cez blokovanie domény.
     learn_more: Zisti viac
     privacy_policy: Zásady súkromia
     see_whats_happening: Pozoruj, čo sa deje
     server_stats: 'Serverové štatistiky:'
     source_code: Zdrojový kód
     status_count_after:
-      one: príspevok
       few: príspevkov
       many: príspevkov
+      one: príspevok
       other: príspevky
     status_count_before: Ktorí napísali
     tagline: Nasleduj kamarátov, a objavuj nových
@@ -42,9 +45,9 @@ sk:
       silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenásleduješ:'
     unavailable_content_html: Vo všeobecnosti, Mastodon ti dovoľuje vidieť obsah, a komunikovať s užívateľmi akéhokoľvek iného serveru v rámci fediversa. Toto sú výnimky, ktoré boli vytvorené na tomto konkrétnom serveri.
     user_count_after:
-      one: užívateľ
       few: užívateľov
       many: užívatelia
+      one: užívateľ
       other: užívateľov
     user_count_before: Domov pre
     what_is_mastodon: Čo je Mastodon?
@@ -54,9 +57,9 @@ sk:
     featured_tags_hint: Môžeš zvýrazniť určité haštagy, ktoré tu budú zobrazené.
     follow: Následuj
     followers:
-      one: Sledujúci
       few: Sledovateľov
       many: Sledovateľov
+      one: Sledujúci
       other: Sledovatelia
     following: Následujem
     joined: Pridal/a sa v %{date}
@@ -72,9 +75,9 @@ sk:
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
     posts:
-      one: Príspevok
       few: Príspevkov
       many: Príspevky
+      one: Príspevok
       other: Príspevkov
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
@@ -366,9 +369,9 @@ sk:
         suspend: vylúčené
       show:
         affected_accounts:
-          one: Jeden účet v databázi ovplyvnený
           few: "%{count} účtov v databázi ovplyvnených"
           many: "%{count} účtov v databázi ovplyvnených"
+          one: Jeden účet v databázi ovplyvnený
           other: "%{count} účty v databázi ovplyvnené"
         retroactive:
           silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
@@ -393,9 +396,9 @@ sk:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
       known_accounts:
-        one: "%{count} známy účet"
         few: "%{count} známych účtov"
         many: "%{count} známych účtov"
+        one: "%{count} známy účet"
         other: "%{count} známe účty"
       moderation:
         all: Všetky
@@ -420,11 +423,11 @@ sk:
     pending_accounts:
       title: Čakajúcich účtov (%{count})
     relationships:
-      title: "Vzťahy užívateľa %{acct}"
+      title: Vzťahy užívateľa %{acct}
     relays:
       add_new: Pridaj nový federovací mostík
       delete: Vymaž
-      description_html: <strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií.
+      description_html: "<strong>Federovací mostík</strong> je prechodný server, ktorý obmieňa veľké množstvá verejných príspevkov medzi tými servermi ktoré na od neho odoberajú, aj doňho prispievajú. <strong>Môže to pomôcť malým a stredným instanciám objavovať federovaný obsah</strong>, čo inak vyžaduje aby miestni užívatelia ručne následovali iných ľudí zo vzdialených instancií."
       disable: Vypni
       disabled: Vypnutý
       enable: Povoľ
@@ -443,9 +446,9 @@ sk:
     reports:
       account:
         reports:
-          one: "%{count} hlásenie"
           few: "%{count} hlásení"
           many: "%{count} hlásenia"
+          one: "%{count} hlásenie"
           other: "%{count} hlásení"
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Si si istý/á?
@@ -613,9 +616,9 @@ sk:
     new_report:
       body: "%{reporter} nahlásil/a %{target}"
       body_remote: Niekto z %{domain} nahlásil/a %{target}
-      subject: 'Nové hlásenie pre %{instance} (#%{id})'
+      subject: Nové hlásenie pre %{instance} (#%{id})
     new_trending_tag:
-      subject: 'Nový haštag očakáva preverenie na %{instance} (#%{name})'
+      subject: Nový haštag očakáva preverenie na %{instance} (#%{name})
   aliases:
     add_new: Vytvor alias
     created_msg: Nový alias úspešne vytvorený. Teraz môžeš začať presun zo starého účtu.
@@ -804,9 +807,9 @@ sk:
     order_by: Zoraď podľa
     save_changes: Ulož zmeny
     validation_errors:
-      one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
       few: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
       many: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chýb uvedených nižšie
+      one: Niečo ešte nieje celkom v poriadku! Prosím skontroluj chybu uvedenú nižšie
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
   html_validator:
     invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
@@ -820,7 +823,9 @@ sk:
         invalid_token: Keybase tokeny sú hašovaniami podpisov a musia mať 66 znakov
         verification_failed: Keybase nerozpoznáva tento token ako podpis od Keybase užívateľa menom %{kb_username}. Prosím skús to znova cez Keybase.
       wrong_user: Nemožno vytvoriť overenie pre %{proving}, pokiaľ si prihlásený/á ako %{current}. Prihlás sa za %{proving} a skús to znova.
-    explanation_html: "Tu si môžeš kryptograficky prepojiť svoje iné identity, ako napríklad tvoj profil na Keybase.\nUmožňuje to ostatním ľudom posielať ti enkryptované správy a veriť obsahu ktorý im pošleš ty."
+    explanation_html: |-
+      Tu si môžeš kryptograficky prepojiť svoje iné identity, ako napríklad tvoj profil na Keybase.
+      Umožňuje to ostatním ľudom posielať ti enkryptované správy a veriť obsahu ktorý im pošleš ty.
     i_am_html: Na %{service} som %{username}.
     identity: Identita
     inactive: Neaktívne
@@ -857,9 +862,9 @@ sk:
     generate: Vygeneruj
     invited_by: 'Bol/a si pozvaný/á užívateľom:'
     max_uses:
-      one: 1 využitie
       few: "%{count} využití"
       many: "%{count} využití"
+      one: 1 využitie
       other: "%{count} využitia"
     max_uses_prompt: Bez obmedzení
     prompt: Vygeneruj a zdieľaj linky s ostatnými, aby mali umožnený prístup k tomuto serveru
@@ -912,14 +917,14 @@ sk:
       body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi od %{since}
       mention: "%{name} ťa spomenul/a v:"
       new_followers_summary:
-        one: A ešte, kým si bol/a preč, si získal/a jedného nového následovateľa! Hurá!
         few: A ešte, kým si bol/a preč, si získal/a %{count} nových následovateľov! Hurá!
         many: A ešte, kým si bol/a preč, si získal/a %{count} nových následovateľov! Hurá!
+        one: A ešte, kým si bol/a preč, si získal/a jedného nového následovateľa! Hurá!
         other: A ešte, kým si bol/a preč, si získal/a %{count} nových následovateľov! Hurá!
       subject:
-        one: "Jedno nové oboznámenie od tvojej poslednej návštevy \U0001F418"
         few: "%{count} nových oboznámení od tvojej poslednej návštevy \U0001F418"
         many: "%{count} nových oboznámení od tvojej poslednej návštevy \U0001F418"
+        one: "Jedno nové oboznámenie od tvojej poslednej návštevy \U0001F418"
         other: "%{count} nové oboznámenia od tvojej poslednej návštevy \U0001F418"
       title: Zatiaľ čo si bol/a preč…
     favourite:
@@ -933,11 +938,11 @@ sk:
     follow_request:
       action: Spravuj žiadosti o sledovanie
       body: "%{name} žiada povolenie ťa následovať"
-      subject: '%{name} ťa žiadá o možnosť sledovania'
+      subject: "%{name} ťa žiadá o možnosť sledovania"
       title: Nová žiadosť o následovanie
     mention:
       action: Odpovedať
-      body: '%{name} ťa spomenul/a v:'
+      body: "%{name} ťa spomenul/a v:"
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
     reblog:
@@ -1063,21 +1068,21 @@ sk:
     attached:
       description: 'Priložené: %{attached}'
       image:
-        one: "%{count} obrázok"
         few: "%{count} obrázkov"
         many: "%{count} obrázkov"
+        one: "%{count} obrázok"
         other: "%{count} obrázky"
       video:
-        one: "%{count} video"
         few: "%{count} videí"
         many: "%{count} videí"
+        one: "%{count} video"
         other: "%{count} videá"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
-      one: 'obsahoval nepovolený haštag: %{tags}'
       few: 'obsah nepovolených haštagov: %{tags}'
       many: 'obsah nepovolených haštagov: %{tags}'
+      one: 'obsahoval nepovolený haštag: %{tags}'
       other: 'obsahoval nepovolené haštagy: %{tags}'
     errors:
       in_reply_not_found: Príspevok, na ktorý sa snažíš odpovedať, už pravdepodobne neexistuje.
@@ -1091,14 +1096,14 @@ sk:
       reblog: Vyzdvihnutie sa nedá pripnúť
     poll:
       total_people:
-        one: "%{count} človek"
         few: "%{count} ľudí"
         many: "%{count} ľudia"
+        one: "%{count} človek"
         other: "%{count} ľudí"
       total_votes:
-        one: "%{count} hlas"
         few: "%{count} hlasov"
         many: "%{count} hlasov"
+        one: "%{count} hlas"
         other: "%{count} hlasy"
       vote: Hlasuj
     show_more: Ukáž viac
@@ -1145,7 +1150,7 @@ sk:
       <li>Pre lepšie moderovanie komunity sa napríklad môže tvoja IP adresa porovnať s ostatnými už známimi adresami, aby bolo možné zistiť, či nedochádza napríklad k obchádzaniu pravidiel vylúčenia, aleb k iným porušeniam zásad.</li>
       <li>Emailová adresa, ktorú poskytneš, môže byť použitá na zasielanie informácií, oboznámení keď ostatní užívatelia interaktujú s tvojím obsahom, alebo na posielanie správ, odpovedí na otázky a iné požiadavky.</li>
       </ul>
-    title: "Podmienky užívania, a pravidlá súkromia pre %{instance}"
+    title: Podmienky užívania, a pravidlá súkromia pre %{instance}
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)

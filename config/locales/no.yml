@@ -1,7 +1,8 @@
-"no":
+---
+'no':
   about:
-    about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
-    about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
+    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
+    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om
     active_count_after: aktive
     active_footnote: Månedlige aktive brukere (MAU)
@@ -602,7 +603,7 @@
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Noen fra %{domain} har rapportert %{target}
-      subject: 'Ny rapport for %{instance} (#%{id})'
+      subject: Ny rapport for %{instance} (#%{id})
     new_trending_tag:
       body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
   aliases:
@@ -1076,7 +1077,7 @@
     show_more: Vis mer
     show_thread: Vis tråden
     sign_in_to_participate: Logg på for å delta i samtalen
-    title: '%{name}: «%{quote}»'
+    title: "%{name}: «%{quote}»"
     visibilities:
       private: Privat
       private_long: Synlig kun for følgere

@@ -1,6 +1,7 @@
+---
 sq:
   about:
-    about_hashtag_html: 'Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.'
+    about_hashtag_html: Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
     about_this: Mbi
     active_count_after: aktive
@@ -20,7 +21,9 @@ sq:
     federation_hint_html: Me një llogari në %{instance}, do të jeni në gjendje të ndiqni persona në çfarëdo shërbyesi Mastodon dhe më tej.
     get_apps: Provoni një aplikacion për celular
     hosted_on: Mastodon i strehuar në %{domain}
-    instance_actor_flash: "Kjo llogari është një aktor virtual i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual.\nPërdoret për qëllime federimi dhe s’duhet bllokuar, veç në daçi të bllokoni krejt instancën, me ç’rast do të duhej të përdornit bllokim përkatësie."
+    instance_actor_flash: |-
+      Kjo llogari është një aktor virtual i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual.
+      Përdoret për qëllime federimi dhe s’duhet bllokuar, veç në daçi të bllokoni krejt instancën, me ç’rast do të duhej të përdornit bllokim përkatësie.
     learn_more: Mësoni më tepër
     privacy_policy: Rregulla privatësie
     see_whats_happening: Shihni ç'ndodh
@@ -49,7 +52,7 @@ sq:
     user_count_before: Shtëpi e
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
-    choices_html: "Zgjedhje të %{name}:"
+    choices_html: 'Zgjedhje të %{name}:'
     endorsements_hint: Mund t’i mbështesni personat që nga ndërfaqja web, dhe do të shfaqen këtu.
     featured_tags_hint: Mund të zgjidhni hashtag-ë të veçantë që do të shfaqen këtu.
     follow: Ndiqeni
@@ -385,7 +388,7 @@ sq:
       show:
         affected_accounts:
           one: Pat ndikim te një llogari në bazën e të dhënave
-          other: "Pat ndikim te %{count} llogari në bazën e të dhënave"
+          other: Pat ndikim te %{count} llogari në bazën e të dhënave
         retroactive:
           silence: Hiqu heshtimin krejt llogarive ekzistuese nga kjo përkatësi
           suspend: Hiqu pezullimin krejt llogarive ekzistuese nga kjo përkatësi
@@ -434,7 +437,7 @@ sq:
     pending_accounts:
       title: Llogari pezull (%{count})
     relationships:
-      title: "Marrëdhënie të %{acct}"
+      title: Marrëdhënie të %{acct}
     relays:
       add_new: Shtoni rele të re
       delete: Fshije
@@ -628,10 +631,10 @@ sq:
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
-      subject: 'Raportim i ri për %{instance} (#%{id})'
+      subject: Raportim i ri për %{instance} (#%{id})
     new_trending_tag:
       body: 'Hashtag-u #%{name} është popullor sot, por s’është shqyrtuar më parë. S’do të shfaqet publikisht pa e lejuar ju, ose thjesht ruani formularin siç është, që të mos dëgjoni më për të.'
-      subject: 'Hashtag i ri për shqyrtim te %{instance} (#%{name})'
+      subject: Hashtag i ri për shqyrtim te %{instance} (#%{name})
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
@@ -958,8 +961,8 @@ sq:
       subject: "%{name} parapëlqeu gjendjen tuaj"
       title: E parapëlqyer e re
     follow:
-      body: "Tani ju ndjek %{name}!"
-      subject: "Tani ju ndjek %{name}"
+      body: Tani ju ndjek %{name}!
+      subject: Tani ju ndjek %{name}
       title: Ndjekës i ri
     follow_request:
       action: Administroni kërkesa ndjekjeje
@@ -1249,7 +1252,7 @@ sq:
       <p>Ky dokument është CC-BY-SA. U përditësua së fundi më 7 mars, 2018.</p>
 
       <p>Përshtatur fillimisht nga <a href="https://github.com/discourse/discourse">rregullat e privatësisë në Discourse</a>.</p>
-    title: "Kushte Shërbimi dhe Rregulla Privatësie te %{instance}"
+    title: Kushte Shërbimi dhe Rregulla Privatësie te %{instance}
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)

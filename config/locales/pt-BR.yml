@@ -1,6 +1,7 @@
+---
 pt-BR:
   about:
-    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
+    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
     active_count_after: ativo
@@ -20,7 +21,9 @@ pt-BR:
     federation_hint_html: Com uma conta em %{instance} você vai poder seguir e interagir com pessoas de qualquer canto do fediverso.
     get_apps: Experimente um aplicativo
     hosted_on: Instância Mastodon em %{domain}
-    instance_actor_flash: "Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.\nÉ usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio."
+    instance_actor_flash: |-
+      Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
+      É usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio.
     learn_more: Saiba mais
     privacy_policy: Política de Privacidade
     see_whats_happening: Veja o que está acontecendo
@@ -49,7 +52,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: "Sugestões de %{name}:"
+    choices_html: 'Sugestões de %{name}:'
     endorsements_hint: Você pode sugerir pessoas que você segue, elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas, elas aparecerão aqui.
     follow: Seguir
@@ -434,7 +437,7 @@ pt-BR:
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
-      title: "Relações de %{acct}"
+      title: Relações de %{acct}
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -628,10 +631,10 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: 'Nova denúncia sobre %{instance} (#%{id})'
+      subject: Nova denúncia sobre %{instance} (#%{id})
     new_trending_tag:
       body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou salve o formulário do jeito que está para nunca mais ouvir falar dela.'
-      subject: 'Nova hashtag disponível para revisão em %{instance} (#%{name})'
+      subject: Nova hashtag disponível para revisão em %{instance} (#%{name})
   aliases:
     add_new: Criar alias
     created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
@@ -954,7 +957,7 @@ pt-BR:
         other: "%{count} novas notificações desde o seu último acesso \U0001F418"
       title: Enquanto você estava ausente...
     favourite:
-      body: '%{name} favoritou seu toot:'
+      body: "%{name} favoritou seu toot:"
       subject: "%{name} favoritou seu toot"
       title: Novo favorito
     follow:
@@ -968,11 +971,11 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: '%{name} te mencionou em:'
-      subject: '%{name} te mencionou'
+      body: "%{name} te mencionou em:"
+      subject: "%{name} te mencionou"
       title: Nova menção
     reblog:
-      body: '%{name} deu boost no seu toot:'
+      body: "%{name} deu boost no seu toot:"
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
   notifications:
@@ -1249,7 +1252,7 @@ pt-BR:
       <p>CC-BY-SA. Atualizado pela última vez em 7 de março de 2018.</p>
 
       <p>Adaptado originalmente de <a href="https://github.com/discourse/discourse">Política de Privacidade Discourse</a>.</p>
-    title: "Termos de Serviço e Política de Privacidade de %{instance}"
+    title: Termos de Serviço e Política de Privacidade de %{instance}
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
