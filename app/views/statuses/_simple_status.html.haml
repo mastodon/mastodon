@@ -35,7 +35,7 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), blurhash: video.blurhash, sensitive: status.sensitive?, width: 610, height: 343, inline: true, alt: video.description do
+      = react_component :video, src: video.file.url(:original), preview: video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small), blurhash: video.blurhash, sensitive: status.sensitive?, width: 610, height: 343, inline: true, alt: video.description do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first

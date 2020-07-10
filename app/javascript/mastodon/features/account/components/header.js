@@ -47,7 +47,6 @@ const messages = defineMessages({
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
-  add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
 });
 
 const dateFormatOptions = {
