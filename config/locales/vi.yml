@@ -21,9 +21,7 @@ vi:
     federation_hint_html: Với tài khoản trên %{instance}, bạn sẽ có thể giao tiếp với mọi người trên bất kỳ máy chủ Mastodon nào và hơn thế nữa.
     get_apps: Dùng thử ứng dụng di động
     hosted_on: "%{domain} vận hành nhờ Mastodon"
-    instance_actor_flash: 'Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
-
-'
+    instance_actor_flash: Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
     learn_more: Tìm hiểu thêm
     privacy_policy: Chính sách bảo mật
     see_whats_happening: Xem những gì đang xảy ra
@@ -39,8 +37,11 @@ vi:
       domain: Máy chủ
       reason: Lý do
       rejecting_media: 'Ảnh và video từ những máy chủ sau sẽ không được xử lý, lưu trữ và hiển thị hình thu nhỏ, bắt buộc nhấp thủ công vào tệp gốc để xem:'
+      rejecting_media_title: Ảnh và các thứ đã lọc
       silenced: 'Tút từ những máy chủ sau sẽ bị ẩn trên bảng tin, trong tin nhắn và không có thông báo nào được tạo từ các tương tác của người dùng của họ, trừ khi bạn có mến mộ người dùng của họ:'
+      silenced_title: Những máy chủ đã bị tạm ẩn
       suspended: 'Những máy chủ sau sẽ không được xử lý, lưu trữ hoặc trao đổi nội dung. Mọi tương tác hoặc giao tiếp với người dùng từ các máy chủ này cũng bị cấm:'
+      suspended_title: Những máy chủ bị vô hiệu hóa
     unavailable_content_html: Mastodon cho phép bạn xem nội dung và tương tác với người dùng từ bất kỳ máy chủ nào khác trong mạng liên kết. Còn máy chủ này có những ngoại lệ riêng.
     user_count_after:
       other: người dùng
@@ -928,6 +929,8 @@ vi:
   moderation:
     title: Kiểm duyệt
   move_handler:
+    carry_blocks_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã chặn trước đó.
+    carry_mutes_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã ẩn trước đó.
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là ghi chú về họ trước đó:'
   notification_mailer:
     digest:
