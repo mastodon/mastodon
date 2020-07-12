@@ -234,7 +234,7 @@ module AccountInteractions
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
-  private # rubocop:disable Lint/UselessAccessModifier
+  private
 
   def remove_potential_friendship(other_account, mutual = false)
     PotentialFriendshipTracker.remove(id, other_account.id)
