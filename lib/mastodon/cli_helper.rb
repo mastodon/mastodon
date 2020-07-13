@@ -7,6 +7,7 @@ ActiveRecord::Base.logger    = dev_null
 ActiveJob::Base.logger       = dev_null
 HttpLog.configuration.logger = dev_null
 Paperclip.options[:log]      = false
+Chewy.logger                 = dev_null
 
 module Mastodon
   module CLIHelper
