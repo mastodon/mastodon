@@ -213,6 +213,7 @@ class User < ApplicationRecord
 
   def disable_two_factor!
     self.otp_required_for_login = false
+    self.otp_secret = nil
     otp_backup_codes&.clear
 
     webauthn_credentials.destroy_all if webauthn_enabled?

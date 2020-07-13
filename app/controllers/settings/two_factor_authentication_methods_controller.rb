@@ -7,11 +7,19 @@ module Settings
     layout 'admin'
 
     before_action :authenticate_user!
+    before_action :require_challenge!, only: :disable
     before_action :require_otp_enabled
 
     skip_before_action :require_functional!
 
     def index; end
+
+    def disable
+      current_user.disable_two_factor!
+      UserMailer.two_factor_disabled(current_user).deliver_later!
+
+      redirect_to settings_otp_authentication_path, flash: { notice: I18n.t('two_factor_authentication.disabled_success') }
+    end
 
     private
 

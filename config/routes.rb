@@ -125,9 +125,13 @@ Rails.application.routes.draw do
       resources :domain_blocks, only: :index, controller: :blocked_domains
     end
 
-    resources :two_factor_authentication_methods, only: [:index]
+    resources :two_factor_authentication_methods, only: [:index] do
+      collection do
+        post 'disable'
+      end
+    end
 
-    resource :otp_authentication, only: [:show, :create, :destroy], controller: 'two_factor_authentication/otp_authentication'
+    resource :otp_authentication, only: [:show, :create], controller: 'two_factor_authentication/otp_authentication'
 
     resources :webauthn_credentials, only: [:index, :new, :create, :destroy],
               path: 'security_keys',

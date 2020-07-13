@@ -9,7 +9,7 @@
 
     .qr-alternative
       %p.hint= t('otp_authentication.manual_instructions')
-      %samp.qr-alternative__code= current_user.otp_secret.scan(/.{4}/).join(' ')
+      %samp.qr-alternative__code= @new_otp_secret.scan(/.{4}/).join(' ')
 
   .fields-group
     = f.input :otp_attempt, wrapper: :with_label, hint: t('otp_authentication.code_hint'), label: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }, required: true
