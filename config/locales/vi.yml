@@ -699,17 +699,17 @@ vi:
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
     trouble_logging_in: Gặp sự cố khi đăng nhập?
   authorize_follow:
-    already_following: Bạn đã mến mộ người dùng này
-    already_requested: Bạn vừa gửi một yêu cầu mến mộ tới người dùng này
+    already_following: Bạn đang theo dõi người dùng này
+    already_requested: Bạn vừa gửi một yêu cầu theo dõi tới người dùng này
     error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
-    follow: Mến mộ
-    follow_request: 'Bạn đã gửi yêu cầu mến mộ tới'
-    following: 'Chúc mừng! Bạn đã trở thành người mến mộ của'
+    follow: Theo dõi
+    follow_request: 'Bạn đã gửi yêu cầu theo dõi tới'
+    following: 'Chúc mừng! Bạn đã trở thành người theo dõi của'
     post_follow:
       close: Bạn có muốn đóng cửa sổ này?
       return: Hiện trên trang cá nhân
       web: Truy cập web
-    title: Mến mộ %{acct}
+    title: Theo dõi %{acct}
   challenge:
     confirm: Tiếp tục
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
@@ -862,7 +862,7 @@ vi:
     types:
       blocking: Danh sách chặn
       domain_blocking: Danh sách máy chủ đã chặn
-      following: Danh sách người mến mộ
+      following: Danh sách người theo dõi
       muting: Danh sách người dùng ẩn
     upload: Tải lên
   in_memoriam_html: Tưởng Niệm
@@ -938,7 +938,7 @@ vi:
       body: Dưới đây là những tin nhắn bạn đã bỏ lỡ kể từ lần truy cập trước vào %{since}
       mention: "%{name} vừa nhắc đến bạn trong:"
       new_followers_summary:
-        other: Ngoài ra, bạn đã có %{count} người mến mộ mới trong khi đi chơi! Ngạc nhiên chưa!
+        other: Ngoài ra, bạn đã có %{count} người theo dõi mới trong khi đi chơi! Ngạc nhiên chưa!
       subject:
         other: "%{count} thông báo mới kể từ lần truy cập trước \U0001F418"
       title: Khi bạn offline...
@@ -947,14 +947,14 @@ vi:
       subject: "%{name} vừa tâm đắc tút của bạn"
       title: Lượt tâm đắc mới
     follow:
-      body: "Bạn vừa mới được %{name} mến mộ"
-      subject: "%{name} vừa mới mến mộ bạn"
-      title: Người mến mộ mới
+      body: "Bạn vừa mới được %{name} theo dõi"
+      subject: "%{name} vừa mới theo dõi bạn"
+      title: Người theo dõi mới
     follow_request:
-      action: Quản lý yêu cầu mến mộ
-      body: "%{name} vừa yêu cầu mến mộ bạn"
-      subject: 'Người mến mộ đang chờ đồng ý: %{name}'
-      title: Yêu cầu mến mộ mới
+      action: Quản lý yêu cầu theo dõi
+      body: "%{name} vừa yêu cầu theo dõi bạn"
+      subject: 'Người theo dõi đang chờ đồng ý: %{name}'
+      title: Yêu cầu theo dõi mến mộ mới
     mention:
       action: Phản hồi
       body: 'Bạn vừa được nhắc đến bởi %{name} trong:'
@@ -1006,8 +1006,8 @@ vi:
   relationships:
     activity: Hoạt động tài khoản
     dormant: Không có tương tác
-    followers: Người mến mộ bạn
-    following: Người bạn mến mộ
+    followers: Người này đang theo dõi bạn
+    following: Bạn đang theo dõi người này
     invited: Người bạn mời đăng ký
     last_active: Hoạt động lần cuối
     most_recent: Gần đây nhất
@@ -1017,18 +1017,18 @@ vi:
     relationship: Mối quan hệ
     remove_selected_domains: Xóa hết người theo dõi từ các máy chủ đã chọn
     remove_selected_followers: Xóa những người theo dõi đã chọn
-    remove_selected_follows: Hủy mến mộ người dùng đã chọn
+    remove_selected_follows: Hủy theo dõi người dùng đã chọn
     status: Tình trạng tài khoản
   remote_follow:
     acct: Nhập địa chỉ Mastodon của bạn (tên@máy chủ)
     missing_resource: Không thể tìm thấy URL chuyển hướng cần thiết cho tài khoản của bạn
     no_account_html: Nếu chưa có tài khoản, bạn có thể <a href='%{sign_up_path}' target='_blank'>đăng ký tại đây</a>
     proceed: Tiến hành theo
-    prompt: 'Bạn sắp mến mộ:'
+    prompt: 'Bạn sắp theo dõi:'
     reason_html: "<strong>Tại sao bước này là cần thiết?</strong> <code>%{instance}</code> có thể không phải là máy chủ nơi bạn đã đăng ký, vì vậy chúng tôi cần chuyển hướng bạn đến máy chủ của bạn trước."
   remote_interaction:
     favourite:
-      proceed: Tiếp tục tâm đắc
+      proceed: Yêu thích tút này
       prompt: 'Bạn có muốn tâm đắc tút này?'
     reblog:
       proceed: Tiếp tục chia sẻ
@@ -1100,7 +1100,7 @@ vi:
     notifications: Thông báo
     preferences: Chung
     profile: Trang cá nhân
-    relationships: Mến mộ
+    relationships: Lượt theo dõi
     two_factor_authentication: Xác thực hai bước
   spam_check:
     spam_detected: Đây là một báo cáo tự động. Đã phát hiện thư rác.
@@ -1139,7 +1139,7 @@ vi:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Đóng
-      private_long: Chỉ người đã mến mộ mới xem được tút
+      private_long: Chỉ người theo dõi mới xem được tút
       public: Công khai
       public_long: Ai cũng có thể thấy
       unlisted: Mở
@@ -1193,7 +1193,7 @@ vi:
     warning:
       explanation:
         disable: Nếu tài khoản của bạn bị đình chỉ, dữ liệu tài khoản của bạn vẫn còn nguyên, nhưng bạn không thể thực hiện bất kỳ hành động nào cho đến khi được mở khóa.
-        silence: Nếu tài khoản của bạn bị tạm ẩn, bạn có thể bị loại khỏi các bảng tin công khai, chỉ những người đã mến mộ bạn mới thấy tút của bạn. Tuy nhiên, những người khác vẫn có thể tiếp tục mến mộ bạn.
+        silence: Nếu tài khoản của bạn bị tạm ẩn, bạn có thể bị loại khỏi các bảng tin công khai, chỉ những người đã theo dõi bạn mới thấy tút của bạn. Tuy nhiên, những người khác vẫn có thể tiếp tục theo dõi bạn.
         suspend: Tài khoản của bạn đã bị vô hiệu hóa. Tất cả tút và tập tin đã tải lên của bạn sẽ bị xóa khỏi máy chủ này lẫn các máy chủ nơi bạn có người theo dõi.
       get_in_touch: Bạn có thể trả lời e-mail này để liên hệ với đội ngũ của %{instance}.
       review_server_policies: Xem lại chính sách máy chủ
@@ -1213,7 +1213,7 @@ vi:
       edit_profile_step: Bạn có thể tùy chỉnh trang cá nhân của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người theo dõi mới phải được phê duyệt, hãy chuyển tài khoản sang trạng thái khóa.
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
       final_action: Viết tút mới
-      final_step: 'Viết tút mới! Ngay cả khi không có người mến mộ, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và trong hashtag. Hãy giới thiệu bản thân với hashtag #introduction.'
+      final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và trong hashtag. Hãy giới thiệu bản thân với hashtag #introduction.'
       full_handle: Tên đầy đủ của bạn
       full_handle_hint: Đây cũng là địa chỉ được dùng để tương tác với tất cả mọi người.
       review_preferences_action: Tùy chỉnh giao diện
