@@ -11,3 +11,29 @@ hy:
       admin_account_action:
         include_statuses: օգտատէրը տեսնելու ա որ թթերն են առաջացրել մոդերացիայի գործողութիւն կամ զգուշացում։
         send_email_notification: օգտատէրը կը ստանայ բացատրութիւն այն մասին թէ ինչ է պատահել իրենց հաշուի հետ։
+    labels:
+      account:
+        fields:
+          name: Պիտակ
+          value: Պարունակություն
+      account_warning_preset:
+        title: Վերնագիր
+      admin_account_action:
+        type: Գործողություն
+        types:
+          none: Ոչինչ չանել
+          silence: Լուռ
+      defaults:
+        header: Վերնագիր
+        note: Բիո
+        password: Գաղտնաբառ
+        setting_theme: Կայքի թեման
+        severity: Սրություն
+        sign_in_token_attempt: Անվտանգության կոդ
+        username: Մուտքանուն
+    'no': 'Ոչ'
+    recommended: Խորհուրդ է տրվում
+    required:
+      mark: "*"
+      text: պարտադիր
+    'yes': 'Այո'
