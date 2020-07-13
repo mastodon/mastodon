@@ -366,7 +366,7 @@ fr:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Masqué</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucune</strong> si vous voulez simplement rejeter les fichiers multimédia."
+          desc_html: "<strong>Masquer</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucune</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
           silence: Masqué
           suspend: Suspendre
@@ -389,7 +389,7 @@ fr:
           one: Un compte affecté dans la base de données
           other: "%{count} comptes affectés dans la base de données"
         retroactive:
-          silence: Annuler le masquage des comptes existants affectés pour ce domaine
+          silence: Ne plus masquer les comptes existants affectés de ce domaine
           suspend: Annuler la suspension des comptes existants affectés pour ce domaine
         title: Annuler le blocage du domaine %{domain}
         undo: Annuler
@@ -567,7 +567,7 @@ fr:
         title: Politique de confidentialité
       site_title: Nom du serveur
       spam_check_enabled:
-        desc_html: Mastodon peut signaler automatiquement des comptes qui envoient des messages répétés non sollicités. Il peut y avoir de faux positifs.
+        desc_html: Mastodon peut signaler automatiquement les comptes qui envoient des messages non sollicités de façon répétée. Il peut y avoir des faux positifs.
         title: Automatisation anti-spam
       thumbnail:
         desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
