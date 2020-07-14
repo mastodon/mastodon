@@ -21,7 +21,7 @@ it:
     federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
     get_apps: Prova un'app per smartphone
     hosted_on: Mastodon ospitato su %{domain}
-    instance_actor_flash: |
+    instance_actor_flash: |-
       Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
       È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     learn_more: Scopri altro
@@ -40,8 +40,11 @@ it:
       domain: Server
       reason: 'Motivo:'
       rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
+      rejecting_media_title: Media filtrati
       silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
+      silenced_title: Server silenziati
       suspended: 'Nessun dato da questi server sarà elaborato, memorizzato o scambiato, rendendo impossibile qualsiasi interazione o comunicazione con gli utenti di questi server:'
+      suspended_title: Server sospesi
     unavailable_content_html: Mastodon generalmente permette di visualizzare i contenuti e interagire con gli utenti di qualsiasi altro server nel fediverse. Queste sono le eccezioni che sono state create su questo specifico server.
     user_count_after:
       one: utente
@@ -309,6 +312,7 @@ it:
       listed: Elencato
       new:
         title: Aggiungi nuovo emoji personalizzato
+      not_permitted: Non hai il permesso di eseguire questa azione
       overwrite: Sovrascrivi
       shortcode: Scorciatoia
       shortcode_hint: Almeno due caratteri, solo caratteri alfanumerici e trattino basso
@@ -645,6 +649,7 @@ it:
       Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
+    discovery: Scoperta
     localization:
       body: Mastodon è tradotto da volontari.
       guide_link: https://it.crowdin.com/project/mastodon
@@ -667,7 +672,7 @@ it:
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
     your_token: Il tuo token di accesso
   auth:
-    apply_for_account: Richiedi un invito
+    apply_for_account: Chiedi un invito
     change_password: Password
     checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
@@ -710,7 +715,7 @@ it:
     already_requested: Hai già mandato una richiesta di seguire questo account
     error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
     follow: Segui
-    follow_request: 'Hai mandato una richiesta di diventare seguace a:'
+    follow_request: 'Hai mandato una richiesta di seguire:'
     following: 'Accettato! Ora stai seguendo:'
     post_follow:
       close: Oppure puoi chiudere questa finestra.
@@ -722,6 +727,10 @@ it:
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
     invalid_password: Password non valida
     prompt: Conferma la tua password per continuare
+  crypto:
+    errors:
+      invalid_key: non è una chiave Ed25519 o Curve25519 valida
+      invalid_signature: non è una firma Ed25519 valida
   date:
     formats:
       default: "%d %b %Y"
@@ -786,7 +795,7 @@ it:
       download: Scarica il tuo archivio
       hint_html: Puoi richiedere un archivio dei tuoi <strong>toot e media caricati</strong>. I dati esportati sono in formato ActivityPub, leggibili da qualunque software che segue questo standard. Puoi richiedere un archivio ogni 7 giorni.
       in_progress: Creazione archivio...
-      request: Richiedi il tuo archivio
+      request: Chiedi il tuo archivio
       size: Dimensioni
     blocks: Stai bloccando
     csv: CSV
@@ -866,7 +875,7 @@ it:
     types:
       blocking: Lista dei bloccati
       domain_blocking: Lista dei domini bloccati
-      following: Lista dei seguaci
+      following: Lista dei seguiti
       muting: Lista dei silenziati
     upload: Carica
   in_memoriam_html: In Memoriam.
@@ -919,6 +928,7 @@ it:
     on_cooldown: Hai recentemente trasferito il tuo account. Questa funzione sarà nuovamente disponibile tra %{count} giorni.
     past_migrations: Trasferimenti passati
     proceed_with_move: Sposta seguaci
+    redirected_msg: Il tuo account sta reindirizzando a %{acct}.
     redirecting_to: Il tuo account sta reindirizzando a %{acct}.
     set_redirect: Imposta ridirezione
     warning:
@@ -932,6 +942,10 @@ it:
       redirect: Il profilo del tuo account corrente sarà aggiornato con un avviso di ridirezione e sarà escluso dalle ricerche
   moderation:
     title: Moderazione
+  move_handler:
+    carry_blocks_over_text: Questo utente si è spostato da %{acct} che hai bloccato.
+    carry_mutes_over_text: Questo utente si è spostato da %{acct} che hai silenziato.
+    copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   notification_mailer:
     digest:
       action: Vedi tutte le notifiche
@@ -955,7 +969,7 @@ it:
     follow_request:
       action: Gestisci richieste di essere seguito
       body: "%{name} ha chiesto di seguirti"
-      subject: 'Seguace in sospeso: %{name}'
+      subject: 'Seguace in attesa: %{name}'
       title: Nuova richiesta di essere seguito
     mention:
       action: Rispondi
@@ -1108,6 +1122,9 @@ it:
     spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
       description: 'Allegato: %{attached}'
       image:
         one: "%{count} immagine"
@@ -1156,6 +1173,90 @@ it:
   tags:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms:
+    body_html: |
+      <h2>Politica della Privacy</h2>
+      <h3 id="collect">Che informazioni raccogliamo?</h3>
+
+      <ul>
+      <li><em>Informazioni di base del profilo</em>: Se ti registri su questo server, ti potrebbe venir chiesto di inserire un nome utente, un indirizzo e-mail ed una password. Potresti anche inserire informazioni aggiuntive del profilo come un nome a schermo ed una biografia e caricare una foto profilo ed un'immagine di intestazione. Il nome utente, il nome a schermo, la biografia, la foto profilo e l'immagine di intestazione, sono sempre elencati pubblicamente.</li>
+      <li><em>I post, i seguiti ed altre informazioni pubbliche</em>: L'elenco di persone che segui viene elencata pubblicamente, la stessa cosa è vera per i tuoi seguaci. Quando invii un messaggio, la data e l'orario sono memorizzati così come l'applicazione da cui hai inviato il messaggio.
+      I messaggi potrebbero contenere allegati media, come immagini e video. I post pubblici e non elencati sono disponibili pubblicamente. Quando mostri un post sul tuo profilo, anche questo diventa disponibile pubblicamente. I tuoi post sono consegnati ai tuoi seguaci, in alcuni casi significa che sono consegnati a server differenti e che lì sono memorizzate delle copie. Quando elimini i post, anche questo viene notificato ai tuoi seguaci. L'azione di ripubblicare o preferire un altro post è sempre pubblica.</li>
+      <li><em>Post diretti e solo per i seguaci</em>: Tutti i post sono archiviati ed elaborati sul server. I post solo per seguaci sono consegnati ai tuoi seguaci ed agli utenti che vi hai menzionato, ed i post diretti sono consegnati solo agli utenti in essi menzionati. In alcuni casi significa che sono consegnati a server differenti e che lì sono memorizzate delle copie. Compiamo uno sforzo in buona fede per limitare l'accesso a questi post solo a persone autorizzate, ma gli altri server potrebbero non riuscire a fare ciò. Dunque, è importante rivedere i server a cui appartengono i tuoi seguaci. Potresti attivare/disattivare un'opzione per approvare e rifiutare i nuovi seguaci manualmente nelle impostazioni.
+      <em>Sei pregato di tenere a mente che gli operatori del server e di ogni server ricevente potrebbero visualizzare tali messaggi</em> e che i riceventi potrebbero fotografarli, copiarlo o altrimenti ricondividerli. <em>Non condividere alcuna informazione pericolosa su Mastodon.</em></li>
+      <li><em>IP ed altri metadati</em>: Quando accedi, registriamo l'indirizzo IP da cui accedi, così come il nome della tua applicazione browser. Tutte le sessioni accedute sono disponibili per la tua revisione e revoca nelle impostazioni. L'ultimo indirizzo IP usato è memorizzato anche fino a 12 mesi. Potremmo anche trattenere i registri del server che includono l'indirizzo IP di ogni richiesta al nostro server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Per cosa usiamo le tue informazioni</h3>
+
+      <p>Ogni informazioni che raccogliamo da te potrebbe essere usata nei modi seguenti:</p>
+
+      <ul>
+      <li>Per fornire la funzionalità principale di Mastodon. Puoi interagire solo con il contenuto di altre persone ed postare i tuoi contenuti quando sei acceduto. Per esempio, potresti seguire altre persone per vedere i loro post combinati nella timeline principale personalizzata e tua.</li>
+      <li>Per aiutare a moderare la comunità, per esempio comparando il tuo indirizzo IP con altri noti per determinare evasioni dei ban o altre violazioni.</li>
+      <li>L'indirizzo email che fornisci potrebbe essere usato per inviarti informazioni, notifiche sull'interazione di altre persone con i tuoi contenuti o inviarti messaggi e per rispondere a interrogativi e/o altre richieste o domande.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Come proteggiamo le tue informazioni</h3>
+
+      <p>Implementiamo una varietà di misure di sicurezza per mantenere la sicurezza delle tue informazioni personali quando inserisci, invii o accedi alle tue informazioni personali. Tra le altre cose, la tua sessione del browser, così come il tuo traffico tra le tue applicazioni e le API, sono assicurate con SSL e la tua password è in hash usando un forte algoritmo a singolo metodo. Puoi abilitare l'autenticazione a due fattori per assicurare ulteriormente il tuo profilo.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Qual è la nostra politica di ritenzione dei dati?</h3>
+
+      <p>Faremo un grande sforzo in buona fede per:</p>
+
+      <ul>
+      <li>Tratteniamo i registri del server contenenti l'indirizzo IP di tutte le richieste in questo server, in cui i registri sono mantenuti, per non più di 90 giorni.</li>
+      <li>Tratteniamo gli indirizzi IP associati con utenti registrati da non oltre 12 mesi.</li>
+      </ul>
+
+      <p>Puoi richiedere e scaricare un archivio del tuo contenuto, inclusi i tuoi post, allegati media, foto profilo ed immagine di intestazione.</p>
+
+      <p>Puoi eliminare irreversibilmente il tuo profilo in ogni momento.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Usiamo i cookie</h3>
+
+      <p>Sì. I cookie sono piccoli file che un sito o il suo fornitore dei servizi trasferisce all'hard drive del tuo computer tramite il tuo browser web (se acconsenti). Questi cookie abilitano il sito a riconoscere il tuo browser e, se hai un profilo registrato, lo associano con il tuo profilo registrato.</p>
+
+      <p>Usiamo i cookie per comprendere e salvare le vostre preferenze per visite future.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Diffondiamo alcuna informazione a terze parti?</h3>
+
+      <p>Non vendiamo, non scambiamo o trasferiamo altrimenti a terze parti le tue informazioni personalmente identificabili. Questo non include terze parti fidate che ci assistono nell'operare il nostro sito, nel condurre il nostro business o nel servirti, finché queste parti acconsentono a mantenere queste informazioni confidenziali. potremmo anche rilasciare le tue informazioni quando crediamo che il rilascio sia appropriato e soddisfi la legge, si applichi alle nostre politiche del sito o protegga noi o i diritti, la proprietà o la sicurezza di altri.</p>
+
+      <p>Il tuo contenuto pubblico potrebbe essere scaricato da altri server nella rete. I tuoi post pubblici e per soli seguaci sono consegnati ai server dove risiedono i seguaci ed i messaggi diretti sono consegnati ai server dei destinatari, finché questi seguaci o destinatari risiedono su un server differente da questo.</p>
+
+      <p>Quando autorizzi un'applicazione ad usare il tuo profilo, in base allo scopo dei permessi che approvi, potrebbe accedere alle tue informazioni del profilo pubbliche, l'elenco di chi segui, i tuoi seguaci, i tuoi elenchi, tutti i tuoi post ed i tuoi preferiti. Le applicazioni non possono mai accedere al tuo indirizzo e-mail o alla tua password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Uso del sito da bambini</h3>
+
+      <p>Se questo server è in UE o nell'EEA: Il nostro sito, i prodotti ed i servizi sono tutti diretti a persone che abbiano almeno 16 anni. Se hai meno di 16 anni, per i requisiti del GDPR
+      (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) non usare questo sito.</p>
+
+      <p>Se questo server è negli USA: Il nostro sito, i prodotti ed i servizi sono tutti diretti a persone che abbiano almeno 13 anni. Se hai meno di 13 anni, per i requisiti del COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) non usare questo sito.</p>
+
+      <p>I requisiti di legge possono essere diversi se questo server è in un'altra giurisdizione.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Modifiche alla nostra Politica della Privacy</h3>
+
+      <p>Se decidiamo di modificare la nostra politica della privacy, posteremo queste modifiche su questa pagina.</p>
+
+      <p>Questo documento è CC-BY-SA. L'ultimo aggiornamento è del 7 Marzo, 2018.</p>
+
+      <p>Adattato originalmente dal <a href="https://github.com/discourse/discourse">Discorso Politica della Privacy</a>.</p>
     title: "%{instance} Termini di servizio e politica della privacy"
   themes:
     contrast: Mastodon (contrasto elevato)
@@ -1186,6 +1287,12 @@ it:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
+    sign_in_token:
+      details: 'Questi sono i dettagli del tentativo:'
+      explanation: 'Abbiamo rilevato un tentativo di accedere al tuo account da un indirizzo IP non riconosciuto. Se sei tu, inserisci il codice di sicurezza qui sotto nella pagina di controllo dell''accesso:'
+      further_actions: 'Se non sei stato tu, cambia la password e abilita l''autenticazione a due fattori sul tuo account. Puoi farlo qui:'
+      subject: Conferma il tentativo di accesso
+      title: Tentativo di accesso
     warning:
       explanation:
         disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
@@ -1223,11 +1330,14 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
+    generic_access_help_html: Problemi nell'accesso al tuo account? Puoi contattare %{email} per assistenza
     invalid_email: L'indirizzo email inserito non è valido
     invalid_otp_token: Codice d'accesso non valido
+    invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi le impostazioni di email e password non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
+    suspicious_sign_in_confirmation: Sembra che tu non abbia effettuato l'accesso da questo dispositivo prima d'ora, e non hai effettuato l'accesso per un po', quindi inviamo un codice di sicurezza al tuo indirizzo e-mail per confermare che sei proprio tu.
   verification:
     explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
     verification: Verifica

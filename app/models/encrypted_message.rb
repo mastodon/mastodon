@@ -32,16 +32,13 @@ class EncryptedMessage < ApplicationRecord
   private
 
   def push_to_streaming_api
-    Rails.logger.info(streaming_channel)
-    Rails.logger.info(subscribed_to_timeline?)
-
     return if destroyed? || !subscribed_to_timeline?
 
     PushEncryptedMessageWorker.perform_async(id)
   end
 
   def subscribed_to_timeline?
-    Redis.current.exists("subscribed:#{streaming_channel}")
+    Redis.current.exists?("subscribed:#{streaming_channel}")
   end
 
   def streaming_channel

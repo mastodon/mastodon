@@ -21,7 +21,7 @@ tr:
     federation_hint_html: "%{instance} hesabınızla, herhangi bir Mastodon sunucusundaki ve haricindeki kişileri takip edebilirsiniz."
     get_apps: Bir mobil uygulamayı deneyin
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
-    instance_actor_flash: |
+    instance_actor_flash: |-
       Bu hesap, herhangi bir kullanıcıyı değil sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür.
       Federasyon amaçlı kullanılır ve tüm yansıyı engellemek istemediğiniz sürece engellenmemelidir; bu durumda bir etki alanı bloğu kullanmanız gerekir.
     learn_more: Daha fazla bilgi edinin
@@ -40,6 +40,7 @@ tr:
       domain: Sunucu
       reason: Sebep
       rejecting_media: 'Bu sunuculardaki medya dosyaları işlenmeyecek ya da saklanmayacak, ve hiçbir küçük resim gösterilmeyecektir, dolayısıyla orjinal dosyaya manuel tıklama gerekecektir:'
+      rejecting_media_title: Filtrelenmiş medya
       silenced: 'Bu sunuculardan gelen gönderiler genel zaman çizelgelerinde ve konuşmalarda gizlenecek ve siz onları takip etmediğiniz sürece, kullanıcıların etkileşimlerinden hiçbir bildirim alınmayacaktır:'
       suspended: 'Bu sunuculardaki hiçbir veri işlenmeyecek, saklanmayacak veya değiş tokuş edilmeyecektir, dolayısıyla bu sunuculardaki kullanıcılarla herhangi bir etkileşim ya da iletişim imkansız olacaktır:'
     unavailable_content_html: Mastodon, genel olarak fediverse'teki herhangi bir sunucudan içerik görüntülemenize ve kullanıcılarıyla etkileşim kurmanıza izin verir. Bunlar, bu sunucuda yapılmış olan istisnalardır.
@@ -236,6 +237,9 @@ tr:
         update_custom_emoji: "%{name} %{target} emojiyi güncelledi"
         update_status: "%{name}, %{target} kullanıcısının durumunu güncelledi"
       deleted_status: "(silinmiş durum)"
+      empty: Kayıt bulunamadı.
+      filter_by_action: Eyleme göre filtre
+      filter_by_user: Kullanıcıya göre filtre
       title: Denetim günlüğü
     announcements:
       destroyed_msg: Duyuru başarıyla silindi!
@@ -364,6 +368,7 @@ tr:
       destroyed_msg: E-posta alan adı kara listeden başarıyla silindi
       domain: Alan adı
       empty: Şu anda hiçbir e-posta alan adı kara listeye alınmadı.
+      from_html: "%{domain} alan adından"
       new:
         create: Alan adı ekle
         title: Yeni e-posta kara liste girişi
@@ -543,6 +548,9 @@ tr:
       trends:
         desc_html: Şu anda trend olan ve daha önce incelenen etiketleri herkese açık olarak göster
         title: Trend etiketler
+    site_uploads:
+      delete: Yüklenen dosyayı sil
+      destroyed_msg: Site yüklemesi başarıyla silindi!
     statuses:
       back_to_account: Hesap sayfasına geri dön
       batch:
@@ -596,6 +604,7 @@ tr:
     add_new: Takma ad oluştur
     created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
     deleted_msg: Yeni takma ad başarıyla kaldırıldı. O hesaptan bu hesaba taşınmak artık mümkün değil.
+    empty: Takma adınız yok.
     hint_html: Başka bir hesaptan bu hesaba taşınmak istiyorsanız, takipçileri eski hesaptan bu hesaba taşımadan önce gerekli olan takma adı burada oluşturabilirsiniz. Bu eylem kendi başına <strong>zararsızdır ve geri döndürülebilir</strong>. <strong>Hesap taşıma işlemi eski hesaptan başlatılır</strong>.
     remove: Takma adların bağlantısını kaldır
   appearance:
@@ -1063,6 +1072,9 @@ tr:
     spam_detected: Bu otomatik bir şikayettir. Spam tespit edildi.
   statuses:
     attached:
+      audio:
+        one: "%{count} ses"
+        other: "%{count} ses"
       description: 'Ekli: %{attached}'
       image:
         one: "%{count} görsel"
@@ -1259,6 +1271,7 @@ tr:
     follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"
     invalid_email: E-posta adresiniz geçersiz
     invalid_otp_token: İki-faktörlü kodunuz geçersiz
+    invalid_sign_in_token: Geçersiz güvenlik kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Giriş yapan:'

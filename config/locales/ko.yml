@@ -21,7 +21,7 @@ ko:
     federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
     get_apps: 모바일 앱 사용해 보기
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
-    instance_actor_flash: |
+    instance_actor_flash: |-
       이 계정은 가상의 actor로서 개인 유저가 아닌 서버 자체를 나타냅니다.
       이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     learn_more: 자세히
@@ -39,8 +39,11 @@ ko:
       domain: 서버
       reason: 이유
       rejecting_media: 이 서버의 미디어 파일들은 처리되지 않고 썸네일또한 보이지 않게 됩니다. 수동으로 클릭하여 해당 서버로 가게 됩니다.
+      rejecting_media_title: 필터링 된 미디어
       silenced: 이 서버의 게시물은 작성자를 팔로우 한 경우에만 홈 피드에 나타나며 이를 제외한 어디에도 나타나지 않습니다.
+      silenced_title: 침묵 된 서버들
       suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
+      suspended_title: 금지된 서버들
     unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 유저와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
     user_count_after:
       other: 명
@@ -305,6 +308,7 @@ ko:
       listed: 목록에 실림
       new:
         title: 새 커스텀 에모지 추가
+      not_permitted: 이 작업을 수행할 권한이 없습니다
       overwrite: 덮어쓰기
       shortcode: 짧은 코드
       shortcode_hint: 최소 2글자, 영문자, 숫자, _만 사용 가능
@@ -694,7 +698,7 @@ ko:
     status:
       account_status: 계정 상태
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
-      functional: 계정이 완벽이 작동합니다.
+      functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
@@ -715,6 +719,10 @@ ko:
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
     invalid_password: 잘못된 암호
     prompt: 계속하려면 암호 확인
+  crypto:
+    errors:
+      invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키
+      invalid_signature: 유효하지 않은 Ed25519 서명
   date:
     formats:
       default: "%Y-%b-%d"
@@ -843,7 +851,7 @@ ko:
     inactive: 비활성
     publicize_checkbox: '그리고 이것을 툿 하세요:'
     publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
-    remove: 계정증명을 삭제
+    remove: 계정증명 삭제
     removed: 성공적으로 계정증명을 삭제했습니다
     status: 인증 상태
     view_proof: 증명 보기
@@ -910,6 +918,7 @@ ko:
     on_cooldown: 당신은 최근에 이미 계정을 이동했습니다. 이 기능은 %{count}일 후에 다시 이용 가능합니다.
     past_migrations: 과거 이주
     proceed_with_move: 팔로워 이동
+    redirected_msg: 당신의 계정은 이제 %{acct} 로 리다이렉트됩니다.
     redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
     set_redirect: 리디렉션 설정
     warning:
@@ -923,6 +932,10 @@ ko:
       redirect: 현재 계정 프로필은 리다이렉트 알림과 함께 업데이트 되며 검색에서 제외 됩니다
   moderation:
     title: 중재
+  move_handler:
+    carry_blocks_over_text: 이 사용자는 당신이 차단한 %{acct}로부터 이주 했습니다.
+    carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
+    copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   notification_mailer:
     digest:
       action: 모든 알림 보기
@@ -1097,11 +1110,13 @@ ko:
     spam_detected: 이것은 자동화 된 신고입니다. 스팸이 감지되었습니다.
   statuses:
     attached:
+      audio:
+        other: "%{count}개의 오디오"
       description: '첨부: %{attached}'
       image:
         other: "%{count} 이미지"
       video:
-        other: "%{count} 영상"
+        other: "%{count}개의 영상"
     boosted_from_html: "%{acct_link} 님으로부터 부스트"
     content_warning: '열람 주의: %{warning}'
     disallowed_hashtags:
@@ -1251,6 +1266,12 @@ ko:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
+    sign_in_token:
+      details: '시도에 대한 상세 내용입니다:'
+      explanation: '알 수 없는 IP로부터 당신의 계정에 대한 로그인 시도를 감지했습니다. 이것이 당신이라면, 아래의 보안 코드를 로그인 시도 페이지에 입력하세요:'
+      further_actions: '이것이 당신이 아니라면 암호를 바꾸고 계정의 2-factor 인증을 활성화 하세요. 여기에서 할 수 있습니다:'
+      subject: 로그인 시도를 확인해 주십시오
+      title: 로그인 시도
     warning:
       explanation:
         disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
@@ -1288,11 +1309,14 @@ ko:
       title: 환영합니다 %{name} 님!
   users:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
+    generic_access_help_html: 계정 로그인에 문제가 있나요? %{email} 로 도움을 요청할 수 있습니다
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
+    invalid_sign_in_token: 잘못된 보안 코드
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
+    suspicious_sign_in_confirmation: 이 기기에서 로그인 한 적이 없거나, 로그인 한 지 오래된 것으로보입니다. 본인임을 확인하기 위해 이메일 주소로 보안 코드를 보냈습니다.
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증

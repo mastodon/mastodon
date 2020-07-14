@@ -21,7 +21,7 @@ fr:
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
     get_apps: Essayez une application mobile
     hosted_on: Serveur Mastodon hébergé par %{domain}
-    instance_actor_flash: |
+    instance_actor_flash: |-
       Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel.
       Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, dans ce cas vous devriez utiliser un bloqueur de domaine.
     learn_more: En savoir plus
@@ -40,8 +40,11 @@ fr:
       domain: Serveur
       reason: Motif
       rejecting_media: 'Les fichiers média de ces serveurs ne seront pas traités ou stockés et aucune miniature ne sera affichée, nécessitant un clic vers le fichier d’origine :'
-      silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·rice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
+      rejecting_media_title: Média filtré
+      silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·ice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
+      silenced_title: Serveurs en sourdine
       suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant toute interaction ou communication avec les utilisateur·rice·s de ces serveurs impossible :'
+      suspended_title: Serveurs suspendus
     unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
     user_count_after:
       one: utilisateur·rice
@@ -87,7 +90,7 @@ fr:
       action: Effectuer une action
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
-      create: Laisser un commentaire
+      create: Laisser une remarque
       created_msg: Note de modération créée avec succès !
       delete: Supprimer
       destroyed_msg: Note de modération supprimée avec succès !
@@ -309,6 +312,7 @@ fr:
       listed: Listé
       new:
         title: Ajouter un nouvel émoji personnalisé
+      not_permitted: Vous n’êtes pas autorisé à effectuer cette action
       overwrite: Écraser
       shortcode: Raccourci
       shortcode_hint: Au moins deux caractères, seulement des caractères alphanumériques ou des tirets bas
@@ -353,7 +357,7 @@ fr:
       destroyed_msg: Le domaine a été supprimé de la liste blanche
       undo: Supprimer de la liste blanche
     domain_blocks:
-      add_new: Ajouter un nouveau bloqueur de domaine
+      add_new: Bloquer un nouveau domaine
       created_msg: Le blocage de domaine est désormais activé
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
@@ -721,6 +725,10 @@ fr:
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
     invalid_password: Mot de passe invalide
     prompt: Confirmez votre mot de passe pour continuer
+  crypto:
+    errors:
+      invalid_key: n’est pas une clé Ed25519 ou Curve25519 valide
+      invalid_signature: n’est pas une signature Ed25519 valide
   date:
     formats:
       default: "%d %b %Y"
@@ -745,7 +753,7 @@ fr:
     proceed: Supprimer le compte
     success_msg: Votre compte a été supprimé avec succès
     warning:
-      before: 'Avant de procéder, veuillez lire attentivement ces notes :'
+      before: 'Veuillez lire attentivement ces notes avant de continuer :'
       caches: Le contenu mis en cache par d'autres serveurs peut persister
       data_removal: Vos messages et autres données seront définitivement supprimés
       email_change_html: Vous pouvez <a href="%{path}">modifier votre adresse courriel</a> sans supprimer votre compte
@@ -850,7 +858,7 @@ fr:
     inactive: Inactive
     publicize_checkbox: 'Et le poueter :'
     publicize_toot: 'C’est prouvé ! Je suis %{username} sur %{service}: %{url}'
-    remove: Retirer une preuve du compte
+    remove: Retirer la preuve du compte
     removed: Preuve retirée du compte avec succès
     status: État de la vérification
     view_proof: Voir la preuve
@@ -918,6 +926,7 @@ fr:
     on_cooldown: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
     past_migrations: Migrations passées
     proceed_with_move: Migrer les abonné·e·s
+    redirected_msg: Votre compte est maintenant redirigé vers %{acct}.
     redirecting_to: Votre compte est redirigé vers %{acct}.
     set_redirect: Définir la redirection
     warning:
@@ -931,6 +940,10 @@ fr:
       redirect: Le profil de votre compte actuel sera mis à jour avec un avis de redirection et sera exclu des recherches
   moderation:
     title: Modération
+  move_handler:
+    carry_blocks_over_text: Cet utilisateur que vous aviez bloqué est parti de %{acct}.
+    carry_mutes_over_text: Cet utilisateur que vous aviez masqué est parti de %{acct}.
+    copy_account_note_text: 'Cet·te utilisateur·rice est parti de %{acct}, voici vos notes précédentes à son sujet :'
   notification_mailer:
     digest:
       action: Voir toutes les notifications
@@ -1107,6 +1120,9 @@ fr:
     spam_detected: Ceci est un rapport automatisé. Des pollupostages ont été détectés.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
       description: 'Attaché : %{attached}'
       image:
         one: "%{count} image"
@@ -1266,6 +1282,12 @@ fr:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
+    sign_in_token:
+      details: 'Voici les détails de la tentative :'
+      explanation: 'Nous avons détecté une tentative de connexion à votre compte à partir d’une adresse IP non reconnue. Si c’est vous, veuillez entrer le code de sécurité ci-dessous sur la page de négociation de connexion :'
+      further_actions: 'S’il ne s’agit pas de vous, veuillez changer votre mot de passe et activer l’authentification à deux facteurs sur votre compte. Vous pouvez le faire ici :'
+      subject: Veuillez confirmer la tentative de connexion
+      title: Tentative de connexion
     warning:
       explanation:
         disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu’à ce qu’il soit débloqué.
@@ -1303,11 +1325,14 @@ fr:
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
+    generic_access_help_html: Rencontrez-vous des difficultés d’accès à votre compte ? Vous pouvez contacter %{email} pour obtenir de l’aide
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    invalid_sign_in_token: Code de sécurité non valide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
+    suspicious_sign_in_confirmation: Il semblerait que vous ne vous êtes pas connecté depuis cet appareil auparavant et que vous ne vous êtes pas connecté depuis un moment, alors nous envoyons un code de sécurité à votre adresse courriel pour confirmer qu’il s’agit bien de vous.
   verification:
     explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
     verification: Vérification

@@ -132,7 +132,7 @@ class ActivityPub::Activity
   end
 
   def delete_arrived_first?(uri)
-    redis.exists("delete_upon_arrival:#{@account.id}:#{uri}")
+    redis.exists?("delete_upon_arrival:#{@account.id}:#{uri}")
   end
 
   def delete_later!(uri)

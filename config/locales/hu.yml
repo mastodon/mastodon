@@ -21,9 +21,7 @@ hu:
     federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
     get_apps: Próbálj ki egy mobil appot
     hosted_on: "%{domain} Mastodon szerver"
-    instance_actor_flash: 'Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
-
-'
+    instance_actor_flash: Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
     see_whats_happening: Nézd, mi történik
@@ -40,8 +38,11 @@ hu:
       domain: Szerver
       reason: 'Indok:'
       rejecting_media: A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.
+      rejecting_media_title: Kiszűrt média
       silenced: A szerver hozzászólásai csak a saját hírvonalon jelennek meg, ha követik a szerzőt.
+      silenced_title: Elnémított szerverek
       suspended: Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.
+      suspended_title: Felfüggesztett szerverek
     unavailable_content_html: A Mastodon általában mindenféle tartalomcserét és interakciót lehetővé tesz bármelyik szerverrel a fediverzumban. Ezek azok a kivételek, melyek a mi szerverünkön érvényben vannak.
     user_count_after:
       one: felhasználónk
@@ -309,6 +310,7 @@ hu:
       listed: Listázva
       new:
         title: Új egyedi emodzsi hozzáadása
+      not_permitted: Nem vagy jogosult a művelet végrehajtására
       overwrite: Felülírás
       shortcode: Rövidítés
       shortcode_hint: Legalább két karakter, csak betűk, számok és alsóvonás
@@ -721,6 +723,10 @@ hu:
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
     invalid_password: Érvénytelen jelszó
     prompt: Add meg a jelszót a folytatáshoz
+  crypto:
+    errors:
+      invalid_key: érvénytelen Ed25519 vagy Curve25519 kulcs
+      invalid_signature: érvénytelen Ed25519 aláírás
   date:
     formats:
       default: "%Y.%b.%d."
@@ -918,6 +924,7 @@ hu:
     on_cooldown: Nemrég költöztetted a fiókod. Ez a funkció %{count} nap múlva lesz megint elérhető.
     past_migrations: Eddigi költözések
     proceed_with_move: Követők átköltöztetése
+    redirected_msg: A fiókodat ide irányítjuk át %{acct}.
     redirecting_to: A fiókod át van irányítva ide %{acct}.
     set_redirect: Átirányítás beállítása
     warning:
@@ -931,6 +938,10 @@ hu:
       redirect: A jelenlegi fiókod profiljára átirányításról szóló figyelmeztetést rakunk, valamint már nem fogjuk mutatni a keresésekben
   moderation:
     title: Moderáció
+  move_handler:
+    carry_blocks_over_text: Ez a fiók elköltözött innen %{acct}, melyet blokkoltatok.
+    carry_mutes_over_text: Ez a fiók elköltözött innen %{acct}, melyet lenémítottatok.
+    copy_account_note_text: 'Ez a fiók elköltözött innen %{acct}, itt vannak a bejegyzéseitek róla:'
   notification_mailer:
     digest:
       action: Összes értesítés megtekintése
@@ -1107,6 +1118,9 @@ hu:
     spam_detected: Ez egy automatikus jelentés. Spamet érzékeltünk.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
       description: 'Csatolva: %{attached}'
       image:
         one: "%{count} kép"
@@ -1266,6 +1280,12 @@ hu:
       explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
       subject: Az adataidról készült archív letöltésre kész
       title: Archiválás
+    sign_in_token:
+      details: 'Itt vannak a kísérlet részletei:'
+      explanation: 'Fiókodba történő belépési kísérletet fogtunk ismeretlen IP címről. Ha te vagy az, kérlek az alábbi biztonsági kódot írd be a bejelentkező oldal ezt kérő részén:'
+      further_actions: 'Ha nem te voltál, változtasd meg a jelszavadat és engedélyezd a két-faktoros azonosítást a fiókodban. Itt megteheted:'
+      subject: Erősítsd meg a megkísérelt belépést
+      title: Belépési kísérlet
     warning:
       explanation:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
@@ -1303,11 +1323,14 @@ hu:
       title: Üdv a fedélzeten, %{name}!
   users:
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert
+    generic_access_help_html: Nem tudod elérni a fiókodat? Segítségért lépj kapcsolatba velünk ezen %{email}
     invalid_email: A megadott e-mail cím helytelen
     invalid_otp_token: Érvénytelen ellenőrző kód
+    invalid_sign_in_token: Érvénytelen biztonsági kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
     signed_in_as: Bejelentkezve mint
+    suspicious_sign_in_confirmation: Úgy tűnik, erről az eszközről még sosem léptél be és egy ideje már nem láttunk, ezért egy biztonsági kódot küldünk az email címedre, hogy megerősítsd, tényleg te vagy az.
   verification:
     explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
     verification: Hitelesítés

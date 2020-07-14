@@ -42,8 +42,10 @@ module SignInTokenAuthenticationConcern
       UserMailer.sign_in_token(user, request.remote_ip, request.user_agent, Time.now.utc.to_s).deliver_later!
     end
 
-    session[:attempt_user_id] = user.id
-    @body_classes = 'lighter'
-    render :sign_in_token
+    set_locale do
+      session[:attempt_user_id] = user.id
+      @body_classes = 'lighter'
+      render :sign_in_token
+    end
   end
 end

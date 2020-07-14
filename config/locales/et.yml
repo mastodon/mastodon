@@ -21,7 +21,7 @@ et:
     federation_hint_html: Kui Teil on kasutaja %{instance}-is, saate Te jälgida inimesi üks kõik millisel Mastodoni serveril ja kaugemalgi.
     get_apps: Proovi mobiilirakendusi
     hosted_on: Mastodon majutatud %{domain}-is
-    instance_actor_flash: |
+    instance_actor_flash: |-
       See konto on virtuaalne näitleja, mis esindab tervet serverit ning mitte ühtegi kindlat isikut.
       Seda kasutatakse föderatiivsetel põhjustel ning seda ei tohiks blokeerida, välja arvatud juhul, kui soovite blokeerida tervet serverit, kuid sellel juhul soovitame hoopis kasutada domeeni blokeerimist.
     learn_more: Lisateave
@@ -92,6 +92,7 @@ et:
       delete: Kustuta
       destroyed_msg: Moderatsiooniteade edukalt kustutatud!
     accounts:
+      add_email_domain_block: Keela e-posti domeen
       approve: Kinnita
       approve_all: Kinnita kõik
       are_you_sure: Olete kindel?
@@ -172,6 +173,7 @@ et:
         staff: Personal
         user: Kasutaja
       search: Otsi
+      search_same_email_domain: Muud kasutajad sama e-posti domeeniga
       search_same_ip: Teised kasutajad, kellel on sama IP
       shared_inbox_url: Jagatud sisendkausta URL
       show:
@@ -193,6 +195,42 @@ et:
       web: Veeb
       whitelisted: Lubatud
     action_logs:
+      action_types:
+        assigned_to_self_report: Määras Teavituse
+        change_email_user: Kasutaja muutis e-postiaadressit
+        confirm_user: Kasutaja kinnitatud
+        create_account_warning: Lisas hoiatuse
+        create_announcement: Lisas teadaande
+        create_custom_emoji: Lisas kohandatud emotikoni
+        create_domain_allow: Lisas lubatud domeeni
+        create_domain_block: Lisas domeeniblokeeringu
+        create_email_domain_block: Lisas e-posti domeeni blokeeringu
+        demote_user: Alandas kasutaja
+        destroy_announcement: Eemaldas teadaande
+        destroy_custom_emoji: Eemaldas kohandatud emotikoni
+        destroy_domain_allow: Eemaldas lubatud domeeni
+        destroy_domain_block: Eemaldas domeeniblokeeringu
+        destroy_email_domain_block: Eemaldas e-posti domeeni blokeeringu
+        destroy_status: Eemaldas staatuse
+        disable_2fa_user: Keelas 2FA
+        disable_custom_emoji: Keelas kohandatud emotikoni
+        disable_user: Keelas kasutaja
+        enable_custom_emoji: Lubas kohandatud emotikoni
+        enable_user: Lubas kasutaja
+        memorialize_account: Tegi kontole memoriaali
+        promote_user: Edendas kasutaja
+        remove_avatar_user: Kustutas profiilipildi
+        reopen_report: Taasavas teavituse
+        reset_password_user: Lähtestas salasõna
+        resolve_report: Lahendas teadaande
+        silence_account: Vaigistas konto
+        suspend_account: Peatas konto
+        unassigned_report: Määras teavituse maha
+        unsilence_account: Konto vaigistus eemaldati
+        unsuspend_account: Konto peatamine lõpetati
+        update_announcement: Uuenda teadaannet
+        update_custom_emoji: Uuendas kohandatud emotikoni
+        update_status: Uuendas staatust
       actions:
         assigned_to_self_report: "%{name} määras teabe %{target} iseendale"
         change_email_user: "%{name} muutis kasutaja %{target} e-postiaadressit"
@@ -230,6 +268,9 @@ et:
         update_custom_emoji: "%{name} uuendas emotikooni %{target}"
         update_status: "%{name} uuendas kasutaja %{target} staatust"
       deleted_status: "(kustutatud staatus)"
+      empty: Logisi ei leitud.
+      filter_by_action: Filtreeri tegevuse järgi
+      filter_by_user: Filtreeri kasutaja järgi
       title: Auditilogi
     announcements:
       destroyed_msg: Teadaande kustutamine õnnestus!
@@ -268,6 +309,7 @@ et:
       listed: Nimekirjastatud
       new:
         title: Lisa uus emotikon
+      not_permitted: Teil puudub õigus selle tegevuse jaoks
       overwrite: Kirjuta üle
       shortcode: Lühikood
       shortcode_hint: Vähemalt 2 tähemärki, ainult tähted, numbrid ja alakriipsud
@@ -361,6 +403,7 @@ et:
       destroyed_msg: E-posti aadressi keelunimekirjast kustutamine õnnestus
       domain: Domeen
       empty: Ühtegi e-postidomeeni pole blokeeritud.
+      from_html: "%{domain}-ist"
       new:
         create: Lisa domeen
         title: Uus e-posti keelunimekirja sisend
@@ -540,6 +583,9 @@ et:
       trends:
         desc_html: Kuva avalikult eelnevalt üle vaadatud sildid, mis on praegu trendikad
         title: Populaarsed sildid praegu
+    site_uploads:
+      delete: Kustuta üleslaetud fail
+      destroyed_msg: Üleslaetud fail edukalt kustutatud!
     statuses:
       back_to_account: Tagasi konto lehele
       batch:
@@ -593,6 +639,7 @@ et:
     add_new: Loo teine nimi
     created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
     deleted_msg: Edukalt kustutasime teise nime. Kolimine sellelt kontolt praegusele on nüüdsest võimatu.
+    empty: Teil puuduvad teised nimed.
     hint_html: Kui Te soovite kolida teiselt kontolt praegusele kontole, saate Te siin luua teise nime, mis on kohustuslik, enne kui saate kolida jälgijaid vanalt kontolt praegusele. See tegevus on iseenesest <strong>kahjutu ja taastatav</strong>. <strong>Konto ületoomine alustatakse vanalt kontolt</strong>.
     remove: Eemalda teine nimi
   appearance:
@@ -663,6 +710,7 @@ et:
     trouble_logging_in: Probleeme sisselogimisega?
   authorize_follow:
     already_following: Te juba jälgite seda kontot
+    already_requested: Te juba saatsite jälgimistaotluse sellele kontole
     error: Kahjuks ilmus viga kasutaja kaugserverist otsimisel
     follow: Jälgi
     follow_request: 'Te olete saatnud jälgimistaotluse kasutajale:'
@@ -677,6 +725,10 @@ et:
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi Teilt uuesti salasõna järgmise tunni jooksul."
     invalid_password: Vigane salasõna
     prompt: Jätkamiseks kinnitage salasõna
+  crypto:
+    errors:
+      invalid_key: ei ole õige Ed25519 ega Curve25519 võti
+      invalid_signature: ei ole õige Ed25519 allkiri
   date:
     formats:
       default: "%d. %b %Y"
@@ -806,6 +858,8 @@ et:
     inactive: Passiivne
     publicize_checkbox: 'Ja tuututa seda:'
     publicize_toot: 'See on tõestatud! Ma olen %{username} teenusel %{service}: %{url}'
+    remove: Eemalda isikutõend kontolt
+    removed: Isikutõendi eemaldamine oli edukas
     status: Kinnituse staatus
     view_proof: Vaata tõendit
   imports:
@@ -851,6 +905,7 @@ et:
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video staatusele, millel on juba pildid
+      not_ready: Ei saa lisada faile, mida hetkel töödeldakse. Proovige uuesti mõne hetke pärast!
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
     acct: uue konto kasutajanimi@domeen
@@ -871,6 +926,7 @@ et:
     on_cooldown: Te olete hiljuti kolinud oma kontot. See funktsioon on jälle kättesaadav %{count} päeva pärast.
     past_migrations: Eelmiseid kolimisi
     proceed_with_move: Koli üle jälgijad
+    redirected_msg: Teie kontot suunatakse nüüd ümber kontole %{acct}.
     redirecting_to: Teie konto suunatakse ümber kontole %{acct}.
     set_redirect: Määra ümbersuunamine
     warning:
@@ -1074,6 +1130,8 @@ et:
     disallowed_hashtags:
       one: 'sisaldab ebasobivat silti: %{tags}'
       other: 'sisaldab ebasobivaid silte: %{tags}'
+    errors:
+      in_reply_not_found: Staatus, millele üritate vastata, ei näi enam eksisteerivat.
     language_detection: Automaatselt tuvasta keel
     open_in_web: Ava veebis
     over_character_limit: tähtmärkide limiit %{max} ületatud

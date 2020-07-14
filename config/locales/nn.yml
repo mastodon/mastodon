@@ -21,7 +21,7 @@ nn:
     federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
     get_apps: Prøv ein mobilapp
     hosted_on: "%{domain} er vert for Mastodon"
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
+    instance_actor_flash: Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet.
     learn_more: Lær meir
     privacy_policy: Personvernsreglar
     see_whats_happening: Sjå kva som skjer
@@ -194,22 +194,32 @@ nn:
       whitelisted: Kvitlista
     action_logs:
       action_types:
+        assigned_to_self_report: Tilordne rapport
         change_email_user: Endre brukerens E-postadresse
         confirm_user: Bekreft brukeren
         create_account_warning: Opprett en advarsel
         create_announcement: Opprett en kunngjøring
         create_custom_emoji: Opprett en tilpasset emoji
+        create_domain_allow: Opprett domene tillatt
+        create_domain_block: Opprett domene-blokk
+        create_email_domain_block: Opprett e-post domeneblokk
+        demote_user: Degrader bruker
         destroy_announcement: Slett kunngjøringen
         destroy_custom_emoji: Slett den tilpassede emojien
         destroy_status: Slett statusen
         disable_2fa_user: Skru av 2-trinnsinnlogging
         disable_user: Deaktiver bruker
         enable_user: Aktiver bruker
+        promote_user: Promoter bruker
+        remove_avatar_user: Fjern Avatar
         reopen_report: Gjenåpne rapporten
         reset_password_user: Tilbakestill passord
+        resolve_report: Løs rapport
+        silence_account: Demp konto
         suspend_account: Suspender kontoen
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
+        update_custom_emoji: Oppdater tilpasset Emoji
         update_status: Oppdater statusen
       actions:
         assigned_to_self_report: "%{name} tilegnet rapport %{target} til seg selv"
@@ -289,6 +299,7 @@ nn:
       listed: Oppført
       new:
         title: Legg til eige kjensleteikn
+      not_permitted: Du har ikke rettigheter til å utføre denne handlingen
       overwrite: Skriv over
       shortcode: Stuttkode
       shortcode_hint: Minst 2 teikn, berre tal, bokstavar og understrek
@@ -813,6 +824,7 @@ nn:
     inactive: Uaktiv
     publicize_checkbox: 'Og tut dette:'
     publicize_toot: 'Det er prova! Eg er %{username} på %{service}: %{url}'
+    remove: Fjern bevis fra kontoen
     status: Stadfestingsstatus
     view_proof: Sjå prov
   imports:
@@ -875,6 +887,7 @@ nn:
     warning:
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
       disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
+      other_data: Ingen andre data vil bli flyttet automatisk
   moderation:
     title: Moderasjon
   notification_mailer:

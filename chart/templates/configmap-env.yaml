@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mastodon.fullname" . }}-env
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+data:
+  DB_HOST: {{ template "mastodon.postgresql.fullname" . }}
+  DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
+  DB_POOL: {{ .Values.application.sidekiq.concurrency | quote }}
+  DB_PORT: "5432"
+  DB_USER: {{ .Values.postgresql.postgresqlUsername }}
+  DEFAULT_LOCALE: {{ .Values.locale }}
+  {{- if .Values.elasticsearch.enabled }}
+  ES_ENABLED: "true"
+  ES_HOST: {{ template "mastodon.elasticsearch.fullname" . }}-master
+  ES_PORT: "9200"
+  {{- end }}
+  LOCAL_DOMAIN: {{ .Values.ingress.hostname }}
+  # https://devcenter.heroku.com/articles/tuning-glibc-memory-behavior
+  MALLOC_ARENA_MAX: "2"
+  NODE_ENV: "production"
+  RAILS_ENV: "production"
+  REDIS_HOST: {{ template "mastodon.redis.fullname" . }}-master
+  REDIS_PORT: "6379"
+  {{- if .Values.smtp.auth_method }}
+  SMTP_AUTH_METHOD: {{ .Values.smtp.auth_method }}
+  {{- end }}
+  {{- if .Values.smtp.ca_file }}
+  SMTP_CA_FILE: {{ .Values.smtp.ca_file }}
+  {{- end }}
+  {{- if .Values.smtp.delivery_method }}
+  SMTP_DELIVERY_METHOD: {{ .Values.smtp.delivery_method }}
+  {{- end }}
+  {{- if .Values.smtp.domain }}
+  SMTP_DOMAIN: {{ .Values.smtp.domain }}
+  {{- end }}
+  {{- if .Values.smtp.enable_starttls_auto }}
+  SMTP_ENABLE_STARTTLS_AUTO: {{ .Values.smtp.enable_starttls_auto | quote }}
+  {{- end }}
+  {{- if .Values.smtp.from_address }}
+  SMTP_FROM_ADDRESS: {{ .Values.smtp.from_address }}
+  {{- end }}
+  {{- if .Values.smtp.login }}
+  SMTP_LOGIN: {{ .Values.smtp.login }}
+  {{- end }}
+  {{- if .Values.smtp.openssl_verify_mode }}
+  SMTP_OPENSSL_VERIFY_MODE: {{ .Values.smtp.openssl_verify_mode }}
+  {{- end }}
+  {{- if .Values.smtp.password }}
+  SMTP_PASSWORD: {{ .Values.smtp.password }}
+  {{- end }}
+  {{- if .Values.smtp.port }}
+  SMTP_PORT: {{ .Values.smtp.port | quote }}
+  {{- end }}
+  {{- if .Values.smtp.reply_to }}
+  SMTP_REPLY_TO: {{ .Values.smtp.reply_to }}
+  {{- end }}
+  {{- if .Values.smtp.server }}
+  SMTP_SERVER: {{ .Values.smtp.server }}
+  {{- end }}
+  {{- if .Values.smtp.tls }}
+  SMTP_TLS: {{ .Values.smtp.tls | quote }}
+  {{- end }}
+  STREAMING_CLUSTER_NUM: {{ .Values.application.streaming.workers | quote }}

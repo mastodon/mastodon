@@ -21,7 +21,7 @@ eo:
     federation_hint_html: Per konto ĉe %{instance}, vi povos sekvi homojn ĉe iu ajn Mastodon nodo kaj preter.
     get_apps: Provu telefonan aplikaĵon
     hosted_on: "%{domain} estas nodo de Mastodon"
-    instance_actor_flash: |
+    instance_actor_flash: |-
       Ĉi tiu konto estas virtuala ulo uzata por reprezenti la servilon mem kaj ne iun apartan uzanton.
       Ĝi estas uzata por frataraj celoj kaj ĝi ne devus esti blokita krom se vi volas bloki la tutan servilon, tiuokaze vi devus uzi domajnan blokadon.
     learn_more: Lerni pli
@@ -188,9 +188,32 @@ eo:
       whitelisted: En la blanka listo
     action_logs:
       action_types:
+        confirm_user: Konfermi uzanto
+        create_account_warning: Krei Averton
+        create_announcement: Krei Anoncon
+        create_custom_emoji: Krei Propran emoĝion
+        create_domain_allow: Krei Domajnan Permeson
+        create_domain_block: Krei Domajnan Blokadon
+        create_email_domain_block: Krei Retpoŝtmesaĝan Domajnan Blokadon
+        demote_user: Malpromocii uzanton
+        destroy_announcement: Forigi Anoncon
+        destroy_custom_emoji: Forigi Propran emoĝion
+        destroy_domain_allow: Forigi Domajnan Permeson
+        destroy_domain_block: Forigi Domajnan Blokadon
+        destroy_email_domain_block: Forigi retpoŝtmesaĝan domajnan blokadon
+        destroy_status: Forigi mesaĝon
+        disable_2fa_user: Malebligi 2FA
+        disable_custom_emoji: Malebligi Propran Emoĝion
         disable_user: Malebligi uzanton
+        enable_custom_emoji: Ebligi Propran Emoĝion
         enable_user: Ebligi uzanton
+        promote_user: Promocii Uzanton
+        remove_avatar_user: Forigi profilbildon
         reopen_report: Remalfermi signalon
+        reset_password_user: Restarigi pasvorton
+        resolve_report: Solvitaj reporto
+        silence_account: Silentigi konton
+        suspend_account: Haltigi konton
       actions:
         assigned_to_self_report: "%{name} asignis signalon %{target} al si mem"
         change_email_user: "%{name} ŝanĝis retadreson de uzanto %{target}"
@@ -354,6 +377,7 @@ eo:
       destroyed_msg: Retadreso sukcese forigita de la nigra listo
       domain: Domajno
       empty: Neniu retadresa domajno nune estas en la nigra listo.
+      from_html: de %{domain}
       new:
         create: Aldoni domajnon
         title: Nova blokado de retadresa domajno
@@ -654,6 +678,13 @@ eo:
     confirm: Daŭrigi
     invalid_password: Nevalida pasvorto
     prompt: Konfirmi pasvorton por daŭrigi
+  crypto:
+    errors:
+      invalid_key: 올바른 Ed25519 혹은 Curve25519 키가 아닙니다
+      invalid_signature: 올바른 Ed25519 시그니처가 아닙니다
+  date:
+    formats:
+      default: "%Y-%m-%d "
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -836,6 +867,7 @@ eo:
     incoming_migrations_html: Por moviĝi el alia konto al ĉi tiu, vi unue devas <a href="%{path}">krei kromnomo de konto</a>.
     past_migrations: Pasintaj translokaj
     proceed_with_move: Translokigi sekvantoj
+    redirected_msg: Via konto nun alidirektas al %{acct}.
     redirecting_to: Via konto alidirektas al %{acct}.
     set_redirect: Agordi alidirekton
     warning:
