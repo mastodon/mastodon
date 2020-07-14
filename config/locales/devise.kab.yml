@@ -46,6 +46,12 @@ kab:
         title: Asesteb s snat n tarrayin insa
       two_factor_enabled:
         title: Asesteb s snat n tarrayin irmed
+      two_factor_recovery_codes_changed:
+        title: Tangalt n tuɣalin 2FA tettwabeddel
+      unlock_instructions:
+        subject: 'Mastodon: iwelihhen n userreḥ'
+    omniauth_callbacks:
+      failure: Ur nezmir ara ad ak·akem-nsesṭeb seg %{kind} acku "%{reason}".
     passwords:
       send_instructions: Ma nufa tansa-inek imayl tella deg uzadur-nneγ n yisefka, ad n-teṭṭfeḍ izen deg kra n tesdatin, deg-s assaγ i uɛawed n wawal uffir. Ma ur k-in-yewwiḍ ara yizen, ttxil-k ẓer deg ukaram spam.
       send_paranoid_instructions: Ma nufa tansa-inek imayl tella deg uzadur-nneγ n yisefka, ad n-teṭṭfeḍ izen deg kra n tesdatin, deg-s assaγ i uɛawed n wawal uffir. Ma ur k-in-yewwiḍ ara yizen, ttxil-k ẓer deg ukaram spam.
@@ -54,11 +60,20 @@ kab:
     registrations:
       destroyed: Ar timlilit! Amiḍan-ik yettwakkes mebla ugur. Nessaram ad k-nwali tikelt-nniḍen.
       signed_up: Anṣuf! Aqla-k tkecmeḍ.
+      update_needs_confirmation: Tleqmeḍ akken iwata amiḍan-ik·im, maca nesra ad nsenqed tansa-ik·im imayl tamaynut. Ttxil-k·m senqed imayl-k·m sakin ḍfer aseɣwen i usentem n n tansa imayl tamaynut. Ttxil senqed akaram n spam ma yella ur tufiḍ ara imayl-nni.
+      updated: Amiḍan-ik·im yettwalqem akken iwata.
     sessions:
       already_signed_out: Aqla-k teffγeḍ.
       signed_in: Aqla-k teqqneḍ.
       signed_out: Aqla-k teffγeḍ.
+    unlocks:
+      send_instructions: Deg kra n tesdatin, ad teṭṭfeḍ imayl deg-s iwellihen i yilaqen i userreḥ n umiḍan-ik·im. Ma yella ur tufiḍ ara izen-agi, ttxil-k·m ẓer deg ukaram spam.
+      send_paranoid_instructions: Ma yella umiḍan-ik·im yella, ad teṭṭfeḍ imayl deg tesdatin i d-iteddun, deg-s iwellihen i yilaqen i userreḥ n umiḍan-ik·im. Ma yella ur tufiḍ ara izen-agi, ttxil-k·m ẓer deg ukaram spam.
+      unlocked: Iserreḥ umiḍan-ik·im akken iwata. ttxil qqen akken ad tkemleḍ.
   errors:
     messages:
+      already_confirmed: ittwasentem yakan, ttxil εreḍ ad teqneḍ
+      confirmation_period_expired: isra asentem di %{period}, ttxil suter amaynut
+      expired: immut, ttxil suter amaynut
       not_found: ulac-it
       not_locked: ur yettucekkel ara
