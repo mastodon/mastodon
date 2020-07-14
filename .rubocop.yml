@@ -28,6 +28,10 @@ Layout/EmptyLineAfterMagicComment:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
 
+Lint/UselessAccessModifier:
+  ContextCreatingMethods:
+    - class_methods
+
 Metrics/AbcSize:
   Max: 100
 
