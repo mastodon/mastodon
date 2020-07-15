@@ -22,11 +22,11 @@ describe DeliveryFailureTracker do
 
   describe '#track_failure!' do
     it 'marks URL as unavailable after 7 days of being called' do
-      6.times { |i| Redis.current.sadd('exhausted_deliveries:http://example.com/inbox', i) }
+      6.times { |i| Redis.current.sadd('exhausted_deliveries:example.com', i) }
       subject.track_failure!
 
       expect(subject.days).to eq 7
-      expect(described_class.unavailable?('http://example.com/inbox')).to be true
+      expect(described_class.available?('http://example.com/inbox')).to be false
     end
 
     it 'repeated calls on the same day do not count' do
@@ -37,35 +37,27 @@ describe DeliveryFailureTracker do
     end
   end
 
-  describe '.filter' do
+  describe '.without_unavailable' do
     before do
-      Redis.current.sadd('unavailable_inboxes', 'http://example.com/unavailable/inbox')
+      Fabricate(:unavailable_domain, domain: 'foo.bar')
     end
 
     it 'removes URLs that are unavailable' do
-      result = described_class.filter(['http://example.com/good/inbox', 'http://example.com/unavailable/inbox'])
+      results = described_class.without_unavailable(['http://example.com/good/inbox', 'http://foo.bar/unavailable/inbox'])
 
-      expect(result).to include('http://example.com/good/inbox')
-      expect(result).to_not include('http://example.com/unavailable/inbox')
+      expect(results).to include('http://example.com/good/inbox')
+      expect(results).to_not include('http://foo.bar/unavailable/inbox')
     end
   end
 
-  describe '.track_inverse_success!' do
-    let(:from_account) { Fabricate(:account, inbox_url: 'http://example.com/inbox', shared_inbox_url: 'http://example.com/shared/inbox') }
-
+  describe '.reset!' do
     before do
-      Redis.current.sadd('unavailable_inboxes', 'http://example.com/inbox')
-      Redis.current.sadd('unavailable_inboxes', 'http://example.com/shared/inbox')
-
-      described_class.track_inverse_success!(from_account)
+      Fabricate(:unavailable_domain, domain: 'foo.bar')
+      described_class.reset!('https://foo.bar/inbox')
     end
 
     it 'marks inbox URL as available again' do
-      expect(described_class.available?('http://example.com/inbox')).to be true
-    end
-
-    it 'marks shared inbox URL as available again' do
-      expect(described_class.available?('http://example.com/shared/inbox')).to be true
+      expect(described_class.available?('http://foo.bar/inbox')).to be true
     end
   end
 end

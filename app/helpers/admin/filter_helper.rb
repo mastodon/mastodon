@@ -10,6 +10,7 @@ module Admin::FilterHelper
     InviteFilter::KEYS,
     RelationshipFilter::KEYS,
     AnnouncementFilter::KEYS,
+    Admin::ActionLogFilter::KEYS,
   ].flatten.freeze
 
   def filter_link_to(text, link_to_params, link_class_params = link_to_params)

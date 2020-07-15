@@ -6,6 +6,9 @@
     = render 'shared/error_messages', object: @warning_preset
 
     .fields-group
+      = f.input :title, wrapper: :with_block_label
+
+    .fields-group
       = f.input :text, wrapper: :with_block_label
 
     .actions
@@ -13,18 +16,9 @@
 
   %hr.spacer/
 
-- unless @warning_presets.empty?
-  .table-wrapper
-    %table.table
-      %thead
-        %tr
-          %th= t('simple_form.labels.account_warning_preset.text')
-          %th
-      %tbody
-        - @warning_presets.each do |preset|
-          %tr
-            %td
-              = Formatter.instance.linkify(preset.text)
-            %td
-              = table_link_to 'pencil', t('admin.warning_presets.edit'), edit_admin_warning_preset_path(preset)
-              = table_link_to 'trash', t('admin.warning_presets.delete'), admin_warning_preset_path(preset), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+- if @warning_presets.empty?
+  %div.muted-hint.center-text
+    = t 'admin.warning_presets.empty'
+- else
+  .announcements-list
+    = render partial: 'warning_preset', collection: @warning_presets

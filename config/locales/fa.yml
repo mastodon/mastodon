@@ -94,6 +94,7 @@ fa:
       delete: حذف
       destroyed_msg: یادداشت نظارتی با موفقیت نابود شد!
     accounts:
+      add_email_domain_block: مسدود کردن دامنهٔ رایانامه
       approve: پذیرفتن
       approve_all: پذیرفتن همه
       are_you_sure: مطمئنید؟
@@ -174,6 +175,7 @@ fa:
         staff: کارمند
         user: کاربر
       search: جستجو
+      search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
       shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
@@ -195,6 +197,42 @@ fa:
       web: وب
       whitelisted: فهرست مجاز
     action_logs:
+      action_types:
+        assigned_to_self_report: واگذاری گزارش
+        change_email_user: تغییر رایانامه برای کاربر
+        confirm_user: تأیید کاربر
+        create_account_warning: ایجاد هشدار
+        create_announcement: ایجاد اعلامیه
+        create_custom_emoji: ایجاد اموجی سفارشی
+        create_domain_allow: ایجاد اجازهٔ دامنه
+        create_domain_block: ایجاد انسداد دامنه
+        create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
+        demote_user: تنزل کاربر
+        destroy_announcement: حذف اعلامیه
+        destroy_custom_emoji: حذف اموجی سفارشی
+        destroy_domain_allow: حذف اجازهٔ دامنه
+        destroy_domain_block: حذف انسداد دامنه
+        destroy_email_domain_block: حذف انسداد دامنهٔ رایانامه
+        destroy_status: حذف وضعیت
+        disable_2fa_user: از کار انداختن ورود دومرحله‌ای
+        disable_custom_emoji: از کار انداختن اموجی سفارشی
+        disable_user: از کار انداختن کاربر
+        enable_custom_emoji: به کار انداختن اموجی سفارشی
+        enable_user: به کار انداختن کاربر
+        memorialize_account: یادسپاری حساب
+        promote_user: ترفیع کاربر
+        remove_avatar_user: برداشتن تصویر نمایه
+        reopen_report: بازگشایی گزارش
+        reset_password_user: بازنشانی گذرواژه
+        resolve_report: رفع گزارش
+        silence_account: خموشی حساب
+        suspend_account: تعلیق حساب
+        unassigned_report: رفع واگذاری گزارش
+        unsilence_account: رفع خموشی حساب
+        unsuspend_account: رفع تعلیق حساب
+        update_announcement: به‌روز رسانی اعلامیه
+        update_custom_emoji: به‌روز رسانی اموجی سفارشی
+        update_status: به‌روز رسانی وضعیت
       actions:
         assigned_to_self_report: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
         change_email_user: "%{name} نشانی ایمیل کاربر %{target} را تغییر داد"
@@ -232,6 +270,9 @@ fa:
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
       deleted_status: "(نوشتهٔ پاک‌شده)"
+      empty: هیچ گزارشی پیدا نشد.
+      filter_by_action: پالایش بر اساس کنش
+      filter_by_user: پالایش بر اساس کاربر
       title: سیاههٔ بازرسی
     announcements:
       destroyed_msg: اعلامیه با موفقیت حذف شد!
@@ -360,6 +401,7 @@ fa:
       destroyed_msg: مسدودسازی دامین ایمیل با موفقیت پاک شد
       domain: دامین
       empty: هیچ دامنه ایمیلی در حال حاضر در لیست‌سیاه قرار نگرفته است.
+      from_html: از %{domain}
       new:
         create: ساختن مسدودسازی
         title: مسدودسازی دامین ایمیل تازه
@@ -539,6 +581,9 @@ fa:
       trends:
         desc_html: برچسب‌های عمومی که پیش‌تر بازبینی شده‌اند و هم‌اینک پرطرفدارند
         title: برچسب‌های پرطرفدار
+    site_uploads:
+      delete: پرونده بارگذاری شده را پاک کنید
+      destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
     statuses:
       back_to_account: بازگشت به صفحهٔ حساب
       batch:
@@ -575,7 +620,6 @@ fa:
     warning_presets:
       add_new: افزودن تازه
       delete: زدودن
-      edit: ویرایش
       edit_preset: ویرایش هشدار پیش‌فرض
       title: مدیریت هشدارهای پیش‌فرض
   admin_mailer:
@@ -593,6 +637,7 @@ fa:
     add_new: ساختن نام مستعار
     created_msg: نام مستعار تازه با موفقیت ساخته شد. الان می‌توانید انتقال از حساب قدیمی را آغاز کنید.
     deleted_msg: نام مستعار با موفقیت حذف شد. انتقال از آن حساب به حساب فعلی دیگر ممکن نیست.
+    empty: هیچ نام مستعاری ندارید.
     hint_html: اگر می‌خواهید از حساب دیگری به این حساب منتقل شوید، این‌جا می‌توانید یک نام مستعار بسازید که برای انتقال از حساب قدیمی به این حساب لازم است. این کار به تنهایی <strong>بی‌ضرر و قابل بازگشت</strong> است. <strong>فرایند انتقال حساب از حساب قدیمی آغاز خواهد شد</strong>.
     remove: حذف ارتباط نام مستعار
   appearance:
@@ -663,6 +708,7 @@ fa:
     trouble_logging_in: برای ورود مشکلی دارید؟
   authorize_follow:
     already_following: شما همین الان هم این حساب را پی‌می‌گیرید
+    already_requested: درخواست پی‌گیری‌ای برای آن حساب فرستاده‌ بودید
     error: متأسفانه حین یافتن آن حساب خطایی رخ داد
     follow: پی بگیرید
     follow_request: 'شما درخواست پیگیری فرستاده‌اید به:'
@@ -762,16 +808,16 @@ fa:
       public: فهرست عمومی
       thread: گفتگوها
     edit:
-      title: ویرایش فیلتر
+      title: ویرایش پالایه
     errors:
       invalid_context: زمینه‌ای موجود نیست یا نامعتبر است
-      invalid_irreversible: فیلترهای برگشت‌ناپذیر تنها در زمینهٔ پیگیری‌ها یا اعلان‌ها کار می‌کنند
+      invalid_irreversible: پالایش برگشت‌ناپذیر تنها در زمینهٔ خانه یا آگاهی‌ها کار می‌کنند
     index:
       delete: پاک‌کردن
-      empty: شما هیچ فیلتری ندارید.
-      title: فیلترها
+      empty: هیچ پالایه‌ای ندارید.
+      title: پالایه‌ها
     new:
-      title: افزودن فیلتر تازه
+      title: افزودن پالایهٔ جدید
   footer:
     developers: برنامه‌نویسان
     more: بیشتر…
@@ -851,6 +897,7 @@ fa:
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
+      not_ready: پرونده‌هایی که پردازش را تمام نکرده‌اند نمی‌توانند پیوست شوند. یکبار دیگر امتحان کنید!
       too_many: نمی‌توان بیشتر از ۴ تصویر بارگذاری کرد
   migrations:
     acct: username@domain حساب تازه
@@ -1072,6 +1119,8 @@ fa:
     disallowed_hashtags:
       one: 'دارای هشتگ غیرمجاز: %{tags}'
       other: 'دارای هشتگ‌های غیرمجاز: %{tags}'
+    errors:
+      in_reply_not_found: به نظر نمی‌رسد وضعیتی که می‌خواهید به آن پاسخ دهید، وجود داشته باشد.
     language_detection: زبان نوشته خودبه‌خود شناخته شود
     open_in_web: بازکردن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید

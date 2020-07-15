@@ -19,6 +19,7 @@ class PostStatusService < BaseService
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
+  # @option [Boolean] :with_rate_limit
   # @return [Status]
   def call(account, options = {})
     @account     = account
@@ -47,9 +48,10 @@ class PostStatusService < BaseService
   private
 
   def preprocess_attributes!
+    @sensitive    = (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?
     @text         = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
     @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
-    @visibility   = :unlisted if @visibility == :public && @account.silenced?
+    @visibility   = :unlisted if @visibility&.to_sym == :public && @account.silenced?
     @scheduled_at = @options[:scheduled_at]&.to_datetime
     @scheduled_at = nil if scheduled_in_the_past?
   rescue ArgumentError
@@ -108,6 +110,7 @@ class PostStatusService < BaseService
     @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
   end
 
   def language_from_option(str)
@@ -163,11 +166,12 @@ class PostStatusService < BaseService
       media_attachments: @media || [],
       thread: @in_reply_to,
       poll_attributes: poll_attributes,
-      sensitive: (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?,
+      sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
       language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
       application: @options[:application],
+      rate_limit: @options[:with_rate_limit],
       local_only: local_only_option(@options[:local_only], @in_reply_to, @account.user&.setting_default_federation),
     }.compact
   end
@@ -188,10 +192,11 @@ class PostStatusService < BaseService
 
   def scheduled_options
     @options.tap do |options_hash|
-      options_hash[:in_reply_to_id] = options_hash.delete(:thread)&.id
-      options_hash[:application_id] = options_hash.delete(:application)&.id
-      options_hash[:scheduled_at]   = nil
-      options_hash[:idempotency]    = nil
+      options_hash[:in_reply_to_id]  = options_hash.delete(:thread)&.id
+      options_hash[:application_id]  = options_hash.delete(:application)&.id
+      options_hash[:scheduled_at]    = nil
+      options_hash[:idempotency]     = nil
+      options_hash[:with_rate_limit] = false
     end
   end
 end

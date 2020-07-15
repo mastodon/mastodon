@@ -92,6 +92,7 @@ pt-BR:
       delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
+      add_email_domain_block: Adicionar o domínio de e-mail à lista negra
       approve: Aprovar
       approve_all: Aprovar tudo
       are_you_sure: Você tem certeza?
@@ -172,6 +173,7 @@ pt-BR:
         staff: Equipe
         user: Usuário
       search: Pesquisar
+      search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
       shared_inbox_url: Link da caixa de entrada compartilhada
       show:
@@ -193,21 +195,57 @@ pt-BR:
       web: Web
       whitelisted: Permitido
     action_logs:
+      action_types:
+        assigned_to_self_report: Adicionar relatório
+        change_email_user: Editar e-mail do usuário
+        confirm_user: Confirmar Usuário
+        create_account_warning: Criar Aviso
+        create_announcement: Criar Anúncio
+        create_custom_emoji: Criar Emoji Personalizado
+        create_domain_allow: Adicionar domínio permitido
+        create_domain_block: Criar Bloqueio de Domínio
+        create_email_domain_block: Criar Bloqueio de Domínio de E-mail
+        demote_user: Rebaixar usuário
+        destroy_announcement: Excluir anúncio
+        destroy_custom_emoji: Excluir emoji personalizado
+        destroy_domain_allow: Excluir domínio permitido
+        destroy_domain_block: Excluir Bloqueio de Domínio
+        destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
+        destroy_status: Excluir Status
+        disable_2fa_user: Desativar autenticação de dois fatores
+        disable_custom_emoji: Desativar Emoji Personalizado
+        disable_user: Desativar usuário
+        enable_custom_emoji: Ativar Emoji Personalizado
+        enable_user: Ativar usuário
+        memorialize_account: Memorizar Conta
+        promote_user: Promover usuário
+        remove_avatar_user: Remover Avatar
+        reopen_report: Reabrir Relatório
+        reset_password_user: Redefinir a senha
+        resolve_report: Resolver Relatório
+        silence_account: Silenciar conta
+        suspend_account: Suspender Conta
+        unassigned_report: Remover relatório
+        unsilence_account: Desfazer silenciar conta
+        unsuspend_account: Remover suspensão de conta
+        update_announcement: Editar anúncio
+        update_custom_emoji: Editar Emoji Personalizado
+        update_status: Editar Status
       actions:
         assigned_to_self_report: "%{name} pegou a denúncia %{target}"
         change_email_user: "%{name} alterou o endereço de e-mail do usuário %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning: "%{name} enviou um aviso para %{target}"
-        create_announcement: "%{name} criou um novo anúncio %{target}"
+        create_announcement: "%{name} criou o novo anúncio %{target}"
         create_custom_emoji: "%{name} enviou o novo emoji %{target}"
         create_domain_allow: "%{name} permitiu %{target}"
-        create_domain_block: "%{name} bloqueou o domínio %{target}"
+        create_domain_block: "%{name} bloqueou %{target}"
         create_email_domain_block: "%{name} bloqueou o domínio de e-mail %{target}"
         demote_user: "%{name} rebaixou o usuário %{target}"
         destroy_announcement: "%{name} excluiu o anúncio %{target}"
         destroy_custom_emoji: "%{name} excluiu emoji %{target}"
         destroy_domain_allow: "%{name} bloqueou %{target}"
-        destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
+        destroy_domain_block: "%{name} desbloqueou %{target}"
         destroy_email_domain_block: "%{name} permitiu domínio de e-mail %{target}"
         destroy_status: "%{name} excluiu toot de %{target}"
         disable_2fa_user: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
@@ -225,18 +263,21 @@ pt-BR:
         suspend_account: "%{name} baniu a conta de %{target}"
         unassigned_report: "%{name} largou a denúncia %{target}"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
-        unsuspend_account: "%{name} desbaniu %{target}"
+        unsuspend_account: "%{name} removeu a suspensão da conta de %{target}"
         update_announcement: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o status de %{target}"
       deleted_status: "(status excluído)"
+      empty: Nenhum registro encontrado.
+      filter_by_action: Filtrar por ação
+      filter_by_user: Filtrar por usuário
       title: Auditar histórico
     announcements:
       destroyed_msg: Anúncio excluído com sucesso!
       edit:
         title: Editar anúncio
-      empty: Nenhum anúncio encontrado.
-      live: Em exibição
+      empty: Sem anúncios.
+      live: Ao vivo
       new:
         create: Criar anúncio
         title: Novo anúncio
@@ -244,7 +285,7 @@ pt-BR:
       scheduled_for: Agendado para %{time}
       scheduled_msg: Anúncio agendado para publicação!
       title: Anúncios
-      unpublished_msg: Anúncio retirado de exibição com sucesso!
+      unpublished_msg: Anúncio despublicado com sucesso!
       updated_msg: Anúncio atualizado com sucesso!
     custom_emojis:
       assign_category: Atribuir categoria
@@ -307,36 +348,36 @@ pt-BR:
       week_users_new: usuários essa semana
       whitelist_mode: Modo lista de permitidos
     domain_allows:
-      add_new: Permitir
+      add_new: Permitir domínio
       created_msg: Domínio foi permitido
       destroyed_msg: Domínio foi bloqueado
       undo: Bloquear
     domain_blocks:
-      add_new: Bloquear outro domínio
+      add_new: Adicionar novo bloqueio de domínio
       created_msg: Domínio está sendo bloqueado
       destroyed_msg: Domínio desbloqueado
       domain: Domínio
       edit: Editar bloqueio de domínio
-      existing_domain_block_html: Você já bloqueou %{name}, é necessário <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
+      existing_domain_block_html: Você já impôs limites mais estritos em %{name}, você precisa <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
       new:
         create: Criar bloqueio
-        hint: O bloqueio de domínio não prevenirá a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nestas contas.
+        hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> fará com que os toots da conta fiquem invisíveis para qualquer um que não a esteja seguindo. <strong>Banir</strong> removerá todo o conteúdo da conta, mídia e dados do perfil. Use <strong>Nenhum</strong> se você apenas deseja recusar os arquivos de mídia."
+          desc_html: "<strong>Silenciar</strong> vai fazer os posts da conta invisíveis para qualquer um que não os esteja seguindo. <strong>Suspender</strong> vai remover todo o conteúdo, mídia, e dados de perfil da conta. Use <strong>Nenhum</strong> se você só quer rejeitar arquivos de mídia."
           noop: Nenhum
           silence: Silenciar
           suspend: Banir
-        title: Bloquear domínio
+        title: Novo bloqueio de domínio
       private_comment: Comentário privado
       private_comment_hint: Comente sobre essa restrição ao domínio para uso interno dos moderadores.
       public_comment: Comentário público
       public_comment_hint: Comente sobre essa restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
-      reject_media: Recusar arquivos de mídia
-      reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa quaisquer outros no futuro. Irrelevante para banimentos
-      reject_reports: Recusar denúncias
-      reject_reports_hint: Ignora todas as denúncias vindas deste domínio. Irrelevante para banimentos
-      rejecting_media: recusando arquivos de mídia
-      rejecting_reports: recusando denúncias
+      reject_media: Rejeitar arquivos de mídia
+      reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa fazer download de qualquer um no futuro. Irrelevante para suspensões
+      reject_reports: Rejeitar denúncias
+      reject_reports_hint: Ignora todas as denúncias vindo deste domínio. Irrelevante para suspensões
+      rejecting_media: rejeitando arquivos de mídia
+      rejecting_reports: rejeitando denúncias
       severity:
         silence: silenciado
         suspend: banido
@@ -345,23 +386,24 @@ pt-BR:
           one: Uma conta no banco de dados foi afetada
           other: "%{count} contas no banco de dados foram afetadas"
         retroactive:
-          silence: Desativar silêncio de todas as contas desse domínio
-          suspend: Desbanir todas as contas deste domínio
-        title: Desbloquear domínio %{domain}
+          silence: Dessilenciar contas existentes afetadas deste domínio
+          suspend: Dessuspender contas existentes afetadas deste domínio
+        title: Desfazer bloqueio de domínio para %{domain}
         undo: Desfazer
-      undo: Desbloquear domínio
+      undo: Desfazer bloqueio de domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
-      created_msg: Domínio de e-mail bloqueado
+      created_msg: Domínio de e-mail adicionado à lista negra com sucesso
       delete: Excluir
-      destroyed_msg: Domínio de e-mail desbloqueado
+      destroyed_msg: Domínio de e-mail excluído da lista negra com sucesso
       domain: Domínio
-      empty: Sem domínios de e-mail bloqueados.
+      empty: Nenhum domínio de e-mail atualmente na lista negra.
+      from_html: de %{domain}
       new:
         create: Adicionar domínio
-        title: Novo domínio de e-mail bloqueado
-      title: Lista de bloqueio de domínios de e-mail
+        title: Nova entrada de lista negra de e-mail
+      title: Lista de negra de e-mail
     instances:
       by_domain: Domínio
       delivery_available: Envio disponível
@@ -421,7 +463,7 @@ pt-BR:
           other: "%{count} denúncias"
       action_taken_by: Atitude tomada por
       are_you_sure: Você tem certeza?
-      assign_to_self: Acatado por mim
+      assign_to_self: Pegar
       assigned: Moderador responsável
       by_target_domain: Domínio da conta denunciada
       comment:
@@ -466,7 +508,7 @@ pt-BR:
         all: Para todos
         disabled: Para ninguém
         title: Mostrar domínios bloqueados
-        users: Para usuários locais ativos
+        users: Para usuários locais logados
       domain_blocks_rationale:
         title: Mostrar motivo
       enable_bootstrap_timeline_accounts:
@@ -537,6 +579,9 @@ pt-BR:
       trends:
         desc_html: Mostrar publicamente hashtags previamente revisadas que estão em alta
         title: Hashtags em alta
+    site_uploads:
+      delete: Excluir arquivo enviado
+      destroyed_msg: Upload do site excluído com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -573,7 +618,6 @@ pt-BR:
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
-      edit: Editar
       edit_preset: Editar o aviso pré-definido
       title: Gerenciar os avisos pré-definidos
   admin_mailer:
@@ -585,12 +629,13 @@ pt-BR:
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
     new_trending_tag:
-      body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou apenas salve o formulário do jeito que está para nunca mais ouvir falar dela.'
+      body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou salve o formulário do jeito que está para nunca mais ouvir falar dela.'
       subject: Nova hashtag disponível para revisão em %{instance} (#%{name})
   aliases:
     add_new: Criar alias
-    created_msg: Um novo alias foi criado com sucesso. Agora você pode se mudar.
-    deleted_msg: Alias excluído com sucesso. Não será mais possível se mudar para esta conta.
+    created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
+    deleted_msg: Alias removido com sucesso. Não será mais possível se mudar daquela conta para esta conta.
+    empty: Você não tem alias.
     hint_html: Se você quiser migrar de uma outra conta para esta, você pode criar um alias aqui, o que é necessário antes que você possa migrar os seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada pela conta antiga</strong>.
     remove: Desvincular alias
   appearance:
@@ -661,6 +706,7 @@ pt-BR:
     trouble_logging_in: Problemas para entrar?
   authorize_follow:
     already_following: Você já segue
+    already_requested: Você já enviou uma solicitação para seguir esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
     follow_request: 'Você mandou uma solicitação para seguir para:'
@@ -677,7 +723,7 @@ pt-BR:
     prompt: Confirme sua senha para continuar
   date:
     formats:
-      default: "%d %b %Y"
+      default: "%d %b, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -722,7 +768,7 @@ pt-BR:
     '406': Esta página não está disponível no formato solicitado.
     '410': A página que você procura não existe mais.
     '422':
-      content: Falha na verificação de segurança. Você desativou o uso de cookies?
+      content: Falha na verificação de segurança. Você está bloqueando cookies?
       title: Falha na verificação de segurança
     '429': Muitas solicitações
     '500':
@@ -774,12 +820,12 @@ pt-BR:
     developers: Desenvolvedores
     more: Mais…
     resources: Recursos
-    trending_now: Em alta agora
+    trending_now: Em alta no momento
   generic:
     all: Tudo
     changes_saved_msg: Alterações foram salvas com sucesso!
     copy: Copiar
-    delete: Eliminar
+    delete: Excluir
     no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Salvar alterações
@@ -804,6 +850,8 @@ pt-BR:
     inactive: Inativo
     publicize_checkbox: 'E toote isso:'
     publicize_toot: 'Está provado! Eu sou %{username} no %{service}: %{url}'
+    remove: Remover comprovatido da conta
+    removed: Comprovativo removido da conta com sucesso
     status: Status da verificação
     view_proof: Ver prova
   imports:
@@ -849,6 +897,7 @@ pt-BR:
   media_attachments:
     validations:
       images_and_video: Não foi possível anexar um vídeo a um toot que já contém imagens
+      not_ready: Não é possível anexar arquivos que não terminaram de ser processados. Tente novamente daqui a pouco!
       too_many: Não foi possível anexar mais de 4 imagens
   migrations:
     acct: Mudou-se para
@@ -1070,6 +1119,8 @@ pt-BR:
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
       other: 'continha hashtags não permitidas: %{tags}'
+    errors:
+      in_reply_not_found: O toot que você quer responder parece não existir.
     language_detection: Detectar idioma automaticamente
     open_in_web: Abrir no navegador
     over_character_limit: limite de caracteres de %{max} excedido
@@ -1217,7 +1268,7 @@ pt-BR:
       title: Baixar arquivo
     warning:
       explanation:
-        disable: Enquanto sua conta está bloqueada, seus dados estão intactos, mas você não pode realizar nenhuma ação até que sua conta seja desbloqueada.
+        disable: Enquanto sua conta está congelada, seus dados de conta permanecem intactos, mas você não pode realizar nenhuma ação até que esteja destrancada.
         silence: Enquanto sua conta está silenciada, somente pessoas que já estão seguindo você poderão ver seus toots nessa instância, e você pode ser excluído de várias listas públicas. No entanto, outros ainda podem te seguir manualmente.
         suspend: Sua conta foi banida e todos os seus toots e mídias foram irreversivelmente excluídos desta instância e das instâncias dos seus seguidores.
       get_in_touch: Você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
@@ -1235,7 +1286,7 @@ pt-BR:
         suspend: Conta banida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Você pode personalizar o seu perfil enviando uma imagem de perfil, uma capa, alterando seu nome de exibição e etc. Se você preferir aprovar seus novos seguidores antes de eles verem seus toots, você pode trancar a sua conta.
+      edit_profile_step: Você pode customizar o seu perfil ao fazer upload de um avatar, header, alterar seu nome de exibição e mais. Se você preferir revisar novos seguidores antes de poderem te seguir, você pode trancar a sua conta.
       explanation: Aqui estão algumas dicas para você começar
       final_action: Comece a tootar
       final_step: 'Comece a tootar! Mesmo sem seguidores, suas mensagens públicas podem ser vistas pelos outros, por exemplo, na linha local e nas hashtags. Você pode querer fazer uma introdução usando a hashtag #introdução, ou em inglês usando a hashtag #introductions.'

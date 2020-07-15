@@ -33,6 +33,9 @@ class Status < ApplicationRecord
   include Paginable
   include Cacheable
   include StatusThreadingConcern
+  include RateLimitable
+
+  rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
 
@@ -141,10 +144,12 @@ class Status < ApplicationRecord
       ids += mentions.where(account: Account.local).pluck(:account_id)
       ids += favourites.where(account: Account.local).pluck(:account_id)
       ids += reblogs.where(account: Account.local).pluck(:account_id)
+      ids += bookmarks.where(account: Account.local).pluck(:account_id)
     else
       ids += preloaded.mentions[id] || []
       ids += preloaded.favourites[id] || []
       ids += preloaded.reblogs[id] || []
+      ids += preloaded.bookmarks[id] || []
     end
 
     ids.uniq
@@ -196,18 +201,6 @@ class Status < ApplicationRecord
 
   def preview_card
     preview_cards.first
-  end
-
-  def title
-    if destroyed?
-      "#{account.acct} deleted status"
-    elsif reblog?
-      preview = sensitive ? '<sensitive>' : text.slice(0, 10).split("\n")[0]
-      "#{account.acct} shared #{reblog.account.acct}'s: #{preview}"
-    else
-      preview = sensitive ? '<sensitive>' : text.slice(0, 20).split("\n")[0]
-      "#{account.acct}: #{preview}"
-    end
   end
 
   def hidden?
@@ -299,7 +292,7 @@ class Status < ApplicationRecord
     def as_public_timeline(account = nil, local_only = false)
       query = timeline_scope(local_only).without_replies
 
-      apply_timeline_filters(query, account, local_only)
+      apply_timeline_filters(query, account, [:local, true].include?(local_only))
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
@@ -357,7 +350,7 @@ class Status < ApplicationRecord
 
       if account.nil?
         where(visibility: visibility).without_local_only
-      elsif target_account.blocking?(account) # get rid of blocked peeps
+      elsif target_account.blocking?(account) || (account.domain.present? && target_account.domain_blocking?(account.domain)) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
         all
@@ -374,10 +367,33 @@ class Status < ApplicationRecord
       end
     end
 
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(FetchLinkCardService::URL_PATTERN).map(&:first).uniq.map do |url|
+        status = begin
+          if TagManager.instance.local_url?(url)
+            ActivityPub::TagManager.instance.uri_to_resource(url, Status)
+          else
+            EntityCache.instance.status(url)
+          end
+        end
+        status&.distributable? ? status : nil
+      end.compact
+    end
+
     private
 
-    def timeline_scope(local_only = false)
-      starting_scope = local_only ? Status.local : Status
+    def timeline_scope(scope = false)
+      starting_scope = case scope
+                       when :local, true
+                         Status.local
+                       when :remote
+                         Status.remote
+                       else
+                         Status
+                       end
+
       starting_scope
         .with_public_visibility
         .without_reblogs

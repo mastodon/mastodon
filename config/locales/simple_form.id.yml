@@ -8,6 +8,7 @@ id:
         acct: Tentukan namapengguna@domain akun yang ingin Anda pindah
       account_warning_preset:
         text: Anda dapat memakai sintaks toot, seperti URL, tagar, dan sebutan
+        title: Opsional. Tidak terlihat penerima
       admin_account_action:
         include_statuses: Pengguna dapat melihat toot mana yang menyebabkan aksi atau peringatan moderasi
         send_email_notification: Pengguna akan menerima penjelasan tentang apa yang terjadi pada akun mereka
@@ -53,6 +54,9 @@ id:
         whole_word: Ketika kata kunci/frasa hanya alfanumerik, maka itu hanya akan diterapkan jika cocok dengan semua kata
       domain_allow:
         domain: Domain ini dapat mengambil data dari server ini dan data yang diterima akan diproses dan disimpan
+      email_domain_block:
+        domain: Ini bisa nama domain yang muncul di alamat surel, data MX yang sedang diselesaikan oleh domain, atau IP server yang dipecahkan oleh data MX. Mereka akan dicek saat pendaftaran pengguna dan pendaftaran akan ditolak.
+        with_dns_records: Usaha untuk menyelesaikan data DNS domain yang diberikan akan dilakukan dan hasilnya akan masuk daftar hitam
       featured_tag:
         name: 'Anda mungkin ingin pakai salah satu dari ini:'
       form_challenge:
@@ -78,6 +82,7 @@ id:
         acct: Menangani akun baru
       account_warning_preset:
         text: Teks preset
+        title: Judul
       admin_account_action:
         include_statuses: Sertakan toot terlapor pada surel
         send_email_notification: Beritahu pengguna per surel
@@ -150,6 +155,8 @@ id:
         username: Nama pengguna
         username_or_email: Nama pengguna atau Surel
         whole_word: Seluruh kata
+      email_domain_block:
+        with_dns_records: Termasuk data MX dan IP domain
       featured_tag:
         name: Tagar
       interactions:

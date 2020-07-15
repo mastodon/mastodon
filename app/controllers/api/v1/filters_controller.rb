@@ -7,8 +7,6 @@ class Api::V1::FiltersController < Api::BaseController
   before_action :set_filters, only: :index
   before_action :set_filter, only: [:show, :update, :destroy]
 
-  respond_to :json
-
   def index
     render json: @filters, each_serializer: REST::FilterSerializer
   end

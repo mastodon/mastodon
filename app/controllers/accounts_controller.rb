@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   before_action :set_cache_headers
   before_action :set_body_classes
 
-  skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format) }
+  skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
   skip_before_action :require_functional!
 
   def show
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
         end
 
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
-        @statuses        = filtered_status_page(params)
+        @statuses        = filtered_status_page
         @statuses        = cache_collection(@statuses, Status)
         @rss_url         = rss_url
 
@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
-        @statuses = filtered_statuses.without_reblogs.without_local_only.without_replies.limit(PAGE_SIZE)
+        @statuses = filtered_statuses.without_reblogs.without_local_only.limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end
@@ -133,23 +133,23 @@ class AccountsController < ApplicationController
   end
 
   def media_requested?
-    request.path.ends_with?('/media') && !tag_requested?
+    request.path.split('.').first.ends_with?('/media') && !tag_requested?
   end
 
   def replies_requested?
-    request.path.ends_with?('/with_replies') && !tag_requested?
+    request.path.split('.').first.ends_with?('/with_replies') && !tag_requested?
   end
 
   def tag_requested?
     request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
-  def filtered_status_page(params)
-    if params[:min_id].present?
-      filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
-    else
-      filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
-    end
+  def filtered_status_page
+    filtered_statuses.paginate_by_id(PAGE_SIZE, params_slice(:max_id, :min_id, :since_id))
+  end
+
+  def params_slice(*keys)
+    params.slice(*keys).permit(*keys)
   end
 
   def restrict_fields_to

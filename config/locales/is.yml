@@ -92,6 +92,7 @@ is:
       delete: Eyða
       destroyed_msg: Tókst að eyða minnispunkti umsjónarmanns!
     accounts:
+      add_email_domain_block: Útiloka tölvupóstlén
       approve: Samþykkja
       approve_all: Samþykkja allt
       are_you_sure: Ertu viss?
@@ -115,7 +116,7 @@ is:
       display_name: Birtingarnafn
       domain: Lén
       edit: Breyta
-      email: Tölvupóstur
+      email: Tölvupóstfang
       email_status: Staða tölvupósts
       enable: Virkja
       enabled: Virkt
@@ -133,7 +134,7 @@ is:
         title: Staðsetning
       login_status: Staða innskráningar
       media_attachments: Myndaviðhengi
-      memorialize: Breya í minningargrein
+      memorialize: Breyta í minningargrein
       moderation:
         active: Virkur
         all: Allt
@@ -172,6 +173,7 @@ is:
         staff: Starfsmaður
         user: Notandi
       search: Leita
+      search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
       shared_inbox_url: Slóð á sameiginlegt innhólf
       show:
@@ -193,6 +195,42 @@ is:
       web: Vefur
       whitelisted: Á lista yfir leyft
     action_logs:
+      action_types:
+        assigned_to_self_report: Úthluta kæru
+        change_email_user: Skipta um tölvupóstfang notanda
+        confirm_user: Staðfesta notanda
+        create_account_warning: Útbúa aðvörun
+        create_announcement: Búa til tilkynningu
+        create_custom_emoji: Búa til sérsniðið tjáningartákn
+        create_domain_allow: Búa til lén leyft
+        create_domain_block: Búa til lén bannað
+        create_email_domain_block: Búa til tölvupóstfang bannað
+        demote_user: Lækka notanda í tign
+        destroy_announcement: Eyða tilkynningu
+        destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
+        destroy_domain_allow: Eyða léni leyft
+        destroy_domain_block: Eyða léni bannað
+        destroy_email_domain_block: Eyða tölvupóstfangi bannað
+        destroy_status: Eyða stöðufærslu
+        disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
+        disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
+        disable_user: Gera notanda óvirkan
+        enable_custom_emoji: Virkja sérsniðið tjáningartákn
+        enable_user: Virkja notanda
+        memorialize_account: Gera aðgang að minningargrein
+        promote_user: Hækka notanda í tign
+        remove_avatar_user: Fjarlægja auðkennismynd
+        reopen_report: Enduropna kæru
+        reset_password_user: Endurstilla lykilorð
+        resolve_report: Leysa kæru
+        silence_account: Hylja notandaaðgang
+        suspend_account: Setja notandaaðgang í bið
+        unassigned_report: Aftengja úthlutun kæru
+        unsilence_account: Hætta að hylja notandaaðgang
+        unsuspend_account: Taka notandaaðgang úr bið
+        update_announcement: Uppfæra tilkynningu
+        update_custom_emoji: Uppfæra sérsniðið tjáningartákn
+        update_status: Uppfæra stöðufærslu
       actions:
         assigned_to_self_report: "%{name} úthlutaði skýrslu %{target} til sín"
         change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
@@ -230,6 +268,9 @@ is:
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
+      empty: Engar atvikaskrár fundust.
+      filter_by_action: Sía eftir aðgerð
+      filter_by_user: Sía eftir notanda
       title: Atvikaskrá
     announcements:
       destroyed_msg: Það tókst að eyða auglýsingunni!
@@ -358,6 +399,7 @@ is:
       destroyed_msg: Tókst að eyða póstléni af lista yfir bannað
       domain: Lén
       empty: Engin tölvupóstlén eru á bannlista.
+      from_html: frá %{domain}
       new:
         create: Bæta við léni
         title: Ný færsla á bannlista fyrir tölvupóstföng
@@ -537,6 +579,9 @@ is:
       trends:
         desc_html: Birta opinberlega þau áður yfirförnu myllumerki sem eru núna í umræðunni
         title: Myllumerki í umræðunni
+    site_uploads:
+      delete: Eyða innsendri skrá
+      destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
     statuses:
       back_to_account: Fara aftur á síðu notandaaðgangsins
       batch:
@@ -573,7 +618,6 @@ is:
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
-      edit: Breyta
       edit_preset: Breyta forstilltri aðvörun
       title: Sýsla með forstilltar aðvaranir
   admin_mailer:
@@ -591,6 +635,7 @@ is:
     add_new: Búa til samnefni (alias)
     created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
     deleted_msg: Tókst að fjarlægja samnefnið. Flutningur af þeim notandaaðgangi yfir á þennan er ekki lengur mögulegur.
+    empty: Þú ert ekki með nein samnefni.
     hint_html: Ef þú vilt flytjast af öðrum notandaaðgangi yfir á þennan, þá geturðu búið hér til samnefni, sem er nauðsynlegt áður en þú getur haldið áfram við að flytja fylgjendur af gamla notandaaðgangnum yfir á þennan aðgang. Þessi aðgerð er í sjálfu sér <strong>skaðlaus og afturkræf</strong>. <strong>Yfirfærsla notandaaðgangsins er síðan ræst á gamla notandaaðgangnum</strong>.
     remove: Aftengja samnefni
   appearance:
@@ -661,6 +706,7 @@ is:
     trouble_logging_in: Vandræði við að skrá inn?
   authorize_follow:
     already_following: Þú ert að þegar fylgjast með þessum aðgangi
+    already_requested: Þú ert þegar búin/n að senda fylgjendabeiðni á þennan notanda
     error: Því miður, það kom upp villa við að fletta upp fjartengda notandaaðgangnum
     follow: Fylgjast með
     follow_request: 'Þú sendir beiðni um að fylgjast með til:'
@@ -804,6 +850,8 @@ is:
     inactive: Óvirkt
     publicize_checkbox: 'Og tísti þetta:'
     publicize_toot: 'Það er búið að sanna þetta! Ég er %{username} á %{service}: %{url}'
+    remove: Fjarlægja sönnun úr notandaaðgangi
+    removed: Tókst að fjarlægja sönnun úr notandaaðgangi
     status: Staða sannvottunar
     view_proof: Skoða sönnun
   imports:
@@ -849,6 +897,7 @@ is:
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
+      not_ready: Ekki er hægt að hengja við skrár sem ekki er búið að vinna til fulls. Prófaðu aftur eftir augnablik!
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
     acct: Færði í
@@ -1036,7 +1085,7 @@ is:
   settings:
     account: Notandaaðgangur
     account_settings: Stillingar notandaaðgangs
-    aliases: Samheiti notandaaðgangs
+    aliases: Samnefni notandaaðgangs
     appearance: Útlit
     authorized_apps: Leyfð forrit
     back: Til baka í Mastodon
@@ -1070,6 +1119,8 @@ is:
     disallowed_hashtags:
       one: 'innihélt óleyfilegt myllumerki: %{tags}'
       other: 'innihélt óleyfilegu myllumerkin: %{tags}'
+    errors:
+      in_reply_not_found: Stöðufærslan sem þú ert að reyna að svara að er líklega ekki til.
     language_detection: Greina tungumál sjálfvirkt
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð

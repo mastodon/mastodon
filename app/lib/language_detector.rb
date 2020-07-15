@@ -52,8 +52,10 @@ class LanguageDetector
 
   def detect_language_code(text)
     return if unreliable_input?(text)
+
     result = @identifier.find_language(text)
-    iso6391(result.language.to_s).to_sym if result.reliable?
+
+    iso6391(result.language.to_s).to_sym if result&.reliable?
   end
 
   def iso6391(bcp47)

@@ -12,7 +12,7 @@ class ActivityPub::DeliveryWorker
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
   def perform(json, source_account_id, inbox_url, options = {})
-    return if DeliveryFailureTracker.unavailable?(inbox_url)
+    return unless DeliveryFailureTracker.available?(inbox_url)
 
     @options        = options.with_indifferent_access
     @json           = json
@@ -23,10 +23,12 @@ class ActivityPub::DeliveryWorker
 
     perform_request
   ensure
-    if @performed
-      failure_tracker.track_success!
-    else
-      failure_tracker.track_failure!
+    if @inbox_url.present?
+      if @performed
+        failure_tracker.track_success!
+      else
+        failure_tracker.track_failure!
+      end
     end
   end
 
@@ -50,13 +52,9 @@ class ActivityPub::DeliveryWorker
       end
     end
 
-    begin
-      light.with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
-           .with_cool_off_time(STOPLIGHT_COOLDOWN)
-           .run
-    rescue Stoplight::Error::RedLight => e
-      raise e.class, e.message, e.backtrace.first(3)
-    end
+    light.with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
+         .with_cool_off_time(STOPLIGHT_COOLDOWN)
+         .run
   end
 
   def failure_tracker

@@ -38,14 +38,6 @@ class Rack::Attack
     end
   end
 
-  PROTECTED_PATHS = %w(
-    /auth/sign_in
-    /auth
-    /auth/password
-  ).freeze
-
-  PROTECTED_PATHS_REGEX = Regexp.union(PROTECTED_PATHS.map { |path| /\A#{Regexp.escape(path)}/ })
-
   Rack::Attack.safelist('allow from localhost') do |req|
     req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
@@ -70,7 +62,6 @@ class Rack::Attack
     req.remote_ip if req.post? && req.path == '/api/v1/accounts'
   end
 
-  # Throttle paging, as it is mainly used for public pages and AP collections
   throttle('throttle_authenticated_paging', limit: 300, period: 15.minutes) do |req|
     req.authenticated_user_id if req.paging_request?
   end
@@ -86,8 +77,32 @@ class Rack::Attack
     req.authenticated_user_id if (req.post? && req.path =~ API_DELETE_REBLOG_REGEX) || (req.delete? && req.path =~ API_DELETE_STATUS_REGEX)
   end
 
-  throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
-    req.remote_ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
+  throttle('throttle_sign_up_attempts/ip', limit: 25, period: 5.minutes) do |req|
+    req.remote_ip if req.post? && req.path == '/auth'
+  end
+
+  throttle('throttle_password_resets/ip', limit: 25, period: 5.minutes) do |req|
+    req.remote_ip if req.post? && req.path == '/auth/password'
+  end
+
+  throttle('throttle_password_resets/email', limit: 5, period: 30.minutes) do |req|
+    req.params.dig('user', 'email').presence if req.post? && req.path == '/auth/password'
+  end
+
+  throttle('throttle_email_confirmations/ip', limit: 25, period: 5.minutes) do |req|
+    req.remote_ip if req.post? && req.path == '/auth/confirmation'
+  end
+
+  throttle('throttle_email_confirmations/email', limit: 5, period: 30.minutes) do |req|
+    req.params.dig('user', 'email').presence if req.post? && req.path == '/auth/password'
+  end
+
+  throttle('throttle_login_attempts/ip', limit: 25, period: 5.minutes) do |req|
+    req.remote_ip if req.post? && req.path == '/auth/sign_in'
+  end
+
+  throttle('throttle_login_attempts/email', limit: 25, period: 1.hour) do |req|
+    req.session[:attempt_user_id] || req.params.dig('user', 'email').presence if req.post? && req.path == '/auth/sign_in'
   end
 
   self.throttled_response = lambda do |env|

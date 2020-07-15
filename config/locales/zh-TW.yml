@@ -11,12 +11,14 @@ zh-TW:
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
+    browse_local_posts: 瀏覽這台伺服器中公開嘟文的直播串流
     browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
     discover_users: 探索使用者
     documentation: 文件
+    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤隨便一台 Mastodon 伺服器上的人等等。
     get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
     learn_more: 了解詳細
@@ -29,6 +31,7 @@ zh-TW:
     status_count_before: 他們共嘟出了
     tagline: 關注朋友並探索新朋友
     terms: 使用條款
+    unavailable_content: 無法取得的內容
     unavailable_content_description:
       domain: 伺服器
       reason: 原因
@@ -60,7 +63,9 @@ zh-TW:
     roles:
       admin: 管理員
       bot: 機器人
+      group: 群組
       moderator: 版主
+    unavailable: 無法取得個人檔案
     unfollow: 取消關注
   admin:
     account_actions:
@@ -72,6 +77,7 @@ zh-TW:
       delete: 刪除
       destroyed_msg: 成功刪除管理備忘!
     accounts:
+      add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 核准
       approve_all: 全部批准
       are_you_sure: 您確定嗎?
@@ -151,6 +157,8 @@ zh-TW:
         staff: 管理人員
         user: 普通使用者
       search: 搜尋
+      search_same_email_domain: 其他有同個電子郵件網域的使用者
+      search_same_ip: 其他有同個 IP 的使用者
       shared_inbox_url: 共享收件箱網址
       show:
         created_reports: 建立檢舉
@@ -160,6 +168,7 @@ zh-TW:
       statuses: 嘟文
       subscribe: 訂閱
       suspended: 已停權
+      time_in_queue: 正在佇列等待 %{time}
       title: 帳戶
       unconfirmed_email: 未確認的電子信箱位址
       undo_silenced: 取消靜音
@@ -168,17 +177,22 @@ zh-TW:
       username: 使用者名稱
       warn: 警告
       web: 頁面
+      whitelisted: 已加入白名單
     action_logs:
       actions:
         assigned_to_self_report: "%{name} 接受了檢舉 %{target}"
         change_email_user: "%{name} 變更了使用者 %{target} 的電子信箱位址"
         confirm_user: "%{name} 確認了使用者 %{target} 的電子信箱位址"
         create_account_warning: "%{name} 已對 %{target} 送出警告"
+        create_announcement: "%{name} 建立了新公告 %{target}"
         create_custom_emoji: "%{name} 加入自訂表情符號 %{target}"
+        create_domain_allow: "%{name} 將 %{target} 網域加入黑名單了"
         create_domain_block: "%{name} 封鎖了站點 %{target}"
         create_email_domain_block: "%{name} 封鎖了電子信箱網域 %{target}"
         demote_user: "%{name} 把使用者 %{target} 降級"
+        destroy_announcement: "%{name} 刪除了公告 %{target}"
         destroy_custom_emoji: "%{name} 破壞了 %{target} 表情符號"
+        destroy_domain_allow: "%{name} 從白名單中移除了 %{target} 網域"
         destroy_domain_block: "%{name} 取消了對站點 %{target} 的封鎖"
         destroy_email_domain_block: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
         destroy_status: "%{name} 刪除了 %{target} 的嘟文"
@@ -198,15 +212,33 @@ zh-TW:
         unassigned_report: "%{name} 取消指派 %{target} 的檢舉"
         unsilence_account: "%{name} 取消了使用者 %{target} 的靜音狀態"
         unsuspend_account: "%{name} 取消了使用者 %{target} 的停權狀態"
+        update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自訂表情符號 %{target}"
         update_status: "%{name} 重整了 %{target} 的嘟文"
       deleted_status: "（已刪除嘟文）"
       title: 營運日誌
+    announcements:
+      destroyed_msg: 成功刪除公告！
+      edit:
+        title: 編輯公告
+      empty: 找不到公告。
+      live: 直播
+      new:
+        create: 建立公告
+        title: 新增公告
+      published_msg: 成功發布公告！
+      scheduled_for: 排定 %{time}
+      scheduled_msg: 公告已排定公開！
+      title: 公告
+      unpublished_msg: 成功取消發布公告！
+      updated_msg: 成功更新公告！
     custom_emojis:
+      assign_category: 指定分類
       by_domain: 站點
       copied_msg: 成功將表情複製到本地
       copy: 複製
       copy_failed_msg: 無法將表情複製到本地
+      create_new_category: 建立新分類
       created_msg: 已新增表情符號!
       delete: 刪除
       destroyed_msg: 已刪除表情符號!
@@ -226,11 +258,13 @@ zh-TW:
       shortcode: 短代碼
       shortcode_hint: 至少 2 個字元，只能使用字母、數字和下劃線
       title: 自訂表情符號
+      uncategorized: 未分類
       unlisted: 已隱藏
       update_failed_msg: 無法更新表情符號
       updated_msg: 已更新表情符號!
       upload: 上傳新的表情符號
     dashboard:
+      authorized_fetch_mode: 安全模式
       backlog: 未處理工作數
       config: 設定
       feature_deletions: 帳戶刪除
@@ -238,9 +272,13 @@ zh-TW:
       feature_profile_directory: 個人資料目錄
       feature_registrations: 註冊
       feature_relay: 聯邦中繼站
+      feature_spam_check: 防垃圾訊息
+      feature_timeline_preview: 時間軸預覽
       features: 功能
       hidden_service: 與隱密服務互連
       open_reports: 待處理檢舉數
+      pending_tags: 等待審核的主題標籤
+      pending_users: 等待審核的使用者
       recent_users: 最近加入的使用者
       search: 全文搜尋
       single_user_mode: 單一使用者模式
@@ -252,6 +290,12 @@ zh-TW:
       week_interactions: 本週互動次數
       week_users_active: 本週活躍使用者數
       week_users_new: 本週新使用者數
+      whitelist_mode: 白名單模式
+    domain_allows:
+      add_new: 將網域加入白名單
+      created_msg: 網域已成功加入白名單
+      destroyed_msg: 網域已成功從白名單移除
+      undo: 從白名單移除
     domain_blocks:
       add_new: 新增欲封鎖域名
       created_msg: 正在進行站點封鎖
@@ -351,12 +395,23 @@ zh-TW:
       contact_information:
         email: 用於聯絡的公開電子信箱位址
         username: 請輸入使用者名稱
+      domain_blocks:
+        all: 給任何人
+        disabled: 給沒有人
+        title: 顯示封鎖的網域
+      enable_bootstrap_timeline_accounts:
+        title: 啟用新使用者的預設追蹤
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
         title: 主題圖片
       peers_api_enabled:
         desc_html: 本伺服器在聯邦中發現的站點
         title: 發布已知伺服器的列表
+      preview_sensitive_media:
+        title: 在 OpenGraph 預覽中顯示敏感媒體
+      profile_directory:
+        desc_html: 允許能探索使用者
+        title: 啟用個人資料目錄
       registrations:
         closed_message:
           desc_html: 關閉註冊時顯示在首頁的內容，可使用 HTML 標籤
@@ -367,6 +422,12 @@ zh-TW:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
+      registrations_mode:
+        modes:
+          approved: 註冊需要核准
+          none: 沒有人可註冊
+          open: 任何人皆能註冊
+        title: 註冊模式
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示其他站點嘟文，否則就只會顯示本站點嘟文。
         title: 在時間軸預覽顯示其他站點嘟文
@@ -379,10 +440,14 @@ zh-TW:
       site_description_extended:
         desc_html: 可放置行為準則、規定以及其他此伺服器特有的內容。可使用 HTML 標籤
         title: 本站詳細資訊
+      site_short_description:
+        title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
         title: 自訂使用條款
       site_title: 伺服器名稱
+      spam_check_enabled:
+        title: 自動防廣告訊息
       thumbnail:
         desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
         title: 伺服器縮圖
@@ -390,25 +455,44 @@ zh-TW:
         desc_html: 在主頁顯示本站時間軸
         title: 時間軸預覽
       title: 網站設定
+      trends:
+        title: 趨勢主題標籤
+    site_uploads:
+      delete: 刪除上傳的檔案
+      destroyed_msg: 成功刪除站台的上傳項目！
     statuses:
       back_to_account: 返回帳戶訊息頁
       batch:
         delete: 刪除
         nsfw_off: 標記為非敏感內容
         nsfw_on: 標記為敏感內容
+      deleted: 已刪除
       failed_to_execute: 執行失敗
       media:
         title: 媒體檔案
       no_media: 不含媒體檔案
+      no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶嘟文
       with_media: 含有媒體檔案
     tags:
+      context: 上下文
+      directory: 在目錄中
+      in_directory: 目錄中有 %{count} 個
+      last_active: 上次活躍
+      most_popular: 最熱門
+      most_recent: 最近
       name: Hashtag
+      review: 審核嘟文
+      reviewed: 已審核
+      title: 主題標籤
+      trending_right_now: 最新趨勢
+      unique_uses_today: 今天嘟了 %{count} 則
+      unreviewed: 未審核
+      updated_msg: 成功更新主題標籤設定
     title: 管理介面
     warning_presets:
       add_new: 新增
       delete: 刪除
-      edit: 編輯
   admin_mailer:
     new_report:
       body: "%{reporter} 檢舉了使用者 %{target}"
@@ -455,6 +539,7 @@ zh-TW:
     set_new_password: 設定新密碼
   authorize_follow:
     already_following: 你已經關注了這個使用者
+    already_requested: 您早已向該帳戶寄送追蹤請求
     error: 對不起，搜尋其他站點使用者出現錯誤
     follow: 關注
     follow_request: 關注請求已經發送給：
@@ -655,6 +740,8 @@ zh-TW:
       description: 附件： %{attached}
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: 內容警告： %{warning}
+    errors:
+      in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
     language_detection: 自動偵測語言
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制

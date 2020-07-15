@@ -3,96 +3,96 @@ pt-BR:
   devise:
     confirmations:
       confirmed: O seu endereço de e-mail foi confirmado.
-      send_instructions: Você receberá uma mensagem em sua caixa de entrada com instruções sobre como confirmar o seu endereço de e-mail dentro de alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
-      send_paranoid_instructions: Se o seu endereço de e-mail já existir em nossa base de dados, você receberá uma mensagem em sua caixa de entrada com instruções sobre confirmá-lo dentro de alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
+      send_instructions: Você receberá um e-mail com instruções sobre como confirmar o endereço de e-mail dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
+      send_paranoid_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para confirmá-lo dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
     failure:
-      already_authenticated: A sua sessão já está aberta.
-      inactive: A sua contra ainda não está ativada.
+      already_authenticated: Você entrou na sua conta.
+      inactive: Sua conta não foi confirmada ainda.
       invalid: "%{authentication_keys} ou senha inválida."
-      last_attempt: Você tem apenas mais uma tentativa sobrando antes que a sua conta seja bloqueada.
-      locked: A sua conta está bloqueada.
+      last_attempt: Você tem mais uma tentativa antes de sua conta ser trancada.
+      locked: Sua conta está trancada.
       not_found_in_database: "%{authentication_keys} ou senha inválida."
-      pending: Sua conta ainda está sendo revisada.
-      timeout: A sua sessão expirou. Por favor, entre novamente para continuar.
-      unauthenticated: Você precisa entrar ou cadastrar-se antes de continuar.
+      pending: Sua conta está sendo revisada.
+      timeout: Você saiu de sua conta. Por favor, entre novamente para continuar.
+      unauthenticated: Você precisa entrar ou criar uma conta antes de continuar.
       unconfirmed: Você precisa confirmar o seu endereço de e-mail antes de continuar.
     mailer:
       confirmation_instructions:
-        action: Verificar endereço de e-mail
+        action: Confirmar endereço de e-mail
         action_with_app: Confirmar e voltar para %{app}
-        explanation: Você criou uma conta em %{host} com esse endereço de e-mail. Você está a um clique de ativá-la. Se não foi você, por favor ignore esse e-mail.
-        explanation_when_pending: Você pediu um convite para %{host} com esse endereço de email. Assim que você confirmar o seu endereço de e-mail, iremos revisar o seu pedido. Você não poderá fazer login até então. Se sua aplicação for rejeitada, seus dados serão removidos e nenhuma ação será necessária da sua parte. Se você não pediu por isso, por favor ignore esse e-mail.
+        explanation: Você criou uma conta em %{host} com esse endereço de e-mail. Se não foi você, por favor, ignore este e-mail.
+        explanation_when_pending: Você solicitou um convite para %{host} com esse endereço de e-mail. Após você confirmar o seu endereço de e-mail, espere o resultado da revisão de sua solicitação. Se sua conta por vetada, seus dados serão excluídos e nenhuma ação será necessária de sua parte. Se você não solicitou nada, por favor, ignore este e-mail.
         extra_html: Por favor confira também <a href="%{terms_path}">as regras da instância</a> e <a href="%{policy_path}">nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação para %{instance}'
-        title: Verifique o endereço de e-mail
+        title: Confirme o endereço de e-mail
       email_changed:
-        explanation: 'O e-mail associado à sua conta será mudado para:'
-        extra: Se você não mudou seu e-mail é possível que alguém tenha conseguido acesso à sua conta. Por favor mude sua senha imediatamente ou entre em contato com um administrador da sua instância se você ficou sem acesso à sua conta.
-        subject: 'Mastodon: Email alterado'
+        explanation: 'O e-mail vinculado à sua conta será alterado para:'
+        extra: Se você não alterou seu email, é provável que alguém tenha ganhado acesso a sua conta. Por favor altere sua senha imediatamente ou entre em contato com o administrador do servidor se você está trancado fora de sua conta.
+        subject: 'Mastodon: Endereço de e-mail alterado'
         title: Novo endereço de e-mail
       password_change:
-        explanation: A senha da sua conta foi mudada.
-        extra: Se você não mudou a sua senha, é possível que alguém tenha conseguido acesso à sua conta. Por favor mude sua senha imediatamente ou entre em contato com um administrador da sua instância se você ficou sem acesso à sua conta.
-        subject: 'Mastodon: Senha modificada'
+        explanation: A senha da sua conta foi alterada.
+        extra: Se você não alterou sua senha, é provável que alguém tenha ganhado acesso a sua conta. Por favor altere sua senha imediatamente ou entre em contato com o administrador do servidor se você está trancado fora de sua conta.
+        subject: 'Mastodon: Senha alterada'
         title: Senha alterada
       reconfirmation_instructions:
-        explanation: Confirme o seu novo endereço para mudar seu e-mail.
-        extra: Se essa mudança não foi iniciada por você, por favor ignore esse e-mail. O endereço de e-mail para essa conta do Mastodon não irá mudar até que você acesse o link acima.
-        subject: 'Mastodon: Confirmar emai para %{instance}'
-        title: Verificar o endereço de e-mail
+        explanation: Confirme seu novo endereço para alterar seu e-mail.
+        extra: Se essa alteração não foi feita por você, por favor, ignore este e-mail. O endereço de e-mail para essa conta do Mastodon não será alterado até que você entre no link acima.
+        subject: 'Mastodon: Confirmar endereço de e-mail para %{instance}'
+        title: Confirmar endereço de e-mail
       reset_password_instructions:
-        action: Mudar a senha
-        explanation: Você pediu uma nova senha para sua conta.
-        extra: Se você não fez esse pedido, por favor ignore esse e-mail. Sua senha não irá mudar até que você acesse o link acima e crie uma nova.
-        subject: 'Mastodon: Instruções para mudança de senha'
-        title: Redefinir a senha
+        action: Alterar senha
+        explanation: Você solicitou uma nova senha para sua conta.
+        extra: Se você não solicitou nada, por favor, ignore este e-mail. Sua senha não será alterada até que você entre no link acima e crie uma nova.
+        subject: 'Mastodon: Instruções para alterar senha'
+        title: Redefinir senha
       two_factor_disabled:
         explanation: A autenticação de dois fatores para sua conta foi desativada. Agora é possível acessar apenas com seu endereço de e-mail e senha.
         subject: 'Mastodon: Autenticação de dois fatores desativada'
         title: 2FA desativada
       two_factor_enabled:
-        explanation: A autenticação de dois fatores foi habilitada para sua conta. Um token gerado pelo app TOTP pareado será necessário para o login.
+        explanation: A autenticação de dois fatores foi ativada para sua conta. Um código gerado no aplicativo TOTP pareado será necessário para entrar.
         subject: 'Mastodon: Autenticação de dois fatores desativada'
         title: 2FA ativada
       two_factor_recovery_codes_changed:
         explanation: Os códigos de recuperação anteriores foram invalidados e novos códigos foram gerados.
-        subject: 'Mastodon: códigos de recuperação de dois fatores gerados novamente'
-        title: Códigos de recuperação de 2FA alterados
+        subject: 'Mastodon: Novos códigos de recuperação de dois fatores'
+        title: Códigos de recuperação de dois fatores alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções de desbloqueio'
     omniauth_callbacks:
-      failure: Não foi possível autenticá-lo como %{kind} porque "%{reason}".
-      success: Autenticado com sucesso como %{kind}.
+      failure: Não foi possível entrar como %{kind} porque "%{reason}".
+      success: Entrou como %{kind}.
     passwords:
-      no_token: Você não pode acessar esta página se não tiver vindo de uma mensagem de mudança de senha. Se este for o caso, por favor verifique se a URL utilizada está completa.
-      send_instructions: Se o seu endereço de e-mail já estiver cadastrado em nossa base de dados, você receberá uma mensagem com um link para realizar a mudança de senha em alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
-      send_paranoid_instructions: Se o seu endereço de e-mail já estiver cadastrado em nossa base de dados, você receberá uma mensagem com um link para realizar a mudança de senha em alguns minutos. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
-      updated: A sua senha foi alterada. A sua sessão está aberta.
-      updated_not_active: A sua senha foi alterada.
+      no_token: Você não pode acessar esta página sem vir de um e-mail de alteração de senha. Se este for o caso, por favor, verifique se o link fornecido está completo.
+      send_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para alterar a senha dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
+      send_paranoid_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para alterar a senha dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
+      updated: Sua senha foi alterada e você entrou na sua conta.
+      updated_not_active: Sua senha foi alterada com sucesso.
     registrations:
-      destroyed: Adeus! A sua conta foi cancelada. Esperamos vê-lo em breve.
-      signed_up: Bem vindo! A sua conta foi registrada com sucesso.
-      signed_up_but_inactive: A sua conta foi registrada. No entanto, não abrimos a sua sessão porque a sua conta ainda não foi ativada.
-      signed_up_but_locked: A sua conta foi registrada. No entanto, não abrimos a sua sessão porque a sua conta está bloqueada.
-      signed_up_but_pending: Uma mensagem com um link de confirmação foi enviada ao seu endereço de e-mail. Depois que você clicar no link, revisaremos seu pedido. Você será notificado se seu pedido for aprovado.
-      signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Por favor, siga o link para ativar a sua conta e, caso não tenha recebido esta mensagem, cheque a sua pasta de spam.
-      update_needs_confirmation: Você mudou o seu endereço de e-mail ou a sua senha, mas é necessário confirmar a mudança. Por favor siga o link que foi enviado para o seu novo endereço de e-mail e, caso não tenha recebido esta mensagem, cheque a sua pasta de spam.
-      updated: A sua conta foi alterada com sucesso.
+      destroyed: Adeus! Sua conta foi cancelada. Talvez um dia possamos nos ver de novo.
+      signed_up: Boas vindas! Conta criada.
+      signed_up_but_inactive: Conta criada! Agora você deve confirmá-la.
+      signed_up_but_locked: Você se cadastrou com sucesso. Contudo, não pudemos fazer login porque sua conta está trancada.
+      signed_up_but_pending: Um e-mail com um link de confirmação foi enviado para o seu endereço de e-mail. Após você entrar no link, revisaremos sua solicitação e você será notificado caso seja aprovado.
+      signed_up_but_unconfirmed: Um e-mail com instruções para confirmar o seu endereço de e-mail foi enviado. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
+      update_needs_confirmation: Você alterou seu endereço de e-mail ou sua senha, porém é preciso confirmar a alteração. Por favor, entre no link que foi enviado para o seu novo endereço de e-mail e verifique sua pasta de spam caso ainda não o tenha recebido.
+      updated: Sua conta foi alterada com sucesso.
     sessions:
-      already_signed_out: Sessão encerrada.
-      signed_in: Sessão iniciada.
-      signed_out: Sessão encerrada.
+      already_signed_out: Você saiu de sua conta.
+      signed_in: Você entrou na sua conta.
+      signed_out: Você saiu de sua conta.
     unlocks:
-      send_instructions: Você receberá uma mensagem com instruções para desbloquear a sua conta em alguns instantes. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
-      send_paranoid_instructions: Se a sua conta já existe, você receberá uma mensagem com instruções para desbloquear a sua conta em alguns instantes. Por favor, cheque a sua pasta de spam caso não tenha recebido esta mensagem.
-      unlocked: A sua conta foi desbloqueada com sucesso. Por favor inicie sessão para continuar.
+      send_instructions: Você receberá um email com instruções para destrancar a sua conta em alguns minutos. Por favor verifique sua pasta de spam se não recebeu este email.
+      send_paranoid_instructions: Se a sua conta existe, você vai reveber um email com instruções para destrancá-la em alguns minutos. Por favor verifique sua pasta de spam se você não recebeu este email.
+      unlocked: Sua conta foi destrancada com sucesso. Por favor entre na sua conta para continuar.
   errors:
     messages:
-      already_confirmed: já foi confirmado, por favor tente iniciar sessão
+      already_confirmed: confirmado, agora tente entrar na sua conta
       confirmation_period_expired: precisa ser confirmada em até %{period}, por favor, solicite novo link de confirmação
       expired: expirou, por favor solicite uma nova
       not_found: não encontrado
-      not_locked: não está bloqueada
+      not_locked: não foi trancada
       not_saved:
         one: '1 erro impediu este %{resource} de ser salvo(a):'
         other: "%{count} erros impediram este %{resource} de ser salvo(a):"

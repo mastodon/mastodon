@@ -53,8 +53,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
-  handleOpenVideo = (media, startTime) => {
-    this.props.onOpenVideo(media, startTime);
+  handleOpenVideo = (media, options) => {
+    this.props.onOpenVideo(media, options);
   }
 
   handleExpandedToggle = () => {
@@ -173,7 +173,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
       reblogIcon = 'lock';
     }
 
-    if (status.get('visibility') === 'private') {
+    if (['private', 'direct'].includes(status.get('visibility'))) {
       reblogLink = <Icon id={reblogIcon} />;
     } else if (this.context.router) {
       reblogLink = (

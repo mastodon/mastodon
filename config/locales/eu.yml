@@ -72,8 +72,8 @@ eu:
     posts:
       one: Toot
       other: Toot
-    posts_tab_heading: Toot-ak
-    posts_with_replies: Toot-ak eta erantzunak
+    posts_tab_heading: Tootak
+    posts_with_replies: Tootak eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
     roles:
       admin: Administratzailea
@@ -92,6 +92,7 @@ eu:
       delete: Ezabatu
       destroyed_msg: Moderazio ohara ongi suntsitu da!
     accounts:
+      add_email_domain_block: Sartu domeinua zerrenda beltzean
       approve: Onartu
       approve_all: Onartu denak
       are_you_sure: Ziur zaude?
@@ -172,6 +173,7 @@ eu:
         staff: Langilea
         user: Erabiltzailea
       search: Bilatu
+      search_same_email_domain: E-mail domeinu bera duten beste erabiltzailean
       search_same_ip: IP bera duten beste erabiltzaileak
       shared_inbox_url: Partekatutako sarrera ontziaren URL-a
       show:
@@ -358,6 +360,7 @@ eu:
       destroyed_msg: Ongi ezabatu da e-mail domeinua zerrenda beltzetik
       domain: Domeinua
       empty: Ez dago e-mail domeinurik zerrenda beltzean.
+      from_html: "%{domain} domeinutik"
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
@@ -503,7 +506,7 @@ eu:
           open: Edonork eman dezake izena
         title: Erregistratzeko modua
       show_known_fediverse_at_about_page:
-        desc_html: Txandakatzean, fedibertso ezagun osoko toot-ak bistaratuko ditu aurrebistan. Bestela, toot lokalak besterik ez ditu erakutsiko.
+        desc_html: Txandakatzean, fedibertso ezagun osoko tootak bistaratuko ditu aurrebistan. Bestela, toot lokalak besterik ez ditu erakutsiko
         title: Erakutsi fedibertsu ezagun osoko denbora-lerroa aurrebistan
       show_staff_badge:
         desc_html: Erakutsi langile banda erabiltzailearen orrian
@@ -537,6 +540,9 @@ eu:
       trends:
         desc_html: Erakutsi publikoki orain joeran dauden aurretik errebisatutako traolak
         title: Traolak joeran
+    site_uploads:
+      delete: Ezabatu igotako fitxategia
+      destroyed_msg: Guneko igoera ongi ezabatu da!
     statuses:
       back_to_account: Atzera kontuaren orrira
       batch:
@@ -573,7 +579,6 @@ eu:
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
-      edit: Editatu
       edit_preset: Editatu abisu aurre-ezarpena
       title: Kudeatu abisu aurre-ezarpenak
   admin_mailer:
@@ -661,6 +666,7 @@ eu:
     trouble_logging_in: Arazoak saioa hasteko?
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
+    already_requested: Bidali duzu dagoeneko kontu hori jarraitzeko eskaera bat
     error: Zoritxarrez, urruneko kontua bilatzean errore bat gertatu da
     follow: Jarraitu
     follow_request: 'Jarraitzeko eskari bat bidali duzu hona:'
@@ -849,6 +855,7 @@ eu:
   media_attachments:
     validations:
       images_and_video: Ezin da irudiak dituen mezu batean bideo bat erantsi
+      not_ready: Ezin dira prozesatzen amaitu gabeko fitxategiak erantsi. Saiatu geroago!
       too_many: Ezin dira 4 fitxategi baino gehiago erantsi
   migrations:
     acct: Kontu berriaren erabiltzaile@domeinua
@@ -1076,7 +1083,7 @@ eu:
     pin_errors:
       limit: Gehienez finkatu daitekeen toot kopurua finkatu duzu jada
       ownership: Ezin duzu beste norbaiten toot bat finkatu
-      private: Ezin dira publikoak ez diren toot-ak finkatu
+      private: Ezin dira publikoak ez diren tootak finkatu
       reblog: Bultzada bat ezin da finkatu
     poll:
       total_people:
@@ -1098,7 +1105,7 @@ eu:
       unlisted: Zerrendatu gabea
       unlisted_long: Edonork ikusi dezake, baina ez da denbora-lerro publikoetan agertzen
   stream_entries:
-    pinned: Finkatutako toot-a
+    pinned: Finkatutako toota
     reblogged: "(r)en bultzada"
     sensitive_content: 'Kontuz: Eduki hunkigarria'
   tags:
@@ -1218,7 +1225,7 @@ eu:
     warning:
       explanation:
         disable: Zure kontua izoztuta dagoen bitartean, zure kontua bere horretan dirau, baina ezin duzu ekintzarik burutu desblokeatzen den arte.
-        silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure Toot-ak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
+        silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure tootak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
         suspend: Zure kontua kanporatua izan da, zure toot guztiak eta multimedia fitxategiak behin betiko ezabatu dira zerbitzari honetatik, eta zure jarraitzaileen zerbitzarietatik.
       get_in_touch: "%{instance} instantziako jendearekin harremanetan jartzeko e-mail honi erantzun ahal diozu."
       review_server_policies: Berrikusi zerbitzariko politikak
