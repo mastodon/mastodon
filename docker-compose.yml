@@ -4,11 +4,11 @@ services:
   db:
     restart: always
     image: postgres:9.6-alpine
-    #ports:
-      #- "0.0.0.0:543:5432"
-      #- "127.0.0.1:543:5432"
+    ports:
+      # - "0.0.0.0:543:5432"
+      - "127.0.0.1:543:5432"
     networks:
-      #- external_network
+      - external_network
       - internal_network
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
@@ -18,7 +18,11 @@ services:
   redis:
     restart: always
     image: redis:5.0-alpine
+    ports:
+      # - "0.0.0.0:637:6379"
+      - "127.0.0.1:637:6379"
     networks:
+      - external_network
       - internal_network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -39,7 +43,7 @@ services:
 
   web:
     # build: .
-    image: mashirozx/mastodon:v3.1.5.1
+    image: mashirozx/mastodon:v3.1.5.2
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -67,7 +71,7 @@ services:
 
   streaming:
     # build: .
-    image: mashirozx/mastodon:v3.1.5.1
+    image: mashirozx/mastodon:v3.1.5.2
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -84,7 +88,7 @@ services:
 
   sidekiq:
     # build: .
-    image: mashirozx/mastodon:v3.1.5.1
+    image: mashirozx/mastodon:v3.1.5.2
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
