@@ -1,7 +1,6 @@
----
 kab:
   about:
-    about_hashtag_html: Tigi d tijewwiqin tizuyaz, ɣur-sent <strong>#%{hashtag}</strong>. Tzemreḍ ad tesdemreḍ akked yid-sent ma tesɛiḍ amiḍan deg kra n umḍiq deg fedivers.
+    about_hashtag_html: 'Tigi d tijewwiqin tizuyaz, ɣur-sent <strong>#%{hashtag}</strong>. Tzemreḍ ad tesdemreḍ akked yid-sent ma tesɛiḍ amiḍan deg kra n umḍiq deg fedivers.'
     about_mastodon_html: 'Azeṭṭa ametti n uzekka: Ulac deg-s asussen, ulac taɛessast n tsuddiwin fell-ak, yebna ɣef leqder d ttrebga, daɣen d akeslemmas! Akked Maṣṭudun, isefka-inek ad qimen inek!'
     about_this: Γef
     active_count_after: d urmid
@@ -50,7 +49,7 @@ kab:
     joined: Ikcemed deg %{date}
     last_active: armud aneggaru
     media: Taɣwalt
-    moved_html: 'ibeddel %{name} amiḍan ɣer %{new_profile_link}:'
+    moved_html: "ibeddel %{name} amiḍan ɣer %{new_profile_link}:"
     network_hidden: Ulac isalli-agi
     never_active: Werǧin
     nothing_here: Ulac kra da!
@@ -263,6 +262,7 @@ kab:
       add_new: Rnu amaynut
       delete: Kkes
       domain: Taγult
+      from_html: seg %{domain}
       new:
         create: Rnu taγult
         title: Timerna n taɣult tamaynut n imayl ɣer tebdart taberkant
@@ -369,7 +369,7 @@ kab:
       delete: Kkes
   admin_mailer:
     new_report:
-      subject: Aneqqis amaynut i %{instance} (#%{id})
+      subject: 'Aneqqis amaynut i %{instance} (#%{id})'
   appearance:
     discovery: Asnirem
     localization:
@@ -446,7 +446,7 @@ kab:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
     '500':
       title: Asebter-ayi d arameγtu
@@ -523,7 +523,7 @@ kab:
   notification_mailer:
     digest:
       action: Wali akk tilγa
-      mention: 'Yuder-ik-id %{name} deg:'
+      mention: "Yuder-ik-id %{name} deg:"
     follow:
       body: "%{name} yeṭafaṛ-ik-id tura!"
       subject: "%{name} yeṭafaṛ-ik-id tura"
@@ -547,7 +547,7 @@ kab:
     next: Wayed
     older: Aqbuṛ
     prev: Win iɛeddan
-    truncate: d
+    truncate: "d"
   preferences:
     other: Wiyaḍ
   relationships:
@@ -651,7 +651,7 @@ kab:
     pinned: Tijewwiqt yettwasentḍen
     sensitive_content: Agbur amḥulfu
   terms:
-    title: Tiwtilin n useqdec akked tsertit tabaḍnit n %{instance}
+    title: "Tiwtilin n useqdec akked tsertit tabaḍnit n %{instance}"
   themes:
     contrast: Maṣṭudun (agnil awriran)
     default: Maṣṭudun (Aberkan)
