@@ -21,7 +21,7 @@ fr:
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
     get_apps: Essayez une application mobile
     hosted_on: Serveur Mastodon hébergé par %{domain}
-    instance_actor_flash: |-
+    instance_actor_flash: |
       Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel.
       Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, dans ce cas vous devriez utiliser un bloqueur de domaine.
     learn_more: En savoir plus
@@ -41,8 +41,8 @@ fr:
       reason: Motif
       rejecting_media: 'Les fichiers média de ces serveurs ne seront pas traités ou stockés et aucune miniature ne sera affichée, nécessitant un clic vers le fichier d’origine :'
       rejecting_media_title: Média filtré
-      silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·ice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
-      silenced_title: Serveurs en sourdine
+      silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·rice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
+      silenced_title: Serveurs masqués
       suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant toute interaction ou communication avec les utilisateur·rice·s de ces serveurs impossible :'
       suspended_title: Serveurs suspendus
     unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
@@ -183,14 +183,14 @@ fr:
         created_reports: Signalements faits
         targeted_reports: Signalés par d’autres
       silence: Masquer
-      silenced: Silencié
+      silenced: Masqué
       statuses: Statuts
       subscribe: S’abonner
       suspended: Suspendu
       time_in_queue: En file d’attente %{time}
       title: Comptes
       unconfirmed_email: Courriel non confirmé
-      undo_silenced: Démasquer
+      undo_silenced: Ne plus masquer
       undo_suspension: Annuler la suspension
       unsubscribe: Se désabonner
       username: Nom d’utilisateur·ice
@@ -226,10 +226,10 @@ fr:
         reopen_report: Rouvrir le signalement
         reset_password_user: Réinitialiser le mot de passe
         resolve_report: Résoudre le signalement
-        silence_account: Rendre le compte silencieux
+        silence_account: Masque le compte
         suspend_account: Suspendre le compte
         unassigned_report: Ne plus assigner le signalement
-        unsilence_account: Désactiver le silence du compte
+        unsilence_account: Ne plus masquer le compte
         unsuspend_account: Annuler la suspension du compte
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
@@ -262,10 +262,10 @@ fr:
         reopen_report: "%{name} a rouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
         resolve_report: "%{name} a résolu le signalement %{target}"
-        silence_account: "%{name} a mis le compte %{target} en mode silence"
+        silence_account: "%{name} a masqué le compte de %{target}"
         suspend_account: "%{name} a suspendu le compte %{target}"
         unassigned_report: "%{name} a désassigné le signalement %{target}"
-        unsilence_account: "%{name} a mis fin au mode silence de %{target}"
+        unsilence_account: "%{name} ne masque plus le compte de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_announcement: "%{name} a actualisé l’annonce %{target}"
         update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
@@ -367,7 +367,7 @@ fr:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Masqué</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucune</strong> si vous voulez simplement rejeter les fichiers multimédia."
+          desc_html: "<strong>Masquer</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucune</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
           silence: Masqué
           suspend: Suspendre
@@ -383,14 +383,14 @@ fr:
       rejecting_media: rejet des fichiers multimédia
       rejecting_reports: rejet des signalements
       severity:
-        silence: silencié
+        silence: masqué
         suspend: suspendu
       show:
         affected_accounts:
           one: Un compte affecté dans la base de données
           other: "%{count} comptes affectés dans la base de données"
         retroactive:
-          silence: Annuler le masquage des comptes existants affectés pour ce domaine
+          silence: Ne plus masquer les comptes existants affectés de ce domaine
           suspend: Annuler la suspension des comptes existants affectés pour ce domaine
         title: Annuler le blocage du domaine %{domain}
         undo: Annuler
@@ -568,7 +568,7 @@ fr:
         title: Politique de confidentialité
       site_title: Nom du serveur
       spam_check_enabled:
-        desc_html: Mastodon peut signaler automatiquement des comptes qui envoient des messages répétés non sollicités. Il peut y avoir de faux positifs.
+        desc_html: Mastodon peut signaler automatiquement les comptes qui envoient des messages non sollicités de façon répétée. Il peut y avoir des faux positifs.
         title: Automatisation anti-spam
       thumbnail:
         desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
