@@ -1,0 +1,41 @@
+/* https://github.com/AstroProfundis/mastodon/edit/lynx/app/javascript/styles/dark-green.scss */
+
+// Colors
+$ui-base-color: #343434;
+$ui-base-lighter-color: #8b968f;
+$ui-primary-color: #a0d2b1;
+$ui-secondary-color: #e5eee8;
+$ui-highlight-color: #5ecc86;
+
+// Import defaults
+@import 'application';
+
+// Based on Witches Town
+// Columns width
+.column {
+  flex-grow: 1;
+}
+
+.detailed-status__link .fa-star {
+  font-size: 11px;
+}
+
+.detailed-status__link .fa-retweet {
+  font-size: 12px;
+}
+
+// Hide followers count
+.account__action-bar__tab:nth-child(3) > strong > span,
+.counter:nth-child(3) > a > .counter-number {
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+// Boost icon
+@function hex-color($color) {
+  @if type-of($color) == 'color' {
+    $color: str-slice(ie-hex-str($color), 4);
+  }
+  @return '%23' + unquote($color)
+}
+

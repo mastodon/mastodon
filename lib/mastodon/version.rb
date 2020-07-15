@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      ''
+      '~moew'
     end
 
     def to_a
