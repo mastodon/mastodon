@@ -48,6 +48,7 @@ class Auth::SessionsController < Devise::SessionsController
       user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
       user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
       user ||= User.find_for_authentication(email: user_params[:email])
+      user
     end
   end
 
