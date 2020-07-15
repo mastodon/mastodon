@@ -1,11 +1,14 @@
-version: '3'
+version: '3.7'
 services:
 
   db:
     restart: always
     image: postgres:9.6-alpine
-    shm_size: 256mb
+    #ports:
+      #- "0.0.0.0:543:5432"
+      #- "127.0.0.1:543:5432"
     networks:
+      #- external_network
       - internal_network
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
@@ -35,8 +38,8 @@ services:
 #      - ./elasticsearch:/usr/share/elasticsearch/data
 
   web:
-    #build: .
-    image: tootsuite/mastodon
+    # build: .
+    image: tootsuite/mastodon:v3.1.5
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -53,10 +56,18 @@ services:
 #      - es
     volumes:
       - ./public/system:/mastodon/public/system
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 400M
+        #reservations:
+        #  cpus: '0.5'
+        #  memory: 300M
 
   streaming:
-    #build: .
-    image: tootsuite/mastodon
+    # build: .
+    image: tootsuite/mastodon:v3.1.5
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -72,8 +83,8 @@ services:
       - redis
 
   sidekiq:
-    #build: .
-    image: tootsuite/mastodon
+    # build: .
+    image: tootsuite/mastodon:v3.1.5
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
@@ -85,6 +96,14 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 300M
+        #reservations:
+        #  cpus: '0.5'
+        #  memory: 200M
 ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
