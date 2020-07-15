@@ -286,6 +286,15 @@ RSpec.describe Status, type: :model do
       expect(results).not_to include(reply)
     end
 
+    it 'does not include replies' do
+      status = Fabricate(:status)
+      reply = Fabricate(:status, in_reply_to_id: status.id)
+
+      results = Status.as_public_timeline
+      expect(results).to include(status)
+      expect(results).not_to include(reply)
+    end
+
     it 'does not include boosts' do
       status = Fabricate(:status)
       boost = Fabricate(:status, reblog_of_id: status.id)
@@ -356,6 +365,10 @@ RSpec.describe Status, type: :model do
           expect(subject).to include(local_status)
           expect(subject).not_to include(remote_status)
         end
+
+        it 'does not include replies' do
+          expect(subject).not_to include(reply)
+        end
       end
 
       context 'with a viewer' do
@@ -364,6 +377,10 @@ RSpec.describe Status, type: :model do
         it 'does not include remote instances statuses' do
           expect(subject).to include(local_status)
           expect(subject).not_to include(remote_status)
+        end
+
+        it 'does include replies' do
+          expect(subject).to include(reply)
         end
 
         it 'is not affected by personal domain blocks' do
