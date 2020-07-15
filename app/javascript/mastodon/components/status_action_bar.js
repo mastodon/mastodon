@@ -45,10 +45,10 @@ const messages = defineMessages({
 const obfuscatedCount = count => {
   if (count < 0) {
     return 0;
-  } else if (count <= 1) {
+  } else if (count <= 10) {
     return count;
   } else {
-    return '1+';
+    return '9+';
   }
 };
 
