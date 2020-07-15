@@ -205,6 +205,9 @@ jobs:
       - *attach_workspace
       - *install_system_dependencies
       - run:
+          name: Install different version of libyaml
+          command: sudo apt-get install -y libyaml-dev=0.2.2-1
+      - run:
           name: Check locale file normalization
           command: bundle exec i18n-tasks check-normalized
       - run:
