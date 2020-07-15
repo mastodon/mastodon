@@ -99,6 +99,7 @@ Rails.application.configure do
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
     :tls                  => ENV['SMTP_TLS'].presence,
+    :ssl                  => ENV['SMTP_SSL'].presence,
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym

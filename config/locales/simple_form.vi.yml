@@ -22,30 +22,30 @@ vi:
         starts_at: Tùy chọn. Trong trường hợp thông báo của bạn đăng vào một khoảng thời gian cụ thể
         text: Bạn có thể sử dụng tút dạng cú pháp. Cố gắng ngắn gọn bởi vì thông báo sẽ xuất hiện trên màn hình điện thoại của người dùng
       defaults:
-        autofollow: Những người đăng ký thông qua lời mời sẽ tự động mến mộ bạn
+        autofollow: Những người đăng ký thông qua lời mời sẽ tự động theo dõi bạn
         avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
-        bot: Tài khoản này chủ yếu tự động thực hiện các hành động và không cần thiết mến mộ
+        bot: Tài khoản này tự động thực hiện các hành động và không cần thiết theo dõi
         context: Một hoặc nhiều bối cảnh nơi bộ lọc nên áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ được gửi sau một thời gian dài không hoạt động và chỉ khi bạn đã nhận được bất kỳ tin nhắn cá nhân nào khi bạn vắng mặt
-        discoverable: Danh sách thành viên là một cách hay để bạn tìm kiếm người bạn muốn mến mộ
+        discoverable: Danh sách thành viên là một cách hay để bạn tìm kiếm người bạn muốn theo dõi
         email: Bạn sẽ được gửi một email xác nhận
         fields: Bạn có thể tạo tối đa 4 mục được hiển thị dưới dạng bảng trên hồ sơ của bạn
         header: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của relay mà bạn muốn sử dụng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả khi bộ lọc có bị xóa
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
-        locked: Yêu cầu bạn chấp thuận thủ công người mến mộ
+        locked: Yêu cầu bạn chấp thuận thủ công người theo dõi
         password: Sử dụng ít nhất 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn phạm vi cấp cao nhất, bạn không cần chọn từng phạm vi.
         setting_aggregate_reblogs: Đừng hiện những chia sẻ mới cho những tút đã chia sẻ gần đây (chỉ ảnh hưởng đến các chia sẻ mới)
-        setting_default_sensitive: Ảnh & video nhạy cảm được ẩn theo mặc định và có thể được hiển thị bằng một cú nhấp chuột
+        setting_default_sensitive: Ảnh/video/âm thanh nhạy cảm được ẩn theo mặc định và chỉ hiển thị nếu nhấp chuột
         setting_display_media_default: Ẩn ảnh hoặc video được đánh dấu là nhạy cảm
         setting_display_media_hide_all: Luôn ẩn ảnh và video
         setting_display_media_show_all: Luôn hiện ảnh và video
-        setting_hide_network: Bạn mến mộ ai và ai mến mộ bạn sẽ không được hiển thị trên hồ sơ của bạn
+        setting_hide_network: Bạn theo dõi ai và ai theo dõi bạn sẽ không được hiển thị trên hồ sơ của bạn
         setting_noindex: Ảnh hưởng đến trang cá nhân và tút của bạn
         setting_show_application: Tên ứng dụng bạn sử dụng để đăng tút sẽ được hiển thị trong chi tiết bài đăng
         setting_use_blurhash: Hình ảnh mờ dựa trên màu sắc của hình ảnh nhạy cảm nhưng sẽ che hết chi tiết
@@ -101,7 +101,7 @@ vi:
         starts_at: Bắt đầu sự kiện
         text: Thông báo
       defaults:
-        autofollow: Mời mến mộ tài khoản của bạn
+        autofollow: Mời theo dõi tài khoản của bạn
         avatar: Ảnh đại diện
         bot: Đây là tài khoản bot
         chosen_languages: Chọn ngôn ngữ
@@ -147,7 +147,7 @@ vi:
         setting_system_font_ui: Sử dụng phông chữ mặc định của hệ thống
         setting_theme: Giao diện trang web
         setting_trends: Hiển thị xu hướng hôm nay
-        setting_unfollow_modal: Yêu cầu xác nhận trước khi hủy mến mộ ai đó
+        setting_unfollow_modal: Yêu cầu xác nhận trước khi hủy theo dõi ai đó
         setting_use_blurhash: Làm mờ trước ảnh/video nhạy cảm
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
@@ -161,9 +161,9 @@ vi:
       featured_tag:
         name: Hashtag
       interactions:
-        must_be_follower: Chặn thông báo từ những người không mến mộ bạn
-        must_be_following: Chặn thông báo từ những người bạn không mến mộ
-        must_be_following_dm: Chặn tin nhắn từ những người bạn không mến mộ
+        must_be_follower: Chặn thông báo từ những người không theo dõi bạn
+        must_be_following: Chặn thông báo từ những người bạn không theo dõi
+        must_be_following_dm: Chặn tin nhắn từ những người bạn không theo dõi
       invite:
         comment: Bình luận
       invite_request:
@@ -171,8 +171,8 @@ vi:
       notification_emails:
         digest: Gửi email định kỳ
         favourite: Ai đó tâm đắc tút của bạn
-        follow: Ai đó mến mộ bạn
-        follow_request: Ai đó yêu cầu mến mộ bạn
+        follow: Ai đó theo dõi bạn
+        follow_request: Ai đó yêu cầu theo dõi bạn
         mention: Ai đó nhắc đến bạn
         pending_account: Có tài khoản mới cần phê duyệt
         reblog: Ai đó chia sẻ tút của bạn
