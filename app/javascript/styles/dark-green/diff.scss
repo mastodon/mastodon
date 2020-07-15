@@ -1,0 +1,77 @@
+// components.scss
+.compose-form {
+  .compose-form__modifiers {
+    .compose-form__upload {
+      &-description {
+        input {
+          &::placeholder {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.rich-formatting a,
+.rich-formatting p a,
+.rich-formatting li a,
+.landing-page__short-description p a,
+.status__content a,
+.reply-indicator__content a {
+  color: lighten($ui-highlight-color, 12%);
+  text-decoration: none;
+
+  &.mention {
+    text-decoration: none;
+  }
+
+  &.mention span {
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &.status__content__spoiler-link {
+    color: $secondary-text-color;
+    text-decoration: none;
+  }
+}
+
+.status__content__read-more-button {
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.getting-started__footer a {
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.nothing-here {
+  color: $darker-text-color;
+}
+
+.public-layout .public-account-header__tabs__tabs .counter.active::after {
+  border-bottom: 4px solid $ui-highlight-color;
+}
