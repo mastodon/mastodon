@@ -198,6 +198,9 @@ jobs:
 
   check-i18n:
     <<: *defaults
+    docker:
+      - image: circleci/ruby:2.6-buster-node
+        environment: *ruby_environment
     steps:
       - *attach_workspace
       - *install_system_dependencies
