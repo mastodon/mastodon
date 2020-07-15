@@ -1,6 +1,7 @@
+---
 vi:
   about:
-    about_hashtag_html: 'Đây là các tút công khai được gắn thẻ <strong>#%{hashtag}</strong>. Chỉ cần bạn có tài khoản ở bất cứ đâu trong mạng liên kết là bạn có thể tương tác với chúng.'
+    about_hashtag_html: Đây là các tút công khai được gắn thẻ <strong>#%{hashtag}</strong>. Chỉ cần bạn có tài khoản ở bất cứ đâu trong mạng liên kết là bạn có thể tương tác với chúng.
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không theo dõi người dùng và phi tập quyền! Làm chủ quyền riêng tư của bạn với Mastodon!'
     about_this: Trong khoảng
     active_count_after: hoạt động
@@ -19,9 +20,10 @@ vi:
     documentation: Tài liệu
     federation_hint_html: Đăng ký tài khoản %{instance}, bạn có thể giao tiếp với mọi người trên bất kỳ máy chủ Mastodon nào và hơn thế nữa.
     get_apps: Dùng thử ứng dụng di động
-    hosted_on: '%{domain} vận hành nhờ Mastodon'
-    instance_actor_flash: |
-      Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
+    hosted_on: "%{domain} vận hành nhờ Mastodon"
+    instance_actor_flash: 'Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
+
+      '
     learn_more: Tìm hiểu thêm
     privacy_policy: Chính sách bảo mật
     see_whats_happening: Xem những gì đang xảy ra
@@ -48,7 +50,7 @@ vi:
     user_count_before: Nhà của
     what_is_mastodon: Mastodon là gì?
   accounts:
-    choices_html: "Những người %{name} theo dõi:"
+    choices_html: 'Những người %{name} theo dõi:'
     endorsements_hint: Bạn có thể vinh danh những người bạn theo dõi và họ sẽ hiển thị ở giao diện web.
     featured_tags_hint: Bạn có thể cho biết những hashtag thường dùng ở đây.
     follow: Theo dõi
@@ -429,11 +431,11 @@ vi:
     pending_accounts:
       title: Tài khoản đang chờ xử lý (%{count})
     relationships:
-      title: "Những mối liên hệ của %{acct}"
+      title: Những mối liên hệ của %{acct}
     relays:
       add_new: Thêm liên hợp mới
       delete: Loại bỏ
-      description_html: <strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người dùng ở máy chủ này vẫn có thể theo dõi người dùng khác trên các máy chủ khác.
+      description_html: "<strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người dùng ở máy chủ này vẫn có thể theo dõi người dùng khác trên các máy chủ khác."
       disable: Tắt
       disabled: Đã tắt
       enable: Kích hoạt
@@ -621,10 +623,10 @@ vi:
     new_report:
       body: "%{reporter} đã báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
-      subject: 'Báo cáo mới cho %{instance} (# %{id})'
+      subject: Báo cáo mới cho %{instance} (# %{id})
     new_trending_tag:
       body: 'Hashtag # %{name} đang là xu hướng nhưng chưa được kiểm duyệt. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép. Bỏ qua nếu bạn không bao giờ muốn thấy nó xuất hiện.'
-      subject: 'Hashtag mới được xem xét trên %{instance} (# %{name})'
+      subject: Hashtag mới được xem xét trên %{instance} (# %{name})
   aliases:
     add_new: Tạo tên hiển thị
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
@@ -703,8 +705,8 @@ vi:
     already_requested: Bạn vừa gửi một yêu cầu theo dõi tới người dùng này
     error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
     follow: Theo dõi
-    follow_request: 'Bạn đã gửi yêu cầu theo dõi tới'
-    following: 'Chúc mừng! Bạn đã trở thành người theo dõi của'
+    follow_request: Bạn đã gửi yêu cầu theo dõi tới
+    following: Chúc mừng! Bạn đã trở thành người theo dõi của
     post_follow:
       close: Bạn có muốn đóng cửa sổ này?
       return: Hiện trên trang cá nhân
@@ -943,11 +945,11 @@ vi:
         other: "%{count} thông báo mới kể từ lần truy cập trước \U0001F418"
       title: Khi bạn offline...
     favourite:
-      body: 'Tút của bạn vừa được %{name} tâm đắc'
+      body: Tút của bạn vừa được %{name} tâm đắc
       subject: "%{name} vừa tâm đắc tút của bạn"
       title: Lượt tâm đắc mới
     follow:
-      body: "Bạn vừa mới được %{name} theo dõi"
+      body: Bạn vừa mới được %{name} theo dõi
       subject: "%{name} vừa mới theo dõi bạn"
       title: Người theo dõi mới
     follow_request:
@@ -961,7 +963,7 @@ vi:
       subject: Bạn vừa được nhắc đến bởi %{name}
       title: Lượt nhắc mới
     reblog:
-      body: 'Tút của bạn vừa được chia sẻ bởi %{name}'
+      body: Tút của bạn vừa được chia sẻ bởi %{name}
       subject: "%{name} vừa chia sẻ tút của bạn"
       title: Lượt chia sẻ mới
   notifications:
@@ -1029,13 +1031,13 @@ vi:
   remote_interaction:
     favourite:
       proceed: Yêu thích tút này
-      prompt: 'Bạn có muốn tâm đắc tút này?'
+      prompt: Bạn có muốn tâm đắc tút này?
     reblog:
       proceed: Tiếp tục chia sẻ
-      prompt: 'Bạn có muốn chia sẻ tút này?'
+      prompt: Bạn có muốn chia sẻ tút này?
     reply:
       proceed: Tiếp tục trả lời
-      prompt: 'Bạn có muốn trả lời tút này?'
+      prompt: Bạn có muốn trả lời tút này?
   scheduled_statuses:
     over_daily_limit: Bạn đã vượt quá giới hạn của các tút được lên lịch %{limit} cho ngày hôm đó
     over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
@@ -1151,9 +1153,7 @@ vi:
   tags:
     does_not_match_previous_name: không khớp với tên trước
   terms:
-    body_html: |
-      <h2> Chính sách bảo mật </h2><h3 id="collect"> Chúng ta đã thu thập được thông tin gì rồi? </h3><ul><li> <em>Thông tin tài khoản cơ bản</em> : Nếu bạn đăng ký trên máy chủ này, bạn có thể được yêu cầu nhập tên người dùng, địa chỉ email và mật khẩu. Bạn cũng có thể nhập thông tin hồ sơ bổ sung như tên hiển thị và tiểu sử và tải lên hình ảnh hồ sơ và hình ảnh tiêu đề. Tên người dùng, tên hiển thị, tiểu sử, ảnh hồ sơ và hình ảnh tiêu đề luôn được liệt kê công khai. </li><li> <em>Bài đăng, theo dõi và thông tin công khai khác</em> : Danh sách những người bạn theo dõi được liệt kê công khai, điều này cũng đúng với những người theo dõi bạn. Khi bạn gửi tin nhắn, ngày và giờ được lưu trữ cũng như ứng dụng bạn đã gửi tin nhắn từ đó. Tin nhắn có thể chứa tệp đính kèm phương tiện, chẳng hạn như hình ảnh và video. Bài viết công khai và chưa niêm yết có sẵn công khai. Khi bạn có một bài đăng trên hồ sơ của bạn, đó cũng là thông tin có sẵn công khai. Bài đăng của bạn được gửi đến những người theo dõi của bạn, trong một số trường hợp, điều đó có nghĩa là chúng được gửi đến các máy chủ khác nhau và các bản sao được lưu trữ ở đó. Khi bạn xóa bài viết, điều này cũng được gửi đến những người theo dõi của bạn. Hành động đăng ký lại hoặc yêu thích một bài đăng khác luôn được công khai. </li><li> <em>Bài đăng trực tiếp và chỉ dành cho người theo dõi</em> : Tất cả các bài đăng được lưu trữ và xử lý trên máy chủ. Các bài đăng chỉ dành cho người theo dõi được gửi đến những người theo dõi và người dùng của bạn được đề cập trong đó và các bài đăng trực tiếp chỉ được gửi cho người dùng được đề cập trong đó. Trong một số trường hợp, điều đó có nghĩa là chúng được gửi đến các máy chủ khác nhau và các bản sao được lưu trữ ở đó. Chúng tôi thực hiện một nỗ lực thiện chí để giới hạn quyền truy cập vào các bài đăng đó chỉ cho những người được ủy quyền, nhưng các máy chủ khác có thể không làm như vậy. Do đó, điều quan trọng là phải xem xét các máy chủ mà người theo dõi của bạn thuộc về. Bạn có thể chuyển đổi tùy chọn để phê duyệt và từ chối người theo dõi mới theo cách thủ công trong cài đặt. <em>Xin lưu ý rằng các nhà khai thác của máy chủ và bất kỳ máy chủ nhận nào cũng có thể xem các tin nhắn</em> đó và người nhận có thể chụp màn hình, sao chép hoặc chia sẻ lại chúng. <em>Không chia sẻ bất kỳ thông tin nguy hiểm nào trên Mastodon.</em> </li><li> <em>IP và siêu dữ liệu khác</em> : Khi bạn đăng nhập, chúng tôi ghi lại địa chỉ IP bạn đăng nhập, cũng như tên của ứng dụng trình duyệt của bạn. Tất cả các phiên đăng nhập có sẵn để bạn xem xét và hủy bỏ trong cài đặt. Địa chỉ IP mới nhất được sử dụng được lưu trữ tối đa 12 tháng. Chúng tôi cũng có thể giữ lại nhật ký máy chủ bao gồm địa chỉ IP của mọi yêu cầu đến máy chủ của chúng tôi. </li></ul><hr class="spacer" /><h3 id="use"> Chúng tôi sử dụng thông tin của bạn để làm gì? </h3><p> Bất kỳ thông tin nào chúng tôi thu thập từ bạn có thể được sử dụng theo các cách sau: </p><ul><li> Để cung cấp các chức năng cốt lõi của Mastodon. Bạn chỉ có thể tương tác với nội dung của người khác và đăng nội dung của riêng bạn khi bạn đăng nhập. Ví dụ: bạn có thể theo dõi người khác để xem các bài đăng kết hợp của họ trong dòng thời gian tại nhà được cá nhân hóa của bạn. </li><li> Để hỗ trợ kiểm duyệt cộng đồng, ví dụ so sánh địa chỉ IP của bạn với các địa chỉ đã biết khác để xác định trốn tránh hoặc vi phạm khác. </li><li> Địa chỉ email bạn cung cấp có thể được sử dụng để gửi cho bạn thông tin, thông báo về những người khác tương tác với nội dung của bạn hoặc gửi tin nhắn cho bạn và để trả lời các câu hỏi cũng như / hoặc các yêu cầu hoặc câu hỏi khác. </li></ul><hr class="spacer" /><h3 id="protect"> Làm thế nào để chúng tôi bảo vệ thông tin của bạn? </h3><p> Chúng tôi thực hiện nhiều biện pháp bảo mật để duy trì sự an toàn của thông tin cá nhân của bạn khi bạn nhập, gửi hoặc truy cập thông tin cá nhân của bạn. Trong số những thứ khác, phiên trình duyệt của bạn, cũng như lưu lượng giữa các ứng dụng và API của bạn, được bảo mật bằng SSL và mật khẩu của bạn được băm bằng thuật toán một chiều mạnh mẽ. Bạn có thể kích hoạt xác thực hai yếu tố để tiếp tục truy cập an toàn vào tài khoản của mình. </p><hr class="spacer" /><h3 id="data-retention"> Chính sách lưu giữ dữ liệu của chúng tôi là gì? </h3><p> Chúng tôi sẽ thực hiện một nỗ lực đức tin tốt để: </p><ul><li> Giữ lại nhật ký máy chủ chứa địa chỉ IP của tất cả các yêu cầu đến máy chủ này, cho đến khi các nhật ký đó được lưu giữ, không quá 90 ngày. </li><li> Giữ lại các địa chỉ IP được liên kết với người dùng đã đăng ký không quá 12 tháng. </li></ul><p> Bạn có thể yêu cầu và tải xuống một kho lưu trữ nội dung của bạn, bao gồm các bài đăng, tệp đính kèm phương tiện, ảnh hồ sơ và hình ảnh tiêu đề. </p><p> Bạn có thể xóa tài khoản của mình bất cứ lúc nào. </p><hr class="spacer"/><h3 id="cookies"> Chúng ta có sử dụng cookie không? </h3><p> Đúng. Cookies là các tệp nhỏ mà một trang web hoặc nhà cung cấp dịch vụ của nó chuyển vào ổ cứng máy tính của bạn thông qua trình duyệt Web (nếu bạn cho phép). Những cookie này cho phép trang web nhận ra trình duyệt của bạn và, nếu bạn có tài khoản đã đăng ký, hãy liên kết nó với tài khoản đã đăng ký của bạn. </p><p> Chúng tôi sử dụng cookie để hiểu và lưu các tùy chọn của bạn cho các lần truy cập trong tương lai. </p><hr class="spacer" /><h3 id="disclose"> Chúng tôi có được công bố bất cứ thông tin nào ra bên ngoài không? </h3><p> Chúng tôi không bán, trao đổi hoặc chuyển nhượng cho các bên ngoài thông tin nhận dạng cá nhân của bạn. Điều này không bao gồm các bên thứ ba đáng tin cậy hỗ trợ chúng tôi điều hành trang web của chúng tôi, tiến hành kinh doanh hoặc phục vụ bạn, miễn là các bên đó đồng ý giữ bí mật thông tin này. Chúng tôi cũng có thể tiết lộ thông tin của bạn khi chúng tôi tin rằng việc phát hành là phù hợp để tuân thủ luật pháp, thực thi chính sách trang web của chúng tôi hoặc bảo vệ quyền, tài sản hoặc an toàn của chúng tôi hoặc của người khác. </p><p> Nội dung công khai của bạn có thể được tải xuống bởi các máy chủ khác trong mạng. Các bài đăng công khai và chỉ dành cho người theo dõi của bạn được gửi đến các máy chủ nơi người theo dõi của bạn cư trú và tin nhắn trực tiếp được gửi đến máy chủ của người nhận, cho đến khi những người theo dõi hoặc người nhận đó cư trú trên một máy chủ khác với máy chủ này. </p><p> Khi bạn cho phép ứng dụng sử dụng tài khoản của mình, tùy thuộc vào phạm vi quyền bạn phê duyệt, ứng dụng có thể truy cập thông tin hồ sơ công khai, danh sách sau đây, người theo dõi, danh sách của bạn, tất cả bài đăng và mục yêu thích của bạn. Các ứng dụng không bao giờ có thể truy cập địa chỉ e-mail hoặc mật khẩu của bạn. </p><hr class="spacer" /><h3 id="children"> Sử dụng trang web của trẻ em </h3><p> Nếu máy chủ này ở EU hoặc EEA: Trang web của chúng tôi, các sản phẩm và dịch vụ đều hướng đến những người ít nhất 16 tuổi. Nếu bạn dưới 16 tuổi, theo các yêu cầu của GDPR ( <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Quy định bảo vệ dữ liệu chung</a> ) không sử dụng trang web này. </p><p> Nếu máy chủ này ở Hoa Kỳ: Trang web của chúng tôi, các sản phẩm và dịch vụ đều hướng đến những người ít nhất 13 tuổi. Nếu bạn dưới 13 tuổi, theo các yêu cầu của COPPA ( <a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Đạo luật bảo vệ quyền riêng tư trực tuyến của trẻ em</a> ) không sử dụng trang web này. </p><p> Yêu cầu pháp luật có thể khác nhau nếu máy chủ này ở khu vực tài phán khác. </p><hr class="spacer" /><h3 id="changes"> Thay đổi chính sách bảo mật của chúng tôi </h3><p> Nếu chúng tôi quyết định thay đổi chính sách bảo mật của mình, chúng tôi sẽ đăng những thay đổi đó trên trang này. </p><p> Tài liệu này là CC-BY-SA. Nó được cập nhật lần cuối vào ngày 7 tháng 3 năm 2018. </p><p> Ban đầu được điều chỉnh từ <a href="https://github.com/discourse/discourse">chính sách quyền riêng tư của Nghị luận</a> . </p> 
-
+    body_html: "<h2> Chính sách bảo mật </h2><h3 id=\"collect\"> Chúng ta đã thu thập được thông tin gì rồi? </h3><ul><li> <em>Thông tin tài khoản cơ bản</em> : Nếu bạn đăng ký trên máy chủ này, bạn có thể được yêu cầu nhập tên người dùng, địa chỉ email và mật khẩu. Bạn cũng có thể nhập thông tin hồ sơ bổ sung như tên hiển thị và tiểu sử và tải lên hình ảnh hồ sơ và hình ảnh tiêu đề. Tên người dùng, tên hiển thị, tiểu sử, ảnh hồ sơ và hình ảnh tiêu đề luôn được liệt kê công khai. </li><li> <em>Bài đăng, theo dõi và thông tin công khai khác</em> : Danh sách những người bạn theo dõi được liệt kê công khai, điều này cũng đúng với những người theo dõi bạn. Khi bạn gửi tin nhắn, ngày và giờ được lưu trữ cũng như ứng dụng bạn đã gửi tin nhắn từ đó. Tin nhắn có thể chứa tệp đính kèm phương tiện, chẳng hạn như hình ảnh và video. Bài viết công khai và chưa niêm yết có sẵn công khai. Khi bạn có một bài đăng trên hồ sơ của bạn, đó cũng là thông tin có sẵn công khai. Bài đăng của bạn được gửi đến những người theo dõi của bạn, trong một số trường hợp, điều đó có nghĩa là chúng được gửi đến các máy chủ khác nhau và các bản sao được lưu trữ ở đó. Khi bạn xóa bài viết, điều này cũng được gửi đến những người theo dõi của bạn. Hành động đăng ký lại hoặc yêu thích một bài đăng khác luôn được công khai. </li><li> <em>Bài đăng trực tiếp và chỉ dành cho người theo dõi</em> : Tất cả các bài đăng được lưu trữ và xử lý trên máy chủ. Các bài đăng chỉ dành cho người theo dõi được gửi đến những người theo dõi và người dùng của bạn được đề cập trong đó và các bài đăng trực tiếp chỉ được gửi cho người dùng được đề cập trong đó. Trong một số trường hợp, điều đó có nghĩa là chúng được gửi đến các máy chủ khác nhau và các bản sao được lưu trữ ở đó. Chúng tôi thực hiện một nỗ lực thiện chí để giới hạn quyền truy cập vào các bài đăng đó chỉ cho những người được ủy quyền, nhưng các máy chủ khác có thể không làm như vậy. Do đó, điều quan trọng là phải xem xét các máy chủ mà người theo dõi của bạn thuộc về. Bạn có thể chuyển đổi tùy chọn để phê duyệt và từ chối người theo dõi mới theo cách thủ công trong cài đặt. <em>Xin lưu ý rằng các nhà khai thác của máy chủ và bất kỳ máy chủ nhận nào cũng có thể xem các tin nhắn</em> đó và người nhận có thể chụp màn hình, sao chép hoặc chia sẻ lại chúng. <em>Không chia sẻ bất kỳ thông tin nguy hiểm nào trên Mastodon.</em> </li><li> <em>IP và siêu dữ liệu khác</em> : Khi bạn đăng nhập, chúng tôi ghi lại địa chỉ IP bạn đăng nhập, cũng như tên của ứng dụng trình duyệt của bạn. Tất cả các phiên đăng nhập có sẵn để bạn xem xét và hủy bỏ trong cài đặt. Địa chỉ IP mới nhất được sử dụng được lưu trữ tối đa 12 tháng. Chúng tôi cũng có thể giữ lại nhật ký máy chủ bao gồm địa chỉ IP của mọi yêu cầu đến máy chủ của chúng tôi. </li></ul><hr class=\"spacer\" /><h3 id=\"use\"> Chúng tôi sử dụng thông tin của bạn để làm gì? </h3><p> Bất kỳ thông tin nào chúng tôi thu thập từ bạn có thể được sử dụng theo các cách sau: </p><ul><li> Để cung cấp các chức năng cốt lõi của Mastodon. Bạn chỉ có thể tương tác với nội dung của người khác và đăng nội dung của riêng bạn khi bạn đăng nhập. Ví dụ: bạn có thể theo dõi người khác để xem các bài đăng kết hợp của họ trong dòng thời gian tại nhà được cá nhân hóa của bạn. </li><li> Để hỗ trợ kiểm duyệt cộng đồng, ví dụ so sánh địa chỉ IP của bạn với các địa chỉ đã biết khác để xác định trốn tránh hoặc vi phạm khác. </li><li> Địa chỉ email bạn cung cấp có thể được sử dụng để gửi cho bạn thông tin, thông báo về những người khác tương tác với nội dung của bạn hoặc gửi tin nhắn cho bạn và để trả lời các câu hỏi cũng như / hoặc các yêu cầu hoặc câu hỏi khác. </li></ul><hr class=\"spacer\" /><h3 id=\"protect\"> Làm thế nào để chúng tôi bảo vệ thông tin của bạn? </h3><p> Chúng tôi thực hiện nhiều biện pháp bảo mật để duy trì sự an toàn của thông tin cá nhân của bạn khi bạn nhập, gửi hoặc truy cập thông tin cá nhân của bạn. Trong số những thứ khác, phiên trình duyệt của bạn, cũng như lưu lượng giữa các ứng dụng và API của bạn, được bảo mật bằng SSL và mật khẩu của bạn được băm bằng thuật toán một chiều mạnh mẽ. Bạn có thể kích hoạt xác thực hai yếu tố để tiếp tục truy cập an toàn vào tài khoản của mình. </p><hr class=\"spacer\" /><h3 id=\"data-retention\"> Chính sách lưu giữ dữ liệu của chúng tôi là gì? </h3><p> Chúng tôi sẽ thực hiện một nỗ lực đức tin tốt để: </p><ul><li> Giữ lại nhật ký máy chủ chứa địa chỉ IP của tất cả các yêu cầu đến máy chủ này, cho đến khi các nhật ký đó được lưu giữ, không quá 90 ngày. </li><li> Giữ lại các địa chỉ IP được liên kết với người dùng đã đăng ký không quá 12 tháng. </li></ul><p> Bạn có thể yêu cầu và tải xuống một kho lưu trữ nội dung của bạn, bao gồm các bài đăng, tệp đính kèm phương tiện, ảnh hồ sơ và hình ảnh tiêu đề. </p><p> Bạn có thể xóa tài khoản của mình bất cứ lúc nào. </p><hr class=\"spacer\"/><h3 id=\"cookies\"> Chúng ta có sử dụng cookie không? </h3><p> Đúng. Cookies là các tệp nhỏ mà một trang web hoặc nhà cung cấp dịch vụ của nó chuyển vào ổ cứng máy tính của bạn thông qua trình duyệt Web (nếu bạn cho phép). Những cookie này cho phép trang web nhận ra trình duyệt của bạn và, nếu bạn có tài khoản đã đăng ký, hãy liên kết nó với tài khoản đã đăng ký của bạn. </p><p> Chúng tôi sử dụng cookie để hiểu và lưu các tùy chọn của bạn cho các lần truy cập trong tương lai. </p><hr class=\"spacer\" /><h3 id=\"disclose\"> Chúng tôi có được công bố bất cứ thông tin nào ra bên ngoài không? </h3><p> Chúng tôi không bán, trao đổi hoặc chuyển nhượng cho các bên ngoài thông tin nhận dạng cá nhân của bạn. Điều này không bao gồm các bên thứ ba đáng tin cậy hỗ trợ chúng tôi điều hành trang web của chúng tôi, tiến hành kinh doanh hoặc phục vụ bạn, miễn là các bên đó đồng ý giữ bí mật thông tin này. Chúng tôi cũng có thể tiết lộ thông tin của bạn khi chúng tôi tin rằng việc phát hành là phù hợp để tuân thủ luật pháp, thực thi chính sách trang web của chúng tôi hoặc bảo vệ quyền, tài sản hoặc an toàn của chúng tôi hoặc của người khác. </p><p> Nội dung công khai của bạn có thể được tải xuống bởi các máy chủ khác trong mạng. Các bài đăng công khai và chỉ dành cho người theo dõi của bạn được gửi đến các máy chủ nơi người theo dõi của bạn cư trú và tin nhắn trực tiếp được gửi đến máy chủ của người nhận, cho đến khi những người theo dõi hoặc người nhận đó cư trú trên một máy chủ khác với máy chủ này. </p><p> Khi bạn cho phép ứng dụng sử dụng tài khoản của mình, tùy thuộc vào phạm vi quyền bạn phê duyệt, ứng dụng có thể truy cập thông tin hồ sơ công khai, danh sách sau đây, người theo dõi, danh sách của bạn, tất cả bài đăng và mục yêu thích của bạn. Các ứng dụng không bao giờ có thể truy cập địa chỉ e-mail hoặc mật khẩu của bạn. </p><hr class=\"spacer\" /><h3 id=\"children\"> Sử dụng trang web của trẻ em </h3><p> Nếu máy chủ này ở EU hoặc EEA: Trang web của chúng tôi, các sản phẩm và dịch vụ đều hướng đến những người ít nhất 16 tuổi. Nếu bạn dưới 16 tuổi, theo các yêu cầu của GDPR ( <a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\">Quy định bảo vệ dữ liệu chung</a> ) không sử dụng trang web này. </p><p> Nếu máy chủ này ở Hoa Kỳ: Trang web của chúng tôi, các sản phẩm và dịch vụ đều hướng đến những người ít nhất 13 tuổi. Nếu bạn dưới 13 tuổi, theo các yêu cầu của COPPA ( <a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\">Đạo luật bảo vệ quyền riêng tư trực tuyến của trẻ em</a> ) không sử dụng trang web này. </p><p> Yêu cầu pháp luật có thể khác nhau nếu máy chủ này ở khu vực tài phán khác. </p><hr class=\"spacer\" /><h3 id=\"changes\"> Thay đổi chính sách bảo mật của chúng tôi </h3><p> Nếu chúng tôi quyết định thay đổi chính sách bảo mật của mình, chúng tôi sẽ đăng những thay đổi đó trên trang này. </p><p> Tài liệu này là CC-BY-SA. Nó được cập nhật lần cuối vào ngày 7 tháng 3 năm 2018. </p><p> Ban đầu được điều chỉnh từ <a href=\"https://github.com/discourse/discourse\">chính sách quyền riêng tư của Nghị luận</a> . </p> \n"
     title: "%{instance} Điều khoản dịch vụ và chính sách bảo mật"
   themes:
     contrast: Mastodon (Độ tương phản cao)
@@ -1161,7 +1161,7 @@ vi:
     mastodon-light: Mastodon (Sáng)
   time:
     formats:
-      default: "lúc %H:%M %b %d năm%_Y"
+      default: lúc %H:%M %b %d năm%_Y
       month: "%B %Y"
   two_factor_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận

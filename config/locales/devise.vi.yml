@@ -1,3 +1,4 @@
+---
 vi:
   devise:
     confirmations:
@@ -10,7 +11,7 @@ vi:
       invalid: Nhập sai %{authentication_keys} hoặc mật khẩu.
       last_attempt: Nếu thử sai lần nữa, tài khoản của bạn sẽ bị khóa.
       locked: Tài khoản của bạn bị khóa.
-      not_found_in_database: '%{authentication_keys} không có trong dữ liệu.'
+      not_found_in_database: "%{authentication_keys} không có trong dữ liệu."
       pending: Tài khoản của bạn vẫn đang được xem xét.
       timeout: Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.
       unauthenticated: Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục.
@@ -93,4 +94,4 @@ vi:
       not_found: không tìm thấy
       not_locked: không bị khóa
       not_saved:
-        other: "Không thể lưu lại %{resource} bởi vì xảy ra %{count} lỗi:"
+        other: 'Không thể lưu lại %{resource} bởi vì xảy ra %{count} lỗi:'
