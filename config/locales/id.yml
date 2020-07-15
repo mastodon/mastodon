@@ -88,6 +88,7 @@ id:
       delete: Hapus
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
+      add_email_domain_block: Masukkan domain surel ke daftar hitam
       approve: Terima
       approve_all: Terima semua
       are_you_sure: Anda yakin?
@@ -168,6 +169,7 @@ id:
         staff: Staf
         user: Pengguna
       search: Cari
+      search_same_email_domain: Pengguna lain dengan domain surel yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
       shared_inbox_url: URL kotak masuk bersama
       show:
@@ -189,6 +191,27 @@ id:
       web: Web
       whitelisted: Masuk daftar putih
     action_logs:
+      action_types:
+        change_email_user: Ubah Surel untuk Pengguna
+        confirm_user: Konfirmasi Pengguna
+        create_account_warning: Buat Peringatan
+        create_announcement: Buat Pengumuman
+        create_custom_emoji: Buat Emoji Khusus
+        create_domain_allow: Buat Izin Domain
+        create_domain_block: Buat Blokir Domain
+        create_email_domain_block: Buat Surel Blokir Domain
+        demote_user: Turunkan Pengguna
+        destroy_announcement: Hapus Pengumuman
+        destroy_custom_emoji: Hapus Emoji Khusus
+        destroy_domain_allow: Hapus Izin Domain
+        destroy_domain_block: Hapus Blokir Domain
+        destroy_email_domain_block: Hapus surel blokir domain
+        destroy_status: Hapus Status
+        disable_2fa_user: Nonaktifkan 2FA
+        disable_custom_emoji: Nonaktifkan Emoji Khusus
+        disable_user: Nonaktifkan Pengguna
+        enable_custom_emoji: Aktifkan Emoji Khusus
+        enable_user: Aktifkan Pengguna
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
         change_email_user: "%{name} mengubah alamat surel pengguna %{target}"
@@ -353,6 +376,7 @@ id:
       destroyed_msg: Berhasil menghapus domain surel dari daftar hitam
       domain: Domain
       empty: Tidak ada domain surel yang masuk daftar hitam.
+      from_html: dari %{domain}
       new:
         create: Tambah domain
         title: Entri daftar hitam surel baru
@@ -529,6 +553,9 @@ id:
       trends:
         desc_html: Tampilkan secara publik tagar tertinjau yang kini sedang tren
         title: Tagar sedang tren
+    site_uploads:
+      delete: Hapus berkas yang diunggah
+      destroyed_msg: Situs yang diunggah berhasil dihapus!
     statuses:
       back_to_account: Kembali ke halaman akun
       batch:
@@ -565,7 +592,6 @@ id:
     warning_presets:
       add_new: Tambah baru
       delete: Hapus
-      edit: Sunting
       edit_preset: Sunting preset peringatan
       title: Kelola preset peringatan
   admin_mailer:
@@ -653,6 +679,7 @@ id:
     trouble_logging_in: Kesulitan masuk?
   authorize_follow:
     already_following: Anda sudah mengikuti akun ini
+    already_requested: Anda sudah mengirimkan permintaan untuk mengikuti akun tersebut
     error: Sayangnya, ada error saat melihat akun remote
     follow: Ikuti
     follow_request: 'Anda telah mengirim permintaan untuk mengikuti ke:'
@@ -716,7 +743,7 @@ id:
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal
-    '429': Throttled
+    '429': Lambat
     '500':
       content: Maaf, ada sesuatu yang salah pada sistem kami.
       title: Halaman ini tidak benar
@@ -755,6 +782,7 @@ id:
       title: Ubah saringan
     errors:
       invalid_context: Konteks tidak ada atau invalid
+      invalid_irreversible: Penyaringan yang tidak dapat dipulihkan hanya bekerja di beranda atau konteks notifikasi
     index:
       delete: Hapus
       empty: Anda tidak memiliki filter.
@@ -838,6 +866,7 @@ id:
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
+      not_ready: Tidak dapat melampirkan berkas yang belum selesai diproses. Coba lagi nanti!
       too_many: Tidak dapat melampirkan lebih dari 4 file
   migrations:
     acct: Pindah ke
@@ -846,21 +875,27 @@ id:
     cancelled_msg: Pembatalan peralihan berhasil.
     errors:
       already_moved: adalah akun yang sama yang sudah Anda pindahkan ke
+      missing_also_known_as: ini bukan back-reference akun ini
       move_to_self: tidak boleh akun sekarang
       not_found: tidak dapat ditemukan
+      on_cooldown: Anda berada di masa tenang
     followers_count: Jumlah pengikut saat migrasi
     incoming_migrations: Pindah dari akun berbeda
     incoming_migrations_html: Untuk pindah dari akun lain ke sini, Anda harus <a href="%{path}">membuat alias akun</a> terlebih dahulu.
     moved_msg: Akun Anda dialihkan ke %{acct} dan pengikut Anda akan ikut dipindahkan.
     not_redirecting: Saat ini akun Anda tidak dialihkan ke akun lain.
     on_cooldown: Anda baru saja memindahkan akun Anda. Fungsi ini akan tersedia kembali %{count} hari lagi.
+    past_migrations: Migrasi lampau
     proceed_with_move: Pindahkan pengikut
     redirecting_to: Akun Anda dialihkan ke %{acct}.
     set_redirect: Atur peralihan
     warning:
+      backreference_required: Akun baru harus dikonfigurasi terlebih dahulu agar merujuk ke akun ini
       before: 'Sebelum lanjut, mohon perhatikan catatan ini:'
       cooldown: Setelah pindah akun adalah masa tenang, masa Anda tidak dapat pindah akun lagi
+      disabled_account: Akun Anda tidak akan dapat dipakai secara penuh. Namun, Anda tetap akan memiliki akses ke ekspor data dan aktivasi ulang.
       followers: Tindakan ini akan memindah semua pengikut Anda dari akun sekarang ke akun baru
+      only_redirect_html: Secara alternatif, Anda <a href="%{path}">hanya dapat menaruh tulisan mengarahkan ke profil Anda</a>.
       other_data: Tidak akan ada data lagi yang dipindahkan secara otomatis
       redirect: Pemberitahuan peralihan akan dimunculkan pada akun profil Anda dan akun akan dikecualikan dari pencarian
   moderation:
@@ -898,6 +933,8 @@ id:
       subject: "%{name} mem-boost status anda"
       title: Boost baru
   notifications:
+    email_events: Event untuk notifikasi surel
+    email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
     other_settings: Pengaturan notifikasi lain
   number:
     human:
@@ -919,6 +956,7 @@ id:
     errors:
       already_voted: Anda sudah mengikuti japat ini
       duplicate_options: berisi item ganda
+      duration_too_long: terlalu jauh ke masa depan
       duration_too_short: terlalu cepat
       expired: Japat telah berakhir
       invalid_choice: Opsi pilihan yang dipilih tidak ada
@@ -929,11 +967,16 @@ id:
     other: Lainnya
     posting_defaults: Kiriman bawaan
     public_timelines: Linimasa publik
+  reactions:
+    errors:
+      limit_reached: Batas reaksi yang berbeda terpenuhi
+      unrecognized_emoji: bukan emoji yang dikenal
   relationships:
     activity: Aktivitas akun
     dormant: Terbengkalai
     followers: Pengikut
     following: Mengikuti
+    invited: Diundang
     last_active: Terakhir aktif
     most_recent: Terkini
     moved: Dipindah
@@ -1040,6 +1083,8 @@ id:
     content_warning: 'Peringatan konten: %{warning}'
     disallowed_hashtags:
       other: 'berisi tagar yang tidak diizinkan: %{tags}'
+    errors:
+      in_reply_not_found: Status yang ingin Anda balas sudah tidak ada.
     language_detection: Deteksi bahasa secara otomatis
     open_in_web: Buka di web
     over_character_limit: melebihi %{max} karakter
@@ -1126,11 +1171,14 @@ id:
       explanation: Beberapa tips sebelum Anda memulai
       final_action: Mulai mengirim
       final_step: 'Mulai mengirim! Tanpa pengikut, pesan publik Anda akan tetap dapat dilihat oleh akun lain, contohnya di linimasa lokal atau di tagar. Anda mungkin ingin memperkenalkan diri dengan tagar #introductions.'
+      full_handle: Penanganan penuh Anda
       full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
       review_preferences_action: Ubah preferensi
       review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti surel untuk menerima pesan, atau tingkat privasi bawaan untuk kiriman Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
       subject: Selamat datang di Mastodon
+      tip_federated_timeline: Linimasa gabungan adalah ruang yang menampilkan jaringan Mastodon. Tapi ini hanya berisi tetangga orang-orang yang Anda ikuti, jadi tidak sepenuhnya komplet.
       tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
+      tip_local_timeline: Linimasa lokal adalah ruang yang menampilkan orang-orang di %{instance}. Mereka adalah tetangga dekat!
       tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
       tips: Tips
       title: Selamat datang, %{name}!

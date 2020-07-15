@@ -46,6 +46,26 @@ describe Admin::ReportsController do
     end
   end
 
+  describe 'POST #resolve' do
+    it 'resolves the report' do
+      report = Fabricate(:report)
+
+      put :resolve, params: { id: report }
+      expect(response).to redirect_to(admin_reports_path)
+      report.reload
+      expect(report.action_taken_by_account).to eq user.account
+      expect(report.action_taken).to eq true
+    end
+
+    it 'sets trust level when the report is an antispam one' do
+      report = Fabricate(:report, account: Account.representative)
+
+      put :resolve, params: { id: report }
+      report.reload
+      expect(report.target_account.trust_level).to eq Account::TRUST_LEVELS[:trusted]
+    end
+  end
+
   describe 'POST #reopen' do
     it 'reopens the report' do
       report = Fabricate(:report)

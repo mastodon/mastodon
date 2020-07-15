@@ -7,8 +7,6 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   before_action :set_status
   after_action :insert_pagination_headers
 
-  respond_to :json
-
   def index
     @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer
@@ -69,8 +67,7 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
     @status = Status.find(params[:status_id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404 instead of a 403 error code
-    raise ActiveRecord::RecordNotFound
+    not_found
   end
 
   def pagination_params(core_params)

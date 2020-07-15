@@ -68,6 +68,7 @@ module SettingsHelper
     tr: 'Türkçe',
     uk: 'Українська',
     ur: 'اُردُو',
+    vi: 'Tiếng Việt',
     'zh-CN': '简体中文',
     'zh-HK': '繁體中文（香港）',
     'zh-TW': '繁體中文（臺灣）',
@@ -103,6 +104,15 @@ module SettingsHelper
 
     link_to ActivityPub::TagManager.instance.url_for(account), class: 'name-tag', title: account.acct do
       safe_join([image_tag(account.avatar.url, width: 15, height: 15, alt: display_name(account), class: 'avatar'), content_tag(:span, account.acct, class: 'username')], ' ')
+    end
+  end
+
+  def picture_hint(hint, picture)
+    if picture.original_filename.nil?
+      hint
+    else
+      link = link_to t('generic.delete'), settings_profile_picture_path(picture.name.to_s), data: { method: :delete }
+      safe_join([hint, link], '<br/>'.html_safe)
     end
   end
 end

@@ -7,7 +7,8 @@ zh-CN:
       account_migration:
         acct: 指定你想迁移过去的帐号的 用户名@站点域名
       account_warning_preset:
-        text: 你可以使用嘟文格式，在嘟文中加入 URL、话题标签和提及“@”
+        text: 你可以在嘟文中使用特殊格式，例如在嘟文中加入 URL、话题标签和提及“@”
+        title: 可选。对接收者不可见
       admin_account_action:
         include_statuses: 用户将会看到哪些嘟文导致了审核行为或警告
         send_email_notification: 用户将收到对其账号上发生的事的解释
@@ -32,7 +33,7 @@ zh-CN:
         email: 我们会向你发送一封确认邮件
         fields: 这将会在个人资料页上以表格的形式展示，最多 4 个项目
         header: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
-        inbox_url: 从你想要使用的中继的主页上复制 URL
+        inbox_url: 从你想要使用的中继站的主页上复制 URL
         irreversible: 已过滤的嘟文会不可逆转地消失，即便移除过滤器之后也一样
         locale: 用户界面、电子邮件和推送通知中使用的语言
         locked: 你需要手动审核所有关注请求
@@ -53,6 +54,9 @@ zh-CN:
         whole_word: 如果关键词只包含字母和数字，就只会在整个词被匹配时才会套用
       domain_allow:
         domain: 该站点将能够从该服务器上拉取数据，并且从那里发过来的数据也会被处理和存储。
+      email_domain_block:
+        domain: 这里可以是邮箱地址中的域名部分、域名解析到的 MX 记录，或者 MX 记录解析到的域名。这些检查会在用户注册时进行，如果在黑名单中，那么注册会被拒绝。
+        with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并加入黑名单
       featured_tag:
         name: 你可能想要使用以下之一：
       form_challenge:
@@ -78,6 +82,7 @@ zh-CN:
         acct: 处理新账号
       account_warning_preset:
         text: 预置文本
+        title: 标题
       admin_account_action:
         include_statuses: 在电子邮件中包括已举报的嘟文
         send_email_notification: 通过邮件提醒此用户
@@ -111,8 +116,8 @@ zh-CN:
         expires_in: 失效时间
         fields: 个人资料附加信息
         header: 个人资料页横幅图片
-        inbox_url: 中继收件箱的 URL
-        irreversible: 放弃而非隐藏
+        inbox_url: 中继站收件箱的 URL
+        irreversible: 丢弃而非隐藏
         locale: 界面语言
         locked: 保护你的帐户（锁嘟）
         max_uses: 最大使用次数
@@ -150,6 +155,8 @@ zh-CN:
         username: 用户名
         username_or_email: 用户名或电子邮件地址
         whole_word: 整个词条
+      email_domain_block:
+        with_dns_records: 包括改域名的 MX 记录和 IP 地址
       featured_tag:
         name: 话题标签
       interactions:

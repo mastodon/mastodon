@@ -21,36 +21,67 @@ describe Api::V1::Statuses::BookmarksController do
         post :create, params: { status_id: status.id }
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
+      context 'with public status' do
+        it 'returns http success' do
+          expect(response).to have_http_status(:success)
+        end
+
+        it 'updates the bookmarked attribute' do
+          expect(user.account.bookmarked?(status)).to be true
+        end
+
+        it 'returns json with updated attributes' do
+          hash_body = body_as_json
+
+          expect(hash_body[:id]).to eq status.id.to_s
+          expect(hash_body[:bookmarked]).to be true
+        end
       end
 
-      it 'updates the bookmarked attribute' do
-        expect(user.account.bookmarked?(status)).to be true
-      end
+      context 'with private status of not-followed account' do
+        let(:status) { Fabricate(:status, visibility: :private) }
 
-      it 'return json with updated attributes' do
-        hash_body = body_as_json
-
-        expect(hash_body[:id]).to eq status.id.to_s
-        expect(hash_body[:bookmarked]).to be true
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
       end
     end
 
     describe 'POST #destroy' do
-      let(:status) { Fabricate(:status, account: user.account) }
+      context 'with public status' do
+        let(:status) { Fabricate(:status, account: user.account) }
 
-      before do
-        Bookmark.find_or_create_by!(account: user.account, status: status)
-        post :destroy, params: { status_id: status.id }
+        before do
+          Bookmark.find_or_create_by!(account: user.account, status: status)
+          post :destroy, params: { status_id: status.id }
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(:success)
+        end
+
+        it 'updates the bookmarked attribute' do
+          expect(user.account.bookmarked?(status)).to be false
+        end
+
+        it 'returns json with updated attributes' do
+          hash_body = body_as_json
+
+          expect(hash_body[:id]).to eq status.id.to_s
+          expect(hash_body[:bookmarked]).to be false
+        end
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
+      context 'with private status that was not bookmarked' do
+        let(:status) { Fabricate(:status, visibility: :private) }
 
-      it 'updates the bookmarked attribute' do
-        expect(user.account.bookmarked?(status)).to be false
+        before do
+          post :destroy, params: { status_id: status.id }
+        end
+
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
       end
     end
   end

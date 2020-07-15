@@ -2,6 +2,45 @@ import EXIF from 'exif-js';
 
 const MAX_IMAGE_PIXELS = 1638400; // 1280x1280px
 
+const _browser_quirks = {};
+
+// Some browsers will automatically draw images respecting their EXIF orientation
+// while others won't, and the safest way to detect that is to examine how it
+// is done on a known image.
+// See https://github.com/w3c/csswg-drafts/issues/4666
+// and https://github.com/blueimp/JavaScript-Load-Image/commit/1e4df707821a0afcc11ea0720ee403b8759f3881
+const dropOrientationIfNeeded = (orientation) => new Promise(resolve => {
+  switch (_browser_quirks['image-orientation-automatic']) {
+  case true:
+    resolve(1);
+    break;
+  case false:
+    resolve(orientation);
+    break;
+  default:
+    // black 2x1 JPEG, with the following meta information set:
+    // - EXIF Orientation: 6 (Rotated 90° CCW)
+    const testImageURL =
+      'data:image/jpeg;base64,/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAA' +
+      'AAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBA' +
+      'QEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE' +
+      'BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAAEAAgMBEQACEQEDEQH/x' +
+      'ABKAAEAAAAAAAAAAAAAAAAAAAALEAEAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAA' +
+      'AAAAAEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8H//2Q==';
+    const img = new Image();
+    img.onload = () => {
+      const automatic = (img.width === 1 && img.height === 2);
+      _browser_quirks['image-orientation-automatic'] = automatic;
+      resolve(automatic ? 1 : orientation);
+    };
+    img.onerror = () => {
+      _browser_quirks['image-orientation-automatic'] = false;
+      resolve(orientation);
+    };
+    img.src = testImageURL;
+  }
+});
+
 const getImageUrl = inputFile => new Promise((resolve, reject) => {
   if (window.URL && URL.createObjectURL) {
     try {
@@ -38,7 +77,11 @@ const getOrientation = (img, type = 'image/png') => new Promise(resolve => {
 
   EXIF.getData(img, () => {
     const orientation = EXIF.getTag(img, 'Orientation');
-    resolve(orientation);
+    if (orientation !== 1) {
+      dropOrientationIfNeeded(orientation).then(resolve).catch(() => resolve(orientation));
+    } else {
+      resolve(orientation);
+    }
   });
 });
 
@@ -95,7 +138,7 @@ const resizeImage = (img, type = 'image/png') => new Promise((resolve, reject) =
     .catch(reject);
 });
 
-export default inputFile => new Promise((resolve, reject) => {
+export default inputFile => new Promise((resolve) => {
   if (!inputFile.type.match(/image.*/) || inputFile.type === 'image/gif') {
     resolve(inputFile);
     return;
@@ -110,5 +153,5 @@ export default inputFile => new Promise((resolve, reject) => {
     resizeImage(img, inputFile.type)
       .then(resolve)
       .catch(() => resolve(inputFile));
-  }).catch(reject);
+  }).catch(() => resolve(inputFile));
 });

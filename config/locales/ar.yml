@@ -2,7 +2,7 @@
 ar:
   about:
     about_hashtag_html: هذه تبويقات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.
-    about_mastodon_html: ماستدون شبكة اجتماعية مبنية على أسُس بروتوكولات برمجيات الويب الحرة و مفتوحة المصدر. و هو لامركزي تمامًا كالبريد الإلكتروني.
+    about_mastodon_html: 'شبكة التواصل الإجتماعية المستقبَليّة: مِن دون إعلانات ، غير خاضعة لرقابة الشركات ، تصميم أخلاقي ولامركزية! بياناتكم مِلك لكم مع ماستدون!'
     about_this: عن مثيل الخادوم هذا
     active_count_after: نشط
     active_footnote: مستخدم نشيط شهريا (MAU)
@@ -39,8 +39,10 @@ ar:
     unavailable_content: محتوى غير متوفر
     unavailable_content_description:
       domain: الخادم
-      reason: 'السبب:'
+      reason: السبب
+      rejecting_media: 'لن يتم معالجة أو تخزين ملفات الوسائط القادمة من هذه الخوادم، ولن يتم عرض أي صور مصغرة، مما يتطلب النقر اليدوي على الملف الأصلي:'
       silenced: 'سيتم إخفاء المنشورات القادمة من هذه الخوادم في الخيوط الزمنية والمحادثات العامة، ولن يتم إنشاء أي إخطارات من جراء تفاعلات مستخدميها، ما لم تُتَابعهم:'
+    unavailable_content_html: يسمح لك ماستدون عموماً بعرض محتوى المستخدمين القادم من أي خادم آخر في الفديفرس والتفاعل معهم. وهذه هي الاستثناءات التي وضعت على هذا الخادوم بالذات.
     user_count_after:
       few: مستخدمين
       many: مستخدمين
@@ -53,6 +55,7 @@ ar:
   accounts:
     choices_html: 'توصيات %{name}:'
     endorsements_hint: يمكنك التوصية بالأشخاص الذين تتابعهم من واجهة الويب، وسيظهرون هنا.
+    featured_tags_hint: يمكنك عرض وسوم محددة سيتم عرضها هنا.
     follow: اتبع
     followers:
       few: متابِعون
@@ -181,6 +184,7 @@ ar:
         staff: الفريق
         user: مستخدِم
       search: البحث
+      search_same_email_domain: مستخدمون آخرون لديهم نفس نطاق البريد الإلكتروني
       search_same_ip: مستخدِمون آخرون بنفس الـ IP
       shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
       show:
@@ -202,6 +206,35 @@ ar:
       web: الويب
       whitelisted: في القائمة البيضاء
     action_logs:
+      action_types:
+        assigned_to_self_report: أسند التقرير
+        change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
+        confirm_user: تأكيد المستخدم
+        create_account_warning: إنشاء تحذير
+        create_announcement: إنشاء إعلان
+        create_custom_emoji: إنشاء إيموجي مخصص
+        destroy_announcement: احذف الإعلان
+        destroy_custom_emoji: احذف الإيموجي المخصص
+        destroy_status: حذف المنشور
+        disable_2fa_user: تعطيل 2FA
+        disable_custom_emoji: تعطيل الإيموجي المخصص
+        disable_user: تعطيل المستخدم
+        enable_custom_emoji: تفعيل الإيموجي المخصص
+        enable_user: تفعيل المستخدم
+        memorialize_account: جعل الحساب تذكاريا
+        promote_user: ترقية المستخدم
+        remove_avatar_user: احذف الصورة الرمزية
+        reopen_report: إعادة فتح التقرير
+        reset_password_user: إعادة تعيين كلمة المرور
+        resolve_report: حل الشكوى
+        silence_account: كتم الحساب
+        suspend_account: تعليق الحساب
+        unassigned_report: إلغاء إسناد الشكوى
+        unsilence_account: إلغاء كتم الحساب
+        unsuspend_account: إلغاء تعليق الحساب
+        update_announcement: تحديث الإعلان
+        update_custom_emoji: تحديث الإيموجي المخصص
+        update_status: تحديث الحالة
       actions:
         assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
         change_email_user: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
@@ -239,6 +272,9 @@ ar:
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
         update_status: لقد قام %{name} بتحديث منشور %{target}
       deleted_status: "(منشور محذوف)"
+      empty: لم يتم العثور على سجلات.
+      filter_by_action: تصفية بحسب الإجراء
+      filter_by_user: تصفية حسب المستخدم
       title: سِجلّ التفتيش و المعاينة
     announcements:
       destroyed_msg: تم حذف الإعلان بنجاح!
@@ -364,6 +400,7 @@ ar:
       destroyed_msg: تم حذف نطاق البريد الإلكتروني من اللائحة السوداء بنجاح
       domain: النطاق
       empty: ليس هناك أية نطاقات للبريد الإلكتروني مُدرَجة في القائمة السوداء.
+      from_html: مِن %{domain}
       new:
         create: إضافة نطاق
         title: إضافة نطاق بريد جديد إلى اللائحة السوداء
@@ -421,10 +458,26 @@ ar:
       created_msg: تم إنشاء ملاحظة الشكوى بنجاح!
       destroyed_msg: تم حذف ملاحظة الشكوى بنجاح!
     reports:
+      account:
+        notes:
+          few: "%{count} ملاحظات"
+          many: "%{count} ملاحظات"
+          one: "%{count} ملاحظة"
+          other: "%{count} ملاحظات"
+          two: "%{count} ملاحظتَيْن"
+          zero: "%{count} ملاحظات"
+        reports:
+          few: "%{count} تقارير"
+          many: "%{count} تقارير"
+          one: "%{count} تقرير واحد"
+          other: "%{count} تقارير"
+          two: "%{count} تقريرَيْن"
+          zero: "%{count} تقارير"
       action_taken_by: تم اتخاذ الإجراء مِن طرف
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
       assigned: تعين رئيس
+      by_target_domain: نطاق الحساب المبلّغ عنه
       comment:
         none: لا شيء
       created_at: ذكرت
@@ -466,11 +519,16 @@ ar:
         all: للجميع
         disabled: لا أحد
         title: اظهر خاصية حجب النطاقات
+        users: للمستخدمين المتصلين محليا
       domain_blocks_rationale:
         title: اظهر السبب
+      enable_bootstrap_timeline_accounts:
+        title: تمكين الاشتراكات الافتراضية للمستخدمين الجدد
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
+      mascot:
+        title: صورة الماسكوت
       peers_api_enabled:
         desc_html: أسماء النطاقات التي التقى بها مثيل الخادوم على البيئة الموحَّدة فديفرس
         title: نشر عدد مثيلات الخوادم التي تم مصادفتها
@@ -527,6 +585,9 @@ ar:
         title: السماح للوسوم بالظهور على المتداوَلة بدون مراجعة مسبقة
       trends:
         title: الوسوم المتداولة
+    site_uploads:
+      delete: احذف الملف الذي تم تحميله
+      destroyed_msg: تم حذف التحميل مِن الموقع بنجاح!
     statuses:
       back_to_account: العودة إلى صفحة الحساب
       batch:
@@ -562,7 +623,6 @@ ar:
     warning_presets:
       add_new: إضافة واحد جديد
       delete: حذف
-      edit: تعديل
       edit_preset: تعديل نموذج التحذير
       title: إدارة نماذج التحذير
   admin_mailer:
@@ -575,9 +635,11 @@ ar:
   aliases:
     add_new: أنشئ كُنية
     created_msg: تم إنشاء الكُنية الجديدة بنجاح. يمكنكم الآن الشروع في الإنتقال مِن حسابكم القديم.
+    hint_html: إذا كنت ترغب في الانتقال من حساب آخر إلى هذا الحساب الحالي، يمكنك إنشاء اسم مستعار هنا، والذي هو مطلوب قبل أن تتمكن من المضي قدما في نقل متابِعيك من الحساب القديم إلى هذا الحساب. هذا الإجراء بحد ذاته هو <strong>غير مؤذي و قابل للعكس</strong>. <strong>تتم بداية تهجير الحساب من الحساب القديم</strong>.
     remove: إلغاء ربط الكنية
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
+    advanced_web_interface_hint: 'إذا كنت ترغب في استخدام عرض شاشتك بأكمله، فواجهة الويب المتقدمة تسمح لك بضبط العديد من الأعمدة المختلفة لرؤية أكبر قدر من المعلومات التي ترغب فيها في آن واحد: الخيط الرئيسي والإخطارات والخيط الزمني الفدرالي وأي عدد من القوائم والوسوم.'
     animations_and_accessibility: الإتاحة والحركة
     confirmation_dialogs: نوافذ التأكيد
     discovery: استكشاف
@@ -642,6 +704,7 @@ ar:
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
+    already_requested: لقد قُمتَ بإرسال طلب متابَعة إلى هذا الحساب مِن قَبل
     error: يا للأسف، وقع هناك خطأ إثر عملية البحث عن الحساب عن بعد
     follow: اتبع
     follow_request: 'لقد قمت بإرسال طلب متابعة إلى:'
@@ -684,6 +747,7 @@ ar:
       data_removal: سوف تُحذَف منشوراتك والبيانات الأخرى نهائيا
       email_change_html: بإمكانك <a href="%{path}">تغيير عنوان بريدك الإلكتروني</a> دون أن يُحذف حسابك
       email_contact_html: إن لم تتلقّ أي شيء ، يمكنك مراسلة <a href="mailto:%{email}">%{email}</a> لطلب المساعدة
+      email_reconfirmation_html: إن لم تتلقّ الرسالة الإلكترونية للتأكيد ، بإمكانك <a href="%{path}">إعادة طلبها ثانيةً</a>
       irreversible: لن يكون بإمكانك استرجاع أو إعادة تنشيط حسابك
       more_details_html: للمزيد مِن التفاصيل ، يرجى الإطلاع على <a href="%{terms_path}">سياسة الخصوصية</a>.
       username_available: سيصبح اسم مستخدمك متوفرا ثانية
@@ -774,6 +838,8 @@ ar:
     inactive: ليس نشطا
     publicize_checkbox: 'وقم بتبويق هذا:'
     publicize_toot: 'متحقق منه! أنا %{username} على %{service}: %{url}'
+    remove: احذف الدليل مِن الحساب
+    removed: تم حذف الدليل مِن الحساب بنجاح
     status: حالة التحقق
     view_proof: عرض الدليل
   imports:
@@ -825,17 +891,20 @@ ar:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
       too_many: لا يمكن إرفاق أكثر من 4 ملفات
   migrations:
-    acct: username@domain للحساب الجديد
+    acct: انتقل إلى
     cancel: ألغِ التوجيه
+    cancel_explanation: إلغاء إعادة التوجيه سيؤدي إلى إعادة تنشيط حسابك الجاري، ولكن لن يستعيد قائمة المتابِعين الذين تم نقلهم إلى ذلك الحساب.
     cancelled_msg: تم إلغاء التوجيه بنجاح.
     errors:
       already_moved: هو نفسه نفس الحساب الذي قمت بالإنتقال إليه
+      missing_also_known_as: لا يُشير بالذِكر إلى هذا الحساب
       move_to_self: لا يمكنه أن يكون الحساب الحالي
       not_found: تعذر العثور عليه
       on_cooldown: إنّك في مرحلة الجمود
     followers_count: المتابِعين عند الإنتقال
     incoming_migrations: الانتقال مِن حساب آخر
     incoming_migrations_html: قصد الإنتقال من حساب آخَر إلى هذا يجب عليك أوّلًا <a href="%{path}">إنشاء كُنية حساب</a>.
+    moved_msg: إنّ حسابك الآن معاد توجيهه إلى %{acct} ويتم نقل متابِعيك نحوه.
     not_redirecting: حاليا ، حسابك لا يقوم بالتحويل إلى أي حساب آخر.
     past_migrations: التهجيرات السابقة
     proceed_with_move: انقل مشارِكيك
@@ -917,6 +986,7 @@ ar:
       duration_too_short: مبكّر جدا
       expired: لقد انتهى استطلاع الرأي
       invalid_choice: خيار التصويت الذي قُمتَ يتحديده غير موجود
+      too_few_options: يجب أن يحتوي على أكثر من عنصر واحد
       too_many_options: لا يمكنه أن يحتوي أكثر مِن %{max} عناصر
   preferences:
     other: إعدادات أخرى
@@ -924,6 +994,7 @@ ar:
     public_timelines: الخيوط الزمنية العامة
   reactions:
     errors:
+      limit_reached: تم بلوغ الحد الأقصى لردود الفعل المختلفة
       unrecognized_emoji: لم يتم التعرف على أنه إيموجي
   relationships:
     activity: نشاط الحساب
@@ -947,6 +1018,7 @@ ar:
     no_account_html: أليس عندك حساب بعدُ ؟ يُمْكنك <a href='%{sign_up_path}' target='_blank'>التسجيل مِن هنا</a>
     proceed: أكمل المتابعة
     prompt: 'إنك بصدد متابعة:'
+    reason_html: "<strong>لماذا هذه الخطوة ضرورية؟</strong> <code>%{instance}</code> قد لا يكون هذا الخادم هو الذي سجلت فيه حيابك، لذا نحن بحاجة إلى إعادة توجيهك إلى خادمك الرئيسي أولاً."
   remote_interaction:
     favourite:
       proceed: المواصلة إلى المفضلة
@@ -958,6 +1030,7 @@ ar:
       proceed: المواصلة إلى الرد
       prompt: 'ترغب في الرد على هذا التبويق:'
   scheduled_statuses:
+    over_daily_limit: لقد تجاوزتَ حد الـ %{limit} تبويقات مُبَرمَجة المسموح بها لذلك اليوم
     over_total_limit: لقد بلغت حد الـ %{limit} مِن التبويقات المبرمَجة
     too_soon: يجب أن يكون تاريخ البرمجة في المستقبَل
   sessions:
@@ -1050,6 +1123,8 @@ ar:
       other: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       two: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       zero: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+    errors:
+      in_reply_not_found: إنّ المنشور الذي تحاول الرد عليه غير موجود على ما يبدو.
     language_detection: اكتشاف اللغة تلقائيا
     open_in_web: افتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
@@ -1089,6 +1164,8 @@ ar:
     pinned: تبويق مثبّت
     reblogged: رقّاه
     sensitive_content: محتوى حساس
+  tags:
+    does_not_match_previous_name: لا يطابق الإسم السابق
   terms:
     title: شروط الخدمة وسياسة الخصوصية على %{instance}
   themes:
@@ -1112,6 +1189,7 @@ ar:
     manual_instructions: 'في حالة تعذّر مسح رمز الكيو آر أو طُلب منك إدخال يدوي، يُمْكِنك إدخال هذا النص السري على التطبيق:'
     recovery_codes: النسخ الاحتياطي لرموز الاسترجاع
     recovery_codes_regenerated: تم إعادة توليد رموز الاسترجاع الاحتياطية بنجاح
+    recovery_instructions_html: إن فقدت الوصول إلى هاتفك، يمكنك استخدام أحد رموز الاسترداد أدناه لاستعادة الوصول إلى حسابك. <strong>حافظ على رموز الاسترداد بأمان</strong>. يمكنك ، على سبيل المثال ، طباعتها وتخزينها مع مستندات أخرى هامة.
     setup: تنشيط
     wrong_code: الرمز الذي أدخلته غير صالح! تحقق من صحة الوقت على الخادم و الجهاز؟
   user_mailer:
@@ -1120,6 +1198,8 @@ ar:
       subject: نسخة بيانات حسابك جاهزة للتنزيل
       title: المغادرة بأرشيف الحساب
     warning:
+      explanation:
+        disable: عندما يتم تجميد حسابك، تظل بيانات حسابك سليمة، ولكن لا يمكنك تنفيذ أي إجراءات حتى يتم فتحه.
       get_in_touch: يمكنك الرد على هذا البريد الإلكتروني للاتصال بفريق %{instance}.
       review_server_policies: مراجعة شروط السيرفر
       statuses: 'خصيصا لـ:'

@@ -92,6 +92,7 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      add_email_domain_block: Blacklist e-mail domain
       approve: Approve
       approve_all: Approve all
       are_you_sure: Are you sure?
@@ -172,6 +173,7 @@ en:
         staff: Staff
         user: User
       search: Search
+      search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
       shared_inbox_url: Shared inbox URL
       show:
@@ -193,6 +195,42 @@ en:
       web: Web
       whitelisted: Whitelisted
     action_logs:
+      action_types:
+        assigned_to_self_report: Assign Report
+        change_email_user: Change E-mail for User
+        confirm_user: Confirm User
+        create_account_warning: Create Warning
+        create_announcement: Create Announcement
+        create_custom_emoji: Create Custom Emoji
+        create_domain_allow: Create Domain Allow
+        create_domain_block: Create Domain Block
+        create_email_domain_block: Create E-mail Domain Block
+        demote_user: Demote User
+        destroy_announcement: Delete Announcement
+        destroy_custom_emoji: Delete Custom Emoji
+        destroy_domain_allow: Delete Domain Allow
+        destroy_domain_block: Delete Domain Block
+        destroy_email_domain_block: Delete e-mail domain block
+        destroy_status: Delete Status
+        disable_2fa_user: Disable 2FA
+        disable_custom_emoji: Disable Custom Emoji
+        disable_user: Disable User
+        enable_custom_emoji: Enable Custom Emoji
+        enable_user: Enable User
+        memorialize_account: Memorialize Account
+        promote_user: Promote User
+        remove_avatar_user: Remove Avatar
+        reopen_report: Reopen Report
+        reset_password_user: Reset Password
+        resolve_report: Resolve Report
+        silence_account: Silence Account
+        suspend_account: Suspend Account
+        unassigned_report: Unassign Report
+        unsilence_account: Unsilence Account
+        unsuspend_account: Unsuspend Account
+        update_announcement: Update Announcement
+        update_custom_emoji: Update Custom Emoji
+        update_status: Update Status
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
         change_email_user: "%{name} changed the e-mail address of user %{target}"
@@ -230,6 +268,9 @@ en:
         update_custom_emoji: "%{name} updated emoji %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
+      empty: No logs found.
+      filter_by_action: Filter by action
+      filter_by_user: Filter by user
       title: Audit log
     announcements:
       destroyed_msg: Announcement successfully deleted!
@@ -358,6 +399,7 @@ en:
       destroyed_msg: Successfully deleted e-mail domain from blacklist
       domain: Domain
       empty: No e-mail domains currently blacklisted.
+      from_html: from %{domain}
       new:
         create: Add domain
         title: New e-mail blacklist entry
@@ -537,6 +579,9 @@ en:
       trends:
         desc_html: Publicly display previously reviewed hashtags that are currently trending
         title: Trending hashtags
+    site_uploads:
+      delete: Delete uploaded file
+      destroyed_msg: Site upload successfully deleted!
     statuses:
       back_to_account: Back to account page
       batch:
@@ -573,7 +618,6 @@ en:
     warning_presets:
       add_new: Add new
       delete: Delete
-      edit: Edit
       edit_preset: Edit warning preset
       title: Manage warning presets
   admin_mailer:
@@ -591,6 +635,7 @@ en:
     add_new: Create alias
     created_msg: Successfully created a new alias. You can now initiate the move from the old account.
     deleted_msg: Successfully remove the alias. Moving from that account to this one will no longer be possible.
+    empty: You have no aliases.
     hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
     remove: Unlink alias
   appearance:
@@ -661,6 +706,7 @@ en:
     trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
+    already_requested: You have already sent a follow request to that account
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
     follow_request: 'You have sent a follow request to:'
@@ -724,7 +770,7 @@ en:
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
-    '429': Throttled
+    '429': Too many requests
     '500':
       content: We're sorry, but something went wrong on our end.
       title: This page is not correct
@@ -798,12 +844,14 @@ en:
         invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
         verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
       wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities, such as a Keybase profile. This lets other people send you encrypted messages and trust content you send them.
+    explanation_html: Here you can cryptographically connect your other identities from other platforms, such as Keybase. This lets other people send you encrypted messages on those platforms and allows them to trust that the content you send them comes from you.
     i_am_html: I am %{username} on %{service}.
     identity: Identity
     inactive: Inactive
     publicize_checkbox: 'And toot this:'
     publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    remove: Remove proof from account
+    removed: Successfully removed proof from account
     status: Verification status
     view_proof: View proof
   imports:
@@ -849,6 +897,7 @@ en:
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
+      not_ready: Cannot attach files that have not finished processing. Try again in a moment!
       too_many: Cannot attach more than 4 files
   migrations:
     acct: Moved to
@@ -857,7 +906,7 @@ en:
     cancelled_msg: Successfully cancelled the redirect.
     errors:
       already_moved: is the same account you have already moved to
-      missing_also_known_as: is not back-referencing this account
+      missing_also_known_as: is not an alias of this account
       move_to_self: cannot be current account
       not_found: could not be found
       on_cooldown: You are on cooldown
@@ -1071,6 +1120,8 @@ en:
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
+    errors:
+      in_reply_not_found: The status you are trying to reply to does not appear to exist.
     language_detection: Automatically detect language
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded

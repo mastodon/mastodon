@@ -23,3 +23,9 @@ module Chewy
     end
   end
 end
+
+# ElasticSearch uses Faraday internally. Faraday interprets the
+# http_proxy env variable by default which leads to issues when
+# Mastodon is run with hidden services enabled, because
+# ElasticSearch is *not* supposed to be accessed through a proxy
+Faraday.ignore_env_proxy = true

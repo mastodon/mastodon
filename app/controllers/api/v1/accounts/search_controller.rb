@@ -4,8 +4,6 @@ class Api::V1::Accounts::SearchController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:accounts' }
   before_action :require_user!
 
-  respond_to :json
-
   def show
     @accounts = account_search
     render json: @accounts, each_serializer: REST::AccountSerializer
