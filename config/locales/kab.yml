@@ -303,6 +303,9 @@ kab:
       title: Imnegliyen
     reports:
       account:
+        notes:
+          one: "%{count} n tamawt"
+          other: "%{count} n timawin"
         reports:
           one: "%{count} uneqqis"
           other: "%{count} n ineqqisen"
@@ -382,6 +385,7 @@ kab:
     view_profile: Ssken-d amaɣnu
     view_status: Ssken-d tasuffiɣt
   auth:
+    apply_for_account: Suter asnebgi
     change_password: Awal uffir
     checkbox_agreement_html: Qebleγ <a href="%{rules_path}" target="_blank">ilugan n uqeddac-a</a> akked <a href="%{terms_path}" target="_blank">tiwtilin n useqdec</a>
     checkbox_agreement_without_rules_html: Qebleγ <a href="%{terms_path}" target="_blank">tiwtilin n useqdec</a>
