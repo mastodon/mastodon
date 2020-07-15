@@ -3,6 +3,7 @@
 class ResolveAccountService < BaseService
   include JsonLdHelper
   include DomainControlHelper
+  include WebfingerHelper
 
   class WebfingerRedirectError < StandardError; end
 
@@ -76,7 +77,7 @@ class ResolveAccountService < BaseService
   end
 
   def process_webfinger!(uri, redirected = false)
-    @webfinger                           = Goldfinger.finger("acct:#{uri}")
+    @webfinger                           = webfinger!("acct:#{uri}")
     confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
