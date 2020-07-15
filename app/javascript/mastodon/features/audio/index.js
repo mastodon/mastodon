@@ -298,6 +298,8 @@ class Audio extends React.PureComponent {
 
   _renderCanvas () {
     requestAnimationFrame(() => {
+      if (!this.audio) return;
+
       this.handleTimeUpdate();
       this._clear();
       this._draw();
