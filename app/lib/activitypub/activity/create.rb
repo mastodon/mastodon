@@ -45,7 +45,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        return if delete_arrived_first?(object_uri) || poll_vote?
+        return if delete_arrived_first?(object_uri) || poll_vote? # rubocop:disable Lint/NonLocalExitFromIterator
 
         @status = find_existing_status
 

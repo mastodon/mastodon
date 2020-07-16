@@ -185,7 +185,7 @@ class ActivityPub::Activity
   end
 
   def followed_by_local_accounts?
-    @account.passive_relationships.exists?
+    @account.passive_relationships.exists? || @options[:relayed_through_account]&.passive_relationships&.exists?
   end
 
   def requested_through_relay?

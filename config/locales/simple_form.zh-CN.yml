@@ -55,8 +55,8 @@ zh-CN:
       domain_allow:
         domain: 该站点将能够从该服务器上拉取数据，并且从那里发过来的数据也会被处理和存储。
       email_domain_block:
-        domain: 这里可以是邮箱地址中的域名部分、域名解析到的 MX 记录，或者 MX 记录解析到的域名。这些检查会在用户注册时进行，如果在黑名单中，那么注册会被拒绝。
-        with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并加入黑名单
+        domain: 这里可以是邮箱地址中的域名部分、域名解析到的 MX 记录，或者 MX 记录解析到的域名。这些检查会在用户注册时进行，如果邮箱域名被封禁，那么注册会被拒绝。
+        with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: 你可能想要使用以下之一：
       form_challenge:

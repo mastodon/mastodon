@@ -27,7 +27,7 @@ class TagsController < ApplicationController
         expires_in 0, public: true
 
         limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
-        @statuses = HashtagQueryService.new.call(@tag, filter_params, nil, @local).limit(PAGE_SIZE)
+        @statuses = HashtagQueryService.new.call(@tag, filter_params, nil, @local).limit(limit)
         @statuses = cache_collection(@statuses, Status)
 
         render xml: RSS::TagSerializer.render(@tag, @statuses)

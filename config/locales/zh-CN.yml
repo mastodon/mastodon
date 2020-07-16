@@ -21,9 +21,7 @@ zh-CN:
     federation_hint_html: 在%{instance} 上拥有账号后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
-    instance_actor_flash: '这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
-
-'
+    instance_actor_flash: 这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
     learn_more: 了解详情
     privacy_policy: 隐私政策
     see_whats_happening: 看一看现在在发生什么
@@ -40,7 +38,7 @@ zh-CN:
       reason: 原因
       rejecting_media: 来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。
       rejecting_media_title: 被过滤的媒体文件
-      silenced: 来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则他们的互动不会产生通知。
+      silenced: 来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则这些用户的互动不会产生通知。
       silenced_title: 已隐藏的服务器
       suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
       suspended_title: 已封禁的服务器
@@ -91,7 +89,7 @@ zh-CN:
       delete: 删除
       destroyed_msg: 管理备忘删除成功！
     accounts:
-      add_email_domain_block: 把电子邮箱域名加入黑名单
+      add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
       approve_all: 批准全部
       are_you_sure: 你确定吗？
@@ -192,7 +190,7 @@ zh-CN:
       username: 用户名
       warn: 警告
       web: 站内页面
-      whitelisted: 已加入白名单
+      whitelisted: 允许跨站交互
     action_logs:
       action_types:
         assigned_to_self_report: 指派举报
@@ -237,13 +235,13 @@ zh-CN:
         create_account_warning: "%{name} 向 %{target} 发送了警告"
         create_announcement: "%{name} 创建了新公告 %{target}"
         create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
-        create_domain_allow: "%{name} 添加了对域名 %{target} 的白名单。"
+        create_domain_allow: "%{name} 允许了和域名 %{target} 的跨站交互"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
         demote_user: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement: "%{name} 删除了公告 %{target}"
         destroy_custom_emoji: "%{name} 销毁了自定义表情 %{target}"
-        destroy_domain_allow: "%{name} 从白名单中移除了域名 %{target}"
+        destroy_domain_allow: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
         destroy_status: "%{name} 删除了 %{target} 的嘟文"
@@ -340,18 +338,18 @@ zh-CN:
       single_user_mode: 单用户模式
       software: 软件
       space: 存储使用情况
-      title: 仪表盘
+      title: 信息面板
       total_users: 总用户数
       trends: 趋势
       week_interactions: 本周互动数
       week_users_active: 本周活跃用户数
       week_users_new: 本周新用户数
-      whitelist_mode: 白名单模式
+      whitelist_mode: 限联模式
     domain_allows:
-      add_new: 白名单域名
-      created_msg: 域名已被列入白名单
-      destroyed_msg: 域名已从白名单中移除
-      undo: 从白名单中移除
+      add_new: 允许和域名跨站交互
+      created_msg: 域名已被允许跨站交互
+      destroyed_msg: 域名已被禁止跨站交互
+      undo: 不允许和该域名跨站交互
     domain_blocks:
       add_new: 添加新屏蔽域名
       created_msg: 正在进行域名屏蔽
@@ -397,7 +395,7 @@ zh-CN:
       delete: 删除
       destroyed_msg: 电子邮件域名屏蔽删除成功
       domain: 域名
-      empty: 当前没有邮件域名黑名单。
+      empty: 当前没有邮件域名被封禁。
       from_html: 来自 %{domain}
       new:
         create: 添加域名
@@ -415,9 +413,9 @@ zh-CN:
       private_comment: 私密评论
       public_comment: 公开评论
       title: 已知实例
-      total_blocked_by_us: 被我方屏蔽的
+      total_blocked_by_us: 被我站屏蔽的
       total_followed_by_them: 被对方关注的
-      total_followed_by_us: 被我方关注的
+      total_followed_by_us: 被我站关注的
       total_reported: 关于对方的举报
       total_storage: 媒体文件
     invites:
@@ -445,7 +443,7 @@ zh-CN:
       pending: 等待中继站的确认
       save_and_enable: 保存并启用
       setup: 设置中继连接
-      signatures_not_enabled: 安全模式或白名单模式启用时，中继将不会正常工作
+      signatures_not_enabled: 安全模式或限联模式启用时，中继将不会正常工作
       status: 状态
       title: 中继站
     report_notes:
@@ -678,7 +676,7 @@ zh-CN:
     login: 登录
     logout: 登出
     migrate_account: 迁移到另一个帐户
-    migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
+    migrate_account_html: 如果你希望引导别人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过其他方式登录
     providers:
       cas: CAS
@@ -884,7 +882,7 @@ zh-CN:
     max_uses:
       other: "%{count} 次"
     max_uses_prompt: 无限制
-    prompt: 生成分享链接，邀请他人在本服务器注册
+    prompt: 生成分享链接，邀请别人在本服务器注册
     table:
       expires_at: 失效时间
       uses: 已使用次数
@@ -909,10 +907,10 @@ zh-CN:
       not_found: 找不到
       on_cooldown: 您正处于冷却状态
     followers_count: 迁移时的关注者
-    incoming_migrations: 从其他帐号迁移
+    incoming_migrations: 从其它帐号迁移
     incoming_migrations_html: 要把另一个帐号移动到本帐号，首先您需要 <a href="%{path}">创建一个帐号别名</a> 。
     moved_msg: 您的帐号现在会跳转到%{acct} ，同时关注者也会迁移过去 。
-    not_redirecting: 您的帐号当前未跳转到其他帐户。
+    not_redirecting: 您的帐号当前未跳转到其它帐户。
     on_cooldown: 您最近已经迁移过您的帐号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
@@ -926,10 +924,14 @@ zh-CN:
       disabled_account: 此后，您的当前帐户将无法使用。但是，您仍然有权导出数据或者重新激活。
       followers: 这步操作将把所有关注者从当前账户移动到新账户
       only_redirect_html: 或者，你可以<a href="%{path}">只在你的帐号资料上设置一个跳转</a>。
-      other_data: 不会自动移动其他数据
+      other_data: 不会自动移动其它数据
       redirect: 在收到一个跳转通知后，您当前的帐号资料将会更新，并被排除在搜索范围外
   moderation:
     title: 运营
+  move_handler:
+    carry_blocks_over_text: 这个用户迁移自你屏蔽过的 %{acct}
+    carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
+    copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   notification_mailer:
     digest:
       action: 查看所有通知
@@ -1104,6 +1106,8 @@ zh-CN:
     spam_detected: 这是一个自动报告。已检测到垃圾信息。
   statuses:
     attached:
+      audio:
+        other: "%{count} 条音频"
       description: 附加媒体：%{attached}
       image:
         other: "%{count} 张图片"
@@ -1120,7 +1124,7 @@ zh-CN:
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
       limit: 你所置顶的嘟文数量已经达到上限
-      ownership: 不能置顶他人的嘟文
+      ownership: 不能置顶别人的嘟文
       private: 不能置顶非公开的嘟文
       reblog: 不能置顶转嘟
     poll:
