@@ -21,9 +21,7 @@ vi:
     federation_hint_html: Đăng ký tài khoản %{instance}, bạn có thể giao tiếp với mọi người trên bất kỳ máy chủ Mastodon nào và hơn thế nữa.
     get_apps: Dùng thử ứng dụng di động
     hosted_on: "%{domain} vận hành nhờ Mastodon"
-    instance_actor_flash: 'Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
-
-      '
+    instance_actor_flash: Tài khoản này là một tác nhân ảo được sử dụng để đại diện cho chính máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên bị chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
     learn_more: Tìm hiểu thêm
     privacy_policy: Chính sách bảo mật
     see_whats_happening: Xem những gì đang xảy ra
@@ -60,7 +58,7 @@ vi:
     joined: Đã tham gia %{date}
     last_active: hoạt động gần đây
     link_verified_on: Liên kết này đã được xác thực quyền sở hữu vào %{date}
-    media: Đa phương tiện
+    media: Bộ sưu tập
     moved_html: "%{name} đã dời sang %{new_profile_link}:"
     network_hidden: Thông tin này không còn tồn tại
     never_active: Chưa có
@@ -587,7 +585,7 @@ vi:
       deleted: Đã xóa
       failed_to_execute: Không thể thực thi
       media:
-        title: Đa phương tiện
+        title: Bộ sưu tập
       no_media: Không có ảnh hoặc video
       no_status_selected: Không có tút nào thay đổi vì không có tút nào được chọn
       title: Trạng thái tài khoản
@@ -723,7 +721,7 @@ vi:
       invalid_signature: không phải là chữ ký số Ed25519 đúng
   date:
     formats:
-      default: "%d.%m.%Y"
+      default: "%b.%-m.%Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -1161,7 +1159,7 @@ vi:
     mastodon-light: Mastodon (Sáng)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: lúc %H:%M %b %d năm%_Y
       month: "%B %Y"
   two_factor_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận

@@ -195,6 +195,8 @@ class Video extends React.PureComponent {
 
   _updateTime () {
     requestAnimationFrame(() => {
+      if (!this.video) return;
+
       this.handleTimeUpdate();
 
       if (!this.state.paused) {
