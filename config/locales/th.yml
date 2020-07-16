@@ -31,17 +31,20 @@ th:
     status_count_before: ผู้สร้าง
     tagline: ติดตามเพื่อน ๆ และค้นพบเพื่อนใหม่ ๆ
     terms: เงื่อนไขการให้บริการ
-    unavailable_content: เนื้อหาไม่พร้อมใช้งาน
+    unavailable_content: เซิร์ฟเวอร์ที่มีการควบคุม
     unavailable_content_description:
       domain: เซิร์ฟเวอร์
       reason: เหตุผล
       rejecting_media: 'ไฟล์สื่อจากเซิร์ฟเวอร์เหล่านี้จะไม่ได้รับการประมวลผลหรือจัดเก็บ และจะไม่แสดงภาพขนาดย่อ ต้องมีการคลิกไปยังไฟล์ต้นฉบับด้วยตนเอง:'
+      rejecting_media_title: สื่อที่กรองอยู่
+      silenced_title: เซิร์ฟเวอร์ที่เงียบอยู่
+      suspended_title: เซิร์ฟเวอร์ที่ระงับอยู่
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ทางเลือกของ %{name}:'
+    choices_html: 'ตัวเลือกของ %{name}:'
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -287,6 +290,7 @@ th:
       listed: อยู่ในรายการ
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
+      not_permitted: คุณไม่ได้รับอนุญาตให้ทำการกระทำนี้
       overwrite: เขียนทับ
       shortcode: รหัสย่อ
       title: อีโมจิที่กำหนดเอง
@@ -502,6 +506,8 @@ th:
         desc_html: คุณสามารถเขียนนโยบายความเป็นส่วนตัว, เงื่อนไขการให้บริการ หรือภาษากฎหมายอื่น ๆ ของคุณเอง คุณสามารถใช้แท็ก HTML
         title: เงื่อนไขการให้บริการที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
+      thumbnail:
+        title: ภาพขนาดย่อเซิร์ฟเวอร์
       timeline_preview:
         desc_html: แสดงลิงก์ไปยังเส้นเวลาสาธารณะในหน้าเริ่มต้นและอนุญาตการเข้าถึง API ไปยังเส้นเวลาสาธารณะโดยไม่มีการรับรองความถูกต้อง
         title: อนุญาตการเข้าถึงเส้นเวลาสาธารณะที่ไม่ได้รับรองความถูกต้อง
@@ -522,6 +528,7 @@ th:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
+      with_media: มีสื่อ
     tags:
       context: บริบท
       directory: ในไดเรกทอรี
@@ -615,6 +622,10 @@ th:
     confirm: ดำเนินการต่อ
     invalid_password: รหัสผ่านไม่ถูกต้อง
     prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
+  crypto:
+    errors:
+      invalid_key: ไม่ใช่กุญแจ Ed25519 หรือ Curve25519 ที่ถูกต้อง
+      invalid_signature: ไม่ใช่ลายเซ็น Ed25519 ที่ถูกต้อง
   date:
     formats:
       default: "%d %b %Y"
@@ -677,7 +688,7 @@ th:
     csv: CSV
     domain_blocks: การปิดกั้นโดเมน
     lists: รายการ
-    mutes: คุณปิดเสียง
+    mutes: คุณซ่อน
     storage: ที่เก็บข้อมูลสื่อ
   featured_tags:
     add_new: เพิ่มใหม่
@@ -729,7 +740,7 @@ th:
       blocking: รายการปิดกั้น
       domain_blocking: รายการปิดกั้นโดเมน
       following: รายการติดตาม
-      muting: รายการปิดเสียง
+      muting: รายการซ่อน
     upload: อัปโหลด
   in_memoriam_html: เพื่อระลึกถึง
   invites:
@@ -760,14 +771,21 @@ th:
     cancel: ยกเลิกการเปลี่ยนเส้นทาง
     cancelled_msg: ยกเลิกการเปลี่ยนเส้นทางสำเร็จ
     errors:
+      missing_also_known_as: ไม่ใช่นามแฝงของบัญชีนี้
       move_to_self: ไม่สามารถเป็นบัญชีปัจจุบัน
       not_found: ไม่พบ
+    followers_count: ผู้ติดตาม ณ เวลาที่ย้าย
     incoming_migrations: การย้ายจากบัญชีอื่น
     proceed_with_move: ย้ายผู้ติดตาม
+    redirected_msg: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     redirecting_to: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     set_redirect: ตั้งการเปลี่ยนเส้นทาง
   moderation:
     title: การควบคุม
+  move_handler:
+    carry_blocks_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ปิดกั้น
+    carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
+    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้าของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
@@ -920,6 +938,8 @@ th:
     spam_detected: นี่คือรายงานแบบอัตโนมัติ ตรวจพบสแปม
   statuses:
     attached:
+      audio:
+        other: "%{count} เสียง"
       description: 'แนบอยู่: %{attached}'
       image:
         other: "%{count} ภาพ"
@@ -995,6 +1015,7 @@ th:
     follow_limit_reached: คุณไม่สามารถติดตามมากกว่า %{limit} คน
     invalid_email: ที่อยู่อีเมลไม่ถูกต้อง
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
+    invalid_sign_in_token: รหัสความปลอดภัยไม่ถูกต้อง
     seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นจึงไม่มีการตั้งค่ารหัสผ่านและอีเมล
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:

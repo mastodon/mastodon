@@ -15,11 +15,13 @@ module StatusesHelper
   end
 
   def media_summary(status)
-    attachments = { image: 0, video: 0 }
+    attachments = { image: 0, video: 0, audio: 0 }
 
     status.media_attachments.each do |media|
       if media.video?
         attachments[:video] += 1
+      elsif media.audio?
+        attachments[:audio] += 1
       else
         attachments[:image] += 1
       end

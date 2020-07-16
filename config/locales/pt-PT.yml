@@ -40,8 +40,11 @@ pt-PT:
       domain: Instância
       reason: Motivo
       rejecting_media: 'Arquivos de media destas instâncias não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
+      rejecting_media_title: Media filtrada
       silenced: 'Publicações destas instâncias serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus utilizadores, a menos que você os esteja a seguir:'
+      silenced_title: Servidores silenciados
       suspended: 'Nenhum dado dessas instâncias será processado, armazenado ou trocado, tornando qualquer interação ou comunicação com os utilizadores dessas instâncias impossível:'
+      suspended_title: Servidores suspensos
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com utilizadores de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
     user_count_after:
       one: utilizador
@@ -121,7 +124,7 @@ pt-PT:
       enable: Ativar
       enabled: Ativado
       followers: Seguidores
-      follows: A seguir
+      follows: Seguindo
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
       invited_by: Convidado por
@@ -309,6 +312,7 @@ pt-PT:
       listed: Listado
       new:
         title: Adicionar novo emoji customizado
+      not_permitted: Não está autorizado a executar esta ação
       overwrite: Sobrescrever
       shortcode: Código de atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underscores
@@ -721,6 +725,10 @@ pt-PT:
     hint_html: "<strong>Dica:</strong> Não vamos pedir novamente a sua senha durante a próxima hora."
     invalid_password: Senha inválida
     prompt: Confirme a sua senha para continuar
+  crypto:
+    errors:
+      invalid_key: não é uma chave Ed25519 ou Curve25519 válida
+      invalid_signature: não é uma assinatura Ed25519 válida
   date:
     formats:
       default: "%d %b %Y"
@@ -918,6 +926,7 @@ pt-PT:
     on_cooldown: Migrou recentemente a sua conta. Esta função ficará disponível novamente em %{count} dias.
     past_migrations: Migrações anteriores
     proceed_with_move: Migrar seguidores
+    redirected_msg: A sua conta está agora a ser redireccionada para %{acct}.
     redirecting_to: A sua conta está a ser redireccionada para %{acct}.
     set_redirect: Definir redirecionamento
     warning:
@@ -931,6 +940,10 @@ pt-PT:
       redirect: O perfil da sua conta atual será atualizado com um aviso de redirecionamento e será excluído das pesquisas
   moderation:
     title: Moderação
+  move_handler:
+    carry_blocks_over_text: Este utilizador migrou de %{acct}, que você tinha bloqueado.
+    carry_mutes_over_text: Este utilizador migrou de %{acct}, que você tinha silenciado.
+    copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as suas notas anteriores sobre ele:'
   notification_mailer:
     digest:
       action: Ver todas as notificações
@@ -1107,6 +1120,9 @@ pt-PT:
     spam_detected: Este é um relatório automatizado. Foi detectado spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} áudio"
+        other: "%{count} áudios"
       description: 'Anexadas: %{attached}'
       image:
         one: "%{count} imagem"
@@ -1266,6 +1282,12 @@ pt-PT:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
       subject: O teu arquivo está pronto para descarregar
       title: Arquivo de ficheiros
+    sign_in_token:
+      details: 'Aqui estão os detalhes da tentativa:'
+      explanation: 'Detectamos uma tentativa de entrar na sua conta a partir de um endereço IP não reconhecido. Se é você, por favor, insira o código de segurança abaixo na página de acesso:'
+      further_actions: 'Se não foi você, por favor altere sua senha e ative a autenticação de dois fatores na sua conta. Pode fazê-lo aqui:'
+      subject: Por favor, confirme a tentativa de acesso
+      title: Tentativa de acesso
     warning:
       explanation:
         disable: Enquanto a tua conta está congelada, os seus dados permanecem intactos, mas tu não podes executar quaisquer acções até que ela seja desbloqueada.
@@ -1303,11 +1325,14 @@ pt-PT:
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não podes seguir mais do que %{limit} pessoas
+    generic_access_help_html: Problemas para aceder à sua conta? Pode entrar em contacto com %{email} para obter ajuda
     invalid_email: O endereço de e-mail é inválido
     invalid_otp_token: Código de autenticação inválido
+    invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se tu perdeste acesso a ambos, tu podes entrar em contacto com %{email}
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
+    suspicious_sign_in_confirmation: Parece que não iniciou sessão através deste dispositivo antes, e não acede à sua conta há algum tempo. Portanto, enviámos um código de segurança para o seu endereço de e-mail para confirmar que é você.
   verification:
     explanation_html: 'Tu podes <strong>comprovar que és o dono dos links nos metadados do teu perfil</strong>. Para isso, o website para o qual o link aponta tem de conter um link para o teu perfil do Mastodon. Este link <strong>tem</strong> de ter um <code>rel="me"</code> atributo. O conteúdo do texto não é relevante. Aqui está um exemplo:'
     verification: Verificação

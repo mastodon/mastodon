@@ -65,7 +65,7 @@ class ProcessMentionsService < BaseService
 
   def activitypub_json
     return @activitypub_json if defined?(@activitypub_json)
-    @activitypub_json = Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @status.account))
+    @activitypub_json = Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @status.account))
   end
 
   def resolve_account_service

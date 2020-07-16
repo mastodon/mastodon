@@ -19,7 +19,7 @@ class AfterBlockDomainFromAccountService < BaseService
   private
 
   def remove_follows!
-    @account.active_relationships.where(account: Account.where(domain: @domain)).includes(:target_account).reorder(nil).find_each do |follow|
+    @account.active_relationships.where(target_account: Account.where(domain: @domain)).includes(:target_account).reorder(nil).find_each do |follow|
       UnfollowService.new.call(@account, follow.target_account)
     end
   end

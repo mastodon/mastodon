@@ -9,19 +9,19 @@ module Mastodon
     end
 
     def minor
-      1
+      2
     end
 
     def patch
-      5
+      0
     end
 
     def flags
-      ''
+      'rc1'
     end
 
     def suffix
-      '~moew'
+      '~hello'
     end
 
     def to_a

@@ -132,7 +132,7 @@ class ActivityPub::Activity
   end
 
   def delete_arrived_first?(uri)
-    redis.exists("delete_upon_arrival:#{@account.id}:#{uri}")
+    redis.exists?("delete_upon_arrival:#{@account.id}:#{uri}")
   end
 
   def delete_later!(uri)
@@ -185,7 +185,7 @@ class ActivityPub::Activity
   end
 
   def followed_by_local_accounts?
-    @account.passive_relationships.exists?
+    @account.passive_relationships.exists? || @options[:relayed_through_account]&.passive_relationships&.exists?
   end
 
   def requested_through_relay?
