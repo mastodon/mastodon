@@ -5,7 +5,7 @@ class AccountsIndex < Chewy::Index
     analyzer: {
       content: {
         #tokenizer: 'whitespace',
-	tokenizer: 'ik_max_word',
+        tokenizer: 'ik_max_word',
         filter: %w(lowercase asciifolding cjk_width),
       },
 
