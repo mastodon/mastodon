@@ -216,6 +216,7 @@ th:
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
         update_status: อัปเดตสถานะ
       actions:
+        assigned_to_self_report: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
         change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
         confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
         create_account_warning: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
@@ -455,6 +456,8 @@ th:
         username: ชื่อผู้ใช้ในการติดต่อ
       custom_css:
         title: CSS ที่กำหนดเอง
+      default_noindex:
+        desc_html: มีผลต่อผู้ใช้ทั้งหมดที่ไม่ได้เปลี่ยนการตั้งค่านี้ด้วยตนเอง
       domain_blocks:
         all: ให้กับทุกคน
         disabled: ให้กับไม่มีใคร
