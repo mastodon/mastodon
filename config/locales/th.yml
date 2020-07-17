@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา, ไม่มีการสอดแนมโดยองค์กร, การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -44,7 +43,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -178,7 +177,7 @@ th:
       username: ชื่อผู้ใช้
       warn: เตือน
       web: เว็บ
-      whitelisted: ขึ้นบัญชีขาวแล้ว
+      whitelisted: อนุญาตการติดต่อกับภายนอกแล้ว
     action_logs:
       action_types:
         assigned_to_self_report: มอบหมายรายงาน
@@ -222,15 +221,15 @@ th:
         create_account_warning: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         create_announcement: "%{name} ได้สร้างประกาศใหม่ %{target}"
         create_custom_emoji: "%{name} ได้อัปโหลดอีโมจิใหม่ %{target}"
-        create_domain_allow: "%{name} ได้ขึ้นบัญชีขาวโดเมน %{target}"
+        create_domain_allow: "%{name} ได้อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
         create_email_domain_block: "%{name} ได้ขึ้นบัญชีดำโดเมนอีเมล %{target}"
         demote_user: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement: "%{name} ได้ลบประกาศ %{target}"
         destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
-        destroy_domain_allow: "%{name} ได้เอาโดเมน %{target} ออกจากบัญชีขาว"
+        destroy_domain_allow: "%{name} ได้ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
-        destroy_email_domain_block: "%{name} ได้ขึ้นบัญชีขาวโดเมนอีเมล %{target}"
+        destroy_email_domain_block: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
         destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
         disable_2fa_user: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
@@ -327,9 +326,9 @@ th:
       week_interactions: การโต้ตอบในสัปดาห์นี้
       week_users_active: ใช้งานอยู่ในสัปดาห์นี้
       week_users_new: ผู้ใช้ในสัปดาห์นี้
-      whitelist_mode: โหมดบัญชีขาว
+      whitelist_mode: โหมดการติดต่อกับภายนอกแบบจำกัด
     domain_allows:
-      add_new: ขึ้นบัญชีขาวโดเมน
+      add_new: อนุญาตการติดต่อกับภายนอกกับโดเมน
       created_msg: ขึ้นบัญชีขาวโดเมนสำเร็จ
       destroyed_msg: เอาโดเมนออกจากบัญชีขาวแล้ว
       undo: เอาออกจากบัญชีขาว
@@ -358,7 +357,7 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -401,7 +400,7 @@ th:
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -554,7 +553,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
   aliases:
     add_new: สร้างนามแฝง
     empty: คุณไม่มีนามแฝง
@@ -978,7 +977,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
