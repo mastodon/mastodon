@@ -79,7 +79,7 @@ th:
       delete: ลบ
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     accounts:
-      add_email_domain_block: ขึ้นบัญชีดำโดเมนอีเมล
+      add_email_domain_block: ปิดกั้นโดเมนอีเมล
       approve: อนุมัติ
       approve_all: อนุมัติทั้งหมด
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -223,7 +223,7 @@ th:
         create_custom_emoji: "%{name} ได้อัปโหลดอีโมจิใหม่ %{target}"
         create_domain_allow: "%{name} ได้อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
-        create_email_domain_block: "%{name} ได้ขึ้นบัญชีดำโดเมนอีเมล %{target}"
+        create_email_domain_block: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         demote_user: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement: "%{name} ได้ลบประกาศ %{target}"
         destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
@@ -329,9 +329,9 @@ th:
       whitelist_mode: โหมดการติดต่อกับภายนอกแบบจำกัด
     domain_allows:
       add_new: อนุญาตการติดต่อกับภายนอกกับโดเมน
-      created_msg: ขึ้นบัญชีขาวโดเมนสำเร็จ
-      destroyed_msg: เอาโดเมนออกจากบัญชีขาวแล้ว
-      undo: เอาออกจากบัญชีขาว
+      created_msg: อนุญาตการติดต่อกับภายนอกกับโดเมนสำเร็จ
+      destroyed_msg: ไม่อนุญาตการติดต่อกับภายนอกกับโดเมนแล้ว
+      undo: ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -367,16 +367,16 @@ th:
       view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
       add_new: เพิ่มใหม่
-      created_msg: เพิ่มโดเมนอีเมลเป็นบัญชีดำสำเร็จ
+      created_msg: ปิดกั้นโดเมนอีเมลสำเร็จ
       delete: ลบ
-      destroyed_msg: ลบโดเมนอีเมลออกจากบัญชีดำสำเร็จ
+      destroyed_msg: เลิกปิดกั้นโดเมนอีเมลสำเร็จ
       domain: โดเมน
-      empty: ไม่มีโดเมนอีเมลที่ขึ้นบัญชีดำอยู่
+      empty: ไม่มีโดเมนอีเมลที่ปิดกั้นอยู่
       from_html: จาก %{domain}
       new:
         create: เพิ่มโดเมน
-        title: รายการบัญชีดำอีเมลใหม่
-      title: บัญชีดำอีเมล
+        title: ปิดกั้นโดเมนอีเมลใหม่
+      title: โดเมนอีเมลที่ปิดกั้นอยู่
     instances:
       by_domain: โดเมน
       known_accounts:
