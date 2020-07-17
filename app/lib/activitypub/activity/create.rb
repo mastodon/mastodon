@@ -2,6 +2,8 @@
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
   def perform
+    dereference_object!
+
     case @object['type']
     when 'EncryptedMessage'
       create_encrypted_message

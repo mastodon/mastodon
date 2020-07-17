@@ -157,6 +157,38 @@ class ActivityPub::Activity
     fetch_remote_original_status
   end
 
+  def dereference_object!
+    return unless @object.is_a?(String) && object_uri.start_with?('https://', 'http://')
+    return if ActivityPub::TagManager.instance.local_uri?(object_uri)
+
+    object = fetch_resource(@object, true, signed_fetch_account)
+    return unless object.present? && object.is_a?(Hash) && supported_context?(object) && equals_or_includes_any?(object['type'], SUPPORTED_TYPES + CONVERTED_TYPES)
+
+    actor_id = value_or_id(first_of_value(object['attributedTo']))
+    return if actor_id.nil? || object['id'].nil?
+    return unless Addressable::URI.parse(object['id']).normalized_host.casecmp(Addressable::URI.parse(actor_id).normalized_host).zero?
+
+    @object = object
+  end
+
+  def signed_fetch_account
+    first_mentioned_local_account || first_local_follower
+  end
+
+  def first_mentioned_local_account
+    audience = (as_array(@json['to']) + as_array(@json['cc'])).uniq
+    local_usernames = audience.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }
+                              .map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
+
+    return if local_usernames.empty?
+
+    Account.local.where(username: local_usernames).first
+  end
+
+  def first_local_follower
+    @account.followers.local.first
+  end
+
   def follow_request_from_object
     @follow_request ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
