@@ -496,6 +496,7 @@ Rails.application.routes.draw do
   get '/about',        to: 'about#show'
   get '/about/more',   to: 'about#more'
   get '/terms',        to: 'about#terms'
+  get '/apps',        to: 'about#apps'
 
   match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
   match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false

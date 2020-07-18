@@ -582,6 +582,9 @@ GEM
       sidekiq (>= 3)
       thwait
       tilt (>= 1.4.0)
+    sidekiq-statistic (1.4.0)
+      sidekiq (>= 5.0)
+      tilt (~> 2.0)
     sidekiq-unique-jobs (6.0.22)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 4.0, < 7.0)
@@ -778,6 +781,7 @@ DEPENDENCIES
   sidekiq (~> 6.0)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 3.0)
+  sidekiq-statistic
   sidekiq-unique-jobs (~> 6.0)
   simple-navigation (~> 4.1)
   simple_form (~> 5.0)
@@ -796,3 +800,9 @@ DEPENDENCIES
   webmock (~> 3.8)
   webpacker (~> 5.1)
   webpush
+
+RUBY VERSION
+   ruby 2.6.6p146
+
+BUNDLED WITH
+   1.17.2
