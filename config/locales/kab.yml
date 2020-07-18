@@ -229,6 +229,7 @@ kab:
       upload: Sali
     dashboard:
       config: Tawila
+      feature_deletions: Imiḍan yettwaksen
       feature_invites: Iseɣwan n iɛaṛuḍen
       feature_profile_directory: Akaram n imaɣnuten
       feature_registrations: Ajerred
@@ -519,6 +520,7 @@ kab:
       '604800': 1 umalas
       '86400': 1 wass
     expires_in_prompt: Werǧin
+    invited_by: 'Tettwaɛraḍeḍ s ɣur:'
     max_uses_prompt: Ulac talast
     table:
       expires_at: Ad ifat di
@@ -546,6 +548,7 @@ kab:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           million: A
           trillion: Am
@@ -573,6 +576,8 @@ kab:
   remote_interaction:
     favourite:
       proceed: Kemmel asmenyef
+    reblog:
+      proceed: Sentem beṭṭu
     reply:
       proceed: Kemmel tiririt
   sessions:
@@ -631,6 +636,9 @@ kab:
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
   statuses:
     attached:
+      audio:
+        one: "%{count} n imesli"
+        other: "%{count} n imesliyen"
       image:
         one: "%{count} tugna"
         other: "%{count} tugniwin"
