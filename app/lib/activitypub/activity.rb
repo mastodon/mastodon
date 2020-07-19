@@ -158,15 +158,11 @@ class ActivityPub::Activity
   end
 
   def dereference_object!
-    return unless @object.is_a?(String) && object_uri.start_with?('https://', 'http://')
-    return if ActivityPub::TagManager.instance.local_uri?(object_uri)
+    return unless @object.is_a?(String)
+    return if invalid_origin?(@object)
 
     object = fetch_resource(@object, true, signed_fetch_account)
-    return unless object.present? && object.is_a?(Hash) && supported_context?(object) && equals_or_includes_any?(object['type'], SUPPORTED_TYPES + CONVERTED_TYPES)
-
-    actor_id = value_or_id(first_of_value(object['attributedTo']))
-    return if actor_id.nil? || object['id'].nil?
-    return unless Addressable::URI.parse(object['id']).normalized_host.casecmp(Addressable::URI.parse(actor_id).normalized_host).zero?
+    return unless object.present? && object.is_a?(Hash) && supported_context?(object)
 
     @object = object
   end
