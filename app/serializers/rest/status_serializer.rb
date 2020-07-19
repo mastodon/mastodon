@@ -4,7 +4,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count
+             :favourites_count, :limited
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -45,6 +45,21 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def show_application?
     object.account.user_shows_application? || (current_user? && current_user.account_id == object.account_id)
+  end
+
+  def visibility
+    # This visibility is masked behind "private"
+    # to avoid API changes because there are no
+    # UX differences
+    if object.limited_visibility?
+      'private'
+    else
+      object.visibility
+    end
+  end
+
+  def limited
+    object.limited_visibility?
   end
 
   def sensitive

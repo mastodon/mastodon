@@ -190,7 +190,7 @@ class ComposeForm extends ImmutablePureComponent {
     const disabled = this.props.isSubmitting;
     let publishText = '';
 
-    if (this.props.privacy === 'private' || this.props.privacy === 'limited' || this.props.privacy === 'direct') {
+    if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
