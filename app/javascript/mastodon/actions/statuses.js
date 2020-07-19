@@ -3,7 +3,7 @@ import openDB from '../storage/db';
 import { evictStatus } from '../storage/modifier';
 
 import { deleteFromTimelines } from './timelines';
-import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus } from './importer';
+import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus, importFetchedAccount } from './importer';
 import { ensureComposeIsVisible } from './compose';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
@@ -155,6 +155,7 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
       evictStatus(id);
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
+      dispatch(importFetchedAccount(response.data.account));
 
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
