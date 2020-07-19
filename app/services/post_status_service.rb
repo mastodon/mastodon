@@ -15,6 +15,7 @@ class PostStatusService < BaseService
   # @option [String] :spoiler_text
   # @option [String] :language
   # @option [String] :scheduled_at
+  # @option [Circle] :circle Optional circle to target the status to
   # @option [Hash] :poll Optional poll to attach
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
@@ -26,6 +27,7 @@ class PostStatusService < BaseService
     @options     = options
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
+    @circle      = @options[:circle]
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
@@ -52,6 +54,7 @@ class PostStatusService < BaseService
     @text         = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
     @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
     @visibility   = :unlisted if @visibility&.to_sym == :public && @account.silenced?
+    @visibility   = :limited if @circle.present?
     @scheduled_at = @options[:scheduled_at]&.to_datetime
     @scheduled_at = nil if scheduled_in_the_past?
   rescue ArgumentError
@@ -67,7 +70,7 @@ class PostStatusService < BaseService
     end
 
     process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
+    process_mentions_service.call(@status, @circle)
   end
 
   def schedule_status!

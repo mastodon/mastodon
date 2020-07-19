@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_133322) do
+ActiveRecord::Schema.define(version: 2020_07_18_225817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,6 +270,27 @@ ActiveRecord::Schema.define(version: 2020_06_28_133322) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_bookmarks_on_status_id"
+  end
+
+  create_table "circle_accounts", force: :cascade do |t|
+    t.bigint "circle_id", null: false
+    t.bigint "account_id", null: false
+    t.bigint "follow_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "circle_id"], name: "index_circle_accounts_on_account_id_and_circle_id", unique: true
+    t.index ["account_id"], name: "index_circle_accounts_on_account_id"
+    t.index ["circle_id", "account_id"], name: "index_circle_accounts_on_circle_id_and_account_id"
+    t.index ["circle_id"], name: "index_circle_accounts_on_circle_id"
+    t.index ["follow_id"], name: "index_circle_accounts_on_follow_id"
+  end
+
+  create_table "circles", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "title", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_circles_on_account_id"
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
@@ -938,6 +959,10 @@ ActiveRecord::Schema.define(version: 2020_06_28_133322) do
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "bookmarks", "accounts", on_delete: :cascade
   add_foreign_key "bookmarks", "statuses", on_delete: :cascade
+  add_foreign_key "circle_accounts", "accounts", on_delete: :cascade
+  add_foreign_key "circle_accounts", "circles", on_delete: :cascade
+  add_foreign_key "circle_accounts", "follows", on_delete: :cascade
+  add_foreign_key "circles", "accounts", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
