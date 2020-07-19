@@ -7,6 +7,7 @@ module Mastodon
   class HostValidationError < ValidationError; end
   class LengthValidationError < ValidationError; end
   class DimensionsValidationError < ValidationError; end
+  class StreamValidationError < ValidationError; end
   class RaceConditionError < Error; end
   class RateLimitExceededError < Error; end
 
