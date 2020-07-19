@@ -189,7 +189,7 @@ en:
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
       sensitive: Sensitive
-      sensitized: Sensitized
+      sensitized: marked as sensitive
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
@@ -282,11 +282,11 @@ en:
         reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} reset password of user %{target}"
         resolve_report: "%{name} resolved report %{target}"
-        sensitive_account: "%{name} sensitized %{target}'s account"
+        sensitive_account: "%{name} marked as sensitive to %{target}'s account"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
         unassigned_report: "%{name} unassigned report %{target}"
-        unsensitive_account: "%{name} unsensitized %{target}'s account"
+        unsensitive_account: "%{name} removed sensitive mark from %{target}'s account"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_announcement: "%{name} updated announcement %{target}"
@@ -1336,13 +1336,13 @@ en:
       subject:
         disable: Your account %{acct} has been frozen
         none: Warning for %{acct}
-        sensitive: Your account %{acct} has been sensitized
+        sensitive: Your account %{acct} marked as sensive
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
         disable: Account frozen
         none: Warning
-        sensitive: Account sensitized
+        sensitive: Account is marked as sensive
         silence: Account limited
         suspend: Account suspended
     welcome:
