@@ -47,17 +47,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
     object.account.user_shows_application? || (current_user? && current_user.account_id == object.account_id)
   end
 
-  def visibility
-    # This visibility is masked behind "private"
-    # to avoid API changes because there are no
-    # UX differences
-    if object.limited_visibility?
-      'private'
-    else
-      object.visibility
-    end
-  end
-
   def sensitive
     if current_user? && current_user.account_id == object.account_id
       object.sensitive
