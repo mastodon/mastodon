@@ -3,7 +3,7 @@ vi:
     attributes:
       doorkeeper/application:
         name: Tên ứng dụng
-        redirect_uri: Chuyển hướng URI
+        redirect_uri: URL chuyển hướng
         scopes: Phạm vi
         website: Trang web ứng dụng
     errors:
@@ -31,7 +31,7 @@ vi:
         error: Rất tiếc! Hãy kiểm tra thông tin của bạn bởi vì nó có lỗi
       help:
         native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm tra nội bộ
-        redirect_uri: Sử dụng một dòng trên mỗi URI
+        redirect_uri: Sử dụng mỗi dòng chỉ một URL
         scopes: Phạm vi riêng biệt với không gian. Để trống để sử dụng phạm vi mặc định.
       index:
         application: Ứng dụng
@@ -81,7 +81,7 @@ vi:
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác thực ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
         invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị thu hồi hoặc không khớp với tài khoản đã cung cấp.
-        invalid_redirect_uri: Uri chuyển hướng bao gồm không hợp lệ.
+        invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request: Yêu cầu thiếu tham số bắt buộc, bao gồm giá trị tham số không được hỗ trợ hoặc không đúng định dạng.
         invalid_resource_owner: Thông tin xác thực chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
         invalid_scope: Phạm vi yêu cầu không hợp lệ, không xác định hoặc không đúng định dạng.
@@ -116,7 +116,7 @@ vi:
     scopes:
       "admin:read": đọc tất cả dữ liệu trên máy chủ
       "admin:read:accounts": đọc thông tin nhạy cảm của tất cả các tài khoản
-      "admin:read:reports": đọc thông tin nhạy cảm của tất cả các báo cáo và tài khoản báo cáo
+      "admin:read:reports": đọc thông tin của các báo cáo và các tài khoản bị báo cáo
       "admin:write": sửa đổi tất cả dữ liệu trên máy chủ
       "admin:write:accounts": thực hiện các hành động kiểm duyệt trên tài khoản
       "admin:write:reports": thực hiện các hành động kiểm duyệt trên các báo cáo
