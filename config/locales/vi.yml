@@ -447,12 +447,12 @@ vi:
       status: Trạng thái hiện tại
       title: Mạng liên hợp
     report_notes:
-      created_msg: Báo cáo ghi chú được tạo thành công!
-      destroyed_msg: Báo cáo đã xóa thành công!
+      created_msg: Báo cáo tổng hợp kiểm duyệt đã tạo xong!
+      destroyed_msg: Đã xóa báo cáo kiểm duyệt!
     reports:
       account:
         notes:
-          other: "%{count} ghi chú"
+          other: "%{count} kiểm duyệt"
         reports:
           other: "%{count} báo cáo"
       action_taken_by: Hành động được thực hiện bởi
@@ -466,9 +466,9 @@ vi:
       mark_as_resolved: Đánh dấu là đã giải quyết
       mark_as_unresolved: Đánh dấu là chưa giải quyết
       notes:
-        create: Thêm ghi chú
-        create_and_resolve: Giải quyết với ghi chú
-        create_and_unresolve: Mở lại với ghi chú
+        create: Soạn tin nhắn kiểm duyệt
+        create_and_resolve: Xử lý kiểm duyệt
+        create_and_unresolve: Mở lại trường hợp kiểm duyệt
         delete: Xóa bỏ
         placeholder: Mô tả những hành động đã được thực hiện, hoặc bất kỳ cập nhật liên quan khác...
       reopen: Mở lại báo cáo
@@ -743,7 +743,7 @@ vi:
     proceed: Xóa tài khoản
     success_msg: Tài khoản của bạn đã được xóa thành công
     warning:
-      before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
+      before: 'Trước khi tiếp tục, xin vui lòng xem xét cẩn thận:'
       caches: Nội dung đã được lưu trữ bởi các máy chủ khác có thể tồn tại
       data_removal: Bài viết của bạn và dữ liệu khác sẽ bị xóa vĩnh viễn
       email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần phải xóa tài khoản
@@ -931,7 +931,7 @@ vi:
   move_handler:
     carry_blocks_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã chặn trước đó.
     carry_mutes_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã ẩn trước đó.
-    copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là ghi chú về họ trước đó:'
+    copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   notification_mailer:
     digest:
       action: Xem toàn bộ thông báo
