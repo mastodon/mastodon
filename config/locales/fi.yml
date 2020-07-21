@@ -222,6 +222,14 @@ fi:
       filter_by_user: Suodata käyttäjän mukaan
       title: Auditointiloki
     announcements:
+      destroyed_msg: Ilmoitus poistettu onnistuneesti!
+      edit:
+        title: Muokkaa ilmoitusta
+      empty: Yhtään ilmoitusta ei löytynyt.
+      new:
+        create: Luo ilmoitus
+        title: Uusi ilmoitus
+      published_msg: Ilmoitus julkaistu onnistuneesti!
       title: Ilmoitukset
     custom_emojis:
       assign_category: Aseta kategoria
@@ -245,6 +253,7 @@ fi:
       listed: Listassa
       new:
         title: Lisää uusi mukautettu emoji
+      not_permitted: Sinulla ei ole oikeutta suorittaa tätä toimintoa
       overwrite: Kirjoita yli
       shortcode: Lyhennekoodi
       shortcode_hint: Vähintään kaksi merkkiä, vain kirjaimia, numeroita ja alaviivoja
@@ -262,7 +271,16 @@ fi:
       feature_invites: Kutsulinkit
       feature_profile_directory: Profiilihakemisto
       feature_registrations: Rekisteröitymiset
+      feature_spam_check: Roskapostin esto
+      feature_timeline_preview: Aikajanan esikatselu
+      features: Ominaisuudet
+      software: Ohjelmisto
+      space: Tilankäyttö
       title: Hallintapaneeli
+      total_users: käyttäjiä yhteensä
+      trends: Trendit
+      week_users_active: aktiivinen tällä viikolla
+      week_users_new: käyttäjiä tällä viikolla
     domain_blocks:
       add_new: Lisää uusi
       created_msg: Verkkotunnuksen estoa käsitellään
@@ -277,6 +295,8 @@ fi:
           silence: Hiljennys
           suspend: Jäähy
         title: Uusi verkkotunnuksen esto
+      private_comment: Yksityinen kommentti
+      public_comment: Julkinen kommentti
       reject_media: Hylkää mediatiedostot
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
       show:
@@ -308,6 +328,14 @@ fi:
         expired: Vanhentunut
         title: Suodata
       title: Kutsut
+    relays:
+      delete: Poista
+      disable: Poista käytöstä
+      disabled: Poistettu käytöstä
+      enable: Ota käyttöön
+      enabled: Käytössä
+      save_and_enable: Tallenna ja ota käyttöön
+      status: Tila
     report_notes:
       created_msg: Muistiinpano onnistuneesti lisätty raporttiin!
       destroyed_msg: Muistiinpano onnistuneesti poistettu raportista!
@@ -346,11 +374,21 @@ fi:
       contact_information:
         email: Työsähköposti
         username: Yhteyshenkilön käyttäjänimi
+      custom_css:
+        title: Mukautettu CSS
+      domain_blocks:
+        all: Kaikille
+        disabled: Ei kenellekkään
+        title: Näytä domainestot
+      domain_blocks_rationale:
+        title: Näytä syy
       enable_bootstrap_timeline_accounts:
         title: Uudet käyttäjät seuraavat oletuksena tilejä
       hero:
         desc_html: Näytetään etusivulla. Suosituskoko vähintään 600x100 pikseliä. Jos kuvaa ei aseteta, käytetään instanssin pikkukuvaa
         title: Sankarin kuva
+      mascot:
+        title: Maskottikuva
       peers_api_enabled:
         desc_html: Verkkotunnukset, jotka tämä instanssi on kohdannut fediversumissa
         title: Julkaise löydettyjen instanssien luettelo
@@ -393,18 +431,32 @@ fi:
         delete: Poista
         nsfw_off: NSFW POIS
         nsfw_on: NSFW PÄÄLLÄ
+      deleted: Poistettu
       failed_to_execute: Suoritus epäonnistui
       no_media: Ei mediaa
       title: Tilin tilat
       with_media: Sisältää mediaa
+    tags:
+      title: Aihetunnisteet
+      trending_right_now: Trendaa juuri nyt
     title: Ylläpito
+    warning_presets:
+      add_new: Lisää uusi
+      delete: Poista
   admin_mailer:
     new_report:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
+  aliases:
+    empty: Sinulla ei ole aliaksia.
+  appearance:
+    localization:
+      guide_link_text: Kaikki voivat osallistua.
+    sensitive_content: Arkaluontoista sisältöä
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
+    salutation: "%{name},"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
     view: 'Näytä:'
     view_profile: Näytä profiili
@@ -418,9 +470,13 @@ fi:
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
+    apply_for_account: Pyydä kutsu
     change_password: Salasana
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
+    description:
+      prefix_sign_up: Liity Mastodoniin tänään!
+      suffix: Tilillä voit seurata ihmisiä, julkaista päivityksiä ja lähetellä viestejä muille käyttäjille miltä palvelimelta tahansa ja paljon muuta!
     didnt_get_confirmation: Etkö saanut vahvistusohjeita?
     forgot_password: Unohditko salasanasi?
     invalid_reset_password_token: Salasananpalautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
@@ -434,6 +490,10 @@ fi:
     reset_password: Palauta salasana
     security: Tunnukset
     set_new_password: Aseta uusi salasana
+    status:
+      account_status: Tilin tila
+      functional: Tilisi on täysin toimiva.
+    trouble_logging_in: Ongelmia kirjautumisessa?
   authorize_follow:
     already_following: Sinä seuraat jo tätä tiliä
     error: Valitettavasti etätilin haussa tapahtui virhe
@@ -445,6 +505,8 @@ fi:
       return: Palaa käyttäjän profiiliin
       web: Siirry verkkosivulle
     title: Seuraa käyttäjää %{acct}
+  challenge:
+    confirm: Jatka
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -463,6 +525,9 @@ fi:
     confirm_password: Tunnistaudu syöttämällä nykyinen salasanasi
     proceed: Poista tili
     success_msg: Tilin poisto onnistui
+    warning:
+      more_details_html: Lisätietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
+      username_available: Käyttäjänimesi tulee saataville uudestaan
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Sinulla ei ole lupaa nähdä tätä sivua.
