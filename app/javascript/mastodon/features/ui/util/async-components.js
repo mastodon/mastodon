@@ -138,6 +138,18 @@ export function ListAdder () {
   return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
 }
 
+export function Circles () {
+  return import(/* webpackChunkName: "features/circles" */'../../circles');
+}
+
+export function CircleEditor () {
+  return import(/* webpackChunkName: "features/circle_editor" */'../../circle_editor');
+}
+
+export function CircleAdder () {
+  return import(/*webpackChunkName: "features/circle_adder" */'../../circle_adder');
+}
+
 export function Search () {
   return import(/*webpackChunkName: "features/search" */'../../search');
 }
