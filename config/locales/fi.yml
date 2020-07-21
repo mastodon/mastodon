@@ -18,6 +18,7 @@ fi:
     hosted_on: Mastodon palvelimella %{domain}
     learn_more: Lisätietoja
     privacy_policy: Tietosuojaseloste
+    see_whats_happening: Näe mitä tapahtuu
     server_stats: 'Palvelimen tilastot:'
     source_code: Lähdekoodi
     status_count_after:
@@ -29,6 +30,9 @@ fi:
     unavailable_content_description:
       domain: Palvelin
       reason: Syy
+      rejecting_media_title: Media suodatettu
+      silenced: 'Julkaisut näiltä palvelimilta piilotetaan julkisilta aikajanoilta ja keskusteluista, ilmoituksia ei luoda näiden käyttäjien tekemistä toiminnoista, jos et seuraa heitä:'
+      silenced_title: Hiljennetyt palvelimet
     user_count_after:
       one: käyttäjä
       other: käyttäjät
@@ -36,6 +40,7 @@ fi:
     what_is_mastodon: Mikä on Mastodon?
   accounts:
     choices_html: "%{name} valinnat:"
+    endorsements_hint: Voit suositella seuraamiasi henkilöitä web käyttöliittymän kautta, ne tulevat näkymään tähän.
     follow: Seuraa
     followers:
       one: Seuraaja
@@ -67,6 +72,8 @@ fi:
     unavailable: Profiili ei saatavilla
     unfollow: Lopeta seuraaminen
   admin:
+    account_actions:
+      action: Suorita toimenpide
     account_moderation_notes:
       create: Luo
       created_msg: Moderointimerkinnän luonti onnistui!
@@ -103,6 +110,7 @@ fi:
       followers: Seuraajat
       follows: Seuraa
       inbox_url: Saapuvan postilaatikon osoite
+      invited_by: Kutsuja
       ip: IP
       joined: Liittynyt
       location:
@@ -123,7 +131,9 @@ fi:
       moderation_notes: Moderointimerkinnät
       most_recent_activity: Viimeisin toiminta
       most_recent_ip: Viimeisin IP
+      no_limits_imposed: Rajoituksia ei ole asetettu
       not_subscribed: Ei tilaaja
+      pending: Odottaa tarkistusta
       perform_full_suspension: Siirrä kokonaan jäähylle
       promote: Ylennä
       protocol: Protokolla
@@ -147,6 +157,7 @@ fi:
         staff: Henkilöstö
         user: Käyttäjä
       search: Hae
+      search_same_ip: Muut käyttäjät samalla IP-osoitteella
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
       show:
         created_reports: Tämän tilin luomat raportit
@@ -156,6 +167,7 @@ fi:
       statuses: Tilat
       subscribe: Tilaa
       suspended: Jäähyllä
+      time_in_queue: Odottaa jonossa %{time}
       title: Tilit
       unconfirmed_email: Sähköpostia ei vahvistettu
       undo_silenced: Peru hiljennys
@@ -165,6 +177,10 @@ fi:
       warn: Varoita
       web: Verkko
     action_logs:
+      action_types:
+        confirm_user: Vahvista käyttäjä
+        create_account_warning: Luo varoitus
+        destroy_status: Poista tilapäivitys
       actions:
         assigned_to_self_report: "%{name} otti raportin %{target} tehtäväkseen"
         change_email_user: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
