@@ -76,7 +76,7 @@ fi:
     account_actions:
       action: Suorita toimenpide
     account_moderation_notes:
-      create: Luo
+      create: Jätä muistiinpano
       created_msg: Moderointimerkinnän luonti onnistui!
       delete: Poista
       destroyed_msg: Moderointimerkinnän poisto onnistui!
@@ -689,6 +689,9 @@ fi:
     followers_count: Seuraajat muuton aikana
     past_migrations: Edelliset migraatiot
     proceed_with_move: Siirrä seuraajat
+    set_redirect: Aseta uudelleenohjaus
+    warning:
+      before: 'Ennen jatkamista, lue nämä huomautukset huolellisesti:'
   moderation:
     title: Moderointi
   notification_mailer:
@@ -731,6 +734,7 @@ fi:
         format: "%n %u"
         units:
           billion: Mrd
+          million: M
           quadrillion: Brd
           thousand: k
           trillion: B
@@ -739,8 +743,22 @@ fi:
     next: Seuraava
     older: Vanhemmat
     prev: Edellinen
+  polls:
+    errors:
+      duration_too_long: on liian kaukana tulevaisuudessa
+      duration_too_short: on liian aikainen
+      expired: Äänestys on jo loppunut
   preferences:
     other: Muut
+    public_timelines: Julkiset aikajanat
+  reactions:
+    errors:
+      unrecognized_emoji: ei ole tunnistettu emoji
+  relationships:
+    activity: Tilin tapahtumat
+    followers: Seuraajat
+    following: Seuratut
+    invited: Kutsuttu
   remote_follow:
     acct: Syötä se käyttäjätunnus@verkkotunnus, josta haluat seurata
     missing_resource: Vaadittavaa uudelleenohjaus-URL:ää tiliisi ei löytynyt
@@ -750,27 +768,62 @@ fi:
     activity: Viimeisin toiminta
     browser: Selain
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Tuntematon selain
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi -selain
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser}, %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
+    ip: IP-osoite
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: tuntematon järjestelmä
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Hylkää
     revoke_success: Istunnon hylkäys onnistui
     title: Istunnot
   settings:
+    account: Tili
+    account_settings: Tilin asetukset
+    aliases: Tilin aliakset
+    appearance: Ulkoasu
     authorized_apps: Valtuutetut sovellukset
     back: Takaisin Mastodoniin
     delete: Tilin poisto
     development: Kehittäminen
     edit_profile: Muokkaa profiilia
     export: Vie tietoja
+    featured_tags: Esitellyt aihetunnisteet
     import: Tuo
+    import_and_export: Tuo / Vie
     migrate: Tilin muutto muualle
     notifications: Ilmoitukset
     preferences: Ominaisuudet
+    profile: Profiili
+    relationships: Seurattavat ja seuraajat
     two_factor_authentication: Kaksivaiheinen todentaminen
   statuses:
     attached:
@@ -782,6 +835,7 @@ fi:
     disallowed_hashtags:
       one: 'sisälsi aihetunnisteen jota ei sallita: %{tags}'
       other: 'sisälsi aihetunnisteet joita ei sallita: %{tags}'
+    language_detection: Tunnista kieli automaattisesti
     open_in_web: Avaa selaimessa
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
@@ -789,7 +843,17 @@ fi:
       ownership: Muiden tuuttauksia ei voi kiinnittää
       private: Piilotettua tuuttausta ei voi kiinnittää
       reblog: Buustausta ei voi kiinnittää
+    poll:
+      total_people:
+        one: "%{count} henkilö"
+        other: "%{count} henkilöä"
+      total_votes:
+        one: "%{count} ääni"
+        other: "%{count} ääntä"
+      vote: Äänestä
     show_more: Näytä lisää
+    show_thread: Näytä ketju
+    sign_in_to_participate: Kirjaudu sisään osallistuaksesi keskusteluun
     title: '%{name}: ”%{quote}”'
     visibilities:
       private: Vain seuraajille
