@@ -183,6 +183,12 @@ fi:
         create_account_warning: Luo varoitus
         demote_user: Alenna käyttäjä
         destroy_status: Poista tilapäivitys
+        disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
+        disable_user: Tili poistettu käytöstä
+        enable_custom_emoji: Käytä mukautettuja emojeita
+        enable_user: Tili otettu käyttöön
+        promote_user: Käyttäjä ylennetty
+        remove_avatar_user: Profiilikuvan poisto
       actions:
         assigned_to_self_report: "%{name} otti raportin %{target} tehtäväkseen"
         change_email_user: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
@@ -211,6 +217,9 @@ fi:
         unsuspend_account: "%{name} perui käyttäjän %{target} jäähyn"
         update_custom_emoji: "%{name} päivitti emojin %{target}"
         update_status: "%{name} päivitti käyttäjän %{target} tilan"
+      deleted_status: "(poistettu tilapäivitys)"
+      filter_by_action: Suodata tapahtuman mukaan
+      filter_by_user: Suodata käyttäjän mukaan
       title: Auditointiloki
     announcements:
       title: Ilmoitukset
