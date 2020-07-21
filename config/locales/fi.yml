@@ -578,6 +578,7 @@ fi:
   directories:
     directory: Profiilihakemisto
     explanation: Löydä käyttäjiä hiedän kiinnostuksiensa kautta
+    explore_mastodon: Tutki %{title}
   domain_validator:
     invalid_domain: ei ole kelvollinen toimialueen nimi
   errors:
@@ -607,12 +608,41 @@ fi:
     lists: Listat
     mutes: Mykistetyt
     storage: Media-arkisto
+  featured_tags:
+    add_new: Lisää uusi
+  filters:
+    contexts:
+      account: Profiilit
+      home: Kotiaikajana
+      notifications: Ilmoitukset
+      public: Julkiset aikajanat
+      thread: Keskustelut
+    edit:
+      title: Muokkaa suodatinta
+    index:
+      delete: Poista
+      empty: Sinulla ei ole suodattimia.
+      title: Suodattimet
+    new:
+      title: Lisää uusi suodatin
+  footer:
+    developers: Kehittäjille
+    more: Lisää…
+    resources: Resurssit
+    trending_now: Suosittua nyt
   generic:
+    all: Kaikki
     changes_saved_msg: Muutosten tallennus onnistui!
+    copy: Kopioi
+    delete: Poista
+    order_by: Järjestä
     save_changes: Tallenna muutokset
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
       other: Kaikki ei ole aivan oikein! Tarkasta alla olevat %{count} virhettä
+  identity_proofs:
+    active: Aktiivinen
+    authorize: Kyllä, valtuuta
   imports:
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
     success: Tietojen lähettäminen onnistui, ja ne käsitellään kohtapuoliin
@@ -652,6 +682,13 @@ fi:
       too_many: Tiedostoja voi liittää enintään 4
   migrations:
     acct: uuden tilin käyttäjätunnus@verkkotunnus
+    errors:
+      move_to_self: ei voi olla nykyinen tili
+      not_found: ei voitu löytää
+      on_cooldown: Sinä olet jäähyllä
+    followers_count: Seuraajat muuton aikana
+    past_migrations: Edelliset migraatiot
+    proceed_with_move: Siirrä seuraajat
   moderation:
     title: Moderointi
   notification_mailer:
