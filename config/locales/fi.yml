@@ -110,6 +110,7 @@ fi:
       enabled: Käytössä
       followers: Seuraajat
       follows: Seuraa
+      header: Otsakekuva
       inbox_url: Saapuvan postilaatikon osoite
       invited_by: Kutsuja
       ip: IP
@@ -144,6 +145,7 @@ fi:
       reject: Hylkää
       reject_all: Hylkää kaikki
       remove_avatar: Poista profiilikuva
+      remove_header: Poista otsakekuva
       resend_confirmation:
         already_confirmed: Tämä käyttäjä on jo vahvistettu
         send: Lähetä varmistusviesti uudelleen
@@ -181,7 +183,11 @@ fi:
       action_types:
         confirm_user: Vahvista käyttäjä
         create_account_warning: Luo varoitus
+        create_announcement: Luo ilmoitus
+        create_custom_emoji: Luo mukautettu emoji
         demote_user: Alenna käyttäjä
+        destroy_announcement: Poista ilmoitus
+        destroy_custom_emoji: Poista mukautettu emoji
         destroy_status: Poista tilapäivitys
         disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
         disable_user: Tili poistettu käytöstä
@@ -189,6 +195,7 @@ fi:
         enable_user: Tili otettu käyttöön
         promote_user: Käyttäjä ylennetty
         remove_avatar_user: Profiilikuvan poisto
+        silence_account: Hiljennä tili
       actions:
         assigned_to_self_report: "%{name} otti raportin %{target} tehtäväkseen"
         change_email_user: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
@@ -218,6 +225,7 @@ fi:
         update_custom_emoji: "%{name} päivitti emojin %{target}"
         update_status: "%{name} päivitti käyttäjän %{target} tilan"
       deleted_status: "(poistettu tilapäivitys)"
+      empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
       filter_by_user: Suodata käyttäjän mukaan
       title: Auditointiloki
@@ -274,6 +282,8 @@ fi:
       feature_spam_check: Roskapostin esto
       feature_timeline_preview: Aikajanan esikatselu
       features: Ominaisuudet
+      recent_users: Viimeaikaiset käyttäjät
+      search: Haku koko tekstistä
       software: Ohjelmisto
       space: Tilankäyttö
       title: Hallintapaneeli
@@ -299,6 +309,9 @@ fi:
       public_comment: Julkinen kommentti
       reject_media: Hylkää mediatiedostot
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
+      severity:
+        silence: hiljennetty
+        suspend: jäähyllä
       show:
         affected_accounts:
           one: Vaikuttaa yhteen tiliin tietokannassa
@@ -320,8 +333,19 @@ fi:
         title: Uusi sähköpostiestolistan merkintä
       title: Sähköpostiestolista
     instances:
+      moderation:
+        all: Kaikki
+        limited: Rajoitettu
+        title: Moderointi
+      private_comment: Yksityinen kommentti
+      public_comment: Julkinen kommentti
       title: Tiedossa olevat instanssit
+      total_blocked_by_us: Estetty meidän toimesta
+      total_followed_by_them: Heidän seuraama
+      total_followed_by_us: Meidän seuraama
+      total_storage: Medialiitteet
     invites:
+      deactivate_all: Poista kaikki käytöstä
       filter:
         all: Kaikki
         available: Saatavilla
@@ -402,6 +426,11 @@ fi:
         min_invite_role:
           disabled: Ei kukaan
           title: Salli kutsut käyttäjältä
+      registrations_mode:
+        modes:
+          approved: Rekisteröinti vaatii hyväksynnän
+          none: Kukaan ei voi rekisteröityä
+          open: Kaikki voivat rekisteröityä
       show_known_fediverse_at_about_page:
         desc_html: Kun tämä on valittu, esikatselussa näytetään tuuttaukset kaikkialta tunnetusta fediversumista. Muutoin näytetään vain paikalliset tuuttaukset.
         title: Näytä aikajanan esikatselussa koko tunnettu fediversumi
@@ -414,6 +443,8 @@ fi:
       site_description_extended:
         desc_html: Hyvä paikka käytösohjeille, säännöille, ohjeistuksille ja muille instanssin muista erottaville asioille. HTML-tagit käytössä
         title: Omavalintaiset laajat tiedot
+      site_short_description:
+        title: Lyhyt instanssin kuvaus
       site_terms:
         desc_html: Tähän voi kirjoittaa instanssin tietosuojakäytännöstä, käyttöehdoista ja sen sellaisista asioista. HTML-tagit käytössä
         title: Omavalintaiset käyttöehdot
@@ -425,6 +456,10 @@ fi:
         desc_html: Näytä julkinen aikajana aloitussivulla
         title: Aikajanan esikatselu
       title: Sivuston asetukset
+      trends:
+        title: Trendaavat aihetunnisteet
+    site_uploads:
+      delete: Poista ladattu tiedosto
     statuses:
       back_to_account: Takaisin tilin sivulle
       batch:
@@ -433,10 +468,18 @@ fi:
         nsfw_on: NSFW PÄÄLLÄ
       deleted: Poistettu
       failed_to_execute: Suoritus epäonnistui
+      media:
+        title: Media
       no_media: Ei mediaa
       title: Tilin tilat
       with_media: Sisältää mediaa
     tags:
+      context: Konteksti
+      last_active: Aktiivinen viimeksi
+      most_popular: Suosituimmat
+      most_recent: Viimeisimmät
+      name: Aihetunniste
+      reviewed: Tarkistetut
       title: Aihetunnisteet
       trending_right_now: Trendaa juuri nyt
     title: Ylläpito
@@ -449,9 +492,12 @@ fi:
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
   aliases:
+    add_new: Luo alias
     empty: Sinulla ei ole aliaksia.
+    remove: Poista aliaksen linkitys
   appearance:
     localization:
+      body: Mastodonin ovat kääntäneet vapaaehtoiset.
       guide_link_text: Kaikki voivat osallistua.
     sensitive_content: Arkaluontoista sisältöä
   application_mailer:
@@ -528,6 +574,12 @@ fi:
     warning:
       more_details_html: Lisätietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudestaan
+      username_unavailable: Käyttäjänimesi ei tule saataville enää uudestaan
+  directories:
+    directory: Profiilihakemisto
+    explanation: Löydä käyttäjiä hiedän kiinnostuksiensa kautta
+  domain_validator:
+    invalid_domain: ei ole kelvollinen toimialueen nimi
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Sinulla ei ole lupaa nähdä tätä sivua.
@@ -552,6 +604,7 @@ fi:
       request: Pyydä arkisto
       size: Koko
     blocks: Estot
+    lists: Listat
     mutes: Mykistetyt
     storage: Media-arkisto
   generic:
