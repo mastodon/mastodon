@@ -589,6 +589,8 @@ th:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
     invalid_url: URL ที่ระบุไม่ถูกต้อง
+    regenerate_token: สร้างโทเคนการเข้าถึงใหม่
+    token_regenerated: สร้างโทเคนการเข้าถึงใหม่สำเร็จ
     your_token: โทเคนการเข้าถึงของคุณ
   auth:
     apply_for_account: ขอคำเชิญ
@@ -686,6 +688,7 @@ th:
       title: การตรวจสอบความปลอดภัยล้มเหลว
     '429': คำขอมากเกินไป
     '500':
+      content: เราขออภัย แต่มีบางอย่างผิดพลาดในส่วนของเรา
       title: หน้านี้ไม่ถูกต้อง
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
@@ -1011,6 +1014,7 @@ th:
     enabled_success: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     generate_recovery_codes: สร้างรหัสกู้คืน
     recovery_codes: รหัสกู้คืนข้อมูลสำรอง
+    recovery_codes_regenerated: สร้างรหัสกู้คืนใหม่สำเร็จ
     setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   user_mailer:
