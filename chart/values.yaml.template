@@ -16,6 +16,12 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
     # cert-manager.io/cluster-issuer: "letsencrypt"
+    #
+    # ensure that NGINX's upload size matches Mastodon's
+    #   for the K8s ingress controller:
+    # nginx.ingress.kubernetes.io/proxy-body-size: 40m
+    #   for the NGINX ingress controller:
+    # nginx.org/client-max-body-size: 40m
   # this value is used for LOCAL_DOMAIN
   hostname: mastodon.local
   tls:
