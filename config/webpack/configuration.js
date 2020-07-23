@@ -33,7 +33,6 @@ module.exports = {
   settings,
   themes,
   env: {
-    CDN_HOST: env.CDN_HOST,
     NODE_ENV: env.NODE_ENV,
   },
   output,
