@@ -139,13 +139,22 @@ export function submitCompose(routerHistory) {
 
     dispatch(submitComposeRequest());
 
+    let visibility = getState().getIn(['compose', 'privacy']);
+    let circleId = null;
+
+    if (!(['public', 'unlisted', 'private', 'direct'].includes(visibility))) {
+      circleId = visibility;
+      visibility = 'limited';
+    }
+
     api(getState).post('/api/v1/statuses', {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: media.map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
-      visibility: getState().getIn(['compose', 'privacy']),
+      visibility: visibility,
+      circle_id: circleId,
       poll: getState().getIn(['compose', 'poll'], null),
     }, {
       headers: {

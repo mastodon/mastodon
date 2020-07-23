@@ -34,9 +34,11 @@ const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
   hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
   directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
+  limitedMessageWarning: !(['public', 'unlisted', 'private', 'direct'].includes(state.getIn(['compose', 'privacy']))),
+  limitedTitle: state.getIn(['circles', state.getIn(['compose', 'privacy']), 'title']),
 });
 
-const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning }) => {
+const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning, limitedMessageWarning, limitedTitle }) => {
   if (needsLockWarning) {
     return <Warning message={<FormattedMessage id='compose_form.lock_disclaimer' defaultMessage='Your account is not {locked}. Anyone can follow you to view your follower-only posts.' values={{ locked: <a href='/settings/profile'><FormattedMessage id='compose_form.lock_disclaimer.lock' defaultMessage='locked' /></a> }} />} />;
   }
@@ -55,6 +57,10 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
     return <Warning message={message} />;
   }
 
+  if (limitedMessageWarning) {
+    return <Warning message={<FormattedMessage id='compose_form.limited_message_warning' defaultMessage='This toot will only be sent to users in the circle "{title}".' values={{ title: limitedTitle }} />} />;
+  }
+
   return null;
 };
 
@@ -62,6 +68,8 @@ WarningWrapper.propTypes = {
   needsLockWarning: PropTypes.bool,
   hashtagWarning: PropTypes.bool,
   directMessageWarning: PropTypes.bool,
+  limitedMessageWarning: PropTypes.bool,
+  limitedTitle: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(WarningWrapper);
