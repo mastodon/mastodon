@@ -6327,13 +6327,17 @@ noscript {
   }
 }
 
-.circle-link {
+button.circle-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
   display: flex;
   font-size: 16px;
   padding: 15px;
+  border: 0;
+  width: 100%;
+  text-align: left;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover,
   &:focus,
@@ -6345,15 +6349,7 @@ noscript {
     outline: 0;
   }
 
-  button {
-    background: transparent;
-    color: $primary-text-color;
-    display: block;
-    font-size: 16px;
-    text-align: left;
-    padding: 0;
-    border: 0;
-    cursor: pointer;
+  div {
     flex: 1 1 auto;
   }
 

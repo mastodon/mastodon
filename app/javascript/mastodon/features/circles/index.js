@@ -74,7 +74,7 @@ class Circles extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {circles.map(circle =>
-            <Circle key={circle.get('id')} id={circle.get('id')} text={circle.get('title')} />,
+            <Circle key={`${circle.get('id')}-${circle.get('title')}`} id={circle.get('id')} text={circle.get('title')} />,
           )}
         </ScrollableList>
       </Column>

@@ -45,15 +45,13 @@ class Circle extends React.PureComponent {
     const { text, intl } = this.props;
 
     return (
-      <article>
-        <span className='circle-link'>
-          <button onClick={this.handleEditClick}>
-            <Icon id='circle-o' className='column-link__icon' fixedWidth />
-            {text}
-          </button>
-          <IconButton icon='trash' size={16} title={intl.formatMessage(messages.deleteTitle)} onClick={this.handleDeleteClick} />
-        </span>
-      </article>
+      <button className='circle-link' onClick={this.handleEditClick}>
+        <div>
+          <Icon id='circle-o' className='column-link__icon' fixedWidth />
+          {text}
+        </div>
+        <IconButton icon='trash' size={16} title={intl.formatMessage(messages.deleteTitle)} onClick={this.handleDeleteClick} />
+      </button>
     );
   }
 
