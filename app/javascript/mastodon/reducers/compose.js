@@ -189,6 +189,10 @@ const privacyPreference = (a, b) => {
   return order[Math.max(order.indexOf(a), order.indexOf(b), 0)];
 };
 
+const privacyCompatibility = (visibility) => {
+  return visibility === 'limited' ? 'private' : visibility;
+};
+
 const hydrate = (state, hydratedState) => {
   state = clearAll(state.merge(hydratedState));
 
@@ -293,7 +297,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
-      map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
+      map.set('privacy', privacyPreference(privacyCompatibility(action.status.get('visibility')), state.get('default_privacy')));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
@@ -401,7 +405,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
-      map.set('privacy', action.status.get('visibility'));
+      map.set('privacy', privacyCompatibility(action.status.get('visibility')));
       map.set('media_attachments', action.status.get('media_attachments'));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);

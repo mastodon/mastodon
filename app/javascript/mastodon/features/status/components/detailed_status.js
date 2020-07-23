@@ -191,7 +191,7 @@ class DetailedStatus extends ImmutablePureComponent {
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
     const visibilityLink = <Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Fragment>;
 
-    if (['private', 'direct'].includes(status.get('visibility'))) {
+    if (!(['public', 'unlisted'].includes(status.get('visibility')))) {
       reblogLink = '';
     } else if (this.context.router) {
       reblogLink = (
