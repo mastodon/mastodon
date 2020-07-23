@@ -13,7 +13,7 @@ vi:
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
         text_html: Tùy chọn. Bạn có thể sử dụng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
-        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm văn bản tùy chỉnh vào cuối cảnh cáo cài sẵn
+        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú bên dưới cảnh cáo cài sẵn
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
@@ -84,15 +84,15 @@ vi:
         title: Tựa đề
       admin_account_action:
         include_statuses: Đính kèm những tút bị báo xấu trong e-mail
-        send_email_notification: Thông báo cho người dùng mỗi email
-        text: Tùy chỉnh cảnh báo
-        type: Hoạt động
+        send_email_notification: Thông báo cho người này qua email
+        text: Ghi chú cảnh cáo
+        type: Hành động
         types:
           disable: Vô hiệu hóa đăng nhập
           none: Không làm gì cả
-          silence: Im lặng
+          silence: Tạm ẩn
           suspend: Đình chỉ và xóa dữ liệu tài khoản
-        warning_preset_id: Sử dụng cảnh báo cài đặt trước
+        warning_preset_id: Sử dụng cảnh cáo cài sẵn
       announcement:
         all_day: Sự kiện diễn ra hằng ngày
         ends_at: Kết thúc sự kiện
