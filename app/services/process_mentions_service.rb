@@ -42,6 +42,13 @@ class ProcessMentionsService < BaseService
       "@#{mentioned_account.acct}"
     end
 
+    if circle.present?
+      circle.accounts.find_each do |target_account|
+        mention = target_account.mentions.new(status: status, silent: true)
+        mentions << mention if mention.save!
+      end
+    end
+
     status.save!
     check_for_spam(status)
 
