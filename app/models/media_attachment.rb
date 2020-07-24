@@ -336,6 +336,7 @@ class MediaAttachment < ApplicationRecord
 
     return unless movie.valid?
 
+    raise Mastodon::StreamValidationError, 'Video has no video stream' if movie.width.nil? || movie.frame_rate.nil?
     raise Mastodon::DimensionsValidationError, "#{movie.width}x#{movie.height} videos are not supported" if movie.width * movie.height > MAX_VIDEO_MATRIX_LIMIT
     raise Mastodon::DimensionsValidationError, "#{movie.frame_rate.to_i}fps videos are not supported" if movie.frame_rate > MAX_VIDEO_FRAME_RATE
   end
