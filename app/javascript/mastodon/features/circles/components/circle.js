@@ -6,6 +6,7 @@ import Icon from '../../../components/icon';
 import IconButton from '../../../components/icon_button';
 import { openModal } from '../../../actions/modal';
 import { deleteCircle } from '../../../actions/circles';
+import { defaultMediaVisibility } from '../../../components/status';
 
 const messages = defineMessages({
   deleteTitle: { id: 'confirmations.delete_circle.title', defaultMessage: 'Delete' },
@@ -45,13 +46,15 @@ class Circle extends React.PureComponent {
     const { text, intl } = this.props;
 
     return (
-      <button className='circle-link' onClick={this.handleEditClick}>
-        <div>
+      <div className='circle-link'>
+        <button className='circle-edit-button' onClick={this.handleEditClick}>
           <Icon id='circle-o' className='column-link__icon' fixedWidth />
           {text}
-        </div>
-        <IconButton icon='trash' size={16} title={intl.formatMessage(messages.deleteTitle)} onClick={this.handleDeleteClick} />
-      </button>
+        </button>
+        <button className='circle-delete-button' title={intl.formatMessage(messages.deleteTitle)} onClick={this.handleDeleteClick}>
+          <Icon id='trash' className='column-link__icon' fixedWidth />
+        </button>
+      </div>
     );
   }
 

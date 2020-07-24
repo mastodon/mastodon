@@ -6327,34 +6327,37 @@ noscript {
   }
 }
 
-button.circle-link {
-  background: lighten($ui-base-color, 8%);
-  color: $primary-text-color;
+.circle-link {
   display: flex;
-  font-size: 16px;
-  padding: 15px;
-  border: 0;
-  width: 100%;
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
 
-  &:hover,
-  &:focus,
-  &:active {
-    background: lighten($ui-base-color, 11%);
-  }
-
-  &:focus {
-    outline: 0;
-  }
-
-  div {
+  .circle-edit-button {
     flex: 1 1 auto;
   }
 
-  .icon-button {
+  .circle-delete-button {
     flex: 0 0 auto;
+  }
+
+  .circle-edit-button,
+  .circle-delete-button {
+    background: lighten($ui-base-color, 8%);
+    color: $primary-text-color;
+    padding: 15px;
+    font-size: 16px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 11%);
+    }
+
+    &:focus {
+      outline: 0;
+    }
   }
 }
 
