@@ -15,6 +15,7 @@ import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import AnimatedNumber from 'mastodon/components/animated_number';
+import { me } from 'mastodon/initial_state';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
 const messages = defineMessages({
@@ -189,7 +190,14 @@ class DetailedStatus extends ImmutablePureComponent {
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
-    const visibilityLink = <Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Fragment>;
+
+    let visibilityLink;
+
+    if (status.getIn(['account', 'id']) !== me || status.get('visibility') !== 'limited' || !this.context.router) {
+      visibilityLink = <Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Fragment>;
+    } else {
+      visibilityLink = <Fragment> · <Link to={`/statuses/${status.get('id')}/mentions`} className='detailed-status__link'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Link></Fragment>;
+    }
 
     if (!(['public', 'unlisted'].includes(status.get('visibility')))) {
       reblogLink = '';
