@@ -508,10 +508,14 @@ class Status extends ImmutablePureComponent {
                 <Component
                   src={attachment.get('url')}
                   alt={attachment.get('description')}
+                  poster={attachment.get('preview_url') || quote_status.getIn(['account', 'avatar_static'])}
+                  backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
+                  foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
+                  accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
                   duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
-                  peaks={[0]}
+                  width={this.props.cachedMediaWidth}
                   height={70}
-                  quote
+                  cacheWidth={this.props.cacheMediaWidth}
                 />
               )}
             </Bundle>
