@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
@@ -10,7 +8,6 @@ import spring from 'react-motion/lib/spring';
 import detectPassiveEvents from 'detect-passive-events';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import { createSelector } from 'reselect';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -21,6 +18,7 @@ const messages = defineMessages({
   private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
+  limited_short: { id: 'privacy.limited.short', defaultMessage: 'Circle' },
   limited_long: { id: 'privacy.limited.long', defaultMessage: 'Visible for circle users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
@@ -152,22 +150,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
 
 }
 
-const getOrderedCircles = createSelector([state => state.get('circles')], circles => {
-  if (!circles) {
-    return circles;
-  }
-
-  return circles.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
-});
-
-const mapStateToProps = (state) => {
-  return {
-    circles: getOrderedCircles(state),
-  };
-};
-
-export default @connect(mapStateToProps)
-@injectIntl
+export default @injectIntl
 class PrivacyDropdown extends React.PureComponent {
 
   static propTypes = {
@@ -175,7 +158,6 @@ class PrivacyDropdown extends React.PureComponent {
     isModalOpen: PropTypes.bool.isRequired,
     onModalOpen: PropTypes.func,
     onModalClose: PropTypes.func,
-    circles: ImmutablePropTypes.list,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -250,24 +232,15 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
   componentWillMount () {
-    this.setOptions();
-  }
-
-  componentWillUpdate () {
-    this.setOptions();
-  }
-
-  setOptions () {
-    const { intl: { formatMessage }, circles } = this.props;
+    const { intl: { formatMessage } } = this.props;
 
     this.options = [
       { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
       { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
+      { icon: 'circle-o', value: 'limited', text: formatMessage(messages.limited_short), meta: formatMessage(messages.limited_long) },
       { icon: 'envelope', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
     ];
-
-    circles.forEach(circle => this.options.push({ icon: 'circle-o', value: circle.get('id'), text: circle.get('title'), meta: formatMessage(messages.limited_long) }));
   }
 
   render () {

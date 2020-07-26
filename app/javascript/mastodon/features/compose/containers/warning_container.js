@@ -34,8 +34,7 @@ const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
   hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
   directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
-  limitedMessageWarning: !(['public', 'unlisted', 'private', 'direct'].includes(state.getIn(['compose', 'privacy']))),
-  limitedTitle: state.getIn(['circles', state.getIn(['compose', 'privacy']), 'title']),
+  limitedMessageWarning: state.getIn(['compose', 'privacy']) === 'limited',
 });
 
 const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning, limitedMessageWarning, limitedTitle }) => {
@@ -58,7 +57,7 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
   }
 
   if (limitedMessageWarning) {
-    return <Warning message={<FormattedMessage id='compose_form.limited_message_warning' defaultMessage='This toot will only be sent to users in the circle "{title}".' values={{ title: limitedTitle }} />} />;
+    return <Warning message={<FormattedMessage id='compose_form.limited_message_warning' defaultMessage='This toot will only be sent to users in the circle.' />} />;
   }
 
   return null;
@@ -69,7 +68,6 @@ WarningWrapper.propTypes = {
   hashtagWarning: PropTypes.bool,
   directMessageWarning: PropTypes.bool,
   limitedMessageWarning: PropTypes.bool,
-  limitedTitle: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(WarningWrapper);
