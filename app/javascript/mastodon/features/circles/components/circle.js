@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import Icon from '../../../components/icon';
-import IconButton from '../../../components/icon_button';
 import { openModal } from '../../../actions/modal';
 import { deleteCircle } from '../../../actions/circles';
-import { defaultMediaVisibility } from '../../../components/status';
 
 const messages = defineMessages({
   deleteTitle: { id: 'confirmations.delete_circle.title', defaultMessage: 'Delete' },
