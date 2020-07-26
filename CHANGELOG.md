@@ -3,7 +3,7 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## [3.2.0] - 2020-07-27
 ### Added
 
 - Add `SMTP_SSL` environment variable ([OmmyZhang](https://github.com/tootsuite/mastodon/pull/14309))
@@ -89,6 +89,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fix `following` param not working when exact match is found in account search ([noellabo](https://github.com/tootsuite/mastodon/pull/14394))
 - Fix sometimes occuring duplicate mention notifications ([noellabo](https://github.com/tootsuite/mastodon/pull/14378))
 - Fix RSS feeds not being cachable ([ThibG](https://github.com/tootsuite/mastodon/pull/14368))
 - Fix lack of locking around processing of Announce activities in ActivityPub ([noellabo](https://github.com/tootsuite/mastodon/pull/14365))
