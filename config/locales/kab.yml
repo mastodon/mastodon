@@ -132,6 +132,7 @@ kab:
       reject: Aggi
       reject_all: Aggi-ten akk
       remove_avatar: Kkes tugna n umaɣnu
+      remove_header: Kkes tacacit
       resend_confirmation:
         already_confirmed: Amseqdac-agi yettwasentem yakan
         send: Azen tikelt-nniḍen imayl n usentem
@@ -161,6 +162,7 @@ kab:
     action_logs:
       action_types:
         disable_2fa_user: Gdel 2FA
+        enable_user: Rmed aseqdac
         remove_avatar_user: Kkes avaṭar
         reset_password_user: Ales awennez n wawal n uffir
         silence_account: Sgugem amiḍan
@@ -188,6 +190,7 @@ kab:
         update_status: "%{name} yelqem tasuffeɣt n %{target}"
       deleted_status: "(tasuffeɣt tettwakkes)"
       empty: Ulac iɣmisen i yellan.
+      filter_by_user: Sizdeg s useqdac
       title: Aɣmis n usenqed
     announcements:
       edit:
@@ -227,6 +230,7 @@ kab:
       upload: Sali
     dashboard:
       config: Tawila
+      feature_deletions: Imiḍan yettwaksen
       feature_invites: Iseɣwan n iɛaṛuḍen
       feature_profile_directory: Akaram n imaɣnuten
       feature_registrations: Ajerred
@@ -517,6 +521,7 @@ kab:
       '604800': 1 umalas
       '86400': 1 wass
     expires_in_prompt: Werǧin
+    invited_by: 'Tettwaɛraḍeḍ s ɣur:'
     max_uses_prompt: Ulac talast
     table:
       expires_at: Ad ifat di
@@ -544,6 +549,7 @@ kab:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           million: A
           trillion: Am
@@ -571,6 +577,8 @@ kab:
   remote_interaction:
     favourite:
       proceed: Kemmel asmenyef
+    reblog:
+      proceed: Sentem beṭṭu
     reply:
       proceed: Kemmel tiririt
   sessions:
@@ -629,6 +637,9 @@ kab:
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
   statuses:
     attached:
+      audio:
+        one: "%{count} n imesli"
+        other: "%{count} n imesliyen"
       image:
         one: "%{count} tugna"
         other: "%{count} tugniwin"
@@ -641,6 +652,9 @@ kab:
       total_people:
         one: "%{count} n wemdan"
         other: "%{count} n yemdanen"
+      total_votes:
+        one: "%{count} n wedɣar"
+        other: "%{count} n yedɣaren"
       vote: Dɣeṛ
     show_more: Ssken-d ugar
     show_thread: Ssken-d lxiḍ

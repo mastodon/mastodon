@@ -124,9 +124,15 @@ class FeedManager
   end
 
   def clear_from_timeline(account, target_account)
+    # Clear from timeline all statuses from or mentionning target_account
     timeline_key        = key(:home, account.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
-    target_statuses     = Status.where(id: timeline_status_ids, account: target_account)
+    statuses            = Status.where(id: timeline_status_ids).select(:id, :reblog_of_id, :account_id).to_a
+    reblogged_ids       = Status.where(id: statuses.map(&:reblog_of_id).compact, account: target_account).pluck(:id)
+    with_mentions_ids   = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact, account: target_account).pluck(:status_id)
+    target_statuses     = statuses.filter do |status|
+      status.account_id == target_account.id || reblogged_ids.include?(status.reblog_of_id) || with_mentions_ids.include?(status.id) || with_mentions_ids.include?(status.reblog_of_id)
+    end
 
     target_statuses.each do |status|
       unpush_from_home(account, status)
