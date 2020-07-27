@@ -619,7 +619,8 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (0.20.3)
     thread_safe (0.3.6)
-    thwait (0.1.0)
+    thwait (0.2.0)
+      e2mmap
     tilt (2.0.10)
     tty-color (0.5.1)
     tty-cursor (0.7.1)
@@ -789,7 +790,7 @@ DEPENDENCIES
   streamio-ffmpeg (~> 3.0)
   strong_migrations (~> 0.6)
   thor (~> 0.20)
-  thwait (~> 0.1.0)
+  thwait (~> 0.2.0)
   tty-prompt (~> 0.21)
   twitter-text (~> 1.14)
   tzinfo-data (~> 1.2020)
