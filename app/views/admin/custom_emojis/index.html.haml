@@ -4,8 +4,9 @@
 - content_for :header_tags do
   = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
 
-- content_for :heading_actions do
-  = link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
+- if can?(:create, :custom_emoji)
+  - content_for :heading_actions do
+    = link_to t('admin.custom_emojis.upload'), new_admin_custom_emoji_path, class: 'button'
 
 .filters
   .filter-subset
@@ -33,7 +34,7 @@
         = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.custom_emojis.#{key}")
 
     .actions
-      %button= t('admin.accounts.search')
+      %button.button= t('admin.accounts.search')
       = link_to t('admin.accounts.reset'), admin_custom_emojis_path, class: 'button negative'
 
 = form_for(@form, url: batch_admin_custom_emojis_path) do |f|
@@ -58,9 +59,10 @@
 
         = f.button safe_join([fa_icon('power-off'), t('admin.custom_emojis.disable')]), name: :disable, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
-        = f.button safe_join([fa_icon('times'), t('admin.custom_emojis.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        - if can?(:destroy, :custom_emoji)
+          = f.button safe_join([fa_icon('times'), t('admin.custom_emojis.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
-        - unless params[:local] == '1'
+        - if can?(:copy, :custom_emoji) && params[:local] != '1'
           = f.button safe_join([fa_icon('copy'), t('admin.custom_emojis.copy')]), name: :copy, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
     - if params[:local] == '1'

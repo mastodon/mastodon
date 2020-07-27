@@ -8,6 +8,6 @@ class HomeFeed < Feed
   end
 
   def regenerating?
-    redis.exists("account:#{@id}:regeneration")
+    redis.exists?("account:#{@id}:regeneration")
   end
 end

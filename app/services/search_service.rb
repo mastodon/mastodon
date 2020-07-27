@@ -94,7 +94,7 @@ class SearchService < BaseService
   end
 
   def account_searchable?
-    account_search? && !(@query.include?('@') && @query.include?(' '))
+    account_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
   end
 
   def hashtag_searchable?

@@ -4,7 +4,23 @@ require 'rails_helper'
 
 RSpec.describe ActivityPub::RepliesController, type: :controller do
   let(:status) { Fabricate(:status, visibility: parent_visibility) }
+  let(:remote_reply_id) { nil }
   let(:remote_account) { nil }
+
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
 
   before do
     allow(controller).to receive(:signed_request_account).and_return(remote_account)
@@ -14,6 +30,8 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
     Fabricate(:status, thread: status, visibility: :private)
     Fabricate(:status, account: status.account, thread: status, visibility: :public)
     Fabricate(:status, account: status.account, thread: status, visibility: :private)
+
+    Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id) if remote_reply_id
   end
 
   describe 'GET #index' do
@@ -33,9 +51,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'returns items with account\'s own replies' do
           json = body_as_json
@@ -84,9 +100,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
             expect(response.content_type).to eq 'application/activity+json'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
-          end
+          it_behaves_like 'cachable response'
 
           context 'without only_other_accounts' do
             it 'returns items with account\'s own replies' do
@@ -109,6 +123,20 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
               expect(json[:first][:items]).to be_an Array
               expect(json[:first][:items].size).to eq 2
               expect(json[:first][:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+            end
+
+            context 'with remote responses' do
+              let(:remote_reply_id) { 'foo' }
+
+              it 'returned items are all inlined local toots or are ids' do
+                json = body_as_json
+
+                expect(json[:first]).to be_a Hash
+                expect(json[:first][:items]).to be_an Array
+                expect(json[:first][:items].size).to eq 3
+                expect(json[:first][:items].all? { |item| item.is_a?(Hash) ? ActivityPub::TagManager.instance.local_uri?(item[:id]) : item.is_a?(String) }).to be true
+                expect(json[:first][:items]).to include remote_reply_id
+              end
             end
           end
         end

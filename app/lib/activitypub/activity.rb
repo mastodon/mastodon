@@ -132,7 +132,7 @@ class ActivityPub::Activity
   end
 
   def delete_arrived_first?(uri)
-    redis.exists("delete_upon_arrival:#{@account.id}:#{uri}")
+    redis.exists?("delete_upon_arrival:#{@account.id}:#{uri}")
   end
 
   def delete_later!(uri)
@@ -155,6 +155,34 @@ class ActivityPub::Activity
     end
 
     fetch_remote_original_status
+  end
+
+  def dereference_object!
+    return unless @object.is_a?(String)
+    return if invalid_origin?(@object)
+
+    object = fetch_resource(@object, true, signed_fetch_account)
+    return unless object.present? && object.is_a?(Hash) && supported_context?(object)
+
+    @object = object
+  end
+
+  def signed_fetch_account
+    first_mentioned_local_account || first_local_follower
+  end
+
+  def first_mentioned_local_account
+    audience = (as_array(@json['to']) + as_array(@json['cc'])).uniq
+    local_usernames = audience.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }
+                              .map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
+
+    return if local_usernames.empty?
+
+    Account.local.where(username: local_usernames).first
+  end
+
+  def first_local_follower
+    @account.followers.local.first
   end
 
   def follow_request_from_object
@@ -185,7 +213,7 @@ class ActivityPub::Activity
   end
 
   def followed_by_local_accounts?
-    @account.passive_relationships.exists?
+    @account.passive_relationships.exists? || @options[:relayed_through_account]&.passive_relationships&.exists?
   end
 
   def requested_through_relay?

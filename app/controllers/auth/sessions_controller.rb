@@ -8,7 +8,8 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
 
-  prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+  include TwoFactorAuthenticationConcern
+  include SignInTokenAuthenticationConcern
 
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
@@ -39,17 +40,18 @@ class Auth::SessionsController < Devise::SessionsController
   protected
 
   def find_user
-    if session[:otp_user_id]
-      User.find(session[:otp_user_id])
+    if session[:attempt_user_id]
+      User.find(session[:attempt_user_id])
     else
       user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
       user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
       user ||= User.find_for_authentication(email: user_params[:email])
+      user
     end
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :otp_attempt)
+    params.require(:user).permit(:email, :password, :otp_attempt, :sign_in_token_attempt)
   end
 
   def after_sign_in_path_for(resource)
@@ -68,47 +70,6 @@ class Auth::SessionsController < Devise::SessionsController
     end
 
     super
-  end
-
-  def two_factor_enabled?
-    find_user&.otp_required_for_login?
-  end
-
-  def valid_otp_attempt?(user)
-    user.validate_and_consume_otp!(user_params[:otp_attempt]) ||
-      user.invalidate_otp_backup_code!(user_params[:otp_attempt])
-  rescue OpenSSL::Cipher::CipherError
-    false
-  end
-
-  def authenticate_with_two_factor
-    user = self.resource = find_user
-
-    if user_params[:otp_attempt].present? && session[:otp_user_id]
-      authenticate_with_two_factor_via_otp(user)
-    elsif user.present? && (user.encrypted_password.blank? || user.valid_password?(user_params[:password]))
-      # If encrypted_password is blank, we got the user from LDAP or PAM,
-      # so credentials are already valid
-
-      prompt_for_two_factor(user)
-    end
-  end
-
-  def authenticate_with_two_factor_via_otp(user)
-    if valid_otp_attempt?(user)
-      session.delete(:otp_user_id)
-      remember_me(user)
-      sign_in(user)
-    else
-      flash.now[:alert] = I18n.t('users.invalid_otp_token')
-      prompt_for_two_factor(user)
-    end
-  end
-
-  def prompt_for_two_factor(user)
-    session[:otp_user_id] = user.id
-    @body_classes = 'lighter'
-    render :two_factor
   end
 
   def require_no_authentication

@@ -42,8 +42,11 @@ cs:
       domain: Server
       reason: Důvod
       rejecting_media: 'Mediální soubory z tohoto serveru nebudou zpracovány a nebudou zobrazeny žádné náhledy. Pro prohlédnutí médií bude třeba manuálně přejít na druhý server:'
+      rejecting_media_title: Filtrovaná média
       silenced: 'Příspěvky z těchto serverů nebudou zobrazeny ve veřejných časových osách a konverzacích a nebudou generována oznámení o interakcích uživatelů z toho serveru, pokud je nesledujete:'
+      silenced_title: Ztišené servery
       suspended: 'Žádná data z těchto serverů nebudou zpracována, ukládána ani vyměňována, čímž bude znemožněna jakákoliv interakce či komunikace s uživateli z těchto serverů:'
+      suspended_title: Pozastavené servery
     unavailable_content_html: Mastodon vám obvykle dovoluje prohlížet si obsah a komunikovat s uživateli z jakéhokoliv dalšího serveru ve fedivesmíru. Tohle jsou výjimky, které byly zavedeny na tomto konkrétním serveru.
     user_count_after:
       few: uživatelé
@@ -226,10 +229,15 @@ cs:
         enable_custom_emoji: Povolit vlastní emoji
         enable_user: Povolit uživatele
         promote_user: Povýšit uživatele
+        remove_avatar_user: Odstranit avatar
         reopen_report: Znovu otevřít hlášení
         reset_password_user: Obnovit heslo
         resolve_report: Označit hlášení jako vyřešené
+        silence_account: Ztišit účet
+        suspend_account: Pozastavit účet
         unassigned_report: Zrušit přiřazení hlášení
+        unsilence_account: Zrušit ztišení účtu
+        unsuspend_account: Zrušit pozastavení účtu
         update_announcement: Aktualizovat oznámení
         update_custom_emoji: Aktualizovat vlastní emoji
         update_status: Aktualizovat stav
@@ -270,6 +278,7 @@ cs:
         update_custom_emoji: Uživatel %{name} aktualizoval emoji %{target}
         update_status: Uživatel %{name} aktualizoval toot uživatele %{target}
       deleted_status: "(smazaný toot)"
+      empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
       title: Auditovací protokol
@@ -310,6 +319,7 @@ cs:
       listed: Uvedeno
       new:
         title: Přidat nové vlastní emoji
+      not_permitted: K provedené této akce nemáte dostatečná oprávnění
       overwrite: Přepsat
       shortcode: Zkratka
       shortcode_hint: Alespoň 2 znaky, pouze alfanumerické znaky a podtržítka
@@ -643,6 +653,7 @@ cs:
     add_new: Vytvořit alias
     created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
     deleted_msg: Alias byl úspěšně odstraněn. Přesun z jiného účtu na tento již nebude možný.
+    empty: Nemáte žádné aliasy.
     hint_html: Chcete-li se přesunout z jiného účtu na tento, můžete si zde vytvořit alias, který je vyžadován předtím, než můžete pokračovat přesunem sledujících ze starého účtu na tento. Tato akce sama o sobě je <strong>neškodná a vratná</strong>. <strong>Přesun účtu se zahajuje ze starého účtu</strong>.
     remove: Odpojit alias
   appearance:
@@ -728,6 +739,10 @@ cs:
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
     invalid_password: Neplatné heslo
     prompt: Pokračujte potvrzením hesla
+  crypto:
+    errors:
+      invalid_key: není platný klíč Ed25519 nebo Curve25519
+      invalid_signature: není platný podpis typu Ed25519
   date:
     formats:
       default: "%-d. %b %Y"
@@ -906,6 +921,7 @@ cs:
   media_attachments:
     validations:
       images_and_video: K tootu, který již obsahuje obrázky, nelze připojit video
+      not_ready: Nelze připojit soubory před jejich zpracováním. Zkuste to znovu za chvíli.
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: Přesunuto na
@@ -926,6 +942,7 @@ cs:
     on_cooldown: Nedávno jste svůj účet přesunuli. Tato funkce bude opět dostupná za %{count} dní.
     past_migrations: Předchozí přesuny
     proceed_with_move: Přesunout sledující
+    redirected_msg: Váš účet nyní přesměruje na %{acct}.
     redirecting_to: Váš účet se přesměrovává na účet %{acct}.
     set_redirect: Nastavit přesměrování
     warning:
@@ -1021,6 +1038,7 @@ cs:
     dormant: Nečinné
     followers: Sledující
     following: Sledovaní
+    invited: Pozvánka odeslána
     last_active: Naposledy aktivní
     most_recent: Nejnovější
     moved: Přesunuté
@@ -1287,6 +1305,12 @@ cs:
       explanation: Vyžádali jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
       subject: Váš archiv je připraven ke stažení
       title: Stažení archivu
+    sign_in_token:
+      details: 'Zde jsou podrobnosti pokusu:'
+      explanation: 'Zjistili jsme, že se někdo pokusil k vašemu přihlásit z neznámé IP adresy. Pokud jste to vy, zadejte níže uvedený kód na přihlašovací stránce s výzvou:'
+      further_actions: 'Pokud jste to nebyli vy, změňte prosím své heslo a zapněte si dvoufázově ověřování svého účtu. Můžete tak učinit hned tady:'
+      subject: Potvrďte prosím pokus o přihlášení
+      title: Pokus o přihlášení
     warning:
       explanation:
         disable: Zatímco je váš účet zmrazen, zůstávají data vašeho účtu nedotčena. Dokud ale nebude odemčen, nemůžete vykonávat žádné akce.
@@ -1324,11 +1348,14 @@ cs:
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
+    generic_access_help_html: Máte potíže s přístupem ke svému účtu? Napište nám o pomoc na %{email}.
     invalid_email: E-mailová adresa je neplatná
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
+    invalid_sign_in_token: Neplatný bezpečnostní kód
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
+    suspicious_sign_in_confirmation: Zdá se, že se z tohoto zařízení přihlašujete poprvé a po dlouhé době. Pro ověření tohoto přihlášení jsme vám e-mailem zaslali bezpečnostní kód.
   verification:
     explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření

@@ -112,6 +112,8 @@ class ResolveAccountService < BaseService
   end
 
   def webfinger_update_due?
+    return false if @options[:check_delivery_availability] && !DeliveryFailureTracker.available?(@domain)
+
     @account.nil? || ((!@options[:skip_webfinger] || @account.ostatus?) && @account.possibly_stale?)
   end
 

@@ -40,8 +40,11 @@ ca:
       domain: Servidor
       reason: Raó
       rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats o emmagatzemats i cap miniatura serà mostrada, requerint clic manual a través de l''arxiu original:'
+      rejecting_media_title: Mèdia filtrat
       silenced: 'Les publicacions d''aquests servidors seran amagades en les línies de temps públiques i en les converses, i cap notificació serà generada de les interaccions dels seus usuaris, llevat que estiguis seguint-los:'
+      silenced_title: Servidors silenciats
       suspended: 'Cap dada d''aquests servidors serà processada, emmagatzemada o intercanviada, fent impossible qualsevol interacció o comunicació amb els usuaris d''aquests servidors:'
+      suspended_title: Servidors suspesos
     unavailable_content_html: Mastodon generalment et permet veure el contingut i interaccionar amb els usuaris de qualsevol altre servidor en el fedivers. Aquestes són les excepcions que s'han fet en aquest servidor particular.
     user_count_after:
       one: usuari
@@ -309,6 +312,7 @@ ca:
       listed: Enumerat
       new:
         title: Afegeix emoji personalitzat nou
+      not_permitted: No tens permís per a realitzar aquesta acció
       overwrite: Sobreescriure
       shortcode: Codi curt
       shortcode_hint: Com a mínim 2 caràcters, només caràcters alfanumèrics i guions baixos
@@ -721,6 +725,10 @@ ca:
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
     invalid_password: Contrasenya no vàlida
     prompt: Confirmi la contrasenya per a continuar
+  crypto:
+    errors:
+      invalid_key: no és una clau Ed25519 o Curve25519 vàlida
+      invalid_signature: no és una signatura Ed25519 vàlida
   date:
     formats:
       default: "%b %d, %Y"
@@ -918,6 +926,7 @@ ca:
     on_cooldown: Recentment has emigrat el teu compte. Aquesta funció esdevindrà un altre cop disponible en %{count} dies.
     past_migrations: Migracions passades
     proceed_with_move: Moure seguidors
+    redirected_msg: El teu compte és ara redireccionat a %{acct}.
     redirecting_to: El teu compte està redirigint a %{acct}.
     set_redirect: Ajusta la redirecció
     warning:
@@ -931,6 +940,10 @@ ca:
       redirect: El perfil del teu compte actual serà actualitzat amb un avís de redirecció i serà exclòs de les cerques
   moderation:
     title: Moderació
+  move_handler:
+    carry_blocks_over_text: Aquest usuari s’ha mogut des de %{acct}, que havies bloquejat.
+    carry_mutes_over_text: Aquest usuari s’ha mogut des de %{acct}, que havies silenciat.
+    copy_account_note_text: 'Aquest usuari s’ha mogut des de %{acct}, aquí estaven les teves notes prèvies sobre ell:'
   notification_mailer:
     digest:
       action: Mostra totes les notificacions
@@ -1107,6 +1120,9 @@ ca:
     spam_detected: Aquest és un informe automàtic. S'ha detectat spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} àudio"
+        other: "%{count} àudios"
       description: 'Adjunt: %{attached}'
       image:
         one: "%{count} imatge"
@@ -1266,6 +1282,12 @@ ca:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: El teu arxiu està preparat per a descàrrega
       title: Recollida del arxiu
+    sign_in_token:
+      details: 'Aquí es mostren els detalls del intent:'
+      explanation: 'Hem detectat un intent d’inici de sessió al teu compte des d’una IP desconeguda. Si ets tu, si us plau introdueix el codi de seguretat a sota, en la pàgina de desafiament d’inici de sessió:'
+      further_actions: 'Si no has estat tu, si us plau canvia la contrasenya i activa l’autentificació de dos factors del teu compte. Pots fer-ho aquí:'
+      subject: Si us plau confirma l’intent d’inici de sessió
+      title: Intent d’inici de sessió
     warning:
       explanation:
         disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
@@ -1303,11 +1325,14 @@ ca:
       title: Benvingut a bord, %{name}!
   users:
     follow_limit_reached: No pots seguir més de %{limit} persones
+    generic_access_help_html: Problemes accedint al teu compte? Pots contactar amb %{email} per a demanar assistència
     invalid_email: L'adreça de correu no és correcta
     invalid_otp_token: El codi de dos factors no és correcte
+    invalid_sign_in_token: Codi de seguretat invàlid
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
+    suspicious_sign_in_confirmation: Aparentment no has iniciat sessió des d’aquest dispositiu abans i no ho has fet des de fa cert temps per tant t’enviarem un codi de seguretat al teu correu electrònic per a confirmar que ets tu.
   verification:
     explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
     verification: Verificació

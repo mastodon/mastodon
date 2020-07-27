@@ -7,7 +7,7 @@ class Api::BaseController < ApplicationController
   include RateLimitHeaders
 
   skip_before_action :store_current_location
-  skip_before_action :require_functional!
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
   before_action :set_cache_headers

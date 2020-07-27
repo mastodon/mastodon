@@ -85,10 +85,12 @@ module.exports = {
       writeToDisk: true,
       publicPath: true,
     }),
-    new CopyPlugin([
-      { from: 'node_modules/tesseract.js/dist/worker.min.js', to: 'ocr' },
-      { from: 'node_modules/tesseract.js-core/tesseract-core.wasm.js', to: 'ocr' },
-    ]),
+    new CopyPlugin({
+      patterns: [
+        { from: 'node_modules/tesseract.js/dist/worker.min.js', to: 'ocr' },
+        { from: 'node_modules/tesseract.js-core/tesseract-core.wasm.js', to: 'ocr' },
+      ],
+    }),
   ],
 
   resolve: {
