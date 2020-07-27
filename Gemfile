@@ -17,7 +17,7 @@ gem 'e2mmap', '~> 0.1.0'
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.5'
+gem 'pghero', '~> 2.6'
 gem 'dotenv-rails', '~> 2.7'
 
 gem 'aws-sdk-s3', '~> 1.73', require: false
