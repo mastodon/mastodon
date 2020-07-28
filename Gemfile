@@ -146,7 +146,7 @@ group :development do
   gem 'bundler-audit', '~> 0.7', require: false
 
   gem 'capistrano', '~> 3.14'
-  gem 'capistrano-rails', '~> 1.5'
+  gem 'capistrano-rails', '~> 1.6'
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-yarn', '~> 2.0'
 
