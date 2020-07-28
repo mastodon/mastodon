@@ -26,8 +26,9 @@ module Paperclip
 
       foreground_palette.each do |color|
         distance = ColorDiff.between(background_color, color)
+        contrast = w3c_contrast(background_color, color)
 
-        if distance > max_distance
+        if distance > max_distance && contrast >= MIN_CONTRAST
           max_distance = distance
           max_distance_color = color
         end
