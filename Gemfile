@@ -94,7 +94,7 @@ gem 'simple-navigation', '~> 4.1'
 gem 'simple_form', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.1'
-gem 'strong_migrations', '~> 0.6'
+gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.22', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2020'
