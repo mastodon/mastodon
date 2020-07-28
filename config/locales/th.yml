@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา, ไม่มีการสอดแนมโดยองค์กร, การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -46,7 +45,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -278,7 +277,9 @@ th:
     custom_emojis:
       assign_category: กำหนดหมวดหมู่
       by_domain: โดเมน
+      copied_msg: สร้างสำเนาของอีโมจิในเซิร์ฟเวอร์สำเร็จ
       copy: คัดลอก
+      copy_failed_msg: ไม่สามารถสร้างสำเนาของอีโมจินั้นในเซิร์ฟเวอร์
       create_new_category: สร้างหมวดหมู่ใหม่
       created_msg: สร้างอีโมจิสำเร็จ!
       delete: ลบ
@@ -365,7 +366,7 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -408,7 +409,7 @@ th:
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -567,7 +568,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
   aliases:
     add_new: สร้างนามแฝง
     empty: คุณไม่มีนามแฝง
@@ -1001,7 +1002,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
@@ -1022,6 +1023,10 @@ th:
     setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   user_mailer:
+    sign_in_token:
+      details: 'นี่คือรายละเอียดของความพยายาม:'
+      subject: โปรดยืนยันการลงชื่อเข้าที่พยายาม
+      title: ความพยายามลงชื่อเข้า
     warning:
       review_server_policies: ตรวจทานนโยบายของเซิร์ฟเวอร์
       subject:
