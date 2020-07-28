@@ -7,13 +7,6 @@ GIT
       rails (>= 4.0)
 
 GIT
-  remote: https://github.com/rtomayko/posix-spawn
-  revision: 58465d2e213991f8afb13b984854a49fcdcc980c
-  ref: 58465d2e213991f8afb13b984854a49fcdcc980c
-  specs:
-    posix-spawn (0.3.13)
-
-GIT
   remote: https://github.com/tmm1/http_parser.rb
   revision: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
   ref: 54b17ba8c7d8d20a16dfc65d1775241833219cf2
@@ -415,6 +408,7 @@ GEM
     pghero (2.6.0)
       activerecord (>= 5)
     pkg-config (1.4.1)
+    posix-spawn (0.3.15)
     premailer (1.12.1)
       addressable
       css_parser (>= 1.6.0)
@@ -746,7 +740,7 @@ DEPENDENCIES
   pg (~> 1.2)
   pghero (~> 2.6)
   pkg-config (~> 1.4)
-  posix-spawn!
+  posix-spawn
   premailer-rails
   private_address_check (~> 0.5)
   pry-byebug (~> 3.9)
