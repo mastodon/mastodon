@@ -814,6 +814,7 @@ nn:
     changes_saved_msg: Alle endringane vart lagra!
     copy: Kopier
     delete: Slett
+    no_batch_actions_available: Ingen batch-handlingar tilgjengelege på denne sida
     order_by: Sorter etter
     save_changes: Lagr endringar
     validation_errors:
@@ -826,6 +827,7 @@ nn:
     authorize: Ja, stadfest
     authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
     errors:
+      failed: Den kryptografiske tilkoplinga gjekk gale. Venlegast prøv om att frå %{provider}.
       keybase:
         verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
       wrong_user: Kan ikke lage et bevis for %{proving} mens du er logget på som %{current}. Logg på som %{proving} og prøv igjen.
@@ -835,12 +837,14 @@ nn:
     inactive: Uaktiv
     publicize_checkbox: 'Og tut dette:'
     publicize_toot: 'Det er prova! Eg er %{username} på %{service}: %{url}'
-    remove: Fjern bevis fra kontoen
+    remove: Fjern prov frå konto
+    removed: Vellukka fjerning av prov frå konto
     status: Stadfestingsstatus
     view_proof: Sjå prov
   imports:
     modes:
       merge: Set saman
+      merge_long: Hald på eksisterande data og legg til nye
       overwrite: Skriv over
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
     success: Dataa dine vart lasta opp og vert no handsama så fort som mogeleg
@@ -886,6 +890,7 @@ nn:
     cancel_explanation: Å avbryte omdirigeringen vil reaktivere din nåværende konto, men vil ikke bringe tilbake følgere som har blitt flyttet til den kontoen.
     errors:
       already_moved: er den same kontoen som du allereie har flytta til
+      missing_also_known_as: er ikkje eit alias til denne kontoen
       move_to_self: kan ikkje vera denne kontoen
       not_found: fann ikkje
       on_cooldown: Du er i en nedkjølingsperiode
@@ -898,7 +903,7 @@ nn:
     warning:
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
       disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
-      other_data: Ingen andre data vil bli flyttet automatisk
+      other_data: Inkje anna data flytjast av seg sjølve
   moderation:
     title: Moderasjon
   notification_mailer:
@@ -1229,6 +1234,9 @@ nn:
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
+    sign_in_token:
+      subject: Venlegast stadfest forsøket på å logga inn
+      title: Forsøk på å logga inn
     warning:
       explanation:
         disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
@@ -1268,6 +1276,7 @@ nn:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
     invalid_email: E-mailadressa er ugyldig
     invalid_otp_token: Ugyldig tostegskode
+    invalid_sign_in_token: Ugild trygdenykel
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
