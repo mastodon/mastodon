@@ -709,6 +709,7 @@ nn:
   crypto:
     errors:
       invalid_key: er ikkje ein gild Ed25519 eller Curve25519 nykel
+      invalid_signature: er ikkje ein gild Ed25519-signatur
   date:
     formats:
       default: "%b %d, %Y"
@@ -795,6 +796,8 @@ nn:
       thread: Samtalar
     edit:
       title: Endr filter
+    errors:
+      invalid_context: Ingen eller ugild kontekst gjeve
     index:
       delete: Slett
       empty: Du har ingen filtre.
@@ -816,6 +819,8 @@ nn:
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
+  html_validator:
+    invalid_markup: 'rommar ugild HTML-kode: %{error}'
   identity_proofs:
     active: Aktiv
     authorize: Ja, stadfest
