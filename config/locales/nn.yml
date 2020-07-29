@@ -91,7 +91,7 @@ nn:
       delete: Slett
       destroyed_msg: Moderatormerknad er utsletta!
     accounts:
-      add_email_domain_block: Svartelist E-postdomenet
+      add_email_domain_block: Gøym e-postdomene
       approve: Godtak
       approve_all: Godtak alle
       are_you_sure: Er du sikker?
@@ -172,7 +172,7 @@ nn:
         staff: Personell
         user: Brukar
       search: Søk
-      search_same_email_domain: Andre brukere med samme E-postdomene
+      search_same_email_domain: Andre brukarar med same e-postdomene
       search_same_ip: Andre brukarar med same IP
       shared_inbox_url: Delt Innboks URL
       show:
@@ -196,20 +196,21 @@ nn:
     action_logs:
       action_types:
         assigned_to_self_report: Tilordne rapport
-        change_email_user: Endre brukerens E-postadresse
-        confirm_user: Bekreft brukeren
-        create_account_warning: Opprett en advarsel
-        create_announcement: Opprett en kunngjøring
-        create_custom_emoji: Opprett en tilpasset emoji
+        change_email_user: Byt e-post for brukar
+        confirm_user: Stadfest brukar
+        create_account_warning: Opprett åtvaring
+        create_announcement: Opprett lysing
+        create_custom_emoji: Opprett tilpassa emoji
         create_domain_allow: Opprett domene tillatt
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett e-post domeneblokk
         demote_user: Degrader bruker
-        destroy_announcement: Slett kunngjøringen
-        destroy_custom_emoji: Slett den tilpassede emojien
-        destroy_status: Slett statusen
-        disable_2fa_user: Skru av 2-trinnsinnlogging
-        disable_user: Deaktiver bruker
+        destroy_announcement: Slett lysinga
+        destroy_custom_emoji: Slett tilpassa emoji
+        destroy_status: Slett status
+        disable_2fa_user: Skruv av 2FA
+        disable_custom_emoji: Skruv av tilpassa emoji
+        disable_user: Skruv av brukar
         enable_user: Aktiver bruker
         promote_user: Promoter bruker
         remove_avatar_user: Fjern Avatar
@@ -221,7 +222,7 @@ nn:
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpasset Emoji
-        update_status: Oppdater statusen
+        update_status: Oppdater tut
       actions:
         assigned_to_self_report: "%{name} tilegnet rapport %{target} til seg selv"
         change_email_user: "%{name} endra e-postadressa til brukaren %{target}"
@@ -259,9 +260,9 @@ nn:
         update_custom_emoji: "%{name} oppdaterte kjensleteiknet %{target}"
         update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(sletta status)"
-      empty: Ingen loggføringer ble funnet.
+      empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
-      filter_by_user: Sorter etter bruker
+      filter_by_user: Sorter etter brukar
       title: Revisionslogg
     announcements:
       destroyed_msg: Kunngjøringen er slettet!
@@ -300,7 +301,7 @@ nn:
       listed: Oppført
       new:
         title: Legg til eige kjensleteikn
-      not_permitted: Du har ikke rettigheter til å utføre denne handlingen
+      not_permitted: Du har ikkje løyve til å utføra denne handlinga
       overwrite: Skriv over
       shortcode: Stuttkode
       shortcode_hint: Minst 2 teikn, berre tal, bokstavar og understrek
@@ -391,7 +392,7 @@ nn:
       destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
       empty: Ingen e-mail-domener er sortelistet på dette tidspunkt.
-      from_html: fra %{domain}
+      from_html: frå %{domain}
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
