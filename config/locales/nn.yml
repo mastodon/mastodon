@@ -204,16 +204,17 @@ nn:
         create_domain_allow: Opprett domene tillatt
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett e-post domeneblokk
-        demote_user: Degrader bruker
+        demote_user: Degrader brukar
         destroy_announcement: Slett lysinga
         destroy_custom_emoji: Slett tilpassa emoji
         destroy_status: Slett status
         disable_2fa_user: Skruv av 2FA
         disable_custom_emoji: Skruv av tilpassa emoji
         disable_user: Skruv av brukar
-        enable_user: Aktiver bruker
-        promote_user: Promoter bruker
-        remove_avatar_user: Fjern Avatar
+        enable_custom_emoji: Skruv på tilpassa emoji
+        enable_user: Skruv på brukar
+        promote_user: Forfrem brukar
+        remove_avatar_user: Fjern avatar
         reopen_report: Gjenåpne rapporten
         reset_password_user: Tilbakestill passord
         resolve_report: Løs rapport
@@ -904,9 +905,11 @@ nn:
     warning:
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
       disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
-      other_data: Inkje anna data flytjast av seg sjølve
+      other_data: Inkje anna data flyttast av seg sjølve
   moderation:
     title: Moderasjon
+  move_handler:
+    carry_blocks_over_text: Denne brukaren flytta frå %{acct}, som du gøymde.
   notification_mailer:
     digest:
       action: Sjå alle varsel
@@ -1091,6 +1094,8 @@ nn:
     disallowed_hashtags:
       one: 'inneheldt ein emneknagg som ikkje var tillaten: %{tags}'
       other: 'inneheldt emneknaggen som ikkje var tillaten: %{tags}'
+    errors:
+      in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
     language_detection: Kjenn att språk automatisk
     open_in_web: Opn på nett
     over_character_limit: øvregrensa for teikn, %{max}, er nådd
@@ -1236,6 +1241,7 @@ nn:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
     sign_in_token:
+      details: 'Her er forsøksdetaljane:'
       subject: Venlegast stadfest forsøket på å logga inn
       title: Forsøk på å logga inn
     warning:
