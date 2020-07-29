@@ -6,12 +6,12 @@ nn:
       account_migration:
         acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja til
       account_warning_preset:
-        text: Du kan bruka tut syntaks, som t.d. URL-ar, emneknaggar og nemningar
+        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og nemningar
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
-        include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
+        include_statuses: Brukaren får sjå kva tut som gjorde moderatorhandllinga eller -åtvaringa
         send_email_notification: Brukaren får ei forklåring av kva som har hendt med kontoen sin
-        text_html: Valfritt. Du kan bruka tut syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
+        text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       announcement:
@@ -34,7 +34,7 @@ nn:
         header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte tuter vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
-        locale: Språket til brukargrensesnittet, epostar og push-varsel
+        locale: Språket til brukargrensesnittet, e-postar og push-varsel
         locked: Krev at du manuelt godkjenner fylgjarar
         password: Nytt minst 8 teikn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
@@ -147,22 +147,22 @@ nn:
         setting_theme: Sidetema
         setting_trends: Vis kva som er populært i dag
         setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
-        setting_use_blurhash: Vis fargerike gradienter for skjulte media
+        setting_use_blurhash: Vis fargerike overgangar for gøymt media
         setting_use_pending_items: Saktemodus
         severity: Alvorsgrad
         sign_in_token_attempt: Trygdelykel
         type: Importtype
         username: Brukarnamn
-        username_or_email: Brukarnman eller E-post
+        username_or_email: Brukarnamn eller E-post
         whole_word: Heilt ord
       email_domain_block:
         with_dns_records: Inkluder MX-poster og IP-adresser for domenet
       featured_tag:
         name: Emneknagg
       interactions:
-        must_be_follower: Blokker varslinger fra ikke-følgere
-        must_be_following: Blokker varslinger fra personer du ikke følger
-        must_be_following_dm: Blokker direkte meldinger fra personer du ikke følger
+        must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
+        must_be_following: Gøym varslingar frå folk du ikkje fylgjer
+        must_be_following_dm: Gøym direktemeldinger frå folk du ikkje fylgjer
       invite:
         comment: Kommentar
       invite_request:
@@ -176,11 +176,11 @@ nn:
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
         report: Send e-post når nokon rapporterer noko
-        trending_tag: En ugjennomgått emneknagg trender
+        trending_tag: Ein emneknagg som ikkje er sett igjennom er på veg opp
       tag:
-        listable: Tillat denne emneknaggen å vises i søk og på profilmappen
+        listable: Tillat denne emneknaggen å synast i søk og i profilmappa
         name: Emneknagg
-        trendable: Tillat denne emneknaggen til å vises under trender
+        trendable: Tillat denne emneknaggen til å synast under trendar
         usable: Gje tut lov til å nytta denne emneknaggen
     'no': 'Nei'
     recommended: Tilrådt
