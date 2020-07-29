@@ -207,6 +207,9 @@ nn:
         demote_user: Degrader brukar
         destroy_announcement: Slett lysinga
         destroy_custom_emoji: Slett tilpassa emoji
+        destroy_domain_allow: Slett domenegodkjenning
+        destroy_domain_block: Slett domenesperring
+        destroy_email_domain_block: Slett e-postdomenesperring
         destroy_status: Slett status
         disable_2fa_user: Skruv av 2FA
         disable_custom_emoji: Skruv av tilpassa emoji
@@ -215,14 +218,14 @@ nn:
         enable_user: Skruv på brukar
         promote_user: Forfrem brukar
         remove_avatar_user: Fjern avatar
-        reopen_report: Gjenåpne rapporten
+        reopen_report: Opn rapport opp att
         reset_password_user: Tilbakestill passord
         resolve_report: Løs rapport
         silence_account: Demp konto
         suspend_account: Suspender kontoen
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
-        update_custom_emoji: Oppdater tilpasset Emoji
+        update_custom_emoji: Oppdater tilpassa emoji
         update_status: Oppdater tut
       actions:
         assigned_to_self_report: "%{name} tilegnet rapport %{target} til seg selv"
@@ -1082,6 +1085,9 @@ nn:
     spam_detected: Dette er en automatisert rapport. Spam har blitt oppdaget.
   statuses:
     attached:
+      audio:
+        one: "%{count} ljod"
+        other: "%{count} ljodar"
       description: 'Vedlagt: %{attached}'
       image:
         one: "%{count} bilete"
@@ -1242,6 +1248,7 @@ nn:
       subject: Arkivet ditt er klart til å lastes ned
     sign_in_token:
       details: 'Her er forsøksdetaljane:'
+      further_actions: 'Om dette ikkje var deg, so venlegast endra passordet ditt og skruv på tostegsgodkjenning på kontoen din. Du kan gjera det her:'
       subject: Venlegast stadfest forsøket på å logga inn
       title: Forsøk på å logga inn
     warning:
@@ -1281,6 +1288,7 @@ nn:
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
+    generic_access_help_html: Har du vanskar med tilgjenge til kontoen din? Tak gjerne kontakt med %{email}
     invalid_email: E-mailadressa er ugyldig
     invalid_otp_token: Ugyldig tostegskode
     invalid_sign_in_token: Ugild trygdenykel
