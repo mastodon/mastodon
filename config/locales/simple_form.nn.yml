@@ -1,14 +1,13 @@
----
 nn:
   simple_form:
     hints:
       account_alias:
-        acct: Spesifiser brukernavn@domene til brukeren du vil flytte fra
+        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja frå
       account_migration:
         acct: Spesifiser brukernavn@domene til brukeren du vil flytte til
       account_warning_preset:
-        text: Du kan bruke tut syntaks, f.eks. URLer, emneknagger og nevnelser
-        title: Valgfritt. Ikke synlig for mottaker
+        text: Du kan bruka tut syntaks, som t.d. URL-ar, emneknaggar og nemningar
+        title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
         include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
         send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
@@ -66,7 +65,7 @@ nn:
       invite_request:
         text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
@@ -151,6 +150,7 @@ nn:
         setting_use_blurhash: Vis fargerike gradienter for skjulte media
         setting_use_pending_items: Saktemodus
         severity: Alvorsgrad
+        sign_in_token_attempt: Trygdelykel
         type: Importtype
         username: Brukarnamn
         username_or_email: Brukarnman eller E-post
@@ -182,9 +182,9 @@ nn:
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
         usable: Gje tut lov til å nytta denne emneknaggen
-    'no': Nei
+    'no': 'Nei'
     recommended: Tilrådt
     required:
       mark: "*"
       text: obligatorisk
-    'yes': Ja
+    'yes': 'Ja'
