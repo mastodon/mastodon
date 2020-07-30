@@ -1,0 +1,47 @@
+// Dependent colors
+$black: #000000;
+$white: #ffffff;
+
+$classic-base-color: #111111;
+$classic-primary-color: #333333;
+$classic-secondary-color: #AEA79F;
+$classic-highlight-color: #E95420;
+
+// Differences
+$success-green: lighten(#3c754d, 8%);
+
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
+
+$ui-base-color: $classic-secondary-color !default;
+$ui-base-lighter-color: #fff;
+$ui-primary-color: #333;
+$ui-secondary-color: $classic-base-color !default;
+$ui-highlight-color: #E95420;
+
+$primary-text-color: $black !default;
+$darker-text-color: $classic-base-color !default;
+$dark-text-color: #111111;
+$action-button-color: #333333;
+
+$inverted-text-color: $black !default;
+$lighter-text-color: $classic-base-color !default;
+$light-text-color: #111111;
+
+//Newly added colors
+$account-background-color: $white !default;
+
+//Invert darkened and lightened colors
+@function darken($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
+}
+
+@function lighten($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
+}
+
+$emojis-requiring-inversion: 'chains';
+
+
+@import 'application';
+@import 'mastodon-light/diff';
