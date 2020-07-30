@@ -271,6 +271,10 @@ ta:
       guide_link_text: அனைவரும் பங்களிக்கலாம்.
   authorize_follow:
     already_requested: இக்கணக்கைப் பின்தொடரும் கோரிக்கையை நீங்கள் ஏற்கனவே அனுப்பிவிட்டீர்கள்
+  crypto:
+    errors:
+      invalid_key: ஒரு முறையான Ed25519 அல்லது Curve25519 key அல்ல
+      invalid_signature: ஒரு முறையான Ed25519 அடையாளம் அல்ல
   date:
     formats:
       default: "%b %d, %Y"
@@ -289,6 +293,9 @@ ta:
       empty: தடுப்புகள் ஏதும் இல்லை.
   generic:
     delete: நீக்கு
+  identity_proofs:
+    remove: ஆதாரத்தைக் கணக்கிலிருந்து நீக்கு
+    removed: ஆதாரம் கணக்கிலிருந்து வெற்றிகரமாக நீக்கப்பட்டது
   invites:
     expires_in:
       '1800': 30 minutes
@@ -300,6 +307,8 @@ ta:
   media_attachments:
     validations:
       not_ready: பதிவேற்றம் முடிவடையாத கோப்புகளை இணைக்க முடியாது. சிறிது நேரம் கழித்து மீண்டும் முயற்சி செய்யவும்!
+  migrations:
+    redirected_msg: உங்கள் கணக்கு இப்பொழுது %{acct}-இற்குத் திருப்பிவிடப்படுகிறது.
   notifications:
     email_events: மின்னஞ்சல் அறிவிப்புகளுக்கான நிகழ்வுகள்
     email_events_hint: 'எந்த நிகழ்வுகளுக்கு அறிவிப்புகளைப் பெற வேண்டும் என்று தேர்வு செய்க:'
