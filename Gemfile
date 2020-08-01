@@ -11,16 +11,16 @@ gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
 gem 'rack', '~> 2.2.3'
 
-gem 'thwait', '~> 0.1.0'
+gem 'thwait', '~> 0.2.0'
 gem 'e2mmap', '~> 0.1.0'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.5'
+gem 'pghero', '~> 2.6'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.73', require: false
+gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -74,7 +74,7 @@ gem 'oj', '~> 3.10'
 gem 'ox', '~> 2.13'
 gem 'parslet'
 gem 'parallel', '~> 1.19'
-gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
+gem 'posix-spawn'
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.3'
@@ -86,16 +86,16 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
 gem 'sanitize', '~> 5.2'
-gem 'sidekiq', '~> 6.0'
+gem 'sidekiq', '~> 6.1'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.1'
 gem 'simple_form', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
-gem 'stoplight', '~> 2.2.0'
-gem 'strong_migrations', '~> 0.6'
-gem 'tty-prompt', '~> 0.21', require: false
+gem 'stoplight', '~> 2.2.1'
+gem 'strong_migrations', '~> 0.7'
+gem 'tty-prompt', '~> 0.22', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2020'
 gem 'webpacker', '~> 5.1'
@@ -129,7 +129,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.18', require: false
   gem 'webmock', '~> 3.8'
-  gem 'parallel_tests', '~> 3.0'
+  gem 'parallel_tests', '~> 3.1'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -148,8 +148,8 @@ group :development do
   gem 'bundler-audit', '~> 0.7', require: false
 
   gem 'capistrano', '~> 3.14'
-  gem 'capistrano-rails', '~> 1.5'
-  gem 'capistrano-rbenv', '~> 2.1'
+  gem 'capistrano-rails', '~> 1.6'
+  gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-yarn', '~> 2.0'
 
   gem 'stackprof'
