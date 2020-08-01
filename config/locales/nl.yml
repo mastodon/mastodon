@@ -1282,6 +1282,10 @@ nl:
       title: Archief ophalen
     sign_in_token:
       details: 'Hier zijn details van de poging:'
+      explanation: 'We hebben inlogpoging op je account ontdekt vanaf een onbekend ip-adres. Als jij dit bent, vul dan de beveiligingscode hieronder in op de inlog-uitdagingspagina:'
+      further_actions: 'Als jij dit niet was, verander dan je wachtwoord en schakel authenticatie in twee stappen in op je account. Dat kun je hier doen:'
+      subject: Bevestig de inlogpoging
+      title: Inlogpoging
     warning:
       explanation:
         disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
@@ -1319,11 +1323,14 @@ nl:
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
+    generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email}
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
+    suspicious_sign_in_confirmation: Het lijkt er op dat je nog niet eerder op dit apparaat bent ingelogd, en je bent een tijdje niet ingelogd, dus sturen we een beveiligingscode naar je e-mailadres om te bevestigen dat jij het bent.
   verification:
     explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
