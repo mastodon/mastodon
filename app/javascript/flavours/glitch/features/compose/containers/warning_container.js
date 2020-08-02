@@ -6,7 +6,22 @@ import { FormattedMessage } from 'react-intl';
 import { me } from 'flavours/glitch/util/initial_state';
 import { profileLink, termsLink } from 'flavours/glitch/util/backend_links';
 
-const APPROX_HASHTAG_RE = /(?:^|[^\/\)\w])#(\w*[a-zA-Z·]\w*)/i;
+const HASHTAG_SEPARATORS = "_\\u00b7\\u200c";
+const ALPHA = '\\p{L}\\p{M}';
+const WORD = '\\p{L}\\p{M}\\p{N}\\p{Pc}';
+const APPROX_HASHTAG_RE = new RegExp(
+  '(?:^|[^\\/\\)\\w])#((' +
+  '[' + WORD + '_]' +
+  '[' + WORD + HASHTAG_SEPARATORS + ']*' +
+  '[' + ALPHA + HASHTAG_SEPARATORS + ']' +
+  '[' + WORD + HASHTAG_SEPARATORS +']*' +
+  '[' + WORD + '_]' +
+  ')|(' +
+  '[' + WORD + '_]*' +
+  '[' + ALPHA + ']' +
+  '[' + WORD + '_]*' +
+  '))', 'iu'
+);
 
 const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
