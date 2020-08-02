@@ -29,11 +29,11 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small), blurhash: video.blurhash, sensitive: status.sensitive?, width: 670, height: 380, detailed: true, inline: true, alt: video.description do
+      = react_component :video, src: full_asset_url(video.file.url(:original)), preview: full_asset_url(video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small)), blurhash: video.blurhash, sensitive: status.sensitive?, width: 670, height: 380, detailed: true, inline: true, alt: video.description do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first
-      = react_component :audio, src: audio.file.url(:original), poster: audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url, backgroundColor: audio.file.meta.dig('colors', 'background'), foregroundColor: audio.file.meta.dig('colors', 'foreground'), accentColor: audio.file.meta.dig('colors', 'accent'), width: 670, height: 380, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
+      = react_component :audio, src: full_asset_url(audio.file.url(:original)), poster: full_asset_url(audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url), backgroundColor: audio.file.meta.dig('colors', 'background'), foregroundColor: audio.file.meta.dig('colors', 'foreground'), accentColor: audio.file.meta.dig('colors', 'accent'), width: 670, height: 380, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - else
       = react_component :media_gallery, height: 380, sensitive: status.sensitive?, standalone: true, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
