@@ -269,8 +269,9 @@ class Audio extends React.PureComponent {
   }
 
   _initAudioContext () {
-    const context  = new AudioContext();
-    const source   = context.createMediaElementSource(this.audio);
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const context      = new AudioContext();
+    const source       = context.createMediaElementSource(this.audio);
 
     this.visualizer.setAudioContext(context, source);
     source.connect(context.destination);
