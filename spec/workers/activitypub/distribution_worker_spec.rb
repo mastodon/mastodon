@@ -4,7 +4,7 @@ describe ActivityPub::DistributionWorker do
   subject { described_class.new }
 
   let(:status)   { Fabricate(:status) }
-  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com') }
+  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com', domain: 'example.com') }
 
   describe '#perform' do
     before do
@@ -30,7 +30,7 @@ describe ActivityPub::DistributionWorker do
 
       it 'delivers to followers' do
         subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with(['http://example.com'])
+        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with([['http://example.com', 'example.com']])
       end
     end
 
