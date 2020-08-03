@@ -243,6 +243,14 @@ module AccountInteractions
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
+  def followers_hash(domain)
+    Rails.cache.fetch("followers_hash:#{id}:#{domain}") do
+      domain = nil if domain == 'local'
+      uris = followers.where(domain: domain).map { |a| ActivityPub::TagManager.instance.uri_for(a) }
+      Digest::SHA256.hexdigest(uris.sort.join("\n"))
+    end
+  end
+
   private
 
   def remove_potential_friendship(other_account, mutual = false)

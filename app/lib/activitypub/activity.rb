@@ -193,6 +193,22 @@ class ActivityPub::Activity
     @account.followers.local.first
   end
 
+  def synchronize_collections!
+    return if @json['collectionSynchronization'].blank?
+
+    collections = as_array(@json['collectionSynchronization'])
+
+    collections.each do |item|
+      next unless item.is_a?(Hash) && item['type'] == 'SynchronizationItem'
+      next unless TagManager.instance.local_domain?(item['domain'])
+      next unless item['object'] == @account.followers_url
+      next if invalid_origin?(item['partialCollection'])
+      next unless item['digest'].is_a?(Hash) && item['digest']['digestAlgorithm'] == 'http://www.w3.org/2001/04/xmlenc#sha256'
+
+      ActivityPub::FollowersSynchronizationWorker.perform_async(@account.id, item['partialCollection']) unless @account.followers_hash('local') == item['digest']['digestValue']
+    end
+  end
+
   def follow_request_from_object
     @follow_request ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end

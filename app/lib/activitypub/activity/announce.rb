@@ -4,6 +4,8 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
     return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
 
+    synchronize_collections!
+
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         original_status = status_from_object
