@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
-  context_extensions :atom_uri, :conversation, :sensitive, :voters_count
+  context_extensions :atom_uri, :conversation, :sensitive, :voters_count, :direct_message
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
@@ -11,6 +11,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   attribute :content
   attribute :content_map, if: :language?
+
+  attribute :direct_message, if: :non_public?
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -35,6 +37,14 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def summary
     object.spoiler_text.presence
+  end
+
+  def direct_message
+    object.direct_visibility?
+  end
+
+  def non_public?
+    !object.distributable?
   end
 
   def content

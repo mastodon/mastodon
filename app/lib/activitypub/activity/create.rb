@@ -137,7 +137,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       # If there is at least one silent mention, then the status can be considered
       # as a limited-audience status, and not strictly a direct message, but only
       # if we considered a direct message in the first place
-      next unless @params[:visibility] == :direct
+      next unless @params[:visibility] == :direct && direct_message.nil?
 
       @params[:visibility] = :limited
     end
@@ -148,7 +148,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     @mentions << Mention.new(account_id: @options[:delivered_to_account_id], silent: true)
 
-    return unless @params[:visibility] == :direct
+    return unless @params[:visibility] == :direct && direct_message.nil?
 
     @params[:visibility] = :limited
   end
@@ -159,7 +159,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     delivered_to_account = Account.find(@options[:delivered_to_account_id])
 
     @status.mentions.create(account: delivered_to_account, silent: true)
-    @status.update(visibility: :limited) if @status.direct_visibility?
+    @status.update(visibility: :limited) if @status.direct_visibility? && direct_message.nil?
 
     return unless delivered_to_account.following?(@account)
 
@@ -358,6 +358,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       :unlisted
     elsif equals_or_includes?(audience_to, @account.followers_url)
       :private
+    elsif direct_message == false
+      :limited
     else
       :direct
     end
@@ -366,6 +368,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def audience_includes?(account)
     uri = ActivityPub::TagManager.instance.uri_for(account)
     equals_or_includes?(audience_to, uri) || equals_or_includes?(audience_cc, uri)
+  end
+
+  def direct_message
+    @object['directMessage']
   end
 
   def replied_to_status
