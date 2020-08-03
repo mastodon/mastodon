@@ -48,6 +48,15 @@ describe DeliveryFailureTracker do
       expect(results).to include('http://example.com/good/inbox')
       expect(results).to_not include('http://foo.bar/unavailable/inbox')
     end
+
+    context 'when given pairs' do
+      it 'removes URLs that are unavailable' do
+        results = described_class.without_unavailable([['http://example.com/good/inbox', 'good'], ['http://foo.bar/unavailable/inbox', 'bad']])
+
+        expect(results).to include(['http://example.com/good/inbox', 'good'])
+        expect(results).to_not include(['http://foo.bar/unavailable/inbox', 'bad'])
+      end
+    end
   end
 
   describe '.reset!' do
