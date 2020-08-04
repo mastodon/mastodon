@@ -251,7 +251,7 @@ class EmojiPickerMenu extends React.PureComponent {
         <EmojiPicker
           perLine={8}
           emojiSize={22}
-          sheetSize={64}
+          sheetSize={32}
           custom={buildCustomEmojis(custom_emojis)}
           color=''
           emoji='grinning'
