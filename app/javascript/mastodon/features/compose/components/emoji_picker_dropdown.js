@@ -262,10 +262,11 @@ class EmojiPickerMenu extends React.PureComponent {
           include={categoriesSort}
           recent={frequentlyUsedEmojis}
           skin={skinTone}
-          showPreview={false}
+          showPreview={true}
+          showSkinTones={true}
           backgroundImageFn={backgroundImageFn}
           autoFocus
-          emojiTooltip
+          emojiTooltip={true}
         />
 
         <ModifierPicker
