@@ -172,7 +172,7 @@ class ActivityPub::Activity
   end
 
   def first_mentioned_local_account
-    audience = (as_array(@json['to']) + as_array(@json['cc'])).uniq
+    audience = (as_array(@json['to']) + as_array(@json['cc'])).map { |x| value_or_id(x) }.uniq
     local_usernames = audience.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }
                               .map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
 
