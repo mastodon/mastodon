@@ -94,6 +94,7 @@ tr:
       delete: Sil
       destroyed_msg: Denetim notu başarıyla yok edildi!
     accounts:
+      add_email_domain_block: E-posta alan adını engelle
       approve: Onayla
       approve_all: Tümünü onayla
       are_you_sure: Emin misiniz?
@@ -174,6 +175,7 @@ tr:
         staff: Personel
         user: Kullanıcı
       search: Ara
+      search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
       shared_inbox_url: Paylaşılan gelen kutusu bağlantısı
       show:
@@ -198,6 +200,7 @@ tr:
       action_types:
         change_email_user: Kullanıcı için e-postayı değiştir
         confirm_user: Kullanıcıyı Onayla
+        create_account_warning: Uyarı Oluştur
         create_announcement: Duyuru Oluştur
         create_custom_emoji: Özel İfade Oluştur
         destroy_announcement: Duyuru Sil
@@ -1094,6 +1097,8 @@ tr:
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
       other: 'izin verilmeyen hashtag''leri içeriyordu: %{tags}'
+    errors:
+      in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
     language_detection: Dili otomatik olarak algıla
     open_in_web: Web sayfasında aç
     over_character_limit: '%{max} karakter limiti aşıldı'
@@ -1239,6 +1244,12 @@ tr:
       explanation: Mastodon hesabınızın tam bir yedeğini istediniz. Şimdi indirmeye hazır!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
+    sign_in_token:
+      details: 'İşte bu girişimin ayrıntıları:'
+      explanation: 'Tanınmayan bir IP adresinden hesabınızda oturum açma denemesi tespit ettik. Bu sizseniz, lütfen oturum açma sorgulama sayfasına aşağıdaki güvenlik kodunu girin:'
+      further_actions: 'Bu siz değildiyseniz, lütfen şifrenizi değiştirin ve hesabınızda iki faktörlü kimlik doğrulamayı etkinleştirin. Bunu buradan yapabilirsiniz:'
+      subject: Lütfen oturum açma girişimini onaylayın
+      title: Oturum açma girişimi
     warning:
       explanation:
         disable: Hesabınız donmuşken, hesap verileriniz bozulmadan kalır, ancak kilidi açılıncaya kadar herhangi bir işlem gerçekleştiremezsiniz.
@@ -1276,12 +1287,14 @@ tr:
       title: Gemiye hoşgeldin, %{name}!
   users:
     follow_limit_reached: '%{limit} kişiden daha fazlasını takip edemezsiniz'
+    generic_access_help_html: Hesabınıza erişirken sorun mu yaşıyorsunuz? Yardım için %{email} ile iletişime geçebilirsiniz
     invalid_email: E-posta adresiniz geçersiz
     invalid_otp_token: İki-faktörlü kodunuz geçersiz
     invalid_sign_in_token: Geçersiz güvenlik kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Giriş yapan:'
+    suspicious_sign_in_confirmation: Bu cihazdan daha önce oturum açmamış gibi görünüyorsunuz ve bir süredir oturum açmamışsınız, bu yüzden kimliğinizi doğrulamak için e-posta adresinize bir güvenlik kodu gönderiyoruz.
   verification:
     explanation_html: '<strong>Profil meta verisindeki bağlantıların sahibi olarak kendinizi doğrulayabilirsiniz</strong>. Bunun için, link verilen web sitesi Mastodon profilinize geri bir link içermelidir. Geri link bir <code>rel="me"</code> özelliğine sahip <strong>olmalıdır</strong>. Bağlantının metin içeriği önemli değildir. İşte bir örnek:'
     verification: Doğrulama
