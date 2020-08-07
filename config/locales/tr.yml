@@ -893,6 +893,7 @@ tr:
     on_cooldown: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
     past_migrations: Geçmiş taşınmalar
     proceed_with_move: Takipçileri taşı
+    redirected_msg: Hesabınız artık %{acct} adresine yönlendiriliyor.
     redirecting_to: Hesabınız %{acct} hesabına yönlendirilmektedir.
     set_redirect: Yönlendirme ayarla
     warning:
@@ -906,6 +907,10 @@ tr:
       redirect: Mevcut hesabınızın profili bir yönlendirme bildirimi ile güncellenecek ve aramaların dışında tutulacaktır
   moderation:
     title: Yönetim
+  move_handler:
+    carry_blocks_over_text: Bu kullanıcı engellediğiniz %{acct} adresinden taşındı.
+    carry_mutes_over_text: Bu kullanıcı sessize aldığınız %{acct} adresinden taşındı.
+    copy_account_note_text: 'Bu kullanıcı %{acct} adresinden taşındı, işte onlarla ilgili önceki notlarınız:'
   notification_mailer:
     digest:
       action: Tüm bildirimleri görüntüle
