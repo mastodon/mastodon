@@ -510,7 +510,7 @@ tr:
       domain_blocks:
         all: Herkes için
         disabled: Hiç kimseye
-        title: Alan adı bloklarını göster
+        title: Engellenen alan adlarını göster
         users: Oturum açan yerel kullanıcılara
       domain_blocks_rationale:
         title: Gerekçeyi göster
@@ -683,7 +683,7 @@ tr:
     forgot_password: Parolanızı unuttunuz mu?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     login: Giriş yap
-    logout: Çıkış
+    logout: Çıkış yap
     migrate_account: Farklı bir hesaba taşının
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
     or_log_in_with: Veya giriş yapın
@@ -796,7 +796,7 @@ tr:
       size: Boyut
     blocks: Engelledikleriniz
     csv: CSV
-    domain_blocks: Alan adı blokları
+    domain_blocks: Alan adı engelleri
     lists: Listeler
     mutes: Susturduklarınız
     storage: Ortam deposu
@@ -1114,7 +1114,7 @@ tr:
     preferences: Tercihler
     profile: Profil
     relationships: Takip edilenler ve takipçiler
-    two_factor_authentication: İki-faktörlü doğrulama
+    two_factor_authentication: İki adımlı doğrulama
   spam_check:
     spam_detected: Bu otomatik bir şikayettir. Spam tespit edildi.
   statuses:
@@ -1262,11 +1262,11 @@ tr:
       month: "%b %Y"
   two_factor_authentication:
     code_hint: Onaylamak için kimlik doğrulama uygulamanızın oluşturduğu kodu giriniz
-    description_html: Eğer <strong>iki-faktörlü kimlik doğrulamayı</strong> aktif ederseniz, giriş yaparken sizin için giriş kodu üreten telefonunuza ihtiyaç duyacaksınız.
+    description_html: <strong>İki adımlı doğrulamayı</strong>  etkinleştirirseniz, giriş yaparken sizin için giriş kodu üreten telefonunuza ihtiyaç duyacaksınız.
     disable: Devre dışı bırak
     enable: Aktifleştir
     enabled: İki adımlı kimlik doğrulama etkin
-    enabled_success: İki-faktörlü kimlik doğrulama başarıyla aktif edildi
+    enabled_success: İki adımlı kimlik doğrulama başarıyla etkinleştirildi
     generate_recovery_codes: Kurtarma Kodlarını Oluştur
     instructions_html: "<strong>Bu QR kodunu, telefonunuzdaki <a href=\"https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2\">Google Authenticator</a> veya benzer bir TOTP uygulamasıyla taratınız</strong>. Bundan sonra giriş yaparken uygulamanın ürettiği kodu kullanarak giriş yapacaksınız."
     lost_recovery_codes: Kurtarma kodları telefonunuzu kaybettiğiniz durumlarda hesabınıza erişim yapabilmenize olanak tanır. Eğer kurtarma kodlarınızı kaybettiyseniz burada tekrar oluşturabilirsiniz. Eski kurtarma kodlarınız geçersiz hale gelecektir.
