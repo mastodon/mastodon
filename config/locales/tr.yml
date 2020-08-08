@@ -976,7 +976,7 @@ tr:
     reblog:
       body: '%{name} durumunuzu boost etti:'
       subject: "%{name} durumunuzu boost etti"
-      title: Yeni gönderi
+      title: Yeni boost
   notifications:
     email_events: E-posta bildirimi gönderilecek etkinlikler
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
@@ -1044,8 +1044,8 @@ tr:
       proceed: Favorilere eklemek için ilerle
       prompt: 'Bu tootu favorilerinize eklemek istiyorsunuz:'
     reblog:
-      proceed: Yinelemek için ilerle
-      prompt: 'Bu tootu yinelemek istiyorsunuz:'
+      proceed: Boostlara doğru devam et
+      prompt: 'Bu durumu boost etmek istiyorsunuz:'
     reply:
       proceed: Cevap vermek için ilerle
       prompt: 'Bu toota cevap vermek istiyorsunuz:'
@@ -1129,7 +1129,7 @@ tr:
       video:
         one: "%{count} video"
         other: "%{count} video"
-    boosted_from_html: '%{acct_link} den yinelendi'
+    boosted_from_html: '%{acct_link} kişisinden boost etti'
     content_warning: 'İçerik uyarısı: %{warning}'
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
@@ -1143,7 +1143,7 @@ tr:
       limit: Hali hazırda maksimum sayıda tootu sabitlediniz
       ownership: Başkasının tootu sabitlenemez
       private: Halka açık olmayan toot sabitlenemez
-      reblog: Bir yineleme sabitlenemez
+      reblog: Bir boost sabitlenemez
     poll:
       total_people:
         one: "%{count} kişi"
