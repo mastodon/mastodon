@@ -217,6 +217,7 @@ tr:
         resolve_report: Şikayeti Çöz
         silence_account: Hesabı Sustur
         suspend_account: Hesabı Askıya Al
+        update_announcement: Duyuruyu Güncelle
         update_custom_emoji: Özel İfadeyi Güncelle
         update_status: Durumu Güncelle
       actions:
@@ -297,6 +298,7 @@ tr:
       listed: Listelenen
       new:
         title: Yeni özel emoji ekle
+      not_permitted: Bu işlemi gerçekleştirme izniniz yok
       overwrite: Üzerine yaz
       shortcode: Kısa kod
       shortcode_hint: En az 2 karakter, sadece alfanümerik karakterler ve alt çizgiler
@@ -694,6 +696,7 @@ tr:
     trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
   authorize_follow:
     already_following: Bu hesabı zaten takip ediyorsunuz
+    already_requested: Bu hesaba zaten takip isteği gönderdiniz
     error: Uzak hesap aranırken bir hata oluştu
     follow: Takip et
     follow_request: 'Şuna takip isteği gönderdiniz:'
@@ -837,6 +840,8 @@ tr:
     inactive: Pasif
     publicize_checkbox: 'Ve bunu tootla:'
     publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
+    remove: Hesaptan kanıtı kaldır
+    removed: Kanıt hesaptan başarıyla kaldırıldı
     status: Doğrulama durumu
     view_proof: Kanıt görüntüle
   imports:
@@ -882,6 +887,7 @@ tr:
   media_attachments:
     validations:
       images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
+      not_ready: İşlemi tamamlanmamış dosyalar eklenemez. Birazdan tekrar deneyin!
       too_many: 4'ten fazla dosya ekleyemezsiniz
   migrations:
     acct: Taşındı
