@@ -198,18 +198,28 @@ tr:
       whitelisted: Beyaz listede
     action_logs:
       action_types:
+        assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı için e-postayı değiştir
         confirm_user: Kullanıcıyı Onayla
         create_account_warning: Uyarı Oluştur
         create_announcement: Duyuru Oluştur
         create_custom_emoji: Özel İfade Oluştur
+        create_domain_allow: İzin Verilen Alan Adı Oluştur
+        create_domain_block: Engellenen Alan Adı Oluştur
+        create_email_domain_block: E-Posta Alan Adı Engeli Oluştur
+        demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
         destroy_custom_emoji: Özel İfadeyi Sil
+        destroy_domain_allow: İzin Verilen Alan Adını Sil
+        destroy_domain_block: Engellenen Alan Adını Sil
+        destroy_email_domain_block: E-posta alan adı engelini sil
         destroy_status: Durumu Sil
         disable_2fa_user: 2 Adımlı Doğrulamayı Kapat
         disable_custom_emoji: Özel İfadeyi Engelle
         disable_user: Kullanıcıyı Engelle
+        enable_custom_emoji: Özel İfadeyi Etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
+        memorialize_account: Hesabı Hatırlat
         promote_user: Kullanıcıyı Yükselt
         remove_avatar_user: Avatarı Kaldır
         reopen_report: Şikayeti Tekrar Aç
@@ -217,6 +227,9 @@ tr:
         resolve_report: Şikayeti Çöz
         silence_account: Hesabı Sustur
         suspend_account: Hesabı Askıya Al
+        unassigned_report: Rapor Atamasını Kaldır
+        unsilence_account: Hesabın Sesini Aç
+        unsuspend_account: Hesabı Askıdan Kaldır
         update_announcement: Duyuruyu Güncelle
         update_custom_emoji: Özel İfadeyi Güncelle
         update_status: Durumu Güncelle
@@ -711,6 +724,10 @@ tr:
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
     invalid_password: Geçersiz parola
     prompt: Devam etmek parolayı doğrulayın
+  crypto:
+    errors:
+      invalid_key: geçerli bir Ed25519 veya Curve25519 anahtarı değil
+      invalid_signature: geçerli bir Ed25519 imzası değil
   date:
     formats:
       default: "%b %d, %Y"
