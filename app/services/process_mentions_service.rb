@@ -43,7 +43,9 @@ class ProcessMentionsService < BaseService
     end
 
     if circle.present?
-      circle.accounts.find_each do |target_account|
+      accounts = circle.respond_to?(:accounts) ? circle.accounts : circle
+
+      accounts.find_each do |target_account|
         mention = target_account.mentions.new(status: status, silent: true)
         mentions << mention if mention.save!
       end

@@ -9,6 +9,7 @@ const mapStateToProps = state => {
   return {
     value: value,
     visible: state.getIn(['compose', 'privacy']) === 'limited',
+    reply: state.getIn(['compose', 'in_reply_to']) !== null,
   };
 };
 
@@ -16,6 +17,12 @@ const mapDispatchToProps = dispatch => ({
 
   onChange (value) {
     dispatch(changeComposeCircle(value));
+  },
+
+  onOpenCircleColumn (router) {
+    if(router && router.location.pathname !== '/circles') {
+      router.push('/circles');
+    }
   },
 
 });

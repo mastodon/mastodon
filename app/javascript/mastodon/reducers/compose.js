@@ -61,6 +61,7 @@ const initialState = ImmutableMap({
   caretPosition: null,
   preselectDate: null,
   in_reply_to: null,
+  reply_status: null,
   is_composing: false,
   is_submitting: false,
   is_changing_upload: false,
@@ -89,7 +90,7 @@ const initialPoll = ImmutableMap({
 function statusToTextMentions(state, status) {
   let set = ImmutableOrderedSet([]);
 
-  if (status.getIn(['account', 'id']) !== me) {
+  if (status.getIn(['account', 'id']) !== me && status.getIn(['visibility']) !== 'limited') {
     set = set.add(`@${status.getIn(['account', 'acct'])} `);
   }
 
@@ -104,6 +105,7 @@ function clearAll(state) {
     map.set('is_submitting', false);
     map.set('is_changing_upload', false);
     map.set('in_reply_to', null);
+    map.set('reply_status', null);
     map.set('privacy', state.get('default_privacy'));
     map.set('circle_id', null);
     map.set('sensitive', false);
@@ -185,6 +187,29 @@ const insertEmoji = (state, position, emojiData, needsSpace) => {
     caretPosition: position + emoji.length + 1,
     idempotencyKey: uuid(),
   });
+};
+
+const resetMentionText = (text, privacy, status) => {
+  if(status === null) {
+    return text;
+  }
+
+  let set = ImmutableOrderedSet([]);
+
+  if (status.getIn(['account', 'id']) !== me) {
+    set = set.add(`@${status.getIn(['account', 'acct'])}`);
+  }
+
+  set = set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')}`));
+
+  var match = /^(\s*(?:(?:@\S+)\s*)*)(.*)/.exec(text);
+  var mentions = ImmutableOrderedSet((match[1].trim().split(/\s+/)));
+
+  if(privacy === 'limited') {
+    return mentions.subtract(set).add(match[2]).join(' ');
+  } else {
+    return set.union(mentions).add(match[2]).join(' ');
+  }
 };
 
 const privacyPreference = (a, b) => {
@@ -284,9 +309,12 @@ export default function compose(state = initialState, action) {
       .set('idempotencyKey', uuid());
   case COMPOSE_VISIBILITY_CHANGE:
     return state.withMutations(map => {
+      map.set('text', resetMentionText(state.get('text'), action.value, state.get('reply_status')));
       map.set('privacy', action.value);
       map.set('idempotencyKey', uuid());
-      if (action.value !== 'limited') {
+      if(action.value === 'limited') {
+        map.set('circle_id', state.getIn(['reply_status', 'in_reply_to_id']) ? 'thread' : 'reply');
+      } else {
         map.set('circle_id', null);
       }
     });
@@ -303,9 +331,16 @@ export default function compose(state = initialState, action) {
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
+      map.set('reply_status', action.status);
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-      map.set('circle_id', null);
+      if(action.status.get('circle_id')) {
+        map.set('circle_id', action.status.get('circle_id'));
+      } else if(action.status.get('visibility') === 'limited'){
+        map.set('circle_id', action.status.get('in_reply_to_id') ? 'thread' : 'reply');
+      } else {
+        map.set('circle_id', null);
+      }
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
@@ -323,6 +358,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_RESET:
     return state.withMutations(map => {
       map.set('in_reply_to', null);
+      map.set('reply_status', null);
       map.set('text', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');
@@ -415,8 +451,9 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
+      map.set('reply_status', action.status);
       map.set('privacy', action.status.get('visibility'));
-      map.set('circle_id', null);
+      map.set('circle_id', action.status.get('circle_id'));
       map.set('media_attachments', action.status.get('media_attachments'));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);

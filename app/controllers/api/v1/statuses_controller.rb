@@ -77,6 +77,22 @@ class Api::V1::StatusesController < Api::BaseController
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
   end
 
+  def set_circle
+    @circle = begin
+      if status_params[:circle_id].blank?
+        nil
+      elsif status_params[:circle_id] == 'thread' && @thread.present?
+        Account.where(id: (@thread.ancestors(CONTEXT_LIMIT, current_account).pluck(:account_id) + [@thread.account_id]).uniq - [current_user.account_id])
+      elsif status_params[:circle_id] == 'reply' && @thread.present?
+        Account.where(id: [@thread.account_id] - [current_user.account_id])
+      else
+        current_account.owned_circles.find(status_params[:circle_id])
+      end
+    end
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: I18n.t('statuses.errors.circle_not_found') }, status: 404
+  end
+
   def status_params
     params.permit(
       :status,
