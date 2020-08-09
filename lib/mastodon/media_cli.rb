@@ -89,7 +89,7 @@ module Mastodon
             path_segments = object.key.split('/')
             path_segments.delete('cache')
 
-            if path_segments.size != 7
+            unless [7, 10].include?(path_segments.size)
               progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
               next
             end
@@ -133,7 +133,7 @@ module Mastodon
           path_segments = key.split(File::SEPARATOR)
           path_segments.delete('cache')
 
-          if path_segments.size != 7
+          unless [7, 10].include?(path_segments.size)
             progress.log(pastel.yellow("Unrecognized file found: #{key}"))
             next
           end
@@ -258,7 +258,7 @@ module Mastodon
       path_segments = path.split('/')[2..-1]
       path_segments.delete('cache')
 
-      if path_segments.size != 7
+      unless [7, 10].include?(path_segments.size)
         say('Not a media URL', :red)
         exit(1)
       end
@@ -311,7 +311,7 @@ module Mastodon
         segments = object.key.split('/')
         segments.delete('cache')
 
-        next if segments.size != 7
+        next unless [7, 10].include?(segments.size)
 
         model_name = segments.first.classify
         record_id  = segments[2..-2].join.to_i
