@@ -7,6 +7,11 @@ module SignatureVerification
 
   include DomainControlHelper
 
+  EXPIRATION_WINDOW_LIMIT = 12.hours
+  CLOCK_SKEW_MARGIN       = 1.hour
+
+  class SignatureVerificationError < StandardError; end
+
   def require_signature!
     render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
@@ -24,72 +29,60 @@ module SignatureVerification
   end
 
   def signature_key_id
-    raw_signature    = request.headers['Signature']
-    signature_params = {}
-
-    raw_signature.split(',').each do |part|
-      parsed_parts = part.match(/([a-z]+)="([^"]+)"/i)
-      next if parsed_parts.nil? || parsed_parts.size != 3
-      signature_params[parsed_parts[1]] = parsed_parts[2]
-    end
-
     signature_params['keyId']
+  end
+
+  def signature_algorithm
+    signature_params.fetch('algorithm', 'hs2019')
+  end
+
+  def signed_headers
+    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split(' ')
+  end
+
+  def signature_params
+    @signature_params ||= begin
+      raw_signature    = request.headers['Signature']
+      signature_params = {}
+
+      # TODO: this is really approximative... we should fix it with proper parsing
+      raw_signature.split(',').each do |part|
+        parsed_parts = part.match(/([a-z]+)="([^"]+)"/i)
+        next if parsed_parts.nil? || parsed_parts.size != 3
+        signature_params[parsed_parts[1]] = parsed_parts[2]
+      end
+
+      signature_params
+    end
   end
 
   def signed_request_account
     return @signed_request_account if defined?(@signed_request_account)
 
-    unless signed_request?
-      @signature_verification_failure_reason = 'Request not signed'
-      @signed_request_account = nil
-      return
-    end
-
-    if request.headers['Date'].present? && !matches_time_window?
-      @signature_verification_failure_reason = 'Signed request date outside acceptable time window'
-      @signed_request_account = nil
-      return
-    end
-
-    raw_signature    = request.headers['Signature']
-    signature_params = {}
-
-    raw_signature.split(',').each do |part|
-      parsed_parts = part.match(/([a-z]+)="([^"]+)"/i)
-      next if parsed_parts.nil? || parsed_parts.size != 3
-      signature_params[parsed_parts[1]] = parsed_parts[2]
-    end
-
-    if incompatible_signature?(signature_params)
-      @signature_verification_failure_reason = 'Incompatible request signature'
-      @signed_request_account = nil
-      return
-    end
+    raise SignatureVerificationError, 'Request not signed' unless signed_request?
+    raise SignatureVerificationError, 'Incompatible request signature. keyId and signature are required' if missing_required_signature_parameters?
+    raise SignatureVerificationError, 'Unsupported signature algorithm (only rsa-sha256 and hs2019 are supported)' unless %w(rsa-sha256 hs2019).include?(signature_algorithm)
+    raise SignatureVerificationError, 'Signed request date outside acceptable time window' unless matches_time_window?
 
     account = account_from_key_id(signature_params['keyId'])
 
-    if account.nil?
-      @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
-      @signed_request_account = nil
-      return
-    end
+    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
 
     signature             = Base64.decode64(signature_params['signature'])
-    compare_signed_string = build_signed_string(signature_params['headers'])
+    compare_signed_string = build_signed_string
 
     return account unless verify_signature(account, signature, compare_signed_string).nil?
 
     account = stoplight_wrap_request { account.possibly_stale? ? account.refresh! : account_refresh_key(account) }
 
-    if account.nil?
-      @signature_verification_failure_reason = "Public key not found for key #{signature_params['keyId']}"
-      @signed_request_account = nil
-      return
-    end
+    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
 
     return account unless verify_signature(account, signature, compare_signed_string).nil?
 
     @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+    @signed_request_account = nil
+  rescue SignatureVerificationError => e
+    @signature_verification_failure_reason = e.message
     @signed_request_account = nil
   end
 
@@ -108,12 +101,20 @@ module SignatureVerification
     nil
   end
 
-  def build_signed_string(signed_headers)
-    signed_headers = 'date' if signed_headers.blank?
-
-    signed_headers.downcase.split(' ').map do |signed_header|
+  def build_signed_string
+    signed_headers.map do |signed_header|
       if signed_header == Request::REQUEST_TARGET
         "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
+      elsif signed_header == '(created)'
+        raise SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'
+        raise SignatureVerificationError, 'Pseudo-header (created) used but corresponding argument missing' if signature_params['created'].blank?
+
+        "(created): #{signature_params['created']}"
+      elsif signed_header == '(expires)'
+        raise SignatureVerificationError, 'Invalid pseudo-header (expires) for rsa-sha256' unless signature_algorithm == 'hs2019'
+        raise SignatureVerificationError, 'Pseudo-header (expires) used but corresponding argument missing' if signature_params['expires'].blank?
+
+        "(expires): #{signature_params['expires']}"
       elsif signed_header == 'digest'
         "digest: #{body_digest}"
       else
@@ -123,13 +124,28 @@ module SignatureVerification
   end
 
   def matches_time_window?
+    created_time = nil
+    expires_time = nil
+
     begin
-      time_sent = Time.httpdate(request.headers['Date'])
+      if signature_algorithm == 'hs2019' && signature_params['created'].present?
+        created_time = Time.at(signature_params['created'].to_i).utc
+      elsif request.headers['Date'].present?
+        created_time = Time.httpdate(request.headers['Date']).utc
+      end
+
+      expires_time = Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
     rescue ArgumentError
       return false
     end
 
-    (Time.now.utc - time_sent).abs <= 12.hours
+    expires_time ||= created_time + 5.minutes unless created_time.nil?
+    expires_time = [expires_time, created_time + EXPIRATION_WINDOW_LIMIT].min unless created_time.nil?
+
+    return false if created_time.present? && created_time > Time.now.utc + CLOCK_SKEW_MARGIN
+    return false if expires_time.present? && Time.now.utc > expires_time + CLOCK_SKEW_MARGIN
+
+    true
   end
 
   def body_digest
@@ -140,9 +156,8 @@ module SignatureVerification
     name.split(/-/).map(&:capitalize).join('-')
   end
 
-  def incompatible_signature?(signature_params)
-    signature_params['keyId'].blank? ||
-      signature_params['signature'].blank?
+  def missing_required_signature_parameters?
+    signature_params['keyId'].blank? || signature_params['signature'].blank?
   end
 
   def account_from_key_id(key_id)
