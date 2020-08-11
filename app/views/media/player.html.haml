@@ -1,6 +1,13 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
+  - if @theme
+    - if @theme[:supported_locales].include? I18n.locale.to_s
+      = javascript_pack_tag "locales/#{@theme[:flavour]}/#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
+    - elsif @theme[:supported_locales].include? 'en'
+      = javascript_pack_tag "locales/#{@theme[:flavour]}/en", integrity: true, crossorigin: 'anonymous'
+  = render partial: 'layouts/theme', object: @core
+  = render partial: 'layouts/theme', object: @theme
 
 - if @media_attachment.video?
   = react_component :video, src: @media_attachment.file.url(:original), preview: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.file.url(:small), blurhash: @media_attachment.blurhash, width: 670, height: 380, editable: true, detailed: true, inline: true, alt: @media_attachment.description do
