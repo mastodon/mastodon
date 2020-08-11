@@ -364,7 +364,8 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid:not(:placeholder-shown) {
+    &:focus:invalid:not(:placeholder-shown),
+    &:required:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
     }
 
