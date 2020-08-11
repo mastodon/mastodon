@@ -173,11 +173,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :domain_allows, only: [:new, :create, :show, :destroy]
-    resources :domain_blocks, only: [:new, :create, :show, :destroy, :update] do
-      member do
-        get :edit
-      end
-    end
+    resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit]
 
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
