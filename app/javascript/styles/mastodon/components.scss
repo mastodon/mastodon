@@ -2990,7 +2990,7 @@ a.account__display-name {
   }
 }
 
-.no-reduce-motion button.icon-button i.fa-retweet {
+button.icon-button i.fa-retweet {
   background-position: 0 0;
   height: 19px;
   transition: background-position 0.9s steps(10);
@@ -3004,18 +3004,14 @@ a.account__display-name {
 
 }
 
-.no-reduce-motion button.icon-button.active i.fa-retweet {
+button.icon-button.active i.fa-retweet {
   transition-duration: 0.9s;
   background-position: 0 100%;
 }
 
-.reduce-motion button.icon-button i.fa-retweet {
-  color: $action-button-color;
-  transition: color 100ms ease-in;
-}
-
+.reduce-motion button.icon-button i.fa-retweet,
 .reduce-motion button.icon-button.active i.fa-retweet {
-  color: $highlight-text-color;
+  transition: none;
 }
 
 .status-card {

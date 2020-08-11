@@ -38,7 +38,7 @@ zh-CN:
       reason: 原因
       rejecting_media: 来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。
       rejecting_media_title: 被过滤的媒体文件
-      silenced: 来自这些服务器上的帖子将不会出现在公共时间线和会话中；此外，除非你关注了这些服务器上的用户，否则这些用户的互动不会产生通知。
+      silenced: 来自这些服务器上的帖子将不会出现在公共时间轴和会话中，通知功能也不会提醒这些用户的动态；只有你关注了这些用户，才会收到用户互动的通知消息。
       silenced_title: 已隐藏的服务器
       suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
       suspended_title: 已封禁的服务器
@@ -142,7 +142,7 @@ zh-CN:
       moderation_notes: 管理员备注
       most_recent_activity: 最后一次活跃的时间
       most_recent_ip: 最后一次活跃的 IP 地址
-      no_account_selected: 因为没有帐号被选择，所以没有更改
+      no_account_selected: 没有选中帐号，所以无更改
       no_limits_imposed: 无限制
       not_subscribed: 未订阅
       pending: 待审核
@@ -365,7 +365,7 @@ zh-CN:
           noop: 无
           silence: 自动隐藏
           suspend: 自动封禁
-        title: 添加域名屏蔽
+        title: 新增域名屏蔽
       private_comment: 私密评论
       private_comment_hint: 给这一域名限制添加备注，供监察员内部使用
       public_comment: 公开评论
@@ -391,7 +391,7 @@ zh-CN:
       view: 查看域名屏蔽
     email_domain_blocks:
       add_new: 添加新条目
-      created_msg: 电子邮件域名屏蔽添加成功
+      created_msg: 成功屏蔽电子邮件域名
       delete: 删除
       destroyed_msg: 电子邮件域名屏蔽删除成功
       domain: 域名
@@ -408,7 +408,7 @@ zh-CN:
         other: "%{count} 个已知帐户"
       moderation:
         all: 全部
-        limited: 受限的
+        limited: 部分
         title: 运营
       private_comment: 私密评论
       public_comment: 公开评论
@@ -508,7 +508,7 @@ zh-CN:
       enable_bootstrap_timeline_accounts:
         title: 开启新用户默认关注功能
       hero:
-        desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
+        desc_html: 将用于在首页展示。推荐使用分辨率 600×100px 以上的图片。如未设置，将默认使用本站缩略图。
         title: 主题图片
       mascot:
         desc_html: 用于在首页展示。推荐分辨率 293×205px 以上。未指定的情况下将使用默认吉祥物。
@@ -517,7 +517,7 @@ zh-CN:
         desc_html: 截至目前本服务器在联邦宇宙中已发现的域名
         title: 公开已知实例的列表
       preview_sensitive_media:
-        desc_html: 始终在站外链接预览中展示缩略图，无论媒体内容是否标记为敏感
+        desc_html: 无论媒体文件是否标记为敏感内容，站外链接预览始终呈现为缩略图。
         title: 在 OpenGraph 预览中显示敏感媒体内容
       profile_directory:
         desc_html: 允许用户被发现

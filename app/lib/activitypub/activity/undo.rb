@@ -13,10 +13,61 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
       undo_like
     when 'Block'
       undo_block
+    when nil
+      handle_reference
     end
   end
 
   private
+
+  def handle_reference
+    # Some implementations do not inline the object, and as we don't have a
+    # global index, we have to guess what object it is.
+    return if object_uri.nil?
+
+    try_undo_announce || try_undo_accept || try_undo_follow || try_undo_like || try_undo_block || delete_later!(object_uri)
+  end
+
+  def try_undo_announce
+    status = Status.where.not(reblog_of_id: nil).find_by(uri: object_uri, account: @account)
+    if status.present?
+      RemoveStatusService.new.call(status)
+      true
+    else
+      false
+    end
+  end
+
+  def try_undo_accept
+    # We can't currently handle `Undo Accept` as we don't record `Accept`'s uri
+    false
+  end
+
+  def try_undo_follow
+    follow = @account.follow_requests.find_by(uri: object_uri) || @account.active_relationships.find_by(uri: object_uri)
+
+    if follow.present?
+      follow.destroy
+      true
+    else
+      false
+    end
+  end
+
+  def try_undo_like
+    # There is an index on accounts, but an account may have *many* favs, so this may be too costly
+    false
+  end
+
+  def try_undo_block
+    block = @account.block_relationships.find_by(uri: object_uri)
+    if block.present?
+      UnblockService.new.call(@account, block.target_account)
+      true
+    else
+      false
+    end
+  end
 
   def undo_announce
     return if object_uri.nil?

@@ -14,7 +14,7 @@ vi:
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
         text_html: Tùy chọn. Bạn có thể sử dụng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
-        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm văn bản tùy chỉnh vào cuối cảnh cáo cài sẵn
+        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú bên dưới cảnh cáo cài sẵn
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
@@ -22,30 +22,30 @@ vi:
         starts_at: Tùy chọn. Trong trường hợp thông báo của bạn đăng vào một khoảng thời gian cụ thể
         text: Bạn có thể sử dụng tút dạng cú pháp. Cố gắng ngắn gọn bởi vì thông báo sẽ xuất hiện trên màn hình điện thoại của người dùng
       defaults:
-        autofollow: Những người đăng ký thông qua lời mời sẽ tự động theo dõi bạn
+        autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         bot: Tài khoản này tự động thực hiện các hành động và không cần thiết theo dõi
         context: Một hoặc nhiều bối cảnh nơi bộ lọc nên áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
-        digest: Chỉ được gửi sau một thời gian dài không hoạt động và chỉ khi bạn đã nhận được bất kỳ tin nhắn cá nhân nào khi bạn vắng mặt
+        digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được bất kỳ tin nhắn cá nhân nào trong lúc vắng mặt
         discoverable: Danh sách thành viên là một cách hay để bạn tìm kiếm người bạn muốn theo dõi
         email: Bạn sẽ được gửi một email xác nhận
-        fields: Bạn có thể tạo tối đa 4 mục được hiển thị dưới dạng bảng trên hồ sơ của bạn
+        fields: Được tạo tối đa 4 mục hiển thị dưới dạng bảng trên trang cá nhân của bạn
         header: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của relay mà bạn muốn sử dụng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả khi bộ lọc có bị xóa
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
-        locked: Yêu cầu bạn chấp thuận thủ công người theo dõi
+        locked: Tự bạn sẽ phê duyệt người theo dõi
         password: Sử dụng ít nhất 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn phạm vi cấp cao nhất, bạn không cần chọn từng phạm vi.
-        setting_aggregate_reblogs: Đừng hiện những chia sẻ mới cho những tút đã chia sẻ gần đây (chỉ ảnh hưởng đến các chia sẻ mới)
+        setting_aggregate_reblogs: Ẩn những chia sẻ mới cho những tút đã chia sẻ gần đây (chỉ ảnh hưởng đến các chia sẻ mới)
         setting_default_sensitive: Ảnh/video/âm thanh nhạy cảm được ẩn theo mặc định và chỉ hiển thị nếu nhấp chuột
-        setting_display_media_default: Ẩn ảnh hoặc video được đánh dấu là nhạy cảm
-        setting_display_media_hide_all: Luôn ẩn ảnh và video
-        setting_display_media_show_all: Luôn hiện ảnh và video
-        setting_hide_network: Bạn theo dõi ai và ai theo dõi bạn sẽ không được hiển thị trên hồ sơ của bạn
+        setting_display_media_default: Làm mờ những thứ được đánh dấu là nhạy cảm
+        setting_display_media_hide_all: Luôn luôn ẩn
+        setting_display_media_show_all: Luôn luôn hiển thị
+        setting_hide_network: Ẩn những người bạn theo dõi và những người theo dõi bạn trên trang cá nhân
         setting_noindex: Ảnh hưởng đến trang cá nhân và tút của bạn
         setting_show_application: Tên ứng dụng bạn sử dụng để đăng tút sẽ được hiển thị trong chi tiết bài đăng
         setting_use_blurhash: Hình ảnh mờ dựa trên màu sắc của hình ảnh nhạy cảm nhưng sẽ che hết chi tiết
@@ -64,13 +64,13 @@ vi:
       imports:
         data: Tệp CSV được xuất từ máy chủ Mastodon khác
       invite_request:
-        text: Điều này sẽ giúp chúng tôi xem xét lời mời của bạn
+        text: Điều này sẽ giúp chúng tôi phê duyệt đăng ký của bạn
       sessions:
         otp: 'Nhập mã xác thực hai yếu tố được tạo bởi ứng dụng điện thoại của bạn hoặc sử dụng một trong các mã khôi phục của bạn:'
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
-        chosen_languages: Chỉ những tút viết bằng các ngôn ngữ được chọn sẽ được hiển thị trên bảng tin
+        chosen_languages: Chỉ những tút viết bằng các ngôn ngữ được chọn sẽ hiển thị trên bảng tin
     labels:
       account:
         fields:
@@ -85,15 +85,15 @@ vi:
         title: Tựa đề
       admin_account_action:
         include_statuses: Đính kèm những tút bị báo xấu trong e-mail
-        send_email_notification: Thông báo cho người dùng mỗi email
-        text: Tùy chỉnh cảnh báo
-        type: Hoạt động
+        send_email_notification: Thông báo cho người này qua email
+        text: Ghi chú cảnh cáo
+        type: Hành động
         types:
           disable: Vô hiệu hóa đăng nhập
           none: Không làm gì cả
-          silence: Im lặng
+          silence: Tạm ẩn
           suspend: Đình chỉ và xóa dữ liệu tài khoản
-        warning_preset_id: Sử dụng cảnh báo cài đặt trước
+        warning_preset_id: Sử dụng cảnh cáo cài sẵn
       announcement:
         all_day: Sự kiện diễn ra hằng ngày
         ends_at: Kết thúc sự kiện
@@ -103,7 +103,7 @@ vi:
       defaults:
         autofollow: Mời theo dõi tài khoản của bạn
         avatar: Ảnh đại diện
-        bot: Đây là tài khoản bot
+        bot: Đây là tài khoản Bot
         chosen_languages: Chọn ngôn ngữ
         confirm_new_password: Xác nhận mật khẩu mới
         confirm_password: Xác nhận mật khẩu
@@ -114,12 +114,12 @@ vi:
         display_name: Tên hiển thị
         email: Địa chỉ email
         expires_in: Hết hạn sau
-        fields: Hồ sơ metadata
+        fields: Metadata
         header: Ảnh bìa
-        inbox_url: URL của hộp thư relay
+        inbox_url: Hộp thư relay
         irreversible: Kéo xuống thay vì ẩn
         locale: Ngôn ngữ
-        locked: Khóa tài khoản
+        locked: Đây là tài khoản khóa
         max_uses: Số lần sử dụng tối đa
         new_password: Mật khẩu mới
         note: Tiểu sử
@@ -127,20 +127,20 @@ vi:
         password: Mật khẩu
         phrase: Từ khóa hoặc cụm từ
         setting_advanced_layout: Kích hoạt giao diện web nâng cao
-        setting_aggregate_reblogs: Hiện tút nhóm trong bảng tin
+        setting_aggregate_reblogs: Lượt chia sẻ trong bảng tin
         setting_auto_play_gif: Tự động phát GIF
         setting_boost_modal: Yêu cầu xác nhận trước khi chia sẻ tút
         setting_crop_images: Hiển thị ảnh theo tỉ lệ 16x9
         setting_default_language: Ngôn ngữ đăng
         setting_default_privacy: Kiểu đăng
-        setting_default_sensitive: Luôn đánh dấu ảnh/video là nhạy cảm
+        setting_default_sensitive: Luôn đánh dấu ảnh/video là nội dung nhạy cảm
         setting_delete_modal: Yêu cầu xác nhận trước khi xóa tút
-        setting_display_media: Hiện ảnh/video
+        setting_display_media: Nội dung nhạy cảm
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
         setting_display_media_show_all: Hiện toàn bộ
-        setting_expand_spoilers: Luôn hiện trước các tút đánh dấu là spoil
-        setting_hide_network: Ẩn máy chủ của bạn
+        setting_expand_spoilers: Luôn hiển thị toàn bộ tút (no spoiler)
+        setting_hide_network: Ẩn kết nối của bạn
         setting_noindex: Không xuất hiện trong công cụ tìm kiếm
         setting_reduce_motion: Giảm chuyển động ảnh GIF
         setting_show_application: Hiện ứng dụng được sử dụng để đăng tút
@@ -152,7 +152,7 @@ vi:
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
-        type: Nhập loại
+        type: Kiểu nhập
         username: Tên người dùng
         username_or_email: Tên người dùng hoặc email
         whole_word: Cả từ
@@ -170,7 +170,7 @@ vi:
         text: Tại sao bạn muốn tham gia?
       notification_emails:
         digest: Gửi email định kỳ
-        favourite: Ai đó tâm đắc tút của bạn
+        favourite: Ai đó thích tút của bạn
         follow: Ai đó theo dõi bạn
         follow_request: Ai đó yêu cầu theo dõi bạn
         mention: Ai đó nhắc đến bạn
@@ -183,9 +183,9 @@ vi:
         name: Hashtag
         trendable: Cho phép hashtag này xuất hiện trong xu hướng
         usable: Cho phép các tút sử dụng hashtag này
-    'no': Không
+    'no': Tắt
     recommended: Khuyến nghị
     required:
       mark: "*"
       text: yêu cầu
-    'yes': Đúng
+    'yes': Bật
