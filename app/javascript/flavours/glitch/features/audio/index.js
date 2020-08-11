@@ -68,11 +68,13 @@ class Audio extends React.PureComponent {
     const width  = this.player.offsetWidth;
     const height = this.props.fullscreen ? this.player.offsetHeight : (width / (16/9));
 
-    if (this.props.cacheWidth) {
-      this.props.cacheWidth(width);
-    }
+    if (width && width != this.state.containerWidth) {
+      if (this.props.cacheWidth) {
+        this.props.cacheWidth(width);
+      }
 
-    this.setState({ width, height });
+      this.setState({ width, height });
+    }
   }
 
   setSeekRef = c => {
@@ -102,6 +104,10 @@ class Audio extends React.PureComponent {
   }
 
   componentDidUpdate (prevProps, prevState) {
+    if (this.player) {
+      this._setDimensions();
+    }
+
     if (prevProps.src !== this.props.src || this.state.width !== prevState.width || this.state.height !== prevState.height || prevProps.accentColor !== this.props.accentColor) {
       this._clear();
       this._draw();
