@@ -64,6 +64,8 @@ module SignatureVerification
     raise SignatureVerificationError, 'Unsupported signature algorithm (only rsa-sha256 and hs2019 are supported)' unless %w(rsa-sha256 hs2019).include?(signature_algorithm)
     raise SignatureVerificationError, 'Signed request date outside acceptable time window' unless matches_time_window?
 
+    verify_signature_strength!
+
     account = account_from_key_id(signature_params['keyId'])
 
     raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
@@ -91,6 +93,13 @@ module SignatureVerification
   end
 
   private
+
+  def verify_signature_strength!
+    raise SignatureVerificationError, 'Mastodon requires the Date header or (created) pseudo-header to be signed' unless signed_headers.include?('date') || signed_headers.include?('(created)')
+    raise SignatureVerificationError, 'Mastodon requires the (request-target) pseudo-header to be signed' unless signed_headers.include?(Request::REQUEST_TARGET)
+    raise SignatureVerificationError, 'Mastodon requires the Host header to be signed' unless signed_headers.include?('host')
+    raise SignatureVerificationError, 'Mastodon requires the Digest header to be signed when doing a POST request' if request.post? && !signed_headers.include?('digest')
+  end
 
   def verify_signature(account, signature, compare_signed_string)
     if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
