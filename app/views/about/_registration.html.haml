@@ -16,7 +16,7 @@
           = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: false
 
     .fields-group
-      = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), disabled: closed_registrations?
+      = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), required: true, disabled: closed_registrations?
 
     .actions
       = f.button :button, sign_up_message, type: :submit, class: 'button button-primary', disabled: closed_registrations?
